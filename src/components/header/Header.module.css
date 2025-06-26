@@ -1,0 +1,458 @@
+/* Header.module.css */
+
+/* Sidebar Overlay */
+.mobileMenuOverlay {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease-in-out;
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.mobileMenuOverlay.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Sidebar Menu */
+.mobileMenu {
+  width: 300px;
+  height: 100vh;
+  background: linear-gradient(
+    -50deg,
+    rgba(255, 255, 255, 0.6) 60%,
+    rgb(0 0 0 / 63%) 100%
+  );
+  backdrop-filter: blur(10px); /* Glass effect */
+  padding: 20px;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4); /* Softer shadow */
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px; /* Subtle glass border */
+}
+
+.mobileMenuOverlay.open .mobileMenu {
+  transform: translateX(0);
+}
+
+/* Close Button */
+.closeMenu {
+  background: none;
+  border: none;
+  color: #8a5a0d;
+  font-size: 24px;
+  cursor: pointer;
+  align-self: center;
+}
+
+/* Logo */
+.sidebarLogo {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
+.sidebarLogo img {
+  width: 40px;
+  height: 40px;
+}
+
+.sidebarLogo h2 {
+  color: #fddf82;
+  font-size: 18px;
+}
+
+/* Navigation Links */
+.sidebarNav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebarNav li {
+  margin: 15px 0;
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.sidebarNav li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Arrow Icon */
+.sidebarNav li::after {
+  content: ">";
+  color: #fddf82;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Contact Section */
+.contactInfo {
+  margin-top: 20px;
+  padding: 10px;
+  color: white;
+}
+
+.contactInfo h3 {
+  color: #fddf82;
+  margin-bottom: 10px;
+}
+
+.contactInfo p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.contactInfo a {
+  color: #fddf82;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contactInfo a:hover {
+  color: white;
+}
+
+/* Social Icons */
+.socialIcons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.socialIcons a {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.socialIcons a:hover {
+  background: #fddf82;
+}
+
+.socialIcons img {
+  width: 16px;
+  height: 16px;
+}
+
+.menuMainMenu {
+  list-style: none;
+}
+
+.navItem {
+  color: #020202;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  font-size: 16px;
+  line-height: 35px;
+}
+.headerBackground {
+  border-bottom: 1px solid black !important;
+}
+
+@media (min-width: 992px) {
+  /* Desktop Sidebar */
+  .headerBackground {
+    padding: 0 50px;
+  }
+  .desktopSidebar {
+    width: 400px;
+    height: 100vh;
+    background: white;
+    backdrop-filter: blur(10px); /* Glass effect */
+    padding: 20px;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    right: -400px; /* Start offscreen */
+    transform: translateX(0);
+    transition: right 0.4s ease-in-out; /* Smooth slide-in */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 2px solid black;
+    z-index: 1000;
+  }
+
+  .desktopSidebar.open {
+    right: 0; /* Move sidebar into view */
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1px);
+    transition: opacity 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  /* Close Button */
+  .closeMenu {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* Logo */
+  .MobileSidebarLogo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 100px;
+    margin-bottom: 30px;
+  }
+
+  .MobileSidebarLogo img {
+    height: 50px;
+  }
+
+  /* Navigation */
+  .navItem {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #fff;
+  }
+
+  .navItem li {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .navItem li:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Contact Info */
+  .contactInfo {
+    margin-top: 20px;
+    padding: 10px;
+    color: #000;
+  }
+
+  .contactInfo h3 {
+    color: #000;
+    margin-bottom: 10px;
+  }
+
+  .contactInfo p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .contactInfo a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .contactInfo a:hover {
+    color: white;
+  }
+
+  /* Dropdown Menu */
+  .dropdown {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .dropdownMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #f2f2f2eb;
+    list-style: none;
+    padding: 10px 0;
+    min-width: 150px;
+    display: block;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  .dropdownMenu li {
+    padding: 10px 15px;
+    white-space: nowrap;
+    transition: background 0.3s;
+  }
+
+  .dropdownMenu li:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .navItem {
+    list-style: none;
+    padding: 0;
+  }
+
+  .navItem li {
+    padding: 12px 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navItem li span {
+    flex-grow: 1;
+  }
+
+  .dropdownArrow {
+    background: none;
+    border: none;
+    color: #8a5a0d;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .submenu li {
+    padding: 10px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .submenu li:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Dropdown Parent */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Dropdown Toggle */
+.dropdownToggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Dropdown Menu (Hidden Initially) */
+.submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.1);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+
+/* When Dropdown is Open */
+.submenu.show {
+  max-height: 400px; /* Adjust if needed */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Button Arrow */
+.dropdownArrow {
+  background: none;
+  border: none;
+  color: #8a5a0d;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+  z-index: 999; /* Ensures it's behind the sidebar but above content */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.subDropLink:hover {
+  color: #fddf82;
+}
+
+/* Make full height sidebar scrollable */
+.mobileMenu {
+  height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 2rem;
+}
+
+/* Optional: Add smooth scroll style */
+.mobileMenu::-webkit-scrollbar {
+  width: 6px;
+}
+.mobileMenu::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+/* Smooth dropdown with max-height transition */
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.show {
+  max-height: 1000px; /* Large enough to show all items */
+}
+
+.case_imgs img {
+  height: 100px;
+  object-fit: cover;
+}
