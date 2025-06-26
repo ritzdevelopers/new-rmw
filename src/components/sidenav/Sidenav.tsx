@@ -15,13 +15,16 @@ type ProfileType = {
   createdAt: string;
   profileImage: string;
 };
-
-const Sidebar = () => {
+type sidebarProps = {
+  expanded: boolean;
+  setExpanded: (value: boolean) => void;
+};
+const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const pathname = usePathname(); // Get current URL path
   const [profile, setProfile] = useState<ProfileType | null>(null);
   const [loading, setLoading] = useState(true);
   const [blogOpen, setBlogOpen] = useState(false);
-  const [expanded, setExpanded] = useState(false); // Sidebar toggle state
+  // const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     axios
@@ -92,7 +95,10 @@ const Sidebar = () => {
             </div>
             {expanded && (
               <ChevronDown
-                className={cn("w-4 h-4 transition", blogOpen ? "rotate-180" : "")}
+                className={cn(
+                  "w-4 h-4 transition",
+                  blogOpen ? "rotate-180" : ""
+                )}
               />
             )}
           </div>
