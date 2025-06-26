@@ -3,6 +3,7 @@ import { getDBPool } from "@/lib/db";
 import { cookies } from "next/headers";
 import { v4 as uuidv4 } from "uuid";
 import { UAParser } from "ua-parser-js";
+import { RowDataPacket } from "mysql2";
 
 // // ✅ POST: Log a visit (Only increases visitor count if no cookie is found)
 // export async function POST(req: NextRequest) {
@@ -56,6 +57,14 @@ import { UAParser } from "ua-parser-js";
 //   }
 // }
 
+interface VisitLog extends RowDataPacket {
+  url: string;
+  user_id: string;
+  browser: string;
+  visitors: number;
+  last_visited?: Date;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const pool = await getDBPool();
@@ -66,7 +75,6 @@ export async function POST(req: NextRequest) {
     const parser = new UAParser(rawBrowser);
     const parsed = parser.getResult();
     const browser = parsed.browser.name;
-    console.log("Browser : ", browser);
 
     if (!url) {
       return NextResponse.json({ error: "URL is required" }, { status: 400 });
@@ -82,12 +90,12 @@ export async function POST(req: NextRequest) {
     }
 
     // ✅ Check if this user has already visited this URL
-    const [rows] = await pool.query(
+    const [rows] = await pool.query<VisitLog[]>(
       "SELECT * FROM visit_logs WHERE url = ? AND user_id = ?",
       [url, userId]
     );
 
-    if ((rows as any[]).length > 0) {
+    if (rows.length > 0) {
       // ✅ Visitor exists → update visit count and last_visited
       await pool.execute(
         `UPDATE visit_logs 

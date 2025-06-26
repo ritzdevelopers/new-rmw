@@ -33,7 +33,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const [profile, setProfile] = useState<ProfileType | null>(null);
   const [loading, setLoading] = useState(true);
   const [blogOpen, setBlogOpen] = useState(false);
-  const [expanded, setExpanded] = useState(false); // Sidebar toggle state
+  // const [expanded, setExpanded] = useState(false); // Sidebar toggle state
   const [webpagesLinks, setWebPagesLink] = useState(false);
   const [homePagesLinks, setHomePagesLinks] = useState(false);
   const [systemSettings, setSystemSettings] = useState(false);
