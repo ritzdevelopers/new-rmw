@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+import React from 'react'
+import Dashboard from '../../../../allPages/dashboard/Dashboard'
+// import NewDashBoard from '@/allPages/newDashboard/NewDashBoard'
+=======
 "use client";
 
 import axios from "axios";
@@ -21,8 +26,18 @@ const Page = () => {
 
     fetchData();
   }, []);
+>>>>>>> f06bc961200032cf73b591c9db1ebcbeeb23881a
 
   return (
+<<<<<<< HEAD
+    <>
+      <Dashboard/>
+    </>
+  )
+}
+
+export default page
+=======
     <div className="dashboard-container">
       <header className="header">
         <h1>Dashboard</h1>
@@ -52,3 +67,4 @@ const Page = () => {
 };
 
 export default Page;
+>>>>>>> f06bc961200032cf73b591c9db1ebcbeeb23881a
