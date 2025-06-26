@@ -69,15 +69,12 @@ export async function PUT(
 
     const category_id = formData.get("category_id") as string;
     const title = formData.get("title") as string;
-    let blog_url = formData.get("blog_url") as string;
-    const youtube_url = formData.get("youtube_url") as string;
     const meta_title = formData.get("meta_title") as string;
     const meta_description = formData.get("meta_description") as string;
-    const metaKeywords = formData.get("metaKeywords") as string;
+    const meta_keywords = formData.get("meta_keywords") as string;
     const description = formData.get("description") as string;
     const blogImage = formData.get("blogImage") as File | null;
 
-    blog_url = blog_url?.toLowerCase().replace(/\s+/g, "-") || "";
     let imagePath = existingImage;
 
     if (blogImage) {
@@ -101,18 +98,16 @@ export async function PUT(
 
     await db.execute(
       `UPDATE blogs 
-       SET category_id = ?, title = ?, slug = ?, youtube_url = ?, 
+       SET category_id = ?, title = ?,
            meta_title = ?, meta_description = ?, meta_keywords = ?, 
            blog_image = ?, description = ? 
        WHERE slug = ?`,
       [
         category_id,
         title,
-        blog_url,
-        youtube_url,
         meta_title,
         meta_description,
-        metaKeywords,
+        meta_keywords,
         imagePath,
         description,
         decodeURIComponent(blog_slug),

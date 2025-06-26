@@ -58,18 +58,21 @@ export default function ManageBlogs() {
     setDeleteBlog(null);
   };
 
-  const categories = ["All", ...new Set(blogs.map((blog) => blog.category_name))];
+  const categories = [
+    "All",
+    ...new Set(blogs.map((blog) => blog.category_name)),
+  ];
 
-  const filteredBlogs = blogs.filter((blog) =>
-    blog.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (selectedCategory === "All" || blog.category_name === selectedCategory)
+  const filteredBlogs = blogs.filter(
+    (blog) =>
+      blog.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (selectedCategory === "All" || blog.category_name === selectedCategory)
   );
 
   const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
   const indexOfLastBlog = currentPage * blogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
   const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
-
 
   return (
     <div className="p-10 pl-20 bg-gray-100 min-h-screen">
@@ -84,7 +87,10 @@ export default function ManageBlogs() {
       </div>
 
       {/* Search & Filter */}
-      <div style={{display:"flex", justifyContent:"space-between"}} className="mt-4 flex flex-col md:flex-row gap-4 items-start md:items-center">
+      <div
+        style={{ display: "flex", justifyContent: "space-between" }}
+        className="mt-4 flex flex-col md:flex-row gap-4 items-start md:items-center"
+      >
         <input
           type="text"
           placeholder="Search..."
@@ -181,7 +187,10 @@ export default function ManageBlogs() {
           {/* Mobile View */}
           <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
             {currentBlogs.map((blog) => (
-              <div key={blog.id} className="bg-gray-100 p-4 rounded-md shadow-md">
+              <div
+                key={blog.id}
+                className="bg-gray-100 p-4 rounded-md shadow-md"
+              >
                 <Image
                   src={`/blogs/${blog.blog_image}`}
                   alt={blog.title}
@@ -191,7 +200,9 @@ export default function ManageBlogs() {
                 />
                 <h3 className="text-lg font-semibold mt-2">{blog.title}</h3>
                 <p className="text-sm text-gray-600">{blog.slug}</p>
-                <p className="text-sm text-gray-600">Category: {blog.category}</p>
+                <p className="text-sm text-gray-600">
+                  Category: {blog.category}
+                </p>
                 <p className="text-sm text-gray-600">
                   Date: {new Date(blog.created_at).toLocaleDateString("en-US")}
                 </p>
@@ -228,58 +239,60 @@ export default function ManageBlogs() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-  <div className="flex justify-center mt-6 gap-2 flex-wrap">
-    {/* Previous Button */}
-    <button
-      disabled={currentPage === 1}
-      onClick={() => setCurrentPage((prev) => prev - 1)}
-      className="px-4 py-2 bg-black text-white rounded disabled:opacity-50"
-    >
-      Previous
-    </button>
+            <div className="flex justify-center mt-6 gap-2 flex-wrap">
+              {/* Previous Button */}
+              <button
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((prev) => prev - 1)}
+                className="px-4 py-2 bg-black text-white rounded disabled:opacity-50"
+              >
+                Previous
+              </button>
 
-    {/* Page Numbers with Window */}
-    {(() => {
-      const pageNumbers = [];
-      const maxVisiblePages = 5;
-      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-      let endPage = startPage + maxVisiblePages - 1;
+              {/* Page Numbers with Window */}
+              {(() => {
+                const pageNumbers = [];
+                const maxVisiblePages = 5;
+                let startPage = Math.max(
+                  1,
+                  currentPage - Math.floor(maxVisiblePages / 2)
+                );
+                let endPage = startPage + maxVisiblePages - 1;
 
-      if (endPage > totalPages) {
-        endPage = totalPages;
-        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-      }
+                if (endPage > totalPages) {
+                  endPage = totalPages;
+                  startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
 
-      for (let i = startPage; i <= endPage; i++) {
-        pageNumbers.push(i);
-      }
+                for (let i = startPage; i <= endPage; i++) {
+                  pageNumbers.push(i);
+                }
 
-      return pageNumbers.map((pageNum) => (
-        <button
-          key={pageNum}
-          onClick={() => setCurrentPage(pageNum)}
-          className={`px-4 py-2 rounded ${
-            currentPage === pageNum
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-black hover:bg-gray-300"
-          }`}
-        >
-          {pageNum}
-        </button>
-      ));
-    })()}
+                return pageNumbers.map((pageNum) => (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={`px-4 py-2 rounded ${
+                      currentPage === pageNum
+                        ? "bg-blue-600 text-white"
+                        : "bg-gray-200 text-black hover:bg-gray-300"
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                ));
+              })()}
 
-    {/* Next Button */}
-    <button
-      disabled={currentPage === totalPages}
-      onClick={() => setCurrentPage((prev) => prev + 1)}
-      className="px-4 py-2 bg-black text-white rounded disabled:opacity-50"
-    >
-      Next
-    </button>
-  </div>
-)}
-
+              {/* Next Button */}
+              <button
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage((prev) => prev + 1)}
+                className="px-4 py-2 bg-black text-white rounded disabled:opacity-50"
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
       )}
 
@@ -294,7 +307,7 @@ export default function ManageBlogs() {
           >
             <motion.div
               className="bg-white p-6 rounded-md shadow-md"
-              initial={{ y: -50, opacity: 0 }}  
+              initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -50, opacity: 0 }}
               transition={{ duration: 0.3 }}
