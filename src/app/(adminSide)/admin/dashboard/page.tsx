@@ -1,11 +1,12 @@
 import React from 'react'
-// import Dashboard from '../../../../allPages/dashboard/Dashboard'
+import Dashboard from '../../../../allPages/dashboard/Dashboard'
+// import NewDashBoard from '@/allPages/newDashboard/NewDashBoard'
 
 const page = () => {
   return (
-    <div>
-      {/* <Dashboard/> */}
-    </div>
+    <>
+      <Dashboard/>
+    </>
   )
 }
 
