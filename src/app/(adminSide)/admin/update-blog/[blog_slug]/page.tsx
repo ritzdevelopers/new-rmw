@@ -26,17 +26,18 @@ const UpdateBlog = () => {
   const [formData, setFormData] = useState({
     category_id: "",
     title: "",
-    blog_url: "",
-    youtube_url: "",
+
     meta_title: "",
     meta_description: "",
-    metaKeywords: "",
+    meta_keywords: "",
     blogImage: null as File | null, // Store new image file
     description: "",
   });
 
   const [existingImage, setExistingImage] = useState<string | null>(null); // Store current image path
-  const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
+  const [categories, setCategories] = useState<{ id: number; name: string }[]>(
+    []
+  );
   const [loading, setLoading] = useState(false);
   const [isFetching, setIsFetching] = useState(true); // ✅ Track data loading
   const [previewImage, setPreviewImage] = useState<string | null>(null); // For image preview
@@ -55,7 +56,8 @@ const UpdateBlog = () => {
           console.error("Unexpected error:", error);
           toast.error("An unexpected error occurred");
         }
-      }}
+      }
+    };
     fetchCategories();
   }, []);
 
@@ -68,18 +70,19 @@ const UpdateBlog = () => {
         setFormData({
           category_id: data.blog.category_id?.toString() || "",
           title: data.blog.title || "",
-          blog_url: data.blog.slug || "",
-          youtube_url: data.blog.youtube_url || "",
+
           meta_title: data.blog.meta_title || "",
           meta_description: data.blog.meta_description || "",
-          metaKeywords: data.blog.metaKeywords || "",
+          meta_keywords: data.blog.meta_keywords || "",
           blogImage: null, // Don't set the image directly
           description: data.blog.description || "",
         });
 
         setExistingImage(data.blog.blog_image);
-        setPreviewImage(data.blog.blog_image ? `/blogs/${data.blog.blog_image}` : null);
-      }catch (error) {
+        setPreviewImage(
+          data.blog.blog_image ? `/blogs/${data.blog.blog_image}` : null
+        );
+      } catch (error) {
         if (error instanceof Error) {
           console.error("Error fetching categories:", error.message);
           toast.error("Failed to load categories: " + error.message);
@@ -96,7 +99,9 @@ const UpdateBlog = () => {
   }, [blog_slug]);
 
   // Handle input changes
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -147,13 +152,13 @@ const UpdateBlog = () => {
       router.push("/admin/manage-blogs");
     } catch (error) {
       if (error instanceof Error) {
-        console.error("Error pushing blog:", error.message);
+        console.error("Error pushing blog:", error);
         toast.error("Failed to load categories: " + error.message);
       } else {
         console.error("Unexpected error:", error);
         toast.error("An unexpected error occurred");
       }
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -167,11 +172,18 @@ const UpdateBlog = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-xl space-y-4">
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-xl space-y-4"
+    >
       <h2 className="text-xl font-semibold">Update Blog</h2>
 
       <Label>Blog Category</Label>
-      <Select onValueChange={handleSelectChange} value={formData.category_id} disabled={loading}>
+      <Select
+        onValueChange={handleSelectChange}
+        value={formData.category_id}
+        disabled={loading}
+      >
         <SelectTrigger>
           <SelectValue placeholder="Select Category" />
         </SelectTrigger>
@@ -185,30 +197,57 @@ const UpdateBlog = () => {
       </Select>
 
       <Label>Blog Title</Label>
-      <Input name="title" value={formData.title} onChange={handleChange} disabled={loading} />
-
-      <Label>Blog URL</Label>
-      <Input name="blog_url" value={formData.blog_url} onChange={handleChange} disabled={loading} />
-
-      <Label>YouTube URL</Label>
-      <Input name="youtube_url" value={formData.youtube_url} onChange={handleChange} disabled={loading} />
+      <Input
+        name="title"
+        value={formData.title}
+        onChange={handleChange}
+        disabled={loading}
+      />
 
       <Label>Meta Title</Label>
-      <Input name="meta_title" value={formData.meta_title} onChange={handleChange} disabled={loading} />
+      <Input
+        name="meta_title"
+        value={formData.meta_title}
+        onChange={handleChange}
+        disabled={loading}
+      />
 
       <Label>Meta Description</Label>
-      <Textarea name="meta_description" value={formData.meta_description} onChange={handleChange} disabled={loading} />
+      <Textarea
+        name="meta_description"
+        value={formData.meta_description}
+        onChange={handleChange}
+        disabled={loading}
+      />
 
       <Label>Meta Keywords</Label>
-      <Input name="metaKeywords" value={formData.metaKeywords} onChange={handleChange} disabled={loading} />
+      <Input
+        name="meta_keywords"
+        value={formData.meta_keywords}
+        onChange={handleChange}
+        disabled={loading}
+      />
 
       <Label>Blog Image</Label>
       <div className="relative">
-        <Input type="file" accept="image/*" onChange={handleImageChange} disabled={loading} />
+        <Input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          disabled={loading}
+        />
         {previewImage && (
           <div className="relative mt-3">
-            <img src={previewImage} alt="Blog" className="w-32 h-32 object-cover rounded-md shadow-md" />
-            <button type="button" onClick={removeImage} className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+            <img
+              src={previewImage}
+              alt="Blog"
+              className="w-32 h-32 object-cover rounded-md shadow-md"
+            />
+            <button
+              type="button"
+              onClick={removeImage}
+              className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+            >
               <FiXCircle size={20} />
             </button>
           </div>
@@ -216,7 +255,10 @@ const UpdateBlog = () => {
       </div>
 
       <Label>Blog Content</Label>
-      <Editor content={formData.description} setContent={(value) => setFormData({ ...formData, description: value })} />
+      <Editor
+        content={formData.description}
+        setContent={(value) => setFormData({ ...formData, description: value })}
+      />
 
       <Button type="submit" className="w-full mt-4" disabled={loading}>
         {loading ? "Updating..." : "Update Blog"}
