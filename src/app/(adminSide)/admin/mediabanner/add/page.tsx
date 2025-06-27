@@ -91,7 +91,6 @@ const page = () => {
     <div className="p-4 sm:p-6 md:p-8 ">
       <ToastContainer />
 
-      {/* Heading and Breadcrumb */}
       <div className="mb-6">
         <h1 className="text-2xl md:text-3xl font-semibold mb-2">
           Add Media Banner
