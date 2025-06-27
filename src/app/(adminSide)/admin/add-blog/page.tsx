@@ -1,3 +1,4 @@
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import AddBlogData from "../../../../components/addBlogData/AddBlogData";
 
 const page = () => {
@@ -6,9 +7,8 @@ const page = () => {
       <header className="header">
         <h1>Add new Blog</h1>
       </header>
-      <div className="breadcrumb-placeholder" aria-hidden="true">
-        <h5>Home / Dashboard</h5>
-      </div>
+
+      <Breadcrumb currentPage="Add-Blog" />
 
       <AddBlogData />
 
