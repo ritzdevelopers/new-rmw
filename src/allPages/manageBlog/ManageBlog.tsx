@@ -348,6 +348,7 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion, AnimatePresence } from "framer-motion";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 
 type Blog = {
   id: string;
@@ -441,6 +442,8 @@ export default function ManageBlogs() {
           </button>
         </Link>
       </div>
+
+      <Breadcrumb currentPage="Manage-Blogs" />
 
       {/* Search & Filter */}
       <div
