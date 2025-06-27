@@ -1,5 +1,6 @@
 "use client";
 
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaUsers } from "react-icons/fa";
@@ -29,7 +30,7 @@ const Page = () => {
       </header>
 
       <div className="breadcrumb-placeholder" aria-hidden="true">
-        <h5>Home / Dashboard</h5>
+        <Breadcrumb currentPage="Dashboard" />
       </div>
 
       <div className="visitors-card">

@@ -7,7 +7,7 @@ export async function generateMetadata({ params }: { params: { categorypage: str
     const getParam = await params;
     console.log(getParam.categorypage);
     const data = await getMetaOrThrow(getParam.categorypage, 'category')
-    debugger
+    // debugger
     return {
       title: data.meta_title,
       description: data.meta_description,

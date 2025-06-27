@@ -589,7 +589,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Contact Enquiry
                 </div>
               </Link>
-              <Link href="/admin/enquiry/enquiries">
+              <Link href="/admin/enqury/enquries">
                 <div
                    onClick={()=>setActiveSubMenu("Enquiries")}
                  style={{
