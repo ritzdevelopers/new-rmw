@@ -57,7 +57,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setHomePageActive(false);
       setSystemPageActive(false);
       setActiveSubMenu("");
-       setCreateUserPageActive(true);
+      setCreateUserPageActive(true);
     } else if (blogText === "System Settings") {
       setBlogActive(false);
       setDBActive(false);
@@ -65,7 +65,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setHomePageActive(false);
       setSystemPageActive(true);
       setActiveSubMenu("");
-       setCreateUserPageActive(false);
+      setCreateUserPageActive(false);
     } else if (blogText === "Home") {
       setBlogActive(false);
       setDBActive(false);
@@ -73,7 +73,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setHomePageActive(true);
       setSystemPageActive(false);
       setActiveSubMenu("");
-       setCreateUserPageActive(false);
+      setCreateUserPageActive(false);
     } else if (blogText === "Web Pages") {
       setBlogActive(false);
       setDBActive(false);
@@ -81,7 +81,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setHomePageActive(false);
       setSystemPageActive(false);
       setActiveSubMenu("");
-       setCreateUserPageActive(false);
+      setCreateUserPageActive(false);
     } else if (blogText === "Blog") {
       setBlogActive(true);
       setDBActive(false);
@@ -89,7 +89,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setHomePageActive(false);
       setSystemPageActive(false);
       setActiveSubMenu("");
-       setCreateUserPageActive(false);
+      setCreateUserPageActive(false);
     } else if (blogText === "Dashboard") {
       setBlogActive(false);
       setDBActive(true);
@@ -97,7 +97,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setHomePageActive(false);
       setSystemPageActive(false);
       setActiveSubMenu("");
-       setCreateUserPageActive(false);
+      setCreateUserPageActive(false);
     }
   }
 
@@ -212,13 +212,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
             <div className="space-y-2">
               <Link href="/admin/add-blog">
                 <div
-                    onClick={()=>setActiveSubMenu("Add Blog")}
-                 style={{
-              ...(!blogOpen
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Add Blog") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Add Blog")}
+                  style={{
+                    ...(!blogOpen
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Add Blog" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer text-sm  pl-8 text-gray-200"
                 >
                   Add Blog
@@ -226,13 +231,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               </Link>
               <Link href="/admin/manage-blogs">
                 <div
-                    onClick={()=>setActiveSubMenu("Manage Blogs")}
-                 style={{
-              ...(!blogOpen
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Blogs") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Blogs")}
+                  style={{
+                    ...(!blogOpen
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Blogs" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Blogs
@@ -274,13 +284,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
             <div className=" space-y-2">
               <Link href="/admin/content">
                 <div
-                    onClick={()=>setActiveSubMenu("Manage Page")}
-                 style={{
-              ...(!webpagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Page") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Page")}
+                  style={{
+                    ...(!webpagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Page" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Page
@@ -288,13 +303,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               </Link>
               <Link href="/admin/menu">
                 <div
-                    onClick={()=>setActiveSubMenu("Manage Menu")}
-                 style={{
-              ...(!webpagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Menu") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Menu")}
+                  style={{
+                    ...(!webpagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Menu" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Menu
@@ -303,13 +323,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/menu_category">
                 <div
-                    onClick={()=>setActiveSubMenu("Manage Menu Category")}
-                 style={{
-              ...(!webpagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Menu Category") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Menu Category")}
+                  style={{
+                    ...(!webpagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Menu Category" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Menu Category
@@ -348,18 +373,21 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
           {/* Home Pages Sub-Menu */}
 
           {expanded && homePagesLinks && (
-            <div
-            
-            className=" space-y-2">
+            <div className=" space-y-2">
               <Link href="/admin/why_choose_us">
                 <div
-                  onClick={()=>setActiveSubMenu("Why Choose Us")}
-                 style={{
-              ...(!homePagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Why Choose Us") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Why Choose Us")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Why Choose Us" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Why Choose Us
@@ -367,13 +395,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               </Link>
               <Link href="/admin/why_ritz_best">
                 <div
-                  onClick={()=>setActiveSubMenu("Why Ritz Best")}
-                 style={{
-              ...(!homePagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Why Ritz Best") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Why Ritz Best")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Why Ritz Best" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Why Ritz Best
@@ -382,13 +415,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/our_vision">
                 <div
-                    onClick={()=>setActiveSubMenu("Our Vision")}
-                 style={{
-              ...(!homePagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Our Vision") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Our Vision")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Our Vision" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Our Vision
@@ -397,13 +435,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/how_we_work">
                 <div
-                    onClick={()=>setActiveSubMenu("How We Work")}
-                 style={{
-              ...(!homePagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "How We Work") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("How We Work")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "How We Work" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   How We Work
@@ -411,13 +454,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               </Link>
               <Link href="/admin/services">
                 <div
-                    onClick={()=>setActiveSubMenu("Manage Services")}
-                 style={{
-              ...(!homePagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Services") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Services")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Services" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Services
@@ -426,13 +474,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/home/customers">
                 <div
-                    onClick={()=>setActiveSubMenu("Manage Customers")}
-                 style={{
-              ...(!homePagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Customers") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Customers")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Customers" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Customers
@@ -441,13 +494,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/home/testimonials">
                 <div
-                    onClick={()=>setActiveSubMenu("Manage Testimonial")}
-                 style={{
-              ...(!homePagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Testimonial") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Testimonial")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Testimonial" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Testimonial
@@ -456,13 +514,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/home/networthy_assets">
                 <div
-                    onClick={()=>setActiveSubMenu("Networthy Assets")}
-                 style={{
-              ...(!homePagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Networthy Assets") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Networthy Assets")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Networthy Assets" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Networthy Assets
@@ -470,13 +533,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               </Link>
               <Link href="/admin/home/kaam_hai_mera">
                 <div
-                    onClick={()=>setActiveSubMenu("Kaam Hai Mera")}
-                 style={{
-              ...(!homePagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Kaam Hai Mera") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Kaam Hai Mera")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Kaam Hai Mera" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Kaam Hai Mera
@@ -485,13 +553,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/update_titles">
                 <div
-                    onClick={()=>setActiveSubMenu("Update Title Descriptions")}
-                 style={{
-              ...(!homePagesLinks
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Update Title Descriptions") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Update Title Descriptions")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Update Title Descriptions" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Update Title Descriptions
@@ -533,13 +606,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
             <div className=" space-y-2">
               <Link href="/admin/listing/newsletter">
                 <div
-                onClick={()=>setActiveSubMenu("Manage Newsletter")}
-                 style={{
-              ...(!systemSettings
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Newsletter") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Newsletter")}
+                  style={{
+                    ...(!systemSettings
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Newsletter" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Newsletter
@@ -547,13 +625,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               </Link>
               <Link href="/admin/mediabanner">
                 <div
-                   onClick={()=>setActiveSubMenu("Manage Home Slider")}
-                 style={{
-              ...(!systemSettings
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Home Slider") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Home Slider")}
+                  style={{
+                    ...(!systemSettings
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Home Slider" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Home Slider
@@ -562,28 +645,38 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/howitworks">
                 <div
-                   onClick={()=>setActiveSubMenu("Manage FAQs")}
-                 style={{
-              ...(!systemSettings
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage FAQs") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage FAQs")}
+                  style={{
+                    ...(!systemSettings
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage FAQs" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage FAQs
                 </div>
               </Link>
 
-              <Link href="/admin/enqury">
+              <Link href="/admin/enquiry">
                 <div
-                   onClick={()=>setActiveSubMenu("Contact Enquiry")}
-                 style={{
-              ...(!systemSettings
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Contact Enquiry") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Contact Enquiry")}
+                  style={{
+                    ...(!systemSettings
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Contact Enquiry" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Contact Enquiry
@@ -591,13 +684,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               </Link>
               <Link href="/admin/enquiry/enquiries">
                 <div
-                   onClick={()=>setActiveSubMenu("Enquiries")}
-                 style={{
-              ...(!systemSettings
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Enquiries") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Enquiries")}
+                  style={{
+                    ...(!systemSettings
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Enquiries" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Enquiries
@@ -606,13 +704,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/enquiry/career">
                 <div
-                   onClick={()=>setActiveSubMenu("Manage Career")}
-                 style={{
-              ...(!systemSettings
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Career") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Career")}
+                  style={{
+                    ...(!systemSettings
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Career" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Career
@@ -621,13 +724,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/ourteam">
                 <div
-                   onClick={()=>setActiveSubMenu("Manage Our Team")}
-                 style={{
-              ...(!systemSettings
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Our Team") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Our Team")}
+                  style={{
+                    ...(!systemSettings
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Our Team" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Our Team
@@ -636,13 +744,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/system-setting">
                 <div
-                   onClick={()=>setActiveSubMenu("Global Setting")}
-                 style={{
-              ...(!systemSettings
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Global Setting") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Global Setting")}
+                  style={{
+                    ...(!systemSettings
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Global Setting" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Global Setting
@@ -650,13 +763,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               </Link>
               <Link href="/admin/web-story">
                 <div
-                   onClick={()=>setActiveSubMenu("Manage Web Story")}
-                 style={{
-              ...(!systemSettings
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...((subMenuActive === "Manage Web Story") && { backgroundColor: "#2E3B46" }),
-            }}
+                  onClick={() => setActiveSubMenu("Manage Web Story")}
+                  style={{
+                    ...(!systemSettings
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Web Story" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Web Story
