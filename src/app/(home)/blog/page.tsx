@@ -14,17 +14,7 @@ const page = () => {
 
       <Articles />
 
-      <Footer />
-
-
-
-
-
-
-
-
-
-      
+      <Footer />   
     </div>
   );
 };

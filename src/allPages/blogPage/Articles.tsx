@@ -4,13 +4,14 @@ import Loader from "@/components/loader/Loader";
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-
+// import Link from 'next/link';
+import gsap from "gsap";
+import { CalendarDays, Share2 } from "lucide-react";
 interface Article {
-  blog_image: string;
-  slug: string;
-  title: string;
-  description: string;
-  created_at: string;
+  _id: string;
+  blogBanner: string;
+  blogTitle: string;
+  createdAt: string;
 }
 
 const Blogs: React.FC = () => {
@@ -18,18 +19,27 @@ const Blogs: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  useEffect(() => {
+    gsap.from(".mnc-card", {
+      opacity: 0,
+      y: 30,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: "power2.out",
+    });
+  }, []);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get("/api/all_blogs");
-        setBlogs(response.data);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred");
-        }
+        const response = await axios.get(
+          "http://localhost:3000/api/ritz_blogs/get-all-blogs"
+        );
+        setBlogs(response.data.allBlogs);
+        console.log(response.data.allBlogs);
+      } catch (err: any) {
+        console.log(err);
+        setError(err?.message || "An unknown error occurred");
       } finally {
         setLoading(false);
       }
@@ -38,9 +48,8 @@ const Blogs: React.FC = () => {
     fetchBlogs();
   }, []);
 
-  // Filter blogs by search query (case-insensitive title match)
   const filteredBlogs = blogs.filter((blog) =>
-    blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+    blog.blogTitle.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -52,22 +61,19 @@ const Blogs: React.FC = () => {
   const currentCards = filteredBlogs.slice(indexOfFirstCard, indexOfLastCard);
 
   const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
   const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
   if (loading) return <Loader />;
-  if (error) return <p>Error: {error}</p>;
+  if (error)
+    return <p className="text-center text-danger mt-4">Error: {error}</p>;
 
   return (
-    <div className="container mt-4 mb-50">
+    <div className="container mt-4 mb-5">
       {/* Search Input */}
       <div className="text-center mb-4">
         <input
@@ -76,57 +82,77 @@ const Blogs: React.FC = () => {
           value={searchQuery}
           onChange={(e) => {
             setSearchQuery(e.target.value);
-            setCurrentPage(1); // reset to first page on new search
+            setCurrentPage(1);
           }}
           className="form-control w-100 w-md-50 mx-auto p-2 rounded shadow"
           style={{ maxWidth: "400px" }}
         />
       </div>
-
       {/* Blog Cards */}
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3  g-4">
-        {currentCards.map((article, index) => (
-          <Link href={article.slug} className="col" key={index}>
-            <div
-              style={{ background: "white", color: "black" }}
-              className="card h-100"
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {currentCards.map((article) => (
+          <div className="col" key={article._id}>
+            <Link
+              href={`/all-ritz-blogs/read-single-blog/${article._id}`}
+              passHref
             >
-              <div style={{ overflow: "hidden", height: "200px" }}>
-                <img
-                  src={`/blogs/${article.blog_image}`}
-                  className="card-img-top"
-                  alt={`ritz-media-world/${article.blog_image}`}
+              <div
+                className="card h-100 mnc-card shadow-sm border-0"
+                style={{
+                  borderRadius: "1rem",
+                  transition: "box-shadow 0.3s ease",
+                  background: "#ffffff",
+                }}
+              >
+                {/* Image Container */}
+                <div
                   style={{
-                    height: "100%",
-                    width: "100%",
-                    objectFit: "fill",
-                    transition: "all 0.3s ease-in-out",
+                    overflow: "hidden",
+                    height: "220px",
+                    borderTopLeftRadius: "1rem",
+                    borderTopRightRadius: "1rem",
+                    position: "relative",
                   }}
-                  onMouseOver={(e) =>
-                    (e.currentTarget.style.transform = "scale(1.1)")
-                  }
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.transform = "scale(1)")
-                  }
-                />
-              </div>
-              <div className="card-body">
-                <div className="d-flex justify-content-between">
-                  <small className="text-muted">
-                    {new Date(article.created_at).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </small>
+                >
+                  <img
+                    src={article.blogBanner}
+                    alt={`ritz-media-world/${article.blogTitle}`}
+                    className="card-img-top"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      transition: "transform 0.4s ease",
+                    }}
+                    onMouseOver={(e) =>
+                      (e.currentTarget.style.transform = "scale(1.05)")
+                    }
+                    onMouseOut={(e) =>
+                      (e.currentTarget.style.transform = "scale(1)")
+                    }
+                  />
                 </div>
-                <h5 className="card-title mt-2">{article.title}</h5>
+
+                {/* Card Body */}
+                <div className="card-body d-flex flex-column justify-content-between">
+                  <div className="flex justify-center items-center">
+                    <small className="text-muted d-flex align-items-center">
+                      <CalendarDays size={16} className="me-1" />
+                      {new Date(article.createdAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </small>
+                  </div>
+
+                  <h5 className="card-title mt-1">{article.blogTitle}</h5>
+                </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))}
       </div>
-
       {/* Pagination */}
       {filteredBlogs.length > 0 && (
         <div className="text-center mt-4">
@@ -180,8 +206,7 @@ const Blogs: React.FC = () => {
           </button>
         </div>
       )}
-
-      {/* No Results Message */}
+      {/* No Results */}
       {filteredBlogs.length === 0 && (
         <p className="text-center text-muted mt-4">
           No blogs found for your search.

@@ -13,7 +13,6 @@ import Link from "next/link";
 import { AlertTriangle } from "lucide-react";
 
 function page() {
-  // const router = useRouter
   const contentData = [
     {
       // srNo: 1,

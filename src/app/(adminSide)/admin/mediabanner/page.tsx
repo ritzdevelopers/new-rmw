@@ -1,193 +1,216 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Breadcrumb from "@/components/ui/Breadcrumb";
 import axios from "axios";
 import { FiEdit, FiTrash } from "react-icons/fi";
+import { Home, Monitor } from "lucide-react";
+import Link from "next/link";
 
 interface MediaBanner {
   id: string;
   title: string;
-  image: string; // Image filename (stored in /public)
+  image: string;
   status: string;
 }
 
 const MediaBannerPage = () => {
+  const [banners, setBanners] = useState<MediaBanner[]>([]);
+  const [search, setSearch] = useState("");
   const [entriesPerPage, setEntriesPerPage] = useState(10);
-  const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [mediaBanners, setMediaBanners] = useState<MediaBanner[]>([]);
-  const [filteredBanners, setFilteredBanners] = useState<MediaBanner[]>([]);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "/api/system-settings/manage-mediaBanner/get-banner"
-        );
-        setMediaBanners(response.data);
-      } catch (error) {
-        console.error("Error fetching media banners:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  // Search filter
-  useEffect(() => {
-    const filtered = mediaBanners.filter((b) =>
-      b.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setFilteredBanners(filtered);
-  }, [searchQuery, mediaBanners]);
-
-  const totalPages = Math.ceil(filteredBanners.length / entriesPerPage);
-  const currentData = filteredBanners.slice(
-    (currentPage - 1) * entriesPerPage,
-    currentPage * entriesPerPage
-  );
-
-  const handleDelete = async (id: string) => {
+  const fetchBanners = async () => {
     try {
-      const res = await axios.delete(
-        `/api/system-settings/manage-mediaBanner/${id}`
-      );
-      if (res.status === 200) {
-        setMediaBanners((prev) => prev.filter((b) => b.id !== id));
-      } else {
-        console.error("Failed to delete banner", res.data);
-      }
+      const res = await axios.get(`/api/media-banners`, {
+        params: { limit: entriesPerPage, page: currentPage, search },
+      });
+      setBanners(res.data);
+    } catch (error) {
+      console.error("Error fetching banners:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBanners();
+  }, [entriesPerPage, currentPage, search]);
+
+  const confirmDelete = async () => {
+    if (!deleteId) return;
+    try {
+      await axios.delete(`/api/media-banners/${deleteId}`);
+      setShowModal(false);
+      fetchBanners();
     } catch (err) {
-      console.error("Error deleting banner:", err);
+      console.error("Error deleting:", err);
     }
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-semibold mb-2">Manage Media Banners</h1>
-      <Breadcrumb currentPage="Media-Banner" />
+    <div className="bg-[#EEEEEE] min-h-screen p-4 md:p-8 space-y-4">
 
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 mt-4 gap-2">
-        <div>
-          <label className="text-sm mr-2">Show</label>
-          <select
-            className="border rounded px-2 py-1"
-            value={entriesPerPage}
-            onChange={(e) => {
-              setEntriesPerPage(parseInt(e.target.value));
-              setCurrentPage(1);
-            }}
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-xl shadow-md max-w-md w-full text-center">
+            <div className="text-red-600 text-4xl mb-4">⚠️</div>
+            <h2 className="text-xl font-semibold">Are you sure?</h2>
+            <p className="text-sm text-gray-600 mt-2">
+              This action cannot be undone. The banner will be permanently deleted.
+            </p>
+            <div className="flex justify-center gap-4 mt-6">
+              <button onClick={() => setShowModal(false)} className="px-4 py-2 bg-gray-300 hover:bg-gray-400 rounded-md">Cancel</button>
+              <button onClick={confirmDelete} className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md">Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Header & Breadcrumb */}
+      <div className="flex items-center justify-between flex-wrap gap-4">
+        <h1 className="text-[#ACACAC] flex items-center gap-2 text-2xl sm:text-3xl md:text-4xl font-light uppercase">
+          <Monitor className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
+          Manage Media Banner
+        </h1>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2 sm:gap-4 bg-white p-3 rounded-md shadow-sm">
+        <h1 className="text-[#2955B3] flex items-center gap-2"><Home className="w-4 h-4" /> Home</h1>
+        <span className="text-[#ACACAC] font-bold">/</span>
+        <h1 className="text-[#838383] flex items-center gap-2"><Monitor className="w-4 h-4" /> Manage Media Banner</h1>
+      </div>
+
+      <div className="bg-[#9CA9B4] p-4">
+        <p className="text-white font-medium text-base sm:text-lg">Manage Page</p>
+      </div>
+
+      {/* Controls */}
+      <div className="flex flex-col gap-6 p-4">
+        <div className="flex justify-end">
+          <Link
+            href={"/admin/content/add"}
+            className="px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] transition duration-200"
           >
-            {[5, 10, 20, 50].map((num) => (
-              <option key={num} value={num}>
-                {num}
-              </option>
-            ))}
-          </select>
-          <span className="ml-2 text-sm">entries</span>
+            Add Content
+          </Link>
         </div>
 
-        <div className="flex gap-2">
-          <input
-            type="text"
-            placeholder="Search title..."
-            className="border rounded px-3 py-1 w-full md:w-64"
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setCurrentPage(1);
-            }}
-          />
-          <a
-            href="/admin/mediabanner/add"
-            className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition"
-          >
-            Add Media Banner
-          </a>
+        <div className="flex flex-col items-end md:flex-row justify-between gap-4 flex-wrap">
+          {/* Show Entries */}
+          <div className="flex items-center gap-2">
+            <p className="font-semibold text-[#688A7E] whitespace-nowrap">Show Entries</p>
+            <select
+              value={entriesPerPage}
+              onChange={(e) => {
+                setEntriesPerPage(Number(e.target.value));
+                setCurrentPage(1);
+              }}
+              className="border border-[#365248] rounded-md px-3 py-1.5 text-[#365248] outline-none cursor-pointer"
+            >
+              {[10, 25, 50, 100].map((num) => (
+                <option key={num} value={num}>{num}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Search */}
+          <div className="flex items-center gap-2 border border-[#1a6249] rounded-md px-3 py-2 w-full md:w-auto">
+            <p className="text-[#717272] font-medium whitespace-nowrap">Search Now</p>
+            <input
+              type="text"
+              placeholder="Search here..."
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setCurrentPage(1);
+              }}
+              className="bg-transparent outline-none placeholder:text-[#365248] text-[#365248] w-full"
+            />
+          </div>
         </div>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full border rounded bg-white shadow-sm">
-          <thead className="bg-gray-100 text-left">
-            <tr>
-              <th className="p-3 border-b">Title</th>
-              <th className="p-3 border-b">Image</th>
-              <th className="p-3 border-b">Status</th>
-              <th className="p-3 border-b">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentData.map((entry) => (
-              <tr key={entry.id} className="hover:bg-gray-50">
-                <td className="p-3 border-b">{entry.title}</td>
-                <td className="p-3 border-b">
+      {/* Table */}
+      <div className="bg-white rounded-lg shadow overflow-x-auto">
+        <div className="hidden md:flex bg-[#CCCCCC] px-4 py-3 text-sm font-bold text-[#688A7E] uppercase">
+          <p className="w-1/4">Image</p>
+          <p className="w-1/4">Title</p>
+          <p className="w-1/6 text-center">Action</p>
+        </div>
+        <div className="divide-y">
+          {banners.length > 0 ? (
+            banners.map((banner, index) => (
+              <div
+                key={banner.id}
+                className={`flex flex-col md:flex-row items-start md:items-center justify-between px-4 py-3 ${
+                  index % 2 === 0 ? "bg-[#F5F5F5]" : "bg-white"
+                }`}
+              >
+                <div className="w-1/4">
                   <img
-                    src={`/media-banners/${entry.image}`}
-                    alt={entry.title}
-                    className="w-24 h-16 object-cover rounded shadow-sm"
+                    src={banner.image}
+                    alt="Banner"
+                    className="w-20 h-16 object-contain rounded-md"
                   />
-                </td>
-                <td className="p-3 border-b">{entry.status}</td>
-                <td className="p-3 border-b space-x-2">
-                  <a
-                    href={`/admin/mediabanner/edit/${entry.id}`}
-                    className="inline-flex items-center justify-center text-blue-600 hover:text-blue-800 transition"
-                    title="Edit"
+                </div>
+                <p className="w-1/4 text-[#688A7E] truncate">{banner.title}</p>
+                <div className="w-full md:w-1/6 flex gap-2 mt-2 md:mt-0">
+                  <Link
+                    href={`/admin/content/edit/${banner.id}`}
+                    className="p-2 bg-green-600 hover:bg-green-700 text-white rounded-md"
                   >
-                    <FiEdit size={18} />
-                  </a>
+                    <FiEdit />
+                  </Link>
                   <button
-                    onClick={() => handleDelete(entry.id)}
-                    className="inline-flex items-center justify-center text-red-600 hover:text-red-800 transition"
-                    title="Delete"
+                    onClick={() => {
+                      setDeleteId(banner.id);
+                      setShowModal(true);
+                    }}
+                    className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-md"
                   >
-                    <FiTrash size={18} />
+                    <FiTrash />
                   </button>
-                </td>
-              </tr>
-            ))}
-            {currentData.length === 0 && (
-              <tr>
-                <td colSpan={3} className="p-3 text-center text-gray-500">
-                  No entries found.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="p-4 text-center">No data found</div>
+          )}
+        </div>
       </div>
 
-      <div className="flex justify-end mt-4 space-x-2">
+      {/* Pagination */}
+      <div className="flex justify-between items-center flex-wrap gap-4 border-t pt-4">
         <button
-          className="px-3 py-1 border rounded disabled:opacity-50"
-          onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-          disabled={currentPage === 1}
+          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+          className="px-5 py-2 border rounded-md text-[#688A7E] hover:bg-[#436b5d] hover:text-white"
         >
-          Prev
+          Previous
         </button>
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            className={`px-3 py-1 border rounded ${
-              currentPage === i + 1 ? "bg-blue-500 text-white" : ""
-            }`}
-            onClick={() => setCurrentPage(i + 1)}
-          >
-            {i + 1}
-          </button>
-        ))}
+
+        <div className="flex gap-1 flex-wrap">
+          {Array.from({ length: 5 }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`px-3 py-1.5 border rounded-md ${
+                currentPage === i + 1
+                  ? "bg-[#688A7E] text-white"
+                  : "border-[#688A7E] hover:bg-[#688A7E] hover:text-white"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+
         <button
-          className="px-3 py-1 border rounded disabled:opacity-50"
-          onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage((p) => p + 1)}
+          className="px-5 py-2 border rounded-md text-[#688A7E] hover:bg-[#436b5d] hover:text-white"
         >
           Next
         </button>
       </div>
-
-      <footer className="admin-footer">
-        Designed and Developed by <strong>Ritz Media World</strong>
-      </footer>
     </div>
   );
 };
