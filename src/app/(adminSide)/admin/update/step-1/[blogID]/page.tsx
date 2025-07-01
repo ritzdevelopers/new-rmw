@@ -4,14 +4,28 @@ import { Home, ImagePlus, Monitor } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useBlogContext } from "@/blogContext/BlogContext";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-
-const LOCAL_STORAGE_KEY = "add-blog-step-1";
+import { useParams, useRouter } from "next/navigation";
+import axios from "axios";
 
 const Page = () => {
-
-
+  const params = useParams();
   const router = useRouter();
+  const blogID = params.blogID as string;
+  
+
+  interface BlogBody {
+    metaTitle: string;
+    metaDescription: string;
+    innerImg?: string;
+  }
+
+  interface BlogInfo {
+    blogTitle: string;
+    blogBanner: string;
+    blogBody: BlogBody[];
+    createdAt: string;
+    blogCategory: string;
+  }
 
   const {
     setBlogTitle,
@@ -25,21 +39,85 @@ const Page = () => {
   const [localTitle, setLocalTitle] = useState<string>(blogTitle || "");
   const [localMeta, setLocalMeta] = useState<string>(metaKeywords || "");
   const [localBanner, setLocalBanner] = useState<string>(blogBanner || "");
-  const [localCategory, setLocalCategory] = useState<string>("All Category");
+  const [localCategory, setLocalCategory] = useState<string>("All Category"); // Load from localStorage or fetch from backend
 
   useEffect(() => {
-    const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (!blogID) return;
+
+    const LOCAL_KEY = `update-blog-step-1-${blogID}`;
+    const savedData = localStorage.getItem(LOCAL_KEY);
+
     if (savedData) {
       const parsed = JSON.parse(savedData);
       setLocalTitle(parsed.blogTitle || "");
       setLocalMeta(parsed.metaKeywords || "");
       setLocalBanner(parsed.blogBanner || "");
       setLocalCategory(parsed.blogCategory || "All Category");
+
       setBlogTitle(parsed.blogTitle || "");
       setMetaTitle(parsed.metaKeywords || "");
       setBlogBanner(parsed.blogBanner || "");
+    } else {
+      getSingleBlogInfo(blogID, LOCAL_KEY);
     }
-  }, []);
+  }, [blogID]);
+
+  const getSingleBlogInfo = async (id: string, LOCAL_KEY: string) => {
+    try {
+      const res = await axios.get<{ blog: BlogInfo }>(
+        `http://localhost:3000/api/ritz_blogs/get-single-blog/${id}`
+      );
+      const blog = res.data.blog;
+
+      setLocalTitle(blog.blogTitle || "");
+      setLocalMeta(blog.metaDescription || "");
+      setLocalBanner(blog.blogBanner || "");
+      setLocalCategory(blog.blogCategory || "All Category");
+
+      setBlogTitle(blog.blogTitle || "");
+      setMetaTitle(blog.metaDescription || "");
+      setBlogBanner(blog.blogBanner || "");
+
+      localStorage.setItem(
+        LOCAL_KEY,
+        JSON.stringify({
+          blogTitle: blog.blogTitle,
+          metaKeywords: blog.metaDescription,
+          blogBanner: blog.blogBanner,
+          blogCategory: blog.blogCategory,
+        })
+      );
+    } catch (error) {
+      console.error("Error fetching blog info", error);
+      alert("Error fetching blog info from backend.");
+    }
+  };
+
+  const saveDataToLocalStorage = () => {
+    const LOCAL_KEY = `update-blog-step-1-${blogID}`;
+    const data = {
+      blogTitle: localTitle,
+      metaKeywords: localMeta,
+      blogBanner: localBanner,
+      blogCategory: localCategory,
+    };
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(data));
+  };
+
+  const count = parseInt(params.count as string, 10) || 0;
+
+  const handleNavigation = (path: string) => {
+    if (path.includes("/admin/add-blog/step-2/page")) {
+      if (!localTitle || !localMeta || !localBanner || !localCategory) {
+        alert("Please fill in all fields before proceeding to the next step.");
+        return;
+      }
+      saveDataToLocalStorage();
+      router.push(`/admin/add-blog/step-2/page/${count + 1}`);
+    } else {
+      router.push(path);
+    }
+  };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -51,34 +129,6 @@ const Page = () => {
         setBlogBanner(base64String);
       };
       reader.readAsDataURL(file);
-    }
-  };
-
-  const saveDataToLocalStorage = () => {
-    const data = {
-      blogTitle: localTitle,
-      metaKeywords: localMeta,
-      blogBanner: localBanner,
-      blogCategory: localCategory,
-    };
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
-  };
-
-  const params = useParams();
-  const count = parseInt(params.count as string, 10) || 0;
-
-  const handleNavigation = (path: string) => {
-    if (path.includes("/admin/add-blog/step-2/page")) {
-      if (!localTitle || !localMeta || !localBanner || !localCategory) {
-        alert(
-          "Sorry we can't open new page because your all input fields are blank."
-        );
-        return;
-      }
-      saveDataToLocalStorage();
-      router.push(`/admin/add-blog/step-2/page/${count + 1}`);
-    } else {
-      router.push(path);
     }
   };
 
@@ -98,9 +148,7 @@ const Page = () => {
           <Monitor className="w-4 h-4" /> Add Blog
         </span>
         <span className="text-[#ACACAC] font-bold">/</span>
-        <span className="text-[#838383] flex items-center gap-2">
-          Step 1
-        </span>{" "}
+        <span className="text-[#838383] flex items-center gap-2">Step 1</span>
       </div>
       <div className="addBloContainer bg-white p-5 rounded-md shadow-md flex flex-col lg:flex-row gap-6">
         <div
@@ -138,7 +186,6 @@ const Page = () => {
             <label className="text-sm font-semibold text-[#444]">
               Blog Title
             </label>
-
             <input
               type="text"
               value={localTitle}
@@ -155,7 +202,6 @@ const Page = () => {
             <label className="text-sm font-semibold text-[#444]">
               Meta Keywords
             </label>
-
             <input
               type="text"
               value={localMeta}
@@ -172,7 +218,6 @@ const Page = () => {
             <label className="text-sm font-semibold text-[#444]">
               Blog Category
             </label>
-
             <select
               value={localCategory}
               onChange={(e) => setLocalCategory(e.target.value)}
@@ -183,29 +228,37 @@ const Page = () => {
               <option value="Performance Marketing Agency">
                 Performance Marketing Agency
               </option>
+
               <option value="Print Advertising Agency">
                 Print Advertising Agency
               </option>
+
               <option value="Creating Advertising Agency">
                 Creating Advertising Agency
               </option>
+
               <option value="Celebrity Endorsements Agency">
                 Celebrity Endorsements Agency
               </option>
+
               <option value="Artist Management Agency">
                 Artist Management Agency
               </option>
+
               <option value="FM Radio Advertising">FM Radio Advertising</option>
+
               <option value="Web Design And Development">
                 Web Design And Development
               </option>
+
               <option value="Graphic Design Services">
                 Graphic Design Services
               </option>
+
               <option value="Digital Marketing Agency">
                 Digital Marketing Agency
               </option>
-              <option value="Best Ad Agency">Best Ad Agency</option>{" "}
+              <option value="Best Ad Agency">Best Ad Agency</option>
             </select>
           </div>
         </div>
@@ -219,7 +272,7 @@ const Page = () => {
         </button>
 
         <button
-          onClick={() => handleNavigation("/admin/add-blog/step-2/page")}
+          onClick={() => handleNavigation(`/admin/update/step-2/page/${blogID}/${count}`)}
           className="bg-[#2955B3] hover:bg-[#1e3f8a] cursor-pointer text-white px-5 py-2 rounded-md"
         >
           Continue to Step 2
@@ -227,9 +280,9 @@ const Page = () => {
       </div>
       <footer className="admin-footer text-center text-sm text-[#666] pt-10">
         Designed and Developed by <strong>Ritz Media World</strong>
-      </footer>{" "}
+      </footer>
     </div>
   );
 };
 
-export default Page
+export default Page;

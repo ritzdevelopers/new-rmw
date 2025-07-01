@@ -93,15 +93,16 @@ export default function ManageBlogs() {
   const [deleteConfirmModal, setDeleteConfirmModal] = useState(false);
   const [deleteKey, setDeleteKey] = useState("");
 
- 
   const deleteBlogNow = async () => {
     try {
-      if(!deleteKey) {
+      if (!deleteKey) {
         alert("Internal Key Error Please Try Again!");
         return;
-      }  else {
-        const res = await axios.delete(`/api/ritz_blogs/delete-blog/${deleteKey}`);
-        if(res.status === 200) {
+      } else {
+        const res = await axios.delete(
+          `/api/ritz_blogs/delete-blog/${deleteKey}`
+        );
+        if (res.status === 200) {
           alert("Your Blog Has Been Deleted Successfully!");
           window.location.reload();
           setDeleteConfirmModal(false);
@@ -119,7 +120,7 @@ export default function ManageBlogs() {
     }
   };
 
-   const handleDataDeleteModal = (key: string) => {
+  const handleDataDeleteModal = (key: string) => {
     setDeleteKey(" ");
     setDeleteConfirmModal(true);
     setDeleteKey(key);
@@ -147,14 +148,14 @@ export default function ManageBlogs() {
             <div className="flex justify-center gap-4 mt-6">
               <button
                 className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded-md transition"
-                onClick={()=>setDeleteConfirmModal(false)}
+                onClick={() => setDeleteConfirmModal(false)}
               >
                 Cancel
               </button>
               <button
                 className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition"
                 // onClick={deleteData}
-                 onClick={deleteBlogNow}
+                onClick={deleteBlogNow}
               >
                 Delete
               </button>
@@ -293,7 +294,7 @@ export default function ManageBlogs() {
                           <FaEye />
                         </button>
                       </Link>
-                      <Link href={`/admin/update/update-blog/${blog._id}`}>
+                      <Link href={`/admin/update/step-1/${blog._id}`}>
                         <button className="text-green-600 hover:text-green-800 pl-1 cursor-pointer">
                           <FaEdit />
                         </button>
