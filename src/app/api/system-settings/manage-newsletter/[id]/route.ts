@@ -8,16 +8,17 @@ export async function DELETE(
   context: { params: { id: string } }
 ) {
   try {
-    const { id } = await context.params; // Get the ID from the URL parameters
+    const { id } = context.params; // Get the ID from the URL parameters
 
     // SQL query to delete the newsletter by ID
     const query = "DELETE FROM newsletter WHERE id = ?";
 
     // Execute the delete query
-    const [result]: [ResultSetHeader, any[]] = await getDBPool().execute(
-      query,
-      [id]
-    );
+    // const [result]: [ResultSetHeader, any[]] = await getDBPool().execute(
+    //   query,
+    //   [id]
+    // );
+    const [result] = await getDBPool().execute<ResultSetHeader>(query, [id]);
 
     // Check if the deletion was successful
     if (result.affectedRows > 0) {

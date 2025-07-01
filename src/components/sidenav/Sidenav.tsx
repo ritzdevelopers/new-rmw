@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation"; // Import usePathname
 import {
   Home,
@@ -12,26 +12,26 @@ import {
   MonitorCog,
 } from "lucide-react";
 import { cn } from "../../lib/utils";
-import axios from "axios";
+// import axios from "axios";
 import Link from "next/link";
 import LogoutButton from "../logout/Logout";
-import Image from "next/image";
+// import Image from "next/image";
 import "./Sidenav.css";
 import { useRouter } from "next/navigation";
-type ProfileType = {
-  email: string;
-  name: string;
-  createdAt: string;
-  profileImage: string;
-};
+// type ProfileType = {
+//   email: string;
+//   name: string;
+//   createdAt: string;
+//   profileImage: string;
+// };
 type sidebarProps = {
   expanded: boolean;
   setExpanded: (value: boolean) => void;
 };
 const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const pathname = usePathname(); // Get current URL path
-  const [profile, setProfile] = useState<ProfileType | null>(null);
-  const [loading, setLoading] = useState(true);
+  // const [profile, setProfile] = useState<ProfileType | null>(null);
+  // const [loading, setLoading] = useState(true);
   const [blogOpen, setBlogOpen] = useState(false);
   // const [expanded, setExpanded] = useState(false); // Sidebar toggle state
   const [webpagesLinks, setWebPagesLink] = useState(false);
@@ -101,13 +101,13 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
     }
   }
 
-  useEffect(() => {
-    axios
-      .get("/api/profile")
-      .then((response) => setProfile(response.data))
-      .catch((error) => console.error("Error fetching profile data", error))
-      .finally(() => setLoading(false));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/profile")
+  //     .then((response) => setProfile(response.data))
+  //     .catch((error) => console.error("Error fetching profile data", error));
+  //   // .finally(() => setLoading(false));
+  // }, []);
 
   const router = useRouter();
 
@@ -185,7 +185,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               ...(blogActive && { backgroundColor: "#2E3B46" }),
             }}
             onClick={(e) => {
-              setBlogOpen(!blogOpen), handleActiveTabBG(e);
+              setBlogOpen(!blogOpen);
+              handleActiveTabBG(e);
             }}
             className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] cursor-pointer transition justify-between"
           >
@@ -195,10 +196,6 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
             </div>
             {expanded && (
               <ChevronDown
-                className={cn(
-                  "w-4 h-4 transition",
-                  blogOpen ? "rotate-180" : ""
-                )}
                 className={cn(
                   "w-4 h-4 transition",
                   blogOpen ? "rotate-180" : ""
@@ -260,7 +257,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               ...(webPageActive && { backgroundColor: "#2E3B46" }),
             }}
             onClick={(e) => {
-              setWebPagesLink(!webpagesLinks), handleActiveTabBG(e);
+              setWebPagesLink(!webpagesLinks);
+              handleActiveTabBG(e);
             }}
             className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition justify-between"
           >
@@ -352,7 +350,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               ...(homePageActive && { backgroundColor: "#2E3B46" }),
             }}
             onClick={(e) => {
-              setHomePagesLinks(!homePagesLinks), handleActiveTabBG(e);
+              setHomePagesLinks(!homePagesLinks);
+              handleActiveTabBG(e);
             }}
             className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition justify-between"
           >
@@ -582,7 +581,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               ...(systemPageActive && { backgroundColor: "#2E3B46" }),
             }}
             onClick={(e) => {
-              setSystemSettings(!systemSettings), handleActiveTabBG(e);
+              setSystemSettings(!systemSettings);
+              handleActiveTabBG(e);
             }}
             className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition justify-between"
           >

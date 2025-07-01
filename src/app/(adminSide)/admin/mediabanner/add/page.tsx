@@ -18,7 +18,7 @@ import axios from "axios";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
@@ -178,4 +178,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

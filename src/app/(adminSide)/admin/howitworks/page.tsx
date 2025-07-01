@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import axios from "axios";
 import { FiEdit, FiTrash } from "react-icons/fi";
+import Link from "next/link";
 
 interface Faq {
   id: number;
@@ -11,7 +12,7 @@ interface Faq {
   status: string;
 }
 
-const page = () => {
+const Page = () => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -93,12 +94,12 @@ const page = () => {
               setCurrentPage(1);
             }}
           />
-          <a
+          <Link
             href="/admin/howitworks/add"
             className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition"
           >
             Add FAQ
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -184,4 +185,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
 }
 
 // GET API to fetch FAQs
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const query = `
         SELECT id, title, description, status, created_at, updated_at
