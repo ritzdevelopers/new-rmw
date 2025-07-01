@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDBPool } from "@/lib/db";
-import { ResultSetHeader } from "mysql2";
 
 // POST API to upload newsletter
 export async function POST(req: NextRequest) {
@@ -24,7 +23,7 @@ export async function POST(req: NextRequest) {
 }
 
 // GET API to fetch newsletter
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     // Query to fetch all newsletters
     const query =

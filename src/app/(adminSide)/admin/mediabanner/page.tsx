@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import axios from "axios";
 import { FiEdit, FiTrash } from "react-icons/fi";
+import Link from "next/link";
 
 interface MediaBanner {
   id: string;
@@ -97,12 +98,12 @@ const MediaBannerPage = () => {
               setCurrentPage(1);
             }}
           />
-          <a
+          <Link
             href="/admin/mediabanner/add"
             className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition"
           >
             Add Media Banner
-          </a>
+          </Link>
         </div>
       </div>
 

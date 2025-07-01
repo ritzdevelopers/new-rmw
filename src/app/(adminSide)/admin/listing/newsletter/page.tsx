@@ -29,9 +29,15 @@ const NewslettersPage = () => {
         const response = await axios.get(
           "/api/system-settings/manage-newsletter"
         );
-        const data = await response.data;
+        // const data = await response.data;
 
-        const formattedData = data.map((item: any) => ({
+        // const formattedData = data.map((item: any) => ({
+        //   ...item,
+        //   addDate: formatDate(item.addDate),
+        // }));
+        const data = response.data as Newsletter[];
+
+        const formattedData = data.map((item) => ({
           ...item,
           addDate: formatDate(item.addDate),
         }));

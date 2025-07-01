@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -18,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import axios from "axios";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const params = useParams();
   const id = params?.id?.toString();
@@ -155,4 +155,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
