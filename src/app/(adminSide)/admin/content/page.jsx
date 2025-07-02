@@ -324,7 +324,6 @@ function page() {
           Manage Page
         </h1>
       </div>
-
       {/* Breadcrumb */}
       <div className="flex flex-wrap items-center gap-2 sm:gap-4 bg-white p-3 rounded-md shadow-sm">
         <h1 className="text-[#2955B3] flex items-center gap-2">
@@ -337,7 +336,6 @@ function page() {
           Manage Page
         </h1>
       </div>
-
       {/* Main Section */}
       <div className="bg-white rounded-lg shadow-md overflow-x-auto">
         {/* Header */}
@@ -374,7 +372,6 @@ function page() {
                 <option value="100">100</option>
               </select>
             </div>
-
             {/* Search */}
             <div className="flex items-center gap-2 border border-[#1a6249] rounded-md px-3 py-2 w-full md:w-auto">
               <p className="text-[#717272] font-medium whitespace-nowrap">
@@ -389,7 +386,6 @@ function page() {
             </div>
           </div>
         </div>
-
         {/* Table Headings */}
         <div className="hidden md:flex bg-[#CCCCCC] px-4 py-3 font-bold text-[#688A7E] text-sm uppercase">
           <p className="w-1/4">Page Title</p>
