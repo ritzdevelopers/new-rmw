@@ -3,10 +3,7 @@ import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import axios from "axios";
 import { FiEdit, FiTrash } from "react-icons/fi";
-<<<<<<< HEAD
 import { AlertTriangle, Home, Monitor } from "lucide-react";
-=======
->>>>>>> 5e5bbbcdd1726feae2a39ddaefcbe1523875e374
 import Link from "next/link";
 
 interface Faq {

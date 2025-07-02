@@ -26,27 +26,10 @@ const NewslettersPage = () => {
     new Date(isoDate).toLocaleDateString();
 
   useEffect(() => {
-<<<<<<< HEAD
     axios
       .get("/api/system-settings/manage-newsletter")
       .then((res) => {
         const formatted = res.data.map((item: any) => ({
-=======
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "/api/system-settings/manage-newsletter"
-        );
-        // const data = await response.data;
-
-        // const formattedData = data.map((item: any) => ({
-        //   ...item,
-        //   addDate: formatDate(item.addDate),
-        // }));
-        const data = response.data as Newsletter[];
-
-        const formattedData = data.map((item) => ({
->>>>>>> 5e5bbbcdd1726feae2a39ddaefcbe1523875e374
           ...item,
           addDate: formatDate(item.addDate),
         }));
