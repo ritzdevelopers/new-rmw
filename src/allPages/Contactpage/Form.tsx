@@ -537,16 +537,28 @@ const Form = () => {
                 >
                   <div className="tp-contact__text ">
                     <h3 className="tp-contact__title text-black">Contact</h3>
-                    <Link href="/" className="tp-contact__title-sm text-black">
-                      09220516777 <br />
-                      07290002168
-                    </Link>
+                    <a
+                      href="tel:09220516777"
+                      className="tp-contact__title-sm text-black"
+                    >
+                       09220516777
+                    </a>
+                    <br />
+                    <a
+                      href="tel:07290002168"
+                      className="tp-contact__title-sm text-black"
+                    >
+                       07290002168
+                    </a>
                   </div>
                   <div className="tp-contact__email">
                     <h3 className="tp-contact__title text-black">Email</h3>
-                    <Link href="/" className="tp-contact__title-sm text-black">
+                    <a
+                      href="mailto:info@ritzmediaworld.com"
+                      className="tp-contact__title-sm text-black"
+                    >
                       info@ritzmediaworld.com
-                    </Link>
+                    </a>
                   </div>
                 </div>
                 <div
@@ -564,7 +576,7 @@ const Form = () => {
                     <h3 className="tp-contact__title text-black">Address</h3>
                     <div className="tp-contact__title-sm text-black">
                       402 – 404 , 4th floor Corporate Park, <br /> Tower A1
-                      Sector 142 , Greater Noida
+                      Sector 142 ,Noida
                     </div>
                   </div>
                   <div className="tp-contact__social">

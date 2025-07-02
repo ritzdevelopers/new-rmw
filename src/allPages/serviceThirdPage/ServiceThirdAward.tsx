@@ -47,7 +47,7 @@ const ServiceThirdAward = () => {
           <div className="elementor-widget-container">
             <section className="tp-award__3-area fix tp-awards__3-bg-style p-relative">
               <div
-                className="tp-awards__3-thumb-bg mt-85 d-none d-xl-block wow avtrix_clip_up"
+                className="tp-awards__3-thumb-bg  d-none d-xl-block wow avtrix_clip_up"
                 data-wow-delay=".3s"
                 data-wow-duration="2.5s"
                 style={{
@@ -57,9 +57,10 @@ const ServiceThirdAward = () => {
                   animationDuration: "2.5s",
                   animationDelay: "0.3s",
                   animationName: "avtrix_clip_up",
+                  height:"100%"
                 }}
               ></div>
-              <div className="container">
+              <div className="container" >
                 <div className="row align-items-center">
                   <div className="col-xl-7 offset-xl-5">
                     <div className="tp-awards__3-wrap">

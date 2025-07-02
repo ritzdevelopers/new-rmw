@@ -25,6 +25,7 @@ const Page = () => {
     blogBody: BlogBody[];
     createdAt: string;
     blogCategory: string;
+    metaKeywords:string
   }
 
   const {
@@ -46,7 +47,9 @@ const Page = () => {
 
     const LOCAL_KEY = `update-blog-step-1-${blogID}`;
     const savedData = localStorage.getItem(LOCAL_KEY);
-
+    console.log('====================================');
+    console.log("This data received from local storage", savedData);
+    console.log('====================================');
     if (savedData) {
       const parsed = JSON.parse(savedData);
       setLocalTitle(parsed.blogTitle || "");
@@ -68,21 +71,23 @@ const Page = () => {
         `http://localhost:3000/api/ritz_blogs/get-single-blog/${id}`
       );
       const blog = res.data.blog;
-
+      console.log('====================================');
+      console.log("This is blog ", blog);
+      console.log('====================================');
       setLocalTitle(blog.blogTitle || "");
-      setLocalMeta(blog.metaDescription || "");
+      setLocalMeta(blog.metaKeywords || "");
       setLocalBanner(blog.blogBanner || "");
       setLocalCategory(blog.blogCategory || "All Category");
 
       setBlogTitle(blog.blogTitle || "");
-      setMetaTitle(blog.metaDescription || "");
+      // setMetaTitle(blog.metaDescription || "");
       setBlogBanner(blog.blogBanner || "");
 
       localStorage.setItem(
         LOCAL_KEY,
         JSON.stringify({
           blogTitle: blog.blogTitle,
-          metaKeywords: blog.metaDescription,
+          metaKeywords: blog.metaKeywords,
           blogBanner: blog.blogBanner,
           blogCategory: blog.blogCategory,
         })
@@ -92,9 +97,10 @@ const Page = () => {
       alert("Error fetching blog info from backend.");
     }
   };
-
+  
   const saveDataToLocalStorage = () => {
     const LOCAL_KEY = `update-blog-step-1-${blogID}`;
+    alert("This function hit!");
     const data = {
       blogTitle: localTitle,
       metaKeywords: localMeta,
@@ -107,14 +113,15 @@ const Page = () => {
   const count = parseInt(params.count as string, 10) || 0;
 
   const handleNavigation = (path: string) => {
-    if (path.includes("/admin/add-blog/step-2/page")) {
+    if (path.includes(`/admin/update/step-2/page/${blogID}/${count}`)) {
       if (!localTitle || !localMeta || !localBanner || !localCategory) {
         alert("Please fill in all fields before proceeding to the next step.");
         return;
       }
       saveDataToLocalStorage();
-      router.push(`/admin/add-blog/step-2/page/${count + 1}`);
+      router.push(`/admin/update/step-2/page/${blogID}/${count + 1}`);
     } else {
+      alert("Back Function hit")
       router.push(path);
     }
   };

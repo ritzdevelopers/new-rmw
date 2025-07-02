@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import axios from "axios";
 import { FiEdit, FiTrash } from "react-icons/fi";
+<<<<<<< HEAD
 import { AlertTriangle, Home, Monitor } from "lucide-react";
+=======
+>>>>>>> 5e5bbbcdd1726feae2a39ddaefcbe1523875e374
 import Link from "next/link";
 
 interface Faq {
@@ -153,12 +156,12 @@ const Page = () => {
               setCurrentPage(1);
             }}
           />
-          <a
+          <Link
             href="/admin/howitworks/add"
             className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded transition"
           >
             Add FAQ
-          </a>
+          </Link>
         </div>
       </div> */}
 

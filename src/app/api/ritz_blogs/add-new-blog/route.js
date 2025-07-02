@@ -27,7 +27,7 @@ export async function POST(request) {
     const metaKeywords = formData.get("metaKeywords");
     const blogBodyRaw = formData.get("blogBody");
     const blogCategory = formData.get("blogCategory");
-    console.log(blogBodyRaw, blogCategory);
+    const blogStatus = formData.get("blogStatus");
     let blogBannerPath = "";
     const innerImgMap = {};
 
@@ -56,7 +56,8 @@ export async function POST(request) {
       blogBanner: blogBannerPath,
       blogBody,
       metaKeywords,
-      blogCategory
+      blogCategory,
+      blogStatus
     });
 
     return NextResponse.json(

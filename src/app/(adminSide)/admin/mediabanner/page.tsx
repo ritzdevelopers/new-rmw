@@ -2,7 +2,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FiEdit, FiTrash } from "react-icons/fi";
+<<<<<<< HEAD
 import { Home, Monitor } from "lucide-react";
+=======
+>>>>>>> 5e5bbbcdd1726feae2a39ddaefcbe1523875e374
 import Link from "next/link";
 
 interface MediaBanner {
@@ -95,6 +98,7 @@ const MediaBannerPage = () => {
           </Link>
         </div>
 
+<<<<<<< HEAD
         <div className="flex flex-col items-end md:flex-row justify-between gap-4 flex-wrap">
           {/* Show Entries */}
           <div className="flex items-center gap-2">
@@ -127,6 +131,25 @@ const MediaBannerPage = () => {
               className="bg-transparent outline-none placeholder:text-[#365248] text-[#365248] w-full"
             />
           </div>
+=======
+        <div className="flex gap-2">
+          <input
+            type="text"
+            placeholder="Search title..."
+            className="border rounded px-3 py-1 w-full md:w-64"
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setCurrentPage(1);
+            }}
+          />
+          <Link
+            href="/admin/mediabanner/add"
+            className="bg-blue-600 text-white px-4 py-1 rounded hover:bg-blue-700 transition"
+          >
+            Add Media Banner
+          </Link>
+>>>>>>> 5e5bbbcdd1726feae2a39ddaefcbe1523875e374
         </div>
       </div>
 

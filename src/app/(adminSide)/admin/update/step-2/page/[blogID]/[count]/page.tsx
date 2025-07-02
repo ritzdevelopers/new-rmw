@@ -64,10 +64,9 @@ const Page = () => {
       setLocalMeta(blogBody[count - 1].metaDescription || "");
       setLocalImage(blogBody[count - 1].innerImg || "");
     }
-   if(localImage) {
-     alert(localImage);
-   }
-    
+    //  if(localImage) {
+    //    alert(localImage);
+    //  }
   }, [count, blogBody]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,27 +97,74 @@ const Page = () => {
     router.push(`/admin/update/step-2/page/${blogID}/${toPage}`);
   };
 
+  function base64ToFile(base64: string, filename: string): File {
+    const arr = base64.split(",");
+    const mime = arr[0].match(/:(.*?);/)?.[1] || "image/png";
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  }
+
   const handleSubmit = async () => {
+    saveDataToLocalStorage();
     try {
+      const step1Key = `update-blog-step-1-${blogID}`;
+      const step1Data = JSON.parse(localStorage.getItem(step1Key) || "{}");
+      console.log('====================================');
+      console.log("This is step-1 data ", step1Data);
+      console.log('====================================');
+      if (
+        !step1Data.blogTitle ||
+        !step1Data.blogCategory ||
+        !step1Data.metaKeywords
+      ) {
+        alert("Step 1 data missing! Please go back and fill it.");
+        return;
+      } 
+
       const finalBody = [];
+      const innerImageMap: Record<number, File> = {};
 
       for (let i = 1; i <= totalPages; i++) {
         const saved = localStorage.getItem(LOCAL_KEY(i));
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          finalBody.push({
-            metaTitle: parsed.metaTitle || "",
-            metaDescription: parsed.metaDescription || "",
-            innerImg: parsed.innerImg || "",
-          });
-        } else if (blogBody[i - 1]) {
-          finalBody.push(blogBody[i - 1]);
-        }
+        const parsed = saved ? JSON.parse(saved) : blogBody[i - 1]; 
+
+        // if (parsed?.innerImg?.startsWith("data:image/")) {
+          const file = base64ToFile(parsed.innerImg, `innerImg-${i}.png`);
+          innerImageMap[i - 1] = file;
+        // }
+
+        finalBody.push({
+          metaTitle: parsed.metaTitle || "",
+          metaDescription: parsed.metaDescription || "",
+          innerImg: `innerImg-${i - 1}`, 
+        });
       }
 
+      const formData = new FormData();
+      formData.append("blogId", blogID);
+      formData.append("blogTitle", step1Data.blogTitle);
+      formData.append("metaKeywords", step1Data.metaKeywords);
+      formData.append("blogCategory", step1Data.blogCategory);
+      formData.append("blogStatus", step1Data.blogStatus || true);
+      formData.append("blogBody", JSON.stringify(finalBody)); 
+
+      if (step1Data.blogBanner?.startsWith("data:image/")) {
+        const bannerFile = base64ToFile(step1Data.blogBanner, "blogBanner.png");
+        formData.append("blogBanner", bannerFile);
+      } 
+
+      Object.entries(innerImageMap).forEach(([index, file]) => {
+        formData.append(`innerImg-${index}`, file);
+      }); 
+
       const res = await axios.put(
-        `http://localhost:3000/api/ritz_blogs/update-blog/${blogID}`,
-        { blogBody: finalBody }
+        `http://localhost:3000/api/ritz_blogs/update-prev-blog/${blogID}`,
+        formData
       );
 
       if (res.status === 200) {

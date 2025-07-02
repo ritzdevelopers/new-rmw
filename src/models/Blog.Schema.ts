@@ -35,6 +35,10 @@ const BlogSchema = new Schema(
       required: true,
       enum: ["Case Study", "Performance Marketing Agency", "Print Advertising Agency", "Creating Advertising Agency", "Celebrity Endorsements Agency", "Artist Management Agency", "FM Radio Advertising", "Web Design And Development", "Graphic Design Services", "Digital Marketing Agency", "Best Ad Agency", "All Category"],
       default: "All Category"
+    },
+    blogStatus : {
+      type:Boolean,
+      default:true
     }
   },
   {

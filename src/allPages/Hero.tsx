@@ -1,30 +1,29 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import useStickyElements from "@/hooks/useStickyElements";//changed
+import useStickyElements from "@/hooks/useStickyElements"; //changed
 
 const Header = () => {
   useStickyElements();
-  
+
   return (
     <header>
       <div
         id="header-sticky"
         className="tp-header-top-area tp-header__style-1 tp-header__transparent tp-header__border pr-160 pl-160"
-        style={{backgroundColor: "#101010"}}
+        style={{ backgroundColor: "#101010" }}
       >
         <div className="contianer-fluid">
           <div className="row align-items-center">
             <div className="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
-              <div className="tp-main__logo" 
-              style={{
-                background:"blue"
-              }}>
-                <Link
-                  className="main-logo"
-                  href="/"
-                >
+              <div
+                className="tp-main__logo"
+                style={{
+                  background: "blue",
+                }}
+              >
+                <Link className="main-logo" href="/">
                   <Image
                     width={50}
                     height={50}
@@ -44,11 +43,7 @@ const Header = () => {
                       id="menu-item-2496"
                       className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-17 current_page_item active menu-item-2496 has-mega-menu has-dropdown nav-item"
                     >
-                      <Link
-                        title="Home"
-                        href="/"
-                        className="nav-links"
-                      >
+                      <Link title="Home" href="/" className="nav-links">
                         Home
                       </Link>
                     </li>
@@ -58,11 +53,7 @@ const Header = () => {
                       id="menu-item-73"
                       className="menu-item menu-item-type-post_type menu-item-object-page menu-item-73 nav-item"
                     >
-                      <Link
-                        title="About"
-                        href="/about/"
-                        className="nav-links"
-                      >
+                      <Link title="About" href="/about/" className="nav-links">
                         About
                       </Link>
                     </li>
@@ -79,7 +70,7 @@ const Header = () => {
                       >
                         Service
                       </Link>
- 
+
                       <div className="tp-submenu submenu has-homemenu">
                         <div
                           data-elementor-type="container"
@@ -90,7 +81,6 @@ const Header = () => {
                             className="elementor-element elementor-element-039dca9 e-con-full e-flex e-con e-parent"
                             data-id="039dca9"
                             data-element_type="container"
-                            
                           >
                             <div
                               className="elementor-element elementor-element-f21576b e-con-full e-flex e-con e-child"
@@ -106,7 +96,6 @@ const Header = () => {
                                 <div className="elementor-widget-container">
                                   <div className="row gx-6 row-cols-1 row-cols-md-2 row-cols-lg-5 row-cols-xl-6">
                                     <div className="col homemenu">
-                                     
                                       <div className="homemenu-content text-center">
                                         <h4 className="homemenu-title">
                                           <Link
@@ -278,10 +267,13 @@ const Header = () => {
                       id="menu-item-94"
                       className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown has-dropdown menu-item-94 nav-item"
                     >
-                      <Link title="Our Work" href="/our-work/" className="nav-links">
+                      <Link
+                        title="Our Work"
+                        href="/our-work/"
+                        className="nav-links"
+                      >
                         Our Work
                       </Link>
-                      
                     </li>
                     <li
                       itemScope
@@ -289,14 +281,9 @@ const Header = () => {
                       id="menu-item-74"
                       className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown has-dropdown menu-item-74 nav-item"
                     >
-                      <Link
-                        title="Blog"
-                        href="/blog"
-                        className="nav-links"
-                      >
+                      <Link title="Blog" href="/blog" className="nav-links">
                         Blog
                       </Link>
-                     
                     </li>
                     <li
                       itemScope
@@ -304,7 +291,11 @@ const Header = () => {
                       id="menu-item-95"
                       className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown has-dropdown menu-item-95 nav-item"
                     >
-                      <Link title="Pages" href="/contact/" className="nav-links">
+                      <Link
+                        title="Pages"
+                        href="/contact/"
+                        className="nav-links"
+                      >
                         Contact us
                       </Link>
                     </li>
@@ -317,7 +308,6 @@ const Header = () => {
               <div className="tp-header__right d-flex justify-content-end">
                 <div className="tp-header__action">
                   <ul>
-                    
                     <li>
                       <button className="tp-header__burs-btn tp-offcanvas-open-btn">
                         <span>

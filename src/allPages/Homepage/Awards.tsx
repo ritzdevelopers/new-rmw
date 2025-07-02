@@ -26,7 +26,7 @@ const Awards = () => {
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="tp-awards__title-box mb-15">
-                      <span className="tp-section-title-pre mb-20">
+                      <span className="tp-section-title-pre mb-20" style={{borderRadius:"0px"}}>
                         Achievement Awards
                       </span>
                       <div className="tp-section-title-wrap d-flex align-items-center justify-content-between">

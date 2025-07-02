@@ -214,20 +214,18 @@ const Header = () => {
                                     {menuData.map((item, index) => (
                                       <li
                                         key={index}
-                                        className="position-relative flex-fill text-center text-nowrap"
-                                        style={{
-                                          padding: "0 10px",
-                                          cursor: "pointer",
-                                          color: "#0c0c0c",
-                                        }}
+                                        className="position-relative  flex-fill text-center text-nowrap "
+                                     
                                       >
                                         {/* Main Menu Item */}
                                         <Link
                                           href={item.link}
-                                          className="nav-link"
+                                          className="nav-link flex justify-center items-center"
                                           style={{ fontSize: "14px" }}
                                         >
-                                          {item.name}
+                                          {item.name} {
+                                            index !== menuData.length-2 && <span> | </span>
+                                          }
                                         </Link>
                                         {/* Submenu */}
                                         <ul
@@ -670,7 +668,7 @@ const Header = () => {
                 <h3>Contact</h3>
                 <p>
                   Address: 402 – 404 , 4th floor Corporate Park, Tower A1 Sector
-                  142 , Greater Noida
+                  142 ,Noida
                 </p>
                 <p>
                   <Link href="/">info@ritzmediaworld.com</Link>

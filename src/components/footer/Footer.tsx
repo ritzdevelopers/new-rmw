@@ -19,7 +19,7 @@ const Footer = () => {
         data-bg-color=""
       >
         <div className="tp-footer__wrap  ">
-          <div className="tp-cta-area pt-75 pb-75"></div>
+          <div className="tp-cta-area pt-40 pb-75"></div>
           {/* <!-- tp cta area end  --> */}
           <div className="container  ">
             <div className="row" style={{ justifyContent: "space-between" }}>
@@ -226,7 +226,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-138"
                         >
                           <Link
-                            href="/service/leading-creative-agency-india"
+                            href="/services/leading-creative-agency-india"
                             style={{ color: "#FBD98C" }}
                           >
                             Creative Services
@@ -237,7 +237,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-138"
                         >
                           <Link
-                            href="/service/leading-content-marketing-agency"
+                            href="/services/leading-content-marketing-agency"
                             style={{ color: "#FBD98C" }}
                           >
                             Content Marketing

@@ -95,7 +95,7 @@ const Article1 = () => {
           {/* Main Content */}
           <div className="col-md-8" ref={contentRef}>
             <div
-              className="text-white rounded shadow-sm"
+              className="text-black rounded shadow-sm"
               style={{ backgroundColor: "#f2f2f2" }}
             >
               <img

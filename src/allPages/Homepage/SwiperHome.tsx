@@ -12,6 +12,7 @@ const SwiperHome = () => {
       data-id="dbafe44"
       data-element_type="container"
     >
+      <div className="text-center uppercase" style={{fontSize:'40px', fontWeight:'bold', marginBottom:"20px"}}>Our Clients</div>
       <div
         className="elementor-element elementor-element-0c208c3 e-con-full e-flex e-con e-child"
         data-id="0c208c3"
