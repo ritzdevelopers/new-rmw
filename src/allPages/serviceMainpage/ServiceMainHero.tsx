@@ -54,9 +54,9 @@ const ServiceMainHero = () => {
               <div className="tp-hero__2-wrap">
                 <div className="container">
                   <div className="row align-items-center">
-                    <div className="col-xl-8 col-lg-7">
-                      <div className="tp-hero__2-title-box mb-55 p-relative">
-                        <span className="tp-hero__subtitle text-blue mb-30">
+                    <div className="col-xl-8 col-lg-4">
+                      <div className="tp-hero__2-title-box md:mb-55 p-relative">
+                        <span className="tp-hero__subtitle text-blue md:mb-30">
                           Services Tailored to Transform Your Brand from
                         </span>
                         <div
@@ -177,7 +177,7 @@ const ServiceMainHero = () => {
                           />
                         </div>
                         <div
-                          className="tp-hero__2-icon mb-70 wow tpfadeUp animated"
+                          className="tp-hero__2-icon md:mb-70 wow tpfadeUp animated"
                           data-wow-duration=".9s"
                           data-wow-delay=".3s"
                           style={{

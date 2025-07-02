@@ -7,7 +7,7 @@ type headingProp = {
 };
 const ServiceThirdHero = ({ heading }: headingProp) => {
   const lines = heading?.toUpperCase().split(" ");
-  const [svgSize, setSvgSize] = useState({ width: 300, height: 200 });
+  const [svgSize, setSvgSize] = useState({ width: 300, height: 600 });
   useEffect(() => {
     const updateSize = () => {
       const w = window.innerWidth;
@@ -73,9 +73,11 @@ const ServiceThirdHero = ({ heading }: headingProp) => {
                             maxWidth: svgWidth,
                             margin: "0 auto",
                             position: "relative",
-                            height: svgHeight,
+                            // height: '70vh',
+                            height:'55vh',
                             textAlign: "start",
                             // marginTop: "90px",
+                            // backgroundColor:'red'
                           }}
                         >
                           <svg

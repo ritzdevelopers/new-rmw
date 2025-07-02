@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useSplitText } from "@/hooks/useSplitText";
 
+import styles from "./page.module.css";
 const Stratagies = () => {
   const textRefs = useSplitText(); // ✅ Using the existing GSAP animation
 
@@ -75,45 +76,45 @@ const Stratagies = () => {
                   <div className="row">
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="#">
+                        <Link href="http://localhost:3000/services/leading-creative-agency-india/branding-identity-agency-india">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
                           ></i>
-                          <span>Brand Identity </span>
+                          <span className={styles.aboutLink}>Brand Identity </span>
                         </Link>
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="#">
+                        <Link href="http://localhost:3000/services/best-print-advertising-agency/advertisement-design-services">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
                           ></i>
-                          <span>Advertising Design</span>
+                          <span className={styles.aboutLink}>Advertising Design</span>
                         </Link>
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="#">
+                        <Link href="http://localhost:3000/services/leading-content-marketing-agency">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
                           ></i>
-                          <span>Content Marketing </span>
+                          <span className={styles.aboutLink}>Content Marketing </span>
                         </Link>
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="#">
+                        <Link href="http://localhost:3000/services/best-digital-marketing-agency">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
                           ></i>
-                          <span>Digital Marketing </span>
+                          <span className={styles.aboutLink}>Digital Marketing </span>
                         </Link>
                       </div>
                     </div>

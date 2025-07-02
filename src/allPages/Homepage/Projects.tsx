@@ -31,7 +31,7 @@ const Projects = () => {
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="tp-project__title-box">
-                      <span className="tp-section-title-pre mb-25">
+                      <span className="tp-section-title-pre mb-25" style={{borderRadius:'0px'}}>
                         Created Projects
                       </span>
                       <div className="tp-section-title-wrap d-flex align-items-center justify-content-between">
@@ -85,7 +85,10 @@ const Projects = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="tp-project__content">
+                        <div
+                          className="tp-project__content"
+                          style={{ borderBottomRightRadius: "0px" }}
+                        >
                           <h3 className="tp-project__title">
                             <Link
                               href="/services/leading-creative-agency-india/branding-identity-agency-india"
@@ -141,7 +144,9 @@ const Projects = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="tp-project__content">
+                        <div className="tp-project__content"
+                         style={{ borderBottomRightRadius: "0px" }}
+                        >
                           <h3 className="tp-project__title">
                             <Link
                               href="/services/best-digital-marketing-agency"
@@ -197,7 +202,9 @@ const Projects = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="tp-project__content">
+                        <div className="tp-project__content"
+                         style={{ borderBottomRightRadius: "0px" }}
+                        >
                           <h3 className="tp-project__title">
                             <Link
                               href="/services/best-digital-marketing-agency/social-media-management-india"
@@ -253,7 +260,9 @@ const Projects = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="tp-project__content">
+                        <div className="tp-project__content"
+                         style={{ borderBottomRightRadius: "0px" }}
+                        >
                           <h3 className="tp-project__title">
                             <Link
                               href="/services/best-print-advertising-agency"

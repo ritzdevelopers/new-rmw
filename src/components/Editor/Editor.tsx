@@ -6,18 +6,18 @@ import { useRef } from "react";
 const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
 interface EditorProps {
-  content: string;
-  setContent: (value: string) => void;
+  value: string;
+  onChange: (value: string) => void;
 }
 
-const Editor: React.FC<EditorProps> = ({ content, setContent }) => {
+const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
   const editor = useRef(null);
 
   return (
     <JoditEditor
       ref={editor}
-      value={content}
-      onChange={(newContent) => setContent(newContent)}
+      value={value}
+      onChange={(newContent) => onChange(newContent)}
     />
   );
 };

@@ -34,7 +34,7 @@
     "next-env.d.ts",
     "src/middleware.ts",
     ".next/types/**/*.ts"
-  ],
+, "src/app/(adminSide)/admin/content/page.jsx", "src/app/(adminSide)/admin/menu/page.jsx", "src/app/(adminSide)/admin/menu_category/page.jsx", "src/app/(adminSide)/admin/home/kaam_hai_mera/page.jsx", "src/app/(adminSide)/admin/home/networthy_assets/page.jsx", "src/app/(adminSide)/admin/home/testimonials/page.jsx", "src/app/(adminSide)/admin/home/customers/page.jsx", "src/app/(adminSide)/admin/services/page.jsx", "src/app/(adminSide)/admin/mediabanner/page.jsx", "src/app/(adminSide)/admin/howitworks/page.jsx", "src/app/(adminSide)/admin/enqury/page.jsx", "src/app/(adminSide)/admin/enqury/enquries/page.jsx", "src/blogContext/BlogContext.jsx", "src/app/api/ritz_blogs/add-new-blog/route.js", "src/models/Blog.Schema.js", "src/app/api/ritz_blogs/get-all-blogs/route.js"  ],
   "exclude": [
     "node_modules",
     ".next"

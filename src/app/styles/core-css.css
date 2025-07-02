@@ -1495,11 +1495,11 @@ xclip
 
 @keyframes rotate2 {
   from {
-    transform: rotate(0deg);
+    transform: rotate(360deg);
   }
 
   to {
-    transform: rotate(360deg);
+    transform: rotate(0deg);
   }
 }
 
@@ -12302,9 +12302,7 @@ input.search-input-field {
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-  .tp-awards__5-content {
-    margin-left: 100px;
-  }
+
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px),
@@ -12354,7 +12352,9 @@ input.search-input-field {
   only screen and (min-width: 576px) and (max-width: 767px),
   (max-width: 575px) {
   .tp-awards__5-thumb {
+    /* width:3000px; */
     margin-bottom: 40px;
+    
   }
 }
 
@@ -12364,6 +12364,7 @@ input.search-input-field {
   (max-width: 575px) and (max-width: 575px) {
   .tp-awards__5-thumb img {
     width: 100%;
+    object-fit: cover;
   }
 }
 
@@ -12371,6 +12372,7 @@ input.search-input-field {
   only screen and (min-width: 768px) and (max-width: 991px) {
   .tp-awards__5-thumb-box {
     text-align: center;
+    /* background-color:"red" */
   }
 }
 
@@ -15867,6 +15869,7 @@ div.tp-awards__5-avater-thumb img {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: red; */
   }
   .about_our_work-mp {
     margin-left: 0;

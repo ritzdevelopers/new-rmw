@@ -19,7 +19,12 @@ const Service: React.FC<ServiceProps> = ({ data }) => {
         <div className="row">
           <div className="col-xl-12">
             <div className="tp-services__title-box mb-45">
-              <span className="tp-section-title-pre mb-30">Services</span>
+              <span
+                className="tp-section-title-pre mb-30"
+                style={{ borderRadius: "0px" }}
+              >
+                Services
+              </span>
               <div className="tp-section-title-wrap d-md-flex align-items-center justify-content-between">
                 <h3 className="tp-section-title">
                   What We Provide

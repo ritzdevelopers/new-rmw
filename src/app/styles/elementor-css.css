@@ -1655,6 +1655,7 @@ body.rtl .e-con {
 .e-con > .e-con-inner > .elementor-widget > .elementor-widget-container,
 .e-con > .elementor-widget > .elementor-widget-container {
   height: 100%;
+  /* background-color: #d9534f; */
 }
 .e-con.e-con > .e-con-inner > .elementor-widget,
 .elementor.elementor .e-con > .elementor-widget {

@@ -1,0 +1,9 @@
+.aboutLink {
+     font-weight: 600;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+.aboutLink:hover {
+    color: #ae6f0a;
+    /* font-weight: 650; */
+}
