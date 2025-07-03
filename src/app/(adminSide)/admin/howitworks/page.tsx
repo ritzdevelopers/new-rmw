@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Breadcrumb from "@/components/ui/Breadcrumb";
+// import Breadcrumb from "@/components/ui/Breadcrumb";
 import axios from "axios";
 import { FiEdit, FiTrash } from "react-icons/fi";
 import { AlertTriangle, Home, Monitor } from "lucide-react";
@@ -14,19 +14,24 @@ interface Faq {
 }
 
 const Page = () => {
-  const [entriesPerPage, setEntriesPerPage] = useState(10);
+  const [entriesPerPage, setEntriesPerPage] = useState<number>();
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [faqs, setFaqs] = useState<Faq[]>([]);
   const [filteredFaqs, setFilteredFaqs] = useState<Faq[]>([]);
   const [deleteConfirmModal, setDeleteConfirmModal] = useState(false);
-  const [deleteKey, setDeleteKey] = useState("");
 
-  const handleDataDeleteModal = (key: string) => {
-    setDeleteKey(" ");
-    setDeleteConfirmModal(true);
-    setDeleteKey(key);
-  };
+  useEffect(() => {
+    setEntriesPerPage(10);
+    setSearchQuery("");
+  }, []);
+  // const [deleteKey, setDeleteKey] = useState("");
+
+  // const handleDataDeleteModal = (key: string) => {
+  //   setDeleteKey(" ");
+  //   setDeleteConfirmModal(true);
+  //   setDeleteKey(key);
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +44,6 @@ const Page = () => {
     };
     fetchData();
   }, []);
-
   useEffect(() => {
     const filtered = faqs.filter((faq) =>
       faq.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -47,10 +51,10 @@ const Page = () => {
     setFilteredFaqs(filtered);
   }, [searchQuery, faqs]);
 
-  const totalPages = Math.ceil(filteredFaqs.length / entriesPerPage);
+  const totalPages = Math.ceil(filteredFaqs.length / (entriesPerPage ?? 10));
   const currentData = filteredFaqs.slice(
-    (currentPage - 1) * entriesPerPage,
-    currentPage * entriesPerPage
+    (currentPage - 1) * (entriesPerPage ?? 10),
+    currentPage * (entriesPerPage ?? 10)
   );
 
   const handleDelete = async (id: number) => {

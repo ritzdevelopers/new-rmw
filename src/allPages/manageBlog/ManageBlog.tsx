@@ -23,12 +23,17 @@ type Blog = {
 export default function ManageBlogs() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
   const [deleteBlog, setDeleteBlog] = useState<Blog | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [totalBlogs, setTotalBlogs] = useState(0);
   const blogsPerPage = 15;
+  
+  useEffect(()=>{
+    setSearchQuery("");
+    setSelectedCategory("");
+  }, [])
 
   // Fetch blogs whenever filters or page changes
   useEffect(() => {
@@ -79,15 +84,15 @@ export default function ManageBlogs() {
     setDeleteBlog(null);
   };
 
-  const categories = [
-    "All",
-    ...new Set(
-      blogs &&
-        blogs.map((blog) =>
-          blog.categoryName ? blog.categoryName : "For Demo"
-        )
-    ),
-  ];
+  // const categories = [
+  //   "All",
+  //   ...new Set(
+  //     blogs &&
+  //       blogs.map((blog) =>
+  //         blog.categoryName ? blog.categoryName : "For Demo"
+  //       )
+  //   ),
+  // ];
 
   const totalPages = Math.ceil(totalBlogs / blogsPerPage);
   const [deleteConfirmModal, setDeleteConfirmModal] = useState(false);

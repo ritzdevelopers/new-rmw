@@ -7,13 +7,20 @@ import { Monitor, Home, ImagePlus } from "lucide-react";
 import Link from "next/link";
 
 const Page = () => {
+  interface BlogBodyItem {
+    metaTitle: string;
+    metaDescription: string;
+    innerImg: string;
+  }
+
   const params = useParams();
   const router = useRouter();
   const blogID = params.blogID as string;
   const count = parseInt(params.count as string, 10) || 1;
 
   const LOCAL_KEY = (page: number) => `add-blog-step-2-${blogID}-page-${page}`;
-  const [blogBody, setBlogBody] = useState<any[]>([]);
+  const [blogBody, setBlogBody] = useState<BlogBodyItem[]>([]);
+
   const [totalPages, setTotalPages] = useState<number>(1);
 
   const [localTitle, setLocalTitle] = useState<string>("");
@@ -114,9 +121,9 @@ const Page = () => {
     try {
       const step1Key = `update-blog-step-1-${blogID}`;
       const step1Data = JSON.parse(localStorage.getItem(step1Key) || "{}");
-      console.log('====================================');
+      console.log("====================================");
       console.log("This is step-1 data ", step1Data);
-      console.log('====================================');
+      console.log("====================================");
       if (
         !step1Data.blogTitle ||
         !step1Data.blogCategory ||
@@ -124,24 +131,24 @@ const Page = () => {
       ) {
         alert("Step 1 data missing! Please go back and fill it.");
         return;
-      } 
+      }
 
       const finalBody = [];
       const innerImageMap: Record<number, File> = {};
 
       for (let i = 1; i <= totalPages; i++) {
         const saved = localStorage.getItem(LOCAL_KEY(i));
-        const parsed = saved ? JSON.parse(saved) : blogBody[i - 1]; 
+        const parsed = saved ? JSON.parse(saved) : blogBody[i - 1];
 
         // if (parsed?.innerImg?.startsWith("data:image/")) {
-          const file = base64ToFile(parsed.innerImg, `innerImg-${i}.png`);
-          innerImageMap[i - 1] = file;
+        const file = base64ToFile(parsed.innerImg, `innerImg-${i}.png`);
+        innerImageMap[i - 1] = file;
         // }
 
         finalBody.push({
           metaTitle: parsed.metaTitle || "",
           metaDescription: parsed.metaDescription || "",
-          innerImg: `innerImg-${i - 1}`, 
+          innerImg: `innerImg-${i - 1}`,
         });
       }
 
@@ -151,16 +158,16 @@ const Page = () => {
       formData.append("metaKeywords", step1Data.metaKeywords);
       formData.append("blogCategory", step1Data.blogCategory);
       formData.append("blogStatus", step1Data.blogStatus || true);
-      formData.append("blogBody", JSON.stringify(finalBody)); 
+      formData.append("blogBody", JSON.stringify(finalBody));
 
       if (step1Data.blogBanner?.startsWith("data:image/")) {
         const bannerFile = base64ToFile(step1Data.blogBanner, "blogBanner.png");
         formData.append("blogBanner", bannerFile);
-      } 
+      }
 
       Object.entries(innerImageMap).forEach(([index, file]) => {
         formData.append(`innerImg-${index}`, file);
-      }); 
+      });
 
       const res = await axios.put(
         `http://localhost:3000/api/ritz_blogs/update-prev-blog/${blogID}`,
