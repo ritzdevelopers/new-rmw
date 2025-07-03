@@ -4,6 +4,16 @@ import NewBlogModel from "@/models/Blog.Schema";
 import fs from "fs";
 import path from "path";
 
+interface BlogBodyItem {
+    pageTitle: string;
+    pageDesc: string;
+    innerImg: string;
+    metaTitle?: string;
+    metaDescription?: string;
+    // Add any other fields you're using in blogBody
+}
+
+
 async function saveFileToUploads(file: File, filename: string): Promise<string> {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
@@ -25,7 +35,7 @@ export async function PUT(req: NextRequest,
         await connectMongoDB();
 
         const formData = await req.formData();
-       const blogId = params.blogID;
+        const blogId = params.blogID;
         const blogTitle = formData.get("blogTitle");
         const metaKeywords = formData.get("metaKeywords");
         const blogBodyRaw = formData.get("blogBody");
@@ -50,20 +60,29 @@ export async function PUT(req: NextRequest,
             }
         }
 
-        const blogBodyParsed = JSON.parse(blogBodyRaw || "[]");
-        const updatedBlogBody = blogBodyParsed.map((item: any, index: number) => ({
+        const blogBodyParsed = JSON.parse(typeof blogBodyRaw === "string" ? blogBodyRaw : "[]");
+
+        const updatedBlogBody = blogBodyParsed.map((item: BlogBodyItem, index: number): BlogBodyItem => ({
             ...item,
             innerImg: innerImgMap[index] || item.innerImg || "",
         }));
 
-        // Build update object
-        const updateData: Record<string, any> = {
+
+        const updateData: Partial<{
+            blogTitle: string | FormDataEntryValue | null;
+            blogBody: BlogBodyItem[];
+            metaKeywords: FormDataEntryValue | null;
+            blogCategory: FormDataEntryValue | null;
+            blogStatus: FormDataEntryValue | null;
+            blogBanner?: string;
+        }> = {
             blogTitle,
             blogBody: updatedBlogBody,
             metaKeywords,
             blogCategory,
             blogStatus,
         };
+
 
         if (blogBannerPath) {
             updateData.blogBanner = blogBannerPath;
@@ -87,7 +106,7 @@ export async function PUT(req: NextRequest,
     } catch (error) {
         console.error("Update Blog Error:", error);
         return NextResponse.json(
-            { message: "Internal Server Error", error: error.message },
+            { message: "Internal Server Error", error },
             { status: 500 }
         );
     }

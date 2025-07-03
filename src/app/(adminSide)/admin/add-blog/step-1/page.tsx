@@ -4,7 +4,7 @@ import { Home, ImagePlus, Monitor } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useBlogContext } from "@/blogContext/BlogContext"; 
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const LOCAL_STORAGE_KEY = "add-blog-step-1";
 

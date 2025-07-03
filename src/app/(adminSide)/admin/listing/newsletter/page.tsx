@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Breadcrumb from "@/components/ui/Breadcrumb";
+// import Breadcrumb from "@/components/ui/Breadcrumb";
 import { AlertTriangle, Home, Monitor, Trash2 } from "lucide-react"; // or your icon library
 import axios from "axios";
 
-interface Newsletter {
-  id: string;
-  email: string;
-  addDate: string;
-}
+// interface Newsletter {
+//   id: string;
+//   email: string;
+//   addDate: string;
+// }
 
 const NewslettersPage = () => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);
@@ -22,14 +22,26 @@ const NewslettersPage = () => {
     null
   );
 
-  const formatDate = (isoDate: string) =>
-    new Date(isoDate).toLocaleDateString();
+  const formatDate = (dateStr: string): string => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-IN", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
+
+  type Newsletter = {
+    id: string;
+    email: string;
+    addDate: string;
+  };
 
   useEffect(() => {
     axios
-      .get("/api/system-settings/manage-newsletter")
+      .get<Newsletter[]>("/api/system-settings/manage-newsletter")
       .then((res) => {
-        const formatted = res.data.map((item: any) => ({
+        const formatted = res.data.map((item) => ({
           ...item,
           addDate: formatDate(item.addDate),
         }));

@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 // import Link from 'next/link';
 import gsap from "gsap";
-import { CalendarDays, Share2 } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 interface Article {
   _id: string;
   blogBanner: string;
@@ -37,9 +37,15 @@ const Blogs: React.FC = () => {
         );
         setBlogs(response.data.allBlogs);
         console.log(response.data.allBlogs);
-      } catch (err: any) {
-        console.log(err);
-        setError(err?.message || "An unknown error occurred");
+      } catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+          setError(err.response?.data?.message || err.message);
+          console.log(err.message);
+        } else if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred");
+        }
       } finally {
         setLoading(false);
       }

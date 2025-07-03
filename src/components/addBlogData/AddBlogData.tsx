@@ -239,11 +239,9 @@ const AddBlogData = () => {
 
         <Label>Blog Content</Label>
         <Editor
-          content={formData.description}
-          setContent={(value) =>
-            setFormData({ ...formData, description: value })
-          }
-        />
+        value={formData.description}
+        onChange={(value) => setFormData({ ...formData, description: value })}
+      />
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         <Button type="submit" className="w-full mt-4" disabled={loading}>
           {loading ? "Saving..." : "Save Blog"}
