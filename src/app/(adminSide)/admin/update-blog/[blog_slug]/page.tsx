@@ -256,8 +256,8 @@ const UpdateBlog = () => {
 
       <Label>Blog Content</Label>
       <Editor
-        content={formData.description}
-        setContent={(value) => setFormData({ ...formData, description: value })}
+        value={formData.description}
+        onChange={(value) => setFormData({ ...formData, description: value })}
       />
 
       <Button type="submit" className="w-full mt-4" disabled={loading}>
