@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { useSplitText } from "@/hooks/useSplitText";
 import useGSAPHoverEffect from "@/hooks/useGSAPHoverEffect";
+import PagesBanner from "@/components/pagesBanner/PagesBanner";
 
 const AboutFirst = () => {
-  const textRefs = useSplitText();
+  // const textRefs = useSplitText();
   useGSAPHoverEffect();
 
   return (
@@ -13,19 +14,9 @@ const AboutFirst = () => {
       <section className="tp-ab__area tp-ab__plr">
         <div className="container">
           <div className="row">
-            <div className="col-xl-8 col-lg-8">
-              <div className="tp-ab__title-box">
-                <h3
-                  ref={(el) => {
-                    if (el) textRefs.current.push(el);
-                  }}
-                  className="tp-ab__title tp-split__text tp-split__in-right"
-                >
-                  About the Agency <br />
-                  &amp; Legacy
-                </h3>
-              </div>
-            </div>
+            {/* <div style={{backgroundColor:'yellowgreen'}}> */}
+              <PagesBanner headingTitle={"Our Agency"}/>
+            {/* </div> */}
             <div className="col-xl-4 col-lg-4">
               <div className="tp-ab__btn-wrap text-center text-lg-end">
                 <div className="tp-hover__btn-wrap tp-btn__bounce">

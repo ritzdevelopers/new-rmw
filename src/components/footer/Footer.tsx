@@ -18,8 +18,8 @@ const Footer = () => {
         data-background=""
         data-bg-color=""
       >
-        <div className="tp-footer__wrap  ">
-          <div className="tp-cta-area pt-40 pb-75"></div>
+        <div className="tp-footer__wrap">
+          <div className="tp-cta-area  pb-40"></div>
           {/* <!-- tp cta area end  --> */}
           <div className="container  ">
             <div className="row" style={{ justifyContent: "space-between" }}>
