@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSplitText } from "@/hooks/useSplitText";
+// import { useSplitText } from "@/hooks/useSplitText";
 import useGSAPHoverEffect from "@/hooks/useGSAPHoverEffect";
 import PagesBanner from "@/components/pagesBanner/PagesBanner";
 
