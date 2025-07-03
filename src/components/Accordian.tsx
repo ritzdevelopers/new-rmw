@@ -21,17 +21,16 @@ const Accordion = ({ data }: { data: AccordionItem[] }) => {
       <div className="container">
         <div className="row counter-row">
           <div className="col-12">
-            <div className="tp-accordion ">
+            <div className="tp-accordion">
               <div className="accordion " id="accordion-310c8f9">
                 {data.map((item, index) => (
                   <div
                     className="accordion-item"
                     key={index}
-                    style={{ borderRadius: 0, backgroundColor: "white" }}
                   >
                     <h2 className="accordion-header">
                       <button
-                        className={`accordion-button p-relative ${
+                        className={`accordion-button ${
                           openIndex === index ? "" : "collapsed"
                         }`}
                         style={{ border: "none" }}
