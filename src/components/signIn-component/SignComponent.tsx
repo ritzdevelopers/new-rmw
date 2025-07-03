@@ -29,23 +29,23 @@ const SignInForm = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-  
+
     try {
       const res = await fetch("/api/sign-in", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-  
+
       const data = await res.json();
-  
+
       if (!res.ok) {
         throw new Error(data.message || "Login failed");
       }
-  
+
       // ✅ Ensure token is properly set before redirecting
       // document.cookie = `token=${data.token}; path=/;`;
-  
+
       // ✅ Use `replace` instead of `push` to force navigation
       router.replace("/admin");
     } catch (err: unknown) {
@@ -60,7 +60,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 w-full flex justify-center items-center">
+    <div className="h-[90vh] -ml-60 flex justify-center items-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
