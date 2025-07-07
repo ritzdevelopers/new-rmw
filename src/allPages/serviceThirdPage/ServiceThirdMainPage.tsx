@@ -20,7 +20,6 @@ interface CardData {
   description: string;
   image_url?: string;
 }
-
 const ServiceThirdMainPage = () => {
   const params = useParams();
   const [cardData, setCardData] = useState<CardData[]>([]);

@@ -72,10 +72,10 @@ const Form = () => {
 
   return (
     <>
-      <div className="tp-contact__area pt-30 pb-30">
+      <div className="tp-contact__area">
         <div className="container">
           <div className="row">
-            <div className="col-xl-6 col-lg-6" style={{ padding: "2rem" }}>
+            <div className="col-xl-6 col-lg-6" >
               <div className="tp-contact__left">
                 <div className="tp-contact__title-box mb-75">
                   <h3
