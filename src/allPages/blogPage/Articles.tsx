@@ -113,7 +113,6 @@ const Blogs: React.FC = () => {
         ];
 
         setBlogs(merged);
-        
       } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
           setError(err.response?.data?.message || err.message);
@@ -197,7 +196,7 @@ const Blogs: React.FC = () => {
                   }}
                 >
                   <img
-                    src={article.banner}
+                    src={`/blogs/${article.banner}`}
                     alt={`Banner of ${article.banner}`}
                     className="card-img-top"
                     style={{
@@ -212,9 +211,6 @@ const Blogs: React.FC = () => {
                     onMouseOut={(e) =>
                       (e.currentTarget.style.transform = "scale(1)")
                     }
-                    onError={(e) => {
-                      e.currentTarget.src = "/fallback-image.jpg"; // Optional fallback
-                    }}
                   />
                 </div>
 
