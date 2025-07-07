@@ -30,8 +30,6 @@ const BlogPage: React.FC = () => {
     if (id) fetchSingleBlog();
   }, [id]);
 
-
-
   const fetchSingleBlog = async () => {
     try {
       const res = await axios.get<{ blog: BlogInfo }>(

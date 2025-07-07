@@ -4,9 +4,9 @@ import Loader from "@/components/loader/Loader";
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-// import Link from 'next/link';
 import gsap from "gsap";
 import { CalendarDays } from "lucide-react";
+
 interface Article {
   _id: string;
   blogBanner: string;
@@ -14,11 +14,42 @@ interface Article {
   createdAt: string;
 }
 
+interface Article2 {
+  slug: string;
+  blog_image: string;
+  title: string;
+  created_at: string;
+}
+
+interface MergedBlogs {
+  id: string;
+  banner: string;
+  title: string;
+  createdAt: string;
+}
+
+const normalizeArticle = (blog: Article): MergedBlogs => ({
+  id: blog._id,
+  banner: blog.blogBanner,
+  title: blog.blogTitle,
+  createdAt: blog.createdAt,
+});
+
+const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
+  id: blog.slug,
+  banner: blog.blog_image,
+  title: blog.title,
+  createdAt: blog.created_at,
+});
+
 const Blogs: React.FC = () => {
-  const [blogs, setBlogs] = useState<Article[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [blogs, setBlogs] = useState<MergedBlogs[]>([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 12;
+
   useEffect(() => {
     gsap.from(".mnc-card", {
       opacity: 0,
@@ -27,20 +58,29 @@ const Blogs: React.FC = () => {
       duration: 0.6,
       ease: "power2.out",
     });
-  }, []);
+  }, [blogs]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get(
-          "/api/ritz_blogs/get-all-blogs"
-        );
-        setBlogs(response.data.allBlogs);
-        console.log(response.data.allBlogs);
+        const [resMongo, resMySQL] = await Promise.all([
+          axios.get("/api/ritz_blogs/get-all-blogs"),
+          axios.get("/api/all_blogs"),
+        ]);
+
+        const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
+        const mysqlBlogs: Article2[] = resMySQL.data || [];
+
+        const merged: MergedBlogs[] = [
+          ...mongoBlogs.map(normalizeArticle),
+          ...mysqlBlogs.map(normalizeArticle2),
+        ];
+
+        setBlogs(merged);
+        
       } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
           setError(err.response?.data?.message || err.message);
-          console.log(err.message);
         } else if (err instanceof Error) {
           setError(err.message);
         } else {
@@ -55,11 +95,8 @@ const Blogs: React.FC = () => {
   }, []);
 
   const filteredBlogs = blogs.filter((blog) =>
-    blog.blogTitle.toLowerCase().includes(searchQuery.toLowerCase())
+    blog.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const cardsPerPage = 12;
 
   const totalPages = Math.ceil(filteredBlogs.length / cardsPerPage);
   const indexOfLastCard = currentPage * cardsPerPage;
@@ -94,14 +131,12 @@ const Blogs: React.FC = () => {
           style={{ maxWidth: "400px" }}
         />
       </div>
+
       {/* Blog Cards */}
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {currentCards.map((article) => (
-          <div className="col" key={article._id}>
-            <Link
-              href={`/all-ritz-blogs/read-single-blog/${article._id}`}
-              passHref
-            >
+          <div className="col" key={article.id}>
+            <Link href={`/blog/${article.id}`}>
               <div
                 className="card h-100 mnc-card shadow-sm border-0"
                 style={{
@@ -110,7 +145,7 @@ const Blogs: React.FC = () => {
                   background: "#ffffff",
                 }}
               >
-                {/* Image Container */}
+                {/* Image */}
                 <div
                   style={{
                     overflow: "hidden",
@@ -121,8 +156,8 @@ const Blogs: React.FC = () => {
                   }}
                 >
                   <img
-                    src={article.blogBanner}
-                    alt={`ritz-media-world/${article.blogTitle}`}
+                    src={article.banner}
+                    alt={`Banner of ${article.banner}`}
                     className="card-img-top"
                     style={{
                       width: "100%",
@@ -136,10 +171,13 @@ const Blogs: React.FC = () => {
                     onMouseOut={(e) =>
                       (e.currentTarget.style.transform = "scale(1)")
                     }
+                    onError={(e) => {
+                      e.currentTarget.src = "/fallback-image.jpg"; // Optional fallback
+                    }}
                   />
                 </div>
 
-                {/* Card Body */}
+                {/* Content */}
                 <div className="card-body d-flex flex-column justify-content-between">
                   <div className="flex justify-center items-center">
                     <small className="text-muted d-flex align-items-center">
@@ -152,19 +190,21 @@ const Blogs: React.FC = () => {
                     </small>
                   </div>
 
-                  <h5 className="card-title mt-1">{article.blogTitle}</h5>
+                  <h5 className="card-title mt-1">{article.banner}</h5>
                 </div>
               </div>
             </Link>
           </div>
         ))}
       </div>
+
       {/* Pagination */}
       {filteredBlogs.length > 0 && (
         <div className="text-center mt-4">
           <button
             onClick={handlePrev}
             disabled={currentPage === 1}
+            className="mx-2"
             style={{
               color: "#000",
               background: "var(--tp-primary-blue)",
@@ -176,7 +216,6 @@ const Blogs: React.FC = () => {
               transition: "all 0.3s ease-in-out",
               boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)",
             }}
-            className="mx-2"
           >
             ⬅ Prev
           </button>
@@ -195,6 +234,7 @@ const Blogs: React.FC = () => {
           <button
             onClick={handleNext}
             disabled={currentPage === totalPages}
+            className="mx-2"
             style={{
               color: "#000",
               background: "var(--tp-primary-blue)",
@@ -206,12 +246,12 @@ const Blogs: React.FC = () => {
               transition: "all 0.3s ease-in-out",
               boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)",
             }}
-            className="mx-2"
           >
             Next ➡
           </button>
         </div>
       )}
+
       {/* No Results */}
       {filteredBlogs.length === 0 && (
         <p className="text-center text-muted mt-4">
