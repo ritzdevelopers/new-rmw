@@ -63,20 +63,9 @@ const Blogs: React.FC = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const [resMongo, resMySQL] = await Promise.all([
-          axios.get("/api/ritz_blogs/get-all-blogs"),
-          axios.get("/api/all_blogs"),
-        ]);
-
-        const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
-        const mysqlBlogs: Article2[] = resMySQL.data || [];
-
-        const merged: MergedBlogs[] = [
-          ...mongoBlogs.map(normalizeArticle),
-          ...mysqlBlogs.map(normalizeArticle2),
-        ];
-
-        setBlogs(merged);
+        const response = await axios.get("/api/ritz_blogs/get-all-blogs");
+        setBlogs(response.data.allBlogs);
+        console.log(response.data.allBlogs);
       } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
           setError(err.response?.data?.message || err.message);
