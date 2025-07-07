@@ -2,11 +2,11 @@
 
 import Loader from "@/components/loader/Loader";
 import axios from "axios";
-import Link from "next/link";
+// import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import gsap from "gsap";
-import { CalendarDays } from "lucide-react";
-
+// import { CalendarDays } from "lucide-react";
+import { CalendarDays, Share2 } from "lucide-react";
 interface Article {
   _id: string;
   blogBanner: string;
@@ -132,64 +132,96 @@ const Blogs: React.FC = () => {
       </div>
 
       {/* Blog Cards */}
+
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {currentCards.map((article) => (
           <div className="col" key={article.id}>
-            <Link href={`/blog/${article.id}`}>
+            <div
+              className="card h-100 shadow-sm border-0"
+              style={{
+                borderRadius: "1rem",
+                overflow: "hidden",
+                background: "#ffffff",
+              }}
+            >
+              {/* Image */}
               <div
-                className="card h-100 mnc-card shadow-sm border-0"
                 style={{
-                  borderRadius: "1rem",
-                  transition: "box-shadow 0.3s ease",
-                  background: "#ffffff",
+                  height: "220px",
+                  overflow: "hidden",
+                  position: "relative",
                 }}
               >
-                {/* Image */}
-                <div
+                <img
+                  src={`/blogs/${article.banner}`}
+                  alt={`Banner of ${article.banner}`}
+                  className="card-img-top"
                   style={{
-                    overflow: "hidden",
-                    height: "220px",
-                    borderTopLeftRadius: "1rem",
-                    borderTopRightRadius: "1rem",
-                    position: "relative",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.4s ease",
                   }}
-                >
-                  <img
-                    src={`/blogs/${article.banner}`}
-                    alt={`Banner of ${article.banner}`}
-                    className="card-img-top"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      transition: "transform 0.4s ease",
-                    }}
-                    onMouseOver={(e) =>
-                      (e.currentTarget.style.transform = "scale(1.05)")
-                    }
-                    onMouseOut={(e) =>
-                      (e.currentTarget.style.transform = "scale(1)")
-                    }
-                  />
-                </div>
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.transform = "scale(1.05)")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
+                />
+              </div>
 
-                {/* Content */}
-                <div className="card-body d-flex flex-column justify-content-between">
-                  <div className="flex justify-center items-center">
-                    <small className="text-muted d-flex align-items-center">
-                      <CalendarDays size={16} className="me-1" />
+              {/* Content */}
+              <div className="card-body d-flex flex-column justify-between">
+                {/* Title */}
+                <h5 className="card-title fw-semibold">{article.title}</h5>
+
+                {/* Paragraph */}
+                <p className="card-text text-muted">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                  tristique, sapien sed facilisis ullamcorper.
+                </p>
+
+                {/* Buttons */}
+                <div className="d-flex justify-content-between align-items-center mt-auto">
+                  {/* Published Date */}
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1"
+                    disabled
+                  >
+                    <CalendarDays size={16} />
+                    <span>
                       {new Date(article.createdAt).toLocaleDateString("en-US", {
                         year: "numeric",
-                        month: "long",
+                        month: "short",
                         day: "numeric",
                       })}
-                    </small>
-                  </div>
+                    </span>
+                  </button>
 
-                  <h5 className="card-title mt-1">{article.title}</h5>
+                  {/* Share Button */}
+                  <button
+                    type="button"
+                    style={{
+                      backgroundColor: "blue", // Bootstrap primary
+                      color: "#fff",
+                      fontSize: "0.875rem", // Small text (approx btn-sm)
+                      padding: "0.25rem 0.5rem", // Small padding
+                      border: "none",
+                      borderRadius: "0.375rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.25rem", // space between icon and text
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Share2 size={16} />
+                    Share Now
+                  </button>
                 </div>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </div>
