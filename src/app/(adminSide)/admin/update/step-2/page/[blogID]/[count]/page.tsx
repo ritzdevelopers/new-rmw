@@ -30,7 +30,7 @@ const Page = () => {
   const fetchBlogBody = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/ritz_blogs/get-single-blog/${blogID}`
+        `/api/ritz_blogs/get-single-blog/${blogID}`
       );
       const blog = res.data.blog;
       if (blog?.blogBody) {
@@ -170,7 +170,7 @@ const Page = () => {
       });
 
       const res = await axios.put(
-        `http://localhost:3000/api/ritz_blogs/update-prev-blog/${blogID}`,
+        `/api/ritz_blogs/update-prev-blog/${blogID}`,
         formData
       );
 

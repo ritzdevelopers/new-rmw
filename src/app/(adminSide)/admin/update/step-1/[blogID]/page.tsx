@@ -68,7 +68,7 @@ const Page = () => {
   const getSingleBlogInfo = async (id: string, LOCAL_KEY: string) => {
     try {
       const res = await axios.get<{ blog: BlogInfo }>(
-        `http://localhost:3000/api/ritz_blogs/get-single-blog/${id}`
+        `/api/ritz_blogs/get-single-blog/${id}`
       );
       const blog = res.data.blog;
       console.log('====================================');

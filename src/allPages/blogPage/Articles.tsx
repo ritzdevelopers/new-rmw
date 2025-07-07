@@ -33,7 +33,7 @@ const Blogs: React.FC = () => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/ritz_blogs/get-all-blogs"
+          "/api/ritz_blogs/get-all-blogs"
         );
         setBlogs(response.data.allBlogs);
         console.log(response.data.allBlogs);

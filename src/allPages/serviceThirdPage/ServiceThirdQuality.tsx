@@ -30,11 +30,11 @@ const ServiceThirdQuality: React.FC<ServiceThirdQualityProps> = ({
           data-element_type="widget"
           data-widget_type="services.default"
         >
-          <div className="elementor-widget-container">
+          <div className="elementor-widget-container" >
           
             <section className="tp-service__3-area fix tp-services__3-style p-relative tp-bg-className">
               <div className="container">
-                <div className="tp-services__2-title-wrap ">
+                <div className="tp-services__2-title-wrap">
                   <div className="row align-items-center">
                     <div className="">
                       <div className="tp-services__3-title-box">

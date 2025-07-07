@@ -62,7 +62,7 @@ const ServiceThirdHero = ({ heading }: headingProp) => {
             >
              
 
-              <div className="tp-hero__3-wrap">
+              <div className="tp-hero__3-wrap" >
                 <div className="container">
                   <div className="row align-items-center">
                     <div className="col-xl-12">
@@ -70,11 +70,11 @@ const ServiceThirdHero = ({ heading }: headingProp) => {
                         <div
                           style={{
                             width: "100%",
-                            maxWidth: svgWidth,
+                            maxWidth: '100vw',
                             margin: "0 auto",
                             position: "relative",
                             // height: '70vh',
-                            height:'55vh',
+                            height:'50vh',
                             textAlign: "start",
                             // marginTop: "90px",
                             // backgroundColor:'red'

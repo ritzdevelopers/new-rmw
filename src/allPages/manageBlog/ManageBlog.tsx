@@ -293,7 +293,7 @@ export default function ManageBlogs() {
                     </td>
                     <td>
                       <Link
-                        href={`http://localhost:3000/all-ritz-blogs/read-single-blog/${blog._id}`}
+                        href={`/all-ritz-blogs/read-single-blog/${blog._id}`}
                       >
                         <button className="text-blue-600 hover:text-blue-800 pl-1 cursor-pointer">
                           <FaEye />
