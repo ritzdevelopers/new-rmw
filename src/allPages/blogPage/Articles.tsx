@@ -190,7 +190,7 @@ const Blogs: React.FC = () => {
                     </small>
                   </div>
 
-                  <h5 className="card-title mt-1">{article.banner}</h5>
+                  <h5 className="card-title mt-1">{article.title}</h5>
                 </div>
               </div>
             </Link>
