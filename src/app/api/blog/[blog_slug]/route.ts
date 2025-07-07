@@ -7,10 +7,13 @@ import path from "path";
 // GET blog by slug
 export async function GET(
   req: NextRequest,
-  context: { params: Promise<{ blog_slug: string }> }
+  context: { params: { blog_slug: string } }
 ) {
   try {
     const { blog_slug } = await context.params;
+    console.log('api hit get');
+    
+    console.log("Slug received:", blog_slug);
 
     if (!blog_slug) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
@@ -22,12 +25,13 @@ export async function GET(
       [decodeURIComponent(blog_slug)]
     );
 
+    console.log("DB rows:", rows);
+
     if (rows.length === 0) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
 
-    const isBlog = true;
-    return NextResponse.json({ blog: rows[0], isBlog }, { status: 200 });
+    return NextResponse.json({ blog: rows[0], isBlog: true }, { status: 200 });
   } catch (error) {
     console.error("Error fetching blog:", error);
     return NextResponse.json(
@@ -37,13 +41,15 @@ export async function GET(
   }
 }
 
+
 // PUT (Update blog by slug)
 export async function PUT(
   req: NextRequest,
-  context: { params: Promise<{ blog_slug: string }> }
+  context: { params: { blog_slug: string } }
 ) {
   try {
-    const { blog_slug } = await context.params;
+     console.log('api hit put');
+    const { blog_slug } = context.params;
 
     if (!blog_slug) {
       return NextResponse.json(
