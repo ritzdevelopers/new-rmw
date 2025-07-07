@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 // import { CalendarDays } from "lucide-react";
 import { CalendarDays, Share2 } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
 interface Article {
   _id: string;
   blogBanner: string;
@@ -57,7 +58,7 @@ interface MergedBlogs {
 }
 
 const normalizeArticle = (blog: Article): MergedBlogs => ({
-  id: blog._id,
+  id: blog.blogTitle,
   banner: blog.blogBanner,
   title: blog.blogTitle,
   createdAt: blog.createdAt,
@@ -84,6 +85,12 @@ const Blogs: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 12;
 
+  const navigation = useRouter();
+  const handleSingleBlogs = (slug: string) => {
+    const url = slug.split(" ").join("-").toLowerCase();
+    navigation.push(`/blog/${url}`);
+
+  };
   useEffect(() => {
     gsap.from(".mnc-card", {
       opacity: 0,
@@ -172,9 +179,11 @@ const Blogs: React.FC = () => {
 
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {currentCards.map((article) => (
-          <div className="col" key={article.id}>
-            <Link href={`/blog/${article.id}`}>
-          <div className="col" key={article.id}>
+          <div
+            onClick={() => handleSingleBlogs(article.id)}
+            className="col"
+            key={article.id}
+          >
             <div
               className="card h-100 shadow-sm border-0"
               style={{
