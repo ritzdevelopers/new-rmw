@@ -8867,21 +8867,26 @@ only screen and (min-width: 576px) and (max-width: 767px),
   /* .tp-ab__thumb {
   
   } */
+only screen and (min-width: 992px) and (max-width: 1199px),
+only screen and (min-width: 768px) and (max-width: 991px),
+only screen and (min-width: 576px) and (max-width: 767px),
+(max-width: 575px) {
+  /* .tp-ab__thumb {
+  
+  } */
 }
 
 .tp-ab__thumb img {
   width: 100vw;
   height:75vh;
   object-fit:cover;
-  margin-top: 50px;
 }
 @media (max-width: 575px) {
   .tp-ab__thumb img {
   width: 100vw;
-  /* height:75vh; */
-  /* object-fit:contain; */
+  height:75vh;
+  object-fit:contain;
   /* position : right; */
-  margin-top: 50px;
 }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px),
