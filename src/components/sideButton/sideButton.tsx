@@ -28,16 +28,21 @@ const SideButton: React.FC = () => {
     if (!form) return;
 
     const formData = new FormData(form);
+
+    const service = formData.get("service") as string;
+    const query = formData.get("query") as string;
+    const message = `Service: ${service}\n\nQuery: ${query}`;
+
     const data = {
+      etype: "ContactUs",
       name: formData.get("name"),
       phone: formData.get("phone"),
       email: formData.get("email"),
-      service: formData.get("service"),
-      query: formData.get("query"),
+      message,
     };
 
     try {
-      const response = await fetch("/api/save-contact-query", {
+      const response = await fetch("/api/system-settings/contact-enquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +64,7 @@ const SideButton: React.FC = () => {
         toast.error(result.message || "Submission failed. Try again.");
       }
     } catch (error) {
-      console.error("Submission error:", error);
+      console.log("Submission error:", error);
       toast.error("Server error. Please try again later.");
     }
   };
@@ -92,10 +97,19 @@ const SideButton: React.FC = () => {
             WE&apos;LL CONNECT WITH YOU SHORTLY
           </h2>
 
-          <form className={styles.queryForm} onSubmit={handleSubmit} ref={formRef}>
+          <form
+            className={styles.queryForm}
+            onSubmit={handleSubmit}
+            ref={formRef}
+          >
             <input type="text" name="name" placeholder="Your Name" required />
             <input type="tel" name="phone" placeholder="Your Phone" required />
-            <input type="email" name="email" placeholder="Email Address" required />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              required
+            />
             <select name="service" required>
               <option value="">Select Service</option>
               <option>Digital Marketing</option>

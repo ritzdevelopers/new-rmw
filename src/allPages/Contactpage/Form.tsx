@@ -32,17 +32,20 @@ const Form = () => {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const service = formData.get("service") as string;
+    const query = formData.get("query") as string;
+    const message = `Service: ${service}\n\nQuery: ${query}`;
 
     const data = {
+      etype: "ContactUs",
       name: formData.get("name"),
       phone: formData.get("phone"),
       email: formData.get("email"),
-      service: formData.get("service"),
-      query: formData.get("query"),
+      message,
     };
 
     try {
-      const response = await fetch("/api/save-contact-query", {
+      const response = await fetch("/api/system-settings/contact-enquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -541,14 +544,14 @@ const Form = () => {
                       href="tel:09220516777"
                       className="tp-contact__title-sm text-black"
                     >
-                       09220516777
+                      09220516777
                     </a>
                     <br />
                     <a
                       href="tel:07290002168"
                       className="tp-contact__title-sm text-black"
                     >
-                       07290002168
+                      07290002168
                     </a>
                   </div>
                   <div className="tp-contact__email">
@@ -582,18 +585,24 @@ const Form = () => {
                   <div className="tp-contact__social">
                     <h3 className="tp-contact__title text-black">Follow</h3>
                     <div className="tp-contact__social-link">
-                      <Link className="fbI" href="https://www.facebook.com/ritzmediaworld/">
+                      <Link
+                        className="fbI"
+                        href="https://www.facebook.com/ritzmediaworld/"
+                      >
                         <i aria-hidden="true">
                           <FaFacebookF />
                         </i>
                       </Link>
-                      <Link className="inst" href="https://www.instagram.com/ritzmediaworld/">
+                      <Link
+                        className="inst"
+                        href="https://www.instagram.com/ritzmediaworld/"
+                      >
                         <i aria-hidden="true">
                           <FaInstagram />
                         </i>
                       </Link>
                       <Link
-                      className="twt"
+                        className="twt"
                         href="https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld"
                         target="http://1"
                         rel="http://1"
@@ -603,14 +612,15 @@ const Form = () => {
                         </i>
                       </Link>
                       <Link
-                      className="linked"
-                      href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in">
+                        className="linked"
+                        href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in"
+                      >
                         <i aria-hidden="true">
                           <FaLinkedin />
                         </i>
                       </Link>
                       <Link
-                      className="ytb"
+                        className="ytb"
                         href="https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia"
                         target="http://1"
                         rel="http://1"
