@@ -34,9 +34,12 @@ export async function POST(request: Request) {
 
     await db.query(query, values);
 
-    return new NextResponse("Enquiry submitted successfully", { status: 201 });
+    return NextResponse.json(
+      { message: "Enquiry submitted successfully" },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("POST Enquiry Error:", error);
-    return new NextResponse("Failed to submit enquiry", { status: 500 });
+    return NextResponse.json({ message: "Enquiry fail" }, { status: 500 });
   }
 }
