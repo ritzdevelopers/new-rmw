@@ -19,7 +19,7 @@ const BlogPage: React.FC = () => {
   const fetchAllBlogs = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3000/api/ritz_blogs/get-all-blogs"
+        "/api/ritz_blogs/get-all-blogs"
       );
       setAllBlogs(data.allBlogs);
       setError(null);

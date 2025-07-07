@@ -182,7 +182,7 @@ const Page = () => {
       });
 
       const blogRes = await axios.post(
-        "http://localhost:3000/api/ritz_blogs/add-new-blog",
+        "/api/ritz_blogs/add-new-blog",
         formData,
         {
           headers: {

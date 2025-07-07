@@ -2166,7 +2166,7 @@ xclip
 /*  2.6 Breadcrumb
 /*----------------------------------------*/
 .breadcrumb__plr {
-  /* padding-top: 112px; */
+  padding-top: 112px;
 }
 
 .breadcrumb__bg {
@@ -2177,6 +2177,7 @@ xclip
   /* flex-wrap: wrap; */
   /* background:'color'; */
 }
+
 /* 
 .breadcrumb__shape {
   position: absolute;
@@ -3175,6 +3176,7 @@ only screen and (min-width: 576px) and (max-width: 767px),
   font-weight: 600;
   color: var(--tp-common-black);
   z-index: 1;
+  /* background-color: red; */
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -7308,8 +7310,10 @@ only screen and (min-width: 576px) and (max-width: 767px),
 }
 
 .tp-hero__2-wrap {
-  padding-top: 250px;
-  padding-bottom: 105px;
+
+  padding-top: 150px;
+  /* padding-bottom: 105px; */
+  /* background-color: red; */
 }
 
 @media (max-width: 575px) {
@@ -7318,10 +7322,20 @@ only screen and (min-width: 576px) and (max-width: 767px),
   }
 }
 
+@media only screen and (min-width: 768px) and (max-width: 2000px) {
+  .tp-hero__2-wrap {
+    padding-top: 200px;
+    padding-bottom: 248px;
+    margin-top: 50px;
+    /* background: blue; */
+  }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .tp-hero__2-wrap {
     padding-top: 200px;
     padding-bottom: 248px;
+    margin-top: 50px;
   }
 }
 
@@ -7329,13 +7343,23 @@ only screen and (min-width: 576px) and (max-width: 767px),
   .tp-hero__2-wrap {
     padding-top: 150px;
     padding-bottom: 350px;
+
   }
 }
 
 @media (max-width: 575px) {
-  .tp-hero__2-wrap {
-    padding-bottom: 440px;
+  .tp-hero-v-banner {
+    height: 100px;
+    /* display:flex */
+    /* padding:50px; */
+    margin:auto;
+
   }
+}
+
+.tp-hero-v-banner {
+  margin-top: 30px;
+  /* padding:50px; */
 }
 
 .tp-hero__2-title-box .tp-hero__title {
@@ -7343,6 +7367,7 @@ only screen and (min-width: 576px) and (max-width: 767px),
   font-size: 90px;
   line-height: 1.07;
   letter-spacing: -0.04em;
+
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -7371,8 +7396,17 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 }
 
 @media (max-width: 575px) {
+  .tp-hero__2-title-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    text-align:center
+  }
+
   .tp-hero__2-title-box .tp-hero__title {
     font-size: 35px;
+
   }
 }
 
@@ -7485,7 +7519,7 @@ only screen and (min-width: 1200px) and (max-width: 1399px) {
   .tp-hero__2-circle-shape {
     right: 0;
     left: 0;
-    margin-bottom: 60px;
+    margin-bottom: 150px;
   }
 }
 
@@ -7677,6 +7711,7 @@ only screen and (min-width: 576px) and (max-width: 767px),
 @media (max-width: 575px) {
   .tp-hero__3-title-box {
     margin-bottom: 20px;
+    height:20vh
   }
 }
 
@@ -7692,12 +7727,20 @@ only screen and (min-width: 576px) and (max-width: 767px),
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .tp-hero__3-title-box {
+    margin-bottom: 20px;
+    height:20vh
+  }
   .tp-hero__3-title-box .tp-hero__title {
     font-size: 60px;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+  .tp-hero__3-title-box {
+    margin-bottom: 20px;
+    height:20vh
+  }
   .tp-hero__3-title-box .tp-hero__title {
     font-size: 75px;
   }
@@ -8695,8 +8738,9 @@ only screen and (min-width: 576px) and (max-width: 767px),
 }
 
 .tp-ab__plr {
-  padding-top: 135px;
+  /* padding-top: 135px; */
   padding-bottom: 107px;
+  /* background-color:red; */
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -8713,7 +8757,7 @@ only screen and (min-width: 576px) and (max-width: 767px),
 
 @media (max-width: 575px) {
   .tp-ab__plr {
-    padding-top: 130px;
+    padding-top: 10px;
   }
 }
 
@@ -9229,6 +9273,7 @@ only screen and (min-width: 576px) and (max-width: 767px),
 .tp-service__plr {
   padding-top: 165px;
   padding-bottom: 80px;
+  /* background: red; */
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px),
@@ -9321,7 +9366,14 @@ only screen and (min-width: 576px) and (max-width: 767px),
 .tp-service__thumb-shape-2 span {
   color: var(--tp-theme-primary);
 }
-
+.tttlll {
+  height:300px;
+}
+@media (max-width: 576px) {
+  .tttlll {
+  height:150px;
+}
+}
 @media only screen and (min-width: 576px) and (max-width: 767px),
 (max-width: 575px) {
   .tp-service__btn-wrap {

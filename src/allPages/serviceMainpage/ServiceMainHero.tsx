@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -34,13 +34,13 @@ const ServiceMainHero = () => {
     <div
       className="elementor-element elementor-element-00d6da7 e-con-full e-flex e-con e-parent e-lazyloaded"
       data-id="00d6da7"
-      style={{ padding: '0', margin: "0" }}
+      style={{ padding: "0", margin: "0" }}
     >
       <div
         className="elementor-element elementor-element-3a22ef0 e-con-full e-flex e-con e-child"
         data-id="3a22ef0"
         data-element_type="container"
-        style={{ padding: '0', margin: "0" }}
+        style={{ padding: "0", margin: "0" }}
       >
         <div
           className="elementor-element elementor-element-e84e3a9 elementor-widget elementor-widget-hero-banner"
@@ -50,12 +50,11 @@ const ServiceMainHero = () => {
         >
           <div className="elementor-widget-container">
             <section className="tp-hero-2-area fix tp-hero__space tp-hero__2-bg tp-hero__2-overlay p-relative tp-bg-className">
-
               <div className="tp-hero__2-wrap">
                 <div className="container">
                   <div className="row align-items-center">
                     <div className="col-xl-8 col-lg-4">
-                      <div className="tp-hero__2-title-box md:mb-55 p-relative">
+                      <div className="tp-hero__2-title-box md:mb-64 p-relative">
                         <span className="tp-hero__subtitle text-blue md:mb-30">
                           Services Tailored to Transform Your Brand from
                         </span>
@@ -64,10 +63,12 @@ const ServiceMainHero = () => {
                             width: "100%",
                             maxWidth: svgWidth,
                             position: "relative",
-                            height: svgHeight,
+                            // height: svgHeight,
                             textAlign: "start",
                             // marginTop: "90px",
+                            // backgroundColor:'red',
                           }}
+                          className="tp-hero-v-banner"
                         >
                           <svg
                             viewBox={`0 0 ${svgWidth} ${svgHeight}`}
@@ -156,12 +157,7 @@ const ServiceMainHero = () => {
                             </span>
                           </Link>
                         </span>
-                        <Link
-                          href="/contact/"
-                          rel="nofollow"
-                          target="_self"
-                        >
-
+                        <Link href="/contact/" rel="nofollow" target="_self">
                           CONTACT US
                         </Link>
                       </div>
@@ -186,11 +182,7 @@ const ServiceMainHero = () => {
                             animationDelay: "0.3s",
                           }}
                         >
-                          <Link
-                            href="/contact/"
-                            rel="nofollow"
-                            target="_self"
-                          >
+                          <Link href="/contact/" rel="nofollow" target="_self">
                             <span>
                               <svg
                                 width="93"
@@ -210,8 +202,14 @@ const ServiceMainHero = () => {
                             </span>
                           </Link>
                         </div>
-                        <p>
-                          At Ritz Media World, we have an obsession with being wizards of quirkiness that morph good ideas into Brilliant ones. Our services deliver results that drive your competitor’s envy. We blend digital magic, classic & modern mediums, and creative ingenuity to ensure that your brand doesn’t just speak; it captivates.
+                        <p className="mt-20">
+                          At Ritz Media World, we have an obsession with being
+                          wizards of quirkiness that morph good ideas into
+                          Brilliant ones. Our services deliver results that
+                          drive your competitor’s envy. We blend digital magic,
+                          classic & modern mediums, and creative ingenuity to
+                          ensure that your brand doesn’t just speak; it
+                          captivates.
                         </p>
                       </div>
                     </div>

@@ -30,12 +30,10 @@ const BlogPage: React.FC = () => {
     if (id) fetchSingleBlog();
   }, [id]);
 
-
-
   const fetchSingleBlog = async () => {
     try {
       const res = await axios.get<{ blog: BlogInfo }>(
-        `http://localhost:3000/api/ritz_blogs/get-single-blog/${id}`
+        `/api/ritz_blogs/get-single-blog/${id}`
       );
       setSingleBlog(res.data.blog);
     } catch (error) {
