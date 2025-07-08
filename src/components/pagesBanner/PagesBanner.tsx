@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Pages.module.css";
 interface VideoTextProps {
-  headingTitle: string;
+  headingTitle?: string;
   videoURL: string;
   mtP: string | number;
   mtS: string | number;
