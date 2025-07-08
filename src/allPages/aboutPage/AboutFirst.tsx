@@ -15,7 +15,7 @@ const AboutFirst = () => {
         <div className="container">
           <div className="row">
             {/* <div style={{backgroundColor:'yellowgreen'}}> */}
-              <PagesBanner headingTitle={"Our Agency"}/>
+            <PagesBanner headingTitle={"Our Agency"} />
             {/* </div> */}
             <div className="col-xl-4 col-lg-4">
               <div className="tp-ab__btn-wrap text-center text-lg-end">
@@ -51,8 +51,12 @@ const AboutFirst = () => {
             </div>
           </div>
         </div>
-        <div className="tp-ab__thumb pt-100 text-center">
-          <img decoding="async" src="/about-images/First_Banner.jpg" alt="" />
+        <div className="tp-ab__thumb pt-50 text-center">
+          <img
+            decoding="async"
+            src="/about-images/First_Banner.jpg"
+            alt="about banner"
+          />
         </div>
       </section>
     </div>

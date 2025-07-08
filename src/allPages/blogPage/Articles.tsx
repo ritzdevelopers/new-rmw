@@ -57,30 +57,10 @@ interface MergedBlogs {
   createdAt: string;
 }
 
-const normalizeArticle = (blog: Article): MergedBlogs => ({
-  id: blog.blogTitle,
-  banner: blog.blogBanner,
-  title: blog.blogTitle,
-  createdAt: blog.createdAt,
-});
-
-const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
-  id: blog.slug,
-  banner: blog.blog_image,
-  title: blog.title,
-  createdAt: blog.created_at,
-});
-
 const Blogs: React.FC = () => {
   const [blogs, setBlogs] = useState<MergedBlogs[]>([]);
   const [loading, setLoading] = useState(true);
-  const [blogs, setBlogs] = useState<MergedBlogs[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const cardsPerPage = 12;
-
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const cardsPerPage = 12;
@@ -89,7 +69,6 @@ const Blogs: React.FC = () => {
   const handleSingleBlogs = (slug: string) => {
     const url = slug.split(" ").join("-").toLowerCase();
     navigation.push(`/blog/${url}`);
-
   };
   useEffect(() => {
     gsap.from(".mnc-card", {
@@ -99,7 +78,6 @@ const Blogs: React.FC = () => {
       duration: 0.6,
       ease: "power2.out",
     });
-  }, [blogs]);
   }, [blogs]);
 
   useEffect(() => {
@@ -137,7 +115,6 @@ const Blogs: React.FC = () => {
 
   const filteredBlogs = blogs.filter((blog) =>
     blog.title.toLowerCase().includes(searchQuery.toLowerCase())
-    blog.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredBlogs.length / cardsPerPage);
@@ -173,7 +150,6 @@ const Blogs: React.FC = () => {
           style={{ maxWidth: "400px" }}
         />
       </div>
-
 
       {/* Blog Cards */}
 
