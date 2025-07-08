@@ -1,5 +1,4 @@
 "use client";
-import { useEffect, useState } from "react";
 import PagesBanner from "../../components/pagesBanner/PagesBanner";
 // import Link from "next/link";
 type headingProp = {
