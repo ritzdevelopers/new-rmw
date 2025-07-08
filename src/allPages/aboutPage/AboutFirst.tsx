@@ -25,10 +25,7 @@ const AboutFirst = () => {
             {/* </div> */}
             <div className="col-xl-4 col-lg-4">
               <div className="tp-ab__btn-wrap text-center text-lg-end">
-                <div
-                  className="tp-hover__btn-wrap tp-btn__bounce"
-                  style={{ zIndex: 50 }}
-                >
+                <div className="tp-hover__btn-wrap tp-btn__bounce" style={{zIndex:50}}>
                   <Link
                     className="tp-hover__btn tp-hover__btn-item"
                     href="/contact"
@@ -61,7 +58,7 @@ const AboutFirst = () => {
           </div>
         </div>
         <div className="tp-ab__thumb  text-center">
-          <img decoding="async" src="/about-images/First_Banner.jpg" alt="" />
+          <img decoding="async" src="/about-images/First_Banner.jpg" alt="about banner" />
         </div>
       </section>
     </div>
