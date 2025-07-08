@@ -58,7 +58,7 @@ const AboutFirst = () => {
           </div>
         </div>
         <div className="tp-ab__thumb  text-center">
-          <img decoding="async" src="/about-images/First_Banner.jpg" alt="" />
+          <img decoding="async" src="/about-images/First_Banner.jpg" alt="about banner" />
         </div>
       </section>
     </div>
