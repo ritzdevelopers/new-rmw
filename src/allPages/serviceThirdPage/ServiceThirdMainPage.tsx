@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import Footer from '@/components/footer/Footer'
-import React, { useEffect, useState } from 'react'
-import ServiceThirdHero from './ServiceThirdHero'
-import ServiceThirdQuality from './ServiceThirdQuality'
-import ServiceThirdAward from './ServiceThirdAward'
-import ServiceThirdColorMarque from './ServiceThirdColorMarque'
-import ServiceMainTestimonial from '../serviceMainpage/ServiceMainTestimonial'
-import ProjectSwiper from '../Homepage/ProjectSwiper'
-import Form from '../Contactpage/Form'
-import ServiceThirdSlowMarque from './ServiceThirdSlowMarque'
-import ServiceEndTag from '@/components/endTag/serviceEndTag'
-import Loader from '@/components/loader/Loader'
-import axios from 'axios'
-import { useParams } from 'next/navigation'
+import Footer from "@/components/footer/Footer";
+import React, { useEffect, useState } from "react";
+import ServiceThirdHero from "./ServiceThirdHero";
+import ServiceThirdQuality from "./ServiceThirdQuality";
+import ServiceThirdAward from "./ServiceThirdAward";
+import ServiceThirdColorMarque from "./ServiceThirdColorMarque";
+import ServiceMainTestimonial from "../serviceMainpage/ServiceMainTestimonial";
+import ProjectSwiper from "../Homepage/ProjectSwiper";
+import Form from "../Contactpage/Form";
+import ServiceThirdSlowMarque from "./ServiceThirdSlowMarque";
+import ServiceEndTag from "@/components/endTag/serviceEndTag";
+import Loader from "@/components/loader/Loader";
+import axios from "axios";
+import { useParams } from "next/navigation";
 
 interface CardData {
   title: string;
@@ -35,12 +35,10 @@ const ServiceThirdMainPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          `/api/services/${secondPage}/${thirdPage}`
-        );
-        setCardData(res.data.cards); 
-        setHead(res.data.s3heading1)
-        setEndTag(res.data.s3endtag)
+        const res = await axios.get(`/api/services/${secondPage}/${thirdPage}`);
+        setCardData(res.data.cards);
+        setHead(res.data.s3heading1);
+        setEndTag(res.data.s3endtag);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -56,19 +54,19 @@ const ServiceThirdMainPage = () => {
   if (loading) return <Loader />;
   return (
     <>
-       <ServiceThirdHero heading={head}  />
-       {/* <SwiperHome /> */}
-       <ServiceThirdQuality cardData={cardData} />
-       <ServiceThirdColorMarque />
-       <ServiceThirdAward />
-       <ServiceMainTestimonial />
-       <ProjectSwiper />
-       <Form />
-       <ServiceThirdSlowMarque />
-       <ServiceEndTag endtag={endTag} />
-       <Footer />
+      {head && <ServiceThirdHero heading={head} />}
+      {/* <SwiperHome /> */}
+      <ServiceThirdQuality cardData={cardData} />
+      <ServiceThirdColorMarque />
+      <ServiceThirdAward />
+      <ServiceMainTestimonial />
+      <ProjectSwiper />
+      <Form />
+      <ServiceThirdSlowMarque />
+      <ServiceEndTag endtag={endTag} />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default ServiceThirdMainPage
+export default ServiceThirdMainPage;

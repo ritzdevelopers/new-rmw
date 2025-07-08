@@ -7704,13 +7704,13 @@ only screen and (min-width: 576px) and (max-width: 767px),
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .tp-hero__3-title-box {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
   }
 }
 
 @media (max-width: 575px) {
   .tp-hero__3-title-box {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     height:20vh
   }
 }
@@ -7728,7 +7728,7 @@ only screen and (min-width: 576px) and (max-width: 767px),
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .tp-hero__3-title-box {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     height:20vh
   }
   .tp-hero__3-title-box .tp-hero__title {

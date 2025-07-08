@@ -41,6 +41,7 @@ const ServiceThirdQuality: React.FC<ServiceThirdQualityProps> = ({
                         <div className="tp-section-title-wrap">
                           <h3
                             className="tp-section-title"
+                            // style={{color:'red'}}
                           >
                             Committed For Deliver <span>Top</span> Quality
                             <span> Services</span>
