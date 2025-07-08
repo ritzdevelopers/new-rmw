@@ -43,6 +43,20 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
   createdAt: blog.created_at,
 });
 
+interface Article2 {
+  slug: string;
+  blog_image: string;
+  title: string;
+  created_at: string;
+}
+
+interface MergedBlogs {
+  id: string;
+  banner: string;
+  title: string;
+  createdAt: string;
+}
+
 const Blogs: React.FC = () => {
   const [blogs, setBlogs] = useState<MergedBlogs[]>([]);
   const [loading, setLoading] = useState(true);
@@ -55,7 +69,6 @@ const Blogs: React.FC = () => {
   const handleSingleBlogs = (slug: string) => {
     const url = slug.split(" ").join("-").toLowerCase();
     navigation.push(`/blog/${url}`);
-
   };
   useEffect(() => {
     gsap.from(".mnc-card", {

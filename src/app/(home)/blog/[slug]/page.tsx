@@ -1,8 +1,7 @@
-"use client"
-import axios from 'axios';
-import { useParams } from 'next/navigation';
-import React, { useEffect } from 'react';
-
+"use client";
+import axios from "axios";
+import { useParams } from "next/navigation";
+import React, { useEffect } from "react";
 
 function Page() {
     const params = useParams();
@@ -19,16 +18,8 @@ function Page() {
         alert("Internal Server Error!");
       }
     }
-    useEffect(()=>{
-      if(slug) {
-        getSingleBlog();
-      }
-    }, [slug]);
-  return (
-    <div>
-      
-    </div>
-  )
+  }, [slug]);
+  return <div></div>;
 }
 
-export default Page
+export default Page;
