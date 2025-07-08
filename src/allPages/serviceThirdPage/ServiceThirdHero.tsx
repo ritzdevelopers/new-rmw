@@ -84,6 +84,7 @@ const ServiceThirdHero = ({ heading }: headingProp) => {
                           videoURL={"/videos/bg_pattern.mp4"}
                           mtP={"80px"}
                           mtS={"50px"}
+                          sH={"auto"}
                         />
                         {/* </div> */}
                       </div>
