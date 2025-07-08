@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 // import { CalendarDays } from "lucide-react";
 import { CalendarDays, Share2 } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 interface Article {
   _id: string;
   blogBanner: string;
