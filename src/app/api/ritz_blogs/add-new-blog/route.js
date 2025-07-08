@@ -7,7 +7,7 @@ import path from "path";
 async function saveFileToUploads(file, filename) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  const uploadDir = path.join(process.cwd(), "public", "uploads");
+  const uploadDir = path.join(process.cwd(), "static", "images");
 
   if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
@@ -15,7 +15,7 @@ async function saveFileToUploads(file, filename) {
 
   const filePath = path.join(uploadDir, filename);
   fs.writeFileSync(filePath, buffer);
-  return `/uploads/${filename}`;
+  return `/images/${filename}`;
 }
 
 export async function POST(request) {
@@ -49,7 +49,7 @@ export async function POST(request) {
     const blogBody = blogBodyParsed.map((item, index) => ({
       ...item,
       innerImg: innerImgMap[index] || "",
-    }));
+    }));              
 
     const newBlog = await NewBlogModel.create({
       blogTitle,
