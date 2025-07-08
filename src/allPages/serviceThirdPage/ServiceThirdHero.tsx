@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import { useEffect, useState } from "react";
 import PagesBanner from "../../components/pagesBanner/PagesBanner";
 // import Link from "next/link";
 type headingProp = {
@@ -8,32 +8,6 @@ type headingProp = {
 const ServiceThirdHero = ({ heading }: headingProp) => {
   const lines = heading?.toUpperCase();
 
-  // const [svgSize, setSvgSize] = useState({ width: 300, height: 600 });
-  // useEffect(() => {
-  //   const updateSize = () => {
-  //     const w = window.innerWidth;
-  //     if (w < 628) {
-  //       // Width less than 628: width 300, height 280
-  //       setSvgSize({ width: 300, height: 200 });
-  //     } else if (w >= 800 && w < 1024) {
-  //       // Width between 628 and 1024: width 628, height 300
-  //       setSvgSize({ width: 628, height: 300 });
-  //     } else {
-  //       // Width 1024 and above: width 800, height 350
-  //       setSvgSize({ width: 800, height: 350 });
-  //     }
-  //   };
-
-  //   updateSize();
-  //   window.addEventListener("resize", updateSize);
-  //   return () => window.removeEventListener("resize", updateSize);
-  // }, []);
-
-  // const { width: svgWidth, height: svgHeight } = svgSize;
-  // const fontSizeClamp = "clamp(2rem, 7vw, 5.5rem)";
-
-  // vertical position centered roughly in the SVG
-  // const textY = svgHeight / 2;
   return (
     <div
       className="elementor-element elementor-element-9b5be38 e-con-full e-flex e-con e-parent e-lazyloaded"

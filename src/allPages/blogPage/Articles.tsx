@@ -7,12 +7,13 @@ import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 // import { CalendarDays } from "lucide-react";
 import { CalendarDays, Share2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 interface Article {
   _id: string;
   blogBanner: string;
   blogTitle: string;
   createdAt: string;
+  meta_description:string;
 }
 
 interface Article2 {
@@ -20,6 +21,7 @@ interface Article2 {
   blog_image: string;
   title: string;
   created_at: string;
+  meta_description:string;
 }
 
 interface MergedBlogs {
@@ -27,6 +29,7 @@ interface MergedBlogs {
   banner: string;
   title: string;
   createdAt: string;
+  meta_description:string;
 }
 
 const normalizeArticle = (blog: Article): MergedBlogs => ({
@@ -34,6 +37,7 @@ const normalizeArticle = (blog: Article): MergedBlogs => ({
   banner: blog.blogBanner,
   title: blog.blogTitle,
   createdAt: blog.createdAt,
+  meta_description:blog.meta_description
 });
 
 const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
@@ -41,23 +45,10 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
   banner: blog.blog_image,
   title: blog.title,
   createdAt: blog.created_at,
+  meta_description:blog.meta_description
 });
 
-interface Article2 {
-  slug: string;
-  blog_image: string;
-  title: string;
-  created_at: string;
-}
-
-interface MergedBlogs {
-  id: string;
-  banner: string;
-  title: string;
-  createdAt: string;
-}
-
-const Blogs: React.FC = () => {
+const Articles: React.FC = () => {
   const [blogs, setBlogs] = useState<MergedBlogs[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -68,7 +59,7 @@ const Blogs: React.FC = () => {
   const navigation = useRouter();
   const handleSingleBlogs = (slug: string) => {
     const url = slug.split(" ").join("-").toLowerCase();
-    navigation.push(`/blog/${url}`);
+    navigation.push(`/${url}`);
   };
   useEffect(() => {
     gsap.from(".mnc-card", {
@@ -130,12 +121,20 @@ const Blogs: React.FC = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
+  const path = usePathname();
+  const handleCopy = (fullPath:string)=>{
+    const url = `${window.location.origin}${path}/${fullPath}`;
+    navigator.clipboard.writeText(url);
+    alert("Url Has Copied!");
+  }
   if (loading) return <Loader />;
   if (error)
     return <p className="text-center text-danger mt-4">Error: {error}</p>;
 
+    
   return (
     <div className="container mt-4 mb-5">
+      
       {/* Search Input */}
       <div className="text-center mb-4">
         <input
@@ -156,9 +155,9 @@ const Blogs: React.FC = () => {
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {currentCards.map((article) => (
           <div
-            onClick={() => handleSingleBlogs(article.id)}
             className="col"
             key={article.id}
+            onClick={()=>handleSingleBlogs(article.id)}
           >
             <div
               className="card h-100 shadow-sm border-0"
@@ -174,6 +173,7 @@ const Blogs: React.FC = () => {
                   height: "220px",
                   overflow: "hidden",
                   position: "relative",
+                   borderRadius:"10px"
                 }}
               >
                 <img
@@ -183,8 +183,9 @@ const Blogs: React.FC = () => {
                   style={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
+                    objectFit: "contain",
                     transition: "transform 0.4s ease",
+                    borderRadius:"10px"
                   }}
                   onMouseOver={(e) =>
                     (e.currentTarget.style.transform = "scale(1.05)")
@@ -202,8 +203,7 @@ const Blogs: React.FC = () => {
 
                 {/* Paragraph */}
                 <p className="card-text text-muted">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  tristique, sapien sed facilisis ullamcorper.
+                  {article.meta_description}
                 </p>
 
                 {/* Buttons */}
@@ -226,18 +226,22 @@ const Blogs: React.FC = () => {
 
                   {/* Share Button */}
                   <button
-                    type="button"
+                  onClick={()=>handleCopy(article.title.split(" ").join("-"))}
+                    // type="button"
                     style={{
-                      backgroundColor: "blue", // Bootstrap primary
-                      color: "#fff",
-                      fontSize: "0.875rem", // Small text (approx btn-sm)
-                      padding: "0.25rem 0.5rem", // Small padding
+                      // backgroundColor: "blue", 
+                      color: "#E5B05C",
+                      fontSize: "0.875rem",
+                      padding: "0.25rem 0.5rem", 
                       border: "none",
                       borderRadius: "0.375rem",
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.25rem", // space between icon and text
+                      gap: "0.25rem", 
                       cursor: "pointer",
+                      borderWidth:'1px',
+                      borderColor:'#E5B05C',
+                      borderStyle:'solid'
                     }}
                   >
                     <Share2 size={16} />
@@ -314,4 +318,4 @@ const Blogs: React.FC = () => {
   );
 };
 
-export default Blogs;
+export default Articles;

@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
 
       // Define image path (saving to public/uploads folder)
       const fileName = `${Date.now()}_${blog_image.name}`;
-      const uploadDir = path.join(process.cwd(), "public/blogs", fileName);
+      const uploadDir = path.join(process.cwd(), "static/images", fileName);
 
       await writeFile(uploadDir, buffer);
       imagePath = `${fileName}`;
