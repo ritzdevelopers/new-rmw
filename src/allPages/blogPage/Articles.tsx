@@ -30,7 +30,7 @@ interface MergedBlogs {
 }
 
 const normalizeArticle = (blog: Article): MergedBlogs => ({
-  id: blog._id,
+  id: blog.blogTitle,
   banner: blog.blogBanner,
   title: blog.blogTitle,
   createdAt: blog.createdAt,

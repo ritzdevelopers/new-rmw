@@ -11,8 +11,6 @@ export async function GET(
 ) {
   try {
     const { blog_slug } = await context.params;
-    console.log("api hit get");
-
     console.log("Slug received:", blog_slug);
 
     if (!blog_slug) {
@@ -40,6 +38,7 @@ export async function GET(
     );
   }
 }
+
 
 // PUT (Update blog by slug)
 export async function PUT(
