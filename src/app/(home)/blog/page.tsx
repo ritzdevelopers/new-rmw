@@ -10,7 +10,12 @@ const page = () => {
     <div>
 
       <div className="body-overlay"></div>
-      <PagesBanner headingTitle={"Blog"}/>
+        <PagesBanner
+              headingTitle={"Blogs"}
+              videoURL={"/videos/bg_pattern.mp4"}
+              mtP={"80px"}
+              mtS={"50px"}
+            />
 
       <Articles />
 

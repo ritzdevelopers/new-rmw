@@ -7,7 +7,12 @@ import PagesBanner from "@/components/pagesBanner/PagesBanner"
 const page = () => {
   return (
     <>
-      <PagesBanner headingTitle={"Our work"}/>
+      <PagesBanner
+            headingTitle={"Our Work"}
+            videoURL={"/videos/bg_pattern.mp4"}
+            mtP={"80px"}
+            mtS={"50px"}
+          />
       <ProjectCards />
       <Footer />
     </>
