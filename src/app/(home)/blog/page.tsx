@@ -7,15 +7,21 @@ const page = () => {
   
 
   return (
-    <div>
+    <section style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
 
       <div className="body-overlay"></div>
-      <PagesBanner headingTitle={"Blog"}/>
+        <PagesBanner
+              headingTitle={"Blogs"}
+              videoURL={"/videos/bg_pattern.mp4"}
+              mtP={"120px"}
+              mtS={"100px"}
+              sH={"10vh"}
+            />
 
       <Articles />
 
       <Footer />   
-    </div>
+    </section>
   );
 };
 

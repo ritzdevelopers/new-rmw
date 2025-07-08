@@ -13,13 +13,19 @@ const AboutFirst = () => {
     <div className="elementor-widget-container">
       <section className="tp-ab__area tp-ab__plr">
         <div className="container">
-          <div className="row">
-            {/* <div style={{backgroundColor:'yellowgreen'}}> */}
-            <PagesBanner headingTitle={"Our Agency"} />
+          <div>
+            {/* <div > */}
+            <PagesBanner
+              headingTitle={"About The Agency & Legacy"}
+              videoURL={"/videos/bg_pattern2.mp4"}
+              mtP={"150px"}
+              mtS={"100px"}
+              sH={"20vh"}
+            />
             {/* </div> */}
             <div className="col-xl-4 col-lg-4">
               <div className="tp-ab__btn-wrap text-center text-lg-end">
-                <div className="tp-hover__btn-wrap tp-btn__bounce">
+                <div className="tp-hover__btn-wrap tp-btn__bounce" style={{zIndex:50}}>
                   <Link
                     className="tp-hover__btn tp-hover__btn-item"
                     href="/contact"
@@ -51,12 +57,8 @@ const AboutFirst = () => {
             </div>
           </div>
         </div>
-        <div className="tp-ab__thumb pt-50 text-center">
-          <img
-            decoding="async"
-            src="/about-images/First_Banner.jpg"
-            alt="about banner"
-          />
+        <div className="tp-ab__thumb  text-center">
+          <img decoding="async" src="/about-images/First_Banner.jpg" alt="about banner" />
         </div>
       </section>
     </div>

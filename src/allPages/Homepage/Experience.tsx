@@ -31,7 +31,9 @@ const Experience = () => {
               <div
                 className="tp-chooseus__bg-thumb d-none d-xl-block wow avtrix_clip_right"
                 style={{
-                  backgroundImage: "url(/about-images/Team_rmw.jpg)",
+                  backgroundImage: "url(/newImg.jpg)",
+                  backgroundPosition:'center',
+                  backgroundSize:'cover'
                 }}
                 data-wow-delay=".3s"
                 data-wow-duration="2.5s"
