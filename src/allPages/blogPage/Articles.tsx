@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 // import { CalendarDays } from "lucide-react";
 import { CalendarDays, Share2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 interface Article {
   _id: string;
   blogBanner: string;
@@ -116,13 +116,21 @@ const Blogs: React.FC = () => {
   const handlePrev = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
-
+  
+  const path = usePathname();
+  const handleCopy = (fullPath:string)=>{
+    const url = `${window.location.origin}${path}/${fullPath}`;
+    navigator.clipboard.writeText(url);
+    alert("Link Has Copied!");
+  }
   if (loading) return <Loader />;
   if (error)
     return <p className="text-center text-danger mt-4">Error: {error}</p>;
 
+    
   return (
     <div className="container mt-4 mb-5">
+      
       {/* Search Input */}
       <div className="text-center mb-4">
         <input
@@ -143,7 +151,7 @@ const Blogs: React.FC = () => {
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {currentCards.map((article) => (
           <div
-            onClick={() => handleSingleBlogs(article.id)}
+            
             className="col"
             key={article.id}
           >
@@ -213,17 +221,18 @@ const Blogs: React.FC = () => {
 
                   {/* Share Button */}
                   <button
-                    type="button"
+                  onClick={()=>handleCopy(article.title.split(" ").join("-"))}
+                    // type="button"
                     style={{
-                      backgroundColor: "blue", // Bootstrap primary
+                      backgroundColor: "blue", 
                       color: "#fff",
-                      fontSize: "0.875rem", // Small text (approx btn-sm)
-                      padding: "0.25rem 0.5rem", // Small padding
+                      fontSize: "0.875rem",
+                      padding: "0.25rem 0.5rem", 
                       border: "none",
                       borderRadius: "0.375rem",
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.25rem", // space between icon and text
+                      gap: "0.25rem", 
                       cursor: "pointer",
                     }}
                   >

@@ -1,16 +1,17 @@
 "use client"
 import axios from 'axios';
 import { useParams } from 'next/navigation';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 function Page() {
     const params = useParams();
     const {slug} = params;
+    const [singleBlog, setSingleBlog] = useState();
     const getSingleBlog = async ()=>{
       try {
         const {data} = await axios.get(`/api/blog/${slug}`);
-         console.log(data);
+        setSingleBlog(data.blog);
          
       } catch (error) {
         console.log('====================================');
@@ -24,6 +25,8 @@ function Page() {
         getSingleBlog();
       }
     }, [slug]);
+
+    // id, _id, title, blogTitle, 
   return (
     <div>
       
