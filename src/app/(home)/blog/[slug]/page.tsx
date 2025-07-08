@@ -18,7 +18,6 @@ function Page() {
         alert("Internal Server Error!");
       }
     }
-  }, [slug]);
   return <div></div>;
 }
 
