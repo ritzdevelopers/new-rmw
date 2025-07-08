@@ -31,8 +31,8 @@ const Service: React.FC<ServiceProps> = ({ data }) => {
                   <br />
                   <span>
                     <i
-                      style={{ top: "-18px", fontSize: "22px" }}
-                      className="tp-hero__subtitle mb-10"
+                      style={{ top: "-15px", fontSize: "22px" }}
+                      className="tp-hero__subtitle mb-8"
                     >
                       is more than what you’ll ever need
                     </i>
