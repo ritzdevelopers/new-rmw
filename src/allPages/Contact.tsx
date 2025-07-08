@@ -4,16 +4,17 @@ import PagesBanner from "@/components/pagesBanner/PagesBanner";
 
 const Contact = () => {
   return (
-    <>
+    <section style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
       <PagesBanner
         headingTitle={"Contact Us"}
         videoURL={"/videos/bg_pattern.mp4"}
-        mtP={"80px"}
-        mtS={"50px"}
+        mtP={"120px"}
+        mtS={"100px"}
+        sH={"10vh"}
       />
       <Form />
       <Footer />
-    </>
+    </section>
   );
 };
 

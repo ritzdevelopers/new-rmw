@@ -72,7 +72,7 @@ const Form = () => {
 
   return (
     <>
-      <div className="tp-contact__area">
+      <div className="tp-contact__area" style={{marginTop:'30px'}}>
         <div className="container">
           <div className="row">
             <div className="col-xl-6 col-lg-6" >

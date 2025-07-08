@@ -6,12 +6,14 @@ interface VideoTextProps {
   videoURL: string;
   mtP: string | number;
   mtS: string | number;
+  sH: string | number;
 }
 export default function VideoText({
   headingTitle,
   videoURL,
   mtP,
   mtS,
+  sH
 }: VideoTextProps) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -22,7 +24,7 @@ export default function VideoText({
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
   return (
-    <div className={styles.wrapper} style={{ marginTop: isMobile ? mtS : mtP }}>
+    <div className={styles.wrapper} style={{ marginTop: isMobile ? mtS : mtP, height: isMobile ? sH : 'auto' }}>
       <video className={styles.video} src={videoURL} autoPlay muted loop />
       <h1 className={styles.text}>{headingTitle}</h1>
     </div>
