@@ -48,7 +48,7 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
   meta_description:blog.meta_description
 });
 
-const Blogs: React.FC = () => {
+const Articles: React.FC = () => {
   const [blogs, setBlogs] = useState<MergedBlogs[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -162,7 +162,7 @@ const Blogs: React.FC = () => {
             <div
               className="card h-100 shadow-sm border-0"
               style={{
-                borderRadi`us: "1rem",
+                borderRadius: "1rem",
                 overflow: "hidden",
                 background: "#ffffff",
               }}
@@ -318,4 +318,4 @@ const Blogs: React.FC = () => {
   );
 };
 
-export default Blogs;
+export default Articles;
