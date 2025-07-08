@@ -1,8 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./Pages.module.css";
-
-export default function VideoText({ headingTitle, videoURL, mtP, mtS }) {
+interface VideoTextProps {
+  headingTitle: string;
+  videoURL: string;
+  mtP: string | number;
+  mtS: string | number;
+}
+export default function VideoText({
+  headingTitle,
+  videoURL,
+  mtP,
+  mtS,
+}: VideoTextProps) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
