@@ -72,12 +72,12 @@ const Form = () => {
 
   return (
     <>
-      <div className="tp-contact__area" style={{marginTop:'30px'}}>
+      <div className="tp-contact__area" style={{ marginTop: "30px" }}>
         <div className="container">
           <div className="row">
-            <div className="col-xl-6 col-lg-6" >
-              <div className="tp-contact__left">
-                <div className="tp-contact__title-box mb-75">
+            <div className="col-xl-6 col-lg-6">
+              <div className="tp-contact__left pr-20 pl-20">
+                <div className="tp-contact__title-box mb-75 ">
                   <h3
                     ref={(el) => {
                       if (el) textRefs.current.push(el);
@@ -634,7 +634,7 @@ const Form = () => {
                 </div>
               </div>
             </div>
-            <div className="col-xl-6 col-lg-6">
+            <div className="col-xl-6 col-lg-6 p-0">
               <div
                 className="tp-contact__inner wow tpfadeUp animated"
                 data-wow-duration=".9s"
