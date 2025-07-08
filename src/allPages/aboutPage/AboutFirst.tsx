@@ -16,10 +16,11 @@ const AboutFirst = () => {
           <div>
             {/* <div > */}
             <PagesBanner
-              headingTitle={"Our Agency Agency Agency Agency Agency Agency"}
+              headingTitle={"About The Agency & Legacy"}
               videoURL={"/videos/bg_pattern2.mp4"}
               mtP={"150px"}
               mtS={"100px"}
+              sH={"20vh"}
             />
             {/* </div> */}
             <div className="col-xl-4 col-lg-4">
@@ -56,7 +57,7 @@ const AboutFirst = () => {
             </div>
           </div>
         </div>
-        <div className="tp-ab__thumb pt-100 text-center">
+        <div className="tp-ab__thumb  text-center">
           <img decoding="async" src="/about-images/First_Banner.jpg" alt="" />
         </div>
       </section>
