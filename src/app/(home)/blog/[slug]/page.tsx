@@ -1,10 +1,10 @@
 "use client";
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 import React from "react";
 
 function Page() {
-    const params = useParams();
-    const {slug} = params;
+    // const params = useParams();
+    // const {slug} = params;
     // const getSingleBlog = async ()=>{
     //   try {
     //     const {data} = await axios.get(`/api/blog/${slug}`);
