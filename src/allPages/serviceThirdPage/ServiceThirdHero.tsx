@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import { useEffect, useState } from "react";
 import PagesBanner from "../../components/pagesBanner/PagesBanner";
 // import Link from "next/link";
 type headingProp = {
@@ -8,21 +8,21 @@ type headingProp = {
 const ServiceThirdHero = ({ heading }: headingProp) => {
   const lines = heading?.toUpperCase();
 
-  // const [svgSize, setSvgSize] = useState({ width: 300, height: 600 });
-  // useEffect(() => {
-  //   const updateSize = () => {
-  //     const w = window.innerWidth;
-  //     if (w < 628) {
-  //       // Width less than 628: width 300, height 280
-  //       setSvgSize({ width: 300, height: 200 });
-  //     } else if (w >= 800 && w < 1024) {
-  //       // Width between 628 and 1024: width 628, height 300
-  //       setSvgSize({ width: 628, height: 300 });
-  //     } else {
-  //       // Width 1024 and above: width 800, height 350
-  //       setSvgSize({ width: 800, height: 350 });
-  //     }
-  //   };
+  const [svgSize, setSvgSize] = useState({ width: 300, height: 600 });
+  useEffect(() => {
+    const updateSize = () => {
+      const w = window.innerWidth;
+      if (w < 628) {
+        // Width less than 628: width 300, height 280
+        setSvgSize({ width: 300, height: 200 });
+      } else if (w >= 800 && w < 1024) {
+        // Width between 628 and 1024: width 628, height 300
+        setSvgSize({ width: 628, height: 300 });
+      } else {
+        // Width 1024 and above: width 800, height 350
+        setSvgSize({ width: 800, height: 350 });
+      }
+    };
 
   //   updateSize();
   //   window.addEventListener("resize", updateSize);
@@ -84,7 +84,6 @@ const ServiceThirdHero = ({ heading }: headingProp) => {
                           videoURL={"/videos/bg_pattern.mp4"}
                           mtP={"80px"}
                           mtS={"50px"}
-                          sH={"auto"}
                         />
                         {/* </div> */}
                       </div>
