@@ -1,12 +1,13 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
-
+import PagesBanner from "../../components/pagesBanner/PagesBanner";
 // import Link from "next/link";
 type headingProp = {
   heading: string | null;
 };
 const ServiceThirdHero = ({ heading }: headingProp) => {
-  const lines = heading?.toUpperCase().split(" ");
+  const lines = heading?.toUpperCase();
+
   const [svgSize, setSvgSize] = useState({ width: 300, height: 600 });
   useEffect(() => {
     const updateSize = () => {
@@ -60,14 +61,12 @@ const ServiceThirdHero = ({ heading }: headingProp) => {
                 backgroundImage: "/service-banner/Service_Bg_RMW.jpg",
               }}
             >
-             
-
-              <div className="tp-hero__3-wrap" >
+              <div className="tp-hero__3-wrap">
                 <div className="container">
                   <div className="row align-items-center">
                     <div className="col-xl-12">
                       <div className="tp-hero__3-title-box p-relative">
-                        <div
+                        {/* <div
                           style={{
                             width: "100%",
                             maxWidth: '100vw',
@@ -77,72 +76,17 @@ const ServiceThirdHero = ({ heading }: headingProp) => {
                             height:'50vh',
                             textAlign: "start",
                             // marginTop: "90px",
-                            // backgroundColor:'red'
+                            backgroundColor:'red'
                           }}
-                        >
-                          <svg
-                            viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-                            style={{
-                              width: "100%",
-                              height: "auto",
-                              aspectRatio: `${svgWidth} / ${svgHeight}`,
-                            }}
-                          >
-                            <defs>
-                              <clipPath id="video-text-clip">
-                                <text
-                                  x={svgWidth / 2}
-                                  y={textY / 1.5}
-                                  textAnchor="middle"
-                                  fill="white"
-                                  fontFamily="Arial, sans-serif"
-                                  fontWeight="bold"
-                                  style={{
-                                    fontSize: fontSizeClamp,
-                                    userSelect: "none",
-                                  }}
-                                >
-                                  {lines?.map((line, index) => (
-                                    <tspan
-                                      key={index}
-                                      x={svgWidth / 2}
-                                      dy={index === 0 ? "0" : "1em"} // vertical offset between lines
-                                    >
-                                      {line}
-                                    </tspan>
-                                  ))}
-                                </text>
-                              </clipPath>
-                            </defs>
-                          </svg>
-                          <div
-                            style={{
-                              position: "absolute",
-                              top: 0,
-                              left: 0,
-                              width: "100%",
-                              height: "100%",
-                              clipPath: "url(#video-text-clip)",
-                              WebkitClipPath: "url(#video-text-clip)",
-                            }}
-                          >
-                            <video
-                              src="/videos/bg_pattern.mp4"
-                              autoPlay
-                              loop
-                              muted
-                              playsInline
-                              style={{
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "cover",
-                                display: "block",
-                              }}
-                            />
-                          </div>
-                        </div>
+                        > */}
+                        <PagesBanner
+                          headingTitle={lines}
+                          videoURL={"/videos/bg_pattern.mp4"}
+                          mtP={"80px"}
+                          mtS={"50px"}
+                        />
+                        {/* </div> */}
                       </div>
-
                     </div>
                   </div>
                 </div>

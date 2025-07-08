@@ -13,13 +13,21 @@ const AboutFirst = () => {
     <div className="elementor-widget-container">
       <section className="tp-ab__area tp-ab__plr">
         <div className="container">
-          <div className="row">
-            {/* <div style={{backgroundColor:'yellowgreen'}}> */}
-            <PagesBanner headingTitle={"Our Agency"} />
+          <div>
+            {/* <div > */}
+            <PagesBanner
+              headingTitle={"Our Agency Agency Agency Agency Agency Agency"}
+              videoURL={"/videos/bg_pattern2.mp4"}
+              mtP={"150px"}
+              mtS={"100px"}
+            />
             {/* </div> */}
             <div className="col-xl-4 col-lg-4">
               <div className="tp-ab__btn-wrap text-center text-lg-end">
-                <div className="tp-hover__btn-wrap tp-btn__bounce">
+                <div
+                  className="tp-hover__btn-wrap tp-btn__bounce"
+                  style={{ zIndex: 50 }}
+                >
                   <Link
                     className="tp-hover__btn tp-hover__btn-item"
                     href="/contact"

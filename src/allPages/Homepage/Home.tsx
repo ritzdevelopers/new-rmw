@@ -57,8 +57,8 @@ const Home = () => {
             <section className="tp-hero__area fix tp-hero__space tp-hero__bg p-relative tp-bg-className">
               <div className="tp-hero__wrap">
                 <div className="container">
-                  <div className="row">
-                    <div className="col-xl-8 col-lg-7">
+                  <div className="row" >
+                    <div className="col-xl-8 col-lg-7" >
                       <div className="tp-hero__title-box p-relative">
                         <span className="tp-hero__subtitle mb-20">
                           Telling Stories to Remember with
@@ -71,6 +71,7 @@ const Home = () => {
                             height: svgHeight,
                             textAlign: "start",
                             // marginTop: "90px",
+                            // backgroundColor:'red'
                           }}
                         >
                           <svg
