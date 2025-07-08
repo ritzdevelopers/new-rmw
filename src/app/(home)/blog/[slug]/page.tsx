@@ -10,6 +10,7 @@ function Page() {
     const getSingleBlog = async ()=>{
       try {
         const {data} = await axios.get(`/api/blog/${slug}`);
+         console.log(data);
          
       } catch (error) {
         console.log('====================================');
