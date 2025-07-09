@@ -177,7 +177,7 @@ const Articles: React.FC = () => {
                 }}
               >
                 <img
-                  src={`/blogs/${article.banner}`}
+                  src={article.banner.includes("/images") ? `/static/${article.banner}` : `/blogs/${article.banner}`}
                   alt={`Banner of ${article.banner}`}
                   className="card-img-top"
                   style={{

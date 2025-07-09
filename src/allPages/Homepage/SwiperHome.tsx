@@ -44,8 +44,8 @@ const SwiperHome = () => {
                           breakpoints={{
                             1200: { slidesPerView: 5 },
                             992: { slidesPerView: 4 },
-                            768: { slidesPerView: 3 },
-                            576: { slidesPerView: 2 },
+                            768: { slidesPerView: 2 },
+                            576: { slidesPerView: 1 },
                             0: { slidesPerView: 1 },
                           }}
                           onSlideChangeTransitionStart={(swiper) => {

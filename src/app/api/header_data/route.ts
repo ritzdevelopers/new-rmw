@@ -21,10 +21,10 @@ export const GET = async () => {
 
           return {
             name: service.name,
-            link: `/services/${service.link}`,
+            link: `/${service.link}`,
             sub: (sub as { name: string; link: string }[]).map((item) => ({
               name: item.name,
-              link: `/services/${service.link}/${item.link}`,
+              link: `/${item.link}.html`,
             })),
           };
         }
@@ -34,6 +34,9 @@ export const GET = async () => {
     return NextResponse.json(servicesWithSub);
   } catch (error) {
     console.error("Error fetching services menu:", error);
-    return NextResponse.json({ error: "Failed to fetch services menu" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch services menu" },
+      { status: 500 }
+    );
   }
 };
