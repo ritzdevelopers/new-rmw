@@ -42,19 +42,19 @@ const Page: React.FC = () => {
   const metaRef = useRef<HTMLDivElement>(null);
 
   const getSingleBlog = async () => {
-    try {
-      let response;
+      try {
+        let response;
       try {
         response = await axios.get(`/api/blog/${slug}`);
-      } catch {
+          } catch {
         response = await axios.get(`/api/ritz_blogs/get-single-blog/${slug}`);
       }
       setSingleBlog(response?.data.blog);
-    } catch (error) {
+      } catch (error) {
       console.error("Error fetching blog: ", error);
       alert("Internal Server Error!");
-    }
-  };
+      }
+    };
 
   useEffect(() => {
     if (slug) getSingleBlog();

@@ -182,11 +182,10 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/services"
+                        href="/"
                         className="nav-links"
                         style={{
-                          color:
-                            pathname === "/services" ? "#8a5a0d" : "inherit",
+                          color: pathname === "" ? "#8a5a0d" : "inherit",
                         }}
                       >
                         Services
@@ -215,17 +214,17 @@ const Header = () => {
                                       <li
                                         key={index}
                                         className="position-relative  flex-fill text-center text-nowrap "
-                                     
                                       >
                                         {/* Main Menu Item */}
                                         <Link
-                                          href={item.link}
+                                          href="#"
                                           className="nav-link flex justify-center items-center"
                                           style={{ fontSize: "14px" }}
                                         >
-                                          {item.name} {
-                                            index !== menuData.length-2 && <span> | </span>
-                                          }
+                                          {item.name}{" "}
+                                          {index !== menuData.length - 2 && (
+                                            <span> | </span>
+                                          )}
                                         </Link>
                                         {/* Submenu */}
                                         <ul
@@ -487,42 +486,40 @@ const Header = () => {
                     }`}
                   >
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/best-digital-marketing-agency">
+                      <Link href="/best-digital-marketing-agency">
                         Digital Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/leading-creative-agency-india">
+                      <Link href="/leading-creative-agency-india">
                         Creative Services
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/best-print-advertising-agency">
+                      <Link href="/best-print-advertising-agency">
                         Print Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/top-radio-ad-agency">
-                        Radio Marketing
-                      </Link>
+                      <Link href="/top-radio-ad-agency">Radio Marketing</Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/leading-content-marketing-agency">
+                      <Link href="/leading-content-marketing-agency">
                         Content Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/best-website-designing-company">
+                      <Link href="/best-website-designing-company">
                         Web Development
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/celebrity-endorsement-agency-india">
+                      <Link href="/celebrity-endorsement-agency-india">
                         Celebrity Endorsements
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/influencer-marketing-agency-in-india">
+                      <Link href="/influencer-marketing-agency-in-india">
                         Influencer Marketing
                       </Link>
                     </li>
