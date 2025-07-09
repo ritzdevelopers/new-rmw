@@ -1,6 +1,6 @@
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import { NextRequest, NextResponse } from "next/server";
-import NewBlogModel from "@/models/Blog.Schema";
+import RitzBlogModel from "@/models/Blog.Schema";
 import fs from "fs";
 import path from "path";
 
@@ -89,7 +89,7 @@ export async function PUT(req: NextRequest,
         }
 
         // Update in DB
-        const updatedBlog = await NewBlogModel.findByIdAndUpdate(
+        const updatedBlog = await RitzBlogModel.findByIdAndUpdate(
             blogId,
             { $set: updateData },
             { new: true }

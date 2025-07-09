@@ -86,6 +86,7 @@ const Page = () => {
       saveDataToLocalStorage();
       router.push(`/admin/add-blog/step-2/page/${count - 1}`);
     } else {
+      saveDataToLocalStorage();
       router.push(`/admin/add-blog/step-1`);
     }
   };
@@ -124,6 +125,7 @@ const Page = () => {
   }
 
   const handleUploadBlog = async () => {
+    saveDataToLocalStorage();
     try {
       const savedData1 = localStorage.getItem("add-blog-step-1");
 
@@ -196,6 +198,7 @@ const Page = () => {
           localStorage.removeItem(`add-blog-step-2-page-${i}`);
         }
         alert("Blog Has Been Posted Successfully.");
+        router.push("/admin/add-blog");
       }
       console.log("Uploaded Blog:", blogRes.data);
     } catch (error) {

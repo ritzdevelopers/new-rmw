@@ -1,9 +1,10 @@
 // app/api/blog/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
-import NewBlogModel from "@/models/Blog.Schema";
+import RitzBlogModel from "@/models/Blog.Schema";
+import RitzCats from "@/models/RitzCats.Schema";
 
-// GET single blog by ID
+// GET single blog by ID | Slug
 export async function GET(
   request: NextRequest,
   { params }: { params: { blogID: string } }
@@ -20,7 +21,9 @@ export async function GET(
       );
     }
 
-    const blog = await NewBlogModel.findById(blogId);
+    const blog = await RitzBlogModel.findOne({
+      blogSlug: blogId
+    });
 
     if (!blog) {
       return NextResponse.json(
@@ -28,9 +31,16 @@ export async function GET(
         { status: 404 }
       );
     }
+    const blogCat = await RitzCats.findById({
+      _id: blog.blogCategoryId
+    });
+    const catRelatedBlogs = await RitzBlogModel.find({
+      blogCategoryId: blogCat,
+    }).sort({ createdAt: -1 })
+      .limit(3);
 
     return NextResponse.json(
-      { message: "Blog fetched successfully", blog, success: true },
+      { message: "Blog fetched successfully", blog, latestRBlogs: catRelatedBlogs, success: true },
       { status: 200 }
     );
   } catch (error) {

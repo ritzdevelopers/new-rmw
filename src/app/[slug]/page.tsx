@@ -153,8 +153,9 @@ import "../styles/elementor-css.css";
 import "../styles/animation-css.css";
 
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import gsap from "gsap";
 import styles from "./page.module.css";
 import ServiceThirdHero from "@/allPages/serviceThirdPage/ServiceThirdHero";
 import ServiceThirdQuality from "@/allPages/serviceThirdPage/ServiceThirdQuality";
@@ -233,6 +234,16 @@ const Page: React.FC = () => {
 
     if (slug) fetchData();
   }, [slug]);
+
+  useEffect(() => {
+    if (metaRef.current && activeMeta !== null) {
+      gsap.fromTo(
+        metaRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+      );
+    }
+  }, [activeMeta]);
 
   if (loading) return <Loader />;
 

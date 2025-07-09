@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
-import NewBlogModel from "@/models/Blog.Schema";
+import RitzBlogModel from "@/models/Blog.Schema";
 
 export async function DELETE(
   request: NextRequest,
@@ -18,7 +18,7 @@ export async function DELETE(
       );
     }
 
-    const deletedBlog = await NewBlogModel.findByIdAndDelete(blogId);
+    const deletedBlog = await RitzBlogModel.findByIdAndDelete(blogId);
 
     if (!deletedBlog) {
       return NextResponse.json(

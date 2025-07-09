@@ -3,6 +3,9 @@ import { writeFile } from "fs/promises";
 import path from "path";
 import { getDBPool } from "@/lib/db"; // Assuming you have a database connection setup
 
+
+// This is MySQL 
+
 function generateSlug(text: string): string {
   return text
     .toLowerCase()

@@ -1,9 +1,21 @@
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import { NextResponse } from "next/server";
-import NewBlogModel from "@/models/Blog.Schema";
+// import RitzBlogModel from "@/models/Blog.Schema";
 import fs from "fs";
 import path from "path";
+import RitzCats from "@/models/RitzCats.Schema";
+import RitzBlogModel from "@/models/Blog.Schema";
 
+// Utility to create slug from category name
+function generateSlug(name) {
+  return name
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
+}
+
+// This is Mongo DB
 async function saveFileToUploads(file, filename) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
@@ -31,6 +43,22 @@ export async function POST(request) {
     let blogBannerPath = "";
     const innerImgMap = {};
 
+    // Handle Category ID Blog Description & Blog Slug :
+    let blogDescription;
+    const blogSlug = generateSlug(blogTitle);
+    const fetchCat = await RitzCats.findOne({ categorySlug: blogCategory });
+    
+    if (!fetchCat) {
+      return NextResponse.json(
+        { message: "Category not found" },
+        {
+          status: 404,
+        }
+      );
+    }
+
+    const categoryId = fetchCat._id;
+
     for (const [key, value] of formData.entries()) {
       if (value instanceof File) {
         const filename = `${Date.now()}-${value.name}`;
@@ -44,20 +72,25 @@ export async function POST(request) {
         }
       }
     }
-
     const blogBodyParsed = JSON.parse(blogBodyRaw || "[]");
     const blogBody = blogBodyParsed.map((item, index) => ({
       ...item,
       innerImg: innerImgMap[index] || "",
-    }));              
+    }));
+    console.log('====================================');
+    console.log(blogBody, blogBodyRaw);
+    console.log('====================================');
+    blogDescription = blogBody[0].metaDescription;
 
-    const newBlog = await NewBlogModel.create({
+    const newBlog = await RitzBlogModel.create({
       blogTitle,
       blogBanner: blogBannerPath,
       blogBody,
       metaKeywords,
-      blogCategory,
-      blogStatus
+      blogCategoryId: categoryId,
+      blogStatus,
+      blogSlug,
+      blogDescription,
     });
 
     return NextResponse.json(

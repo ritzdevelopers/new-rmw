@@ -1,11 +1,12 @@
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
-import NewBlogModel from "@/models/Blog.Schema";
+import RitzBlogModel from "@/models/Blog.Schema";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    await connectMongoDB();
-    const allBlogs = await NewBlogModel.find();
+    await connectMongoDB({});
+  
+    const allBlogs = await RitzBlogModel.find();
     if (allBlogs.length < 1) {
       return NextResponse.json(
         { message: "There are no blogs" },
