@@ -30,22 +30,31 @@ const BlogSchema = new Schema(
     metaKeywords: {
       type: String
     },
-    blogCategory: {
-      type: String,
-      required: true,
-      enum: ["Case Study", "Performance Marketing Agency", "Print Advertising Agency", "Creating Advertising Agency", "Celebrity Endorsements Agency", "Artist Management Agency", "FM Radio Advertising", "Web Design And Development", "Graphic Design Services", "Digital Marketing Agency", "Best Ad Agency", "All Category"],
-      default: "All Category"
+    blogCategoryId: {
+      type: Schema.Types.ObjectId,
+      ref:"RitzCats",
+      required:true
     },
     blogStatus : {
       type:Boolean,
       default:true
+    },
+    // It will be generate from backend api :
+    blogSlug:{
+      type:String,
+      required:true
+    },
+    blogDescription:{
+      type:String,
+      required:true
     }
+
   },
   {
     timestamps: true,
   }
 );
 
-const NewBlogModel = models.NewBlogModel || model("NewBlogModel", BlogSchema);
+const RitzBlogModel = models.RitzBlogModel || model("RitzBlogModel", BlogSchema);
 
-export default NewBlogModel;
+export default RitzBlogModel;
