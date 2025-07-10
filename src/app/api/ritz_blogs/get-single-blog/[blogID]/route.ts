@@ -11,7 +11,9 @@ export async function GET(
 ) {
   try {
     await connectMongoDB();
-
+    console.log('====================================');
+    console.log('api hit');
+    console.log('====================================');
     const blogId = params.blogID;
 
     if (!blogId) {

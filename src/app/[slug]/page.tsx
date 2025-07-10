@@ -1,146 +1,3 @@
-// "use client";
-
-// import { useParams } from "next/navigation";
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import styles from "./page.module.css";
-// import ServiceThirdHero from "@/allPages/serviceThirdPage/ServiceThirdHero";
-// import ServiceThirdQuality from "@/allPages/serviceThirdPage/ServiceThirdQuality";
-// import ServiceThirdColorMarque from "@/allPages/serviceThirdPage/ServiceThirdColorMarque";
-// import ServiceThirdAward from "@/allPages/serviceThirdPage/ServiceThirdAward";
-// import ServiceMainTestimonial from "@/allPages/serviceMainpage/ServiceMainTestimonial";
-// import ProjectSwiper from "@/allPages/Homepage/ProjectSwiper";
-// import { Form } from "react-hook-form";
-// import ServiceThirdSlowMarque from "@/allPages/serviceThirdPage/ServiceThirdSlowMarque";
-// import ServiceEndTag from "@/components/endTag/serviceEndTag";
-// import Footer from "@/components/footer/Footer";
-// import Loader from "@/components/loader/Loader";
-
-// interface Blog {
-//   id: number;
-//   title: string;
-//   slug: string;
-//   meta_title: string;
-//   meta_description: string;
-//   meta_keywords: string;
-//   blog_image: string;
-//   description: string;
-//   created_at: string;
-//   status: string;
-// }
-
-// const Page: React.FC = () => {
-//   const params = useParams();
-//   const { slug } = params as { slug: string };
-//   const [singleBlog, setSingleBlog] = useState<Blog | null>(null);
-
-//   const getSingleBlog = async () => {
-//     try {
-//       const response = await axios.get(`/api/blog/${slug}`);
-//       setSingleBlog(response.data.blog);
-//     } catch (error) {
-//       console.error("Error fetching blog: ", error);
-//       alert("Internal Server Error!");
-//     }
-//   };
-
-//   useEffect(() => {
-//     if (slug) getSingleBlog();
-//   }, [slug]);
-
-//   // services
-//   interface CardData {
-//     title: string;
-//     description: string;
-//     image_url?: string;
-//   }
-//   const [cardData, setCardData] = useState<CardData[]>([]);
-//   const [head, setHead] = useState<string | null>(null);
-//   const [endTag, setEndTag] = useState<string | null>(null);
-//   const [loading, setLoading] = useState(true);
-
-//   const { secondPage, thirdPage } = params as {
-//     secondPage: string;
-//     thirdPage: string;
-//   };
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const res = await axios.get(`/api/services/${secondPage}/${thirdPage}`);
-//         setCardData(res.data.cards);
-//         setHead(res.data.s3heading1);
-//         setEndTag(res.data.s3endtag);
-//       } catch (error) {
-//         console.error("Error fetching data:", error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     if (secondPage && thirdPage) {
-//       fetchData();
-//     }
-//   }, [secondPage, thirdPage]);
-
-//   if (loading) return <Loader />;
-
-//   if (singleBlog) {
-//     return (
-//       <div className={styles.container}>
-//         <div className={styles.card}>
-//           <img
-//             src={`/blogs/${singleBlog.blog_image}`}
-//             alt={singleBlog.title}
-//             className={styles.image}
-//           />
-
-//           <div className={styles.content}>
-//             <h1 className={styles.title}>{singleBlog.title}</h1>
-//             <p className={styles.date}>
-//               Published on:
-//               {new Date(singleBlog.created_at).toLocaleDateString("en-IN", {
-//                 year: "numeric",
-//                 month: "long",
-//                 day: "numeric",
-//               })}
-//             </p>
-//             <div
-//               className={styles.description}
-//               dangerouslySetInnerHTML={{ __html: singleBlog.description }}
-//             />
-
-//             <div className={styles.tags}>
-//               {singleBlog.meta_keywords?.split(",").map((keyword, index) => (
-//                 <span key={index} className={styles.tag}>
-//                   #{keyword.trim()}
-//                 </span>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   } else {
-//     return (
-//       <>
-//         {head && <ServiceThirdHero heading={head} />}
-//         {/* <SwiperHome /> */}
-//         <ServiceThirdQuality cardData={cardData} />
-//         <ServiceThirdColorMarque />
-//         <ServiceThirdAward />
-//         <ServiceMainTestimonial />
-//         <ProjectSwiper />
-//         <Form />
-//         <ServiceThirdSlowMarque />
-//         <ServiceEndTag endtag={endTag} />
-//         <Footer />
-//       </>
-//     );
-//   }
-// };
-
-// export default Page;
-
 "use client";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -168,19 +25,49 @@ import Footer from "@/components/footer/Footer";
 import Loader from "@/components/loader/Loader";
 import Form from "@/allPages/Contactpage/Form";
 import Header from "@/components/header/Header";
-
+import {
+  Facebook,
+  Twitter,
+  Linkedin,
+  Copy,
+  X,
+  Share2,
+  Search,
+  ExternalLink,
+  // Loader2,
+} from "lucide-react";
+// import styles from "./page.module.css"
 // Blog interface
-interface Blog {
-  id: number;
-  title: string;
-  slug: string;
-  meta_title: string;
-  meta_description: string;
-  meta_keywords: string;
-  blog_image: string;
-  description: string;
-  created_at: string;
-  status: string;
+export interface BlogBodyPage {
+  metaTitle: string;
+  metaDescription: string;
+  innerImg: string;
+}
+
+export interface Blog {
+  // MySQL Fields
+  id?: number;
+  title?: string;
+  slug?: string;
+  meta_title?: string;
+  meta_description?: string;
+  meta_keywords?: string;
+  blog_image?: string;
+  description?: string;
+  created_at?: string;
+  status?: string;
+
+  // MongoDB Fields
+  _id?: string;
+  blogTitle?: string;
+  blogSlug?: string;
+  blogCategoryId?: string;
+  blogDescription?: string;
+  metaKeywords?: string;
+  blogBanner?: string;
+  blogBody?: BlogBodyPage[]; // updated to an array
+  createdAt?: string;
+  blogStatus?: string;
 }
 
 // Service interface
@@ -191,27 +78,28 @@ interface CardData {
 }
 
 const Page: React.FC = () => {
-  let { slug } = useParams() as { slug: string };
-
+  const [showModal, setShowModal] = useState(false);
+  const { slug } = useParams() as { slug: string };
+  // const newSl = slug;
   const [loading, setLoading] = useState(true);
 
   const [singleBlog, setSingleBlog] = useState<Blog | null>(null);
   const [cardData, setCardData] = useState<CardData[]>([]);
   const [head, setHead] = useState<string | null>(null);
   const [endTag, setEndTag] = useState<string | null>(null);
+  const [latestRBlogs, setLatestRBlogs] = useState<Blog[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        slug = slug.replace(/\.html$/, "");
+        const cleanSlug = slug?.replace(/\.html$/, "");
 
-        const response = await axios.get(`/api/resolve/${slug}`);
+        // Step 1: Try resolving from MySQL
+        const response = await axios.get(`/api/resolve/${cleanSlug}`);
 
-        // console.log("Resolve response : ", response.data);
-
-        if (response.data.type === "blog") {
+        if (response?.data?.type === "blog") {
           setSingleBlog(response.data.blog);
-        } else if (response.data.type === "service") {
+        } else if (response?.data?.type === "service") {
           const { secondLayer, thirdLayer } = response.data;
 
           const serviceResponse = await axios.get(
@@ -221,11 +109,28 @@ const Page: React.FC = () => {
           setCardData(serviceResponse.data.cards || []);
           setHead(serviceResponse.data.s3heading1 || null);
           setEndTag(serviceResponse.data.s3endtag || null);
-
-          // console.log("services : ", serviceResponse);
+        } else {
+          // If no `type` found in response, assume fallback to MongoDB
+          throw new Error("Not a blog or service, fallback to MongoDB");
         }
       } catch (error) {
-        console.error("Error resolving content: ", error);
+        console.log("====================================");
+        console.log(error);
+        console.log("====================================");
+        // If MySQL API fails (404 or anything), fallback to MongoDB
+        try {
+          const cleanSlug = slug?.replace(/\.html$/, "");
+          const res = await axios.get(
+            `/api/ritz_blogs/get-single-blog/${cleanSlug}`
+          );
+          console.log("====================================");
+          setLatestRBlogs(res.data.latestRBlogs);
+          console.log("====================================");
+          setSingleBlog(res.data.blog);
+          // alert("Fetched from MongoDB!");
+        } catch (err) {
+          console.error("Fallback MongoDB fetch failed:", err);
+        }
       } finally {
         setLoading(false);
       }
@@ -238,40 +143,183 @@ const Page: React.FC = () => {
 
   // ✅ Render Blog if found
   if (singleBlog) {
+    const isMongo = !!singleBlog.blogTitle;
+
     return (
       <>
         <Header />
-        <div className="mt-100"></div>
-        <div className={styles.container}>
-          <div className={styles.card}>
-            <img
-              src={`/blogs/${singleBlog.blog_image}`}
-              alt={singleBlog.title}
-              className={styles.image}
-            />
-            <div className={styles.content}>
-              <h1 className={styles.title}>{singleBlog.title}</h1>
-              <p className={styles.date}>
-                Published on:{" "}
-                {new Date(singleBlog.created_at).toLocaleDateString("en-IN", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </p>
-              <div
-                className={styles.description}
-                dangerouslySetInnerHTML={{ __html: singleBlog.description }}
+        <div className={styles.wrapper}>
+          {/* Left Side Blog Content */}
+          <div className={styles.leftSide}>
+            <div className={styles.bannerImage}>
+              <img
+                src={
+                  isMongo
+                    ? `/static/${singleBlog.blogBanner}`
+                    : `/blogs/${singleBlog.blog_image}`
+                }
+                alt={isMongo ? singleBlog.blogTitle : singleBlog.title}
+                className={styles.imgD}
               />
-              <div className={styles.tags}>
-                {singleBlog.meta_keywords?.split(",").map((keyword, index) => (
-                  <span key={index} className={styles.tag}>
-                    #{keyword.trim()}
-                  </span>
+            </div>
+
+            {/* Date + Category + Share */}
+            <div className={styles.blogMeta}>
+              <div>
+                <span>
+                  {new Date(
+                    isMongo ? singleBlog.createdAt! : singleBlog.created_at!
+                  ).toLocaleDateString("en-IN", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
+                <span className={styles.category}>
+                  {isMongo ? singleBlog.blogCategoryId : "Uncategorized"}
+                </span>
+              </div>
+              <Share2
+                className={styles.shareIcon}
+                onClick={() => setShowModal(true)}
+              />
+            </div>
+
+            {/* Blog Title */}
+            <h1 className={styles.blogTitle}>
+              {isMongo ? singleBlog.blogTitle : singleBlog.title}
+            </h1>
+
+            {/* Blog Content */}
+            <div className={styles.contentBody}>
+              {isMongo ? (
+                singleBlog.blogBody?.map((page, idx) => (
+                  <div key={idx}>
+                    <h2>{page.metaTitle}</h2>
+                    <img
+                      src={`/static/${page.innerImg}`}
+                      alt={`Inner ${idx}`}
+                      className={styles.innerImg}
+                    />
+                    <div className={styles.tableWrapper}>
+                      {" "}
+                      <div
+                        className={styles.contentBody}
+                        dangerouslySetInnerHTML={{
+                          __html: page.metaDescription,
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className={styles.tableWrapper}>
+                  <div
+                    className={styles.contentBody}
+                    dangerouslySetInnerHTML={{
+                      __html: singleBlog.description!,
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Tags */}
+            <div className={styles.keywords}>
+              {(isMongo ? singleBlog.metaKeywords : singleBlog.meta_keywords)
+                ?.split(",")
+                .map((word, idx) => (
+                  <span key={idx}>{word.trim()}</span>
                 ))}
+            </div>
+
+            <button className={styles.readMore}>Read More Related Blogs</button>
+          </div>
+
+          {/* Right Side Panel */}
+          <div className={styles.rightSide}>
+            {/* Search Bar */}
+            <div className={styles.searchWrap}>
+              <Search />
+              <input type="text" placeholder="Search blogs..." />
+            </div>
+
+            {/* Search Results */}
+            <div className={styles.searchResults}>
+              <div className={styles.resultCard}>
+                {latestRBlogs &&
+                  latestRBlogs.map((blog, idx) => {
+                    return (
+                      <div className={styles.resultCard} key={idx}>
+                        <img
+                          src={
+                            isMongo
+                              ? `/static/${blog.blogBanner}`
+                              : `/blogs/${blog.blog_image}`
+                          }
+                          alt={isMongo ? blog.blogTitle : blog.title}
+                        />
+                        <b>{isMongo ? blog.blogTitle : blog.title}</b>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
+
+            {/* Blog Categories */}
+            <div className={styles.categories}>
+              <div className={styles.categoryCard}>Technology</div>
+              <div className={styles.categoryCard}>Design</div>
+              <div className={styles.categoryCard}>Marketing</div>
+            </div>
+
+            {/* Related Blogs */}
+            <div className={styles.relatedBlogs}>
+              {latestRBlogs &&
+                latestRBlogs.map((blog, idx) => {
+                  return (
+                    <div className={styles.resultCard} key={idx}>
+                      <img
+                        src={
+                          isMongo
+                            ? `/static/${blog.blogBanner}`
+                            : `/blogs/${blog.blog_image}`
+                        }
+                        alt={isMongo ? blog.blogTitle : blog.title}
+                      />
+                      <b>{isMongo ? blog.blogTitle : blog.title}</b>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
+
+          {/* Share Modal */}
+          {showModal && (
+            <div className={styles.modalOverlay}>
+              <div className={styles.modalBox}>
+                <X
+                  className={styles.modalClose}
+                  onClick={() => setShowModal(false)}
+                />
+                <button>
+                  <Copy /> Copy URL
+                </button>
+                <button>
+                  <Facebook /> Facebook
+                </button>
+                <button>
+                  <Twitter /> X
+                </button>
+                <button>
+                  <Linkedin /> LinkedIn
+                </button>
+                <button>
+                  <ExternalLink /> WhatsApp
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         <Footer />
       </>
