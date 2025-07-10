@@ -47,7 +47,7 @@ const ProjectSwiper = () => {
                     <SwiperSlide>
                       <div className="tp-text__2-wrap">
                         <h3 className="tp-text__2-text">
-                          <Link href="/best-digital-marketing-agency">
+                          <Link href="/digital-marketing.html">
                             DIGITAL MARKETING
                           </Link>
                           <span>
@@ -70,7 +70,7 @@ const ProjectSwiper = () => {
                     <SwiperSlide>
                       <div className="tp-text__2-wrap">
                         <h3 className="tp-text__2-text">
-                          <Link href="/best-print-advertising-agency">
+                          <Link href="/print-advertising.html">
                             PRINT ADVERTISING
                           </Link>
 
@@ -94,7 +94,7 @@ const ProjectSwiper = () => {
                     <SwiperSlide>
                       <div className="tp-text__2-wrap">
                         <h3 className="tp-text__2-text">
-                          <Link href="/top-radio-ad-agency">
+                          <Link href="/radio-advertising.html">
                             RADIO ADVERTISING
                           </Link>
 
@@ -119,7 +119,7 @@ const ProjectSwiper = () => {
                       <div className="tp-text__2-wrap">
                         <h3 className="tp-text__2-text">
                             
-                          <Link href="/leading-creative-agency-india">
+                          <Link href="/creative-services.html">
                             CREATIVE SERVICES
                           </Link>
 
@@ -143,7 +143,7 @@ const ProjectSwiper = () => {
                     <SwiperSlide>
                       <div className="tp-text__2-wrap">
                         <h3 className="tp-text__2-text">
-                        <Link href="/leading-content-marketing-agency">
+                        <Link href="/contents-marketing.html">
                               CONTENT MARKETING
                             </Link>
                           <span>
@@ -167,7 +167,7 @@ const ProjectSwiper = () => {
                     <SwiperSlide>
                       <div className="tp-text__2-wrap">
                         <h3 className="tp-text__2-text">
-                        <Link href="/best-website-designing-company">WEB DEVELOPMENT</Link>
+                        <Link href="/web-designing-and-development.html">WEB DEVELOPMENT</Link>
 
                           <span>
                             <svg
@@ -189,7 +189,7 @@ const ProjectSwiper = () => {
                     <SwiperSlide>
                       <div className="tp-text__2-wrap">
                         <h3 className="tp-text__2-text">
-                          <Link href="/celebrity-endorsement-agency-india">
+                          <Link href="/celebrity-endorsements.html">
                             CELEBRITY ENDORSEMENTS
                           </Link>
 

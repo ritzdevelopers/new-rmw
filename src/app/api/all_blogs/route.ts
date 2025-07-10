@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const db = getDBPool();
     const [rows] = await db.query(
-      "SELECT blog_image, title, slug, meta_description, meta_keywords created_at FROM blogs WHERE category_id != 1 ORDER BY id DESC"
+      "SELECT blog_image, title, slug, meta_description, meta_keywords, created_at FROM blogs WHERE category_id != 1 ORDER BY id DESC"
     );
     return NextResponse.json(rows, { status: 200 });
   } catch (error) {
