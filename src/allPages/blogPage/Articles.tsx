@@ -8,13 +8,14 @@ import gsap from "gsap";
 // import { CalendarDays } from "lucide-react";
 import { CalendarDays, Share2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { useBlogContext } from "@/context/AllBlogContext";
 interface Article {
   _id: string;
   blogBanner: string;
   blogTitle: string;
   createdAt: string;
   meta_description: string;
-  blogDescription:string
+  blogDescription: string;
 }
 
 interface Article2 {
@@ -50,7 +51,7 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
 });
 
 const Articles: React.FC = () => {
-  const [blogs, setBlogs] = useState<MergedBlogs[]>([]);
+  const { blogs, setBlogs } = useBlogContext();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -72,6 +73,7 @@ const Articles: React.FC = () => {
     });
   }, [blogs]);
 
+ 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -104,8 +106,14 @@ const Articles: React.FC = () => {
 
     fetchBlogs();
   }, []);
+   useEffect(() => {
+    console.log("====================================");
+    console.log(blogs);
+    console.log("====================================");
+  }, [blogs]);
 
-  const filteredBlogs = blogs.filter((blog) =>
+  if (!blogs || !Array.isArray(blogs)) return null;
+  const filteredBlogs: MergedBlogs[] = blogs.filter((blog: MergedBlogs) =>
     blog.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -128,6 +136,7 @@ const Articles: React.FC = () => {
     navigator.clipboard.writeText(url);
     alert("Url Has Copied!");
   };
+
   if (loading) return <Loader />;
   if (error)
     return <p className="text-center text-danger mt-4">Error: {error}</p>;
@@ -152,7 +161,7 @@ const Articles: React.FC = () => {
       {/* Blog Cards */}
 
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {currentCards.map((article) => (
+        {currentCards.map((article: MergedBlogs) => (
           <div
             className="col"
             key={article.id}
@@ -190,10 +199,10 @@ const Articles: React.FC = () => {
                     transition: "transform 0.4s ease",
                     borderRadius: "10px",
                   }}
-                  onMouseOver={(e) =>
+                  onMouseOver={(e: React.MouseEvent<HTMLImageElement>) =>
                     (e.currentTarget.style.transform = "scale(1.05)")
                   }
-                  onMouseOut={(e) =>
+                  onMouseOut={(e: React.MouseEvent<HTMLImageElement>) =>
                     (e.currentTarget.style.transform = "scale(1)")
                   }
                 />
@@ -206,7 +215,7 @@ const Articles: React.FC = () => {
 
                 {/* Paragraph */}
                 <p
-                // style={{fontWeight:'lighter'}}
+                  // style={{fontWeight:'lighter'}}
                   className="card-text text-muted"
                   dangerouslySetInnerHTML={{ __html: article.meta_description }}
                 ></p>
@@ -231,7 +240,7 @@ const Articles: React.FC = () => {
 
                   {/* Share Button */}
                   <button
-                    onClick={() =>
+                    onClick={(): void =>
                       handleCopy(article.title.split(" ").join("-"))
                     }
                     // type="button"
