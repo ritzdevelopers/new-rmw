@@ -32,7 +32,7 @@ import {
   Linkedin,
   Copy,
   X,
-  // Share2,
+  Share2,
   Search,
   ExternalLink,
   // Loader2,
@@ -59,7 +59,7 @@ export interface Blog {
   description?: string;
   created_at?: string;
   status?: string;
-  category_id?: string;
+category_id?:string;
   // MongoDB Fields
   _id?: string;
   blogTitle?: string;
@@ -158,7 +158,7 @@ const DetailPage: React.FC = () => {
         const cleanSlug = slug?.replace(/\.html$/, "");
 
         // Fetch categories
-        // const { data } = await axios.get(`/api/ritzCats/getAllCats`);
+        const { data } = await axios.get(`/api/ritzCats/getAllCats`);
         const catData2 = await axios.get(`/api/blog/categories`);
 
         const [resMongo, resMySQL] = await Promise.all([
@@ -176,7 +176,7 @@ const DetailPage: React.FC = () => {
 
         setBlogs(merged);
 
-        setRitzCats([...catData2.data]);
+        setRitzCats([...data.allCategories, ...catData2.data]);
         // Attempt to resolve slug
         const response = await axios.get(`/api/resolve/${cleanSlug}`);
 
@@ -211,24 +211,23 @@ const DetailPage: React.FC = () => {
         setLoading(false);
       }
     };
+
     if (slug) fetchData();
   }, [slug]);
-
-  const url = typeof window !== "undefined" ? window.location.href : "";
-
-  const encodedURL = encodeURIComponent(url);
-  // alert(encodedURL);
-
-  // alert(window)
 
   // const readMorRelated = async (cti:string)=>{
   //   alert(cti)
   //     try{
-
+        
   //     } catch(err){
 
   //     }
   // }
+
+
+
+
+
 
   if (loading) return <Loader />;
 
@@ -323,14 +322,14 @@ const DetailPage: React.FC = () => {
                     day: "numeric",
                   })}
                 </span>
-                {/* <span className={styles.category}>
+                <span className={styles.category}>
                   {isMongo ? singleBlog.blogCategoryId : "Uncategorized"}
-                </span> */}
+                </span>
               </div>
-              {/* <Share2
+              <Share2
                 className={styles.shareIcon}
                 onClick={() => setShowModal(true)}
-              /> */}
+              />
             </div>
 
             {/* Blog Title */}
@@ -424,7 +423,7 @@ const DetailPage: React.FC = () => {
 
                       return (
                         <div
-                          onClick={() => router.push(`/${blog.id}`)}
+                        onClick={()=>router.push(`/${blog.id}`)}
                           className={styles.resultCard}
                           key={`${blog.id}-${idx}`}
                         >
@@ -454,18 +453,11 @@ const DetailPage: React.FC = () => {
             {/* {cats && ( */}
             <div className={styles.categories}>
               {cats &&
-                // const isMG = data.id;
+              // const isMG = data.id;
                 cats.map((data) => {
                   return (
                     <div
-                      onClick={() =>
-                        router.push(
-                          `/category/${
-                            data.name?.toLowerCase().split(" ").join("-") ||
-                            data.categorySlug
-                          }`
-                        )
-                      }
+                    onClick={()=>router.push(`/category/${data.name?.toLowerCase().split(" ").join("-") || data.categorySlug}`)}
                       key={data._id || data.id}
                       className={styles.categoryCard}
                     >
@@ -510,15 +502,9 @@ const DetailPage: React.FC = () => {
                 <button>
                   <Copy /> Copy URL
                 </button>
-                <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodedURL}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-neutral-800 rounded"
-                >
+                <button>
                   <Facebook /> Facebook
-                </a>
-
+                </button>
                 <button>
                   <Twitter /> X
                 </button>

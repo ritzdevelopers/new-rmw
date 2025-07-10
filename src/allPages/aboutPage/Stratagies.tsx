@@ -76,7 +76,7 @@ const Stratagies = () => {
                   <div className="row">
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/branding-identity-agency-india">
+                        <Link href="/services/leading-creative-agency-india/branding-identity-agency-india">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
@@ -87,7 +87,7 @@ const Stratagies = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/advertisement-design-services">
+                        <Link href="/services/best-print-advertising-agency/advertisement-design-services">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"

@@ -304,7 +304,7 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/contact.html"
+                        href="/contact.html/"
                         className="nav-links"
                         style={{
                           color:
@@ -463,7 +463,7 @@ const Header = () => {
                   <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <Link href="/about.html">About</Link>
+                  <Link href="/about/">About</Link>
                 </li>
 
                 {/* Service Dropdown (Smooth) */}
@@ -530,10 +530,10 @@ const Header = () => {
                   <Link href="/work.html">Our Work</Link>
                 </li>
                 <li>
-                  <Link href="/blogs">Blog</Link>
+                  <Link href="/blog">Blog</Link>
                 </li>
                 <li>
-                  <Link href="/contact.html">Contact us</Link>
+                  <Link href="/contact">Contact us</Link>
                 </li>
               </ul>
             </nav>

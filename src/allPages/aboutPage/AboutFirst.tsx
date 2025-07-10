@@ -31,7 +31,7 @@ const AboutFirst = () => {
                 >
                   <Link
                     className="tp-hover__btn tp-hover__btn-item"
-                    href="/contact.html"
+                    href="/contact"
                     target="_self"
                     rel="nofollow"
                   >

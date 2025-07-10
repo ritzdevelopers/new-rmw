@@ -224,7 +224,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/influencer-marketing-agency-in-india">
+                          <Link href="/services/influencer-marketing-agency-in-india">
                             {" "}
                             INFLUENCER_MARKETING
                           </Link>
