@@ -133,23 +133,23 @@ const Footer = () => {
                           id="menu-item-141"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-141"
                         >
-                          <Link href="/about" style={{ color: "#FBD98C" }}>
+                          <Link href="/about.html" style={{ color: "#FBD98C" }}>
                             About
                           </Link>
                         </li>
-                        <li
+                        {/* <li
                           id="menu-item-142"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-142"
                         >
                           <Link href="/services" style={{ color: "#FBD98C" }}>
                             Services
                           </Link>
-                        </li>
+                        </li> */}
                         <li
                           id="menu-item-143"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-143"
                         >
-                          <Link href="/our-work" style={{ color: "#FBD98C" }}>
+                          <Link href="/work.html" style={{ color: "#FBD98C" }}>
                             Our Work
                           </Link>
                         </li>
@@ -165,7 +165,7 @@ const Footer = () => {
                           id="menu-item-144"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
                         >
-                          <Link href="/contact" style={{ color: "#FBD98C" }}>
+                          <Link href="/contact.html" style={{ color: "#FBD98C" }}>
                             Contact
                           </Link>
                         </li>
@@ -193,7 +193,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-135"
                         >
                           <Link
-                            href="/services/best-digital-marketing-agency"
+                            href="/best-digital-marketing-agency"
                             style={{ color: "#FBD98C" }}
                           >
                             Digital Marketing
@@ -204,7 +204,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-136"
                         >
                           <Link
-                            href="/services/best-print-advertising-agency"
+                            href="/best-print-advertising-agency"
                             style={{ color: "#FBD98C" }}
                           >
                             Print Advertising
@@ -215,7 +215,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-137"
                         >
                           <Link
-                            href="/services/top-radio-ad-agency"
+                            href="/top-radio-ad-agency"
                             style={{ color: "#FBD98C" }}
                           >
                             Radio Advertising
@@ -226,7 +226,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-138"
                         >
                           <Link
-                            href="/services/leading-creative-agency-india"
+                            href="/leading-creative-agency-india"
                             style={{ color: "#FBD98C" }}
                           >
                             Creative Services
@@ -237,7 +237,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-138"
                         >
                           <Link
-                            href="/services/leading-content-marketing-agency"
+                            href="/leading-content-marketing-agency"
                             style={{ color: "#FBD98C" }}
                           >
                             Content Marketing
@@ -248,7 +248,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
                         >
                           <Link
-                            href="/services/best-website-designing-company"
+                            href="/best-website-designing-company"
                             style={{ color: "#FBD98C" }}
                           >
                             Web Development
@@ -259,7 +259,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
                         >
                           <Link
-                            href="/services/celebrity-endorsement-agency-india"
+                            href="/celebrity-endorsement-agency-india"
                             style={{ color: "#FBD98C" }}
                           >
                             Celebrity Endorsements
@@ -270,7 +270,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
                         >
                           <Link
-                            href="/services/influencer-marketing-agency-in-india"
+                            href="/influencer-marketing-agency-in-india"
                             style={{ color: "#FBD98C" }}
                           >
                             Influencer Marketing
@@ -296,7 +296,7 @@ const Footer = () => {
                     <div className="textwidget custom-html-widget">
                       <div className="tp-footer__contact-info">
                         <div className="tp-footer__list">
-                          <Link href="#" style={{ color: "#FBD98C" }}>
+                          <Link href="/contact.html" style={{ color: "#FBD98C" }}>
                             Address: 402 – 404, <br /> 4th floor Corporate Park,{" "}
                             <br />
                             Tower A1 Sector 142, <br /> Greater Noida
@@ -320,9 +320,9 @@ info@ritzmediaworld.com"
                           >
                             info@ritzmediaworld.com
                           </Link>
-                          <Link href="#" style={{ color: "#FBD98C" }}>
+                          <div style={{ color: "#FBD98C" }}>
                             Office Hours: 9AM - 7PM
-                          </Link>
+                          </div>
                         </div>
                       </div>
                     </div>

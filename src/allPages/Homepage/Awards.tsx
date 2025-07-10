@@ -72,7 +72,7 @@ const Awards = () => {
                           <div className="tp-awards__name d-flex align-items-center">
                             <h3 className="tp-awards__title">
                               <Link
-                                href="/about/"
+                                href="/about.html"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -84,7 +84,7 @@ const Awards = () => {
                         <div className="tp-awards__right">
                           <div className="tp-awards__icon">
                             <Link
-                              href="/about/"
+                              href="/about.html"
                               rel="nofollow"
                               target="_self"
                               className="awards-icon"
@@ -117,7 +117,7 @@ const Awards = () => {
                           </div>
                           <div className="tp-awards__name d-flex align-items-center">
                             <h3 className="tp-awards__title">
-                              <Link href="/about" rel="nofollow" target="_self">
+                              <Link href="/about.html" rel="nofollow" target="_self">
                                 Trusted Digital Advertising Agency in
                                 NCR-Awarded by The Economic Times
                               </Link>
@@ -127,7 +127,7 @@ const Awards = () => {
                         <div className="tp-awards__right">
                           <div className="tp-awards__icon">
                             <Link
-                              href="/about/"
+                              href="/about.html"
                               rel="nofollow"
                               target="_self"
                               className="awards-icon"
@@ -162,7 +162,7 @@ const Awards = () => {
                           <div className="tp-awards__name d-flex align-items-center ">
                             <h3 className="tp-awards__title mr-40">
                               <Link
-                                href="/about/"
+                                href="/about.html"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -174,7 +174,7 @@ const Awards = () => {
                         <div className="tp-awards__right">
                           <div className="tp-awards__icon">
                             <Link
-                              href=" /about/"
+                              href=" /about.html"
                               rel="nofollow"
                               target="_self"
                               className="awards-icon"
@@ -208,7 +208,7 @@ const Awards = () => {
                           <div className="tp-awards__name d-flex align-items-center">
                             <h3 className="tp-awards__title">
                               <Link
-                                href="/about/"
+                                href="/about.html"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -220,7 +220,7 @@ const Awards = () => {
                         <div className="tp-awards__right">
                           <div className="tp-awards__icon">
                             <Link
-                              href="/about/"
+                              href="/about.html"
                               rel="nofollow"
                               target="_self"
                               className="awards-icon"
