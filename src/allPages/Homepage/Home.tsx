@@ -139,7 +139,7 @@ const Home = () => {
                       <div className="tp-hero__action d-flex align-items-center">
                         <span>
                           <Link
-                            href="/services"
+                            href="/contact.html"
                             className="tp-hero__action-btn"
                           >
                             <span>
@@ -161,7 +161,7 @@ const Home = () => {
                             </span>
                           </Link>
                         </span>
-                        <Link href="/services" rel="nofollow" target="_self">
+                        <Link href="/contact.html" rel="nofollow" target="_self">
                           LEARN MORE
                         </Link>
                       </div>

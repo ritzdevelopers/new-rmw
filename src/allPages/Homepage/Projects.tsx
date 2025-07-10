@@ -60,7 +60,7 @@ const Projects = () => {
                             />
                             <div className="tp-project__icon">
                               <Link
-                                href="/services/leading-creative-agency-india/branding-identity-agency-india"
+                                href="/leading-creative-agency-india/branding-identity-agency-india"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -91,7 +91,7 @@ const Projects = () => {
                         >
                           <h3 className="tp-project__title">
                             <Link
-                              href="/services/leading-creative-agency-india/branding-identity-agency-india"
+                              href="/leading-creative-agency-india/branding-identity-agency-india"
                               rel="nofollow"
                               target="_self"
                             >
@@ -119,7 +119,7 @@ const Projects = () => {
                             />
                             <div className="tp-project__icon">
                               <Link
-                                href="/services/best-digital-marketing-agency"
+                                href="/best-digital-marketing-agency"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -149,7 +149,7 @@ const Projects = () => {
                         >
                           <h3 className="tp-project__title">
                             <Link
-                              href="/services/best-digital-marketing-agency"
+                              href="/best-digital-marketing-agency"
                               rel="nofollow"
                               target="_self"
                             >
@@ -177,7 +177,7 @@ const Projects = () => {
                             />
                             <div className="tp-project__icon">
                               <Link
-                                href="/services/best-digital-marketing-agency/social-media-management-india"
+                                href="/best-digital-marketing-agency/social-media-management-india"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -207,7 +207,7 @@ const Projects = () => {
                         >
                           <h3 className="tp-project__title">
                             <Link
-                              href="/services/best-digital-marketing-agency/social-media-management-india"
+                              href="/best-digital-marketing-agency/social-media-management-india"
                               rel="nofollow"
                               target="_self"
                             >
@@ -235,7 +235,7 @@ const Projects = () => {
                             />
                             <div className="tp-project__icon">
                               <Link
-                                href="/services/best-print-advertising-agency"
+                                href="/best-print-advertising-agency"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -265,7 +265,7 @@ const Projects = () => {
                         >
                           <h3 className="tp-project__title">
                             <Link
-                              href="/services/best-print-advertising-agency"
+                              href="/best-print-advertising-agency"
                               rel="nofollow"
                               target="_self"
                             >
