@@ -13,7 +13,8 @@ interface Article {
   blogBanner: string;
   blogTitle: string;
   createdAt: string;
-  meta_description:string;
+  meta_description: string;
+  blogDescription:string
 }
 
 interface Article2 {
@@ -21,7 +22,7 @@ interface Article2 {
   blog_image: string;
   title: string;
   created_at: string;
-  meta_description:string;
+  meta_description: string;
 }
 
 interface MergedBlogs {
@@ -29,7 +30,7 @@ interface MergedBlogs {
   banner: string;
   title: string;
   createdAt: string;
-  meta_description:string;
+  meta_description: string;
 }
 
 const normalizeArticle = (blog: Article): MergedBlogs => ({
@@ -37,7 +38,7 @@ const normalizeArticle = (blog: Article): MergedBlogs => ({
   banner: blog.blogBanner,
   title: blog.blogTitle,
   createdAt: blog.createdAt,
-  meta_description:blog.meta_description
+  meta_description: blog.blogDescription,
 });
 
 const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
@@ -45,7 +46,7 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
   banner: blog.blog_image,
   title: blog.title,
   createdAt: blog.created_at,
-  meta_description:blog.meta_description
+  meta_description: blog.meta_description,
 });
 
 const Articles: React.FC = () => {
@@ -122,19 +123,17 @@ const Articles: React.FC = () => {
   };
 
   const path = usePathname();
-  const handleCopy = (fullPath:string)=>{
+  const handleCopy = (fullPath: string) => {
     const url = `${window.location.origin}${path}/${fullPath}`;
     navigator.clipboard.writeText(url);
     alert("Url Has Copied!");
-  }
+  };
   if (loading) return <Loader />;
   if (error)
     return <p className="text-center text-danger mt-4">Error: {error}</p>;
 
-    
   return (
     <div className="container mt-4 mb-5">
-      
       {/* Search Input */}
       <div className="text-center mb-4">
         <input
@@ -157,7 +156,7 @@ const Articles: React.FC = () => {
           <div
             className="col"
             key={article.id}
-            onClick={()=>handleSingleBlogs(article.id)}
+            onClick={() => handleSingleBlogs(article.id)}
           >
             <div
               className="card h-100 shadow-sm border-0"
@@ -173,11 +172,15 @@ const Articles: React.FC = () => {
                   height: "220px",
                   overflow: "hidden",
                   position: "relative",
-                   borderRadius:"10px"
+                  borderRadius: "10px",
                 }}
               >
                 <img
-                  src={article.banner.includes("/images") ? `/static/${article.banner}` : `/blogs/${article.banner}`}
+                  src={
+                    article.banner.includes("/images")
+                      ? `/static/${article.banner}`
+                      : `/blogs/${article.banner}`
+                  }
                   alt={`Banner of ${article.banner}`}
                   className="card-img-top"
                   style={{
@@ -185,7 +188,7 @@ const Articles: React.FC = () => {
                     height: "100%",
                     objectFit: "contain",
                     transition: "transform 0.4s ease",
-                    borderRadius:"10px"
+                    borderRadius: "10px",
                   }}
                   onMouseOver={(e) =>
                     (e.currentTarget.style.transform = "scale(1.05)")
@@ -202,9 +205,11 @@ const Articles: React.FC = () => {
                 <h5 className="card-title fw-semibold">{article.title}</h5>
 
                 {/* Paragraph */}
-                <p className="card-text text-muted">
-                  {article.meta_description}
-                </p>
+                <p
+                // style={{fontWeight:'lighter'}}
+                  className="card-text text-muted"
+                  dangerouslySetInnerHTML={{ __html: article.meta_description }}
+                ></p>
 
                 {/* Buttons */}
                 <div className="d-flex justify-content-between align-items-center mt-auto">
@@ -226,22 +231,24 @@ const Articles: React.FC = () => {
 
                   {/* Share Button */}
                   <button
-                  onClick={()=>handleCopy(article.title.split(" ").join("-"))}
+                    onClick={() =>
+                      handleCopy(article.title.split(" ").join("-"))
+                    }
                     // type="button"
                     style={{
-                      // backgroundColor: "blue", 
+                      // backgroundColor: "blue",
                       color: "#E5B05C",
                       fontSize: "0.875rem",
-                      padding: "0.25rem 0.5rem", 
+                      padding: "0.25rem 0.5rem",
                       border: "none",
                       borderRadius: "0.375rem",
                       display: "flex",
                       alignItems: "center",
-                      gap: "0.25rem", 
+                      gap: "0.25rem",
                       cursor: "pointer",
-                      borderWidth:'1px',
-                      borderColor:'#E5B05C',
-                      borderStyle:'solid'
+                      borderWidth: "1px",
+                      borderColor: "#E5B05C",
+                      borderStyle: "solid",
                     }}
                   >
                     <Share2 size={16} />
