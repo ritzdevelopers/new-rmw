@@ -64,7 +64,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/best-digital-marketing-agency">
+                          <Link href="/best-digital-marketing-agency">
                             {" "}
                             DIGITAL _ MARKETING
                           </Link>
@@ -87,7 +87,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/best-print-advertising-agency">
+                          <Link href="/best-print-advertising-agency">
                             {" "}
                             PRINT_ADVERTISING
                           </Link>
@@ -110,7 +110,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/top-radio-ad-agency">
+                          <Link href="/top-radio-ad-agency">
                             RADIO_ADVERTISING
                           </Link>
                         </h3>
@@ -132,7 +132,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/leading-creative-agency-india">
+                          <Link href="/leading-creative-agency-india">
                             {" "}
                             CREATIVE_SERVICES
                           </Link>
@@ -155,7 +155,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/leading-content-marketing-agency">
+                          <Link href="/leading-content-marketing-agency">
                             {" "}
                             CONTENT_MARKETING
                           </Link>
@@ -178,7 +178,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/best-website-designing-company">
+                          <Link href="/best-website-designing-company">
                             {" "}
                             WEB_DEVELOPMENT
                           </Link>
@@ -201,7 +201,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/celebrity-endorsement-agency-india">
+                          <Link href="/celebrity-endorsement-agency-india">
                             {" "}
                             CELEBRITY_ENDORSEMENTS
                           </Link>
@@ -224,7 +224,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/influencer-marketing-agency-in-india">
+                          <Link href="/influencer-marketing-agency-in-india">
                             {" "}
                             INFLUENCER_MARKETING
                           </Link>
