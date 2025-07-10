@@ -171,10 +171,10 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/about/"
+                        href="/about.html"
                         className="nav-links"
                         style={{
-                          color: pathname === "/about" ? "#8a5a0d" : "inherit",
+                          color: pathname === "/about.html" ? "#8a5a0d" : "inherit",
                         }}
                       >
                         About
@@ -278,7 +278,7 @@ const Header = () => {
 
                     <li className="nav-item">
                       <Link
-                        href="/our-work/"
+                        href="/work.html"
                         className="nav-links"
                         style={{
                           color:
@@ -290,11 +290,11 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/blog"
+                        href="/blogs"
                         className="nav-links"
                         style={{
                           color:
-                            pathname === "/blog" || isBlog === true
+                            pathname === "/blogs" || isBlog === true
                               ? "#8a5a0d"
                               : "inherit",
                         }}
@@ -304,7 +304,7 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/contact/"
+                        href="/contact.html/"
                         className="nav-links"
                         style={{
                           color:
@@ -527,7 +527,7 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <Link href="/our-work">Our Work</Link>
+                  <Link href="/work.html">Our Work</Link>
                 </li>
                 <li>
                   <Link href="/blog">Blog</Link>
@@ -621,8 +621,7 @@ const Header = () => {
                   color: "#000",
                 }}
               >
-                Web designing in a powerful way of just not an only professions.
-                We have tendency to believe the idea that smart looking.
+                We build stories not just worth telling, but worth sharing. That’s what sets us apart.
               </div>
 
               <div>
@@ -665,7 +664,7 @@ const Header = () => {
                 <h3>Contact</h3>
                 <p>
                   Address: 402 – 404 , 4th floor Corporate Park, Tower A1 Sector
-                  142 ,Noida
+                  142, Noida
                 </p>
                 <p>
                   <Link href="/">info@ritzmediaworld.com</Link>
@@ -674,7 +673,7 @@ const Header = () => {
                   <Link href="/">09220516777</Link>
                 </p>
                 <p>
-                  <Link href="/">09220516777</Link>
+                  <Link href="/">07290002168</Link>
                 </p>
               </div>
 

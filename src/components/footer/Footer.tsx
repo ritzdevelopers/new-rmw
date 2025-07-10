@@ -299,7 +299,7 @@ const Footer = () => {
                           <Link href="/contact.html" style={{ color: "#FBD98C" }}>
                             Address: 402 – 404, <br /> 4th floor Corporate Park,{" "}
                             <br />
-                            Tower A1 Sector 142, <br /> Greater Noida
+                            Tower A1 Sector 142, <br /> Noida
                           </Link>
                           <Link
                             href="tel:09220516777"
