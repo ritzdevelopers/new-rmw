@@ -59,7 +59,7 @@ export interface Blog {
   description?: string;
   created_at?: string;
   status?: string;
-
+category_id?:string;
   // MongoDB Fields
   _id?: string;
   blogTitle?: string;
@@ -215,6 +215,20 @@ const DetailPage: React.FC = () => {
     if (slug) fetchData();
   }, [slug]);
 
+  const readMorRelated = async (cti:string)=>{
+    alert(cti)
+      try{
+        
+      } catch(err){
+
+      }
+  }
+
+
+
+
+
+
   if (loading) return <Loader />;
 
   // ✅ Render Blog if found
@@ -366,7 +380,16 @@ const DetailPage: React.FC = () => {
                 ))}
             </div>
 
-            <button className={styles.readMore}>Read More Related Blogs</button>
+            <button
+              onClick={() => {
+                if (singleBlog?.blogCategoryId) {
+                  readMorRelated(singleBlog.blogCategoryId);
+                }
+              }}
+              className={styles.readMore}
+            >
+              Read More Related Blogs
+            </button>
           </div>
 
           {/* Right Side Panel */}
@@ -430,9 +453,11 @@ const DetailPage: React.FC = () => {
             {/* {cats && ( */}
             <div className={styles.categories}>
               {cats &&
+              // const isMG = data.id;
                 cats.map((data) => {
                   return (
                     <div
+                    onClick={()=>router.push(`/category/${data.name?.toLowerCase().split(" ").join("-") || data.categorySlug}`)}
                       key={data._id || data.id}
                       className={styles.categoryCard}
                     >

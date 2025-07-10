@@ -1,4 +1,4 @@
-import ManageBlogs from "../../../../allPages/manageBlog/ManageBlog";
+import ManageBlogs from "../../../../allPages/newDashboard/manageBlog/ManageBlog";
 import React from "react";
 
 const page = () => {
