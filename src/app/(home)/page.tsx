@@ -1,9 +1,12 @@
 import Elementor from "@/allPages/Elementor";
+import { Providers } from "../provider/Provider";
 
+// import { BlogProvider } from "@/blogContext/BlogContext";
 export default function Home() {
   return (
-    <>
-    <Elementor />
-  </>
+    // <BlogProvider>
+    <Providers>
+    <Elementor /></Providers>
+  // </BlogProvider>
   );
 }
