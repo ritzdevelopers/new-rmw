@@ -189,6 +189,14 @@ interface CardData {
   description: string;
   image_url?: string;
 }
+interface CategoryData {
+  _id:string;
+  categoryName:string;
+  categoryMetaDescription:string;
+  categoryMetaTitle:string;
+  categoryMetaKeywords:string;
+  categorySlug:string;
+}
 
 const Page: React.FC = () => {
   let { slug } = useParams() as { slug: string };
@@ -199,14 +207,15 @@ const Page: React.FC = () => {
   const [cardData, setCardData] = useState<CardData[]>([]);
   const [head, setHead] = useState<string | null>(null);
   const [endTag, setEndTag] = useState<string | null>(null);
-
+  const [cats, setRitzCats] = useState<CategoryData[]>([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         slug = slug.replace(/\.html$/, "");
 
         const response = await axios.get(`/api/resolve/${slug}`);
-
+        const {data} = await axios.get(`/api/ritzCats/getAllCats`);
+        setRitzCats(data.allCategories)
         // console.log("Resolve response : ", response.data);
 
         if (response.data.type === "blog") {
