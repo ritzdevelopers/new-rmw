@@ -1,17 +1,9 @@
 "use client";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/globals.css";
-import "../styles/core-css.css";
-import "../styles/unit-css.css";
-import "../styles/spacing.css";
-import "../styles/magnific-popup-css.css";
-import "../styles/elementor-css.css";
-import "../styles/animation-css.css";
-
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import gsap from "gsap";
 import styles from "./page.module.css";
 import ServiceThirdHero from "@/allPages/serviceThirdPage/ServiceThirdHero";
 import ServiceThirdQuality from "@/allPages/serviceThirdPage/ServiceThirdQuality";
@@ -56,7 +48,6 @@ export interface Blog {
   description?: string;
   created_at?: string;
   status?: string;
-
   // MongoDB Fields
   _id?: string;
   blogTitle?: string;
@@ -89,8 +80,7 @@ const Page: React.FC = () => {
   const [endTag, setEndTag] = useState<string | null>(null);
   const [latestRBlogs, setLatestRBlogs] = useState<Blog[]>([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const getSingleBlog = async () => {
       try {
         const cleanSlug = slug?.replace(/\.html$/, "");
 
@@ -136,11 +126,19 @@ const Page: React.FC = () => {
       }
     };
 
-    if (slug) fetchData();
+  useEffect(() => {
+    if (slug) getSingleBlog();
   }, [slug]);
 
-  if (loading) return <Loader />;
-
+  useEffect(() => {
+    if (metaRef.current && activeMeta !== null) {
+      gsap.fromTo(
+        metaRef.current,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+      );
+    }
+  }, [activeMeta]);
   // ✅ Render Blog if found
   if (singleBlog) {
     const isMongo = !!singleBlog.blogTitle;
@@ -321,26 +319,37 @@ const Page: React.FC = () => {
             </div>
           )}
         </div>
-        <Footer />
-      </>
-    );
-  }
 
-  // ✅ Else render service_third content
-  return (
-    <>
-      <Header />
-      {head && <ServiceThirdHero heading={head} />}
-      <ServiceThirdQuality cardData={cardData} />
-      <ServiceThirdColorMarque />
-      <ServiceThirdAward />
-      <ServiceMainTestimonial />
-      <ProjectSwiper />
-      <Form />
-      <ServiceThirdSlowMarque />
-      <ServiceEndTag endtag={endTag} />
-      <Footer />
-    </>
+        {singleBlog.blogBody && (
+          <div className={styles.metaTitles}>
+            <h3>Blog Sections</h3>
+            <ul>
+              {singleBlog.blogBody.map((section, index) => (
+                <li
+                  key={index}
+                  className={styles.metaTitleItem}
+                  onClick={() => setActiveMeta(index)}
+                >
+                  {section.pageTitle || `Section ${index + 1}`}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div className={styles.latestBlogs}>
+          <h3>Latest Blogs</h3>
+          <div className={styles.latestBlogCard}>
+            <img
+              src="/images/1752051887399-cover.jpg"
+              alt="Latest Blog"
+              className={styles.latestImage}
+            />
+            <p>This is testing 1 for mongo</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
