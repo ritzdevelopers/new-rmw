@@ -40,7 +40,7 @@ const Swiper1 = () => {
                 <div className="tp-text__4-wrap">
                   <h3 className="tp-text__8-text">
                   <Link
-                  href="/best-digital-marketing-agency"
+                  href="/services/best-digital-marketing-agency"
                 > DIGITAL _ MARKETING
                 </Link>
                   </h3>
@@ -56,7 +56,7 @@ const Swiper1 = () => {
                 <div className="tp-text__4-wrap">
                   <h3 className="tp-text__8-text">
                   <Link
-                  href="/best-print-advertising-agency"
+                  href="/services/best-print-advertising-agency"
                 >  PRINTING_MARKETING
                 </Link>
                   </h3>
@@ -72,7 +72,7 @@ const Swiper1 = () => {
                 <div className="tp-text__4-wrap">
                   <h3 className="tp-text__8-text">
                   <Link
-                  href="/top-radio-ad-agency"
+                  href="/services/top-radio-ad-agency"
                 >RADIO_MARKETING
                 </Link>
                   </h3>
@@ -88,7 +88,7 @@ const Swiper1 = () => {
                 <div className="tp-text__4-wrap">
                   <h3 className="tp-text__8-text">
                   <Link
-                  href="/leading-creative-agency-india"
+                  href="/services/leading-creative-agency-india"
                 > CREATIVE_SERVICES
                 </Link>
                   </h3>
@@ -104,7 +104,7 @@ const Swiper1 = () => {
                 <div className="tp-text__4-wrap">
                   <h3 className="tp-text__8-text">
                   <Link
-                  href="/leading-content-marketing-agency"
+                  href="/services/leading-content-marketing-agency"
                 > CONTENT_MARKETING
                 </Link>
                   </h3>
@@ -120,7 +120,7 @@ const Swiper1 = () => {
                 <div className="tp-text__4-wrap">
                   <h3 className="tp-text__8-text">
                   <Link
-                  href="/best-website-designing-company"
+                  href="/services/best-website-designing-company"
                 > WEB_DEVELOPMENT
                 </Link>
                   </h3>
@@ -136,7 +136,7 @@ const Swiper1 = () => {
                 <div className="tp-text__4-wrap">
                   <h3 className="tp-text__8-text">
                   <Link
-                  href="/celebrity-endorsement-agency-india"
+                  href="/services/celebrity-endorsement-agency-india"
                 > CELEBRITY_ENDORSEMENTS
                 </Link>
                   </h3>
@@ -152,7 +152,7 @@ const Swiper1 = () => {
                 <div className="tp-text__4-wrap">
                   <h3 className="tp-text__8-text">
                   <Link
-                  href="/influencer-marketing-agency-in-india"
+                  href="/services/influencer-marketing-agency-in-india"
                 >INFLUENCER_MARKETING
                 </Link>
                   </h3>
