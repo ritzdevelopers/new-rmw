@@ -73,7 +73,7 @@ const Articles: React.FC = () => {
     });
   }, [blogs]);
 
- 
+ const path = usePathname()
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -130,7 +130,7 @@ const Articles: React.FC = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
-  const path = usePathname();
+  ;
   const handleCopy = (fullPath: string) => {
     const url = `${window.location.origin}${path}/${fullPath}`;
     navigator.clipboard.writeText(url);

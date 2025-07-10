@@ -1,6 +1,6 @@
-// import { BlogProvider } from "@/blogContext/BlogContext";
+import { BlogProvider } from "@/blogContext/BlogContext";
 import VisitTracker from "@/components/visitorTracker/tracker";
-import { Providers } from "./provider/Provider";
+// import { Providers } from "./provider/Provider";
 
 export default function RootLayout({
   children,
@@ -10,10 +10,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>
+      <BlogProvider>
         <VisitTracker />
         {children}
-        </Providers>
+      </BlogProvider>
       </body>
     </html>
   );

@@ -13,8 +13,8 @@ import PageWrapper from "@/components/pageWrapper/PageWrapper";
 import Button from "@/components/sideButton/sideButton";
 import Header from "@/components/header/Header";
 // import { TrackPageView } from "@/components/trackView/TrackPageView";
-import { BlogProvider } from "@/context/AllBlogContext";
-import { Providers } from "../provider/Provider";
+// import { BlogProvider } from "@/context/AllBlogContext";
+// import { Providers } from "../provider/Provider";
 
 export const metadata = {
   title: "Ritz Media World",
@@ -31,14 +31,14 @@ export default function HomeLayout({
     <>
       <Toaster position="top-right" reverseOrder={false} />
       <PageWrapper>
-        <Providers>
-          <BlogProvider>
+      
+        
             {/* <TrackPageView /> */}
             <Header />
             {children}
             <Button />
-          </BlogProvider>
-        </Providers>
+          
+        
       </PageWrapper>
     </>
   );

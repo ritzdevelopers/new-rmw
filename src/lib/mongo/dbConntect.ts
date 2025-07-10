@@ -1,5 +1,5 @@
 // src/lib/mongo/dbConnect.ts
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const MONGO_URL = process.env.MONGO_URL;
 
@@ -7,33 +7,39 @@ if (!MONGO_URL) {
   throw new Error("Please define the MONGO_URL environment variable in your .env.local file");
 }
 
-let cached = (global as any).mongoose;
+// ✅ Extend globalThis directly (no namespace)
+interface GlobalWithMongooseCache {
+  mongoose: {
+    conn: typeof mongoose | null;
+    promise: Promise<typeof mongoose> | null;
+  };
+}
 
-if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+// ✅ Add type to globalThis
+const globalWithMongoose = globalThis as typeof globalThis & GlobalWithMongooseCache;
+
+if (!globalWithMongoose.mongoose) {
+  globalWithMongoose.mongoose = { conn: null, promise: null };
 }
 
 export const connectMongoDB = async () => {
-  if (cached.conn) {
-    // ✅ Reuse existing connection
-       console.log("✅ MongoDB connected successfully (cached)");
-    return cached.conn;
+  if (globalWithMongoose.mongoose.conn) {
+    console.log("✅ MongoDB connected successfully (cached)");
+    return globalWithMongoose.mongoose.conn;
   }
 
-  if (!cached.promise) {
-    // ✅ Create new connection and cache the promise
-    cached.promise = mongoose.connect(MONGO_URL).then((mongoose) => {
-         console.log("✅ MongoDB connected successfully (cached)");
-      return mongoose;
+  if (!globalWithMongoose.mongoose.promise) {
+    globalWithMongoose.mongoose.promise = mongoose.connect(MONGO_URL).then((mongooseInstance) => {
+      console.log("✅ MongoDB connected successfully (new)");
+      return mongooseInstance;
     });
   }
 
   try {
-    cached.conn = await cached.promise;
-    console.log("✅ MongoDB connected successfully (cached)");
-    return cached.conn;
+    globalWithMongoose.mongoose.conn = await globalWithMongoose.mongoose.promise;
+    return globalWithMongoose.mongoose.conn;
   } catch (error) {
-    cached.promise = null;
+    globalWithMongoose.mongoose.promise = null;
     console.error("❌ MongoDB connection error:", error);
     throw new Error("MongoDB connection failed");
   }
