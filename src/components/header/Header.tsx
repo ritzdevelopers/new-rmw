@@ -486,35 +486,35 @@ const Header = () => {
                     }`}
                   >
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/best-digital-marketing-agency">
+                      <Link href="/digital-marketing.html">
                         Digital Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/leading-creative-agency-india">
+                      <Link href="/creative-services.html">
                         Creative Services
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/best-print-advertising-agency">
+                      <Link href="/print-advertising.html">
                         Print Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/top-radio-ad-agency">Radio Marketing</Link>
+                      <Link href="/radio-advertising.html">Radio Marketing</Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/leading-content-marketing-agency">
+                      <Link href="/contents-marketing.html">
                         Content Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/best-website-designing-company">
+                      <Link href="/web-designing-and-development.html">
                         Web Development
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/celebrity-endorsement-agency-india">
+                      <Link href="/celebrity-endorsements.html">
                         Celebrity Endorsements
                       </Link>
                     </li>

@@ -157,7 +157,7 @@ const Footer = () => {
                           id="menu-item-144"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
                         >
-                          <Link href="/blog" style={{ color: "#FBD98C" }}>
+                          <Link href="/blogs" style={{ color: "#FBD98C" }}>
                             Blogs
                           </Link>
                         </li>
@@ -193,7 +193,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-135"
                         >
                           <Link
-                            href="/best-digital-marketing-agency"
+                            href="/digital-marketing.html"
                             style={{ color: "#FBD98C" }}
                           >
                             Digital Marketing
@@ -204,7 +204,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-136"
                         >
                           <Link
-                            href="/best-print-advertising-agency"
+                            href="/print-advertising.html"
                             style={{ color: "#FBD98C" }}
                           >
                             Print Advertising
@@ -215,7 +215,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-137"
                         >
                           <Link
-                            href="/top-radio-ad-agency"
+                            href="/radio-advertising.html"
                             style={{ color: "#FBD98C" }}
                           >
                             Radio Advertising
@@ -226,7 +226,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-138"
                         >
                           <Link
-                            href="/leading-creative-agency-india"
+                            href="/creative-services.html"
                             style={{ color: "#FBD98C" }}
                           >
                             Creative Services
@@ -237,7 +237,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-138"
                         >
                           <Link
-                            href="/leading-content-marketing-agency"
+                            href="/contents-marketing.html"
                             style={{ color: "#FBD98C" }}
                           >
                             Content Marketing
@@ -248,7 +248,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
                         >
                           <Link
-                            href="/best-website-designing-company"
+                            href="/web-designing-and-development.html"
                             style={{ color: "#FBD98C" }}
                           >
                             Web Development
@@ -259,7 +259,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
                         >
                           <Link
-                            href="/celebrity-endorsement-agency-india"
+                            href="/celebrity-endorsements.html"
                             style={{ color: "#FBD98C" }}
                           >
                             Celebrity Endorsements

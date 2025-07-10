@@ -64,7 +64,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/best-digital-marketing-agency">
+                          <Link href="/digital-marketing.html">
                             {" "}
                             DIGITAL _ MARKETING
                           </Link>
@@ -87,7 +87,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/best-print-advertising-agency">
+                          <Link href="/print-advertising.html">
                             {" "}
                             PRINT_ADVERTISING
                           </Link>
@@ -110,7 +110,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/top-radio-ad-agency">
+                          <Link href="/radio-advertising.html">
                             RADIO_ADVERTISING
                           </Link>
                         </h3>
@@ -132,7 +132,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/leading-creative-agency-india">
+                          <Link href="/creative-services.html">
                             {" "}
                             CREATIVE_SERVICES
                           </Link>
@@ -155,7 +155,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/leading-content-marketing-agency">
+                          <Link href="/contents-marketing.html">
                             {" "}
                             CONTENT_MARKETING
                           </Link>
@@ -178,7 +178,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/best-website-designing-company">
+                          <Link href="/web-designing-and-development.html">
                             {" "}
                             WEB_DEVELOPMENT
                           </Link>
@@ -201,7 +201,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/celebrity-endorsement-agency-india">
+                          <Link href="/celebrity-endorsements.html">
                             {" "}
                             CELEBRITY_ENDORSEMENTS
                           </Link>
