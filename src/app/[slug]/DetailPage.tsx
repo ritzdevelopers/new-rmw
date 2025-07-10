@@ -37,8 +37,8 @@ import {
   ExternalLink,
   // Loader2,
 } from "lucide-react";
-import { useBlogContext } from "@/context/AllBlogContext";
-import { title } from "process";
+// import { useBlogContext } from "@/context/AllBlogContext";
+// import { title } from "process";
 // import styles from "./page.module.css"
 // Blog interface
 export interface BlogBodyPage {
@@ -215,14 +215,14 @@ const DetailPage: React.FC = () => {
     if (slug) fetchData();
   }, [slug]);
 
-  const readMorRelated = async (cti:string)=>{
-    alert(cti)
-      try{
+  // const readMorRelated = async (cti:string)=>{
+  //   alert(cti)
+  //     try{
         
-      } catch(err){
+  //     } catch(err){
 
-      }
-  }
+  //     }
+  // }
 
 
 
@@ -380,7 +380,7 @@ const DetailPage: React.FC = () => {
                 ))}
             </div>
 
-            <button
+            {/* <button
               onClick={() => {
                 if (singleBlog?.blogCategoryId) {
                   readMorRelated(singleBlog.blogCategoryId);
@@ -389,7 +389,7 @@ const DetailPage: React.FC = () => {
               className={styles.readMore}
             >
               Read More Related Blogs
-            </button>
+            </button> */}
           </div>
 
           {/* Right Side Panel */}

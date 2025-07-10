@@ -2,7 +2,7 @@
 import React from 'react';
 import { useParams } from 'next/navigation';
 import Categorycards from "@/allPages/Category/catergory";
-import CategoryBanner from '@/components/pagesBanner/CategoryBanner';
+// import CategoryBanner from '@/components/pagesBanner/CategoryBanner';
 import Footer from '@/components/footer/Footer';
 import PagesBanner from "../../../../components/pagesBanner/PagesBanner"
 const Page = () => {
