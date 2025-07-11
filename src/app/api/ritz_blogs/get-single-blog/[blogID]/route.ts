@@ -14,7 +14,7 @@ export async function GET(
     console.log('====================================');
     console.log('api hit');
     console.log('====================================');
-    const blogId = params.blogID;
+    const blogId =  params.blogID;
 
     if (!blogId) {
       return NextResponse.json(
@@ -22,7 +22,8 @@ export async function GET(
         { status: 400 }
       );
     }
-
+    console.log("This is blogid *slug ", blogId);
+    
     const blog = await RitzBlogModel.findOne({
       blogSlug: blogId
     });
@@ -40,7 +41,8 @@ export async function GET(
       blogCategoryId: blogCat,
     }).sort({ createdAt: -1 })
       .limit(3);
-
+    console.log('this is finded blog ', blog);
+    
     return NextResponse.json(
       { message: "Blog fetched successfully", blog, latestRBlogs: catRelatedBlogs, success: true },
       { status: 200 }
