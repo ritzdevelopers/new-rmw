@@ -3,7 +3,6 @@ import { Providers } from "@/app/provider/Provider";
 // export const metadata = {
 //   title: "Blog - Ritz Media World",
 //   description: "Best digital agency in India - Blog",
-//   robots: "noindex, nofollow",
 // };
 
 export const metadata = {

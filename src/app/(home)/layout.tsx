@@ -20,7 +20,6 @@ import Script from "next/script";
 // export const metadata = {
 //   title: "Ritz Media World",
 //   description: "Best digital agency in India",
-//   robots: "noindex, nofollow",
 // };
 
 export default function HomeLayout({
