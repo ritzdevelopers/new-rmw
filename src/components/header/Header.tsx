@@ -466,7 +466,7 @@ const Header = () => {
                   <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <Link href="/about/">About</Link>
+                  <Link href="/about.html">About</Link>
                 </li>
 
                 {/* Service Dropdown (Smooth) */}
@@ -535,7 +535,7 @@ const Header = () => {
                   <Link href="/work.html">Our Work</Link>
                 </li>
                 <li>
-                  <Link href="/blog">Blog</Link>
+                  <Link href="/blogs">Blog</Link>
                 </li>
                 <li>
                   <Link href="/contact.html">Contact us</Link>

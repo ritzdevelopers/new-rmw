@@ -26,7 +26,7 @@ const Stratagies = () => {
                   <span>
                     <Link
                       className="tp-hero__action-btn"
-                      href="#"
+                      href="/contact.html"
                       rel="nofollow"
                       target="_self"
                     >
