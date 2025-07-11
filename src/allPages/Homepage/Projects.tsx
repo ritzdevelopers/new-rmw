@@ -60,7 +60,7 @@ const Projects = () => {
                             />
                             <div className="tp-project__icon">
                               <Link
-                                href="/branding-identity-agency-india"
+                                href="/branding-and-identity-development.html"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -91,7 +91,7 @@ const Projects = () => {
                         >
                           <h3 className="tp-project__title">
                             <Link
-                              href="/branding-identity-agency-india"
+                              href="/branding-and-identity-development.html"
                               rel="nofollow"
                               target="_self"
                             >
@@ -177,7 +177,7 @@ const Projects = () => {
                             />
                             <div className="tp-project__icon">
                               <Link
-                                href="/social-media-management-india"
+                                href="/social-media-management.html"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -207,7 +207,7 @@ const Projects = () => {
                         >
                           <h3 className="tp-project__title">
                             <Link
-                              href="/social-media-management-india"
+                              href="/social-media-management.html"
                               rel="nofollow"
                               target="_self"
                             >

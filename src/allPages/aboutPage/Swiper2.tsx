@@ -155,7 +155,7 @@ const Swiper2 = () => {
                 <div className="tp-text__4-wrap">
                 <h3 className="tp-text__9-text">
                 <Link
-                  href="/services/influencer-marketing-agency-in-india"
+                  href="/influencer-marketing-agency-in-india"
                 > INFLUENCER_MARKETING
                 </Link>
                   </h3>

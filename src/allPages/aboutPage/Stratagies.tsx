@@ -26,7 +26,7 @@ const Stratagies = () => {
                   <span>
                     <Link
                       className="tp-hero__action-btn"
-                      href="/services"
+                      href="#"
                       rel="nofollow"
                       target="_self"
                     >
@@ -49,7 +49,7 @@ const Stratagies = () => {
                       </span>
                     </Link>
                   </span>
-                  <Link href="/services/" rel="nofollow" target="_self">
+                  <Link href="#" rel="nofollow" target="_self">
                     LEARN MORE
                   </Link>
                 </div>
@@ -76,7 +76,7 @@ const Stratagies = () => {
                   <div className="row">
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/services/leading-creative-agency-india/branding-identity-agency-india">
+                        <Link href="/branding-identity-agency-india">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
@@ -87,7 +87,7 @@ const Stratagies = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/services/best-print-advertising-agency/advertisement-design-services">
+                        <Link href="/advertisement-designing.html">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"

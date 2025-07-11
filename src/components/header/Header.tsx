@@ -51,6 +51,8 @@ const Header = () => {
     const fetchMenu = async () => {
       try {
         const response = await axios.get("/api/header_data");
+        console.log(response);
+        
         setMenuData(response.data);
       } catch (error) {
         console.error("Failed to fetch menu", error);
@@ -120,7 +122,6 @@ const Header = () => {
   if (blog_slugs.includes(pathSlug.slice(1))) {
     isBlog = true;
   }
-
   return (
     <header>
       <div
@@ -217,7 +218,7 @@ const Header = () => {
                                       >
                                         {/* Main Menu Item */}
                                         <Link
-                                          href="#"
+                                          href={`${item.link}`}
                                           className="nav-link flex justify-center items-center"
                                           style={{ fontSize: "14px" }}
                                         >

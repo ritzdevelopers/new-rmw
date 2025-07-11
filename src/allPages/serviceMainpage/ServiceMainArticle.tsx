@@ -251,7 +251,7 @@ const ServiceMainArticle = () => {
                       <div className="tp-blog__action text-md-end">
                         <Link
                           className="tp-btn-primary"
-                          href="/blog/"
+                          href="/blogs"
                           target="_self"
                           rel="nofollow"
                         >

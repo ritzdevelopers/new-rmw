@@ -49,7 +49,7 @@ const Elementor = () => {
       title: "(PPC) Advertising",
       description:
         "Why chase customers when you can strategically appear exactly where they’re searching? Our PPC approach delivers instant leads, measurable returns, and satisfaction so swiftly that you’ll swear it’s cheating (it’s not).",
-        link: "/ppc-google-ads-agency",
+        link: "/ppc-google-ads-agency.html",
     },
     {
       title: "Web Designing & Development",
