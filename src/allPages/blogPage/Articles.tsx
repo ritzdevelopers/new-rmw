@@ -73,7 +73,7 @@ const Articles: React.FC = () => {
     });
   }, [blogs]);
 
- const path = usePathname()
+  const path = usePathname();
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
@@ -106,11 +106,7 @@ const Articles: React.FC = () => {
 
     fetchBlogs();
   }, []);
-   useEffect(() => {
-    console.log("====================================");
-    console.log(blogs);
-    console.log("====================================");
-  }, [blogs]);
+  useEffect(() => {}, [blogs]);
 
   if (!blogs || !Array.isArray(blogs)) return null;
   const filteredBlogs: MergedBlogs[] = blogs.filter((blog: MergedBlogs) =>
@@ -130,7 +126,6 @@ const Articles: React.FC = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
-  ;
   const handleCopy = (fullPath: string) => {
     const url = `${window.location.origin}${path}/${fullPath}`;
     navigator.clipboard.writeText(url);
@@ -211,13 +206,18 @@ const Articles: React.FC = () => {
               {/* Content */}
               <div className="card-body d-flex flex-column justify-between">
                 {/* Title */}
-                <h5 className="card-title fw-semibold">{article.title}</h5>
+                <h5 className="card-title fw-semibold">{article.title.split(/\s+/).slice(0, 10).join(" ")}</h5>
 
                 {/* Paragraph */}
                 <p
                   // style={{fontWeight:'lighter'}}
                   className="card-text text-muted"
-                  dangerouslySetInnerHTML={{ __html: article.meta_description }}
+                  dangerouslySetInnerHTML={{
+                    __html: article.meta_description
+                      .split(/\s+/)
+                      .slice(0, 30)
+                      .join(" "),
+                  }}
                 ></p>
 
                 {/* Buttons */}

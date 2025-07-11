@@ -59,7 +59,7 @@ export interface Blog {
   description?: string;
   created_at?: string;
   status?: string;
-category_id?:string;
+  category_id?: string;
   // MongoDB Fields
   _id?: string;
   blogTitle?: string;
@@ -131,6 +131,8 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
   meta_description: blog.meta_description,
 });
 
+// app/blog/[slug]/page.tsx
+
 const DetailPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const { slug } = useParams<{ slug: string }>();
@@ -144,9 +146,6 @@ const DetailPage: React.FC = () => {
   const [cats, setRitzCats] = useState<CategoryData[]>([]);
   const [latestRBlogs, setLatestRBlogs] = useState<Blog[]>([]);
   const [blogs, setBlogs] = useState<MergedBlogs[]>([]);
-  const stripHtml = (html: string) => {
-    return html.replace(/<[^>]+>/g, "");
-  };
 
   const router = useRouter();
   // const [searchedBlog, setSearchedBlog] = useState<boolean>(false);
@@ -158,7 +157,7 @@ const DetailPage: React.FC = () => {
         const cleanSlug = slug?.replace(/\.html$/, "");
 
         // Fetch categories
-        const { data } = await axios.get(`/api/ritzCats/getAllCats`);
+        // const { data } = await axios.get(`/api/ritzCats/getAllCats`);
         const catData2 = await axios.get(`/api/blog/categories`);
 
         const [resMongo, resMySQL] = await Promise.all([
@@ -176,7 +175,7 @@ const DetailPage: React.FC = () => {
 
         setBlogs(merged);
 
-        setRitzCats([...data.allCategories, ...catData2.data]);
+        setRitzCats([...catData2.data]);
         // Attempt to resolve slug
         const response = await axios.get(`/api/resolve/${cleanSlug}`);
 
@@ -215,19 +214,9 @@ const DetailPage: React.FC = () => {
     if (slug) fetchData();
   }, [slug]);
 
-  // const readMorRelated = async (cti:string)=>{
-  //   alert(cti)
-  //     try{
-        
-  //     } catch(err){
-
-  //     }
-  // }
-
-
-
-
-
+  console.log("====================================");
+  console.log(singleBlog, cats);
+  console.log("====================================");
 
   if (loading) return <Loader />;
 
@@ -238,62 +227,6 @@ const DetailPage: React.FC = () => {
     return (
       <>
         <Header />
-        <head>
-          <meta charSet="utf-8" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-          <title>
-            {singleBlog?.meta_title ||
-              singleBlog?.blogTitle ||
-              "What Is the Role of SEO in Digital Marketing?"}
-          </title>
-
-          <meta
-            name="description"
-            content={stripHtml(
-              singleBlog?.meta_description ||
-                singleBlog?.blogDescription ||
-                "A beautiful website isn’t enough in today’s competitive online world. You need people to find it. That’s where SEO (Search Engine Optimization) comes in. SEO is crucial in digital riving organic traffic, and boosting brand authority online."
-            )}
-          />
-
-          <meta
-            name="keyword"
-            content={
-              singleBlog?.meta_keywords ||
-              singleBlog?.metaKeywords ||
-              "SEO role in digital marketing, importance of SEO, SEO and digital marketing, SEO benefits, digital marketing"
-            }
-          />
-
-          <meta
-            property="og:title"
-            content={
-              singleBlog?.meta_title ||
-              singleBlog?.blogTitle ||
-              "What Is the Role of SEO in Digital Marketing?"
-            }
-          />
-
-          <meta
-            property="og:description"
-            content={stripHtml(
-              singleBlog?.meta_description ||
-                singleBlog?.blogDescription ||
-                "A beautiful website isn’t enough in today’s competitive online world. You need people to find it. That’s where SEO (Search Engine Optimization) comes in. SEO is crucial in digital marketing, helping businesses boost visibility, attract organic traffic, and build lasting online authority."
-            )}
-          />
-
-          <meta
-            property="og:image"
-            content={
-              singleBlog?.blog_image ||
-              singleBlog?.blogBanner ||
-              "/default-og-image.jpg"
-            }
-          />
-        </head>
 
         <div className={styles.wrapper}>
           {/* Left Side Blog Content */}
@@ -323,7 +256,10 @@ const DetailPage: React.FC = () => {
                   })}
                 </span>
                 <span className={styles.category}>
-                  {isMongo ? singleBlog.blogCategoryId : "Uncategorized"}
+                  {isMongo
+                    ? singleBlog.blogCategoryId
+                    : cats.find((id) => id.id === singleBlog.category_id)
+                        ?.name || "Unknown Category"}
                 </span>
               </div>
               <Share2
@@ -376,7 +312,9 @@ const DetailPage: React.FC = () => {
               {(isMongo ? singleBlog.metaKeywords : singleBlog.meta_keywords)
                 ?.split(",")
                 .map((word, idx) => (
-                  <span key={idx}>{word.trim()}</span>
+                  <span style={{ cursor: "pointer" }} key={idx}>
+                    {word.trim()}
+                  </span>
                 ))}
             </div>
 
@@ -423,7 +361,7 @@ const DetailPage: React.FC = () => {
 
                       return (
                         <div
-                        onClick={()=>router.push(`/${blog.id}`)}
+                          onClick={() => router.push(`/${blog.id}`)}
                           className={styles.resultCard}
                           key={`${blog.id}-${idx}`}
                         >
@@ -453,11 +391,18 @@ const DetailPage: React.FC = () => {
             {/* {cats && ( */}
             <div className={styles.categories}>
               {cats &&
-              // const isMG = data.id;
+                // const isMG = data.id;
                 cats.map((data) => {
                   return (
                     <div
-                    onClick={()=>router.push(`/category/${data.name?.toLowerCase().split(" ").join("-") || data.categorySlug}`)}
+                      onClick={() =>
+                        router.push(
+                          `/category/${
+                            data.name?.toLowerCase().split(" ").join("-") ||
+                            data.categorySlug
+                          }`
+                        )
+                      }
                       key={data._id || data.id}
                       className={styles.categoryCard}
                     >
