@@ -11,7 +11,7 @@ import "../styles/animation-css.css";
 // import Head from "next/head";
 
 import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./page.module.css";
 import ServiceThirdHero from "@/allPages/serviceThirdPage/ServiceThirdHero";
@@ -146,7 +146,7 @@ const DetailPage: React.FC = () => {
   const [cats, setRitzCats] = useState<CategoryData[]>([]);
   const [latestRBlogs, setLatestRBlogs] = useState<Blog[]>([]);
   const [blogs, setBlogs] = useState<MergedBlogs[]>([]);
-
+  const [clickedPlatform, setClickedPlatform] = useState<string | null>(null);
   const router = useRouter();
   // const [searchedBlog, setSearchedBlog] = useState<boolean>(false);
   useEffect(() => {
@@ -214,15 +214,68 @@ const DetailPage: React.FC = () => {
     if (slug) fetchData();
   }, [slug]);
 
-  console.log("====================================");
-  console.log(singleBlog, cats);
-  console.log("====================================");
+  useEffect(() => {
+    if (clickedPlatform) {
+      const timeout = setTimeout(() => setClickedPlatform(null), 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [clickedPlatform]);
+
+  function getShareUrl(
+    platform: string,
+    title: string,
+    url: string
+  ): string | undefined {
+    const encodedTitle = encodeURIComponent(title);
+    const encodedUrl = encodeURIComponent(url);
+
+    switch (platform) {
+      case "facebook":
+        return `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+      case "twitter":
+        return `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+      case "linkedin":
+        return `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      case "whatsapp":
+        return `https://wa.me/?text=${encodedTitle}%20${encodedUrl}`;
+      default:
+        return undefined;
+    }
+  }
+
+  const handleCopy = (platform: string) => {
+    setClickedPlatform(platform);
+
+    const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+    const fullUrl = `${baseUrl}/blog/${slug}`;
+    const title = singleBlog?.title ?? "";
+
+    if (platform === "copy") {
+      navigator.clipboard
+        .writeText(fullUrl)
+        .then(() => {
+          // optional toast or alert
+          console.log("URL copied to clipboard!");
+        })
+        .catch((err) => {
+          console.error("Failed to copy: ", err);
+        });
+      return; // ✅ Don't continue
+    }
+
+    const shareUrl = getShareUrl(platform, title, fullUrl);
+    if (shareUrl) {
+      window.open(shareUrl, "_blank", "noopener,noreferrer");
+    }
+  };
 
   if (loading) return <Loader />;
 
   // ✅ Render Blog if found
   if (singleBlog) {
     const isMongo = !!singleBlog.blogTitle;
+
+    // const [isClick, setIsClick] = useState<boolean>();
 
     return (
       <>
@@ -444,19 +497,69 @@ const DetailPage: React.FC = () => {
                   className={styles.modalClose}
                   onClick={() => setShowModal(false)}
                 />
-                <button>
+                <button
+                  style={{
+                    backgroundColor:
+                      clickedPlatform === "copy" ? "yellowgreen" : undefined,
+                    color: clickedPlatform === "copy" ? "white" : undefined,
+                    fontWeight: clickedPlatform === "copy" ? "bold" : undefined,
+                  }}
+                  onClick={() => handleCopy("copy")}
+                >
                   <Copy /> Copy URL
                 </button>
-                <button>
+                <button
+                  style={{
+                    backgroundColor:
+                      clickedPlatform === "facebook"
+                        ? "yellowgreen"
+                        : undefined,
+                    color: clickedPlatform === "facebook" ? "white" : undefined,
+                    fontWeight:
+                      clickedPlatform === "facebook" ? "bold" : undefined,
+                  }}
+                  onClick={() => handleCopy("facebook")}
+                >
                   <Facebook /> Facebook
                 </button>
-                <button>
+                <button
+                  style={{
+                    backgroundColor:
+                      clickedPlatform === "twitter" ? "yellowgreen" : undefined,
+                    color: clickedPlatform === "twitter" ? "white" : undefined,
+                    fontWeight:
+                      clickedPlatform === "twitter" ? "bold" : undefined,
+                  }}
+                  onClick={() => handleCopy("twitter")}
+                >
                   <Twitter /> X
                 </button>
-                <button>
+                <button
+                  style={{
+                    backgroundColor:
+                      clickedPlatform === "linkedin"
+                        ? "yellowgreen"
+                        : undefined,
+                    color: clickedPlatform === "linkedin" ? "white" : undefined,
+                    fontWeight:
+                      clickedPlatform === "linkedin" ? "bold" : undefined,
+                  }}
+                  onClick={() => handleCopy("linkedin")}
+                >
                   <Linkedin /> LinkedIn
                 </button>
-                <button>
+                <button
+                  style={{
+                    backgroundColor:
+                      clickedPlatform === "whatsapp"
+                        ? "yellowgreen"
+                        : undefined,
+                    color: clickedPlatform === "whatsapp" ? "white" : undefined,
+                    fontWeight:
+                      clickedPlatform === "whatsapp" ? "bold" : undefined,
+                  }}
+                  onClick={() => handleCopy("whatsapp")}
+                >
                   <ExternalLink /> WhatsApp
                 </button>
               </div>
