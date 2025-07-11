@@ -309,7 +309,7 @@ const Header = () => {
                         className="nav-links"
                         style={{
                           color:
-                            pathname === "/contact" ? "#8a5a0d" : "inherit",
+                            pathname === "/contact.html" ? "#8a5a0d" : "inherit",
                         }}
                       >
                         Contact us
@@ -534,7 +534,7 @@ const Header = () => {
                   <Link href="/blog">Blog</Link>
                 </li>
                 <li>
-                  <Link href="/contact">Contact us</Link>
+                  <Link href="/contact.html">Contact us</Link>
                 </li>
               </ul>
             </nav>

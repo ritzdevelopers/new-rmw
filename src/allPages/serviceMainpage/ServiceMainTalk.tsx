@@ -47,7 +47,7 @@ const ServiceMainTalk = () => {
                     <div className="col-xl-4 col-lg-4 col-md-4">
                       <div className="tp-cta__3-action d-none d-md-block text-md-end">
                         <Link
-                          href="/contact/"
+                          href="/contact.html"
                           target="_self"
                           rel="nofollow"
                         >

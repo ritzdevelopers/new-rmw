@@ -126,7 +126,7 @@ const ServiceFirst = ({ heading }: ServiceFirstProps) => {
                   <div className="tp-hover__btn-wrap tp-btn__bounce">
                     <Link
                       className="tp-hover__btn tp-hover__btn-item"
-                      href="/contact"
+                      href="/contact.html"
                       target="_self"
                       rel="nofollow"
                     >

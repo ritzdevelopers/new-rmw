@@ -135,7 +135,7 @@ const ServiceMainHero = () => {
                       <div className="tp-hero__2-action d-flex align-items-center">
                         <span>
                           <Link
-                            href="/contact"
+                            href="/contact.html"
                             className="tp-hero__action-btn tp-hero__2-btn"
                           >
                             <span>
@@ -157,7 +157,7 @@ const ServiceMainHero = () => {
                             </span>
                           </Link>
                         </span>
-                        <Link href="/contact/" rel="nofollow" target="_self">
+                        <Link href="/contact.html" rel="nofollow" target="_self">
                           CONTACT US
                         </Link>
                       </div>
@@ -182,7 +182,7 @@ const ServiceMainHero = () => {
                             animationDelay: "0.3s",
                           }}
                         >
-                          <Link href="/contact/" rel="nofollow" target="_self">
+                          <Link href="/contact.html/" rel="nofollow" target="_self">
                             <span>
                               <svg
                                 width="93"
