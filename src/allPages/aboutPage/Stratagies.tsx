@@ -49,7 +49,7 @@ const Stratagies = () => {
                       </span>
                     </Link>
                   </span>
-                  <Link href="#" rel="nofollow" target="_self">
+                  <Link href="/contact.html" rel="nofollow" target="_self">
                     LEARN MORE
                   </Link>
                 </div>
@@ -76,7 +76,7 @@ const Stratagies = () => {
                   <div className="row">
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/branding-identity-agency-india">
+                        <Link href="/services/branding-and-identity-development.html">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
@@ -87,7 +87,7 @@ const Stratagies = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/advertisement-designing.html">
+                        <Link href="/services/print-advertising.html/advertisement-designing">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
