@@ -37,25 +37,25 @@ const Elementor = () => {
    
       description:
         "Turning browsers into buyers isn’t magic. It’s precise digital persuasion. Our strategically obsessive digital campaigns boost visibility, amplify engagement, and reliably convert attention into measurable profits. Predictably brilliant.",
-        link: "/services/digital-marketing.html",
+        link: "/services/digital-marketing",
     },
     {
       title: "Content Marketing",
       description:
         "Content without action is merely decoration. Our stories don’t just attract eyes, they move hearts and minds, persuading customers to act, buy, and loyally champion your brand. Charmingly effective.",
-        link: "/services/contents-marketing.html",
+        link: "/services/contents-marketing",
     },
     {
       title: "(PPC) Advertising",
       description:
         "Why chase customers when you can strategically appear exactly where they’re searching? Our PPC approach delivers instant leads, measurable returns, and satisfaction so swiftly that you’ll swear it’s cheating (it’s not).",
-        link: "/services/digital-marketing.html/ppc-google-ads-agency",
+        link: "/services/digital-marketing/ppc-google-ads-agency",
     },
     {
       title: "Web Designing & Development",
       description:
         "Your website is your digital handshake, so let’s make sure that it’s firm and welcoming. We design intuitive and visually delightful digital experiences that charm visitors into becoming loyal patrons.",
-        link: "/services/web-designing-and-development.html",
+        link: "/services/web-designing-and-development",
     },
   ]
 

@@ -489,37 +489,37 @@ const Header = () => {
                     }`}
                   >
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/digital-marketing.html">
+                      <Link href="/services/digital-marketing">
                         Digital Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/creative-services.html">
+                      <Link href="/services/creative-services">
                         Creative Services
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/print-advertising.html">
+                      <Link href="/services/print-advertising">
                         Print Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/radio-advertising.html">
+                      <Link href="/services/radio-advertising">
                         Radio Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/contents-marketing.html">
+                      <Link href="/services/contents-marketing">
                         Content Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/web-designing-and-development.html">
+                      <Link href="/services/web-designing-and-development">
                         Web Development
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/celebrity-endorsements.html">
+                      <Link href="/services/celebrity-endorsements">
                         Celebrity Endorsements
                       </Link>
                     </li>

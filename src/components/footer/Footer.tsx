@@ -193,7 +193,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-135"
                         >
                           <Link
-                            href="/services/digital-marketing.html"
+                            href="/services/digital-marketing"
                             style={{ color: "#FBD98C" }}
                           >
                             Digital Marketing
@@ -204,7 +204,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-136"
                         >
                           <Link
-                            href="/services/print-advertising.html"
+                            href="/services/print-advertising"
                             style={{ color: "#FBD98C" }}
                           >
                             Print Advertising
@@ -215,7 +215,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-137"
                         >
                           <Link
-                            href="/services/radio-advertising.html"
+                            href="/services/radio-advertising"
                             style={{ color: "#FBD98C" }}
                           >
                             Radio Advertising
@@ -226,7 +226,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-138"
                         >
                           <Link
-                            href="/services/creative-services.html"
+                            href="/services/creative-services"
                             style={{ color: "#FBD98C" }}
                           >
                             Creative Services
@@ -237,7 +237,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-138"
                         >
                           <Link
-                            href="/services/contents-marketing.html"
+                            href="/services/contents-marketing"
                             style={{ color: "#FBD98C" }}
                           >
                             Content Marketing
@@ -248,7 +248,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
                         >
                           <Link
-                            href="/services/web-designing-and-development.html"
+                            href="/services/web-designing-and-development"
                             style={{ color: "#FBD98C" }}
                           >
                             Web Development
@@ -259,7 +259,7 @@ const Footer = () => {
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
                         >
                           <Link
-                            href="/services/celebrity-endorsements.html"
+                            href="/services/celebrity-endorsements"
                             style={{ color: "#FBD98C" }}
                           >
                             Celebrity Endorsements
