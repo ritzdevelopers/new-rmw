@@ -51,8 +51,6 @@ const Header = () => {
     const fetchMenu = async () => {
       try {
         const response = await axios.get("/api/header_data");
-        console.log(response);
-        
         setMenuData(response.data);
       } catch (error) {
         console.error("Failed to fetch menu", error);
@@ -175,7 +173,8 @@ const Header = () => {
                         href="/about.html"
                         className="nav-links"
                         style={{
-                          color: pathname === "/about.html" ? "#8a5a0d" : "inherit",
+                          color:
+                            pathname === "/about.html" ? "#8a5a0d" : "inherit",
                         }}
                       >
                         About
@@ -183,10 +182,11 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/"
+                        href="/services"
                         className="nav-links"
                         style={{
-                          color: pathname === "" ? "#8a5a0d" : "inherit",
+                          color:
+                            pathname === "/services" ? "#8a5a0d" : "inherit",
                         }}
                       >
                         Services
@@ -309,7 +309,9 @@ const Header = () => {
                         className="nav-links"
                         style={{
                           color:
-                            pathname === "/contact.html" ? "#8a5a0d" : "inherit",
+                            pathname === "/contact.html"
+                              ? "#8a5a0d"
+                              : "inherit",
                         }}
                       >
                         Contact us
@@ -487,40 +489,42 @@ const Header = () => {
                     }`}
                   >
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/digital-marketing.html">
+                      <Link href="/services/digital-marketing.html">
                         Digital Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/creative-services.html">
+                      <Link href="/services/creative-services.html">
                         Creative Services
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/print-advertising.html">
+                      <Link href="/services/print-advertising.html">
                         Print Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/radio-advertising.html">Radio Marketing</Link>
+                      <Link href="/services/radio-advertising.html">
+                        Radio Marketing
+                      </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/contents-marketing.html">
+                      <Link href="/services/contents-marketing.html">
                         Content Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/web-designing-and-development.html">
+                      <Link href="/services/web-designing-and-development.html">
                         Web Development
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/celebrity-endorsements.html">
+                      <Link href="/services/celebrity-endorsements.html">
                         Celebrity Endorsements
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/influencer-marketing-agency-in-india">
+                      <Link href="/services/influencer-marketing-agency-in-india">
                         Influencer Marketing
                       </Link>
                     </li>
@@ -622,7 +626,8 @@ const Header = () => {
                   color: "#000",
                 }}
               >
-                We build stories not just worth telling, but worth sharing. That’s what sets us apart.
+                We build stories not just worth telling, but worth sharing.
+                That’s what sets us apart.
               </div>
 
               <div>

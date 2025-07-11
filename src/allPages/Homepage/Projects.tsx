@@ -60,7 +60,7 @@ const Projects = () => {
                             />
                             <div className="tp-project__icon">
                               <Link
-                                href="/branding-and-identity-development.html"
+                                href="/services/branding-and-identity-development.html"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -91,7 +91,7 @@ const Projects = () => {
                         >
                           <h3 className="tp-project__title">
                             <Link
-                              href="/branding-and-identity-development.html"
+                              href="/services/branding-and-identity-development.html"
                               rel="nofollow"
                               target="_self"
                             >
@@ -119,7 +119,7 @@ const Projects = () => {
                             />
                             <div className="tp-project__icon">
                               <Link
-                                href="/digital-marketing.html"
+                                href="/services/digital-marketing.html"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -149,7 +149,7 @@ const Projects = () => {
                         >
                           <h3 className="tp-project__title">
                             <Link
-                              href="/digital-marketing.html"
+                              href="/services/digital-marketing.html"
                               rel="nofollow"
                               target="_self"
                             >
@@ -177,7 +177,7 @@ const Projects = () => {
                             />
                             <div className="tp-project__icon">
                               <Link
-                                href="/social-media-management.html"
+                                href="/services/social-media-management.html"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -207,7 +207,7 @@ const Projects = () => {
                         >
                           <h3 className="tp-project__title">
                             <Link
-                              href="/social-media-management.html"
+                              href="/services/social-media-management.html"
                               rel="nofollow"
                               target="_self"
                             >
@@ -235,7 +235,7 @@ const Projects = () => {
                             />
                             <div className="tp-project__icon">
                               <Link
-                                href="/print-advertising.html"
+                                href="/services/print-advertising.html"
                                 rel="nofollow"
                                 target="_self"
                               >
@@ -265,7 +265,7 @@ const Projects = () => {
                         >
                           <h3 className="tp-project__title">
                             <Link
-                              href="/print-advertising.html"
+                              href="/services/print-advertising.html"
                               rel="nofollow"
                               target="_self"
                             >

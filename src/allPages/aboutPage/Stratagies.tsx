@@ -98,7 +98,7 @@ const Stratagies = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/contents-marketing.html">
+                        <Link href="/services/contents-marketing.html">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
@@ -109,7 +109,7 @@ const Stratagies = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/digital-marketing.html">
+                        <Link href="/services/digital-marketing.html">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
