@@ -89,7 +89,6 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Fetch all blogs slug and store it in an array and then highlight the link is pathname == any slug from array
   interface Article {
     blog_image: string;
     slug: string;
@@ -195,8 +194,8 @@ const Header = () => {
                       <div
                         className="tp-submenu submenu has-homemenu"
                         style={{
-                          padding: "0 25px",
-                          width: "90vw",
+                          // padding: "0 25px",
+                          width: "100vw",
                           left: "-70%",
                           transform: "translate(-40%, 0)",
                         }}
@@ -210,16 +209,24 @@ const Header = () => {
                             <div className="elementor-element elementor-element-f21576b e-con-full d-flex justify-content-center align-items-center e-con e-child">
                               <div className="elementor-element elementor-element-08a5267 elementor-widget elementor-widget-tp-menu-demo">
                                 <div className="w-100">
-                                  <ul className="d-flex justify-content-evenly align-items-center w-100 list-unstyled m-0 p-0">
+                                  <ul className="d-flex justify-content-evenly align-items-center flex-wrap list-unstyled m-0 p-0">
                                     {menuData.map((item, index) => (
                                       <li
                                         key={index}
-                                        className="position-relative  flex-fill text-center text-nowrap "
+                                        className="position-relative flex-fill text-center px-2"
+                                        style={{
+                                          width:"190px",
+                                          height:"50px",
+                                          // backgroundColor:'yellow',
+                                          display:'flex',
+                                          justifyContent:'center',
+                                          alignItems:'center'
+                                        }}
                                       >
                                         {/* Main Menu Item */}
                                         <Link
                                           href={`${item.link}`}
-                                          className="nav-link flex justify-center items-center"
+                                          className="nav-link"
                                           style={{ fontSize: "14px" }}
                                         >
                                           {item.name}{" "}
