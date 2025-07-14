@@ -165,8 +165,19 @@ const Footer = () => {
                           id="menu-item-144"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
                         >
-                          <Link href="/contact.html" style={{ color: "#FBD98C" }}>
+                          <Link
+                            href="/contact.html"
+                            style={{ color: "#FBD98C" }}
+                          >
                             Contact
+                          </Link>
+                        </li>
+                        <li
+                          id="menu-item-144"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
+                        >
+                          <Link href="/career" style={{ color: "#FBD98C" }}>
+                            Career
                           </Link>
                         </li>
                       </ul>
@@ -296,7 +307,10 @@ const Footer = () => {
                     <div className="textwidget custom-html-widget">
                       <div className="tp-footer__contact-info">
                         <div className="tp-footer__list">
-                          <Link href="/contact.html" style={{ color: "#FBD98C" }}>
+                          <Link
+                            href="/contact.html"
+                            style={{ color: "#FBD98C" }}
+                          >
                             Address: 402 – 404, <br /> 4th floor Corporate Park,{" "}
                             <br />
                             Tower A1 Sector 142, <br /> Noida
