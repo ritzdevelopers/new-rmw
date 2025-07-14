@@ -162,7 +162,9 @@ const Articles: React.FC = () => {
           axios.get("/api/ritz_blogs/get-all-blogs"),
           axios.get("/api/all_blogs"),
         ]);
-
+        console.log("====================================");
+        console.log(resMongo.data.allBlogs);
+        console.log("====================================");
         const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
         const mysqlBlogs: Article2[] = resMySQL.data || [];
 
@@ -369,50 +371,107 @@ const Articles: React.FC = () => {
               {/* Footer Actions */}
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginTop: "1rem",
+                  height: "220px",
+                  overflow: "hidden",
+                  position: "relative",
+                  borderRadius: "10px",
                 }}
               >
-                {/* Date */}
-                <div
+                <img
+                  src={
+                    article.banner.includes("/images")
+                      ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
+                          article.banner.split("/images/")[1]
+                        }`
+                      : `/blogs/${article.banner}`
+                  }
+                  alt={
+                    article.banner.includes("/images")
+                      ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
+                          article.banner.split("/images/")[1]
+                        }`
+                      : `/blogs/${article.banner}`
+                  }
+                  className="card-img-top"
                   style={{
-                    fontSize: "0.8rem",
-                    color: "#888",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.4rem",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.4s ease",
+                    borderRadius: "10px",
                   }}
-                >
-                  <CalendarDays size={14} />
-                  {new Date(article.createdAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
+                  onMouseOver={(e: React.MouseEvent<HTMLImageElement>) =>
+                    (e.currentTarget.style.transform = "scale(1.05)")
+                  }
+                  onMouseOut={(e: React.MouseEvent<HTMLImageElement>) =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
+                />
+              </div>
+
+              {/* Content */}
+              <div className="card-body d-flex flex-column justify-between">
+                {/* Title */}
+                <h5 className="card-title fw-semibold">
+                  {article.title.split(/\s+/).slice(0, 10).join(" ")}
+                </h5>
+
+                {/* Paragraph */}
+                <p
+                  // style={{fontWeight:'lighter'}}
+                  className="card-text text-muted"
+                  dangerouslySetInnerHTML={{
+                    __html: article.meta_description
+                      .split(/\s+/)
+                      .slice(0, 30)
+                      .join(" "),
+                  }}
+                ></p>
+
+                {/* Buttons */}
+                <div className="d-flex justify-content-between align-items-center mt-auto">
+                  {/* Published Date */}
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1"
+                    disabled
+                  >
+                    <CalendarDays size={16} />
+                    <span>
+                      {new Date(article.createdAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </button>
+
+                  {/* Share Button */}
+                  <button
+                    onClick={(): void =>
+                      handleCopy(article.title.split(" ").join("-"))
+                    }
+                    // type="button"
+                    style={{
+                      // backgroundColor: "blue",
+                      color: "#E5B05C",
+                      fontSize: "0.875rem",
+                      padding: "0.25rem 0.5rem",
+                      border: "none",
+                      borderRadius: "0.375rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.25rem",
+                      cursor: "pointer",
+                      borderWidth: "1px",
+                      borderColor: "#E5B05C",
+                      borderStyle: "solid",
+                    }}
+                  >
+                    <Share2 size={16} />
+                    Share Now
+                  </button>
                 </div>
-                {/* Share */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleCopy(article.title.split(" ").join("-"));
-                  }}
-                  style={{
-                    background: "transparent",
-                    border: "1px solid #E5B05C",
-                    color: "#E5B05C",
-                    borderRadius: "6px",
-                    padding: "0.3rem 0.6rem",
-                    fontSize: "0.85rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.3rem",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Share2 size={15} /> Share
-                </button>
               </div>
             </div>
           </div>
