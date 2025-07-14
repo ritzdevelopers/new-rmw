@@ -81,7 +81,9 @@ const Articles: React.FC = () => {
           axios.get("/api/ritz_blogs/get-all-blogs"),
           axios.get("/api/all_blogs"),
         ]);
-
+        console.log("====================================");
+        console.log(resMongo.data.allBlogs);
+        console.log("====================================");
         const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
         const mysqlBlogs: Article2[] = resMySQL.data || [];
 
@@ -182,15 +184,23 @@ const Articles: React.FC = () => {
                 <img
                   src={
                     article.banner.includes("/images")
-                      ? `/static/${article.banner}`
+                      ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
+                          article.banner.split("/images/")[1]
+                        }`
                       : `/blogs/${article.banner}`
                   }
-                  alt={`Banner of ${article.banner}`}
+                  alt={
+                    article.banner.includes("/images")
+                      ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
+                          article.banner.split("/images/")[1]
+                        }`
+                      : `/blogs/${article.banner}`
+                  }
                   className="card-img-top"
                   style={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "contain",
+                    objectFit: "cover",
                     transition: "transform 0.4s ease",
                     borderRadius: "10px",
                   }}
@@ -206,7 +216,9 @@ const Articles: React.FC = () => {
               {/* Content */}
               <div className="card-body d-flex flex-column justify-between">
                 {/* Title */}
-                <h5 className="card-title fw-semibold">{article.title.split(/\s+/).slice(0, 10).join(" ")}</h5>
+                <h5 className="card-title fw-semibold">
+                  {article.title.split(/\s+/).slice(0, 10).join(" ")}
+                </h5>
 
                 {/* Paragraph */}
                 <p

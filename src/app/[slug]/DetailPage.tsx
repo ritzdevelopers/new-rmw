@@ -149,6 +149,8 @@ const DetailPage: React.FC = () => {
   const [clickedPlatform, setClickedPlatform] = useState<string | null>(null);
   const router = useRouter();
   // const [searchedBlog, setSearchedBlog] = useState<boolean>(false);
+  // NEXT_PUBLIC_SERVER_IMG_PATHs
+  const staticAPI = process.env.NEXT_PUBLIC_SERVER_IMG_PATH ||  `http://localhost:5000/images`;
   useEffect(() => {
     // setSearchedBlog(false);
     const fetchData = async () => {
@@ -288,9 +290,16 @@ const DetailPage: React.FC = () => {
               <img
                 src={
                   isMongo
-                    ? `/static/${singleBlog.blogBanner}`
+                    ? `${staticAPI}/${
+                       singleBlog.blogBanner.split("/images/")[1]
+                     }`
                     : `/blogs/${singleBlog.blog_image}`
                 }
+
+                //  ? `${staticAPI}/${
+                //           article.banner.split("/images/")[1]
+                //         }`
+                //       : `/blogs/${article.banner}`
                 alt={isMongo ? singleBlog.blogTitle : singleBlog.title}
                 className={styles.imgD}
               />
@@ -333,7 +342,13 @@ const DetailPage: React.FC = () => {
                   <div key={idx}>
                     <h2>{page.metaTitle}</h2>
                     <img
-                      src={`/static/${page.innerImg}`}
+                     src={
+                  isMongo
+                    ? `${staticAPI}/${
+                       page.innerImg.split("/images/")[1]
+                     }`
+                    : `/static/${page.innerImg}`
+                }
                       alt={`Inner ${idx}`}
                       className={styles.innerImg}
                     />
@@ -419,11 +434,13 @@ const DetailPage: React.FC = () => {
                           key={`${blog.id}-${idx}`}
                         >
                           <img
-                            src={
-                              blog.banner.includes("/images")
-                                ? `/static/${blog.banner}`
-                                : `/blogs/${blog.banner}`
-                            }
+                             src={
+                  isMongo
+                    ? `${staticAPI}/${
+                       blog.banner.split("/images/")[1]
+                     }`
+                    : `/static/${blog.banner}`
+                }
                             alt={blog.title}
                             title={blog.title}
                             loading="lazy"
@@ -475,10 +492,12 @@ const DetailPage: React.FC = () => {
                     <div className={styles.resultCard} key={idx}>
                       <img
                         src={
-                          isMongo
-                            ? `/static/${blog.blogBanner}`
-                            : `/blogs/${blog.blog_image}`
-                        }
+                  isMongo
+                    ? `${staticAPI}/${
+                       blog.blogBanner.split("/images/")[1]
+                     }`
+                    : `/blogs/${blog.blog_image}`
+                }
                         alt={isMongo ? blog.blogTitle : blog.title}
                       />
                       <b>{isMongo ? blog.blogTitle : blog.title}</b>
