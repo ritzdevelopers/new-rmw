@@ -127,9 +127,6 @@ const Articles: React.FC = () => {
         console.log("====================================");
         console.log(resMongo.data.allBlogs);
         console.log("====================================");
-        console.log("====================================");
-        console.log(resMongo.data.allBlogs);
-        console.log("====================================");
         const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
         const mysqlBlogs: Article2[] = resMySQL.data || [];
 
@@ -278,13 +275,15 @@ const Articles: React.FC = () => {
                 <img
                   src={
                     article.banner.includes("/images")
-                      ? `/api/images${article.banner.split("/images")[1]}`
+                      ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
+                          article.banner.split("/images/")[1]
+                        }`
                       : `/blogs/${article.banner}`
                   }
                   alt={
                     article.banner.includes("/images")
                       ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
-                          article.banner.split("/images")[1]
+                          article.banner.split("/images/")[1]
                         }`
                       : `/blogs/${article.banner}`
                   }
@@ -292,7 +291,6 @@ const Articles: React.FC = () => {
                   style={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
                     objectFit: "cover",
                     transition: "transform 0.4s ease",
                     borderRadius: "10px",
@@ -309,9 +307,6 @@ const Articles: React.FC = () => {
               {/* Content */}
               <div className="card-body d-flex flex-column justify-between">
                 {/* Title */}
-                <h5 className="card-title fw-semibold">
-                  {article.title.split(/\s+/).slice(0, 10).join(" ")}
-                </h5>
                 <h5 className="card-title fw-semibold">
                   {article.title.split(/\s+/).slice(0, 10).join(" ")}
                 </h5>
