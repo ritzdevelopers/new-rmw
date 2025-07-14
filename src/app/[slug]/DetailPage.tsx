@@ -11,7 +11,7 @@ import "../styles/animation-css.css";
 // import Head from "next/head";
 
 import { useParams, useRouter } from "next/navigation";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styles from "./page.module.css";
 import ServiceThirdHero from "@/allPages/serviceThirdPage/ServiceThirdHero";
