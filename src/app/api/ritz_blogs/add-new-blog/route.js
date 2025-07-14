@@ -19,7 +19,7 @@ function generateSlug(name) {
 async function saveFileToUploads(file, filename) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  const uploadDir = path.join(process.cwd(), "static", "images");
+  const uploadDir = path.join(`${process.env.SERVER_IMG_PATH}`, "images");
 
   if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
