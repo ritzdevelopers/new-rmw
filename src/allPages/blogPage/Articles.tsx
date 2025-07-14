@@ -297,14 +297,26 @@ const Articles: React.FC = () => {
               {/* Footer Actions */}
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginTop: "1rem",
+                  height: "220px",
+                  overflow: "hidden",
+                  position: "relative",
+                  borderRadius: "10px",
                 }}
               >
-                {/* Date */}
-                <div
+                <img
+                  src={
+                    article.banner.includes("/images")
+                      ? `/api/images${article.banner.split("/images")[1]}`
+                      : `/blogs/${article.banner}`
+                  }
+                  alt={
+                    article.banner.includes("/images")
+                      ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
+                          article.banner.split("/images")[1]
+                        }`
+                      : `/blogs/${article.banner}`
+                  }
+                  className="card-img-top"
                   style={{
                     fontSize: "0.8rem",
                     color: "#888",
