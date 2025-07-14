@@ -173,7 +173,8 @@ const DetailPage: React.FC = () => {
   const [recentB, setRecentB] = useState<RecentBlogs[]>([]);
   // const [searchedBlog, setSearchedBlog] = useState<boolean>(false);
   // NEXT_PUBLIC_SERVER_IMG_PATHs
-  const staticAPI = process.env.NEXT_PUBLIC_SERVER_IMG_PATH ||  `http://localhost:5000/images`;
+  const staticAPI =
+    process.env.NEXT_PUBLIC_SERVER_IMG_PATH || `http://localhost:5000/images`;
   useEffect(() => {
     // setSearchedBlog(false);
     const fetchData = async () => {
@@ -340,11 +341,10 @@ const DetailPage: React.FC = () => {
                 src={
                   isMongo
                     ? `${staticAPI}/${
-                       singleBlog.blogBanner.split("/images/")[1]
-                     }`
+                        singleBlog.blogBanner?.split("/images/")[1]
+                      }`
                     : `/blogs/${singleBlog.blog_image}`
                 }
-
                 //  ? `${staticAPI}/${
                 //           article.banner.split("/images/")[1]
                 //         }`
@@ -391,13 +391,11 @@ const DetailPage: React.FC = () => {
                   <div key={idx}>
                     <h2>{page.metaTitle}</h2>
                     <img
-                     src={
-                  isMongo
-                    ? `${staticAPI}/${
-                       page.innerImg.split("/images/")[1]
-                     }`
-                    : `/static/${page.innerImg}`
-                }
+                      src={
+                        isMongo
+                          ? `${staticAPI}/${page.innerImg.split("/images/")[1]}`
+                          : `/static/${page.innerImg}`
+                      }
                       alt={`Inner ${idx}`}
                       className={styles.innerImg}
                     />
@@ -598,20 +596,13 @@ const DetailPage: React.FC = () => {
                           key={`${blog.id}-${idx}`}
                         >
                           <img
-                             src={
-                  isMongo
-                    ? `${staticAPI}/${
-                       blog.banner.split("/images/")[1]
-                     }`
-                    : `/static/${blog.banner}`
-                }
-                             src={
-                  isMongo
-                    ? `${staticAPI}/${
-                       blog.banner.split("/images/")[1]
-                     }`
-                    : `/static/${blog.banner}`
-                }
+                            src={
+                              isMongo
+                                ? `${staticAPI}/${
+                                    blog.banner.split("/images/")[1]
+                                  }`
+                                : `/static/${blog.banner}`
+                            }
                             alt={blog.title}
                             title={blog.title}
                             loading="lazy"
@@ -652,7 +643,7 @@ const DetailPage: React.FC = () => {
                   );
                 })}
             </div>
-
+            
             {/* Related Blogs */}
             <div className={styles.relatedBlogs}>
               {latestRBlogs &&
@@ -668,18 +659,12 @@ const DetailPage: React.FC = () => {
                     >
                       <img
                         src={
-                  isMongo
-                    ? `${staticAPI}/${
-                       blog.blogBanner.split("/images/")[1]
-                     }`
-                    : `/blogs/${blog.blog_image}`
-                }
-                  isMongo
-                    ? `${staticAPI}/${
-                       blog.blogBanner.split("/images/")[1]
-                     }`
-                    : `/blogs/${blog.blog_image}`
-                }
+                          isMongo
+                            ? `${staticAPI}/${
+                                blog.blogBanner?.split("/images/")[1]
+                              }`
+                            : `/blogs/${blog.blog_image}`
+                        }
                         alt={isMongo ? blog.blogTitle : blog.title}
                       />
                       <b>{isMongo ? blog.blogTitle : blog.title}</b>
