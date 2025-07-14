@@ -173,17 +173,7 @@ const DetailPage: React.FC = () => {
   const [recentB, setRecentB] = useState<RecentBlogs[]>([]);
   // const [searchedBlog, setSearchedBlog] = useState<boolean>(false);
   // NEXT_PUBLIC_SERVER_IMG_PATHs
-  const staticAPI = process.env.NEXT_PUBLIC_SERVER_IMG_PATH
-    ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images`
-    : `/api/images`;
-  const [mBC, setMBC] = useState<string>();
-
-  const navigation = useRouter();
-  const handleSingleBlogs = (slug: string) => {
-    const url = slug.split(" ").join("-").toLowerCase();
-    navigation.push(`/${url}`);
-  };
-
+  const staticAPI = process.env.NEXT_PUBLIC_SERVER_IMG_PATH ||  `http://localhost:5000/images`;
   useEffect(() => {
     // setSearchedBlog(false);
     const fetchData = async () => {
@@ -345,123 +335,104 @@ const DetailPage: React.FC = () => {
         <div className={styles.wrapper}>
           {/* Left Side Blog Content */}
           <div className={styles.leftSide}>
-            <div>
-              {" "}
-              <div className={styles.bannerImage}>
-                <img
-                  src={
-                    isMongo
-                      ? `${staticAPI}${
-                          singleBlog.blogBanner?.split("/images")[1]
-                        }`
-                      : `/blogs/${singleBlog.blog_image}`
-                  }
-                  //  ? `${staticAPI}${
-                  //           article.banner.split("/images")[1]
-                  //         }`
-                  //       : `/blogs/${article.banner}`
-                  alt={isMongo ? singleBlog.blogTitle : singleBlog.title}
-                  className={styles.imgD}
-                />
-              </div>
-              {/* Date + Category + Share */}
-              <div className={styles.blogMeta}>
-                <div>
-                  <span>
-                    {new Date(
-                      isMongo ? singleBlog.createdAt! : singleBlog.created_at!
-                    ).toLocaleDateString("en-IN", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                  <span className={styles.category}>
-                    {isMongo
-                      ? mBC
-                      : cats.find((id) => id.id === singleBlog.category_id)
-                          ?.name || "Unknown Category"}
-                  </span>
-                </div>
-                <Share2
-                  className={styles.shareIcon}
-                  onClick={() => setShowModal(true)}
-                />
-              </div>
-              {/* Blog Title */}
-              <h1 className={styles.blogTitle}>
-                {isMongo ? singleBlog.blogTitle : singleBlog.title}
-              </h1>
-              {/* Blog Content */}
-              <div className={styles.contentBody}>
-                {isMongo ? (
-                  singleBlog.blogBody?.map((page, idx) => (
-                    <div key={idx}>
-                      <h2>{page.metaTitle}</h2>
-                      {page.innerImg && (
-                        <img
-                          src={
-                            isMongo
-                              ? `${staticAPI}${
-                                  page.innerImg.split("/images")[1]
-                                }`
-                              : `/static/${page.innerImg}`
-                          }
-                          alt={`Inner ${idx}`}
-                          className={styles.innerImg}
-                        />
-                      )}
-                      <div className={styles.tableWrapper}>
-                        {" "}
-                        <div
-                          className={styles.contentBody}
-                          dangerouslySetInnerHTML={{
-                            __html: page.metaDescription,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className={styles.tableWrapper}>
-                    <div
-                      className={styles.contentBody}
-                      dangerouslySetInnerHTML={{
-                        __html: singleBlog.description!,
-                      }}
-                    />
-                  </div>
-                )}
-              </div>
-              {/* Tags */}
-              <div className={styles.keywords}>
-                {(isMongo ? singleBlog.metaKeywords : singleBlog.meta_keywords)
-                  ?.split(",")
-                  .map((word: string, idx: number) => {
-                    const trimmed = word.trim();
-                    const slug = trimmed.replace(/\s+/g, "-"); // Replace spaces with dashes
+            <div className={styles.bannerImage}>
+              <img
+                src={
+                  isMongo
+                    ? `${staticAPI}/${
+                       singleBlog.blogBanner.split("/images/")[1]
+                     }`
+                    : `/blogs/${singleBlog.blog_image}`
+                }
 
-                    return (
-                      <span
-                        key={idx}
-                        onClick={() => router.push(`/key/${slug}`)}
-                        style={{
-                          cursor: "pointer",
-                          marginRight: "8px",
-                          marginBottom: "8px",
-                          padding: "4px 10px",
-                          display: "inline-block",
-                          borderRadius: "8px",
-                          backgroundColor: "#f1f1f1",
-                          fontSize: "14px",
-                          border: "1px solid #ccc",
-                        }}
-                      >
-                        {trimmed}
-                      </span>
-                    );
+                //  ? `${staticAPI}/${
+                //           article.banner.split("/images/")[1]
+                //         }`
+                //       : `/blogs/${article.banner}`
+                alt={isMongo ? singleBlog.blogTitle : singleBlog.title}
+                className={styles.imgD}
+              />
+            </div>
+
+            {/* Date + Category + Share */}
+            <div className={styles.blogMeta}>
+              <div>
+                <span>
+                  {new Date(
+                    isMongo ? singleBlog.createdAt! : singleBlog.created_at!
+                  ).toLocaleDateString("en-IN", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
                   })}
+                </span>
+                <span className={styles.category}>
+                  {isMongo
+                    ? singleBlog.blogCategoryId
+                    : cats.find((id) => id.id === singleBlog.category_id)
+                        ?.name || "Unknown Category"}
+                </span>
               </div>
+              <Share2
+                className={styles.shareIcon}
+                onClick={() => setShowModal(true)}
+              />
+            </div>
+
+            {/* Blog Title */}
+            <h1 className={styles.blogTitle}>
+              {isMongo ? singleBlog.blogTitle : singleBlog.title}
+            </h1>
+
+            {/* Blog Content */}
+            <div className={styles.contentBody}>
+              {isMongo ? (
+                singleBlog.blogBody?.map((page, idx) => (
+                  <div key={idx}>
+                    <h2>{page.metaTitle}</h2>
+                    <img
+                     src={
+                  isMongo
+                    ? `${staticAPI}/${
+                       page.innerImg.split("/images/")[1]
+                     }`
+                    : `/static/${page.innerImg}`
+                }
+                      alt={`Inner ${idx}`}
+                      className={styles.innerImg}
+                    />}
+                    <div className={styles.tableWrapper}>
+                      {" "}
+                      <div
+                        className={styles.contentBody}
+                        dangerouslySetInnerHTML={{
+                          __html: page.metaDescription,
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className={styles.tableWrapper}>
+                  <div
+                    className={styles.contentBody}
+                    dangerouslySetInnerHTML={{
+                      __html: singleBlog.description!,
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* Tags */}
+            <div className={styles.keywords}>
+              {(isMongo ? singleBlog.metaKeywords : singleBlog.meta_keywords)
+                ?.split(",")
+                .map((word, idx) => (
+                  <span style={{ cursor: "pointer" }} key={idx}>
+                    {word.trim()}
+                  </span>
+                ))}
             </div>
 
             <div className="container py-4">
@@ -627,13 +598,13 @@ const DetailPage: React.FC = () => {
                           key={`${blog.id}-${idx}`}
                         >
                           <img
-                            src={
-                              isMongo
-                                ? `${staticAPI}${
-                                    blog.banner.split("/images")[1]
-                                  }`
-                                : `/static/${blog.banner}`
-                            }
+                             src={
+                  isMongo
+                    ? `${staticAPI}/${
+                       blog.banner.split("/images/")[1]
+                     }`
+                    : `/static/${blog.banner}`
+                }
                             alt={blog.title}
                             title={blog.title}
                             loading="lazy"
@@ -678,24 +649,17 @@ const DetailPage: React.FC = () => {
             {/* Related Blogs */}
             <div className={styles.relatedBlogs}>
               {latestRBlogs &&
-                latestRBlogs
-                  // .filter((blog) => blog._id !== singleBlog?._id)
-                  .map((blog, idx) => (
-                    <div
-                      onClick={() =>
-                        handleSingleBlogs(blog.blogSlug || blog.slug || "")
-                      }
-                      className={styles.resultCard}
-                      key={idx}
-                    >
+                latestRBlogs.map((blog, idx) => {
+                  return (
+                    <div className={styles.resultCard} key={idx}>
                       <img
                         src={
-                          isMongo
-                            ? `${staticAPI}${
-                                blog.blogBanner?.split("/images")[1]
-                              }`
-                            : `/blogs/${blog.blog_image}`
-                        }
+                  isMongo
+                    ? `${staticAPI}/${
+                       blog.blogBanner.split("/images/")[1]
+                     }`
+                    : `/blogs/${blog.blog_image}`
+                }
                         alt={isMongo ? blog.blogTitle : blog.title}
                       />
                       <b>{isMongo ? blog.blogTitle : blog.title}</b>
