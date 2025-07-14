@@ -235,15 +235,13 @@ const Articles: React.FC = () => {
                 <img
                   src={
                     article.banner.includes("/images")
-                      ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
-                          article.banner.split("/images/")[1]
-                        }`
+                      ? `/api/images${article.banner.split("/images")[1]}`
                       : `/blogs/${article.banner}`
                   }
                   alt={
                     article.banner.includes("/images")
                       ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
-                          article.banner.split("/images/")[1]
+                          article.banner.split("/images")[1]
                         }`
                       : `/blogs/${article.banner}`
                   }
