@@ -118,7 +118,12 @@ const Articles: React.FC = () => {
           axios.get("/api/ritz_blogs/get-all-blogs"),
           axios.get("/api/all_blogs"),
         ]);
-
+        console.log("====================================");
+        console.log(resMongo.data.allBlogs);
+        console.log("====================================");
+        console.log("====================================");
+        console.log(resMongo.data.allBlogs);
+        console.log("====================================");
         const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
         const mysqlBlogs: Article2[] = resMySQL.data || [];
 
@@ -209,137 +214,123 @@ const Articles: React.FC = () => {
       >
         {" "}
         {currentCards.map((article: MergedBlogs) => (
-          <div
-            key={article.id}
-            onClick={() => handleSingleBlogs(article.id)}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              height: "100%",
-              borderRadius: "16px",
-              overflow: "hidden",
-              backgroundColor: "#fff",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              cursor: "pointer",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform =
-                "translateY(-5px)";
-              (e.currentTarget as HTMLDivElement).style.boxShadow =
-                "0 8px 30px rgba(0,0,0,0.1)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform =
-                "translateY(0)";
-              (e.currentTarget as HTMLDivElement).style.boxShadow =
-                "0 4px 20px rgba(0,0,0,0.08)";
-            }}
-          >
-            {/* Image Section */}
-            <div style={{ height: "200px", width: "100%", overflow: "hidden" }}>
-              <img
-                src={
-                  article.banner.includes("/images")
-                    ? `/api/images${article.banner.split("/images")[1]}`
-                    : `/blogs/${article.banner}`
-                }
-                alt={article.title}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  transition: "transform 0.3s ease",
-                }}
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.transform = "scale(1.05)")
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.transform = "scale(1)")
-                }
-              />
-            </div>
-            {/* Content Section */}
+          <div key={article.id} onClick={() => handleSingleBlogs(article.id)}>
             <div
+              className="card h-100 shadow-sm border-0"
               style={{
-                padding: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                flexGrow: 1,
+                borderRadius: "1rem",
+                overflow: "hidden",
+                background: "#ffffff",
               }}
             >
-              {/* Title */}
-              <h3
-                style={{
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  marginBottom: "0.75rem",
-                  color: "#333",
-                }}
-              >
-                {article.title.split(" ").slice(0, 10).join(" ")}{" "}
-              </h3>
-              {/* Description */}
-              <p
-                style={{
-                  fontSize: "1rem",
-                  color: "#555",
-                  lineHeight: "1.6",
-                  flexGrow: 1,
-                }}
-              >
-                {stripHtml(
-                  article.meta_description.split(/\s+/).slice(0, 30).join(" ")
-                )}
-                ...
-              </p>
-              {/* Footer Actions */}
+              {/* Image */}
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginTop: "1rem",
+                  height: "220px",
+                  overflow: "hidden",
+                  position: "relative",
+                  borderRadius: "10px",
                 }}
               >
-                {/* Date */}
-                <div
+                <img
+                  src={
+                    article.banner.includes("/images")
+                      ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
+                          article.banner.split("/images/")[1]
+                        }`
+                      : `/blogs/${article.banner}`
+                  }
+                  alt={
+                    article.banner.includes("/images")
+                      ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
+                          article.banner.split("/images/")[1]
+                        }`
+                      : `/blogs/${article.banner}`
+                  }
+                  className="card-img-top"
                   style={{
-                    fontSize: "0.8rem",
-                    color: "#888",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.4rem",
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectFit: "cover",
+                    transition: "transform 0.4s ease",
+                    borderRadius: "10px",
                   }}
-                >
-                  <CalendarDays size={14} />
-                  {new Date(article.createdAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
+                  onMouseOver={(e: React.MouseEvent<HTMLImageElement>) =>
+                    (e.currentTarget.style.transform = "scale(1.05)")
+                  }
+                  onMouseOut={(e: React.MouseEvent<HTMLImageElement>) =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
+                />
+              </div>
+
+              {/* Content */}
+              <div className="card-body d-flex flex-column justify-between">
+                {/* Title */}
+                <h5 className="card-title fw-semibold">
+                  {article.title.split(/\s+/).slice(0, 10).join(" ")}
+                </h5>
+                <h5 className="card-title fw-semibold">
+                  {article.title.split(/\s+/).slice(0, 10).join(" ")}
+                </h5>
+
+                {/* Paragraph */}
+                <p
+                  // style={{fontWeight:'lighter'}}
+                  className="card-text text-muted"
+                  dangerouslySetInnerHTML={{
+                    __html: article.meta_description
+                      .split(/\s+/)
+                      .slice(0, 30)
+                      .join(" "),
+                  }}
+                ></p>
+
+                {/* Buttons */}
+                <div className="d-flex justify-content-between align-items-center mt-auto">
+                  {/* Published Date */}
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1"
+                    disabled
+                  >
+                    <CalendarDays size={16} />
+                    <span>
+                      {new Date(article.createdAt).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </span>
+                  </button>
+
+                  {/* Share Button */}
+                  <button
+                    onClick={(): void =>
+                      handleCopy(article.title.split(" ").join("-"))
+                    }
+                    // type="button"
+                    style={{
+                      // backgroundColor: "blue",
+                      color: "#E5B05C",
+                      fontSize: "0.875rem",
+                      padding: "0.25rem 0.5rem",
+                      border: "none",
+                      borderRadius: "0.375rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.25rem",
+                      cursor: "pointer",
+                      borderWidth: "1px",
+                      borderColor: "#E5B05C",
+                      borderStyle: "solid",
+                    }}
+                  >
+                    <Share2 size={16} />
+                    Share Now
+                  </button>
                 </div>
-                {/* Share */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleCopy(article.title.split(" ").join("-"));
-                  }}
-                  style={{
-                    background: "transparent",
-                    border: "1px solid #E5B05C",
-                    color: "#E5B05C",
-                    borderRadius: "6px",
-                    padding: "0.3rem 0.6rem",
-                    fontSize: "0.85rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.3rem",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Share2 size={15} /> Share
-                </button>
               </div>
             </div>
           </div>
