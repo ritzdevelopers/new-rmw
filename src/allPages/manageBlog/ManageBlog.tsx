@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, Home, Monitor } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useRouter } from "next/navigation";
 
 type Blog = {
   _id: string;
@@ -33,11 +32,8 @@ export default function ManageBlogs() {
   const blogsPerPage = 15;
   const router = useRouter();
   useEffect(() => {
-    const router = useRouter();
-    useEffect(() => {
-      setSearchQuery("");
-      setSelectedCategory("");
-    }, []);
+    setSearchQuery("");
+    setSelectedCategory("");
   }, []);
 
   // Fetch blogs whenever filters or page changes
@@ -61,13 +57,8 @@ export default function ManageBlogs() {
           router.push("/not-found"); // ✅ manually redirect
           return;
         }
-        if (!data.allBlogs || data.allBlogs.length === 0) {
-          router.push("/not-found"); // ✅ manually redirect
-          return;
-        }
         setBlogs(data.allBlogs);
         setTotalBlogs(data.allBlogs.length);
-        // if(!blogs) NotFound();
         // if(!blogs) NotFound();
       } catch (error) {
         console.error("Error fetching blogs:", error);
@@ -279,57 +270,6 @@ export default function ManageBlogs() {
                 </tr>
               </thead>
               <tbody>
-                {blogs.length > 0 &&
-                  blogs.map((blog) => (
-                    <tr key={blog._id} className="border-b">
-                      <td className="p-2">
-                        <Image
-                          src={`${blog.blogBanner}`}
-                          alt={blog.blogTitle}
-                          width={120}
-                          height={120}
-                          className="rounded-md"
-                        />
-                      </td>
-                      <td className="p-2">{blog.blogTitle}</td>
-                      {/* <td className="p-2 text-sm">{`/ritz_blogs/get-single-blog/${blog._id}`}</td> */}
-                      <td className="p-2">{blog.categoryName}</td>
-                      <td className="p-2">
-                        {new Date(blog.createdAt).toLocaleDateString("en-US")}
-                      </td>
-                      <td className="p-2">
-                        <span
-                          className={`px-2 py-1 rounded-md text-white ${
-                            blog.status === "active"
-                              ? "bg-green-500"
-                              : "bg-red-500"
-                          }`}
-                        >
-                          {blog.status}
-                        </span>
-                      </td>
-                      <td>
-                        <Link
-                          href={`/all-ritz-blogs/read-single-blog/${blog._id}`}
-                        >
-                          <button className="text-blue-600 hover:text-blue-800 pl-1 cursor-pointer">
-                            <FaEye />
-                          </button>
-                        </Link>
-                        <Link href={`/admin/update/step-1/${blog._id}`}>
-                          <button className="text-green-600 hover:text-green-800 pl-1 cursor-pointer">
-                            <FaEdit />
-                          </button>
-                        </Link>
-                        <button
-                          className="text-red-600 hover:text-red-800 pl-1 cursor-pointer"
-                          onClick={() => handleDataDeleteModal(blog._id)}
-                        >
-                          <FaTrash />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
                 {blogs.length > 0 &&
                   blogs.map((blog) => (
                     <tr key={blog._id} className="border-b">
