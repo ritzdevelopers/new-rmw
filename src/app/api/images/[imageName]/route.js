@@ -5,7 +5,7 @@ import path from "path";
 export async function GET(request, context) {
   const { imageName } = await context.params;
 
-  const imagePath = path.join("D:/ritz-blogs/images", imageName);
+  const imagePath = path.join(process.env.SERVER_IMG_PATH, imageName);
 
   try {
     if (!fs.existsSync(imagePath)) {
