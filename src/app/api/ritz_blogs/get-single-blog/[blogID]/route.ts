@@ -11,16 +11,7 @@ export function slugify(title: string) {
     .toLowerCase()
     .trim()
     .replace(/[^a-z0-9]+/g, "-") // replace non-alphanumerics with -
-    .replace(/^-+|-+$/g, "");    // trim - from start and end
-}
-
-// utils/slugify.ts
-export function slugify(title: string) {
-  return title
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-") // replace non-alphanumerics with -
-    .replace(/^-+|-+$/g, "");    // trim - from start and end
+    .replace(/^-+|-+$/g, ""); // trim - from start and end
 }
 
 // utils/slugify.ts
@@ -40,8 +31,6 @@ export async function GET(
     await connectMongoDB();
     const blogId = await params.blogID;
     const blSlug = slugify(blogId);
-    const blogId = await params.blogID;
-    const blSlug = slugify(blogId);
 
     if (!blogId) {
       return NextResponse.json(
@@ -50,10 +39,8 @@ export async function GET(
       );
     }
 
-
     const blog = await RitzBlogModel.findOne({
-      blogSlug: blSlug
-      blogSlug: blSlug
+      blogSlug: blSlug,
     });
 
     if (!blog) {
@@ -63,24 +50,34 @@ export async function GET(
       );
     }
     const blogCat = await RitzCats.findById(blog.blogCategoryId);
-    console.log('====================================');
-    console.log('these are blog cats related ', blogCat);
-    console.log('====================================');
+    console.log("====================================");
+    console.log("these are blog cats related ", blogCat);
+    console.log("====================================");
+
+    const blogCat = await RitzCats.findById(blog.blogCategoryId);
+    console.log("====================================");
+    console.log("these are blog cats related ", blogCat);
+    console.log("====================================");
 
     const catRelatedBlogs = await RitzBlogModel.find({
       blogCategoryId: blogCat,
-    }).sort({ createdAt: -1 })
+    })
+      .sort({ createdAt: -1 })
       .limit(4);
-    const recentBlogs = await RitzBlogModel.find({}).sort({ createdAt: -1 }).limit(4);
-    const categoryN = blogCat?.categoryName;
-
+    const recentBlogs = await RitzBlogModel.find({})
+      .sort({ createdAt: -1 })
       .limit(4);
-    const recentBlogs = await RitzBlogModel.find({}).sort({ createdAt: -1 }).limit(4);
     const categoryN = blogCat?.categoryName;
 
     return NextResponse.json(
-      { message: "Blog fetched successfully", blog, latestRBlogs: catRelatedBlogs, recentBlogs, categoryN, success: true },
-      { message: "Blog fetched successfully", blog, latestRBlogs: catRelatedBlogs, recentBlogs, categoryN, success: true },
+      {
+        message: "Blog fetched successfully",
+        blog,
+        latestRBlogs: catRelatedBlogs,
+        recentBlogs,
+        categoryN,
+        success: true,
+      },
       { status: 200 }
     );
   } catch (error) {

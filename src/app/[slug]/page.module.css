@@ -64,6 +64,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   object-fit: cover;
   margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .imgD {
@@ -88,10 +89,16 @@
   color: #fff;
   padding: 0.45rem 0.9rem;
   border-radius: 6px;
-  color: #fff;
-  padding: 0.45rem 0.9rem;
-  border-radius: 6px;
   margin-left: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.category:hover {
+  background: #4f46e5;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.03em;
@@ -304,11 +311,6 @@
 .contentBody h3 {
   margin-top: 1.5rem;
   font-weight: 600;
-}
-
-.contentBody a {
-  color: blue;
-  font-weight: bold;
 }
 
 .contentBody a {
