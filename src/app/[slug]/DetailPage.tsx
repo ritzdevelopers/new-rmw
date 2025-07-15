@@ -815,3 +815,4 @@ const DetailPage: React.FC = () => {
 };
 
 export default DetailPage;
+
