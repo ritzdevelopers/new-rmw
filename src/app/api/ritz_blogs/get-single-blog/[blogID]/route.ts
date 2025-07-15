@@ -14,12 +14,23 @@ export function slugify(title: string) {
     .replace(/^-+|-+$/g, "");    // trim - from start and end
 }
 
+// utils/slugify.ts
+export function slugify(title: string) {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-") // replace non-alphanumerics with -
+    .replace(/^-+|-+$/g, "");    // trim - from start and end
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { blogID: string } }
 ) {
   try {
     await connectMongoDB();
+    const blogId = await params.blogID;
+    const blSlug = slugify(blogId);
     const blogId = await params.blogID;
     const blSlug = slugify(blogId);
 
@@ -30,7 +41,9 @@ export async function GET(
       );
     }
 
+
     const blog = await RitzBlogModel.findOne({
+      blogSlug: blSlug
       blogSlug: blSlug
     });
 
@@ -41,9 +54,9 @@ export async function GET(
       );
     }
     const blogCat = await RitzCats.findById(blog.blogCategoryId);
-    // console.log('====================================');
-    // console.log('these are blog cats related ', blogCat);
-    // console.log('====================================');
+    console.log('====================================');
+    console.log('these are blog cats related ', blogCat);
+    console.log('====================================');
 
     const catRelatedBlogs = await RitzBlogModel.find({
       blogCategoryId: blogCat,
@@ -52,7 +65,12 @@ export async function GET(
     const recentBlogs = await RitzBlogModel.find({}).sort({ createdAt: -1 }).limit(4);
     const categoryN = blogCat?.categoryName;
 
+      .limit(4);
+    const recentBlogs = await RitzBlogModel.find({}).sort({ createdAt: -1 }).limit(4);
+    const categoryN = blogCat?.categoryName;
+
     return NextResponse.json(
+      { message: "Blog fetched successfully", blog, latestRBlogs: catRelatedBlogs, recentBlogs, categoryN, success: true },
       { message: "Blog fetched successfully", blog, latestRBlogs: catRelatedBlogs, recentBlogs, categoryN, success: true },
       { status: 200 }
     );

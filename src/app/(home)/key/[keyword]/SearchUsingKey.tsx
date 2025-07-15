@@ -23,7 +23,7 @@ interface Props {
 const SearchUsingKey: React.FC<Props> = ({ keyword }) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  // console.log("this keywords i am taking in layout ", keyword);
+  console.log("this keywords i am taking in layout ", keyword);
   useEffect(() => {
     const fetchBlogs = async () => {
       if (!keyword) return;
@@ -55,7 +55,11 @@ const SearchUsingKey: React.FC<Props> = ({ keyword }) => {
         <div className={styles.gridOuter}>
           <div className={styles.grid}>
             {blogs.map((blog, index) => (
-              <div onClick={()=>router.push(`/${blog.slug}`)} key={index} className={styles.card}>
+              <div
+                onClick={() => router.push(`/${blog.slug}`)}
+                key={index}
+                className={styles.card}
+              >
                 {/* Image */}
                 <div className={styles.cardImageWrap}>
                   <img
