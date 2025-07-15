@@ -5,8 +5,8 @@ import path from "path";
 export async function GET(request, context) {
   const { imageName } = await context.params;
 
-  const imagePath = path.join(process.env.SERVER_IMG_PATH, imageName);
-
+  const imagePath = path.join(`${process.env.SERVER_IMG_PATH}/images`, imageName);
+      
   try {
     if (!fs.existsSync(imagePath)) {
       return new NextResponse("Image not found", { status: 404 });
