@@ -4,14 +4,6 @@ function stripHtml(html: string) {
   return html.replace(/<[^>]*>?/gm, " ");
 }
 
-function stripHtml(html: string) {
-  return html.replace(/<[^>]*>?/gm, " ");
-}
-
-function stripHtml(html: string) {
-  return html.replace(/<[^>]*>?/gm, " ");
-}
-
 import Loader from "@/components/loader/Loader";
 import axios from "axios";
 // import Link from "next/link";
@@ -69,8 +61,6 @@ const Articles: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const cardsPerPage = 12;
 
   const navigation = useRouter();
@@ -78,39 +68,6 @@ const Articles: React.FC = () => {
     const url = slug.split(" ").join("-").toLowerCase();
     navigation.push(`/${url}`);
   };
-
-  // useEffect(() => {
-  //   // const handlePagination = () => {
-  //     const pageNum = sessionStorage.getItem("page-no");
-  //     if(!pageNum) {
-  //       // setCurrentPage(1)
-  //       sessionStorage.setItem("page-no", String(currentPage));
-  //     } else  {
-  //       sessionStorage.setItem("page-no", String(currentPage));
-  //     }
-
-  //   };
-  //   handlePagination();
-  // }, [currentPage]);
-
-  // useEffect(() => {
-  //   const pageNum = sessionStorage.getItem("page-no");
-  //   console.log('this is page num ', pageNum);
-
-  //   if (pageNum) {
-  //     setCurrentPage(Number(pageNum));
-  //   }
-  // }, []);
-  useEffect(() => {
-    const call = () => {
-      const pageNum = sessionStorage.getItem("page-no");
-      if (Number(pageNum) > 1) {
-        setCurrentPage(Number(pageNum));
-      }
-    };
-    call();
-  }, []);
-
 
   // useEffect(() => {
   //   // const handlePagination = () => {
@@ -162,9 +119,7 @@ const Articles: React.FC = () => {
           axios.get("/api/ritz_blogs/get-all-blogs"),
           axios.get("/api/all_blogs"),
         ]);
-        console.log("====================================");
-        console.log(resMongo.data.allBlogs);
-        console.log("====================================");
+
         const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
         const mysqlBlogs: Article2[] = resMySQL.data || [];
 
@@ -198,8 +153,6 @@ const Articles: React.FC = () => {
 
   const totalPages = Math.ceil(filteredBlogs.length / cardsPerPage);
   const indexOfLastCard = (currentPage ?? 1) * cardsPerPage;
-  const indexOfLastCard = (currentPage ?? 1) * cardsPerPage;
-  const indexOfLastCard = (currentPage ?? 1) * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = filteredBlogs.slice(indexOfFirstCard, indexOfLastCard);
 
@@ -208,18 +161,9 @@ const Articles: React.FC = () => {
       setCurrentPage(currentPage + 1);
       sessionStorage.setItem("page-no", String(currentPage + 1));
     }
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-      sessionStorage.setItem("page-no", String(currentPage + 1));
-    }
   };
 
   const handlePrev = () => {
-    if (currentPage ?? 1) {
-      setCurrentPage(currentPage - 1);
-      sessionStorage.setItem("page-no", String(currentPage - 1));
-      // handlePagination();
-    }
     if (currentPage ?? 1) {
       setCurrentPage(currentPage - 1);
       sessionStorage.setItem("page-no", String(currentPage - 1));
@@ -256,24 +200,6 @@ const Articles: React.FC = () => {
 
       {/* Blog Cards */}
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "2rem",
-          padding: "1rem",
-        }}
-      >
-        {" "}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "2rem",
-          padding: "1rem",
-        }}
-      >
-        {" "}
       <div
         style={{
           display: "grid",
@@ -371,105 +297,50 @@ const Articles: React.FC = () => {
               {/* Footer Actions */}
               <div
                 style={{
-                  height: "220px",
-                  overflow: "hidden",
-                  position: "relative",
-                  borderRadius: "10px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: "1rem",
                 }}
               >
-                <img
-                  src={
-                    article.banner.includes("/images")
-                      ? `/api/images${article.banner.split("/images")[1]}`
-                      : `/blogs/${article.banner}`
-                  }
-                  alt={
-                    article.banner.includes("/images")
-                      ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/${
-                          article.banner.split("/images")[1]
-                        }`
-                      : `/blogs/${article.banner}`
-                  }
-                  className="card-img-top"
+                {/* Date */}
+                <div
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    transition: "transform 0.4s ease",
-                    borderRadius: "10px",
+                    fontSize: "0.8rem",
+                    color: "#888",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.4rem",
                   }}
-                  onMouseOver={(e: React.MouseEvent<HTMLImageElement>) =>
-                    (e.currentTarget.style.transform = "scale(1.05)")
-                  }
-                  onMouseOut={(e: React.MouseEvent<HTMLImageElement>) =>
-                    (e.currentTarget.style.transform = "scale(1)")
-                  }
-                />
-              </div>
-
-              {/* Content */}
-              <div className="card-body d-flex flex-column justify-between">
-                {/* Title */}
-                <h5 className="card-title fw-semibold">
-                  {article.title.split(/\s+/).slice(0, 10).join(" ")}
-                </h5>
-
-                {/* Paragraph */}
-                <p
-                  // style={{fontWeight:'lighter'}}
-                  className="card-text text-muted"
-                  dangerouslySetInnerHTML={{
-                    __html: article.meta_description
-                      .split(/\s+/)
-                      .slice(0, 30)
-                      .join(" "),
-                  }}
-                ></p>
-
-                {/* Buttons */}
-                <div className="d-flex justify-content-between align-items-center mt-auto">
-                  {/* Published Date */}
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1"
-                    disabled
-                  >
-                    <CalendarDays size={16} />
-                    <span>
-                      {new Date(article.createdAt).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </span>
-                  </button>
-
-                  {/* Share Button */}
-                  <button
-                    onClick={(): void =>
-                      handleCopy(article.title.split(" ").join("-"))
-                    }
-                    // type="button"
-                    style={{
-                      // backgroundColor: "blue",
-                      color: "#E5B05C",
-                      fontSize: "0.875rem",
-                      padding: "0.25rem 0.5rem",
-                      border: "none",
-                      borderRadius: "0.375rem",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.25rem",
-                      cursor: "pointer",
-                      borderWidth: "1px",
-                      borderColor: "#E5B05C",
-                      borderStyle: "solid",
-                    }}
-                  >
-                    <Share2 size={16} />
-                    Share Now
-                  </button>
+                >
+                  <CalendarDays size={14} />
+                  {new Date(article.createdAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
                 </div>
+                {/* Share */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCopy(article.title.split(" ").join("-"));
+                  }}
+                  style={{
+                    background: "transparent",
+                    border: "1px solid #E5B05C",
+                    color: "#E5B05C",
+                    borderRadius: "6px",
+                    padding: "0.3rem 0.6rem",
+                    fontSize: "0.85rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.3rem",
+                    cursor: "pointer",
+                  }}
+                >
+                  <Share2 size={15} /> Share
+                </button>
               </div>
             </div>
           </div>
