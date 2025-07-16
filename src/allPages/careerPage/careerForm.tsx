@@ -62,7 +62,7 @@ const CareerForm = () => {
         method: "POST",
         body: formData,
       });
-      console.log("form: ", formData);
+      // console.log("form: ", formData);
 
       const result = await response.json();
       return result;

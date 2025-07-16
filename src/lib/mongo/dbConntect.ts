@@ -21,7 +21,6 @@ const globalWithMongoose = globalThis as typeof globalThis & GlobalWithMongooseC
 if (!globalWithMongoose.mongoose) {
   globalWithMongoose.mongoose = { conn: null, promise: null };
 }
-
 export const connectMongoDB = async () => {
   if (globalWithMongoose.mongoose.conn) {
     console.log("✅ MongoDB connected successfully (cached)");

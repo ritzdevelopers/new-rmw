@@ -1,6 +1,7 @@
 "use client";
 import { useSplitText } from "@/hooks/useSplitText";
-
+import styles from "./page.module.css";
+import Image from "next/image";
 const ServiceMainIdentity = () => {
 
   const textRefs = useSplitText();
@@ -436,11 +437,14 @@ const ServiceMainIdentity = () => {
                   <div className="col-xl-7">
                     <div className="tp-about__left d-md-flex">
                       <div className="tp-about__thumb-box mr-55">
-                        <div className="tp-about__thumb p-relative">
-                          <img
-                            decoding="async"
+                        <div className={styles.teamThumb}>
+                          <Image
                             src="/about-images/Team_rmw.jpg"
-                            alt=""
+                            alt="Just Another To The One"
+                            quality={100}
+                            fill
+                            priority
+                            style={{objectFit:'cover'}}
                           />
                           {/* <div className="tp-about__experience">
                             <h3 className="tp-about__experience-number">

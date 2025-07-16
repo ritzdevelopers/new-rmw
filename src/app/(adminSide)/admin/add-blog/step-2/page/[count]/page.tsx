@@ -200,7 +200,7 @@ const Page = () => {
         alert("Blog Has Been Posted Successfully.");
         router.push("/admin/add-blog");
       }
-      console.log("Uploaded Blog:", blogRes.data);
+      // console.log("Uploaded Blog:", blogRes.data);
     } catch (error) {
       alert("Internal Server Errors.");
       console.error("Error in handleUploadBlog:", error);

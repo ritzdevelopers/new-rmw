@@ -11,7 +11,7 @@ export async function GET(
 ) {
   try {
     const { blog_slug } = await context.params;
-    console.log("Slug received:", blog_slug);
+    // console.log("Slug received:", blog_slug);
 
     if (!blog_slug) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
@@ -23,7 +23,7 @@ export async function GET(
       [decodeURIComponent(blog_slug)]
     );
 
-    console.log("DB rows:", rows);
+    // console.log("DB rows:", rows);
 
     if (rows.length === 0) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });

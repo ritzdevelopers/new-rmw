@@ -1,5 +1,6 @@
 import Link from "next/link";
-
+import styles from "./page.module.css";
+import Image from "next/image";
 const Projects = () => {
   return (
     <div
@@ -31,7 +32,10 @@ const Projects = () => {
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="tp-project__title-box">
-                      <span className="tp-section-title-pre mb-25" style={{borderRadius:'0px'}}>
+                      <span
+                        className="tp-section-title-pre mb-25"
+                        style={{ borderRadius: "0px" }}
+                      >
                         Created Projects
                       </span>
                       <div className="tp-section-title-wrap d-flex align-items-center justify-content-between">
@@ -53,11 +57,18 @@ const Projects = () => {
                       >
                         <div className="tp-project__thumb-content">
                           <div className="tp-project__thumb">
-                            <img
-                              decoding="async"
-                              src="/home-images/home-project/Brand-Identity-610x600.png"
-                              alt=""
-                            />
+                            <div className={styles.ourPRCard}>
+                              <Image
+                                decoding="async"
+                                src="/home-images/home-project/Brand-Identity-610x600.png"
+                                alt="Brand Identity"
+                                fill
+                                quality={100}
+                                priority
+                                style={{objectFit:'cover'}}
+                              />
+                            </div>
+
                             <div className="tp-project__icon">
                               <Link
                                 href="/services/creative-services/branding-and-identity-development"
@@ -112,11 +123,17 @@ const Projects = () => {
                       >
                         <div className="tp-project__thumb-content">
                           <div className="tp-project__thumb">
-                            <img
-                              decoding="async"
-                              src="/home-images/home-project/Digital-Advertising-610x600.png"
-                              alt="Digital-Advertising"
-                            />
+                            <div className={styles.ourPRCard}>
+                              <Image
+                                decoding="async"
+                                src="/home-images/home-project/Digital-Advertising-610x600.png"
+                                fill
+                                quality={100}
+                                alt="Digital-Advertising"
+                                 style={{objectFit:'cover'}}
+                              />
+                            </div>
+
                             <div className="tp-project__icon">
                               <Link
                                 href="/services/digital-marketing"
@@ -144,8 +161,9 @@ const Projects = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="tp-project__content"
-                         style={{ borderBottomRightRadius: "0px" }}
+                        <div
+                          className="tp-project__content"
+                          style={{ borderBottomRightRadius: "0px" }}
                         >
                           <h3 className="tp-project__title">
                             <Link
@@ -170,11 +188,18 @@ const Projects = () => {
                       >
                         <div className="tp-project__thumb-content">
                           <div className="tp-project__thumb">
-                            <img
-                              decoding="async"
-                              src="/home-images/home-project/Social-Media-610x600.png"
-                              alt=""
-                            />
+                            <div className={styles.ourPRCard}>
+                              <Image
+                                decoding="async"
+                                src="/home-images/home-project/Social-Media-610x600.png"
+                                quality={100}
+                                // quality={100}
+                                fill
+                                alt="Social Media Management"
+                                 style={{objectFit:'cover'}}
+                              />
+                            </div>
+
                             <div className="tp-project__icon">
                               <Link
                                 href="/services/digital-marketing/social-media-management"
@@ -202,8 +227,9 @@ const Projects = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="tp-project__content"
-                         style={{ borderBottomRightRadius: "0px" }}
+                        <div
+                          className="tp-project__content"
+                          style={{ borderBottomRightRadius: "0px" }}
                         >
                           <h3 className="tp-project__title">
                             <Link
@@ -228,11 +254,18 @@ const Projects = () => {
                       >
                         <div className="tp-project__thumb-content">
                           <div className="tp-project__thumb">
-                            <img
-                              decoding="async"
-                              src="/home-images/home-project/Print-Advertising-610x600.png"
-                              alt=""
-                            />
+                            <div className={styles.ourPRCard}>
+                              <Image
+                                decoding="async"
+                                src="/home-images/home-project/Print-Advertising-610x600.png"
+                                priority
+                                quality={100}
+                                alt="Print Advertising"
+                                fill
+                                 style={{objectFit:'cover'}}
+                              />
+                            </div>
+
                             <div className="tp-project__icon">
                               <Link
                                 href="/services/print-advertising"
@@ -260,8 +293,9 @@ const Projects = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="tp-project__content"
-                         style={{ borderBottomRightRadius: "0px" }}
+                        <div
+                          className="tp-project__content"
+                          style={{ borderBottomRightRadius: "0px" }}
                         >
                           <h3 className="tp-project__title">
                             <Link

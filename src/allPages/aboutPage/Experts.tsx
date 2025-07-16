@@ -5,9 +5,11 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "@/app/styles/marque.css";
 // import Link from "next/link";
+import styles from "./page.module.css";
 
 import { Autoplay } from "swiper/modules";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const Experts = () => {
   const textRefs = useSplitText(); // ✅ Using the existing GSAP animation
@@ -81,11 +83,13 @@ const Experts = () => {
                       data-wow-duration=""
                       data-wow-delay=""
                     >
-                      <div className="tp-team__3-thumb p-relative">
-                        <img
+                      <div className={styles.ourMasters}>
+                        <Image
                           decoding="async"
                           src="/founders/RItesh_Malik.png"
-                          alt=""
+                          alt="About Our Agency & Legacy"
+                          fill
+                          quality={100}
                         />
                       </div>
                       <div className="tp-team__3-content d-flex align-items-center justify-content-between">
@@ -101,11 +105,14 @@ const Experts = () => {
                       data-wow-duration=""
                       data-wow-delay=""
                     >
-                      <div className="tp-team__3-thumb p-relative">
-                        <img
+                      <div className={styles.ourMasters}>
+                        <Image
                           decoding="async"
                           src="/founders/Satvinder_Kaur.png"
-                          alt=""
+                          alt="About Our Agency & Legacy"
+                          fill
+                          quality={100}
+                     
                         />
                       </div>
                       <div className="tp-team__3-content d-flex align-items-center justify-content-between">
@@ -121,11 +128,13 @@ const Experts = () => {
                       data-wow-duration=""
                       data-wow-delay=""
                     >
-                      <div className="tp-team__3-thumb p-relative">
-                        <img
+                      <div className={styles.ourMasters}>
+                        <Image
                           decoding="async"
                           src="/founders/Nishi_Malik.png"
-                          alt=""
+                          alt="About Our Agency & Legacy"
+                          fill
+                          quality={100}
                         />
                       </div>
                       <div className="tp-team__3-content d-flex align-items-center justify-content-between">

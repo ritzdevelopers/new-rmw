@@ -23,7 +23,7 @@ interface Props {
 const SearchUsingKey: React.FC<Props> = ({ keyword }) => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  console.log("this keywords i am taking in layout ", keyword);
+  // console.log("this keywords i am taking in layout ", keyword);
   useEffect(() => {
     const fetchBlogs = async () => {
       if (!keyword) return;
