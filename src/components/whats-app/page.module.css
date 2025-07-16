@@ -5,7 +5,7 @@
     bottom: 20px;
     right: 20px;
     z-index: 9999;
-    animation: btnAnime 1.5s infinite ease-in 0.2s;
+    animation: btnAnime 1.8s infinite ease-in 1s;
 }
 
 .whatsappButton {

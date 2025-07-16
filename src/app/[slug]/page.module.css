@@ -65,7 +65,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: relative;
   margin-bottom: 10px;
-  background: yellowgreen;
+  /* background: yellowgreen; */
   /* object-fit: contain; */
   overflow: hidden;
 }
@@ -73,7 +73,7 @@
 .imgD {
   height: 100%;
   width: 100%;
-  background: red;
+  /* background: red; */
 }
 
 .blogMeta {
