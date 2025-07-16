@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const VisitTracker = () => {
   useEffect(() => {
-    console.log("📡 VisitTracker mounted");
+    // console.log("📡 VisitTracker mounted");
 
     fetch(`/api/track-visit?url=${window.location.pathname}`, {
       method: "POST",

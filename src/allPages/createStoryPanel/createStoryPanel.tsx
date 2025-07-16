@@ -71,7 +71,7 @@ const CreateStoryPanel: React.FC = () => {
       });
   
       const data = await res.json();
-      console.log("📦 Server Response:", data);
+      // console.log("📦 Server Response:", data);
   
       if (res.ok) {
         const newId = data.id;
@@ -100,7 +100,7 @@ const CreateStoryPanel: React.FC = () => {
         setCategory("Finance");
         setAuthor("");
   
-        console.log("✅ Story folder saved successfully.");
+        // console.log("✅ Story folder saved successfully.");
       } else {
         console.error("❌ API Error:", data.error);
       }

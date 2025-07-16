@@ -14,9 +14,9 @@ function generateSlug(name: string): string {
 export async function POST(request: NextRequest) {
   try {
     await connectMongoDB();
-    console.log('====================================');
+    // console.log('====================================');
     console.log("API HIT");
-    console.log('====================================');
+    // console.log('====================================');
     // Parse the body safely
     const {
       categoryName,

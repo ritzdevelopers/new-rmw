@@ -10,7 +10,7 @@ interface Props {
 
 const Page = async ({ params }: Props) => {
   const key = await params.keyword
-  console.log('this is key ', key);
+  // console.log('this is key ', key);
   
   return (
      <section

@@ -37,9 +37,9 @@ export async function GET(
         }, { status: 200 })
 
     } catch (error) {
-        console.log('====================================');
+        // console.log('====================================');
         console.log("There are some errors in findCategorized blog controller plz fix the bug first!", error);
-        console.log('====================================');
+        // console.log('====================================');
         return NextResponse.json({
             message: "Internal Server Error",
             success: false,

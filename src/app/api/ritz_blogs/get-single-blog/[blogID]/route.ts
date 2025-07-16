@@ -41,9 +41,9 @@ export async function GET(
       );
     }
     const blogCat = await RitzCats.findById(blog.blogCategoryId);
-    console.log('====================================');
-    console.log('these are blog cats related ', blogCat);
-    console.log('====================================');
+    // console.log('====================================');
+    // console.log('these are blog cats related ', blogCat);
+    // console.log('====================================');
 
     const catRelatedBlogs = await RitzBlogModel.find({
       blogCategoryId: blogCat,

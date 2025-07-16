@@ -4,6 +4,7 @@ import axios from "axios";
 import styles from "./Card.module.css";
 import Link from "next/link";
 import Loader from "@/components/loader/Loader";
+import Image from "next/image";
 type Card = {
   id: string;
   blog_image: string;
@@ -72,11 +73,14 @@ const ProjectCards = () => {
                   className={`card bg-white text-black ${styles.card}`}
                 >
                   <div className={styles.imageContainer}>
-                    <img
+                    <Image
                       src={`/blogs/${card.blog_image}`}
-                      style={{ height: "200px", objectFit: "fill" }}
-                      className={`card-img-top ${styles.image}`}
+                      // style={{ height: "200px", objectFit: "fill" }}
+                      className={styles.image}
                       alt={card.title}
+                      fill
+                      quality={100}
+                      priority
                     />
                   </div>
                   <div className="card-body text-center">
