@@ -15,6 +15,7 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import axios from "axios";
+import Image from "next/image";
 
 // declare namespace JSX {
 //   interface IntrinsicElements {
@@ -215,12 +216,12 @@ const Header = () => {
                                         key={index}
                                         className="position-relative flex-fill text-center px-2"
                                         style={{
-                                          width:"190px",
-                                          height:"50px",
+                                          width: "190px",
+                                          height: "50px",
                                           // backgroundColor:'yellow',
-                                          display:'flex',
-                                          justifyContent:'center',
-                                          alignItems:'center'
+                                          display: "flex",
+                                          justifyContent: "center",
+                                          alignItems: "center",
                                         }}
                                       >
                                         {/* Main Menu Item */}
@@ -444,21 +445,18 @@ const Header = () => {
             className={styles.mobileMenu}
             onClick={(e) => e.stopPropagation()}
           >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                position: "relative",
-                top: "20px",
-              }}
-              className={styles.MobileSidebarLogo}
-            >
-              <img
-                style={{ height: "50px" }}
-                src="/logo-brown.png"
-                alt="RMW Logo"
-              />
+            <div className={styles.mobileSidebarLogo}>
+              <div className={styles.logoImageWrapper}>
+                <Image
+                  src="/logo-brown.png"
+                  alt="RMW Logo"
+                  fill
+                  className={styles.logoImage}
+                  sizes="100%"
+                  priority
+                />
+              </div>
+
               <button
                 className={styles.closeMenu}
                 onClick={() => setIsMenuOpen(false)}
@@ -647,28 +645,54 @@ const Header = () => {
                 >
                   Case Studies
                 </p>
-                <div
-                  className={styles.case_imgs}
-                  style={{
-                    display: "grid",
-                    gap: "2px",
-                    gridTemplateColumns: "repeat(2, 1fr)",
-                  }}
-                >
+                <div className={styles.caseImgs}>
                   <Link href="/revving-up-success-advertising-and-car-care-a-surprising-comparison">
-                    <img src="/blogs/2023/09/acr-768x404.jpg" alt="" />
+                    <div className={styles.imageWrapper}>
+                      <Image
+                        src="/blogs/2023/09/acr-768x404.jpg"
+                        alt="ACR Blog"
+                        fill
+                        className={styles.caseImage}
+                        sizes="100%"
+                        priority={false}
+                      />
+                    </div>
                   </Link>
+
                   <Link href="/sticking-to-success-a-case-study-on-the-fevicol-marketing-campaign">
-                    <img src="/blogs/2023/09/Slide1-768x432.jpg" alt="" />
+                    <div className={styles.imageWrapper}>
+                      <Image
+                        src="/blogs/2023/09/Slide1-768x432.jpg"
+                        alt="Fevicol Blog"
+                        fill
+                        className={styles.caseImage}
+                        sizes="100%"
+                      />
+                    </div>
                   </Link>
+
                   <Link href="/from-reality-to-virtuality-metaverse-technology">
-                    <img
-                      src="/blogs/db16fa7c-4f82-1f75-04f3-4270575794e8_1100_550.png"
-                      alt=""
-                    />
+                    <div className={styles.imageWrapper}>
+                      <Image
+                        src="/blogs/db16fa7c-4f82-1f75-04f3-4270575794e8_1100_550.png"
+                        alt="Metaverse Blog"
+                        fill
+                        className={styles.caseImage}
+                        sizes="100%"
+                      />
+                    </div>
                   </Link>
+
                   <Link href="/how-did-cooking-shows-influence-indias-cooking-utensil-sales">
-                    <img src="/blogs/cook-1024x539.jpg" alt="" />
+                    <div className={styles.imageWrapper}>
+                      <Image
+                        src="/blogs/cook-1024x539.jpg"
+                        alt="Cooking Blog"
+                        fill
+                        className={styles.caseImage}
+                        sizes="100%"
+                      />
+                    </div>
                   </Link>
                 </div>
               </div>

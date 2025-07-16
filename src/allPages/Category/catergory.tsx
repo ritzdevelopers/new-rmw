@@ -5,6 +5,7 @@ import styles from "./category.module.css";
 import Link from "next/link";
 import Loader from "@/components/loader/Loader";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 
 type Card = {
   id: string;
@@ -53,8 +54,18 @@ const Category = () => {
   };
 
   // ✅ Use early return for loading and error
-  if (loading) return <div><Loader /></div>;
-  if (error) return <div className="text-center text-red-500"><p>{error}</p></div>;
+  if (loading)
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  if (error)
+    return (
+      <div className="text-center text-red-500">
+        <p>{error}</p>
+      </div>
+    );
 
   return (
     <div className="container my-5">
@@ -65,18 +76,26 @@ const Category = () => {
           <div className="row">
             {selectedCards.map((card, index) => (
               <div key={index} className="col-lg-4 col-md-6 mb-4">
-                <div style={{ height: "100%" }} className={`card bg-white text-black ${styles.card}`}>
+                <div
+                  style={{ height: "100%" }}
+                  className={`card bg-white text-black ${styles.card}`}
+                >
                   <div className={styles.imageContainer}>
-                    <img
+                    <Image
                       src={`/blogs/${card.blog_image}`}
-                      style={{ height: "200px", objectFit: "fill" }}
-                      className={`card-img-top ${styles.image}`}
                       alt={card.title}
+                      fill
+                      className={styles.image}
+                      style={{ objectFit: "fill" }}
+                      priority={false} // optionally true for above-the-fold images
                     />
                   </div>
                   <div className="card-body text-center">
                     <h5 className="card-title">{card.title}</h5>
-                    <Link href={`/${card.slug}`} className={` ${styles.button}`}>
+                    <Link
+                      href={`/${card.slug}`}
+                      className={` ${styles.button}`}
+                    >
                       Read more <span className={styles.arrow}>&rarr;</span>
                     </Link>
                   </div>
@@ -108,7 +127,14 @@ const Category = () => {
                 ⬅ Prev
               </button>
 
-              <span style={{ fontSize: "16px", padding: "5px 15px", color: "#0c0c0c", borderRadius: "20px" }}>
+              <span
+                style={{
+                  fontSize: "16px",
+                  padding: "5px 15px",
+                  color: "#0c0c0c",
+                  borderRadius: "20px",
+                }}
+              >
                 Page {currentPage} of {totalPages}
               </span>
 
@@ -122,7 +148,8 @@ const Category = () => {
                   // border: "2px solid #000",
                   borderRadius: "30px",
                   fontWeight: "bold",
-                  cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+                  cursor:
+                    currentPage === totalPages ? "not-allowed" : "pointer",
                   opacity: currentPage === totalPages ? 0.5 : 1,
                   transition: "all 0.3s ease-in-out",
                   boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)",
