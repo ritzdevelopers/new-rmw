@@ -316,6 +316,7 @@ const DetailPage: React.FC = () => {
   // ✅ Render Blog if found
   if (singleBlog) {
     const isMongo = !!singleBlog.blogTitle;
+     
 
     // const [isClick, setIsClick] = useState<boolean>();
 
