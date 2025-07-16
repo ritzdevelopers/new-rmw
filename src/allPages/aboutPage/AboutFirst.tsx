@@ -4,7 +4,8 @@ import Link from "next/link";
 // import { useSplitText } from "@/hooks/useSplitText";
 import useGSAPHoverEffect from "@/hooks/useGSAPHoverEffect";
 import PagesBanner from "@/components/pagesBanner/PagesBanner";
-
+import styles from "./page.module.css";
+import Image from "next/image";
 const AboutFirst = () => {
   // const textRefs = useSplitText();
   useGSAPHoverEffect();
@@ -61,7 +62,19 @@ const AboutFirst = () => {
           </div>
         </div>
         <div className="tp-ab__thumb  text-center">
-          <img decoding="async" src="/about-images/First_Banner.jpg" alt="" />
+          <div className={styles.about_main_banner}>
+            <Image
+              decoding="async"
+              src="/about-images/First_Banner.jpg"
+              alt="About The Agency & Legacy"
+              fill
+              priority
+              quality={100}
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </div>
         </div>
       </section>
     </div>

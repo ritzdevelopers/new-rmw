@@ -17,6 +17,7 @@ import gsap from "gsap";
 import { CalendarDays, Share2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useBlogContext } from "@/context/AllBlogContext";
+import Image from "next/image";
 interface Article {
   _id: string;
   blogBanner: string;
@@ -104,7 +105,7 @@ const Articles: React.FC = () => {
     };
     call();
   }, []);
-  
+
   useEffect(() => {
     gsap.from(".mnc-card", {
       opacity: 0,
@@ -162,13 +163,11 @@ const Articles: React.FC = () => {
   const currentCards = filteredBlogs.slice(indexOfFirstCard, indexOfLastCard);
 
   const handleNext = () => {
-    if (currentPage  < totalPages) {
+    if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
       sessionStorage.setItem("page-no", String(currentPage + 1));
     }
   };
-
-
 
   const handlePrev = () => {
     if (currentPage ?? 1) {
@@ -176,9 +175,7 @@ const Articles: React.FC = () => {
       sessionStorage.setItem("page-no", String(currentPage - 1));
       // handlePagination();
     }
-  };  
-  
-
+  };
 
   const handleCopy = (fullPath: string) => {
     const url = `${window.location.origin}${path}/${fullPath}`;
@@ -256,8 +253,15 @@ const Articles: React.FC = () => {
             }}
           >
             {/* Image Section */}
-            <div style={{ height: "200px", width: "100%", overflow: "hidden" }}>
-              <img
+            <div
+              style={{
+                height: "200px",
+                width: "100%",
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              <Image
                 src={
                   article.banner.includes("/images")
                     ? `/api/images${article.banner.split("/images")[1]}`
@@ -265,11 +269,11 @@ const Articles: React.FC = () => {
                 }
                 alt={article.title}
                 style={{
-                  width: "100%",
-                  height: "100%",
                   objectFit: "cover",
-                  transition: "transform 0.3s ease",
+                    transition: "transform 0.3s ease-in-out",
                 }}
+                priority
+                fill
                 onMouseOver={(e) =>
                   (e.currentTarget.style.transform = "scale(1.05)")
                 }

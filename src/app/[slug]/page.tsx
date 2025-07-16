@@ -141,9 +141,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         .trim();
     }
 
-    console.log("====================================");
-    console.log("this is base desc ", baseDescription);
-    console.log("====================================");
+    // console.log("====================================");
+    // console.log("this is base desc ", baseDescription);
+    // console.log("====================================");
 
     const ogDescription = (isMongo && dsc) || baseDescription;
 

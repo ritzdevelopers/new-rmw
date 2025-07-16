@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
+import styles from "./page.module.css";
+import Image from "next/image";
 // import { useSplitText } from "@/hooks/useSplitText";
 
 const Home = () => {
@@ -57,8 +58,8 @@ const Home = () => {
             <section className="tp-hero__area fix tp-hero__space tp-hero__bg p-relative tp-bg-className">
               <div className="tp-hero__wrap">
                 <div className="container">
-                  <div className="row" >
-                    <div className="col-xl-8 col-lg-7" >
+                  <div className="row">
+                    <div className="col-xl-8 col-lg-7">
                       <div className="tp-hero__title-box p-relative">
                         <span className="tp-hero__subtitle mb-20">
                           Telling Stories to Remember with
@@ -161,7 +162,11 @@ const Home = () => {
                             </span>
                           </Link>
                         </span>
-                        <Link href="/contact.html" rel="nofollow" target="_self">
+                        <Link
+                          href="/contact.html"
+                          rel="nofollow"
+                          target="_self"
+                        >
                           LEARN MORE
                         </Link>
                       </div>
@@ -169,11 +174,19 @@ const Home = () => {
                     <div className="col-xl-4 col-lg-5">
                       <div className="tp-hero__content tp-hero-content">
                         <div className="tp-hero__thumb mb-80 p-relative">
-                          <img
-                            decoding="async"
-                            src="/home-images/Megaphone_RMW_Home.png"
-                            alt=""
-                          />
+                          <div className={styles.megaPhoneDiv}>
+                            <Image
+                              src="/home-images/Megaphone_RMW_Home.png"
+                              alt="gf"
+                              fill
+                              priority
+                              style={{
+                                objectFit:'contain'
+                              }}
+                              quality={100}
+                            />
+                          </div>
+
                           <div className="tp-hero__thumb-shape">
                             <span>
                               <svg

@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 export async function generateMetadata({ params }: { params: { categorypage: string } }): Promise<Metadata> {
   try {
     const getParam = await params;
-    console.log(getParam.categorypage);
+    // console.log(getParam.categorypage);
     const data = await getMetaOrThrow(getParam.categorypage, 'category')
     // debugger
     return {

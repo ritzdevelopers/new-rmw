@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
+import styles from "./page.module.css";
+import Image from "next/image";
 // import Link from "next/link";
 const SwiperHome = () => {
   return (
@@ -12,7 +14,12 @@ const SwiperHome = () => {
       data-id="dbafe44"
       data-element_type="container"
     >
-      <div className="text-center uppercase" style={{fontSize:'40px', fontWeight:'bold', marginBottom:"20px"}}>Our Clients</div>
+      <div
+        className="text-center uppercase"
+        style={{ fontSize: "40px", fontWeight: "bold", marginBottom: "20px" }}
+      >
+        Our Clients
+      </div>
       <div
         className="elementor-element elementor-element-0c208c3 e-con-full e-flex e-con e-child"
         data-id="0c208c3"
@@ -61,240 +68,256 @@ const SwiperHome = () => {
                         >
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
-                                   src="/home-images/home-swiper1-img2.jpeg"
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/home-images/home-swiper1-img2.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img3.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img4.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img5.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img6.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img7.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img8.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img9.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img10.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img11.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img12.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img13.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img14.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img15.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img16.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
                           <SwiperSlide>
                             <div className="tp-brand__item">
-                              <div className="tp-brand__logo">
-                                <img
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
                                   src="/home-images/home-swiper1-img17.jpeg"
                                   alt="Brand logo"
                                   style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "contain",
                                   }}
+                                  fill
+                                  priority
+                                  quality={100}
                                 />
                               </div>
                             </div>

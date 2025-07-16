@@ -38,6 +38,7 @@ import {
   CalendarDays,
   // Loader2,
 } from "lucide-react";
+import Image from "next/image";
 // import { useBlogContext } from "@/context/AllBlogContext";
 // import { title } from "process";
 // import styles from "./page.module.css"
@@ -215,7 +216,7 @@ const DetailPage: React.FC = () => {
           setRecentB(res.data.recentBlogs);
           if (res) {
             setMBC(res?.data.categoryN);
-            console.log(mBC);
+            // console.log(mBC);
           }
 
           setCardData(serviceResponse.data.cards || []);
@@ -234,7 +235,7 @@ const DetailPage: React.FC = () => {
           setRecentB(res.data.recentBlogs);
           if (res) {
             setMBC(res?.data.categoryN);
-            console.log(mBC);
+            // console.log(mBC);
           }
           setLatestRBlogs(res.data.latestRBlogs);
           setSingleBlog(res.data.blog);
@@ -296,7 +297,7 @@ const DetailPage: React.FC = () => {
         .writeText(fullUrl)
         .then(() => {
           // optional toast or alert
-          console.log("URL copied to clipboard!");
+          // console.log("URL copied to clipboard!");
         })
         .catch((err) => {
           console.error("Failed to copy: ", err);
@@ -326,9 +327,8 @@ const DetailPage: React.FC = () => {
           {/* Left Side Blog Content */}
           <div className={styles.leftSide}>
             <div>
-              {" "}
               <div className={styles.bannerImage}>
-                <img
+                <Image
                   src={
                     isMongo
                       ? `${staticAPI}${
@@ -336,11 +336,9 @@ const DetailPage: React.FC = () => {
                         }`
                       : `/blogs/${singleBlog.blog_image}`
                   }
-                  //  ? `${staticAPI}${
-                  //           article.banner.split("/images")[1]
-                  //         }`
-                  //       : `/blogs/${article.banner}`
-                  alt={isMongo ? singleBlog.blogTitle : singleBlog.title}
+                  fill
+                  priority
+                  alt={(isMongo ? singleBlog.blogTitle : singleBlog.title) || "Ritz Media World"}
                   className={styles.imgD}
                 />
               </div>
@@ -379,20 +377,23 @@ const DetailPage: React.FC = () => {
                     <div key={idx}>
                       <h2>{page.metaTitle}</h2>
                       {page.innerImg && (
-                        <img
-                          src={
-                            isMongo
-                              ? `${staticAPI}${
-                                  page.innerImg.split("/images")[1]
-                                }`
-                              : `/static/${page.innerImg}`
-                          }
-                          alt={`Inner ${idx}`}
-                          className={styles.innerImg}
-                        />
+                        <div className={styles.innerImg}>
+                          <Image
+                            src={
+                              isMongo
+                                ? `${staticAPI}${
+                                    page.innerImg.split("/images")[1]
+                                  }`
+                                : `/static/${page.innerImg}`
+                            }
+                            alt={page.metaTitle}
+                            fill
+                            priority
+                            className={styles.innerMainImg}
+                          />
+                        </div>
                       )}
                       <div className={styles.tableWrapper}>
-                        {" "}
                         <div
                           className={styles.contentBody}
                           dangerouslySetInnerHTML={{
@@ -465,14 +466,8 @@ const DetailPage: React.FC = () => {
                         }}
                       >
                         {/* Image */}
-                        <div
-                          style={{
-                            height: "220px",
-                            overflow: "hidden",
-                            position: "relative",
-                          }}
-                        >
-                          <img
+                        <div className={styles.recentImgDiv}>
+                          <Image
                             src={
                               data.blogBanner.includes("/images")
                                 ? `/api/images${
@@ -481,11 +476,9 @@ const DetailPage: React.FC = () => {
                                 : `/blogs/${data.blogBanner}`
                             }
                             alt={data.blogTitle}
-                            className="w-100 h-100"
-                            style={{
-                              objectFit: "cover",
-                              transition: "transform 0.4s ease",
-                            }}
+                            fill
+                            priority
+                            className={styles.recentInnerImg}
                             onMouseOver={(e) =>
                               (e.currentTarget.style.transform = "scale(1.05)")
                             }
@@ -593,7 +586,7 @@ const DetailPage: React.FC = () => {
                       blog.title.toLowerCase().includes(searchB.toLowerCase())
                     )
                     .map((blog, idx) => {
-                      // console.log(blog);
+                      console.log(blog);
 
                       return (
                         <div
@@ -601,23 +594,28 @@ const DetailPage: React.FC = () => {
                           className={styles.resultCard}
                           key={`${blog.id}-${idx}`}
                         >
-                          <img
-                            src={
-                              isMongo
-                                ? `${staticAPI}${
-                                    blog.banner.split("/images")[1]
-                                  }`
-                                : `/static/${blog.banner}`
-                            }
-                            alt={blog.title}
-                            title={blog.title}
-                            loading="lazy"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src =
-                                "/default-image.jpg";
-                            }}
-                            className={styles.resultCardImage}
-                          />
+                          <div className={styles.resultCardImage}>
+                            <Image
+                              src={
+                                isMongo
+                                  ? `${staticAPI}${
+                                      blog.banner.split("/images")[1]
+                                    }`
+                                  : `/static/${blog.banner}`
+                              }
+                              alt={blog.title}
+                              priority
+                              fill
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src =
+                                  "/default-image.jpg";
+                              }}
+                              // className={}
+                              style={{
+                                objectFit: "cover",
+                              }}
+                            />
+                          </div>
                           <b className={styles.resultCardTitle}>{blog.title}</b>
                         </div>
                       );
@@ -663,16 +661,25 @@ const DetailPage: React.FC = () => {
                       className={styles.resultCard}
                       key={idx}
                     >
-                      <img
-                        src={
-                          isMongo
-                            ? `${staticAPI}${
-                                blog.blogBanner?.split("/images")[1]
-                              }`
-                            : `/blogs/${blog.blog_image}`
-                        }
-                        alt={isMongo ? blog.blogTitle : blog.title}
-                      />
+                      <div className={styles.resultCardImage}>
+                        
+                        <Image
+                          src={
+                            isMongo
+                              ? `${staticAPI}${
+                                  blog.blogBanner?.split("/images")[1]
+                                }`
+                              : `/blogs/${blog.blog_image}`
+                          }
+                          alt={(isMongo ? blog.blogTitle : blog.title) || "Ritz Media World"}
+                          fill
+                          priority
+                          style={{
+                            objectFit:'cover'
+                          }}
+                        />
+                      </div>
+
                       <b>{isMongo ? blog.blogTitle : blog.title}</b>
                     </div>
                   ))}

@@ -48,25 +48,32 @@
   .wrapper {
     flex-direction: column;
   }
+
   .leftSide {
     width: 100%;
   }
-  .rightSide{
+
+  .rightSide {
     width: 100%;
   }
 }
 
 .bannerImage {
   width: 100%;
-  height: auto;
+  height: 35rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
+  position: relative;
   margin-bottom: 10px;
+  background: yellowgreen;
+  /* object-fit: contain; */
+  overflow: hidden;
 }
-.imgD{
+
+.imgD {
   height: 100%;
   width: 100%;
+  background: red;
 }
 
 .blogMeta {
@@ -91,6 +98,7 @@
   box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
   transition: background 0.2s, box-shadow 0.2s;
 }
+
 .category:hover {
   background: #4f46e5;
   box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
@@ -126,9 +134,24 @@
 .innerImg {
   width: 100%;
   max-height: 400px;
-  object-fit: cover;
+  position: relative;
   border-radius: 10px;
   margin: 1rem 0;
+}
+.innerMainImg{
+  height: 100%;
+  width: 100%;
+   object-fit: cover;
+}
+.recentImgDiv{
+  height: 220px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.recentInnerImg{
+  transition: "transform 0.4s ease";
+  object-fit: cover;
 }
 
 .keywords {
@@ -200,11 +223,12 @@
   background: #e0e0e0;
 }
 
-.resultCard img {
+.resultCard .resultCardImage {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  /* object-fit: cover; */
   border-radius: 5px;
+  position: relative;
 }
 
 .categories {
@@ -219,7 +243,7 @@
   padding: 0.4rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
-  cursor:pointer;
+  cursor: pointer;
   transition: background 0.3s ease;
 }
 

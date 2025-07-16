@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -30,7 +30,6 @@ const ServiceMainTestimonial = () => {
                   decoding="async"
                   src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/testi-2-1-shape.png"
                   alt=""
-                  
                 />
               </div>
 
@@ -39,7 +38,10 @@ const ServiceMainTestimonial = () => {
                   decoding="async"
                   src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/testi-2-2-shape.png"
                   alt=""
-                  style={{filter: 'sepia(10%) saturate(120%) brightness(105%) hue-rotate(185deg)'}}
+                  style={{
+                    filter:
+                      "sepia(10%) saturate(120%) brightness(105%) hue-rotate(185deg)",
+                  }}
                 />
               </div>
 
@@ -50,11 +52,11 @@ const ServiceMainTestimonial = () => {
                       <div className="swiper-container tp-testi__2-active swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
                         <Swiper
                           modules={[Autoplay]}
-                                      loop={true}
-                                      slidesPerView={1}
-                                      spaceBetween={30}
-                                      speed={1000}
-                                      autoplay={true} 
+                          loop={true}
+                          slidesPerView={1}
+                          spaceBetween={30}
+                          speed={1000}
+                          autoplay={true}
                           className="swiper-wrapper"
                           id="swiper-wrapper-7d773315613f04db"
                           aria-live="off"
@@ -77,7 +79,12 @@ const ServiceMainTestimonial = () => {
                                     <br /> In Our Town Forever
                                   </h3>
                                   <p>
-                                  To me, advertising my brand was merely a means to ensure my elongated presence in the market. Thanks to ritz Media world, my advertisements not only ensured my brand’s sustenance but have also got me a great number of quality leads.
+                                    To me, advertising my brand was merely a
+                                    means to ensure my elongated presence in the
+                                    market. Thanks to ritz Media world, my
+                                    advertisements not only ensured my brand’s
+                                    sustenance but have also got me a great
+                                    number of quality leads.
                                   </p>
                                 </div>
                                 <div className="tp-testi__2-author-box d-sm-flex align-items-center justify-content-between">
@@ -91,10 +98,10 @@ const ServiceMainTestimonial = () => {
                                     </div> */}
                                     <div className="tp-testi__2-author-text">
                                       <h3 className="tp-testi__2-author-title">
-                                      Madhusudan Ghee
+                                        Madhusudan Ghee
                                       </h3>
                                       <span className="tp-testi__2-author-designation text-black">
-                                      Managing Director
+                                        Managing Director
                                       </span>
                                     </div>
                                   </div>
@@ -137,7 +144,12 @@ const ServiceMainTestimonial = () => {
                                     <br /> In Our Town Forever
                                   </h3>
                                   <p>
-                                  If there is one thing serving as a full service digital agency for more than a decade taught us, it has to be the value of relationships. Therefore, our relationship with our clients is both a priority and a point of pride to us.
+                                    If there is one thing serving as a full
+                                    service digital agency for more than a
+                                    decade taught us, it has to be the value of
+                                    relationships. Therefore, our relationship
+                                    with our clients is both a priority and a
+                                    point of pride to us.
                                   </p>
                                 </div>
                                 <div className="tp-testi__2-author-box d-sm-flex align-items-center justify-content-between">
@@ -151,10 +163,10 @@ const ServiceMainTestimonial = () => {
                                     </div> */}
                                     <div className="tp-testi__2-author-text">
                                       <h3 className="tp-testi__2-author-title">
-                                      FAIRFOX - EON
+                                        FAIRFOX - EON
                                       </h3>
                                       <span className="tp-testi__2-author-designation text-black">
-                                      Marketing Head
+                                        Marketing Head
                                       </span>
                                     </div>
                                   </div>
@@ -197,7 +209,11 @@ const ServiceMainTestimonial = () => {
                                     <br /> In Our Town Forever
                                   </h3>
                                   <p>
-                                  They not only make sure that they deliver on their promises, but also educate you on what exactly is needed to be done for your brand, thereby preventing you from under or over spending your precious money.
+                                    They not only make sure that they deliver on
+                                    their promises, but also educate you on what
+                                    exactly is needed to be done for your brand,
+                                    thereby preventing you from under or over
+                                    spending your precious money.
                                   </p>
                                 </div>
                                 <div className="tp-testi__2-author-box d-sm-flex align-items-center justify-content-between">
@@ -211,10 +227,10 @@ const ServiceMainTestimonial = () => {
                                     </div> */}
                                     <div className="tp-testi__2-author-text">
                                       <h3 className="tp-testi__2-author-title">
-                                      Eldeco Group
+                                        Eldeco Group
                                       </h3>
                                       <span className="tp-testi__2-author-designation text-black">
-                                      Managing Director
+                                        Managing Director
                                       </span>
                                     </div>
                                   </div>
@@ -239,7 +255,6 @@ const ServiceMainTestimonial = () => {
                               </div>
                             </div>
                           </SwiperSlide>
-                          
                         </Swiper>
                         <span
                           className="swiper-notification"
@@ -253,7 +268,6 @@ const ServiceMainTestimonial = () => {
                       <div className="tp-testi__2-thumb-box">
                         <div className="tp-testi__2-thumb p-relative">
                           <span className="tp-testi__2-thumb-shape"></span>
-                         
                         </div>
                       </div>
                     </div>

@@ -1,28 +1,25 @@
 import React from "react";
-import "./page.module.css"
+import styles from "./page.module.css";
+import Image from "next/image";
 const AboutAward = () => {
   return (
-    
     <div>
       <div className="elementor-widget-container">
         <section className="tp-awards__5-area fix tp-awards__5 pt-35 about_our_work-mp">
-          <div className="container "
-          
-          >
+          <div className="container ">
             <div className="row">
               <div className="col-xl-5 about_our_work">
-                <div className="tp-awards__5-thumb-box p-relative">
-                  <div className="tp-awards__5-thumb">
-                    <img
-                      decoding="async"
+                {/* <div className="tp-awards__5-thumb-box p-relative"> */}
+                  <div className={styles.tpthumb}>
+                    <Image
                       src="/about-images/award.jpg"
-                      style={{height:"450px"}}
-                      alt=""
+                      style={{ objectFit: "cover" }}
+                      fill
+                      priority
+                      alt="about the agency & legacy"
                     />
                   </div>
-                 
-                
-                </div>
+                {/* </div> */}
               </div>
               <div className="col-xl-7">
                 <div className="tp-awards__5-content justify-center">
@@ -45,7 +42,6 @@ const AboutAward = () => {
                             display: "inline-block",
                           }}
                         >
-                          
                           <div
                             style={{
                               position: "relative",
