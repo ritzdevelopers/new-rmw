@@ -19,7 +19,7 @@ function generateSlug(name) {
 async function saveFileToUploads(file, filename) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
-  const uploadDir = path.join(process.cwd(), "static", "images");
+  const uploadDir = path.join(`${process.env.SERVER_IMG_PATH}`, "images");
 
   if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
@@ -77,9 +77,9 @@ export async function POST(request) {
       ...item,
       innerImg: innerImgMap[index] || "",
     }));
-    console.log('====================================');
-    console.log(blogBody, blogBodyRaw);
-    console.log('====================================');
+    // console.log('====================================');
+    // console.log(blogBody, blogBodyRaw);
+    // console.log('====================================');
     blogDescription = blogBody[0].metaDescription;
 
     const newBlog = await RitzBlogModel.create({
@@ -98,7 +98,7 @@ export async function POST(request) {
       { status: 201 }
     );
   } catch (error) {
-    console.log("Error uploading blog:", error);
+    // console.log("Error uploading blog:", error);
     return NextResponse.json(
       { message: "Internal Server Error", error: error.message },
       { status: 500 }

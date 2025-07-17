@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import toast from 'react-hot-toast'; // Import toast
+import toast from "react-hot-toast"; // Import toast
 
 const CareerForm = () => {
   const captchaRef = useRef(null);
@@ -10,17 +10,17 @@ const CareerForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     // Check if captcha is verified
     if (!captchaToken) {
       toast.error("Please complete the captcha");
       return;
     }
-  
+
     const form = e.currentTarget;
     const formData = new FormData(form);
     const resumeFile = formData.get("resume") as File;
-  
+
     if (!resumeFile) {
       toast.error("Please upload your resume.");
       return;
@@ -44,25 +44,26 @@ const CareerForm = () => {
         toast.error("Form submission failed: " + formSubmitted.error);
         return;
       }
-  
+
       toast.success("Form submitted successfully!");
       form.reset();
       setCaptchaToken(null);
-  
     } catch (error) {
       console.error("Error during submission:", error);
       toast.error("An unexpected error occurred.");
     }
   };
-  
 
   // Function to handle form field submission (e.g., name, email, etc.)
   const submitFormFields = async (formData: FormData) => {
     try {
-      const response = await fetch("/api/submit-application-career", {
+      formData.append("etype", "career");
+      const response = await fetch("/api/system-settings/contact-enquiry", {
         method: "POST",
         body: formData,
       });
+      // console.log("form: ", formData);
+
       const result = await response.json();
       return result;
     } catch (error) {
@@ -95,22 +96,46 @@ const CareerForm = () => {
   };
 
   return (
-    <div className="bg-light py-5" style={{ paddingTop: "100px", marginTop: "75px" }}>
+    <div
+      className="bg-light py-5"
+      style={{ paddingTop: "100px", marginTop: "75px" }}
+    >
       <div className="container">
-        <div className="bg-white p-5 rounded shadow-lg mx-auto" style={{ maxWidth: "800px" }}>
+        <div
+          className="bg-white p-5 rounded shadow-lg mx-auto"
+          style={{ maxWidth: "800px" }}
+        >
           <form onSubmit={handleSubmit}>
             <div className="row mb-3">
               <div className="col-md-6 mb-3">
-                <input name="name" type="text" className="form-control" placeholder="Full Name" required />
+                <input
+                  name="name"
+                  type="text"
+                  className="form-control"
+                  placeholder="Full Name"
+                  required
+                />
               </div>
               <div className="col-md-6 mb-3">
-                <input name="email" type="email" className="form-control" placeholder="Email Address" required />
+                <input
+                  name="email"
+                  type="email"
+                  className="form-control"
+                  placeholder="Email Address"
+                  required
+                />
               </div>
             </div>
 
             <div className="row mb-3">
               <div className="col-md-6 mb-3">
-                <input name="phone" type="tel" className="form-control" placeholder="Mobile Number" required />
+                <input
+                  name="phone"
+                  type="tel"
+                  className="form-control"
+                  placeholder="Mobile Number"
+                  required
+                />
               </div>
               <div className="col-md-6 mb-3">
                 <select name="category" className="form-select" required>
@@ -127,7 +152,12 @@ const CareerForm = () => {
 
             <div className="mb-4">
               <label className="form-label text-muted">Upload Resume</label>
-              <input name="resume" type="file" className="form-control border border-warning" required />
+              <input
+                name="resume"
+                type="file"
+                className="form-control border border-warning"
+                required
+              />
             </div>
 
             <div className="mb-4">
@@ -147,7 +177,10 @@ const CareerForm = () => {
               />
             </div>
 
-            <button type="submit" className="btn btn-dark w-100 py-2 fw-semibold text-white">
+            <button
+              type="submit"
+              className="btn btn-dark w-100 py-2 fw-semibold text-white"
+            >
               Submit Application
             </button>
           </form>
@@ -158,4 +191,3 @@ const CareerForm = () => {
 };
 
 export default CareerForm;
-

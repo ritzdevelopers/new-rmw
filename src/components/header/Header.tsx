@@ -89,7 +89,6 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Fetch all blogs slug and store it in an array and then highlight the link is pathname == any slug from array
   interface Article {
     blog_image: string;
     slug: string;
@@ -120,7 +119,6 @@ const Header = () => {
   if (blog_slugs.includes(pathSlug.slice(1))) {
     isBlog = true;
   }
-
   return (
     <header>
       <div
@@ -171,10 +169,11 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/about/"
+                        href="/about.html"
                         className="nav-links"
                         style={{
-                          color: pathname === "/about" ? "#8a5a0d" : "inherit",
+                          color:
+                            pathname === "/about.html" ? "#8a5a0d" : "inherit",
                         }}
                       >
                         About
@@ -182,10 +181,11 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/"
+                        href="/services"
                         className="nav-links"
                         style={{
-                          color: pathname === "" ? "#8a5a0d" : "inherit",
+                          color:
+                            pathname === "/services" ? "#8a5a0d" : "inherit",
                         }}
                       >
                         Services
@@ -194,8 +194,8 @@ const Header = () => {
                       <div
                         className="tp-submenu submenu has-homemenu"
                         style={{
-                          padding: "0 25px",
-                          width: "90vw",
+                          // padding: "0 25px",
+                          width: "100vw",
                           left: "-70%",
                           transform: "translate(-40%, 0)",
                         }}
@@ -209,16 +209,24 @@ const Header = () => {
                             <div className="elementor-element elementor-element-f21576b e-con-full d-flex justify-content-center align-items-center e-con e-child">
                               <div className="elementor-element elementor-element-08a5267 elementor-widget elementor-widget-tp-menu-demo">
                                 <div className="w-100">
-                                  <ul className="d-flex justify-content-evenly align-items-center w-100 list-unstyled m-0 p-0">
+                                  <ul className="d-flex justify-content-evenly align-items-center flex-wrap list-unstyled m-0 p-0">
                                     {menuData.map((item, index) => (
                                       <li
                                         key={index}
-                                        className="position-relative  flex-fill text-center text-nowrap "
+                                        className="position-relative flex-fill text-center px-2"
+                                        style={{
+                                          width:"190px",
+                                          height:"50px",
+                                          // backgroundColor:'yellow',
+                                          display:'flex',
+                                          justifyContent:'center',
+                                          alignItems:'center'
+                                        }}
                                       >
                                         {/* Main Menu Item */}
                                         <Link
-                                          href="#"
-                                          className="nav-link flex justify-center items-center"
+                                          href={`${item.link}`}
+                                          className="nav-link"
                                           style={{ fontSize: "14px" }}
                                         >
                                           {item.name}{" "}
@@ -278,7 +286,7 @@ const Header = () => {
 
                     <li className="nav-item">
                       <Link
-                        href="/our-work/"
+                        href="/work.html"
                         className="nav-links"
                         style={{
                           color:
@@ -290,11 +298,11 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/blog"
+                        href="/blogs"
                         className="nav-links"
                         style={{
                           color:
-                            pathname === "/blog" || isBlog === true
+                            pathname === "/blogs" || isBlog === true
                               ? "#8a5a0d"
                               : "inherit",
                         }}
@@ -304,11 +312,13 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/contact/"
+                        href="/contact.html/"
                         className="nav-links"
                         style={{
                           color:
-                            pathname === "/contact" ? "#8a5a0d" : "inherit",
+                            pathname === "/contact.html"
+                              ? "#8a5a0d"
+                              : "inherit",
                         }}
                       >
                         Contact us
@@ -463,7 +473,7 @@ const Header = () => {
                   <Link href="/">Home</Link>
                 </li>
                 <li>
-                  <Link href="/about/">About</Link>
+                  <Link href="/about.html">About</Link>
                 </li>
 
                 {/* Service Dropdown (Smooth) */}
@@ -486,40 +496,42 @@ const Header = () => {
                     }`}
                   >
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/best-digital-marketing-agency">
+                      <Link href="/services/digital-marketing">
                         Digital Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/leading-creative-agency-india">
+                      <Link href="/services/creative-services">
                         Creative Services
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/best-print-advertising-agency">
+                      <Link href="/services/print-advertising">
                         Print Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/top-radio-ad-agency">Radio Marketing</Link>
+                      <Link href="/services/radio-advertising">
+                        Radio Marketing
+                      </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/leading-content-marketing-agency">
+                      <Link href="/services/contents-marketing">
                         Content Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/best-website-designing-company">
+                      <Link href="/services/web-designing-and-development">
                         Web Development
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/celebrity-endorsement-agency-india">
+                      <Link href="/services/celebrity-endorsements">
                         Celebrity Endorsements
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/influencer-marketing-agency-in-india">
+                      <Link href="/services/influencer-marketing-agency-in-india">
                         Influencer Marketing
                       </Link>
                     </li>
@@ -527,13 +539,13 @@ const Header = () => {
                 </li>
 
                 <li>
-                  <Link href="/our-work">Our Work</Link>
+                  <Link href="/work.html">Our Work</Link>
                 </li>
                 <li>
-                  <Link href="/blog">Blog</Link>
+                  <Link href="/blogs">Blog</Link>
                 </li>
                 <li>
-                  <Link href="/contact">Contact us</Link>
+                  <Link href="/contact.html">Contact us</Link>
                 </li>
               </ul>
             </nav>
@@ -621,8 +633,8 @@ const Header = () => {
                   color: "#000",
                 }}
               >
-                Web designing in a powerful way of just not an only professions.
-                We have tendency to believe the idea that smart looking.
+                We build stories not just worth telling, but worth sharing.
+                That’s what sets us apart.
               </div>
 
               <div>
@@ -665,7 +677,7 @@ const Header = () => {
                 <h3>Contact</h3>
                 <p>
                   Address: 402 – 404 , 4th floor Corporate Park, Tower A1 Sector
-                  142 ,Noida
+                  142, Noida
                 </p>
                 <p>
                   <Link href="/">info@ritzmediaworld.com</Link>
@@ -674,7 +686,7 @@ const Header = () => {
                   <Link href="/">09220516777</Link>
                 </p>
                 <p>
-                  <Link href="/">09220516777</Link>
+                  <Link href="/">07290002168</Link>
                 </p>
               </div>
 

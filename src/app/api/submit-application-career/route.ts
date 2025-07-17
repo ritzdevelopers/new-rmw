@@ -15,7 +15,10 @@ export async function POST(req: NextRequest) {
 
     // Validate required fields
     if (!name || !email || !phone || !category || !resumePath) {
-      return NextResponse.json({ success: false, error: "All fields are required" }, { status: 400 });
+      return NextResponse.json(
+        { success: false, error: "All fields are required" },
+        { status: 400 }
+      );
     }
 
     const pool = getDBPool();
@@ -30,10 +33,16 @@ export async function POST(req: NextRequest) {
     // Type guard to check if the error is an instance of Error
     if (error instanceof Error) {
       console.error("Form submission error:", error.message);
-      return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+      return NextResponse.json(
+        { success: false, error: error.message },
+        { status: 500 }
+      );
     } else {
       console.error("Unknown error:", error);
-      return NextResponse.json({ success: false, error: "An unexpected error occurred" }, { status: 500 });
+      return NextResponse.json(
+        { success: false, error: "An unexpected error occurred" },
+        { status: 500 }
+      );
     }
   }
 }

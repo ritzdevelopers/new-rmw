@@ -5,16 +5,23 @@ import RitzBlogModel from "@/models/Blog.Schema";
 import RitzCats from "@/models/RitzCats.Schema";
 
 // GET single blog by ID | Slug
+// utils/slugify.ts
+export function slugify(title: string) {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-") // replace non-alphanumerics with -
+    .replace(/^-+|-+$/g, "");    // trim - from start and end
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { blogID: string } }
 ) {
   try {
     await connectMongoDB();
-    console.log('====================================');
-    console.log('api hit');
-    console.log('====================================');
-    const blogId = params.blogID;
+    const blogId = await params.blogID;
+    const blSlug = slugify(blogId);
 
     if (!blogId) {
       return NextResponse.json(
@@ -24,7 +31,7 @@ export async function GET(
     }
 
     const blog = await RitzBlogModel.findOne({
-      blogSlug: blogId
+      blogSlug: blSlug
     });
 
     if (!blog) {
@@ -33,16 +40,20 @@ export async function GET(
         { status: 404 }
       );
     }
-    const blogCat = await RitzCats.findById({
-      _id: blog.blogCategoryId
-    });
+    const blogCat = await RitzCats.findById(blog.blogCategoryId);
+    // console.log('====================================');
+    // console.log('these are blog cats related ', blogCat);
+    // console.log('====================================');
+
     const catRelatedBlogs = await RitzBlogModel.find({
       blogCategoryId: blogCat,
     }).sort({ createdAt: -1 })
-      .limit(3);
+      .limit(4);
+    const recentBlogs = await RitzBlogModel.find({}).sort({ createdAt: -1 }).limit(4);
+    const categoryN = blogCat?.categoryName;
 
     return NextResponse.json(
-      { message: "Blog fetched successfully", blog, latestRBlogs: catRelatedBlogs, success: true },
+      { message: "Blog fetched successfully", blog, latestRBlogs: catRelatedBlogs, recentBlogs, categoryN, success: true },
       { status: 200 }
     );
   } catch (error) {

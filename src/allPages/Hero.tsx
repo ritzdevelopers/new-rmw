@@ -53,7 +53,7 @@ const Header = () => {
                       id="menu-item-73"
                       className="menu-item menu-item-type-post_type menu-item-object-page menu-item-73 nav-item"
                     >
-                      <Link title="About" href="/about/" className="nav-links">
+                      <Link title="About" href="/about.html/" className="nav-links">
                         About
                       </Link>
                     </li>
@@ -269,7 +269,7 @@ const Header = () => {
                     >
                       <Link
                         title="Our Work"
-                        href="/our-work/"
+                        href="/work.html/"
                         className="nav-links"
                       >
                         Our Work
@@ -281,7 +281,7 @@ const Header = () => {
                       id="menu-item-74"
                       className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children dropdown has-dropdown menu-item-74 nav-item"
                     >
-                      <Link title="Blog" href="/blog" className="nav-links">
+                      <Link title="Blog" href="/blogs" className="nav-links">
                         Blog
                       </Link>
                     </li>
@@ -293,7 +293,7 @@ const Header = () => {
                     >
                       <Link
                         title="Pages"
-                        href="/contact/"
+                        href="/contact.html/"
                         className="nav-links"
                       >
                         Contact us

@@ -21,10 +21,10 @@ export const GET = async () => {
 
           return {
             name: service.name,
-            link: `/${service.link}`,
+            link: `/services/${service.link}`,
             sub: (sub as { name: string; link: string }[]).map((item) => ({
               name: item.name,
-              link: `/${item.link}.html`,
+              link: `/services/${service.link}/${item.link}`,
             })),
           };
         }

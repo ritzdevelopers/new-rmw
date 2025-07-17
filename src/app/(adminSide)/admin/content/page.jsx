@@ -32,7 +32,7 @@ function page() {
     {
       pageTitle: "Contact",
       pageHeading: "Get in Touch with Us",
-      pageURL: "/contact",
+      pageURL: "/contact.html",
       date: "2025-06-03",
       status: false,
     },

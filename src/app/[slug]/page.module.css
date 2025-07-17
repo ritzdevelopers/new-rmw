@@ -48,24 +48,32 @@
   .wrapper {
     flex-direction: column;
   }
+
   .leftSide {
     width: 100%;
   }
-  .rightSide{
+
+  .rightSide {
     width: 100%;
   }
 }
 
 .bannerImage {
   width: 100%;
-  height: auto;
+  height: 35rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
+  position: relative;
+  margin-bottom: 10px;
+  /* background: yellowgreen; */
+  /* object-fit: contain; */
+  overflow: hidden;
 }
-.imgD{
+
+.imgD {
   height: 100%;
   width: 100%;
+  /* background: red; */
 }
 
 .blogMeta {
@@ -80,11 +88,20 @@
 
 .category {
   background: #6366f1;
-  color: white;
-  padding: 0.2rem 0.6rem;
-  border-radius: 5px;
+  color: #fff;
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
   margin-left: 1rem;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.category:hover {
+  background: #4f46e5;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
 }
 
 .shareIcon {
@@ -117,9 +134,24 @@
 .innerImg {
   width: 100%;
   max-height: 400px;
-  object-fit: cover;
+  position: relative;
   border-radius: 10px;
   margin: 1rem 0;
+}
+.innerMainImg{
+  height: 100%;
+  width: 100%;
+   object-fit: cover;
+}
+.recentImgDiv{
+  height: 220px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.recentInnerImg{
+  transition: "transform 0.4s ease";
+  object-fit: cover;
 }
 
 .keywords {
@@ -170,13 +202,17 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-height: 600px;
+  /* background: red; */
+  /* background: red; */
+  overflow-y: auto;
 }
 
 .resultCard {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: #f5f5f5;
+  /* background: red; */
   padding: 0.5rem;
   border-radius: 8px;
   cursor: pointer;
@@ -187,11 +223,12 @@
   background: #e0e0e0;
 }
 
-.resultCard img {
+.resultCard .resultCardImage {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  /* object-fit: cover; */
   border-radius: 5px;
+  position: relative;
 }
 
 .categories {
@@ -212,6 +249,7 @@
 
 .categoryCard:hover {
   background: #ccc;
+  cursor: pointer;
 }
 
 .modalOverlay {
@@ -267,6 +305,11 @@
 .contentBody h3 {
   margin-top: 1.5rem;
   font-weight: 600;
+}
+
+.contentBody a {
+  color: blue;
+  font-weight: bold;
 }
 
 .contentBody p {
@@ -326,4 +369,11 @@
   color: #555;
   font-style: italic;
   margin: 1rem 0;
+}
+
+.noResultText {
+  text-align: center;
+  padding: 1rem;
+  color: #888;
+  font-size: 1rem;
 }
