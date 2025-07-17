@@ -3,7 +3,6 @@
 function stripHtml(html: string) {
   return html.replace(/<[^>]*>?/gm, " ");
 }
-
 import Loader from "@/components/loader/Loader";
 import axios from "axios";
 // import Link from "next/link";
@@ -100,7 +99,6 @@ const Articles: React.FC = () => {
     };
     call();
   }, []);
-
   useEffect(() => {
     gsap.from(".mnc-card", {
       opacity: 0,

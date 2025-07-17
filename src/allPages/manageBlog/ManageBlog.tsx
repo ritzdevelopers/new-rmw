@@ -53,10 +53,10 @@ export default function ManageBlogs() {
 
         const { data } = await axios.get(`/api/ritz_blogs/get-all-blogs`);
 
-           if (!data.allBlogs || data.allBlogs.length === 0) {
-        router.push("/not-found"); // ✅ manually redirect
-        return;
-      }
+        if (!data.allBlogs || data.allBlogs.length === 0) {
+          router.push("/not-found"); // ✅ manually redirect
+          return;
+        }
         setBlogs(data.allBlogs);
         setTotalBlogs(data.allBlogs.length);
         // if(!blogs) NotFound();

@@ -216,7 +216,6 @@ const DetailPage: React.FC = () => {
           setRecentB(res.data.recentBlogs);
           if (res) {
             setMBC(res?.data.categoryN);
-            // console.log(mBC);
           }
 
           setCardData(serviceResponse.data.cards || []);
@@ -235,7 +234,6 @@ const DetailPage: React.FC = () => {
           setRecentB(res.data.recentBlogs);
           if (res) {
             setMBC(res?.data.categoryN);
-            // console.log(mBC);
           }
           setLatestRBlogs(res.data.latestRBlogs);
           setSingleBlog(res.data.blog);
@@ -284,7 +282,6 @@ const DetailPage: React.FC = () => {
     navigator.clipboard.writeText(url);
     alert("Url Has Copied!");
   };
-
   const handleCopy = (platform: string) => {
     setClickedPlatform(platform);
 

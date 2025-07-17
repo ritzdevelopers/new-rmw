@@ -13,7 +13,6 @@ export function slugify(title: string) {
     .replace(/[^a-z0-9]+/g, "-") // replace non-alphanumerics with -
     .replace(/^-+|-+$/g, "");    // trim - from start and end
 }
-
 export async function GET(
   request: NextRequest,
   { params }: { params: { blogID: string } }
@@ -29,7 +28,6 @@ export async function GET(
         { status: 400 }
       );
     }
-
     const blog = await RitzBlogModel.findOne({
       blogSlug: blSlug
     });
@@ -51,7 +49,6 @@ export async function GET(
       .limit(4);
     const recentBlogs = await RitzBlogModel.find({}).sort({ createdAt: -1 }).limit(4);
     const categoryN = blogCat?.categoryName;
-
     return NextResponse.json(
       { message: "Blog fetched successfully", blog, latestRBlogs: catRelatedBlogs, recentBlogs, categoryN, success: true },
       { status: 200 }
