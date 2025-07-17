@@ -133,6 +133,7 @@ const Home = () => {
                                 objectFit: "cover",
                                 display: "block",
                               }}
+                              rel="preload"
                             />
                           </div>
                         </div>
