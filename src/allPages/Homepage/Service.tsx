@@ -1,6 +1,6 @@
 "use client";
 import Accordion from "@/components/Accordian";
-// import { useState } from "react";
+import Image from "next/image";
 
 interface ServiceItem {
   title: string;
@@ -68,13 +68,20 @@ const Service: React.FC<ServiceProps> = ({ data }) => {
                   className=""
                   style={{ position: "relative", width: "60%", margin: "auto" }}
                 >
-                  <img
+                  {/* <img
                     src="/home-images/mobile-frame-img.png"
                     alt="mobile"
                     style={{ width: "100%" }}
+                  /> */}
+                  <Image
+                    src="/home-images/mobile-frame-img.png"
+                    alt="mobile"
+                    width={500}
+                    height={300}
+                    style={{ width: "100%", height: "auto" }}
                   />
                   <video
-                    src="/test-images/test-video.mp4"
+                    src="/test-images/compressed.mp4"
                     autoPlay
                     loop
                     muted
