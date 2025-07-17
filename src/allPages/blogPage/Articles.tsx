@@ -3,11 +3,6 @@
 function stripHtml(html: string) {
   return html.replace(/<[^>]*>?/gm, " ");
 }
-
-function stripHtml(html: string) {
-  return html.replace(/<[^>]*>?/gm, " ");
-}
-
 import Loader from "@/components/loader/Loader";
 import axios from "axios";
 // import Link from "next/link";
@@ -65,7 +60,6 @@ const Articles: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const cardsPerPage = 12;
 
   const navigation = useRouter();
@@ -105,40 +99,6 @@ const Articles: React.FC = () => {
     };
     call();
   }, []);
-
-
-  // useEffect(() => {
-  //   // const handlePagination = () => {
-  //     const pageNum = sessionStorage.getItem("page-no");
-  //     if(!pageNum) {
-  //       // setCurrentPage(1)
-  //       sessionStorage.setItem("page-no", String(currentPage));
-  //     } else  {
-  //       sessionStorage.setItem("page-no", String(currentPage));
-  //     }
-
-  //   };
-  //   handlePagination();
-  // }, [currentPage]);
-
-  // useEffect(() => {
-  //   const pageNum = sessionStorage.getItem("page-no");
-  //   console.log('this is page num ', pageNum);
-
-  //   if (pageNum) {
-  //     setCurrentPage(Number(pageNum));
-  //   }
-  // }, []);
-  useEffect(() => {
-    const call = () => {
-      const pageNum = sessionStorage.getItem("page-no");
-      if (Number(pageNum) > 1) {
-        setCurrentPage(Number(pageNum));
-      }
-    };
-    call();
-  }, []);
-
   useEffect(() => {
     gsap.from(".mnc-card", {
       opacity: 0,
@@ -191,7 +151,6 @@ const Articles: React.FC = () => {
 
   const totalPages = Math.ceil(filteredBlogs.length / cardsPerPage);
   const indexOfLastCard = (currentPage ?? 1) * cardsPerPage;
-  const indexOfLastCard = (currentPage ?? 1) * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
   const currentCards = filteredBlogs.slice(indexOfFirstCard, indexOfLastCard);
 
@@ -200,18 +159,9 @@ const Articles: React.FC = () => {
       setCurrentPage(currentPage + 1);
       sessionStorage.setItem("page-no", String(currentPage + 1));
     }
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-      sessionStorage.setItem("page-no", String(currentPage + 1));
-    }
   };
 
   const handlePrev = () => {
-    if (currentPage ?? 1) {
-      setCurrentPage(currentPage - 1);
-      sessionStorage.setItem("page-no", String(currentPage - 1));
-      // handlePagination();
-    }
     if (currentPage ?? 1) {
       setCurrentPage(currentPage - 1);
       sessionStorage.setItem("page-no", String(currentPage - 1));
@@ -257,15 +207,6 @@ const Articles: React.FC = () => {
         }}
       >
         {" "}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "2rem",
-          padding: "1rem",
-        }}
-      >
-        {" "}
         {currentCards.map((article: MergedBlogs) => (
           <div
             key={article.id}
@@ -295,8 +236,15 @@ const Articles: React.FC = () => {
             }}
           >
             {/* Image Section */}
-            <div style={{ height: "200px", width: "100%", overflow: "hidden" }}>
-              <img
+            <div
+              style={{
+                height: "200px",
+                width: "100%",
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              <Image
                 src={
                   article.banner.includes("/images")
                     ? `/api/images${article.banner.split("/images")[1]}`
@@ -304,11 +252,11 @@ const Articles: React.FC = () => {
                 }
                 alt={article.title}
                 style={{
-                  width: "100%",
-                  height: "100%",
                   objectFit: "cover",
-                  transition: "transform 0.3s ease",
+                    transition: "transform 0.3s ease-in-out",
                 }}
+                priority
+                fill
                 onMouseOver={(e) =>
                   (e.currentTarget.style.transform = "scale(1.05)")
                 }

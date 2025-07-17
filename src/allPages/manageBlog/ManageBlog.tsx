@@ -123,7 +123,7 @@ export default function ManageBlogs() {
       alert("Internal Server Err.");
       setDeleteConfirmModal(false);
 
-      console.log("====================================");
+      // console.log("====================================");
       console.log(
         "There are some errors in your delete blog now controller plz fix the bug first ",
         error
