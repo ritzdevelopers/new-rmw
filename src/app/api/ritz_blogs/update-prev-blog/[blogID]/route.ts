@@ -10,9 +10,7 @@ interface BlogBodyItem {
     innerImg: string;
     metaTitle?: string;
     metaDescription?: string;
-    // Add any other fields you're using in blogBody
 }
-
 
 async function saveFileToUploads(file: File, filename: string): Promise<string> {
     const bytes = await file.arrayBuffer();
@@ -28,9 +26,18 @@ async function saveFileToUploads(file: File, filename: string): Promise<string> 
     return `/uploads/${filename}`;
 }
 
-export async function PUT(req: NextRequest,
-    { params }: { params: { blogID: string } }
-) {
+function deleteFileFromUploads(url: string) {
+    try {
+        const filePath = path.join(process.cwd(), "public", url);
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+    } catch (err) {
+        console.warn("Failed to delete previous image:", err);
+    }
+}
+
+export async function PUT(req: NextRequest, { params }: { params: { blogID: string } }) {
     try {
         await connectMongoDB();
 
@@ -45,7 +52,16 @@ export async function PUT(req: NextRequest,
         let blogBannerPath = "";
         const innerImgMap: Record<string, string> = {};
 
-        // Upload new files (if any)
+        // Fetch existing blog to access previous image paths
+        const existingBlog = await RitzBlogModel.findById(blogId);
+        if (!existingBlog) {
+            return NextResponse.json({ message: "Blog not found" }, { status: 404 });
+        }
+
+        const existingBlogBody: BlogBodyItem[] = existingBlog.blogBody || [];
+        const prevBannerPath: string = existingBlog.blogBanner;
+
+        // Upload new files (if any) and mark old ones for deletion
         for (const [key, value] of formData.entries()) {
             if (value instanceof File && value.size > 0) {
                 const filename = `${Date.now()}-${value.name}`;
@@ -53,9 +69,20 @@ export async function PUT(req: NextRequest,
 
                 if (key === "blogBanner") {
                     blogBannerPath = savedPath;
+
+                    // Delete old banner if new uploaded
+                    if (prevBannerPath) {
+                        deleteFileFromUploads(prevBannerPath);
+                    }
                 } else if (key.startsWith("innerImg-")) {
                     const index = key.split("-")[1];
                     innerImgMap[index] = savedPath;
+
+                    // Delete old inner image if new uploaded
+                    const existingInnerImg = existingBlogBody[+index]?.innerImg;
+                    if (existingInnerImg) {
+                        deleteFileFromUploads(existingInnerImg);
+                    }
                 }
             }
         }
@@ -66,7 +93,6 @@ export async function PUT(req: NextRequest,
             ...item,
             innerImg: innerImgMap[index] || item.innerImg || "",
         }));
-
 
         const updateData: Partial<{
             blogTitle: string | FormDataEntryValue | null;
@@ -83,21 +109,15 @@ export async function PUT(req: NextRequest,
             blogStatus,
         };
 
-
         if (blogBannerPath) {
             updateData.blogBanner = blogBannerPath;
         }
 
-        // Update in DB
         const updatedBlog = await RitzBlogModel.findByIdAndUpdate(
             blogId,
             { $set: updateData },
             { new: true }
         );
-
-        if (!updatedBlog) {
-            return NextResponse.json({ message: "Blog not found", success: false }, { status: 404 });
-        }
 
         return NextResponse.json(
             { message: "Blog Updated Successfully", blog: updatedBlog },

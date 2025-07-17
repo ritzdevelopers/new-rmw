@@ -5,6 +5,7 @@ import axios from "axios";
 import Editor from "@/components/Editor/Editor";
 import { Monitor, Home, ImagePlus } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Page = () => {
   interface BlogBodyItem {
@@ -30,7 +31,7 @@ const Page = () => {
   const fetchBlogBody = async () => {
     try {
       const res = await axios.get(
-        `/api/ritz_blogs/get-single-blog/${blogID}`
+        `/api/ritz_blogs/get-single-blog/obj_id/${blogID}`
       );
       const blog = res.data.blog;
       if (blog?.blogBody) {
@@ -121,9 +122,7 @@ const Page = () => {
     try {
       const step1Key = `update-blog-step-1-${blogID}`;
       const step1Data = JSON.parse(localStorage.getItem(step1Key) || "{}");
-      console.log("====================================");
-      console.log("This is step-1 data ", step1Data);
-      console.log("====================================");
+  
       if (
         !step1Data.blogTitle ||
         !step1Data.blogCategory ||
@@ -229,11 +228,20 @@ const Page = () => {
           </label>
 
           {localImage && (
-            <img
-              src={localImage}
-              alt="Inner"
-              className="w-full max-w-xs h-auto mb-3 rounded border"
-            />
+             <div style={{
+                         position:'relative',
+                         height:'100%',
+                         width:"100%"
+                       }}>
+                         <Image
+                         src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${
+                           localImage.split("/images")[1]
+                         }`}
+                         alt={localTitle}
+                         fill
+                         style={{objectFit:'cover'}}
+                       />
+                       </div>
           )}
 
           <div className="relative inline-block">

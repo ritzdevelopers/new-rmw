@@ -10,31 +10,85 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, Home, Monitor } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-type Blog = {
+interface Blog {
   _id: string;
   blogBanner: string;
   blogTitle: string;
-  // _id: string;
   blogCategory: string;
   categoryName: string;
   createdAt: string | Date;
-  status: "active" | "inactive";
-};
+  status: boolean;
+  blogSlug: string;
+}
+
+interface SQLBLOGS {
+  blog_image: string;
+  created_at: string | Date;
+  title: string;
+  slug: string;
+  status: string;
+}
+interface MERGEDBLOGS {
+  title: string;
+  blogIMG: string;
+  createdAT: string;
+  blogID: string;
+  blogStatus: string;
+  mongoID?: string;
+}
 
 export default function ManageBlogs() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
+  // const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
   const [deleteBlog, setDeleteBlog] = useState<Blog | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [totalBlogs, setTotalBlogs] = useState(0);
+  // const [sqlBlogs, setSQLBlogs] = useState<SQLBLOGS[]>([]);
+  const [mergedBlogs, setMergedBlogs] = useState<MERGEDBLOGS[]>([]);
+  // const [isMongo, setIsMongo] =
   const blogsPerPage = 15;
   const router = useRouter();
+
+  function mergedALLBLOGS(blog: (Blog | SQLBLOGS)[]): MERGEDBLOGS[] {
+    return blog.map((blg) => {
+      if ("_id" in blg) {
+        const mongoBLG = blg as Blog;
+        return {
+          title: mongoBLG.blogTitle,
+          blogIMG: mongoBLG.blogBanner,
+          createdAT: new Date(mongoBLG.createdAt).toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          }),
+          blogID: mongoBLG.blogSlug,
+          blogStatus: mongoBLG.status === true ? "active" : "inactive",
+          mongoID: mongoBLG._id,
+        };
+      } else {
+        const sqlBlog = blg as SQLBLOGS;
+        return {
+          title: sqlBlog.title,
+          blogIMG: sqlBlog.blog_image,
+          createdAT: new Date(sqlBlog.created_at).toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          }),
+          blogID: sqlBlog.slug,
+          blogStatus: sqlBlog.status,
+        };
+      }
+    });
+  }
+
   useEffect(() => {
     setSearchQuery("");
     setSelectedCategory("");
   }, []);
+  let allMerged: MERGEDBLOGS[] = [];
 
   // Fetch blogs whenever filters or page changes
   useEffect(() => {
@@ -53,11 +107,20 @@ export default function ManageBlogs() {
 
         const { data } = await axios.get(`/api/ritz_blogs/get-all-blogs`);
 
-           if (!data.allBlogs || data.allBlogs.length === 0) {
-        router.push("/not-found"); // ✅ manually redirect
-        return;
-      }
-        setBlogs(data.allBlogs);
+        if (data) {
+          allMerged = [...allMerged, ...mergedALLBLOGS(data.allBlogs)];
+        }
+        const res2 = await axios.get("/api/all_blogs");
+        if (res2.data) {
+          allMerged = [...allMerged, ...mergedALLBLOGS(res2.data)];
+        }
+        setMergedBlogs((prev) => [...prev, ...allMerged]);
+
+        if (!data.allBlogs || data.allBlogs.length === 0) {
+          router.push("/not-found"); // ✅ manually redirect
+          return;
+        }
+
         setTotalBlogs(data.allBlogs.length);
         // if(!blogs) NotFound();
       } catch (error) {
@@ -120,9 +183,25 @@ export default function ManageBlogs() {
         }
       }
     } catch (error) {
-      alert("Internal Server Err.");
-      setDeleteConfirmModal(false);
-
+      try {
+        if (!deleteKey) {
+          alert("Internal Key Error Please Try Again!");
+          return;
+        } else {
+          const res = await axios.delete(`/api/delete_blog/${deleteKey}`);
+          if (res.status === 200) {
+            alert("Your Blog Has Been Deleted Successfully!");
+            window.location.reload();
+            setDeleteConfirmModal(false);
+          }
+        }
+      } catch (error) {
+        alert("Internal Server Err.");
+        setDeleteConfirmModal(false);
+        console.log("====================================");
+        console.log(error);
+        console.log("====================================");
+      }
       // console.log("====================================");
       console.log(
         "There are some errors in your delete blog now controller plz fix the bug first ",
@@ -263,58 +342,66 @@ export default function ManageBlogs() {
                   <th className="p-2">Image</th>
                   <th className="p-2">blogTitle</th>
                   {/* <th className="p-2">Blog URL</th> */}
-                  <th className="p-2">Category</th>
+                  {/* <th className="p-2">Category</th> */}
                   <th className="p-2">Add Date</th>
                   <th className="p-2">Status</th>
                   <th className="p-2">Action</th>
                 </tr>
               </thead>
               <tbody>
-                {blogs.length > 0 &&
-                  blogs.map((blog) => (
-                    <tr key={blog._id} className="border-b">
+                {mergedBlogs.length > 0 &&
+                  mergedBlogs.map((blog, idx) => (
+                    <tr key={idx} className="border-b">
                       <td className="p-2">
                         <Image
-                          src={`${blog.blogBanner}`}
-                          alt={blog.blogTitle}
+                          src={`${
+                            blog.blogIMG.includes("/images")
+                              ? `${
+                                  process.env.NEXT_PUBLIC_SERVER_IMG_PATH
+                                }/api/images${blog.blogIMG.split("/images")[1]}`
+                              : `/blogs/${blog.blogIMG}`
+                          }`}
+                          alt={blog.title}
                           width={120}
                           height={120}
                           className="rounded-md"
                         />
                       </td>
-                      <td className="p-2">{blog.blogTitle}</td>
+                      <td className="p-2">{blog.title}</td>
                       {/* <td className="p-2 text-sm">{`/ritz_blogs/get-single-blog/${blog._id}`}</td> */}
-                      <td className="p-2">{blog.categoryName}</td>
-                      <td className="p-2">
-                        {new Date(blog.createdAt).toLocaleDateString("en-US")}
-                      </td>
+                      {/* <td className="p-2">{blog.categoryName}</td> */}
+                      <td className="p-2">{blog.createdAT}</td>
                       <td className="p-2">
                         <span
                           className={`px-2 py-1 rounded-md text-white ${
-                            blog.status === "active"
+                            blog.blogStatus === "active"
                               ? "bg-green-500"
                               : "bg-red-500"
                           }`}
                         >
-                          {blog.status}
+                          {blog.blogStatus}
                         </span>
                       </td>
                       <td>
-                        <Link
-                          href={`/all-ritz-blogs/read-single-blog/${blog._id}`}
-                        >
+                        <Link href={`/${blog.blogID}`}>
                           <button className="text-blue-600 hover:text-blue-800 pl-1 cursor-pointer">
                             <FaEye />
                           </button>
                         </Link>
-                        <Link href={`/admin/update/step-1/${blog._id}`}>
+                        <Link
+                          href={
+                            blog.mongoID
+                              ? `/admin/update/step-1/${blog.mongoID}`
+                              : `/admin/update/sqlB/${blog.blogID}`
+                          }
+                        >
                           <button className="text-green-600 hover:text-green-800 pl-1 cursor-pointer">
                             <FaEdit />
                           </button>
                         </Link>
                         <button
                           className="text-red-600 hover:text-red-800 pl-1 cursor-pointer"
-                          onClick={() => handleDataDeleteModal(blog._id)}
+                          onClick={() => handleDataDeleteModal(blog.blogID)}
                         >
                           <FaTrash />
                         </button>
@@ -327,48 +414,56 @@ export default function ManageBlogs() {
 
           {/* Mobile View */}
           <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {blogs.map((blog) => (
+            {mergedBlogs.map((blog) => (
               <div
-                key={blog._id}
+                key={blog.blogID}
                 className="bg-gray-100 p-4 rounded-md shadow-md"
               >
                 <Image
-                  src={`/blogs/${blog.blogBanner}`}
-                  alt={blog.blogTitle}
+                  src={`/blogs/${blog.blogIMG}`}
+                  alt={blog.title}
                   width={300}
                   height={200}
                   className="rounded-md w-full"
                 />
-                <h3 className="text-lg font-semibold mt-2">{blog.blogTitle}</h3>
-                <p className="text-sm text-gray-600">{blog._id}</p>
-                <p className="text-sm text-gray-600">
+                <h3 className="text-lg font-semibold mt-2">{blog.title}</h3>
+                <p className="text-sm text-gray-600">{blog.blogID}</p>
+                {/* <p className="text-sm text-gray-600">
                   Category: {blog.categoryName}
-                </p>
-                <p className="text-sm text-gray-600">
-                  Date: {new Date(blog.createdAt).toLocaleDateString("en-US")}
-                </p>
+                </p> */}
+                <p className="text-sm text-gray-600">{blog.createdAT}</p>
                 <div className="flex justify-between items-center mt-2">
                   <span
                     className={`px-2 py-1 rounded-md text-white ${
-                      blog.status === "active" ? "bg-green-500" : "bg-red-500"
+                      blog.blogStatus === "active"
+                        ? "bg-green-500"
+                        : "bg-red-500"
                     }`}
                   >
-                    {blog.status}
+                    {blog.blogStatus}
                   </span>
                   <div className="flex gap-2">
-                    <Link href={`/${blog._id}`}>
+                    <Link href={`/${blog.blogID}`}>
                       <button className="text-blue-600 hover:text-blue-800">
                         <FaEye size={18} />
                       </button>
                     </Link>
-                    <Link href={`/admin/update-blog/${blog._id}`}>
+                    <Link
+                      href={
+                        blog.mongoID
+                          ? `/admin/update/step-1/${blog.mongoID}`
+                          : `/admin/update/sqlB/${blog.blogID}`
+                      }
+                    >
                       <button className="text-green-600 hover:text-green-800">
                         <FaEdit size={18} />
                       </button>
                     </Link>
                     <button
                       className="text-red-600 hover:text-red-800"
-                      onClick={() => setDeleteBlog(blog)}
+                      onClick={() =>
+                        handleDataDeleteModal(blog.mongoID || blog.blogID)
+                      }
                     >
                       <FaTrash size={18} />
                     </button>

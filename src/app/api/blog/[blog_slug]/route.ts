@@ -3,7 +3,7 @@ import { getDBPool } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
 import { writeFile, unlink } from "fs/promises";
 import path from "path";
-
+// saveFileToUploads(file: File, filename: string): Promise<string> {
 // GET blog by slug
 export async function GET(
   req: NextRequest,
@@ -76,7 +76,7 @@ export async function PUT(
     const meta_description = formData.get("meta_description") as string;
     const meta_keywords = formData.get("meta_keywords") as string;
     const description = formData.get("description") as string;
-    const blogImage = formData.get("blogImage") as File | null;
+    const blogImage = formData.get("blog_image") as File | null;
 
     let imagePath = existingImage;
 
