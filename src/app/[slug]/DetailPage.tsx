@@ -444,7 +444,7 @@ const DetailPage: React.FC = () => {
             </div>
 
             <div className="container py-4">
-              <h1 className="mb-4 text-center text-lg-start">Latest Blogs</h1>
+              <h2 className="mb-4 text-center text-lg-start">Latest Blogs</h2>
 
               <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                 {recentB && recentB.length > 0 ? (
