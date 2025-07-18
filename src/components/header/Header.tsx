@@ -98,7 +98,11 @@ const Header = () => {
     created_at: string;
   }
   const [blogs, setBlogs] = useState<Article[]>([]);
-  const blog_slugs: string[] = [];
+  // const blog_slugs: string[] = [];
+  const [isBlog, setIsBlog] = useState(false);
+  // const pathSlug = pathname.startsWith("/") ? pathname : `/${pathname}`;
+  const pathSlug = pathname.startsWith("/") ? pathname.slice(1) : pathname;
+
   useEffect(() => {
     const fetchBlogSlug = async () => {
       try {
@@ -111,15 +115,18 @@ const Header = () => {
     fetchBlogSlug();
   }, []);
 
-  blogs.map((blog) => {
-    blog_slugs.push(blog.slug);
-  });
+  useEffect(() => {
+    const blogSlugs = blogs.map((blog) => blog.slug);
+    setIsBlog(blogSlugs.includes(pathSlug));
+  }, [blogs, pathSlug]);
 
-  let isBlog = false;
-  const pathSlug = pathname.startsWith("/") ? pathname : `/${pathname}`;
-  if (blog_slugs.includes(pathSlug.slice(1))) {
-    isBlog = true;
-  }
+  // blogs.map((blog) => {
+  //   blog_slugs.push(blog.slug);
+  // });
+
+  // if (blog_slugs.includes(pathSlug.slice(1))) {
+  //   isBlog = true;
+  // }
   return (
     <header>
       <div
@@ -144,11 +151,19 @@ const Header = () => {
                 }}
               >
                 <Link className="main-logo" href="/">
-                  <img
+                  {/* <img
                     src="/logo-brown.png"
                     alt=""
                     className="sm-size"
                     style={{ height: "50px" }}
+                  /> */}
+                  <Image
+                    src="/logo-brown.png"
+                    alt=""
+                    className="sm-size"
+                    style={{ height: "50px" }}
+                    width={100}
+                    height={100}
                   />
                 </Link>
               </div>
@@ -647,52 +662,46 @@ const Header = () => {
                 </p>
                 <div className={styles.caseImgs}>
                   <Link href="/revving-up-success-advertising-and-car-care-a-surprising-comparison">
-                    <div className={styles.imageWrapper}>
-                      <Image
-                        src="/blogs/2023/09/acr-768x404.jpg"
-                        alt="ACR Blog"
-                        fill
-                        className={styles.caseImage}
-                        sizes="100%"
-                        priority={false}
-                      />
-                    </div>
+                    {/* <img src="/blogs/2023/09/acr-768x404.jpg" alt="" /> */}
+                    <Image
+                      src="/blogs/2023/09/acr-768x404.jpg"
+                      alt="hI1"
+                      width={200}
+                      height={100}
+                    />
                   </Link>
 
                   <Link href="/sticking-to-success-a-case-study-on-the-fevicol-marketing-campaign">
-                    <div className={styles.imageWrapper}>
-                      <Image
-                        src="/blogs/2023/09/Slide1-768x432.jpg"
-                        alt="Fevicol Blog"
-                        fill
-                        className={styles.caseImage}
-                        sizes="100%"
-                      />
-                    </div>
+                    {/* <img src="/blogs/2023/09/Slide1-768x432.jpg" alt="" /> */}
+                    <img
+                      src="/blogs/2023/09/Slide1-768x432.jpg"
+                      alt="hI2"
+                      width={200}
+                      height={100}
+                    />
                   </Link>
 
                   <Link href="/from-reality-to-virtuality-metaverse-technology">
-                    <div className={styles.imageWrapper}>
-                      <Image
-                        src="/blogs/db16fa7c-4f82-1f75-04f3-4270575794e8_1100_550.png"
-                        alt="Metaverse Blog"
-                        fill
-                        className={styles.caseImage}
-                        sizes="100%"
-                      />
-                    </div>
+                    {/* <img
+                      src="/blogs/db16fa7c-4f82-1f75-04f3-4270575794e8_1100_550.png"
+                      alt=""
+                    /> */}
+                    <Image
+                      src="/blogs/db16fa7c-4f82-1f75-04f3-4270575794e8_1100_550.png"
+                      alt="hI3"
+                      width={200}
+                      height={100}
+                    />
                   </Link>
 
                   <Link href="/how-did-cooking-shows-influence-indias-cooking-utensil-sales">
-                    <div className={styles.imageWrapper}>
-                      <Image
-                        src="/blogs/cook-1024x539.jpg"
-                        alt="Cooking Blog"
-                        fill
-                        className={styles.caseImage}
-                        sizes="100%"
-                      />
-                    </div>
+                    {/* <img src="/blogs/cook-1024x539.jpg" alt="" /> */}
+                    <img
+                      src="/blogs/cook-1024x539.jpg"
+                      alt="hI4"
+                      width={200}
+                      height={100}
+                    />
                   </Link>
                 </div>
               </div>
