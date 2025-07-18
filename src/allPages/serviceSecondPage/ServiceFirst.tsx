@@ -49,14 +49,14 @@ const ServiceFirst = ({ heading }: ServiceFirstProps) => {
               <div className="tp-service__wrap p-relative">
                 <div className="z-index-2">
                   <div
-                  className="tttlll"
+                    className="tttlll"
                     style={{
                       width: "100%",
                       maxWidth: svgWidth,
                       margin: "0 auto",
                       position: "relative",
                       textAlign: "start",
-                    //  backgroundColor:'yellow'
+                      //  backgroundColor:'yellow'
                     }}
                   >
                     <svg
@@ -106,7 +106,7 @@ const ServiceFirst = ({ heading }: ServiceFirstProps) => {
                       }}
                     >
                       <video
-                        src="/videos/bg_pattern.mp4"
+                        src="/videos/compressed.mp4"
                         autoPlay
                         loop
                         muted
@@ -116,7 +116,6 @@ const ServiceFirst = ({ heading }: ServiceFirstProps) => {
                           height: "100%",
                           objectFit: "cover",
                           display: "block",
-                          
                         }}
                       />
                     </div>

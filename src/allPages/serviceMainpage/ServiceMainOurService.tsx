@@ -1,6 +1,7 @@
-"use client"
+"use client";
 import Loader from "@/components/loader/Loader";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -42,7 +43,9 @@ const ServiceMainOurService = () => {
     // ✅ Jab data load ho jaye tabhi event listener lagao
     if (services.length === 0) return;
 
-    const hoverItems = document.querySelectorAll<HTMLElement>(".tp-hover__reveal-item");
+    const hoverItems = document.querySelectorAll<HTMLElement>(
+      ".tp-hover__reveal-item"
+    );
 
     if (hoverItems.length === 0) return;
 
@@ -52,7 +55,9 @@ const ServiceMainOurService = () => {
         const x = e.clientX - itemRect.left;
         const y = e.clientY - itemRect.top;
 
-        const revealChild = hoverItem.querySelector<HTMLElement>(".tp-hover__reveal-bg");
+        const revealChild = hoverItem.querySelector<HTMLElement>(
+          ".tp-hover__reveal-bg"
+        );
         if (revealChild) {
           revealChild.style.transform = `translate(${x}px, ${y}px)`;
         }
@@ -77,17 +82,25 @@ const ServiceMainOurService = () => {
     <div className="elementor-element elementor-element-9978344 e-con-full e-flex e-con e-parent e-lazyloaded">
       <div className="container">
         <h3 className="tp-section-title">
-          OUR <span><i>SERVICE</i></span>
+          OUR{" "}
+          <span>
+            <i>SERVICE</i>
+          </span>
         </h3>
 
         <div className="tp-services__widget mb-85">
           {services.map((list, index) => (
-            <div key={index} className="tp-services__item tp-hover__reveal-item">
+            <div
+              key={index}
+              className="tp-services__item tp-hover__reveal-item"
+            >
               <Link href={`/services/${list.link}`} target="_self">
                 <div className="row align-items-center">
                   <div className="col-xl-2 col-lg-2">
                     <div className="tp-services__number">
-                      <h3 className="tp-services__number-text">{`0${index + 1}`}</h3>
+                      <h3 className="tp-services__number-text">{`0${
+                        index + 1
+                      }`}</h3>
                     </div>
                   </div>
                   <div className="col-xl-3 col-lg-3">
@@ -124,13 +137,25 @@ const ServiceMainOurService = () => {
               </Link>
 
               {/* ✅ Background Move Hoga */}
-              <div
+              {/* <div
                 className="tp-hover__reveal-bg"
                 style={{
                   backgroundImage: `url(/services/${list.imgUrl})`,
                   transform: list.translate,
                 }}
-              ></div>
+              ></div> */}
+              <div
+                className="tp-hover__reveal-bg"
+                style={{ transform: list.translate }}
+              >
+                <Image
+                  src={`/services/${list.imgUrl}`}
+                  alt={list.title}
+                  layout="fill"
+                  objectFit="cover"
+                  priority={index < 2} // Prioritize first few images
+                />
+              </div>
             </div>
           ))}
         </div>

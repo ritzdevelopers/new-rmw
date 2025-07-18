@@ -54,7 +54,7 @@ const ServiceThirdHero = ({ heading }: headingProp) => {
                         > */}
                         <PagesBanner
                           headingTitle={lines}
-                          videoURL={"/videos/bg_pattern.mp4"}
+                          videoURL={"/videos/compressed.mp4"}
                           mtP={"80px"}
                           mtS={"50px"}
                           sH={"auto"}
