@@ -5,9 +5,11 @@
 }
 
 .imageContainer {
+  position: relative;
+  height: 200px;
+  width: 100%; /* or fixed like 300px if you want a fixed layout */
   overflow: hidden;
 }
-
 .image {
   transition: transform 0.4s ease-in-out;
 }
