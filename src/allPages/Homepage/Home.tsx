@@ -122,7 +122,7 @@ const Home = () => {
                             }}
                           >
                             <video
-                              src="/videos/compressed.mp4"
+                              src="/videos/bg_pattern.mp4"
                               autoPlay
                               loop
                               muted
@@ -133,7 +133,6 @@ const Home = () => {
                                 objectFit: "cover",
                                 display: "block",
                               }}
-                              rel="preload"
                             />
                           </div>
                         </div>
@@ -182,7 +181,7 @@ const Home = () => {
                               fill
                               priority
                               style={{
-                                objectFit: "contain",
+                                objectFit:'contain'
                               }}
                               quality={100}
                             />

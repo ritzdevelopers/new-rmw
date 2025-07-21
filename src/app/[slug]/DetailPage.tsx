@@ -316,7 +316,6 @@ const DetailPage: React.FC = () => {
   // ✅ Render Blog if found
   if (singleBlog) {
     const isMongo = !!singleBlog.blogTitle;
-     
 
     // const [isClick, setIsClick] = useState<boolean>();
 
@@ -339,7 +338,10 @@ const DetailPage: React.FC = () => {
                   }
                   fill
                   priority
-                  alt={(isMongo ? singleBlog.blogTitle : singleBlog.title) || "Ritz Media World"}
+                  alt={
+                    (isMongo ? singleBlog.blogTitle : singleBlog.title) ||
+                    "Ritz Media World"
+                  }
                   className={styles.imgD}
                 />
               </div>
@@ -380,13 +382,9 @@ const DetailPage: React.FC = () => {
                       {page.innerImg && (
                         <div className={styles.innerImg}>
                           <Image
-                            src={
-                              isMongo
-                                ? `${staticAPI}${
-                                    page.innerImg.split("/images")[1]
-                                  }`
-                                : `/static/${page.innerImg}`
-                            }
+                            src={`${staticAPI}${
+                              page.innerImg.split("/images")[1]
+                            }`}
                             alt={page.metaTitle}
                             fill
                             priority
@@ -447,7 +445,7 @@ const DetailPage: React.FC = () => {
             </div>
 
             <div className="container py-4">
-              <h1 className="mb-4 text-center text-lg-start">Latest Blogs</h1>
+              <h2 className="mb-4 text-center text-lg-start">Latest Blogs</h2>
 
               <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                 {recentB && recentB.length > 0 ? (
@@ -663,7 +661,6 @@ const DetailPage: React.FC = () => {
                       key={idx}
                     >
                       <div className={styles.resultCardImage}>
-                        
                         <Image
                           src={
                             isMongo
@@ -672,11 +669,14 @@ const DetailPage: React.FC = () => {
                                 }`
                               : `/blogs/${blog.blog_image}`
                           }
-                          alt={(isMongo ? blog.blogTitle : blog.title) || "Ritz Media World"}
+                          alt={
+                            (isMongo ? blog.blogTitle : blog.title) ||
+                            "Ritz Media World"
+                          }
                           fill
                           priority
                           style={{
-                            objectFit:'cover'
+                            objectFit: "cover",
                           }}
                         />
                       </div>
