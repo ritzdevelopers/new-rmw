@@ -18,7 +18,7 @@ const AboutFirst = () => {
             {/* <div > */}
             <PagesBanner
               headingTitle={"About The Agency & Legacy"}
-              videoURL={"/videos/bg_pattern2.mp4"}
+              videoURL={"/videos/compressed.mp4"}
               mtP={"150px"}
               mtS={"100px"}
               sH={"20vh"}

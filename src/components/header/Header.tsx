@@ -673,7 +673,7 @@ const Header = () => {
 
                   <Link href="/sticking-to-success-a-case-study-on-the-fevicol-marketing-campaign">
                     {/* <img src="/blogs/2023/09/Slide1-768x432.jpg" alt="" /> */}
-                    <img
+                    <Image
                       src="/blogs/2023/09/Slide1-768x432.jpg"
                       alt="hI2"
                       width={200}
@@ -696,7 +696,7 @@ const Header = () => {
 
                   <Link href="/how-did-cooking-shows-influence-indias-cooking-utensil-sales">
                     {/* <img src="/blogs/cook-1024x539.jpg" alt="" /> */}
-                    <img
+                    <Image
                       src="/blogs/cook-1024x539.jpg"
                       alt="hI4"
                       width={200}

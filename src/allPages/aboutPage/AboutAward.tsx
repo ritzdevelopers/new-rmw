@@ -10,15 +10,15 @@ const AboutAward = () => {
             <div className="row">
               <div className="col-xl-5 about_our_work">
                 {/* <div className="tp-awards__5-thumb-box p-relative"> */}
-                  <div className={styles.tpthumb}>
-                    <Image
-                      src="/about-images/award.jpg"
-                      style={{ objectFit: "cover" }}
-                      fill
-                      priority
-                      alt="about the agency & legacy"
-                    />
-                  </div>
+                <div className={styles.tpthumb}>
+                  <Image
+                    src="/about-images/award.jpg"
+                    style={{ objectFit: "cover" }}
+                    fill
+                    priority
+                    alt="about the agency & legacy"
+                  />
+                </div>
                 {/* </div> */}
               </div>
               <div className="col-xl-7">
