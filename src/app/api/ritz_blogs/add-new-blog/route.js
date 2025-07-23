@@ -80,6 +80,9 @@ export async function POST(request) {
     // console.log('====================================');
     // console.log(blogBody, blogBodyRaw);
     // console.log('====================================');
+    console.log('====================================');
+    console.log(blogBody[0]);
+    console.log('====================================');
     blogDescription = blogBody[0].metaDescription;
 
     const newBlog = await RitzBlogModel.create({
