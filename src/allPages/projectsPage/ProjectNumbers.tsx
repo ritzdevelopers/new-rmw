@@ -1,20 +1,7 @@
 const ProjectNumbers = () => {
   return (
     <section className="tp-funfact-2-area tp-funfact__3 mb-5 p-relative">
-      <div className="tp-text__3-shape-1 d-none d-xl-block">
-        <img
-          decoding="async"
-          src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/arrow-shape.png"
-          alt=""
-        />
-      </div>
-      <div className="tp-text__3-shape-2 d-none d-xl-block">
-        <img
-          decoding="async"
-          src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/arrow-shape-2.png"
-          alt=""
-        />
-      </div>
+
       <div className="tp-funfact__box">
         <div className="container">
           <div className="tp-funfact__wrap">

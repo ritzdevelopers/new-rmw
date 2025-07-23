@@ -17,9 +17,7 @@ export async function GET(
       "SELECT * FROM blogs WHERE slug = ? LIMIT 1",
       [slug]
     );
-    // console.log('====================================');
-    // console.log(blogs[0], 'this is mysql blog');
-    // console.log('====================================');
+
 
     if (blogs.length > 0) {
       return NextResponse.json({

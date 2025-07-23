@@ -77,8 +77,11 @@ export async function POST(request) {
       ...item,
       innerImg: innerImgMap[index] || "",
     }));
+    // console.log('====================================');
+    // console.log(blogBody, blogBodyRaw);
+    // console.log('====================================');
     console.log('====================================');
-    console.log(blogBody, blogBodyRaw);
+    console.log(blogBody[0]);
     console.log('====================================');
     blogDescription = blogBody[0].metaDescription;
 
@@ -98,7 +101,7 @@ export async function POST(request) {
       { status: 201 }
     );
   } catch (error) {
-    console.log("Error uploading blog:", error);
+    // console.log("Error uploading blog:", error);
     return NextResponse.json(
       { message: "Internal Server Error", error: error.message },
       { status: 500 }

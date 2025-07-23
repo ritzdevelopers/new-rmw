@@ -23,9 +23,9 @@ export async function DELETE(request: NextRequest,
             status: 200,
         })
     } catch (error) {
-        console.log('====================================');
+        // console.log('====================================');
         console.log("There are some error in your delete single category controller plz fix the bug first ", error);
-        console.log('====================================');
+        // console.log('====================================');
         return NextResponse.json({
             message: "Internal Server Error",
             success: false,

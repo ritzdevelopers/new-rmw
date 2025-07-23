@@ -3,7 +3,7 @@ import { getDBPool } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
 import { writeFile, unlink } from "fs/promises";
 import path from "path";
-
+// saveFileToUploads(file: File, filename: string): Promise<string> {
 // GET blog by slug
 export async function GET(
   req: NextRequest,
@@ -11,7 +11,7 @@ export async function GET(
 ) {
   try {
     const { blog_slug } = await context.params;
-    console.log("Slug received:", blog_slug);
+    // console.log("Slug received:", blog_slug);
 
     if (!blog_slug) {
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
@@ -23,7 +23,7 @@ export async function GET(
       [decodeURIComponent(blog_slug)]
     );
 
-    console.log("DB rows:", rows);
+    // console.log("DB rows:", rows);
 
     if (rows.length === 0) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
@@ -76,7 +76,7 @@ export async function PUT(
     const meta_description = formData.get("meta_description") as string;
     const meta_keywords = formData.get("meta_keywords") as string;
     const description = formData.get("description") as string;
-    const blogImage = formData.get("blogImage") as File | null;
+    const blogImage = formData.get("blog_image") as File | null;
 
     let imagePath = existingImage;
 

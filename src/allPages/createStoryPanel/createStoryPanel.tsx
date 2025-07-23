@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import styles from "./page.module.css";
+import Image from "next/image";
 interface StoryFolder {
   id: number;
   title: string;
@@ -71,7 +72,7 @@ const CreateStoryPanel: React.FC = () => {
       });
   
       const data = await res.json();
-      console.log("📦 Server Response:", data);
+      // console.log("📦 Server Response:", data);
   
       if (res.ok) {
         const newId = data.id;
@@ -100,7 +101,7 @@ const CreateStoryPanel: React.FC = () => {
         setCategory("Finance");
         setAuthor("");
   
-        console.log("✅ Story folder saved successfully.");
+        // console.log("✅ Story folder saved successfully.");
       } else {
         console.error("❌ API Error:", data.error);
       }
@@ -377,14 +378,14 @@ const CreateStoryPanel: React.FC = () => {
             {(stories[activeFolderId] || []).map((story) => (
               <div key={story.id} className="col-6 col-md-3">
                 <div className="card bg-white text-dark h-100">
-                  <img
+                  <Image
                     src={story.image}
-                    className="card-img-top"
                     alt={story.title}
+                    width={300}
+                    height={200}
+                    className={styles.cardImg}
                   />
-                  {/* <div className="card-body">
-                    <h5 className="card-title">{story.title}</h5>
-                  </div> */}
+                  
                 </div>
               </div>
             ))}

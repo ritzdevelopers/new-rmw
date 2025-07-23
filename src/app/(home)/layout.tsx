@@ -13,6 +13,7 @@ import PageWrapper from "@/components/pageWrapper/PageWrapper";
 import Button from "@/components/sideButton/sideButton";
 import Header from "@/components/header/Header";
 import Script from "next/script";
+import WhatsAppFloatingButton from "@/components/whats-app/WhatsAppFloatingButton";
 // import { TrackPageView } from "@/components/trackView/TrackPageView";
 // import { BlogProvider } from "@/context/AllBlogContext";
 // import { Providers } from "../provider/Provider";
@@ -107,6 +108,11 @@ export default function HomeLayout({
       <PageWrapper>
         {/* <TrackPageView /> */}
         <Header />
+        
+
+          <WhatsAppFloatingButton></WhatsAppFloatingButton>
+
+        
         {children}
         <Button />
       </PageWrapper>

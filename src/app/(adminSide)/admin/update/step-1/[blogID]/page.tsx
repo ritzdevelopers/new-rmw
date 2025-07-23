@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import { useBlogContext } from "@/blogContext/BlogContext";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
+import Image from "next/image";
 
 const Page = () => {
   const params = useParams();
   const router = useRouter();
   const blogID = params.blogID as string;
-  
 
   interface BlogBody {
     metaTitle: string;
@@ -25,7 +25,7 @@ const Page = () => {
     blogBody: BlogBody[];
     createdAt: string;
     blogCategory: string;
-    metaKeywords:string
+    metaKeywords: string;
   }
 
   const {
@@ -47,9 +47,9 @@ const Page = () => {
 
     const LOCAL_KEY = `update-blog-step-1-${blogID}`;
     const savedData = localStorage.getItem(LOCAL_KEY);
-    console.log('====================================');
+    console.log("====================================");
     console.log("This data received from local storage", savedData);
-    console.log('====================================');
+    console.log("====================================");
     if (savedData) {
       const parsed = JSON.parse(savedData);
       setLocalTitle(parsed.blogTitle || "");
@@ -68,12 +68,12 @@ const Page = () => {
   const getSingleBlogInfo = async (id: string, LOCAL_KEY: string) => {
     try {
       const res = await axios.get<{ blog: BlogInfo }>(
-        `/api/ritz_blogs/get-single-blog/${id}`
+        `/api/ritz_blogs/get-single-blog/obj_id/${id}`
       );
       const blog = res.data.blog;
-      console.log('====================================');
+      console.log("====================================");
       console.log("This is blog ", blog);
-      console.log('====================================');
+      console.log("====================================");
       setLocalTitle(blog.blogTitle || "");
       setLocalMeta(blog.metaKeywords || "");
       setLocalBanner(blog.blogBanner || "");
@@ -97,10 +97,10 @@ const Page = () => {
       alert("Error fetching blog info from backend.");
     }
   };
-  
+
   const saveDataToLocalStorage = () => {
     const LOCAL_KEY = `update-blog-step-1-${blogID}`;
-    alert("This function hit!");
+    // alert("This function hit!");
     const data = {
       blogTitle: localTitle,
       metaKeywords: localMeta,
@@ -121,7 +121,7 @@ const Page = () => {
       saveDataToLocalStorage();
       router.push(`/admin/update/step-2/page/${blogID}/${count + 1}`);
     } else {
-      alert("Back Function hit")
+      alert("Back Function hit");
       router.push(path);
     }
   };
@@ -170,11 +170,20 @@ const Page = () => {
           />
 
           {localBanner ? (
-            <img
-              src={localBanner}
-              alt="Selected Banner"
-              className="w-full h-52 object-cover rounded-md border"
+            <div style={{
+              position:'relative',
+              height:'100%',
+              width:"100%"
+            }}>
+              <Image
+              src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${
+                blogBanner.split("/images")[1]
+              }`}
+              alt={localTitle}
+              fill
+              style={{objectFit:'cover'}}
             />
+            </div>
           ) : (
             <div className="p-4">
               <label className="text-sm font-semibold text-[#444]">
@@ -279,7 +288,9 @@ const Page = () => {
         </button>
 
         <button
-          onClick={() => handleNavigation(`/admin/update/step-2/page/${blogID}/${count}`)}
+          onClick={() =>
+            handleNavigation(`/admin/update/step-2/page/${blogID}/${count}`)
+          }
           className="bg-[#2955B3] hover:bg-[#1e3f8a] cursor-pointer text-white px-5 py-2 rounded-md"
         >
           Continue to Step 2

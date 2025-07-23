@@ -457,3 +457,56 @@
   object-fit: cover;
 }
 
+
+
+.mobileSidebarLogo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 20px;
+}
+
+/* Wrapper around Image to allow `fill` */
+.logoImageWrapper {
+  position: relative;
+  width: 120px;     /* Adjust width as needed */
+  height: 50px;     /* Fixed height just like old inline style */
+  flex-shrink: 0;
+}
+
+.logoImage {
+  object-fit: contain;
+}
+
+/* Close Button Style (unchanged from original) */
+.closeMenu {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+.caseImgs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Keeps height proportional to width */
+  overflow: hidden;
+}
+
+.caseImage {
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.caseImage:hover {
+  transform: scale(1.03);
+}
+
