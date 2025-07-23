@@ -1,5 +1,6 @@
 import Elementor from "@/allPages/Elementor";
 import { Providers } from "../provider/Provider";
+import CookieConsentWithLead from "@/components/Cookies/CookieConsentWithLead";
 
 export const metadata = {
   title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida",
@@ -47,6 +48,7 @@ export default function Home() {
     // <BlogProvider>
     <Providers>
       <Elementor />
+      <CookieConsentWithLead></CookieConsentWithLead>
     </Providers>
     // </BlogProvider>
   );

@@ -40,11 +40,12 @@ interface MERGEDBLOGS {
 export default function ManageBlogs() {
   // const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  // const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1);
   const [deleteBlog, setDeleteBlog] = useState<Blog | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  // const [selectedCategory, setSelectedCategory] = useState("All");
   const [totalBlogs, setTotalBlogs] = useState(0);
+  const [llength, setLastLength] = useState<number>(0);
   // const [sqlBlogs, setSQLBlogs] = useState<SQLBLOGS[]>([]);
   const [mergedBlogs, setMergedBlogs] = useState<MERGEDBLOGS[]>([]);
   // const [isMongo, setIsMongo] =
@@ -84,45 +85,51 @@ export default function ManageBlogs() {
     });
   }
 
-  useEffect(() => {
-    setSearchQuery("");
-    setSelectedCategory("");
-  }, []);
-  let allMerged: MERGEDBLOGS[] = [];
+  // useEffect(() => {
+  //   setSearchQuery("");
+  //   setSelectedCategory("");
+  // }, []);
+  // const allMergedRef = useRef<MERGEDBLOGS[]>([]);
 
+  const [lftBtn, setLftBtn] = useState(0);
+  const [rightBtn, setRightBtn] = useState(9);
   // Fetch blogs whenever filters or page changes
   useEffect(() => {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
-        const params = new URLSearchParams();
-        params.append("page", currentPage.toString());
-        params.append("limit", blogsPerPage.toString());
-        if (searchQuery.trim() !== "") {
-          params.append("search", searchQuery.trim());
-        }
-        if (selectedCategory !== "All") {
-          params.append("category", selectedCategory);
-        }
+        // const params = new URLSearchParams();
+        // params.append("page", currentPage.toString());
+        // params.append("limit", blogsPerPage.toString());
+
+        // if (searchQuery.trim() !== "") {
+        //   params.append("search", searchQuery.trim());
+        // }
+        // if (selectedCategory !== "All") {
+        //   params.append("category", selectedCategory);
+        // }
 
         const { data } = await axios.get(`/api/ritz_blogs/get-all-blogs`);
-
-        if (data) {
-          allMerged = [...allMerged, ...mergedALLBLOGS(data.allBlogs)];
-        }
         const res2 = await axios.get("/api/all_blogs");
-        if (res2.data) {
-          allMerged = [...allMerged, ...mergedALLBLOGS(res2.data)];
+
+        let combined: MERGEDBLOGS[] = [];
+
+        if (data?.allBlogs) {
+          combined = [...combined, ...mergedALLBLOGS(data.allBlogs)];
+          setTotalBlogs(data.allBlogs.length); // Set actual count
         }
-        setMergedBlogs((prev) => [...prev, ...allMerged]);
+
+        if (res2?.data) {
+          combined = [...combined, ...mergedALLBLOGS(res2.data)];
+        }
+
+        setMergedBlogs((prev) => [...prev, ...combined]);
+        setLastLength((prev) => prev + combined.length);
 
         if (!data.allBlogs || data.allBlogs.length === 0) {
-          router.push("/not-found"); // ✅ manually redirect
+          router.push("/not-found");
           return;
         }
-
-        setTotalBlogs(data.allBlogs.length);
-        // if(!blogs) NotFound();
       } catch (error) {
         console.error("Error fetching blogs:", error);
         toast.error("Failed to fetch blogs");
@@ -132,7 +139,7 @@ export default function ManageBlogs() {
     };
 
     fetchBlogs();
-  }, [currentPage, searchQuery, selectedCategory]);
+  }, []);
 
   const handleDelete = async () => {
     if (!deleteBlog) return;
@@ -153,17 +160,7 @@ export default function ManageBlogs() {
     setDeleteBlog(null);
   };
 
-  // const categories = [
-  //   "All",
-  //   ...new Set(
-  //     blogs &&
-  //       blogs.map((blog) =>
-  //         blog.categoryName ? blog.categoryName : "For Demo"
-  //       )
-  //   ),
-  // ];
-
-  const totalPages = Math.ceil(totalBlogs / blogsPerPage);
+  // const totalPages = Math.ceil(totalBlogs / blogsPerPage);
   const [deleteConfirmModal, setDeleteConfirmModal] = useState(false);
   const [deleteKey, setDeleteKey] = useState("");
 
@@ -215,6 +212,96 @@ export default function ManageBlogs() {
     setDeleteKey(" ");
     setDeleteConfirmModal(true);
     setDeleteKey(key);
+  };
+
+  // Pagination Is Starting From Here
+  const [page, setPage] = useState<MERGEDBLOGS[]>([]);
+
+  const pagination = (s: number, e: number) => {
+    if (s < mergedBlogs.length) {
+      if (mergedBlogs.length < 9) {
+        setPage(mergedBlogs.slice(s, mergedBlogs.length - 1));
+        return;
+      }
+      setPage(mergedBlogs.slice(s, e));
+    }
+  };
+  const [ttPage, setTTPage] = useState(0);
+  // const [btnArr, setBtnArr] = useState<number[]>([]);
+
+  const [activePage, setActivePage] = useState(0);
+
+  useEffect(() => {
+    pagination(lftBtn, rightBtn);
+    setTTPage(mergedBlogs.length / 8 + 1);
+  }, [lftBtn, rightBtn, mergedBlogs]);
+
+  useEffect(() => {
+    setActivePage(1);
+  }, []);
+
+  const leftPage = () => {
+    let newLeft = lftBtn - 9;
+    if (newLeft < 0) newLeft = 0;
+
+    let newRight;
+    if (mergedBlogs.length < 10) {
+      newRight = mergedBlogs.length;
+    } else {
+      newRight = newLeft + 9;
+    }
+    setActivePage((prev) => (prev > 1 ? prev - 1 : prev));
+    setLftBtn(newLeft);
+    setRightBtn(newRight);
+    pagination(newLeft, newRight);
+  };
+
+  const rightPage = () => {
+    let newLeft = lftBtn + 9;
+    let newRight = newLeft + 9;
+    if (newRight > mergedBlogs.length) {
+      newRight = mergedBlogs.length;
+      newLeft = newRight - (newRight % 9);
+    }
+  setActivePage((prev) => (prev < Math.ceil(llength / 9) ? prev + 1 : prev));
+
+
+    setLftBtn(newLeft);
+    setRightBtn(newRight);
+    pagination(newLeft, newRight);
+  };
+
+  const directPageNavigation = (e: HTMLElement) => {
+    const pageNum = Number(e.innerText);
+    setActivePage(pageNum);
+    let newRight = 9 * pageNum;
+
+    let newLeft = newRight - 9;
+    if (newRight > mergedBlogs.length) {
+      newRight = mergedBlogs.length;
+      newLeft = newRight - (newRight % 9);
+    }
+
+    setLftBtn(newLeft);
+    setRightBtn(newRight);
+    pagination(newLeft, newRight);
+  };
+
+  const getDataWithSearch = (e: string) => {
+    const value = e;
+    setTimeout(() => {
+      setPage(
+        page.filter((data) =>
+          data.title.toLowerCase().includes(value.toLowerCase())
+        )
+      );
+      console.log("This is filtered post", page);
+    }, 2000);
+  };
+
+  const getEntriesManually = (e: number) => {
+    const val = Number(e);
+    setPage(mergedBlogs.slice(0, val));
   };
   return (
     <div className="bg-[#EEEEEE] flex flex-col gap-6 sm:gap-8 md:gap-12 p-4 md:p-8 min-h-screen">
@@ -303,13 +390,20 @@ export default function ManageBlogs() {
                 Show Entries
               </p>
               <select
-                // onChange={(E) => getEntriesManually(E)}
+                onChange={(E) => getEntriesManually(Number(E.target.value))}
                 className="border border-[#365248] rounded-md px-3 py-1.5 text-[#365248] outline-none cursor-pointer"
               >
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
+                {mergedBlogs.length > 0 && (
+                  <option
+                    value={mergedBlogs && Math.ceil(mergedBlogs.length / 2)}
+                  >
+                    {mergedBlogs && Math.ceil(mergedBlogs.length / 2)}
+                  </option>
+                )}
               </select>
             </div>
 
@@ -322,6 +416,7 @@ export default function ManageBlogs() {
                 type="text"
                 placeholder="Search here..."
                 // onChange={(e) => getDataWithSearch(e)}
+                onChange={(e) => getDataWithSearch(e.target.value)}
                 className="bg-transparent outline-none placeholder:text-[#365248] text-[#365248] w-full"
               />
             </div>
@@ -349,9 +444,9 @@ export default function ManageBlogs() {
                 </tr>
               </thead>
               <tbody>
-                {mergedBlogs.length > 0 &&
-                  mergedBlogs.map((blog, idx) => (
-                    <tr key={idx} className="border-b">
+                {page.length > 0 &&
+                  page.map((blog) => (
+                    <tr key={blog.blogID} className="border-b">
                       <td className="p-2">
                         <Image
                           src={`${
@@ -414,7 +509,7 @@ export default function ManageBlogs() {
 
           {/* Mobile View */}
           <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {mergedBlogs.map((blog) => (
+            {page.map((blog) => (
               <div
                 key={blog.blogID}
                 className="bg-gray-100 p-4 rounded-md shadow-md"
@@ -474,7 +569,69 @@ export default function ManageBlogs() {
           </div>
 
           {/* Pagination */}
-          {totalPages > 1 && (
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-4 py-4 border-t">
+            <p className="text-sm opacity-0 text-gray-600">
+              Showing 41 to 50 of 52 entries
+            </p>
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                onClick={leftPage}
+                className="px-5 py-2 border rounded-md border-[#688A7E] text-[#688A7E] font-semibold hover:bg-[#436b5d] hover:text-white transition"
+              >
+                Previous
+              </button>
+
+              <div className="flex flex-wrap gap-1">
+                {/* First 4-5 buttons */}
+                {Array.from({ length: Math.min(ttPage, 1) }, (_, i) => (
+                  <p
+                    key={i}
+                    onClick={(e) => {
+                      const trg = e.target as HTMLElement;
+                      directPageNavigation(trg);
+                    }}
+                    className="px-3 py-1.5 border border-[#688A7E] text-black rounded-md cursor-pointer hover:bg-[#688A7E] hover:text-white transition"
+                    style={{ backgroundColor: "black", color: "white" }
+                    }
+                  >
+                    {activePage}
+                  </p>
+                ))}
+
+                {/* ... dots if needed
+                {llength > 7 && <span className="px-2">...</span>}
+
+                {/* Last 2 buttons */}
+                {/* {llength / 9 > 7 && (
+                  <p
+                    key="last-page"
+                    onClick={(e) => {
+                      const trg = e.target as HTMLElement;
+                      directPageNavigation(trg);
+                    }}
+                    className="px-3 py-1.5 border border-[#688A7E] text-black rounded-md cursor-pointer hover:bg-[#688A7E] hover:text-white transition"
+                    style={
+                      activePage === Math.ceil(llength / 9)
+                        ? { backgroundColor: "black", color: "white" }
+                        : {}
+                    }
+                  >
+                    {Math.ceil(llength / 9)}
+                  </p>
+                )} */} 
+              </div>
+
+              <button
+                onClick={rightPage}
+                className="px-5 py-2 border rounded-md border-[#688A7E] text-[#688A7E] font-semibold hover:bg-[#436b5d] hover:text-white transition"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+
+          {/* Pagination */}
+          {/* {totalPages > 1 && (
             <div className="flex justify-center mt-6 gap-2 flex-wrap">
               <button
                 disabled={currentPage === 1}
@@ -508,7 +665,7 @@ export default function ManageBlogs() {
                 Next
               </button>
             </div>
-          )}
+          )} */}
         </div>
       )}
 

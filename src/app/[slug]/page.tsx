@@ -88,7 +88,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
-  const baseURL = "http://localhost:3000"; // Or process.env.API_BASE_URL
+  const baseURL = process.env.NEXT_PUBLIC_SERVER_IMG_PATH;
 
   try {
     let blog: Blog | null = null;

@@ -11,8 +11,14 @@ import {
 import Link from "next/link";
 
 import { AlertTriangle } from "lucide-react";
-
-function page() {
+interface PAGESDATA {
+  pageTitle:string,
+  pageHeading:string,
+  pageURL:string,
+  date:string,
+  status:boolean
+}
+function Page() {
   // const router = useRouter
   const contentData = [
     {
@@ -170,11 +176,11 @@ function page() {
       status: false,
     },
   ];
-  const [lftBtn, setLftBtn] = useState(0);
-  const [rightBtn, setRightBtn] = useState(9);
-  const [page, setPage] = useState([]);
+  const [lftBtn, setLftBtn] = useState<number>(0);
+  const [rightBtn, setRightBtn] = useState<number>(9);
+  const [page, setPage] = useState<PAGESDATA[]>([]);
 
-  const pagination = (s, e) => {
+  const pagination = (s:number, e:number) => {
     if (s < contentData.length) {
       if (contentData.length < 9) {
         setPage(contentData.slice(s, contentData.length - 1));
@@ -195,9 +201,6 @@ function page() {
   }, [lftBtn, rightBtn]);
   useEffect(()=>{
     setActivePage(1);
-      console.log('====================================');
-  console.log(activePage);
-  console.log('====================================');
   }, [])
   const leftPage = () => {
     let newLeft = lftBtn - 9;
@@ -216,7 +219,6 @@ function page() {
   };
 
   const rightPage = () => {
-    // debugger;
     let newLeft = lftBtn + 9;
     let newRight = newLeft + 9;
 
@@ -231,8 +233,7 @@ function page() {
   };
 
   const directPageNavigation = (e) => {
-    debugger;
-    let pageNum = Number(e.target.innerText);
+    const pageNum = Number(e.target.innerText);
      setActivePage(pageNum);
     let newRight = 9 * pageNum;
 
@@ -262,7 +263,7 @@ function page() {
 
   const getEntriesManually = (e) => {
    
-    let val = Number(e.target.value);
+    const val = Number(e.target.value);
     
     setPage(contentData.slice(0, val));
   };
@@ -483,4 +484,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
