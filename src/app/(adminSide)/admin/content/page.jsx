@@ -2,9 +2,7 @@
 import React, { useEffect, useState } from "react";
 import {
   FilePen,
-  FilePenLine,
   Home,
-  Leaf,
   Monitor,
   Trash2,
 } from "lucide-react";
@@ -184,7 +182,6 @@ function page() {
     }
   };
   const [ttPage, setTTPage] = useState(0);
-  const [btnArr, setBtnArr] = useState([]);
   
   const [activePage, setActivePage] = useState(0);
 
