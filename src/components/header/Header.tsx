@@ -120,6 +120,78 @@ const Header = () => {
   if (blog_slugs.includes(pathSlug.slice(1))) {
     isBlog = true;
   }
+
+  // Fetch Script Will Work From Here ....
+
+  // interface TRACKED_DATA {
+  //   name?: string;
+  //   email?: string;
+  //   phoneNumber?: string;
+  //   pinCode?: string;
+  //   city?: string;
+  //   deviceName?: string;
+  //   gender?: string;
+  //   trafficSource?: string;
+  //   perPageTrack?: string;
+  //   revisit?: string;
+  //   deviceIPAddress?: string;
+  // }
+  // const [trackedUser, setTrackedUser] = useState<TRACKED_DATA>({});
+  // const [spendingTime, setSpendingTime] = useState<number>(0);
+  // const [usersIP, setUsersIP] = useState<string>();
+  // // Fetch User's IP :
+  // const userIPTracker = async () => {
+  //   try {
+  //     const { data, status } = await axios.get("/api/user-ip-tracker");
+  //     if (status === 200) {
+  //       sessionStorage.setItem(
+  //         "users-cr-ip",
+  //         encodeURIComponent(data.IP_ADDRESS)
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.log("Err in fetching user ip : ", error);
+  //   }
+  // };
+
+  // // const { data } = await axios.get(`https://ipinfo.io/${122.161.48.70}?token=73ffa66adabfe8`);
+
+  // useEffect(() => {
+  //   const savedUSerIp = sessionStorage.getItem("users-cr-ip");
+  //   if (!savedUSerIp) {
+  //     userIPTracker();
+  //   } else {
+  //     setUsersIP(decodeURIComponent(savedUSerIp));
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   const countingTime = setInterval(() => {
+  //     setSpendingTime((prev) => prev + 1);
+  //   }, 1000);
+
+  //   return () => {
+  //     clearInterval(countingTime);
+  //     setSpendingTime(0);
+  //   };
+  // }, []);
+
+  // async function testAPI() {
+  //   try {
+  //     const ip = "106.219.226.146";
+  //     const { data } = await axios.get(
+  //       `https://ipinfo.io/${ip}?token=73ffa66adabfe8`
+  //     );
+  //     console.log('this data i am getting from ipinfo : ', data);
+  //   } catch (error) {
+  //     console.log("err in testapi: ", error);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   testAPI();
+  // }, []);
+
   return (
     <header>
       <div

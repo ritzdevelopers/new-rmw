@@ -229,9 +229,9 @@ function Page() {
     pagination(newLeft, newRight);
   };
 
-  const directPageNavigation = (e) => {
-    const pageNum = Number(e.target.innerText);
-     setActivePage(pageNum);
+  const directPageNavigation = (e: EventTarget) => {
+    const pageNum = Number((e as HTMLElement).innerText);
+    setActivePage(pageNum);
     let newRight = 9 * pageNum;
 
     let newLeft = newRight - 9;
@@ -245,23 +245,21 @@ function Page() {
     pagination(newLeft, newRight);
   };
 
-  const getDataWithSearch = (e) => {
-    const value = e.target.value;
+
+  const getDataWithSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const value: string = e.target.value;
 
     setTimeout(() => {
       setPage(
-        page.filter((data) =>
+        page.filter((data: PAGESDATA) =>
           data.pageTitle.toLowerCase().includes(value.toLowerCase())
         )
       );
       console.log("This is filtered post", page);
     }, 2000);
   };
-
-  const getEntriesManually = (e) => {
-   
-    const val = Number(e.target.value);
-    
+  const getEntriesManually = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const val: number = Number(e.target.value);
     setPage(contentData.slice(0, val));
   };
   const [deleteConfirmModal, setDeleteConfirmModal] = useState(false);
@@ -271,12 +269,12 @@ function Page() {
     // Delete Data Logic
   };
 
-  const handleDataDeleteModal = (key) => {
+
+  const handleDataDeleteModal = (key: number): void => {
     setDeleteKey(" ");
     setDeleteConfirmModal(true);
-    setDeleteKey(key);
+    setDeleteKey(String(key));
     console.log(deleteKey);
-    
   };
 
   return (
@@ -458,7 +456,7 @@ function Page() {
               {Array.from({ length: ttPage }, (_, i) => (
                 <p
                   key={i}
-                  onClick={(e) => directPageNavigation(e)}
+                  onClick={(e) => directPageNavigation(e.target)}
                   className="px-3 py-1.5 border border-[#688A7E] text-black rounded-md cursor-pointer hover:bg-[#688A7E] hover:text-white transition"
                   style={
                     activePage === i + 1

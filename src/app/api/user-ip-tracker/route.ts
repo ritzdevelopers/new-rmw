@@ -9,7 +9,9 @@ export async function GET(req: NextRequest) {
   try {
     // Read IP from 'x-forwarded-for' header (standard in proxies/CDNs like Vercel)
     const forwarded = req.headers.get("x-forwarded-for");
-
+    console.log('====================================');
+    console.log(req);
+    console.log('====================================');
     // Fallback IP if header is missing
     const ip = forwarded?.split(",")[0]?.trim() || "Unknown";
 
