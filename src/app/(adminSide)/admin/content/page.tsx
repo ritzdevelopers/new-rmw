@@ -271,10 +271,12 @@ function Page() {
     // Delete Data Logic
   };
 
-  const handleDataDeleteModal = (key) => {
+  const handleDataDeleteModal = (key: any) => {
     setDeleteKey(" ");
     setDeleteConfirmModal(true);
     setDeleteKey(key);
+    console.log(deleteKey);
+    
   };
 
   return (
