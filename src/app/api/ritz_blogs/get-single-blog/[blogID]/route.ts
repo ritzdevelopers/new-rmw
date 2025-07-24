@@ -11,7 +11,7 @@ export function slugify(title: string) {
     .toLowerCase()
     .trim()
     .replace(/[^a-z0-9]+/g, "-") // replace non-alphanumerics with -
-    .replace(/^-+|-+$/g, "");    // trim - from start and end
+    .replace(/^-+|-+$/g, ""); // trim - from start and end
 }
 
 export async function GET(
@@ -29,7 +29,10 @@ export async function GET(
         { status: 400 }
       );
     }
-
+    console.log(blSlug, "This is blg Slug ");
+    const tst_bl = await RitzBlogModel.find({});
+    console.log("These are all mongo blogs ", tst_bl);
+    
     const blog = await RitzBlogModel.findOne({
       blogSlug: blSlug
     });

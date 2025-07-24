@@ -67,6 +67,7 @@ const Page = () => {
       setLocalTitle(parsed.metaTitle || "");
       setLocalMeta(parsed.metaDescription || "");
       setLocalImage(parsed.innerImg || "");
+
     } else if (blogBody[count - 1]) {
       setLocalTitle(blogBody[count - 1].metaTitle || "");
       setLocalMeta(blogBody[count - 1].metaDescription || "");
@@ -79,6 +80,7 @@ const Page = () => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+  
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -122,7 +124,7 @@ const Page = () => {
     try {
       const step1Key = `update-blog-step-1-${blogID}`;
       const step1Data = JSON.parse(localStorage.getItem(step1Key) || "{}");
-  
+
       if (
         !step1Data.blogTitle ||
         !step1Data.blogCategory ||
@@ -228,20 +230,19 @@ const Page = () => {
           </label>
 
           {localImage && (
-             <div style={{
-                         position:'relative',
-                         height:'100%',
-                         width:"100%"
-                       }}>
-                         <Image
-                         src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${
-                           localImage.split("/images")[1]
-                         }`}
-                         alt={localTitle}
-                         fill
-                         style={{objectFit:'cover'}}
-                       />
-                       </div>
+            <div style={{
+              position: 'relative',
+              height: '100%',
+              width: "100%"
+            }}>
+              <Image
+                src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${localImage.split("/images")[1]
+                  }`}
+                alt={localTitle}
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
           )}
 
           <div className="relative inline-block">
@@ -255,6 +256,11 @@ const Page = () => {
               <ImagePlus className="w-6 h-6 mb-1" />
               <span>Upload New Image</span>
             </div>
+            {/* Selected Image Will Show Here  */}
+        {localImage &&     <div className="border border-dashed mt-2 border-gray-400 px-4 py-6 rounded-md bg-gray-50 flex flex-col items-center justify-center text-gray-600">
+              <img src={localImage} alt={localImage} className="w-full h-full mb-1" />
+              
+            </div>}
           </div>
         </div>
       </div>
@@ -265,11 +271,10 @@ const Page = () => {
             <button
               key={i}
               onClick={() => handleNavigation(i + 1)}
-              className={`px-4 py-2 cursor-pointer rounded-md text-sm ${
-                i + 1 === count
+              className={`px-4 py-2 cursor-pointer rounded-md text-sm ${i + 1 === count
                   ? "bg-blue-600 text-white"
                   : "bg-gray-200 text-gray-700"
-              }`}
+                }`}
             >
               Page {i + 1}
             </button>

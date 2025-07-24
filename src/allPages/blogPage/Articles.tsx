@@ -288,7 +288,7 @@ const Articles: React.FC = () => {
                 {article.title.split(" ").slice(0, 10).join(" ")}{" "}
               </h3>
               {/* Description */}
-              <p
+              {/* <p
                 style={{
                   fontSize: "1rem",
                   color: "#555",
@@ -300,7 +300,25 @@ const Articles: React.FC = () => {
                   article.meta_description.split(/\s+/).slice(0, 30).join(" ")
                 )}
                 ...
-              </p>
+              </p> */}
+              {/* Description */}
+<p
+  style={{
+    fontSize: "1rem",
+    color: "#555",
+    lineHeight: "1.6",
+    flexGrow: 1,
+  }}
+>
+  {(() => {
+    const description = article?.meta_description || "";
+    const plainText = stripHtml(description) || "";
+    const words = plainText.split(/\s+/);
+    const shortened = words.slice(0, 30).join(" ");
+    return words.length > 30 ? `${shortened}...` : shortened;
+  })()}
+</p>
+
               {/* Footer Actions */}
               <div
                 style={{

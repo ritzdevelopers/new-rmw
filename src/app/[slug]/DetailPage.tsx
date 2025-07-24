@@ -379,19 +379,18 @@ const DetailPage: React.FC = () => {
                   singleBlog.blogBody?.map((page, idx) => (
                     <div key={idx}>
                       <h2>{page.metaTitle}</h2>
-                      {page.innerImg && (
+                      {page.innerImg ? (
                         <div className={styles.innerImg}>
                           <Image
-                            src={`${staticAPI}${
-                              page.innerImg.split("/images")[1]
-                            }`}
+                            src={"http://localhost:3000/api/images/1753342233766-innerImg-1.png"}
                             alt={page.metaTitle}
                             fill
                             priority
+                            unoptimized
                             className={styles.innerMainImg}
                           />
                         </div>
-                      )}
+                      ) : <></>}
                       <div className={styles.tableWrapper}>
                         <div
                           className={styles.contentBody}

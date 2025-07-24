@@ -7,7 +7,7 @@ import RitzCats from "@/models/RitzCats.Schema";
 import RitzBlogModel from "@/models/Blog.Schema";
 
 // Utility to create slug from category name
-function generateSlug(name) {
+export function generateSlug(name) {
   return name
     .toLowerCase()
     .trim()
@@ -39,7 +39,6 @@ export async function POST(request) {
     const metaKeywords = formData.get("metaKeywords");
     const blogBodyRaw = formData.get("blogBody");
     const blogCategory = formData.get("blogCategory");
-    const blogStatus = formData.get("blogStatus");
     let blogBannerPath = "";
     const innerImgMap = {};
 
@@ -77,12 +76,7 @@ export async function POST(request) {
       ...item,
       innerImg: innerImgMap[index] || "",
     }));
-    // console.log('====================================');
-    // console.log(blogBody, blogBodyRaw);
-    // console.log('====================================');
-    console.log('====================================');
-    console.log(blogBody[0]);
-    console.log('====================================');
+   
     blogDescription = blogBody[0].metaDescription;
 
     const newBlog = await RitzBlogModel.create({
@@ -91,7 +85,7 @@ export async function POST(request) {
       blogBody,
       metaKeywords,
       blogCategoryId: categoryId,
-      blogStatus,
+      blogStatus:true,
       blogSlug,
       blogDescription,
     });

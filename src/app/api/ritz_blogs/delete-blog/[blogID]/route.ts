@@ -18,7 +18,13 @@ export async function DELETE(
       );
     }
 
-    const deletedBlog = await RitzBlogModel.findByIdAndDelete(blogId);
+    
+    const find_blog = await RitzBlogModel.findOne({blogSlug:blogId});
+    if(!find_blog) {
+      return NextResponse.json({message:"Blog Not Found"}, {status:404});
+    }
+
+    const deletedBlog = await RitzBlogModel.findByIdAndDelete(find_blog._id);
 
     if (!deletedBlog) {
       return NextResponse.json(

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import RitzBlogModel from "@/models/Blog.Schema";
 import fs from "fs";
 import path from "path";
+import { generateSlug } from "../../add-new-blog/route";
 
 interface BlogBodyItem {
     pageTitle: string;
@@ -15,7 +16,7 @@ interface BlogBodyItem {
 async function saveFileToUploads(file: File, filename: string): Promise<string> {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
+    const uploadDir = path.join(`${process.env.SERVER_IMG_PATH}`, "images");
 
     if (!fs.existsSync(uploadDir)) {
         fs.mkdirSync(uploadDir, { recursive: true });
@@ -23,7 +24,7 @@ async function saveFileToUploads(file: File, filename: string): Promise<string> 
 
     const filePath = path.join(uploadDir, filename);
     fs.writeFileSync(filePath, buffer);
-    return `/uploads/${filename}`;
+    return `/images/${filename}`;
 }
 
 function deleteFileFromUploads(url: string) {
@@ -47,10 +48,11 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
         const metaKeywords = formData.get("metaKeywords");
         const blogBodyRaw = formData.get("blogBody");
         const blogCategory = formData.get("blogCategory");
-        const blogStatus = formData.get("blogStatus");
 
         let blogBannerPath = "";
         const innerImgMap: Record<string, string> = {};
+
+        // console.log("This blog id i am receiving during update mongo ", blogId);
 
         // Fetch existing blog to access previous image paths
         const existingBlog = await RitzBlogModel.findById(blogId);
@@ -99,14 +101,16 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             blogBody: BlogBodyItem[];
             metaKeywords: FormDataEntryValue | null;
             blogCategory: FormDataEntryValue | null;
-            blogStatus: FormDataEntryValue | null;
+            blogStatus: FormDataEntryValue | boolean;
             blogBanner?: string;
+            blogSlug?:string;
         }> = {
             blogTitle,
             blogBody: updatedBlogBody,
             metaKeywords,
             blogCategory,
-            blogStatus,
+            blogStatus:true,
+            blogSlug: generateSlug(blogTitle),
         };
 
         if (blogBannerPath) {
@@ -124,7 +128,7 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             { status: 200 }
         );
     } catch (error) {
-        console.error("Update Blog Error:", error);
+        console.log("Update Blog Error:", error);
         return NextResponse.json(
             { message: "Internal Server Error", error },
             { status: 500 }
