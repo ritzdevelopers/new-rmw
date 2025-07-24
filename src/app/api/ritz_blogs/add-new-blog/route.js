@@ -47,7 +47,10 @@ export async function POST(request) {
     const blogSlug = generateSlug(blogTitle);
     const fetchCat = await RitzCats.findOne({ categorySlug: blogCategory });
     
+    
     if (!fetchCat) {
+      console.log("CAt Not Found");
+      
       return NextResponse.json(
         { message: "Category not found" },
         {
@@ -55,6 +58,7 @@ export async function POST(request) {
         }
       );
     }
+    
 
     const categoryId = fetchCat._id;
 

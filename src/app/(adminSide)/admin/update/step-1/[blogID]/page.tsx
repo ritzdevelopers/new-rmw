@@ -139,6 +139,32 @@ const Page = () => {
     }
   };
 
+  // Fetch All Categories 
+    interface Category {
+    _id: string;
+    categoryName: string;
+    categorySlug: string;
+    categoryMetaTitle: string;
+    categoryMetaDescription: string;
+    categoryMetaKeywords: string;
+    createdAt: string;
+    updatedAt: string;
+  }
+   const [ritzCategories, setRitzCategory] = useState<Category[]>([]);
+    const fetchAllCategories = async () => {
+      try {
+        const { data } = await axios.get(`/api/ritzCats/getAllCats`);
+        setRitzCategory(data.allCategories);
+      } catch (error) {
+        console.log(error);
+        alert("Internal Server Error In Fetching All Categories!");
+      }
+    };
+  
+    useEffect(() => {
+      fetchAllCategories();
+    }, []);
+
   return (
     <div className="bg-[#EEEEEE] flex flex-col gap-6 sm:gap-8 md:gap-12 p-4 md:p-8 min-h-screen">
       <div className="flex items-center justify-between flex-wrap gap-4">
@@ -239,42 +265,20 @@ const Page = () => {
               onChange={(e) => setLocalCategory(e.target.value)}
               className="w-full border rounded-md px-4 py-2"
             >
-              <option value="All Category">All Category</option>
-              <option value="Case Study">Case Study</option>
-              <option value="Performance Marketing Agency">
-                Performance Marketing Agency
-              </option>
-
-              <option value="Print Advertising Agency">
-                Print Advertising Agency
-              </option>
-
-              <option value="Creating Advertising Agency">
-                Creating Advertising Agency
-              </option>
-
-              <option value="Celebrity Endorsements Agency">
-                Celebrity Endorsements Agency
-              </option>
-
-              <option value="Artist Management Agency">
-                Artist Management Agency
-              </option>
-
-              <option value="FM Radio Advertising">FM Radio Advertising</option>
-
-              <option value="Web Design And Development">
-                Web Design And Development
-              </option>
-
-              <option value="Graphic Design Services">
-                Graphic Design Services
-              </option>
-
-              <option value="Digital Marketing Agency">
-                Digital Marketing Agency
-              </option>
-              <option value="Best Ad Agency">Best Ad Agency</option>
+          {/* All Categories Will Be Show Here  */}
+           <option value="none-selected">Select Category</option>
+              {ritzCategories.length > 0 ? (
+                ritzCategories.map((data, idx) => {
+                  return (
+                    <option key={idx} value={data.categorySlug}>
+                      {data.categoryName}
+                    </option>
+                  );
+                })
+              ) : (
+                <p>Categories are loading...</p>
+              )}
+             
             </select>
           </div>
         </div>
