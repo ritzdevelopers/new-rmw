@@ -257,7 +257,7 @@ const Page = () => {
               <span>Upload New Image</span>
             </div>
             {/* Selected Image Will Show Here  */}
-        {localImage &&     <div className="border border-dashed mt-2 border-gray-400 px-4 py-6 rounded-md bg-gray-50 flex flex-col items-center justify-center text-gray-600">
+        {localImage && <div className="border border-dashed mt-2 border-gray-400 px-4 py-6 rounded-md bg-gray-50 flex flex-col items-center justify-center text-gray-600">
               <img src={localImage} alt={localImage} className="w-full h-full mb-1" />
               
             </div>}

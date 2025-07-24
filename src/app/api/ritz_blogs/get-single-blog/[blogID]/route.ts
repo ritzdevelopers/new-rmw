@@ -29,9 +29,9 @@ export async function GET(
         { status: 400 }
       );
     }
-    console.log(blSlug, "This is blg Slug ");
-    const tst_bl = await RitzBlogModel.find({});
-    console.log("These are all mongo blogs ", tst_bl);
+    // console.log(blSlug, "This is blg Slug ");
+    // const tst_bl = await RitzBlogModel.find({});
+    // console.log("These are all mongo blogs ", tst_bl);
     
     const blog = await RitzBlogModel.findOne({
       blogSlug: blSlug
