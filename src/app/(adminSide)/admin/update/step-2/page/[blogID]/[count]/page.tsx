@@ -80,7 +80,7 @@ const Page = () => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-  
+
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -108,16 +108,26 @@ const Page = () => {
   };
 
   function base64ToFile(base64: string, filename: string): File {
-    const arr = base64.split(",");
-    const mime = arr[0].match(/:(.*?);/)?.[1] || "image/png";
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
+    try {
+      const arr = base64.split(",");
+      if (arr.length < 2) {
+        throw new Error("Invalid Base64 format");
+      }
+
+      const mime = arr[0].match(/:(.*?);/)?.[1] || "image/png";
+      const bstr = atob(arr[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new File([u8arr], filename, { type: mime });
+    } catch (error) {
+      console.error("base64ToFile error:", error);
+      throw error; // Or return null if you prefer
     }
-    return new File([u8arr], filename, { type: mime });
   }
+
 
   const handleSubmit = async () => {
     saveDataToLocalStorage();
@@ -136,20 +146,25 @@ const Page = () => {
 
       const finalBody = [];
       const innerImageMap: Record<number, File> = {};
-
       for (let i = 1; i <= totalPages; i++) {
         const saved = localStorage.getItem(LOCAL_KEY(i));
         const parsed = saved ? JSON.parse(saved) : blogBody[i - 1];
 
-        // if (parsed?.innerImg?.startsWith("data:image/")) {
-        const file = base64ToFile(parsed.innerImg, `innerImg-${i}.png`);
-        innerImageMap[i - 1] = file;
-        // }
+        let innerImgKey = "";
+        if (parsed?.innerImg?.startsWith("data:image/")) {
+          try {
+            const file = base64ToFile(parsed.innerImg, `innerImg-${i}.png`);
+            innerImageMap[i - 1] = file;
+            innerImgKey = `innerImg-${i - 1}`;
+          } catch (error) {
+            console.error(`Invalid image at step ${i}:`, error);
+          }
+        }
 
         finalBody.push({
           metaTitle: parsed.metaTitle || "",
           metaDescription: parsed.metaDescription || "",
-          innerImg: `innerImg-${i - 1}`,
+          innerImg: innerImgKey, // will be "" if no valid image
         });
       }
 
@@ -179,7 +194,7 @@ const Page = () => {
         alert("Blog Updated Successfully!");
       }
     } catch (err) {
-      console.error("Submit Error:", err);
+      console.log("Submit Error:", err);
       alert("Blog update failed.");
     }
   };
@@ -257,9 +272,9 @@ const Page = () => {
               <span>Upload New Image</span>
             </div>
             {/* Selected Image Will Show Here  */}
-        {localImage && <div className="border border-dashed mt-2 border-gray-400 px-4 py-6 rounded-md bg-gray-50 flex flex-col items-center justify-center text-gray-600">
+            {localImage && <div className="border border-dashed mt-2 border-gray-400 px-4 py-6 rounded-md bg-gray-50 flex flex-col items-center justify-center text-gray-600">
               <img src={localImage} alt={localImage} className="w-full h-full mb-1" />
-              
+
             </div>}
           </div>
         </div>
@@ -272,8 +287,8 @@ const Page = () => {
               key={i}
               onClick={() => handleNavigation(i + 1)}
               className={`px-4 py-2 cursor-pointer rounded-md text-sm ${i + 1 === count
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-700"
+                ? "bg-blue-600 text-white"
+                : "bg-gray-200 text-gray-700"
                 }`}
             >
               Page {i + 1}

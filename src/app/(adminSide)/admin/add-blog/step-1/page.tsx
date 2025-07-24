@@ -201,7 +201,7 @@ const Page = () => {
               onChange={(e) => setLocalCategory(e.target.value)}
               className="w-full border rounded-md px-4 py-2"
             >
-               <option value="none-selected">Select Category</option>
+              <option value="none-selected">Select Category</option>
               {ritzCategories.length > 0 ? (
                 ritzCategories.map((data, idx) => {
                   return (

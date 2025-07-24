@@ -17,7 +17,7 @@ interface Blog {
   blogCategory: string;
   categoryName: string;
   createdAt: string | Date;
-  status: boolean;
+  blogStatus: boolean;
   blogSlug: string;
 }
 
@@ -65,7 +65,7 @@ export default function ManageBlogs() {
             year: "numeric",
           }),
           blogID: mongoBLG.blogSlug,
-          blogStatus: mongoBLG.status === true ? "active" : "inactive",
+          blogStatus: mongoBLG.blogStatus === true ? "active" : "inactive",
           mongoID: mongoBLG._id,
         };
       } else {
