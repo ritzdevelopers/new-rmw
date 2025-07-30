@@ -9,7 +9,7 @@ export async function GET() {
     if (!allTopics || allTopics.length === 0) {
       return NextResponse.json(
         { message: "Topics Are Not Available Right", success: false },
-        { status: 204 }
+        { status: 404 }
       );
     }
     return NextResponse.json(

@@ -12,15 +12,15 @@ export async function GET() {
     if (!allTopics || allTopics.length === 0) {
       return NextResponse.json(
         { message: "Topics Are Not Available Right Now!", success: false },
-        { status: 204 }
+        { status: 404 }
       );
     }
-    if (!allPages || allPages.length === 0) {
-      return NextResponse.json(
-        { message: "Pages Are Not Available Right Now!", success: false },
-        { status: 204 }
-      );
-    }
+    // if (!allPages || allPages.length === 0) {
+    //   return NextResponse.json(
+    //     { message: "Pages Are Not Available Right Now!", success: false },
+    //     { status: 404 }
+    //   );
+    // }
     // console.log(allTopics, allPages);
 
     const webStories = allTopics.map((topic) => {

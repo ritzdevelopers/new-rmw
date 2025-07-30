@@ -13,7 +13,7 @@ export async function GET() {
           success: false,
         },
         {
-          status: 204,
+          status: 404,
         }
       );
     }
