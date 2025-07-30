@@ -161,6 +161,14 @@ const Footer = () => {
                             Blogs
                           </Link>
                         </li>
+                         <li
+                          id="menu-item-144"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
+                        >
+                          <Link href="/web-stories" style={{ color: "#FBD98C" }}>
+                            Web Stories
+                          </Link>
+                        </li>
                         <li
                           id="menu-item-144"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
@@ -180,6 +188,7 @@ const Footer = () => {
                             Career
                           </Link>
                         </li>
+                         
                       </ul>
                     </div>
                   </div>
