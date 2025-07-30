@@ -6,7 +6,6 @@ import path from "path";
 import RitzCats from "@/models/RitzCats.Schema";
 import RitzBlogModel from "@/models/Blog.Schema";
 
-// Utility to create slug from category name
 export function generateSlug(name) {
   return name
     .toLowerCase()
@@ -15,7 +14,7 @@ export function generateSlug(name) {
     .replace(/\s+/g, "-");
 }
 
-// This is Mongo DB
+
 async function saveFileToUploads(file, filename) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
@@ -50,7 +49,6 @@ export async function POST(request) {
     
     if (!fetchCat) {
       console.log("CAt Not Found");
-      
       return NextResponse.json(
         { message: "Category not found" },
         {
@@ -58,8 +56,7 @@ export async function POST(request) {
         }
       );
     }
-    
-
+  
     const categoryId = fetchCat._id;
 
     for (const [key, value] of formData.entries()) {

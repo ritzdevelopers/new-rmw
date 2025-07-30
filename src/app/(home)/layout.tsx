@@ -108,11 +108,7 @@ export default function HomeLayout({
       <PageWrapper>
         {/* <TrackPageView /> */}
         <Header />
-        
-
           <WhatsAppFloatingButton></WhatsAppFloatingButton>
-
-        
         {children}
         <Button />
       </PageWrapper>

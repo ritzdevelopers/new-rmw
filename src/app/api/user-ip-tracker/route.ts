@@ -1,19 +1,46 @@
 import { getDBPool } from "@/lib/db";
+import { getLocationFromIP } from "@/utils/ipLocation";
+import { getNearestPostalInfo } from "@/utils/reverseGeoEnncode";
 import { NextResponse } from "next/server";
 
 // ./src/app/api/user-ip-tracker/route.ts
 // import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-
+interface USERTRACKEDDATA {
+  user_city?: string | undefined,
+  user_pinCode?: string | undefined,
+  user_country?: string | undefined,
+  user_place?: string | undefined
+}
 export async function GET(req: NextRequest) {
   try {
     // Read IP from 'x-forwarded-for' header (standard in proxies/CDNs like Vercel)
     const forwarded = req.headers.get("x-forwarded-for");
-    console.log('====================================');
-    console.log(req);
-    console.log('====================================');
     // Fallback IP if header is missing
     const ip = forwarded?.split(",")[0]?.trim() || "Unknown";
+    const user_Info = await getLocationFromIP('122.161.50.8');
+    const user_data: USERTRACKEDDATA = {};
+    const city = user_Info?.city;
+    const country = user_Info?.country;
+
+    const lat = user_Info?.latitude;
+    const long = user_Info?.longitude;
+    let userPinCode;
+    let userPlace;
+    let userDistData;
+    if (lat && long) {
+      userDistData = getNearestPostalInfo(lat, long, city);
+      userPinCode = userDistData?.postalCode;
+      userPlace = userDistData?.place;
+    }
+    user_data.user_city = city;
+    user_data.user_pinCode = userPinCode;
+    user_data.user_country = country;
+    user_data.user_place = userPlace;
+
+    console.log("This user data i am gathering from users ip address: ", user_data);
+
+
 
     return NextResponse.json({ IP_ADDRESS: ip }, { status: 200 });
   } catch (error) {

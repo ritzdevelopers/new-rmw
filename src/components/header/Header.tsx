@@ -139,7 +139,9 @@ const Header = () => {
   // const [trackedUser, setTrackedUser] = useState<TRACKED_DATA>({});
   // const [spendingTime, setSpendingTime] = useState<number>(0);
   // const [usersIP, setUsersIP] = useState<string>();
-  // // Fetch User's IP :
+  // Fetch User's IP :
+  // console.log(usersIP, spendingTime);
+  
   // const userIPTracker = async () => {
   //   try {
   //     const { data, status } = await axios.get("/api/user-ip-tracker");
@@ -154,7 +156,7 @@ const Header = () => {
   //   }
   // };
 
-  // // const { data } = await axios.get(`https://ipinfo.io/${122.161.48.70}?token=73ffa66adabfe8`);
+  // const { data } = await axios.get(`https://ipinfo.io/${122.161.48.70}?token=73ffa66adabfe8`);
 
   // useEffect(() => {
   //   const savedUSerIp = sessionStorage.getItem("users-cr-ip");
