@@ -371,7 +371,7 @@ const DetailPage: React.FC = () => {
               </div>
               {/* Blog Title */}
               <h1 className={styles.blogTitle}>
-                {isMongo ? singleBlog.blogTitle :  singleBlog.title}
+                {isMongo ? singleBlog.blogTitle : singleBlog.title}
               </h1>
               {/* Blog Content */}
               <div className={styles.contentBody}>
@@ -449,7 +449,7 @@ const DetailPage: React.FC = () => {
 
               <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                 {recentB && recentB.length > 0 ? (
-                  recentB.map((data) => (
+                  recentB.filter((bl)=>bl._id != singleBlog._id).map((data) => (
                     <div
                       className="col"
                       key={data._id}
@@ -651,7 +651,7 @@ const DetailPage: React.FC = () => {
             <div className={styles.relatedBlogs}>
               {latestRBlogs &&
                 latestRBlogs
-                  // .filter((blog) => blog._id !== singleBlog?._id)
+                  .filter((blog) => blog._id !== singleBlog?._id)
                   .map((blog, idx) => (
                     <div
                       onClick={() =>
