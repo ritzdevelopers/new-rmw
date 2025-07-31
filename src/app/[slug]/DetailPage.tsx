@@ -449,108 +449,114 @@ const DetailPage: React.FC = () => {
 
               <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                 {recentB && recentB.length > 0 ? (
-                  recentB.filter((bl)=>bl._id != singleBlog._id).map((data) => (
-                    <div
-                      className="col"
-                      key={data._id}
-                      onClick={() => handleSingleBlogs(data.blogSlug)}
-                    >
+                  recentB
+                    .filter((bl) => bl._id != singleBlog._id)
+                    .map((data) => (
                       <div
-                        className="card h-100 border-0 shadow-sm"
-                        style={{
-                          borderRadius: "1rem",
-                          overflow: "hidden",
-                          background: "#fff",
-                          transition: "transform 0.3s ease-in-out",
-                        }}
+                        className="col"
+                        key={data._id}
+                        onClick={() => handleSingleBlogs(data.blogSlug)}
                       >
-                        {/* Image */}
-                        <div className={styles.recentImgDiv}>
-                          <Image
-                            src={
-                              data.blogBanner.includes("/images")
-                                ? `/api/images${
-                                    data.blogBanner.split("/images")[1]
-                                  }`
-                                : `/blogs/${data.blogBanner}`
-                            }
-                            alt={data.blogTitle}
-                            fill
-                            priority
-                            className={styles.recentInnerImg}
-                            onMouseOver={(e) =>
-                              (e.currentTarget.style.transform = "scale(1.05)")
-                            }
-                            onMouseOut={(e) =>
-                              (e.currentTarget.style.transform = "scale(1)")
-                            }
-                          />
-                        </div>
+                        <div
+                          className="card h-100 border-0 shadow-sm"
+                          style={{
+                            borderRadius: "1rem",
+                            overflow: "hidden",
+                            background: "#fff",
+                            transition: "transform 0.3s ease-in-out",
+                          }}
+                        >
+                          {/* Image */}
+                          <div className={styles.recentImgDiv}>
+                            <Image
+                              src={
+                                data.blogBanner.includes("/images")
+                                  ? `/api/images${
+                                      data.blogBanner.split("/images")[1]
+                                    }`
+                                  : `/blogs/${data.blogBanner}`
+                              }
+                              alt={data.blogTitle}
+                              fill
+                              priority
+                              className={styles.recentInnerImg}
+                              onMouseOver={(e) =>
+                                (e.currentTarget.style.transform =
+                                  "scale(1.05)")
+                              }
+                              onMouseOut={(e) =>
+                                (e.currentTarget.style.transform = "scale(1)")
+                              }
+                            />
+                          </div>
 
-                        {/* Content */}
-                        <div className="card-body d-flex flex-column justify-content-between p-3">
-                          {/* Title */}
-                          <h5
-                            className="card-title fw-semibold text-truncate"
-                            title={data.blogTitle}
-                          >
-                            {data.blogTitle.split(/\s+/).slice(0, 12).join(" ")}
-                          </h5>
-
-                          {/* Description */}
-                          {data.meta_description && (
-                            <p
-                              className="card-text text-muted small mt-2 mb-3"
-                              dangerouslySetInnerHTML={{
-                                __html:
-                                  data.meta_description
-                                    .split(/\s+/)
-                                    .slice(0, 30)
-                                    .join(" ") + "...",
-                              }}
-                            ></p>
-                          )}
-
-                          {/* Footer Buttons */}
-                          <div className="d-flex justify-content-between align-items-center mt-auto">
-                            {/* Date */}
-                            <span className="d-flex align-items-center gap-1 text-muted small">
-                              <CalendarDays size={16} />
-                              <span>
-                                {new Date(data.createdAt).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    year: "numeric",
-                                    month: "short",
-                                    day: "numeric",
-                                  }
-                                )}
-                              </span>
-                            </span>
-
-                            {/* Share Button */}
-                            <button
-                              type="button"
-                              className="btn d-flex align-items-center gap-1"
-                              style={{
-                                color: "#E5B05C",
-                                // borderColor: "#E5B05C",
-                              }}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleCopy2(
-                                  data?.blogTitle?.split(" ").join("-")
-                                );
-                              }}
+                          {/* Content */}
+                          <div className="card-body d-flex flex-column justify-content-between p-3">
+                            {/* Title */}
+                            <h5
+                              className="card-title fw-semibold text-truncate"
+                              title={data.blogTitle}
                             >
-                              <Share2 size={16} />
-                              Share
-                            </button>
+                              {data.blogTitle
+                                .split(/\s+/)
+                                .slice(0, 12)
+                                .join(" ")}
+                            </h5>
+
+                            {/* Description */}
+                            {data.meta_description && (
+                              <p
+                                className="card-text text-muted small mt-2 mb-3"
+                                dangerouslySetInnerHTML={{
+                                  __html:
+                                    data.meta_description
+                                      .split(/\s+/)
+                                      .slice(0, 30)
+                                      .join(" ") + "...",
+                                }}
+                              ></p>
+                            )}
+
+                            {/* Footer Buttons */}
+                            <div className="d-flex justify-content-between align-items-center mt-auto">
+                              {/* Date */}
+                              <span className="d-flex align-items-center gap-1 text-muted small">
+                                <CalendarDays size={16} />
+                                <span>
+                                  {new Date(data.createdAt).toLocaleDateString(
+                                    "en-US",
+                                    {
+                                      year: "numeric",
+                                      month: "short",
+                                      day: "numeric",
+                                    }
+                                  )}
+                                </span>
+                              </span>
+
+                              {/* Share Button */}
+                              <button
+                                type="button"
+                                className="btn d-flex align-items-center gap-1"
+                                style={{
+                                  color: "#E5B05C",
+                                  // borderColor: "#E5B05C",
+                                }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleCopy2(
+                                    data?.blogTitle?.split(" ").join("-")
+                                  );
+                                }}
+                              >
+                                <Share2 size={16} />
+                                Share
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))
+                    ))
                 ) : (
                   <p className="text-center">No Recent Blog Posted</p>
                 )}
