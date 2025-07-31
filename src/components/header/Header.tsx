@@ -136,6 +136,7 @@ const Header = () => {
   //   revisit?: string;
   //   deviceIPAddress?: string;
   // }
+
   // const [trackedUser, setTrackedUser] = useState<TRACKED_DATA>({});
   // const [spendingTime, setSpendingTime] = useState<number>(0);
   // const [usersIP, setUsersIP] = useState<string>();
@@ -155,8 +156,6 @@ const Header = () => {
   //     console.log("Err in fetching user ip : ", error);
   //   }
   // };
-
-  // const { data } = await axios.get(`https://ipinfo.io/${122.161.48.70}?token=73ffa66adabfe8`);
 
   // useEffect(() => {
   //   const savedUSerIp = sessionStorage.getItem("users-cr-ip");

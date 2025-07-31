@@ -14,19 +14,6 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
     return new NextResponse("No pages found", { status: 404 });
   }
 
-  // Convert align info to CSS classes
-  const getAlignmentClass = (align: string, isTitle = false) => {
-    const base = isTitle ? "title" : "desc";
-    switch (align) {
-      case "top":
-        return `${base}-align-top`;
-      case "bottom":
-        return `${base}-align-bottom`;
-      default:
-        return `${base}-align-center`;
-    }
-  };
-
   const ampHtml = `
     <!doctype html>
     <html ⚡ lang="en">
@@ -39,36 +26,57 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
         <meta name="keywords" content="${pages[0].metaKeyWords}">
         <script async src="https://cdn.ampproject.org/v0.js"></script>
         <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
-    
+
         <style amp-boilerplate>
           body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}
         </style>
         <noscript><style amp-boilerplate>body{-webkit-animation:none;animation:none}</style></noscript>
+
         <style amp-custom>
           amp-story {
             font-family: 'Poppins', sans-serif;
             color: white;
           }
 
+          .image-darken {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+            z-index: 1;
+          }
+
+          .content-bottom {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            // padding: 0 24px 10vh;
+            box-sizing: border-box;
+            z-index: 2;
+          }
+
           .text-wrapper {
             position: relative;
             background: rgba(0, 0, 0, 0.6);
             border-radius: 12px;
-            padding: 20px;
+            padding: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(4px);
+            margin-top:400px;
           }
 
           h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 12px;
             text-shadow: 0 1px 3px rgba(0,0,0,0.5);
           }
 
           p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
           }
 
@@ -78,9 +86,9 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
             text-decoration: none;
             font-weight: 600;
             display: inline-block;
-            margin-top: 12px;
+            margin-top: 10px;
             border: none;
-            font-size: 1rem;
+            font-size:0.8rem;
             background-color: #fff;
             color: #000;
             transition: transform 0.2s ease;
@@ -90,87 +98,30 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
             transform: scale(0.96);
           }
 
-          .image-darken {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
-            z-index: 1;
+          .btn:hover {
+            background-color: #eee;
           }
 
-          .content-layer {
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-          }
+          @media (max-width: 480px) {
+            .text-wrapper {
+              padding: 16px;
+            }
 
-          /* Title alignments */
-          .title-align-top {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            text-align: center;
-            width: 100%;
-            padding: 10vh 24px 0;
-            box-sizing: border-box;
-          }
+            h1 {
+              font-size: 1.25rem;
+            }
 
-          .title-align-center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            width: 100%;
-            padding: 0 24px;
-            box-sizing: border-box;
-          }
+            p {
+              font-size: 1rem;
+            }
 
-          .title-align-bottom {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            text-align: center;
-            width: 100%;
-            padding: 0 24px 0;
-            box-sizing: border-box;
-          }
-
-          /* Description alignments */
-          .desc-align-top {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            text-align: center;
-            width: 100%;
-            padding: 5vh 24px 0;
-            box-sizing: border-box;
-          }
-
-          .desc-align-center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            width: 100%;
-            padding: 0 24px;
-            box-sizing: border-box;
-          }
-
-          .desc-align-bottom {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            text-align: center;
-            width: 100%;
-            padding: 0 24px 10vh;
-            box-sizing: border-box;
+            .btn {
+              padding: 8px 16px;
+              font-size: 0.9rem;
+            }
           }
         </style>
+
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
       </head>
       <body>
@@ -191,14 +142,10 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
                     <div class="image-darken"></div>
                   </amp-story-grid-layer>
 
-                  <amp-story-grid-layer template="vertical" class="content-layer">
-                    <div class="${getAlignmentClass(page.titleAlign, true)}">
+                  <amp-story-grid-layer template="vertical">
+                    <div class="content-bottom mt-20">
                       <div class="text-wrapper">
                         <h1>${page.title}</h1>
-                      </div>
-                    </div>
-                    <div class="${getAlignmentClass(page.descAlign)}">
-                      <div class="text-wrapper">
                         <p>${page.description}</p>
                         ${
                           page.buttonCTA?.btnTxt
