@@ -322,6 +322,250 @@ const SwiperHome = () => {
                               </div>
                             </div>
                           </SwiperSlide>
+                        
+
+                            <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg1.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+
+                            {/* <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg2.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide> */}
+
+                            {/* <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg3.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide> */}
+{/* 
+                            <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg4.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide> */}
+
+                            <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg5.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+
+
+                            <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg7.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+
+                            {/* <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg8.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide> */}
+
+                              <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg9.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+
+
+                              <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg10.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+
+
+                              <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg11.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+
+                          
+
+                             <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg12.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+
+                             <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg13.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+
+                             <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg14.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+
+                             <SwiperSlide>
+                            <div className="tp-brand__item">
+                              <div className={styles.topBrandLogoImgD}>
+                                <Image
+                                  src="/newLogos/lg15.png"
+                                  alt="Brand logo"
+                                  style={{
+                                    objectFit: "contain",
+                                  }}
+                                  fill
+                                  priority
+                                  quality={100}
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
                         </Swiper>
                       </div>
                     </div>
