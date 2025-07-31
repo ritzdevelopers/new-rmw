@@ -220,7 +220,7 @@ const Page = () => {
         {/* Meta Title */}
         <div>
           <label className="block font-semibold text-gray-700 mb-1">
-            Meta Title
+            Page Title
           </label>
 
           <input
@@ -233,7 +233,7 @@ const Page = () => {
         {/* Meta Description */}
         <div>
           <label className="block font-semibold text-gray-700 mb-1">
-            Meta Description
+            Page Description
           </label>
 
           <Editor value={localMeta} onChange={(val) => setLocalMeta(val)} />

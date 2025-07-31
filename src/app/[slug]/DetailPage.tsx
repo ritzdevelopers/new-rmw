@@ -289,7 +289,7 @@ const DetailPage: React.FC = () => {
     setClickedPlatform(platform);
 
     const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
-    const fullUrl = `${baseUrl}/blog/${slug}`;
+    const fullUrl = `${baseUrl}/${slug}`;
     const title = singleBlog?.title ?? "";
 
     if (platform === "copy") {
@@ -371,14 +371,14 @@ const DetailPage: React.FC = () => {
               </div>
               {/* Blog Title */}
               <h1 className={styles.blogTitle}>
-                {isMongo ? singleBlog.blogTitle : singleBlog.title}
+                {isMongo ? singleBlog.blogTitle :  singleBlog.title}
               </h1>
               {/* Blog Content */}
               <div className={styles.contentBody}>
                 {isMongo ? (
                   singleBlog.blogBody?.map((page, idx) => (
                     <div key={idx}>
-                      <h2>{page.metaTitle}</h2>
+                      {/* <h2>{page.metaTitle}</h2> */}
                       {page.innerImg && (
                         <div className={styles.innerImg}>
                           <Image

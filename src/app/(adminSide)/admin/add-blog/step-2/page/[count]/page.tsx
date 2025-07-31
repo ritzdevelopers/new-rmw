@@ -264,7 +264,7 @@ const Page = () => {
         <div className="flex-1 flex flex-col gap-4">
           <div>
             <label className="text-sm font-semibold text-[#444]">
-              Blog Meta Title
+               Page Title
             </label>
 
             <input
@@ -281,7 +281,7 @@ const Page = () => {
 
           <div>
             <label className="text-sm font-semibold text-[#444]">
-              Meta Description
+              Page Description
             </label>
 
             <Editor
