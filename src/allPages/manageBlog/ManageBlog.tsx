@@ -51,6 +51,7 @@ export default function ManageBlogs() {
   // const [isMongo, setIsMongo] =
   const blogsPerPage = 15;
   const router = useRouter();
+  // const [blogForSearch, setBlogForSearch] = useState<MERGEDBLOGS[]>([]);
 
   function mergedALLBLOGS(blog: (Blog | SQLBLOGS)[]): MERGEDBLOGS[] {
     return blog.map((blg) => {
@@ -217,6 +218,12 @@ export default function ManageBlogs() {
   // Pagination Is Starting From Here
   const [page, setPage] = useState<MERGEDBLOGS[]>([]);
 
+  useEffect(() => {
+    if (mergedBlogs.length > 0) {
+      setPage(mergedBlogs);
+    }
+  }, [mergedBlogs]);
+
   const pagination = (s: number, e: number) => {
     if (s < mergedBlogs.length) {
       if (mergedBlogs.length < 9) {
@@ -263,8 +270,7 @@ export default function ManageBlogs() {
       newRight = mergedBlogs.length;
       newLeft = newRight - (newRight % 9);
     }
-  setActivePage((prev) => (prev < Math.ceil(llength / 9) ? prev + 1 : prev));
-
+    setActivePage((prev) => (prev < Math.ceil(llength / 9) ? prev + 1 : prev));
 
     setLftBtn(newLeft);
     setRightBtn(newRight);
@@ -286,22 +292,53 @@ export default function ManageBlogs() {
     setRightBtn(newRight);
     pagination(newLeft, newRight);
   };
-
-  const getDataWithSearch = (e: string) => {
-    const value = e;
-    setTimeout(() => {
-      setPage(
-        page.filter((data) =>
-          data.title.toLowerCase().includes(value.toLowerCase())
-        )
-      );
-      console.log("This is filtered post", page);
-    }, 2000);
+  const [searchedBl, setSearchedB] = useState("");
+  const getDataWithSearch = () => {
+    const filtered = mergedBlogs.filter((data) =>
+      data.title.toLowerCase().includes(searchedBl.toLowerCase())
+    );
+    setPage(filtered);
   };
+
+  useEffect(() => {
+    if (searchedBl) {
+      getDataWithSearch();
+    } else {
+      setPage(mergedBlogs.slice(0, 9));
+    }
+  }, [searchedBl]);
 
   const getEntriesManually = (e: number) => {
     const val = Number(e);
     setPage(mergedBlogs.slice(0, val));
+  };
+
+  const handleActiveBtnToggle = async (blStatus: string, dbSt: string, blID:string) => {
+    try {
+      let res;
+      if (dbSt.includes("mongo")) {
+        res = await axios.patch("/api/blog-updation", {
+          blStatus: blStatus === "active" ? false : true,
+          dbSt,
+          blID
+        });
+      } else {
+        res = await axios.patch("/api/blog-updation", {
+          blStatus: blStatus === "active" ? "inactive" : "active",
+          dbSt,
+          blID
+        });
+      }
+      if (res.status === 200) {
+        window.location.reload();
+      } else {
+        alert("Server Error!");
+      }
+    } catch (error) {
+      console.log(error);
+      
+      alert("Internal Server Err!");
+    }
   };
   return (
     <div className="bg-[#EEEEEE] flex flex-col gap-6 sm:gap-8 md:gap-12 p-4 md:p-8 min-h-screen">
@@ -416,7 +453,7 @@ export default function ManageBlogs() {
                 type="text"
                 placeholder="Search here..."
                 // onChange={(e) => getDataWithSearch(e)}
-                onChange={(e) => getDataWithSearch(e.target.value)}
+                onChange={(e) => setSearchedB(e.target.value)}
                 className="bg-transparent outline-none placeholder:text-[#365248] text-[#365248] w-full"
               />
             </div>
@@ -468,7 +505,12 @@ export default function ManageBlogs() {
                       <td className="p-2">{blog.createdAT}</td>
                       <td className="p-2">
                         <span
-                          className={`px-2 py-1 rounded-md text-white ${
+                          onClick={() =>
+                            blog.blogIMG.includes("/images")
+                              ? handleActiveBtnToggle(blog.blogStatus, "mongo", blog.mongoID ? blog.mongoID : blog.blogID )
+                              : handleActiveBtnToggle(blog.blogStatus, "mysql", blog.blogID)
+                          }
+                          className={`px-2 py-1 cursor-pointer rounded-md text-white ${
                             blog.blogStatus === "active"
                               ? "bg-green-500"
                               : "bg-red-500"
@@ -591,8 +633,7 @@ export default function ManageBlogs() {
                       directPageNavigation(trg);
                     }}
                     className="px-3 py-1.5 border border-[#688A7E] text-black rounded-md cursor-pointer hover:bg-[#688A7E] hover:text-white transition"
-                    style={{ backgroundColor: "black", color: "white" }
-                    }
+                    style={{ backgroundColor: "black", color: "white" }}
                   >
                     {activePage}
                   </p>
@@ -618,7 +659,7 @@ export default function ManageBlogs() {
                   >
                     {Math.ceil(llength / 9)}
                   </p>
-                )} */} 
+                )} */}
               </div>
 
               <button
