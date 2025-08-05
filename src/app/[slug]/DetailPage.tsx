@@ -198,6 +198,8 @@ const DetailPage: React.FC = () => {
 
         if (response.data.type === "blog") {
           setSingleBlog(response.data.blog);
+          setLatestRBlogs(response.data.latestRBlogs[0]);
+          console.log(response.data.latestRBlogs[0]);
         } else if (response.data.type === "service") {
           const { secondLayer, thirdLayer } = response.data;
 
@@ -251,7 +253,7 @@ const DetailPage: React.FC = () => {
   }, [clickedPlatform]);
 
   const callLatestBlog = async () => {
-    console.log("API HIT");
+    // console.log("API HIT");
     try {
       const res = await axios.get("/api/ritz_blogs/get-all-blogs");
       const logs = res.data.allBlogs;
@@ -599,15 +601,7 @@ const DetailPage: React.FC = () => {
               <div className={styles.searchResults}>
                 {blogs.filter((blog) =>
                   blog.title.toLowerCase().includes(searchB.toLowerCase())
-                ).length === 0 ? (
-                  <p className={styles.noResultText}>
-                    No matching blogs found.
-                  </p>
-                ) : (
-                  blogs
-                    .filter((blog) =>
-                      blog.title.toLowerCase().includes(searchB.toLowerCase())
-                    )
+                )
                     .map((blog, idx) => {
                       console.log(blog);
 
@@ -624,7 +618,7 @@ const DetailPage: React.FC = () => {
                                   ? `${staticAPI}${
                                       blog.banner.split("/images")[1]
                                     }`
-                                  : `/static/${blog.banner}`
+                                  : `/blogs/${blog.banner}`
                               }
                               alt={blog.title}
                               priority
@@ -635,15 +629,14 @@ const DetailPage: React.FC = () => {
                               }}
                               // className={}
                               style={{
-                                objectFit: "cover",
+                                objectFit: "contain",
                               }}
                             />
                           </div>
                           <b className={styles.resultCardTitle}>{blog.title}</b>
                         </div>
                       );
-                    })
-                )}
+                })}
               </div>
             )}
             {/* Blog Categories */}
@@ -673,9 +666,13 @@ const DetailPage: React.FC = () => {
 
             {/* Related Blogs */}
             <div className={styles.relatedBlogs}>
-              {latestRBlogs &&
+              <h3>Related Blogs : </h3>
+              {latestRBlogs.length > 0 &&
                 latestRBlogs
-                  .filter((blog) => blog._id !== singleBlog?._id)
+                  .filter(
+                    (blog) =>
+                      blog._id !== singleBlog?._id || blog.id !== singleBlog.id
+                  )
                   .map((blog, idx) => (
                     <div
                       onClick={() =>
@@ -700,7 +697,7 @@ const DetailPage: React.FC = () => {
                           fill
                           priority
                           style={{
-                            objectFit: "cover",
+                            objectFit: "contain",
                           }}
                         />
                       </div>

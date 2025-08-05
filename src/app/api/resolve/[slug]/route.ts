@@ -17,12 +17,17 @@ export async function GET(
       "SELECT * FROM blogs WHERE slug = ? LIMIT 1",
       [slug]
     );
+    const latestRBlogs = await pool.query(
+      "SELECT * from blogs WHERE category_id = ? LIMIT 4",
+      [blogs.length > 0 ? blogs[0].category_id : null]
+    );
 
 
     if (blogs.length > 0) {
       return NextResponse.json({
         type: "blog",
         blog: blogs[0],
+        latestRBlogs
       });
     }
 

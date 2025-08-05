@@ -21,6 +21,7 @@ interface Article {
   createdAt: string;
   meta_description: string;
   blogDescription: string;
+  blogStatus: boolean;
 }
 
 interface Article2 {
@@ -29,6 +30,7 @@ interface Article2 {
   title: string;
   created_at: string;
   meta_description: string;
+  status: string;
 }
 
 interface MergedBlogs {
@@ -37,6 +39,7 @@ interface MergedBlogs {
   title: string;
   createdAt: string;
   meta_description: string;
+  status: string;
 }
 
 const normalizeArticle = (blog: Article): MergedBlogs => ({
@@ -45,6 +48,7 @@ const normalizeArticle = (blog: Article): MergedBlogs => ({
   title: blog.blogTitle,
   createdAt: blog.createdAt,
   meta_description: blog.blogDescription,
+  status: blog.blogStatus === true ? "active" : "inactive",
 });
 
 const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
@@ -53,6 +57,7 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
   title: blog.title,
   createdAt: blog.created_at,
   meta_description: blog.meta_description,
+  status: blog.status,
 });
 
 const Articles: React.FC = () => {
@@ -147,7 +152,7 @@ const Articles: React.FC = () => {
   useEffect(() => {}, [blogs]);
 
   if (!blogs || !Array.isArray(blogs)) return null;
-  const filteredBlogs: MergedBlogs[] = blogs.filter((blog: MergedBlogs) =>
+  const filteredBlogs: MergedBlogs[] = (blogs as MergedBlogs[]).filter((blog) =>
     blog.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -209,7 +214,7 @@ const Articles: React.FC = () => {
         }}
       >
         {" "}
-        {currentCards.map((article: MergedBlogs) => (
+        {currentCards.filter((bl)=>bl.status === "active").map((article: MergedBlogs) => (
           <div
             key={article.id}
             onClick={() => handleSingleBlogs(article.id)}
@@ -255,7 +260,7 @@ const Articles: React.FC = () => {
                 alt={article.title}
                 style={{
                   objectFit: "cover",
-                    transition: "transform 0.3s ease-in-out",
+                  transition: "transform 0.3s ease-in-out",
                 }}
                 priority
                 fill
@@ -302,22 +307,22 @@ const Articles: React.FC = () => {
                 ...
               </p> */}
               {/* Description */}
-<p
-  style={{
-    fontSize: "1rem",
-    color: "#555",
-    lineHeight: "1.6",
-    flexGrow: 1,
-  }}
->
-  {(() => {
-    const description = article?.meta_description || "";
-    const plainText = stripHtml(description) || "";
-    const words = plainText.split(/\s+/);
-    const shortened = words.slice(0, 30).join(" ");
-    return words.length > 30 ? `${shortened}...` : shortened;
-  })()}
-</p>
+              <p
+                style={{
+                  fontSize: "1rem",
+                  color: "#555",
+                  lineHeight: "1.6",
+                  flexGrow: 1,
+                }}
+              >
+                {(() => {
+                  const description = article?.meta_description || "";
+                  const plainText = stripHtml(description) || "";
+                  const words = plainText.split(/\s+/);
+                  const shortened = words.slice(0, 30).join(" ");
+                  return words.length > 30 ? `${shortened}...` : shortened;
+                })()}
+              </p>
 
               {/* Footer Actions */}
               <div
