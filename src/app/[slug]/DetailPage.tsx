@@ -173,21 +173,16 @@ const DetailPage: React.FC = () => {
   };
 
   useEffect(() => {
-    // setSearchedBlog(false);
     const fetchData = async () => {
       setLoading(true);
       try {
         const cleanSlug = slug?.replace(/\.html$/, "");
-
-        // Fetch categories
-        // const { data } = await axios.get(`/api/ritzCats/getAllCats`);
         const catData2 = await axios.get(`/api/blog/categories`);
 
         const [resMongo, resMySQL] = await Promise.all([
           axios.get("/api/ritz_blogs/get-all-blogs"),
           axios.get("/api/all_blogs"),
         ]);
-
         const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
         const mysqlBlogs: Article2[] = resMySQL.data || [];
 
@@ -199,7 +194,6 @@ const DetailPage: React.FC = () => {
         setBlogs(merged);
 
         setRitzCats([...catData2.data]);
-        // Attempt to resolve slug
         const response = await axios.get(`/api/resolve/${cleanSlug}`);
 
         if (response.data.type === "blog") {
@@ -216,7 +210,6 @@ const DetailPage: React.FC = () => {
           setRecentB(res.data.recentBlogs);
           if (res) {
             setMBC(res?.data.categoryN);
-            // console.log(mBC);
           }
 
           setCardData(serviceResponse.data.cards || []);
@@ -256,6 +249,24 @@ const DetailPage: React.FC = () => {
       return () => clearTimeout(timeout);
     }
   }, [clickedPlatform]);
+
+  const callLatestBlog = async () => {
+    console.log("API HIT");
+    try {
+      const res = await axios.get("/api/ritz_blogs/get-all-blogs");
+      const logs = res.data.allBlogs;
+
+      setRecentB(logs.splice(0, 3));
+    } catch (err) {
+      console.error("Fallback MongoDB fetch failed:", err);
+    }
+  };
+
+  useEffect(() => {
+    // if(!recentB){
+    callLatestBlog();
+    // }
+  }, [slug]);
 
   function getShareUrl(
     platform: string,
@@ -418,27 +429,34 @@ const DetailPage: React.FC = () => {
                 {(isMongo ? singleBlog.metaKeywords : singleBlog.meta_keywords)
                   ?.split(",")
                   .map((word: string, idx: number) => {
-                    const trimmed = word.trim();
-                    const slug = trimmed.replace(/\s+/g, "-"); // Replace spaces with dashes
+                    // Clean and sanitize keyword
+                    const cleaned = word
+                      .replace(/['",]/g, "") // Remove both single and double quotes
+                      .replace(/\s+/g, " ") // Convert multiple spaces to a single space
+                      .trim(); // Trim start and end
+
+                    const slug = cleaned.replace(/\s+/g, "-"); // Replace spaces with dashes
 
                     return (
-                      <span
-                        key={idx}
-                        onClick={() => router.push(`/key/${slug}`)}
-                        style={{
-                          cursor: "pointer",
-                          marginRight: "8px",
-                          marginBottom: "8px",
-                          padding: "4px 10px",
-                          display: "inline-block",
-                          borderRadius: "8px",
-                          backgroundColor: "#f1f1f1",
-                          fontSize: "14px",
-                          border: "1px solid #ccc",
-                        }}
-                      >
-                        {trimmed}
-                      </span>
+                      cleaned && (
+                        <span
+                          key={idx}
+                          onClick={() => router.push(`/tags/${slug}`)}
+                          style={{
+                            cursor: "pointer",
+                            marginRight: "8px",
+                            marginBottom: "8px",
+                            padding: "4px 10px",
+                            display: "inline-block",
+                            borderRadius: "8px",
+                            backgroundColor: "#f1f1f1",
+                            fontSize: "14px",
+                            border: "1px solid #ccc",
+                          }}
+                        >
+                          {cleaned}
+                        </span>
+                      )
                     );
                   })}
               </div>

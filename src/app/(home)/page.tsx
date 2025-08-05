@@ -50,6 +50,5 @@ export default function Home() {
       <Elementor />
       <CookieConsentWithLead></CookieConsentWithLead>
     </Providers>
-    // </BlogProvider>
   );
 }
