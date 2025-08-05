@@ -420,7 +420,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
-                  Manage Page
+                  Manage Pages Cards
                 </div>
               </Link>
               <Link href="/admin/menu">
