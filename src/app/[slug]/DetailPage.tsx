@@ -615,13 +615,16 @@ const DetailPage: React.FC = () => {
                             <Image
                               src={
                                 isMongo
-                                  ?`/api/images${blog.banner.split("/images")[1]}`
+                                  ? `${staticAPI}${
+                                      blog.banner.split("/images")[1]
+                                    }`
                                   : `/blogs/${blog.banner}`
                               }
                               alt={blog.title}
                               priority
                               fill
-                            
+                              
+                              // className={}
                               style={{
                                 objectFit: "contain",
                               }}
