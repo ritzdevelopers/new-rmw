@@ -5,6 +5,14 @@ export function middleware(req: NextRequest) {
   const token = req.cookies.get("auth_token")?.value;
   const { pathname } = req.nextUrl;
 
+  const url = req.nextUrl;
+
+  if (url.pathname.startsWith("/blog")) {
+    const changeURL = url.pathname.replace("/blog/", "");
+    const newURL = new URL(`/${changeURL}`, url.origin);
+    return NextResponse.redirect(newURL, 301);
+  }
+
   // ✅ Redirect /admin to /admin/dashboard
   if (pathname === "/admin") {
     return NextResponse.redirect(new URL("/admin/dashboard", req.url));
@@ -30,5 +38,5 @@ export function middleware(req: NextRequest) {
 
 // ✅ Apply middleware to all `/admin` routes
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/blog/:path*"],
 };

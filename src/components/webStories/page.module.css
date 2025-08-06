@@ -31,26 +31,32 @@
 }
 
 .title3d {
-  background: #0000009e;
+  background: #00000063;
   color: #fff;
   left: 0;
-  outline: 1px solid #0000;
+  /* outline: 1px solid #0000; */
   position: absolute;
   bottom: 0;
-  transform: translateY(-50%) translateZ(60px) scale(.94);
+  transform: translateY(-50%) translateZ(60px) scale(0.94);
   width: 100%;
   z-index: 2;
-  padding: 1rem;
-  margin: 0;
+  padding: 0.2rem;
+
+  /* margin: 0; */
   font-size: 1rem;
   font-weight: 600;
-  text-align: center;
+  /* text-align: center; */
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .flipCardBack {
- background: #0c2f3d;
-background: linear-gradient(180deg, rgba(12, 47, 61, 1) 0%, rgba(22, 135, 26, 1) 100%, rgba(194, 179, 47, 1) 65%);
+  background: #0c2f3d;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 47, 61, 1) 0%,
+    rgba(22, 135, 26, 1) 100%,
+    rgba(194, 179, 47, 1) 65%
+  );
   color: white;
   transform: rotateY(180deg);
   display: flex;
@@ -154,12 +160,12 @@ background: linear-gradient(180deg, rgba(12, 47, 61, 1) 0%, rgba(22, 135, 26, 1)
     gap: 1rem;
     padding: 0 1.5rem;
   }
-  
+
   .reelCard {
     width: 40vw;
     height: calc(40vw * 1.777);
   }
-  
+
   .title3d {
     font-size: 1.1rem;
   }
@@ -172,7 +178,7 @@ background: linear-gradient(180deg, rgba(12, 47, 61, 1) 0%, rgba(22, 135, 26, 1)
     max-width: 350px;
     max-height: calc(350px * 1.777);
   }
-  
+
   .storyDescription {
     font-size: 1rem;
     padding: 0 1rem;
@@ -183,7 +189,7 @@ background: linear-gradient(180deg, rgba(12, 47, 61, 1) 0%, rgba(22, 135, 26, 1)
   .reelContainer {
     justify-content: center;
   }
-  
+
   .reelCard {
     width: 25vw;
     height: calc(25vw * 1.777);
