@@ -11,7 +11,7 @@ import "../styles/animation-css.css";
 // import Head from "next/head";
 
 import { useParams, usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import styles from "./page.module.css";
 import ServiceThirdHero from "@/allPages/serviceThirdPage/ServiceThirdHero";
@@ -199,7 +199,7 @@ const DetailPage: React.FC = () => {
         if (response.data.type === "blog") {
           setSingleBlog(response.data.blog);
           setLatestRBlogs(response.data.latestRBlogs[0]);
-          console.log(response.data.latestRBlogs[0]);
+          // console.log(response.data.latestRBlogs[0]);
         } else if (response.data.type === "service") {
           const { secondLayer, thirdLayer } = response.data;
 
@@ -324,6 +324,27 @@ const DetailPage: React.FC = () => {
     }
   };
 
+  const contentRef = useRef(null);
+
+  const handleLinksNavigation = () => {
+    const links = document.querySelectorAll("#ctBody a");
+    // console.log(contentRef.current);
+    links.forEach((aLink) => {
+      const gtHref = aLink.getAttribute("href");
+      console.log(gtHref);
+      
+      if (gtHref?.includes("/blog/")) {
+        const newHRef = gtHref.split("/blog").join("");
+        aLink.setAttribute("href", newHRef);
+      }
+    });
+  };
+  useEffect(() => {
+    if (singleBlog) {
+      handleLinksNavigation();
+    }
+  }, [singleBlog]);
+
   if (loading) return <Loader />;
 
   // ✅ Render Blog if found
@@ -387,7 +408,7 @@ const DetailPage: React.FC = () => {
                 {isMongo ? singleBlog.blogTitle : singleBlog.title}
               </h1>
               {/* Blog Content */}
-              <div className={styles.contentBody}>
+              <div ref={contentRef} id="ctBody" className={styles.contentBody}>
                 {isMongo ? (
                   singleBlog.blogBody?.map((page, idx) => (
                     <div key={idx}>
@@ -418,6 +439,7 @@ const DetailPage: React.FC = () => {
                 ) : (
                   <div className={styles.tableWrapper}>
                     <div
+                      onClick={(e) => console.log(e)}
                       className={styles.contentBody}
                       dangerouslySetInnerHTML={{
                         __html: singleBlog.description!,
@@ -599,41 +621,41 @@ const DetailPage: React.FC = () => {
             {/* Search Results */}
             {searchB && (
               <div className={styles.searchResults}>
-                {blogs.filter((blog) =>
-                  blog.title.toLowerCase().includes(searchB.toLowerCase())
-                )
-                    .map((blog, idx) => {
-                      console.log(blog);
+                {blogs
+                  .filter((blog) =>
+                    blog.title.toLowerCase().includes(searchB.toLowerCase())
+                  )
+                  .map((blog, idx) => {
+                    console.log(blog);
 
-                      return (
-                        <div
-                          onClick={() => router.push(`/${blog.id}`)}
-                          className={styles.resultCard}
-                          key={`${blog.id}-${idx}`}
-                        >
-                          <div className={styles.resultCardImage}>
-                            <Image
-                              src={
-                                isMongo
-                                  ? `${staticAPI}${
-                                      blog.banner.split("/images")[1]
-                                    }`
-                                  : `/blogs/${blog.banner}`
-                              }
-                              alt={blog.title}
-                              priority
-                              fill
-                              
-                              // className={}
-                              style={{
-                                objectFit: "contain",
-                              }}
-                            />
-                          </div>
-                          <b className={styles.resultCardTitle}>{blog.title}</b>
+                    return (
+                      <div
+                        onClick={() => router.push(`/${blog.id}`)}
+                        className={styles.resultCard}
+                        key={`${blog.id}-${idx}`}
+                      >
+                        <div className={styles.resultCardImage}>
+                          <Image
+                            src={
+                              isMongo
+                                ? `${staticAPI}${
+                                    blog.banner.split("/images")[1]
+                                  }`
+                                : `/blogs/${blog.banner}`
+                            }
+                            alt={blog.title}
+                            priority
+                            fill
+                            // className={}
+                            style={{
+                              objectFit: "contain",
+                            }}
+                          />
                         </div>
-                      );
-                })}
+                        <b className={styles.resultCardTitle}>{blog.title}</b>
+                      </div>
+                    );
+                  })}
               </div>
             )}
             {/* Blog Categories */}
