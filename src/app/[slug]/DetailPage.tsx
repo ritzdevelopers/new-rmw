@@ -634,7 +634,7 @@ const DetailPage: React.FC = () => {
                         <div className={styles.resultCardImage}>
                           <Image
                             src={
-                              isMongo
+                              blog.banner.includes("/images/") 
                                 ? `${staticAPI}${
                                     blog.banner.split("/images")[1]
                                   }`
