@@ -331,11 +331,11 @@ const DetailPage: React.FC = () => {
     // console.log(contentRef.current);
     links.forEach((aLink) => {
       const gtHref = aLink.getAttribute("href");
-      console.log(gtHref);
-      
+       aLink.setAttribute("target", "_blank");
       if (gtHref?.includes("/blog/")) {
         const newHRef = gtHref.split("/blog").join("");
         aLink.setAttribute("href", newHRef);
+       
       }
     });
   };
