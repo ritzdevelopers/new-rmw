@@ -439,7 +439,7 @@ const DetailPage: React.FC = () => {
                 ) : (
                   <div className={styles.tableWrapper}>
                     <div
-                      onClick={(e) => console.log(e)}
+                      
                       className={styles.contentBody}
                       dangerouslySetInnerHTML={{
                         __html: singleBlog.description!,
@@ -453,7 +453,6 @@ const DetailPage: React.FC = () => {
                 {(isMongo ? singleBlog.metaKeywords : singleBlog.meta_keywords)
                   ?.split(",")
                   .map((word: string, idx: number) => {
-                    // Clean and sanitize keyword
                     const cleaned = word
                       .replace(/['",]/g, "") // Remove both single and double quotes
                       .replace(/\s+/g, " ") // Convert multiple spaces to a single space
@@ -626,8 +625,6 @@ const DetailPage: React.FC = () => {
                     blog.title.toLowerCase().includes(searchB.toLowerCase())
                   )
                   .map((blog, idx) => {
-                    console.log(blog);
-
                     return (
                       <div
                         onClick={() => router.push(`/${blog.id}`)}
@@ -645,6 +642,7 @@ const DetailPage: React.FC = () => {
                             }
                             alt={blog.title}
                             priority
+                            unoptimized
                             fill
                             // className={}
                             style={{
