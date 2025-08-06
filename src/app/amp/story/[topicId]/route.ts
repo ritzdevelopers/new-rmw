@@ -26,6 +26,7 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
         <meta name="keywords" content="${pages[0].metaKeyWords}">
         <script async src="https://cdn.ampproject.org/v0.js"></script>
         <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+        <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
 
         <style amp-boilerplate>
           body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}
@@ -38,46 +39,42 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
             color: white;
           }
 
-          .image-darken {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
-            z-index: 1;
-          }
 
           .content-bottom {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
+            text-align: left;
             width: 100%;
-            // padding: 0 24px 10vh;
+            height: 100%;
+            // padding: 20px;
             box-sizing: border-box;
             z-index: 2;
           }
 
           .text-wrapper {
-            position: relative;
             background: rgba(0, 0, 0, 0.6);
-            border-radius: 12px;
-            padding: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            // border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(4px);
-            margin-top:400px;
+            width: 100%;
           }
 
-          h1 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+          .story-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 0 10px;
+            color: #fff;
           }
 
-          p {
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+          .story-desc {
+            font-family: 'Roboto', sans-serif;
+            // font-size: 0.5rem;
+            margin: 0 0 12px;
+            color: #ddd;
           }
 
           .btn {
@@ -88,7 +85,7 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
             display: inline-block;
             margin-top: 10px;
             border: none;
-            font-size:0.8rem;
+            font-size: 0.8rem;
             background-color: #fff;
             color: #000;
             transition: transform 0.2s ease;
@@ -102,17 +99,38 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
             background-color: #eee;
           }
 
+          .like-section {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+          }
+
+          .like-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+          }
+
+          .like-count {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-top: 4px;
+          }
+
           @media (max-width: 480px) {
             .text-wrapper {
               padding: 16px;
             }
 
-            h1 {
-              font-size: 1.25rem;
+            .story-title {
+              font-size: 1.3rem;
             }
 
-            p {
-              font-size: 1rem;
+            .story-desc {
+              font-size: 0.95rem;
             }
 
             .btn {
@@ -122,7 +140,7 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
           }
         </style>
 
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
       </head>
       <body>
         <amp-story
@@ -142,16 +160,17 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
                     <div class="image-darken"></div>
                   </amp-story-grid-layer>
 
-                  <amp-story-grid-layer template="vertical">
-                    <div class="content-bottom mt-20">
+                  <amp-story-grid-layer template="fill">
+                    <div class="content-bottom">
                       <div class="text-wrapper">
-                        <h1>${page.title}</h1>
-                        <p>${page.description}</p>
+                        <h1 class="story-title">${page.title}</h1>
+                        <p class="story-desc">${page.description}</p>
                         ${
                           page.buttonCTA?.btnTxt
                             ? `<a href="${page.buttonCTA.btnLink}" class="btn" style="background-color:${page.buttonCTA.btnColor};color:${page.buttonCTA.btnTxtColor};">${page.buttonCTA.btnTxt}</a>`
                             : ""
                         }
+                    
                       </div>
                     </div>
                   </amp-story-grid-layer>
@@ -163,7 +182,7 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
       </body>
     </html>
   `;
-
+  
   return new NextResponse(ampHtml, {
     headers: {
       "Content-Type": "text/html; charset=utf-8",
