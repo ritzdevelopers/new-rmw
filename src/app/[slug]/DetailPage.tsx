@@ -331,13 +331,41 @@ const DetailPage: React.FC = () => {
     // console.log(contentRef.current);
     links.forEach((aLink) => {
       const gtHref = aLink.getAttribute("href");
-       aLink.setAttribute("target", "_blank");
+      aLink.setAttribute("target", "_blank");
       if (gtHref?.includes("/blog/")) {
         const newHRef = gtHref.split("/blog").join("");
         aLink.setAttribute("href", newHRef);
-       
       }
     });
+    const ctBody = document.querySelector("#ctBody");
+
+    if (
+      ctBody &&
+      document.querySelector("#ctBody")?.innerHTML.includes("&nbsp")
+    ) {
+      ctBody.innerHTML = ctBody.innerHTML.replace(/&nbsp;/g, "");
+    }
+//     if(ctBody) {
+//       console.log(ctBody.innerHTML.);
+      
+      
+//         const cleanedHTML = ctBody.innerHTML.replace(/<!--[\s\S]*?-->/g, "");
+// ctBody.innerHTML = cleanedHTML;
+//     }
+
+
+
+    if (singleBlog?.title) {
+      const targetNode =
+        ctBody?.childNodes?.[0]?.childNodes?.[0]?.childNodes?.[0];
+
+      if (targetNode?.textContent?.includes(singleBlog.title)) {
+        targetNode.textContent = targetNode.textContent.replace(
+          singleBlog.title,
+          ""
+        );
+      }
+    }
   };
   useEffect(() => {
     if (singleBlog) {
@@ -439,7 +467,6 @@ const DetailPage: React.FC = () => {
                 ) : (
                   <div className={styles.tableWrapper}>
                     <div
-                      
                       className={styles.contentBody}
                       dangerouslySetInnerHTML={{
                         __html: singleBlog.description!,
@@ -634,7 +661,7 @@ const DetailPage: React.FC = () => {
                         <div className={styles.resultCardImage}>
                           <Image
                             src={
-                              blog.banner.includes("/images/") 
+                              blog.banner.includes("/images/")
                                 ? `${staticAPI}${
                                     blog.banner.split("/images")[1]
                                   }`

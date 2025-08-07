@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import gsap from "gsap";
 // import { CalendarDays } from "lucide-react";
 import { CalendarDays, Share2 } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useBlogContext } from "@/context/AllBlogContext";
 import Image from "next/image";
 interface Article {
@@ -68,10 +68,9 @@ const Articles: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const cardsPerPage = 12;
 
-  const navigation = useRouter();
   const handleSingleBlogs = (slug: string) => {
-    const url = slug.split(" ").join("-").toLowerCase();
-    navigation.push(`/${url}`);
+     const url = slug.split(" ").join("-").toLowerCase();
+  window.open(`/${url}`, '_blank');
   };
 
   // useEffect(() => {
