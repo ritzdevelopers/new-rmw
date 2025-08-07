@@ -345,13 +345,12 @@ const DetailPage: React.FC = () => {
     ) {
       ctBody.innerHTML = ctBody.innerHTML.replace(/&nbsp;/g, "");
     }
-//     if(ctBody) {
-//       console.log(ctBody.innerHTML.);
-      
-      
-//         const cleanedHTML = ctBody.innerHTML.replace(/<!--[\s\S]*?-->/g, "");
-// ctBody.innerHTML = cleanedHTML;
-//     }
+    if (
+      ctBody &&
+      document.querySelector("#ctBody")?.innerHTML.includes("<br>")
+    ) {
+         ctBody.innerHTML = ctBody.innerHTML.replace(/<br\s*\/?>/g, "");
+    }
 
 
 
