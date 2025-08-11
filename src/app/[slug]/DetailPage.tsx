@@ -339,20 +339,19 @@ const DetailPage: React.FC = () => {
     });
     const ctBody = document.querySelector("#ctBody");
 
-    if (
-      ctBody &&
-      document.querySelector("#ctBody")?.innerHTML.includes("&nbsp")
-    ) {
-      ctBody.innerHTML = ctBody.innerHTML.replace(/&nbsp;/g, "");
+    if (ctBody && /<p>\s*(?:&nbsp;|\u00A0)\s*<\/p>/i.test(ctBody.innerHTML)) {
+      ctBody.innerHTML = ctBody.innerHTML.replace(
+        /<p>\s*(?:&nbsp;|\u00A0)\s*<\/p>/gi,
+        ""
+      );
     }
+
     if (
       ctBody &&
       document.querySelector("#ctBody")?.innerHTML.includes("<br>")
     ) {
-         ctBody.innerHTML = ctBody.innerHTML.replace(/<br\s*\/?>/g, "");
+      ctBody.innerHTML = ctBody.innerHTML.replace(/<br\s*\/?>/g, "");
     }
-
-
 
     if (singleBlog?.title) {
       const targetNode =
@@ -365,7 +364,57 @@ const DetailPage: React.FC = () => {
         );
       }
     }
+
+    if (ctBody) {
+      const allH1 = ctBody.getElementsByTagName("h1");
+
+      const h1Array = Array.from(allH1);
+
+      h1Array.forEach((h1) => {
+        const h2 = document.createElement("h2");
+        h2.innerHTML = h1.innerHTML;
+
+        for (const attr of h1.attributes) {
+          h2.setAttribute(attr.name, attr.value);
+        }
+        if (h1.parentNode) {
+          h1.parentNode.replaceChild(h2, h1);
+        }
+      });
+    }
   };
+
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const cleanWordPressComments = () => {
+  //     const ctBody = document.querySelector("#ctBody");
+  //     if (ctBody) {
+  //       // Create a temporary div to work with
+  //       const tempDiv = document.createElement('div');
+  //       tempDiv.innerHTML = ctBody.innerHTML;
+
+  //       // Remove WordPress comments
+  //       const comments = tempDiv.querySelectorAll('*');
+  //       comments.forEach(node => {
+  //         Array.from(node.childNodes).forEach(child => {
+  //           if (child.nodeType === Node.COMMENT_NODE &&
+  //               child.nodeValue.includes('wp:')) {
+  //             node.removeChild(child);
+  //           }
+  //         });
+  //       });
+
+  //       // Update the DOM
+  //       ctBody.innerHTML = tempDiv.innerHTML;
+  //     }
+  //   };
+
+  //   // Run immediately
+  //   cleanWordPressComments();
+
+  //   // Run again after a short delay in case other scripts modify the content
+  //   setTimeout(cleanWordPressComments, 500);
+  // });
+
   useEffect(() => {
     if (singleBlog) {
       handleLinksNavigation();
