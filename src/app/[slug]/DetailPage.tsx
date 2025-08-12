@@ -346,12 +346,12 @@ const DetailPage: React.FC = () => {
       );
     }
 
-    if (
-      ctBody &&
-      document.querySelector("#ctBody")?.innerHTML.includes("<br>")
-    ) {
-      ctBody.innerHTML = ctBody.innerHTML.replace(/<br\s*\/?>/g, "");
-    }
+    // if (
+    //   ctBody &&
+    //   document.querySelector("#ctBody")?.innerHTML.includes("<br>")
+    // ) {
+    //   ctBody.innerHTML = ctBody.innerHTML.replace(/<br\s*\/?>/g, "");
+    // }
 
     if (singleBlog?.title) {
       const targetNode =
