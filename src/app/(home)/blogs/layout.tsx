@@ -15,5 +15,9 @@ export default function BlogLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Providers>{children}</Providers>;
+  return (
+  <Providers>
+    
+    {children}
+    </Providers>);
 }

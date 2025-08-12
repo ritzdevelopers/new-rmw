@@ -445,7 +445,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/menu_category">
                 <div
-                  onClick={() => setActiveSubMenu("Manage Menu Category")}
+                  onClick={() => setActiveSubMenu("Manage  Category")}
                   style={{
                     ...(!webpagesLinks
                       ? { borderWidth: "none" }
@@ -453,13 +453,13 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                           borderBottomWidth: "1px",
                           borderBlockColor: "#EEEEEE",
                         }),
-                    ...(subMenuActive === "Manage Menu Category" && {
+                    ...(subMenuActive === "Manage Category" && {
                       backgroundColor: "#2E3B46",
                     }),
                   }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
-                  Manage Menu Category
+                  Manage Category
                 </div>
               </Link>
             </div>
