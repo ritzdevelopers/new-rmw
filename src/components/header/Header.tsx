@@ -4,7 +4,7 @@ import Link from "next/link";
 // import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useStickyElements from "@/hooks/useStickyElements";
 import styles from "./Header.module.css"; // Import CSS module
 import {
@@ -16,7 +16,8 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import axios from "axios";
 import Image from "next/image";
-
+import FlagWave from "../15August/FlagWave";
+import { gsap } from "gsap";
 // declare namespace JSX {
 //   interface IntrinsicElements {
 //     li: React.DetailedHTMLProps<
@@ -142,7 +143,7 @@ const Header = () => {
   // const [usersIP, setUsersIP] = useState<string>();
   // Fetch User's IP :
   // console.log(usersIP, spendingTime);
-  
+
   // const userIPTracker = async () => {
   //   try {
   //     const { data, status } = await axios.get("/api/user-ip-tracker");
@@ -192,6 +193,33 @@ const Header = () => {
   // useEffect(() => {
   //   testAPI();
   // }, []);
+  const imgT = useRef<HTMLImageElement | null>(null);
+
+
+  useEffect(() => {
+    if (imgT.current) {
+      gsap.from(imgT.current, {
+        opacity: 0,
+        duration: 0.5,
+      });
+    }
+  }, [imgT.current?.src]); // safe access here too
+
+ const handleLogoChange = (e: React.MouseEvent<HTMLImageElement>) => {
+
+    if (!imgT.current) return;
+
+    if (e.type === "mouseenter") {
+      imgT.current.src = "/Tirango_Logo.png";
+    } else if (e.type === "mouseleave") {
+      imgT.current.src = "/logo-brown.png";
+    }
+
+    gsap.from(imgT.current, {
+      opacity: 0,
+      duration: 0.5,
+    });
+  };
 
   return (
     <header>
@@ -203,6 +231,7 @@ const Header = () => {
           borderBottom: "white",
         }}
       >
+        <FlagWave />
         <div className="container-fluid">
           <div className="row align-items-center">
             <div className="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
@@ -222,6 +251,9 @@ const Header = () => {
                     alt=""
                     className="sm-size"
                     style={{ height: "50px" }}
+                    ref={imgT}
+                    onMouseEnter={handleLogoChange}
+                    onMouseLeave={handleLogoChange}
                   />
                 </Link>
               </div>
@@ -235,6 +267,7 @@ const Header = () => {
                         href="/"
                         className="nav-links"
                         style={{
+                          fontWeight: "bold",
                           color: pathname === "/" ? "#8a5a0d" : "inherit",
                         }}
                       >
@@ -246,6 +279,7 @@ const Header = () => {
                         href="/about.html"
                         className="nav-links"
                         style={{
+                          fontWeight: "bold",
                           color:
                             pathname === "/about.html" ? "#8a5a0d" : "inherit",
                         }}
@@ -258,6 +292,7 @@ const Header = () => {
                         href="/services"
                         className="nav-links"
                         style={{
+                          fontWeight: "bold",
                           color:
                             pathname === "/services" ? "#8a5a0d" : "inherit",
                         }}
@@ -268,6 +303,7 @@ const Header = () => {
                       <div
                         className="tp-submenu submenu has-homemenu"
                         style={{
+                          fontWeight: "bold",
                           // padding: "0 25px",
                           width: "100vw",
                           left: "-70%",
@@ -363,6 +399,7 @@ const Header = () => {
                         href="/work.html"
                         className="nav-links"
                         style={{
+                          fontWeight: "bold",
                           color:
                             pathname === "/our-work" ? "#8a5a0d" : "inherit",
                         }}
@@ -375,6 +412,7 @@ const Header = () => {
                         href="/blogs"
                         className="nav-links"
                         style={{
+                          fontWeight: "bold",
                           color:
                             pathname === "/blogs" || isBlog === true
                               ? "#8a5a0d"
@@ -389,6 +427,7 @@ const Header = () => {
                         href="/contact.html/"
                         className="nav-links"
                         style={{
+                          fontWeight: "bold",
                           color:
                             pathname === "/contact.html"
                               ? "#8a5a0d"
