@@ -11,7 +11,7 @@ const FlagWaveCanvas = () => {
     if (!containerRef.current) return;
 
     gsap.to(containerRef.current, {
-      x: '-100%', // move half the container width to left
+      x: '-50%', // move half the container width to left
       duration: 20,
       ease: 'linear',
       repeat: -1,
@@ -31,7 +31,6 @@ const FlagWaveCanvas = () => {
           alt="15 August Flag Animation"
           className={styles.flagImage}
         />
-       
       </div>
     </div>
   );
