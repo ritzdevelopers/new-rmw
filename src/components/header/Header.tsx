@@ -195,7 +195,6 @@ const Header = () => {
   // }, []);
   const imgT = useRef<HTMLImageElement | null>(null);
 
-
   useEffect(() => {
     if (imgT.current) {
       gsap.from(imgT.current, {
@@ -205,8 +204,7 @@ const Header = () => {
     }
   }, [imgT.current?.src]); // safe access here too
 
- const handleLogoChange = (e: React.MouseEvent<HTMLImageElement>) => {
-
+  const handleLogoChange = (e: React.MouseEvent<HTMLImageElement>) => {
     if (!imgT.current) return;
 
     if (e.type === "mouseenter") {
@@ -229,10 +227,16 @@ const Header = () => {
         style={{
           background: "white",
           borderBottom: "white",
+          position: "relative",
         }}
       >
-        <FlagWave />
-        <div className="container-fluid">
+       <FlagWave />
+        <div
+          className="container-fluid"
+          style={{
+            position: "relative",
+          }}
+        > 
           <div className="row align-items-center">
             <div className="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
               <div

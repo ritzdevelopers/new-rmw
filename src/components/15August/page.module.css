@@ -5,18 +5,22 @@
   width: 100%;
   height: 82px; /* Adjust as needed */
   overflow: hidden;
-  z-index: -1;
+  z-index: -2;
   pointer-events: none;
+  border-radius: 0px !important;
 }
 
 .flagSlider {
   display: flex;
-  width: 200%; 
-  border-right: 2px solid #a40000;
+  height: 100%;
+  width: 200%;
+  border-left: 2px solid #a40000 !important;
+  border-radius: 0px !important;
 }
 
 .flagImage {
   width: 100%;
   height: 100%;
+  border-radius: 0px !important;
   object-fit: cover;
 }
