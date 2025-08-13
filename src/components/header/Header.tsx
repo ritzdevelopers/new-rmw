@@ -249,12 +249,12 @@ const Header = () => {
                   justifyContent: "center",
                 }}
               >
-                <Link className="main-logo" href="/">
+                <Link className="main-logo" href="/" >
                   <img
                     src="/logo-brown.png"
                     alt=""
                     className="sm-size"
-                    style={{ height: "50px" }}
+                    style={{ height: "50px", zIndex:50 }}
                     ref={imgT}
                     onMouseEnter={handleLogoChange}
                     onMouseLeave={handleLogoChange}
