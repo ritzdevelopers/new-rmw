@@ -25,7 +25,6 @@ const FlagWaveCanvas = () => {
 
   useEffect(() => {
     if (containerRef.current) {
-      // Kill any existing animation
       if (animationRef.current) animationRef.current.kill();
 
       // Reset position
@@ -46,26 +45,26 @@ const FlagWaveCanvas = () => {
       <div className={styles.flagSlider} ref={containerRef}>
         {isMobile ? (
           <img
-            src={"/Flag_Mobile.jpg"}
+            src={"/header_mobile.jpg"}
             alt="15 August Flag Animation"
             className={styles.flagImage2}
           />
         ) : (
           <img
-            src={"/flag/flag_flow.jpg"}
+            src={"/Bar_new_alt.png"}
             alt="15 August Flag Animation"
             className={styles.flagImage}
           />
         )}
         {isMobile ? (
           <img
-            src={"/Flag_Mobile.jpg"}
+            src={"/header_mobile.jpg"}
             alt="15 August Flag Animation"
             className={styles.flagImage}
           />
         ) : (
           <img
-            src={"/flag/flag_flow.jpg"}
+            src={"/Bar_new_alt.png"}
             alt="15 August Flag Animation"
             className={styles.flagImage}
           />

@@ -25,7 +25,7 @@
 .flagImage2 {
   width: 50%; /* Each image takes half the container */
   height: 100%;
-  object-fit: fill;
+  /* object-fit: fill; */
   flex-shrink: 0; /* Prevent shrinking */
   border-left: 1px solid green;
 }
