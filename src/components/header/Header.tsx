@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { useState, useEffect, useRef } from "react";
 import useStickyElements from "@/hooks/useStickyElements";
-import styles from "./Header.module.css"; // Import CSS module
+import styles from "./page.module.css"; // Import CSS module
 import {
   FaFacebookF,
   FaYoutube,
@@ -16,7 +16,7 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import axios from "axios";
 import Image from "next/image";
-import FlagWave from "../15August/FlagWave";
+// import FlagWave from "../15August/FlagWave";
 import { gsap } from "gsap";
 // declare namespace JSX {
 //   interface IntrinsicElements {
@@ -212,12 +212,12 @@ const Header = () => {
         id="header-sticky"
         className={`tp-header-top-area tp-header__style-1 tp-header__transparent tp-header__border ${styles.headerBackground}`}
         style={{
-          background: "white",
+          // background: "white",
           borderBottom: "white",
           position: "relative",
         }}
       >
-        <FlagWave />
+        {/* <FlagWave /> */}
         <div
           className="container-fluid"
           style={{
