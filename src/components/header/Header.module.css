@@ -1,6 +1,7 @@
 /* Header.module.css */
 
 /* Sidebar Overlay */
+
 .mobileMenuOverlay {
   position: fixed;
   z-index: 1000;
@@ -394,14 +395,12 @@
     transform 0.3s ease-in-out;
 }
 
-/* When Dropdown is Open */
 .submenu.show {
   max-height: 400px; /* Adjust if needed */
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Button Arrow */
 .dropdownArrow {
   background: none;
   border: none;
@@ -425,7 +424,6 @@
   color: #fddf82;
 }
 
-/* Make full height sidebar scrollable */
 .mobileMenu {
   height: 100vh;
   overflow-y: auto;
@@ -441,7 +439,6 @@
   border-radius: 10px;
 }
 
-/* Smooth dropdown with max-height transition */
 .submenu {
   max-height: 0;
   overflow: hidden;
@@ -456,8 +453,6 @@
   height: 100px;
   object-fit: cover;
 }
-
-
 
 .mobileSidebarLogo {
   display: flex;

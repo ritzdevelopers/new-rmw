@@ -3,27 +3,29 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; /* Adjust as needed */
+  height: 100%;
   overflow: hidden;
-  z-index: -5 !important;
+  z-index: -5;
   pointer-events: none;
-  border-radius: 0px !important;
 }
 
 .flagSlider {
   display: flex;
   height: 100%;
-  width: 200%; /* Needed for sliding effect */
-  border-left: 2px solid #a40000 !important;
-  border-radius: 0px !important;
+  width: 200%; /* Two images side by side */
+  background: #FF6620;
 }
 
 .flagImage {
-  width: 100%;
+  width: 50%; /* Each image takes half the container */
   height: 100%;
-  border-radius: 0px !important;
-  object-fit: cover;
+  object-fit: fill;
+  flex-shrink: 0; /* Prevent shrinking */
 }
-#mobile {
-  border-left: 2px solid green !important;
+.flagImage2 {
+  width: 50%; /* Each image takes half the container */
+  height: 100%;
+  object-fit: fill;
+  flex-shrink: 0; /* Prevent shrinking */
+  border-left: 1px solid green;
 }

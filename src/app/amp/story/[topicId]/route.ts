@@ -20,7 +20,7 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
       <head>
         <meta charset="utf-8">
         <title>${pages[0].title}</title>
-        <link rel="canonical" href="https://yourdomain.com/amp/story/${params.topicId}">
+        <link rel="canonical" href="https://ritzmediaworld.com/amp/story/${params.topicId}">
         <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
         <meta name="description" content="${pages[0].metaDescription}">
         <meta name="keywords" content="${pages[0].metaKeyWords}">

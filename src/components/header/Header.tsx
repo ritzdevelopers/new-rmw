@@ -204,20 +204,7 @@ const Header = () => {
     }
   }, [imgT.current?.src]); // safe access here too
 
-  const handleLogoChange = (e: React.MouseEvent<HTMLImageElement>) => {
-    if (!imgT.current) return;
 
-    if (e.type === "mouseenter") {
-      imgT.current.src = "/Tirango_Logo.png";
-    } else if (e.type === "mouseleave") {
-      imgT.current.src = "/logo-brown.png";
-    }
-
-    gsap.from(imgT.current, {
-      opacity: 0,
-      duration: 0.5,
-    });
-  };
 
   return (
     <header>
@@ -230,13 +217,13 @@ const Header = () => {
           position: "relative",
         }}
       >
-       <FlagWave />
+        <FlagWave />
         <div
           className="container-fluid"
           style={{
             position: "relative",
           }}
-        > 
+        >
           <div className="row align-items-center">
             <div className="col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6">
               <div
@@ -249,15 +236,19 @@ const Header = () => {
                   justifyContent: "center",
                 }}
               >
-                <Link className="main-logo" href="/" >
+                <Link
+                  className="main-logo"
+                  href="/"
+                  style={{ borderRadius: "0px !important", overflow: "hidden" }}
+                >
                   <img
-                    src="/logo-brown.png"
+                    src="/RMW_log_alt_4.png"
                     alt=""
-                    className="sm-size"
-                    style={{ height: "50px", zIndex:50 }}
+                    // className="sm-size"
+                    style={{ height: "70px", zIndex: 50 }}
                     ref={imgT}
-                    onMouseEnter={handleLogoChange}
-                    onMouseLeave={handleLogoChange}
+                    // onMouseEnter={handleLogoChange}
+                    // onMouseLeave={handleLogoChange}
                   />
                 </Link>
               </div>
@@ -271,6 +262,10 @@ const Header = () => {
                         href="/"
                         className="nav-links"
                         style={{
+                          textShadow:
+                            pathname === "/"
+                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
+                              : "inherit",
                           fontWeight: "bold",
                           color: pathname === "/" ? "#8a5a0d" : "inherit",
                         }}
@@ -284,6 +279,10 @@ const Header = () => {
                         className="nav-links"
                         style={{
                           fontWeight: "bold",
+                          textShadow:
+                            pathname === "/about.html"
+                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
+                              : "inherit",
                           color:
                             pathname === "/about.html" ? "#8a5a0d" : "inherit",
                         }}
@@ -297,6 +296,10 @@ const Header = () => {
                         className="nav-links"
                         style={{
                           fontWeight: "bold",
+                          textShadow:
+                            pathname === "/services"
+                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
+                              : "inherit",
                           color:
                             pathname === "/services" ? "#8a5a0d" : "inherit",
                         }}
@@ -404,6 +407,10 @@ const Header = () => {
                         className="nav-links"
                         style={{
                           fontWeight: "bold",
+                          textShadow:
+                            pathname === "/our-work"
+                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
+                              : "inherit",
                           color:
                             pathname === "/our-work" ? "#8a5a0d" : "inherit",
                         }}
@@ -417,6 +424,10 @@ const Header = () => {
                         className="nav-links"
                         style={{
                           fontWeight: "bold",
+                          textShadow:
+                            pathname === "/blogs"
+                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
+                              : "inherit",
                           color:
                             pathname === "/blogs" || isBlog === true
                               ? "#8a5a0d"
@@ -432,6 +443,10 @@ const Header = () => {
                         className="nav-links"
                         style={{
                           fontWeight: "bold",
+                          textShadow:
+                            pathname === "/contact.html"
+                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
+                              : "inherit",
                           color:
                             pathname === "/contact.html"
                               ? "#8a5a0d"
