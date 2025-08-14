@@ -905,10 +905,7 @@ div.demo img {
   overflow: hidden;
 }
 
-:last-of-type {
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-}
+
 
 .tp-accordion .accordion-button {
   padding: 18px 0 28px 18px;

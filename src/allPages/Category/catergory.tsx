@@ -8,10 +8,14 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 
 type Card = {
-  id: string;
-  blog_image: string;
-  title: string;
-  slug: string;
+  id?: string;
+  blog_image?: string;
+  title?: string;
+  slug?: string;
+  _id: string;
+  blogTitle?: string;
+  blogBanner?: string;
+  blogSlug?: string;
 };
 
 const Category = () => {
@@ -22,7 +26,8 @@ const Category = () => {
   const params = useParams();
   const category_slug = params?.categorypage as string;
   const itemsPerPage = 6;
-
+  const [isMongo, setIsMongo] = useState(false);
+  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -30,9 +35,19 @@ const Category = () => {
       try {
         const response = await axios.get(`/api/category/${category_slug}`);
         setCardData(response.data);
+        setIsMongo(false);
+        setCurrentPage(1);
       } catch (error) {
         console.error("Error fetching data:", error);
-        setError("Failed to load data. Please try again later.");
+        try {
+          const res = await axios.get(
+            `/api/ritz_blogs/get-categorized-blogs/${category_slug}`
+          );
+          setCardData(res.data.blogs);
+          setIsMongo(true);
+        } catch (error) {
+          console.log(error);
+        }
       } finally {
         setLoading(false);
       }
@@ -41,17 +56,17 @@ const Category = () => {
     fetchData();
   }, [category_slug]);
 
-  const totalPages = Math.ceil(cardData.length / itemsPerPage);
+  // const totalPages = Math.ceil(cardData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const selectedCards = cardData.slice(startIndex, startIndex + itemsPerPage);
 
-  const handleNext = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  };
+  // const handleNext = () => {
+  //   if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  // };
 
-  const handlePrev = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
-  };
+  // const handlePrev = () => {
+  //   if (currentPage > 1) setCurrentPage(currentPage - 1);
+  // };
 
   // ✅ Use early return for loading and error
   if (loading)
@@ -81,20 +96,33 @@ const Category = () => {
                   className={`card bg-white text-black ${styles.card}`}
                 >
                   <div className={styles.imageContainer}>
-                    <Image
-                      src={`/blogs/${card.blog_image}`}
-                      alt={card.title}
-                      fill
-                      className={styles.image}
-                      style={{ objectFit: "fill" }}
-                      priority={false} // optionally true for above-the-fold images
-                    />
+                    {(isMongo && card.blogBanner) ||
+                    (!isMongo && card.blog_image) ? (
+                      <Image
+                        src={
+                          isMongo
+                            ? `/api/images${
+                                card.blogBanner?.split("/images")[1] || ""
+                              }`
+                            : `/blogs/${card.blog_image}`
+                        }
+                        alt={card.title || card.blogTitle || "Blog image"}
+                        fill
+                        className={styles.image}
+                        style={{ objectFit: "fill" }}
+                        priority={false}
+                      />
+                    ) : (
+                      <div
+                        style={{ height: "200px", backgroundColor: "#ccc" }}
+                      />
+                    )}
                   </div>
                   <div className="card-body text-center">
                     <h5 className="card-title">{card.title}</h5>
                     <Link
-                      href={`/${card.slug}`}
-                      className={` ${styles.button}`}
+                      href={`/${isMongo ? card.blogSlug : card.slug}`}
+                      className={styles.button}
                     >
                       Read more <span className={styles.arrow}>&rarr;</span>
                     </Link>
@@ -103,63 +131,6 @@ const Category = () => {
               </div>
             ))}
           </div>
-
-          {/* ✅ Show pagination only if there are cards */}
-          {totalPages > 1 && (
-            <div className="text-center mt-4">
-              <button
-                onClick={handlePrev}
-                disabled={currentPage === 1}
-                style={{
-                  color: "#000",
-                  background: "var(--tp-primary-blue)",
-                  padding: "10px 20px",
-                  // border: "2px solid #000",
-                  borderRadius: "30px",
-                  fontWeight: "bold",
-                  cursor: currentPage === 1 ? "not-allowed" : "pointer",
-                  opacity: currentPage === 1 ? 0.5 : 1,
-                  transition: "all 0.3s ease-in-out",
-                  boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)",
-                }}
-                className="mx-2"
-              >
-                ⬅ Prev
-              </button>
-
-              <span
-                style={{
-                  fontSize: "16px",
-                  padding: "5px 15px",
-                  color: "#0c0c0c",
-                  borderRadius: "20px",
-                }}
-              >
-                Page {currentPage} of {totalPages}
-              </span>
-
-              <button
-                onClick={handleNext}
-                disabled={currentPage === totalPages}
-                style={{
-                  color: "#000",
-                  background: "var(--tp-primary-blue)",
-                  padding: "10px 20px",
-                  // border: "2px solid #000",
-                  borderRadius: "30px",
-                  fontWeight: "bold",
-                  cursor:
-                    currentPage === totalPages ? "not-allowed" : "pointer",
-                  opacity: currentPage === totalPages ? 0.5 : 1,
-                  transition: "all 0.3s ease-in-out",
-                  boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)",
-                }}
-                className="mx-2"
-              >
-                Next ➡
-              </button>
-            </div>
-          )}
         </>
       )}
     </div>

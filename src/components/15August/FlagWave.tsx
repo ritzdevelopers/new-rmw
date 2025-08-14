@@ -6,63 +6,71 @@ import styles from "./page.module.css";
 
 const FlagWaveCanvas = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<gsap.core.Tween | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Detect screen size on mount
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Mobile breakpoint
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    handleResize(); // Initial check
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      if (animationRef.current) animationRef.current.kill();
     };
   }, []);
 
   useEffect(() => {
-    if (!isMobile && containerRef.current) {
-      gsap.to(containerRef.current, {
-        x: "-50%", // move half the container width to left
+    if (containerRef.current) {
+      // Kill any existing animation
+      if (animationRef.current) animationRef.current.kill();
+
+      // Reset position
+      gsap.set(containerRef.current, { x: 0 });
+
+      // Create new animation
+      animationRef.current = gsap.to(containerRef.current, {
+        x: "-50%", // Move by half the container width
         duration: 20,
-        ease: "linear",
+        ease: "none",
         repeat: -1,
       });
     }
-  }, [isMobile]);
+  }, [isMobile]); // This will re-run when isMobile changes
 
   return (
     <div className={styles.flagWrapper}>
-      {!isMobile ? (
-        <div className={styles.flagSlider} ref={containerRef}>
+      <div className={styles.flagSlider} ref={containerRef}>
+        {isMobile ? (
           <img
-            src="/flag/flag_flow.jpg"
+            src={"/Flag_Mobile.jpg"}
+            alt="15 August Flag Animation"
+            className={styles.flagImage2}
+          />
+        ) : (
+          <img
+            src={"/flag/flag_flow.jpg"}
             alt="15 August Flag Animation"
             className={styles.flagImage}
           />
+        )}
+        {isMobile ? (
           <img
-            src="/flag/flag_flow.jpg"
+            src={"/Flag_Mobile.jpg"}
             alt="15 August Flag Animation"
             className={styles.flagImage}
           />
-        </div>
-      ) : (
-        <div className={styles.flagSlider}>
+        ) : (
           <img
-            src="/Flag_Mobile.jpg"
-            alt="15 August Flag Animation"
-            className={styles.flagImage}
-            id="mobile"
-          />
-          <img
-            src="/Flag_Mobile.jpg"
+            src={"/flag/flag_flow.jpg"}
             alt="15 August Flag Animation"
             className={styles.flagImage}
           />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
