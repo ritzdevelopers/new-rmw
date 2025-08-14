@@ -527,3 +527,6 @@
   width: 1px;
   overflow: hidden;
 }
+.lgImg{
+  opacity: 1 !important;
+}

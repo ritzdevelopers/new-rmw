@@ -244,8 +244,8 @@ const Header = () => {
                   <img
                     src="/RMW_log_alt_4.png"
                     alt=""
-                    // className="sm-size"
-                    style={{ height: "70px", zIndex: 50, opacity: 1 }}
+                    className={styles.lgImg}
+                   style={{ height: "70px", zIndex: 50, opacity: 1 }}
                     ref={imgT}
                     // onMouseEnter={handleLogoChange}
                     // onMouseLeave={handleLogoChange}
