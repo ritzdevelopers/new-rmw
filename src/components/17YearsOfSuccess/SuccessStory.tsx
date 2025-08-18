@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 
 function SuccessStory() {
-  const message = "17  Years of Delivering Growth ";
+  const message = "17 Years of Delivering Growth. ";
   const [dimensions, setDimensions] = useState({
     circleSize: 200,
     fontSize: 16,
@@ -33,7 +33,7 @@ function SuccessStory() {
       } else {
         setDimensions({
           circleSize: 200,
-          fontSize: 16,
+          fontSize: 20,
           transformOrigin: 100,
         });
       }
