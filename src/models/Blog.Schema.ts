@@ -50,6 +50,9 @@ const BlogSchema = new Schema(
       type: String,
       required: true,
     },
+    mtDesc: {
+      type: String,
+    },
   },
   {
     timestamps: true,

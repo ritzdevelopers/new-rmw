@@ -133,12 +133,14 @@ const Page = () => {
       let blogBanner = null;
       let metaKeywords = "";
       let blogCategory = "All Category";
+      let mtDesc = "";
 
       if (savedData1) {
         const parsed = JSON.parse(savedData1);
         blogTitle = parsed.blogTitle || "";
         metaKeywords = parsed.metaKeywords || "";
         blogCategory = parsed.blogCategory || "All Category";
+        mtDesc = parsed.mtDesc;
 
         if (parsed.blogBanner?.startsWith("data:image")) {
           blogBanner = dataURLtoFile(parsed.blogBanner, "cover.jpg");
@@ -171,6 +173,7 @@ const Page = () => {
       formData.append("blogTitle", blogTitle);
       formData.append("metaKeywords", metaKeywords);
       formData.append("blogCategory", blogCategory);
+      formData.append("mtDesc", mtDesc);
       formData.append("blogBody", JSON.stringify(combinedBlogBody));
 
       if (blogBanner instanceof File) {
@@ -264,7 +267,7 @@ const Page = () => {
         <div className="flex-1 flex flex-col gap-4">
           <div>
             <label className="text-sm font-semibold text-[#444]">
-               Page Title
+              Page Title
             </label>
 
             <input

@@ -11,6 +11,7 @@ export const BlogProvider = ({ children }) => {
   const [metaDescription, setMetaDescription] = useState("");
   const [innerImg, setInnerImg] = useState("");
   const [metaKeywords, setMetaKeywords] = useState("");
+  const [mtDesc, setMtDesc] = useState("");
   return (
     <BlogContext.Provider
       value={{
@@ -25,7 +26,9 @@ export const BlogProvider = ({ children }) => {
         setMetaTitle,
         setInnerImg,
         setMetaDescription,
-        setMetaKeywords
+        setMetaKeywords,
+        mtDesc,
+        setMtDesc,
       }}
     >
       {children}

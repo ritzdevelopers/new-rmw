@@ -14,7 +14,6 @@ export function generateSlug(name) {
     .replace(/\s+/g, "-");
 }
 
-
 async function saveFileToUploads(file, filename) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
@@ -37,7 +36,8 @@ export async function POST(request) {
     const blogTitle = formData.get("blogTitle");
     const metaKeywords = formData.get("metaKeywords");
     const blogBodyRaw = formData.get("blogBody");
-    const blogCategory = formData.get("blogCategory");
+    const blogCategory = formData.get("blogCategory"); //mtDesc
+    const mtDesc = formData.get("mtDesc");
     let blogBannerPath = "";
     const innerImgMap = {};
 
@@ -45,8 +45,7 @@ export async function POST(request) {
     let blogDescription;
     const blogSlug = generateSlug(blogTitle);
     const fetchCat = await RitzCats.findOne({ categorySlug: blogCategory });
-    
-    
+
     if (!fetchCat) {
       console.log("CAt Not Found");
       return NextResponse.json(
@@ -56,7 +55,7 @@ export async function POST(request) {
         }
       );
     }
-  
+
     const categoryId = fetchCat._id;
 
     for (const [key, value] of formData.entries()) {
@@ -77,7 +76,7 @@ export async function POST(request) {
       ...item,
       innerImg: innerImgMap[index] || "",
     }));
-   
+
     blogDescription = blogBody[0].metaDescription;
 
     const newBlog = await RitzBlogModel.create({
@@ -86,10 +85,13 @@ export async function POST(request) {
       blogBody,
       metaKeywords,
       blogCategoryId: categoryId,
-      blogStatus:true,
+      blogStatus: true,
       blogSlug,
       blogDescription,
+      mtDesc,
     });
+    console.log("this is new blog ", newBlog);
+    console.log("also this is des ", mtDesc);
 
     return NextResponse.json(
       { message: "Blog Created", blog: newBlog },
