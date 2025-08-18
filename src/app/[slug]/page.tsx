@@ -32,15 +32,15 @@ const normalizeArticle = (blog: Article): MergedBlogs => ({
 function stripHtmlTags(html: string): string {
   if (!html) return "";
   return html
-    .replace(/<[^>]+>/g, " ")         // remove HTML tags
-    .replace(/\s+/g, " ")             // normalize whitespace
-    .replace(/&nbsp;/g, " ")          // decode &nbsp;
-    .replace(/&[#A-Za-z0-9]+;/g, "")  // remove other entities
+    .replace(/<[^>]+>/g, " ") // remove HTML tags
+    .replace(/\s+/g, " ") // normalize whitespace
+    .replace(/&nbsp;/g, " ") // decode &nbsp;
+    .replace(/&[#A-Za-z0-9]+;/g, "") // remove other entities
     .trim();
 }
 
-function getCleanDescription(input: string, maxWords: number = 160): string {
-  return stripHtmlTags(input).split(/\s+/).slice(0, maxWords).join(" ");
+function getCleanDescription(input: string): string {
+  return stripHtmlTags(input).replace(/\s+/g, " ").trim();
 }
 
 interface Blog {
@@ -62,6 +62,7 @@ interface Blog {
     metaDescription?: string;
     innerImg?: string;
   }[];
+  mtDesc?:string;
 }
 
 type Props = {
@@ -108,22 +109,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Prepare Metadata
     const title =
       blog.meta_title || blog.title || blog.blogTitle || "Untitled Blog";
-    const keywords =
-      blog.meta_keywords || blog.metaKeywords || "ritz media";
+    const keywords = blog.meta_keywords || blog.metaKeywords || "ritz media";
 
     const baseDescription = getCleanDescription(
-      blog.description || blog.blogDescription || "",
-      160
-    );
+      blog.description || blog.mtDesc || ""
+    ).slice(0, 160);
 
     let dsc = "";
     if (isMongo && Array.isArray(blog.blogBody)) {
-      dsc = blog.blogBody
+      const fullText = blog.blogBody
         .map((item) => getCleanDescription(item?.metaDescription || ""))
-        .join(" ")
-        .split(/\s+/)
-        .slice(0, 160)
         .join(" ");
+
+      dsc = fullText.slice(0, 160); // Trim to 160 characters
     }
 
     const ogDescription = (isMongo && dsc) || baseDescription;
@@ -131,12 +129,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title,
       description: blog.meta_description
-        ? getCleanDescription(blog.meta_description, 160)
+        ? getCleanDescription(blog.meta_description).slice(0, 160)
         : baseDescription,
       keywords: keywords.split(",").map((k: string) => k.trim()),
       openGraph: {
         title,
-        description: ogDescription,
+        description: ogDescription.slice(0, 160),
         type: "article",
         url: `${baseURL}/blog/${slug}`,
         images: [
@@ -149,7 +147,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       twitter: {
         card: "summary_large_image",
         title,
-        description: ogDescription,
+        description: ogDescription.slice(0, 160),
         images: [`${baseURL}/uploads/${blog.blog_image || blog.blogBanner}`],
       },
     };

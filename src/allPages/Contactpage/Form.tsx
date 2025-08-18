@@ -715,11 +715,6 @@ const Form = () => {
                                 className="inputText"
                                 style={{
                                   background: "white",
-                                  width: "100%",
-                                  padding: "15px",
-                                  borderRadius: "5px",
-                                  border: "1px solid #ddd",
-                                  color: "#666",
                                 }}
                               >
                                 <option value="">Select Service</option>

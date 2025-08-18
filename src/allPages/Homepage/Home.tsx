@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
+import SuccessStory from "@/components/17YearsOfSuccess/SuccessStory";
 // import { useSplitText } from "@/hooks/useSplitText";
 
 const Home = () => {
@@ -54,6 +55,7 @@ const Home = () => {
           data-element_type="widget"
           data-widget_type="hero-banner.default"
         >
+          <SuccessStory/>
           <div className="elementor-widget-container">
             <section className="tp-hero__area fix tp-hero__space tp-hero__bg p-relative tp-bg-className">
               <div className="tp-hero__wrap">
