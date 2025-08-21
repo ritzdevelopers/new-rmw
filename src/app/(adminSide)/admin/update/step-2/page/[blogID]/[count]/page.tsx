@@ -91,6 +91,10 @@ const Page = () => {
     }
   };
 
+  const handleRemoveImg = ()=>{
+    setLocalImage(" ")
+  }
+
   const saveDataToLocalStorage = () => {
     localStorage.setItem(
       LOCAL_KEY(count),
@@ -276,7 +280,9 @@ const Page = () => {
               <img src={localImage} alt={localImage} className="w-full h-full mb-1" />
 
             </div>}
+           
           </div>
+           <div  onClick={handleRemoveImg}><button className="px-6 py-2 mt-10 cursor-pointer hover:bg-red-700 rounded-md bg-red-600 text-white font-bold">Remove Img</button></div>
         </div>
       </div>
 
