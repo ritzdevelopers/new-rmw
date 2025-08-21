@@ -93,7 +93,7 @@ const AboutAward = () => {
                       </h3>
                     </div>
                     <div className="tp-awards__5-funfact-item text-center">
-                      <p className="text-black">Awward Win</p>
+                      <p className="text-black">Award Win</p>
                       <h3 className="tp-awards__5-funfact-text">
                         <b
                           className="purecounter"
