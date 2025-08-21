@@ -90,8 +90,6 @@ export async function POST(request) {
       blogDescription,
       mtDesc,
     });
-    console.log("this is new blog ", newBlog);
-    console.log("also this is des ", mtDesc);
 
     return NextResponse.json(
       { message: "Blog Created", blog: newBlog },

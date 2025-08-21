@@ -488,7 +488,7 @@ const DetailPage: React.FC = () => {
                 {isMongo ? (
                   singleBlog.blogBody?.map((page, idx) => (
                     <div key={idx}>
-                      {/* <h2>{page.metaTitle}</h2> */}
+                      <h2>{(isMongo && singleBlog.blogTitle?.includes(page.metaTitle)) ? "" : page.metaTitle}</h2>
                       {page.innerImg && (
                         <div className={styles.innerImg}>
                           <Image

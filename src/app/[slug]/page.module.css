@@ -133,15 +133,16 @@
 
 .innerImg {
   width: 100%;
-  min-height: 400px;
+  height: 502px;
   position: relative;
   border-radius: 10px;
   margin: 1rem 0;
+  /* border: 1px solid black !important; */
 }
 .innerMainImg{
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .recentImgDiv{
   height: 220px;
