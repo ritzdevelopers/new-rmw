@@ -28,17 +28,32 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
         <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
         <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
 
+        <!-- Correct AMP boilerplate -->
         <style amp-boilerplate>
-          body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}
+          body {
+            -webkit-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+            -moz-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+            -ms-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+            animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+          }
+          @-webkit-keyframes -amp-start { from { visibility: hidden } to { visibility: visible } }
+          @-moz-keyframes -amp-start { from { visibility: hidden } to { visibility: visible } }
+          @-ms-keyframes -amp-start { from { visibility: hidden } to { visibility: visible } }
+          @-o-keyframes -amp-start { from { visibility: hidden } to { visibility: visible } }
+          @keyframes -amp-start { from { visibility: hidden } to { visibility: visible } }
         </style>
-        <noscript><style amp-boilerplate>body{-webkit-animation:none;animation:none}</style></noscript>
+        <noscript>
+          <style amp-boilerplate>
+            body { -webkit-animation: none; -moz-animation: none; -ms-animation: none; animation: none }
+          </style>
+        </noscript>
 
+        <!-- Custom AMP styles -->
         <style amp-custom>
           amp-story {
             font-family: 'Poppins', sans-serif;
             color: white;
           }
-
 
           .content-bottom {
             display: flex;
@@ -48,14 +63,14 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
             text-align: left;
             width: 100%;
             height: 100%;
-            // padding: 20px;
+            /* padding: 20px; */
             box-sizing: border-box;
             z-index: 2;
           }
 
           .text-wrapper {
             background: rgba(0, 0, 0, 0.6);
-            // border-radius: 12px;
+            /* border-radius: 12px; */
             padding: 16px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(4px);
@@ -72,7 +87,7 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
 
           .story-desc {
             font-family: 'Roboto', sans-serif;
-            // font-size: 0.5rem;
+            /* font-size: 0.5rem; */
             margin: 0 0 12px;
             color: #ddd;
           }
@@ -167,10 +182,9 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
                         <p class="story-desc">${page.description}</p>
                         ${
                           page.buttonCTA?.btnTxt
-                            ? `<a href="${page.buttonCTA.btnLink}" class="btn" style="background-color:${page.buttonCTA.btnColor};color:${page.buttonCTA.btnTxtColor};">${page.buttonCTA.btnTxt}</a>`
+                            ? `<a href="${page.buttonCTA.btnLink}" class="btn" style="background-color:#DEA953;color:#0F163F; font-style:italic; text-transform:uppercase;">${page.buttonCTA.btnTxt}</a>`
                             : ""
                         }
-                    
                       </div>
                     </div>
                   </amp-story-grid-layer>
@@ -182,7 +196,7 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
       </body>
     </html>
   `;
-  
+
   return new NextResponse(ampHtml, {
     headers: {
       "Content-Type": "text/html; charset=utf-8",

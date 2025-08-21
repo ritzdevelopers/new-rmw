@@ -69,8 +69,12 @@ const Articles: React.FC = () => {
   const cardsPerPage = 12;
 
   const handleSingleBlogs = (slug: string) => {
-     const url = slug.split(" ").join("-").toLowerCase();
-  window.open(`/${url}`, '_blank');
+    const cleanSlug = slug
+      .replace(/\u00A0/g, " ")
+      .replace(/\s+/g, "-")
+      .toLowerCase();
+
+    window.open(`/${cleanSlug}`, "_blank");
   };
 
   // useEffect(() => {
@@ -213,86 +217,88 @@ const Articles: React.FC = () => {
         }}
       >
         {" "}
-        {currentCards.filter((bl)=>bl.status === "active").map((article: MergedBlogs) => (
-          <div
-            key={article.id}
-            onClick={() => handleSingleBlogs(article.id)}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              height: "100%",
-              borderRadius: "16px",
-              overflow: "hidden",
-              backgroundColor: "#fff",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              cursor: "pointer",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform =
-                "translateY(-5px)";
-              (e.currentTarget as HTMLDivElement).style.boxShadow =
-                "0 8px 30px rgba(0,0,0,0.1)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform =
-                "translateY(0)";
-              (e.currentTarget as HTMLDivElement).style.boxShadow =
-                "0 4px 20px rgba(0,0,0,0.08)";
-            }}
-          >
-            {/* Image Section */}
+        {currentCards
+          .filter((bl) => bl.status === "active")
+          .map((article: MergedBlogs) => (
             <div
+              key={article.id}
+              onClick={() => handleSingleBlogs(article.id)}
               style={{
-                height: "200px",
-                width: "100%",
-                overflow: "hidden",
-                position: "relative",
-              }}
-            >
-              <Image
-                src={
-                  article.banner.includes("/images")
-                    ? `/api/images${article.banner.split("/images")[1]}`
-                    : `/blogs/${article.banner}`
-                }
-                alt={article.title}
-                style={{
-                  objectFit: "cover",
-                  transition: "transform 0.3s ease-in-out",
-                }}
-                priority
-                fill
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.transform = "scale(1.05)")
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.transform = "scale(1)")
-                }
-              />
-            </div>
-            {/* Content Section */}
-            <div
-              style={{
-                padding: "1rem",
                 display: "flex",
                 flexDirection: "column",
-                flexGrow: 1,
+                height: "100%",
+                borderRadius: "16px",
+                overflow: "hidden",
+                backgroundColor: "#fff",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform =
+                  "translateY(-5px)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow =
+                  "0 8px 30px rgba(0,0,0,0.1)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform =
+                  "translateY(0)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow =
+                  "0 4px 20px rgba(0,0,0,0.08)";
               }}
             >
-              {/* Title */}
-              <h3
+              {/* Image Section */}
+              <div
                 style={{
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  marginBottom: "0.75rem",
-                  color: "#333",
+                  height: "200px",
+                  width: "100%",
+                  overflow: "hidden",
+                  position: "relative",
                 }}
               >
-                {article.title.split(" ").slice(0, 10).join(" ")}{" "}
-              </h3>
-              {/* Description */}
-              {/* <p
+                <Image
+                  src={
+                    article.banner.includes("/images")
+                      ? `/api/images${article.banner.split("/images")[1]}`
+                      : `/blogs/${article.banner}`
+                  }
+                  alt={article.title}
+                  style={{
+                    objectFit: "cover",
+                    transition: "transform 0.3s ease-in-out",
+                  }}
+                  priority
+                  fill
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.transform = "scale(1.05)")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.transform = "scale(1)")
+                  }
+                />
+              </div>
+              {/* Content Section */}
+              <div
+                style={{
+                  padding: "1rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  flexGrow: 1,
+                }}
+              >
+                {/* Title */}
+                <h3
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: "600",
+                    marginBottom: "0.75rem",
+                    color: "#333",
+                  }}
+                >
+                  {article.title.split(" ").slice(0, 10).join(" ")}{" "}
+                </h3>
+                {/* Description */}
+                {/* <p
                 style={{
                   fontSize: "1rem",
                   color: "#555",
@@ -305,75 +311,75 @@ const Articles: React.FC = () => {
                 )}
                 ...
               </p> */}
-              {/* Description */}
-              <p
-                style={{
-                  fontSize: "1rem",
-                  color: "#555",
-                  lineHeight: "1.6",
-                  flexGrow: 1,
-                }}
-              >
-                {(() => {
-                  const description = article?.meta_description || "";
-                  const plainText = stripHtml(description) || "";
-                  const words = plainText.split(/\s+/);
-                  const shortened = words.slice(0, 30).join(" ");
-                  return words.length > 30 ? `${shortened}...` : shortened;
-                })()}
-              </p>
+                {/* Description */}
+                <p
+                  style={{
+                    fontSize: "1rem",
+                    color: "#555",
+                    lineHeight: "1.6",
+                    flexGrow: 1,
+                  }}
+                >
+                  {(() => {
+                    const description = article?.meta_description || "";
+                    const plainText = stripHtml(description) || "";
+                    const words = plainText.split(/\s+/);
+                    const shortened = words.slice(0, 30).join(" ");
+                    return words.length > 30 ? `${shortened}...` : shortened;
+                  })()}
+                </p>
 
-              {/* Footer Actions */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginTop: "1rem",
-                }}
-              >
-                {/* Date */}
+                {/* Footer Actions */}
                 <div
                   style={{
-                    fontSize: "0.8rem",
-                    color: "#888",
                     display: "flex",
+                    justifyContent: "space-between",
                     alignItems: "center",
-                    gap: "0.4rem",
+                    marginTop: "1rem",
                   }}
                 >
-                  <CalendarDays size={14} />
-                  {new Date(article.createdAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
+                  {/* Date */}
+                  <div
+                    style={{
+                      fontSize: "0.8rem",
+                      color: "#888",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.4rem",
+                    }}
+                  >
+                    <CalendarDays size={14} />
+                    {new Date(article.createdAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  {/* Share */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCopy(article.title.split(" ").join("-"));
+                    }}
+                    style={{
+                      background: "transparent",
+                      border: "1px solid #E5B05C",
+                      color: "#E5B05C",
+                      borderRadius: "6px",
+                      padding: "0.3rem 0.6rem",
+                      fontSize: "0.85rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.3rem",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Share2 size={15} /> Share
+                  </button>
                 </div>
-                {/* Share */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleCopy(article.title.split(" ").join("-"));
-                  }}
-                  style={{
-                    background: "transparent",
-                    border: "1px solid #E5B05C",
-                    color: "#E5B05C",
-                    borderRadius: "6px",
-                    padding: "0.3rem 0.6rem",
-                    fontSize: "0.85rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.3rem",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Share2 size={15} /> Share
-                </button>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       {/* Pagination */}
