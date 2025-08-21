@@ -161,11 +161,14 @@ const Footer = () => {
                             Blogs
                           </Link>
                         </li>
-                         <li
+                        <li
                           id="menu-item-144"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
                         >
-                          <Link href="/web-stories" style={{ color: "#FBD98C" }}>
+                          <Link
+                            href="/web-stories"
+                            style={{ color: "#FBD98C" }}
+                          >
                             Web Stories
                           </Link>
                         </li>
@@ -188,7 +191,6 @@ const Footer = () => {
                             Career
                           </Link>
                         </li>
-                         
                       </ul>
                     </div>
                   </div>
@@ -357,7 +359,14 @@ info@ritzmediaworld.com"
           {/* <!-- tp copyright area start --> */}
           <div className="tp-copyright-area pb-5">
             <div className="container">
-              <div className="tp-copyright__wrap   pt-20">
+              <div
+                className="tp-copyright__wrap   pt-20"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  flexWrap: "wrap",
+                }}
+              >
                 <div className="row align-items-center">
                   <div className="col-xl-6 col-lg-7 ">
                     <div className="tp-copyright__text">
@@ -390,6 +399,9 @@ info@ritzmediaworld.com"
                       </Link>
                     </div>
                   </div>
+                </div>
+                <div style={{ marginTop: "20px" }}>
+                  <img src="/rmwPartners.png" alt="" />
                 </div>
               </div>
             </div>
