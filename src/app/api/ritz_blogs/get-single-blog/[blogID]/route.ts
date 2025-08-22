@@ -52,7 +52,7 @@ export async function GET(
       blogCategoryId: blogCat,
     }).sort({ createdAt: -1 })
       .limit(4);
-    const recentBlogs = await RitzBlogModel.find({}).sort({ createdAt: -1 }).limit(4);
+    const recentBlogs = await RitzBlogModel.find({blogStatus:true}).sort({ createdAt: -1 }).limit(4);
     const categoryN = blogCat?.categoryName;
 
     return NextResponse.json(

@@ -80,7 +80,9 @@ const Page = () => {
     saveDataToLocalStorage();
     router.push(`/admin/add-blog/step-2/page/${count + 1}`);
   };
-
+  const removeInnImg = ()=>{
+    setLocalBanner(" ");
+  }
   const handlePrev = () => {
     if (count > 1) {
       saveDataToLocalStorage();
@@ -295,7 +297,9 @@ const Page = () => {
               }}
             />
           </div>
-
+              <div className="mt-10">
+                <button onClick={removeInnImg} className="px-6 py-2 bg-red-500 text-white font-bold hover:bg-red-600">Remove Image</button>
+              </div>
           {/* <div>
             <label className="text-sm font-semibold text-[#444]">
               Blog Category

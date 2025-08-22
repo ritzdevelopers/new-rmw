@@ -177,23 +177,23 @@
   font-size: 16px;
   line-height: 35px;
 }
-/* .headerBackground {
-  border-bottom: 1px solid black !important;
-} */
 .headerBackground {
-  transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid black !important;
+}
+/* .headerBackground {
+  transition: all 0.3s ease-in-out; */
   /* z-index: 9999; */
-  background: linear-gradient(90deg, #ff8000 0%, #f9e5d1 50%, #138808 100%);
+  /* background: linear-gradient(90deg, #ff8000 0%, #f9e5d1 50%, #138808 100%);
   background-size: 200% 100%;
   animation: smoothFlagMove 10s linear infinite;
-    border-bottom: 1px solid black !important;
-}
+    border-bottom: 1px solid black !important; */
+/* } */
 
-@keyframes smoothFlagMove {
+/* @keyframes smoothFlagMove {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
-}
+} */
 
 @media (min-width: 992px) {
   /* Desktop Sidebar */
