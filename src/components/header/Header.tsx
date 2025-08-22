@@ -242,7 +242,7 @@ const Header = () => {
                   style={{ borderRadius: "0px !important", overflow: "hidden" }}
                 >
                   <img
-                    src="/RMW_log_alt_4.png"
+                    src="/logo-brown.png"
                     alt=""
                     className={styles.lgImg}
                    style={{ height: "70px", zIndex: 50, opacity: 1 }}
@@ -743,7 +743,7 @@ const Header = () => {
             >
               <div className={styles.MobileSidebarLogo}>
                 <img
-                  style={{ height: "60px" }}
+                  // style={{ height: "60px" }}
                   src="/logo-brown.png"
                   alt="RMW Logo"
                 />

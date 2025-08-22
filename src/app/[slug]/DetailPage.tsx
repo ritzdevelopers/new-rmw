@@ -364,7 +364,6 @@ const DetailPage: React.FC = () => {
         );
       }
     }
-
     if (ctBody) {
       const allH1 = ctBody.getElementsByTagName("h1");
 
@@ -487,8 +486,11 @@ const DetailPage: React.FC = () => {
               <div ref={contentRef} id="ctBody" className={styles.contentBody}>
                 {isMongo ? (
                   singleBlog.blogBody?.map((page, idx) => (
-                    <div key={idx}>
+                    <div  key={idx}>
+                      {/* This  is Title Of Blog Body  */}
                       <h2>{(isMongo && singleBlog.blogTitle?.includes(page.metaTitle)) ? "" : page.metaTitle}</h2>
+
+                      {/* This Is Inner Image  */}
                       {page.innerImg && (
                         <div className={styles.innerImg}>
                           <Image
@@ -502,6 +504,8 @@ const DetailPage: React.FC = () => {
                           />
                         </div>
                       )}
+
+                      {/* This Is Description  */}
                       <div className={styles.tableWrapper}>
                         <div
                           className={styles.contentBody}
