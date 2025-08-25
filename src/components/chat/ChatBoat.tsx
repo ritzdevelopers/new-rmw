@@ -5,11 +5,15 @@ import { Send, Mic, X, ImageIcon, Paperclip } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import styles from "./page.module.css";
+import axios from "axios";
+import { headers } from "next/headers";
 // import chatData from "../../../chatboat.data.json";
 
 function ChatBoat() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const [sessionId, setSessionId] = useState("");
+  const [responseText, setResponseText] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -65,7 +69,14 @@ function ChatBoat() {
     }
   }, [isOpen]);
 
-  const toggleChat = () => {
+  const toggleChat = async () => {
+    const res = await axios.get("https://ritz-ai-production.up.railway.app/api/v1/session/create", {
+      headers: {
+        "X-API-KEY": "26f8eb961b3d0b30a20b838cad928389aa38397695d78aa3f89f936903f42bce"
+      }
+    });
+    console.log(res);
+    setSessionId(res.data.session_id);
     setIsOpen(!isOpen);
     if (backdropRef.current && !isOpen) {
       backdropRef.current.style.display = "block";
@@ -111,6 +122,20 @@ function ChatBoat() {
   // const handleChatting = () => {};
   // console.log(messageRef.current.children.length);
 
+  const sendMessageToApi = async ()=> {
+    const data = {
+      "session_id": sessionId,
+      "user_input": message
+    }
+    const res = await axios.post("https://ritz-ai-production.up.railway.app/api/v1/chat/", data, {
+      headers: {
+        "X-API-KEY": "26f8eb961b3d0b30a20b838cad928389aa38397695d78aa3f89f936903f42bce"
+      }
+    })
+    setResponseText(res.data.response);
+    console.log(res);
+    
+  }
   return (
     <>
       {/* Full-screen blur backdrop */}
@@ -266,11 +291,12 @@ function ChatBoat() {
                     </div>
                     <div className={styles.messageBubble}>
                       <p className={styles.messageText}>
-                        Welcome to{" "}
+                        {/* Welcome to{" "}
                         <span className={styles.highlight}>Ritz Media</span>! We
                         are a full-service digital agency specializing in web &
                         app development, digital advertising, and influencer
-                        marketing. How can we help you today?
+                        marketing. How can we help you today? */}
+                        {responseText}
                       </p>
                       <div className={styles.messageTime}>10:42 AM</div>
                     </div>
@@ -297,7 +323,8 @@ function ChatBoat() {
                     />
                     <div className={styles.sendButtonContainer}>
                       {message ? (
-                        <button type="button" className={styles.sendButton}>
+                        <button type="button" className={styles.sendButton}
+                        onClick={()=> sendMessageToApi()}>
                           <Send className={styles.sendIcon} />
                         </button>
                       ) : (
