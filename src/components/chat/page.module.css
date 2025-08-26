@@ -86,14 +86,10 @@
 }
 
 .chatInterface {
-  position: fixed;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  /* max-width: 80%; */
+ width: 95%;
   height: 90%;
-  /* max-height: 95%; */
+  /* transform: translate(-50%, -50%); */
+ 
   background: white;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -111,7 +107,7 @@
 }
 
 .formPanel {
-  width: 40%;
+  width: 30%;
   background: white;
   overflow-y: auto;
   border-right: 1px solid #eaeaea;
