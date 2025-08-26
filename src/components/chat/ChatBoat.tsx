@@ -160,6 +160,7 @@ function ChatBoat() {
         setFrmResType("green");
       }
     } catch (error) {
+      setFormLoader(false);
       if (error) {
         setFrmResType("red");
       }
@@ -287,7 +288,6 @@ function ChatBoat() {
         sessionStorage.setItem("RMW_LEAD_GENERATED", "TRUE");
         setFormOpen(false);
       }, 3000);
-      
     }
     if (frmResType === "red") {
       setTimeout(() => {
