@@ -58,111 +58,71 @@
 
 //     const range = selection.getRangeAt(0);
 //     const parent = range.startContainer.parentElement;
-//     if (parent?.classList.contains("text-center")) {
-//       parent?.classList.remove("text-center");
-//     }
-//     if (parent?.classList.contains("text-left")) {
-//       parent?.classList.remove("text-left");
-//     }
-//     if (parent?.classList.contains("text-right")) {
-//       parent?.classList.remove("text-right");
-//     }
-//     if (parent && align.includes("center")) {
+
+//     if (!parent) return;
+//     // Reset previous alignments
+//     parent.style.textAlign = "";
+//     parent.style.display = "";
+//     if (align.includes("center")) {
 //       setLeftAlign(false);
 //       setRightAlign(false);
 //       setCenterAlign(true);
-//       parent.classList.add("text-center");
-//       parent.classList.add("block");
-//     } else if (parent && align.includes("right")) {
+//       parent.style.textAlign = "center";
+//       parent.style.display = "block";
+//     } else if (align.includes("right")) {
 //       setLeftAlign(false);
 //       setRightAlign(true);
 //       setCenterAlign(false);
-//       parent.classList.add("text-right");
-//       parent.classList.add("block");
-//     } else if (parent && align.includes("left")) {
+//       parent.style.textAlign = "right";
+//       parent.style.display = "block";
+//     } else if (align.includes("left")) {
 //       setLeftAlign(true);
 //       setRightAlign(false);
 //       setCenterAlign(false);
-//       parent.classList.add("text-left");
-//       parent.classList.add("block");
+//       parent.style.textAlign = "left";
+//       parent.style.display = "block";
 //     }
-//     console.log(parent);
 //   };
+
+//   const handleHeadings = (headingType: string) => {
+//     const selection = window.getSelection();
+//     if (!selection || selection.rangeCount === 0 || !headingType) return;
+//     const range = selection.getRangeAt(0);
+//     const parent = range.startContainer.parentElement;
+//     const heading = document.createElement(headingType);
+//     const selectedTxt = range.endContainer?.textContent;
+//     if (!parent) {
+//       //   const div = document.createElement("div");
+//       //   if (selectedTxt) {
+//       //     heading.appendChild(document.createTextNode(selectedTxt));
+//       //   }
+//       //   div.appendChild(heading);
+//       return;
+//     }
+//     console.log(parent.tagName.toLowerCase());
+    
+//     const allHeadings = ["h1", "h2", "h3", "h4", "h5", "h6"];
+//     if (allHeadings.includes(parent.tagName.toLowerCase())) {
+//       if (parent.tagName.toLowerCase() === headingType.toLowerCase()) {
+//         const p = document.createElement("p");
+//         p.innerHTML = parent.innerHTML;
+//         parent.replaceWith(p);
+//         return;
+//       }
+
+//       heading.innerHTML = parent.innerHTML;
+//       parent.replaceWith(heading);
+//       return;
+//     }
+//     const selectedText = range.extractContents();
+//     heading.appendChild(selectedText);
+//     range.insertNode(heading);
+//   };
+
+//   const handleFontSize = (fontSize: string) => {};
+
 //   const [fontSize, setFontSize] = useState<number>(16);
 //   const [activeHeading, setActiveHeading] = useState<string>(""); // Track active heading
-
-//   const handleFontAlign = (fontEm: string) => {
-//     const selection = window.getSelection();
-//     if (!selection || selection.rangeCount === 0 || !fontEm) return;
-
-//     const range = selection.getRangeAt(0);
-//     let parent = range.startContainer.parentElement;
-
-//     if (!parent) return;
-
-//     const headingClasses = new Set([
-//       "text-[2em]", // h1
-//       "text-[1.5em]", // h2
-//       "text-[1.17em]", // h3
-//       "text-[1em]", // h4
-//       "text-[0.83em]", // h5
-//       "text-[0.67em]", // h6
-//     ]);
-//     const fontSizeClassRegex = /^text-\[\d+px\]$/;
-//     let tag;
-//     if (fontEm === "text-[2em]") {
-//       tag = document.createElement("h1");
-//     } else if (fontEm === "text-[1.5em]") {
-//       tag = document.createElement("h2");
-//     } else if (fontEm === "text-[1.5em]") {
-//       tag = document.createElement("h3");
-//     } else if (fontEm === "text-[1.5em]") {
-//       tag = document.createElement("h4");
-//     } else if (fontEm === "text-[1.5em]") {
-//       tag = document.createElement("h5");
-//     } else if (fontEm === "text-[1.5em]") {
-//       tag = document.createElement("h6");
-//     }
-
-//     while (
-//       parent &&
-//       parent.nodeType === 1 &&
-//       parent.tagName.toLowerCase() === "span"
-//     ) {
-//       parent = parent.parentElement;
-//     }
-
-//     if (!parent) return;
-
-//     // remove only heading-related classes
-//     parent.classList.forEach((cls) => {
-//       if (cls.includes("em]")) parent.classList.remove(cls);
-//     });
-
-//     parent.classList.forEach((cls) => {
-//       if (fontSizeClassRegex.test(cls)) {
-//         parent.classList.remove(cls);
-//       }
-//     });
-
-//     // ✅ Toggle: If same heading is clicked again → remove it
-//     if (activeHeading === fontEm) {
-//       setActiveHeading("");
-//       return; // stop here, nothing applied
-//     }
-
-//     // Otherwise apply the new heading
-//     // alert(fontEm)
-//     if (fontEm === "normal") {
-//       parent.classList.forEach((cls) => {
-//         if (headingClasses.has(cls)) parent.classList.remove(cls);
-//       });
-//     } else {
-//       tag?.appendChild(parent);
-//       tag?.classList.add(fontEm);
-//       setActiveHeading(fontEm);
-//     }
-//   };
 
 //   return (
 //     <div className="w-full max-w-4xl mx-auto font-sans">
@@ -173,18 +133,17 @@
 //           {/* Text Style */}
 //           <div className="flex items-center gap-1 mr-2">
 //             <select
-//               value={activeHeading || ""} // ✅ reflect active heading in UI
-//               onChange={(e) => handleFontAlign(e.target.value)}
+//               onChange={(e) => handleHeadings(e.target.value)}
 //               className="text-xs py-1.5 px-2 rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 //             >
 //               <option value="normal">Normal</option>
 //               {[
-//                 { value: "text-[2em]", tag: 1 }, // h1
-//                 { value: "text-[1.5em]", tag: 2 }, // h2
-//                 { value: "text-[1.17em]", tag: 3 }, // h3
-//                 { value: "text-[1em]", tag: 4 }, // h4
-//                 { value: "text-[0.83em]", tag: 5 }, // h5
-//                 { value: "text-[0.67em]", tag: 6 }, // h6
+//                 { value: "h1", tag: 1 }, // h1
+//                 { value: "h2", tag: 2 }, // h2
+//                 { value: "h3", tag: 3 }, // h3
+//                 { value: "h4", tag: 4 }, // h4
+//                 { value: "h5", tag: 5 }, // h5
+//                 { value: "h6", tag: 6 }, // h6
 //               ].map((vl) => (
 //                 <option className="font-bold" key={vl.tag} value={vl.value}>
 //                   Heading {vl.tag}
@@ -207,7 +166,6 @@
 //                 className="text-xs py-1.5 px-2 w-[80px] rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 //                 onChange={(e) => {
 //                   const size = Number(e.target.value);
-//                   handleFontAlign(`text-[${size}px]`);
 //                 }}
 //               >
 //                 {[12, 14, 16, 18, 20, 24, 28, 32, 36, 48].map((size) => (
