@@ -1,29 +1,36 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Mic, X, ImageIcon, Paperclip } from "lucide-react";
+import { Send, Mic, X } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import styles from "./page.module.css";
 import axios from "axios";
-import { headers } from "next/headers";
+// import { headers } from "next/headers";
 // import chatData from "../../../chatboat.data.json";
-
+interface CHATS {
+  id: string;
+  msg: string;
+  date: Date;
+}
 function ChatBoat() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [sessionId, setSessionId] = useState("");
-  const [responseText, setResponseText] = useState("");
+  // const [responseText, setResponseText] = useState("");
+  const [formOpen, setFormOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
   });
+  const crChatRef = useRef<HTMLDivElement>(null);
   const chatRef = useRef<HTMLDivElement>(null);
   const boatRef = useRef<HTMLDivElement>(null);
   const messageRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
+  const [userMsgs, setUserMsgs] = useState<CHATS[]>([]);
 
   useGSAP(() => {
     if (isOpen) {
@@ -70,11 +77,15 @@ function ChatBoat() {
   }, [isOpen]);
 
   const toggleChat = async () => {
-    const res = await axios.get("https://ritz-ai-production.up.railway.app/api/v1/session/create", {
-      headers: {
-        "X-API-KEY": "26f8eb961b3d0b30a20b838cad928389aa38397695d78aa3f89f936903f42bce"
+    const res = await axios.get(
+      "https://ritz-ai-production.up.railway.app/api/v1/session/create",
+      {
+        headers: {
+          "X-API-KEY":
+            "26f8eb961b3d0b30a20b838cad928389aa38397695d78aa3f89f936903f42bce",
+        },
       }
-    });
+    );
     console.log(res);
     setSessionId(res.data.session_id);
     setIsOpen(!isOpen);
@@ -121,21 +132,71 @@ function ChatBoat() {
 
   // const handleChatting = () => {};
   // console.log(messageRef.current.children.length);
+  const [resLoader, setResLoader] = useState(false);
 
-  const sendMessageToApi = async ()=> {
-    const data = {
-      "session_id": sessionId,
-      "user_input": message
-    }
-    const res = await axios.post("https://ritz-ai-production.up.railway.app/api/v1/chat/", data, {
-      headers: {
-        "X-API-KEY": "26f8eb961b3d0b30a20b838cad928389aa38397695d78aa3f89f936903f42bce"
+  const sendMessageToApi = async () => {
+    try {
+      if (message.split("").length <= 1) {
+        return;
       }
-    })
-    setResponseText(res.data.response);
-    console.log(res);
-    
-  }
+      const data = {
+        session_id: sessionId,
+        user_input: message,
+      };
+      setResLoader(true);
+      setMessage("");
+      setUserMsgs((pr) => [
+        ...pr,
+        {
+          id: "user",
+          msg: message,
+          date: new Date(),
+        },
+      ]);
+
+      const res = await axios.post(
+        "https://ritz-ai-production.up.railway.app/api/v1/chat/",
+        data,
+        {
+          headers: {
+            "X-API-KEY":
+              "26f8eb961b3d0b30a20b838cad928389aa38397695d78aa3f89f936903f42bce",
+          },
+        }
+      );
+
+      if (res.data.response) {
+        setResLoader(false);
+        setUserMsgs((pr) => [
+          ...pr,
+          {
+            id: "boat",
+            msg: res.data.response,
+            date: new Date(),
+          },
+        ]);
+      }
+      crChatRef.current?.scrollIntoView({ behavior: "smooth" });
+      // setResponseText(res.data.response);
+    } catch (error) {
+      console.log(error);
+      setResLoader(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        sendMessageToApi();
+      }
+    };
+
+    window.addEventListener("keypress", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keypress", handleKeyPress);
+    };
+  }, [message]); // add dependencies if needed
   return (
     <>
       {/* Full-screen blur backdrop */}
@@ -152,7 +213,7 @@ function ChatBoat() {
             <X className={styles.boatIcon} />
           ) : (
             <img
-              src="/chatbticon3.gif"
+              src="/chrl.webp"
               alt="Chat Icon"
               className={styles.boatGifIcon}
             />
@@ -165,7 +226,7 @@ function ChatBoat() {
             {/* Split Container */}
             <div className={styles.splitContainer}>
               {/* Left Panel - User Form */}
-              <div className={styles.formPanel}>
+              {formOpen && <div className={styles.formPanel}>
                 <div className={styles.formHeader}>
                   <h3 className={styles.formTitle}>Contact Information</h3>
                   <p className={styles.formSubtitle}>
@@ -237,10 +298,10 @@ function ChatBoat() {
                     {formData.phone || "-"}
                   </div>
                 </div>
-              </div>
+              </div>}
 
               {/* Right Panel - Chat Interface */}
-              <div className={styles.chatPanel}>
+              <div className={styles.chatPanel} style={{width:formOpen ? '70%' : '100%'}}>
                 {/* Header */}
                 <div className={styles.chatHeader}>
                   <X
@@ -250,7 +311,7 @@ function ChatBoat() {
                   <div className={styles.headerContent}>
                     <div className={styles.avatar}>
                       <img
-                        src="/chatbticon3.gif"
+                        src="/chrl.webp"
                         alt="Chat Avatar"
                         className={styles.avatarGif}
                       />
@@ -271,47 +332,79 @@ function ChatBoat() {
                 <div ref={messageRef} className={styles.messagesContainer}>
                   {/* Welcome Message */}
 
-         <div className={styles.greetingMessage}>
-  <p className={styles.messageText}>
-    Welcome to <span className={styles.highlight}>Ritz Media</span>! We
-    are a full-service digital agency specializing in web & app development,
-    digital advertising, and influencer marketing. How can we help you today?
-  </p>
-  <div className={styles.messageTime}>10:42 AM</div>
-</div>
-
-
-                  <div className={styles.message}>
-                    <div className={styles.messageAvatar}>
-                      <img
-                        src="/chatbticon3.gif"
-                        alt="Bot Avatar"
-                        className={styles.avatarGifSmall}
-                      />
-                    </div>
-                    <div className={styles.messageBubble}>
-                      <p className={styles.messageText}>
-                        {/* Welcome to{" "}
-                        <span className={styles.highlight}>Ritz Media</span>! We
-                        are a full-service digital agency specializing in web &
-                        app development, digital advertising, and influencer
-                        marketing. How can we help you today? */}
-                        {responseText}
-                      </p>
-                      <div className={styles.messageTime}>10:42 AM</div>
-                    </div>
+                  <div className={styles.greetingMessage}>
+                    <p className={styles.messageText}>
+                      Welcome to{" "}
+                      <span className={styles.highlight}>Ritz Media</span>! We
+                      are a full-service digital agency specializing in web &
+                      app development, digital advertising, and influencer
+                      marketing. How can we help you today?
+                    </p>
+                    <div className={styles.messageTime}>10:42 AM</div>
                   </div>
+                  {userMsgs.length > 0 &&
+                    userMsgs.map((tk, idx) => {
+                      const isUser = tk.id === "user";
+                      // const isBoat = tk.id === "boat";
+
+                      return (
+                        <div
+                          key={idx}
+                          className={`${styles.message} ${
+                            isUser ? styles.messageRight : styles.messageLeft
+                          }`}
+                        >
+                          {!isUser && (
+                            <div className={styles.messageAvatar}>
+                              <img
+                                src="/chrl.webp"
+                                alt="Bot Avatar"
+                                className={styles.avatarGifSmall}
+                              />
+                            </div>
+                          )}
+                          <div
+                            ref={crChatRef}
+                            className={`${styles.messageBubble} ${
+                              isUser ? styles.bubbleRight : styles.bubbleLeft
+                            }`}
+                          >
+                            <p className={styles.messageText}>{tk.msg}</p>
+                            <div
+                              className={`${styles.messageTime} ${
+                                isUser ? styles.timeRight : styles.timeLeft
+                              }`}
+                            >
+                              {tk.date.toDateString()}
+                            </div>
+                          </div>
+                          {isUser && (
+                            <div className={styles.messageAvatar}>
+                              <img
+                                src="/userCh.webp"
+                                alt="Bot Avatar"
+                                className={styles.avatarGifSmall}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  {resLoader && (
+                    <div className={styles.chatBubble}>
+                      <div className={styles.loadingDots}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Input Area */}
                 <div className={styles.inputArea}>
                   <div className={styles.attachmentButtons}>
-                    <button type="button" className={styles.attachmentButton}>
-                      <ImageIcon className={styles.buttonIcon} />
-                    </button>
-                    <button type="button" className={styles.attachmentButton}>
-                      <Paperclip className={styles.buttonIcon} />
-                    </button>
+                    <button className={styles.qrBtn} onClick={()=>setFormOpen((pr)=>!pr)}>Quick Response</button>
                   </div>
                   <div className={styles.messageInputContainer}>
                     <textarea
@@ -319,12 +412,15 @@ function ChatBoat() {
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Type your message..."
                       className={styles.messageInput}
-                      rows={1}
+                      // rows={1}
                     />
                     <div className={styles.sendButtonContainer}>
                       {message ? (
-                        <button type="button" className={styles.sendButton}
-                        onClick={()=> sendMessageToApi()}>
+                        <button
+                          type="button"
+                          className={styles.sendButton}
+                          onClick={() => sendMessageToApi()}
+                        >
                           <Send className={styles.sendIcon} />
                         </button>
                       ) : (
