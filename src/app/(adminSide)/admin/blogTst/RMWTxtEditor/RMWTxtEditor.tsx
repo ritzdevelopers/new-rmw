@@ -87,22 +87,16 @@
 //   const handleHeadings = (headingType: string) => {
 //     const selection = window.getSelection();
 //     if (!selection || selection.rangeCount === 0 || !headingType) return;
+
 //     const range = selection.getRangeAt(0);
 //     const parent = range.startContainer.parentElement;
-//     const heading = document.createElement(headingType);
-//     const selectedTxt = range.endContainer?.textContent;
-//     if (!parent) {
-//       //   const div = document.createElement("div");
-//       //   if (selectedTxt) {
-//       //     heading.appendChild(document.createTextNode(selectedTxt));
-//       //   }
-//       //   div.appendChild(heading);
-//       return;
-//     }
-//     console.log(parent.tagName.toLowerCase());
-    
+//     if (!parent) return;
+
 //     const allHeadings = ["h1", "h2", "h3", "h4", "h5", "h6"];
+
+//     // ✅ Case 1: Agar already heading hai
 //     if (allHeadings.includes(parent.tagName.toLowerCase())) {
+//       // Agar same heading type select kiya → remove heading (convert to <p>)
 //       if (parent.tagName.toLowerCase() === headingType.toLowerCase()) {
 //         const p = document.createElement("p");
 //         p.innerHTML = parent.innerHTML;
@@ -110,16 +104,41 @@
 //         return;
 //       }
 
-//       heading.innerHTML = parent.innerHTML;
-//       parent.replaceWith(heading);
+//       // Agar different heading type select kiya → replace heading
+//       const newHeading = document.createElement(headingType);
+//       newHeading.innerHTML = parent.innerHTML;
+//       parent.replaceWith(newHeading);
 //       return;
 //     }
+
+//     // ✅ Case 2: Agar parent heading nahi hai
+//     const newHeading = document.createElement(headingType);
 //     const selectedText = range.extractContents();
-//     heading.appendChild(selectedText);
-//     range.insertNode(heading);
+
+//     // Agar sirf text select hai → usko heading me wrap kar do
+//     newHeading.appendChild(selectedText);
+
+//     // Range ko replace karo new heading se
+//     range.deleteContents();
+//     range.insertNode(newHeading);
+
+//     // Cursor ko heading ke baad le jao
+//     selection.removeAllRanges();
+//     const newRange = document.createRange();
+//     newRange.setStartAfter(newHeading);
+//     newRange.collapse(true);
+//     selection.addRange(newRange);
 //   };
 
-//   const handleFontSize = (fontSize: string) => {};
+//   const handleFontSize = (fontSize: string) => {
+//     const selecton = window.getSelection();
+//     if (!selecton || selecton.rangeCount === 0 || !fontSize) return;
+//     const range = selecton?.getRangeAt(0);
+//     const parent = range?.startContainer.parentElement;
+//     if(!parent) return;
+//     const txtSize = fontSize + "px";
+//     parent.style.fontSize = txtSize;
+//   };
 
 //   const [fontSize, setFontSize] = useState<number>(16);
 //   const [activeHeading, setActiveHeading] = useState<string>(""); // Track active heading
@@ -165,7 +184,8 @@
 //               <select
 //                 className="text-xs py-1.5 px-2 w-[80px] rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 //                 onChange={(e) => {
-//                   const size = Number(e.target.value);
+//                 //   const size = Number(e.target.value);
+//                   handleFontSize(e.target.value)
 //                 }}
 //               >
 //                 {[12, 14, 16, 18, 20, 24, 28, 32, 36, 48].map((size) => (

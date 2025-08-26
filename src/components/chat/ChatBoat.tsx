@@ -102,26 +102,36 @@ function ChatBoat() {
 
   const toggleChat = async () => {
     // alert(process.env.NEXT_PUBLIC_CHATBOAT_API);
-    if (!isOpen) {
-      try {
-        const res = await axios.get(
-          "https://ritz-ai-production.up.railway.app/api/v1/session/create",
-          {
-            headers: {
-              "X-API-KEY": process.env.NEXT_PUBLIC_CHATBOAT_API,
-            },
-          }
-        );
-        setSessionId(res.data.session_id);
-        // alert(res.data.session_id);
-      } catch (error) {
-        console.error("Failed to create session:", error);
-      }
+
+    try {
+      const res = await axios.get(
+        "https://ritz-ai-production.up.railway.app/api/v1/session/create", //close
+        {
+          headers: {
+            "X-API-KEY": process.env.NEXT_PUBLIC_CHATBOAT_API,
+          },
+        }
+      );
+      setSessionId(res.data.session_id);
+      sessionStorage.setItem("RMW_SESSION", res.data.session_id);
+    } catch (error) {
+      console.error("Failed to create session:", error);
     }
 
     setIsOpen(!isOpen);
     if (backdropRef.current && !isOpen) {
       backdropRef.current.style.display = "block";
+    }
+  };
+
+  const openBoat = () => {
+    setIsOpen(true);
+    const exitsSessionId = sessionStorage.getItem("RMW_SESSION");
+
+    if (!exitsSessionId) {
+      toggleChat();
+    } else {
+      setSessionId(exitsSessionId);
     }
   };
 
@@ -188,6 +198,40 @@ function ChatBoat() {
     };
   }, [isOpen]);
 
+  const [lastDate, setLastDate] = useState<Date>();
+  const [closeSession, setCloseSession] = useState(false);
+  useEffect(() => {
+    function handleSessionExpire() {
+      if (lastDate) {
+        const futureDate = new Date(lastDate.getTime() + 900 * 1000); // +15 min
+        const expireMs = futureDate.getTime() - lastDate.getTime(); // always 900000 ms
+
+        setTimeout(async () => {
+          try {
+            const res = await axios.post(
+              "https://ritz-ai-production.up.railway.app/api/v1/session/close",
+              { session_id: sessionId },
+              {
+                headers: {
+                  "X-API-KEY": process.env.NEXT_PUBLIC_CHATBOAT_API,
+                },
+              }
+            );
+            if (res.status === 200) {
+              setCloseSession(true);
+            }
+          } catch (error) {
+            console.log("Err in token expiry", error);
+          }
+        }, expireMs); // ✅ pass ms directly
+      }
+    }
+
+    if (lastDate) {
+      handleSessionExpire();
+    }
+  }, [lastDate]);
+
   const sendMessageToApi = async () => {
     try {
       if (message.trim().length <= 1) {
@@ -224,10 +268,11 @@ function ChatBoat() {
           ...pr,
           {
             id: "boat",
-            msg: res.data.response,
+            msg: res.data.response_html,
             date: new Date(),
           },
         ]);
+        setLastDate(new Date());
       }
 
       // Scroll to bottom after message is added
@@ -307,7 +352,7 @@ function ChatBoat() {
 
       <div className={styles.chatContainer} ref={containerRef}>
         {/* Chat Boat Trigger */}
-        <div ref={boatRef} onClick={toggleChat} className={styles.chatBoat}>
+        <div ref={boatRef} onClick={openBoat} className={styles.chatBoat}>
           {isOpen ? (
             <X className={styles.boatIcon} />
           ) : (
@@ -322,116 +367,134 @@ function ChatBoat() {
 
         {/* Chat Interface */}
         {isOpen && (
-          <div ref={chatRef} className={styles.chatInterface}>
-            {/* Split Container */}
-            <div className={styles.splitContainer}>
-              {/* Left Panel - User Form */}
-              {formOpen && userExist === "NO" && (
-                <div className={styles.formPanel}>
-                  <div className={styles.formHeader}>
-                    <h3 className={styles.formTitle}>Contact Information</h3>
-                    <p className={styles.formSubtitle}>
-                      Fill out the form to start chatting
-                    </p>
-                    <button
-                      className={styles.closeFormBtn}
-                      onClick={() => setFormOpen(false)}
-                      aria-label="Close form"
-                    >
-                      <X size={18} />
-                    </button>
-                  </div>
+          <div
+            style={{
+              position: "fixed",
+              height: "100vh",
+              width: "100vw",
+              // backgroundColor:'red',
+              margin: "auto",
+              top: "0",
+              left: "0",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: "2000",
+            }}
+          >
+            <div ref={chatRef} className={styles.chatInterface}>
+              {/* Split Container */}
+              <div className={styles.splitContainer}>
+                {/* Left Panel - User Form */}
+                {formOpen && userExist === "NO" && (
+                  <div className={styles.formPanel}>
+                    <div className={styles.formHeader}>
+                      <h3 className={styles.formTitle}>Contact Information</h3>
+                      <p className={styles.formSubtitle}>
+                        Fill out the form to start chatting
+                      </p>
+                      <button
+                        className={styles.closeFormBtn}
+                        onClick={() => setFormOpen(false)}
+                        aria-label="Close form"
+                      >
+                        <X size={18} />
+                      </button>
+                    </div>
 
-                  <form onSubmit={handleFormSubmit} className={styles.userForm}>
-                    <div className={styles.formGroup}>
-                      <div className={styles.inputWithIcon}>
-                        <User className={styles.inputIcon} size={18} />
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleFormChange}
-                          className={styles.formInput}
-                          placeholder="Full Name"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.formGroup}>
-                      <div className={styles.inputWithIcon}>
-                        <Mail className={styles.inputIcon} size={18} />
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleFormChange}
-                          className={styles.formInput}
-                          placeholder="Email Address"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div className={styles.formGroup}>
-                      <div className={styles.inputWithIcon}>
-                        <Phone className={styles.inputIcon} size={18} />
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleFormChange}
-                          className={styles.formInput}
-                          placeholder="Phone Number (optional)"
-                        />
-                      </div>
-                    </div>
-                    <button
-                      disabled={formLoader}
-                      type="submit"
-                      className={styles.submitButton}
+                    <form
+                      onSubmit={handleFormSubmit}
+                      className={styles.userForm}
                     >
-                      {formLoader ? (
-                        <div className={styles.frmLoader}></div>
-                      ) : (
-                        <>Save & Continue</>
+                      <div className={styles.formGroup}>
+                        <div className={styles.inputWithIcon}>
+                          <User className={styles.inputIcon} size={18} />
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleFormChange}
+                            className={styles.formInput}
+                            placeholder="Full Name"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className={styles.formGroup}>
+                        <div className={styles.inputWithIcon}>
+                          <Mail className={styles.inputIcon} size={18} />
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleFormChange}
+                            className={styles.formInput}
+                            placeholder="Email Address"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className={styles.formGroup}>
+                        <div className={styles.inputWithIcon}>
+                          <Phone className={styles.inputIcon} size={18} />
+                          <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleFormChange}
+                            className={styles.formInput}
+                            placeholder="Phone Number (optional)"
+                          />
+                        </div>
+                      </div>
+                      <button
+                        disabled={formLoader}
+                        type="submit"
+                        className={styles.submitButton}
+                      >
+                        {formLoader ? (
+                          <div className={styles.frmLoader}></div>
+                        ) : (
+                          <>Save & Continue</>
+                        )}
+                      </button>
+                      {frmResType === "red" && (
+                        <p
+                          style={{
+                            color: "#b91c1c", // dark red text
+                            padding: "10px 16px",
+                            borderRadius: "8px",
+                            fontSize: "14px",
+                            fontWeight: 500,
+                            textAlign: "center",
+                            marginTop: "10px",
+                          }}
+                        >
+                          Internal Server Error
+                        </p>
+                      )}{" "}
+                      {frmResType === "green" && (
+                        <p
+                          style={{
+                            // light green background
+                            color: "#166534", // dark green text
+                            padding: "10px 16px",
+                            borderRadius: "8px",
+                            fontSize: "14px",
+                            fontWeight: 500,
+                            textAlign: "center",
+                            marginTop: "10px",
+                          }}
+                        >
+                          Form Submitted
+                        </p>
                       )}
-                    </button>
-                    {frmResType === "red" && (
-                      <p
-                        style={{
-                          color: "#b91c1c", // dark red text
-                          padding: "10px 16px",
-                          borderRadius: "8px",
-                          fontSize: "14px",
-                          fontWeight: 500,
-                          textAlign: "center",
-                          marginTop: "10px",
-                        }}
-                      >
-                        Internal Server Error
-                      </p>
-                    )}{" "}
-                    {frmResType === "green" && (
-                      <p
-                        style={{
-                          // light green background
-                          color: "#166534", // dark green text
-                          padding: "10px 16px",
-                          borderRadius: "8px",
-                          fontSize: "14px",
-                          fontWeight: 500,
-                          textAlign: "center",
-                          marginTop: "10px",
-                        }}
-                      >
-                        Form Submitted
-                      </p>
-                    )}
-                  </form>
+                    </form>
 
-                  {/* <div className={styles.userInfo}>
+                    {/* <div className={styles.userInfo}>
                     <div className={styles.userInfoTitle}>Your Details:</div>
                     <div className={styles.userInfoItem}>
                       <span className={styles.userInfoLabel}>Name:</span>{" "}
@@ -446,184 +509,193 @@ function ChatBoat() {
                       {formData.phone || "-"}
                     </div>
                   </div> */}
-                </div>
-              )}
-
-              {/* Right Panel - Chat Interface */}
-              <div
-                className={styles.chatPanel}
-                style={{ width: formOpen && !isMobile ? "70%" : "100%" }}
-              >
-                {/* Header */}
-                <div className={styles.chatHeader}>
-                  <div className={styles.headerContent}>
-                    <div className={styles.avatar}>
-                      <img
-                        src="/chrl.webp"
-                        alt="Chat Avatar"
-                        className={styles.avatarGif}
-                      />
-                    </div>
-                    <div className={styles.headerText}>
-                      <h3 className={styles.headerTitle}>
-                        Ritz Media Assistant
-                      </h3>
-                      <p className={styles.headerStatus}>
-                        <span className={styles.statusIndicator}></span> Online
-                        now
-                      </p>
-                    </div>
                   </div>
+                )}
 
-                  <div className={styles.headerActions}>
-                    {userExist === "NO" && (
-                      <button
-                        className={styles.qrBtn}
-                        onClick={() => setFormOpen((pr) => !pr)}
-                        aria-label="Quick Response"
-                      >
-                        {formOpen ? "Close Form" : "Quick Response"}
-                      </button>
-                    )}
-                    <X
-                      className={styles.cncl}
-                      onClick={() => setIsOpen(false)}
-                      aria-label="Close chat"
-                    />
-                  </div>
-                </div>
-
-                {/* Messages */}
-                <div ref={messageRef} className={styles.messagesContainer}>
-                  {/* Welcome Message */}
-                  <div className={styles.greetingMessage}>
-                    <p className={styles.messageText}>
-                      Welcome to{" "}
-                      <span className={styles.highlight}>Ritz Media</span>! We
-                      are a full-service digital agency specializing in web &
-                      app development, digital advertising, and influencer
-                      marketing. How can we help you today?
-                    </p>
-                    <div className={styles.messageTime}>
-                      {new Date().toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </div>
-                  </div>
-
-                  {userMsgs.length > 0 &&
-                    userMsgs.map((tk, idx) => {
-                      const isUser = tk.id === "user";
-
-                      return (
-                        <div
-                          key={idx}
-                          className={`${styles.message} ${
-                            isUser ? styles.messageRight : styles.messageLeft
-                          }`}
-                        >
-                          {!isUser && (
-                            <div className={styles.messageAvatar}>
-                              <img
-                                src="/chrl.webp"
-                                alt="Bot Avatar"
-                                className={styles.avatarGifSmall}
-                              />
-                            </div>
-                          )}
-                          <div
-                            className={`${styles.messageBubble} ${
-                              isUser ? styles.bubbleRight : styles.bubbleLeft
-                            }`}
-                          >
-                            <p className={styles.messageText}>{tk.msg}</p>
-                            <div
-                              className={`${styles.messageTime} ${
-                                isUser ? styles.timeRight : styles.timeLeft
-                              }`}
-                            >
-                              {tk.date.toLocaleTimeString([], {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })}
-                            </div>
-                          </div>
-                          {isUser && (
-                            <div className={styles.messageAvatar}>
-                              <img
-                                src="/userCh.webp"
-                                alt="User Avatar"
-                                className={styles.avatarGifSmall}
-                              />
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-
-                  {/* Scroll anchor */}
-                  <div ref={crChatRef}></div>
-
-                  {resLoader && (
-                    <div className={styles.messageLeft}>
-                      <div className={styles.messageAvatar}>
+                {/* Right Panel - Chat Interface */}
+                <div
+                  className={styles.chatPanel}
+                  style={{ width: formOpen && !isMobile ? "70%" : "100%" }}
+                >
+                  {/* Header */}
+                  <div className={styles.chatHeader}>
+                    <div className={styles.headerContent}>
+                      <div className={styles.avatar}>
                         <img
                           src="/chrl.webp"
-                          alt="Bot Avatar"
-                          className={styles.avatarGifSmall}
+                          alt="Chat Avatar"
+                          className={styles.avatarGif}
                         />
                       </div>
-                      <div
-                        className={`${styles.messageBubble} ${styles.bubbleLeft}`}
-                      >
-                        <div className={styles.loadingDots}>
-                          <span></span>
-                          <span></span>
-                          <span></span>
-                        </div>
+                      <div className={styles.headerText}>
+                        <h3 className={styles.headerTitle}>
+                          Ritz Media Assistant
+                        </h3>
+                        <p className={styles.headerStatus}>
+                          <span className={styles.statusIndicator}></span>{" "}
+                          Online now
+                        </p>
                       </div>
                     </div>
-                  )}
-                </div>
 
-                {/* Input Area */}
-                <div className={styles.inputArea}>
-                  <div className={styles.messageInputContainer}>
-                    <textarea
-                      ref={inputRef}
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Type your message..."
-                      className={styles.messageInput}
-                      rows={1}
-                    />
-                    <div className={styles.sendButtonContainer}>
-                      {message ? (
+                    <div className={styles.headerActions}>
+                      {userExist === "NO" && (
                         <button
-                          type="button"
-                          className={styles.sendButton}
-                          onClick={sendMessageToApi}
-                          disabled={resLoader}
-                          aria-label="Send message"
+                          className={styles.qrBtn}
+                          onClick={() => setFormOpen((pr) => !pr)}
+                          aria-label="Quick Response"
                         >
-                          <Send className={styles.sendIcon} />
-                        </button>
-                      ) : (
-                        <button
-                          type="button"
-                          className={styles.micButton}
-                          aria-label="Use microphone"
-                        >
-                          <Mic className={styles.micIcon} />
+                          {formOpen ? "Close Form" : "Quick Response"}
                         </button>
                       )}
+                      <X
+                        className={styles.cncl}
+                        onClick={() => setIsOpen(false)}
+                        aria-label="Close chat"
+                      />
                     </div>
                   </div>
 
-                  {/* <div className={styles.chatTips}>
-                    <p>Press Enter to send • Shift+Enter for new line</p>
-                  </div> */}
+                  {/* Messages */}
+                  <div ref={messageRef} className={styles.messagesContainer}>
+                    {/* Welcome Message */}
+                    <div className={styles.greetingMessage}>
+                      <p className={styles.messageText}>
+                        Welcome to{" "}
+                        <span className={styles.highlight}>Ritz Media</span>! We
+                        are a full-service digital agency specializing in web &
+                        app development, digital advertising, and influencer
+                        marketing. How can we help you today?
+                      </p>
+                      <div className={styles.messageTime}>
+                        {new Date().toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </div>
+                    </div>
+
+                    {userMsgs.length > 0 &&
+                      userMsgs.map((tk, idx) => {
+                        const isUser = tk.id === "user";
+
+                        return (
+                          <div
+                            key={idx}
+                            className={`${styles.message} ${
+                              isUser ? styles.messageRight : styles.messageLeft
+                            }`}
+                          >
+                            {!isUser && (
+                              <div className={styles.messageAvatar}>
+                                <img
+                                  src="/chrl.webp"
+                                  alt="Bot Avatar"
+                                  className={styles.avatarGifSmall}
+                                />
+                              </div>
+                            )}
+                            <div
+                              className={`${styles.messageBubble} ${
+                                isUser ? styles.bubbleRight : styles.bubbleLeft
+                              }`}
+                            >
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: tk.msg,
+                                }}
+                              ></div>
+                              <div
+                                className={`${styles.messageTime} ${
+                                  isUser ? styles.timeRight : styles.timeLeft
+                                }`}
+                              >
+                                {tk.date.toLocaleTimeString([], {
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })}
+                              </div>
+                            </div>
+                            {isUser && (
+                              <div className={styles.messageAvatar}>
+                                <img
+                                  src="/userCh.webp"
+                                  alt="User Avatar"
+                                  className={styles.avatarGifSmall}
+                                />
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+
+                    {/* Scroll anchor */}
+                    <div ref={crChatRef}></div>
+
+                    {resLoader && (
+                      <div className={styles.messageLeft}>
+                        <div className={styles.messageAvatar}>
+                          <img
+                            src="/chrl.webp"
+                            alt="Bot Avatar"
+                            className={styles.avatarGifSmall}
+                          />
+                        </div>
+                        <div
+                          className={`${styles.messageBubble} ${styles.bubbleLeft}`}
+                        >
+                          <div className={styles.loadingDots}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Input Area */}
+                  <div className={styles.inputArea}>
+                    {!closeSession ? (
+                      <div className={styles.messageInputContainer}>
+                        <textarea
+                          ref={inputRef}
+                          value={message}
+                          onChange={(e) => setMessage(e.target.value)}
+                          placeholder="Type your message..."
+                          className={styles.messageInput}
+                          rows={1}
+                        />
+                        <div className={styles.sendButtonContainer}>
+                          {message ? (
+                            <button
+                              type="button"
+                              className={styles.sendButton}
+                              onClick={sendMessageToApi}
+                              disabled={resLoader}
+                              aria-label="Send message"
+                            >
+                              <Send className={styles.sendIcon} />
+                            </button>
+                          ) : (
+                            <button
+                              type="button"
+                              className={styles.micButton}
+                              aria-label="Use microphone"
+                            >
+                              <Mic className={styles.micIcon} />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className={styles.chatTips}>
+                        <p>
+                          Your Session Has Expired, Please Refresh The Page!
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
