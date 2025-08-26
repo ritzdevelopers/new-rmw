@@ -229,7 +229,7 @@ const Header = () => {
               <div
                 className="tp-main__logo"
                 style={{
-                  width: "100px",
+                  width: "128px",
                   padding: "16px 0",
                   display: " flex",
                   alignItems: "center",
