@@ -571,7 +571,7 @@
 }
 
 .micButton:hover {
-  background: #e0e0e0;
+  background: #b5b2b2;
 }
 
 .sendIcon {
@@ -607,7 +607,7 @@
   border-radius: 50%;
   background-color: #888;
   margin: 0 2px;
-  /* animation: bounce 1.3s infinite ease-in-out both; */
+  animation: bounce 1.3s infinite ease-in-out both;
 }
 
 .loadingDots span:nth-child(1) {
@@ -618,7 +618,7 @@
   animation-delay: -0.16s;
 }
 
-/* @keyframes bounce {
+@keyframes bounce {
   0%, 80%, 100% {
     transform: scale(0.8);
     opacity: 0.5;
@@ -626,9 +626,9 @@
   40% {
     transform: scale(1);
     opacity: 1;
-  } */
+  }
 
-
+}
 /* Enhanced responsive styles */
 @media (max-width: 768px) {
   .chatContainer {
@@ -839,5 +839,56 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+.messageContainer {
+  font-size: 16px; /* uniform font size */
+  line-height: 1.6;
+  color: #e5e7eb;
+  font-family: 'Inter', sans-serif;
+  
+  /* animation */
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+/* normalize inner elements */
+.messageContainer p,
+.messageContainer ul,
+.messageContainer ol,
+.messageContainer li,
+.messageContainer h1,
+.messageContainer h2,
+.messageContainer h3,
+.messageContainer h4,
+.messageContainer h5,
+.messageContainer h6 {
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0 0 0.5rem 0;
+  font-weight: normal;
+}
+
+.messageContainer ul,
+.messageContainer ol {
+  padding-left: 1.25rem;
+  color: black;
+}
+
+.messageContainer li {
+  margin-bottom: 0.25rem;
+    color: black;
+}
+
+/* keyframes for smooth fade + slide */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
