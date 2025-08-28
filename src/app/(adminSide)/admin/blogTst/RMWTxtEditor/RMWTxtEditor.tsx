@@ -37,6 +37,7 @@
 //   const [leftAlign, setLeftAlign] = useState(false);
 //   const [rightAlign, setRightAlign] = useState(false);
 //   const [centerAlign, setCenterAlign] = useState(false);
+
 //   const handleFormat = (format: string) => {
 //     document.execCommand(format, false);
 //     if (editorRef.current) {
@@ -135,13 +136,207 @@
 //     if (!selecton || selecton.rangeCount === 0 || !fontSize) return;
 //     const range = selecton?.getRangeAt(0);
 //     const parent = range?.startContainer.parentElement;
-//     if(!parent) return;
+//     if (!parent) return;
 //     const txtSize = fontSize + "px";
 //     parent.style.fontSize = txtSize;
 //   };
+//   const [listCount, setListCount] = useState<number>(0);
+//   console.log(listCount);
 
-//   const [fontSize, setFontSize] = useState<number>(16);
-//   const [activeHeading, setActiveHeading] = useState<string>(""); // Track active heading
+//   //  const editorRef = useRef<HTMLDivElement>(null);
+//   const [liActive, setLiActive] = useState<string>("");
+//   useEffect(() => {
+//     const listBuildingHandler = () => {
+//       const selection = window.getSelection();
+//       if (!selection || selection.rangeCount === 0) return;
+//       if (listCount === 0) {
+//         setLiActive("not-selected");
+//       } else if (listCount < 6) {
+//         setLiActive("ul-selected");
+//       } else {
+//         setLiActive("ol-active");
+//       }
+//       const range = selection.getRangeAt(0);
+//       const container = range.commonAncestorContainer;
+
+//       // Check if we're already inside a list
+//       const listParent = findListParent(container);
+
+//       if (listCount === 0 && listParent) {
+//         // Convert list to paragraphs
+//         convertListToParagraphs(listParent);
+//         return;
+//       }
+
+//       if (listCount > 0) {
+//         // Create a new list or convert existing content
+//         if (listParent) {
+//           // Change the existing list type
+//           changeListType(listParent, listCount);
+//         } else {
+//           // Create a new list from selection
+//           createNewList(range, listCount);
+//         }
+//       }
+//     };
+
+//     listBuildingHandler();
+//   }, [listCount]);
+
+//   // Helper function to find if we're inside a list
+//   const findListParent = (node: Node): HTMLElement | null => {
+//     let parent = node.parentElement;
+//     while (parent) {
+//       if (parent.tagName === "UL" || parent.tagName === "OL") {
+//         return parent;
+//       }
+//       parent = parent.parentElement;
+//     }
+//     return null;
+//   };
+
+//   // Convert list items to paragraphs
+//   const convertListToParagraphs = (list: HTMLElement) => {
+//     const items = Array.from(list.querySelectorAll("li"));
+//     const paragraphs = items.map((item) => {
+//       const p = document.createElement("p");
+//       p.innerHTML = item.innerHTML;
+//       return p;
+//     });
+
+//     list.replaceWith(...paragraphs);
+//   };
+
+//   // Change type of existing list
+//   const changeListType = (list: HTMLElement, count: number) => {
+//     const items = Array.from(list.querySelectorAll("li"));
+//     const newList = createListElement(count);
+
+//     items.forEach((item) => {
+//       const newItem = document.createElement("li");
+//       newItem.innerHTML = item.innerHTML;
+//       newList.appendChild(newItem);
+//     });
+
+//     list.replaceWith(newList);
+//   };
+
+//   // Create a new list element based on count
+//   const createListElement = (count: number): HTMLElement => {
+//     let listElement: HTMLElement;
+//     let listStyle: string | null = null;
+//     let olType: string | null = null;
+
+//     switch (count) {
+//       case 1:
+//         listElement = document.createElement("ul");
+//         listStyle = "disc";
+//         break;
+//       case 2:
+//         listElement = document.createElement("ul");
+//         listStyle = "circle";
+//         break;
+//       case 3:
+//         listElement = document.createElement("ul");
+//         listStyle = "square";
+//         break;
+//       case 4:
+//         listElement = document.createElement("ol");
+//         olType = "upper-roman";
+//         break;
+//       case 5:
+//         listElement = document.createElement("ol");
+//         olType = "lower-roman";
+//         break;
+//       case 6:
+//         listElement = document.createElement("ol");
+//         olType = "lower-alpha";
+//         break;
+//       case 7:
+//         listElement = document.createElement("ol");
+//         olType = "decimal";
+//         break;
+//       default:
+//         listElement = document.createElement("ul");
+//     }
+
+//     if (listStyle) listElement.style.listStyleType = listStyle;
+//     if (olType !== null) listElement.style.listStyleType = olType;
+
+//     return listElement;
+//   };
+
+//   // Create a new list from selection
+//   const createNewList = (range: Range, count: number) => {
+//     if (range.collapsed) {
+//       // Empty selection - create a single list item
+//       const newList = createListElement(count);
+//       const listItem = document.createElement("li");
+//       listItem.innerHTML = "<br>"; // Empty item
+//       newList.appendChild(listItem);
+
+//       range.deleteContents();
+//       range.insertNode(newList);
+
+//       // Move cursor inside the list item
+//       const newRange = document.createRange();
+//       newRange.setStart(listItem, 0);
+//       newRange.collapse(true);
+
+//       const selection = window.getSelection();
+//       if (selection) {
+//         selection.removeAllRanges();
+//         selection.addRange(newRange);
+//       }
+//     } else {
+//       // Handle text selection
+//       const fragment = range.cloneContents();
+//       const div = document.createElement("div");
+//       div.appendChild(fragment);
+
+//       // Split content by lines
+//       const textContent = div.textContent || "";
+//       const lines = textContent
+//         .split(/\n/)
+//         .filter((line) => line.trim() !== "");
+
+//       if (lines.length > 0) {
+//         const newList = createListElement(count);
+
+//         lines.forEach((line) => {
+//           const listItem = document.createElement("li");
+//           listItem.textContent = line;
+//           newList.appendChild(listItem);
+//         });
+
+//         range.deleteContents();
+//         range.insertNode(newList);
+//       }
+//     }
+//   };
+//   // Helper function to get list type name
+//   function getListTypeName(count: number): string {
+//     switch (count) {
+//       case 0:
+//         return "Paragraph";
+//       case 1:
+//         return "Unordered List (Disc)";
+//       case 2:
+//         return "Unordered List (Circle)";
+//       case 3:
+//         return "Unordered List (Square)";
+//       case 4:
+//         return "Ordered List (Upper Roman)";
+//       case 5:
+//         return "Ordered List (Lower Roman)";
+//       case 6:
+//         return "Ordered List (Lower Alpha)";
+//       case 7:
+//         return "Ordered List (Numeric)";
+//       default:
+//         return "Unknown";
+//     }
+//   }
 
 //   return (
 //     <div className="w-full max-w-4xl mx-auto font-sans">
@@ -184,8 +379,8 @@
 //               <select
 //                 className="text-xs py-1.5 px-2 w-[80px] rounded-md border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 //                 onChange={(e) => {
-//                 //   const size = Number(e.target.value);
-//                   handleFontSize(e.target.value)
+//                   //   const size = Number(e.target.value);
+//                   handleFontSize(e.target.value);
 //                 }}
 //               >
 //                 {[12, 14, 16, 18, 20, 24, 28, 32, 36, 48].map((size) => (
@@ -262,15 +457,21 @@
 //           {/* Lists */}
 //           <div className="flex items-center gap-1 border-r border-gray-300 pr-2 mr-2">
 //             <button
-//               onClick={() => handleFormat("insertUnorderedList")}
-//               className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
-//               title="Bullet List"
+//               className={`p-2 rounded-lg hover:bg-gray-200 transition-colors ${
+//                 liActive === "ul-selected" && "text-blue-600"
+//               }`}
+//               title="List"
+//               onClick={() => {
+//                 setListCount((pr) => (pr === 6 || pr === 7 ? 0 : pr + 1));
+//               }}
 //             >
 //               <FaListUl className="text-sm" />
 //             </button>
 //             <button
-//               onClick={() => handleFormat("insertOrderedList")}
-//               className="p-2 rounded-lg hover:bg-gray-200 transition-colors"
+//               onClick={() => setListCount((pr) => (pr === 7 ? 0 : 7))}
+//               className={`p-2 rounded-lg hover:bg-gray-200 transition-colors ${
+//                 liActive === "ol-active" && "text-blue-600"
+//               }`}
 //               title="Numbered List"
 //             >
 //               <FaListOl className="text-sm" />

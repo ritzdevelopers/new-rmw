@@ -2,7 +2,7 @@
 
 import { Home, ImagePlus, Monitor } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useBlogContext } from "@/blogContext/BlogContext";
 import { useParams, useRouter } from "next/navigation";
 import Editor from "@/components/Editor/Editor";
@@ -80,9 +80,9 @@ const Page = () => {
     saveDataToLocalStorage();
     router.push(`/admin/add-blog/step-2/page/${count + 1}`);
   };
-  const removeInnImg = ()=>{
+  const removeInnImg = () => {
     setLocalBanner(" ");
-  }
+  };
   const handlePrev = () => {
     if (count > 1) {
       saveDataToLocalStorage();
@@ -211,6 +211,78 @@ const Page = () => {
       console.error("Error in handleUploadBlog:", error);
     }
   };
+  interface IMGFORPREVIEW {
+    url: string;
+    id: string;
+  }
+  interface GETLINKS {
+    imgPath: string;
+    _id: string;
+  }
+  // From Here The Image URL Generator Logic Is Starting
+  const [uploadImgModal, setUploadImgModal] = useState(false);
+  const [imgToSend, setImgToSend] = useState<File[]>([]);
+  const [imgToShow, setImgToShow] = useState<IMGFORPREVIEW[]>([]);
+  const [linkToShow, setLinkToShow] = useState<GETLINKS[]>([]);
+  // const [copiedImgLink, setCopiedImgLink] = useState("");
+  // const [allPrevUplodedImgs, setAllPrevSelectedImgs] = useState([]);
+  const imgUploaderModal = () => {
+    setUploadImgModal((pr) => !pr);
+  };
+  const handleSelectNewImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e) return;
+    const allfiles = e.target.files;
+    if (allfiles && allfiles?.length > 0) {
+      [...allfiles].forEach((file) => {
+        setImgToSend((pr) => [file, ...pr]);
+        const url = URL.createObjectURL(file);
+        setImgToShow((pr) => [...pr, { id: file.name, url: url }]);
+      });
+    }
+  };
+  const removeExtraImgs = (key: string) => {
+    setImgToSend((pr) => pr.filter((img) => img.name !== key));
+    setImgToShow((pr) => pr.filter((img) => img.id !== key));
+  };
+
+  const handleUploadSelectedImg = async () => {
+    if (imgToSend.length === 0) return;
+    const eImg = new FormData();
+    try {
+      for (let i = 0; i < imgToSend.length; i++) {
+        eImg.append(`eImage-${i}`, imgToSend[i]);
+      }
+      const res = await axios.post("/api/eImgs", eImg);
+      console.log(res.data);
+
+      if (res.status === 201) {
+        setImgToShow([]);
+        setImgToSend([]);
+        alert("Url Generated Successfully!");
+        setLinkToShow(res.data.files);
+      } else {
+        alert("Some Errors In Uploading Images!");
+      }
+    } catch (error) {
+      console.log("Internal Server Errors!", error);
+      alert("Internal Server Errors In Uploding IMG!");
+    }
+  };
+
+  useEffect(() => {
+    const fetchSavedImage = async () => {
+      try {
+        const data = await axios.get("/api/eImgs");
+        if (data.status === 200) {
+          setLinkToShow(data.data.allImages);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSavedImage();
+  }, []);
+  console.log(linkToShow);
 
   return (
     <div className="bg-[#EEEEEE] min-h-screen p-4 md:p-8 flex flex-col gap-6 sm:gap-8 md:gap-12">
@@ -234,6 +306,196 @@ const Page = () => {
         <span className="text-[#ACACAC] font-bold">/</span>
         <span className="text-[#838383]">Page {pageNum}</span>
       </div>
+
+      {uploadImgModal && (
+        <div className="fixed inset-0 z-[900] flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={imgUploaderModal}
+          />
+          {/* Modal */}
+          <div className="relative mx-auto w-[min(92vw,640px)] h-[80vh]">
+            <div className="rounded-2xl bg-white dark:bg-zinc-900 shadow-2xl ring-1 ring-black/5 overflow-hidden h-full flex flex-col">
+              {/* Header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-200 dark:border-zinc-800">
+                <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                  Upload Image
+                </h2>
+                <button
+                  onClick={imgUploaderModal}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                >
+                  <svg viewBox="0 0 24 24" className="h-5 w-5">
+                    <path
+                      d="M6 6l12 12M18 6L6 18"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Body */}
+              <div className="px-6 py-5 space-y-6 overflow-y-auto flex-1">
+                {/* Upload Section */}
+                <div className="space-y-5">
+                  {/* Dropzone */}
+                  <label
+                    htmlFor="file"
+                    className="block cursor-pointer rounded-xl border border-dashed border-zinc-300 dark:border-zinc-700 p-6 text-center hover:bg-zinc-50 dark:hover:bg-zinc-800/50"
+                  >
+                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
+                      <svg viewBox="0 0 24 24" className="h-6 w-6">
+                        <path
+                          d="M12 16V7m0 0l-3 3m3-3l3 3M5 17a4 4 0 01.88-7.9 5 5 0 019.9-1.1A4.5 4.5 0 1119 17H5z"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-sm text-zinc-800 dark:text-zinc-200">
+                      <span className="font-medium underline decoration-dotted">
+                        Click to choose
+                      </span>{" "}
+                      or drag & drop
+                    </p>
+                    <p className="mt-1 text-xs text-zinc-500">
+                      PNG, JPG, WebP (max 10MB)
+                    </p>
+                  </label>
+                  <input
+                    id="file"
+                    type="file"
+                    multiple
+                    className="sr-only"
+                    onChange={handleSelectNewImg}
+                  />
+
+                  {/* Preview */}
+                  <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-3">
+                    {imgToShow.length > 0 ? (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        {imgToShow.map((url, i) => (
+                          <div
+                            key={url.id}
+                            className="relative rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800"
+                          >
+                            <img
+                              src={url.url}
+                              alt={`preview-${i}`}
+                              className="w-full h-28 object-cover"
+                            />
+                            {/* Cross button */}
+                            <button
+                              onClick={() => removeExtraImgs(url.id)}
+                              type="button"
+                              className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full bg-white/80 dark:bg-zinc-900/80 text-zinc-700 dark:text-zinc-300 hover:bg-red-500 hover:text-white transition"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-4 w-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M6 18L18 6M6 6l12 12"
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="aspect-video bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center rounded-lg">
+                        <span className="text-xs text-zinc-500">
+                          Preview will appear here
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* URL */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                      Image URL
+                    </label>
+                    <div className="flex items-center gap-2">
+                      <div className="relative flex-1">
+                        <input
+                          readOnly
+                          value="https://yourdomain.com/uploads/your-image.jpg"
+                          className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 pl-3 pr-16 py-2 text-sm text-zinc-900 dark:text-zinc-100"
+                        />
+                        <button
+                          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md px-2 py-1 text-xs border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                          type="button"
+                        >
+                          Copy
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Previous Uploads */}
+                <div className="space-y-3">
+                  <h3 className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                    Previously Uploaded
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {linkToShow &&
+                      linkToShow.map((img) => (
+                        <div
+                          key={img._id}
+                          className="relative rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800"
+                        >
+                          <img
+                            src={`${
+                              process.env.NEXT_PUBLIC_SERVER_EIMG_PATH
+                            }/api/eImgs/${img.imgPath.replace(
+                              "/eImages/",
+                              ""
+                            )}`}
+                            alt="uploaded"
+                            className="w-full h-28 object-cover"
+                          />
+                          <button className="absolute bottom-2 right-2 rounded-md bg-white/80 dark:bg-zinc-900/80 backdrop-blur px-2 py-1 text-xs border border-zinc-300 dark:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800">
+                            Copy
+                          </button>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-end gap-2 px-6 py-4 border-t border-zinc-200 dark:border-zinc-800">
+                <button
+                  onClick={imgUploaderModal}
+                  className="h-10 rounded-lg px-4 text-sm border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleUploadSelectedImg}
+                  className="h-10 rounded-lg px-4 text-sm bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 opacity-60"
+                >
+                  Upload
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="bg-white p-5 rounded-md shadow-md flex flex-col lg:flex-row gap-6">
         <div
@@ -264,6 +526,13 @@ const Page = () => {
               </div>
             </div>
           )}
+
+          <button
+            onClick={imgUploaderModal}
+            className="px-6 py-2 bg-green-700 text-white font-bold hover:bg-green-800 z-50"
+          >
+            Create Image URL
+          </button>
         </div>
 
         <div className="flex-1 flex flex-col gap-4">
@@ -297,9 +566,14 @@ const Page = () => {
               }}
             />
           </div>
-              <div className="mt-10">
-                <button onClick={removeInnImg} className="px-6 py-2 bg-red-500 text-white font-bold hover:bg-red-600">Remove Image</button>
-              </div>
+          <div className="mt-10">
+            <button
+              onClick={removeInnImg}
+              className="px-6 py-2 bg-red-500 text-white font-bold hover:bg-red-600"
+            >
+              Remove Image
+            </button>
+          </div>
           {/* <div>
             <label className="text-sm font-semibold text-[#444]">
               Blog Category
