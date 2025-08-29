@@ -7,7 +7,7 @@ import { useBlogContext } from "@/blogContext/BlogContext";
 import { useParams, useRouter } from "next/navigation";
 import Editor from "@/components/Editor/Editor";
 import axios from "axios";
-
+import { X } from "lucide-react"; // lucide-react icon
 const Page = () => {
   const router = useRouter();
   const params = useParams();
@@ -35,6 +35,7 @@ const Page = () => {
   const [localBanner, setLocalBanner] = useState<string>("");
   const [localCategory, setLocalCategory] = useState<string>("All Category");
   const [pageNum, setPageNum] = useState(count);
+
   // const [blogBody, setBlogBody] = useState<any[]>([]);
 
   useEffect(() => {
@@ -211,6 +212,7 @@ const Page = () => {
       console.error("Error in handleUploadBlog:", error);
     }
   };
+
   interface IMGFORPREVIEW {
     url: string;
     id: string;
@@ -224,6 +226,7 @@ const Page = () => {
   const [imgToSend, setImgToSend] = useState<File[]>([]);
   const [imgToShow, setImgToShow] = useState<IMGFORPREVIEW[]>([]);
   const [linkToShow, setLinkToShow] = useState<GETLINKS[]>([]);
+  const [eImgLoder, setEimgLoder] = useState(false);
   // const [copiedImgLink, setCopiedImgLink] = useState("");
   // const [allPrevUplodedImgs, setAllPrevSelectedImgs] = useState([]);
   const imgUploaderModal = () => {
@@ -249,21 +252,23 @@ const Page = () => {
     if (imgToSend.length === 0) return;
     const eImg = new FormData();
     try {
+      setEimgLoder(true);
       for (let i = 0; i < imgToSend.length; i++) {
         eImg.append(`eImage-${i}`, imgToSend[i]);
       }
       const res = await axios.post("/api/eImgs", eImg);
-      console.log(res.data);
-
       if (res.status === 201) {
         setImgToShow([]);
         setImgToSend([]);
         alert("Url Generated Successfully!");
         setLinkToShow(res.data.files);
+        setEimgLoder(false);
       } else {
+        setEimgLoder(false);
         alert("Some Errors In Uploading Images!");
       }
     } catch (error) {
+      setEimgLoder(false);
       console.log("Internal Server Errors!", error);
       alert("Internal Server Errors In Uploding IMG!");
     }
@@ -282,7 +287,17 @@ const Page = () => {
     };
     fetchSavedImage();
   }, []);
-  console.log(linkToShow);
+
+  const handleDeleteSavedImg = async (id: string) => {
+    try {
+      const res = await axios.delete(`/api/eImgs/${id}`);
+      if (res.status === 200) {
+        setLinkToShow((pr) => pr.filter((img) => img._id !== id));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="bg-[#EEEEEE] min-h-screen p-4 md:p-8 flex flex-col gap-6 sm:gap-8 md:gap-12">
@@ -423,30 +438,10 @@ const Page = () => {
                     )}
                   </div>
 
-                  {/* URL */}
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                      Image URL
-                    </label>
-                    <div className="flex items-center gap-2">
-                      <div className="relative flex-1">
-                        <input
-                          readOnly
-                          value="https://yourdomain.com/uploads/your-image.jpg"
-                          className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 pl-3 pr-16 py-2 text-sm text-zinc-900 dark:text-zinc-100"
-                        />
-                        <button
-                          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md px-2 py-1 text-xs border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                          type="button"
-                        >
-                          Copy
-                        </button>
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Previous Uploads */}
+
                 <div className="space-y-3">
                   <h3 className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
                     Previously Uploaded
@@ -468,7 +463,26 @@ const Page = () => {
                             alt="uploaded"
                             className="w-full h-28 object-cover"
                           />
-                          <button className="absolute bottom-2 right-2 rounded-md bg-white/80 dark:bg-zinc-900/80 backdrop-blur px-2 py-1 text-xs border border-zinc-300 dark:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800">
+
+                          {/* Delete Cross Icon */}
+                          <button
+                            onClick={() => handleDeleteSavedImg(img._id)} // define handleDelete
+                            className="absolute top-2 cursor-pointer right-2 bg-white/80 dark:bg-zinc-900/80 p-1 rounded-full shadow hover:bg-red-500 hover:text-white transition"
+                          >
+                            <X size={16} />
+                          </button>
+
+                          {/* Copy Button */}
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(
+                                `https://ritzmediaworld.com/api/eImgs${
+                                  img.imgPath.split("/eImages")[1]
+                                }`
+                              );
+                            }}
+                            className="absolute bottom-2 right-2 rounded-md bg-white/80 dark:bg-zinc-900/80 backdrop-blur px-2 py-1 cursor-pointer text-xs border border-zinc-300 dark:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800 active:bg-[#005a03] active:text-[#FFFFFF] active:font-bold active:border-none"
+                          >
                             Copy
                           </button>
                         </div>
@@ -485,12 +499,23 @@ const Page = () => {
                 >
                   Cancel
                 </button>
-                <button
-                  onClick={handleUploadSelectedImg}
-                  className="h-10 rounded-lg px-4 text-sm bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 opacity-60"
-                >
-                  Upload
-                </button>
+                {eImgLoder ? (
+                  <div className="h-10 flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-zinc-300 border-t-zinc-900 rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  <button
+                    disabled={imgToSend.length > 0}
+                    onClick={handleUploadSelectedImg}
+                    className={`h-10 rounded-lg px-4 text-sm bg-zinc-900 text-white hover:bg-[#1e7a10] ${
+                      imgToSend.length > 0
+                        ? "cursor-pointer"
+                        : "cursor-not-allowed"
+                    }`}
+                  >
+                    Upload
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -529,7 +554,7 @@ const Page = () => {
 
           <button
             onClick={imgUploaderModal}
-            className="px-6 py-2 bg-green-700 text-white font-bold hover:bg-green-800 z-50"
+            className="px-6 py-2 bg-green-700 text-white font-bold cursor-pointer hover:bg-green-800 z-50"
           >
             Create Image URL
           </button>
