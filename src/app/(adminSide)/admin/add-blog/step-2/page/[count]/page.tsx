@@ -437,7 +437,6 @@ const Page = () => {
                       </div>
                     )}
                   </div>
-
                 </div>
 
                 {/* Previous Uploads */}
@@ -456,7 +455,7 @@ const Page = () => {
                           <img
                             src={`${
                               process.env.NEXT_PUBLIC_SERVER_EIMG_PATH
-                            }/api/eImgs/${img.imgPath.replace(
+                            }/api/eImgs/${img.imgPath?.replace(
                               "/eImages/",
                               ""
                             )}`}
@@ -476,9 +475,12 @@ const Page = () => {
                           <button
                             onClick={() => {
                               navigator.clipboard.writeText(
-                                `https://ritzmediaworld.com/api/eImgs${
-                                  img.imgPath.split("/eImages")[1]
-                                }`
+                                `${
+                                  process.env.NEXT_PUBLIC_SERVER_EIMG_PATH
+                                }/api/eImgs/${img.imgPath?.replace(
+                                  "/eImages/",
+                                  ""
+                                )}`
                               );
                             }}
                             className="absolute bottom-2 right-2 rounded-md bg-white/80 dark:bg-zinc-900/80 backdrop-blur px-2 py-1 cursor-pointer text-xs border border-zinc-300 dark:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800 active:bg-[#005a03] active:text-[#FFFFFF] active:font-bold active:border-none"
@@ -505,7 +507,7 @@ const Page = () => {
                   </div>
                 ) : (
                   <button
-                    disabled={imgToSend.length > 0}
+                    disabled={imgToSend.length <= 0}
                     onClick={handleUploadSelectedImg}
                     className={`h-10 rounded-lg px-4 text-sm bg-zinc-900 text-white hover:bg-[#1e7a10] ${
                       imgToSend.length > 0
