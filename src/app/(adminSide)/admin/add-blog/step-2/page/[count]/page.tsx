@@ -465,7 +465,7 @@ const Page = () => {
 
                           {/* Delete Cross Icon */}
                           <button
-                            onClick={() => handleDeleteSavedImg(img._id)} // define handleDelete
+                            onClick={() => handleDeleteSavedImg(img._id)}
                             className="absolute top-2 cursor-pointer right-2 bg-white/80 dark:bg-zinc-900/80 p-1 rounded-full shadow hover:bg-red-500 hover:text-white transition"
                           >
                             <X size={16} />

@@ -43,31 +43,50 @@ export async function GET(req, context) {
     );
   }
 }
-
 export async function DELETE(req, context) {
   try {
-    const id = await context.params.imageName;
+    const id = context.params.imageName; // this is coming from URL param
     if (!id) {
       return NextResponse.json(
-        { message: "Id Is Required To Delete A Message!", success: false },
+        { message: "Id is required to delete an image!", success: false },
         { status: 404 }
       );
     }
+
+    // if your DB stores the actual fileName with the document:
+    const doc = await EImagesModels.findById(id);
+    if (!doc) {
+      return NextResponse.json(
+        { message: "Image not found in DB!", success: false },
+        { status: 404 }
+      );
+    }
+
+    const fileEndPoinst = doc.imgPath.replace("/eImages", "");
+    const imagePath = path.join(
+      `${process.env.EIMAGES}/eImages`,
+      fileEndPoinst
+    );
+
+    fs.unlink(imagePath, (err) => {
+      if (err) {
+        console.error("Error deleting image:", err);
+      } else {
+        console.log("Image deleted from server successfully!");
+      }
+    });
+
     await EImagesModels.findByIdAndDelete(id);
+
     return NextResponse.json(
       { message: "Image has been deleted successfully!", success: true },
       { status: 200 }
     );
   } catch (error) {
-    console.log("Internal Server Errors!", error);
+    console.error("Internal Server Error:", error);
     return NextResponse.json(
-      {
-        message: "Internal Server Errors!",
-        success: false,
-      },
-      {
-        status: 500,
-      }
+      { message: "Internal Server Errors!", success: false },
+      { status: 500 }
     );
   }
 }
