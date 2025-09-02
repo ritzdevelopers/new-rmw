@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 // ✅ TypeScript Interface (based on schema)
 interface WebStory {
@@ -41,8 +42,9 @@ const ITEMS_PER_PAGE = 10;
 function WebStoryManagerPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [storyPages, setStoryPages] = useState<WebStory[]>([]); // ✅ Typed
-
+  const [storyPages, setStoryPages] = useState<WebStory[]>([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
   const filteredStories = useMemo(() => {
     return storyPages.filter(
       (story) =>
@@ -66,19 +68,31 @@ function WebStoryManagerPage() {
   };
 
   const navigation = useRouter();
-  const handleNavigation = (id:string) => {
+  const handleNavigation = (id: string) => {
     navigation.push(`/admin/update/update-web-story/${id}`);
   };
 
   const getAllPages = async () => {
     try {
-      const { data } = await axios.get(
+      const { data, status } = await axios.get(
         "/api/rizt_webStories/get-pages-for-manage"
       );
-      console.log("Fetched pages:", data?.allPages);
       setStoryPages(data.allPages || []);
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      console.log("Error in get-all-pages controller:", error);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -88,23 +102,39 @@ function WebStoryManagerPage() {
 
   const deleteStoryPage = async (id: string) => {
     try {
-      const { status } = await axios.delete(
+      const { status, data } = await axios.delete(
         `/api/rizt_webStories/delete-webStory-page/${id}`
       );
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
       if (status === 200) {
-        alert("Web story page deleted successfully!");
         window.location.reload();
       }
     } catch (error) {
-      console.log(
-        "There are some errors in delete story controller plz fix the bug first ",
-        error
-      );
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
   return (
     <section className={styles.container}>
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <h1 className={styles.heading}>Manage Web Stories</h1>
 
       <div className={styles.searchWrapper}>
@@ -176,7 +206,7 @@ function WebStoryManagerPage() {
               {/* <button title="View">
                 <Eye size={18} />
               </button> */}
-              <button onClick={()=>handleNavigation(story._id)} title="Edit">
+              <button onClick={() => handleNavigation(story._id)} title="Edit">
                 <Pencil size={18} />
               </button>
               <button onClick={() => deleteStoryPage(story._id)} title="Delete">

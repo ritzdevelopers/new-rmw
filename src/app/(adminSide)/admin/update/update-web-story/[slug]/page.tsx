@@ -6,6 +6,7 @@ import styles from "./page.module.css";
 import Editor from "@/components/Editor/Editor";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 interface WebStory {
   title: string;
@@ -32,12 +33,13 @@ const Page = () => {
   // const router = useRouter();
   const [story, setStory] = useState<WebStory>();
   const [loading, setLoading] = useState(true);
-  const [message, setMessage] = useState("");
   const [previewImg, setPreviewImg] = useState<string>("");
   const params = useParams();
   const [imgFile, setImageFile] = useState<File | null>(null);
   const [topics, setTopics] = useState<TOPICS[]>([]);
   const { slug } = params;
+   const [showPopup, setShowPopup] = useState(false);
+    const [popupData, setPopupData] = useState({ message: "", status: 0 });
 
   const getSingleStoryPage = async () => {
     try {
@@ -48,11 +50,21 @@ const Page = () => {
         setLoading(false);
         setStory(data.singleStoryPage);
       }
-    } catch (error) {
-      console.log(
-        "Internal Server Errors in get singleblog controller ",
-        error
-      );
+       setPopupData({ message: data.message, status });
+      setShowPopup(true);
+    }catch (error) {
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -64,8 +76,21 @@ const Page = () => {
       if (status === 200) {
         setTopics(data.allTopics);
       }
+       setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      console.log("There are some errors in fetching all topics ", error);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -108,13 +133,24 @@ const Page = () => {
         `/api/rizt_webStories/update-webStoryPage/${slug}`,
         formData
       );
+       setPopupData({ message: data.message, status });
+      setShowPopup(true);
       if (status === 200) {
-        alert(data.message);
         window.location.reload();
       }
     } catch (error) {
-      console.error(error);
-      setMessage("Something went wrong while updating.");
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -142,8 +178,15 @@ const Page = () => {
 
   return (
     <section className={styles.container}>
+        {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <h1 className={styles.heading}>Update Web Story</h1>
-      {message && <p className={styles.message}>{message}</p>}
+      
 
       <form
         onSubmit={handleUpdate}
