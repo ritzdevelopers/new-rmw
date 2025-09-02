@@ -7,6 +7,8 @@ export async function PATCH(
   { params }: { params: { topicID: string } }
 ) {
   try {
+    console.log("API HIT");
+
     await connectMongoDB();
     const topicID = params.topicID;
     if (!topicID) {
@@ -25,28 +27,35 @@ export async function PATCH(
 
     const file = formData.get("topicImg");
 
-    if (!file || !(file instanceof File)) {
-      console.log("❌ topicImg is missing or not a valid file");
-      return NextResponse.json(
-        {
-          message: "❌ topicImg is missing or not a valid file",
-          success: false,
-        },
-        {
-          status: 404,
-        }
-      );
+    // if (!file || !(file instanceof File)) {
+    //   console.log("❌ topicImg is missing or not a valid file");
+    //   return NextResponse.json(
+    //     {
+    //       message: "❌ topicImg is missing or not a valid file",
+    //       success: false,
+    //     },
+    //     {
+    //       status: 404,
+    //     }
+    //   );
+    // }
+    let imgPath: string | undefined;
+    if (file && file instanceof File) {
+      imgPath = await saveFilesIntoDataBase(file, file.name);
     }
-    const imgPath = await saveFilesIntoDataBase(file, file.name);
-
-    const updatedTopic = await TopicModel.findByIdAndUpdate(topicID, {
-      topicTitle,
-      description,
-      metaKeyWords,
-      metaDescription,
-      isActive,
-      ...(file && { topicImg: imgPath }),
-    });
+    
+    const updatedTopic = await TopicModel.findByIdAndUpdate(
+      topicID,
+      {
+        topicTitle,
+        description,
+        metaKeyWords,
+        metaDescription,
+        isActive,
+        ...(imgPath ? { topicImg: imgPath } : {}),
+      },
+      { new: true } 
+    );
 
     if (!updatedTopic) {
       return NextResponse.json(

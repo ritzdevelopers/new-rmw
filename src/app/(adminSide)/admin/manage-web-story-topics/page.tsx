@@ -11,7 +11,7 @@ import {
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
-import { toast } from "react-hot-toast";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 function stripHtml(html: string) {
   return html.replace(/<[^>]+>/g, "").trim();
@@ -40,7 +40,8 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
   const [allWebStories, setAllWebStories] = useState<WEBSTORIES[]>([]);
   const router = useRouter();
-
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
   const filteredTopics = useMemo(() => {
     return allWebStories.filter((topic) => {
       const title = topic?._doc.topicTitle?.toLowerCase() || "";
@@ -55,49 +56,88 @@ const Page = () => {
 
   const toggleActive = async (id: string, currentStatus: boolean) => {
     try {
-      const { data, status } = await axios.patch(`/api/ritz_webStoryTopics/toggle-status`, {
-        id,
-        status: !currentStatus,
-      });
+      const { data, status } = await axios.patch(
+        `/api/ritz_webStoryTopics/toggle-status`,
+        {
+          id,
+          status: !currentStatus,
+        }
+      );
       setAllWebStories((prev) =>
         prev.map((topic) =>
           topic._doc._id === id ? { ...topic, isActive: data.isActive } : topic
         )
       );
-      if(status === 200) {
+      if (status === 200) {
         window.location.reload();
       }
-      toast.success(`Topic ${data.isActive ? "activated" : "deactivated"}`);
+
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      toast.error("Failed to update status");
-      console.error("Error toggling active status:", error);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
   const deleteTopic = async (id: string) => {
-    alert(id);
+   
     try {
-      await axios.delete(`/api/ritz_webStoryTopics/delete-webStory-topic/${id}`);
+      const { data, status } = await axios.delete(
+        `/api/ritz_webStoryTopics/delete-webStory-topic/${id}`
+      );
       setAllWebStories((prev) => prev.filter((topic) => topic._doc._id !== id));
-      toast.success("Topic deleted successfully");
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      toast.error("Failed to delete topic");
-      console.log("Error deleting topic:", error);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
   const getAllWebStoryTopic = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.get(
+      const { data, status } = await axios.get(
         "/api/rizt_webStories/get-all-webStories"
       );
       console.log("Fetched web stories:", data?.webStories);
       setAllWebStories(Array.isArray(data?.webStories) ? data.webStories : []);
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      console.error("Error fetching web story topics:", error);
-      toast.error("Failed to load topics");
-      setAllWebStories([]);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     } finally {
       setLoading(false);
     }
@@ -117,6 +157,13 @@ const Page = () => {
 
   return (
     <section className={styles.container}>
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <div className={styles.header}>
         <h1 className={styles.heading}>Manage Web Story Topics</h1>
         <button

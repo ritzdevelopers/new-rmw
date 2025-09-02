@@ -204,7 +204,51 @@ const Header = () => {
     }
   }, [imgT.current?.src]); // safe access here too
 
-
+  // Create Unique User ID For Analytics---
+  // function generateRandomString(length = 12) {
+  //   const chars =
+  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
+  //   let result = "";
+  //   for (let i = 0; i < length; i++) {
+  //     const randomIndex = Math.floor(Math.random() * chars.length);
+  //     result += chars[randomIndex];
+  //   }
+  //   return result;
+  // }
+  // Analytics Main Logic ---
+  // interface UNIQUEUSER {
+  //   user_id: string;
+  //   saved_date: string;
+  // }
+  
+  // function analyticsIdController() {
+  //   let createUser: UNIQUEUSER = { user_id: "", saved_date: "" };
+  //   const date = new Date();
+  //   const getUser = localStorage.getItem("RMW_AN_USER");
+  //   if (!getUser) {
+  //     const id = generateRandomString();
+  //     const visitDate = date.toLocaleDateString("en-IN");
+  //     createUser.user_id = id;
+  //     createUser.saved_date = visitDate;
+  //     localStorage.setItem("RMW_AN_USER", JSON.stringify(createUser));
+  //   } else {
+  //     const extractOBJ = JSON.parse(getUser);
+  //     const currentDate = date.getTime();
+  //     const lastSavedDate = new Date(extractOBJ.saved_date);
+  //     const diff = currentDate - lastSavedDate.getTime();
+  //     const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  //     if (diffDays <= 30) {
+  //       return;
+  //     } else {
+  //       localStorage.removeItem("RMW_AN_USER");
+  //       const id = generateRandomString();
+  //       const visitDate = date.toLocaleDateString("en-IN");
+  //       createUser.user_id = id;
+  //       createUser.saved_date = visitDate;
+  //       localStorage.setItem("RMW_AN_USER", JSON.stringify(createUser));
+  //     }
+  //   }
+  // }
 
   return (
     <header>
@@ -245,7 +289,7 @@ const Header = () => {
                     src="/logo-brown.png"
                     alt=""
                     className={styles.lgImg}
-                   style={{ height: "70px", zIndex: 50, opacity: 1 }}
+                    style={{ height: "70px", zIndex: 50, opacity: 1 }}
                     ref={imgT}
                     // onMouseEnter={handleLogoChange}
                     // onMouseLeave={handleLogoChange}

@@ -8,6 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import Editor from "@/components/Editor/Editor";
 import axios from "axios";
 import { X } from "lucide-react"; // lucide-react icon
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 const Page = () => {
   const router = useRouter();
   const params = useParams();
@@ -35,6 +36,9 @@ const Page = () => {
   const [localBanner, setLocalBanner] = useState<string>("");
   const [localCategory, setLocalCategory] = useState<string>("All Category");
   const [pageNum, setPageNum] = useState(count);
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
 
   // const [blogBody, setBlogBody] = useState<any[]>([]);
 
@@ -189,7 +193,7 @@ const Page = () => {
         }
       });
 
-      const blogRes = await axios.post(
+      const { data, status } = await axios.post(
         "/api/ritz_blogs/add-new-blog",
         formData,
         {
@@ -198,7 +202,7 @@ const Page = () => {
           },
         }
       );
-      if (blogRes.status === 201) {
+      if (status === 201) {
         localStorage.removeItem("add-blog-step-1");
         for (let i = 1; i <= count; i++) {
           localStorage.removeItem(`add-blog-step-2-page-${i}`);
@@ -206,10 +210,22 @@ const Page = () => {
         alert("Blog Has Been Posted Successfully.");
         router.push("/admin/add-blog");
       }
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
       // console.log("Uploaded Blog:", blogRes.data);
     } catch (error) {
-      alert("Internal Server Errors.");
-      console.error("Error in handleUploadBlog:", error);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -256,21 +272,30 @@ const Page = () => {
       for (let i = 0; i < imgToSend.length; i++) {
         eImg.append(`eImage-${i}`, imgToSend[i]);
       }
-      const res = await axios.post("/api/eImgs", eImg);
-      if (res.status === 201) {
+      const { data, status } = await axios.post("/api/eImgs", eImg);
+      if (status === 201) {
         setImgToShow([]);
         setImgToSend([]);
-        alert("Url Generated Successfully!");
-        setLinkToShow(res.data.files);
+        setLinkToShow(data.files);
         setEimgLoder(false);
       } else {
         setEimgLoder(false);
-        alert("Some Errors In Uploading Images!");
       }
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      setEimgLoder(false);
-      console.log("Internal Server Errors!", error);
-      alert("Internal Server Errors In Uploding IMG!");
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -282,7 +307,18 @@ const Page = () => {
           setLinkToShow(data.data.allImages);
         }
       } catch (error) {
-        console.log(error);
+        if (typeof error === "object" && error !== null && "message" in error) {
+          setPopupData({
+            message: (error as { message: string }).message,
+          status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+          });
+        } else {
+          setPopupData({ message: "An unknown error occurred.", status: 500 });
+        }
+        setShowPopup(true);
       }
     };
     fetchSavedImage();
@@ -290,17 +326,37 @@ const Page = () => {
 
   const handleDeleteSavedImg = async (id: string) => {
     try {
-      const res = await axios.delete(`/api/eImgs/${id}`);
-      if (res.status === 200) {
+      const { data, status } = await axios.delete(`/api/eImgs/${id}`);
+      if (status === 200) {
         setLinkToShow((pr) => pr.filter((img) => img._id !== id));
       }
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      console.log(error);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
   return (
     <div className="bg-[#EEEEEE] min-h-screen p-4 md:p-8 flex flex-col gap-6 sm:gap-8 md:gap-12">
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <h1 className="text-[#ACACAC] text-2xl sm:text-3xl md:text-4xl font-light uppercase flex items-center gap-2">
           <Monitor className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />

@@ -3,14 +3,17 @@ import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Editor from "@/components/Editor/Editor";
 import axios from "axios";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 // allTopics
 interface ALLTOPICS {
-  topicTitle: "This is demo testing story topic.";
-  _id: "68884fcf53150586719733ab";
+  topicTitle: string;
+  _id: string;
 }
 function Page() {
   const [allTopics, setAllTopics] = useState<ALLTOPICS[]>([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -62,12 +65,11 @@ function Page() {
       formData.append("img", imgFile);
     }
     try {
-      const { status } = await axios.post(
+      const { status, data } = await axios.post(
         "/api/rizt_webStories/addWebStory",
         formData
       );
       if (status === 201) {
-        alert("Story uploded successfully!.");
         setForm({
           title: "",
           description: "",
@@ -85,21 +87,45 @@ function Page() {
         });
         setImgPreview(null);
       }
-    } catch (err) {
-      console.log("Error submitting form:", err);
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
+    } catch (error) {
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
   const getAllWebStoryTopics = async () => {
     try {
-      const { data } = await axios.get(
+      const { data, status } = await axios.get(
         "/api/ritz_webStoryTopics/get-all-topics"
       );
       setAllTopics(data?.allTopics);
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      console.log(
-        "There are some errors in your get all web story topics controller plz fix the bug first ", error
-      );
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -108,6 +134,13 @@ function Page() {
   }, []);
   return (
     <section className={styles.pageContainer}>
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <h1 className={styles.pageTitle}>Create Web Story</h1>
 
       <div className={styles.form}>
@@ -246,7 +279,11 @@ function Page() {
           <select name="topicID" id="topicID" onChange={handleChange}>
             {allTopics ? (
               allTopics.map((topic) => {
-                return <option value={topic._id} key={topic._id}>{topic.topicTitle}</option>;
+                return (
+                  <option value={topic._id} key={topic._id}>
+                    {topic.topicTitle}
+                  </option>
+                );
               })
             ) : (
               <p>No Topics Available Right Now!</p>

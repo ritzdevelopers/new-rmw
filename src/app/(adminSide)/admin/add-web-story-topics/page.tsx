@@ -3,11 +3,14 @@
 import React, { useState } from "react";
 import styles from "./page.module.css";
 import Editor from "@/components/Editor/Editor";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 const Page = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
   const [description, setDescription] = useState<string>("");
   const [formValues, setFormValues] = useState({
     topicTitle: "",
@@ -48,14 +51,13 @@ const Page = () => {
       formData.append("topicImg", selectedImage);
     }
     try {
-      const { status } = await axios.post(
+      const { status, data } = await axios.post(
         "/api/ritz_webStoryTopics/add-story-topic",
         formData
       );
-      console.log(status);
-
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
       if (status === 201) {
-        alert("Web story posted successfully!");
         setFormValues({
           topicTitle: "",
           metaKeyWords: "",
@@ -66,15 +68,30 @@ const Page = () => {
         setImagePreview(null);
       }
     } catch (error) {
-      const err = error as AxiosError;
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
 
-
-      console.log("There are some errors in add web story topic", err);
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
   return (
     <section className={styles.container}>
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <form className={styles.form} onSubmit={handleSubmit}>
         <h1 className={styles.heading}>Create New Story Topic</h1>
 

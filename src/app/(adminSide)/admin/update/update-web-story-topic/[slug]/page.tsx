@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import Editor from "@/components/Editor/Editor";
 import { useParams } from "next/navigation";
 import axios from "axios";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 interface TOPICINTERFACE {
   _id: string;
@@ -25,23 +26,37 @@ function Page() {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
   const params = useParams();
   const slug = params.slug as string;
 
   const getTopicInfo = async () => {
     try {
-      const { data } = await axios.get(
+      const { data, status } = await axios.get(
         `/api/ritz_webStoryTopics/get-single-topic/${slug}`
       );
       setTopic(data.singleStoryTopic);
 
-      // Show image preview
       const imgPath = `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images/${
         data.singleStoryTopic.topicImg.split("images")[1]
       }`;
       setImagePreview(imgPath);
+      setPopupData({ message: data.message, status });
+       setShowPopup(true);
     } catch (error) {
-      console.error("Error fetching topic:", error);
+        if (typeof error === "object" && error !== null && "message" in error) {
+          setPopupData({
+            message: (error as { message: string }).message,
+          status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+          });
+        } else {
+          setPopupData({ message: "An unknown error occurred.", status: 500 });
+        }
+        setShowPopup(true); 
     }
   };
 
@@ -79,7 +94,7 @@ function Page() {
     }
 
     try {
-      const { status } = await axios.patch(
+      const { status, data } = await axios.patch(
         `/api/ritz_webStoryTopics/update-story-topic/${topic._id}`,
         formData,
         {
@@ -88,17 +103,35 @@ function Page() {
           },
         }
       );
-      if (status === 200) {
-        alert("Topic updated successfully!");
-      }
+      setPopupData({ message: data.message, status });
+       setShowPopup(true);
     } catch (error) {
-      console.error("Error updating topic:", error);
-      alert("Update failed!");
+        if (typeof error === "object" && error !== null && "message" in error) {
+          setPopupData({
+            message: (error as { message: string }).message,
+          status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+          });
+        } else {
+          setPopupData({ message: "An unknown error occurred.", status: 500 });
+        }
+        setShowPopup(true); 
     }
   };
 
+
+
   return (
     <section className={styles.container}>
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <h1 className={styles.heading}>Update Topic</h1>
 
       {topic && (

@@ -1,6 +1,6 @@
 // This is Tracking Script Controller ::
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
-import TrackModel from "@/models/TrackModel";
+import TrackModel from "@/models/Analytics.Schema";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
