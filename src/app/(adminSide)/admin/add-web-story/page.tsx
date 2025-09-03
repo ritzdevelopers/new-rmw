@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import Editor from "@/components/Editor/Editor";
 import axios from "axios";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
+import RMWLoader from "@/components/rmw_loader/RMWLoader";
 
 // allTopics
 interface ALLTOPICS {
@@ -14,6 +15,7 @@ function Page() {
   const [allTopics, setAllTopics] = useState<ALLTOPICS[]>([]);
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState({ message: "", status: 0 });
+  const [rmwLoader, setRMWLoader] = useState(false);
   const [form, setForm] = useState({
     title: "",
     description: "",
@@ -55,7 +57,7 @@ function Page() {
     formData.append("metaDescription", form.metaDescription);
     formData.append("metaKeyWords", form.metaKeywords);
     formData.append("topicID", form.topicID);
-
+    setRMWLoader(true);
     // formData.append("buttonCTA[btnTxt]", form.btnTxt);
     // formData.append("buttonCTA[btnLink]", form.btnLink);
     // formData.append("buttonCTA[btnColor]", form.btnColor);
@@ -89,14 +91,16 @@ function Page() {
       }
       setPopupData({ message: data.message, status });
       setShowPopup(true);
+      setRMWLoader(false);
     } catch (error) {
+      setRMWLoader(false);
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -117,10 +121,10 @@ function Page() {
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -300,7 +304,7 @@ function Page() {
         </div>
 
         <button className={styles.submitButton} onClick={handleSubmit}>
-          Submit Web Story
+          {rmwLoader ? <RMWLoader /> : "Submit"}
         </button>
       </div>
     </section>

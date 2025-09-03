@@ -9,6 +9,7 @@ import Editor from "@/components/Editor/Editor";
 import axios from "axios";
 import { X } from "lucide-react"; // lucide-react icon
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
+import RMWLoader from "@/components/rmw_loader/RMWLoader";
 const Page = () => {
   const router = useRouter();
   const params = useParams();
@@ -39,7 +40,7 @@ const Page = () => {
 
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState({ message: "", status: 0 });
-
+  const [rmwLoader, setRMWLoader] = useState(false);
   // const [blogBody, setBlogBody] = useState<any[]>([]);
 
   useEffect(() => {
@@ -141,7 +142,7 @@ const Page = () => {
       let metaKeywords = "";
       let blogCategory = "All Category";
       let mtDesc = "";
-
+      setRMWLoader(true);
       if (savedData1) {
         const parsed = JSON.parse(savedData1);
         blogTitle = parsed.blogTitle || "";
@@ -212,15 +213,17 @@ const Page = () => {
       }
       setPopupData({ message: data.message, status });
       setShowPopup(true);
+      setRMWLoader(false);
       // console.log("Uploaded Blog:", blogRes.data);
     } catch (error) {
+      setRMWLoader(false);
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -269,6 +272,7 @@ const Page = () => {
     const eImg = new FormData();
     try {
       setEimgLoder(true);
+
       for (let i = 0; i < imgToSend.length; i++) {
         eImg.append(`eImage-${i}`, imgToSend[i]);
       }
@@ -276,7 +280,8 @@ const Page = () => {
       if (status === 201) {
         setImgToShow([]);
         setImgToSend([]);
-        setLinkToShow(data.files);
+        setLinkToShow((pr) => [...pr, data.files]);
+        setEimgLoder(false);
         setEimgLoder(false);
       } else {
         setEimgLoder(false);
@@ -284,13 +289,14 @@ const Page = () => {
       setPopupData({ message: data.message, status });
       setShowPopup(true);
     } catch (error) {
+      setEimgLoder(false);
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -310,10 +316,10 @@ const Page = () => {
         if (typeof error === "object" && error !== null && "message" in error) {
           setPopupData({
             message: (error as { message: string }).message,
-          status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+            status:
+              error instanceof Error && "status" in error
+                ? (error as { status?: number }).status ?? 500
+                : 500,
           });
         } else {
           setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -336,10 +342,10 @@ const Page = () => {
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -694,7 +700,7 @@ const Page = () => {
           onClick={handleUploadBlog}
           className="bg-green-700 cursor-pointer hover:bg-green-800 text-white px-5 py-2 rounded-md"
         >
-          Submit
+          {rmwLoader ? <RMWLoader /> : "Submit"}
         </button>
       </div>
 

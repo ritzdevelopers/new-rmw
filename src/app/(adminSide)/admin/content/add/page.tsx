@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import axios from "axios";
+import RMWLoader from "@/components/rmw_loader/RMWLoader";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 interface ParentService {
   id: string;
@@ -11,7 +13,9 @@ interface ParentService {
 
 const Page = () => {
   const fileRef = useRef<HTMLInputElement>(null);
-
+  const [rmwLoader, setRMWLoader] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
   const [parentServices, setParentServices] = useState<ParentService[]>([]);
   const [formData, setFormData] = useState({
     title: "",
@@ -23,7 +27,9 @@ const Page = () => {
   const [previewURL, setPreviewURL] = useState<string | null>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -44,31 +50,56 @@ const Page = () => {
       alert("Please fill all required fields.");
       return;
     }
-
-    const data = new FormData();
-    data.append("title", formData.title);
-    data.append("description", formData.description);
-    data.append("service2_id", formData.service2_id);
-    data.append("image_url", formData.image);
+    setRMWLoader(true);
+    const fdata = new FormData();
+    fdata.append("title", formData.title);
+    fdata.append("description", formData.description);
+    fdata.append("service2_id", formData.service2_id);
+    fdata.append("image_url", formData.image);
 
     try {
-      const {status} = await axios.post("/api/your-endpoint", data);
-      console.log(status);
-      alert("Card successfully created!");
+      const { status, data } = await axios.post("/api/your-endpoint", fdata);
+      setRMWLoader(false);
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      console.error("Failed to submit:", error);
-      alert("Error occurred while submitting.");
+      setRMWLoader(false);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
   const getAllServiceSecondIDs = async () => {
     try {
-      const { data } = await axios.get("/api/sql-single-page-card/get-service-scnd-ids");
+      const { data, status } = await axios.get(
+        "/api/sql-single-page-card/get-service-scnd-ids"
+      );
       setParentServices(data.data[0]);
-      // console.log(data.data);
-      
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      console.error("Error fetching service IDs:", error);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -82,8 +113,22 @@ const Page = () => {
 
   return (
     <div className={styles.cardContainer}>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className={styles.cardForm}>
-        <div className={styles.imageSection} onClick={() => fileRef.current?.click()}>
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className={styles.cardForm}
+      >
+        <div
+          className={styles.imageSection}
+          onClick={() => fileRef.current?.click()}
+        >
           {previewURL ? (
             <Image
               src={previewURL}
@@ -142,7 +187,7 @@ const Page = () => {
         )}
 
         <button type="submit" className={styles.submitBtn}>
-          Submit
+          {rmwLoader ? <RMWLoader /> : "Submit"}
         </button>
       </form>
     </div>

@@ -6,6 +6,7 @@ import Editor from "@/components/Editor/Editor";
 import { useParams } from "next/navigation";
 import axios from "axios";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
+import RMWLoader from "@/components/rmw_loader/RMWLoader";
 
 interface TOPICINTERFACE {
   _id: string;
@@ -25,9 +26,9 @@ function Page() {
   const [topic, setTopic] = useState<TOPICINTERFACE | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
-
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState({ message: "", status: 0 });
+  const [rmwLoader, setRMWLoader] = useState(false);
   const params = useParams();
   const slug = params.slug as string;
 
@@ -43,20 +44,20 @@ function Page() {
       }`;
       setImagePreview(imgPath);
       setPopupData({ message: data.message, status });
-       setShowPopup(true);
+      setShowPopup(true);
     } catch (error) {
-        if (typeof error === "object" && error !== null && "message" in error) {
-          setPopupData({
-            message: (error as { message: string }).message,
-          status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
-          });
-        } else {
-          setPopupData({ message: "An unknown error occurred.", status: 500 });
-        }
-        setShowPopup(true); 
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -81,7 +82,7 @@ function Page() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!topic) return;
-
+    setRMWLoader(true);
     const formData = new FormData();
     formData.append("topicTitle", topic.topicTitle);
     formData.append("description", topic.description);
@@ -104,24 +105,24 @@ function Page() {
         }
       );
       setPopupData({ message: data.message, status });
-       setShowPopup(true);
+      setShowPopup(true);
+       setRMWLoader(false);
     } catch (error) {
-        if (typeof error === "object" && error !== null && "message" in error) {
-          setPopupData({
-            message: (error as { message: string }).message,
-          status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
-          });
-        } else {
-          setPopupData({ message: "An unknown error occurred.", status: 500 });
-        }
-        setShowPopup(true); 
+       setRMWLoader(false);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
-
-
 
   return (
     <section className={styles.container}>
@@ -191,7 +192,7 @@ function Page() {
           )}
 
           <button type="submit" className={styles.button}>
-            Update Topic
+            {rmwLoader ? <RMWLoader /> : "Submit"}
           </button>
         </form>
       )}
