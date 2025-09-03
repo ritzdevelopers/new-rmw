@@ -164,12 +164,13 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
           publisher="Your Publisher"
           publisher-logo-src="/logo.png"
           poster-portrait-src="${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images/${pages[0].img.split("images")[1]}"
+          auto-advance-after="5s"
         >
           ${pages
             .map((page, index) => {
               const fullImgPath = `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images/${page.img.split("images")[1]}`;
               return `
-                <amp-story-page id="page-${index}">
+                <amp-story-page id="page-${index}" auto-advance-after="5s">
                   <amp-story-grid-layer template="fill">
                     <amp-img src="${fullImgPath}" width="720" height="1280" layout="responsive" alt="${page.title}"></amp-img>
                     <div class="image-darken"></div>

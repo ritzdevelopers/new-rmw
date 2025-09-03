@@ -159,9 +159,13 @@ const Header = () => {
   // // Fetch User Address :
   // const [usersIP, setUsersIP] = useState<string>();
   // const userIPTracker = async () => {
+  //   console.log("Hello This Side");
+
   //   try {
   //     const { data, status } = await axios.get("/api/user-ip-tracker");
   //     if (status === 200) {
+  //       console.log(data.userAddress);
+
   //       setUserAddress({
   //         userCity: data.userAddress.user_city,
   //         userCountry: data.userAddress.user_country,
@@ -170,13 +174,12 @@ const Header = () => {
   //       });
   //       setUsersIP(data.IP_ADDRESS);
   //     }
-  //     console.log(userAddress, "This is user address!");
   //   } catch (error) {
   //     console.log("Err in fetching user ip : ", error);
   //   }
   // };
   // useEffect(() => {
-  //   userIPTracker;
+  //   userIPTracker();
   // }, []);
 
   // // Count User Time On Every Page
@@ -213,9 +216,9 @@ const Header = () => {
   // const [userId, setUserId] = useState("");
 
   // useEffect(() => {
-  //   const handleUserTrack = async (event: BeforeUnloadEvent) => {
+  //   const handleUserTrack = (event: BeforeUnloadEvent) => {
   //     if (isNewUser) {
-  //       setTrackedUser({
+  //       const payload = {
   //         user: userId,
   //         userVisitTimePerPage: [...userVisitTimePerPage],
   //         trafficSource: document.referrer,
@@ -225,34 +228,43 @@ const Header = () => {
   //           userPincode: "",
   //           userArea: "",
   //         },
+  //       };
+
+  //       const blob = new Blob([JSON.stringify(payload)], {
+  //         type: "application/json",
   //       });
-  //       navigator.sendBeacon(
-  //         "/api/analytics/create-user",
-  //         JSON.stringify(trackedUser)
-  //       );
+  //       navigator.sendBeacon("/api/analytics/create-user", blob);
   //     } else {
+  //       const payload = {
+  //         user: userId,
+  //         userVisitTimePerPage: [...userVisitTimePerPage],
+  //       };
+  //       const blob = new Blob([JSON.stringify(payload)], {
+  //         type: "application/json",
+  //       });
+  //       navigator.sendBeacon("/api/analytics/revisit-user", blob);
   //     }
   //   };
+
   //   window.addEventListener("beforeunload", handleUserTrack);
 
   //   return () => {
   //     window.removeEventListener("beforeunload", handleUserTrack);
   //   };
-  // }, []);
+  // }, [isNewUser, userId, userVisitTimePerPage, userAddress]);
 
   // function analyticsIdController() {
-  //   console.log("function hit");
-
   //   let createUser: UNIQUEUSER = { user_id: "", saved_date: "" };
   //   const date = new Date();
   //   const getUser = localStorage.getItem("RMW_AN_USER");
+
   //   if (!getUser) {
   //     const id = generateRandomString();
-  //     const visitDate = date.toLocaleDateString("en-IN");
+  //     const visitDate = date.toISOString(); // ✅ use ISO
   //     createUser.user_id = id;
   //     createUser.saved_date = visitDate;
   //     localStorage.setItem("RMW_AN_USER", JSON.stringify(createUser));
-  //     // New User Visit API Call Here ::
+
   //     setUserId(id);
   //     setIsNewUser(true);
   //   } else {
@@ -261,26 +273,28 @@ const Header = () => {
   //     const lastSavedDate = new Date(extractOBJ.saved_date);
   //     const diff = currentDate - lastSavedDate.getTime();
   //     const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
+
   //     if (diffDays <= 30) {
-  //       // User Revisit API Call Here ::
   //       setUserId(extractOBJ.user_id);
   //       setIsNewUser(false);
   //     } else {
-  //       // New User Visit API Call Here ::
   //       localStorage.removeItem("RMW_AN_USER");
   //       const id = generateRandomString();
-  //       const visitDate = date.toLocaleDateString("en-IN");
+  //       const visitDate = date.toISOString(); // ✅ use ISO
   //       createUser.user_id = id;
   //       createUser.saved_date = visitDate;
   //       localStorage.setItem("RMW_AN_USER", JSON.stringify(createUser));
+
   //       setUserId(id);
   //       setIsNewUser(true);
   //     }
   //   }
   // }
+
   // useEffect(() => {
   //   analyticsIdController();
   // }, []);
+
   return (
     <header>
       <div
