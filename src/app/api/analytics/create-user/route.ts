@@ -1,22 +1,57 @@
-import { NextRequest, NextResponse } from "next/server";
+import UserAnalyticModel from "@/models/User.Analytics.Schema";
+import { NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+interface OBJ {
+  timeCount: number;
+  pageLink: string;
+}
+
+export async function POST(req: Request) {
   try {
-    const data = await req.json();
-    console.log("This is user quarry ", data);
+    console.log("API HIT");
 
-    return NextResponse.json(
-      { message: "User Created Successfully!", success: true },
-      { status: 201 }
-    );
+    const text = await req.text(); // read raw
+    const data = text ? JSON.parse(text) : {};
+    if (!data) {
+      return NextResponse.json(
+        { message: "Data not found!", succeess: false },
+        { status: 500 }
+      );
+    }
+    const userAgent = req.headers.get("user-agent") || "";
+
+    let userDevice = "desktop";
+
+    if (
+      /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
+    ) {
+      userDevice = "mobile";
+    }
+
+    const { user, userVisitTimePerPage, trafficSource, userAddress } = data;
+    let userTotalVisitTime = 0;
+    let isUserBounce = true;
+    userVisitTimePerPage.forEach((ele: OBJ) => {
+      userTotalVisitTime += ele.timeCount;
+    });
+    if (userTotalVisitTime >= 10) {
+      isUserBounce = false;
+    }
+    await UserAnalyticModel.create({
+      user,
+      userAddress,
+      isUserBounce,
+      userTotalVisitTime,
+      userRevisitCount: 1,
+      userDevice,
+      trafficSource,
+      userVisitTimePerPage,
+    });
+    return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
-    console.log(
-      "Internal Server Errors In Create New User For Analytics",
-      error
-    );
-    return NextResponse.json(
-      { message: "Internal Server Errors!", error },
-      { status: 500 }
-    );
+    console.error("Error in create-user API:", error);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+    });
   }
 }
