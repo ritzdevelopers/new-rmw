@@ -7,6 +7,7 @@ import Editor from "@/components/Editor/Editor";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
+import RMWLoader from "@/components/rmw_loader/RMWLoader";
 
 interface WebStory {
   title: string;
@@ -37,9 +38,10 @@ const Page = () => {
   const params = useParams();
   const [imgFile, setImageFile] = useState<File | null>(null);
   const [topics, setTopics] = useState<TOPICS[]>([]);
+  const [rmwLoader, setRMWLoader] = useState(false);
   const { slug } = params;
-   const [showPopup, setShowPopup] = useState(false);
-    const [popupData, setPopupData] = useState({ message: "", status: 0 });
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
 
   const getSingleStoryPage = async () => {
     try {
@@ -50,16 +52,16 @@ const Page = () => {
         setLoading(false);
         setStory(data.singleStoryPage);
       }
-       setPopupData({ message: data.message, status });
+      setPopupData({ message: data.message, status });
       setShowPopup(true);
-    }catch (error) {
+    } catch (error) {
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -76,16 +78,16 @@ const Page = () => {
       if (status === 200) {
         setTopics(data.allTopics);
       }
-       setPopupData({ message: data.message, status });
+      setPopupData({ message: data.message, status });
       setShowPopup(true);
     } catch (error) {
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -108,7 +110,7 @@ const Page = () => {
 
     try {
       const formData = new FormData();
-
+      setRMWLoader(true);
       // Append primitive fields
       formData.append("title", story.title);
       formData.append("description", story.description);
@@ -133,19 +135,21 @@ const Page = () => {
         `/api/rizt_webStories/update-webStoryPage/${slug}`,
         formData
       );
-       setPopupData({ message: data.message, status });
+      setPopupData({ message: data.message, status });
       setShowPopup(true);
+       setRMWLoader(false);
       if (status === 200) {
         window.location.reload();
       }
     } catch (error) {
+       setRMWLoader(false);
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -178,7 +182,7 @@ const Page = () => {
 
   return (
     <section className={styles.container}>
-        {showPopup && (
+      {showPopup && (
         <RMWPopup
           message={popupData.message}
           status={popupData.status}
@@ -186,7 +190,6 @@ const Page = () => {
         />
       )}
       <h1 className={styles.heading}>Update Web Story</h1>
-      
 
       <form
         onSubmit={handleUpdate}
@@ -260,10 +263,18 @@ const Page = () => {
             topics
               .filter((topic) => topic._id === story.topic)
               .map((fTopic) => {
-                return <option value={fTopic._id} key={fTopic._id}>{fTopic.topicTitle}</option>;
+                return (
+                  <option value={fTopic._id} key={fTopic._id}>
+                    {fTopic.topicTitle}
+                  </option>
+                );
               })}
           {topics.map((topic) => {
-            return <option value={topic._id} key={topic._id}>{topic.topicTitle}</option>;
+            return (
+              <option value={topic._id} key={topic._id}>
+                {topic.topicTitle}
+              </option>
+            );
           })}
         </select>
 
@@ -346,7 +357,7 @@ const Page = () => {
         />
 
         <Button className={styles.button} type="submit">
-          Update Web Story
+          {rmwLoader ? <RMWLoader /> : "Submit"}
         </Button>
       </form>
     </section>

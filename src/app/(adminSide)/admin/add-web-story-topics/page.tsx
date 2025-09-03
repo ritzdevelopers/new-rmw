@@ -5,9 +5,11 @@ import styles from "./page.module.css";
 import Editor from "@/components/Editor/Editor";
 import axios from "axios";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
+import RMWLoader from "@/components/rmw_loader/RMWLoader";
 
 const Page = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [rmwLoader, setRMWLoader] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState({ message: "", status: 0 });
@@ -42,6 +44,7 @@ const Page = () => {
     e.preventDefault();
 
     const formData = new FormData();
+    setRMWLoader(true);
     formData.append("topicTitle", formValues.topicTitle);
     formData.append("description", description);
     formData.append("metaKeyWords", formValues.metaKeyWords);
@@ -67,14 +70,16 @@ const Page = () => {
         setDescription("");
         setImagePreview(null);
       }
+      setRMWLoader(false);
     } catch (error) {
+      setRMWLoader(false);
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -156,7 +161,7 @@ const Page = () => {
         )}
 
         <button type="submit" className={styles.button}>
-          Save Topic
+          {rmwLoader ? <RMWLoader /> : "Submit"}
         </button>
       </form>
     </section>

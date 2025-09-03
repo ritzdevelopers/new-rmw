@@ -1,7 +1,10 @@
 "use client";
+import RMWLoader from "@/components/rmw_loader/RMWLoader";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 import axios from "axios";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 interface PAGECARD {
@@ -16,8 +19,11 @@ function Page() {
   const [imageURL, setImgURl] = useState<string | null>(null);
   const [pageCard, setPageCard] = useState<PAGECARD>();
   const [previewImg, setPreviewImg] = useState<File>();
+  const [rmwLoader, setRMWLoader] = useState(false);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
 
   const params = useParams();
   const id = params.id;
@@ -28,12 +34,27 @@ function Page() {
 
   const fetchSinglePageCard = async () => {
     try {
-      const { data } = await axios.get(`/api/sql-single-page-card/${id}`);
-      console.log(data.card[0][0]);
+      const { data, status } = await axios.get(
+        `/api/sql-single-page-card/${id}`
+      );
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
       setPageCard(data.card[0][0]);
       setImgURl(data.card[0][0].image_url);
     } catch (error) {
-      console.log("Error in fetchSinglePageCard:", error);
+      setRMWLoader(false);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -62,6 +83,7 @@ function Page() {
   const updatePageCard = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
+      setRMWLoader(true);
       const formData = new FormData();
       if (title) {
         formData.append("title", title);
@@ -72,21 +94,42 @@ function Page() {
       if (previewImg) {
         formData.append("image_url", previewImg);
       }
-      const { data } = await axios.patch(
+      const { data, status } = await axios.patch(
         `/api/sql-single-page-card/update/${id}`,
         formData
       );
-      console.log(data);
+      setRMWLoader(false);
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      console.log(
-        "There are some errors in updatePageCard plz fix the bug first ",
-        error
-      );
+      setRMWLoader(false);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
-
+  const router = useRouter();
+  const handleBack = () => {
+    router.back();
+  };
   return (
     <section className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 p-4 md:p-10 flex items-center justify-center">
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       {!pageCard ? (
         <p>Loading</p>
       ) : (
@@ -141,9 +184,18 @@ function Page() {
               <input type="file" ref={fileInput} className="hidden" />
               <button
                 type="submit"
-                className="bg-indigo-600 hover:bg-indigo-700 transition-all duration-300 text-white py-2 rounded-md font-medium shadow-lg"
+                className="bg-indigo-600 cursor-pointer hover:bg-indigo-700 transition-all duration-300 text-white py-2 rounded-md font-medium shadow-lg"
               >
-                Update Card
+                {rmwLoader ? <RMWLoader /> : "Submit"}
+              </button>
+
+              <button
+                onClick={handleBack}
+                className="flex cursor-pointer items-center gap-2 px-4 py-2 rounded-xl bg-gray-800 text-white 
+                 hover:bg-gray-700 active:scale-95 transition-all shadow-md"
+              >
+                <ArrowLeft size={18} />
+                <span className="font-medium">Back</span>
               </button>
             </form>
           </div>

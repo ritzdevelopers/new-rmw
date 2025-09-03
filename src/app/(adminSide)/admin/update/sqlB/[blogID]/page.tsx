@@ -6,6 +6,8 @@ import axios from "axios";
 import Editor from "@/components/Editor/Editor";
 import styles from "./page.module.css";
 import Image from "next/image";
+import RMWLoader from "@/components/rmw_loader/RMWLoader";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 interface BlogData {
   title: string;
@@ -25,27 +27,42 @@ interface CategoryData {
 function Page() {
   const params = useParams();
   const id = params.blogID as string;
-
+  const [rmwLoader, setRMWLoader] = useState(false);
   const [blog, setBlog] = useState<BlogData | null>(null);
   const [editorValue, setEditorValue] = useState<string>("");
   const [newImage, setNewImage] = useState<File | null>(null);
   const [ritzCats, setRitzCats] = useState<CategoryData[]>([]);
   const [imagePreview, setImagePreview] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [showPopup, setShowPopup] = useState(false);
+    const [popupData, setPopupData] = useState({ message: "", status: 0 });
 
   useEffect(() => {
     const fetchSingleBlog = async () => {
       try {
-        const { data } = await axios.get(`/api/blog/${id}`);
+        const { data, status } = await axios.get(`/api/blog/${id}`);
         const allCats = await axios.get("/api/blog/categories");
 
         setRitzCats(allCats.data);
         setBlog(data.blog);
         setEditorValue(data.blog.description);
         setImagePreview(data.blog.blog_image); // Existing image
-      } catch (error) {
-        console.error("Error fetching blog:", error);
+        setPopupData({ message: data.message, status });
+      }  catch (error) {
+      setRMWLoader(false);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
       }
+      setShowPopup(true);
+    }
     };
 
     if (id) fetchSingleBlog();
@@ -61,7 +78,7 @@ function Page() {
       setImagePreview(URL.createObjectURL(file));
     }
   };
-
+  
   const handleSubmit = async () => {
     if (!blog) return;
 
@@ -73,17 +90,29 @@ function Page() {
     formData.append("category_id", String(blog.category_id));
     formData.append("description", editorValue);
     formData.append("slug", blog.slug);
-
+    setRMWLoader(true);
     if (newImage) {
       formData.append("blog_image", newImage);
     }
 
     try {
-      await axios.put(`/api/blog/${id}`, formData);
-      alert("Blog updated successfully!");
-    } catch (err) {
-      console.error("Update failed", err);
-      alert("Failed to update blog.");
+    const {status, data} =  await axios.put(`/api/blog/${id}`, formData);
+    setPopupData({ message: data.message, status });
+      setRMWLoader(false);
+    }  catch (error) {
+      setRMWLoader(false);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
@@ -91,6 +120,13 @@ function Page() {
 
   return (
     <section className={styles.container}>
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <h1 className={styles.heading}>Edit Blog</h1>
       <div className={styles.form}>
         {/* Title */} <label>Title</label>
@@ -186,7 +222,7 @@ function Page() {
         {/* Description */} <label>Description</label>
         <Editor value={editorValue} onChange={setEditorValue} />
         <button onClick={handleSubmit} className={styles.submitBtn}>
-          Update Blog
+          {rmwLoader ? <RMWLoader /> : "Submit"}
         </button>
       </div>
     </section>

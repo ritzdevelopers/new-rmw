@@ -121,78 +121,6 @@ const Header = () => {
   if (blog_slugs.includes(pathSlug.slice(1))) {
     isBlog = true;
   }
-
-  // Fetch Script Will Work From Here ....
-
-  // interface TRACKED_DATA {
-  //   name?: string;
-  //   email?: string;
-  //   phoneNumber?: string;
-  //   pinCode?: string;
-  //   city?: string;
-  //   deviceName?: string;
-  //   gender?: string;
-  //   trafficSource?: string;
-  //   perPageTrack?: string;
-  //   revisit?: string;
-  //   deviceIPAddress?: string;
-  // }
-
-  // const [trackedUser, setTrackedUser] = useState<TRACKED_DATA>({});
-  // const [spendingTime, setSpendingTime] = useState<number>(0);
-  // const [usersIP, setUsersIP] = useState<string>();
-  // Fetch User's IP :
-  // console.log(usersIP, spendingTime);
-
-  // const userIPTracker = async () => {
-  //   try {
-  //     const { data, status } = await axios.get("/api/user-ip-tracker");
-  //     if (status === 200) {
-  //       sessionStorage.setItem(
-  //         "users-cr-ip",
-  //         encodeURIComponent(data.IP_ADDRESS)
-  //       );
-  //     }
-  //   } catch (error) {
-  //     console.log("Err in fetching user ip : ", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const savedUSerIp = sessionStorage.getItem("users-cr-ip");
-  //   if (!savedUSerIp) {
-  //     userIPTracker();
-  //   } else {
-  //     setUsersIP(decodeURIComponent(savedUSerIp));
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const countingTime = setInterval(() => {
-  //     setSpendingTime((prev) => prev + 1);
-  //   }, 1000);
-
-  //   return () => {
-  //     clearInterval(countingTime);
-  //     setSpendingTime(0);
-  //   };
-  // }, []);
-
-  // async function testAPI() {
-  //   try {
-  //     const ip = "106.219.226.146";
-  //     const { data } = await axios.get(
-  //       `https://ipinfo.io/${ip}?token=73ffa66adabfe8`
-  //     );
-  //     console.log('this data i am getting from ipinfo : ', data);
-  //   } catch (error) {
-  //     console.log("err in testapi: ", error);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   testAPI();
-  // }, []);
   const imgT = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
@@ -204,7 +132,67 @@ const Header = () => {
     }
   }, [imgT.current?.src]); // safe access here too
 
-  // Create Unique User ID For Analytics---
+  // <------------------------------------------------------------------------------------------> console.log("User came from:",document.referrer);
+
+  // interface TRACKEDUSER {
+  //   user: string;
+  //   userVisitTimePerPage: USERNAVIGATION[];
+  //   trafficSource: string;
+  //   userAddress: USERADDRESS;
+  // }
+  // interface USERADDRESS {
+  //   userCity: string;
+  //   userCountry: string;
+  //   userPincode: string;
+  //   userArea: string;
+  // }
+  // interface USERNAVIGATION {
+  //   pageLink: string;
+  //   timeCount: number;
+  // }
+  // const [trackedUser, setTrackedUser] = useState<TRACKEDUSER>();
+  // const [userAddress, setUserAddress] = useState<USERADDRESS>();
+  // const [userVisitTimePerPage, setUserVisitPerPage] = useState<
+  //   USERNAVIGATION[]
+  // >([]);
+
+  // // Fetch User Address :
+  // const [usersIP, setUsersIP] = useState<string>();
+  // const userIPTracker = async () => {
+  //   try {
+  //     const { data, status } = await axios.get("/api/user-ip-tracker");
+  //     if (status === 200) {
+  //       setUserAddress({
+  //         userCity: data.userAddress.user_city,
+  //         userCountry: data.userAddress.user_country,
+  //         userArea: data.userAddress.user_place,
+  //         userPincode: data.userAddress.user_pinCode,
+  //       });
+  //       setUsersIP(data.IP_ADDRESS);
+  //     }
+  //     console.log(userAddress, "This is user address!");
+  //   } catch (error) {
+  //     console.log("Err in fetching user ip : ", error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   userIPTracker;
+  // }, []);
+
+  // // Count User Time On Every Page
+  // const currPath = usePathname(); // current route
+  // const startTimeRef = useRef<number>(Date.now());
+  // useEffect(() => {
+  //   const endTime = Date.now();
+  //   const timeSpent = Math.round((endTime - startTimeRef.current) / 1000);
+  //   setUserVisitPerPage((pr) => [
+  //     ...pr,
+  //     { timeCount: timeSpent, pageLink: window.location.href },
+  //   ]);
+  //   startTimeRef.current = Date.now();
+  // }, [currPath]); // run whenever route changes
+
+  // // Generate User Unique ID :
   // function generateRandomString(length = 12) {
   //   const chars =
   //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
@@ -215,13 +203,46 @@ const Header = () => {
   //   }
   //   return result;
   // }
-  // Analytics Main Logic ---
+  // // Analytics Main Logic ---
   // interface UNIQUEUSER {
   //   user_id: string;
   //   saved_date: string;
   // }
-  
+
+  // const [isNewUser, setIsNewUser] = useState(false);
+  // const [userId, setUserId] = useState("");
+
+  // useEffect(() => {
+  //   const handleUserTrack = async (event: BeforeUnloadEvent) => {
+  //     if (isNewUser) {
+  //       setTrackedUser({
+  //         user: userId,
+  //         userVisitTimePerPage: [...userVisitTimePerPage],
+  //         trafficSource: document.referrer,
+  //         userAddress: userAddress || {
+  //           userCity: "",
+  //           userCountry: "",
+  //           userPincode: "",
+  //           userArea: "",
+  //         },
+  //       });
+  //       navigator.sendBeacon(
+  //         "/api/analytics/create-user",
+  //         JSON.stringify(trackedUser)
+  //       );
+  //     } else {
+  //     }
+  //   };
+  //   window.addEventListener("beforeunload", handleUserTrack);
+
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleUserTrack);
+  //   };
+  // }, []);
+
   // function analyticsIdController() {
+  //   console.log("function hit");
+
   //   let createUser: UNIQUEUSER = { user_id: "", saved_date: "" };
   //   const date = new Date();
   //   const getUser = localStorage.getItem("RMW_AN_USER");
@@ -231,25 +252,35 @@ const Header = () => {
   //     createUser.user_id = id;
   //     createUser.saved_date = visitDate;
   //     localStorage.setItem("RMW_AN_USER", JSON.stringify(createUser));
+  //     // New User Visit API Call Here ::
+  //     setUserId(id);
+  //     setIsNewUser(true);
   //   } else {
-  //     const extractOBJ = JSON.parse(getUser);
+  //     const extractOBJ: UNIQUEUSER = JSON.parse(getUser);
   //     const currentDate = date.getTime();
   //     const lastSavedDate = new Date(extractOBJ.saved_date);
   //     const diff = currentDate - lastSavedDate.getTime();
   //     const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
   //     if (diffDays <= 30) {
-  //       return;
+  //       // User Revisit API Call Here ::
+  //       setUserId(extractOBJ.user_id);
+  //       setIsNewUser(false);
   //     } else {
+  //       // New User Visit API Call Here ::
   //       localStorage.removeItem("RMW_AN_USER");
   //       const id = generateRandomString();
   //       const visitDate = date.toLocaleDateString("en-IN");
   //       createUser.user_id = id;
   //       createUser.saved_date = visitDate;
   //       localStorage.setItem("RMW_AN_USER", JSON.stringify(createUser));
+  //       setUserId(id);
+  //       setIsNewUser(true);
   //     }
   //   }
   // }
-
+  // useEffect(() => {
+  //   analyticsIdController();
+  // }, []);
   return (
     <header>
       <div
