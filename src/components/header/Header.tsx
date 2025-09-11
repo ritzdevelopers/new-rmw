@@ -509,7 +509,7 @@ const Header = () => {
             <div className={styles.mobileSidebarLogo}>
               <div className={styles.logoImageWrapper}>
                 <Image
-                  src="/logo-brown.png"
+                  src="/rmw-final-logo.png"
                   alt="RMW Logo"
                   fill
                   className={styles.logoImage}
@@ -674,7 +674,7 @@ const Header = () => {
               <div className={styles.MobileSidebarLogo}>
                 <img
                   // style={{ height: "60px" }}
-                  src="/logo-brown.png"
+                  src="/rmw-final-logo.png"
                   alt="RMW Logo"
                 />
                 <button
