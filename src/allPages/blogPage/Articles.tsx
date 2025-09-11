@@ -22,6 +22,7 @@ interface Article {
   meta_description: string;
   blogDescription: string;
   blogStatus: boolean;
+  blogSlug: string;
 }
 
 interface Article2 {
@@ -40,6 +41,7 @@ interface MergedBlogs {
   createdAt: string;
   meta_description: string;
   status: string;
+  slug: string;
 }
 
 const normalizeArticle = (blog: Article): MergedBlogs => ({
@@ -49,6 +51,7 @@ const normalizeArticle = (blog: Article): MergedBlogs => ({
   createdAt: blog.createdAt,
   meta_description: blog.blogDescription,
   status: blog.blogStatus === true ? "active" : "inactive",
+  slug: blog.blogSlug,
 });
 
 const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
@@ -58,6 +61,7 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
   createdAt: blog.created_at,
   meta_description: blog.meta_description,
   status: blog.status,
+  slug: blog.slug,
 });
 
 const Articles: React.FC = () => {
@@ -69,12 +73,8 @@ const Articles: React.FC = () => {
   const cardsPerPage = 12;
 
   const handleSingleBlogs = (slug: string) => {
-    const cleanSlug = slug
-      .replace(/\u00A0/g, " ")
-      .replace(/\s+/g, "-")
-      .toLowerCase();
 
-    window.open(`/${cleanSlug}`, "_blank");
+    window.open(`/${slug}`, "_blank");
   };
 
   // useEffect(() => {
@@ -222,7 +222,7 @@ const Articles: React.FC = () => {
           .map((article: MergedBlogs) => (
             <div
               key={article.id}
-              onClick={() => handleSingleBlogs(article.id)}
+              onClick={() => handleSingleBlogs(article.slug)}
               style={{
                 display: "flex",
                 flexDirection: "column",

@@ -1,3 +1,4 @@
+import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import UserAnalyticModel from "@/models/User.Analytics.Schema";
 import { NextResponse } from "next/server";
 
@@ -8,6 +9,7 @@ interface OBJ {
 
 export async function POST(req: Request) {
   try {
+    await connectMongoDB();
     console.log("API HIT");
 
     const text = await req.text(); // read raw
@@ -29,6 +31,14 @@ export async function POST(req: Request) {
     }
 
     const { user, userVisitTimePerPage, trafficSource, userAddress } = data;
+    console.log(
+      user,
+      userAddress,
+      userDevice,
+      trafficSource,
+      userVisitTimePerPage
+    );
+
     let userTotalVisitTime = 0;
     let isUserBounce = true;
     userVisitTimePerPage.forEach((ele: OBJ) => {
@@ -37,7 +47,17 @@ export async function POST(req: Request) {
     if (userTotalVisitTime >= 10) {
       isUserBounce = false;
     }
-    await UserAnalyticModel.create({
+    console.log(
+      user,
+      userAddress,
+      isUserBounce,
+      userTotalVisitTime,
+      userDevice,
+      trafficSource,
+      userVisitTimePerPage
+    );
+
+    const result = await UserAnalyticModel.create({
       user,
       userAddress,
       isUserBounce,
@@ -47,6 +67,8 @@ export async function POST(req: Request) {
       trafficSource,
       userVisitTimePerPage,
     });
+    console.log("Saved Result Data ", result);
+
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
     console.error("Error in create-user API:", error);

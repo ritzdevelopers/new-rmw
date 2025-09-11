@@ -18,6 +18,7 @@ import axios from "axios";
 import Image from "next/image";
 // import FlagWave from "../15August/FlagWave";
 import { gsap } from "gsap";
+import AnalyticsTracker from "./Tracker/AnalyticsTracker";
 // declare namespace JSX {
 //   interface IntrinsicElements {
 //     li: React.DetailedHTMLProps<
@@ -134,169 +135,9 @@ const Header = () => {
 
   // <------------------------------------------------------------------------------------------> console.log("User came from:",document.referrer);
 
-  // interface TRACKEDUSER {
-  //   user: string;
-  //   userVisitTimePerPage: USERNAVIGATION[];
-  //   trafficSource: string;
-  //   userAddress: USERADDRESS;
-  // }
-  // interface USERADDRESS {
-  //   userCity: string;
-  //   userCountry: string;
-  //   userPincode: string;
-  //   userArea: string;
-  // }
-  // interface USERNAVIGATION {
-  //   pageLink: string;
-  //   timeCount: number;
-  // }
-  // const [trackedUser, setTrackedUser] = useState<TRACKEDUSER>();
-  // const [userAddress, setUserAddress] = useState<USERADDRESS>();
-  // const [userVisitTimePerPage, setUserVisitPerPage] = useState<
-  //   USERNAVIGATION[]
-  // >([]);
-
-  // // Fetch User Address :
-  // const [usersIP, setUsersIP] = useState<string>();
-  // const userIPTracker = async () => {
-  //   console.log("Hello This Side");
-
-  //   try {
-  //     const { data, status } = await axios.get("/api/user-ip-tracker");
-  //     if (status === 200) {
-  //       console.log(data.userAddress);
-
-  //       setUserAddress({
-  //         userCity: data.userAddress.user_city,
-  //         userCountry: data.userAddress.user_country,
-  //         userArea: data.userAddress.user_place,
-  //         userPincode: data.userAddress.user_pinCode,
-  //       });
-  //       setUsersIP(data.IP_ADDRESS);
-  //     }
-  //   } catch (error) {
-  //     console.log("Err in fetching user ip : ", error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   userIPTracker();
-  // }, []);
-
-  // // Count User Time On Every Page
-  // const currPath = usePathname(); // current route
-  // const startTimeRef = useRef<number>(Date.now());
-  // useEffect(() => {
-  //   const endTime = Date.now();
-  //   const timeSpent = Math.round((endTime - startTimeRef.current) / 1000);
-  //   setUserVisitPerPage((pr) => [
-  //     ...pr,
-  //     { timeCount: timeSpent, pageLink: window.location.href },
-  //   ]);
-  //   startTimeRef.current = Date.now();
-  // }, [currPath]); // run whenever route changes
-
-  // // Generate User Unique ID :
-  // function generateRandomString(length = 12) {
-  //   const chars =
-  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?";
-  //   let result = "";
-  //   for (let i = 0; i < length; i++) {
-  //     const randomIndex = Math.floor(Math.random() * chars.length);
-  //     result += chars[randomIndex];
-  //   }
-  //   return result;
-  // }
-  // // Analytics Main Logic ---
-  // interface UNIQUEUSER {
-  //   user_id: string;
-  //   saved_date: string;
-  // }
-
-  // const [isNewUser, setIsNewUser] = useState(false);
-  // const [userId, setUserId] = useState("");
-
-  // useEffect(() => {
-  //   const handleUserTrack = (event: BeforeUnloadEvent) => {
-  //     if (isNewUser) {
-  //       const payload = {
-  //         user: userId,
-  //         userVisitTimePerPage: [...userVisitTimePerPage],
-  //         trafficSource: document.referrer,
-  //         userAddress: userAddress || {
-  //           userCity: "",
-  //           userCountry: "",
-  //           userPincode: "",
-  //           userArea: "",
-  //         },
-  //       };
-
-  //       const blob = new Blob([JSON.stringify(payload)], {
-  //         type: "application/json",
-  //       });
-  //       navigator.sendBeacon("/api/analytics/create-user", blob);
-  //     } else {
-  //       const payload = {
-  //         user: userId,
-  //         userVisitTimePerPage: [...userVisitTimePerPage],
-  //       };
-  //       const blob = new Blob([JSON.stringify(payload)], {
-  //         type: "application/json",
-  //       });
-  //       navigator.sendBeacon("/api/analytics/revisit-user", blob);
-  //     }
-  //   };
-
-  //   window.addEventListener("beforeunload", handleUserTrack);
-
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handleUserTrack);
-  //   };
-  // }, [isNewUser, userId, userVisitTimePerPage, userAddress]);
-
-  // function analyticsIdController() {
-  //   let createUser: UNIQUEUSER = { user_id: "", saved_date: "" };
-  //   const date = new Date();
-  //   const getUser = localStorage.getItem("RMW_AN_USER");
-
-  //   if (!getUser) {
-  //     const id = generateRandomString();
-  //     const visitDate = date.toISOString(); // ✅ use ISO
-  //     createUser.user_id = id;
-  //     createUser.saved_date = visitDate;
-  //     localStorage.setItem("RMW_AN_USER", JSON.stringify(createUser));
-
-  //     setUserId(id);
-  //     setIsNewUser(true);
-  //   } else {
-  //     const extractOBJ: UNIQUEUSER = JSON.parse(getUser);
-  //     const currentDate = date.getTime();
-  //     const lastSavedDate = new Date(extractOBJ.saved_date);
-  //     const diff = currentDate - lastSavedDate.getTime();
-  //     const diffDays = Math.ceil(diff / (1000 * 60 * 60 * 24));
-
-  //     if (diffDays <= 30) {
-  //       setUserId(extractOBJ.user_id);
-  //       setIsNewUser(false);
-  //     } else {
-  //       localStorage.removeItem("RMW_AN_USER");
-  //       const id = generateRandomString();
-  //       const visitDate = date.toISOString(); // ✅ use ISO
-  //       createUser.user_id = id;
-  //       createUser.saved_date = visitDate;
-  //       localStorage.setItem("RMW_AN_USER", JSON.stringify(createUser));
-
-  //       setUserId(id);
-  //       setIsNewUser(true);
-  //     }
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   analyticsIdController();
-  // }, []);
-
   return (
     <header>
+      <AnalyticsTracker></AnalyticsTracker>
       <div
         id="header-sticky"
         className={`tp-header-top-area tp-header__style-1 tp-header__transparent tp-header__border ${styles.headerBackground}`}
@@ -331,7 +172,7 @@ const Header = () => {
                   style={{ borderRadius: "0px !important", overflow: "hidden" }}
                 >
                   <img
-                    src="/logo-brown.png"
+                    src="/rmw-final-logo.png"
                     alt=""
                     className={styles.lgImg}
                     style={{ height: "70px", zIndex: 50, opacity: 1 }}
@@ -668,7 +509,7 @@ const Header = () => {
             <div className={styles.mobileSidebarLogo}>
               <div className={styles.logoImageWrapper}>
                 <Image
-                  src="/logo-brown.png"
+                  src="/rmw-final-logo.png"
                   alt="RMW Logo"
                   fill
                   className={styles.logoImage}
@@ -833,7 +674,7 @@ const Header = () => {
               <div className={styles.MobileSidebarLogo}>
                 <img
                   // style={{ height: "60px" }}
-                  src="/logo-brown.png"
+                  src="/rmw-final-logo.png"
                   alt="RMW Logo"
                 />
                 <button

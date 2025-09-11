@@ -18,13 +18,15 @@ export async function GET(req: NextRequest) {
     const forwarded = req.headers.get("x-forwarded-for");
     // Fallback IP if header is missing
     const ip = forwarded?.split(",")[0]?.trim() || "Unknown";
-    const user_Info = await getLocationFromIP("122.161.50.8");
+    const user_Info = await getLocationFromIP("122.161.48.4");
     const user_data: USERTRACKEDDATA = {};
     const city = user_Info?.city;
     const country = user_Info?.country;
 
     const lat = user_Info?.latitude;
     const long = user_Info?.longitude;
+    console.log("User Latitude ", user_Info);
+
     let userPinCode;
     let userPlace;
     let userDistData;

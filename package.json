@@ -51,6 +51,7 @@
     "cookie": "^1.0.2",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
+    "echarts-for-react": "^3.0.2",
     "embla-carousel-react": "^8.5.2",
     "express": "^5.1.0",
     "file-saver": "^2.0.5",
