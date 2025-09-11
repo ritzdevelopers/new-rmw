@@ -10,6 +10,7 @@ import {
   Monitor,
   House,
   MonitorCog,
+  ChartNoAxesCombined 
 } from "lucide-react";
 import { cn } from "../../lib/utils";
 // import axios from "axios";
@@ -44,6 +45,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const [systemPageActive, setSystemPageActive] = useState(false);
   const [createUserPageActive, setCreateUserPageActive] = useState(false);
   const [webStoriesActive, setWebStoriesActive] = useState(false);
+  const [analyticsActive, setAnalyticsIsActive] = useState(false);
 
   const [subMenuActive, setActiveSubMenu] = useState("");
   function handleActiveTabBG(e: React.MouseEvent<HTMLElement, MouseEvent>) {
@@ -51,6 +53,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
     const blogText = span?.innerText || "No span found";
 
     if (blogText === "Create user") {
+      setAnalyticsIsActive(false);
       setWebStoriesActive(false);
       setBlogActive(false);
       setDBActive(false);
@@ -60,6 +63,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(true);
     } else if (blogText === "System Settings") {
+      setAnalyticsIsActive(false);
       setWebStoriesActive(false);
       setBlogActive(false);
       setDBActive(false);
@@ -69,6 +73,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
     } else if (blogText === "Home") {
+      setAnalyticsIsActive(false);
       setWebStoriesActive(false);
       setBlogActive(false);
       setDBActive(false);
@@ -78,6 +83,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
     } else if (blogText === "Web Pages") {
+      setAnalyticsIsActive(false);
       setWebStoriesActive(false);
       setBlogActive(false);
       setDBActive(false);
@@ -87,6 +93,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
     } else if (blogText === "Blog") {
+      setAnalyticsIsActive(false);
       setWebStoriesActive(false);
       setBlogActive(true);
       setDBActive(false);
@@ -96,6 +103,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
     } else if (blogText === "Dashboard") {
+      setAnalyticsIsActive(false);
       setWebStoriesActive(false);
       setBlogActive(false);
       setDBActive(true);
@@ -105,6 +113,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
     } else if (blogText === "Web Stories") {
+      setAnalyticsIsActive(false);
       setBlogActive(false);
       setDBActive(false);
       setWebPageActive(false);
@@ -113,6 +122,16 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
       setWebStoriesActive(true);
+    } else if (blogText === "Analytics") {
+      setBlogActive(false);
+      setDBActive(false);
+      setWebPageActive(false);
+      setHomePageActive(false);
+      setSystemPageActive(false);
+      setActiveSubMenu("");
+      setCreateUserPageActive(false);
+      setWebStoriesActive(false);
+      setAnalyticsIsActive(true);
     }
   }
 
@@ -187,6 +206,22 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
             >
               <Home className="w-5 h-5" />
               {expanded && <span>Dashboard</span>}
+            </div>
+          </Link>
+
+          <Link onClick={handleClick} href="/admin/analytics">
+            <div
+              onClick={(e) => handleActiveTabBG(e)}
+              style={{
+                ...(!expanded
+                  ? { borderWidth: "none" }
+                  : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
+                ...(analyticsActive && { backgroundColor: "#2E3B46" }),
+              }}
+              className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition"
+            >
+              <ChartNoAxesCombined  className="w-5 h-5" />
+              {expanded && <span>Analytics</span>}
             </div>
           </Link>
 

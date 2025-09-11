@@ -32,23 +32,9 @@ export async function POST(req: NextRequest) {
         }
       );
     }
-    console.log(
-      title,
-      description,
-      titleAlign,
-      buttonCTA,
-      descAlign,
-      metaDescription,
-      metaKeyWords,
-      topicID
-    );
+   
 
     if (
-      !title ||
-      !description ||
-      !titleAlign ||
-      !buttonCTA ||
-      !descAlign ||
       !metaDescription ||
       !metaKeyWords ||
       !topicID
