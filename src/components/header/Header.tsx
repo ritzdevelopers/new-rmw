@@ -386,6 +386,25 @@ const Header = () => {
                         Contact us
                       </Link>
                     </li>
+                    {/* <li className="nav-item">
+                      <Link
+                        href="/rdx-digital-marketing-Course/"
+                        className="nav-links"
+                        style={{
+                          fontWeight: "bold",
+                          textShadow:
+                            pathname === "/rdx-digital-marketing-Course"
+                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
+                              : "inherit",
+                          color:
+                            pathname === "/rdx-digital-marketing-Course"
+                              ? "#8a5a0d"
+                              : "inherit",
+                        }}
+                      >
+                        Academy
+                      </Link>
+                    </li> */}
                   </ul>
                 </nav>
               </div>

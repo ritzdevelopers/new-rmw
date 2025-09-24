@@ -5,7 +5,10 @@ import { connectMongoDB } from "@/lib/mongo/dbConntect";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(req: Request, { params }: { params: { topicId: string } }) {
+export async function GET(
+  req: Request,
+  { params }: { params: { topicId: string } }
+) {
   await connectMongoDB();
   const topic = await TopicModel.findOne({ slug: params.topicId });
   const pages = await WebStoryModel.find({ topic: topic?._id });
@@ -14,21 +17,31 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
     return new NextResponse("No pages found", { status: 404 });
   }
 
+  // Required Image Paths
+  const publisherLogo =
+    "https://ritzmediaworld.com/rmw-final-logo.png"; // Must be 96x96 square
+  const posterPortrait =
+    `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images/${pages[0].img.split("images")[1]}`; 
+
+  const canonicalUrl = `https://ritzmediaworld.com/amp/story/${params.topicId}`;
+
   const ampHtml = `
     <!doctype html>
     <html ⚡ lang="en">
       <head>
         <meta charset="utf-8">
         <title>${pages[0].title}</title>
-        <link rel="canonical" href="https://ritzmediaworld.com/amp/story/${params.topicId}">
+        <link rel="canonical" href="${canonicalUrl}">
         <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
         <meta name="description" content="${pages[0].metaDescription}">
         <meta name="keywords" content="${pages[0].metaKeyWords}">
+        
+        <!-- AMP Scripts -->
         <script async src="https://cdn.ampproject.org/v0.js"></script>
         <script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
         <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
 
-        <!-- Correct AMP boilerplate -->
+        <!-- AMP Boilerplate -->
         <style amp-boilerplate>
           body {
             -webkit-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
@@ -48,35 +61,28 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
           </style>
         </noscript>
 
-        <!-- Custom AMP styles -->
+        <!-- Custom AMP Styles -->
         <style amp-custom>
           amp-story {
             font-family: 'Poppins', sans-serif;
             color: white;
           }
-
           .content-bottom {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             align-items: flex-start;
-            text-align: left;
             width: 100%;
             height: 100%;
-            /* padding: 20px; */
             box-sizing: border-box;
-            z-index: 2;
           }
-
           .text-wrapper {
             background: rgba(0, 0, 0, 0.6);
-            /* border-radius: 12px; */
             padding: 16px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(4px);
             width: 100%;
           }
-
           .story-title {
             font-family: 'Playfair Display', serif;
             font-size: 1rem;
@@ -84,14 +90,11 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
             margin: 0 0 10px;
             color: #fff;
           }
-
           .story-desc {
             font-family: 'Roboto', sans-serif;
-            /* font-size: 0.5rem; */
             margin: 0 0 12px;
             color: #ddd;
           }
-
           .btn {
             padding: 10px 20px;
             border-radius: 24px;
@@ -99,71 +102,59 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
             font-weight: 600;
             display: inline-block;
             margin-top: 10px;
-            border: none;
             font-size: 0.8rem;
-            background-color: #fff;
-            color: #000;
-            transition: transform 0.2s ease;
+            background-color: #DEA953;
+            color: #0F163F;
+            text-transform: uppercase;
           }
-
-          .btn:active {
-            transform: scale(0.96);
-          }
-
-          .btn:hover {
-            background-color: #eee;
-          }
-
-          .like-section {
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-          }
-
-          .like-btn {
-            background: transparent;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0;
-          }
-
-          .like-count {
-            font-size: 0.9rem;
-            color: #ccc;
-            margin-top: 4px;
-          }
-
           @media (max-width: 480px) {
-            .text-wrapper {
-              padding: 16px;
-            }
-
-            .story-title {
-              font-size: 1.3rem;
-            }
-
-            .story-desc {
-              font-size: 0.95rem;
-            }
-
-            .btn {
-              padding: 8px 16px;
-              font-size: 0.9rem;
-            }
+            .story-title { font-size: 1.3rem; }
+            .story-desc { font-size: 0.95rem; }
+            .btn { padding: 8px 16px; font-size: 0.9rem; }
           }
         </style>
 
+        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+        <!-- ✅ Structured Data for Web Story -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "${canonicalUrl}"
+          },
+          "headline": "${pages[0].title}",
+          "datePublished": "${pages[0].createdAt}",
+          "dateModified": "${pages[0].updatedAt || pages[0].createdAt}",
+          "author": {
+            "@type": "Person",
+            "name": "Ritz Media"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Ritz Media World",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "${publisherLogo}"
+            }
+          },
+          "image": [
+            "${posterPortrait}"
+          ],
+          "description": "${pages[0].metaDescription}"
+        }
+        </script>
       </head>
       <body>
         <amp-story
           standalone
           title="${pages[0].title}"
-          publisher="Your Publisher"
-          publisher-logo-src="/logo.png"
-          poster-portrait-src="${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images/${pages[0].img.split("images")[1]}"
+          publisher="Ritz Media World"
+          publisher-logo-src="${publisherLogo}"
+          poster-portrait-src="${posterPortrait}"
           auto-advance-after="5s"
         >
           ${pages
@@ -173,9 +164,7 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
                 <amp-story-page id="page-${index}" auto-advance-after="5s">
                   <amp-story-grid-layer template="fill">
                     <amp-img src="${fullImgPath}" width="720" height="1280" layout="responsive" alt="${page.title}"></amp-img>
-                    <div class="image-darken"></div>
                   </amp-story-grid-layer>
-
                   <amp-story-grid-layer template="fill">
                     <div class="content-bottom">
                       <div class="text-wrapper">
@@ -183,7 +172,7 @@ export async function GET(req: Request, { params }: { params: { topicId: string 
                         <p class="story-desc">${page.description}</p>
                         ${
                           page.buttonCTA?.btnTxt
-                            ? `<a href="${page.buttonCTA.btnLink}" class="btn" style="background-color:#DEA953;color:#0F163F; font-style:italic; text-transform:uppercase;">${page.buttonCTA.btnTxt}</a>`
+                            ? `<a href="${page.buttonCTA.btnLink}" class="btn">${page.buttonCTA.btnTxt}</a>`
                             : ""
                         }
                       </div>

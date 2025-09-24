@@ -7,6 +7,8 @@ import React, {
   useEffect,
   useMemo,
   useCallback,
+  Dispatch,
+  SetStateAction,
 } from "react";
 import {
   Activity,
@@ -43,6 +45,7 @@ interface StatsDataItem {
   sessionFilter?: boolean;
   sessionOptions?: string[];
   unit?: string;
+  filterVal?: string;
 }
 
 interface EChartsTooltipParam {
@@ -51,7 +54,7 @@ interface EChartsTooltipParam {
   marker: string;
 }
 
-type ActiveTabType = "total" | "revisit" | "unique";
+type ActiveTabType = "Total" | "Revisit" | "Unique";
 
 // ----- Constants and Helpers -----
 const nfCompact = new Intl.NumberFormat("en", {
@@ -64,10 +67,6 @@ const nfFull = new Intl.NumberFormat("en-IN");
 const fmtCompact = (v: number) =>
   typeof v === "number" ? nfCompact.format(v) : v;
 const fmtFull = (v: number) => (typeof v === "number" ? nfFull.format(v) : v);
-
-const CITIES = ["New York", "London", "Tokyo", "Berlin", "Sydney", "Mumbai"];
-const ACTIVE_USERS_DATA = [18203, 15489, 21034, 8497, 12174, 19302];
-const SESSIONS_DATA = [24325, 18438, 29000, 11594, 16141, 21807];
 
 // ----- Custom Select Component -----
 const CustomSelect = React.memo(
@@ -146,84 +145,124 @@ const CustomSelect = React.memo(
 CustomSelect.displayName = "CustomSelect";
 
 // ----- Stats Card Component -----
-const StatsCard = React.memo(({ stat }: { stat: StatsDataItem }) => {
-  const handleSelect = useCallback(
-    (value: string) => {
-      console.log(`Selected ${stat.title} filter:`, value);
-    },
-    [stat.title]
-  );
+const StatsCard = React.memo(
+  ({
+    stat,
+    setQueryType,
+    setDuration,
+    setFilter,
+  }: {
+    stat: StatsDataItem;
+    setQueryType: (val: string) => void;
+    setDuration: (val: string) => void;
+    setFilter: (val: string) => void;
+  }) => {
+    const handleSelect = useCallback(
+      (value: string) => {
+        setQueryType(stat.title);
+        if (
+          value.includes("Revisit") ||
+          value.includes("More Than 10 Sec") ||
+          value.includes("More Than 30 Sec") ||
+          value.includes("More Than 1 Min")
+        ) {
+          setFilter(value);
+        } else {
+          setDuration(value);
+        }
+      },
+      [stat.title]
+    );
+    return (
+      <div className="bg-white md:h-[350px] rounded-xl shadow-sm p-4 sm:p-5 md:p-6 flex flex-col gap-3 border border-gray-100 hover:shadow-md hover:border-gray-200 transition-all duration-200">
+        {/* Header with title + filters */}
+        <div className="flex justify-between items-start flex-wrap gap-2">
+          <p className="text-sm font-medium text-gray-600">{stat.title}</p>
+          <div className="flex gap-2 flex-wrap">
+            {stat.timeFilter && (
+              <CustomSelect
+                options={stat.timeOptions}
+                defaultValue={stat.timeOptions[0]}
+                className="w-28"
+                onSelect={handleSelect}
+              />
+            )}
+            {stat.sessionFilter && stat.sessionOptions && (
+              <CustomSelect
+                options={stat.sessionOptions}
+                defaultValue={stat.sessionOptions[0]}
+                className="w-32"
+                onSelect={handleSelect}
+              />
+            )}
+          </div>
+        </div>
 
-  return (
-    <div className="bg-white md:h-[350px] rounded-xl shadow-sm p-4 sm:p-5 md:p-6 flex flex-col gap-3 border border-gray-100 hover:shadow-md hover:border-gray-200 transition-all duration-200">
-      {/* Header with title + filters */}
-      <div className="flex justify-between items-start flex-wrap gap-2">
-        <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-        <div className="flex gap-2 flex-wrap">
-          {stat.timeFilter && (
-            <CustomSelect
-              options={stat.timeOptions}
-              defaultValue={stat.timeOptions[0]}
-              className="w-28"
-              onSelect={handleSelect}
-            />
-          )}
-          {stat.sessionFilter && stat.sessionOptions && (
-            <CustomSelect
-              options={stat.sessionOptions}
-              defaultValue={stat.sessionOptions[0]}
-              className="w-32"
-              onSelect={handleSelect}
-            />
-          )}
+        {/* Value + Icon */}
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
+              {stat.value}{" "}
+              {stat.unit ? (
+                <span className="text-sm sm:text-base">{stat.unit}</span>
+              ) : null}
+            </h2>
+            <p className="text-xs text-gray-500 mt-1">{stat.description}</p>
+          </div>
+          <div
+            className={`p-3 rounded-full ${stat.color} bg-opacity-10 text-gray-700`}
+          >
+            {stat.icon}
+          </div>
+        </div>
+
+        {/* Change indicator */}
+        <div className="flex items-center gap-1 mt-2">
+          <span
+            className={`flex items-center text-xs font-medium ${
+              stat.changeDirection === "up" ? "text-green-600" : "text-red-600"
+            }`}
+          >
+            {stat.changeDirection === "up" ? (
+              <ArrowUp size={14} />
+            ) : (
+              <ArrowDown size={14} />
+            )}
+            {stat.change}
+          </span>
+          <span className="text-xs text-gray-500">vs previous day</span>
         </div>
       </div>
-
-      {/* Value + Icon */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
-            {stat.value}{" "}
-            {stat.unit ? (
-              <span className="text-sm sm:text-base">{stat.unit}</span>
-            ) : null}
-          </h2>
-          <p className="text-xs text-gray-500 mt-1">{stat.description}</p>
-        </div>
-        <div
-          className={`p-3 rounded-full ${stat.color} bg-opacity-10 text-gray-700`}
-        >
-          {stat.icon}
-        </div>
-      </div>
-
-      {/* Change indicator */}
-      <div className="flex items-center gap-1 mt-2">
-        <span
-          className={`flex items-center text-xs font-medium ${
-            stat.changeDirection === "up" ? "text-green-600" : "text-red-600"
-          }`}
-        >
-          {stat.changeDirection === "up" ? (
-            <ArrowUp size={14} />
-          ) : (
-            <ArrowDown size={14} />
-          )}
-          {stat.change}
-        </span>
-        <span className="text-xs text-gray-500">vs previous day</span>
-      </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 StatsCard.displayName = "StatsCard";
 
 // ----- Chart Components -----
-const ActiveUsersChart = React.memo(() => {
+const ActiveUsersChart = React.memo(({ 
+  sessionAnalyticsByCity 
+}: { 
+  sessionAnalyticsByCity: {
+    totalSessions: number;
+    totalSessionsRaw: number;
+    cityWise: Record<string, number>;
+    cityWiseRaw: Record<string, number>;
+  } | null;
+}) => {
   const handleSelect = useCallback((value: string) => {
     console.log("Selected time filter:", value);
   }, []);
+
+  // Prepare data for the chart
+  const chartData = useMemo(() => {
+    if (!sessionAnalyticsByCity?.cityWise) return { cities: [], values: [] };
+    
+    const cities = Object.keys(sessionAnalyticsByCity.cityWise);
+    const values = Object.values(sessionAnalyticsByCity.cityWise);
+    
+    return { cities, values };
+  }, [sessionAnalyticsByCity]);
 
   const chartOption: EChartsOption = useMemo(
     () => ({
@@ -272,7 +311,7 @@ const ActiveUsersChart = React.memo(() => {
           interval: 0,
           fontSize: 10,
         },
-        data: CITIES,
+        data: chartData.cities,
       },
       dataZoom: [
         {
@@ -297,7 +336,7 @@ const ActiveUsersChart = React.memo(() => {
         {
           name: "Active Users",
           type: "bar",
-          data: ACTIVE_USERS_DATA,
+          data: chartData.values,
           itemStyle: { color: "#4f46e5" },
           barMaxWidth: 18,
           label: {
@@ -321,7 +360,7 @@ const ActiveUsersChart = React.memo(() => {
       animation: false,
       progressive: 500,
     }),
-    []
+    [chartData]
   );
 
   return (
@@ -371,13 +410,41 @@ const SessionAnalyticsChart = React.memo(
   ({
     activeTab,
     setActiveTab,
+    setQueryType,
+    setDuration,
+    setQType,
+    sessionAnalyticsByCity
   }: {
     activeTab: ActiveTabType;
     setActiveTab: (tab: ActiveTabType) => void;
+    setQueryType: (val: string) => void;
+    setDuration: (val: string) => void;
+    setQType: (val: string | undefined) => void;
+    sessionAnalyticsByCity: {
+      totalSessions: number;
+      totalSessionsRaw: number;
+      cityWise: Record<string, number>;
+      cityWiseRaw: Record<string, number>;
+    } | null;
   }) => {
     const handleSelect = useCallback((value: string) => {
-      console.log("Selected time filter:", value);
+      setQueryType("Session Analytics By City");
+      setDuration(value);
     }, []);
+    const handleQFilter = (qType: string) => {
+      setQueryType("Session Analytics By City");
+      setQType(qType);
+    };
+
+    // Prepare data for the chart
+    const chartData = useMemo(() => {
+      if (!sessionAnalyticsByCity?.cityWise) return { cities: [], values: [] };
+      
+      const cities = Object.keys(sessionAnalyticsByCity.cityWise);
+      const values = Object.values(sessionAnalyticsByCity.cityWise);
+      
+      return { cities, values };
+    }, [sessionAnalyticsByCity]);
 
     const chartOption: EChartsOption = useMemo(
       () => ({
@@ -426,7 +493,7 @@ const SessionAnalyticsChart = React.memo(
             interval: 0,
             fontSize: 10,
           },
-          data: CITIES,
+          data: chartData.cities,
         },
         dataZoom: [
           {
@@ -451,7 +518,7 @@ const SessionAnalyticsChart = React.memo(
           {
             name: "Sessions",
             type: "bar",
-            data: SESSIONS_DATA,
+            data: chartData.values,
             itemStyle: { color: "#3b82f6" },
             barMaxWidth: 18,
             label: {
@@ -475,7 +542,7 @@ const SessionAnalyticsChart = React.memo(
         animation: false,
         progressive: 500,
       }),
-      []
+      [chartData]
     );
 
     return (
@@ -487,7 +554,7 @@ const SessionAnalyticsChart = React.memo(
               User Session Analytics
             </h3>
             <div className="flex gap-2 overflow-x-auto no-scrollbar">
-              {(["total", "revisit", "unique"] as ActiveTabType[]).map(
+              {(["Total", "Revisit", "Unique"] as ActiveTabType[]).map(
                 (tab) => (
                   <button
                     key={tab}
@@ -496,12 +563,15 @@ const SessionAnalyticsChart = React.memo(
                         ? "bg-indigo-100 text-indigo-700 font-medium shadow-sm"
                         : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                     }`}
-                    onClick={() => setActiveTab(tab)}
+                    onClick={() => {
+                      setActiveTab(tab);
+                      handleQFilter(tab);
+                    }}
                     aria-pressed={activeTab === tab}
                   >
-                    {tab === "total"
+                    {tab === "Total"
                       ? "Total"
-                      : tab === "revisit"
+                      : tab === "Revisit"
                       ? "Revisit"
                       : "Unique"}
                   </button>
@@ -546,19 +616,50 @@ const SessionAnalyticsChart = React.memo(
 
 SessionAnalyticsChart.displayName = "SessionAnalyticsChart";
 
+// Extend RowProps for Row1
+interface RowProps {
+  setDuration: Dispatch<SetStateAction<string>>;
+  setFilter: Dispatch<SetStateAction<string>>;
+  setQueryType: Dispatch<SetStateAction<string>>;
+  setQType: Dispatch<SetStateAction<string | undefined>>;
+  stat?: StatsDataItem;
+
+  // New props for Row1
+  totalUsers: { totalUsers: string; performanceAvg: string } | null;
+  sessionCount: { totalSessions: string; performanceAvg: string } | null;
+  boundeRate: { totalBounceUsers: string; lastUsersBounceRate: string } | null;
+  avgVisitDuration: { usersSpentTime: string; lastSpentTimeAvg: string } | null;
+  sessionAnalyticsByCity: {
+    totalSessions: number;
+    totalSessionsRaw: number;
+    cityWise: Record<string, number>;
+    cityWiseRaw: Record<string, number>;
+  } | null;
+}
+
 // ----- Main Component -----
-function Row1() {
-  const [activeTab, setActiveTab] = useState<ActiveTabType>("total");
+function Row1({
+  setDuration,
+  setFilter,
+  setQueryType,
+  setQType,
+  totalUsers,
+  sessionCount,
+  boundeRate,
+  avgVisitDuration,
+  sessionAnalyticsByCity,
+}: RowProps) {
+  const [activeTab, setActiveTab] = useState<ActiveTabType>("Total");
 
   // ----- Stats Cards Data -----
   const statsData: StatsDataItem[] = useMemo(
     () => [
       {
         title: "Active Users",
-        value: "305",
+        value: totalUsers?.totalUsers || "0",
         description: "Active Now",
-        change: "+12%",
-        changeDirection: "up",
+        change: totalUsers?.performanceAvg || "0.00%",
+        changeDirection: totalUsers?.performanceAvg?.includes("-") ? "down" : "up",
         icon: <Activity size={20} className="text-[#FFFFFF]" />,
         color: "bg-blue-500",
         timeFilter: true,
@@ -573,10 +674,10 @@ function Row1() {
       },
       {
         title: "Total Users",
-        value: "50.6K",
+        value: totalUsers?.totalUsers || "0",
         description: "All Time",
-        change: "+8.2%",
-        changeDirection: "up",
+        change: totalUsers?.performanceAvg || "0.00%",
+        changeDirection: totalUsers?.performanceAvg?.includes("-") ? "down" : "up",
         icon: <Users size={20} className="text-[#FFFFFF]" />,
         color: "bg-indigo-500",
         timeFilter: true,
@@ -590,10 +691,10 @@ function Row1() {
       },
       {
         title: "Session Count",
-        value: "24.8K",
+        value: sessionCount?.totalSessions || "0",
         description: "All Time",
-        change: "+5.3%",
-        changeDirection: "up",
+        change: sessionCount?.performanceAvg || "0.00%",
+        changeDirection: sessionCount?.performanceAvg?.includes("-") ? "down" : "up",
         icon: <BarChart3 size={20} className="text-[#FFFFFF]" />,
         color: "bg-purple-500",
         timeFilter: true,
@@ -615,10 +716,10 @@ function Row1() {
       },
       {
         title: "Bounce Rate",
-        value: "24.3%",
+        value: boundeRate?.lastUsersBounceRate || "0.00%",
         description: "All Time",
-        change: "-3.1%",
-        changeDirection: "down",
+        change: boundeRate?.lastUsersBounceRate || "0.00%",
+        changeDirection: boundeRate?.lastUsersBounceRate?.includes("-") ? "down" : "up",
         icon: <TrendingUp size={20} className="text-[#FFFFFF]" />,
         color: "bg-pink-500",
         timeFilter: true,
@@ -632,10 +733,10 @@ function Row1() {
       },
       {
         title: "Total Leads",
-        value: "1.2K",
+        value: totalUsers?.totalUsers || "0",
         description: "All Time",
-        change: "+15.7%",
-        changeDirection: "up",
+        change: totalUsers?.performanceAvg || "0.00%",
+        changeDirection: totalUsers?.performanceAvg?.includes("-") ? "down" : "up",
         icon: <Users size={20} className="text-[#FFFFFF]" />,
         color: "bg-amber-500",
         timeFilter: true,
@@ -649,11 +750,11 @@ function Row1() {
       },
       {
         title: "Avg. Visit Duration",
-        value: "3.80",
-        unit: "Minutes",
+        value: avgVisitDuration?.usersSpentTime?.split(" ")[0] || "0",
+        unit: avgVisitDuration?.usersSpentTime?.split(" ")[1] || "Hours",
         description: "All Time",
-        change: "+0.42",
-        changeDirection: "up",
+        change: avgVisitDuration?.lastSpentTimeAvg || "0.00%",
+        changeDirection: avgVisitDuration?.lastSpentTimeAvg?.includes("-") ? "down" : "up",
         icon: <Clock size={20} className="text-[#FFFFFF]" />,
         color: "bg-green-500",
         timeFilter: true,
@@ -666,7 +767,7 @@ function Row1() {
         ],
       },
     ],
-    []
+    [totalUsers, sessionCount, boundeRate, avgVisitDuration]
   );
 
   return (
@@ -680,15 +781,25 @@ function Row1() {
         {/* Stats Cards */}
         <div className="w-full xl:w-2/3  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {statsData.map((stat, index) => (
-            <StatsCard key={index} stat={stat} />
+            <StatsCard
+              key={index}
+              stat={stat}
+              setQueryType={setQueryType}
+              setDuration={setDuration}
+              setFilter={setFilter}
+            />
           ))}
         </div>
         {/* Charts Section */}
         <div className="w-full xl:w-1/3 flex flex-col gap-4 md:gap-6">
-          <ActiveUsersChart />
+          <ActiveUsersChart sessionAnalyticsByCity={sessionAnalyticsByCity} />
           <SessionAnalyticsChart
             activeTab={activeTab}
             setActiveTab={setActiveTab}
+            setQueryType={setQueryType}
+            setDuration={setDuration}
+            setQType={setQType}
+            sessionAnalyticsByCity={sessionAnalyticsByCity}
           />
         </div>
       </div>

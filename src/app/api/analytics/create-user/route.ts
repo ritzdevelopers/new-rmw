@@ -20,15 +20,22 @@ export async function POST(req: Request) {
         { status: 500 }
       );
     }
-    const userAgent = req.headers.get("user-agent") || "";
-
     let userDevice = "desktop";
+    const userAgent = navigator.userAgent.toLowerCase();
 
-    if (
-      /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
-    ) {
+    // Mobile detection
+    if (/android|iphone|ipod|blackberry|iemobile|opera mini/i.test(userAgent)) {
       userDevice = "mobile";
     }
+    // Tablet detection
+    else if (
+      /ipad|tablet|kindle|playbook|silk/i.test(userAgent) ||
+      (/android/i.test(userAgent) && !/mobile/i.test(userAgent))
+    ) {
+      userDevice = "tablet";
+    }
+//tablet,mobile, desktop
+    console.log("User device is:", userDevice);
 
     const { user, userVisitTimePerPage, trafficSource, userAddress } = data;
     console.log(

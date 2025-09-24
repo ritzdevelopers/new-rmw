@@ -1,742 +1,1035 @@
-// "use client";
+"use client";
 
-// import React, { useState, useRef, useEffect } from "react";
-// import { Send, Mic, X, User, Mail, Phone } from "lucide-react";
-// import gsap from "gsap";
-// import { useGSAP } from "@gsap/react";
-// import styles from "./page.module.css";
-// import axios from "axios";
-// interface CHATS {
-//   id: string;
-//   msg: string;
-//   date: Date;
-// }
+import React, { useState, useRef, useEffect } from "react";
+import { Send, Mic, X, Scan, Pause } from "lucide-react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import styles from "./page.module.css";
+import axios from "axios";
+import Image from "next/image";
+import countryCodeData from "../../../country_code.json";
 
-// function ChatBoat() {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const [message, setMessage] = useState("");
-//   const [sessionId, setSessionId] = useState("");
-//   const [formOpen, setFormOpen] = useState(false);
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     phone: "",
-//     session_id: "",
-//   });
-//   const crChatRef = useRef<HTMLDivElement>(null);
-//   const chatRef = useRef<HTMLDivElement>(null);
-//   const boatRef = useRef<HTMLDivElement>(null);
-//   const messageRef = useRef<HTMLDivElement>(null);
-//   const containerRef = useRef<HTMLDivElement>(null);
-//   const backdropRef = useRef<HTMLDivElement>(null);
-//   const inputRef = useRef<HTMLTextAreaElement>(null);
-//   const [userMsgs, setUserMsgs] = useState<CHATS[]>([]);
-//   const [resLoader, setResLoader] = useState(false);
-//   const [isMobile, setIsMobile] = useState(false);
-//   const [formLoader, setFormLoader] = useState(false);
+interface Country {
+  name: string;
+  code: string;
+  dial_code: string;
+}
+interface SpeechRecognitionEvent extends Event {
+  resultIndex: number;
+  results: Array<{
+    0: { transcript: string };
+    isFinal: boolean;
+  }>;
+}
 
-//   // Check screen size on mount and resize
-//   useEffect(() => {
-//     const checkMobile = () => {
-//       setIsMobile(window.innerWidth <= 768);
-//     };
+interface ISpeechRecognition extends EventTarget {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  start(): void;
+  stop(): void;
+  onresult: ((event: SpeechRecognitionEvent) => void) | null;
+}
 
-//     checkMobile();
-//     window.addEventListener("resize", checkMobile);
+declare global {
+  interface Window {
+    SpeechRecognition?: {
+      new (): ISpeechRecognition;
+    };
+    webkitSpeechRecognition?: {
+      new (): ISpeechRecognition;
+    };
+  }
+}
 
-//     return () => {
-//       window.removeEventListener("resize", checkMobile);
-//     };
-//   }, []);
+interface BTNSMSGS {
+  msg: string;
+  id: number;
+}
 
-//   useGSAP(() => {
-//     if (isOpen) {
-//       // Animate backdrop
-//       gsap.fromTo(
-//         backdropRef.current,
-//         { opacity: 0 },
-//         { opacity: 1, duration: 0.3 }
-//       );
+function ChatBoat() {
+  // ------------------------- OLD SESSION LOGIC -------------------------
+  const [isOpen, setIsOpen] = useState(false);
+  const [sessionId, setSessionId] = useState("");
+  const [lastDate, setLastDate] = useState<Date>();
 
-//       // Animate chat interface
-//       gsap.fromTo(
-//         chatRef.current,
-//         { scale: 0.8, opacity: 0, y: 50 },
-//         { scale: 1, opacity: 1, y: 0, duration: 0.5, ease: "back.out(1.7)" }
-//       );
+  const containerRef = useRef<HTMLDivElement>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
+  const boatRef = useRef<HTMLDivElement>(null);
 
-//       if (messageRef.current) {
-//         gsap.fromTo(
-//           messageRef.current.children,
-//           { y: 20, opacity: 0 },
-//           { y: 0, opacity: 1, stagger: 0.1, delay: 0.3 }
-//         );
-//       }
+  const toggleChat = async () => {
+    try {
+      const res = await axios.get(
+        "https://apis.contenaissance.com/api/v1/session/create",
+        {
+          headers: {
+            "X-API-Key":
+              "26f8eb961b3d0b30a20b838cad928389aa38397695d78aa3f89f936903f42bce",
+          },
+        }
+      );
+      setSessionId(res.data.session_id);
+      sessionStorage.setItem("RMW_SESSION", res.data.session_id);
+      setLastDate(new Date());
+    } catch (error) {
+      console.error("Failed to create session:", error);
+    }
 
-//       // Focus input when chat opens
-//       setTimeout(() => {
-//         if (inputRef.current) {
-//           inputRef.current.focus();
-//         }
-//       }, 500);
-//     } else {
-//       // Animate backdrop out
-//       gsap.to(backdropRef.current, {
-//         opacity: 0,
-//         duration: 0.3,
-//         onComplete: () => {
-//           if (backdropRef.current) {
-//             backdropRef.current.style.display = "none";
-//           }
-//         },
-//       });
+    setIsOpen(!isOpen);
+    if (backdropRef.current && !isOpen)
+      backdropRef.current.style.display = "block";
+  };
 
-//       // Animate boat icon
-//       gsap.to(boatRef.current, {
-//         rotate: 360,
-//         duration: 0.5,
-//         ease: "power2.out",
-//       });
-//     }
-//   }, [isOpen]);
+  const openBoat = () => {
+    setIsOpen(true);
+    const existingSession = sessionStorage.getItem("RMW_SESSION");
+    if (!existingSession) {
+      toggleChat();
+    } else {
+      setSessionId(existingSession);
+    }
+  };
 
-//   const toggleChat = async () => {
-//     // alert(process.env.NEXT_PUBLIC_CHATBOAT_API);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node) &&
+        !boatRef.current?.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
 
-//     try {
-//       const res = await axios.get(
-//         "https://ritz-ai-production.up.railway.app/api/v1/session/create", //close
-//         {
-//           headers: {
-//             "X-API-KEY": process.env.NEXT_PUBLIC_CHATBOAT_API,
-//           },
-//         }
-//       );
-//       setSessionId(res.data.session_id);
-//       sessionStorage.setItem("RMW_SESSION", res.data.session_id);
-//     } catch (error) {
-//       console.error("Failed to create session:", error);
-//     }
+  useEffect(() => {
+    if (!lastDate) return;
+    const expireMs = 15 * 60 * 1000; // 15 minutes
+    const timer = setTimeout(async () => {
+      try {
+        await axios.post(
+          "https://apis.contenaissance.com/api/v1/session/close",
+          { session_id: sessionId },
+          {
+            headers: {
+              "X-API-KEY":
+                "26f8eb961b3d0b30a20b838cad928389aa38397695d78aa3f89f936903f42bce",
+            },
+          }
+        );
+      } catch (err) {
+        console.error("Session close error:", err);
+      }
+    }, expireMs);
+    return () => clearTimeout(timer);
+  }, [lastDate, sessionId]);
 
-//     setIsOpen(!isOpen);
-//     if (backdropRef.current && !isOpen) {
-//       backdropRef.current.style.display = "block";
-//     }
-//   };
+  // ------------------------- NEW UI & CHAT LOGIC -------------------------
+  const [isSmall, setIsSmall] = useState<boolean>(false);
+  const [mobileView, setMobileView] = useState<boolean>(false);
 
-//   const openBoat = () => {
-//     setIsOpen(true);
-//     const exitsSessionId = sessionStorage.getItem("RMW_SESSION");
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 786) {
+        // Mobile logic
+        setMobileView(true);
+        setIsSmall(false);
+      } else {
+        setMobileView(false);
+        setIsSmall(true);
+      }
+    };
 
-//     if (!exitsSessionId) {
-//       toggleChat();
-//     } else {
-//       setSessionId(exitsSessionId);
-//     }
-//   };
+    handleResize();
 
-//   const handleFormChange = (
-//     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-//   ) => {
-//     const { name, value } = e.target;
-//     setFormData((prev) => ({
-//       ...prev,
-//       [name]: value,
-//     }));
-//   };
-//   const [frmResType, setFrmResType] = useState("");
+    window.addEventListener("resize", handleResize);
 
-//   const handleFormSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     try {
-//       setFormData((pr) => ({
-//         ...pr,
-//         session_id: sessionId,
-//       }));
-//       setFormLoader(true);
-//       const res = await axios.post(
-//         "https://ritz-ai-production.up.railway.app/api/v1/user/update",
-//         formData,
-//         {
-//           headers: {
-//             "X-API-KEY": process.env.NEXT_PUBLIC_CHATBOAT_API,
-//           },
-//         }
-//       );
-//       if (res) {
-//         setFormLoader(false);
-//       }
-//       if (res.status === 200) {
-//         setFrmResType("green");
-//       }
-//     } catch (error) {
-//       setFormLoader(false);
-//       if (error) {
-//         setFrmResType("red");
-//       }
-//     }
-//   };
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
-//   // Close chat when clicking outside
-//   useEffect(() => {
-//     const handleClickOutside = (event: MouseEvent) => {
-//       if (
-//         containerRef.current &&
-//         !containerRef.current.contains(event.target as Node) &&
-//         !boatRef.current?.contains(event.target as Node)
-//       ) {
-//         setIsOpen(false);
-//       }
-//     };
+  const [msg, setMsg] = useState("");
+  const [msgsQue, setMsgsQue] = useState<BTNSMSGS[]>([]);
+  const [suggestionsQues, setSuggestionsQue] = useState<BTNSMSGS[]>([]);
+  const [btnsQue, setBtnsQue] = useState<BTNSMSGS[]>([
+    { id: 1, msg: "Digital Marketing" },
+    { id: 2, msg: "Creative Solutions" },
+    { id: 3, msg: "Print/Radio Advertising" },
+    { id: 4, msg: "Web Design/Tech Solutions" },
+    { id: 5, msg: "Generative AI Content" },
+    { id: 6, msg: "AI Sales Avatar" },
+  ]);
+  const [resLoader, setResLoader] = useState(false);
+  const chatReff = useRef<HTMLDivElement | null>(null);
+  const [isAudiable, setIsAudiable] = useState(false);
 
-//     if (isOpen) {
-//       document.addEventListener("mousedown", handleClickOutside);
-//     }
+  // Auto scroll
+  useEffect(() => {
+    if (chatReff.current)
+      chatReff.current.scrollTop = chatReff.current.scrollHeight;
+  }, [msgsQue]);
 
-//     return () => {
-//       document.removeEventListener("mousedown", handleClickOutside);
-//     };
-//   }, [isOpen]);
+  const chattingHandler = async () => {
+    if (!msg) return;
+    setMsgsQue((pr) => [
+      ...pr,
+      { msg, id: pr.length > 0 ? pr[pr.length - 1].id + 1 : 1 },
+    ]);
+    setMsg("");
+    setSuggestionsQue([]);
+    try {
+      setResLoader(true);
+      const data = { session_id: sessionId, user_input: msg };
+      const res = await axios.post(
+        "https://apis.contenaissance.com/api/v1/chat/v2",
+        data,
+        {
+          headers: {
+            "X-API-KEY":
+              "26f8eb961b3d0b30a20b838cad928389aa38397695d78aa3f89f936903f42bce",
+          },
+        }
+      );
+      setResLoader(false);
+      if (res.data.answer_html) {
+        setSuggestionsQue([]);
+        setMsgsQue((pr) => [
+          ...pr,
+          {
+            msg: res.data.answer_html,
+            id: pr.length > 0 ? pr[pr.length - 1].id + 1 : 1,
+          },
+        ]);
+        if (res.data.suggestions) {
+          res.data.suggestions.map((ob: string, idx: number) => {
+            setSuggestionsQue((prev) => [...prev, { id: idx, msg: ob }]);
+          });
+        }
 
-//   const [lastDate, setLastDate] = useState<Date>();
-//   const [closeSession, setCloseSession] = useState(false);
-//   useEffect(() => {
-//     function handleSessionExpire() {
-//       if (lastDate) {
-//         const futureDate = new Date(lastDate.getTime() + 900 * 1000); // +15 min
-//         const expireMs = futureDate.getTime() - lastDate.getTime(); // always 900000 ms
+        new Audio("/msg-receive.mp3").play().catch(() => {});
+      }
+    } catch (err) {
+      console.log(err);
 
-//         setTimeout(async () => {
-//           try {
-//             const res = await axios.post(
-//               "https://ritz-ai-production.up.railway.app/api/v1/session/close",
-//               { session_id: sessionId },
-//               {
-//                 headers: {
-//                   "X-API-KEY": process.env.NEXT_PUBLIC_CHATBOAT_API,
-//                 },
-//               }
-//             );
-//             if (res.status === 200) {
-//               setCloseSession(true);
-//             }
-//           } catch (error) {
-//             console.log("Err in token expiry", error);
-//           }
-//         }, expireMs); // ✅ pass ms directly
-//       }
-//     }
+      setResLoader(false);
+      setMsgsQue((pr) => [
+        ...pr,
+        {
+          msg: "Sorry, unable to connect right now. Please try again!",
+          id: pr.length > 0 ? pr[pr.length - 1].id + 1 : 1,
+        },
+      ]);
+      new Audio("/msg-receive.mp3").play().catch(() => {});
+    }
+  };
 
-//     if (lastDate) {
-//       handleSessionExpire();
-//     }
-//   }, [lastDate]);
+  const suggestionsHandler = async (msg: string) => {
+    if (!msg) return;
+    setMsgsQue((pr) => [
+      ...pr,
+      { msg, id: pr.length > 0 ? pr[pr.length - 1].id + 1 : 1 },
+    ]);
 
-//   const sendMessageToApi = async () => {
-//     try {
-//       if (message.trim().length <= 1) {
-//         return;
-//       }
-//       const data = {
-//         session_id: sessionId,
-//         user_input: message,
-//       };
-//       setResLoader(true);
-//       setMessage("");
-//       setUserMsgs((pr) => [
-//         ...pr,
-//         {
-//           id: "user",
-//           msg: message,
-//           date: new Date(),
-//         },
-//       ]);
+    try {
+      setResLoader(true);
+      const data = { session_id: sessionId, user_input: msg };
+      const res = await axios.post(
+        "https://apis.contenaissance.com/api/v1/chat/v2",
+        data,
+        {
+          headers: {
+            "X-API-KEY":
+              "26f8eb961b3d0b30a20b838cad928389aa38397695d78aa3f89f936903f42bce",
+          },
+        }
+      );
+      setResLoader(false);
+      if (res.data.answer_html) {
+        setSuggestionsQue([]);
+        setMsgsQue((pr) => [
+          ...pr,
+          {
+            msg: res.data.answer_html,
+            id: pr.length > 0 ? pr[pr.length - 1].id + 1 : 1,
+          },
+        ]);
+        if(res.data.suggestions) {
+           res.data.suggestions.map((ob: string, idx: number) => {
+            setSuggestionsQue((prev) => [...prev, { id: idx, msg: ob }]);
+          });
+        }
+        new Audio("/msg-receive.mp3").play().catch(() => {});
+      }
+    } catch (err) {
+      console.log(err);
 
-//       const res = await axios.post(
-//         "https://ritz-ai-production.up.railway.app/api/v1/chat/",
-//         data,
-//         {
-//           headers: {
-//             "X-API-KEY": process.env.NEXT_PUBLIC_CHATBOAT_API,
-//           },
-//         }
-//       );
+      setResLoader(false);
+      setMsgsQue((pr) => [
+        ...pr,
+        {
+          msg: "Sorry, unable to connect right now. Please try again!",
+          id: pr.length > 0 ? pr[pr.length - 1].id + 1 : 1,
+        },
+      ]);
+      new Audio("/msg-receive.mp3").play().catch(() => {});
+    }
+  };
 
-//       if (res.data.response) {
-//         setResLoader(false);
-//         setUserMsgs((pr) => [
-//           ...pr,
-//           {
-//             id: "boat",
-//             msg: res.data.response_html,
-//             date: new Date(),
-//           },
-//         ]);
-//         setLastDate(new Date());
-//       }
+  // Speech recognition
+  useEffect(() => {
+    const SpeechRec:
+      | typeof window.SpeechRecognition
+      | typeof window.webkitSpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
 
-//       // Scroll to bottom after message is added
-//       setTimeout(() => {
-//         crChatRef.current?.scrollIntoView({ behavior: "smooth" });
-//       }, 100);
-//     } catch (error) {
-//       console.log(error);
-//       setResLoader(false);
-//       // Add error message to chat
-//       setUserMsgs((pr) => [
-//         ...pr,
-//         {
-//           id: "boat",
-//           msg: "Sorry, I'm having trouble connecting right now. Please try again later.",
-//           date: new Date(),
-//         },
-//       ]);
-//     }
-//   };
+    if (!SpeechRec) return;
 
-//   useEffect(() => {
-//     const handleKeyPress = (e: KeyboardEvent) => {
-//       if (e.key === "Enter" && !e.shiftKey) {
-//         e.preventDefault();
-//         sendMessageToApi();
-//       }
-//     };
+    const recognition = new SpeechRec();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = "en-US";
 
-//     const inputElement = inputRef.current;
-//     if (inputElement) {
-//       inputElement.addEventListener("keydown", handleKeyPress);
-//     }
+    recognition.onresult = (event: SpeechRecognitionEvent) => {
+      let transcript = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+      }
+      if (event.results[event.resultIndex].isFinal) {
+        setMsg((prev) => `${prev} ${transcript}`);
+      }
+    };
 
-//     return () => {
-//       if (inputElement) {
-//         inputElement.removeEventListener("keydown", handleKeyPress);
-//       }
-//     };
-//   }, [message, sessionId]);
+    if (isAudiable) recognition.start();
+    else recognition.stop();
 
-//   // Auto-resize textarea
-//   useEffect(() => {
-//     if (inputRef.current) {
-//       inputRef.current.style.height = "auto";
-//       inputRef.current.style.height =
-//         Math.min(inputRef.current.scrollHeight, 120) + "px";
-//     }
-//   }, [message]);
-//   const [userExist, setUserExist] = useState<string>("");
-//   useEffect(() => {
-//     const formToShow = sessionStorage.getItem("RMW_LEAD_GENERATED");
-//     setUserExist(formToShow ? formToShow : "NO");
+    return () => recognition.stop();
+  }, [isAudiable]);
 
-//     if (frmResType === "green") {
-//       setTimeout(() => {
-//         setFrmResType("nrml");
-//         sessionStorage.setItem("RMW_LEAD_GENERATED", "TRUE");
-//         setFormOpen(false);
-//       }, 3000);
-//     }
-//     if (frmResType === "red") {
-//       setTimeout(() => {
-//         setFrmResType("nrml");
-//       }, 3000);
-//     }
-//   }, [frmResType]);
+  // GSAP animation
+  useGSAP(() => {
+    if (isOpen) {
+      gsap.fromTo(
+        backdropRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.3 }
+      );
+      gsap.fromTo(
+        chatReff.current,
+        { scale: 0.8, opacity: 0, y: 50 },
+        { scale: 1, opacity: 1, y: 0, duration: 0.5 }
+      );
+    } else {
+      gsap.to(backdropRef.current, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          backdropRef.current!.style.display = "none";
+        },
+      });
+    }
+  }, [isOpen]);
 
-//   const [isAudiable, setIsAudiable] = useState(false);
-//   const [audiableTxt, setText] = useState("");
-//   useEffect(() => {
-//     const SpeechRec =
-//       (window as any).SpeechRecognition ||
-//       (window as any).webkitSpeechRecognition;
-//     if (!SpeechRec) {
-//       alert("Your Browser Do Not Supported Speech Recognitation!");
-//       return;
-//     }
-//     const recognitation = new SpeechRec();
-//     recognitation.continuous = true;
-//     recognitation.interimResults = true;
-//     recognitation.lang = "en-US";
-//     recognitation.onresult = (event) => {
-//       let transcript = "";
-//       for (let i = event.resultIndex; i < event.results.length; i++) {
-//         transcript += event.results[i][0].transcript;
-//       }
-//       // ✅ Sirf jab final result ho tabhi set karo
-//   if (event.results[event.resultIndex].isFinal) {
-//     setMessage((prev) => `${prev} ${transcript}`);
-//   }
-//     };
+  const [openForm, setOpenForm] = useState(false);
+  interface RESMODAL {
+    status: number;
+    msg: string;
+  }
+  // ------------------------- RENDER UI -------------------------
+  const [username, setUserName] = useState<string>("");
+  const [userEmail, setUserEmail] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [message, setMessages] = useState<string>("");
+  const [formLoader, setFormLoader] = useState<boolean>(false);
+  const [countryCode, setCountryCode] = useState<string>("+91");
+  const [modalMsg, setModalMessage] = useState<RESMODAL>({
+    status: 200,
+    msg: "",
+  });
+  const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log(sessionId);
 
-//     if (isAudiable) recognitation.start();
-//     else recognitation.stop();
+    e.preventDefault();
+    try {
+      setFormLoader(true);
+      const num = countryCode + phone;
+      const res = await axios.post(
+        "https://apis.contenaissance.com/api/v1/user/update",
+        {
+          session_id: sessionId,
+          name: username,
+          email: userEmail,
+          phone: num,
+          message,
+        }
+      );
+      if (res.status === 200) {
+        setModalMessage({
+          status: 200,
+          msg: "Form Submitted!",
+        });
+      }
+      setUserEmail("");
+      setMessages("");
+      setPhone("");
+      setUserName("");
+      setFormLoader(false);
+    } catch (error) {
+      console.log(error);
+      setFormLoader(false);
+      setModalMessage({
+        status: 500,
+        msg: "Internal Server Error, Please Try Again",
+      });
+    }
+  };
 
-//     return () => {
-//       recognitation.stop();
-//     };
-//   }, [isAudiable]);
+  // const [search, setSearch] = useState("");
 
-//   return (
-//     <>
-//       {/* Full-screen blur backdrop */}
-//       <div
-//         ref={backdropRef}
-//         className={styles.backdrop}
-//         style={{ display: isOpen ? "block" : "none" }}
-//       />
+  // filter country codes based on search
+  // const filteredCountries = countryCodeData.filter(
+  //   (dt) =>
+  //     dt.name.toLowerCase().includes(search.toLowerCase()) ||
+  //     dt.code.toLowerCase().includes(search.toLowerCase()) ||
+  //     dt.dial_code.includes(search)
+  // );
 
-//       <div className={styles.chatContainer} ref={containerRef}>
-//         {/* Chat Boat Trigger */}
-//         <div ref={boatRef} onClick={openBoat} className={styles.chatBoat}>
-//           {isOpen ? (
-//             <X className={styles.boatIcon} />
-//           ) : (
-//             <img
-//               src="/chrl.webp"
-//               alt="Chat Icon"
-//               className={styles.boatGifIcon}
-//             />
-//           )}
-//           {!isOpen && <span className={styles.pulseAnimation}></span>}
-//         </div>
+  // Generative AI Content,
+  return (
+    <>
+      <style>
+        {`
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+    `}
+      </style>
+      {/* Full-screen blur backdrop */}
+      <div
+        ref={backdropRef}
+        className={styles.backdrop}
+        style={{ display: isOpen ? "block" : "none" }}
+      />
 
-//         {/* Chat Interface */}
-//         {isOpen && (
-//           <div
-//             style={{
-//               position: "fixed",
-//               height: "100vh",
-//               width: "100vw",
-//               // backgroundColor:'red',
-//               margin: "auto",
-//               top: "0",
-//               left: "0",
-//               display: "flex",
-//               justifyContent: "center",
-//               alignItems: "center",
-//               zIndex: "2000",
-//             }}
-//           >
-//             <div ref={chatRef} className={styles.chatInterface}>
-//               {/* Split Container */}
-//               <div className={styles.splitContainer}>
-//                 {/* Left Panel - User Form */}
-//                 {formOpen && userExist === "NO" && (
-//                   <div className={styles.formPanel}>
-//                     <div className={styles.formHeader}>
-//                       <h3 className={styles.formTitle}>Contact Information</h3>
-//                       <p className={styles.formSubtitle}>
-//                         Fill out the form to start chatting
-//                       </p>
-//                       <button
-//                         className={styles.closeFormBtn}
-//                         onClick={() => setFormOpen(false)}
-//                         aria-label="Close form"
-//                       >
-//                         <X size={18} />
-//                       </button>
-//                     </div>
+      <div className={styles.chatContainer} ref={containerRef}>
+        {/* Chat Boat Trigger */}
+        <div ref={boatRef} className={styles.chatBoat}>
+          {isOpen ? (
+            <X
+              className={`text-black ${styles.boatIcon}`}
+              onClick={() => setIsOpen(false)} // ✅ close chat
+            />
+          ) : (
+            <img
+              src="/chat-icn-ui.png"
+              alt="Chat Icon"
+              className={styles.boatGifIcon}
+              onClick={openBoat} // only open
+            />
+          )}
+          {!isOpen && <span className={styles.pulseAnimation}></span>}
+        </div>
 
-//                     <form
-//                       onSubmit={handleFormSubmit}
-//                       className={styles.userForm}
-//                     >
-//                       <div className={styles.formGroup}>
-//                         <div className={styles.inputWithIcon}>
-//                           <User className={styles.inputIcon} size={18} />
-//                           <input
-//                             type="text"
-//                             id="name"
-//                             name="name"
-//                             value={formData.name}
-//                             onChange={handleFormChange}
-//                             className={styles.formInput}
-//                             placeholder="Full Name"
-//                             required
-//                           />
-//                         </div>
-//                       </div>
-//                       <div className={styles.formGroup}>
-//                         <div className={styles.inputWithIcon}>
-//                           <Mail className={styles.inputIcon} size={18} />
-//                           <input
-//                             type="email"
-//                             id="email"
-//                             name="email"
-//                             value={formData.email}
-//                             onChange={handleFormChange}
-//                             className={styles.formInput}
-//                             placeholder="Email Address"
-//                             required
-//                           />
-//                         </div>
-//                       </div>
-//                       <div className={styles.formGroup}>
-//                         <div className={styles.inputWithIcon}>
-//                           <Phone className={styles.inputIcon} size={18} />
-//                           <input
-//                             type="tel"
-//                             id="phone"
-//                             name="phone"
-//                             value={formData.phone}
-//                             onChange={handleFormChange}
-//                             className={styles.formInput}
-//                             placeholder="Phone Number (optional)"
-//                           />
-//                         </div>
-//                       </div>
-//                       <button
-//                         disabled={formLoader}
-//                         type="submit"
-//                         className={styles.submitButton}
-//                       >
-//                         {formLoader ? (
-//                           <div className={styles.frmLoader}></div>
-//                         ) : (
-//                           <>Save & Continue</>
-//                         )}
-//                       </button>
-//                       {frmResType === "red" && (
-//                         <p
-//                           style={{
-//                             color: "#b91c1c", // dark red text
-//                             padding: "10px 16px",
-//                             borderRadius: "8px",
-//                             fontSize: "14px",
-//                             fontWeight: 500,
-//                             textAlign: "center",
-//                             marginTop: "10px",
-//                           }}
-//                         >
-//                           Internal Server Error
-//                         </p>
-//                       )}{" "}
-//                       {frmResType === "green" && (
-//                         <p
-//                           style={{
-//                             // light green background
-//                             color: "#166534", // dark green text
-//                             padding: "10px 16px",
-//                             borderRadius: "8px",
-//                             fontSize: "14px",
-//                             fontWeight: 500,
-//                             textAlign: "center",
-//                             marginTop: "10px",
-//                           }}
-//                         >
-//                           Form Submitted
-//                         </p>
-//                       )}
-//                     </form>
+        {isOpen && (
+          <div
+            className="no-scrollbar"
+            style={{
+              width: "100vw",
+              height: "100vh",
+              position: "fixed",
+              top: 0,
+              left: 0,
+              padding: 0,
+              overflow: "auto", // still scrollable but scrollbar hidden
+            }}
+          >
+            <div
+              className={`${styles.txtureClr}`}
+              style={{
+                width: isSmall ? "460px" : "90%",
+                height: "90%",
+                position: "absolute",
+                top: "50%",
+                left: isSmall ? undefined : "50%",
+                right: isSmall ? "20%" : undefined,
+                transform: isSmall
+                  ? "translateY(-50%) translateX(50%)"
+                  : "translate(-50%, -50%)",
+                overflow: "hidden",
+                borderRadius: "1rem",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "100%",
+                  height: "100%",
+                  paddingBottom: "1rem",
+                  overflow: "hidden",
+                }}
+              >
+                {/* Header */}
+                <div
+                  style={{
+                    width: "100%",
+                    height: "4rem",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "0 1.5rem",
+                    borderBottom: "1px solid #d1d5db",
+                    boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                    backgroundColor: "#fff",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.75rem",
+                    }}
+                  >
+                    <img
+                      alt="RMW Chat Bot"
+                      src="/chat-icn-ui.png"
+                      style={{
+                        width: "2.5rem",
+                        height: "2.5rem",
+                        objectFit: "contain",
+                      }}
+                    />
+                    <h2
+                      style={{
+                        fontSize: "1.25rem",
+                        fontWeight: 600,
+                        color: "#111827",
+                      }}
+                    >
+                      RitzBOT
+                    </h2>
+                  </div>
 
-//                     {/* <div className={styles.userInfo}>
-//                     <div className={styles.userInfoTitle}>Your Details:</div>
-//                     <div className={styles.userInfoItem}>
-//                       <span className={styles.userInfoLabel}>Name:</span>{" "}
-//                       {formData.name || "-"}
-//                     </div>
-//                     <div className={styles.userInfoItem}>
-//                       <span className={styles.userInfoLabel}>Email:</span>{" "}
-//                       {formData.email || "-"}
-//                     </div>
-//                     <div className={styles.userInfoItem}>
-//                       <span className={styles.userInfoLabel}>Phone:</span>{" "}
-//                       {formData.phone || "-"}
-//                     </div>
-//                   </div> */}
-//                   </div>
-//                 )}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "1rem",
+                    }}
+                  >
+                    <button
+                      onClick={() => setOpenForm((pr) => !pr)}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.5rem 1.5rem",
+                        borderRadius: "1.5rem",
+                        fontWeight: 600,
+                        fontSize: "0.875rem",
+                        color: "white",
+                        background:
+                          "linear-gradient(to bottom, #9c6409, #926e2b, #aa7814)",
+                        boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+                        cursor: "pointer",
+                        transition: "transform 0.15s",
+                      }}
+                    >
+                      {openForm ? "Close Form" : "Get In Touch"}
+                    </button>
 
-//                 {/* Right Panel - Chat Interface */}
-//                 <div
-//                   className={styles.chatPanel}
-//                   style={{ width: formOpen && !isMobile ? "70%" : "100%" }}
-//                 >
-//                   {/* Header */}
-//                   <div className={styles.chatHeader}>
-//                     <div className={styles.headerContent}>
-//                       <div className={styles.avatar}>
-//                         <img
-//                           src="/chrl.webp"
-//                           alt="Chat Avatar"
-//                           className={styles.avatarGif}
-//                         />
-//                       </div>
-//                       <div className={styles.headerText}>
-//                         <h3 className={styles.headerTitle}>
-//                           Ritz Media Assistant
-//                         </h3>
-//                         <p className={styles.headerStatus}>
-//                           <span className={styles.statusIndicator}></span>{" "}
-//                           Online now
-//                         </p>
-//                       </div>
-//                     </div>
+                    {!mobileView && (
+                      <Scan
+                        onClick={() => setIsSmall((pr) => !pr)}
+                        style={{
+                          color: "#111827",
+                          cursor: "pointer",
+                          transition: "all 0.2s",
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
 
-//                     <div className={styles.headerActions}>
-//                       {userExist === "NO" && (
-//                         <button
-//                           className={styles.qrBtn}
-//                           onClick={() => setFormOpen((pr) => !pr)}
-//                           aria-label="Quick Response"
-//                         >
-//                           {formOpen ? "Close Form" : "Quick Response"}
-//                         </button>
-//                       )}
-//                       <X
-//                         className={styles.cncl}
-//                         onClick={() => setIsOpen(false)}
-//                         aria-label="Close chat"
-//                       />
-//                     </div>
-//                   </div>
+                {/* Chat messages / greeting */}
+                {msgsQue.length === 0 ? (
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "2rem",
+                    }}
+                  >
+                    <div style={{ maxWidth: "32rem", textAlign: "center" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          marginBottom: "1.5rem",
+                        }}
+                      >
+                        <Image
+                          src="/rmw-logo-final.png"
+                          alt="Ritz Media World Logo"
+                          width={80}
+                          height={80}
+                          style={{ objectFit: "contain" }}
+                        />
+                      </div>
 
-//                   {/* Messages */}
-//                   <div ref={messageRef} className={styles.messagesContainer}>
-//                     {/* Welcome Message */}
-//                     <div className={styles.greetingMessage}>
-//                       <p className={styles.messageText}>
-//                         Welcome to{" "}
-//                         <span className={styles.highlight}>Ritz Media</span>! We
-//                         are a full-service digital agency specializing in web &
-//                         app development, digital advertising, and influencer
-//                         marketing. How can we help you today?
-//                       </p>
-//                       <div className={styles.messageTime}>
-//                         {new Date().toLocaleTimeString([], {
-//                           hour: "2-digit",
-//                           minute: "2-digit",
-//                         })}
-//                       </div>
-//                     </div>
+                      <h2
+                        style={{
+                          fontSize: "1.5rem",
+                          fontWeight: "bold",
+                          color: "#000",
+                          marginBottom: "0.75rem",
+                        }}
+                      >
+                        Hi! I&apos;m RitzBOT! <br />A fully-homemade AI
+                        Assistant.
+                      </h2>
 
-//                     {userMsgs.length > 0 &&
-//                       userMsgs.map((tk, idx) => {
-//                         const isUser = tk.id === "user";
+                      <p style={{ color: "#4b5563", lineHeight: 1.5 }}>
+                        What can I help you with today?
+                      </p>
 
-//                         return (
-//                           <div
-//                             key={idx}
-//                             className={`${styles.message} ${
-//                               isUser ? styles.messageRight : styles.messageLeft
-//                             }`}
-//                           >
-//                             {!isUser && (
-//                               <div className={styles.messageAvatar}>
-//                                 <img
-//                                   src="/chrl.webp"
-//                                   alt="Bot Avatar"
-//                                   className={styles.avatarGifSmall}
-//                                 />
-//                               </div>
-//                             )}
-//                             <div
-//                               className={`${styles.messageBubble} ${
-//                                 isUser ? styles.bubbleRight : styles.bubbleLeft
-//                               }`}
-//                             >
-//                               <div
-//                                 className={styles.messageContainer}
-//                                 dangerouslySetInnerHTML={{ __html: tk.msg }}
-//                               ></div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          gap: "0.75rem",
+                          flexWrap: "wrap",
+                          marginTop: "1rem",
+                        }}
+                      >
+                        {btnsQue.map((btnMsg, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => (
+                              suggestionsHandler(btnMsg.msg), setBtnsQue([])
+                            )}
+                            style={{
+                              padding: "0.5rem 1rem",
+                              cursor: "pointer",
+                              backgroundColor: "white",
+                              border: "1px solid #d1d5db",
+                              color: "#000",
+                              borderRadius: "9999px",
+                              boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                              transition: "all 0.2s",
+                              fontSize: "0.875rem",
+                            }}
+                          >
+                            {btnMsg.msg}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    ref={chatReff}
+                    style={{
+                      width: "100%",
+                      maxHeight: "75%",
+                      overflowY: "auto",
+                      paddingTop: "0.5rem",
+                      position: "absolute",
+                      top: "4rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "1rem",
+                    }}
+                  >
+                    {msgsQue.map((dt, idx) => (
+                      <div
+                        className={`${styles.dgHTML}`}
+                        key={idx}
+                        style={{
+                          maxWidth: "70%",
+                          padding: "0.5rem 1rem",
+                          borderRadius: "0.5rem",
+                          boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                          fontSize: "0.875rem",
+                          wordBreak: "break-word",
+                          whiteSpace: "pre-wrap",
+                          alignSelf: idx % 2 === 0 ? "flex-end" : "flex-start",
+                          backgroundColor:
+                            idx % 2 === 0 ? "#f3f4f6" : "#e5e7eb",
+                          color: "#000",
+                          marginLeft: "10px",
+                          marginRight: "10px",
+                        }}
+                        dangerouslySetInnerHTML={{ __html: dt.msg }}
+                      />
+                    ))}
+                    {suggestionsQues.length > 0 && (
+                      <div
+                        style={{
+                          padding: "15px",
+                        }}
+                      >
+                        {" "}
+                        {suggestionsQues.map((btnMsg, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => (
+                              suggestionsHandler(btnMsg.msg),
+                              setSuggestionsQue([])
+                            )}
+                            style={{
+                              padding: "0.5rem 1rem", // px-4 py-2
+                              cursor: "pointer",
+                              backgroundColor: "#ffffff", // bg-white
+                              border: "1px solid #d1d5db", // border-gray-300
+                              color: "#000000", // text-black
+                              borderRadius: "9999px", // rounded-full
+                              boxShadow: "0 1px 2px rgba(0,0,0,0.05)", // shadow-sm
+                              fontSize: "0.875rem", // text-sm
+                              transition: "background 0.2s, border-color 0.2s",
+                              marginTop: "10px",
+                              marginBottom: "10px",
+                              marginRight: "10px",
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = "#f3f4f6"; // hover:bg-gray-100
+                              e.currentTarget.style.borderColor = "#9ca3af"; // hover:border-gray-400
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = "#ffffff";
+                              e.currentTarget.style.borderColor = "#d1d5db";
+                            }}
+                          >
+                            {btnMsg.msg}
+                          </button>
+                        ))}
+                      </div>
+                    )}
 
-//                               <div
-//                                 className={`${styles.messageTime} ${
-//                                   isUser ? styles.timeRight : styles.timeLeft
-//                                 }`}
-//                               >
-//                                 {tk.date.toLocaleTimeString([], {
-//                                   hour: "2-digit",
-//                                   minute: "2-digit",
-//                                 })}
-//                               </div>
-//                             </div>
-//                             {isUser && (
-//                               <div className={styles.messageAvatar}>
-//                                 <img
-//                                   src="/userCh.webp"
-//                                   alt="User Avatar"
-//                                   className={styles.avatarGifSmall}
-//                                 />
-//                               </div>
-//                             )}
-//                           </div>
-//                         );
-//                       })}
+                    {/* Loader when bot is responding */}
+                    {resLoader && (
+                      <div className={`${styles.botMsg} ${styles.loader}`}>
+                        <div className={styles.bounce}></div>
+                        <div
+                          className={`${styles.bounce} ${styles.delay1}`}
+                        ></div>
+                        <div
+                          className={`${styles.bounce} ${styles.delay2}`}
+                        ></div>
+                      </div>
+                    )}
+                  </div>
+                )}
 
-//                     {/* Scroll anchor */}
-//                     <div ref={crChatRef}></div>
+                {/* Chat input area */}
+                <div
+                  style={{
+                    width: "95%",
+                    height: "4rem",
+                    backgroundColor: "white",
+                    boxShadow: "0 25px 50px rgba(0,0,0,0.1)",
+                    position: "relative",
+                    overflow: "hidden",
+                    border: "1px solid #9ca3af",
+                    borderRadius: "2rem",
+                  }}
+                >
+                  <textarea
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey && !resLoader) {
+                        e.preventDefault();
+                        chattingHandler();
+                      }
+                    }}
+                    value={msg}
+                    onChange={(e) => setMsg(e.target.value)}
+                    placeholder="*Message"
+                    style={{
+                      resize: "none",
+                      width: "95%",
+                      height: "100%",
+                      padding: "1.25rem 2rem 0 1rem",
+                      outline: "none", // removes default focus outline
+                      border: "none", // ensures no border
+                      boxShadow: "none", // removes any browser focus shadow
+                      backgroundColor: "white",
+                      color: "black",
+                    }}
+                  />
 
-//                     {resLoader && (
-//                       <div
-//                         className={`${styles.messageBubble} ${styles.bubbleLeft}`}
-//                         style={{
-//                           width: "80px",
-//                         }}
-//                       >
-//                         <div className={styles.loadingDots}>
-//                           <span></span>
-//                           <span></span>
-//                           <span></span>
-//                         </div>
-//                       </div>
-//                     )}
-//                   </div>
+                  <div
+                    style={{
+                      position: "absolute",
+                      right: "0.25rem",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      backgroundColor: "#353535",
+                      padding: "0.75rem",
+                      borderRadius: "50%",
+                      cursor: "pointer",
+                      transition: "background 0.2s",
+                    }}
+                  >
+                    {isAudiable ? (
+                      <Pause
+                        onClick={() => setIsAudiable(false)}
+                        style={{ color: "#fff" }}
+                      />
+                    ) : msg !== "" && !resLoader ? (
+                      <Send
+                        onClick={chattingHandler}
+                        style={{ color: "#fff" }}
+                      />
+                    ) : (
+                      <Mic
+                        onClick={() => setIsAudiable(true)}
+                        style={{ color: "#fff" }}
+                      />
+                    )}
+                  </div>
+                </div>
 
-//                   {/* Input Area */}
-//                   <div className={styles.inputArea}>
-//                     {!closeSession ? (
-//                       <div className={styles.messageInputContainer}>
-//                         <textarea
-//                           ref={inputRef}
-//                           value={message}
-//                           onChange={(e) => setMessage(e.target.value)}
-//                           placeholder="Type your message..."
-//                           className={styles.messageInput}
-//                           rows={1}
-//                         />
-//                         <div className={styles.sendButtonContainer}>
-//                           {message ? (
-//                             <button
-//                               type="button"
-//                               className={styles.sendButton}
-//                               onClick={sendMessageToApi}
-//                               disabled={resLoader}
-//                               aria-label="Send message"
-//                             >
-//                               <Send className={styles.sendIcon} />
-//                             </button>
-//                           ) : (
-//                             <button
-//                               type="button"
-//                               className={styles.micButton}
-//                               aria-label="Use microphone"
-//                               onClick={() => setIsAudiable((pr) => !pr)}
-//                               style={{
-//                                 backgroundColor: isAudiable
-//                                   ? "#a1a0a0"
-//                                   : "#f0f0f0",
-//                               }}
-//                             >
-//                               <Mic className={styles.micIcon} />
-//                             </button>
-//                           )}
-//                         </div>
-//                       </div>
-//                     ) : (
-//                       <div className={styles.chatTips}>
-//                         <p>
-//                           Your Session Has Expired, Please Refresh The Page!
-//                         </p>
-//                       </div>
-//                     )}
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         )}
-//       </div>
-//     </>
-//   );
-// }
+                {/* Form modal */}
+                {openForm && (
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      position: "absolute",
+                      top: "4rem",
+                      backgroundColor: "white",
+                      display: "flex",
+                      flexDirection: "column",
+                      color: "black",
+                    }}
+                  >
+                    {/* Form Header */}
+                    <div
+                      style={{
+                        padding: "1.5rem",
+                      }}
+                    >
+                      <h2 style={{ fontWeight: "bold", fontSize: "1.5rem" }}>
+                        Please share your details:
+                      </h2>
+                      <p style={{ color: "#6b7280", fontSize: "0.875rem" }}>
+                        Kindly provide your basic information so we can reach
+                        out to you easily. Please ensure your email and phone
+                        number are correct.
+                      </p>
+                    </div>
 
-// export default ChatBoat;
+                    {/* Form */}
+                    <form
+                      onSubmit={submitForm}
+                      style={{
+                        width: "100%",
+                        margin: "0",
+                        padding: "1.5rem",
+                        borderRadius: "1rem",
+                        boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1rem",
+                        marginTop: "-50px",
+                      }}
+                    >
+                      {modalMsg && (
+                        <div
+                          style={{
+                            textAlign: "center",
+                            fontWeight: 500,
+                            color:
+                              modalMsg.status === 200 ? "#16a34a" : "#ef4444",
+                          }}
+                        >
+                          <p>{modalMsg.msg}</p>
+                        </div>
+                      )}
+
+                      {/* Name */}
+                      <input
+                        required
+                        value={username}
+                        onChange={(e) => setUserName(e.target.value)}
+                        type="text"
+                        name="name"
+                        placeholder="Name*"
+                        style={{
+                          width: "100%",
+                          padding: "0.75rem",
+                          border: "none",
+                          borderBottom: "2px solid #AEAEAE",
+                          backgroundColor: "none",
+                          outline: "none",
+                          marginBottom: "1rem",
+                          color: "#000000",
+                        }}
+                      />
+
+                      {/* Email */}
+                      <input
+                        required
+                        onChange={(e) => setUserEmail(e.target.value)}
+                        type="email"
+                        name="email"
+                        value={userEmail}
+                        placeholder="Email*"
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                        style={{
+                          width: "100%",
+                          padding: "0.75rem",
+                          border: "none",
+                          borderBottom: "2px solid #AEAEAE",
+                          backgroundColor: "#FBFBFB",
+                          outline: "none",
+                          marginBottom: "1rem",
+                          color: "#000000",
+                        }}
+                      />
+
+                      {/* Phone */}
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: "0.5rem",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        <select
+                          required
+                          name="countryCode"
+                          value={countryCode}
+                          onChange={(e) => setCountryCode(e.target.value)}
+                          style={{
+                            width: "127px",
+                            padding: "0.75rem",
+                            border: "none",
+                            borderBottom: "2px solid #AEAEAE",
+                            backgroundColor: "#FBFBFB",
+                            outline: "none",
+                            color: "#000000",
+                          }}
+                        >
+                          {countryCodeData.map((dt: Country, idx) => (
+                            <option key={idx} value={`${dt.dial_code}`}>
+                              {dt.dial_code} {dt.name}
+                            </option>
+                          ))}
+                        </select>
+
+                        <input
+                          required
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          type="tel"
+                          name="phone"
+                          placeholder="Phone*"
+                          pattern="^[0-9]{7,14}$"
+                          style={{
+                            flex: 1,
+                            padding: "0.75rem",
+                            border: "none",
+                            borderBottom: "2px solid #AEAEAE",
+                            backgroundColor: "#FBFBFB",
+                            height: "49px",
+                            outline: "none",
+                            color: "#000000",
+                          }}
+                        />
+                      </div>
+
+                      {/* Message */}
+                      <textarea
+                        value={message}
+                        onChange={(e) => setMessages(e.target.value)}
+                        name="message"
+                        placeholder="Message*"
+                        rows={4}
+                        style={{
+                          width: "100%",
+                          border: "none",
+                          resize: "none",
+                          padding: "0.75rem",
+                          borderBottom: "2px solid #AEAEAE",
+                          backgroundColor: "#FBFBFB",
+                          outline: "none",
+                          marginBottom: "1rem",
+                          color: "#000000",
+                        }}
+                      />
+
+                      {/* Submit */}
+                      <button
+                        type="submit"
+                        disabled={formLoader}
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          cursor: formLoader ? "not-allowed" : "pointer",
+                          padding: "0.75rem",
+                          fontWeight: 500,
+                          color: "#ffffff",
+                          backgroundColor: formLoader ? "#9ca3af" : "#DCA54F",
+                          transition: "background 0.2s",
+                          border: "none",
+                          borderRadius: "0.375rem",
+                        }}
+                      >
+                        {formLoader ? (
+                          <svg
+                            style={{
+                              height: "1.25rem",
+                              width: "1.25rem",
+                              color: "#ffffff",
+                            }}
+                            className="animate-spin"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                            ></path>
+                          </svg>
+                        ) : (
+                          "Submit"
+                        )}
+                      </button>
+                    </form>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+export default ChatBoat;
