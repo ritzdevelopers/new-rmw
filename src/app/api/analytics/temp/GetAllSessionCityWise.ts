@@ -2,6 +2,8 @@
 // import { getFilterDate } from "../utils/ExtractDate";
 // import { durationConverter } from "./GetAllUsers";
 // import { FilterQuery } from "mongoose";
+// import { connectMongoDB } from "@/lib/mongo/dbConntect";
+
 // interface QTYPE {
 //   userRevisitCount?: number;
 //   trafficSource?: string;
@@ -16,41 +18,91 @@
 //   userRevisitCount: number;
 // }
 
+// // 🔹 Formatter function
+// function formatCount(num: number): string | number {
+//   if (num >= 10000000) {
+//     return (num / 10000000).toFixed(1).replace(/\.0$/, "") + "Cr";
+//   } else if (num >= 1000000) {
+//     return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+//   } else if (num >= 1000) {
+//     return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+//   }
+//   return num;
+// }
+
 // export async function getAllSessionsWithCityWise(
 //   duration: string,
 //   queryType: TYPE
 // ) {
+//   await connectMongoDB();
 //   const filterDuration = durationConverter(duration);
 //   const filterDate = !isNaN(filterDuration)
 //     ? getFilterDate(filterDuration)
 //     : NaN;
+
 //   const query: FilterQuery<QTYPE> = {};
+//   if (!isNaN(filterDuration)) {
+//     query.createdAt = { $gte: filterDate };
+//   }
+
+//   // Query conditions
 //   if (queryType === "Revisit") {
 //     query.userRevisitCount = { $gte: 2 };
-//     query.createdAt = { $gte: filterDate };
 //   } else if (queryType === "Organic") {
-//     query.userRevisitCount = { $regex: "google\\.com", $options: "i" };
-//     query.createdAt = { $gte: filterDate };
+//     query.trafficSource = { $regex: "google\\.com", $options: "i" };
 //   }
+
 //   let data: DATA[] = [];
-//   let totalSessions = 0;
-//   if (query) {
-//     data = await UserAnalyticModel.find(query);
-//   } else if (queryType == "Unique") {
-//     data = await UserAnalyticModel.find({
-//       createdAt: { $gte: filterDate },
-//     });
-//   } else if (queryType === "Total") {
-//     data = await UserAnalyticModel.find({
-//       userRevisitCount: { $gte: 1 },
-//       createdAt: { $gte: filterDate },
-//     });
+
+//   if (queryType === "Unique") {
+//     // unique means 1 session per user
+//     data = await UserAnalyticModel.aggregate([
+//       { $match: query },
+//       {
+//         $group: {
+//           _id: "$user",
+//           userCity: { $first: "$userAddress.userCity" },
+//           count: { $sum: 1 },
+//         },
+//       },
+//     ]);
+//   } else {
+//     // Total / Revisit / Organic
+//     data = await UserAnalyticModel.find(query).select(
+//       "user userAddress.userCity userRevisitCount"
+//     );
 //   }
-//   let cityWithSessions = {};
-//   if (data) {
-//     for (let val of data) {
-//       cityWithSessions[val.userAddress.userCity] = (pr) =>
-//         (pr += val.userRevisitCount);
+
+//   // City wise aggregation (keep raw counts as number)
+//   const cityWithSessions: Record<string, number> = {};
+
+//   if (queryType === "Unique") {
+//     for (const item of data as any) {
+//       const city = item.userCity || "Unknown";
+//       cityWithSessions[city] = (cityWithSessions[city] || 0) + 1;
+//     }
+//   } else {
+//     for (const item of data) {
+//       const city = item.userAddress?.userCity || "Unknown";
+//       cityWithSessions[city] = (cityWithSessions[city] || 0) + 1;
 //     }
 //   }
+
+//   const totalSessions = Object.values(cityWithSessions).reduce(
+//     (acc, curr) => acc + curr,
+//     0
+//   );
+
+//   // 🔹 Final response: formatted + raw
+//   const formattedCityWise: Record<string, string | number> = {};
+//   for (const [city, count] of Object.entries(cityWithSessions)) {
+//     formattedCityWise[city] = formatCount(count);
+//   }
+
+//   return {
+//     totalSessions: formatCount(totalSessions),
+//     totalSessionsRaw: totalSessions, 
+//     cityWise: formattedCityWise,
+//     cityWiseRaw: cityWithSessions, 
+//   };
 // }

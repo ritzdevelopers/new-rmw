@@ -77,7 +77,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -93,7 +93,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -109,7 +109,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -125,7 +125,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -141,7 +141,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -157,7 +157,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -173,7 +173,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -189,7 +189,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -205,7 +205,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -221,7 +221,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -237,7 +237,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -253,7 +253,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -269,7 +269,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -285,7 +285,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -301,7 +301,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
@@ -317,14 +317,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
-                        
 
-                            <SwiperSlide>
+                          <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -335,13 +334,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
 
-                            {/* <SwiperSlide>
+                          {/* <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -352,13 +351,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide> */}
 
-                            {/* <SwiperSlide>
+                          {/* <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -369,12 +368,12 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide> */}
-{/* 
+                          {/* 
                             <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
@@ -386,13 +385,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide> */}
 
-                            <SwiperSlide>
+                          <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -403,14 +402,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
 
-
-                            <SwiperSlide>
+                          <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -421,13 +419,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
 
-                            {/* <SwiperSlide>
+                          {/* <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -438,13 +436,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide> */}
 
-                              <SwiperSlide>
+                          <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -455,14 +453,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
 
-
-                              <SwiperSlide>
+                          <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -473,14 +470,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
 
-
-                              <SwiperSlide>
+                          <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -491,15 +487,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
 
-                          
-
-                             <SwiperSlide>
+                          <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -510,13 +504,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
 
-                             <SwiperSlide>
+                          <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -527,13 +521,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
 
-                             <SwiperSlide>
+                          <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -544,13 +538,13 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
                           </SwiperSlide>
 
-                             <SwiperSlide>
+                          <SwiperSlide>
                             <div className="tp-brand__item">
                               <div className={styles.topBrandLogoImgD}>
                                 <Image
@@ -561,7 +555,7 @@ const SwiperHome = () => {
                                   }}
                                   fill
                                   priority
-                                  quality={100}
+                                  quality={70}
                                 />
                               </div>
                             </div>
