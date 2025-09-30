@@ -1,8 +1,49 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
+import Link from "next/link";
+import SwiperSlider from "./slider/SwiperSlider";
+
+type FAQItem = {
+  question: string;
+  answer: string;
+};
+
+const faqs: FAQItem[] = [
+  {
+    question: "Do I need prior experience?",
+    answer:
+      "No. Curiosity and basic computer comfort are enough.",
+  },
+  {
+    question: "Placement guaranteed?",
+    answer: "No guarantees, placement assistance with real portfolio building, yes.",
+  },
+  {
+    question: "Will I get a certificate?",
+    answer:
+      "Yes, an RDX completion certificate, plus prep for Google/Meta credentials.",
+  },
+  {
+    question: "Live or recorded?",
+    answer  : "Live sessions with recordings for revision.",
+  },
+  {
+    question: "Language?",
+    answer: "English-first; we’re comfortable supporting in Hinglish where needed.",
+  },
+  {
+    question: "Is it only in Delhi-NCR?",
+    answer: "In-person in NCR + hybrid live online for remote learners.",
+  },
+];
 
 function Page() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleAccordion = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
   const slides = [
     {
       img: "/rdx/s9/seeo.png",
@@ -116,29 +157,34 @@ function Page() {
 
   const s8Slides = [
     {
-      text: `"I moved from content to performance in 10 weeks. The capstone plus interview prep sealed the deal."`,
-      author: "— Aastha S",
+      text: `"I completed the digital marketing course at Ritz Digital Xperts. The trainers were very supportive. I learned SEO, PPC, SMM, and more. This was my best learning experience."`,
+      author: "— Shorye Verma",
       role: "Performance Marketer, Gurgaon",
     },
     {
-      text: `"The analytics + CRO combo finally made sense. Built dashboards I now use at work daily."`,
-      author: "— Kunal M.",
-      role: "Marketing Analyst, Noida",
+      text: `"Learning Web Development at RDX was a great experience. The trainers were very helpful, and I learned technologies like HTML, CSS, JavaScript, and React. It gave me the confidence to build real-world projects."`,
+      author: "— Syed Arhan",
+      role: "Web Developer, Noida",
     },
     {
-      text: `"As a founder, I stopped burning budget. The RDX testing cadence and landing page playbook paid for the course."`,
-      author: "— Riya V",
-      role: "D2C Founder, Delhi",
+      text: `"Thanks to RDX (Ritz Digital Experts) and especially Akanksha ma’am for her guidance, I gained practical skills and confidence in digital marketing that will help me in my career."`,
+      author: "— Manav ",
+      role: "SEO Engineer, Delhi",
+    },
+     {
+      text: `"I completed the digital marketing course at Ritz Digital Xperts. The trainers were very supportive. I learned SEO, PPC, SMM, and more. This was my best learning experience."`,
+      author: "— Shorye Verma",
+      role: "Performance Marketer, Gurgaon",
     },
     {
-      text: `"My LinkedIn profile exploded after completing the program. Recruiters started approaching me directly."`,
-      author: "— Sameer P",
-      role: "Growth Manager, Mumbai",
+      text: `"Learning Web Development at RDX was a great experience. The trainers were very helpful, and I learned technologies like HTML, CSS, JavaScript, and React. It gave me the confidence to build real-world projects."`,
+      author: "— Syed Arhan",
+      role: "Web Developer, Noida",
     },
     {
-      text: `"This program gave me clarity on analytics and campaign structures. I finally feel confident running paid ads."`,
-      author: "— Neha T",
-      role: "Digital Marketer, Bangalore",
+      text: `"Thanks to RDX (Ritz Digital Experts) and especially Akanksha ma’am for her guidance, I gained practical skills and confidence in digital marketing that will help me in my career."`,
+      author: "— Manav ",
+      role: "SEO Engineer, Delhi",
     },
   ];
 
@@ -168,107 +214,148 @@ function Page() {
       setS8Current((prev) =>
         prev + s8CardsPerView >= s8Slides.length ? 0 : prev + s8CardsPerView
       );
-    }, 6000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [s8CardsPerView, s8Slides.length]);
 
-  const s8NextSlide = () => {
-    setS8Current((prev) =>
-      prev + s8CardsPerView >= s8Slides.length ? 0 : prev + s8CardsPerView
-    );
-  };
+  // const s8NextSlide = () => {
+  //   setS8Current((prev) =>
+  //     prev + s8CardsPerView >= s8Slides.length ? 0 : prev + s8CardsPerView
+  //   );
+  // };
 
-  const s8PrevSlide = () => {
-    setS8Current((prev) =>
-      prev - s8CardsPerView < 0
-        ? s8Slides.length - s8CardsPerView
-        : prev - s8CardsPerView
-    );
-  };
+  // const s8PrevSlide = () => {
+  //   setS8Current((prev) =>
+  //     prev - s8CardsPerView < 0
+  //       ? s8Slides.length - s8CardsPerView
+  //       : prev - s8CardsPerView
+  //   );
+  // };
 
   // Pagination count
   const s8TotalPages = Math.ceil(s8Slides.length / s8CardsPerView);
   const s8CurrentPage = Math.floor(s8Current / s8CardsPerView);
-
+  //  From Here The S7 Slider Logic Is Startting
   const cards = [
     {
-      img: "/rdx/s7/rdxs7i1.png",
-      title: "Foundations & Consumer Psychology",
-      desc: "Digital funnels, JTBD thinking, offer design, creative strategy, ethics, and the numbers that matter.",
+      img: "/rdx/s7/webpage.jpg",
+      title: " Website & Landing Page Fundamentals",
+      desc: "Learn how to build effective websites and landing pages with mobile-first design, UX principles, and conversion-focused structures, ending with hands-on creation for a fictional business.",
     },
     {
-      img: "/rdx/s7/rdxs7i2.png",
-      title: "SEO Deep Dive",
-      desc: "Keyword strategy, on-page & technical SEO, internal linking, Core Web Vitals, local SEO, content briefs, Search Console workflows.",
+      img: "/rdx/s7/seo.jpg",
+      title: " Search Engine Optimisation (SEO)",
+      desc: "Master on-page, off-page, technical, and local SEO techniques, while leveraging industry tools like SEMrush and Ahrefs through practical SEO audits for optimized visibility.",
     },
     {
-      img: "/rdx/s7/rdxs7i3.png",
-      title: "Search Advertising (Google Ads)",
-      desc: "Keyword strategy, on-page & technical SEO, internal linking, Core Web Vitals, local SEO, content briefs, Search Console workflows.",
+      img: "/rdx/s7/ads.jpg",
+      title: "Search Engine Marketing (SEM) & Paid Ads",
+      desc: "Discover Google Ads campaigns, keyword strategies, and ad copywriting essentials. Learn conversion tracking and create mock paid campaigns to sharpen practical SEM skills.",
     },
     {
-      img: "/rdx/s7/rdxs7i1.png",
-      title: "Foundations & Consumer Psychology",
-      desc: "Digital funnels, JTBD thinking, offer design, creative strategy, ethics, and the numbers that matter.",
+      img: "/rdx/s7/social_media.jpg",
+      title: "Social Media Marketing (SMM)",
+      desc: "Understand organic and paid strategies across platforms like Instagram, LinkedIn, and YouTube. Develop content calendars, run ads, and design a social media plan.",
     },
     {
-      img: "/rdx/s7/rdxs7i2.png",
-      title: "SEO Deep Dive",
-      desc: "Keyword strategy, on-page & technical SEO, internal linking, Core Web Vitals, local SEO, content briefs, Search Console workflows.",
+      img: "/rdx/s7/content_marketing.jpg",
+      title: "Content Marketing",
+      desc: "Learn storytelling, brand voice, and SEO-driven content creation. Create blog posts and social media assets while mastering repurposing across multiple platforms for greater reach.",
     },
     {
-      img: "/rdx/s7/rdxs7i3.png",
-      title: "Search Advertising (Google Ads)",
-      desc: "Keyword strategy, on-page & technical SEO, internal linking, Core Web Vitals, local SEO, content briefs, Search Console workflows.",
+      img: "/rdx/s7/email_marketing.jpg",
+      title: "Email Marketing & Automation",
+      desc: "Explore ethical list building, campaign types, and automation workflows. Design segmented campaigns using Mailchimp or HubSpot, enhancing personalization and conversion-driven email strategies.",
     },
     {
-      img: "/rdx/s7/rdxs7i1.png",
-      title: "Foundations & Consumer Psychology",
-      desc: "Digital funnels, JTBD thinking, offer design, creative strategy, ethics, and the numbers that matter.",
+      img: "/rdx/s7/businessman_working_with_business_analytics_data_management_system.jpg",
+      title: "Digital Analytics & Data-Driven Marketing",
+      desc: "Learn GA4, GTM, and Looker Studio to measure performance metrics. Build dashboards, analyze traffic, and optimize campaigns through data-driven insights and KPIs.",
     },
     {
-      img: "/rdx/s7/rdxs7i2.png",
-      title: "SEO Deep Dive",
-      desc: "Keyword strategy, on-page & technical SEO, internal linking, Core Web Vitals, local SEO, content briefs, Search Console workflows.",
+      img: "/rdx/s7/ar-vr.png",
+      title: " Emerging Technologies in Digital Marketing",
+      desc: "Discover how AI, AR/VR, and voice search are reshaping marketing. Build campaigns powered by generative AI while preparing for cookie-less, data-privacy-focused digital futures.",
     },
     {
-      img: "/rdx/s7/rdxs7i3.png",
-      title: "Search Advertising (Google Ads)",
-      desc: "Keyword strategy, on-page & technical SEO, internal linking, Core Web Vitals, local SEO, content briefs, Search Console workflows.",
+      img: "/rdx/s7/man-works-laptop-with-icons-social-media-screen.jpg",
+      title: "Capstone Project & Career Prep",
+      desc: "Develop and pitch a complete digital marketing strategy. Build a strong portfolio, prepare for interviews, and explore freelancing opportunities to launch your career.",
     },
   ];
+  // --- States (replace your current related states) ---
+  // const [visibleCards, setVisibleCards] = useState(3);
+  // const [windowWidth, setWindowWidth] = useState(
+  //   typeof window !== "undefined" ? window.innerWidth : 1200
+  // );
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleCards, setVisibleCards] = useState(3);
-  console.log(visibleCards);
+  // // start in the middle copy (we'll render tripled array)
+  // const [currentIndex, setCurrentIndex] = useState(cards.length);
+  // const [transitionEnabled, setTransitionEnabled] = useState(true);
 
-  // Responsive cards count
-  useEffect(() => {
-    const updateCards = () => {
-      if (window.innerWidth <= 768) setVisibleCards(1);
-      else if (window.innerWidth <= 1200) setVisibleCards(2);
-      else setVisibleCards(3);
-    };
+  // triple the array for seamless infinite scrolling
+  // const totalCards = [...cards, ...cards, ...cards];
 
-    updateCards();
-    window.addEventListener("resize", updateCards);
-    return () => window.removeEventListener("resize", updateCards);
-  }, []);
+  // --- Responsive listener (sets visibleCards + windowWidth) ---
+  // useEffect(() => {
+  //   const updateCards = () => {
+  //     const w = window.innerWidth;
+  //     setWindowWidth(w);
+  //     if (w <= 768) setVisibleCards(1);
+  //     else if (w <= 1200) setVisibleCards(2);
+  //     else setVisibleCards(3);
+  //   };
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % cards.length);
-  };
+  //   updateCards();
+  //   window.addEventListener("resize", updateCards);
+  //   return () => window.removeEventListener("resize", updateCards);
+  // }, []);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length);
-  };
+  // --- layout constants ---
+  // const cardWidth = 400; // as you had
+  // const gap = 17; // spacing
 
-  // Width of each card (same as CSS)
-  const cardWidth = 390; // px
-  const gap = 20; // px (approx spacing in flex-wrap responsive)
+  // // offset: mobile (<760) => 100, otherwise => 10
+  // const offset = windowWidth < 760 ? 100 : 0;
 
-  // Calculate translateX
-  const translateX = -(currentIndex * (cardWidth + gap));
+  // translateX used for style
+  // const translateX = -(currentIndex * (cardWidth + gap) - offset);
+
+  // --- handlers ---
+  // const handleNext = () => setCurrentIndex((prev) => prev + 1);
+  // const handlePrev = () => setCurrentIndex((prev) => prev - 1);
+
+  // --- Infinite loop reset logic ---
+  // when we slide into the first or last copy, jump back to middle copy (no transition)
+  // useEffect(() => {
+  //   // right overflow: index in last copy (>= 2 * n)
+  //   if (currentIndex >= cards.length * 2) {
+  //     setTimeout(() => {
+  //       setTransitionEnabled(false);
+  //       // move to equivalent index in middle copy
+  //       setCurrentIndex((ci) => ci - cards.length);
+  //     }, 600); // should match your CSS transition duration
+  //   }
+
+  //   // left overflow: index in first copy (<= n-1)
+  //   else if (currentIndex <= cards.length - 1) {
+  //     setTimeout(() => {
+  //       setTransitionEnabled(false);
+  //       // move to equivalent index in middle copy
+  //       setCurrentIndex((ci) => ci + cards.length);
+  //     }, 600);
+  //   }
+  // }, [currentIndex, cards.length]);
+
+  // re-enable transition immediately on next frame after the 'jump'
+  // useEffect(() => {
+  //   if (!transitionEnabled) {
+  //     // two RAFs to ensure DOM updated without transition
+  //     requestAnimationFrame(() => {
+  //       requestAnimationFrame(() => setTransitionEnabled(true));
+  //     });
+  //   }
+  // }, [transitionEnabled]);
 
   return (
     <main>
@@ -294,23 +381,31 @@ function Page() {
         <div className={styles.row2}>
           {/* Left Side */}
           <div className={styles.leftSide}>
-            <button className={styles.circleButton}>
-              <svg
-                width="64"
-                height="65"
-                viewBox="0 0 64 65"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <span>
+              <Link
+                href="/contact.html"
+                className="tp-hero__action-btn"
+                aria-label="Contact RMW"
               >
-                <path
-                  d="M20.0003 44.5L44.0003 20.5M44.0003 20.5L44.0003 43.1666M44.0003 20.5L21.3337 20.5"
-                  stroke="white"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
+                <span>
+                  <svg
+                    width="33"
+                    height="33"
+                    viewBox="0 0 33 33"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1.99996 26.5469L29.4548 7.97636M6.73828 2L31.2851 6.73832L26.5468 31.2852"
+                      stroke="white"
+                      strokeWidth="2"
+                      strokeLinecap="square"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </Link>
+            </span>
 
             <button className={styles.advisorButton}>Talk to an Advisor</button>
           </div>
@@ -406,7 +501,6 @@ function Page() {
             </div>
 
             <div className={styles.card}>
-            
               <img
                 src="/rdx/s2/rdxicn2.png"
                 className={styles.cardIcon}
@@ -776,6 +870,20 @@ function Page() {
                   className={styles.absoluteImage}
                   alt=""
                 />
+
+                {/* Second Elips  */}
+                <img
+                  src="/rdx/s6/s6_elips.png"
+                  style={{
+                    width: "295.14px",
+                    height: "319px",
+                    position: "absolute",
+                    left: "40px",
+                    bottom: "0",
+                    zIndex: "-1",
+                  }}
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -791,16 +899,25 @@ function Page() {
           <h2 className={styles.s7Heading}>What You will Learn</h2>
 
           {/* Slider Container */}
-          <div className={styles.s7Slider} style={{ overflow: "hidden" }}>
+          <div
+            style={{
+              overflow: "hidden",
+              marginTop: "60px",
+            }}
+          >
+            <SwiperSlider dt={cards}></SwiperSlider>
+            {/* {" "}
             <div
               style={{
                 display: "flex",
-                transition: "transform 0.6s ease-in-out",
+                transition: transitionEnabled
+                  ? "transform 0.6s ease-in-out"
+                  : "none",
                 transform: `translateX(${translateX}px)`,
                 gap: `${gap}px`,
               }}
             >
-              {cards.map((card, idx) => (
+              {totalCards.map((card, idx) => (
                 <div className={styles.s7Card} key={idx}>
                   <img
                     src={card.img}
@@ -813,15 +930,15 @@ function Page() {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Buttons */}
-          <div className={styles.s7Buttons}>
+          {/* <div className={styles.s7Buttons}>
             <div className={styles.s7ButtonGroup}>
               <button className={styles.s7Button} onClick={handlePrev}>
                 {/* Left Arrow */}
-                <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
+          {/* <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
                   <path
                     d="M0.439339 10.9393C-0.146448 11.5251 -0.146448 12.4749 0.439339 13.0607L9.98528 22.6066C10.5711 23.1924 11.5208 23.1924 12.1066 22.6066C12.6924 22.0208 12.6924 21.0711 12.1066 20.4853L3.62132 12L12.1066 3.51472C12.6924 2.92893 12.6924 1.97919 12.1066 1.3934C11.5208 0.807611 10.5711 0.807611 9.98528 1.3934L0.439339 10.9393ZM31.5 12V10.5L1.5 10.5V12V13.5L31.5 13.5V12Z"
                     fill="#323232"
@@ -834,7 +951,7 @@ function Page() {
                 onClick={handleNext}
               >
                 {/* Right Arrow */}
-                <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
+          {/* <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
                   <path
                     d="M31.5607 10.9393C32.1464 11.5251 32.1464 12.4749 31.5607 13.0607L22.0147 22.6066C21.4289 23.1924 20.4792 23.1924 19.8934 22.6066C19.3076 22.0208 19.3076 21.0711 19.8934 20.4853L28.3787 12L19.8934 3.51472C19.3076 2.92893 19.3076 1.97919 19.8934 1.3934C20.4792 0.807611 21.4289 0.807611 22.0147 1.3934L31.5607 10.9393ZM0.5 12L0.5 10.5L30.5 10.5V12V13.5L0.5 13.5L0.5 12Z"
                     fill="white"
@@ -842,7 +959,7 @@ function Page() {
                 </svg>
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -884,14 +1001,14 @@ function Page() {
             {/* Buttons and Pagination Container */}
             <div className={styles.s8Controls}>
               {/* Navigation Buttons */}
-              <div className={styles.s8ButtonContainer}>
+              {/* <div className={styles.s8ButtonContainer}>
                 <button className={styles.s8Btn} onClick={s8PrevSlide}>
                   ◀
                 </button>
                 <button className={styles.s8Btn} onClick={s8NextSlide}>
                   ▶
                 </button>
-              </div>
+              </div> */}
 
               {/* Pagination Dots */}
               <div className={styles.s8Pagination}>
@@ -936,7 +1053,12 @@ function Page() {
               onClick={prevSlide}
               disabled={current === 0} // Disable when at start
             >
-              ◀
+              <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
+                <path
+                  d="M0.439339 10.9393C-0.146448 11.5251 -0.146448 12.4749 0.439339 13.0607L9.98528 22.6066C10.5711 23.1924 11.5208 23.1924 12.1066 22.6066C12.6924 22.0208 12.6924 21.0711 12.1066 20.4853L3.62132 12L12.1066 3.51472C12.6924 2.92893 12.6924 1.97919 12.1066 1.3934C11.5208 0.807611 10.5711 0.807611 9.98528 1.3934L0.439339 10.9393ZM31.5 12V10.5L1.5 10.5V12V13.5L31.5 13.5V12Z"
+                  fill="#323232"
+                />
+              </svg>
             </button>
             {/* Right Button */}
             <button
@@ -944,7 +1066,12 @@ function Page() {
               onClick={nextSlide}
               disabled={current + cardsPerView >= slides.length} // Disable when at end
             >
-              ▶
+              <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
+                <path
+                  d="M31.5607 10.9393C32.1464 11.5251 32.1464 12.4749 31.5607 13.0607L22.0147 22.6066C21.4289 23.1924 20.4792 23.1924 19.8934 22.6066C19.3076 22.0208 19.3076 21.0711 19.8934 20.4853L28.3787 12L19.8934 3.51472C19.3076 2.92893 19.3076 1.97919 19.8934 1.3934C20.4792 0.807611 21.4289 0.807611 22.0147 1.3934L31.5607 10.9393ZM0.5 12L0.5 10.5L30.5 10.5V12V13.5L0.5 13.5L0.5 12Z"
+                  fill="black"
+                />
+              </svg>
             </button>
           </div>
 
@@ -963,6 +1090,7 @@ function Page() {
         </div>
       </section>
 
+      {/* From Here The Section 10 Is Starting  */}
       {/* From Here The Section 10 Is Starting  */}
       <section className={styles.s10}>
         {/* Absolute Position Elips  */}
@@ -986,54 +1114,45 @@ function Page() {
           {/* Center Align Div  */}
           <div className={styles.s10Center}>
             {/* Cards  */}
-            <div className={styles.s10Card}>
-              <p className={styles.s10CardText}>Do I need prior experience?</p>
-              <img
-                src="/rdx/s10/icons8_plus.png"
-                alt="plus"
-                className={styles.s10CardIcon}
-              />
-            </div>
-            <div className={styles.s10Card}>
-              <p className={styles.s10CardText}>Do I need prior experience?</p>
-              <img
-                src="/rdx/s10/icons8_plus.png"
-                alt="plus"
-                className={styles.s10CardIcon}
-              />
-            </div>
-            <div className={styles.s10Card}>
-              <p className={styles.s10CardText}>Do I need prior experience?</p>
-              <img
-                src="/rdx/s10/icons8_plus.png"
-                alt="plus"
-                className={styles.s10CardIcon}
-              />
-            </div>
-            <div className={styles.s10Card}>
-              <p className={styles.s10CardText}>Do I need prior experience?</p>
-              <img
-                src="/rdx/s10/icons8_plus.png"
-                alt="plus"
-                className={styles.s10CardIcon}
-              />
-            </div>
-            <div className={styles.s10Card}>
-              <p className={styles.s10CardText}>Do I need prior experience?</p>
-              <img
-                src="/rdx/s10/icons8_plus.png"
-                alt="plus"
-                className={styles.s10CardIcon}
-              />
-            </div>
-            <div className={styles.s10Card}>
-              <p className={styles.s10CardText}>Do I need prior experience?</p>
-              <img
-                src="/rdx/s10/icons8_plus.png"
-                alt="plus"
-                className={styles.s10CardIcon}
-              />
-            </div>
+            {faqs.map((faq, index) => (
+              <div key={index} className={styles.s10CardWrapper}>
+                {/* Card (Question) */}
+                <div
+                  className={styles.s10Card}
+                  onClick={() => toggleAccordion(index)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <p className={styles.s10CardText}>{faq.question}</p>
+                  <img
+                    src={
+                      openIndex === index
+                        ? "/rdx/s10/icons8_minus.png"
+                        : "/rdx/s10/icons8_plus.png"
+                    }
+                    alt="toggle"
+                    className={styles.s10CardIcon}
+                  />
+                </div>
+
+                {/* Accordion Content with Animation */}
+                <div
+                  className={styles.s10AccordionContent}
+                  style={{
+                    maxHeight: openIndex === index ? "200px" : "0",
+                    overflow: "hidden",
+                    backgroundColor: "white",
+                    borderRadius: "0 0 10px 10px",
+                    marginTop: "-20px",
+                    padding: openIndex === index ? "15px 35px" : "0 35px",
+                    fontSize: "16px",
+                    fontWeight: 400,
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  {faq.answer}
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Bottom Align Div  */}
