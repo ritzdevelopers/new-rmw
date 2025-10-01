@@ -21,7 +21,7 @@
 .logo {
   width: 700px;
   max-width: 90%;
-  height: auto;
+  height: 365px;
 }
 
 .heading {
@@ -79,6 +79,34 @@
   text-transform: uppercase;
   border: none;
   cursor: pointer;
+  transition: background 700ms ease, color 700ms ease;
+}
+.advisorButton:hover {
+  color: #ffffff;
+  background: linear-gradient(to right, #975208, #8a5a0d);
+}
+.advisorButton2 {
+  width: 222px;
+  height: 64px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #cf983e;
+  background-color: black;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 700ms ease, color 700ms ease;
+  display: block;
+}
+.advisorButton2:hover {
+  color: #ffffff;
+  background: linear-gradient(to right, #975208, #8a5a0d);
+}
+
+@media (max-width: 1030px) {
+  .advisorButton2 {
+    display: none;
+  }
 }
 
 .rightSide {
@@ -232,6 +260,7 @@
   height: 100%;
   width: 100%;
   object-fit: contain;
+  z-index: -10;
 }
 
 /* Responsive Design for Section 2 */
@@ -807,6 +836,7 @@
   display: flex;
   justify-content: space-between;
   padding-top: 40px;
+  /* padding-top: 40px; */
 }
 
 .leftImage {
@@ -822,7 +852,7 @@
 }
 
 .rightContent {
-  padding-top: 60px;
+  /* padding-top: 60px; */
   padding-right: 120px;
 }
 
@@ -1419,8 +1449,18 @@
   justify-content: center;
   align-items: center;
   padding: 60px 0;
+  position: relative;
 }
-
+.s8Overlay {
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  position: absolute;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000000a1;
+}
 .s8Centered {
   width: 1240px;
   height: 502px;
@@ -1436,6 +1476,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  z-index: 10;
 }
 
 .s8Title {
@@ -1853,11 +1894,13 @@
 }
 
 .s9Centered {
-  width: 1240px;
+  width: 1308px;
   display: flex;
   flex-direction: column;
   gap: 30px;
   position: relative; /* Added for proper button positioning */
+  padding-bottom: 40px;
+  padding-top: 40px;
 }
 
 .s9Slider {

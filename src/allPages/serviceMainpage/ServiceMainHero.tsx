@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -165,11 +166,11 @@ const ServiceMainHero = () => {
                     <div className="col-xl-4 col-lg-5">
                       <div className="tp-hero__2-content p-relative">
                         <div className="tp-hero__2-circle-shape">
-                          <img
+                          <Image fill
                             decoding="async"
                             src="/service-first-images/One_roof_2.png"
-                            alt=""
-                            style={{ maxHeight: "220px" }}
+                            alt="Ritz Media Services"
+                            style={{ maxHeight: "220px", objectFit:'contain', margin:'auto' }}
                           />
                         </div>
                         <div

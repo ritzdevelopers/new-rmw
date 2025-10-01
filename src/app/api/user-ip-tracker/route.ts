@@ -11,7 +11,27 @@ interface USERTRACKEDDATA {
   user_pinCode?: string | undefined;
   user_country?: string | undefined;
   user_place?: string | undefined;
+  user_device?: string | undefined;
 }
+
+function getDeviceBrand(userAgent: string | null): string {
+  if (!userAgent) return "Unknown";
+  const ua = userAgent.toLowerCase();
+
+  if (ua.includes("iphone")) return "iPhone";
+  if (ua.includes("ipad")) return "iPad";
+  if (ua.includes("samsung") || ua.includes("sm-")) return "Samsung";
+  if (ua.includes("huawei")) return "Huawei";
+  if (ua.includes("xiaomi") || ua.includes("redmi")) return "Xiaomi";
+  if (ua.includes("oneplus")) return "OnePlus";
+  if (ua.includes("pixel")) return "Google Pixel";
+  if (ua.includes("android")) return "Android Device";
+  if (ua.includes("macintosh")) return "Mac";
+  if (ua.includes("windows")) return "Windows PC";
+
+  return "Unknown";
+}
+
 export async function GET(req: NextRequest) {
   try {
     // Read IP from 'x-forwarded-for' header (standard in proxies/CDNs like Vercel)
@@ -26,6 +46,9 @@ export async function GET(req: NextRequest) {
     const lat = user_Info?.latitude;
     const long = user_Info?.longitude;
     console.log("User Latitude ", user_Info);
+    const userAgent = req.headers.get("user-agent");
+    const deviceBrand = getDeviceBrand(userAgent);
+    user_data.user_device = deviceBrand;
 
     let userPinCode;
     let userPlace;
