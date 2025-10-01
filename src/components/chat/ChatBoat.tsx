@@ -8,6 +8,7 @@ import styles from "./page.module.css";
 import axios from "axios";
 import Image from "next/image";
 import countryCodeData from "../../../country_code.json";
+import { usePathname } from "next/navigation";
 
 interface Country {
   name: string;
@@ -56,6 +57,13 @@ function ChatBoat() {
   const containerRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
   const boatRef = useRef<HTMLDivElement>(null);
+  const path = usePathname();
+ // Determine if the component should render
+const hideChatBoat =
+  path.includes("/rdx-digital-marketing-course") ||
+  path.includes("/rdx-digital-marketing-Course");
+
+
 
   const toggleChat = async () => {
     try {
@@ -256,8 +264,8 @@ function ChatBoat() {
             id: pr.length > 0 ? pr[pr.length - 1].id + 1 : 1,
           },
         ]);
-        if(res.data.suggestions) {
-           res.data.suggestions.map((ob: string, idx: number) => {
+        if (res.data.suggestions) {
+          res.data.suggestions.map((ob: string, idx: number) => {
             setSuggestionsQue((prev) => [...prev, { id: idx, msg: ob }]);
           });
         }
@@ -397,6 +405,10 @@ function ChatBoat() {
   // );
 
   // Generative AI Content,
+  if (hideChatBoat) {
+  // Return null for rendering, but hooks above are still called
+  return null;
+}
   return (
     <>
       <style>
