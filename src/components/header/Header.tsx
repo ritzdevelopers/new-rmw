@@ -386,25 +386,25 @@ const Header = () => {
                         Contact us
                       </Link>
                     </li>
-                    {/* <li className="nav-item">
-                      <Link
-                        href="/rdx-digital-marketing-Course/"
+                    <li className="nav-item">
+                      {/* <Link
+                        href="/rdx-digital-marketing-course"
                         className="nav-links"
                         style={{
                           fontWeight: "bold",
                           textShadow:
-                            pathname === "/rdx-digital-marketing-Course"
+                            pathname === "/rdx-digital-marketing-course"
                               ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
                               : "inherit",
                           color:
-                            pathname === "/rdx-digital-marketing-Course"
+                            pathname === "/rdx-digital-marketing-course"
                               ? "#8a5a0d"
                               : "inherit",
                         }}
                       >
                         Academy
-                      </Link>
-                    </li> */}
+                      </Link> */}
+                    </li>
                   </ul>
                 </nav>
               </div>
@@ -625,6 +625,10 @@ const Header = () => {
                 <li>
                   <Link href="/contact.html">Contact us</Link>
                 </li>
+                {/* <li>
+                  <Link href="/rdx-digital-marketing-course">Academy</Link>
+                </li> */}
+                {/* href="/rdx-digital-marketing-course/" */}
               </ul>
             </nav>
             <div className="tp-hero__social-content">

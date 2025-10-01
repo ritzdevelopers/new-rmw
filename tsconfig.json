@@ -48,6 +48,6 @@
     "src/allPages/blogPage/blog-card/BlogCCard.jsx",
     "src/models/RitzCats.Schema.ts",
     "src/helper/convertPostalData.js"
-, "src/app/api/eImgs/[imageName]/route.js", "src/components/Editor/Editor.tsx", "src/app/RitzBOT/RitzBoatUi.jsx"  ],
+, "src/app/api/eImgs/[imageName]/route.js", "src/components/Editor/Editor.tsx", "src/app/RitzBOT/RitzBoatUi.jsx", "src/components/Lenis/SmoothScroller.jsx"  ],
   "exclude": ["node_modules", ".next"]
 }

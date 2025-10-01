@@ -1,4 +1,5 @@
 import { BlogProvider } from "@/blogContext/BlogContext";
+import SmoothScroller from "@/components/Lenis/SmoothScroller";
 import VisitTracker from "@/components/visitorTracker/tracker";
 // import { Providers } from "./provider/Provider";
 
@@ -11,6 +12,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
       <BlogProvider>
+        <SmoothScroller></SmoothScroller>
         <VisitTracker />
         {children}
       </BlogProvider>
