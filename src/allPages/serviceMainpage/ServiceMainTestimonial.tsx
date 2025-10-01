@@ -29,7 +29,7 @@ const ServiceMainTestimonial = () => {
                 <img
                   decoding="async"
                   src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/testi-2-1-shape.png"
-                  alt=""
+                  alt="Ritz Media World"
                 />
               </div>
 
@@ -37,7 +37,7 @@ const ServiceMainTestimonial = () => {
                 <img
                   decoding="async"
                   src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/testi-2-2-shape.png"
-                  alt=""
+                  alt="Ritz Media World"
                   style={{
                     filter:
                       "sepia(10%) saturate(120%) brightness(105%) hue-rotate(185deg)",
@@ -89,13 +89,7 @@ const ServiceMainTestimonial = () => {
                                 </div>
                                 <div className="tp-testi__2-author-box d-sm-flex align-items-center justify-content-between">
                                   <div className="tp-testi__2-author-info d-flex align-items-center gap-1">
-                                    {/* <div className="tp-testi__2-author-thumb mr-25">
-                                      <img
-                                        decoding="async"
-                                        src="https://ritzmediaworld.com//webroot/images/gallery/6106855b-46a9-5a43-b168-7d6774383544_1460_550.png"
-                                        alt=""  width={"50%"}
-                                      />
-                                    </div> */}
+                                
                                     <div className="tp-testi__2-author-text">
                                       <h3 className="tp-testi__2-author-title">
                                         Madhusudan Ghee
@@ -154,13 +148,7 @@ const ServiceMainTestimonial = () => {
                                 </div>
                                 <div className="tp-testi__2-author-box d-sm-flex align-items-center justify-content-between">
                                   <div className="tp-testi__2-author-info d-flex align-items-center">
-                                    {/* <div className="tp-testi__2-author-thumb mr-25">
-                                      <img
-                                        decoding="async"
-                                        src="https://ritzmediaworld.com//webroot/images/gallery/6106855b-46a9-5a43-b168-7d6774383544_1460_550.png"
-                                        alt=""  width={"50%"}
-                                      />
-                                    </div> */}
+                                   
                                     <div className="tp-testi__2-author-text">
                                       <h3 className="tp-testi__2-author-title">
                                         FAIRFOX - EON
@@ -218,13 +206,7 @@ const ServiceMainTestimonial = () => {
                                 </div>
                                 <div className="tp-testi__2-author-box d-sm-flex align-items-center justify-content-between">
                                   <div className="tp-testi__2-author-info d-flex align-items-center">
-                                    {/* <div className="tp-testi__2-author-thumb mr-25">
-                                      <img
-                                        decoding="async"
-                                        src="https://ritzmediaworld.com//webroot/images/gallery/6106855b-46a9-5a43-b168-7d6774383544_1460_550.png"
-                                        alt="" width={"50%"}
-                                      />
-                                    </div> */}
+                                  
                                     <div className="tp-testi__2-author-text">
                                       <h3 className="tp-testi__2-author-title">
                                         Eldeco Group

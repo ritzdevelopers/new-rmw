@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import Link from "next/link";
 import SwiperSlider from "./slider/SwiperSlider";
+import SwiperSlider2 from "./slider/SwiperSlider2";
+import Image from "next/image";
+import RDXModal from "@/components/mod/RDXModal";
+
 
 type FAQItem = {
   question: string;
@@ -12,12 +16,12 @@ type FAQItem = {
 const faqs: FAQItem[] = [
   {
     question: "Do I need prior experience?",
-    answer:
-      "No. Curiosity and basic computer comfort are enough.",
+    answer: "No. Curiosity and basic computer comfort are enough.",
   },
   {
     question: "Placement guaranteed?",
-    answer: "No guarantees, placement assistance with real portfolio building, yes.",
+    answer:
+      "No guarantees, placement assistance with real portfolio building, yes.",
   },
   {
     question: "Will I get a certificate?",
@@ -26,11 +30,12 @@ const faqs: FAQItem[] = [
   },
   {
     question: "Live or recorded?",
-    answer  : "Live sessions with recordings for revision.",
+    answer: "Live sessions with recordings for revision.",
   },
   {
     question: "Language?",
-    answer: "English-first; we’re comfortable supporting in Hinglish where needed.",
+    answer:
+      "English-first; we’re comfortable supporting in Hinglish where needed.",
   },
   {
     question: "Is it only in Delhi-NCR?",
@@ -51,7 +56,7 @@ function Page() {
       title: "SEO (Search Engine Optimization)",
     },
     {
-      img: "/rdx/s9/google-ads-icon.png",
+      img: "/rdx/icns/PPC.png",
       alt: "Google Ads",
       title: "PPC (Google Ads) Services",
     },
@@ -61,12 +66,12 @@ function Page() {
       title: "Social Media Management",
     },
     {
-      img: "/rdx/s9/google-ads-icon.png",
+      img: "/rdx/icns/content-marketing.png",
       alt: "Content",
       title: "Content Marketing",
     },
     {
-      img: "/rdx/s9/seeo2.png",
+      img: "/rdx/icns/email-marketing.png",
       alt: "Email",
       title: "Email Campaigns",
     },
@@ -76,7 +81,7 @@ function Page() {
       title: "SEO (Search Engine Optimization)",
     },
     {
-      img: "/rdx/s9/google-ads-icon.png",
+      img: "/rdx/icns/PPC.png",
       alt: "Google Ads",
       title: "PPC (Google Ads) Services",
     },
@@ -86,12 +91,12 @@ function Page() {
       title: "Social Media Management",
     },
     {
-      img: "/rdx/s9/google-ads-icon.png",
+      img: "/rdx/icns/content-marketing.png",
       alt: "Content",
       title: "Content Marketing",
     },
     {
-      img: "/rdx/s9/seeo2.png",
+      img: "/rdx/icns/email-marketing.png",
       alt: "Email",
       title: "Email Campaigns",
     },
@@ -101,59 +106,12 @@ function Page() {
       title: "SEO (Search Engine Optimization)",
     },
     {
-      img: "/rdx/s9/google-ads-icon.png",
+      img: "/rdx/icns/PPC.png",
       alt: "Google Ads",
       title: "PPC (Google Ads) Services",
     },
   ];
 
-  const [current, setCurrent] = useState(0);
-  const [cardsPerView, setCardsPerView] = useState(3);
-
-  // Responsive cards per view
-  useEffect(() => {
-    const updateCardsPerView = () => {
-      if (window.innerWidth <= 768) {
-        setCardsPerView(1);
-      } else if (window.innerWidth <= 1200) {
-        setCardsPerView(2);
-      } else {
-        setCardsPerView(3);
-      }
-    };
-
-    updateCardsPerView();
-    window.addEventListener("resize", updateCardsPerView);
-    return () => window.removeEventListener("resize", updateCardsPerView);
-  }, []);
-
-  // Auto Slide
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) =>
-        prev + cardsPerView >= slides.length ? 0 : prev + cardsPerView
-      );
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [cardsPerView, slides.length]);
-
-  const nextSlide = () => {
-    setCurrent((prev) =>
-      prev + cardsPerView >= slides.length ? 0 : prev + cardsPerView
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrent((prev) =>
-      prev - cardsPerView < 0
-        ? slides.length - cardsPerView
-        : prev - cardsPerView
-    );
-  };
-
-  // Pagination count
-  const totalPages = Math.ceil(slides.length / cardsPerView);
-  const currentPage = Math.floor(current / cardsPerView);
 
   const s8Slides = [
     {
@@ -171,9 +129,9 @@ function Page() {
       author: "— Manav ",
       role: "SEO Engineer, Delhi",
     },
-     {
-      text: `"I completed the digital marketing course at Ritz Digital Xperts. The trainers were very supportive. I learned SEO, PPC, SMM, and more. This was my best learning experience."`,
-      author: "— Shorye Verma",
+    {
+      text: `"Experts here provides step-by-step guidance, they also helped me in preparing for interviews and the placement cell connected me with top companies, and today I’m happily working as an SEO Content writer"`,
+      author: "— Abhishek Singh",
       role: "Performance Marketer, Gurgaon",
     },
     {
@@ -217,20 +175,6 @@ function Page() {
     }, 4000);
     return () => clearInterval(interval);
   }, [s8CardsPerView, s8Slides.length]);
-
-  // const s8NextSlide = () => {
-  //   setS8Current((prev) =>
-  //     prev + s8CardsPerView >= s8Slides.length ? 0 : prev + s8CardsPerView
-  //   );
-  // };
-
-  // const s8PrevSlide = () => {
-  //   setS8Current((prev) =>
-  //     prev - s8CardsPerView < 0
-  //       ? s8Slides.length - s8CardsPerView
-  //       : prev - s8CardsPerView
-  //   );
-  // };
 
   // Pagination count
   const s8TotalPages = Math.ceil(s8Slides.length / s8CardsPerView);
@@ -356,16 +300,25 @@ function Page() {
   //     });
   //   }
   // }, [transitionEnabled]);
+  const [showRTZModal, setShowRTZModal] = useState<boolean>(false);
+  const modalFormHandler = () => {
+    setShowRTZModal((pr) => !pr);
+  };
 
   return (
     <main>
+      {showRTZModal && <RDXModal onClick={modalFormHandler}></RDXModal>}
+
       {/* From Here The Section 1 Is Starting  */}
       <section className={styles.section}>
         {/* This Is Row 1 */}
         <div className={styles.row1}>
-          <img
+          <Image
+            width={700}
+            height={365}
+            priority={true}
             src="/RITZ DIGITAL XPERTS ACADEMY.png"
-            className={styles.logo}
+            // className={styles.logo}
             alt="Ritz Digital Xperts Academy"
           />
           <p className={styles.heading}>
@@ -407,7 +360,9 @@ function Page() {
               </Link>
             </span>
 
-            <button className={styles.advisorButton}>Talk to an Advisor</button>
+            <button className={styles.advisorButton} onClick={modalFormHandler}>
+              Talk to an Advisor
+            </button>
           </div>
 
           {/* Right Side */}
@@ -428,23 +383,31 @@ function Page() {
         <div className={styles.containers2}>
           {/* Absolute Position Div 1  */}
           <div className={styles.absoluteDiv1s2}>
-            <img
+            <Image
+              height={132} // 100 in mobile screens
+              width={132} // 100 in mobile screens
               src="/rdx/rdxi2.png"
-              className={styles.absoluteImg1s2}
+              // className={styles.absoluteImg1s2}
               alt="Decoration 1"
+              sizes="(max-width: 640px) 100px, (max-width: 1024px) 150px, 210px"
+              className="h-auto w-auto"
             />
           </div>
 
           {/* Absolute Position Div 2  */}
           <div className={styles.absoluteDiv2s2}>
-            <img
+            <Image
               src="/rdx/rdxi3.png"
-              className={styles.absoluteImg2s2}
               alt="Decoration 2"
+              width={210}
+              height={210}
+              sizes="(max-width: 640px) 100px, (max-width: 1024px) 150px, 210px"
+              className="h-auto w-auto"
             />
           </div>
 
-          <img
+          <Image
+            fill
             src="/rdx/rdxi1.png"
             className={styles.mainImages2}
             alt="Main Image"
@@ -460,6 +423,7 @@ function Page() {
           className={styles.absoluteImg1}
           alt="Background decoration 1"
         />
+        <div></div>
 
         <img
           src="/rdx/s2/rdxe2.png"
@@ -795,6 +759,14 @@ function Page() {
                 </li>
               </ul>
             </div>
+            <div>
+              <button
+                className={styles.advisorButton}
+                onClick={modalFormHandler}
+              >
+                Talk to an Advisor
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -863,6 +835,14 @@ function Page() {
                     alt=""
                   />
                 </div>
+                <div style={{ marginTop: "40px" }}>
+                  <button
+                    className={styles.advisorButton2}
+                    onClick={modalFormHandler}
+                  >
+                    Talk to an Advisor
+                  </button>
+                </div>
 
                 {/* Absolute Position Image  */}
                 <img
@@ -906,65 +886,14 @@ function Page() {
             }}
           >
             <SwiperSlider dt={cards}></SwiperSlider>
-            {/* {" "}
-            <div
-              style={{
-                display: "flex",
-                transition: transitionEnabled
-                  ? "transform 0.6s ease-in-out"
-                  : "none",
-                transform: `translateX(${translateX}px)`,
-                gap: `${gap}px`,
-              }}
-            >
-              {totalCards.map((card, idx) => (
-                <div className={styles.s7Card} key={idx}>
-                  <img
-                    src={card.img}
-                    className={styles.s7CardImage}
-                    alt={card.title}
-                  />
-                  <div className={styles.s7CardContent}>
-                    <h2 className={styles.s7CardTitle}>{card.title}</h2>
-                    <p className={styles.s7CardDesc}>{card.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div> */}
           </div>
-
-          {/* Buttons */}
-          {/* <div className={styles.s7Buttons}>
-            <div className={styles.s7ButtonGroup}>
-              <button className={styles.s7Button} onClick={handlePrev}>
-                {/* Left Arrow */}
-          {/* <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
-                  <path
-                    d="M0.439339 10.9393C-0.146448 11.5251 -0.146448 12.4749 0.439339 13.0607L9.98528 22.6066C10.5711 23.1924 11.5208 23.1924 12.1066 22.6066C12.6924 22.0208 12.6924 21.0711 12.1066 20.4853L3.62132 12L12.1066 3.51472C12.6924 2.92893 12.6924 1.97919 12.1066 1.3934C11.5208 0.807611 10.5711 0.807611 9.98528 1.3934L0.439339 10.9393ZM31.5 12V10.5L1.5 10.5V12V13.5L31.5 13.5V12Z"
-                    fill="#323232"
-                  />
-                </svg>
-              </button>
-
-              <button
-                className={`${styles.s7Button} ${styles.s7ButtonNext}`}
-                onClick={handleNext}
-              >
-                {/* Right Arrow */}
-          {/* <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
-                  <path
-                    d="M31.5607 10.9393C32.1464 11.5251 32.1464 12.4749 31.5607 13.0607L22.0147 22.6066C21.4289 23.1924 20.4792 23.1924 19.8934 22.6066C19.3076 22.0208 19.3076 21.0711 19.8934 20.4853L28.3787 12L19.8934 3.51472C19.3076 2.92893 19.3076 1.97919 19.8934 1.3934C20.4792 0.807611 21.4289 0.807611 22.0147 1.3934L31.5607 10.9393ZM0.5 12L0.5 10.5L30.5 10.5V12V13.5L0.5 13.5L0.5 12Z"
-                    fill="white"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div> */}
         </div>
       </section>
 
-      {/* From Here The Section 8 Is Starting  */}
       <section className={styles.s8}>
+        {/* Overlay Div */}
+        <div className={styles.s8Overlay}></div>
+
         <div className={styles.s8Centered}>
           {/* Top Header Div */}
           <div className={styles.s8Header}>
@@ -1000,17 +929,6 @@ function Page() {
 
             {/* Buttons and Pagination Container */}
             <div className={styles.s8Controls}>
-              {/* Navigation Buttons */}
-              {/* <div className={styles.s8ButtonContainer}>
-                <button className={styles.s8Btn} onClick={s8PrevSlide}>
-                  ◀
-                </button>
-                <button className={styles.s8Btn} onClick={s8NextSlide}>
-                  ▶
-                </button>
-              </div> */}
-
-              {/* Pagination Dots */}
               <div className={styles.s8Pagination}>
                 {Array.from({ length: s8TotalPages }).map((_, index) => (
                   <p
@@ -1033,64 +951,11 @@ function Page() {
       <section className={styles.s9}>
         <div className={styles.s9Centered}>
           {/* Slider */}
-          <div className={styles.s9Slider}>
-            {/* Visible Cards */}
-            {slides
-              .slice(current, current + cardsPerView)
-              .map((slide, index) => (
-                <div key={index} className={styles.s9Card}>
-                  <img
-                    src={slide.img}
-                    alt={slide.alt}
-                    className={styles.s9CardImage}
-                  />
-                  <h2 className={styles.s9CardTitle}>{slide.title}</h2>
-                </div>
-              ))}
-            {/* Left Button */}
-            <button
-              className={styles.s9Btn}
-              onClick={prevSlide}
-              disabled={current === 0} // Disable when at start
-            >
-              <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
-                <path
-                  d="M0.439339 10.9393C-0.146448 11.5251 -0.146448 12.4749 0.439339 13.0607L9.98528 22.6066C10.5711 23.1924 11.5208 23.1924 12.1066 22.6066C12.6924 22.0208 12.6924 21.0711 12.1066 20.4853L3.62132 12L12.1066 3.51472C12.6924 2.92893 12.6924 1.97919 12.1066 1.3934C11.5208 0.807611 10.5711 0.807611 9.98528 1.3934L0.439339 10.9393ZM31.5 12V10.5L1.5 10.5V12V13.5L31.5 13.5V12Z"
-                  fill="#323232"
-                />
-              </svg>
-            </button>
-            {/* Right Button */}
-            <button
-              className={styles.s9Btn}
-              onClick={nextSlide}
-              disabled={current + cardsPerView >= slides.length} // Disable when at end
-            >
-              <svg width="32" height="24" viewBox="0 0 32 24" fill="none">
-                <path
-                  d="M31.5607 10.9393C32.1464 11.5251 32.1464 12.4749 31.5607 13.0607L22.0147 22.6066C21.4289 23.1924 20.4792 23.1924 19.8934 22.6066C19.3076 22.0208 19.3076 21.0711 19.8934 20.4853L28.3787 12L19.8934 3.51472C19.3076 2.92893 19.3076 1.97919 19.8934 1.3934C20.4792 0.807611 21.4289 0.807611 22.0147 1.3934L31.5607 10.9393ZM0.5 12L0.5 10.5L30.5 10.5V12V13.5L0.5 13.5L0.5 12Z"
-                  fill="black"
-                />
-              </svg>
-            </button>
-          </div>
 
-          {/* Pagination Dots */}
-          <div className={styles.s9Pagination}>
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <p
-                key={index}
-                className={`${styles.s9Dot} ${
-                  currentPage === index ? styles.activeDot : ""
-                }`}
-                onClick={() => setCurrent(index * cardsPerView)}
-              ></p>
-            ))}
-          </div>
+          <SwiperSlider2 dataArray={slides}></SwiperSlider2>
         </div>
       </section>
 
-      {/* From Here The Section 10 Is Starting  */}
       {/* From Here The Section 10 Is Starting  */}
       <section className={styles.s10}>
         {/* Absolute Position Elips  */}
@@ -1154,7 +1019,18 @@ function Page() {
               </div>
             ))}
           </div>
-
+          <div
+            style={{
+              marginTop: "40px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button className={styles.advisorButton} onClick={modalFormHandler}>
+              Talk to an Advisor
+            </button>
+          </div>
           {/* Bottom Align Div  */}
           <div className={styles.s10Bottom}>
             {/* Left Side Div  */}
@@ -1171,18 +1047,19 @@ function Page() {
                 className={styles.s10ElipsSmallBottom}
               />
               <div className={styles.s10LeftContent}>
-                <h2 className={styles.s10LeftTitle}>
-                  Fees, Scholarships & EMIs
-                </h2>
+                <h2 className={styles.s10LeftTitle}>Fees Structure & EMIs</h2>
                 <p className={styles.s10LeftText}>
-                  Transparent fees. Early-bird and women-in-tech scholarships
-                  are available for select seats. EMI options on request.
+                  Transparent fees. Early-bird offers and EMI options are
+                  available on request.
                 </p>
                 <p className={styles.s10LeftText}>
-                  Ask our team for the current cohort pricing.
+                  Ask our team for the current cohort pricing
                 </p>
-                <button className={styles.s10Button}>
-                  Request a Scholarship
+                <button
+                  className={styles.advisorButton}
+                  onClick={modalFormHandler}
+                >
+                  Talk to an Advisor
                 </button>
               </div>
             </div>

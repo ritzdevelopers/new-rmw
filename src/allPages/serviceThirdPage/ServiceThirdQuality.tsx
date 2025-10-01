@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./serviceThirdQuality.module.css";
 
 interface CardData {
@@ -11,7 +12,7 @@ interface ServiceThirdQualityProps {
 }
 
 const ServiceThirdQuality: React.FC<ServiceThirdQualityProps> = ({
-  cardData
+  cardData,
 }) => {
   return (
     <div
@@ -30,8 +31,7 @@ const ServiceThirdQuality: React.FC<ServiceThirdQualityProps> = ({
           data-element_type="widget"
           data-widget_type="services.default"
         >
-          <div className="elementor-widget-container" >
-          
+          <div className="elementor-widget-container">
             <section className="tp-service__3-area fix tp-services__3-style p-relative tp-bg-className">
               <div className="container">
                 <div className="tp-services__2-title-wrap">
@@ -56,17 +56,18 @@ const ServiceThirdQuality: React.FC<ServiceThirdQualityProps> = ({
                               index % 2 === 0 ? styles.row : styles.rowReverse
                             }`}
                           >
-                            <img
+                            <Image
+                              height={450}
+                              width={450}
+                              priority={true}
                               src={`/${card.image_url}`}
                               alt={card.title}
                               style={{
-                                width: "100%",
-                                maxWidth: "470px",
+                                objectFit: "contain",
                                 borderRadius: "10px",
-                                flexShrink: 0,
-                                objectFit: "cover",
                               }}
                             />
+
                             <div
                               className={styles.serviceContent}
                               style={{
