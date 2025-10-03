@@ -780,7 +780,7 @@ function Page() {
           <div className={styles.topHeader}>
             <div className={styles.headerBorder}>
               <p className={styles.aboutText}>About</p>
-              <h1 className={styles.mainHeading}>Why RDX Works</h1>
+              <h2 className={styles.mainHeading}>Why RDX Works</h2>
             </div>
           </div>
 
