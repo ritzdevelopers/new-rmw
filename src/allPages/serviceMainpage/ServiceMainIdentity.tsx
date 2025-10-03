@@ -441,25 +441,11 @@ const ServiceMainIdentity = () => {
                           <Image
                             src="/about-images/Team_rmw.jpg"
                             alt="Just Another To The One"
-                            quality={100}
+                            quality={70}
                             fill
-                            priority
                             style={{objectFit:'cover'}}
                           />
-                          {/* <div className="tp-about__experience">
-                            <h3 className="tp-about__experience-number">
-                              <b
-                                className="purecounter"
-                                data-purecounter-duration="0"
-                                data-purecounter-end="25"
-                              >
-                                17+
-                              </b>
-                            </h3>
-                            <span className="tp-about__experience-title">
-                              years of experience
-                            </span>
-                          </div> */}
+                         
                         </div>
                       </div>
                       <div className="tp-about__funfact-box mr-70">
@@ -507,30 +493,9 @@ const ServiceMainIdentity = () => {
                         PERPETUAL  <br />
                         <span>GROWTH</span>
                         </h3>
-                        {/* <div className="tp-about__featured d-flex">
-                          <div className="tp-about__featured-item mr-85">
-                            <h4 className="tp-about__featured-number">01</h4>
-                            <h3 className="tp-about__featured-title">
-                              Development
-                            </h3>
-                          </div>
-                          <div className="tp-about__featured-item">
-                            <h4 className="tp-about__featured-number">02</h4>
-                            <h3 className="tp-about__featured-title">
-                              Marketing strategy
-                            </h3>
-                          </div>
-                        </div> */}
+                       
                       </div>
-                      {/* <a
-                        className="tp-btn-primary"
-                        href="https://etorisoft.com/wp/avtrix/about/"
-                        target="_self"
-                        rel="nofollow"
-                      >
-                        <span> More about us </span>
-                        <i className="far fa-arrow-right"></i>
-                      </a> */}
+                  
                     </div>
                   </div>
                 </div>

@@ -1,19 +1,26 @@
 "use client";
 
-function stripHtml(html: string) {
-  return html.replace(/<[^>]*>?/gm, " ");
-}
-
 import Loader from "@/components/loader/Loader";
 import axios from "axios";
-// import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import gsap from "gsap";
-// import { CalendarDays } from "lucide-react";
 import { CalendarDays, Share2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useBlogContext } from "@/context/AllBlogContext";
+
+// Define MergedBlogs2 type here to ensure it includes 'slug'
+export type MergedBlogs2 = {
+  id: string;
+  banner: string;
+  title: string;
+  createdAt: string;
+  meta_description: string;
+  status: string;
+  slug: string;
+};
 import Image from "next/image";
+
+// ---------------- Types ----------------
 interface Article {
   _id: string;
   blogBanner: string;
@@ -34,27 +41,19 @@ interface Article2 {
   status: string;
 }
 
-interface MergedBlogs {
-  id: string;
-  banner: string;
-  title: string;
-  createdAt: string;
-  meta_description: string;
-  status: string;
-  slug: string;
-}
 
-const normalizeArticle = (blog: Article): MergedBlogs => ({
-  id: blog.blogTitle,
+// ---------------- Normalizers ----------------
+const normalizeArticle = (blog: Article): MergedBlogs2 => ({
+  id: blog._id,
   banner: blog.blogBanner,
   title: blog.blogTitle,
   createdAt: blog.createdAt,
-  meta_description: blog.blogDescription,
-  status: blog.blogStatus === true ? "active" : "inactive",
+  meta_description: blog.meta_description,
+  status: blog.blogStatus ? "active" : "inactive",
   slug: blog.blogSlug,
 });
 
-const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
+const normalizeArticle2 = (blog: Article2): MergedBlogs2 => ({
   id: blog.slug,
   banner: blog.blog_image,
   title: blog.title,
@@ -64,65 +63,50 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
   slug: blog.slug,
 });
 
+
+// ---------------- Component ----------------
 const Articles: React.FC = () => {
   const { blogs, setBlogs } = useBlogContext();
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
+
   const cardsPerPage = 12;
+  const path = usePathname();
 
-  const handleSingleBlogs = (slug: string) => {
-
-    window.open(`/${slug}`, "_blank");
-  };
-
-  // useEffect(() => {
-  //   // const handlePagination = () => {
-  //     const pageNum = sessionStorage.getItem("page-no");
-  //     if(!pageNum) {
-  //       // setCurrentPage(1)
-  //       sessionStorage.setItem("page-no", String(currentPage));
-  //     } else  {
-  //       sessionStorage.setItem("page-no", String(currentPage));
-  //     }
-
-  //   };
-  //   handlePagination();
-  // }, [currentPage]);
-
-  // useEffect(() => {
-  //   const pageNum = sessionStorage.getItem("page-no");
-  //   console.log('this is page num ', pageNum);
-
-  //   if (pageNum) {
-  //     setCurrentPage(Number(pageNum));
-  //   }
-  // }, []);
+  // 🔹 Restore pagination from sessionStorage
   useEffect(() => {
-    const call = () => {
-      const pageNum = sessionStorage.getItem("page-no");
-      if (Number(pageNum) > 1) {
-        setCurrentPage(Number(pageNum));
-      }
-    };
-    call();
+    const savedPage = Number(sessionStorage.getItem("page-no"));
+    if (savedPage > 1) setCurrentPage(savedPage);
   }, []);
 
+  // 🔹 Animate cards on blog change
   useEffect(() => {
-    gsap.from(".mnc-card", {
-      opacity: 0,
-      y: 30,
-      stagger: 0.1,
-      duration: 0.6,
-      ease: "power2.out",
-    });
+    if (blogs?.length) {
+      gsap.from(".mnc-card", {
+        opacity: 0,
+        y: 30,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    }
   }, [blogs]);
 
-  const path = usePathname();
+  // 🔹 Fetch blogs (with caching in sessionStorage)
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
+        // ✅ Check cache first
+        const cached = sessionStorage.getItem("all-blogs");
+        if (cached) {
+          setBlogs(JSON.parse(cached));
+          setLoading(false);
+          return;
+        }
+
         const [resMongo, resMySQL] = await Promise.all([
           axios.get("/api/ritz_blogs/get-all-blogs"),
           axios.get("/api/all_blogs"),
@@ -131,12 +115,15 @@ const Articles: React.FC = () => {
         const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
         const mysqlBlogs: Article2[] = resMySQL.data || [];
 
-        const merged: MergedBlogs[] = [
+        const merged: MergedBlogs2[] = [
           ...mongoBlogs.map(normalizeArticle),
           ...mysqlBlogs.map(normalizeArticle2),
         ];
 
         setBlogs(merged);
+
+        // ✅ Save to cache
+        sessionStorage.setItem("all-blogs", JSON.stringify(merged));
       } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
           setError(err.response?.data?.message || err.message);
@@ -151,43 +138,65 @@ const Articles: React.FC = () => {
     };
 
     fetchBlogs();
-  }, []);
-  useEffect(() => {}, [blogs]);
+  }, [setBlogs]);
 
+  // 🔹 Guard
   if (!blogs || !Array.isArray(blogs)) return null;
-  const filteredBlogs: MergedBlogs[] = (blogs as MergedBlogs[]).filter((blog) =>
-    blog.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+
+  // 🔹 Search + Pagination
+  const filteredBlogs = blogs
+    .filter((b) => b.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    .filter((b): b is MergedBlogs2 => typeof b.status === "string" && b.status !== undefined);
 
   const totalPages = Math.ceil(filteredBlogs.length / cardsPerPage);
-  const indexOfLastCard = (currentPage ?? 1) * cardsPerPage;
+  const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = filteredBlogs.slice(indexOfFirstCard, indexOfLastCard);
+  const currentCards: MergedBlogs2[] = filteredBlogs.slice(
+    indexOfFirstCard,
+    indexOfLastCard
+  );
 
+  // 🔹 Pagination handlers
   const handleNext = () => {
     if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-      sessionStorage.setItem("page-no", String(currentPage + 1));
+      const newPage = currentPage + 1;
+      setCurrentPage(newPage);
+      sessionStorage.setItem("page-no", String(newPage));
     }
   };
 
   const handlePrev = () => {
-    if (currentPage ?? 1) {
-      setCurrentPage(currentPage - 1);
-      sessionStorage.setItem("page-no", String(currentPage - 1));
-      // handlePagination();
+    if (currentPage > 1) {
+      const newPage = currentPage - 1;
+      setCurrentPage(newPage);
+      sessionStorage.setItem("page-no", String(newPage));
     }
   };
 
+  // 🔹 Copy URL
   const handleCopy = (fullPath: string) => {
     const url = `${window.location.origin}${path}/${fullPath}`;
     navigator.clipboard.writeText(url);
     alert("Url Has Copied!");
   };
 
+  // 🔹 Open blog
+  const handleSingleBlogs = (slug: string) => {
+    window.open(`/${slug}`, "_blank");
+  };
+
+  // ---------------- Render ----------------
   if (loading) return <Loader />;
   if (error)
     return <p className="text-center text-danger mt-4">Error: {error}</p>;
+
+  function stripHtml(description: string) {
+    if (!description) return "";
+    return description
+      .replace(/<[^>]*>/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
 
   return (
     <div className="container mt-4 mb-5">
@@ -219,8 +228,9 @@ const Articles: React.FC = () => {
         {" "}
         {currentCards
           .filter((bl) => bl.status === "active")
-          .map((article: MergedBlogs) => (
+          .map((article) => (
             <div
+              className="mnc-card"
               key={article.id}
               onClick={() => handleSingleBlogs(article.slug)}
               style={{
@@ -263,18 +273,7 @@ const Articles: React.FC = () => {
                       : `/blogs/${article.banner}`
                   }
                   alt={article.title}
-                  style={{
-                    objectFit: "cover",
-                    transition: "transform 0.3s ease-in-out",
-                  }}
-                  priority
                   fill
-                  onMouseOver={(e) =>
-                    (e.currentTarget.style.transform = "scale(1.05)")
-                  }
-                  onMouseOut={(e) =>
-                    (e.currentTarget.style.transform = "scale(1)")
-                  }
                 />
               </div>
               {/* Content Section */}
@@ -297,21 +296,6 @@ const Articles: React.FC = () => {
                 >
                   {article.title.split(" ").slice(0, 10).join(" ")}{" "}
                 </h3>
-                {/* Description */}
-                {/* <p
-                style={{
-                  fontSize: "1rem",
-                  color: "#555",
-                  lineHeight: "1.6",
-                  flexGrow: 1,
-                }}
-              >
-                {stripHtml(
-                  article.meta_description.split(/\s+/).slice(0, 30).join(" ")
-                )}
-                ...
-              </p> */}
-                {/* Description */}
                 <p
                   style={{
                     fontSize: "1rem",

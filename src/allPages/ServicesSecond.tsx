@@ -1,17 +1,21 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import SwiperHome from "./Homepage/SwiperHome";
-import Service from "./Homepage/Service";
-import Footer from "@/components/footer/Footer";
+import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { useParams } from "next/navigation";
+import axios from "axios";
+import Loader from "@/components/loader/Loader";
+
+// Static/Above-the-fold components
 import ServiceFirst from "./serviceSecondPage/ServiceFirst";
-import ServiceImg from "./serviceSecondPage/ServiceImg";
-import Feedback from './Homepage/Feedback';
-import { useParams } from 'next/navigation';
-import axios from 'axios';
-import ServiceEndTag from "@/components/endTag/serviceEndTag";
-import Loader from '@/components/loader/Loader';
 
+// Lazy load below-the-fold components for performance
+const SwiperHome = dynamic(() => import("./Homepage/SwiperHome"), { ssr: false });
+const Service = dynamic(() => import("./Homepage/Service"), { ssr: false });
+const ServiceImg = dynamic(() => import("./serviceSecondPage/ServiceImg"), { ssr: false });
+const Feedback = dynamic(() => import("./Homepage/Feedback"), { ssr: false });
+const ServiceEndTag = dynamic(() => import("@/components/endTag/serviceEndTag"), { ssr: false });
+const Footer = dynamic(() => import("@/components/footer/Footer"), { ssr: false });
 
 type CardItem = {
   title: string;
@@ -29,24 +33,28 @@ const ServicesSecondPage = () => {
   const [endTag, setEndTag] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
   const params = useParams();
   const serviceSecond = params?.secondPage as string;
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const response = await axios.get(`/api/services/${serviceSecond}`);
-        
+
         const updatedCards: CardItem[] = response.data.cards.map((item: CardItem) => ({
           ...item,
           link: `${serviceSecond}/${item.link}`,
         }));
+
         setCard(updatedCards);
-        setHead(response.data.s2heading)
-        setPara(response.data.s2para)
-        setEndTag(response.data.s2endtag)
-        setImg1(response.data.img1)
-        setImg2(response.data.img2)
+        setHead(response.data.s2heading);
+        setPara(response.data.s2para);
+        setEndTag(response.data.s2endtag);
+        setImg1(response.data.img1);
+        setImg2(response.data.img2);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An unknown error occurred");
       } finally {
@@ -57,26 +65,35 @@ const ServicesSecondPage = () => {
     fetchData();
   }, [serviceSecond]);
 
-  if (loading) return <div><Loader /></div>;
-  if (error) return <div className="text-red-500">Error: {error}</div>;
+  if (loading) return <Loader />;
+  if (error) return <div className="text-red-500 text-center mt-4">Error: {error}</div>;
 
   return (
     <>
-      <ServiceFirst heading={head} image1={img1} image2={img2}/>
+      <ServiceFirst heading={head} image1={img1} image2={img2} />
+
       <SwiperHome />
-      <p style={{
-              position: "relative",
-              padding: "20px 10px",
-              maxWidth: "950px",
-              fontSize: "19px",
-              left: "50%",
-              transform: "translate(-50%)",
-              textAlign: "center"
-            }}>{para}</p>
+
+      {para && (
+        <p
+          style={{
+            position: "relative",
+            padding: "20px 10px",
+            maxWidth: "950px",
+            fontSize: "19px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            textAlign: "center",
+          }}
+        >
+          {para}
+        </p>
+      )}
+
       <Service data={card} />
       <ServiceImg />
       <Feedback />
-      <ServiceEndTag endtag={endTag}/>
+      <ServiceEndTag endtag={endTag} />
       <Footer />
     </>
   );

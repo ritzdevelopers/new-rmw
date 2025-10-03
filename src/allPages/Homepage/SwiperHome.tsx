@@ -3,7 +3,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/autoplay";
 import styles from "./page.module.css";
 import Image from "next/image";
 // import Link from "next/link";
@@ -72,11 +71,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img2.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -88,11 +84,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img3.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -104,11 +97,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img4.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -120,11 +110,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img5.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -136,11 +123,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img6.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -152,11 +136,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img7.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -168,11 +149,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img8.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -184,11 +162,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img9.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -200,11 +175,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img10.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -216,11 +188,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img11.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -232,11 +201,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img12.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -248,11 +214,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img13.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -264,11 +227,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img14.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -280,11 +240,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img15.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -296,11 +253,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img16.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -312,11 +266,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/home-images/home-swiper1-img17.jpeg"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -329,11 +280,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg1.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -346,11 +294,10 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg2.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
+                                 
                                   fill
-                                  priority
+                           className={`styles.swImg}`}
+
                                   quality={70}
                                 />
                               </div>
@@ -363,11 +310,10 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg3.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
+                                 
                                   fill
-                                  priority
+                           className={`styles.swImg}`}
+
                                   quality={70}
                                 />
                               </div>
@@ -380,11 +326,10 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg4.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
+                                 
                                   fill
-                                  priority
+                           className={`styles.swImg}`}
+
                                   quality={70}
                                 />
                               </div>
@@ -397,11 +342,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg5.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -414,11 +356,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg7.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -431,11 +370,10 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg8.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
+                                 
                                   fill
-                                  priority
+                           className={`styles.swImg}`}
+
                                   quality={70}
                                 />
                               </div>
@@ -448,11 +386,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg9.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -465,11 +400,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg10.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -482,11 +414,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg11.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -499,11 +428,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg12.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -516,11 +442,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg13.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -533,11 +456,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg14.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>
@@ -550,11 +470,8 @@ const SwiperHome = () => {
                                 <Image
                                   src="/newLogos/lg15.png"
                                   alt="Brand logo"
-                                  style={{
-                                    objectFit: "contain",
-                                  }}
                                   fill
-                                  priority
+                                  className={`${styles.swImg}`}
                                   quality={70}
                                 />
                               </div>

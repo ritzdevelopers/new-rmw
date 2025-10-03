@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
 import React, {
   createContext,
   useContext,
   useState,
-//   useEffect,
+  //   useEffect,
   ReactNode,
 } from "react";
 
@@ -15,6 +15,8 @@ export interface MergedBlogs {
   title: string;
   createdAt: string;
   meta_description: string;
+  status?: string;
+  slug?: string;
 }
 
 // Context interface
@@ -27,7 +29,9 @@ interface BlogContextType {
 const BlogContext = createContext<BlogContextType | undefined>(undefined);
 
 // Provider component
-export const BlogProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const BlogProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [blogs, setBlogs] = useState<MergedBlogs[]>([]);
 
   return (

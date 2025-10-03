@@ -4,12 +4,6 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
-// interface TRACKEDUSER {
-//   user: string;
-//   userVisitTimePerPage: USERNAVIGATION[];
-//   trafficSource: string;
-//   userAddress: USERADDRESS;
-// }
 interface USERADDRESS {
   userCity: string;
   userCountry: string;
@@ -26,13 +20,11 @@ interface UNIQUEUSER {
 }
 
 export default function AnalyticsTracker() {
-  // const [trackedUser, setTrackedUser] = useState<TRACKEDUSER>();
   const [userAddress, setUserAddress] = useState<USERADDRESS>();
   const [userVisitTimePerPage, setUserVisitPerPage] = useState<
     USERNAVIGATION[]
   >([]);
 
-  // Track previous page and current page
   const prevPathRef = useRef<string | null>(null);
   const currPath = usePathname();
 
@@ -197,5 +189,5 @@ export default function AnalyticsTracker() {
     analyticsIdController();
   }, []);
 
-  return null; // ye tracker background mein chalega
+  return null;
 }

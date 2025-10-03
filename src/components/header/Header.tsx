@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-// import Image from "next/image";
 import { usePathname } from "next/navigation";
-
 import { useState, useEffect, useRef } from "react";
 import useStickyElements from "@/hooks/useStickyElements";
-import styles from "./page.module.css"; // Import CSS module
+import styles from "./page.module.css"; 
 import {
   FaFacebookF,
   FaYoutube,
@@ -16,17 +14,9 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import axios from "axios";
 import Image from "next/image";
-// import FlagWave from "../15August/FlagWave";
 import { gsap } from "gsap";
 import AnalyticsTracker from "./Tracker/AnalyticsTracker";
-// declare namespace JSX {
-//   interface IntrinsicElements {
-//     li: React.DetailedHTMLProps<
-//       React.LiHTMLAttributes<HTMLLIElement>,
-//       HTMLLIElement
-//     >;
-//   }
-// }
+
 type SubService = {
   name: string;
   link: string;
@@ -38,92 +28,74 @@ type ServiceMenuItem = {
   sub: SubService[];
 };
 
-const Header = () => {
-  // const [isHovered, setIsHovered] = useState(false);
-  const [menuData, setMenuData] = useState<ServiceMenuItem[]>([]);
+// interface Article {
+//   blog_image: string;
+//   slug: string;
+//   title: string;
+//   description: string;
+//   created_at: string;
+// }
 
+const Header = () => {
   const pathname = usePathname();
 
+  const [menuData, setMenuData] = useState<ServiceMenuItem[]>([]);
+  const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  // const [blogs, setBlogs] = useState<Article[]>([]);
+
+  const imgT = useRef<HTMLImageElement | null>(null);
+
+  // 🔹 Close menu & reset dropdown when route changes
   useEffect(() => {
-    // Close mobile menu on route change
     setIsMenuOpen(false);
-    setIsServiceDropdownOpen(true); // Optionally reset dropdown too
+    setIsServiceDropdownOpen(true);
   }, [pathname]);
 
+  // 🔹 Fetch menu data once
   useEffect(() => {
-    const fetchMenu = async () => {
-      try {
-        const response = await axios.get("/api/header_data");
-        setMenuData(response.data);
-      } catch (error) {
-        console.error("Failed to fetch menu", error);
-      }
-    };
-
-    fetchMenu();
+    axios.get("/api/header_data")
+      .then((res) => setMenuData(res.data))
+      .catch((err) => console.error("Failed to fetch menu", err));
   }, []);
 
-  const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(true);
-
+  // 🔹 Sticky elements
   useStickyElements();
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-  const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] =
-    useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
 
+  // 🔹 Click outside dropdown → reset service dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (!(event.target as HTMLElement).closest(`.${styles.dropdown}`)) {
-        setIsServiceDropdownOpen(true); // Keep it open by default
+        setIsServiceDropdownOpen(true);
       }
     };
-
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  // 🔹 Detect mobile resize
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 992);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth < 992);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  interface Article {
-    blog_image: string;
-    slug: string;
-    title: string;
-    description: string;
-    created_at: string;
-  }
-  const [blogs, setBlogs] = useState<Article[]>([]);
-  const blog_slugs: string[] = [];
-  useEffect(() => {
-    const fetchBlogSlug = async () => {
-      try {
-        const response = await axios.get("/api/all_blogs");
-        setBlogs(response.data);
-      } catch (error) {
-        console.log("Error in blogs slug only API", error);
-      }
-    };
-    fetchBlogSlug();
-  }, []);
+  // 🔹 Fetch blogs (for slugs check)
+  // useEffect(() => {
+  //   axios.get("/api/all_blogs")
+  //     .then((res) => setBlogs(res.data))
+  //     .catch((err) => console.error("Error fetching blogs", err));
+  // }, []);
 
-  blogs.map((blog) => {
-    blog_slugs.push(blog.slug);
-  });
+  // // 🔹 Check if current path is a blog
+  // const blogSlugs = blogs.map((b) => b.slug);
+  // const pathSlug = pathname.startsWith("/") ? pathname.slice(1) : pathname;
+  // const isBlog = blogSlugs.includes(pathSlug);
 
-  let isBlog = false;
-  const pathSlug = pathname.startsWith("/") ? pathname : `/${pathname}`;
-  if (blog_slugs.includes(pathSlug.slice(1))) {
-    isBlog = true;
-  }
-  const imgT = useRef<HTMLImageElement | null>(null);
-
+  // 🔹 GSAP animation for image
   useEffect(() => {
     if (imgT.current) {
       gsap.from(imgT.current, {
@@ -131,8 +103,7 @@ const Header = () => {
         duration: 0.5,
       });
     }
-  }, [imgT.current?.src]); // safe access here too
-
+  }, [imgT.current?.src]);
   // <------------------------------------------------------------------------------------------> console.log("User came from:",document.referrer);
 
   return (
@@ -358,10 +329,10 @@ const Header = () => {
                             pathname === "/blogs"
                               ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
                               : "inherit",
-                          color:
-                            pathname === "/blogs" || isBlog === true
-                              ? "#8a5a0d"
-                              : "inherit",
+                          // color:
+                            // pathname === "/blogs" || isBlog === true
+                            //   ? "#8a5a0d"
+                            //   : "inherit",
                         }}
                       >
                         Blog
@@ -387,7 +358,7 @@ const Header = () => {
                       </Link>
                     </li>
                     <li className="nav-item">
-                      {/* <Link
+                      <Link
                         href="/rdx-digital-marketing-course"
                         className="nav-links"
                         style={{
@@ -403,7 +374,7 @@ const Header = () => {
                         }}
                       >
                         Academy
-                      </Link> */}
+                      </Link>
                     </li>
                   </ul>
                 </nav>
@@ -625,9 +596,9 @@ const Header = () => {
                 <li>
                   <Link href="/contact.html">Contact us</Link>
                 </li>
-                {/* <li>
+                <li>
                   <Link href="/rdx-digital-marketing-course">Academy</Link>
-                </li> */}
+                </li>
                 {/* href="/rdx-digital-marketing-course/" */}
               </ul>
             </nav>

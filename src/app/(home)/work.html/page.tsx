@@ -1,23 +1,25 @@
-import ProjectCards from "@/allPages/projectsPage/ProjectCards"
-import Footer from "@/components/footer/Footer"
-import PagesBanner from "@/components/pagesBanner/PagesBanner"
+"use client";
 
+import dynamic from "next/dynamic";
+import PagesBanner from "@/components/pagesBanner/PagesBanner";
+import ProjectCards from "@/allPages/projectsPage/ProjectCards";
 
+const Footer = dynamic(() => import("@/components/footer/Footer"), { ssr: false });
 
-const page = () => {
+const Page = () => {
   return (
-    <section style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
+    <section className="flex flex-col items-center">
       <PagesBanner
-            headingTitle={"Our Work"}
-            videoURL={"/videos/bg_pattern.mp4"}
-            mtP={"120px"}
-            mtS={"100px"}
-            sH={"10vh"}
-          />
+        headingTitle="Our Work"
+        videoURL="/videos/bg_pattern.mp4"
+        mtP="120px"
+        mtS="100px"
+        sH="10vh"
+      />
       <ProjectCards />
       <Footer />
     </section>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
