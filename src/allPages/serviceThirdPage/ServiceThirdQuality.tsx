@@ -59,7 +59,6 @@ const ServiceThirdQuality: React.FC<ServiceThirdQualityProps> = ({
                             <Image
                               height={450}
                               width={450}
-                              priority={true}
                               src={`/${card.image_url}`}
                               alt={card.title}
                               style={{

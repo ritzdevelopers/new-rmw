@@ -1,7 +1,5 @@
-import { BlogProvider } from "@/blogContext/BlogContext";
-import SmoothScroller from "@/components/Lenis/SmoothScroller";
-import VisitTracker from "@/components/visitorTracker/tracker";
-// import { Providers } from "./provider/Provider";
+import "./styles/globals.css";
+import ClientProviders from "./ClientProviders";
 
 export default function RootLayout({
   children,
@@ -9,13 +7,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-      <BlogProvider>
-        <SmoothScroller></SmoothScroller>
-        <VisitTracker />
-        {children}
-      </BlogProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

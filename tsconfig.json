@@ -41,7 +41,7 @@
     "src/app/(adminSide)/admin/howitworks/page.jsx",
     "src/app/(adminSide)/admin/enqury/page.jsx",
     "src/app/(adminSide)/admin/enqury/enquries/page.jsx",
-    "src/blogContext/BlogContext.jsx",
+    "src/blogContext/BlogContext.tsx",
     "src/app/api/ritz_blogs/add-new-blog/route.js",
     "src/models/Blog.Schema.js",
     "src/app/api/ritz_blogs/get-all-blogs/route.js",

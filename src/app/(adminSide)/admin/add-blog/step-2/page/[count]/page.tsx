@@ -18,18 +18,9 @@ const Page = () => {
   const LOCAL_STORAGE_KEY = `add-blog-step-2-page-${count}`;
 
   const {
-    // blogBanner,
-    // blogTitle,
-    // metaDescription,
-    // metaKeywords,
-    // innerImg,
-    // metaTitle,
-    // setBlogBanner,
-    // setBlogTitle,
     setMetaTitle,
     setInnerImg,
     setMetaDescription,
-    // setMetaKeywords,
   } = useBlogContext();
 
   const [localTitle, setLocalTitle] = useState<string>("");
@@ -106,7 +97,7 @@ const Page = () => {
       reader.onloadend = () => {
         const base64 = reader.result as string;
         setLocalBanner(base64);
-        setInnerImg(file);
+        setInnerImg(base64);
       };
       reader.readAsDataURL(file);
     }

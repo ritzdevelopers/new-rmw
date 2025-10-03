@@ -63,8 +63,8 @@ const Projects = () => {
                                 src="/home-images/home-project/Brand-Identity-610x600.png"
                                 alt="Brand Identity"
                                 fill
-                                quality={100}
-                                priority
+                                quality={70}
+                             
                                 style={{objectFit:'cover'}}
                               />
                             </div>
@@ -128,7 +128,7 @@ const Projects = () => {
                                 decoding="async"
                                 src="/home-images/home-project/Digital-Advertising-610x600.png"
                                 fill
-                                quality={100}
+                                quality={70}
                                 alt="Digital-Advertising"
                                  style={{objectFit:'cover'}}
                               />
@@ -192,8 +192,8 @@ const Projects = () => {
                               <Image
                                 decoding="async"
                                 src="/home-images/home-project/Social-Media-610x600.png"
-                                quality={100}
-                                // quality={100}
+                                quality={70}
+                                // quality={70}
                                 fill
                                 alt="Social Media Management"
                                  style={{objectFit:'cover'}}
@@ -258,8 +258,8 @@ const Projects = () => {
                               <Image
                                 decoding="async"
                                 src="/home-images/home-project/Print-Advertising-610x600.png"
-                                priority
-                                quality={100}
+                             
+                                quality={70}
                                 alt="Print Advertising"
                                 fill
                                  style={{objectFit:'cover'}}
