@@ -320,11 +320,14 @@ function Page() {
             alt="Ritz Digital Xperts Academy"
           />
           <p className={styles.heading}>
-            Learn{" "}
-            <span className={styles.highlight}>
-              Digital Marketing the agency
-            </span>{" "}
-            way. <b>Build skills that hiring managers</b> actually want.
+            <h1>
+              <span className={styles.highlight}>Digital marketing course</span>{" "}
+              with <span className={styles.highlight}>generative AI</span>{" "}
+            </h1>
+            <h2>
+              <span className={styles.highlight}>Job Ready skills</span> that
+              hiring managers actually want.
+            </h2>
           </p>
         </div>
 
@@ -332,7 +335,7 @@ function Page() {
         <div className={styles.row2}>
           {/* Left Side */}
           <div className={styles.leftSide}>
-            <span>
+            <span className={styles.highlight}>
               <Link
                 href="/contact.html"
                 className="tp-hero__action-btn"
@@ -406,7 +409,7 @@ function Page() {
 
           <Image
             fill
-            src="/rdx/rdxi1.png"
+            src="/rdx/s2/rdx-s2-img1.png"
             className={styles.mainImages2}
             alt="Main Image"
           />

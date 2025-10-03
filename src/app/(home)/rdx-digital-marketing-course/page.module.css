@@ -229,20 +229,20 @@
 }
 
 .containers2 {
-  width: 1023px;
+  width: 923px;
   height: 594px;
   position: relative;
 }
 
 .absoluteDiv1s2 {
   position: absolute;
-  right: 20px;
+  right: -46px;
   top: 40px;
 }
 
 .absoluteDiv2s2 {
   position: absolute;
-  left: -40px;
+  left: -100px;
   top: 300px;
 }
 
@@ -257,16 +257,18 @@
 }
 
 .mainImages2 {
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
+  height: 95%;
+  width: 95%;
+  object-fit: cover;
   z-index: -10;
+  border-top-left-radius: 100px;
+  border-bottom-right-radius: 100px;
 }
 
 /* Responsive Design for Section 2 */
 @media (max-width: 1200px) {
   .containers2 {
-    width: 900px;
+    width: 800px;
     height: 523px;
   }
 }
