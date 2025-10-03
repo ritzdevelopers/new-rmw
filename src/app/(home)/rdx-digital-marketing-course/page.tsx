@@ -7,7 +7,6 @@ import SwiperSlider2 from "./slider/SwiperSlider2";
 import Image from "next/image";
 import RDXModal from "@/components/mod/RDXModal";
 
-
 type FAQItem = {
   question: string;
   answer: string;
@@ -112,7 +111,6 @@ function Page() {
     },
   ];
 
-
   const s8Slides = [
     {
       text: `"I completed the digital marketing course at Ritz Digital Xperts. The trainers were very supportive. I learned SEO, PPC, SMM, and more. This was my best learning experience."`,
@@ -122,12 +120,12 @@ function Page() {
     {
       text: `"Learning Web Development at RDX was a great experience. The trainers were very helpful, and I learned technologies like HTML, CSS, JavaScript, and React. It gave me the confidence to build real-world projects."`,
       author: "— Syed Arhan",
-      role: "Web Developer, Noida",
+      role: "Full Stack Engineer, Noida",
     },
     {
       text: `"Thanks to RDX (Ritz Digital Experts) and especially Akanksha ma’am for her guidance, I gained practical skills and confidence in digital marketing that will help me in my career."`,
       author: "— Manav ",
-      role: "SEO Engineer, Delhi",
+      role: "SEO Executive, Delhi",
     },
     {
       text: `"Experts here provides step-by-step guidance, they also helped me in preparing for interviews and the placement cell connected me with top companies, and today I’m happily working as an SEO Content writer"`,
@@ -137,12 +135,12 @@ function Page() {
     {
       text: `"Learning Web Development at RDX was a great experience. The trainers were very helpful, and I learned technologies like HTML, CSS, JavaScript, and React. It gave me the confidence to build real-world projects."`,
       author: "— Syed Arhan",
-      role: "Web Developer, Noida",
+      role: "Full Stack Engineer, Noida",
     },
     {
       text: `"Thanks to RDX (Ritz Digital Experts) and especially Akanksha ma’am for her guidance, I gained practical skills and confidence in digital marketing that will help me in my career."`,
       author: "— Manav ",
-      role: "SEO Engineer, Delhi",
+      role: "SEO Executive, Delhi",
     },
   ];
 
