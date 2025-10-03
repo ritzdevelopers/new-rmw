@@ -7,6 +7,7 @@ export default async function RDXDigitalMarketing({
 }) {
   return (
     <>
+    
       <>{children}</>
       <Footer></Footer>
     </>
