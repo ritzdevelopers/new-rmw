@@ -35,20 +35,24 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
   // Process user travel path data
   const processedTravelData = useMemo(() => {
     if (!userTravelPath) return [];
-    
+
     const paths: TravelPath[] = [];
-    
+
     // Convert the object to an array of paths
     Object.entries(userTravelPath).forEach(([key, value]) => {
       // Split keys like "HomeToBlogs" into "Home" and "Blogs"
-      const from = key.replace(/To([A-Z])/g, (match, p1) => ` → ${p1}`).split(' → ')[0];
-      const to = key.replace(/To([A-Z])/g, (match, p1) => ` → ${p1}`).split(' → ')[1];
-      
+      const from = key
+        .replace(/To([A-Z])/g, (match, p1) => ` → ${p1}`)
+        .split(" → ")[0];
+      const to = key
+        .replace(/To([A-Z])/g, (match, p1) => ` → ${p1}`)
+        .split(" → ")[1];
+
       if (from && to) {
         paths.push({ from, to, value });
       }
     });
-    
+
     // Sort by value in descending order
     return paths.sort((a, b) => b.value - a.value);
   }, [userTravelPath]);
@@ -56,18 +60,22 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
   // Session data by month
   const sessionData = {
     months: [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ],
-    totalSessions: [
-      12500, 13200, 14500, 15800, 16300, 17200, 
-      18500, 19200, 20300, 21500, 22400, 23800
-    ],
-    uniqueUsers: [
-      8500, 9200, 10100, 11200, 11800, 12500, 
-      13200, 13800, 14500, 15200, 15800, 16500
-    ],
-    avgTime: [2.8, 3.1, 3.2, 3.0, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4.0, 4.2],
+    totalSessions: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    uniqueUsers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    avgTime: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   };
 
   // Session analytics chart options
@@ -152,7 +160,7 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
   const getTravelChartOption = () => {
     // Take top 10 paths for better visualization
     const topPaths = processedTravelData.slice(0, 10);
-    
+
     return {
       tooltip: {
         trigger: "item",
@@ -162,7 +170,7 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
         orient: "vertical",
         right: 10,
         top: "center",
-        data: topPaths.map(path => `${path.from} → ${path.to}`),
+        data: topPaths.map((path) => `${path.from} → ${path.to}`),
         textStyle: {
           fontSize: isMobile ? 9 : 11,
         },
@@ -198,10 +206,18 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
             name: `${path.from} → ${path.to}`,
             itemStyle: {
               color: [
-                "#5470c6", "#91cc75", "#fac858", "#ee6666", "#73c0de",
-                "#3ba272", "#fc8452", "#9a60b4", "#ea7ccc", "#6e7079"
-              ][index % 10]
-            }
+                "#5470c6",
+                "#91cc75",
+                "#fac858",
+                "#ee6666",
+                "#73c0de",
+                "#3ba272",
+                "#fc8452",
+                "#9a60b4",
+                "#ea7ccc",
+                "#6e7079",
+              ][index % 10],
+            },
           })),
         },
       ],
@@ -250,10 +266,15 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {processedTravelData.slice(0, 10).map((path, index) => (
-              <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+              <tr
+                key={index}
+                className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+              >
                 <td className="px-4 py-2 text-sm text-gray-900">{path.from}</td>
                 <td className="px-4 py-2 text-sm text-gray-900">{path.to}</td>
-                <td className="px-4 py-2 text-sm text-gray-900 font-medium">{path.value}</td>
+                <td className="px-4 py-2 text-sm text-gray-900 font-medium">
+                  {path.value}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -351,10 +372,10 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
             style={{ height: isMobile ? "300px" : "400px", width: "100%" }}
             opts={{ renderer: "svg" }}
           />
-          
+
           {/* Table view for better readability */}
           <TravelPathsTable />
-          
+
           <div className="mt-4 text-sm text-gray-600">
             <p className="text-center">
               Shows how users navigate between pages on your website

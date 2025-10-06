@@ -1,8 +1,6 @@
 import { MergedBlogs2 } from "@/allPages/blogPage/Articles";
 import React, { createContext, useState, useContext } from "react";
 
-
-
 interface BlogContextType {
   blogTitle: string;
   blogBanner: string;
@@ -20,11 +18,15 @@ interface BlogContextType {
   setMtDesc: (val: string) => void;
   blogs: MergedBlogs2[];
   setBlogs: React.Dispatch<React.SetStateAction<MergedBlogs2[]>>;
+  liveUsers: number;
+  setLiveUsers: (val: number) => void;
 }
 
 const BlogContext = createContext<BlogContextType | undefined>(undefined);
 
-export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [blogTitle, setBlogTitle] = useState("");
   const [blogBanner, setBlogBanner] = useState("");
   const [metaTitle, setMetaTitle] = useState("");
@@ -32,8 +34,8 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [innerImg, setInnerImg] = useState("");
   const [metaKeywords, setMetaKeywords] = useState("");
   const [mtDesc, setMtDesc] = useState("");
- const [blogs, setBlogs] = useState<MergedBlogs2[]>([]);
-
+  const [blogs, setBlogs] = useState<MergedBlogs2[]>([]);
+  const [liveUsers, setLiveUsers] = useState(0);
   return (
     <BlogContext.Provider
       value={{
@@ -51,8 +53,10 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setMetaDescription,
         setMetaKeywords,
         setMtDesc,
-        blogs,        // ✅ Add this
-        setBlogs,     // ✅ Add this
+        blogs,
+        setBlogs,
+        liveUsers,
+        setLiveUsers,
       }}
     >
       {children}
@@ -62,6 +66,7 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 export const useBlogContext = () => {
   const context = useContext(BlogContext);
-  if (!context) throw new Error("useBlogContext must be used within a BlogProvider");
+  if (!context)
+    throw new Error("useBlogContext must be used within a BlogProvider");
   return context;
 };

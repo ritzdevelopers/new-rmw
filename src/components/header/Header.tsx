@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import useStickyElements from "@/hooks/useStickyElements";
-import styles from "./page.module.css"; 
+import styles from "./page.module.css";
 import {
   FaFacebookF,
   FaYoutube,
@@ -56,7 +56,8 @@ const Header = () => {
 
   // 🔹 Fetch menu data once
   useEffect(() => {
-    axios.get("/api/header_data")
+    axios
+      .get("/api/header_data")
       .then((res) => setMenuData(res.data))
       .catch((err) => console.error("Failed to fetch menu", err));
   }, []);
@@ -104,7 +105,30 @@ const Header = () => {
       });
     }
   }, [imgT.current?.src]);
-  // <------------------------------------------------------------------------------------------> console.log("User came from:",document.referrer);
+  // <------------------------------------------------------------------------------------------>
+
+  async function activeUserCount() {
+  try {
+    await axios.post("/api/socket");
+  } catch (err) {
+    console.error("Failed to increment active user", err);
+  }
+  }
+  useEffect(() => {
+    activeUserCount();
+    // Tab close ya leave → count--
+    const handleBeforeUnload = () => {
+      const url = "/api/socket/delete-count";
+      const data = null;
+      navigator.sendBeacon(url, data);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <header>
@@ -330,9 +354,9 @@ const Header = () => {
                               ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
                               : "inherit",
                           // color:
-                            // pathname === "/blogs" || isBlog === true
-                            //   ? "#8a5a0d"
-                            //   : "inherit",
+                          // pathname === "/blogs" || isBlog === true
+                          //   ? "#8a5a0d"
+                          //   : "inherit",
                         }}
                       >
                         Blog
@@ -772,7 +796,6 @@ const Header = () => {
                 }}
                 className="tp-hero__social-content"
               >
-                
                 <ul
                   style={{
                     listStyle: "none",

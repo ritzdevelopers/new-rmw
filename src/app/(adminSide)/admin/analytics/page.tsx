@@ -4,6 +4,7 @@ import Row1 from "./compo/Row1";
 import Row2 from "./compo/Row2";
 import Row3 from "./compo/Row3";
 import axios from "axios";
+
 // Interface for Devices Info items
 interface DeviceInfoItem {
   totalPhones?: number;
@@ -183,6 +184,26 @@ function Page() {
       });
     }
   }, [analyticalData]);
+
+  const [liveUsers, setLiveUsers] = useState(0);
+
+useEffect(() => {
+  async function getActiveUsers() {
+    try {
+      const res = await axios.get("/api/socket");
+      setLiveUsers(res.data.count.length);
+    } catch (err) {
+      console.error("Failed to fetch active users", err);
+    }
+  }
+
+  getActiveUsers();
+  const interval = setInterval(getActiveUsers, 5000);
+
+  return () => clearInterval(interval);
+}, []);
+
+
   return (
     <section className="flex w-full flex-col gap-4 overflow-x-hidden">
       {/* Total Users, Session Count, Bounce Rate, Avg. Visit Duration, User Session Analytics in Row1 */}
@@ -196,6 +217,7 @@ function Page() {
         setFilter={setFilter}
         setQueryType={setQueryType}
         setQType={setQType}
+        liveUsers={liveUsers}
       />
 
       {/* Session data by month, User travel paths in Row2 */}

@@ -46,6 +46,7 @@ interface StatsDataItem {
   sessionOptions?: string[];
   unit?: string;
   filterVal?: string;
+  liveUsers: number;
 }
 
 interface EChartsTooltipParam {
@@ -240,169 +241,171 @@ const StatsCard = React.memo(
 StatsCard.displayName = "StatsCard";
 
 // ----- Chart Components -----
-const ActiveUsersChart = React.memo(({ 
-  sessionAnalyticsByCity 
-}: { 
-  sessionAnalyticsByCity: {
-    totalSessions: number;
-    totalSessionsRaw: number;
-    cityWise: Record<string, number>;
-    cityWiseRaw: Record<string, number>;
-  } | null;
-}) => {
-  const handleSelect = useCallback((value: string) => {
-    console.log("Selected time filter:", value);
-  }, []);
+const ActiveUsersChart = React.memo(
+  ({
+    sessionAnalyticsByCity,
+  }: {
+    sessionAnalyticsByCity: {
+      totalSessions: number;
+      totalSessionsRaw: number;
+      cityWise: Record<string, number>;
+      cityWiseRaw: Record<string, number>;
+    } | null;
+  }) => {
+    const handleSelect = useCallback((value: string) => {
+      console.log("Selected time filter:", value);
+    }, []);
 
-  // Prepare data for the chart
-  const chartData = useMemo(() => {
-    if (!sessionAnalyticsByCity?.cityWise) return { cities: [], values: [] };
-    
-    const cities = Object.keys(sessionAnalyticsByCity.cityWise);
-    const values = Object.values(sessionAnalyticsByCity.cityWise);
-    
-    return { cities, values };
-  }, [sessionAnalyticsByCity]);
+    // Prepare data for the chart
+    const chartData = useMemo(() => {
+      if (!sessionAnalyticsByCity?.cityWise) return { cities: [], values: [] };
 
-  const chartOption: EChartsOption = useMemo(
-    () => ({
-      title: {
-        text: "Active Users By City",
-        textStyle: { fontSize: 14, fontWeight: "normal" },
-        left: "center",
-      },
-      tooltip: {
-        trigger: "axis",
-        axisPointer: { type: "shadow" },
-        confine: true,
-        formatter: (params: unknown) => {
-          const param = Array.isArray(params)
-            ? (params[0] as EChartsTooltipParam)
-            : (params as EChartsTooltipParam);
-          return `${param.name}<br/>${param.marker} Active Users: <b>${fmtFull(
-            param.value
-          )}</b>`;
+      const cities = Object.keys(sessionAnalyticsByCity.cityWise);
+      const values = Object.values(sessionAnalyticsByCity.cityWise);
+
+      return { cities, values };
+    }, [sessionAnalyticsByCity]);
+
+    const chartOption: EChartsOption = useMemo(
+      () => ({
+        title: {
+          text: "Active Users By City",
+          textStyle: { fontSize: 14, fontWeight: "normal" },
+          left: "center",
         },
-      },
-      grid: {
-        left: 80,
-        right: 24,
-        bottom: 16,
-        top: 40,
-        containLabel: true,
-      },
-      xAxis: {
-        type: "value",
-        boundaryGap: [0, 0.01],
-        axisLabel: {
-          hideOverlap: true,
-          formatter: (v: number) => fmtCompact(v),
-          fontSize: 10,
-        },
-        splitLine: {
-          show: true,
-          lineStyle: { color: "#eef2f7" },
-        },
-      },
-      yAxis: {
-        type: "category",
-        axisLabel: {
-          hideOverlap: true,
-          interval: 0,
-          fontSize: 10,
-        },
-        data: chartData.cities,
-      },
-      dataZoom: [
-        {
-          type: "inside",
-          yAxisIndex: 0,
-          start: 0,
-          end: 100,
-          zoomLock: false,
-        },
-        {
-          type: "slider",
-          yAxisIndex: 0,
-          height: 16,
-          right: 8,
-          left: 8,
-          bottom: 0,
-          handleSize: 14,
-          brushSelect: false,
-        },
-      ],
-      series: [
-        {
-          name: "Active Users",
-          type: "bar",
-          data: chartData.values,
-          itemStyle: { color: "#4f46e5" },
-          barMaxWidth: 18,
-          label: {
-            show: true,
-            position: "right",
-            distance: 4,
-            formatter: (p: CallbackDataParams) => fmtCompact(Number(p.value)),
-            fontSize: 9,
-            color: "#111827",
+        tooltip: {
+          trigger: "axis",
+          axisPointer: { type: "shadow" },
+          confine: true,
+          formatter: (params: unknown) => {
+            const param = Array.isArray(params)
+              ? (params[0] as EChartsTooltipParam)
+              : (params as EChartsTooltipParam);
+            return `${param.name}<br/>${
+              param.marker
+            } Active Users: <b>${fmtFull(param.value)}</b>`;
           },
-          labelLayout: { hideOverlap: true },
-          emphasis: {
-            focus: "series",
-            itemStyle: {
-              shadowBlur: 10,
-              shadowColor: "rgba(0, 0, 0, 0.3)",
+        },
+        grid: {
+          left: 80,
+          right: 24,
+          bottom: 16,
+          top: 40,
+          containLabel: true,
+        },
+        xAxis: {
+          type: "value",
+          boundaryGap: [0, 0.01],
+          axisLabel: {
+            hideOverlap: true,
+            formatter: (v: number) => fmtCompact(v),
+            fontSize: 10,
+          },
+          splitLine: {
+            show: true,
+            lineStyle: { color: "#eef2f7" },
+          },
+        },
+        yAxis: {
+          type: "category",
+          axisLabel: {
+            hideOverlap: true,
+            interval: 0,
+            fontSize: 10,
+          },
+          data: chartData.cities,
+        },
+        dataZoom: [
+          {
+            type: "inside",
+            yAxisIndex: 0,
+            start: 0,
+            end: 100,
+            zoomLock: false,
+          },
+          {
+            type: "slider",
+            yAxisIndex: 0,
+            height: 16,
+            right: 8,
+            left: 8,
+            bottom: 0,
+            handleSize: 14,
+            brushSelect: false,
+          },
+        ],
+        series: [
+          {
+            name: "Active Users",
+            type: "bar",
+            data: chartData.values,
+            itemStyle: { color: "#4f46e5" },
+            barMaxWidth: 18,
+            label: {
+              show: true,
+              position: "right",
+              distance: 4,
+              formatter: (p: CallbackDataParams) => fmtCompact(Number(p.value)),
+              fontSize: 9,
+              color: "#111827",
+            },
+            labelLayout: { hideOverlap: true },
+            emphasis: {
+              focus: "series",
+              itemStyle: {
+                shadowBlur: 10,
+                shadowColor: "rgba(0, 0, 0, 0.3)",
+              },
             },
           },
-        },
-      ],
-      animation: false,
-      progressive: 500,
-    }),
-    [chartData]
-  );
+        ],
+        animation: false,
+        progressive: 500,
+      }),
+      [chartData]
+    );
 
-  return (
-    <div className="w-full bg-white rounded-xl shadow-sm p-5 border border-gray-100 hover:shadow-md transition-shadow duration-300">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
-        <h3 className="text-base font-semibold text-gray-800 flex items-center gap-2">
-          <Users size={18} className="text-indigo-600" />
-          Active Users By City
-        </h3>
-        <div className="flex gap-2">
-          <CustomSelect
-            options={[
-              "Last 7 Days",
-              "Last 30 Days",
-              "Last 6 Months",
-              "Last Year",
-            ]}
-            defaultValue="Last 30 Days"
-            className="w-36 text-xs"
-            onSelect={handleSelect}
-          />
-          <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors">
-            <MoreVertical size={16} />
-          </button>
+    return (
+      <div className="w-full bg-white rounded-xl shadow-sm p-5 border border-gray-100 hover:shadow-md transition-shadow duration-300">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2">
+          <h3 className="text-base font-semibold text-gray-800 flex items-center gap-2">
+            <Users size={18} className="text-indigo-600" />
+            Active Users By City
+          </h3>
+          <div className="flex gap-2">
+            <CustomSelect
+              options={[
+                "Last 7 Days",
+                "Last 30 Days",
+                "Last 6 Months",
+                "Last Year",
+              ]}
+              defaultValue="Last 30 Days"
+              className="w-36 text-xs"
+              onSelect={handleSelect}
+            />
+            <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-md transition-colors">
+              <MoreVertical size={16} />
+            </button>
+          </div>
+        </div>
+        <ReactECharts
+          option={chartOption}
+          style={{ height: "250px", width: "100%" }}
+          opts={{
+            renderer: "svg",
+          }}
+        />
+        <div className="flex justify-center gap-4 mt-3 pt-3 border-t border-gray-100">
+          <div className="flex items-center gap-1.5">
+            <div className="w-3 h-3 rounded-sm bg-[#4f46e5]"></div>
+            <span className="text-xs text-gray-600">Active Users</span>
+          </div>
         </div>
       </div>
-      <ReactECharts
-        option={chartOption}
-        style={{ height: "250px", width: "100%" }}
-        opts={{
-          renderer: "svg",
-        }}
-      />
-      <div className="flex justify-center gap-4 mt-3 pt-3 border-t border-gray-100">
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-sm bg-[#4f46e5]"></div>
-          <span className="text-xs text-gray-600">Active Users</span>
-        </div>
-      </div>
-    </div>
-  );
-});
+    );
+  }
+);
 
 ActiveUsersChart.displayName = "ActiveUsersChart";
 
@@ -413,7 +416,7 @@ const SessionAnalyticsChart = React.memo(
     setQueryType,
     setDuration,
     setQType,
-    sessionAnalyticsByCity
+    sessionAnalyticsByCity,
   }: {
     activeTab: ActiveTabType;
     setActiveTab: (tab: ActiveTabType) => void;
@@ -439,10 +442,10 @@ const SessionAnalyticsChart = React.memo(
     // Prepare data for the chart
     const chartData = useMemo(() => {
       if (!sessionAnalyticsByCity?.cityWise) return { cities: [], values: [] };
-      
+
       const cities = Object.keys(sessionAnalyticsByCity.cityWise);
       const values = Object.values(sessionAnalyticsByCity.cityWise);
-      
+
       return { cities, values };
     }, [sessionAnalyticsByCity]);
 
@@ -635,6 +638,7 @@ interface RowProps {
     cityWise: Record<string, number>;
     cityWiseRaw: Record<string, number>;
   } | null;
+  liveUsers: number;
 }
 
 // ----- Main Component -----
@@ -648,6 +652,7 @@ function Row1({
   boundeRate,
   avgVisitDuration,
   sessionAnalyticsByCity,
+  liveUsers,
 }: RowProps) {
   const [activeTab, setActiveTab] = useState<ActiveTabType>("Total");
 
@@ -656,28 +661,24 @@ function Row1({
     () => [
       {
         title: "Active Users",
-        value: totalUsers?.totalUsers || "0",
+        value: String(liveUsers ?? "0"),
         description: "Active Now",
-        change: totalUsers?.performanceAvg || "0.00%",
-        changeDirection: totalUsers?.performanceAvg?.includes("-") ? "down" : "up",
         icon: <Activity size={20} className="text-[#FFFFFF]" />,
         color: "bg-blue-500",
-        timeFilter: true,
-        timeOptions: [
-          "Current",
-          "Last 7 Days",
-          "Last 30 Days",
-          "Last 6 Month",
-          "Last 12 Month",
-          "All",
-        ],
+        liveUsers: liveUsers || 0,
+        change: "",
+        changeDirection: "up",
+        timeFilter: false,
+        timeOptions: [],
       },
       {
         title: "Total Users",
-        value: totalUsers?.totalUsers || "0",
+        value: String(totalUsers?.totalUsers ?? "0"),
         description: "All Time",
         change: totalUsers?.performanceAvg || "0.00%",
-        changeDirection: totalUsers?.performanceAvg?.includes("-") ? "down" : "up",
+        changeDirection: totalUsers?.performanceAvg?.includes("-")
+          ? "down"
+          : "up",
         icon: <Users size={20} className="text-[#FFFFFF]" />,
         color: "bg-indigo-500",
         timeFilter: true,
@@ -688,13 +689,16 @@ function Row1({
           "Last 6 Month",
           "Last 12 Month",
         ],
+        liveUsers: liveUsers || 0,
       },
       {
         title: "Session Count",
-        value: sessionCount?.totalSessions || "0",
+        value: String(sessionCount?.totalSessions ?? "0"),
         description: "All Time",
         change: sessionCount?.performanceAvg || "0.00%",
-        changeDirection: sessionCount?.performanceAvg?.includes("-") ? "down" : "up",
+        changeDirection: sessionCount?.performanceAvg?.includes("-")
+          ? "down"
+          : "up",
         icon: <BarChart3 size={20} className="text-[#FFFFFF]" />,
         color: "bg-purple-500",
         timeFilter: true,
@@ -713,13 +717,16 @@ function Row1({
           "More Than 30 Sec",
           "More Than 1 Min.",
         ],
+        liveUsers: liveUsers || 0,
       },
       {
         title: "Bounce Rate",
-        value: boundeRate?.lastUsersBounceRate || "0.00%",
+        value: String(boundeRate?.lastUsersBounceRate ?? "0.00%"),
         description: "All Time",
         change: boundeRate?.lastUsersBounceRate || "0.00%",
-        changeDirection: boundeRate?.lastUsersBounceRate?.includes("-") ? "down" : "up",
+        changeDirection: boundeRate?.lastUsersBounceRate?.includes("-")
+          ? "down"
+          : "up",
         icon: <TrendingUp size={20} className="text-[#FFFFFF]" />,
         color: "bg-pink-500",
         timeFilter: true,
@@ -730,13 +737,16 @@ function Row1({
           "Last 6 Month",
           "Last 12 Month",
         ],
+        liveUsers: liveUsers || 0,
       },
       {
         title: "Total Leads",
-        value: totalUsers?.totalUsers || "0",
+        value: String(totalUsers?.totalUsers ?? "0"),
         description: "All Time",
         change: totalUsers?.performanceAvg || "0.00%",
-        changeDirection: totalUsers?.performanceAvg?.includes("-") ? "down" : "up",
+        changeDirection: totalUsers?.performanceAvg?.includes("-")
+          ? "down"
+          : "up",
         icon: <Users size={20} className="text-[#FFFFFF]" />,
         color: "bg-amber-500",
         timeFilter: true,
@@ -747,14 +757,17 @@ function Row1({
           "Last 6 Month",
           "Last 12 Month",
         ],
+        liveUsers: liveUsers || 0,
       },
       {
         title: "Avg. Visit Duration",
-        value: avgVisitDuration?.usersSpentTime?.split(" ")[0] || "0",
+        value: String(avgVisitDuration?.usersSpentTime?.split(" ")[0] ?? "0"),
         unit: avgVisitDuration?.usersSpentTime?.split(" ")[1] || "Hours",
         description: "All Time",
         change: avgVisitDuration?.lastSpentTimeAvg || "0.00%",
-        changeDirection: avgVisitDuration?.lastSpentTimeAvg?.includes("-") ? "down" : "up",
+        changeDirection: avgVisitDuration?.lastSpentTimeAvg?.includes("-")
+          ? "down"
+          : "up",
         icon: <Clock size={20} className="text-[#FFFFFF]" />,
         color: "bg-green-500",
         timeFilter: true,
@@ -765,9 +778,10 @@ function Row1({
           "Last 6 Month",
           "Last 12 Month",
         ],
+        liveUsers: liveUsers || 0,
       },
     ],
-    [totalUsers, sessionCount, boundeRate, avgVisitDuration]
+    [totalUsers, sessionCount, boundeRate, avgVisitDuration, liveUsers]
   );
 
   return (
