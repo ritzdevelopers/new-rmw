@@ -108,11 +108,11 @@ const Header = () => {
   // <------------------------------------------------------------------------------------------>
 
   async function activeUserCount() {
-  try {
-    await axios.post("/api/socket");
-  } catch (err) {
-    console.error("Failed to increment active user", err);
-  }
+    try {
+      await axios.post("/api/socket");
+    } catch (err) {
+      console.error("Failed to increment active user", err);
+    }
   }
   useEffect(() => {
     activeUserCount();
@@ -239,7 +239,7 @@ const Header = () => {
                           // padding: "0 25px",
                           width: "100vw",
                           left: "-70%",
-                          transform: "translate(-40%, 0)",
+                          transform: "translate(-36%, 0)",
                         }}
                       >
                         <div
@@ -364,25 +364,6 @@ const Header = () => {
                     </li>
                     <li className="nav-item">
                       <Link
-                        href="/contact.html/"
-                        className="nav-links"
-                        style={{
-                          fontWeight: "bold",
-                          textShadow:
-                            pathname === "/contact.html"
-                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
-                              : "inherit",
-                          color:
-                            pathname === "/contact.html"
-                              ? "#8a5a0d"
-                              : "inherit",
-                        }}
-                      >
-                        Contact us
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link
                         href="/rdx-digital-marketing-course"
                         className="nav-links"
                         style={{
@@ -398,6 +379,25 @@ const Header = () => {
                         }}
                       >
                         Academy
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link
+                        href="/contact.html/"
+                        className="nav-links"
+                        style={{
+                          fontWeight: "bold",
+                          textShadow:
+                            pathname === "/contact.html"
+                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
+                              : "inherit",
+                          color:
+                            pathname === "/contact.html"
+                              ? "#8a5a0d"
+                              : "inherit",
+                        }}
+                      >
+                        Contact us
                       </Link>
                     </li>
                   </ul>
@@ -618,11 +618,12 @@ const Header = () => {
                   <Link href="/blogs">Blog</Link>
                 </li>
                 <li>
-                  <Link href="/contact.html">Contact us</Link>
-                </li>
-                <li>
                   <Link href="/rdx-digital-marketing-course">Academy</Link>
                 </li>
+                <li>
+                  <Link href="/contact.html">Contact us</Link>
+                </li>
+
                 {/* href="/rdx-digital-marketing-course/" */}
               </ul>
             </nav>
