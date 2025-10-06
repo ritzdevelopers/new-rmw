@@ -127,15 +127,16 @@ function Page() {
       author: "— Manav ",
       role: "SEO Executive, Delhi",
     },
-    {
-      text: `"Experts here provides step-by-step guidance, they also helped me in preparing for interviews and the placement cell connected me with top companies, and today I’m happily working as an SEO Content writer"`,
-      author: "— Abhishek Singh",
-      role: "Performance Marketer, Gurgaon",
-    },
+
     {
       text: `"Learning Web Development at RDX was a great experience. The trainers were very helpful, and I learned technologies like HTML, CSS, JavaScript, and React. It gave me the confidence to build real-world projects."`,
       author: "— Syed Arhan",
       role: "Full Stack Engineer, Noida",
+    },
+    {
+      text: `"Experts here provides step-by-step guidance, they also helped me in preparing for interviews and the placement cell connected me with top companies, and today I’m happily working as an SEO Content writer"`,
+      author: "— Abhishek Singh",
+      role: "Performance Marketer, Gurgaon",
     },
     {
       text: `"Thanks to RDX (Ritz Digital Experts) and especially Akanksha ma’am for her guidance, I gained practical skills and confidence in digital marketing that will help me in my career."`,
@@ -424,7 +425,6 @@ function Page() {
           className={styles.absoluteImg1}
           alt="Background decoration 1"
         />
-        <div></div>
 
         <img
           src="/rdx/s2/rdxe2.png"

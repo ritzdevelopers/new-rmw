@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import useStickyElements from "@/hooks/useStickyElements";
-import styles from "./page.module.css"; 
+import styles from "./page.module.css";
 import {
   FaFacebookF,
   FaYoutube,
@@ -56,7 +56,8 @@ const Header = () => {
 
   // 🔹 Fetch menu data once
   useEffect(() => {
-    axios.get("/api/header_data")
+    axios
+      .get("/api/header_data")
       .then((res) => setMenuData(res.data))
       .catch((err) => console.error("Failed to fetch menu", err));
   }, []);
@@ -104,7 +105,30 @@ const Header = () => {
       });
     }
   }, [imgT.current?.src]);
-  // <------------------------------------------------------------------------------------------> console.log("User came from:",document.referrer);
+  // <------------------------------------------------------------------------------------------>
+
+  async function activeUserCount() {
+    try {
+      await axios.post("/api/socket");
+    } catch (err) {
+      console.error("Failed to increment active user", err);
+    }
+  }
+  useEffect(() => {
+    activeUserCount();
+    // Tab close ya leave → count--
+    const handleBeforeUnload = () => {
+      const url = "/api/socket/delete-count";
+      const data = null;
+      navigator.sendBeacon(url, data);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <header>
@@ -215,7 +239,7 @@ const Header = () => {
                           // padding: "0 25px",
                           width: "100vw",
                           left: "-70%",
-                          transform: "translate(-40%, 0)",
+                          transform: "translate(-36%, 0)",
                         }}
                       >
                         <div
@@ -330,31 +354,12 @@ const Header = () => {
                               ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
                               : "inherit",
                           // color:
-                            // pathname === "/blogs" || isBlog === true
-                            //   ? "#8a5a0d"
-                            //   : "inherit",
+                          // pathname === "/blogs" || isBlog === true
+                          //   ? "#8a5a0d"
+                          //   : "inherit",
                         }}
                       >
                         Blog
-                      </Link>
-                    </li>
-                    <li className="nav-item">
-                      <Link
-                        href="/contact.html/"
-                        className="nav-links"
-                        style={{
-                          fontWeight: "bold",
-                          textShadow:
-                            pathname === "/contact.html"
-                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
-                              : "inherit",
-                          color:
-                            pathname === "/contact.html"
-                              ? "#8a5a0d"
-                              : "inherit",
-                        }}
-                      >
-                        Contact us
                       </Link>
                     </li>
                     <li className="nav-item">
@@ -374,6 +379,25 @@ const Header = () => {
                         }}
                       >
                         Academy
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link
+                        href="/contact.html/"
+                        className="nav-links"
+                        style={{
+                          fontWeight: "bold",
+                          textShadow:
+                            pathname === "/contact.html"
+                              ? "0px 4px 6px rgba(255, 255, 255, 0.3), 0px 1px 3px rgba(255, 255, 255, 0.2)"
+                              : "inherit",
+                          color:
+                            pathname === "/contact.html"
+                              ? "#8a5a0d"
+                              : "inherit",
+                        }}
+                      >
+                        Contact us
                       </Link>
                     </li>
                   </ul>
@@ -594,11 +618,12 @@ const Header = () => {
                   <Link href="/blogs">Blog</Link>
                 </li>
                 <li>
-                  <Link href="/contact.html">Contact us</Link>
-                </li>
-                <li>
                   <Link href="/rdx-digital-marketing-course">Academy</Link>
                 </li>
+                <li>
+                  <Link href="/contact.html">Contact us</Link>
+                </li>
+
                 {/* href="/rdx-digital-marketing-course/" */}
               </ul>
             </nav>
@@ -772,7 +797,6 @@ const Header = () => {
                 }}
                 className="tp-hero__social-content"
               >
-                
                 <ul
                   style={{
                     listStyle: "none",
