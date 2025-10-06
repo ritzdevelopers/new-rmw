@@ -1,11 +1,40 @@
 "use client";
-// import Image from "next/image";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import styles from "./page.module.css";
 import Image from "next/image";
-// import Link from "next/link";
+
+const logos = [
+  "/home-images/home-swiper1-img2.jpeg",
+  "/home-images/home-swiper1-img3.jpeg",
+  "/home-images/home-swiper1-img4.jpeg",
+  "/home-images/home-swiper1-img5.jpeg",
+  "/home-images/home-swiper1-img6.jpeg",
+  "/home-images/home-swiper1-img7.jpeg",
+  "/home-images/home-swiper1-img8.jpeg",
+  "/home-images/home-swiper1-img9.jpeg",
+  "/home-images/home-swiper1-img10.jpeg",
+  "/home-images/home-swiper1-img11.jpeg",
+  "/home-images/home-swiper1-img12.jpeg",
+  "/home-images/home-swiper1-img13.jpeg",
+  "/home-images/home-swiper1-img14.jpeg",
+  "/home-images/home-swiper1-img15.jpeg",
+  "/home-images/home-swiper1-img16.jpeg",
+  "/home-images/home-swiper1-img17.jpeg",
+  "/newLogos/lg1.png",
+  "/newLogos/lg5.png",
+  "/newLogos/lg7.png",
+  "/newLogos/lg9.png",
+  "/newLogos/lg10.png",
+  "/newLogos/lg11.png",
+  "/newLogos/lg12.png",
+  "/newLogos/lg13.png",
+  "/newLogos/lg14.png",
+  "/newLogos/lg15.png",
+];
+
 const SwiperHome = () => {
   return (
     <div
@@ -44,8 +73,7 @@ const SwiperHome = () => {
                           autoplay={{
                             delay: 2000,
                             disableOnInteraction: false,
-                          }} // Adjust autoplay delay
-                          // speed={1500}
+                          }}
                           centeredSlides={true}
                           breakpoints={{
                             1200: { slidesPerView: 5 },
@@ -56,427 +84,30 @@ const SwiperHome = () => {
                           }}
                           onSlideChangeTransitionStart={(swiper) => {
                             const isLight =
-                              swiper.slides[
-                                swiper.activeIndex
-                              ].classList.contains("is-light");
+                              swiper.slides[swiper.activeIndex].classList.contains(
+                                "is-light"
+                              );
                             document
                               .querySelector(".tp-slider-variation")
                               ?.classList.toggle("is-light", isLight);
                           }}
                           className="tp-slider-active"
                         >
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img2.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
+                          {logos.map((src, index) => (
+                            <SwiperSlide key={index}>
+                              <div className="tp-brand__item">
+                                <div className={styles.topBrandLogoImgD}>
+                                  <Image
+                                    src={src}
+                                    alt="Brand logo"
+                                    fill
+                                    className={styles.swImg}
+                                    quality={70}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img3.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img4.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img5.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img6.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img7.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img8.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img9.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img10.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img11.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img12.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img13.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img14.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img15.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img16.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/home-images/home-swiper1-img17.jpeg"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg1.png"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          {/* <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg2.png"
-                                  alt="Brand logo"
-                                 
-                                  fill
-                           className={`styles.swImg}`}
-
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide> */}
-
-                          {/* <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg3.png"
-                                  alt="Brand logo"
-                                 
-                                  fill
-                           className={`styles.swImg}`}
-
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide> */}
-                          {/* 
-                            <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg4.png"
-                                  alt="Brand logo"
-                                 
-                                  fill
-                           className={`styles.swImg}`}
-
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide> */}
-
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg5.png"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg7.png"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          {/* <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg8.png"
-                                  alt="Brand logo"
-                                 
-                                  fill
-                           className={`styles.swImg}`}
-
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide> */}
-
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg9.png"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg10.png"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg11.png"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg12.png"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg13.png"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg14.png"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-
-                          <SwiperSlide>
-                            <div className="tp-brand__item">
-                              <div className={styles.topBrandLogoImgD}>
-                                <Image
-                                  src="/newLogos/lg15.png"
-                                  alt="Brand logo"
-                                  fill
-                                  className={`${styles.swImg}`}
-                                  quality={70}
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
+                            </SwiperSlide>
+                          ))}
                         </Swiper>
                       </div>
                     </div>

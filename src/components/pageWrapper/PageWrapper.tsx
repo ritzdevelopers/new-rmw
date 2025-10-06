@@ -1,32 +1,59 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
-import Loader from '../loader/Loader';
+import React, { useEffect, useState, useRef } from "react";
+import { usePathname } from "next/navigation";
+import Loader from "../loader/Loader";
 
 const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // ✅ First Page Load pe Loader Dikhana
+  // ✅ Show loader only on first mount
   useEffect(() => {
-    setLoading(false);
+    const timeout = setTimeout(() => setLoading(false), 600); // slightly smoother
+    return () => clearTimeout(timeout);
   }, []);
 
-  // ✅ Route Change pe Loader Dikhana
+  // ✅ Handle route change loader (optimized)
   useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 1000);
+    // Prevent re-render when navigating to same route
+    if (!pathname) return;
 
-    return () => clearTimeout(timer);
+    // Clear any existing timer (avoid memory leaks)
+    if (timerRef.current) clearTimeout(timerRef.current);
+
+    setLoading(true);
+    timerRef.current = setTimeout(() => {
+      setLoading(false);
+    }, 700); // balanced smooth delay (0.7s)
   }, [pathname]);
 
+  // ✅ Smooth fade transition for better UX
   return (
-    <>
-      {loading && <Loader />}
-      {children}
-    </>
+    <div className="relative">
+      {loading && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-[9999] transition-opacity duration-500"
+          style={{
+            opacity: loading ? 1 : 0,
+            pointerEvents: loading ? "auto" : "none",
+          }}
+        >
+          <Loader />
+        </div>
+      )}
+
+      {/* Optimize rendering: only render children when loader hidden */}
+      <div
+        className={`transition-opacity duration-500 ${
+          loading ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        {children}
+      </div>
+    </div>
   );
 };
 
-export default PageWrapper;
+export default React.memo(PageWrapper);
