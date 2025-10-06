@@ -3,11 +3,6 @@
 import dynamic from "next/dynamic";
 import { BlogProvider } from "@/blogContext/BlogContext";
 
-// 🌀 Lazy load client-only components
-const SmoothScroller = dynamic(
-  () => import("@/components/Lenis/SmoothScroller"),
-  { ssr: false }
-);
 
 const VisitTracker = dynamic(
   () => import("@/components/visitorTracker/tracker"),
@@ -21,7 +16,7 @@ export default function ClientProviders({
 }) {
   return (
     <BlogProvider>
-      <SmoothScroller />
+      {/* <SmoothScroller /> */}
       <VisitTracker />
       {children}
     </BlogProvider>

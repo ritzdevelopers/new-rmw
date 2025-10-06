@@ -10,6 +10,7 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 998;
   display: none;
+  overflow: hidden;
 }
 
 .chatContainer {
