@@ -10,7 +10,6 @@ interface OBJ {
 export async function POST(req: Request) {
   try {
     await connectMongoDB();
-    console.log("API HIT");
 
     const text = await req.text(); // read raw
     const data = text ? JSON.parse(text) : {};
@@ -34,17 +33,9 @@ export async function POST(req: Request) {
     ) {
       userDevice = "tablet";
     }
-//tablet,mobile, desktop
-    console.log("User device is:", userDevice);
 
     const { user, userVisitTimePerPage, trafficSource, userAddress } = data;
-    console.log(
-      user,
-      userAddress,
-      userDevice,
-      trafficSource,
-      userVisitTimePerPage
-    );
+    
 
     let userTotalVisitTime = 0;
     let isUserBounce = true;
@@ -54,17 +45,9 @@ export async function POST(req: Request) {
     if (userTotalVisitTime >= 10) {
       isUserBounce = false;
     }
-    console.log(
-      user,
-      userAddress,
-      isUserBounce,
-      userTotalVisitTime,
-      userDevice,
-      trafficSource,
-      userVisitTimePerPage
-    );
+   
 
-    const result = await UserAnalyticModel.create({
+     await UserAnalyticModel.create({
       user,
       userAddress,
       isUserBounce,
@@ -74,7 +57,6 @@ export async function POST(req: Request) {
       trafficSource,
       userVisitTimePerPage,
     });
-    console.log("Saved Result Data ", result);
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {

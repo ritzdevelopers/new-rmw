@@ -320,7 +320,7 @@ function Page() {
             // className={styles.logo}
             alt="Ritz Digital Xperts Academy"
           />
-          <p className={styles.heading}>
+          <div className={styles.heading}>
             <h1>
               <span className={styles.highlight}>Digital marketing course</span>{" "}
               with <span className={styles.highlight}>generative AI</span>{" "}
@@ -329,7 +329,7 @@ function Page() {
               <span className={styles.highlight}>Job Ready skills</span> that
               hiring managers actually want.
             </h2>
-          </p>
+          </div>
         </div>
 
         {/* This Is Row 2 */}
@@ -451,11 +451,16 @@ function Page() {
             {/* Card1  */}
             <div className={styles.card}>
               {/* Icon Img  */}
-              <img
-                src="/rdx/s2/rdxicn1.png"
-                className={styles.cardIcon}
-                alt="India growth market icon"
-              />
+
+              <div className={styles.cardIcon}>
+                {" "}
+                <Image
+                  fill
+                  quality={70}
+                  src="/rdx/s2/rdxicn1.png"
+                  alt="India growth market icon"
+                />
+              </div>
               <h2 className={styles.cardHeading}>
                 India is the world growth market online
               </h2>
@@ -466,11 +471,15 @@ function Page() {
             </div>
 
             <div className={styles.card}>
-              <img
-                src="/rdx/s2/rdxicn2.png"
-                className={styles.cardIcon}
-                alt="Performance promises icon"
-              />
+              <div className={styles.cardIcon}>
+                {" "}
+                <Image
+                  fill
+                  quality={70}
+                  src="/rdx/s2/rdxicn2.png"
+                  alt="India growth market icon"
+                />
+              </div>
               <h2 className={styles.cardHeading}>Performance promises</h2>
               <p className={styles.cardText}>
                 budgets follow outcomes. If you can plan, run, and scale
@@ -480,11 +489,15 @@ function Page() {
 
             <div className={styles.card}>
               {/* Icon Img  */}
-              <img
-                src="/rdx/s2/rdxicn3.png"
-                className={styles.cardIcon}
-                alt="AI copilot icon"
-              />
+              <div className={styles.cardIcon}>
+                {" "}
+                <Image
+                  fill
+                  quality={70}
+                  src="/rdx/s2/rdxicn3.png"
+                  alt="India growth market icon"
+                />
+              </div>
               <h2 className={styles.cardHeading}>
                 AI is a copilot, not a replacement
               </h2>
@@ -496,11 +509,15 @@ function Page() {
 
             <div className={styles.card}>
               {/* Icon Img  */}
-              <img
-                src="/rdx/s2/rdxicn4.png"
-                className={styles.cardIcon}
-                alt="First-party data icon"
-              />
+              <div className={styles.cardIcon}>
+                {" "}
+                <Image
+                  fill
+                  quality={70}
+                  src="/rdx/s2/rdxicn4.png"
+                  alt="India growth market icon"
+                />
+              </div>
               <h2 className={styles.cardHeading}>First-party data & privacy</h2>
               <p className={styles.cardText}>
                 smart tagging, consent, and CRM fluency are now core skills, not
@@ -510,11 +527,15 @@ function Page() {
 
             <div className={styles.card}>
               {/* Icon Img  */}
-              <img
-                src="/rdx/s2/rdxicn5.png"
-                className={styles.cardIcon}
-                alt="Creator economy icon"
-              />
+              <div className={styles.cardIcon}>
+                {" "}
+                <Image
+                  fill
+                  quality={70}
+                  src="/rdx/s2/rdxicn5.png"
+                  alt="India growth market icon"
+                />
+              </div>
               <h2 className={styles.cardHeading}>
                 Creator economy meets commerce
               </h2>
@@ -526,11 +547,15 @@ function Page() {
 
             <div className={styles.card}>
               {/* Icon Img  */}
-              <img
-                src="/rdx/s2/rdxicn6.png"
-                className={styles.cardIcon}
-                alt="Real skills icon"
-              />
+              <div className={styles.cardIcon}>
+                {" "}
+                <Image
+                  fill
+                  quality={70}
+                  src="/rdx/s2/rdxicn6.png"
+                  alt="India growth market icon"
+                />
+              </div>
               <h2 className={styles.cardHeading}>
                 Real skills beat certificates
               </h2>
@@ -549,11 +574,14 @@ function Page() {
         <div className={styles.centeredContainer}>
           {/* Left Side Container  */}
           <div className={styles.leftSide}>
-            <img
-              src="/rdx/s4/rdxs4.png"
-              className={styles.leftImage}
-              alt="Career pathways illustration"
-            />
+            <div className={styles.leftImage}>
+              {" "}
+              <Image
+                fill
+                src="/rdx/s4/rdxs4.png"
+                alt="Career pathways illustration"
+              />
+            </div>
           </div>
 
           {/* Right Side Container  */}
@@ -569,11 +597,9 @@ function Page() {
             <ul className={styles.careerList}>
               <li>
                 <div className={styles.careerItem}>
-                  <img
-                    src="/rdx/s4/rdxveriify.png"
-                    className={styles.verifyIcon}
-                    alt="Verified"
-                  />
+                  <div className={styles.verifyIcon}>
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                  </div>
                   <p className={styles.careerText}>
                     Performance Marketing Specialist (Meta/Google)
                   </p>
@@ -581,11 +607,9 @@ function Page() {
               </li>
               <li>
                 <div className={styles.careerItem}>
-                  <img
-                    src="/rdx/s4/rdxveriify.png"
-                    className={styles.verifyIcon}
-                    alt="Verified"
-                  />
+                  <div className={styles.verifyIcon}>
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                  </div>
                   <p className={styles.careerText}>
                     SEO Strategist / Technical SEO
                   </p>
@@ -594,11 +618,9 @@ function Page() {
 
               <li>
                 <div className={styles.careerItem}>
-                  <img
-                    src="/rdx/s4/rdxveriify.png"
-                    className={styles.verifyIcon}
-                    alt="Verified"
-                  />
+                  <div className={styles.verifyIcon}>
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                  </div>
                   <p className={styles.careerText}>
                     Social Media & Content Strategist (IG/YouTube/LinkedIn)
                   </p>
@@ -607,11 +629,9 @@ function Page() {
 
               <li>
                 <div className={styles.careerItem}>
-                  <img
-                    src="/rdx/s4/rdxveriify.png"
-                    className={styles.verifyIcon}
-                    alt="Verified"
-                  />
+                  <div className={styles.verifyIcon}>
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                  </div>
                   <p className={styles.careerText}>
                     Marketing Analyst (GA4, Looker/Data Studio)
                   </p>
@@ -620,11 +640,9 @@ function Page() {
 
               <li>
                 <div className={styles.careerItem}>
-                  <img
-                    src="/rdx/s4/rdxveriify.png"
-                    className={styles.verifyIcon}
-                    alt="Verified"
-                  />
+                  <div className={styles.verifyIcon}>
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                  </div>
                   <p className={styles.careerText}>
                     Marketing Automation & CRM (HubSpot/Zoho/WhatsApp)
                   </p>
@@ -633,11 +651,9 @@ function Page() {
 
               <li>
                 <div className={styles.careerItem}>
-                  <img
-                    src="/rdx/s4/rdxveriify.png"
-                    className={styles.verifyIcon}
-                    alt="Verified"
-                  />
+                  <div className={styles.verifyIcon}>
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                  </div>
                   <p className={styles.careerText}>
                     Conversion Rate Optimization (CRO) & Landing Page Specialist
                   </p>
@@ -646,11 +662,9 @@ function Page() {
 
               <li>
                 <div className={styles.careerItem}>
-                  <img
-                    src="/rdx/s4/rdxveriify.png"
-                    className={styles.verifyIcon}
-                    alt="Verified"
-                  />
+                  <div className={styles.verifyIcon}>
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                  </div>
                   <p className={styles.careerText}>
                     E-commerce Performance Marketer (D2C & Marketplaces)
                   </p>
@@ -659,11 +673,9 @@ function Page() {
 
               <li>
                 <div className={styles.careerItem}>
-                  <img
-                    src="/rdx/s4/rdxveriify.png"
-                    className={styles.verifyIcon}
-                    alt="Verified"
-                  />
+                  <div className={styles.verifyIcon}>
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                  </div>
                   <p className={styles.careerText}>
                     Media Planner / Digital Strategist
                   </p>
@@ -672,11 +684,9 @@ function Page() {
 
               <li>
                 <div className={styles.careerItem}>
-                  <img
-                    src="/rdx/s4/rdxveriify.png"
-                    className={styles.verifyIcon}
-                    alt="Verified"
-                  />
+                  <div className={styles.verifyIcon}>
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                  </div>
                   <p className={styles.careerText}>
                     Influencer & Partnerships Manager
                   </p>
@@ -685,11 +695,9 @@ function Page() {
 
               <li>
                 <div className={styles.careerItem}>
-                  <img
-                    src="/rdx/s4/rdxveriify.png"
-                    className={styles.verifyIcon}
-                    alt="Verified"
-                  />
+                  <div className={styles.verifyIcon}>
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                  </div>
                   <p className={styles.careerText}>
                     AI-for-Marketing Specialist (creative ops, testing, prompts)
                   </p>
