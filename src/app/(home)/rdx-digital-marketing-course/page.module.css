@@ -455,6 +455,7 @@
 .cardIcon {
   width: 92px;
   height: 92px;
+  position: relative;
 }
 
 .cardHeading {
@@ -623,6 +624,8 @@
 
 .leftImage {
   width: 558px;
+  height: 100%;
+  position: relative;
 }
 
 .rightSide {
@@ -676,6 +679,7 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+  position: relative;
 }
 
 .careerText {
@@ -917,6 +921,7 @@
     width: 100%;
     max-width: 730px;
     height: auto;
+    
   }
 
   .rightContent {

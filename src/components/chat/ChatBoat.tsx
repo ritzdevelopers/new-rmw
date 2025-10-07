@@ -851,7 +851,6 @@ const hideChatBoat =
                         margin: "0",
                         padding: "1.5rem",
                         borderRadius: "1rem",
-                        boxShadow: "0 10px 15px rgba(0,0,0,0.1)",
                         display: "flex",
                         flexDirection: "column",
                         gap: "1rem",
