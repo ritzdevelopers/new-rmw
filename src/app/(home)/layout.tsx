@@ -1,12 +1,12 @@
 // app/(home)/layout.tsx
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/globals.css";
-import "../styles/core-css.css";
-import "../styles/unit-css.css";
-import "../styles/spacing.css";
-import "../styles/magnific-popup-css.css";
-import "../styles/elementor-css.css";
-import "../styles/animation-css.css";
+import "../styles/main.css";
+// import "../styles/core-css.css";
+// import "../styles/unit-css.css";
+// import "../styles/spacing.css";
+// import "../styles/magnific-popup-css.css";
+// import "../styles/elementor-css.css";
+// import "../styles/animation-css.css";
 
 import { Toaster } from "react-hot-toast";
 import PageWrapper from "@/components/pageWrapper/PageWrapper";
@@ -69,12 +69,12 @@ export default function HomeLayout({
       <Toaster position="top-right" reverseOrder={false} />
 
       {/* Main Layout */}
-      <PageWrapper>
+      {/* <PageWrapper> */}
         <Header />
         {/* ✅ Client-only components wrapper */}
         <ClientOnlyComponents />
         {children}
-      </PageWrapper>
+      {/* </PageWrapper> */}
     </>
   );
 }

@@ -45,7 +45,7 @@ export async function GET(req: NextRequest) {
 
     const lat = user_Info?.latitude;
     const long = user_Info?.longitude;
-    console.log("User Latitude ", user_Info);
+    // console.log("User Latitude ", user_Info);
     const userAgent = req.headers.get("user-agent");
     const deviceBrand = getDeviceBrand(userAgent);
     user_data.user_device = deviceBrand;
@@ -63,10 +63,10 @@ export async function GET(req: NextRequest) {
     user_data.user_country = country;
     user_data.user_place = userPlace;
 
-    console.log(
-      "This user data i am gathering from users ip address: ",
-      user_data
-    );
+    // console.log(
+    //   "This user data i am gathering from users ip address: ",
+    //   user_data
+    // );
 
     return NextResponse.json(
       { IP_ADDRESS: ip, userAddress: user_data },

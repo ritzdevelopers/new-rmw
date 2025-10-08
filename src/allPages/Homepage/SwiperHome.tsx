@@ -67,9 +67,9 @@ const SwiperHome = () => {
                     <div className="tp-brand-wrap">
                       <div className="swiper-container tp-brand__active">
                         <Swiper
-                          modules={[Autoplay]}
+                          // modules={[Autoplay]}
                           slidesPerView={5}
-                          loop={true}
+                          // loop={true}
                           autoplay={{
                             delay: 2000,
                             disableOnInteraction: false,
@@ -100,7 +100,9 @@ const SwiperHome = () => {
                                   <Image
                                     src={src}
                                     alt="Brand logo"
-                                    fill
+                                    width={207}
+                                    height={240}
+                                    // fill
                                     className={styles.swImg}
                                     quality={70}
                                   />

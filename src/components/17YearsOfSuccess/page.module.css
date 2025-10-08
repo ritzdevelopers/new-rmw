@@ -1,5 +1,6 @@
 /* page.module.css */
 .circleContainer {
+  overflow: hidden;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -117,6 +118,15 @@
   .circleContainer {
     right: 10px;
     top: 10px;
+    /* z-index: 50; */
+  }
+}
+@media (max-width: 4250px) {
+  .circleContainer {
+    right: 10px;
+    top: 10px;
+    height: 100px;
+    width: 100px;
     /* z-index: 50; */
   }
 }

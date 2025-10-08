@@ -38,9 +38,9 @@ const Footer = () => {
                           <Image
                             width={100}
                             height={100}
-                            layout="fixed"
                             src="/logo-brown.png"
                             alt="logo"
+                            priority
                           />
                         </Link>
                       </div>

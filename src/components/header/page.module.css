@@ -30,6 +30,8 @@
 .mobileMenu {
   width: 300px;
   height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 2rem;
   background: linear-gradient(
     -50deg,
     rgba(255, 255, 255, 0.6) 60%,
@@ -42,8 +44,9 @@
   transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  border-radius: 10px; /* Subtle glass border */
+  /* justify-content: space-between; */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .mobileMenuOverlay.open .mobileMenu {
@@ -176,6 +179,7 @@
   padding-left: 10px;
   font-size: 16px;
   line-height: 35px;
+  margin: 20px 0px;
 }
 .headerBackground {
   border-bottom: 1px solid black !important;
@@ -438,12 +442,6 @@
   color: #fddf82;
 }
 
-.mobileMenu {
-  height: 100vh;
-  overflow-y: auto;
-  padding-bottom: 2rem;
-}
-
 /* Optional: Add smooth scroll style */
 .mobileMenu::-webkit-scrollbar {
   width: 6px;
@@ -473,14 +471,12 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  top: 20px;
+  /* top: 20px; */
 }
 
 /* Wrapper around Image to allow `fill` */
 .logoImageWrapper {
   position: relative;
-  width: 120px;     /* Adjust width as needed */
-  height: 50px;     /* Fixed height just like old inline style */
   flex-shrink: 0;
 }
 
@@ -529,4 +525,5 @@
 }
 .lgImg{
   opacity: 1 !important;
+  max-width: 100%;
 }

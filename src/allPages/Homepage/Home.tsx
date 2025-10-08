@@ -1,15 +1,14 @@
 "use client";
 import Link from "next/link";
-import { Suspense } from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
-import dynamic from "next/dynamic";
+import SuccessStory from "@/components/17YearsOfSuccess/SuccessStory";
 
 // Lazy load SuccessStory for performance
-const SuccessStory = dynamic(
-  () => import("@/components/17YearsOfSuccess/SuccessStory"),
-  { ssr: false, loading: () => <div style={{ height: 200 }} /> }
-);
+// const SuccessStory = dynamic(
+//   () => import("@/components/17YearsOfSuccess/SuccessStory"),
+//   { ssr: false, loading: () => <div style={{ height: 200 }} /> }
+// );
 
 const Home = () => {
   const lines = ["ADVERTISING", "BRANDING", "COMMUNICATION"];
@@ -34,9 +33,9 @@ const Home = () => {
           data-element_type="widget"
           data-widget_type="hero-banner.default"
         >
-          <Suspense fallback={<div style={{ height: 200 }} />}>
-            <SuccessStory />
-          </Suspense>
+          {/* <Suspense fallback={<div style={{ height: 200 }} />}> */}
+          <SuccessStory />
+          {/* </Suspense> */}
 
           <div className="elementor-widget-container">
             <section className="tp-hero__area fix tp-hero__space tp-hero__bg p-relative tp-bg-className">

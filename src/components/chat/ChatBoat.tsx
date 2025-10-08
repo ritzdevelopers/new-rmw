@@ -438,11 +438,13 @@ const hideChatBoat =
               onClick={() => setIsOpen(false)} // ✅ close chat
             />
           ) : (
-            <img
+            <Image
               src="/chat-icn-ui.png"
               alt="Chat Icon"
-              className={styles.boatGifIcon}
+              className={`${styles.boatGifIcon} img-fluid`}
               onClick={openBoat} // only open
+              width={50}
+              height={50}
             />
           )}
           {!isOpen && <span className={styles.pulseAnimation}></span>}
@@ -510,7 +512,7 @@ const hideChatBoat =
                       gap: "0.75rem",
                     }}
                   >
-                    <img
+                    <Image
                       alt="RMW Chat Bot"
                       src="/chat-icn-ui.png"
                       style={{
@@ -518,6 +520,9 @@ const hideChatBoat =
                         height: "2.5rem",
                         objectFit: "contain",
                       }}
+                      width={50}
+                      height={50}
+                      priority
                     />
                     <h2
                       style={{

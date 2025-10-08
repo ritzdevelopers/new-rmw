@@ -17,10 +17,10 @@ export async function POST(req: NextRequest) {
     const data = txt ? JSON.parse(txt) : {};
 
     const { user, userVisitTimePerPage = [] } = data;
-    console.log(user, userVisitTimePerPage);
+    // console.log(user, userVisitTimePerPage);
     const findedUser = await UserAnalyticModel.findOne({ user });
     if (!findedUser) {
-      console.log("User Not Found, ", user);
+      // console.log("User Not Found, ", user);
       return new Response(JSON.stringify({ success: false }), { status: 404 });
     }
 
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
         $set: { isUserBounce },
       }
     );
-    console.log(updatedUser);
+    // console.log(updatedUser);
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
