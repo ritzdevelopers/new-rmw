@@ -429,7 +429,7 @@ const DetailPage: React.FC = () => {
 
     return (
       <>
-        <Header />
+        {/* <Header /> */}
 
         <div className={styles.wrapper}>
           {/* Left Side Blog Content */}

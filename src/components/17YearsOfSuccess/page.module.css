@@ -125,8 +125,8 @@
   .circleContainer {
     right: 10px;
     top: 10px;
-    height: 100px;
-    width: 100px;
+    height: 100%;
+    width: auto;
     /* z-index: 50; */
   }
 }

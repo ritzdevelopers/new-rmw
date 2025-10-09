@@ -3,6 +3,7 @@ import React from "react";
 import DetailPage from "./DetailPage";
 import { Metadata } from "next";
 import axios from "axios";
+import Header from "@/components/header/Header";
 
 interface Article {
   _id: string;
@@ -62,7 +63,7 @@ interface Blog {
     metaDescription?: string;
     innerImg?: string;
   }[];
-  mtDesc?:string;
+  mtDesc?: string;
 }
 
 type Props = {
@@ -160,8 +161,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-function page() {
-  return <DetailPage />;
+// Server Component (default)
+export default function page() {
+  return (
+    <>
+      {" "}
+      <Header /> <DetailPage />
+    </>
+  ); // DetailPage can be 'use client' if it needs state/hooks
 }
-
-export default page;

@@ -4,11 +4,8 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import SuccessStory from "@/components/17YearsOfSuccess/SuccessStory";
 
-// Lazy load SuccessStory for performance
-// const SuccessStory = dynamic(
-//   () => import("@/components/17YearsOfSuccess/SuccessStory"),
-//   { ssr: false, loading: () => <div style={{ height: 200 }} /> }
-// );
+// "abcabcbb" ==> length = 3 *abc
+// "bbbbb" ==> 1 *b
 
 const Home = () => {
   const lines = ["ADVERTISING", "BRANDING", "COMMUNICATION"];
@@ -65,7 +62,7 @@ const Home = () => {
                             viewBox="0 0 800 350"
                             style={{
                               width: "100%",
-                              height: "100%",
+                              // height: "100%",
                             }}
                           >
                             <defs>

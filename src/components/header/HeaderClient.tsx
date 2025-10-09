@@ -14,6 +14,8 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import Image from "next/image";
 import { gsap } from "gsap";
+import axios from "axios";
+import AnalyticsTracker from "./Tracker/AnalyticsTracker";
 
 type SubService = {
   name: string;
@@ -47,12 +49,12 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData}) => {
   }, [pathname]);
 
   // 🔹 Fetch menu data once
-//   useEffect(() => {
-//     axios
-//       .get("/api/header_data")
-//       .then((res) => setMenuData(res.data))
-//       .catch((err) => console.error("Failed to fetch menu", err));
-//   }, []);
+  useEffect(() => {
+    axios
+      .get("/api/header_data")
+      .then((res) => setMenuData(res.data))
+      .catch((err) => console.error("Failed to fetch menu", err));
+  }, []);
 
   // 🔹 Sticky elements
   useStickyElements();
@@ -99,32 +101,32 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData}) => {
   }, [imgT.current?.src]);
   // <------------------------------------------------------------------------------------------>
 
-//   async function activeUserCount() {
-//     try {
-//       await axios.post("/api/socket");
-//     } catch (err) {
-//       console.error("Failed to increment active user", err);
-//     }
-//   }
-//   useEffect(() => {
-    // activeUserCount();
+  async function activeUserCount() {
+    try {
+      await axios.post("/api/socket");
+    } catch (err) {
+      console.error("Failed to increment active user", err);
+    }
+  }
+  useEffect(() => {
+    activeUserCount();
     // Tab close ya leave → count--
-    // const handleBeforeUnload = () => {
-    //   const url = "/api/socket/delete-count";
-    //   const data = null;
-    //   navigator.sendBeacon(url, data);
-    // };
+    const handleBeforeUnload = () => {
+      const url = "/api/socket/delete-count";
+      const data = null;
+      navigator.sendBeacon(url, data);
+    };
 
-    // window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
-    // return () => {
-    //   window.removeEventListener("beforeunload", handleBeforeUnload);
-    // };
-//   }, []);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <header>
-      {/* <AnalyticsTracker></AnalyticsTracker> */}
+      <AnalyticsTracker></AnalyticsTracker>
       <div
         id="header-sticky"
         className={`tp-header-top-area tp-header__style-1 tp-header__transparent tp-header__border ${styles.headerBackground}`}

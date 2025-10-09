@@ -67,9 +67,9 @@ const SwiperHome = () => {
                     <div className="tp-brand-wrap">
                       <div className="swiper-container tp-brand__active">
                         <Swiper
-                          // modules={[Autoplay]}
+                          modules={[Autoplay]}
                           slidesPerView={5}
-                          // loop={true}
+                          loop={true}
                           autoplay={{
                             delay: 2000,
                             disableOnInteraction: false,

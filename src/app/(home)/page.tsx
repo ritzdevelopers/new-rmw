@@ -1,6 +1,5 @@
-import dynamic from "next/dynamic";
+
 import { Providers } from "../provider/Provider";
-import Loader from "@/components/loader/Loader";
 import Elementor from "@/allPages/Elementor";
 import CookieConsentWithLead from "@/components/Cookies/CookieConsentWithLead";
 
@@ -59,16 +58,6 @@ export const metadata = {
     ],
   },
 };
-
-// const Elementor = dynamic(() => import("@/allPages/Elementor"), {
-//   ssr: false,
-//   loading: () => <Loader />,
-// });
-
-// const CookieConsentWithLead = dynamic(
-//   () => import("@/components/Cookies/CookieConsentWithLead"),
-//   { ssr: false }
-// );
 
 export default function Home() {
   return (
