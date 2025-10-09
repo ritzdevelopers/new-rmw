@@ -35,7 +35,7 @@ type HeaderClientProps = {
 const HeaderClient: React.FC<HeaderClientProps> = ({ headerData}) => {
   const pathname = usePathname();
 
-  const [menuData, setMenuData] = useState<ServiceMenuItem[]>(headerData);
+  const [menuData, setMenuData] = useState<ServiceMenuItem[]>([]);
   const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(false);
