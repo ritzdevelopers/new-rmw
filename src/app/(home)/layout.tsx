@@ -1,15 +1,6 @@
-// app/(home)/layout.tsx
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/globals.css";
-import "../styles/core-css.css";
-import "../styles/unit-css.css";
-import "../styles/spacing.css";
-import "../styles/magnific-popup-css.css";
-import "../styles/elementor-css.css";
-import "../styles/animation-css.css";
-
+import "../styles/main.css";
 import { Toaster } from "react-hot-toast";
-import PageWrapper from "@/components/pageWrapper/PageWrapper";
 import Header from "@/components/header/Header";
 import Script from "next/script";
 import ClientOnlyComponents from "@/components/ClientOnlyComponents";
@@ -21,7 +12,6 @@ export default function HomeLayout({
 }) {
   return (
     <>
-      {/* Google Tag Manager */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-0YHLN54GF7"
         strategy="lazyOnload"
@@ -65,16 +55,10 @@ export default function HomeLayout({
         />
       </noscript>
 
-      {/* Toast notifications */}
       <Toaster position="top-right" reverseOrder={false} />
-
-      {/* Main Layout */}
-      <PageWrapper>
         <Header />
-        {/* ✅ Client-only components wrapper */}
         <ClientOnlyComponents />
         {children}
-      </PageWrapper>
     </>
   );
 }

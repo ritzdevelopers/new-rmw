@@ -100,7 +100,9 @@ const SwiperHome = () => {
                                   <Image
                                     src={src}
                                     alt="Brand logo"
-                                    fill
+                                    width={207}
+                                    height={240}
+                                    // fill
                                     className={styles.swImg}
                                     quality={70}
                                   />

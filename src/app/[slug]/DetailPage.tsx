@@ -1,7 +1,6 @@
 "use client";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/globals.css";
 import "../styles/core-css.css";
 import "../styles/unit-css.css";
 import "../styles/spacing.css";
@@ -430,7 +429,7 @@ const DetailPage: React.FC = () => {
 
     return (
       <>
-        <Header />
+        {/* <Header /> */}
 
         <div className={styles.wrapper}>
           {/* Left Side Blog Content */}

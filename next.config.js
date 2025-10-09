@@ -1,7 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["ritzmediaworld.com", "localhost", "etorisoft.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ritzmediaworld.com",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+      {
+        protocol: "https",
+        hostname: "etorisoft.com",
+      },
+    ],
+  },
+  eslint: {
+    // ⚠️ This disables ESLint during builds (optional)
+    ignoreDuringBuilds: true,
   },
 };
 

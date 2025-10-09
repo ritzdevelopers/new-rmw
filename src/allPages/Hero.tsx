@@ -29,6 +29,7 @@ const Header = () => {
                     height={50}
                     src="/logo_blue.png"
                     alt="logo"
+                    priority
                   />
                 </Link>
               </div>

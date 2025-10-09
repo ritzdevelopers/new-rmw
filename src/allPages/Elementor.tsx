@@ -54,4 +54,3 @@ export default function Elementor() {
     </div>
   );
 }
-export const dynamic = "force-static";
