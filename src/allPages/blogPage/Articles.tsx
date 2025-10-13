@@ -26,7 +26,6 @@ interface Article {
   blogBanner: string;
   blogTitle: string;
   createdAt: string;
-  meta_description: string;
   blogDescription: string;
   blogStatus: boolean;
   blogSlug: string;
@@ -41,14 +40,13 @@ interface Article2 {
   status: string;
 }
 
-
 // ---------------- Normalizers ----------------
 const normalizeArticle = (blog: Article): MergedBlogs2 => ({
   id: blog._id,
   banner: blog.blogBanner,
   title: blog.blogTitle,
   createdAt: blog.createdAt,
-  meta_description: blog.meta_description,
+  meta_description: blog.blogDescription,
   status: blog.blogStatus ? "active" : "inactive",
   slug: blog.blogSlug,
 });
@@ -62,7 +60,6 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs2 => ({
   status: blog.status,
   slug: blog.slug,
 });
-
 
 // ---------------- Component ----------------
 const Articles: React.FC = () => {
@@ -146,7 +143,10 @@ const Articles: React.FC = () => {
   // 🔹 Search + Pagination
   const filteredBlogs = blogs
     .filter((b) => b.title.toLowerCase().includes(searchQuery.toLowerCase()))
-    .filter((b): b is MergedBlogs2 => typeof b.status === "string" && b.status !== undefined);
+    .filter(
+      (b): b is MergedBlogs2 =>
+        typeof b.status === "string" && b.status !== undefined
+    );
 
   const totalPages = Math.ceil(filteredBlogs.length / cardsPerPage);
   const indexOfLastCard = currentPage * cardsPerPage;
@@ -174,10 +174,20 @@ const Articles: React.FC = () => {
   };
 
   // 🔹 Copy URL
+  const [customAlert, setCustomAlert] = useState<boolean>(false);
+  useEffect(() => {
+    if (customAlert) {
+      const timer = setTimeout(() => {
+        setCustomAlert(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [customAlert]);
+
   const handleCopy = (fullPath: string) => {
     const url = `${window.location.origin}${path}/${fullPath}`;
     navigator.clipboard.writeText(url);
-    alert("Url Has Copied!");
+    setCustomAlert(true);
   };
 
   // 🔹 Open blog
@@ -200,6 +210,70 @@ const Articles: React.FC = () => {
 
   return (
     <div className="container mt-4 mb-5">
+      {customAlert && (
+        <div
+          style={{
+            position: "fixed",
+            top: "10px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            backgroundColor: "green",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "8px",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            zIndex: 1000,
+            minWidth: "250px",
+            justifyContent: "space-between",
+            transition: "opacity 0.3s ease",
+          }}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setCustomAlert(false)}
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              color: "#fff",
+            }}
+          >
+            {/* Cross Icon SVG */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+
+          {/* Alert Message */}
+          <div>
+            <p
+              style={{
+                margin: 0,
+                fontSize: "14px",
+                fontWeight: 700,
+                color: "white",
+              }}
+            >
+              URL Copied Successfully
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Search Input */}
       <div className="text-center mb-4">
         <input
