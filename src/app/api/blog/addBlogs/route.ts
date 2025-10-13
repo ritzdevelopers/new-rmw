@@ -28,7 +28,6 @@ export async function POST(req: NextRequest) {
     const meta_keywords = formData.get("meta_keywords") as string;
     const description = formData.get("description") as string;
     const blog_image = formData.get("blogImage") as File | null;
-    // blog_url = blog_url?.toLowerCase().replace(/\s+/g, "-") || "";
 
     const slug = generateSlug(title);
 

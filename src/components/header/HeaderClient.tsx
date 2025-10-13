@@ -78,7 +78,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData}) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // 🔹 Fetch blogs (for slugs check)
+  // 🔹 Fetch blogs (for slugs check)                                                                                                                                    
   // useEffect(() => {
   //   axios.get("/api/all_blogs")
   //     .then((res) => setBlogs(res.data))
@@ -99,7 +99,6 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData}) => {
       });
     }
   }, [imgT.current?.src]);
-  // <------------------------------------------------------------------------------------------>
 
   async function activeUserCount() {
     try {
