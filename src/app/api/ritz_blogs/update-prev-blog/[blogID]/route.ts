@@ -41,7 +41,7 @@ function deleteFileFromUploads(url: string) {
 export async function PUT(req: NextRequest, { params }: { params: { blogID: string } }) {
     try {
         await connectMongoDB();
-
+        
         const formData = await req.formData();
         const blogId = params.blogID;
         const blogTitle = formData.get("blogTitle");
@@ -101,7 +101,7 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             blogBody: BlogBodyItem[];
             metaKeywords: FormDataEntryValue | null;
             blogCategory: FormDataEntryValue | null;
-            blogStatus: FormDataEntryValue | boolean;
+            blogStatus: boolean;
             blogBanner?: string;
             blogSlug?:string;
         }> = {

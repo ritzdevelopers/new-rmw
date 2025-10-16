@@ -1,6 +1,7 @@
 "use client";
 import Accordion from "@/components/Accordian";
-// import { useState } from "react";
+import Image from "next/image";
+import React, { memo } from "react";
 
 interface ServiceItem {
   title: string;
@@ -13,6 +14,32 @@ interface ServiceProps {
 }
 
 const Service: React.FC<ServiceProps> = ({ data }) => {
+  const containerStyle: React.CSSProperties = {
+    backgroundColor: "#FFA122",
+  };
+
+  const rowStyle: React.CSSProperties = {
+    backgroundColor: "#FFA122",
+    paddingTop: "1rem",
+  };
+
+  const videoWrapperStyle: React.CSSProperties = {
+    position: "relative",
+    width: "60%",
+    margin: "auto",
+  };
+
+  const videoStyle: React.CSSProperties = {
+    position: "absolute",
+    top: "0",
+    left: "5px",
+    width: "95%",
+    zIndex: "-1",
+    borderRadius: "50px",
+    height: "100%",
+    objectFit: "cover",
+  };
+
   return (
     <div className="tp-service__area fix tp-bg-class">
       <div className="container">
@@ -43,35 +70,26 @@ const Service: React.FC<ServiceProps> = ({ data }) => {
           </div>
         </div>
       </div>
+
       {/* Accordion Section */}
-      <div
-        style={{
-          backgroundColor: "#FFA122",
-        }}
-      >
+      <div style={containerStyle}>
         <div className="container">
-          <div
-            className="row align-items-center "
-            style={{
-              backgroundColor: "#FFA122",
-              paddingTop: "1rem",
-            }}
-          >
+          <div className="row align-items-center" style={rowStyle}>
             <div className="col-xl-6 gx-0">
               <Accordion data={data} />
             </div>
 
-            {/* Image Section */}
+            {/* Image + Video Section */}
             <div className="col-xl-6">
               <div className="tp-services__thumb">
-                <div
-                  className=""
-                  style={{ position: "relative", width: "60%", margin: "auto" }}
-                >
-                  <img
+                <div style={videoWrapperStyle}>
+                  <Image
                     src="/home-images/mobile-frame-img.png"
                     alt="mobile"
-                    style={{ width: "100%" }}
+                    width={500}
+                    height={800}
+                    style={{ width: "100%", height: "auto" }}
+                    priority
                   />
                   <video
                     src="/test-images/test-video.mp4"
@@ -79,16 +97,7 @@ const Service: React.FC<ServiceProps> = ({ data }) => {
                     loop
                     muted
                     playsInline
-                    style={{
-                      position: "absolute",
-                      top: "0",
-                      left: "5px",
-                      width: "95%",
-                      zIndex: "-1",
-                      borderRadius: "50px",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
+                    style={videoStyle}
                   />
                 </div>
               </div>
@@ -100,4 +109,4 @@ const Service: React.FC<ServiceProps> = ({ data }) => {
   );
 };
 
-export default Service;
+export default memo(Service);

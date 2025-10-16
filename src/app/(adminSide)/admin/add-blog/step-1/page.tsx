@@ -19,12 +19,15 @@ const Page = () => {
     blogBanner,
     blogTitle,
     metaKeywords,
+    mtDesc,
+    setMtDesc,
   } = useBlogContext();
 
   const [localTitle, setLocalTitle] = useState<string>(blogTitle || "");
   const [localMeta, setLocalMeta] = useState<string>(metaKeywords || "");
   const [localBanner, setLocalBanner] = useState<string>(blogBanner || "");
   const [localCategory, setLocalCategory] = useState<string>("All Category");
+  const [localMtDsc, setLocalMtDesc] = useState(mtDesc || "");
 
   useEffect(() => {
     const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -37,6 +40,8 @@ const Page = () => {
       setBlogTitle(parsed.blogTitle || "");
       setMetaTitle(parsed.metaKeywords || "");
       setBlogBanner(parsed.blogBanner || "");
+      setMtDesc(parsed.mtDesc || "");
+      setLocalMtDesc(parsed.mtDesc || "");
     }
   }, []);
 
@@ -59,6 +64,7 @@ const Page = () => {
       metaKeywords: localMeta,
       blogBanner: localBanner,
       blogCategory: localCategory,
+      mtDesc: localMtDsc,
     };
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
   };
@@ -68,7 +74,13 @@ const Page = () => {
 
   const handleNavigation = (path: string) => {
     if (path.includes("/admin/add-blog/step-2/page")) {
-      if (!localTitle || !localMeta || !localBanner || !localCategory) {
+      if (
+        !localTitle ||
+        !localMeta ||
+        !localBanner ||
+        !localCategory ||
+        !localMtDsc
+      ) {
         alert(
           "Sorry we can't open new page because your all input fields are blank."
         );
@@ -176,6 +188,23 @@ const Page = () => {
 
           <div className="flex flex-col gap-2 p-4">
             <label className="text-sm font-semibold text-[#444]">
+              Meta Description
+            </label>
+
+            <input
+              type="text"
+              value={localMtDsc}
+              onChange={(e) => {
+                setLocalMtDesc(e.target.value);
+                setMtDesc(e.target.value);
+              }}
+              placeholder="Enter meta keywords..."
+              className="w-full border rounded-md px-4 py-2"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2 p-4">
+            <label className="text-sm font-semibold text-[#444]">
               Meta Keywords
             </label>
 
@@ -201,7 +230,7 @@ const Page = () => {
               onChange={(e) => setLocalCategory(e.target.value)}
               className="w-full border rounded-md px-4 py-2"
             >
-               <option value="none-selected">Select Category</option>
+              <option value="none-selected">Select Category</option>
               {ritzCategories.length > 0 ? (
                 ritzCategories.map((data, idx) => {
                   return (
@@ -213,7 +242,6 @@ const Page = () => {
               ) : (
                 <p>Categories are loading...</p>
               )}
-             
             </select>
           </div>
         </div>

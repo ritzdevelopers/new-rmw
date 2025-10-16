@@ -3,7 +3,8 @@ import React from "react";
 import DetailPage from "./DetailPage";
 import { Metadata } from "next";
 import axios from "axios";
-// import { stripHtml } from "../../utils/stripHtml"
+import Header from "@/components/header/Header";
+
 interface Article {
   _id: string;
   blogBanner: string;
@@ -12,14 +13,6 @@ interface Article {
   meta_description: string;
   blogDescription: string;
 }
-
-// interface Article2 {
-//   slug: string;
-//   blog_image: string;
-//   title: string;
-//   created_at: string;
-//   meta_description: string;
-// }
 
 interface MergedBlogs {
   id: string;
@@ -37,24 +30,21 @@ const normalizeArticle = (blog: Article): MergedBlogs => ({
   meta_description: blog.blogDescription,
 });
 
-// const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
-//   id: blog.slug,
-//   banner: blog.blog_image,
-//   title: blog.title,
-//   createdAt: blog.created_at,
-//   meta_description: blog.meta_description,
-// });
 function stripHtmlTags(html: string): string {
   if (!html) return "";
   return html
-    .replace(/<[^>]+>/g, " ") // remove tags
+    .replace(/<[^>]+>/g, " ") // remove HTML tags
     .replace(/\s+/g, " ") // normalize whitespace
-    .replace(/&nbsp;/g, " ") // decode common entity
+    .replace(/&nbsp;/g, " ") // decode &nbsp;
     .replace(/&[#A-Za-z0-9]+;/g, "") // remove other entities
     .trim();
 }
+
+function getCleanDescription(input: string): string {
+  return stripHtmlTags(input).replace(/\s+/g, " ").trim();
+}
+
 interface Blog {
-  // Shared
   id?: string | number;
   title?: string;
   banner?: string;
@@ -64,37 +54,31 @@ interface Blog {
   blog_image?: string;
   blogBanner?: string;
   blogTitle?: string;
-  blogDescription?: string; // Meta
-
+  blogDescription?: string;
   meta_title?: string;
   meta_keywords?: string;
-  metaKeywords?: string; // MongoDB-specific
-
+  metaKeywords?: string;
   blogBody?: {
     metaTitle?: string;
     metaDescription?: string;
     innerImg?: string;
   }[];
+  mtDesc?: string;
 }
 
-// Types (customize if needed)
 type Props = {
   params: {
     slug: string;
   };
 };
 
-// Safe HTML stripper (better than regex-only)
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   const baseURL = process.env.NEXT_PUBLIC_SERVER_IMG_PATH;
+  let blog: Blog | null = null;
+  let isMongo = false;
 
   try {
-    let blog: Blog | null = null;
-
-    let isMongo = false;
-
     // Try MySQL
     try {
       const mysqlRes = await axios.get(`${baseURL}/api/resolve/${slug}`);
@@ -122,38 +106,36 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         description: "This blog post does not exist or has been deleted.",
       };
     }
-    // Title & Keywords
+
+    // Prepare Metadata
     const title =
       blog.meta_title || blog.title || blog.blogTitle || "Untitled Blog";
-    const keywords = blog.meta_keywords || blog.metaKeywords || "";
+    const keywords = blog.meta_keywords || blog.metaKeywords || "ritz media";
 
-    // Description (cleaned)
-    const baseDescription = stripHtmlTags(
-      blog.description || blog.blogDescription || ""
-    );
+    const baseDescription = getCleanDescription(
+      blog.description || blog.mtDesc || ""
+    ).slice(0, 160);
 
-    // Mongo: Combine all page-level metaDescriptions
     let dsc = "";
     if (isMongo && Array.isArray(blog.blogBody)) {
-      dsc = blog.blogBody
-        .map((item) => stripHtmlTags(item?.metaDescription || ""))
-        .join(" ")
-        .trim();
-    }
+      const fullText = blog.blogBody
+        .map((item) => getCleanDescription(item?.metaDescription || ""))
+        .join(" ");
 
-    // console.log("====================================");
-    // console.log("this is base desc ", baseDescription);
-    // console.log("====================================");
+      dsc = fullText.slice(0, 160); // Trim to 160 characters
+    }
 
     const ogDescription = (isMongo && dsc) || baseDescription;
 
     return {
       title,
-      description: blog.meta_description || baseDescription,
+      description: blog.meta_description
+        ? getCleanDescription(blog.meta_description).slice(0, 160)
+        : baseDescription,
       keywords: keywords.split(",").map((k: string) => k.trim()),
       openGraph: {
         title,
-        description: ogDescription,
+        description: ogDescription.slice(0, 160),
         type: "article",
         url: `${baseURL}/blog/${slug}`,
         images: [
@@ -166,7 +148,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       twitter: {
         card: "summary_large_image",
         title,
-        description: ogDescription,
+        description: ogDescription.slice(0, 160),
         images: [`${baseURL}/uploads/${blog.blog_image || blog.blogBanner}`],
       },
     };
@@ -179,12 +161,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-function page() {
+// Server Component (default)
+export default function page() {
   return (
     <>
-      <DetailPage />
+      {" "}
+      <Header /> <DetailPage />
     </>
-  );
+  ); // DetailPage can be 'use client' if it needs state/hooks
 }
-
-export default page;

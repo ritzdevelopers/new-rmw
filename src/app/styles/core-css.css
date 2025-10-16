@@ -905,10 +905,7 @@ div.demo img {
   overflow: hidden;
 }
 
-:last-of-type {
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-}
+
 
 .tp-accordion .accordion-button {
   padding: 18px 0 28px 18px;
@@ -15963,12 +15960,6 @@ div.tp-awards__5-avater-thumb img {
   .tp-portfolio__4-sm-top.pb-120 {
     padding-bottom: unset;
   }
-}
-
-.tp-hero__area {
-  background-image: url("https://framerfly.mobi/oclata/wp/avtrix/wp-content/uploads/2024/08/hero-bg-1.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 /* self added css*/

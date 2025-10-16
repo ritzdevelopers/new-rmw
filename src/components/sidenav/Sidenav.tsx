@@ -10,6 +10,7 @@ import {
   Monitor,
   House,
   MonitorCog,
+  ChartNoAxesCombined 
 } from "lucide-react";
 import { cn } from "../../lib/utils";
 // import axios from "axios";
@@ -43,6 +44,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const [homePageActive, setHomePageActive] = useState(false);
   const [systemPageActive, setSystemPageActive] = useState(false);
   const [createUserPageActive, setCreateUserPageActive] = useState(false);
+  const [webStoriesActive, setWebStoriesActive] = useState(false);
+  const [analyticsActive, setAnalyticsIsActive] = useState(false);
 
   const [subMenuActive, setActiveSubMenu] = useState("");
   function handleActiveTabBG(e: React.MouseEvent<HTMLElement, MouseEvent>) {
@@ -50,6 +53,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
     const blogText = span?.innerText || "No span found";
 
     if (blogText === "Create user") {
+      setAnalyticsIsActive(false);
+      setWebStoriesActive(false);
       setBlogActive(false);
       setDBActive(false);
       setWebPageActive(false);
@@ -58,6 +63,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(true);
     } else if (blogText === "System Settings") {
+      setAnalyticsIsActive(false);
+      setWebStoriesActive(false);
       setBlogActive(false);
       setDBActive(false);
       setWebPageActive(false);
@@ -66,6 +73,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
     } else if (blogText === "Home") {
+      setAnalyticsIsActive(false);
+      setWebStoriesActive(false);
       setBlogActive(false);
       setDBActive(false);
       setWebPageActive(false);
@@ -74,6 +83,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
     } else if (blogText === "Web Pages") {
+      setAnalyticsIsActive(false);
+      setWebStoriesActive(false);
       setBlogActive(false);
       setDBActive(false);
       setWebPageActive(true);
@@ -82,6 +93,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
     } else if (blogText === "Blog") {
+      setAnalyticsIsActive(false);
+      setWebStoriesActive(false);
       setBlogActive(true);
       setDBActive(false);
       setWebPageActive(false);
@@ -90,6 +103,8 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
     } else if (blogText === "Dashboard") {
+      setAnalyticsIsActive(false);
+      setWebStoriesActive(false);
       setBlogActive(false);
       setDBActive(true);
       setWebPageActive(false);
@@ -97,6 +112,26 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+    } else if (blogText === "Web Stories") {
+      setAnalyticsIsActive(false);
+      setBlogActive(false);
+      setDBActive(false);
+      setWebPageActive(false);
+      setHomePageActive(false);
+      setSystemPageActive(false);
+      setActiveSubMenu("");
+      setCreateUserPageActive(false);
+      setWebStoriesActive(true);
+    } else if (blogText === "Analytics") {
+      setBlogActive(false);
+      setDBActive(false);
+      setWebPageActive(false);
+      setHomePageActive(false);
+      setSystemPageActive(false);
+      setActiveSubMenu("");
+      setCreateUserPageActive(false);
+      setWebStoriesActive(false);
+      setAnalyticsIsActive(true);
     }
   }
 
@@ -174,6 +209,22 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
             </div>
           </Link>
 
+          <Link onClick={handleClick} href="/admin/analytics">
+            <div
+              onClick={(e) => handleActiveTabBG(e)}
+              style={{
+                ...(!expanded
+                  ? { borderWidth: "none" }
+                  : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
+                ...(analyticsActive && { backgroundColor: "#2E3B46" }),
+              }}
+              className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition"
+            >
+              <ChartNoAxesCombined  className="w-5 h-5" />
+              {expanded && <span>Analytics</span>}
+            </div>
+          </Link>
+
           {/* Blog with submenu */}
           <div
             style={{
@@ -246,6 +297,116 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
             </div>
           )}
 
+          {/* Web Stories Section  */}
+          <div
+            style={{
+              ...(!expanded
+                ? { borderWidth: "none" }
+                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
+              ...(webStoriesActive && { backgroundColor: "#2E3B46" }),
+            }}
+            onClick={(e) => {
+              setWebStoriesActive(!webStoriesActive);
+              handleActiveTabBG(e);
+            }}
+            className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] cursor-pointer transition justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <FileText className="w-5 h-5" />
+              {expanded && <span>Web Stories</span>}
+            </div>
+            {expanded && (
+              <ChevronDown
+                className={cn(
+                  "w-4 h-4 transition",
+                  webStoriesActive ? "rotate-180" : ""
+                )}
+              />
+            )}
+          </div>
+
+          {/* Blog Submenu */}
+          {expanded && webStoriesActive && (
+            <div className="space-y-2">
+              <Link href="/admin/add-web-story-topics">
+                <div
+                  onClick={() => setActiveSubMenu("Add Web Story Topics")}
+                  style={{
+                    ...(!webStoriesActive
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Add Web Story Topics" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  Add Web Story Topics
+                </div>
+              </Link>
+              <Link href="/admin/manage-web-story-topics">
+                <div
+                  onClick={() => setActiveSubMenu("Manage Web Story Topics")}
+                  style={{
+                    ...(!webStoriesActive
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Web Story Topics" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  Manage Web Story Topics
+                </div>
+              </Link>
+              <Link href="/admin/add-web-story">
+                <div
+                  onClick={() => setActiveSubMenu("Add Web Story")}
+                  style={{
+                    ...(!webStoriesActive
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Add Web Story" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer text-sm  pl-8 text-gray-200"
+                >
+                  Add Web Story
+                </div>
+              </Link>
+              <Link href="/admin/manage-web-stories">
+                <div
+                  onClick={() => setActiveSubMenu("Manage Blogs")}
+                  style={{
+                    ...(!webStoriesActive
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Blogs" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  Manage Web Story
+                </div>
+              </Link>
+            </div>
+          )}
+
           {/* Websites Pages Links */}
           <div
             style={{
@@ -294,7 +455,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
-                  Manage Page
+                  Manage Pages Cards
                 </div>
               </Link>
               <Link href="/admin/menu">
@@ -319,7 +480,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
               <Link href="/admin/menu_category">
                 <div
-                  onClick={() => setActiveSubMenu("Manage Menu Category")}
+                  onClick={() => setActiveSubMenu("Manage  Category")}
                   style={{
                     ...(!webpagesLinks
                       ? { borderWidth: "none" }
@@ -327,13 +488,13 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                           borderBottomWidth: "1px",
                           borderBlockColor: "#EEEEEE",
                         }),
-                    ...(subMenuActive === "Manage Menu Category" && {
+                    ...(subMenuActive === "Manage Category" && {
                       backgroundColor: "#2E3B46",
                     }),
                   }}
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
-                  Manage Menu Category
+                  Manage Category
                 </div>
               </Link>
             </div>

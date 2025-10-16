@@ -7,6 +7,7 @@ const BlogSchema = new Schema(
     blogTitle: {
       type: String,
       required: true,
+      unique: true,
     },
     blogBanner: {
       type: String,
@@ -28,33 +29,37 @@ const BlogSchema = new Schema(
       },
     ],
     metaKeywords: {
-      type: String
+      type: String,
     },
     blogCategoryId: {
       type: Schema.Types.ObjectId,
-      ref:"RitzCats",
-      required:true
+      ref: "RitzCats",
+      required: true,
     },
-    blogStatus : {
-      type:Boolean,
-      default:true
+    blogStatus: {
+      type: Boolean,
+      default: true,
     },
     // It will be generate from backend api :
-    blogSlug:{
-      type:String,
-      required:true
+    blogSlug: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    blogDescription:{
-      type:String,
-      required:true
-    }
-
+    blogDescription: {
+      type: String,
+      required: true,
+    },
+    mtDesc: {
+      type: String,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const RitzBlogModel = models.RitzBlogModel || model("RitzBlogModel", BlogSchema);
+const RitzBlogModel =
+  models.RitzBlogModel || model("RitzBlogModel", BlogSchema);
 
 export default RitzBlogModel;

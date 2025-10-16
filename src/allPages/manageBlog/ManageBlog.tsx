@@ -4,11 +4,11 @@ import axios from "axios";
 import Image from "next/image";
 import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
 import Link from "next/link";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, Home, Monitor } from "lucide-react";
 import { useRouter } from "next/navigation";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 interface Blog {
   _id: string;
@@ -17,7 +17,7 @@ interface Blog {
   blogCategory: string;
   categoryName: string;
   createdAt: string | Date;
-  status: boolean;
+  blogStatus: boolean;
   blogSlug: string;
 }
 
@@ -51,6 +51,9 @@ export default function ManageBlogs() {
   // const [isMongo, setIsMongo] =
   const blogsPerPage = 15;
   const router = useRouter();
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
+  // const [blogForSearch, setBlogForSearch] = useState<MERGEDBLOGS[]>([]);
 
   function mergedALLBLOGS(blog: (Blog | SQLBLOGS)[]): MERGEDBLOGS[] {
     return blog.map((blg) => {
@@ -65,7 +68,7 @@ export default function ManageBlogs() {
             year: "numeric",
           }),
           blogID: mongoBLG.blogSlug,
-          blogStatus: mongoBLG.status === true ? "active" : "inactive",
+          blogStatus: mongoBLG.blogStatus === true ? "active" : "inactive",
           mongoID: mongoBLG._id,
         };
       } else {
@@ -109,7 +112,9 @@ export default function ManageBlogs() {
         //   params.append("category", selectedCategory);
         // }
 
-        const { data } = await axios.get(`/api/ritz_blogs/get-all-blogs`);
+        const { data, status } = await axios.get(
+          `/api/ritz_blogs/get-all-blogs`
+        );
         const res2 = await axios.get("/api/all_blogs");
 
         let combined: MERGEDBLOGS[] = [];
@@ -130,9 +135,21 @@ export default function ManageBlogs() {
           router.push("/not-found");
           return;
         }
+        setPopupData({ message: data.message, status });
+        setShowPopup(true);
       } catch (error) {
-        console.error("Error fetching blogs:", error);
-        toast.error("Failed to fetch blogs");
+        if (typeof error === "object" && error !== null && "message" in error) {
+          setPopupData({
+            message: (error as { message: string }).message,
+          status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+          });
+        } else {
+          setPopupData({ message: "An unknown error occurred.", status: 500 });
+        }
+        setShowPopup(true);
       } finally {
         setLoading(false);
       }
@@ -144,7 +161,7 @@ export default function ManageBlogs() {
   const handleDelete = async () => {
     if (!deleteBlog) return;
     try {
-      await axios.delete("/api/blog/delete_blog", {
+      const { data, status } = await axios.delete("/api/blog/delete_blog", {
         data: { blog__id: deleteBlog._id },
       });
       // After deletion, refetch current page (or adjust page if last blog deleted)
@@ -152,10 +169,21 @@ export default function ManageBlogs() {
       const maxPage = Math.ceil(newTotal / blogsPerPage);
       if (currentPage > maxPage) setCurrentPage(maxPage > 0 ? maxPage : 1);
       else setCurrentPage(currentPage);
-      toast.success("Blog deleted successfully");
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
-      console.error("Error deleting blog:", error);
-      toast.error("Failed to delete blog");
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
     setDeleteBlog(null);
   };
@@ -170,11 +198,12 @@ export default function ManageBlogs() {
         alert("Internal Key Error Please Try Again!");
         return;
       } else {
-        const res = await axios.delete(
+        const { data, status } = await axios.delete(
           `/api/ritz_blogs/delete-blog/${deleteKey}`
         );
-        if (res.status === 200) {
-          alert("Your Blog Has Been Deleted Successfully!");
+        setPopupData({ message: data.message, status });
+        setShowPopup(true);
+        if (status === 200) {
           window.location.reload();
           setDeleteConfirmModal(false);
         }
@@ -193,11 +222,19 @@ export default function ManageBlogs() {
           }
         }
       } catch (error) {
-        alert("Internal Server Err.");
+        if (typeof error === "object" && error !== null && "message" in error) {
+          setPopupData({
+            message: (error as { message: string }).message,
+          status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+          });
+        } else {
+          setPopupData({ message: "An unknown error occurred.", status: 500 });
+        }
+        setShowPopup(true);
         setDeleteConfirmModal(false);
-        console.log("====================================");
-        console.log(error);
-        console.log("====================================");
       }
       // console.log("====================================");
       console.log(
@@ -216,6 +253,12 @@ export default function ManageBlogs() {
 
   // Pagination Is Starting From Here
   const [page, setPage] = useState<MERGEDBLOGS[]>([]);
+
+  useEffect(() => {
+    if (mergedBlogs.length > 0) {
+      setPage(mergedBlogs);
+    }
+  }, [mergedBlogs]);
 
   const pagination = (s: number, e: number) => {
     if (s < mergedBlogs.length) {
@@ -263,8 +306,7 @@ export default function ManageBlogs() {
       newRight = mergedBlogs.length;
       newLeft = newRight - (newRight % 9);
     }
-  setActivePage((prev) => (prev < Math.ceil(llength / 9) ? prev + 1 : prev));
-
+    setActivePage((prev) => (prev < Math.ceil(llength / 9) ? prev + 1 : prev));
 
     setLftBtn(newLeft);
     setRightBtn(newRight);
@@ -286,25 +328,76 @@ export default function ManageBlogs() {
     setRightBtn(newRight);
     pagination(newLeft, newRight);
   };
-
-  const getDataWithSearch = (e: string) => {
-    const value = e;
-    setTimeout(() => {
-      setPage(
-        page.filter((data) =>
-          data.title.toLowerCase().includes(value.toLowerCase())
-        )
-      );
-      console.log("This is filtered post", page);
-    }, 2000);
+  const [searchedBl, setSearchedB] = useState("");
+  const getDataWithSearch = () => {
+    const filtered = mergedBlogs.filter((data) =>
+      data.title.toLowerCase().includes(searchedBl.toLowerCase())
+    );
+    setPage(filtered);
   };
+
+  useEffect(() => {
+    if (searchedBl) {
+      getDataWithSearch();
+    } else {
+      setPage(mergedBlogs.slice(0, 9));
+    }
+  }, [searchedBl]);
 
   const getEntriesManually = (e: number) => {
     const val = Number(e);
     setPage(mergedBlogs.slice(0, val));
   };
+
+  const handleActiveBtnToggle = async (
+    blStatus: string,
+    dbSt: string,
+    blID: string
+  ) => {
+    try {
+      let res;
+      if (dbSt.includes("mongo")) {
+        res = await axios.patch("/api/blog-updation", {
+          blStatus: blStatus === "active" ? false : true,
+          dbSt,
+          blID,
+        });
+      } else {
+        res = await axios.patch("/api/blog-updation", {
+          blStatus: blStatus === "active" ? "inactive" : "active",
+          dbSt,
+          blID,
+        });
+      }
+      if (res.status === 200) {
+        window.location.reload();
+      } else {
+        alert("Server Error!");
+      }
+    } catch (error) {
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+        status: (error instanceof Error && "status" in error)
+  ? (error as { status?: number }).status ?? 500
+  : 500,
+
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
+    }
+  };
   return (
     <div className="bg-[#EEEEEE] flex flex-col gap-6 sm:gap-8 md:gap-12 p-4 md:p-8 min-h-screen">
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       {deleteConfirmModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white dark:bg-[#1e1e1e] rounded-xl p-6 w-full max-w-md shadow-lg text-center relative">
@@ -416,7 +509,7 @@ export default function ManageBlogs() {
                 type="text"
                 placeholder="Search here..."
                 // onChange={(e) => getDataWithSearch(e)}
-                onChange={(e) => getDataWithSearch(e.target.value)}
+                onChange={(e) => setSearchedB(e.target.value)}
                 className="bg-transparent outline-none placeholder:text-[#365248] text-[#365248] w-full"
               />
             </div>
@@ -468,7 +561,20 @@ export default function ManageBlogs() {
                       <td className="p-2">{blog.createdAT}</td>
                       <td className="p-2">
                         <span
-                          className={`px-2 py-1 rounded-md text-white ${
+                          onClick={() =>
+                            blog.blogIMG.includes("/images")
+                              ? handleActiveBtnToggle(
+                                  blog.blogStatus,
+                                  "mongo",
+                                  blog.mongoID ? blog.mongoID : blog.blogID
+                                )
+                              : handleActiveBtnToggle(
+                                  blog.blogStatus,
+                                  "mysql",
+                                  blog.blogID
+                                )
+                          }
+                          className={`px-2 py-1 cursor-pointer rounded-md text-white ${
                             blog.blogStatus === "active"
                               ? "bg-green-500"
                               : "bg-red-500"
@@ -591,8 +697,7 @@ export default function ManageBlogs() {
                       directPageNavigation(trg);
                     }}
                     className="px-3 py-1.5 border border-[#688A7E] text-black rounded-md cursor-pointer hover:bg-[#688A7E] hover:text-white transition"
-                    style={{ backgroundColor: "black", color: "white" }
-                    }
+                    style={{ backgroundColor: "black", color: "white" }}
                   >
                     {activePage}
                   </p>
@@ -618,7 +723,7 @@ export default function ManageBlogs() {
                   >
                     {Math.ceil(llength / 9)}
                   </p>
-                )} */} 
+                )} */}
               </div>
 
               <button

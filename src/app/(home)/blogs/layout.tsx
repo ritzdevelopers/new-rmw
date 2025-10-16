@@ -1,15 +1,12 @@
 import { Providers } from "@/app/provider/Provider";
+import type { Metadata } from "next";
 
-// export const metadata = {
-//   title: "Blog - Ritz Media World",
-//   description: "Best digital agency in India - Blog",
-// };
-
-export const metadata = {
+export const metadata: Metadata = {
   title: "Blogs",
   description: "Blogs",
-  keywords: "Blogs",
+  keywords: ["Blogs"],
 };
+
 export default function BlogLayout({
   children,
 }: {

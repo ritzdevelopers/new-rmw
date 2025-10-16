@@ -1,26 +1,34 @@
 "use client";
 
-function stripHtml(html: string) {
-  return html.replace(/<[^>]*>?/gm, " ");
-}
-
 import Loader from "@/components/loader/Loader";
 import axios from "axios";
-// import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import gsap from "gsap";
-// import { CalendarDays } from "lucide-react";
 import { CalendarDays, Share2 } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useBlogContext } from "@/context/AllBlogContext";
+
+// Define MergedBlogs2 type here to ensure it includes 'slug'
+export type MergedBlogs2 = {
+  id: string;
+  banner: string;
+  title: string;
+  createdAt: string;
+  meta_description: string;
+  status: string;
+  slug: string;
+};
 import Image from "next/image";
+
+// ---------------- Types ----------------
 interface Article {
   _id: string;
   blogBanner: string;
   blogTitle: string;
   createdAt: string;
-  meta_description: string;
   blogDescription: string;
+  blogStatus: boolean;
+  blogSlug: string;
 }
 
 interface Article2 {
@@ -29,92 +37,73 @@ interface Article2 {
   title: string;
   created_at: string;
   meta_description: string;
+  status: string;
 }
 
-interface MergedBlogs {
-  id: string;
-  banner: string;
-  title: string;
-  createdAt: string;
-  meta_description: string;
-}
-
-const normalizeArticle = (blog: Article): MergedBlogs => ({
-  id: blog.blogTitle,
+// ---------------- Normalizers ----------------
+const normalizeArticle = (blog: Article): MergedBlogs2 => ({
+  id: blog._id,
   banner: blog.blogBanner,
   title: blog.blogTitle,
   createdAt: blog.createdAt,
   meta_description: blog.blogDescription,
+  status: blog.blogStatus ? "active" : "inactive",
+  slug: blog.blogSlug,
 });
 
-const normalizeArticle2 = (blog: Article2): MergedBlogs => ({
+const normalizeArticle2 = (blog: Article2): MergedBlogs2 => ({
   id: blog.slug,
   banner: blog.blog_image,
   title: blog.title,
   createdAt: blog.created_at,
   meta_description: blog.meta_description,
+  status: blog.status,
+  slug: blog.slug,
 });
 
+// ---------------- Component ----------------
 const Articles: React.FC = () => {
   const { blogs, setBlogs } = useBlogContext();
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
+
   const cardsPerPage = 12;
+  const path = usePathname();
 
-  const navigation = useRouter();
-  const handleSingleBlogs = (slug: string) => {
-    const url = slug.split(" ").join("-").toLowerCase();
-    navigation.push(`/${url}`);
-  };
-
-  // useEffect(() => {
-  //   // const handlePagination = () => {
-  //     const pageNum = sessionStorage.getItem("page-no");
-  //     if(!pageNum) {
-  //       // setCurrentPage(1)
-  //       sessionStorage.setItem("page-no", String(currentPage));
-  //     } else  {
-  //       sessionStorage.setItem("page-no", String(currentPage));
-  //     }
-
-  //   };
-  //   handlePagination();
-  // }, [currentPage]);
-
-  // useEffect(() => {
-  //   const pageNum = sessionStorage.getItem("page-no");
-  //   console.log('this is page num ', pageNum);
-
-  //   if (pageNum) {
-  //     setCurrentPage(Number(pageNum));
-  //   }
-  // }, []);
+  // 🔹 Restore pagination from sessionStorage
   useEffect(() => {
-    const call = () => {
-      const pageNum = sessionStorage.getItem("page-no");
-      if (Number(pageNum) > 1) {
-        setCurrentPage(Number(pageNum));
-      }
-    };
-    call();
+    const savedPage = Number(sessionStorage.getItem("page-no"));
+    if (savedPage > 1) setCurrentPage(savedPage);
   }, []);
 
+  // 🔹 Animate cards on blog change
   useEffect(() => {
-    gsap.from(".mnc-card", {
-      opacity: 0,
-      y: 30,
-      stagger: 0.1,
-      duration: 0.6,
-      ease: "power2.out",
-    });
+    if (blogs?.length) {
+      gsap.from(".mnc-card", {
+        opacity: 0,
+        y: 30,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: "power2.out",
+      });
+    }
   }, [blogs]);
 
-  const path = usePathname();
+  // 🔹 Fetch blogs (with caching in sessionStorage)
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
+        // ✅ Check cache first
+        const cached = sessionStorage.getItem("all-blogs");
+        if (cached) {
+          setBlogs(JSON.parse(cached));
+          setLoading(false);
+          return;
+        }
+
         const [resMongo, resMySQL] = await Promise.all([
           axios.get("/api/ritz_blogs/get-all-blogs"),
           axios.get("/api/all_blogs"),
@@ -123,12 +112,15 @@ const Articles: React.FC = () => {
         const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
         const mysqlBlogs: Article2[] = resMySQL.data || [];
 
-        const merged: MergedBlogs[] = [
+        const merged: MergedBlogs2[] = [
           ...mongoBlogs.map(normalizeArticle),
           ...mysqlBlogs.map(normalizeArticle2),
         ];
 
         setBlogs(merged);
+
+        // ✅ Save to cache
+        sessionStorage.setItem("all-blogs", JSON.stringify(merged));
       } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
           setError(err.response?.data?.message || err.message);
@@ -143,46 +135,145 @@ const Articles: React.FC = () => {
     };
 
     fetchBlogs();
-  }, []);
-  useEffect(() => {}, [blogs]);
+  }, [setBlogs]);
 
+  // 🔹 Guard
   if (!blogs || !Array.isArray(blogs)) return null;
-  const filteredBlogs: MergedBlogs[] = blogs.filter((blog: MergedBlogs) =>
-    blog.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+
+  // 🔹 Search + Pagination
+  const filteredBlogs = blogs
+    .filter((b) => b.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    .filter(
+      (b): b is MergedBlogs2 =>
+        typeof b.status === "string" && b.status !== undefined
+    );
 
   const totalPages = Math.ceil(filteredBlogs.length / cardsPerPage);
-  const indexOfLastCard = (currentPage ?? 1) * cardsPerPage;
+  const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = filteredBlogs.slice(indexOfFirstCard, indexOfLastCard);
+  const currentCards: MergedBlogs2[] = filteredBlogs.slice(
+    indexOfFirstCard,
+    indexOfLastCard
+  );
 
+  // 🔹 Pagination handlers
   const handleNext = () => {
     if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-      sessionStorage.setItem("page-no", String(currentPage + 1));
+      const newPage = currentPage + 1;
+      setCurrentPage(newPage);
+      sessionStorage.setItem("page-no", String(newPage));
     }
   };
 
   const handlePrev = () => {
-    if (currentPage ?? 1) {
-      setCurrentPage(currentPage - 1);
-      sessionStorage.setItem("page-no", String(currentPage - 1));
-      // handlePagination();
+    if (currentPage > 1) {
+      const newPage = currentPage - 1;
+      setCurrentPage(newPage);
+      sessionStorage.setItem("page-no", String(newPage));
     }
   };
+
+  // 🔹 Copy URL
+  const [customAlert, setCustomAlert] = useState<boolean>(false);
+  useEffect(() => {
+    if (customAlert) {
+      const timer = setTimeout(() => {
+        setCustomAlert(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [customAlert]);
 
   const handleCopy = (fullPath: string) => {
     const url = `${window.location.origin}${path}/${fullPath}`;
     navigator.clipboard.writeText(url);
-    alert("Url Has Copied!");
+    setCustomAlert(true);
   };
 
+  // 🔹 Open blog
+  const handleSingleBlogs = (slug: string) => {
+    window.open(`/${slug}`, "_blank");
+  };
+
+  // ---------------- Render ----------------
   if (loading) return <Loader />;
   if (error)
     return <p className="text-center text-danger mt-4">Error: {error}</p>;
 
+  function stripHtml(description: string) {
+    if (!description) return "";
+    return description
+      .replace(/<[^>]*>/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
   return (
     <div className="container mt-4 mb-5">
+      {customAlert && (
+        <div
+          style={{
+            position: "fixed",
+            top: "10px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            backgroundColor: "green",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "8px",
+            boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            zIndex: 1000,
+            minWidth: "250px",
+            justifyContent: "space-between",
+            transition: "opacity 0.3s ease",
+          }}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setCustomAlert(false)}
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              color: "#fff",
+            }}
+          >
+            {/* Cross Icon SVG */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+
+          {/* Alert Message */}
+          <div>
+            <p
+              style={{
+                margin: 0,
+                fontSize: "14px",
+                fontWeight: 700,
+                color: "white",
+              }}
+            >
+              URL Copied Successfully
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Search Input */}
       <div className="text-center mb-4">
         <input
@@ -209,167 +300,144 @@ const Articles: React.FC = () => {
         }}
       >
         {" "}
-        {currentCards.map((article: MergedBlogs) => (
-          <div
-            key={article.id}
-            onClick={() => handleSingleBlogs(article.id)}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              height: "100%",
-              borderRadius: "16px",
-              overflow: "hidden",
-              backgroundColor: "#fff",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              cursor: "pointer",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform =
-                "translateY(-5px)";
-              (e.currentTarget as HTMLDivElement).style.boxShadow =
-                "0 8px 30px rgba(0,0,0,0.1)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLDivElement).style.transform =
-                "translateY(0)";
-              (e.currentTarget as HTMLDivElement).style.boxShadow =
-                "0 4px 20px rgba(0,0,0,0.08)";
-            }}
-          >
-            {/* Image Section */}
+        {currentCards
+          .filter((bl) => bl.status === "active")
+          .map((article) => (
             <div
+              className="mnc-card"
+              key={article.id}
+              onClick={() => handleSingleBlogs(article.slug)}
               style={{
-                height: "200px",
-                width: "100%",
-                overflow: "hidden",
-                position: "relative",
-              }}
-            >
-              <Image
-                src={
-                  article.banner.includes("/images")
-                    ? `/api/images${article.banner.split("/images")[1]}`
-                    : `/blogs/${article.banner}`
-                }
-                alt={article.title}
-                style={{
-                  objectFit: "cover",
-                    transition: "transform 0.3s ease-in-out",
-                }}
-                priority
-                fill
-                onMouseOver={(e) =>
-                  (e.currentTarget.style.transform = "scale(1.05)")
-                }
-                onMouseOut={(e) =>
-                  (e.currentTarget.style.transform = "scale(1)")
-                }
-              />
-            </div>
-            {/* Content Section */}
-            <div
-              style={{
-                padding: "1rem",
                 display: "flex",
                 flexDirection: "column",
-                flexGrow: 1,
+                height: "100%",
+                borderRadius: "16px",
+                overflow: "hidden",
+                backgroundColor: "#fff",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                cursor: "pointer",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform =
+                  "translateY(-5px)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow =
+                  "0 8px 30px rgba(0,0,0,0.1)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform =
+                  "translateY(0)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow =
+                  "0 4px 20px rgba(0,0,0,0.08)";
               }}
             >
-              {/* Title */}
-              <h3
+              {/* Image Section */}
+              <div
                 style={{
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  marginBottom: "0.75rem",
-                  color: "#333",
+                  height: "200px",
+                  width: "100%",
+                  overflow: "hidden",
+                  position: "relative",
                 }}
               >
-                {article.title.split(" ").slice(0, 10).join(" ")}{" "}
-              </h3>
-              {/* Description */}
-              {/* <p
+                <Image
+                  src={
+                    article.banner.includes("/images")
+                      ? `/api/images${article.banner.split("/images")[1]}`
+                      : `/blogs/${article.banner}`
+                  }
+                  alt={article.title}
+                  fill
+                />
+              </div>
+              {/* Content Section */}
+              <div
                 style={{
-                  fontSize: "1rem",
-                  color: "#555",
-                  lineHeight: "1.6",
+                  padding: "1rem",
+                  display: "flex",
+                  flexDirection: "column",
                   flexGrow: 1,
                 }}
               >
-                {stripHtml(
-                  article.meta_description.split(/\s+/).slice(0, 30).join(" ")
-                )}
-                ...
-              </p> */}
-              {/* Description */}
-<p
-  style={{
-    fontSize: "1rem",
-    color: "#555",
-    lineHeight: "1.6",
-    flexGrow: 1,
-  }}
->
-  {(() => {
-    const description = article?.meta_description || "";
-    const plainText = stripHtml(description) || "";
-    const words = plainText.split(/\s+/);
-    const shortened = words.slice(0, 30).join(" ");
-    return words.length > 30 ? `${shortened}...` : shortened;
-  })()}
-</p>
+                {/* Title */}
+                <h3
+                  style={{
+                    fontSize: "1.1rem",
+                    fontWeight: "600",
+                    marginBottom: "0.75rem",
+                    color: "#333",
+                  }}
+                >
+                  {article.title.split(" ").slice(0, 10).join(" ")}{" "}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "1rem",
+                    color: "#555",
+                    lineHeight: "1.6",
+                    flexGrow: 1,
+                  }}
+                >
+                  {(() => {
+                    const description = article?.meta_description || "";
+                    const plainText = stripHtml(description) || "";
+                    const words = plainText.split(/\s+/);
+                    const shortened = words.slice(0, 30).join(" ");
+                    return words.length > 30 ? `${shortened}...` : shortened;
+                  })()}
+                </p>
 
-              {/* Footer Actions */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginTop: "1rem",
-                }}
-              >
-                {/* Date */}
+                {/* Footer Actions */}
                 <div
                   style={{
-                    fontSize: "0.8rem",
-                    color: "#888",
                     display: "flex",
+                    justifyContent: "space-between",
                     alignItems: "center",
-                    gap: "0.4rem",
+                    marginTop: "1rem",
                   }}
                 >
-                  <CalendarDays size={14} />
-                  {new Date(article.createdAt).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
+                  {/* Date */}
+                  <div
+                    style={{
+                      fontSize: "0.8rem",
+                      color: "#888",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.4rem",
+                    }}
+                  >
+                    <CalendarDays size={14} />
+                    {new Date(article.createdAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  {/* Share */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleCopy(article.title.split(" ").join("-"));
+                    }}
+                    style={{
+                      background: "transparent",
+                      border: "1px solid #E5B05C",
+                      color: "#E5B05C",
+                      borderRadius: "6px",
+                      padding: "0.3rem 0.6rem",
+                      fontSize: "0.85rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.3rem",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Share2 size={15} /> Share
+                  </button>
                 </div>
-                {/* Share */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleCopy(article.title.split(" ").join("-"));
-                  }}
-                  style={{
-                    background: "transparent",
-                    border: "1px solid #E5B05C",
-                    color: "#E5B05C",
-                    borderRadius: "6px",
-                    padding: "0.3rem 0.6rem",
-                    fontSize: "0.85rem",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.3rem",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Share2 size={15} /> Share
-                </button>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       {/* Pagination */}

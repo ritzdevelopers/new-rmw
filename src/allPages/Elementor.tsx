@@ -1,117 +1,56 @@
-"use client"
-import { useEffect } from "react";
+import Home from "./Homepage/Home";
+import Service from "./Homepage/Service";
 import Footer from "@/components/footer/Footer";
+import SwiperHome from "./Homepage/SwiperHome";
+import Work from "./Homepage/Work";
+import Projects from "./Homepage/Projects";
+import ProjectSwiper from "./Homepage/ProjectSwiper";
 import Awards from "./Homepage/Awards";
 import Experience from "./Homepage/Experience";
 import Feedback from "./Homepage/Feedback";
-import Home from "./Homepage/Home";
-import Projects from "./Homepage/Projects";
-import ProjectSwiper from "./Homepage/ProjectSwiper";
-import SwiperHome from "./Homepage/SwiperHome";
-// import Team from "./Homepage/Team";
-import Work from "./Homepage/Work";
-import Service from "./Homepage/Service";
+import IntersectionObserverClient from "./Homepage/IntersectionObserverClient";
 
-const Elementor = () => {
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        } else {
-          entry.target.classList.remove("show");
-        }
-      });
-    });
-
-    const hiddenElements = document.querySelectorAll(".tp-section-hidden");
-    hiddenElements.forEach((el) => observer.observe(el));
-
-    // Cleanup observer on unmount
-    return () => observer.disconnect();
-  }, []);
-
+export default function Elementor() {
   const data = [
     {
       title: "Digital Marketing",
-   
       description:
-        "Turning browsers into buyers isn’t magic. It’s precise digital persuasion. Our strategically obsessive digital campaigns boost visibility, amplify engagement, and reliably convert attention into measurable profits. Predictably brilliant.",
-        link: "/services/digital-marketing",
+        "Turning browsers into buyers isn’t magic. It’s precise digital persuasion...",
+      link: "/services/digital-marketing",
     },
     {
       title: "Content Marketing",
       description:
-        "Content without action is merely decoration. Our stories don’t just attract eyes, they move hearts and minds, persuading customers to act, buy, and loyally champion your brand. Charmingly effective.",
-        link: "/services/contents-marketing",
+        "Content without action is merely decoration...",
+      link: "/services/contents-marketing",
     },
     {
       title: "(PPC) Advertising",
       description:
-        "Why chase customers when you can strategically appear exactly where they’re searching? Our PPC approach delivers instant leads, measurable returns, and satisfaction so swiftly that you’ll swear it’s cheating (it’s not).",
-        link: "/services/digital-marketing/ppc-google-ads-agency",
+        "Why chase customers when you can strategically appear...",
+      link: "/services/digital-marketing/ppc-google-ads-agency",
     },
     {
       title: "Web Designing & Development",
       description:
-        "Your website is your digital handshake, so let’s make sure that it’s firm and welcoming. We design intuitive and visually delightful digital experiences that charm visitors into becoming loyal patrons.",
-        link: "/services/web-designing-and-development",
+        "Your website is your digital handshake...",
+      link: "/services/web-designing-and-development",
     },
-  ]
+  ];
 
   return (
-    <>
-      <div
-        data-elementor-type="wp-page"
-        data-elementor-id="17"
-        className="elementor elementor-17"
-      >
-        
-        <Home/>
-
-        {/* ======== Section 2 ========  */}
-
-        <SwiperHome />
-
-        {/* ======== Section 3 ========  */}
-
-        <Service data={data}/>
-
-        {/* ======== Section 4 ========  */}
-
-        <Work />
-
-        {/* ======== Section 5 ========  */}
-
-        <Projects />
-
-        {/* ======== Section 6 ========  */}
-
-       <ProjectSwiper />
-
-        {/* ======== Section 7 ========  */}
-
-        <Awards />
-
-        {/* ======== Section 8 ========  */}
-
-        <Experience />
-
-        {/* ======== Section 9 ========  */}
-
-        {/* <Team /> */}
-
-        {/* ======== Section 10 ========  */}
-
-        <Feedback />
-
-        {/* ======== Footer ========  */}
-        
-        <Footer />
-
-      </div>
-    </>
+    <div data-elementor-type="wp-page" data-elementor-id="17" className="elementor elementor-17">
+      <IntersectionObserverClient />
+      <Home />
+      <SwiperHome />
+      <Service data={data} />
+      <Work />
+      <Projects />
+      <ProjectSwiper />
+      <Awards />
+      <Experience />
+      <Feedback />
+      <Footer />
+    </div>
   );
-};
-
-export default Elementor;
+}

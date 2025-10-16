@@ -2,12 +2,14 @@
 
 import { Home, ImagePlus, Monitor } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useBlogContext } from "@/blogContext/BlogContext";
 import { useParams, useRouter } from "next/navigation";
 import Editor from "@/components/Editor/Editor";
 import axios from "axios";
-
+import { X } from "lucide-react"; // lucide-react icon
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
+import RMWLoader from "@/components/rmw_loader/RMWLoader";
 const Page = () => {
   const router = useRouter();
   const params = useParams();
@@ -16,18 +18,9 @@ const Page = () => {
   const LOCAL_STORAGE_KEY = `add-blog-step-2-page-${count}`;
 
   const {
-    // blogBanner,
-    // blogTitle,
-    // metaDescription,
-    // metaKeywords,
-    // innerImg,
-    // metaTitle,
-    // setBlogBanner,
-    // setBlogTitle,
     setMetaTitle,
     setInnerImg,
     setMetaDescription,
-    // setMetaKeywords,
   } = useBlogContext();
 
   const [localTitle, setLocalTitle] = useState<string>("");
@@ -35,6 +28,10 @@ const Page = () => {
   const [localBanner, setLocalBanner] = useState<string>("");
   const [localCategory, setLocalCategory] = useState<string>("All Category");
   const [pageNum, setPageNum] = useState(count);
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
+  const [rmwLoader, setRMWLoader] = useState(false);
   // const [blogBody, setBlogBody] = useState<any[]>([]);
 
   useEffect(() => {
@@ -80,7 +77,9 @@ const Page = () => {
     saveDataToLocalStorage();
     router.push(`/admin/add-blog/step-2/page/${count + 1}`);
   };
-
+  const removeInnImg = () => {
+    setLocalBanner(" ");
+  };
   const handlePrev = () => {
     if (count > 1) {
       saveDataToLocalStorage();
@@ -98,7 +97,7 @@ const Page = () => {
       reader.onloadend = () => {
         const base64 = reader.result as string;
         setLocalBanner(base64);
-        setInnerImg(file);
+        setInnerImg(base64);
       };
       reader.readAsDataURL(file);
     }
@@ -133,12 +132,14 @@ const Page = () => {
       let blogBanner = null;
       let metaKeywords = "";
       let blogCategory = "All Category";
-
+      let mtDesc = "";
+      setRMWLoader(true);
       if (savedData1) {
         const parsed = JSON.parse(savedData1);
         blogTitle = parsed.blogTitle || "";
         metaKeywords = parsed.metaKeywords || "";
         blogCategory = parsed.blogCategory || "All Category";
+        mtDesc = parsed.mtDesc;
 
         if (parsed.blogBanner?.startsWith("data:image")) {
           blogBanner = dataURLtoFile(parsed.blogBanner, "cover.jpg");
@@ -171,6 +172,7 @@ const Page = () => {
       formData.append("blogTitle", blogTitle);
       formData.append("metaKeywords", metaKeywords);
       formData.append("blogCategory", blogCategory);
+      formData.append("mtDesc", mtDesc);
       formData.append("blogBody", JSON.stringify(combinedBlogBody));
 
       if (blogBanner instanceof File) {
@@ -183,7 +185,7 @@ const Page = () => {
         }
       });
 
-      const blogRes = await axios.post(
+      const { data, status } = await axios.post(
         "/api/ritz_blogs/add-new-blog",
         formData,
         {
@@ -192,7 +194,7 @@ const Page = () => {
           },
         }
       );
-      if (blogRes.status === 201) {
+      if (status === 201) {
         localStorage.removeItem("add-blog-step-1");
         for (let i = 1; i <= count; i++) {
           localStorage.removeItem(`add-blog-step-2-page-${i}`);
@@ -200,15 +202,158 @@ const Page = () => {
         alert("Blog Has Been Posted Successfully.");
         router.push("/admin/add-blog");
       }
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
+      setRMWLoader(false);
       // console.log("Uploaded Blog:", blogRes.data);
     } catch (error) {
-      alert("Internal Server Errors.");
-      console.error("Error in handleUploadBlog:", error);
+      setRMWLoader(false);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
+    }
+  };
+
+  interface IMGFORPREVIEW {
+    url: string;
+    id: string;
+  }
+  interface GETLINKS {
+    imgPath: string;
+    _id: string;
+  }
+  // From Here The Image URL Generator Logic Is Starting
+  const [uploadImgModal, setUploadImgModal] = useState(false);
+  const [imgToSend, setImgToSend] = useState<File[]>([]);
+  const [imgToShow, setImgToShow] = useState<IMGFORPREVIEW[]>([]);
+  const [linkToShow, setLinkToShow] = useState<GETLINKS[]>([]);
+  const [eImgLoder, setEimgLoder] = useState(false);
+  // const [copiedImgLink, setCopiedImgLink] = useState("");
+  // const [allPrevUplodedImgs, setAllPrevSelectedImgs] = useState([]);
+  const imgUploaderModal = () => {
+    setUploadImgModal((pr) => !pr);
+  };
+  const handleSelectNewImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e) return;
+    const allfiles = e.target.files;
+    if (allfiles && allfiles?.length > 0) {
+      [...allfiles].forEach((file) => {
+        setImgToSend((pr) => [file, ...pr]);
+        const url = URL.createObjectURL(file);
+        setImgToShow((pr) => [...pr, { id: file.name, url: url }]);
+      });
+    }
+  };
+  const removeExtraImgs = (key: string) => {
+    setImgToSend((pr) => pr.filter((img) => img.name !== key));
+    setImgToShow((pr) => pr.filter((img) => img.id !== key));
+  };
+
+  const handleUploadSelectedImg = async () => {
+    if (imgToSend.length === 0) return;
+    const eImg = new FormData();
+    try {
+      setEimgLoder(true);
+
+      for (let i = 0; i < imgToSend.length; i++) {
+        eImg.append(`eImage-${i}`, imgToSend[i]);
+      }
+      const { data, status } = await axios.post("/api/eImgs", eImg);
+      if (status === 201) {
+        setImgToShow([]);
+        setImgToSend([]);
+        setLinkToShow((pr) => [...pr, data.files]);
+        setEimgLoder(false);
+        setEimgLoder(false);
+      } else {
+        setEimgLoder(false);
+      }
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
+    } catch (error) {
+      setEimgLoder(false);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
+    }
+  };
+
+  useEffect(() => {
+    const fetchSavedImage = async () => {
+      try {
+        const data = await axios.get("/api/eImgs");
+        if (data.status === 200) {
+          setLinkToShow(data.data.allImages);
+        }
+      } catch (error) {
+        if (typeof error === "object" && error !== null && "message" in error) {
+          setPopupData({
+            message: (error as { message: string }).message,
+            status:
+              error instanceof Error && "status" in error
+                ? (error as { status?: number }).status ?? 500
+                : 500,
+          });
+        } else {
+          setPopupData({ message: "An unknown error occurred.", status: 500 });
+        }
+        setShowPopup(true);
+      }
+    };
+    fetchSavedImage();
+  }, []);
+
+  const handleDeleteSavedImg = async (id: string) => {
+    try {
+      const { data, status } = await axios.delete(`/api/eImgs/${id}`);
+      if (status === 200) {
+        setLinkToShow((pr) => pr.filter((img) => img._id !== id));
+      }
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
+    } catch (error) {
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
     }
   };
 
   return (
     <div className="bg-[#EEEEEE] min-h-screen p-4 md:p-8 flex flex-col gap-6 sm:gap-8 md:gap-12">
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <h1 className="text-[#ACACAC] text-2xl sm:text-3xl md:text-4xl font-light uppercase flex items-center gap-2">
           <Monitor className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
@@ -229,6 +374,208 @@ const Page = () => {
         <span className="text-[#ACACAC] font-bold">/</span>
         <span className="text-[#838383]">Page {pageNum}</span>
       </div>
+
+      {uploadImgModal && (
+        <div className="fixed inset-0 z-[900] flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={imgUploaderModal}
+          />
+          {/* Modal */}
+          <div className="relative mx-auto w-[min(92vw,640px)] h-[80vh]">
+            <div className="rounded-2xl bg-white dark:bg-zinc-900 shadow-2xl ring-1 ring-black/5 overflow-hidden h-full flex flex-col">
+              {/* Header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-200 dark:border-zinc-800">
+                <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                  Upload Image
+                </h2>
+                <button
+                  onClick={imgUploaderModal}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                >
+                  <svg viewBox="0 0 24 24" className="h-5 w-5">
+                    <path
+                      d="M6 6l12 12M18 6L6 18"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Body */}
+              <div className="px-6 py-5 space-y-6 overflow-y-auto flex-1">
+                {/* Upload Section */}
+                <div className="space-y-5">
+                  {/* Dropzone */}
+                  <label
+                    htmlFor="file"
+                    className="block cursor-pointer rounded-xl border border-dashed border-zinc-300 dark:border-zinc-700 p-6 text-center hover:bg-zinc-50 dark:hover:bg-zinc-800/50"
+                  >
+                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-800">
+                      <svg viewBox="0 0 24 24" className="h-6 w-6">
+                        <path
+                          d="M12 16V7m0 0l-3 3m3-3l3 3M5 17a4 4 0 01.88-7.9 5 5 0 019.9-1.1A4.5 4.5 0 1119 17H5z"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-sm text-zinc-800 dark:text-zinc-200">
+                      <span className="font-medium underline decoration-dotted">
+                        Click to choose
+                      </span>{" "}
+                      or drag & drop
+                    </p>
+                    <p className="mt-1 text-xs text-zinc-500">
+                      PNG, JPG, WebP (max 10MB)
+                    </p>
+                  </label>
+                  <input
+                    id="file"
+                    type="file"
+                    multiple
+                    className="sr-only"
+                    onChange={handleSelectNewImg}
+                  />
+
+                  {/* Preview */}
+                  <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-3">
+                    {imgToShow.length > 0 ? (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        {imgToShow.map((url, i) => (
+                          <div
+                            key={url.id}
+                            className="relative rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800"
+                          >
+                            <img
+                              src={url.url}
+                              alt={`preview-${i}`}
+                              className="w-full h-28 object-cover"
+                            />
+                            {/* Cross button */}
+                            <button
+                              onClick={() => removeExtraImgs(url.id)}
+                              type="button"
+                              className="absolute top-1 right-1 flex h-6 w-6 items-center justify-center rounded-full bg-white/80 dark:bg-zinc-900/80 text-zinc-700 dark:text-zinc-300 hover:bg-red-500 hover:text-white transition"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-4 w-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M6 18L18 6M6 6l12 12"
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="aspect-video bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center rounded-lg">
+                        <span className="text-xs text-zinc-500">
+                          Preview will appear here
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Previous Uploads */}
+
+                <div className="space-y-3">
+                  <h3 className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                    Previously Uploaded
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {linkToShow &&
+                      linkToShow.map((img) => (
+                        <div
+                          key={img._id}
+                          className="relative rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800"
+                        >
+                          <img
+                            src={`${
+                              process.env.NEXT_PUBLIC_SERVER_EIMG_PATH
+                            }/api/eImgs/${img.imgPath?.replace(
+                              "/eImages/",
+                              ""
+                            )}`}
+                            alt="uploaded"
+                            className="w-full h-28 object-cover"
+                          />
+
+                          {/* Delete Cross Icon */}
+                          <button
+                            onClick={() => handleDeleteSavedImg(img._id)}
+                            className="absolute top-2 cursor-pointer right-2 bg-white/80 dark:bg-zinc-900/80 p-1 rounded-full shadow hover:bg-red-500 hover:text-white transition"
+                          >
+                            <X size={16} />
+                          </button>
+
+                          {/* Copy Button */}
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(
+                                `${
+                                  process.env.NEXT_PUBLIC_SERVER_EIMG_PATH
+                                }/api/eImgs/${img.imgPath?.replace(
+                                  "/eImages/",
+                                  ""
+                                )}`
+                              );
+                            }}
+                            className="absolute bottom-2 right-2 rounded-md bg-white/80 dark:bg-zinc-900/80 backdrop-blur px-2 py-1 cursor-pointer text-xs border border-zinc-300 dark:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800 active:bg-[#005a03] active:text-[#FFFFFF] active:font-bold active:border-none"
+                          >
+                            Copy
+                          </button>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-end gap-2 px-6 py-4 border-t border-zinc-200 dark:border-zinc-800">
+                <button
+                  onClick={imgUploaderModal}
+                  className="h-10 rounded-lg px-4 text-sm border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                >
+                  Cancel
+                </button>
+                {eImgLoder ? (
+                  <div className="h-10 flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-zinc-300 border-t-zinc-900 rounded-full animate-spin"></div>
+                  </div>
+                ) : (
+                  <button
+                    disabled={imgToSend.length <= 0}
+                    onClick={handleUploadSelectedImg}
+                    className={`h-10 rounded-lg px-4 text-sm bg-zinc-900 text-white hover:bg-[#1e7a10] ${
+                      imgToSend.length > 0
+                        ? "cursor-pointer"
+                        : "cursor-not-allowed"
+                    }`}
+                  >
+                    Upload
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="bg-white p-5 rounded-md shadow-md flex flex-col lg:flex-row gap-6">
         <div
@@ -259,12 +606,19 @@ const Page = () => {
               </div>
             </div>
           )}
+
+          <button
+            onClick={imgUploaderModal}
+            className="px-6 py-2 bg-green-700 text-white font-bold cursor-pointer hover:bg-green-800 z-50"
+          >
+            Create Image URL
+          </button>
         </div>
 
         <div className="flex-1 flex flex-col gap-4">
           <div>
             <label className="text-sm font-semibold text-[#444]">
-              Blog Meta Title
+              Page Title
             </label>
 
             <input
@@ -281,7 +635,7 @@ const Page = () => {
 
           <div>
             <label className="text-sm font-semibold text-[#444]">
-              Meta Description
+              Page Description
             </label>
 
             <Editor
@@ -292,7 +646,14 @@ const Page = () => {
               }}
             />
           </div>
-
+          <div className="mt-10">
+            <button
+              onClick={removeInnImg}
+              className="px-6 py-2 bg-red-500 text-white font-bold hover:bg-red-600"
+            >
+              Remove Image
+            </button>
+          </div>
           {/* <div>
             <label className="text-sm font-semibold text-[#444]">
               Blog Category
@@ -330,7 +691,7 @@ const Page = () => {
           onClick={handleUploadBlog}
           className="bg-green-700 cursor-pointer hover:bg-green-800 text-white px-5 py-2 rounded-md"
         >
-          Submit
+          {rmwLoader ? <RMWLoader /> : "Submit"}
         </button>
       </div>
 

@@ -29,9 +29,9 @@ export async function GET(
         { status: 400 }
       );
     }
-    console.log(blSlug, "This is blg Slug ");
-    const tst_bl = await RitzBlogModel.find({});
-    console.log("These are all mongo blogs ", tst_bl);
+    // console.log(blSlug, "This is blg Slug ");
+    // const tst_bl = await RitzBlogModel.find({});
+    // console.log("These are all mongo blogs ", tst_bl);
     
     const blog = await RitzBlogModel.findOne({
       blogSlug: blSlug
@@ -52,7 +52,7 @@ export async function GET(
       blogCategoryId: blogCat,
     }).sort({ createdAt: -1 })
       .limit(4);
-    const recentBlogs = await RitzBlogModel.find({}).sort({ createdAt: -1 }).limit(4);
+    const recentBlogs = await RitzBlogModel.find({blogStatus:true}).sort({ createdAt: -1 }).limit(4);
     const categoryN = blogCat?.categoryName;
 
     return NextResponse.json(

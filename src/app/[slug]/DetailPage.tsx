@@ -1,7 +1,6 @@
 "use client";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/globals.css";
 import "../styles/core-css.css";
 import "../styles/unit-css.css";
 import "../styles/spacing.css";
@@ -11,7 +10,7 @@ import "../styles/animation-css.css";
 // import Head from "next/head";
 
 import { useParams, usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import styles from "./page.module.css";
 import ServiceThirdHero from "@/allPages/serviceThirdPage/ServiceThirdHero";
@@ -173,21 +172,16 @@ const DetailPage: React.FC = () => {
   };
 
   useEffect(() => {
-    // setSearchedBlog(false);
     const fetchData = async () => {
       setLoading(true);
       try {
         const cleanSlug = slug?.replace(/\.html$/, "");
-
-        // Fetch categories
-        // const { data } = await axios.get(`/api/ritzCats/getAllCats`);
         const catData2 = await axios.get(`/api/blog/categories`);
 
         const [resMongo, resMySQL] = await Promise.all([
           axios.get("/api/ritz_blogs/get-all-blogs"),
           axios.get("/api/all_blogs"),
         ]);
-
         const mongoBlogs: Article[] = resMongo.data.allBlogs || [];
         const mysqlBlogs: Article2[] = resMySQL.data || [];
 
@@ -199,11 +193,12 @@ const DetailPage: React.FC = () => {
         setBlogs(merged);
 
         setRitzCats([...catData2.data]);
-        // Attempt to resolve slug
         const response = await axios.get(`/api/resolve/${cleanSlug}`);
 
         if (response.data.type === "blog") {
           setSingleBlog(response.data.blog);
+          setLatestRBlogs(response.data.latestRBlogs[0]);
+          // console.log(response.data.latestRBlogs[0]);
         } else if (response.data.type === "service") {
           const { secondLayer, thirdLayer } = response.data;
 
@@ -216,7 +211,6 @@ const DetailPage: React.FC = () => {
           setRecentB(res.data.recentBlogs);
           if (res) {
             setMBC(res?.data.categoryN);
-            // console.log(mBC);
           }
 
           setCardData(serviceResponse.data.cards || []);
@@ -257,6 +251,24 @@ const DetailPage: React.FC = () => {
     }
   }, [clickedPlatform]);
 
+  const callLatestBlog = async () => {
+    // console.log("API HIT");
+    try {
+      const res = await axios.get("/api/ritz_blogs/get-all-blogs");
+      const logs = res.data.allBlogs;
+
+      setRecentB(logs.splice(0, 3));
+    } catch (err) {
+      console.error("Fallback MongoDB fetch failed:", err);
+    }
+  };
+
+  useEffect(() => {
+    // if(!recentB){
+    callLatestBlog();
+    // }
+  }, [slug]);
+
   function getShareUrl(
     platform: string,
     title: string,
@@ -289,7 +301,7 @@ const DetailPage: React.FC = () => {
     setClickedPlatform(platform);
 
     const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
-    const fullUrl = `${baseUrl}/blog/${slug}`;
+    const fullUrl = `${baseUrl}/${slug}`;
     const title = singleBlog?.title ?? "";
 
     if (platform === "copy") {
@@ -311,6 +323,102 @@ const DetailPage: React.FC = () => {
     }
   };
 
+  const contentRef = useRef(null);
+
+  const handleLinksNavigation = () => {
+    const links = document.querySelectorAll("#ctBody a");
+    // console.log(contentRef.current);
+    links.forEach((aLink) => {
+      const gtHref = aLink.getAttribute("href");
+      aLink.setAttribute("target", "_blank");
+      if (gtHref?.includes("/blog/")) {
+        const newHRef = gtHref.split("/blog").join("");
+        aLink.setAttribute("href", newHRef);
+      }
+    });
+    const ctBody = document.querySelector("#ctBody");
+
+    if (ctBody && /<p>\s*(?:&nbsp;|\u00A0)\s*<\/p>/i.test(ctBody.innerHTML)) {
+      ctBody.innerHTML = ctBody.innerHTML.replace(
+        /<p>\s*(?:&nbsp;|\u00A0)\s*<\/p>/gi,
+        ""
+      );
+    }
+
+    // if (
+    //   ctBody &&
+    //   document.querySelector("#ctBody")?.innerHTML.includes("<br>")
+    // ) {
+    //   ctBody.innerHTML = ctBody.innerHTML.replace(/<br\s*\/?>/g, "");
+    // }
+
+    if (singleBlog?.title) {
+      const targetNode =
+        ctBody?.childNodes?.[0]?.childNodes?.[0]?.childNodes?.[0];
+
+      if (targetNode?.textContent?.includes(singleBlog.title)) {
+        targetNode.textContent = targetNode.textContent.replace(
+          singleBlog.title,
+          ""
+        );
+      }
+    }
+    if (ctBody) {
+      const allH1 = ctBody.getElementsByTagName("h1");
+
+      const h1Array = Array.from(allH1);
+
+      h1Array.forEach((h1) => {
+        const h2 = document.createElement("h2");
+        h2.innerHTML = h1.innerHTML;
+
+        for (const attr of h1.attributes) {
+          h2.setAttribute(attr.name, attr.value);
+        }
+        if (h1.parentNode) {
+          h1.parentNode.replaceChild(h2, h1);
+        }
+      });
+    }
+  };
+
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const cleanWordPressComments = () => {
+  //     const ctBody = document.querySelector("#ctBody");
+  //     if (ctBody) {
+  //       // Create a temporary div to work with
+  //       const tempDiv = document.createElement('div');
+  //       tempDiv.innerHTML = ctBody.innerHTML;
+
+  //       // Remove WordPress comments
+  //       const comments = tempDiv.querySelectorAll('*');
+  //       comments.forEach(node => {
+  //         Array.from(node.childNodes).forEach(child => {
+  //           if (child.nodeType === Node.COMMENT_NODE &&
+  //               child.nodeValue.includes('wp:')) {
+  //             node.removeChild(child);
+  //           }
+  //         });
+  //       });
+
+  //       // Update the DOM
+  //       ctBody.innerHTML = tempDiv.innerHTML;
+  //     }
+  //   };
+
+  //   // Run immediately
+  //   cleanWordPressComments();
+
+  //   // Run again after a short delay in case other scripts modify the content
+  //   setTimeout(cleanWordPressComments, 500);
+  // });
+
+  useEffect(() => {
+    if (singleBlog) {
+      handleLinksNavigation();
+    }
+  }, [singleBlog]);
+
   if (loading) return <Loader />;
 
   // ✅ Render Blog if found
@@ -321,7 +429,7 @@ const DetailPage: React.FC = () => {
 
     return (
       <>
-        <Header />
+        {/* <Header /> */}
 
         <div className={styles.wrapper}>
           {/* Left Side Blog Content */}
@@ -374,23 +482,29 @@ const DetailPage: React.FC = () => {
                 {isMongo ? singleBlog.blogTitle : singleBlog.title}
               </h1>
               {/* Blog Content */}
-              <div className={styles.contentBody}>
+              <div ref={contentRef} id="ctBody" className={styles.contentBody}>
                 {isMongo ? (
                   singleBlog.blogBody?.map((page, idx) => (
-                    <div key={idx}>
-                      <h2>{page.metaTitle}</h2>
-                      {page.innerImg ? (
+                    <div  key={idx}>
+                      {/* This  is Title Of Blog Body  */}
+                      <h2>{(isMongo && singleBlog.blogTitle?.includes(page.metaTitle)) ? "" : page.metaTitle}</h2>
+
+                      {/* This Is Inner Image  */}
+                      {page.innerImg && (
                         <div className={styles.innerImg}>
                           <Image
-                            src={"http://localhost:3000/api/images/1753342233766-innerImg-1.png"}
+                            src={`${staticAPI}${
+                              page.innerImg.split("/images")[1]
+                            }`}
                             alt={page.metaTitle}
                             fill
                             priority
-                            unoptimized
                             className={styles.innerMainImg}
                           />
                         </div>
-                      ) : <></>}
+                      )}
+
+                      {/* This Is Description  */}
                       <div className={styles.tableWrapper}>
                         <div
                           className={styles.contentBody}
@@ -417,27 +531,33 @@ const DetailPage: React.FC = () => {
                 {(isMongo ? singleBlog.metaKeywords : singleBlog.meta_keywords)
                   ?.split(",")
                   .map((word: string, idx: number) => {
-                    const trimmed = word.trim();
-                    const slug = trimmed.replace(/\s+/g, "-"); // Replace spaces with dashes
+                    const cleaned = word
+                      .replace(/['",]/g, "") // Remove both single and double quotes
+                      .replace(/\s+/g, " ") // Convert multiple spaces to a single space
+                      .trim(); // Trim start and end
+
+                    const slug = cleaned.replace(/\s+/g, "-"); // Replace spaces with dashes
 
                     return (
-                      <span
-                        key={idx}
-                        onClick={() => router.push(`/key/${slug}`)}
-                        style={{
-                          cursor: "pointer",
-                          marginRight: "8px",
-                          marginBottom: "8px",
-                          padding: "4px 10px",
-                          display: "inline-block",
-                          borderRadius: "8px",
-                          backgroundColor: "#f1f1f1",
-                          fontSize: "14px",
-                          border: "1px solid #ccc",
-                        }}
-                      >
-                        {trimmed}
-                      </span>
+                      cleaned && (
+                        <span
+                          key={idx}
+                          onClick={() => router.push(`/tags/${slug}`)}
+                          style={{
+                            cursor: "pointer",
+                            marginRight: "8px",
+                            marginBottom: "8px",
+                            padding: "4px 10px",
+                            display: "inline-block",
+                            borderRadius: "8px",
+                            backgroundColor: "#f1f1f1",
+                            fontSize: "14px",
+                            border: "1px solid #ccc",
+                          }}
+                        >
+                          {cleaned}
+                        </span>
+                      )
                     );
                   })}
               </div>
@@ -448,108 +568,114 @@ const DetailPage: React.FC = () => {
 
               <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
                 {recentB && recentB.length > 0 ? (
-                  recentB.map((data) => (
-                    <div
-                      className="col"
-                      key={data._id}
-                      onClick={() => handleSingleBlogs(data.blogSlug)}
-                    >
+                  recentB
+                    .filter((bl) => bl._id != singleBlog._id)
+                    .map((data) => (
                       <div
-                        className="card h-100 border-0 shadow-sm"
-                        style={{
-                          borderRadius: "1rem",
-                          overflow: "hidden",
-                          background: "#fff",
-                          transition: "transform 0.3s ease-in-out",
-                        }}
+                        className="col"
+                        key={data._id}
+                        onClick={() => handleSingleBlogs(data.blogSlug)}
                       >
-                        {/* Image */}
-                        <div className={styles.recentImgDiv}>
-                          <Image
-                            src={
-                              data.blogBanner.includes("/images")
-                                ? `/api/images${
-                                    data.blogBanner.split("/images")[1]
-                                  }`
-                                : `/blogs/${data.blogBanner}`
-                            }
-                            alt={data.blogTitle}
-                            fill
-                            priority
-                            className={styles.recentInnerImg}
-                            onMouseOver={(e) =>
-                              (e.currentTarget.style.transform = "scale(1.05)")
-                            }
-                            onMouseOut={(e) =>
-                              (e.currentTarget.style.transform = "scale(1)")
-                            }
-                          />
-                        </div>
+                        <div
+                          className="card h-100 border-0 shadow-sm"
+                          style={{
+                            borderRadius: "1rem",
+                            overflow: "hidden",
+                            background: "#fff",
+                            transition: "transform 0.3s ease-in-out",
+                          }}
+                        >
+                          {/* Image */}
+                          <div className={styles.recentImgDiv}>
+                            <Image
+                              src={
+                                data.blogBanner.includes("/images")
+                                  ? `/api/images${
+                                      data.blogBanner.split("/images")[1]
+                                    }`
+                                  : `/blogs/${data.blogBanner}`
+                              }
+                              alt={data.blogTitle}
+                              fill
+                              priority
+                              className={styles.recentInnerImg}
+                              onMouseOver={(e) =>
+                                (e.currentTarget.style.transform =
+                                  "scale(1.05)")
+                              }
+                              onMouseOut={(e) =>
+                                (e.currentTarget.style.transform = "scale(1)")
+                              }
+                            />
+                          </div>
 
-                        {/* Content */}
-                        <div className="card-body d-flex flex-column justify-content-between p-3">
-                          {/* Title */}
-                          <h5
-                            className="card-title fw-semibold text-truncate"
-                            title={data.blogTitle}
-                          >
-                            {data.blogTitle.split(/\s+/).slice(0, 12).join(" ")}
-                          </h5>
-
-                          {/* Description */}
-                          {data.meta_description && (
-                            <p
-                              className="card-text text-muted small mt-2 mb-3"
-                              dangerouslySetInnerHTML={{
-                                __html:
-                                  data.meta_description
-                                    .split(/\s+/)
-                                    .slice(0, 30)
-                                    .join(" ") + "...",
-                              }}
-                            ></p>
-                          )}
-
-                          {/* Footer Buttons */}
-                          <div className="d-flex justify-content-between align-items-center mt-auto">
-                            {/* Date */}
-                            <span className="d-flex align-items-center gap-1 text-muted small">
-                              <CalendarDays size={16} />
-                              <span>
-                                {new Date(data.createdAt).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    year: "numeric",
-                                    month: "short",
-                                    day: "numeric",
-                                  }
-                                )}
-                              </span>
-                            </span>
-
-                            {/* Share Button */}
-                            <button
-                              type="button"
-                              className="btn d-flex align-items-center gap-1"
-                              style={{
-                                color: "#E5B05C",
-                                // borderColor: "#E5B05C",
-                              }}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleCopy2(
-                                  data?.blogTitle?.split(" ").join("-")
-                                );
-                              }}
+                          {/* Content */}
+                          <div className="card-body d-flex flex-column justify-content-between p-3">
+                            {/* Title */}
+                            <h5
+                              className="card-title fw-semibold text-truncate"
+                              title={data.blogTitle}
                             >
-                              <Share2 size={16} />
-                              Share
-                            </button>
+                              {data.blogTitle
+                                .split(/\s+/)
+                                .slice(0, 12)
+                                .join(" ")}
+                            </h5>
+
+                            {/* Description */}
+                            {data.meta_description && (
+                              <p
+                                className="card-text text-muted small mt-2 mb-3"
+                                dangerouslySetInnerHTML={{
+                                  __html:
+                                    data.meta_description
+                                      .split(/\s+/)
+                                      .slice(0, 30)
+                                      .join(" ") + "...",
+                                }}
+                              ></p>
+                            )}
+
+                            {/* Footer Buttons */}
+                            <div className="d-flex justify-content-between align-items-center mt-auto">
+                              {/* Date */}
+                              <span className="d-flex align-items-center gap-1 text-muted small">
+                                <CalendarDays size={16} />
+                                <span>
+                                  {new Date(data.createdAt).toLocaleDateString(
+                                    "en-US",
+                                    {
+                                      year: "numeric",
+                                      month: "short",
+                                      day: "numeric",
+                                    }
+                                  )}
+                                </span>
+                              </span>
+
+                              {/* Share Button */}
+                              <button
+                                type="button"
+                                className="btn d-flex align-items-center gap-1"
+                                style={{
+                                  color: "#E5B05C",
+                                  // borderColor: "#E5B05C",
+                                }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleCopy2(
+                                    data?.blogTitle?.split(" ").join("-")
+                                  );
+                                }}
+                              >
+                                <Share2 size={16} />
+                                Share
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))
+                    ))
                 ) : (
                   <p className="text-center">No Recent Blog Posted</p>
                 )}
@@ -572,53 +698,40 @@ const DetailPage: React.FC = () => {
             {/* Search Results */}
             {searchB && (
               <div className={styles.searchResults}>
-                {blogs.filter((blog) =>
-                  blog.title.toLowerCase().includes(searchB.toLowerCase())
-                ).length === 0 ? (
-                  <p className={styles.noResultText}>
-                    No matching blogs found.
-                  </p>
-                ) : (
-                  blogs
-                    .filter((blog) =>
-                      blog.title.toLowerCase().includes(searchB.toLowerCase())
-                    )
-                    .map((blog, idx) => {
-                      console.log(blog);
-
-                      return (
-                        <div
-                          onClick={() => router.push(`/${blog.id}`)}
-                          className={styles.resultCard}
-                          key={`${blog.id}-${idx}`}
-                        >
-                          <div className={styles.resultCardImage}>
-                            <Image
-                              src={
-                                isMongo
-                                  ? `${staticAPI}${
-                                      blog.banner.split("/images")[1]
-                                    }`
-                                  : `/static/${blog.banner}`
-                              }
-                              alt={blog.title}
-                              priority
-                              fill
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).src =
-                                  "/default-image.jpg";
-                              }}
-                              // className={}
-                              style={{
-                                objectFit: "cover",
-                              }}
-                            />
-                          </div>
-                          <b className={styles.resultCardTitle}>{blog.title}</b>
+                {blogs
+                  .filter((blog) =>
+                    blog.title.toLowerCase().includes(searchB.toLowerCase())
+                  )
+                  .map((blog, idx) => {
+                    return (
+                      <div
+                        onClick={() => router.push(`/${blog.id}`)}
+                        className={styles.resultCard}
+                        key={`${blog.id}-${idx}`}
+                      >
+                        <div className={styles.resultCardImage}>
+                          <Image
+                            src={
+                              blog.banner.includes("/images/")
+                                ? `${staticAPI}${
+                                    blog.banner.split("/images")[1]
+                                  }`
+                                : `/blogs/${blog.banner}`
+                            }
+                            alt={blog.title}
+                            priority
+                            unoptimized
+                            fill
+                            // className={}
+                            style={{
+                              objectFit: "contain",
+                            }}
+                          />
                         </div>
-                      );
-                    })
-                )}
+                        <b className={styles.resultCardTitle}>{blog.title}</b>
+                      </div>
+                    );
+                  })}
               </div>
             )}
             {/* Blog Categories */}
@@ -648,9 +761,13 @@ const DetailPage: React.FC = () => {
 
             {/* Related Blogs */}
             <div className={styles.relatedBlogs}>
-              {latestRBlogs &&
+              <h3>Related Blogs : </h3>
+              {latestRBlogs.length > 0 &&
                 latestRBlogs
-                  // .filter((blog) => blog._id !== singleBlog?._id)
+                  .filter(
+                    (blog) =>
+                      blog._id !== singleBlog?._id || blog.id !== singleBlog.id
+                  )
                   .map((blog, idx) => (
                     <div
                       onClick={() =>
@@ -675,7 +792,7 @@ const DetailPage: React.FC = () => {
                           fill
                           priority
                           style={{
-                            objectFit: "cover",
+                            objectFit: "contain",
                           }}
                         />
                       </div>

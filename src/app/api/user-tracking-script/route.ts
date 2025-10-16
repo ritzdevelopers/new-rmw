@@ -1,6 +1,6 @@
 // This is Tracking Script Controller ::
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
-import TrackModel from "@/models/TrackModel";
+import TrackModel from "@/models/Analytics.Schema";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -25,4 +25,3 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ message: "Internal Server Error.", success: false }, { status: 500 });
     }
 }
-

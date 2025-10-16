@@ -1,5 +1,6 @@
-import Elementor from "@/allPages/Elementor";
+
 import { Providers } from "../provider/Provider";
+import Elementor from "@/allPages/Elementor";
 import CookieConsentWithLead from "@/components/Cookies/CookieConsentWithLead";
 
 export const metadata = {
@@ -22,7 +23,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://ritzmediaworld.com/webroot/front/images/nn_logo.jpg",
+        url: "https://ritzmediaworld.com/rmw-final-logo.png",
         alt: "Ritz Media World Logo",
       },
     ],
@@ -35,21 +36,34 @@ export const metadata = {
       "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
     images: [
       {
-        url: "https://ritzmediaworld.com/webroot/front/images/nn_logo.jpg",
+        url: "https://ritzmediaworld.com/rmw-final-logo.png",
         alt: "Ritz Media World Logo",
+      },
+    ],
+  },
+  other: {
+    "link:preload": [
+      {
+        rel: "preload",
+        as: "video",
+        href: "/test-images/test-video.mp4",
+        type: "video/mp4",
+      },
+      {
+        rel: "preload",
+        as: "video",
+        href: "/videos/bg_pattern.mp4",
+        type: "video/mp4",
       },
     ],
   },
 };
 
-// import { BlogProvider } from "@/blogContext/BlogContext";
 export default function Home() {
   return (
-    // <BlogProvider>
     <Providers>
       <Elementor />
-      <CookieConsentWithLead></CookieConsentWithLead>
+      <CookieConsentWithLead />
     </Providers>
-    // </BlogProvider>
   );
 }

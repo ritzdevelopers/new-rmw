@@ -15,6 +15,7 @@ const RitzCatsSchema = new Schema<IRitzCat>(
     categoryName: {
       type: String,
       required: true,
+      unique: true,
     },
     categoryMetaDescription: {
       type: String,
@@ -22,20 +23,22 @@ const RitzCatsSchema = new Schema<IRitzCat>(
     },
     categoryMetaTitle: {
       type: String,
-      required: true
+      required: true,
     },
     categoryMetaKeywords: {
       type: String,
-      required: true
+      required: true,
     },
     categorySlug: {
       type: String,
-      required: true
-    }
+      required: true,
+      unique: true,
+    },
   },
   { timestamps: true }
 );
 
-const RitzCats: Model<IRitzCat> = models.RitzCats || model<IRitzCat>("RitzCats", RitzCatsSchema);
+const RitzCats: Model<IRitzCat> =
+  models.RitzCats || model<IRitzCat>("RitzCats", RitzCatsSchema);
 
 export default RitzCats;

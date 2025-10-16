@@ -1,484 +1,114 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import {
-  FilePen,
-  Home,
-  Monitor,
-  Trash2,
-} from "lucide-react";
-import Link from "next/link";
 
-import { AlertTriangle } from "lucide-react";
-interface PAGESDATA {
-  pageTitle:string,
-  pageHeading:string,
-  pageURL:string,
-  date:string,
-  status:boolean
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Plus } from "lucide-react";
+import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
+import RMWPopup from "@/components/rmw_popup/RMWPopup";
+
+interface PageLink {
+  link: string;
+  name: string;
+  sub: {
+    link: string;
+    name: string;
+  }[];
 }
-function Page() {
-  // const router = useRouter
-  const contentData = [
-    {
-      pageTitle: "Home Page",
-      pageHeading: "Welcome to Our Website",
-      pageURL: "/home",
-      date: "2025-06-01",
-      status: true,
-    },
-    {
-      pageTitle: "About Us",
-      pageHeading: "Learn More About Our Mission",
-      pageURL: "/about",
-      date: "2025-06-02",
-      status: true,
-    },
-    {
-      pageTitle: "Contact",
-      pageHeading: "Get in Touch with Us",
-      pageURL: "/contact.html",
-      date: "2025-06-03",
-      status: false,
-    },
-    {
-      pageTitle: "Blog",
-      pageHeading: "Read Our Latest Articles",
-      pageURL: "/blog",
-      date: "2025-06-04",
-      status: true,
-    },
-    {
-      pageTitle: "Services",
-      pageHeading: "What We Offer",
-      pageURL: "/services",
-      date: "2025-06-05",
-      status: true,
-    },
-    {
-      pageTitle: "Portfolio",
-      pageHeading: "Our Work Showcase",
-      pageURL: "/portfolio",
-      date: "2025-06-06",
-      status: false,
-    },
-    {
-      pageTitle: "FAQ",
-      pageHeading: "Frequently Asked Questions",
-      pageURL: "/faq",
-      date: "2025-06-07",
-      status: true,
-    },
-    {
-      pageTitle: "Careers",
-      pageHeading: "Join Our Team",
-      pageURL: "/careers",
-      date: "2025-06-08",
-      status: false,
-    },
-    {
-      pageTitle: "Terms & Conditions",
-      pageHeading: "Please Read Carefully",
-      pageURL: "/terms",
-      date: "2025-06-09",
-      status: true,
-    },
-    {
-      pageTitle: "Privacy Policy",
-      pageHeading: "Your Data is Safe",
-      pageURL: "/privacy",
-      date: "2025-06-10",
-      status: true,
-    },
-    {
-      pageTitle: "Login",
-      pageHeading: "Access Your Account",
-      pageURL: "/login",
-      date: "2025-06-11",
-      status: true,
-    },
-    {
-      pageTitle: "Register",
-      pageHeading: "Create an Account",
-      pageURL: "/register",
-      date: "2025-06-12",
-      status: true,
-    },
-    {
-      pageTitle: "Dashboard",
-      pageHeading: "Your Control Center",
-      pageURL: "/dashboard",
-      date: "2025-06-13",
-      status: false,
-    },
-    {
-      pageTitle: "Settings",
-      pageHeading: "Manage Your Preferences",
-      pageURL: "/settings",
-      date: "2025-06-14",
-      status: true,
-    },
-    {
-      pageTitle: "Notifications",
-      pageHeading: "Stay Updated",
-      pageURL: "/notifications",
-      date: "2025-06-15",
-      status: true,
-    },
-    {
-      pageTitle: "Help Center",
-      pageHeading: "Need Assistance?",
-      pageURL: "/help",
-      date: "2025-06-16",
-      status: true,
-    },
-    {
-      pageTitle: "Feedback",
-      pageHeading: "We Value Your Thoughts",
-      pageURL: "/feedback",
-      date: "2025-06-17",
-      status: false,
-    },
-    {
-      pageTitle: "Pricing",
-      pageHeading: "Choose Your Plan",
-      pageURL: "/pricing",
-      date: "2025-06-18",
-      status: true,
-    },
-    {
-      pageTitle: "Events",
-      pageHeading: "Upcoming Happenings",
-      pageURL: "/events",
-      date: "2025-06-19",
-      status: true,
-    },
-    {
-      pageTitle: "Testimonials",
-      pageHeading: "Hear from Our Clients",
-      pageURL: "/testimonials",
-      date: "2025-06-20",
-      status: false,
-    },
-    {
-      pageTitle: "Events",
-      pageHeading: "Upcoming Happenings",
-      pageURL: "/events",
-      date: "2025-06-19",
-      status: true,
-    },
-    {
-      pageTitle: "Testimonials",
-      pageHeading: "Hear from Our Clients",
-      pageURL: "/testimonials",
-      date: "2025-06-20",
-      status: false,
-    },
-  ];
-  const [lftBtn, setLftBtn] = useState<number>(0);
-  const [rightBtn, setRightBtn] = useState<number>(9);
-  const [page, setPage] = useState<PAGESDATA[]>([]);
 
-  const pagination = (s:number, e:number) => {
-    if (s < contentData.length) {
-      if (contentData.length < 9) {
-        setPage(contentData.slice(s, contentData.length - 1));
-        return;
+
+export default function Page() {
+  const [pagesLinks, setPagesLinks] = useState<PageLink[]>([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
+  const [isLoading, setIsLoading] = useState(false);
+  const getAllPagesLinks = async () => {
+    try {
+      setIsLoading(true);
+      const { data, status } = await axios.get("/api/header_data");
+      setPagesLinks(data);
+      setPopupData({ message: data.message, status });
+      setShowPopup(true);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
       }
-      setPage(contentData.slice(s, e));
+      setShowPopup(true);
     }
   };
-  const [ttPage, setTTPage] = useState(0);
-  
-  const [activePage, setActivePage] = useState(0);
+
+  const router = useRouter();
 
   useEffect(() => {
-    pagination(lftBtn, rightBtn);
-    setTTPage(contentData.length / 8 + 1);
-    
-  }, [lftBtn, rightBtn]);
-  useEffect(()=>{
-    setActivePage(1);
-  }, [])
-  const leftPage = () => {
-    let newLeft = lftBtn - 9;
-    if (newLeft < 0) newLeft = 0;
+    getAllPagesLinks();
+  }, []);
 
-    let newRight;
-    if (contentData.length < 10) {
-      newRight = contentData.length;
-    } else {
-      newRight = newLeft + 9;
-    }
-
-    setLftBtn(newLeft);
-    setRightBtn(newRight);
-    pagination(newLeft, newRight);
-  };
-
-  const rightPage = () => {
-    let newLeft = lftBtn + 9;
-    let newRight = newLeft + 9;
-
-    if (newRight > contentData.length) {
-      newRight = contentData.length;
-      newLeft = newRight - (newRight % 9);
-    }
-
-    setLftBtn(newLeft);
-    setRightBtn(newRight);
-    pagination(newLeft, newRight);
-  };
-
-  const directPageNavigation = (e: EventTarget) => {
-    const pageNum = Number((e as HTMLElement).innerText);
-    setActivePage(pageNum);
-    let newRight = 9 * pageNum;
-
-    let newLeft = newRight - 9;
-    if (newRight > contentData.length) {
-      newRight = contentData.length;
-      newLeft = newRight - (newRight % 9);
-    }
-
-    setLftBtn(newLeft);
-    setRightBtn(newRight);
-    pagination(newLeft, newRight);
-  };
-
-
-  const getDataWithSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const value: string = e.target.value;
-
-    setTimeout(() => {
-      setPage(
-        page.filter((data: PAGESDATA) =>
-          data.pageTitle.toLowerCase().includes(value.toLowerCase())
-        )
-      );
-      console.log("This is filtered post", page);
-    }, 2000);
-  };
-  const getEntriesManually = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const val: number = Number(e.target.value);
-    setPage(contentData.slice(0, val));
-  };
-  const [deleteConfirmModal, setDeleteConfirmModal] = useState(false);
-  const [deleteKey, setDeleteKey] = useState("");
-
-  const deleteData = () => {
-    // Delete Data Logic
-  };
-
-
-  const handleDataDeleteModal = (key: number): void => {
-    setDeleteKey(" ");
-    setDeleteConfirmModal(true);
-    setDeleteKey(String(key));
-    console.log(deleteKey);
-  };
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="flex flex-col items-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+          <p className="text-gray-600">Loading content...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-[#EEEEEE] flex flex-col gap-6 sm:gap-8 md:gap-12 p-4 md:p-8 min-h-screen">
-      {deleteConfirmModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white dark:bg-[#1e1e1e] rounded-xl p-6 w-full max-w-md shadow-lg text-center relative">
-            {/* Icon */}
-            <div className="flex justify-center mb-4">
-              <AlertTriangle className="text-red-600 w-12 h-12" />
-            </div>
-
-            {/* Text */}
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
-              Are you sure?
-            </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-              This action cannot be undone. The data will be permanently
-              deleted.
-            </p>
-
-            {/* Buttons */}
-            <div className="flex justify-center gap-4 mt-6">
-              <button
-                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded-md transition"
-                onClick={() => setDeleteConfirmModal(false)}
-              >
-                Cancel
-              </button>
-              <button
-                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition"
-                onClick={deleteData}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
+    <div className={styles.adminContainer}>
+      {showPopup && (
+        <RMWPopup
+          message={popupData.message}
+          status={popupData.status}
+          onClose={() => setShowPopup(false)}
+        />
       )}
-
-      {/* Title Section */}
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <h1 className="text-[#ACACAC] flex items-center gap-2 text-2xl sm:text-3xl md:text-4xl font-light uppercase">
-          <Monitor className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-          Manage Page
-        </h1>
+      <div
+        style={{
+          marginBottom: "20px",
+        }}
+      >
+        <h1 className={styles.heading}>Admin Panel - Page Manager</h1>
+        <button
+          onClick={() => router.push("/admin/content/add")}
+          className={styles.addMoreBtn}
+        >
+          <Plus size={18} />
+          <span>Add More</span>
+        </button>
       </div>
-      {/* Breadcrumb */}
-      <div className="flex flex-wrap items-center gap-2 sm:gap-4 bg-white p-3 rounded-md shadow-sm">
-        <h1 className="text-[#2955B3] flex items-center gap-2">
-          <Home className="w-4 h-4" />
-          Home
-        </h1>
-        <span className="text-[#ACACAC] font-bold">/</span>
-        <h1 className="text-[#838383] flex items-center gap-2">
-          <Monitor className="w-4 h-4" />
-          Manage Page
-        </h1>
-      </div>
-      {/* Main Section */}
-      <div className="bg-white rounded-lg shadow-md overflow-x-auto">
-        {/* Header */}
-        <div className="bg-[#9CA9B4] p-4">
-          <p className="text-white font-medium text-base sm:text-lg">
-            Manage Page
-          </p>
-        </div>
 
-        {/* Sorting Section */}
-        <div className="flex flex-col gap-6 p-4">
-          <div className="flex justify-end">
-            <Link
-              href={"/admin/content/add"}
-              className="px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] cursor-pointer transition duration-200"
-            >
-              Add Content
-            </Link>
-          </div>
-
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 flex-wrap">
-            {/* Show Entries */}
-            <div className="flex items-center gap-2">
-              <p className="font-semibold text-[#688A7E] whitespace-nowrap">
-                Show Entries
-              </p>
-              <select
-                onChange={(E) => getEntriesManually(E)}
-                className="border border-[#365248] rounded-md px-3 py-1.5 text-[#365248] outline-none cursor-pointer"
-              >
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-              </select>
-            </div>
-            {/* Search */}
-            <div className="flex items-center gap-2 border border-[#1a6249] rounded-md px-3 py-2 w-full md:w-auto">
-              <p className="text-[#717272] font-medium whitespace-nowrap">
-                Search Now
-              </p>
-              <input
-                type="text"
-                placeholder="Search here..."
-                onChange={(e) => getDataWithSearch(e)}
-                className="bg-transparent outline-none placeholder:text-[#365248] text-[#365248] w-full"
-              />
-            </div>
-          </div>
-        </div>
-        {/* Table Headings */}
-        <div className="hidden md:flex bg-[#CCCCCC] px-4 py-3 font-bold text-[#688A7E] text-sm uppercase">
-          <p className="w-1/4">Page Title</p>
-          <p className="w-1/5">Page Heading</p>
-          <p className="w-[15%]">Page URL</p>
-          <p className="w-1/6">Add Date</p>
-          <p className="w-1/12 text-center">Status</p>
-          <p className="w-1/6 text-center">Action</p>
-        </div>
-
-        {/* List Items */}
-        <div className="divide-y">
-          {page ? (
-            page.map((data, idx) => (
-              <div
-                key={idx}
-                className={`flex flex-col md:flex-row items-start md:items-center px-4 py-3 gap-2 md:gap-0 ${
-                  idx % 2 === 0 ? "bg-[#F5F5F5]" : "bg-white"
-                }`}
-              >
-                <p className="w-full md:w-1/4 text-sm text-[#688A7E]">
-                  {data.pageTitle}
-                </p>
-                <p className="w-full md:w-1/5 text-sm text-[#688A7E]">
-                  {data.pageHeading}
-                </p>
-                <p className="w-full md:w-[15%] text-sm text-[#688A7E] truncate">
-                  {data.pageURL}
-                </p>
-                <p className="w-full md:w-1/6 text-sm text-[#688A7E]">
-                  {data.date}
-                </p>
-                <p className="w-full md:w-1/12 text-sm text-[#688A7E] text-center">
-                  {data.status ? "Active" : "Inactive"}
-                </p>
-                <div className="w-full md:w-1/6 flex justify-start md:justify-center gap-2 mt-2 md:mt-0">
-                  <Link
-                    href={`/admin/content/edit/${idx}`}
-                    className="p-2 cursor-pointer bg-green-600 hover:bg-green-700 transition text-white rounded-md"
-                  >
-                    <FilePen />
-                  </Link>
-                  <button
-                    onClick={() => handleDataDeleteModal(idx)}
-                    className="p-2 cursor-pointer bg-red-500 hover:bg-red-600 transition text-white rounded-md"
-                  >
-                    <Trash2 />
-                  </button>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="p-4">Loading...</div>
-          )}
-        </div>
-
-        {/* Pagination */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-4 py-4 border-t">
-          <p className="text-sm opacity-0 text-gray-600">
-            Showing 41 to 50 of 52 entries
-          </p>
-          <div className="flex items-center gap-2 flex-wrap">
-            <button
-              onClick={leftPage}
-              className="px-5 py-2 border rounded-md border-[#688A7E] text-[#688A7E] font-semibold hover:bg-[#436b5d] hover:text-white transition"
-            >
-              Previous
-            </button>
-            <div className="flex flex-wrap gap-1">
-              {Array.from({ length: ttPage }, (_, i) => (
-                <p
-                  key={i}
-                  onClick={(e) => directPageNavigation(e.target)}
-                  className="px-3 py-1.5 border border-[#688A7E] text-black rounded-md cursor-pointer hover:bg-[#688A7E] hover:text-white transition"
-                  style={
-                    activePage === i + 1
-                      ? { backgroundColor: "black", color: "white" }
-                      : {}
-                  }
+      <div className={styles.pagesWrapper}>
+        {pagesLinks.map((page, idx) => (
+          <div key={idx} className={styles.pageCard}>
+            <h3 className={styles.pageTitle}>{page.name}</h3>
+            <div className={styles.subLinks}>
+              {page.sub.map((sub, subIdx) => (
+                <button
+                  key={subIdx}
+                  className={`${styles.subLinkBtn} `}
+                  onClick={() => {
+                    const createdLink = sub.link.split("/").join("=");
+                    router.push(`/admin/content/${createdLink}`);
+                  }}
                 >
-                  {i + 1}
-                </p>
+                  {sub.name}
+                </button>
               ))}
             </div>
-            <button
-              onClick={rightPage}
-              className="px-5 py-2 border rounded-md border-[#688A7E] text-[#688A7E] font-semibold hover:bg-[#436b5d] hover:text-white transition"
-            >
-              Next
-            </button>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 }
-
-export default Page;

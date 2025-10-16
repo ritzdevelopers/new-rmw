@@ -1,10 +1,9 @@
 "use client";
-
 import React from "react";
 import { BiAnalyse } from "react-icons/bi";
 import { SiAdobecreativecloud } from "react-icons/si";
 import { FaGlobe } from "react-icons/fa6";
-import { useSplitText } from "@/hooks/useSplitText"; //changed
+import { useSplitText } from "@/hooks/useSplitText"; 
 
 const Experience = () => {
   const textRefs = useSplitText();
@@ -38,27 +37,6 @@ const Experience = () => {
                 data-wow-delay=".3s"
                 data-wow-duration="2.5s"
               >
-                {/* <div className="tp-chooseus__icon">
-                  <Link href="/about" rel="" target="">
-                    <span>
-                      <svg
-                        width="229"
-                        height="229"
-                        viewBox="0 0 229 229"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M5 224L211.25 17.75M5 4H225V224"
-                          stroke="currentColor"
-                          strokeWidth="6.5"
-                          strokeLinecap="square"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </span>
-                  </Link>
-                </div> */}
               </div>
               <div className="container">
                 <div className="row">
@@ -74,33 +52,6 @@ const Experience = () => {
                           Why choose us
                         </span>
                         <br />
-                        {/* <p
-                          ref={(el) => {
-                            if (el) textRefs.current.push(el);
-                          }}
-                          className="tp-section-title-2 tp-split__text tp-split__in-right mb-40"
-                          style={{ color: "black" }}
-                        >
-                          <span
-                            style={{
-                              color: "var(--tp-theme-primary)  !important",
-                            }}
-                          >
-                            17+ years{" "}
-                          </span>
-                          Of Storytelling
-                          <br />
-                          Turning{" "}
-                          <span
-                            style={{
-                              color: "var(--tp-theme-primary) !important",
-                            }}
-                          >
-                            Brands{" "}
-                          </span>
-                          in to <br />
-                          Household Names
-                        </p> */}
 
                         <p
                           className="tp-section-title-2"

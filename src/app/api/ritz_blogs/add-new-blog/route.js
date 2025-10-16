@@ -6,7 +6,6 @@ import path from "path";
 import RitzCats from "@/models/RitzCats.Schema";
 import RitzBlogModel from "@/models/Blog.Schema";
 
-// Utility to create slug from category name
 export function generateSlug(name) {
   return name
     .toLowerCase()
@@ -15,7 +14,6 @@ export function generateSlug(name) {
     .replace(/\s+/g, "-");
 }
 
-// This is Mongo DB
 async function saveFileToUploads(file, filename) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
@@ -38,7 +36,8 @@ export async function POST(request) {
     const blogTitle = formData.get("blogTitle");
     const metaKeywords = formData.get("metaKeywords");
     const blogBodyRaw = formData.get("blogBody");
-    const blogCategory = formData.get("blogCategory");
+    const blogCategory = formData.get("blogCategory"); //mtDesc
+    const mtDesc = formData.get("mtDesc");
     let blogBannerPath = "";
     const innerImgMap = {};
 
@@ -46,8 +45,9 @@ export async function POST(request) {
     let blogDescription;
     const blogSlug = generateSlug(blogTitle);
     const fetchCat = await RitzCats.findOne({ categorySlug: blogCategory });
-    
+
     if (!fetchCat) {
+      console.log("CAt Not Found");
       return NextResponse.json(
         { message: "Category not found" },
         {
@@ -76,7 +76,7 @@ export async function POST(request) {
       ...item,
       innerImg: innerImgMap[index] || "",
     }));
-   
+
     blogDescription = blogBody[0].metaDescription;
 
     const newBlog = await RitzBlogModel.create({
@@ -85,9 +85,10 @@ export async function POST(request) {
       blogBody,
       metaKeywords,
       blogCategoryId: categoryId,
-      blogStatus:true,
+      blogStatus: true,
       blogSlug,
       blogDescription,
+      mtDesc,
     });
 
     return NextResponse.json(

@@ -56,7 +56,7 @@ export async function GET(
     const serviceSecondId = serviceSecond.id;
 
     const [thirdLayerCards] = await pool.query<ThirdLayerCard[]>(
-      "SELECT title, description, image_url FROM service_third WHERE service2_id = ?",
+      "SELECT id, title, description, image_url FROM service_third WHERE service2_id = ?",
       [serviceSecondId]
     );
 

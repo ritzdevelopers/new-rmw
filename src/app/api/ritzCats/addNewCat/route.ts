@@ -2,53 +2,47 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import RitzCats from "@/models/RitzCats.Schema";
 
-// Utility to create slug from category name
-function generateSlug(name: string): string {
-  return name
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "") 
-    .replace(/\s+/g, "-");  
-}
-
 export async function POST(request: NextRequest) {
   try {
     await connectMongoDB();
-    // console.log('====================================');
-    console.log("API HIT");
-    // console.log('====================================');
-    // Parse the body safely
-    const {
-      categoryName,
-      categoryMetaTitle,
-      categoryMetaDescription,
-      categoryMetaKeywords,
-    }: {
-      categoryName: string;
-      categoryMetaTitle?: string;
-      categoryMetaDescription?: string;
-      categoryMetaKeywords?: string[];
-    } = await request.json();
+    const data = await request.json();
 
-    if (!categoryName) {
+    // Basic validation
+    if (!data.categoryName) {
       return NextResponse.json(
         { message: "Category name is required", success: false },
         { status: 400 }
       );
     }
 
-    const categorySlug = generateSlug(categoryName);
-
-    // Create a new category document
-    const newCategory = new RitzCats({
-      categoryName,
-      categorySlug,
-      categoryMetaTitle,
-      categoryMetaDescription,
-      categoryMetaKeywords,
+    // Check if category already exists
+    const existingCategory = await RitzCats.findOne({ 
+      categoryName: data.categoryName 
     });
 
-    // Save to DB
+    if (existingCategory) {
+      return NextResponse.json(
+        { message: "Category already exists", success: false },
+        { status: 409 }
+      );
+    }
+
+    // Generate slug
+    const categorySlug = data.categoryName
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+
+    // Create new category
+    const newCategory = new RitzCats({
+      categoryName: data.categoryName,
+      categorySlug,
+      categoryMetaTitle: data.categoryMetaTitle,
+      categoryMetaDescription: data.categoryMetaDescription,
+      categoryMetaKeywords: data.categoryMetaKeywords,
+    });
+
     await newCategory.save();
 
     return NextResponse.json(
@@ -60,15 +54,13 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    console.error("Error in addNewCategory controller:", error);
+    console.error("Error adding category:", error);
     return NextResponse.json(
       {
         message: "Internal Server Error",
         success: false,
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }
