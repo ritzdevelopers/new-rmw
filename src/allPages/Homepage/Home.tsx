@@ -176,7 +176,7 @@ const Home = () => {
                         <div className="tp-hero__thumb mb-80 p-relative">
                           <div className={styles.megaPhoneDiv}>
                             <Image
-                              src="/home-images/Megaphone_RMW_Home.png"
+                              src="/home-images/Dia.png"
                               alt="gf"
                               fill
                               priority
