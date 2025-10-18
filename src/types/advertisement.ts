@@ -32,7 +32,6 @@ export interface INewspaperOption {
 
 export const initialAdvertisementState: Omit<IAdvertisement, "slug"> = {
   adtype: "",
-  slug: "",
   adDesc: "",
   imgs: [],
   baseRate: 0,

@@ -16,10 +16,10 @@ export async function POST(req: NextRequest) {
       query.parentID = parentID;
     }
 
-    const sort: Record<string, number> = {};
+    let sort: Record<string, 1 | -1> | null = null;
     if (sorting) {
       const sortType = sorting === "asc" ? 1 : -1;
-      Object.assign(sort, { baseRate: sortType });
+      sort = { baseRate: sortType };
     }
 
     const advertisements = await AdsTypeModel.find(query)

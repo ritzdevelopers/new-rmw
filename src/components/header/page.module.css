@@ -1,4 +1,4 @@
-/* Header.module.css */
+/* Header.module.css - Production Optimized */
 
 /* Sidebar Overlay */
 
@@ -186,8 +186,8 @@
 }
 /* .headerBackground {
   transition: all 0.3s ease-in-out; */
-  /* z-index: 9999; */
-  /* background: linear-gradient(90deg, #ff8000 0%, #f9e5d1 50%, #138808 100%);
+/* z-index: 9999; */
+/* background: linear-gradient(90deg, #ff8000 0%, #f9e5d1 50%, #138808 100%);
   background-size: 200% 100%;
   animation: smoothFlagMove 10s linear infinite;
     border-bottom: 1px solid black !important; */
@@ -492,7 +492,6 @@
   cursor: pointer;
 }
 
-
 .caseImgs {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -515,7 +514,6 @@
   transform: scale(1.03);
 }
 
-
 .visuallyhidden {
   position: absolute;
   left: -9999px;
@@ -523,7 +521,174 @@
   width: 1px;
   overflow: hidden;
 }
-.lgImg{
+.lgImg {
   opacity: 1 !important;
   max-width: 100%;
 }
+
+.spinAnime {
+  animation: spinDiwali 10s linear infinite;
+}
+@keyframes spinDiwali {
+  0% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: 180deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+
+/* Responsive positioning for Diwali images only - keeping exact dimensions */
+/* Only adjusting position, not height/width */
+
+@media (max-width: 1199px) {
+  /* First Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 0"][style*="top: 100px"] {
+    top: 80px !important;
+  }
+
+  /* Second Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="right: 100px"][style*="top: -50px"] {
+    right: 50px !important;
+    top: -30px !important;
+  }
+
+  /* Third Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: -20px"][style*="top: -5px"] {
+    left: -10px !important;
+    top: 0 !important;
+  }
+
+  /* Fourth Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 150px"][style*="top: 5px"] {
+    left: 100px !important;
+    top: 10px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  /* First Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 0"][style*="top: 100px"] {
+    top: 60px !important;
+  }
+
+  /* Second Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="right: 100px"][style*="top: -50px"] {
+    right: 20px !important;
+    top: -20px !important;
+  }
+
+  /* Third Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: -20px"][style*="top: -5px"] {
+    left: -5px !important;
+    top: 5px !important;
+  }
+
+  /* Fourth Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 150px"][style*="top: 5px"] {
+    left: 60px !important;
+    top: 15px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* First Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 0"][style*="top: 100px"] {
+    top: 40px !important;
+  }
+
+  /* Second Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="right: 100px"][style*="top: -50px"] {
+    right: 10px !important;
+    top: -10px !important;
+  }
+
+  /* Third Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: -20px"][style*="top: -5px"] {
+    left: 0 !important;
+    top: 10px !important;
+  }
+
+  /* Fourth Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 150px"][style*="top: 5px"] {
+    left: 30px !important;
+    top: 20px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  /* First Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 0"][style*="top: 100px"] {
+    top: 30px !important;
+  }
+
+  /* Second Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="right: 100px"][style*="top: -50px"] {
+    right: 5px !important;
+    top: -5px !important;
+  }
+
+  /* Third Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: -20px"][style*="top: -5px"] {
+    left: 5px !important;
+    top: 15px !important;
+  }
+
+  /* Fourth Diwali image - adjust position only */
+  .tp-header-top-area > div[style*="left: 150px"][style*="top: 5px"] {
+    left: 20px !important;
+    top: 25px !important;
+  }
+}
+
+/* Landscape orientation adjustments for mobile - position only */
+@media (max-width: 991px) and (orientation: landscape) {
+  .tp-header-top-area > div[style*="left: 0"][style*="top: 100px"] {
+    top: 20px !important;
+  }
+
+  .tp-header-top-area > div[style*="right: 100px"][style*="top: -50px"] {
+    top: -5px !important;
+  }
+
+  .tp-header-top-area > div[style*="left: -20px"][style*="top: -5px"] {
+    top: 5px !important;
+  }
+
+  .tp-header-top-area > div[style*="left: 150px"][style*="top: 5px"] {
+    top: 10px !important;
+  }
+}
+/* Responsive positioning following your exact breakpoints */
+@media (min-width: 994px) and (max-width: 1354px) {
+  .resNav {
+    left: 0;
+    top: 165px !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 994px) {
+  .resNav {
+    left: 0;
+    top: 135px !important;
+  }
+}
+
+/* Additional breakpoints for complete responsiveness */
+@media (min-width: 1355px) {
+  .resNav {
+    left: 0;
+    top: 100px !important;
+  }
+}
+
+@media (max-width: 599px) {
+  .resNav {
+    left: 0;
+    top: 100px !important;
+  }
+}
+

@@ -203,7 +203,7 @@ const ManageNewspapersPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {isLoading && <Loader message="Loading newspapers..." />}
+      {isLoading && <Loader text="Loading newspapers..." />}
       {popup.show && (
         <Popup type={popup.type} message={popup.message} onClose={closePopup} />
       )}

@@ -145,7 +145,7 @@ const ManageAdvertisementsPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {isLoading && <Loader message="Loading advertisements..." />}
+      {isLoading && <Loader />}
       {popup.show && <Popup type={popup.type} message={popup.message} onClose={closePopup} />}
 
       {/* Delete Modal */}
@@ -259,4 +259,3 @@ const ManageAdvertisementsPage: React.FC = () => {
 };
 
 export default ManageAdvertisementsPage;
-

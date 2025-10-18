@@ -375,7 +375,7 @@ function EditNewspaperContent() {
   };
 
   if (isLoading) {
-    return <Loader message="Loading newspaper details..." />;
+    return <Loader text="Loading newspaper details..." />;
   }
 
   if (!newspaperId) {
@@ -394,7 +394,7 @@ function EditNewspaperContent() {
 
   return (
     <div className={styles.container}>
-      {isSaving && <Loader message="Updating newspaper..." />}
+      {isSaving && <Loader text="Updating newspaper..." />}
       {popup.show && (
         <Popup type={popup.type} message={popup.message} onClose={closePopup} />
       )}
@@ -684,7 +684,7 @@ function EditNewspaperContent() {
 
 export default function EditNewspaperPage() {
   return (
-    <Suspense fallback={<Loader message="Loading..." />}>
+    <Suspense fallback={<Loader text="Loading..." />}>
       <EditNewspaperContent />
     </Suspense>
   );

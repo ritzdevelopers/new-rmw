@@ -106,7 +106,7 @@ const Home = () => {
                             }}
                           >
                             <video
-                              src="/videos/bg_pattern.mp4"
+                              src="/diwali/diwali-txt-vid.mp4"
                               autoPlay
                               loop
                               muted
