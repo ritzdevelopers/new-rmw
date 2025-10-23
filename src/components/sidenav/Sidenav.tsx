@@ -10,7 +10,8 @@ import {
   Monitor,
   House,
   MonitorCog,
-  ChartNoAxesCombined 
+  ChartNoAxesCombined,
+  Newspaper
 } from "lucide-react";
 import { cn } from "../../lib/utils";
 // import axios from "axios";
@@ -37,6 +38,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const [webpagesLinks, setWebPagesLink] = useState(false);
   const [homePagesLinks, setHomePagesLinks] = useState(false);
   const [systemSettings, setSystemSettings] = useState(false);
+  const [newspaperOpen, setNewspaperOpen] = useState(false);
 
   const [dbActive, setDBActive] = useState(false);
   const [blogActive, setBlogActive] = useState(false);
@@ -46,6 +48,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const [createUserPageActive, setCreateUserPageActive] = useState(false);
   const [webStoriesActive, setWebStoriesActive] = useState(false);
   const [analyticsActive, setAnalyticsIsActive] = useState(false);
+  const [newspaperActive, setNewspaperActive] = useState(false);
 
   const [subMenuActive, setActiveSubMenu] = useState("");
   function handleActiveTabBG(e: React.MouseEvent<HTMLElement, MouseEvent>) {
@@ -62,6 +65,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(true);
+      setNewspaperActive(false);
     } else if (blogText === "System Settings") {
       setAnalyticsIsActive(false);
       setWebStoriesActive(false);
@@ -72,6 +76,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(true);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+      setNewspaperActive(false);
     } else if (blogText === "Home") {
       setAnalyticsIsActive(false);
       setWebStoriesActive(false);
@@ -82,6 +87,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+      setNewspaperActive(false);
     } else if (blogText === "Web Pages") {
       setAnalyticsIsActive(false);
       setWebStoriesActive(false);
@@ -92,6 +98,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+      setNewspaperActive(false);
     } else if (blogText === "Blog") {
       setAnalyticsIsActive(false);
       setWebStoriesActive(false);
@@ -102,6 +109,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+      setNewspaperActive(false);
     } else if (blogText === "Dashboard") {
       setAnalyticsIsActive(false);
       setWebStoriesActive(false);
@@ -112,6 +120,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+      setNewspaperActive(false);
     } else if (blogText === "Web Stories") {
       setAnalyticsIsActive(false);
       setBlogActive(false);
@@ -122,6 +131,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
       setWebStoriesActive(true);
+      setNewspaperActive(false);
     } else if (blogText === "Analytics") {
       setBlogActive(false);
       setDBActive(false);
@@ -132,6 +142,18 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setCreateUserPageActive(false);
       setWebStoriesActive(false);
       setAnalyticsIsActive(true);
+      setNewspaperActive(false);
+    } else if (blogText === "Newspaper") {
+      setBlogActive(false);
+      setDBActive(false);
+      setWebPageActive(false);
+      setHomePageActive(false);
+      setSystemPageActive(false);
+      setActiveSubMenu("");
+      setCreateUserPageActive(false);
+      setWebStoriesActive(false);
+      setAnalyticsIsActive(false);
+      setNewspaperActive(true);
     }
   }
 
@@ -402,6 +424,97 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   className="p-2 pl-8 text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Web Story
+                </div>
+              </Link>
+            </div>
+          )}
+
+          {/* Newspaper Section */}
+          <div
+            style={{
+              ...(!expanded
+                ? { borderWidth: "none" }
+                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
+              ...(newspaperActive && { backgroundColor: "#2E3B46" }),
+            }}
+            onClick={(e) => {
+              setNewspaperOpen(!newspaperOpen);
+              handleActiveTabBG(e);
+            }}
+            className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <Newspaper className="w-5 h-5" />
+              {expanded && <span>Newspaper</span>}
+            </div>
+            {expanded && (
+              <ChevronDown
+                className={cn(
+                  "w-4 h-4 transition",
+                  newspaperOpen ? "rotate-180" : ""
+                )}
+              />
+            )}
+          </div>
+
+          {/* Newspaper Submenu */}
+          {expanded && newspaperOpen && (
+            <div className="space-y-2">
+              <Link href="/admin/newspaper/manage">
+                <div
+                  onClick={() => setActiveSubMenu("Manage Newspapers")}
+                  style={{
+                    ...(!newspaperOpen
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Newspapers" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer text-sm"
+                >
+                  Manage Newspapers
+                </div>
+              </Link>
+              <Link href="/admin/newspaper">
+                <div
+                  onClick={() => setActiveSubMenu("Add Newspaper")}
+                  style={{
+                    ...(!newspaperOpen
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Add Newspaper" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer text-sm"
+                >
+                  Add Newspaper
+                </div>
+              </Link>
+              <Link href="/admin/newspaper/ads/manage">
+                <div
+                  onClick={() => setActiveSubMenu("Manage Ads")}
+                  style={{
+                    ...(!newspaperOpen
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Ads" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer text-sm"
+                >
+                  Manage Ads
                 </div>
               </Link>
             </div>

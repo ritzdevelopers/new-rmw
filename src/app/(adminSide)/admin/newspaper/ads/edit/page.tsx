@@ -105,22 +105,30 @@ function EditAdvertisementContent() {
         const adResult = await adRes.json();
 
         if (adRes.ok && adResult.success) {
-          const ad = adResult.advertisement;
-          setFormData({
-            adtype: ad.adtype || "",
-            adDesc: ad.adDesc || "",
-            baseRate: ad.baseRate?.toString() || "",
-            quantity: ad.quantity || "",
-            adLabel: ad.adLabel || "",
-            adTiming: ad.adTiming || "",
-            details: ad.details || "",
-            category: ad.category || "Top Choice",
-            parentID: ad.parentID?._id || ad.parentID || "",
-            metaTitle: ad.metaTitle || "",
-            metaDesc: ad.metaDesc || "",
-            existingImgs: ad.imgs || [],
-            newImages: [],
-          });
+          const ad = adResult.singleAds;
+          if (ad) {
+            setFormData({
+              adtype: ad.adtype || "",
+              adDesc: ad.adDesc || "",
+              baseRate: ad.baseRate?.toString() || "",
+              quantity: ad.quantity || "",
+              adLabel: ad.adLabel || "",
+              adTiming: ad.adTiming || "",
+              details: ad.details || "",
+              category: ad.category || "Top Choice",
+              parentID: ad.parentID?._id || ad.parentID || "",
+              metaTitle: ad.metaTitle || "",
+              metaDesc: ad.metaDesc || "",
+              existingImgs: ad.imgs || [],
+              newImages: [],
+            });
+          } else {
+            setPopup({
+              show: true,
+              type: "error",
+              message: "Advertisement data not found",
+            });
+          }
         } else {
           setPopup({
             show: true,
@@ -480,7 +488,7 @@ function EditAdvertisementContent() {
               <div className={styles.imageGrid}>
                 {formData.existingImgs.map((img, index) => (
                   <div key={index} className={styles.imageItem}>
-                    <img src={`${process.env.NEXT_PUBLIC_BASE_URL}/api/images${img.split("/images")[1]}`}  alt={`Existing ${index + 1}`} className={styles.image} />
+                    <img src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${img.split("/images")[1]}`}  alt={`Existing ${index + 1}`} className={styles.image} />
                     <button
                       type="button"
                       onClick={() => handleRemoveExistingImage(index)}

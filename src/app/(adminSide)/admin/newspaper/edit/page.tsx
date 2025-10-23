@@ -113,7 +113,7 @@ function EditNewspaperContent() {
         const response = await fetch(`/api/newspaper/${newspaperId}`);
         const result = await response.json();
 
-        if (response.ok && result.newsPaper) {
+        if (result.newsPaper) {
           const newspaper = result.newsPaper;
           setFormData({
             paperName: newspaper.paperName || "",
@@ -465,7 +465,8 @@ function EditNewspaperContent() {
             required={false}
             error={errors.logoImg}
             accept="image/jpeg,image/jpg,image/png"
-            preview={formData.currentLogoUrl}
+            
+            preview={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${formData.currentLogoUrl.split("/images")[1]}`}
           />
           {!formData.logoImg && formData.currentLogoUrl && (
             <p className={styles.infoText}>

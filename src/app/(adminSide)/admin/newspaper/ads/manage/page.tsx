@@ -231,7 +231,7 @@ const ManageAdvertisementsPage: React.FC = () => {
                     <td>
                       <div className={styles.imageGrid}>
                         {ad.imgs.slice(0, 2).map((img, idx) => (
-                          <img key={idx}  src={`${process.env.NEXT_PUBLIC_BASE_URL}/api/images${img.split("/images")[1]}`} alt="Ad" className={styles.thumbnail} />
+                          <img key={idx}  src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${img.split("/images")[1]}`} alt="Ad" className={styles.thumbnail} />
                         ))}
                         {ad.imgs.length > 2 && <span className={styles.moreImages}>+{ad.imgs.length - 2}</span>}
                       </div>

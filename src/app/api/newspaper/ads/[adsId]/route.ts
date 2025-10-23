@@ -14,7 +14,7 @@ interface UpdateFields {
   details?: string;
   category?: string;
   parentID?: string;
-  imgs?: string[]; 
+  imgs?: string[];
 }
 
 export async function PATCH(
@@ -78,7 +78,10 @@ export async function PATCH(
       }
 
       // Ab nayi images save karo
-      const uploadDir = path.join(`${process.env.SERVER_IMG_PATH}`, "adsImages");
+      const uploadDir = path.join(
+        `${process.env.SERVER_IMG_PATH}`,
+        "adsImages"
+      );
       if (!fs.existsSync(uploadDir)) {
         fs.mkdirSync(uploadDir, { recursive: true });
       }
@@ -143,7 +146,6 @@ export async function PATCH(
     );
   }
 }
-
 
 // 🗑️ Delete Advertisement + Images
 export async function DELETE(
@@ -226,7 +228,6 @@ export async function DELETE(
   }
 }
 
-
 // Get Single Add
 export async function GET(
   req: NextRequest,
@@ -240,7 +241,9 @@ export async function GET(
 ) {
   try {
     await connectMongoDB();
-    const adsId = params.adsId;
+    const adsId = await params.adsId;
+    console.log("This is get API Param ", adsId);
+
     if (!adsId) {
       return NextResponse.json(
         {
@@ -252,9 +255,7 @@ export async function GET(
         }
       );
     }
-    const singleAds = await AdsTypeModel.findOne({
-      slug: adsId,
-    });
+    const singleAds = await AdsTypeModel.findById(adsId);
     if (!singleAds) {
       return NextResponse.json(
         {

@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Feedback from "../Homepage/Feedback";
+import Footer from "@/components/footer/Footer";
 
 // Custom Select Component with Lucide Icon
 interface CustomSelectProps {
@@ -14,25 +15,26 @@ interface CustomSelectProps {
   children: React.ReactNode;
 }
 
-const CustomSelect: React.FC<CustomSelectProps> = ({ value, onChange, className, children }) => {
+const CustomSelect: React.FC<CustomSelectProps> = ({
+  value,
+  onChange,
+  className,
+  children,
+}) => {
   return (
     <div style={{ position: "relative", display: "inline-block" }}>
-      <select
-        value={value}
-        onChange={onChange}
-        className={className}
-      >
+      <select value={value} onChange={onChange} className={className}>
         {children}
       </select>
-      <ChevronDown 
-        size={16} 
+      <ChevronDown
+        size={16}
         style={{
           position: "absolute",
           right: "12px",
           top: "50%",
           transform: "translateY(-50%)",
           pointerEvents: "none",
-          color: "#718096"
+          color: "#718096",
         }}
       />
     </div>
@@ -92,18 +94,20 @@ const NewspaperCard: React.FC<NewspaperCardProps> = ({
   onCardClick,
 }) => {
   return (
-    <div 
+    <div
       className={styles.newspaperCard}
       onClick={() => onCardClick(slug)}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: "pointer" }}
     >
       {/* Logo Section */}
       <div className={styles.logoSection}>
         <div className={styles.logoContainer}>
-          <Image 
-             src={`${process.env.NEXT_PUBLIC_BASE_URL}/api/images${image.split("/images")[1]}`}
+          <Image
+            src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${
+              image.split("/images")[1]
+            }`}
             alt={`${name} logo`}
-           fill
+            fill
             className={styles.newspaperLogo}
             priority={false}
           />
@@ -116,18 +120,13 @@ const NewspaperCard: React.FC<NewspaperCardProps> = ({
           {name}, {location}, {language}
         </div>
 
-        <div className={styles.languageText}>
-          {language}
-        </div>
+        <div className={styles.languageText}>{language}</div>
 
         <div className={styles.priceText}>
-          ₹ {price} {minSpend} 
+          ₹ {price} {minSpend}
         </div>
 
-        <div className={styles.circulationText}>
-          Circulation: {circulation}
-        </div>
-       
+        <div className={styles.circulationText}>Circulation: {circulation}</div>
       </div>
     </div>
   );
@@ -135,7 +134,7 @@ const NewspaperCard: React.FC<NewspaperCardProps> = ({
 
 function ServiceThirdMainPage2() {
   const router = useRouter();
-  
+
   // State for filter dropdowns
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
@@ -144,14 +143,15 @@ function ServiceThirdMainPage2() {
   const [selectedFrequency, setSelectedFrequency] = useState("");
   const [selectedSupplement, setSelectedSupplement] = useState("");
   const [selectedSort, setSelectedSort] = useState("top-searched");
-  const [selectedSortSection3, setSelectedSortSection3] = useState("top-searched");
-  
+  const [selectedSortSection3, setSelectedSortSection3] =
+    useState("top-searched");
+
   // State for API data
   const [newspapers, setNewspapers] = useState<NewspaperData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isPriceSorting, setIsPriceSorting] = useState(false);
-  
+
   // State for filter options
   const [filterOptions, setFilterOptions] = useState({
     locations: [] as string[],
@@ -164,12 +164,14 @@ function ServiceThirdMainPage2() {
   });
 
   // State for newspaper names list
-  const [newspaperNames, setNewspaperNames] = useState<Array<{
-    paperName: string;
-    slug: string;
-    language: string;
-  }>>([]);
-  
+  const [newspaperNames, setNewspaperNames] = useState<
+    Array<{
+      paperName: string;
+      slug: string;
+      language: string;
+    }>
+  >([]);
+
   // State for filter section expansion
   const [expandedSections, setExpandedSections] = useState({
     location: true,
@@ -181,49 +183,61 @@ function ServiceThirdMainPage2() {
   });
 
   const toggleSection = (section: keyof typeof expandedSections) => {
-    setExpandedSections(prev => ({
+    setExpandedSections((prev) => ({
       ...prev,
-      [section]: !prev[section]
+      [section]: !prev[section],
     }));
   };
 
   // API call function
-  const fetchNewspapers = async (filters: any = {}, sorting: string = "top-searched") => {
+  const fetchNewspapers = async (
+    filters: any = {},
+    sorting: string = "top-searched"
+  ) => {
     setLoading(true);
     setError(null);
-    
+
     try {
       const filterData: any = {};
-      
+
       // Apply filters
       if (selectedLocation) {
         // Convert back to proper case for matching
-        const locationValue = selectedLocation.charAt(0).toUpperCase() + selectedLocation.slice(1);
+        const locationValue =
+          selectedLocation.charAt(0).toUpperCase() + selectedLocation.slice(1);
         filterData["location.city"] = { $regex: locationValue, $options: "i" };
       }
       if (selectedLanguage) {
         // Convert back to proper case for matching
-        const languageValue = selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1);
+        const languageValue =
+          selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1);
         filterData.language = { $regex: languageValue, $options: "i" };
       }
       if (selectedCategory) {
         // Convert back to proper case for matching
-        const categoryValue = selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1);
+        const categoryValue =
+          selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1);
         filterData.category = { $regex: categoryValue, $options: "i" };
       }
       if (selectedPublication) {
         // Convert back to proper case for matching (replace hyphens with spaces)
-        const publicationValue = selectedPublication.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        const publicationValue = selectedPublication
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (l) => l.toUpperCase());
         filterData.publications = { $regex: publicationValue, $options: "i" };
       }
       if (selectedFrequency) {
         // Convert back to proper case for matching
-        const frequencyValue = selectedFrequency.charAt(0).toUpperCase() + selectedFrequency.slice(1);
+        const frequencyValue =
+          selectedFrequency.charAt(0).toUpperCase() +
+          selectedFrequency.slice(1);
         filterData.frequency = { $regex: frequencyValue, $options: "i" };
       }
       if (selectedSupplement) {
         // Convert back to proper case for matching
-        const positionValue = selectedSupplement.charAt(0).toUpperCase() + selectedSupplement.slice(1);
+        const positionValue =
+          selectedSupplement.charAt(0).toUpperCase() +
+          selectedSupplement.slice(1);
         filterData.position = { $regex: positionValue, $options: "i" };
       }
 
@@ -232,7 +246,7 @@ function ServiceThirdMainPage2() {
 
       console.log("Frontend - Filter Data:", filterData);
       console.log("Frontend - Sort Type:", sortType);
-      
+
       // Enhanced logging for price sorting
       if (sortType === "price-low-high" || sortType === "price-high-low") {
         console.log(`🔄 Applying price sorting: ${sortType}`);
@@ -250,7 +264,7 @@ function ServiceThirdMainPage2() {
       });
 
       const result = await response.json();
-      
+
       if (result.success) {
         setNewspapers(result.data);
         // Reset price sorting indicator after data is loaded
@@ -273,7 +287,7 @@ function ServiceThirdMainPage2() {
     try {
       const response = await fetch("/api/newspaper/filters");
       const result = await response.json();
-      
+
       if (result.success) {
         setFilterOptions(result.data);
       }
@@ -287,7 +301,7 @@ function ServiceThirdMainPage2() {
     try {
       const response = await fetch("/api/newspaper/names");
       const result = await response.json();
-      
+
       if (result.success) {
         setNewspaperNames(result.data);
       }
@@ -310,20 +324,31 @@ function ServiceThirdMainPage2() {
     }, 500); // Debounce filter changes
 
     return () => clearTimeout(timeoutId);
-  }, [selectedLocation, selectedLanguage, selectedCategory, selectedPublication, selectedFrequency, selectedSupplement]);
+  }, [
+    selectedLocation,
+    selectedLanguage,
+    selectedCategory,
+    selectedPublication,
+    selectedFrequency,
+    selectedSupplement,
+  ]);
 
   // Handle sort changes
   const handleSortChange = (newSort: string) => {
     setSelectedSort(newSort);
-    
+
     // Add visual feedback for price sorting
     if (newSort === "price-low-high" || newSort === "price-high-low") {
-      console.log(`📊 Sorting newspapers by price: ${newSort === "price-low-high" ? "Low to High" : "High to Low"}`);
+      console.log(
+        `📊 Sorting newspapers by price: ${
+          newSort === "price-low-high" ? "Low to High" : "High to Low"
+        }`
+      );
       setIsPriceSorting(true);
     } else {
       setIsPriceSorting(false);
     }
-    
+
     fetchNewspapers({}, newSort);
   };
 
@@ -333,14 +358,18 @@ function ServiceThirdMainPage2() {
   };
 
   // Distribute newspapers into 5 columns
-  const distributeNewspapersIntoColumns = (newspapers: Array<{paperName: string; slug: string; language: string}>) => {
-    const columns = [[], [], [], [], []] as Array<Array<{paperName: string; slug: string; language: string}>>;
-    
+  const distributeNewspapersIntoColumns = (
+    newspapers: Array<{ paperName: string; slug: string; language: string }>
+  ) => {
+    const columns = [[], [], [], [], []] as Array<
+      Array<{ paperName: string; slug: string; language: string }>
+    >;
+
     newspapers.forEach((newspaper, index) => {
       const columnIndex = index % 5;
       columns[columnIndex].push(newspaper);
     });
-    
+
     return columns;
   };
 
@@ -366,7 +395,7 @@ function ServiceThirdMainPage2() {
     name: newspaper.paperName,
     location: newspaper.location.city,
     language: newspaper.language,
-    price: newspaper.price.toLocaleString('en-IN'), // Format with Indian number system
+    price: newspaper.price.toLocaleString("en-IN"), // Format with Indian number system
     minSpend: newspaper.spendType,
     image: newspaper.logoImg,
     slug: newspaper.slug,
@@ -429,7 +458,7 @@ function ServiceThirdMainPage2() {
             </h2>
 
             {/* Sort Dropdown */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <CustomSelect
                 value={selectedSort}
                 onChange={(e) => handleSortChange(e.target.value)}
@@ -445,18 +474,20 @@ function ServiceThirdMainPage2() {
                 <option value="recent">Most Recent</option>
                 <option value="popular">Most Popular</option>
               </CustomSelect>
-              
+
               {/* Price Sorting Indicator */}
               {isPriceSorting && (
-                <div style={{ 
-                  fontSize: '12px', 
-                  color: '#4CAF50', 
-                  fontWeight: 'bold',
-                  padding: '4px 8px',
-                  backgroundColor: '#E8F5E8',
-                  borderRadius: '4px',
-                  border: '1px solid #4CAF50'
-                }}>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: "#4CAF50",
+                    fontWeight: "bold",
+                    padding: "4px 8px",
+                    backgroundColor: "#E8F5E8",
+                    borderRadius: "4px",
+                    border: "1px solid #4CAF50",
+                  }}
+                >
                   💰 Price Sorted
                 </div>
               )}
@@ -474,16 +505,22 @@ function ServiceThirdMainPage2() {
 
               {/* Location Filter */}
               <div className={styles.filterSection}>
-                <div 
+                <div
                   className={styles.filterTitle}
-                  onClick={() => toggleSection('location')}
+                  onClick={() => toggleSection("location")}
                 >
                   <span>Location</span>
-                  <ChevronDown 
-                    className={`${styles.filterChevron} ${expandedSections.location ? styles.expanded : ''}`}
+                  <ChevronDown
+                    className={`${styles.filterChevron} ${
+                      expandedSections.location ? styles.expanded : ""
+                    }`}
                   />
                 </div>
-                <div className={`${styles.filterContent} ${expandedSections.location ? styles.expanded : ''}`}>
+                <div
+                  className={`${styles.filterContent} ${
+                    expandedSections.location ? styles.expanded : ""
+                  }`}
+                >
                   <CustomSelect
                     value={selectedLocation}
                     onChange={(e) => setSelectedLocation(e.target.value)}
@@ -501,16 +538,22 @@ function ServiceThirdMainPage2() {
 
               {/* Language Filter */}
               <div className={styles.filterSection}>
-                <div 
+                <div
                   className={styles.filterTitle}
-                  onClick={() => toggleSection('language')}
+                  onClick={() => toggleSection("language")}
                 >
                   <span>Language</span>
-                  <ChevronDown 
-                    className={`${styles.filterChevron} ${expandedSections.language ? styles.expanded : ''}`}
+                  <ChevronDown
+                    className={`${styles.filterChevron} ${
+                      expandedSections.language ? styles.expanded : ""
+                    }`}
                   />
                 </div>
-                <div className={`${styles.filterContent} ${expandedSections.language ? styles.expanded : ''}`}>
+                <div
+                  className={`${styles.filterContent} ${
+                    expandedSections.language ? styles.expanded : ""
+                  }`}
+                >
                   <CustomSelect
                     value={selectedLanguage}
                     onChange={(e) => setSelectedLanguage(e.target.value)}
@@ -528,16 +571,22 @@ function ServiceThirdMainPage2() {
 
               {/* Category Filter */}
               <div className={styles.filterSection}>
-                <div 
+                <div
                   className={styles.filterTitle}
-                  onClick={() => toggleSection('category')}
+                  onClick={() => toggleSection("category")}
                 >
                   <span>Category</span>
-                  <ChevronDown 
-                    className={`${styles.filterChevron} ${expandedSections.category ? styles.expanded : ''}`}
+                  <ChevronDown
+                    className={`${styles.filterChevron} ${
+                      expandedSections.category ? styles.expanded : ""
+                    }`}
                   />
                 </div>
-                <div className={`${styles.filterContent} ${expandedSections.category ? styles.expanded : ''}`}>
+                <div
+                  className={`${styles.filterContent} ${
+                    expandedSections.category ? styles.expanded : ""
+                  }`}
+                >
                   <CustomSelect
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
@@ -555,16 +604,22 @@ function ServiceThirdMainPage2() {
 
               {/* Publication Filter */}
               <div className={styles.filterSection}>
-                <div 
+                <div
                   className={styles.filterTitle}
-                  onClick={() => toggleSection('publication')}
+                  onClick={() => toggleSection("publication")}
                 >
                   <span>Publication</span>
-                  <ChevronDown 
-                    className={`${styles.filterChevron} ${expandedSections.publication ? styles.expanded : ''}`}
+                  <ChevronDown
+                    className={`${styles.filterChevron} ${
+                      expandedSections.publication ? styles.expanded : ""
+                    }`}
                   />
                 </div>
-                <div className={`${styles.filterContent} ${expandedSections.publication ? styles.expanded : ''}`}>
+                <div
+                  className={`${styles.filterContent} ${
+                    expandedSections.publication ? styles.expanded : ""
+                  }`}
+                >
                   <CustomSelect
                     value={selectedPublication}
                     onChange={(e) => setSelectedPublication(e.target.value)}
@@ -572,7 +627,10 @@ function ServiceThirdMainPage2() {
                   >
                     <option value="">Select Publication</option>
                     {filterOptions.publications.map((publication) => (
-                      <option key={publication} value={publication.toLowerCase().replace(/\s+/g, '-')}>
+                      <option
+                        key={publication}
+                        value={publication.toLowerCase().replace(/\s+/g, "-")}
+                      >
                         {publication}
                       </option>
                     ))}
@@ -582,16 +640,22 @@ function ServiceThirdMainPage2() {
 
               {/* Frequency Filter */}
               <div className={styles.filterSection}>
-                <div 
+                <div
                   className={styles.filterTitle}
-                  onClick={() => toggleSection('frequency')}
+                  onClick={() => toggleSection("frequency")}
                 >
                   <span>Frequency</span>
-                  <ChevronDown 
-                    className={`${styles.filterChevron} ${expandedSections.frequency ? styles.expanded : ''}`}
+                  <ChevronDown
+                    className={`${styles.filterChevron} ${
+                      expandedSections.frequency ? styles.expanded : ""
+                    }`}
                   />
                 </div>
-                <div className={`${styles.filterContent} ${expandedSections.frequency ? styles.expanded : ''}`}>
+                <div
+                  className={`${styles.filterContent} ${
+                    expandedSections.frequency ? styles.expanded : ""
+                  }`}
+                >
                   <CustomSelect
                     value={selectedFrequency}
                     onChange={(e) => setSelectedFrequency(e.target.value)}
@@ -609,16 +673,22 @@ function ServiceThirdMainPage2() {
 
               {/* Position Filter */}
               <div className={styles.filterSection}>
-                <div 
+                <div
                   className={styles.filterTitle}
-                  onClick={() => toggleSection('supplement')}
+                  onClick={() => toggleSection("supplement")}
                 >
                   <span>Position</span>
-                  <ChevronDown 
-                    className={`${styles.filterChevron} ${expandedSections.supplement ? styles.expanded : ''}`}
+                  <ChevronDown
+                    className={`${styles.filterChevron} ${
+                      expandedSections.supplement ? styles.expanded : ""
+                    }`}
                   />
                 </div>
-                <div className={`${styles.filterContent} ${expandedSections.supplement ? styles.expanded : ''}`}>
+                <div
+                  className={`${styles.filterContent} ${
+                    expandedSections.supplement ? styles.expanded : ""
+                  }`}
+                >
                   <CustomSelect
                     value={selectedSupplement}
                     onChange={(e) => setSelectedSupplement(e.target.value)}
@@ -645,7 +715,10 @@ function ServiceThirdMainPage2() {
               ) : error ? (
                 <div className={styles.errorContainer}>
                   <p>Error: {error}</p>
-                  <button onClick={() => fetchNewspapers()} className={styles.retryButton}>
+                  <button
+                    onClick={() => fetchNewspapers()}
+                    className={styles.retryButton}
+                  >
                     Retry
                   </button>
                 </div>
@@ -679,50 +752,44 @@ function ServiceThirdMainPage2() {
         <div className={styles.section3}>
           {/* Header */}
           <div className={styles.section3Header}>
-            <h2 className={styles.section3Title}>
-              Select Your Newspapers
-            </h2>
-            
-            {/* Sort Dropdown */}
-            <CustomSelect
-              value={selectedSortSection3}
-              onChange={(e) => setSelectedSortSection3(e.target.value)}
-              className={styles.customSelectSection3}
-            >
-              <option value="top-searched">Sort By: Top Searched</option>
-              <option value="alphabetical">Alphabetical</option>
-              <option value="popularity">Popularity</option>
-              <option value="location">Location</option>
-            </CustomSelect>
+            <h2 className={styles.section3Title}>Select Your Newspapers</h2>
           </div>
 
           {/* Newspaper List Box with Dotted Border */}
           <div className={styles.newspaperListBox}>
             {/* 5-Column Grid Layout */}
             <div className={styles.newspaperGrid5Col}>
-              {distributeNewspapersIntoColumns(newspaperNames).map((column, columnIndex) => (
-                <div key={`column-${columnIndex}`} className={styles.newspaperColumn}>
-                  {column.map((newspaper, idx) => (
-                    <div 
-                      key={`col${columnIndex}-${idx}`} 
-                      className={styles.newspaperItem}
-                      onClick={() => handleNewspaperClick(newspaper.slug)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <span className={styles.bulletPoint}>•</span>
-                      <span className={styles.newspaperNameItem}>
-                        {newspaper.paperName}
-                        <span className={styles.languageTag}>({newspaper.language})</span>
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              ))}
+              {distributeNewspapersIntoColumns(newspaperNames).map(
+                (column, columnIndex) => (
+                  <div
+                    key={`column-${columnIndex}`}
+                    className={styles.newspaperColumn}
+                  >
+                    {column.map((newspaper, idx) => (
+                      <div
+                        key={`col${columnIndex}-${idx}`}
+                        className={styles.newspaperItem}
+                        onClick={() => handleNewspaperClick(newspaper.slug)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <span className={styles.bulletPoint}>•</span>
+                        <span className={styles.newspaperNameItem}>
+                          {newspaper.paperName}
+                          <span className={styles.languageTag}>
+                            ({newspaper.language})
+                          </span>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )
+              )}
             </div>
           </div>
         </div>
         <Feedback />
       </div>
+      <Footer></Footer>
     </section>
   );
 }

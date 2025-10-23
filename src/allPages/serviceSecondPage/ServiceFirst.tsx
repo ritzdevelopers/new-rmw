@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import useGSAPHoverEffect from "@/hooks/useGSAPHoverEffect";
+import { useParams } from "next/navigation";
 type ServiceFirstProps = {
   heading?: string | null;
   image1?: string | null;
@@ -32,14 +33,14 @@ const ServiceFirst = ({ heading }: ServiceFirstProps) => {
     window.addEventListener("resize", updateSize);
     return () => window.removeEventListener("resize", updateSize);
   }, []);
-
+  const params = useParams();
   const { width: svgWidth, height: svgHeight } = svgSize;
   const fontSizeClamp = "clamp(2.5rem, 8vw, 6rem)";
 
   // vertical position centered roughly in the SVG
   const textY = svgHeight / 2;
   useGSAPHoverEffect();
-
+  console.log(params.secondPage);
   return (
     <div className="elementor-widget-container">
       <section className="tp-services__area tp-service__plr">
@@ -49,14 +50,14 @@ const ServiceFirst = ({ heading }: ServiceFirstProps) => {
               <div className="tp-service__wrap p-relative">
                 <div className="z-index-2">
                   <div
-                  className="tttlll"
+                    className="tttlll"
                     style={{
                       width: "100%",
                       maxWidth: svgWidth,
                       margin: "0 auto",
                       position: "relative",
                       textAlign: "start",
-                    //  backgroundColor:'yellow'
+                      //  backgroundColor:'yellow'
                     }}
                   >
                     <svg
@@ -116,7 +117,6 @@ const ServiceFirst = ({ heading }: ServiceFirstProps) => {
                           height: "100%",
                           objectFit: "cover",
                           display: "block",
-                          
                         }}
                       />
                     </div>
@@ -126,7 +126,11 @@ const ServiceFirst = ({ heading }: ServiceFirstProps) => {
                   <div className="tp-hover__btn-wrap tp-btn__bounce">
                     <Link
                       className="tp-hover__btn tp-hover__btn-item"
-                      href="/contact.html"
+                      href={`${
+                        params.secondPage === "print-advertising"
+                          ? "/services/print-advertising/newspaper-ad-rates"
+                          : "/contact.html"
+                      }`}
                       target="_self"
                       rel="nofollow"
                     >

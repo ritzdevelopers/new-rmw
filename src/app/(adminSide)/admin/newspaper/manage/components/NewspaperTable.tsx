@@ -63,7 +63,7 @@ export const NewspaperTable: React.FC<NewspaperTableProps> = ({
                   <div className={styles.logoContainer}>
                     {newspaper.logoImg ? (
                       <img
-                        src={`${process.env.NEXT_PUBLIC_BASE_URL}/api/images${newspaper.logoImg.split("/images")[1]}`}
+                        src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${newspaper.logoImg.split("/images")[1]}`}
                         alt={newspaper.paperName}
                         className={styles.logo}
                       />
