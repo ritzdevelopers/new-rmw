@@ -133,7 +133,8 @@ function EditAdvertisementContent() {
           setPopup({
             show: true,
             type: "error",
-            message: adResult.message || "Failed to fetch advertisement details",
+            message:
+              adResult.message || "Failed to fetch advertisement details",
           });
         }
       } catch (error) {
@@ -152,7 +153,9 @@ function EditAdvertisementContent() {
   }, [adId]);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
 
@@ -211,7 +214,9 @@ function EditAdvertisementContent() {
     requiredFields.forEach((field) => {
       const value = formData[field];
       if (!value || (typeof value === "string" && value.trim() === "")) {
-        newErrors[field] = `${field.replace(/([A-Z])/g, " $1").trim()} is required`;
+        newErrors[field] = `${field
+          .replace(/([A-Z])/g, " $1")
+          .trim()} is required`;
       }
     });
 
@@ -268,11 +273,14 @@ function EditAdvertisementContent() {
       formDataToSend.append("metaDesc", formData.metaDesc.trim());
 
       // Send existing images as JSON string
-      formDataToSend.append("existingImgs", JSON.stringify(formData.existingImgs));
+      formDataToSend.append(
+        "existingImgs",
+        JSON.stringify(formData.existingImgs)
+      );
 
       // Append new images
       formData.newImages.forEach((img) => {
-        formDataToSend.append("newImages", img);
+        formDataToSend.append("imgs", img);
       });
 
       const response = await fetch(`/api/newspaper/ads/${adId}`, {
@@ -296,7 +304,9 @@ function EditAdvertisementContent() {
         setPopup({
           show: true,
           type: "error",
-          message: result.message || "Failed to update advertisement. Please try again.",
+          message:
+            result.message ||
+            "Failed to update advertisement. Please try again.",
         });
       }
     } catch (error) {
@@ -325,7 +335,10 @@ function EditAdvertisementContent() {
         <div className={styles.errorContainer}>
           <h2 className={styles.errorTitle}>Invalid Request</h2>
           <p className={styles.errorMessage}>No advertisement ID provided</p>
-          <Link href="/admin/newspaper/ads/manage" className={styles.backButton}>
+          <Link
+            href="/admin/newspaper/ads/manage"
+            className={styles.backButton}
+          >
             Back to Manage
           </Link>
         </div>
@@ -347,7 +360,9 @@ function EditAdvertisementContent() {
           </Link>
         </div>
         <h1 className={styles.title}>Edit Advertisement</h1>
-        <p className={styles.subtitle}>Update the advertisement details below</p>
+        <p className={styles.subtitle}>
+          Update the advertisement details below
+        </p>
       </div>
 
       <form onSubmit={handleSubmit} className={styles.form}>
@@ -366,7 +381,9 @@ function EditAdvertisementContent() {
               value={formData.parentID}
               onChange={handleInputChange}
               required
-              className={`${styles.select} ${errors.parentID ? styles.selectError : ""}`}
+              className={`${styles.select} ${
+                errors.parentID ? styles.selectError : ""
+              }`}
             >
               <option value="">Select Newspaper</option>
               {newspapers.map((np) => (
@@ -375,7 +392,9 @@ function EditAdvertisementContent() {
                 </option>
               ))}
             </select>
-            {errors.parentID && <span className={styles.errorText}>{errors.parentID}</span>}
+            {errors.parentID && (
+              <span className={styles.errorText}>{errors.parentID}</span>
+            )}
           </div>
 
           <div className={styles.row}>
@@ -488,7 +507,13 @@ function EditAdvertisementContent() {
               <div className={styles.imageGrid}>
                 {formData.existingImgs.map((img, index) => (
                   <div key={index} className={styles.imageItem}>
-                    <img src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${img.split("/images")[1]}`}  alt={`Existing ${index + 1}`} className={styles.image} />
+                    <img
+                      src={`${
+                        process.env.NEXT_PUBLIC_SERVER_IMG_PATH
+                      }/api/images${img.split("/images")[1]}`}
+                      alt={`Existing ${index + 1}`}
+                      className={styles.image}
+                    />
                     <button
                       type="button"
                       onClick={() => handleRemoveExistingImage(index)}
@@ -535,7 +560,9 @@ function EditAdvertisementContent() {
             )}
           </div>
 
-          {errors.imgs && <span className={styles.errorText}>{errors.imgs}</span>}
+          {errors.imgs && (
+            <span className={styles.errorText}>{errors.imgs}</span>
+          )}
         </div>
 
         {/* SEO Section */}
@@ -567,7 +594,10 @@ function EditAdvertisementContent() {
 
         {/* Form Actions */}
         <div className={styles.actions}>
-          <Link href="/admin/newspaper/ads/manage" className={styles.cancelButton}>
+          <Link
+            href="/admin/newspaper/ads/manage"
+            className={styles.cancelButton}
+          >
             Cancel
           </Link>
           <button
@@ -590,5 +620,3 @@ export default function EditAdvertisementPage() {
     </Suspense>
   );
 }
-
-

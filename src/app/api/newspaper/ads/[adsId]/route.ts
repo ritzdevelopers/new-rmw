@@ -24,7 +24,8 @@ export async function PATCH(
   try {
     await connectMongoDB();
     const adsId = params.adsId;
-
+    console.log("This is ads id ", adsId);
+    
     if (!adsId) {
       return NextResponse.json(
         {
@@ -59,25 +60,28 @@ export async function PATCH(
       parentID,
     };
 
-    // 🖼️ Handle new uploaded images
+    // 🖼️ Handle images (existing + new)
     const imgsArr = formData.getAll("imgs") as File[];
-
-    if (imgsArr && imgsArr.length > 0) {
-      // Pehle purani images delete kar do agar exist karti hain
-      const existingAd = await AdsTypeModel.findById(adsId);
-      if (existingAd?.imgs && existingAd.imgs.length > 0) {
-        for (const oldImgPath of existingAd.imgs) {
-          const fullOldPath = path.join(
-            process.env.SERVER_IMG_PATH || "",
-            oldImgPath
-          );
-          if (fs.existsSync(fullOldPath)) {
-            fs.unlinkSync(fullOldPath);
-          }
+    const existingImgsStr = formData.get("existingImgs")?.toString();
+    console.log("This is imgs array ", imgsArr);
+    console.log("This is existing imgs ", existingImgsStr);
+    
+    let finalImgPaths: string[] = [];
+    
+    // Handle existing images
+    if (existingImgsStr) {
+      try {
+        const existingImgs = JSON.parse(existingImgsStr);
+        if (Array.isArray(existingImgs)) {
+          finalImgPaths = [...existingImgs];
         }
+      } catch (error) {
+        console.error("Error parsing existing images:", error);
       }
-
-      // Ab nayi images save karo
+    }
+    
+    // Handle new uploaded images
+    if (imgsArr && imgsArr.length > 0) {
       const uploadDir = path.join(
         `${process.env.SERVER_IMG_PATH}`,
         "adsImages"
@@ -86,8 +90,6 @@ export async function PATCH(
         fs.mkdirSync(uploadDir, { recursive: true });
       }
 
-      const newImgPaths: string[] = [];
-
       for (const img of imgsArr) {
         if (img instanceof File) {
           const bytes = await img.arrayBuffer();
@@ -95,11 +97,14 @@ export async function PATCH(
           const fileName = `${Date.now()}-${img.name}`;
           const filePath = path.join(uploadDir, fileName);
           fs.writeFileSync(filePath, buffer);
-          newImgPaths.push(`/adsImages/${fileName}`);
+          finalImgPaths.push(`/adsImages/${fileName}`);
         }
       }
-
-      updateData.imgs = newImgPaths;
+    }
+    
+    // Update with final image paths
+    if (finalImgPaths.length > 0) {
+      updateData.imgs = finalImgPaths;
     }
 
     // 🧹 Remove undefined fields (PATCH behavior)
