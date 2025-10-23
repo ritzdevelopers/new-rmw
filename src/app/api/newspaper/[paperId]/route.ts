@@ -31,7 +31,8 @@ export async function PATCH(
   try {
     await connectMongoDB();
     const paperId = params.paperId;
-
+    // console.log("This is paper id ", paperId);
+    
     if (!paperId) {
       return NextResponse.json(
         { message: "Paper ID is required!", success: false },
@@ -77,9 +78,13 @@ export async function PATCH(
     };
 
     let newImgPath = "";
+    let paperFId = "";
     if (img) {
-      const existingPaper = await NewsPaperModel.findById(paperId);
+      const existingPaper = await NewsPaperModel.findOne({slug:paperId});
+      // console.log("This is existing paper ", existingPaper);
+      
       if (existingPaper?.logoImg) {
+        paperFId = existingPaper._id;
         const prevImgPath = path.join(
           process.env.SERVER_IMG_PATH || "",
           existingPaper.logoImg
@@ -109,7 +114,7 @@ export async function PATCH(
         delete updateData[key as keyof UpdateFields]
     );
 
-    const data = await NewsPaperModel.findByIdAndUpdate(paperId, updateData, {
+    const data = await NewsPaperModel.findByIdAndUpdate(paperFId, updateData, {
       new: true,
     });
 
