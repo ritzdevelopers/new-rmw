@@ -106,7 +106,7 @@ const Home = () => {
                             }}
                           >
                             <video
-                              src="/diwali/diwali-txt-vid.mp4"
+                              src="/videos/bg_pattern.mp4"
                               autoPlay
                               loop
                               muted
@@ -168,7 +168,7 @@ const Home = () => {
                         <div className="tp-hero__thumb mb-80 p-relative">
                           <div className={styles.megaPhoneDiv}>
                             <Image
-                              src="/home-images/Dia.png"
+                              src="/home-images/Megaphone_RMW_Home.png"
                               alt="gf"
                               fill
                               priority

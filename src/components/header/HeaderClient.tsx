@@ -33,10 +33,10 @@ type HeaderClientProps = {
 };
 
 const useWindowWidth = () => {
-  const [width, setWidth] = useState(() => 
-    typeof window !== 'undefined' ? window.innerWidth : 0
+  const [width, setWidth] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth : 0
   );
-  
+
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     const handleResize = () => {
@@ -45,14 +45,14 @@ const useWindowWidth = () => {
         setWidth(window.innerWidth);
       }, 100); // Throttle resize events for better performance
     };
-    
+
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
       clearTimeout(timeoutId);
     };
   }, []);
-  
+
   return width;
 };
 
@@ -173,34 +173,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
     };
   }, []);
 
-  const width = useWindowWidth();
 
-  // 🔹 Memoized responsive calculations for better performance
-  const { imageStyle, divStyle, divStyle2 } = useMemo(() => {
-    const imageStyle = width >= 986 && width <= 1451
-      ? { height: "50px", width: "140px" }
-      : { height: "80px", width: "200px" };
-
-    let divStyle: React.CSSProperties;
-    if (width >= 1369) {
-      divStyle = { position: "absolute", left: "140px", top: "15px" };
-    } else if (width >= 986 && width < 1369) {
-      divStyle = { position: "absolute", left: "120px", top: "50px" };
-    } else if (width >= 600 && width < 986) {
-      divStyle = { position: "absolute", left: "140px", top: "20px" };
-    } else {
-      divStyle = { position: "absolute", display: "none" };
-    }
-    
-    let divStyle2: React.CSSProperties;
-    if (width >= 300 && width <= 565) {
-      divStyle2 = { position: "absolute", right: "50px", top: "-50px" };
-    } else {
-      divStyle2 = { position: "absolute", right: "100px", top: "-50px" };
-    }
-
-    return { imageStyle, divStyle, divStyle2 };
-  }, [width]);
 
   return (
     <header>
@@ -215,66 +188,6 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
         }}
       >
         {/* Diwali Special Images  */}
-        {/* Img 1  */}
-        <div
-          className={`${styles.resNav}`}
-          style={{
-            position: "absolute",
-            // width: "100%",
-            // height: "100%",
-            // backgroundColor: "red",
-            left: 0,
-            top: "100px",
-          }}
-        >
-          <img
-            src="/diwali/diwali-nav.png"
-            alt="rmw-diwali-special"
-            style={{ width: "80%", height: "100%" }}
-          />
-        </div>
-
-        {/* Img 2  */}
-        <div style={divStyle2}>
-          <img
-            className={`${styles.spinAnime}`}
-            src="/diwali/full-size-patt.png"
-            style={{
-              height: "150px",
-              width: "150px",
-            }}
-            alt=""
-          />
-        </div>
-
-        {/* Img 3  */}
-        <div
-          style={{
-            position: "absolute",
-            left: "-20px",
-            top: "-5px",
-            // backgroundColor:'red'
-          }}
-        >
-          <img
-            className={`${styles.spinAnime}`}
-            src="/diwali/full-size-patt.png"
-            style={{
-              height: "80px",
-              width: "80px",
-            }}
-            alt=""
-          />
-        </div>
-
-        {/* Img 4  */}
-        <div style={divStyle}>
-          <img
-            src="/diwali/happy-diwali.png"
-            alt="Diwali Greeting"
-            style={imageStyle}
-          />
-        </div>
 
         {/* <FlagWave /> */}
         <div
