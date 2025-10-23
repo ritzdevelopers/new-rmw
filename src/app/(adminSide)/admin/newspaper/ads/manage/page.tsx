@@ -19,15 +19,13 @@ interface DeleteModalState {
 }
 
 const ManageAdvertisementsPage: React.FC = () => {
-  const [advertisements, setAdvertisements] = useState<IAdvertisementWithId[]>(
-    []
-  );
+  const [advertisements, setAdvertisements] = useState<IAdvertisementWithId[]>([]);
   const [filteredAds, setFilteredAds] = useState<IAdvertisementWithId[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [sorting, setSorting] = useState<"asc" | "desc" | "">("");
   const [categoryFilter, setCategoryFilter] = useState<CategoryEnum | "">("");
-
+  
   const [popup, setPopup] = useState<PopupState>({
     show: false,
     type: "info",
@@ -89,9 +87,7 @@ const ManageAdvertisementsPage: React.FC = () => {
     } else {
       const filtered = advertisements.filter((ad) => {
         const search = searchTerm.toLowerCase();
-        const parentName =
-          (ad as unknown as { parentID: { paperName: string } }).parentID
-            ?.paperName || "";
+        const parentName = (ad as unknown as { parentID: { paperName: string } }).parentID?.paperName || "";
         return (
           ad.adtype.toLowerCase().includes(search) ||
           ad.adLabel.toLowerCase().includes(search) ||
@@ -150,30 +146,19 @@ const ManageAdvertisementsPage: React.FC = () => {
   return (
     <div className={styles.container}>
       {isLoading && <Loader />}
-      {popup.show && (
-        <Popup type={popup.type} message={popup.message} onClose={closePopup} />
-      )}
+      {popup.show && <Popup type={popup.type} message={popup.message} onClose={closePopup} />}
 
       {/* Delete Modal */}
       {deleteModal.show && deleteModal.ad && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <h3>Delete Advertisement</h3>
-            <p>
-              Are you sure you want to delete{" "}
-              <strong>{deleteModal.ad.adtype}</strong>?
-            </p>
+            <p>Are you sure you want to delete <strong>{deleteModal.ad.adtype}</strong>?</p>
             <div className={styles.modalActions}>
-              <button
-                onClick={() => setDeleteModal({ show: false, ad: null })}
-                className={styles.cancelBtn}
-              >
+              <button onClick={() => setDeleteModal({ show: false, ad: null })} className={styles.cancelBtn}>
                 Cancel
               </button>
-              <button
-                onClick={handleDeleteConfirm}
-                className={styles.deleteBtn}
-              >
+              <button onClick={handleDeleteConfirm} className={styles.deleteBtn}>
                 Delete
               </button>
             </div>
@@ -184,9 +169,7 @@ const ManageAdvertisementsPage: React.FC = () => {
       <div className={styles.header}>
         <div>
           <h1 className={styles.title}>Manage Advertisements</h1>
-          <p className={styles.subtitle}>
-            View, edit, and manage all advertisement listings
-          </p>
+          <p className={styles.subtitle}>View, edit, and manage all advertisement listings</p>
         </div>
         <Link href="/admin/newspaper/ads/add" className={styles.addButton}>
           + Add New Advertisement
@@ -202,22 +185,12 @@ const ManageAdvertisementsPage: React.FC = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className={styles.searchInput}
         />
-        <select
-          value={sorting}
-          onChange={(e) => setSorting(e.target.value as "asc" | "desc" | "")}
-          className={styles.select}
-        >
+        <select value={sorting} onChange={(e) => setSorting(e.target.value as "asc" | "desc" | "")} className={styles.select}>
           <option value="">Sort by Rate</option>
           <option value="asc">Rate: Low to High</option>
           <option value="desc">Rate: High to Low</option>
         </select>
-        <select
-          value={categoryFilter}
-          onChange={(e) =>
-            setCategoryFilter(e.target.value as CategoryEnum | "")
-          }
-          className={styles.select}
-        >
+        <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value as CategoryEnum | "")} className={styles.select}>
           <option value="">All Categories</option>
           <option value="Top Choice">Top Choice</option>
           <option value="Other Ad Options">Other Ad Options</option>
@@ -252,57 +225,26 @@ const ManageAdvertisementsPage: React.FC = () => {
             </thead>
             <tbody>
               {filteredAds.map((ad) => {
-                const parentData = (
-                  ad as unknown as {
-                    parentID: { paperName: string; language: string };
-                  }
-                ).parentID;
+                const parentData = (ad as unknown as { parentID: { paperName: string; language: string } }).parentID;
                 return (
                   <tr key={ad._id}>
                     <td>
                       <div className={styles.imageGrid}>
                         {ad.imgs.slice(0, 2).map((img, idx) => (
-                          <img
-                            key={idx}
-                            src={`${
-                              process.env.NEXT_PUBLIC_SERVER_IMG_PATH
-                            }/api/images${img.split("/images")[1]}`}
-                            alt="Ad"
-                            className={styles.thumbnail}
-                          />
+                          <img key={idx}  src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images${img.split("/images")[1]}`} alt="Ad" className={styles.thumbnail} />
                         ))}
-                        {ad.imgs.length > 2 && (
-                          <span className={styles.moreImages}>
-                            +{ad.imgs.length - 2}
-                          </span>
-                        )}
+                        {ad.imgs.length > 2 && <span className={styles.moreImages}>+{ad.imgs.length - 2}</span>}
                       </div>
                     </td>
-                    <td>
-                      <strong>{ad.adtype}</strong>
-                    </td>
-                    <td>
-                      {parentData?.paperName} ({parentData?.language})
-                    </td>
-                    <td>
-                      <span className={styles.badge}>{ad.category}</span>
-                    </td>
+                    <td><strong>{ad.adtype}</strong></td>
+                    <td>{parentData?.paperName} ({parentData?.language})</td>
+                    <td><span className={styles.badge}>{ad.category}</span></td>
                     <td>₹{ad.baseRate.toLocaleString()}</td>
                     <td>{ad.adLabel}</td>
                     <td>
                       <div className={styles.actions}>
-                        <Link
-                          href={`/admin/newspaper/ads/edit?id=${ad._id}`}
-                          className={styles.editBtn}
-                        >
-                          ✏️
-                        </Link>
-                        <button
-                          onClick={() => handleDeleteClick(ad)}
-                          className={styles.delBtn}
-                        >
-                          🗑️
-                        </button>
+                        <Link href={`/admin/newspaper/ads/edit?id=${ad._id}`} className={styles.editBtn}>✏️</Link>
+                        <button onClick={() => handleDeleteClick(ad)} className={styles.delBtn}>🗑️</button>
                       </div>
                     </td>
                   </tr>
