@@ -22,7 +22,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   children,
 }) => {
   return (
-    <div style={{ position: "relative", display: "inline-block"}}>
+    <div style={{ position: "relative", display: "inline-block", width:'100%'}}>
       <select value={value} onChange={onChange} className={className}>
         {children}
       </select>
@@ -522,6 +522,7 @@ function ServiceThirdMainPage2() {
                   />
                 </div>
                 <div
+                style={{width:'100%'}}
                   className={`${styles.filterContent} ${
                     expandedSections.location ? styles.expanded : ""
                   }`}

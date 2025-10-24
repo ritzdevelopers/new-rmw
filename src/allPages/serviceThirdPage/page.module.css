@@ -188,8 +188,10 @@
 
 
 .filterContent {
+  width: 100%;
   padding: 0 24px 16px 24px;
   display: none;
+  /* background: red; */
 }
 
 .filterContent.expanded {
@@ -208,7 +210,7 @@
 
 /* Custom Select Styles */
 .customSelect {
-  width: 258px;
+  width: 100% !important;
   padding: 10px 12px;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
@@ -392,15 +394,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
   }
-  .customSelect {
-    width: 357px !important;
-  }
+ 
 }
 
 @media (max-width: 350px) {
-  .customSelect {
-    width: 297px !important;
-  }
+ 
   .newspaperGrid {
     grid-template-columns: 1fr;
     gap: 8px;
@@ -583,9 +581,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
-  .customSelect {
-    width: 667px !important;
-  }
+
   .logoContainer {
     border: none !important;
   }
