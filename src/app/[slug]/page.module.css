@@ -69,6 +69,11 @@
   /* object-fit: contain; */
   overflow: hidden;
 }
+@media (max-width: 760px) {
+  .bannerImage {
+    height: 14rem;
+  }
+}
 
 .imgD {
   height: 100%;
