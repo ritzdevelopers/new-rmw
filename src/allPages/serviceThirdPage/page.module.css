@@ -339,7 +339,7 @@
   }
   
   .newspaperCard:hover {
-    border-color: #dba652;
+    /* border-color: #dba652; */
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
@@ -387,7 +387,7 @@
   }
   
   .newspaperCard:hover {
-    border-color: #dba652;
+    /* border-color: #dba652; */
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
