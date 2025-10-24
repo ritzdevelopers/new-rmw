@@ -22,7 +22,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   children,
 }) => {
   return (
-    <div style={{ position: "relative", display: "inline-block" }}>
+    <div style={{ position: "relative", display: "inline-block", zIndex:999 }}>
       <select value={value} onChange={onChange} className={className}>
         {children}
       </select>
@@ -777,13 +777,14 @@ function ServiceThirdMainPage2() {
                         onClick={() => handleNewspaperClick(newspaper.slug)}
                         style={{ cursor: "pointer" }}
                       >
-                        <span className={styles.bulletPoint}>•</span>
-                        <span className={styles.newspaperNameItem}>
-                          {newspaper.paperName} <br />
-                          <p className={styles.languageTag}>
+                     
+                        <p className={styles.newspaperNameItem}>
+                        <span className={styles.bulletPoint}>•</span> {newspaper.paperName}
+                       
+                        </p>
+                        <p className={styles.languageTag}>
                             ({newspaper.language})
                           </p>
-                        </span>
                       </div>
                     ))}
                   </div>
