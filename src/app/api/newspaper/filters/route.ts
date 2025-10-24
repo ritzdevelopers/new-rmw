@@ -9,8 +9,7 @@ export async function GET(req: NextRequest) {
     // Fetch all newspapers to extract unique filter values
     const newspapers = await NewsPaperModel.find({}, {
       language: 1,
-      'location.city': 1,
-      'location.state': 1,
+      areaCovered: 1,
       category: 1,
       publications: 1,
       frequency: 1,
@@ -18,8 +17,7 @@ export async function GET(req: NextRequest) {
     });
 
     // Extract unique values for each filter
-    const locations = [...new Set(newspapers.map(n => n.location.city).filter(Boolean))].sort();
-    const states = [...new Set(newspapers.map(n => n.location.state).filter(Boolean))].sort();
+    const locations = [...new Set(newspapers.map(n => n.areaCovered).filter(Boolean))].sort();
     const languages = [...new Set(newspapers.map(n => n.language).filter(Boolean))].sort();
     const categories = [...new Set(newspapers.map(n => n.category).filter(Boolean))].sort();
     const publications = [...new Set(newspapers.map(n => n.publications).filter(Boolean))].sort();
@@ -31,7 +29,6 @@ export async function GET(req: NextRequest) {
       success: true,
       data: {
         locations,
-        states,
         languages,
         categories,
         publications,

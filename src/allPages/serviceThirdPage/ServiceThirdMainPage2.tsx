@@ -202,10 +202,13 @@ function ServiceThirdMainPage2() {
 
       // Apply filters
       if (selectedLocation) {
+      
+        
         // Convert back to proper case for matching
         const locationValue =
           selectedLocation.charAt(0).toUpperCase() + selectedLocation.slice(1);
-        filterData["location.city"] = { $regex: locationValue, $options: "i" };
+        filterData["areaCovered"] = { $regex: locationValue, $options: "i" };
+        // console.log(locationValue);
       }
       if (selectedLanguage) {
         // Convert back to proper case for matching
@@ -287,7 +290,8 @@ function ServiceThirdMainPage2() {
     try {
       const response = await fetch("/api/newspaper/filters");
       const result = await response.json();
-
+      console.log("These are filter options ", result);
+      
       if (result.success) {
         setFilterOptions(result.data);
       }
@@ -393,14 +397,15 @@ function ServiceThirdMainPage2() {
   // Convert API data to display format
   const displayNewspapers = newspapers.map((newspaper) => ({
     name: newspaper.paperName,
-    location: newspaper.location.city,
+    location: newspaper.areaCovered,
     language: newspaper.language,
-    price: newspaper.price.toLocaleString("en-IN"), // Format with Indian number system
+    price: newspaper.price.toLocaleString("en-IN"),
     minSpend: newspaper.spendType,
     image: newspaper.logoImg,
     slug: newspaper.slug,
     circulation: newspaper.circulation,
   }));
+  
   return (
     <section className={styles.mainContainer}>
       {/* Center Align Main Container  */}
@@ -774,10 +779,10 @@ function ServiceThirdMainPage2() {
                       >
                         <span className={styles.bulletPoint}>•</span>
                         <span className={styles.newspaperNameItem}>
-                          {newspaper.paperName}
-                          <span className={styles.languageTag}>
+                          {newspaper.paperName} <br />
+                          <p className={styles.languageTag}>
                             ({newspaper.language})
-                          </span>
+                          </p>
                         </span>
                       </div>
                     ))}

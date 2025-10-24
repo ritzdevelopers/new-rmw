@@ -7,6 +7,8 @@ export async function POST(req: NextRequest) {
     await connectMongoDB();
 
     const { filterData, sorting } = await req.json();
+    // console.log("This is filter data ", filterData);
+    
     const sort = {};
     if (sorting) {
       const sortType = sorting === "asc" ? 1 : -1;
