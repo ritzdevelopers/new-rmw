@@ -22,7 +22,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   children,
 }) => {
   return (
-    <div style={{ position: "relative", display: "inline-block", zIndex:999 }}>
+    <div style={{ position: "relative", display: "inline-block"}}>
       <select value={value} onChange={onChange} className={className}>
         {children}
       </select>
@@ -448,9 +448,9 @@ function ServiceThirdMainPage2() {
                 );
               })}
             </div>
-            <div className={styles.seeMoreButton}>
+            {/* <div className={styles.seeMoreButton}>
               <button className={styles.seeMoreBtn}>See More</button>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -762,34 +762,22 @@ function ServiceThirdMainPage2() {
 
           {/* Newspaper List Box with Dotted Border */}
           <div className={styles.newspaperListBox}>
-            {/* 5-Column Grid Layout */}
+            {/* Simple Grid Layout */}
             <div className={styles.newspaperGrid5Col}>
-              {distributeNewspapersIntoColumns(newspaperNames).map(
-                (column, columnIndex) => (
-                  <div
-                    key={`column-${columnIndex}`}
-                    className={styles.newspaperColumn}
-                  >
-                    {column.map((newspaper, idx) => (
-                      <div
-                        key={`col${columnIndex}-${idx}`}
-                        className={styles.newspaperItem}
-                        onClick={() => handleNewspaperClick(newspaper.slug)}
-                        style={{ cursor: "pointer" }}
-                      >
-                     
-                        <p className={styles.newspaperNameItem}>
-                        <span className={styles.bulletPoint}>•</span> {newspaper.paperName}
-                       
-                        </p>
-                        <p className={styles.languageTag}>
-                            ({newspaper.language})
-                          </p>
-                      </div>
-                    ))}
-                  </div>
-                )
-              )}
+              {newspaperNames.map((newspaper, index) => (
+                <div
+                  key={index}
+                  className={styles.newspaperItem}
+                  onClick={() => handleNewspaperClick(newspaper.slug)}
+                >
+                  <p className={styles.newspaperNameItem}>
+                    <span className={styles.bulletPoint}>•</span> {newspaper.paperName}
+                  </p>
+                  <p className={styles.languageTag}>
+                    ({newspaper.language})
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

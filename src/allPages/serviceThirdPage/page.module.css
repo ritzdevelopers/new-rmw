@@ -562,7 +562,7 @@
   gap: 20px;
 }
 
-/* Responsive grid for newspaper list */
+/* Simple responsive layout */
 @media (max-width: 1024px) {
   .newspaperGrid5Col {
     grid-template-columns: repeat(3, 1fr);
@@ -572,6 +572,7 @@
 
 @media (max-width: 768px) {
   .newspaperGrid5Col {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
   }
@@ -595,22 +596,19 @@
   align-items: flex-start;
   gap: 4px;
   transition: all 0.2s ease;
-  border-radius: 4px;
-  padding: 4px 0;
-  margin-bottom: 4px;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 8px;
   flex-direction: column;
+  /* background-color: #f8f9fa;
+  border: 1px solid #e2e8f0; */
+  cursor: pointer;
 }
 
 .newspaperItem:hover {
   background-color: rgba(219, 166, 82, 0.1);
-  padding-left: 8px;
-  transform: translateX(4px);
-}
-
-.newspaperItem:hover .newspaperNameItem {
-  white-space: normal;
-  word-wrap: break-word;
-  line-height: 1.4;
+  border-color: #dba652;
+  transform: translateY(-2px);
 }
 
 .bulletPoint {
