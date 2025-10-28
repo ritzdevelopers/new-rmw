@@ -13,18 +13,18 @@ export async function getAllBounceRate(duration: string) {
   await connectMongoDB();
   const actualDuration = durationConverter(duration);
   const dblDuration = doubleDuration(duration);
-  const filterDate = !isNaN(actualDuration)
+  const filterDate = !isNaN(actualDuration) && actualDuration !== Infinity
     ? getFilterDate(actualDuration)
     : NaN;
-  const analyzeDate = !isNaN(dblDuration) ? getFilterDate(dblDuration) : NaN;
+  const analyzeDate = !isNaN(dblDuration) && dblDuration !== Infinity ? getFilterDate(dblDuration) : NaN;
 
   const query: FilterQuery<QUERYTYPE> = {};
-  if (!isNaN(actualDuration)) {
+  if (!isNaN(actualDuration) && actualDuration !== Infinity && !isNaN(filterDate as any)) {
     query.createdAt = { $gte: filterDate };
     query.isUserBounce = true;
   }
   const query2: FilterQuery<QUERYTYPE> = {};
-  if (!isNaN(dblDuration)) {
+  if (!isNaN(dblDuration) && dblDuration !== Infinity && !isNaN(analyzeDate as any)) {
     query2.createdAt = { $gte: analyzeDate };
     query.isUserBounce = true;
   }

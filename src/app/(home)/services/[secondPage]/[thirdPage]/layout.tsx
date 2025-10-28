@@ -20,9 +20,12 @@ export async function generateMetadata({
   } catch {
     // Use default metadata for new slugs
     return {
-      title: "Default Service Title",
-      description: "Default description for the service page",
-      keywords: "services, advertising, default",
+      title:
+        "Book Newspaper Ads Online | Best Newspaper Advertising Agency India",
+      description:
+        "Book newspaper ads online at discounted rates with Delhi-NCR’s top agency. Compare full, half & quarter page ad costs across leading papers. Instant booking & expert support.",
+      keywords:
+        "book ads, book ads online, book classified ads online, newspaper advertising, dainik jagran newspaper ad booking, classified advertising rates, newspaper classified ad, print ads, advertisement, dainik jagran advertisement rates, dainik jagran advertisement cost, book matrimonial ad in newspaper, newspaper classified advertising cost, classified advertising rates, classified ad booking cost, newspaper classified ad rates, newspaper advertising cost, classified advertising rate card, Paper Advertisement पेपर वाले विज्ञापन, Hindustan Times ad rates, Times of India ad rates, Print ad rates, Print ads rate, full-page ad rates, half-page ad rates, quarter-page ad rates, Jacket Ad rates, Cost for Matrimonial, Property, Tender, Recruitment, Legal, Education & Public Notice Classifieds.",
     };
   }
 }

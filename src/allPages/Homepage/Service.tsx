@@ -97,6 +97,7 @@ const Service: React.FC<ServiceProps> = ({ data }) => {
                     loop
                     muted
                     playsInline
+                    preload="metadata"
                     style={videoStyle}
                   />
                 </div>

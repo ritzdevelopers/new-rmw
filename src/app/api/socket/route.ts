@@ -15,12 +15,14 @@ export async function GET() {
   try {
     await connectMongoDB();
 
-    const activeUser = await ACtiveUser.find({
+    const activeUsers = await ACtiveUser.find({
       createdAt: { $gte: new Date(Date.now() - 2 * 60 * 1000) },
     });
-    console.log(activeUser);
     
-    return NextResponse.json({ count: activeUser || 0 });
+    // Get unique IPs for accurate count
+    const uniqueIPs = [...new Set(activeUsers.map(user => user.ipAddress))];
+    
+    return NextResponse.json({ count: uniqueIPs });
   } catch (error) {
     console.error("Internal Server Error!", error);
     return NextResponse.json(

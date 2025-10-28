@@ -1,12 +1,20 @@
 export function getPercentage(compData: number, actualData: number): string {
-
-
+  // Handle division by zero
   if (compData === 0) {
-    return "∞%"; // agar comparison data 0 hai to infinite growth hoga
-  } 
+    if (actualData > 0) {
+      return "∞%"; // Infinite growth from zero
+    } else {
+      return "0.00%"; // Both are zero
+    }
+  }
   
   const diff = actualData - compData;
-  const per = (diff / compData) * 100; //  formula
-   console.log("Comp Data ", diff);
+  const per = (diff / compData) * 100;
+  
+  // Limit extremely large percentages for better UX
+  if (per > 10000) {
+    return "10000+%";
+  }
+  
   return per.toFixed(2) + "%";
 }

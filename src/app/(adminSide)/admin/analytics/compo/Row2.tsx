@@ -57,105 +57,6 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
     return paths.sort((a, b) => b.value - a.value);
   }, [userTravelPath]);
 
-  // Session data by month
-  const sessionData = {
-    months: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
-    totalSessions: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    uniqueUsers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    avgTime: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  };
-
-  // Session analytics chart options
-  const getSessionChartOption = () => {
-    return {
-      tooltip: {
-        trigger: "axis",
-        axisPointer: {
-          type: "shadow",
-        },
-      },
-      legend: {
-        data: ["Total Sessions", "Unique Users"],
-        top: 10,
-        textStyle: {
-          fontSize: isMobile ? 10 : 12,
-        },
-      },
-      grid: {
-        left: "3%",
-        right: "4%",
-        bottom: "3%",
-        top: isMobile ? "15%" : "20%",
-        containLabel: true,
-      },
-      xAxis: {
-        type: "category",
-        data: sessionData.months,
-        axisLabel: {
-          fontSize: isMobile ? 9 : 11,
-          interval: isMobile ? 2 : 0,
-        },
-      },
-      yAxis: {
-        type: "value",
-        name: "Users",
-        nameTextStyle: {
-          fontSize: isMobile ? 10 : 12,
-        },
-        axisLabel: {
-          fontSize: isMobile ? 10 : 12,
-        },
-      },
-      series: [
-        {
-          name: "Total Sessions",
-          type: "bar",
-          data: sessionData.totalSessions,
-          itemStyle: {
-            color: "#5470c6",
-          },
-          barWidth: isMobile ? "20%" : "30%",
-        },
-        {
-          name: "Unique Users",
-          type: "bar",
-          data: sessionData.uniqueUsers,
-          itemStyle: {
-            color: "#91cc75",
-          },
-          barWidth: isMobile ? "20%" : "30%",
-        },
-        {
-          name: "Average Time",
-          type: "line",
-          yAxisIndex: 0,
-          data: sessionData.avgTime.map((t) => t * 1000), // Scale for better visualization
-          itemStyle: {
-            color: "#fac858",
-          },
-          lineStyle: {
-            width: 2,
-          },
-          symbol: isMobile ? "none" : "emptyCircle",
-          symbolSize: 6,
-        },
-      ],
-    };
-  };
-
   // User travel chart options
   const getTravelChartOption = () => {
     // Take top 10 paths for better visualization
@@ -249,30 +150,30 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
   // Table view for user travel paths
   const TravelPathsTable = () => {
     return (
-      <div className="mt-4 overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+      <div className="mt-6 overflow-x-auto rounded-xl border border-gray-200">
+        <table className="min-w-full">
+          <thead className="bg-gradient-to-r from-emerald-100 to-emerald-50">
             <tr>
-              <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-5 py-3 text-left text-xs font-bold text-emerald-800 uppercase tracking-wider">
                 From
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-5 py-3 text-left text-xs font-bold text-emerald-800 uppercase tracking-wider">
                 To
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-5 py-3 text-left text-xs font-bold text-emerald-800 uppercase tracking-wider">
                 Sessions
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-gray-100">
             {processedTravelData.slice(0, 10).map((path, index) => (
               <tr
                 key={index}
-                className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                className={`transition-colors duration-150 ${index % 2 === 0 ? "bg-white hover:bg-emerald-50" : "bg-gray-50 hover:bg-emerald-50"}`}
               >
-                <td className="px-4 py-2 text-sm text-gray-900">{path.from}</td>
-                <td className="px-4 py-2 text-sm text-gray-900">{path.to}</td>
-                <td className="px-4 py-2 text-sm text-gray-900 font-medium">
+                <td className="px-5 py-3 text-sm font-medium text-gray-800">{path.from}</td>
+                <td className="px-5 py-3 text-sm font-medium text-gray-800">{path.to}</td>
+                <td className="px-5 py-3 text-sm font-bold text-emerald-600">
                   {path.value}
                 </td>
               </tr>
@@ -284,85 +185,34 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
   };
 
   return (
-    <div className="w-full p-4 bg-gray-50 min-h-[10vh]">
-      <div className="flex flex-col lg:flex-row gap-4">
-        {/* Left Side - Session Analytics */}
-        <div className="w-full lg:w-1/2 bg-white rounded-xl shadow-sm p-4 md:p-6 border border-gray-100">
-          <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-4 flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 md:h-6 md:w-6 text-indigo-600 mr-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-              />
-            </svg>
-            Session Analytics
-          </h2>
-          <ReactECharts
-            option={getSessionChartOption()}
-            style={{ height: isMobile ? "300px" : "400px", width: "100%" }}
-            opts={{ renderer: "svg" }}
-          />
-          <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-            <div className="bg-blue-50 p-2 rounded-lg">
-              <p className="text-xs text-gray-600">Total Sessions</p>
-              <p className="text-sm font-bold text-blue-600">
-                {sessionData.totalSessions
-                  .reduce((a, b) => a + b, 0)
-                  .toLocaleString()}
-              </p>
-            </div>
-            <div className="bg-green-50 p-2 rounded-lg">
-              <p className="text-xs text-gray-600">Unique Users</p>
-              <p className="text-sm font-bold text-green-600">
-                {sessionData.uniqueUsers
-                  .reduce((a, b) => a + b, 0)
-                  .toLocaleString()}
-              </p>
-            </div>
-            <div className="bg-yellow-50 p-2 rounded-lg">
-              <p className="text-xs text-gray-600">Avg. Time (min)</p>
-              <p className="text-sm font-bold text-yellow-600">
-                {(
-                  sessionData.avgTime.reduce((a, b) => a + b, 0) /
-                  sessionData.avgTime.length
-                ).toFixed(1)}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Side - User Travel Paths */}
-        <div className="w-full lg:w-1/2 bg-white rounded-xl shadow-sm p-4 md:p-6 border border-gray-100">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-            <h2 className="text-lg md:text-xl font-semibold text-gray-800 flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 md:h-6 md:w-6 text-indigo-600 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
+    <div className="w-full px-4 sm:px-5 md:px-6 pb-6">
+      <div className="w-full">
+        {/* User Travel Paths */}
+        <div className="w-full bg-gradient-to-br from-white to-emerald-50 rounded-2xl shadow-lg p-6 border border-gray-200 hover:shadow-xl transition-all duration-300">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800 flex items-center mb-3 md:mb-0">
+              <div className="p-3 bg-emerald-100 rounded-xl mr-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 md:h-7 md:w-7 text-emerald-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
               User Travel Paths
             </h2>
             <TimeRangeSelect />
@@ -376,10 +226,12 @@ function Row2({ setDuration, setQueryType, userTravelPath }: ROWDATA) {
           {/* Table view for better readability */}
           <TravelPathsTable />
 
-          <div className="mt-4 text-sm text-gray-600">
-            <p className="text-center">
-              Shows how users navigate between pages on your website
-            </p>
+          <div className="mt-6 text-sm">
+            <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3">
+              <p className="text-center font-medium text-emerald-700">
+                Shows how users navigate between pages on your website
+              </p>
+            </div>
           </div>
         </div>
       </div>

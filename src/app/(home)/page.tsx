@@ -41,22 +41,6 @@ export const metadata = {
       },
     ],
   },
-  other: {
-    "link:preload": [
-      {
-        rel: "preload",
-        as: "video",
-        href: "/test-images/test-video.mp4",
-        type: "video/mp4",
-      },
-      {
-        rel: "preload",
-        as: "video",
-        href: "/videos/bg_pattern.mp4",
-        type: "video/mp4",
-      },
-    ],
-  },
 };
 
 export default function Home() {

@@ -4,6 +4,8 @@ import Row1 from "./compo/Row1";
 import Row2 from "./compo/Row2";
 import Row3 from "./compo/Row3";
 import axios from "axios";
+import { TrendingUp, Calendar, Download, RefreshCw } from "lucide-react";
+import styles from "./page.module.css";
 
 // Interface for Devices Info items
 interface DeviceInfoItem {
@@ -204,19 +206,88 @@ useEffect(() => {
 }, []);
 
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, [analyticalData]);
+
+  useEffect(() => {
+    setLastUpdated(new Date());
+  }, [analyticalData]);
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  };
+
   return (
-    <section className="flex w-full flex-col gap-4 overflow-x-hidden">
+    <section className={styles.analyticsPage}>
+      {/* Professional Header */}
+      <div className={styles.pageHeader}>
+        <div className={styles.headerContent}>
+          <div className={styles.headerLeft}>
+            <h1 className={styles.pageTitle}>Analytics Dashboard</h1>
+            <p className={styles.pageSubtitle}>
+              Comprehensive insights into your website performance
+            </p>
+          </div>
+          <div className={styles.headerRight}>
+            <div className={styles.lastUpdate}>
+              <RefreshCw size={14} className={styles.icon} />
+              <span>Last updated: {formatTime(lastUpdated)}</span>
+            </div>
+            <button className={styles.downloadBtn}>
+              <Download size={16} />
+              <span>Export</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Quick Stats Overview */}
+        <div className={styles.quickStats}>
+          <div className={styles.quickStatCard}>
+            <TrendingUp size={20} className={styles.quickStatIcon} />
+            <div>
+              <div className={styles.quickStatValue}>{liveUsers}</div>
+              <div className={styles.quickStatLabel}>Live Users</div>
+            </div>
+          </div>
+          <div className={styles.quickStatCard}>
+            <TrendingUp size={20} className={styles.quickStatIcon} />
+            <div>
+              <div className={styles.quickStatValue}>{totalUsers?.totalUsers || "0"}</div>
+              <div className={styles.quickStatLabel}>Total Users</div>
+            </div>
+          </div>
+          <div className={styles.quickStatCard}>
+            <TrendingUp size={20} className={styles.quickStatIcon} />
+            <div>
+              <div className={styles.quickStatValue}>{sessionCount?.totalSessions || "0"}</div>
+              <div className={styles.quickStatLabel}>Sessions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Loading State */}
+      {isLoading && (
+        <div className={styles.loadingOverlay}>
+          <div className={styles.loadingSpinner}></div>
+          <p>Loading analytics data...</p>
+        </div>
+      )}
+
       {/* Total Users, Session Count, Bounce Rate, Avg. Visit Duration, User Session Analytics in Row1 */}
       <Row1
         totalUsers={totalUsers}
         sessionCount={sessionCount}
         boundeRate={boundeRate}
         avgVisitDuration={avgVisitDuration}
-        sessionAnalyticsByCity={sessionAnalyticsByCity}
         setDuration={setDuration}
         setFilter={setFilter}
         setQueryType={setQueryType}
-        setQType={setQType}
         liveUsers={liveUsers}
       />
 

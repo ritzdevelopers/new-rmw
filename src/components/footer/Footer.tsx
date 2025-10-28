@@ -40,7 +40,8 @@ const Footer = () => {
                             height={100}
                             src="/logo-brown.png"
                             alt="logo"
-                            priority
+                            loading="lazy"
+                            quality={75}
                           />
                         </Link>
                       </div>
@@ -401,7 +402,14 @@ info@ritzmediaworld.com"
                   </div>
                 </div>
                 <div style={{ marginTop: "20px" }}>
-                  <img src="/rmwPartners.png" alt="" />
+                  <Image
+                    src="/rmwPartners.png"
+                    alt="Ritz Media World Partners"
+                    width={398}
+                    height={100}
+                    loading="lazy"
+                    quality={75}
+                  />
                 </div>
               </div>
             </div>

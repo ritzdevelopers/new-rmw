@@ -1,9 +1,12 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/main.css";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/header/Header";
 import Script from "next/script";
 import ClientOnlyComponents from "@/components/ClientOnlyComponents";
+
+// Import CSS once at layout level to avoid duplication
+import "./bootstrap.css";
+import "../styles/main.css";
+import "swiper/css";
 
 export default function HomeLayout({
   children,
@@ -14,9 +17,9 @@ export default function HomeLayout({
     <>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-0YHLN54GF7"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
       />
-      <Script id="gtag-init" strategy="lazyOnload">
+      <Script id="gtag-init" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -26,7 +29,7 @@ export default function HomeLayout({
       </Script>
 
       {/* Facebook Pixel */}
-      <Script id="facebook-pixel" strategy="lazyOnload">
+      <Script id="facebook-pixel" strategy="afterInteractive">
         {`
           !function(f,b,e,v,n,t,s){
             if(f.fbq)return;

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import "swiper/css";
 import "@/app/styles/marque.css";
 
 // Extracted repeated SVG into a constant (for reuse)

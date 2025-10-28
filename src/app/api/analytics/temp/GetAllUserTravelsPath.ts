@@ -22,10 +22,10 @@ interface QTYPE {
 export async function getUserTravelsPath(duration: string) {
   await connectMongoDB();
   const dayForFilter = durationConverter(duration);
-  const filterDate = !isNaN(dayForFilter) ? getFilterDate(dayForFilter) : NaN;
+  const filterDate = !isNaN(dayForFilter) && dayForFilter !== Infinity ? getFilterDate(dayForFilter) : NaN;
   const query: FilterQuery<QTYPE> = {};
 
-  if (!isNaN(dayForFilter)) {
+  if (!isNaN(dayForFilter) && dayForFilter !== Infinity) {
     query.createdAt = { $gte: filterDate };
   }
 

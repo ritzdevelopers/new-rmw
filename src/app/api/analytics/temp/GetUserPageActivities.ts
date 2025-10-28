@@ -41,10 +41,10 @@ export async function getUserSpendTimeOnEveryPage(duration: string): Promise<Rec
   await connectMongoDB();
 
   const extractDay = durationConverter(duration);
-  const filterDate = !isNaN(extractDay) ? getFilterDate(extractDay) : NaN;
+  const filterDate = !isNaN(extractDay) && extractDay !== Infinity ? getFilterDate(extractDay) : NaN;
 
   const query: FilterQuery<QUERY> = {};
-  if (!isNaN(extractDay)) {
+  if (!isNaN(extractDay) && extractDay !== Infinity) {
     query.createdAt = { $gte: filterDate };
   }
 

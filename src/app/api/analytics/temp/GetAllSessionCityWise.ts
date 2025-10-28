@@ -45,12 +45,12 @@ export async function getAllSessionsWithCityWise(
   await connectMongoDB();
 
   const filterDuration = durationConverter(duration);
-  const filterDate = !isNaN(filterDuration)
+  const filterDate = !isNaN(filterDuration) && filterDuration !== Infinity
     ? getFilterDate(filterDuration)
     : NaN;
 
   const query: FilterQuery<QTYPE> = {};
-  if (!isNaN(filterDuration)) {
+  if (!isNaN(filterDuration) && filterDuration !== Infinity) {
     query.createdAt = { $gte: filterDate };
   }
 

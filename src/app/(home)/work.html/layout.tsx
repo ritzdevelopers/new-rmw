@@ -4,11 +4,11 @@
 // };
 
 export const metadata = {
-  title: "Work | Ritz Media World",
+  title: "Portfolio & Case Studies | Ritz Media World Delhi NCR",
   description:
-    "Hire Digital marketing agency near me and Get Work, Ritz Media World. and also know Who is the best ad agency?",
+    "Explore the portfolio of Ritz Media World – award-winning ad & digital agency in Delhi NCR showcasing brand campaigns, print, radio, web & immersive storytelling.",
   keywords:
-    "Ads agency list, Advertising agency list, Top advertising agencies in Delhi, what we do, marketing agency near delhi, Digital marketing agency, Best digital marketing agency",
+    "Ritz Media World portfolio, advertising agency case studies Delhi NCR, digital campaign portfolio Delhi, print advertising work India, radio advertising case study Delhi NCR, brand campaign portfolio India, web & digital marketing work Delhi, creative agency case studies India, advertising agency work Delhi NCR, full-service ad campaign portfolio India",
 };
 export default function WorkLayout({
   children,

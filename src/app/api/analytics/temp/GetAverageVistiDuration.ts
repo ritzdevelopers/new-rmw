@@ -15,20 +15,20 @@ export async function getALlAverageVisitDuration(duration: string) {
   await connectMongoDB();
   const actualDuration = durationConverter(duration);
   const comparisonDuration = doubleDuration(duration);
-  const filterDate = !isNaN(actualDuration)
+  const filterDate = !isNaN(actualDuration) && actualDuration !== Infinity
     ? getFilterDate(actualDuration)
     : NaN;
-  const comparionDate = !isNaN(comparisonDuration)
+  const comparionDate = !isNaN(comparisonDuration) && comparisonDuration !== Infinity
     ? getFilterDate(comparisonDuration)
     : NaN;
 
   const query: FilterQuery<QUERYTYPE> = {};
-  if (!isNaN(actualDuration)) {
+  if (!isNaN(actualDuration) && actualDuration !== Infinity && !isNaN(filterDate as any)) {
     query.createdAt = { $gte: filterDate };
     query.userTotalVisitTime = { $gte: 1 };
   }
   const query2: FilterQuery<QUERYTYPE> = {};
-  if (!isNaN(comparisonDuration)) {
+  if (!isNaN(comparisonDuration) && comparisonDuration !== Infinity && !isNaN(comparionDate as any)) {
     query2.createdAt = { $gte: comparionDate };
     query2.userTotalVisitTime = { $gte: 1 };
   }

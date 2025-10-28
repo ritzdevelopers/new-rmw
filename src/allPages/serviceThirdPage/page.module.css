@@ -185,8 +185,6 @@
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-
-
 .filterContent {
   width: 100%;
   padding: 0 24px 16px 24px;
@@ -482,7 +480,7 @@
   text-align: center;
   width: 100%;
   height: 100%;
-  border: 1px solid #9b9b9b;
+  border: 1px solid #e2e8f0;
   position: relative;
 }
 
@@ -597,17 +595,18 @@
 .newspaperColumn {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
 }
 
 .newspaperItem {
   display: flex;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0px;
   transition: all 0.2s ease;
-  border-radius: 6px;
-  padding: 12px;
-  margin-bottom: 8px;
+  border-radius: 4px;
+  padding: 3px;
+  margin-bottom: 3px;
+  padding-left: 6px;
   flex-direction: column;
   /* background-color: #f8f9fa;
   border: 1px solid #e2e8f0; */
@@ -627,7 +626,7 @@
 }
 
 .newspaperNameItem {
-  font-size: 18px;
+  font-size: 16px;
   color: #000000;
   line-height: 1.5;
   margin: 0;

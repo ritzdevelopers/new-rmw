@@ -1,14 +1,19 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import Home from "./Homepage/Home";
 import Service from "./Homepage/Service";
-import Footer from "@/components/footer/Footer";
-import SwiperHome from "./Homepage/SwiperHome";
-import Work from "./Homepage/Work";
-import Projects from "./Homepage/Projects";
-import ProjectSwiper from "./Homepage/ProjectSwiper";
-import Awards from "./Homepage/Awards";
-import Experience from "./Homepage/Experience";
-import Feedback from "./Homepage/Feedback";
-import IntersectionObserverClient from "./Homepage/IntersectionObserverClient";
+
+// Lazy load below-the-fold components
+const Footer = dynamic(() => import("@/components/footer/Footer"), { ssr: false });
+const SwiperHome = dynamic(() => import("./Homepage/SwiperHome"), { ssr: false });
+const Work = dynamic(() => import("./Homepage/Work"), { ssr: false });
+const Projects = dynamic(() => import("./Homepage/Projects"), { ssr: false });
+const ProjectSwiper = dynamic(() => import("./Homepage/ProjectSwiper"), { ssr: false });
+const Awards = dynamic(() => import("./Homepage/Awards"), { ssr: false });
+const Experience = dynamic(() => import("./Homepage/Experience"), { ssr: false });
+const Feedback = dynamic(() => import("./Homepage/Feedback"), { ssr: false });
+const IntersectionObserverClient = dynamic(() => import("./Homepage/IntersectionObserverClient"), { ssr: false });
 
 export default function Elementor() {
   const data = [

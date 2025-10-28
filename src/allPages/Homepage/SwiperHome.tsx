@@ -2,7 +2,6 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import "swiper/css";
 import styles from "./page.module.css";
 import Image from "next/image";
 
@@ -105,6 +104,8 @@ const SwiperHome = () => {
                                     // fill
                                     className={styles.swImg}
                                     quality={70}
+                                    loading="lazy"
+                                    sizes="(max-width: 768px) 50vw, 207px"
                                   />
                                 </div>
                               </div>

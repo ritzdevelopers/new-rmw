@@ -22,7 +22,9 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   children,
 }) => {
   return (
-    <div style={{ position: "relative", display: "inline-block", width:'100%'}}>
+    <div
+      style={{ position: "relative", display: "inline-block", width: "100%" }}
+    >
       <select value={value} onChange={onChange} className={className}>
         {children}
       </select>
@@ -202,8 +204,6 @@ function ServiceThirdMainPage2() {
 
       // Apply filters
       if (selectedLocation) {
-      
-        
         // Convert back to proper case for matching
         const locationValue =
           selectedLocation.charAt(0).toUpperCase() + selectedLocation.slice(1);
@@ -291,7 +291,7 @@ function ServiceThirdMainPage2() {
       const response = await fetch("/api/newspaper/filters");
       const result = await response.json();
       console.log("These are filter options ", result);
-      
+
       if (result.success) {
         setFilterOptions(result.data);
       }
@@ -405,7 +405,7 @@ function ServiceThirdMainPage2() {
     slug: newspaper.slug,
     circulation: newspaper.circulation,
   }));
-  
+
   return (
     <section className={styles.mainContainer}>
       {/* Center Align Main Container  */}
@@ -522,7 +522,7 @@ function ServiceThirdMainPage2() {
                   />
                 </div>
                 <div
-                style={{width:'100%'}}
+                  style={{ width: "100%" }}
                   className={`${styles.filterContent} ${
                     expandedSections.location ? styles.expanded : ""
                   }`}
@@ -772,11 +772,10 @@ function ServiceThirdMainPage2() {
                   onClick={() => handleNewspaperClick(newspaper.slug)}
                 >
                   <p className={styles.newspaperNameItem}>
-                    <span className={styles.bulletPoint}>•</span> {newspaper.paperName}
+                    <span className={styles.bulletPoint}>•</span>{" "}
+                    {newspaper.paperName}
                   </p>
-                  <p className={styles.languageTag}>
-                    ({newspaper.language})
-                  </p>
+                  <p className={styles.languageTag}>({newspaper.language})</p>
                 </div>
               ))}
             </div>

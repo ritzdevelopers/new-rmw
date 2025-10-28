@@ -306,51 +306,75 @@ function Row3({
   };
 
   return (
-    <div className="flex flex-col gap-6 p-4 bg-white min-h-screen text-gray-800 overflow-x-hidden">
+    <div className="flex flex-col gap-6 px-4 sm:px-5 md:px-6 pb-6 text-gray-800 overflow-x-hidden">
       {/* Chart 1: User Devices Pie Chart */}
-      <div className="flex flex-col lg:flex-row justify-between gap-4">
-        <div className="w-full lg:w-1/3 bg-gray-100 rounded-lg p-4 shadow-lg border border-gray-200">
-          <h2 className="text-lg font-semibold mb-4 text-center">
-            User Devices
-          </h2>
+      <div className="flex flex-col lg:flex-row justify-between gap-6">
+        <div className="w-full lg:w-1/3 bg-gradient-to-br from-white to-pink-50 rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+          <div className="flex items-center justify-center mb-6">
+            <h2 className="text-xl font-bold text-gray-800 flex items-center">
+              <div className="p-3 bg-pink-100 rounded-xl mr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              User Devices
+            </h2>
+          </div>
           <div ref={pieChartRef} className="h-64 md:h-80"></div>
         </div>
 
         {/* Chart 2: User Referral Bar Chart */}
-        <div className="w-full lg:w-2/3 bg-gray-100 rounded-lg p-4 shadow-lg border border-gray-200 flex flex-col gap-2">
-          <div className="flex items-center">
-            <label htmlFor="timeFilter" className="mr-2 text-sm font-medium">
-              Time Period:
-            </label>
-            <select
-              id="timeFilter"
-              value={timeFilter2}
-              onChange={(e) => {
-                setTimeFilter2(e.target.value);
-                setDuration(e.target.value);
-                setQueryType("User Referral Sources");
-              }}
-              className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            >
-              <option value="Last 7 Days">Last 7 Days</option>
-              <option value="Last 30 Days">Last 30 Days</option>
-              <option value="Last 6 Month">Last 6 Months</option>
-              <option value="Last 1 Year">Last 12 Months</option>
-              <option value="All Time">All Time</option>
-            </select>
+        <div className="w-full lg:w-2/3 bg-gradient-to-br from-white to-violet-50 rounded-2xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-bold text-gray-800 flex items-center">
+              <div className="p-3 bg-violet-100 rounded-xl mr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              Referral Sources
+            </h2>
+            <div className="flex items-center">
+              <label htmlFor="timeFilter" className="mr-2 text-sm font-semibold text-gray-700">
+                Period:
+              </label>
+              <select
+                id="timeFilter"
+                value={timeFilter2}
+                onChange={(e) => {
+                  setTimeFilter2(e.target.value);
+                  setDuration(e.target.value);
+                  setQueryType("User Referral Sources");
+                }}
+                className="px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-violet-500 font-medium"
+              >
+                <option value="Last 7 Days">Last 7 Days</option>
+                <option value="Last 30 Days">Last 30 Days</option>
+                <option value="Last 6 Month">Last 6 Months</option>
+                <option value="Last 1 Year">Last 12 Months</option>
+                <option value="All Time">All Time</option>
+              </select>
+            </div>
           </div>
           <div ref={barChartRef} className="h-64 md:h-80"></div>
         </div>
       </div>
 
       {/* Table: User Page Activity */}
-      <div className="w-full bg-gray-100 rounded-lg p-4 shadow-lg overflow-x-auto border border-gray-200">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold">User Page Activity</h2>
-          <div className="flex items-center gap-4">
+      <div className="w-full bg-gradient-to-br from-white to-orange-50 rounded-2xl p-6 shadow-lg overflow-x-auto border border-gray-200 hover:shadow-xl transition-all duration-300">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4">
+          <h2 className="text-xl font-bold text-gray-800 flex items-center">
+            <div className="p-3 bg-orange-100 rounded-xl mr-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            User Page Activity
+          </h2>
+          <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center">
-              <label htmlFor="timeFilter" className="mr-2 text-sm font-medium">
-                Time Period:
+              <label htmlFor="timeFilter" className="mr-2 text-sm font-semibold text-gray-700">
+                Period:
               </label>
               <select
                 id="timeFilter"
@@ -361,7 +385,7 @@ function Row3({
                   setQueryType("User Page Activity");
                   setCurrentPage(1); // Reset to first page when changing time filter
                 }}
-                className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-medium"
               >
                 <option value="7 days">Last 7 Days</option>
                 <option value="30 days">Last 30 Days</option>
@@ -371,14 +395,14 @@ function Row3({
               </select>
             </div>
             <div className="flex items-center">
-              <label htmlFor="itemsPerPage" className="mr-2 text-sm font-medium">
-                Rows per page:
+              <label htmlFor="itemsPerPage" className="mr-2 text-sm font-semibold text-gray-700">
+                Rows:
               </label>
               <select
                 id="itemsPerPage"
                 value={itemsPerPage}
                 onChange={handleItemsPerPageChange}
-                className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="px-4 py-2 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 font-medium"
               >
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -388,57 +412,53 @@ function Row3({
             </div>
           </div>
         </div>
-        <table className="w-full table-auto">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="px-4 py-2 text-left">Link Path</th>
-              <th className="px-4 py-2 text-left">Users</th>
-              <th className="px-4 py-2 text-left">Time Spent</th>
-              <th className="px-4 py-2 text-left">Average Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {getPaginatedPageActivityData().length > 0 ? (
-              getPaginatedPageActivityData().map((row, index) => (
-                <tr
-                  key={index}
-                  className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
-                >
-                  <td className="px-4 py-2 border-t border-gray-200">
-                    {row.path}
-                  </td>
-                  <td className="px-4 py-2 border-t border-gray-200">
-                    {row.activeUsers}
-                  </td>
-                  <td className="px-4 py-2 border-t border-gray-200">
-                    {row.timeSpent}
-                  </td>
-                  <td className="px-4 py-2 border-t border-gray-200">
-                    {row.avgTime}
+        <div className="overflow-hidden rounded-xl border border-gray-200">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-gradient-to-r from-orange-100 to-orange-50">
+                <th className="px-5 py-3 text-left text-xs font-bold text-orange-800 uppercase tracking-wider">Link Path</th>
+                <th className="px-5 py-3 text-left text-xs font-bold text-orange-800 uppercase tracking-wider">Users</th>
+                <th className="px-5 py-3 text-left text-xs font-bold text-orange-800 uppercase tracking-wider">Time Spent</th>
+                <th className="px-5 py-3 text-left text-xs font-bold text-orange-800 uppercase tracking-wider">Average Time</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-100">
+              {getPaginatedPageActivityData().length > 0 ? (
+                getPaginatedPageActivityData().map((row, index) => (
+                  <tr
+                    key={index}
+                    className={`transition-colors duration-150 ${index % 2 === 0 ? "bg-white hover:bg-orange-50" : "bg-gray-50 hover:bg-orange-50"}`}
+                  >
+                    <td className="px-5 py-3 text-sm font-medium text-gray-800">{row.path}</td>
+                    <td className="px-5 py-3 text-sm font-medium text-gray-800">{row.activeUsers}</td>
+                    <td className="px-5 py-3 text-sm font-medium text-gray-800">{row.timeSpent}</td>
+                    <td className="px-5 py-3 text-sm font-bold text-orange-600">{row.avgTime}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={4} className="px-5 py-8 text-center text-gray-500 font-medium">
+                    No data available
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={4} className="px-4 py-4 text-center">
-                  No data available
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
         
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="flex justify-between items-center mt-4">
-            <div className="text-sm text-gray-700">
-              Showing {((currentPage - 1) * itemsPerPage) + 1} to {Math.min(currentPage * itemsPerPage, getPageActivityData().length)} of {getPageActivityData().length} entries
+          <div className="flex flex-col sm:flex-row justify-between items-center mt-6 gap-4 bg-orange-50 border border-orange-200 rounded-xl p-4">
+            <div className="text-sm font-semibold text-gray-700">
+              Showing <span className="text-orange-600">{(currentPage - 1) * itemsPerPage + 1}</span> to{' '}
+              <span className="text-orange-600">{Math.min(currentPage * itemsPerPage, getPageActivityData().length)}</span> of{' '}
+              <span className="text-orange-600">{getPageActivityData().length}</span> entries
             </div>
             <div className="flex space-x-2">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="px-3 py-1 border border-gray-300 rounded-md disabled:opacity-50"
+                className="px-4 py-2 bg-white border border-gray-300 rounded-lg font-semibold text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-orange-50 hover:border-orange-300 transition-all"
               >
                 Previous
               </button>
@@ -459,8 +479,10 @@ function Row3({
                   <button
                     key={pageNum}
                     onClick={() => handlePageChange(pageNum)}
-                    className={`px-3 py-1 border border-gray-300 rounded-md ${
-                      currentPage === pageNum ? "bg-blue-500 text-white" : ""
+                    className={`px-4 py-2 font-bold rounded-lg transition-all ${
+                      currentPage === pageNum
+                        ? "bg-orange-600 text-white shadow-md"
+                        : "bg-white border border-gray-300 text-gray-700 hover:bg-orange-50 hover:border-orange-300"
                     }`}
                   >
                     {pageNum}
@@ -470,7 +492,7 @@ function Row3({
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-3 py-1 border border-gray-300 rounded-md disabled:opacity-50"
+                className="px-4 py-2 bg-white border border-gray-300 rounded-lg font-semibold text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-orange-50 hover:border-orange-300 transition-all"
               >
                 Next
               </button>
