@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 // import { useSplitText } from "@/hooks/useSplitText";
-import useGSAPHoverEffect from "@/hooks/useGSAPHoverEffect";
+// import useGSAPHoverEffect from "@/hooks/useGSAPHoverEffect"; // Disabled for performance
 import PagesBanner from "@/components/pagesBanner/PagesBanner";
 import styles from "./page.module.css";
 import Image from "next/image";
 const AboutFirst = () => {
   // const textRefs = useSplitText();
-  useGSAPHoverEffect();
+  // useGSAPHoverEffect(); // Disabled for performance
 
   return (
     <div className="elementor-widget-container">
@@ -69,7 +69,8 @@ const AboutFirst = () => {
               alt="About The Agency & Legacy"
               fill
               priority
-              quality={100}
+              quality={75}
+              sizes="100vw"
               style={{
                 objectFit: "cover",
               }}

@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-// import { useSplitText } from "@/hooks/useSplitText";
 import Image from "next/image";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { memo } from "react";
 
-const Footer = () => {
+const Footer = memo(() => {
   // const textRefs = useSplitText();
 
   return (
@@ -41,7 +41,8 @@ const Footer = () => {
                             src="/logo-brown.png"
                             alt="logo"
                             loading="lazy"
-                            quality={75}
+                            quality={60}
+                            priority={false}
                           />
                         </Link>
                       </div>
@@ -408,7 +409,8 @@ info@ritzmediaworld.com"
                     width={398}
                     height={100}
                     loading="lazy"
-                    quality={75}
+                    quality={60}
+                    priority={false}
                   />
                 </div>
               </div>
@@ -419,6 +421,8 @@ info@ritzmediaworld.com"
       </section>
     </footer>
   );
-};
+});
+
+Footer.displayName = "Footer";
 
 export default Footer;

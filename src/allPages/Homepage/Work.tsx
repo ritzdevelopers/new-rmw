@@ -40,9 +40,6 @@ const Work = () => {
                     >
                       <div className="tp-funfact__title-box tp-cursor-point-area mb-3 p-relative tp_fun_fact_title_text_align">
                         <h3
-                          ref={(el) => {
-                            if (el) textRefs.current.push(el);
-                          }}
                           className="tp-section-title tp-funfact-title tp-split__text tp-split__in-right"
                         >
                           Let’s Work <span>Together</span>

@@ -3,10 +3,10 @@ import React from "react";
 import { BiAnalyse } from "react-icons/bi";
 import { SiAdobecreativecloud } from "react-icons/si";
 import { FaGlobe } from "react-icons/fa6";
-import { useSplitText } from "@/hooks/useSplitText"; 
+// import { useSplitText } from "@/hooks/useSplitText"; // Disabled for performance
 
 const Experience = () => {
-  const textRefs = useSplitText();
+  // const textRefs = useSplitText(); // Disabled for performance
 
   return (
     <div
@@ -44,9 +44,6 @@ const Experience = () => {
                     <div className="tp-chooseus__wrap">
                       <div className="tp-chooseus__title-box mb-45">
                         <span
-                          ref={(el) => {
-                            if (el) textRefs.current.push(el);
-                          }}
                           className="tp-section-title-2-pre tp-split__text tp-split__in-right mb-15"
                         >
                           Why choose us

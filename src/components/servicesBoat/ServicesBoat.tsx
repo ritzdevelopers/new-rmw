@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import styles from "./page.module.css";
 import Image from "next/image";
+import chatData from "../../../new-boat.json";
 
 interface Service {
   title: string;
@@ -31,16 +32,14 @@ function ServicesBoat() {
   const backdropRef = useRef<HTMLDivElement>(null);
   const boatRef = useRef<HTMLDivElement>(null);
   const chatReff = useRef<HTMLDivElement>(null);
-
   const [isSmall, setIsSmall] = useState<boolean>(false);
   const [mobileView, setMobileView] = useState<boolean>(false);
 
   // Load JSON data
   useEffect(() => {
-    fetch("/new-boat.json")
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.error("Failed to load services data:", err));
+    if (chatData) {
+      setData(chatData);
+    }
   }, []);
 
   // Responsive handling
@@ -62,8 +61,16 @@ function ServicesBoat() {
 
   // Auto scroll
   useEffect(() => {
-    if (chatReff.current)
-      chatReff.current.scrollTop = chatReff.current.scrollHeight;
+    if (chatReff.current) {
+      const scrollTarget = chatReff.current.scrollHeight - 800;
+
+      // GSAP smooth scroll animation
+      gsap.to(chatReff.current, {
+        scrollTop: scrollTarget,
+        duration: 1.2, // smooth animation speed (in seconds)
+        ease: "power2.out", // easing for smooth motion
+      });
+    }
   }, [selectedServices]);
 
   // Click outside to close
@@ -105,15 +112,12 @@ function ServicesBoat() {
   };
 
   const handleServiceClick = (service: Service) => {
-    // Check if service already exists
-    const exists = selectedServices.find((s) => s.title === service.title);
-    if (!exists) {
-      setSelectedServices([...selectedServices, service]);
-    }
+    setSelectedServices([...selectedServices, service]);
   };
 
   const handleCTAClick = (ctaText: string, service: Service) => {
     setClickedCTA(ctaText);
+
     setShowForm(true);
   };
 
@@ -138,22 +142,64 @@ function ServicesBoat() {
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Use This API For This Form 
+    const data = {
+      etype: "ContactUs",
+      name: username,
+      phone: phone,
+      email: userEmail,
+      message,
+    };
+
     setFormLoader(true);
-    setTimeout(() => {
-      setModalMessage({
-        status: 200,
-        msg: "Form Submitted Successfully!",
+
+    try {
+      const response = await fetch("/api/system-settings/contact-enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
-      setUserEmail("");
-      setMessages("");
-      setPhone("");
-      setUserName("");
+
+      if (response.ok) {
+        setModalMessage({
+          status: 200,
+          msg: "Form Submitted Successfully!",
+        });
+        setUserEmail("");
+        setMessages("");
+        setPhone("");
+        setUserName("");
+        
+        // And After Enquiry Submit Follow This 
+        if (clickedCTA === "Get a Quotation") {
+          let link = document.createElement("a");
+          link.href = "/RMW Case Studies_250327_081936.pdf";
+          link.download = "RMW_Case_Studies.pdf";
+          link.click();
+        } else {
+          window.open("https://www.instagram.com/rmwshowcase/", "_blank");
+        }
+      } else {
+        setModalMessage({
+          status: 400,
+          msg: "Failed to submit form. Please try again.",
+        });
+      }
+    } catch (error) {
+      setModalMessage({
+        status: 500,
+        msg: "An error occurred. Please try again later.",
+      });
+    } finally {
       setFormLoader(false);
       setTimeout(() => {
         setShowForm(false);
         setModalMessage({ status: 200, msg: "" });
       }, 2000);
-    }, 1000);
+    }
   };
 
   return (
@@ -393,24 +439,19 @@ function ServicesBoat() {
                               <button
                                 key={idx}
                                 onClick={() => handleServiceClick(service)}
-                                disabled={isSelected}
                                 style={{
                                   padding: "0.45rem 0.65rem",
-                                  cursor: isSelected
-                                    ? "not-allowed"
-                                    : "pointer",
-                                  backgroundColor: isSelected
-                                    ? "#f3f4f6"
-                                    : "white",
+
+                                  backgroundColor: "white",
                                   border: "1px solid #A27020",
-                                  color: isSelected ? "#9ca3af" : "#000",
+                                  color: "#000",
                                   borderRadius: "29px",
                                   boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
                                   transition: "all 0.2s",
                                   fontSize: "0.775rem",
                                   fontWeight: 600,
                                   textAlign: "center",
-                                  opacity: isSelected ? 0.6 : 1,
+                                  opacity: 1,
                                   lineHeight: "18px",
                                   //   whiteSpace:'nowrap'
                                 }}
@@ -551,26 +592,21 @@ function ServicesBoat() {
                                   onClick={() => {
                                     setTimeout(() => {
                                       handleServiceClick(service);
-                                    }, 1000);
+                                    }, 200);
                                   }}
-                                  disabled={isSelected}
                                   style={{
                                     padding: "0.45rem 0.65rem",
-                                    cursor: isSelected
-                                      ? "not-allowed"
-                                      : "pointer",
-                                    backgroundColor: isSelected
-                                      ? "#f3f4f6"
-                                      : "white",
+
+                                    backgroundColor: "white",
                                     border: "1px solid #A27020",
-                                    color: isSelected ? "#9ca3af" : "#000",
+                                    color: "#000",
                                     borderRadius: "29px",
                                     boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
                                     transition: "all 0.2s",
                                     fontSize: "0.775rem",
                                     fontWeight: 600,
                                     textAlign: "center",
-                                    opacity: isSelected ? 0.6 : 1,
+                                    opacity: 1,
                                     lineHeight: "18px",
                                     //   whiteSpace:'nowrap'
                                   }}
@@ -600,46 +636,6 @@ function ServicesBoat() {
                       overflowY: "auto",
                     }}
                   >
-                    {/* Form Header with Close Button (Top Left) */}
-                    <div
-                      style={{
-                        padding: "1.5rem",
-                        borderBottom: "1px solid #d1d5db",
-                        position: "sticky",
-                        top: 0,
-                        backgroundColor: "white",
-                        zIndex: 10,
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      <h2 style={{ fontWeight: "bold", fontSize: "1.5rem" }}>
-                        {clickedCTA}
-                      </h2>
-                      <button
-                        onClick={handleFormClose}
-                        style={{
-                          padding: "0.5rem",
-                          borderRadius: "0.5rem",
-                          border: "1px solid #d1d5db",
-                          background: "white",
-                          cursor: "pointer",
-                          display: "flex",
-                          alignItems: "center",
-                          transition: "all 0.2s",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.backgroundColor = "#f3f4f6";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.backgroundColor = "white";
-                        }}
-                      >
-                        <X size={20} color="#8A5A0D" />
-                      </button>
-                    </div>
-
                     {/* Form */}
                     <form
                       onSubmit={submitForm}
@@ -648,9 +644,51 @@ function ServicesBoat() {
                         padding: "1.5rem",
                         display: "flex",
                         flexDirection: "column",
-                        gap: "1rem",
+                        gap: "0.5rem",
                       }}
                     >
+                      {/* Form Header with Close Button (Top Left) */}
+                      <div
+                        style={{
+                          // padding: "1.5rem",
+                          // borderBottom: "1px solid #d1d5db",
+                          position: "sticky",
+                          top: 0,
+                          backgroundColor: "white",
+                          zIndex: 10,
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                        }}
+                      >
+                        <h2 style={{ fontSize: "18px" }}>
+                          Fill enquiry form to{" "}
+                          <span style={{ fontWeight: "bold" }}>
+                            {clickedCTA}
+                          </span>
+                        </h2>
+                        <button
+                          onClick={handleFormClose}
+                          style={{
+                            padding: "0.5rem",
+                            borderRadius: "0.5rem",
+                            border: "1px solid #d1d5db",
+                            background: "white",
+                            cursor: "pointer",
+                            display: "flex",
+                            alignItems: "center",
+                            transition: "all 0.2s",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = "#f3f4f6";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = "white";
+                          }}
+                        >
+                          <X size={20} color="#8A5A0D" />
+                        </button>
+                      </div>
                       {modalMsg.msg && (
                         <div
                           style={{
@@ -775,6 +813,36 @@ function ServicesBoat() {
                         }}
                       >
                         {formLoader ? "Submitting..." : "Submit"}
+                      </button>
+
+                      <p
+                        style={{
+                          fontSize: "16px",
+                          color: "gray",
+                          textAlign: "center",
+                          alignSelf: "center",
+                          paddingTop: "18px",
+                        }}
+                      >
+                        OR IVR
+                      </p>
+                      <button
+                        onClick={() => {
+                          window.location.href = "tel:+91-9999999999";
+                        }}
+                        style={{
+                          width: "100%",
+                          padding: "0.75rem",
+                          fontWeight: 500,
+                          color: "#ffffff",
+                          backgroundColor: "#111642",
+                          border: "none",
+                          borderRadius: "0.375rem",
+                          cursor: "pointer",
+                          transition: "background-color 0.3s ease",
+                        }}
+                      >
+                        Call Me
                       </button>
                     </form>
                   </div>

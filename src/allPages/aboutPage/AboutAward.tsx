@@ -16,6 +16,8 @@ const AboutAward = () => {
                       style={{ objectFit: "cover" }}
                       fill
                       priority
+                      quality={75}
+                      sizes="(max-width: 768px) 100vw, 40vw"
                       alt="about the agency & legacy"
                     />
                   </div>

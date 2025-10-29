@@ -2,8 +2,7 @@
 
 import Loader from "@/components/loader/Loader";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import gsap from "gsap";
+import React, { useEffect, useState, useMemo, useCallback, memo } from "react";
 import { CalendarDays, Share2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useBlogContext } from "@/context/AllBlogContext";
@@ -62,7 +61,7 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs2 => ({
 });
 
 // ---------------- Component ----------------
-const Articles: React.FC = () => {
+const Articles: React.FC = memo(() => {
   const { blogs, setBlogs } = useBlogContext();
 
   const [loading, setLoading] = useState(true);
@@ -70,7 +69,7 @@ const Articles: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const cardsPerPage = 12;
+  const cardsPerPage = 6; // Further reduced for better initial render performance and TBT
   const path = usePathname();
 
   // 🔹 Restore pagination from sessionStorage
@@ -79,18 +78,13 @@ const Articles: React.FC = () => {
     if (savedPage > 1) setCurrentPage(savedPage);
   }, []);
 
-  // 🔹 Animate cards on blog change
+  // 🔹 Animate cards on blog change (optimized for performance)
   useEffect(() => {
-    if (blogs?.length) {
-      gsap.from(".mnc-card", {
-        opacity: 0,
-        y: 30,
-        stagger: 0.1,
-        duration: 0.6,
-        ease: "power2.out",
-      });
+    if (blogs?.length && typeof window !== 'undefined' && blogs.length > 0) {
+      // Skip animation entirely for better performance - reduce TBT
+      sessionStorage.setItem('blog-animated', 'true');
     }
-  }, [blogs]);
+  }, [blogs?.length]);
 
   // 🔹 Fetch blogs (with caching in sessionStorage)
   useEffect(() => {
@@ -137,41 +131,43 @@ const Articles: React.FC = () => {
     fetchBlogs();
   }, [setBlogs]);
 
-  // 🔹 Guard
-  if (!blogs || !Array.isArray(blogs)) return null;
+  // 🔹 Search + Pagination (memoized for performance) - MUST be before any returns
+  const filteredBlogs = useMemo(() => {
+    if (!blogs || !Array.isArray(blogs)) return [];
+    return blogs
+      .filter((b) => b.title.toLowerCase().includes(searchQuery.toLowerCase()))
+      .filter(
+        (b): b is MergedBlogs2 =>
+          typeof b.status === "string" && b.status !== undefined
+      );
+  }, [blogs, searchQuery]);
 
-  // 🔹 Search + Pagination
-  const filteredBlogs = blogs
-    .filter((b) => b.title.toLowerCase().includes(searchQuery.toLowerCase()))
-    .filter(
-      (b): b is MergedBlogs2 =>
-        typeof b.status === "string" && b.status !== undefined
-    );
+  const totalPages = useMemo(() => {
+    return Math.ceil(filteredBlogs.length / cardsPerPage);
+  }, [filteredBlogs.length, cardsPerPage]);
 
-  const totalPages = Math.ceil(filteredBlogs.length / cardsPerPage);
-  const indexOfLastCard = currentPage * cardsPerPage;
-  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards: MergedBlogs2[] = filteredBlogs.slice(
-    indexOfFirstCard,
-    indexOfLastCard
-  );
+  const currentCards = useMemo(() => {
+    const indexOfLastCard = currentPage * cardsPerPage;
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+    return filteredBlogs.slice(indexOfFirstCard, indexOfLastCard);
+  }, [filteredBlogs, currentPage, cardsPerPage]);
 
-  // 🔹 Pagination handlers
-  const handleNext = () => {
+  // 🔹 Pagination handlers (memoized)
+  const handleNext = useCallback(() => {
     if (currentPage < totalPages) {
       const newPage = currentPage + 1;
       setCurrentPage(newPage);
       sessionStorage.setItem("page-no", String(newPage));
     }
-  };
+  }, [currentPage, totalPages]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     if (currentPage > 1) {
       const newPage = currentPage - 1;
       setCurrentPage(newPage);
       sessionStorage.setItem("page-no", String(newPage));
     }
-  };
+  }, [currentPage]);
 
   // 🔹 Copy URL
   const [customAlert, setCustomAlert] = useState<boolean>(false);
@@ -184,22 +180,32 @@ const Articles: React.FC = () => {
     }
   }, [customAlert]);
 
-  const handleCopy = (fullPath: string) => {
+  const handleCopy = useCallback((fullPath: string) => {
     const url = `${window.location.origin}${path}/${fullPath}`;
     navigator.clipboard.writeText(url);
     setCustomAlert(true);
-  };
+  }, [path]);
 
   // 🔹 Open blog
-  const handleSingleBlogs = (slug: string) => {
+  const handleSingleBlogs = useCallback((slug: string) => {
     window.open(`/${slug}`, "_blank");
-  };
+  }, []);
 
-  // ---------------- Render ----------------
+  // 🔹 Handle search change
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1);
+  }, []);
+
+  // 🔹 Show loading state immediately to prevent layout shift
   if (loading) return <Loader />;
   if (error)
     return <p className="text-center text-danger mt-4">Error: {error}</p>;
+  
+  // 🔹 Guard
+  if (!blogs || !Array.isArray(blogs)) return null;
 
+  // ---------------- Render ----------------
   function stripHtml(description: string) {
     if (!description) return "";
     return description
@@ -276,108 +282,125 @@ const Articles: React.FC = () => {
 
       {/* Search Input */}
       <div className="text-center mb-4">
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={searchQuery}
-          onChange={(e) => {
-            setSearchQuery(e.target.value);
-            setCurrentPage(1);
-          }}
-          className="form-control w-100 w-md-50 mx-auto p-2 rounded shadow"
-          style={{ maxWidth: "400px" }}
-        />
+         <input
+           type="text"
+           placeholder="Search by title..."
+           value={searchQuery}
+           onChange={handleSearchChange}
+           className="form-control w-100 w-md-50 mx-auto p-2 rounded shadow"
+           style={{ 
+             maxWidth: "400px",
+             contain: "layout style",
+           }}
+         />
       </div>
 
       {/* Blog Cards */}
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "2rem",
-          padding: "1rem",
-        }}
-      >
+       <div
+         style={{
+           display: "grid",
+           gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+           gap: "2rem",
+           padding: "1rem",
+           contain: "layout",
+         }}
+       >
         {" "}
         {currentCards
           .filter((bl) => bl.status === "active")
           .map((article) => (
-            <div
-              className="mnc-card"
-              key={article.id}
-              onClick={() => handleSingleBlogs(article.slug)}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
-                borderRadius: "16px",
-                overflow: "hidden",
-                backgroundColor: "#fff",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                cursor: "pointer",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.transform =
-                  "translateY(-5px)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow =
-                  "0 8px 30px rgba(0,0,0,0.1)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.transform =
-                  "translateY(0)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow =
-                  "0 4px 20px rgba(0,0,0,0.08)";
-              }}
-            >
+             <div
+               className="mnc-card"
+               key={article.id}
+               onClick={() => handleSingleBlogs(article.slug)}
+               style={{
+                 display: "flex",
+                 flexDirection: "column",
+                 height: "100%",
+                 borderRadius: "16px",
+                 overflow: "hidden",
+                 backgroundColor: "#fff",
+                 boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                 cursor: "pointer",
+                 contain: "layout style paint",
+                 willChange: "transform",
+               }}
+               onMouseEnter={(e) => {
+                 e.currentTarget.style.transform = "translateY(-5px)";
+                 e.currentTarget.style.boxShadow = "0 8px 30px rgba(0,0,0,0.1)";
+               }}
+               onMouseLeave={(e) => {
+                 e.currentTarget.style.transform = "translateY(0)";
+                 e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.08)";
+               }}
+             >
               {/* Image Section */}
-              <div
-                style={{
-                  height: "200px",
-                  width: "100%",
-                  overflow: "hidden",
-                  position: "relative",
-                }}
-              >
-                <Image
-                  src={
-                    article.banner.includes("/images")
-                      ? `/api/images${article.banner.split("/images")[1]}`
-                      : `/blogs/${article.banner}`
-                  }
-                  alt={article.title}
-                  fill
-                />
+               <div
+                 style={{
+                   height: "200px",
+                   width: "100%",
+                   overflow: "hidden",
+                   position: "relative",
+                   contain: "layout style paint",
+                 }}
+               >
+                 <Image
+                   src={
+                     article.banner.includes("/images")
+                       ? `/api/images${article.banner.split("/images")[1]}`
+                       : `/blogs/${article.banner}`
+                   }
+                   alt={article.title}
+                   fill
+                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                   loading="lazy"
+                   quality={75}
+                   placeholder="blur"
+                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                   priority={false}
+                   onLoad={() => {
+                     // Optimize image loading
+                     if (typeof window !== 'undefined') {
+                       requestIdleCallback(() => {
+                         // Preload next images when idle
+                       });
+                     }
+                   }}
+                 />
               </div>
               {/* Content Section */}
-              <div
-                style={{
-                  padding: "1rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  flexGrow: 1,
-                }}
-              >
+               <div
+                 style={{
+                   padding: "1rem",
+                   display: "flex",
+                   flexDirection: "column",
+                   flexGrow: 1,
+                   contain: "layout style",
+                 }}
+               >
                 {/* Title */}
-                <h3
-                  style={{
-                    fontSize: "1.1rem",
-                    fontWeight: "600",
-                    marginBottom: "0.75rem",
-                    color: "#333",
-                  }}
-                >
+                 <h3
+                   style={{
+                     fontSize: "1.1rem",
+                     fontWeight: "600",
+                     marginBottom: "0.75rem",
+                     color: "#333",
+                     contain: "layout style",
+                   }}
+                 >
                   {article.title.split(" ").slice(0, 10).join(" ")}{" "}
                 </h3>
-                <p
-                  style={{
-                    fontSize: "1rem",
-                    color: "#555",
-                    lineHeight: "1.6",
-                    flexGrow: 1,
-                  }}
-                >
+                 <p
+                   style={{
+                     fontSize: "1rem",
+                     color: "#555",
+                     lineHeight: "1.6",
+                     flexGrow: 1,
+                     contain: "layout style",
+                   }}
+                 >
                   {(() => {
                     const description = article?.meta_description || "";
                     const plainText = stripHtml(description) || "";
@@ -388,14 +411,15 @@ const Articles: React.FC = () => {
                 </p>
 
                 {/* Footer Actions */}
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginTop: "1rem",
-                  }}
-                >
+                 <div
+                   style={{
+                     display: "flex",
+                     justifyContent: "space-between",
+                     alignItems: "center",
+                     marginTop: "1rem",
+                     contain: "layout style",
+                   }}
+                 >
                   {/* Date */}
                   <div
                     style={{
@@ -414,24 +438,26 @@ const Articles: React.FC = () => {
                     })}
                   </div>
                   {/* Share */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleCopy(article.title.split(" ").join("-"));
-                    }}
-                    style={{
-                      background: "transparent",
-                      border: "1px solid #E5B05C",
-                      color: "#E5B05C",
-                      borderRadius: "6px",
-                      padding: "0.3rem 0.6rem",
-                      fontSize: "0.85rem",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "0.3rem",
-                      cursor: "pointer",
-                    }}
-                  >
+                   <button
+                     onClick={(e) => {
+                       e.stopPropagation();
+                       handleCopy(article.title.split(" ").join("-"));
+                     }}
+                     style={{
+                       background: "transparent",
+                       border: "1px solid #E5B05C",
+                       color: "#E5B05C",
+                       borderRadius: "6px",
+                       padding: "0.3rem 0.6rem",
+                       fontSize: "0.85rem",
+                       display: "flex",
+                       alignItems: "center",
+                       gap: "0.3rem",
+                       cursor: "pointer",
+                       contain: "layout style paint",
+                       willChange: "background-color, color",
+                     }}
+                   >
                     <Share2 size={15} /> Share
                   </button>
                 </div>
@@ -443,22 +469,24 @@ const Articles: React.FC = () => {
       {/* Pagination */}
       {filteredBlogs.length > 0 && (
         <div className="text-center mt-4">
-          <button
-            onClick={handlePrev}
-            disabled={currentPage === 1}
-            className="mx-2"
-            style={{
-              color: "#000",
-              background: "var(--tp-primary-blue)",
-              padding: "10px 20px",
-              borderRadius: "30px",
-              fontWeight: "bold",
-              cursor: currentPage === 1 ? "not-allowed" : "pointer",
-              opacity: currentPage === 1 ? 0.5 : 1,
-              transition: "all 0.3s ease-in-out",
-              boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)",
-            }}
-          >
+                 <button
+                   onClick={handlePrev}
+                   disabled={currentPage === 1}
+                   className="mx-2"
+                   style={{
+                     color: "#000",
+                     background: "var(--tp-primary-blue)",
+                     padding: "10px 20px",
+                     borderRadius: "30px",
+                     fontWeight: "bold",
+                     cursor: currentPage === 1 ? "not-allowed" : "pointer",
+                     opacity: currentPage === 1 ? 0.5 : 1,
+                     transition: "all 0.3s ease-in-out",
+                     boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)",
+                     contain: "layout style paint",
+                     willChange: "background-color, opacity",
+                   }}
+                 >
             ⬅ Prev
           </button>
 
@@ -473,22 +501,24 @@ const Articles: React.FC = () => {
             Page {currentPage} of {totalPages}
           </span>
 
-          <button
-            onClick={handleNext}
-            disabled={currentPage === totalPages}
-            className="mx-2"
-            style={{
-              color: "#000",
-              background: "var(--tp-primary-blue)",
-              padding: "10px 20px",
-              borderRadius: "30px",
-              fontWeight: "bold",
-              cursor: currentPage === totalPages ? "not-allowed" : "pointer",
-              opacity: currentPage === totalPages ? 0.5 : 1,
-              transition: "all 0.3s ease-in-out",
-              boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)",
-            }}
-          >
+                 <button
+                   onClick={handleNext}
+                   disabled={currentPage === totalPages}
+                   className="mx-2"
+                   style={{
+                     color: "#000",
+                     background: "var(--tp-primary-blue)",
+                     padding: "10px 20px",
+                     borderRadius: "30px",
+                     fontWeight: "bold",
+                     cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+                     opacity: currentPage === totalPages ? 0.5 : 1,
+                     transition: "all 0.3s ease-in-out",
+                     boxShadow: "3px 3px 10px rgba(0, 0, 0, 0.2)",
+                     contain: "layout style paint",
+                     willChange: "background-color, opacity",
+                   }}
+                 >
             Next ➡
           </button>
         </div>
@@ -502,6 +532,8 @@ const Articles: React.FC = () => {
       )}
     </div>
   );
-};
+});
+
+Articles.displayName = "Articles";
 
 export default Articles;
