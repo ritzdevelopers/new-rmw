@@ -1,5 +1,5 @@
 "use client";
-import { useSplitText } from "@/hooks/useSplitText";
+// import { useSplitText } from "@/hooks/useSplitText"; // Disabled for performance
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -12,14 +12,22 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const Experts = () => {
-  const textRefs = useSplitText(); // ✅ Using the existing GSAP animation
+  // const textRefs = useSplitText(); // Disabled for performance
 
   const [isMobile, setIsMobile] = useState(false);
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
-    const mobile = window.innerWidth <= 768;
-    setIsMobile(mobile);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    // Use matchMedia for better performance
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', checkMobile);
+      return () => mediaQuery.removeEventListener('change', checkMobile);
+    }
   }, []);
   const swiperKey = isMobile ? "mobile-swiper" : "desktop-swiper";
 
@@ -29,16 +37,10 @@ const Experts = () => {
         <div className="container">
           <div className="tp-team__title-box mb-75">
             <span
-              ref={(el) => {
-                if (el) textRefs.current.push(el);
-              }}
               className="tp-section-title-pre mb-25 tp-split__text tp-split__in-right"
             ></span>
             <div className="tp-section-title-wrap mb-20 d-sm-flex align-items-center justify-content-between">
               <h3
-                ref={(el) => {
-                  if (el) textRefs.current.push(el);
-                }}
                 className="tp-section-title tp-split__text tp-split__in-right"
               >
                 Our Masterminds
@@ -89,7 +91,8 @@ const Experts = () => {
                           src="/founders/RItesh_Malik.png"
                           alt="About Our Agency & Legacy"
                           fill
-                          quality={100}
+                          quality={75}
+                          loading="lazy"
                         />
                       </div>
                       <div className="tp-team__3-content d-flex align-items-center justify-content-between">
@@ -111,7 +114,8 @@ const Experts = () => {
                           src="/founders/Satvinder_Kaur.png"
                           alt="About Our Agency & Legacy"
                           fill
-                          quality={100}
+                          quality={75}
+                          loading="lazy"
                      
                         />
                       </div>
@@ -134,7 +138,8 @@ const Experts = () => {
                           src="/founders/Nishi_Malik.png"
                           alt="About Our Agency & Legacy"
                           fill
-                          quality={100}
+                          quality={75}
+                          loading="lazy"
                         />
                       </div>
                       <div className="tp-team__3-content d-flex align-items-center justify-content-between">

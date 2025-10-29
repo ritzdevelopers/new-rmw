@@ -15,7 +15,14 @@ export async function GET() {
     }
     return NextResponse.json(
       { allBlogs, message: "All blogs fetched successfully!" },
-      { status: 200 }
+      { 
+        status: 200,
+        headers: {
+          'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=1200',
+          'CDN-Cache-Control': 'public, s-maxage=600',
+          'Vercel-CDN-Cache-Control': 'public, s-maxage=600'
+        }
+      }
     );
   } catch (error) {
     console.log(

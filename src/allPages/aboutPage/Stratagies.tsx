@@ -4,7 +4,7 @@ import { useSplitText } from "@/hooks/useSplitText";
 
 import styles from "./page.module.css";
 const Stratagies = () => {
-  const textRefs = useSplitText(); // ✅ Using the existing GSAP animation
+  // const textRefs = useSplitText(); // Disabled for performance
 
   return (
     <div className="elementor-widget-container">
@@ -14,9 +14,6 @@ const Stratagies = () => {
             <div className="col-xl-6 col-lg-6">
               <div className="tp-cate__title-box">
                 <h3
-                  ref={(el) => {
-                    if (el) textRefs.current.push(el);
-                  }}
                   className="tp-cate__title mb-40 tp-split__text tp-split__in-right"
                 >
                   A good STRATEGY delivers a STORY that builds BRANDS that leave
