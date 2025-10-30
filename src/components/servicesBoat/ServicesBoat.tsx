@@ -143,7 +143,7 @@ function ServicesBoat() {
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Use This API For This Form 
+    // Use This API For This Form
     const data = {
       etype: "ContactUs",
       name: username,
@@ -172,8 +172,8 @@ function ServicesBoat() {
         setMessages("");
         setPhone("");
         setUserName("");
-        
-        // And After Enquiry Submit Follow This 
+
+        // And After Enquiry Submit Follow This
         if (clickedCTA === "Get a Quotation") {
           let link = document.createElement("a");
           link.href = "/RMW Case Studies_250327_081936.pdf";
@@ -828,7 +828,7 @@ function ServicesBoat() {
                       </p>
                       <button
                         onClick={() => {
-                          window.location.href = "tel:+91-9999999999";
+                          window.location.href = "tel:+91-9220516777";
                         }}
                         style={{
                           width: "100%",
@@ -842,7 +842,7 @@ function ServicesBoat() {
                           transition: "background-color 0.3s ease",
                         }}
                       >
-                        Call Me
+                        Call RMW
                       </button>
                     </form>
                   </div>
