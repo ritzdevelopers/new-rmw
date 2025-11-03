@@ -75,7 +75,7 @@ const ServicesSecondPage = () => {
       <SwiperHome />
 
       {para && (
-        <h1
+        <p
           style={{
             position: "relative",
             padding: "20px 10px",
@@ -87,7 +87,7 @@ const ServicesSecondPage = () => {
           }}
         >
           {para}
-        </h1>
+        </p>
       )}
 
       <Service data={card} />

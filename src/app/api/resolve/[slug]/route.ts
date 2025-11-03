@@ -12,10 +12,13 @@ export async function GET(
   try {
     const pool = await getDBPool();
 
+    // Normalize slug by collapsing multiple dashes to single dash
+    const normalizedSlug = slug.replace(/-+/g, "-");
+
     // Check if it's a blog
     const [blogs] = await pool.query<RowDataPacket[]>(
       "SELECT * FROM blogs WHERE slug = ? LIMIT 1",
-      [slug]
+      [normalizedSlug]
     );
     const latestRBlogs = await pool.query(
       "SELECT * from blogs WHERE category_id = ? LIMIT 4",
@@ -38,7 +41,7 @@ export async function GET(
        JOIN service_second ss ON ss.service_id = s.id
        WHERE ss.link = ?
        LIMIT 1`,
-      [slug]
+      [normalizedSlug]
     );
 
     if (services.length > 0) {

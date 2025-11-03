@@ -17,10 +17,13 @@ export async function GET(
       return NextResponse.json({ error: "Slug is required" }, { status: 400 });
     }
 
+    // Normalize slug by collapsing multiple dashes to single dash
+    const normalizedSlug = decodeURIComponent(blog_slug).replace(/-+/g, "-");
+
     const db = getDBPool();
     const [rows] = await db.execute<RowDataPacket[]>(
       "SELECT * FROM blogs WHERE slug = ? LIMIT 1",
-      [decodeURIComponent(blog_slug)]
+      [normalizedSlug]
     );
 
     // console.log("DB rows:", rows);
@@ -57,9 +60,12 @@ export async function PUT(
 
     const db = getDBPool();
 
+    // Normalize slug by collapsing multiple dashes to single dash
+    const normalizedSlug = decodeURIComponent(blog_slug).replace(/-+/g, "-");
+
     const [existingRows] = await db.execute<RowDataPacket[]>(
       "SELECT blog_image FROM blogs WHERE slug = ?",
-      [decodeURIComponent(blog_slug)]
+      [normalizedSlug]
     );
 
     if (!existingRows || existingRows.length === 0) {
@@ -113,7 +119,7 @@ export async function PUT(
         meta_keywords,
         imagePath,
         description,
-        decodeURIComponent(blog_slug),
+        normalizedSlug,
       ]
     );
 
