@@ -105,6 +105,15 @@ const CareerForm = () => {
           className="bg-white p-5 rounded shadow-lg mx-auto"
           style={{ maxWidth: "800px" }}
         >
+          <h1 style={{ 
+            fontSize: "2.5rem",
+            fontWeight: "700",
+            textAlign: "center",
+            marginBottom: "2rem",
+            color: "#333"
+          }}>
+            Join Our Team
+          </h1>
           <form onSubmit={handleSubmit}>
             <div className="row mb-3">
               <div className="col-md-6 mb-3">

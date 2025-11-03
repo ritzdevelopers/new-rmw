@@ -49,6 +49,19 @@ const ServiceFirst = ({ heading }: ServiceFirstProps) => {
             <div className="col-xl-12">
               <div className="tp-service__wrap p-relative">
                 <div className="z-index-2">
+                  <h1 style={{ 
+                    position: "absolute",
+                    width: "1px",
+                    height: "1px",
+                    padding: "0",
+                    margin: "-1px",
+                    overflow: "hidden",
+                    clip: "rect(0, 0, 0, 0)",
+                    whiteSpace: "nowrap",
+                    borderWidth: "0"
+                  }}>
+                    {heading || "Our Services"}
+                  </h1>
                   <div
                     className="tttlll"
                     style={{

@@ -62,9 +62,13 @@ export default function WebStoriesPage() {
     WebkitBackdropFilter: "blur(6px)",       // Safari support
   }}
 >
-        <h4 className="text-black d-flex align-items-center gap-2">
+        <h1 className="text-black d-flex align-items-center gap-2" style={{ 
+          fontSize: "1.5rem",
+          fontWeight: "600",
+          margin: "0"
+        }}>
           <FiBookOpen className="text-black" /> WEB STORIES
-        </h4>
+        </h1>
         <button className="btn btn-sm btn-dark d-flex align-items-center gap-1">
           <FiShare2 /> Share
         </button>
