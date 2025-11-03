@@ -45,6 +45,19 @@ const Home = () => {
                         className="tp-hero__title-box p-relative"
                         style={{ minHeight: "3em" }} // CLS prevention
                       >
+                        <h1 style={{ 
+                          position: "absolute",
+                          width: "1px",
+                          height: "1px",
+                          padding: "0",
+                          margin: "-1px",
+                          overflow: "hidden",
+                          clip: "rect(0, 0, 0, 0)",
+                          whiteSpace: "nowrap",
+                          borderWidth: "0"
+                        }}>
+                          Telling Stories to Remember with Advertising, Branding, Communication
+                        </h1>
                         <span className="tp-hero__subtitle mb-20">
                           Telling Stories to Remember with
                         </span>
