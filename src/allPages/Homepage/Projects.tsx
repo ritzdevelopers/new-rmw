@@ -132,10 +132,10 @@ const Projects = () => {
                         Created Projects
                       </span>
                       <div className="tp-section-title-wrap d-flex align-items-center justify-content-between">
-                        <h3 className="tp-section-title mb-0">
+                        <h1 className="tp-section-title mb-0">
                           Awesome Projects <br />
                           <span> From Team</span>
-                        </h3>
+                        </h1>
                       </div>
                     </div>
                   </div>

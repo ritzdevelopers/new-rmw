@@ -24,9 +24,12 @@ export async function GET(
     const related_param = await context.params; // destructure param wrapper
     const { related_slug } = related_param;
 
+    // Normalize slug by collapsing multiple dashes to single dash
+    const normalizedSlug = decodeURIComponent(related_slug).replace(/-+/g, "-");
+
     const [blogRows] = await db.query<BlogCategoryRow[]>(
       "SELECT category_id FROM blogs WHERE slug = ? LIMIT 1",
-      [related_slug]
+      [normalizedSlug]
     );
 
     if (blogRows.length === 0) {
@@ -37,7 +40,7 @@ export async function GET(
 
     const [relatedBlogs] = await db.query<BlogRow[]>(
       "SELECT id, title, slug, blog_image, created_at FROM blogs WHERE category_id = ? AND slug != ? ORDER BY id DESC LIMIT 5",
-      [categoryId, related_slug]
+      [categoryId, normalizedSlug]
     );
 
     return NextResponse.json({ related: relatedBlogs }, { status: 200 });

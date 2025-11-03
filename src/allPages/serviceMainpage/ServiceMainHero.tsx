@@ -56,9 +56,9 @@ const ServiceMainHero = () => {
                   <div className="row align-items-center">
                     <div className="col-xl-8 col-lg-4">
                       <div className="tp-hero__2-title-box md:mb-64 p-relative">
-                        <span className="tp-hero__subtitle text-blue md:mb-30">
+                        <h1 className="tp-hero__subtitle text-blue md:mb-30">
                           Services Tailored to Transform Your Brand from
-                        </span>
+                        </h1>
                         <div
                           style={{
                             width: "100%",
