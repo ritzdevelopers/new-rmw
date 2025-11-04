@@ -273,7 +273,7 @@ const AdminTable = <T,>({
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto">
+      <div className="">
         <table className="min-w-full border rounded bg-white shadow-sm">
           <thead className="bg-gray-100 text-left">
             <tr>

@@ -9,19 +9,22 @@
       "cta": ["See case studies", "Get a Quotation"]
     },
     {
-      "title": "Creative Services", 
+      "title": "Creative Services",
       "description": "Make customers stop, feel, and act. We turn brand strategy into striking visuals, persuasive copy, and video ideas that travel across media. From identity to daily social creatives, our work builds recall and makes performance campaigns convert better, on time, on brief, and on budget. We A/B test creative variations continuously.",
-      "cta": ["View portfolio", "Get a Quotation"]
+      "cta": ["View portfolio", "Get a Quotation"],
+      "link": "https://www.instagram.com/rmwshowcase/"
     },
     {
-      "title": "Generative AI", 
+      "title": "Generative AI",
       "description": "Supercharge creativity and efficiency with responsible Generative AI. We ideate faster, personalize at scale, and automate production, without losing brand voice. From AI-assisted design to chatbot workflows and GEO, our approach blends human direction with model power for measurable lift in speed, quality, and cost.",
-      "cta": ["View portfolio", "Get a Quotation"]
+      "cta": ["View portfolio", "Get a Quotation"],
+      "link": "https://www.instagram.com/contenaissance/"
     },
     {
       "title": "Print Advertising",
       "description": "Reach audiences that still trust ink. We plan editions, negotiate rates, design attention-grabbing layouts, and manage insertions end-to-end. Target by city or region, launch quickly, and receive proof of publication plus post-campaign reports. Traditional reach with modern rigor, built to drive store walks and qualified leads. Scale nationally when timing matters.",
       "cta": ["View portfolio", "Get a Quotation"]
+     
     },
     {
       "title": "Radio Advertising",
@@ -29,7 +32,7 @@
       "cta": ["View portfolio", "Get a Quotation"]
     },
     {
-      "title": "Content Marketing", 
+      "title": "Content Marketing",
       "description": "Turn expertise into demand. We plan editorial calendars, write articles, craft reels and scripts, and package thought leadership that ranks and converts. Repurpose smartly across email, PR, and social. Measured with engagement and assisted conversions, content compounds over time to reduce acquisition costs sustainably. Build trust, backlinks, and brand memory.",
       "cta": ["View portfolio", "Get a Quotation"]
     },
