@@ -34,6 +34,7 @@ function ServicesBoat() {
   const chatReff = useRef<HTMLDivElement>(null);
   const [isSmall, setIsSmall] = useState<boolean>(false);
   const [mobileView, setMobileView] = useState<boolean>(false);
+  const [selectService, setSelectService] = useState("");
 
   // Load JSON data
   useEffect(() => {
@@ -116,6 +117,8 @@ function ServicesBoat() {
   };
 
   const handleCTAClick = (ctaText: string, service: Service) => {
+    console.log("This is clicked cta ::", ctaText);
+
     setClickedCTA(ctaText);
 
     setShowForm(true);
@@ -174,13 +177,22 @@ function ServicesBoat() {
         setUserName("");
 
         // And After Enquiry Submit Follow This
-        if (clickedCTA === "Get a Quotation") {
-          let link = document.createElement("a");
-          link.href = "/RMW Case Studies_250327_081936.pdf";
-          link.download = "RMW_Case_Studies.pdf";
-          link.click();
+        if (selectService === "Creative Services") {
+          window.open("https://www.instagram.com/rmwshowcase", "_blank");
+        } else if (selectService === "Generative AI") {
+          window.open("https://www.instagram.com/contenaissance", "_blank");
+        } else if (selectService === "Radio Advertising") {
+          window.open(
+            "https://www.youtube.com/watch?v=OK7F9GSysps&list=PLF2LkcQMvAI8JKNM1iRu6eFIbqQvwklUt",
+            "_blank"
+          );
         } else {
-          window.open("https://www.instagram.com/rmwshowcase/", "_blank");
+          let link = document.createElement("a");
+          link.href =
+            "https://ritzmediaworld.com/RMW Case Studies_250327_081936.pdf";
+          link.download = "RMW_CaseStudies.pdf";
+          link.target = "_blank";
+          link.click();
         }
       } else {
         setModalMessage({
@@ -438,7 +450,10 @@ function ServicesBoat() {
                             return (
                               <button
                                 key={idx}
-                                onClick={() => handleServiceClick(service)}
+                                onClick={() => {
+                                  handleServiceClick(service),
+                                    setSelectService(service.title);
+                                }}
                                 style={{
                                   padding: "0.45rem 0.65rem",
 
@@ -591,7 +606,8 @@ function ServicesBoat() {
                                   key={idx}
                                   onClick={() => {
                                     setTimeout(() => {
-                                      handleServiceClick(service);
+                                      handleServiceClick(service),
+                                        setSelectService(service.title);
                                     }, 200);
                                   }}
                                   style={{
