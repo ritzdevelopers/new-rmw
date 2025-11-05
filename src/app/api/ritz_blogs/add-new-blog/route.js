@@ -6,12 +6,20 @@ import path from "path";
 import RitzCats from "@/models/RitzCats.Schema";
 import RitzBlogModel from "@/models/Blog.Schema";
 
-export function generateSlug(name) {
-  return name
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-");
+// export function generateSlug(name) {
+//   return name
+//     .toLowerCase()
+//     .trim()
+//     .replace(/[^\w\s-]/g, "")
+//     .replace(/\s+/g, "-");
+// }
+
+export function generateSlug(title) {
+  return title
+    .toLowerCase()            // convert to lowercase
+    .replace(/[^a-z0-9\s]/g, '') // remove special characters
+    .trim()                   // remove leading/trailing spaces
+    .replace(/\s+/g, '-');    // remove duplicate hyphens
 }
 
 async function saveFileToUploads(file, filename) {
