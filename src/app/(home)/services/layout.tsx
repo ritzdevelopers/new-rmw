@@ -1,9 +1,9 @@
 export const metadata = {
   title: "Advertising & Digital Services | Ritz Media World Delhi-NCR",
   description:
-    "Explore Ritz Media World’s full suite of services, digital marketing, print & radio advertising, influencer campaigns, web development and creative content across India.",
+    "Discover Ritz Media World’s full-service solutions in digital, print, radio and creative advertising designed to grow your brand and drive real results.",
   keywords:
-    "digital marketing services Delhi NCR, print advertising agency India, radio advertising Delhi, influencer marketing services India, celebrity endorsements agency Delhi NCR , web development agency India, content marketing services Delhi, creative agency Delhi NCR, full-service advertising agency India, social media management Delhi NCR",
+    "Ritz Media World services, advertising agency India, digital marketing services, print and radio ads, creative branding solutions, media agency, brand promotion India, best print advertising services, top print advertising services, radio advertising cost, Best, Radio Ads Services in Delhi, Best Radio Ads Services in Noida, PR Services in Noida, Digital Marketing Services Delhi NCR, marketing services, creative services, ppc services,",
 };
 
 export default function ServicesLayout({
