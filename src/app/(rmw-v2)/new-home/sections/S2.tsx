@@ -105,20 +105,21 @@ function S2() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex w-full justify-center overflow-hidden bg-[#ffffff] py-16 sm:py-20 md:pb-0 lg:py-0 lg:pt-20"
+      className="relative flex w-full justify-center overflow-hidden bg-[#ffffff] py-16 sm:py-20 md:pb-0 lg:py- lg:pb-10 lg:pt-20 bg-gradient-to-br from-[#F9FAFB] to-[#FFFFFF]"
     >
       <div className="flex w-full max-w-[90%] flex-col items-center gap-12 px-4 sm:px-6 lg:px-8">
         {/* Row 1 */}
         <div className="flex w-full md:max-w-3xl flex-col items-center gap-4 text-center">
-          <button className="rounded-full bg-[#E8DDD1] px-6 py-2 text-xs font-semibold text-[#8B7355] sm:text-sm">
+          <button className="rounded-full bg-[#E8DDD1] px-6 py-2 text-xs font-[400] text-[#8B7355] sm:text-sm md:text-[14px]">
             Trusted by Industry Leaders
           </button>
-          <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.15]">
-            Numbers That Speak <span className="text-[#D4A574]">Excellence</span>
+          <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.15] md:flex ">
+            Numbers That Speak{" "}
+            <span className="text-[#D4A574] md:block transform -translate-y-[4px]">Excellence</span>
           </h2>
-          <p className="text-base w-full text-[#4A5565] md:text-lg">
-            17 years of transforming brands into market leaders through creative strategy and proven
-            results.
+          <p className="text-base w-full text-[#4A5565] md:text-[20px] font-[400] lg:w-2xl">
+            17 years of transforming brands into market leaders through creative
+            strategy and proven results.
           </p>
         </div>
 
@@ -127,15 +128,26 @@ function S2() {
           {cardData.map((card) => (
             <div
               key={card.title}
-              className="flex h-full  gap-5 rounded-2xl border border-[#E8DDD1]/70 bg-white/70 px-6 py-5 shadow-[0_18px_45px_rgba(16,24,40,0.08)] backdrop-blur"
+              className="flex h-full  gap-5 rounded-2xl border border-[#E8DDD1]/70 bg-white/70 px-6 py-5 lg:p-7"
             >
               <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-[#E8DDD1]">
-                <Image src={card.icn} alt={card.boldPara} width={28} height={28} />
+                <Image
+                  src={card.icn}
+                  alt={card.boldPara}
+                  width={28}
+                  height={28}
+                />
               </div>
               <div className="flex flex-col gap-1">
-                <h3 className="text-3xl font-semibold text-[#101828] sm:text-[32px]">{card.title}</h3>
-                <p className="text-sm font-medium text-[#101828] sm:text-base">{card.boldPara}</p>
-                <p className="text-xs text-[#4A5565] sm:text-sm">{card.para}</p>
+                <h3 className="text-3xl font-[500] text-[#101828] sm:text-[32px] md:text-[36px]">
+                  {card.title}
+                </h3>
+                <p className="text-sm font-medium text-[#101828] sm:text-base">
+                  {card.boldPara}
+                </p>
+                <p className="text-xs text-[#4A5565] sm:text-sm md:text-[14px] font[400]">
+                  {card.para}
+                </p>
               </div>
             </div>
           ))}

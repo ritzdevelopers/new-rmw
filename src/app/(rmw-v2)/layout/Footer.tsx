@@ -27,7 +27,7 @@ function Footer() {
             <h2 className="font-[600] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] leading-[1.2] text-white">
               Ready to Elevate Your Brand?
             </h2>
-            <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-white/90">
+            <p className="font-[400] text-[14px]  text-white/90">
               Let&apos;s discuss your next brand-elevating campaign
             </p>
           </div>
@@ -60,7 +60,7 @@ function Footer() {
             </div>
             {/* Paragraph */}
             <div>
-              <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] leading-[1.6] text-[#D1D5DC]">
+              <p className="font-[400] text-[14px]  leading-[1.6] text-[#D1D5DC]">
                 Transforming brands into household names through creative
                 strategy and digital innovation since 2008.
               </p>
@@ -108,36 +108,36 @@ function Footer() {
 
           {/* Box 2 - Services */}
           <div className="w-full min-h-[206px] flex flex-col justify-start gap-4 sm:gap-5">
-            <p className="font-[600] text-[16px] sm:text-[17px] md:text-[18px] text-white mb-2">
+            <h2 className="font-[600] text-[16px] text-white mb-2">
               Services
-            </p>
+            </h2>
             <Link
               href="/services/lead-gen-digital"
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
               Lead-Gen Digital
             </Link>
             <Link
               href="/services/creative-print-ooh"
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
               Creative Print & OOH
             </Link>
             <Link
               href="/services/branding-identity"
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
               Branding & Identity
             </Link>
             <Link
               href="/services/web-experience"
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
               Web & Experience
             </Link>
             <Link
               href="/services/content-strategy"
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
               Content Strategy
             </Link>
@@ -145,36 +145,36 @@ function Footer() {
 
           {/* Box 3 - Industries */}
           <div className="w-full min-h-[206px] flex flex-col justify-start gap-4 sm:gap-5">
-            <p className="font-[600] text-[16px] sm:text-[17px] md:text-[18px] text-white mb-2">
+            <h2 className="font-[600] text-[16px] sm:text-[17px] md:text-[16px] text-white mb-2">
               Industries
-            </p>
+            </h2>
             <Link
               href="/industries/real-estate"
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
               Real Estate
             </Link>
             <Link
               href="/industries/construction"
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
               Construction
             </Link>
             <Link
               href="/industries/lifestyle-brands"
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
               Lifestyle Brands
             </Link>
             <Link
               href="/industries/uhni-segment"
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
               UHNI Segment
             </Link>
             <Link
               href="/industries/consumer-goods"
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
               Consumer Goods
             </Link>
@@ -182,12 +182,12 @@ function Footer() {
 
           {/* Box 4 - Contact Us */}
           <div className="w-full min-h-[206px] flex flex-col justify-start gap-4 sm:gap-5">
-            <p className="font-[600] text-[16px] sm:text-[17px] md:text-[18px] text-white mb-2">
+            <h2 className="font-[600] text-[16px] sm:text-[17px] md:text-[16px] text-white mb-2">
               Contact Us
-            </p>
+            </h2>
             <div className="flex gap-3 sm:gap-4 items-start">
               <GrLocation className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 mt-1" />
-              <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] leading-[1.6] text-[#D1D5DC]">
+              <p className="font-[400] text-[14px]  leading-[1.6] text-[#D1D5DC]">
                 Delhi NCR, India <br /> Serving Pan-India
               </p>
             </div>
@@ -196,7 +196,7 @@ function Footer() {
               className="flex gap-3 sm:gap-4 items-center hover:text-[#D4A574] transition-colors duration-300 cursor-pointer group"
             >
               <MdOutlineLocalPhone className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-              <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300">
+              <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300">
                 +91 123 456 7890
               </p>
             </a>
@@ -205,7 +205,7 @@ function Footer() {
               className="flex gap-3 sm:gap-4 items-center hover:text-[#D4A574] transition-colors duration-300 cursor-pointer group"
             >
               <MdOutlineMailOutline className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-              <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300 break-all">
+              <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300 break-all">
                 hello@ritzmediaworld.com
               </p>
             </a>

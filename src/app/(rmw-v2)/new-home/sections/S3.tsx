@@ -7,12 +7,12 @@ import React from "react";
 
 function S3() {
   return (
-    <section className="relative flex w-full justify-center overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
-      <div className="flex w-full max-w-[1200px] flex-col gap-12 px-4 sm:px-6 lg:px-8">
+    <section className="relative flex w-full justify-center overflow-hidden  bg-[#FFFFFF] py-16 sm:py-20 lg:py-0">
+      <div className="flex w-full max-w-[95%] flex-col gap-12 px-4 sm:px-6 lg:px-8 ">
         {/* Row 1 */}
         <div className="flex flex-col items-center gap-4 text-center">
-          <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.1]">
-            Choose Your <span className="text-[#D4A574]">Brand Journey</span>
+          <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.1] md:flex">
+            Choose Your <span className="text-[#D4A574]  md:block transform -translate-y-[4px]">Brand Journey</span>
           </h2>
           <p className="max-w-2xl text-base text-[#4A5565] sm:text-lg">
             Tailored growth programmes engineered for the industries and
@@ -23,8 +23,8 @@ function S3() {
         {/* Row 2 */}
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Card 1 - Digital Marketing */}
-          <div className="relative flex min-h-[440px] flex-col overflow-hidden rounded-[28px] p-[1px] shadow-[0_25px_60px_rgba(16,24,40,0.18)] transition-transform duration-300 hover:-translate-y-2 bg-[linear-gradient(135deg,#101828_0%,#1E2939_55%,#273347_100%)]">
-            <div className="relative z-10 flex h-full flex-col justify-between gap-6 rounded-[28px] bg-gradient-to-b from-[#101828] to-[#1E2939] px-8 py-10 backdrop-blur-sm sm:px-10">
+          <div className="relative md:py-6 flex min-h-[440px] flex-col overflow-hidden rounded-[28px] p-[1px] transition-transform duration-300 hover:-translate-y-2 bg-gradient-to-b from-[#101828] to-[#1E2939]">
+            <div className="relative z-10 flex h-full flex-col justify-between gap-6 rounded-[28px]  px-8 py-10 backdrop-blur-sm sm:px-10">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#D4A57433]">
                 <Image
                   src="/new-page/icns/building-icn.png"
@@ -83,8 +83,8 @@ function S3() {
           </div>
 
           {/* Card 2 - Brand & Communication */}
-          <div className="relative flex min-h-[440px] flex-col overflow-hidden rounded-[28px] p-[1px] shadow-[0_25px_60px_rgba(16,24,40,0.18)] transition-transform duration-300 hover:-translate-y-2 bg-[linear-gradient(135deg,#D4A574_0%,#C49A6C_50%,#B28353_100%)]">
-            <div className="relative z-10 flex h-full flex-col justify-between gap-6 rounded-[28px] bg-gradient-to-b from-[#D4A574] to-[#C49A6C] px-8 py-10 backdrop-blur-sm sm:px-10">
+          <div className="relative  md:py-6 flex min-h-[440px] flex-col overflow-hidden rounded-[28px] p-[1px] transition-transform duration-300 hover:-translate-y-2 bg-gradient-to-b from-[#D4A574] to-[#C49A6C]">
+            <div className="relative z-10 flex h-full flex-col justify-between gap-6 rounded-[28px]  px-8 py-10 backdrop-blur-sm sm:px-10">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FFFFFF33]">
                 <Image
                   src="/new-page/icns/stars-icn.png"

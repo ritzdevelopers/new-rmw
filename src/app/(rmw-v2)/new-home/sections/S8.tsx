@@ -125,7 +125,7 @@ function S8() {
       // Adjust initial animation based on screen size
       const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
       const initialY = isMobile ? 20 : 40;
-      
+
       gsap.fromTo(
         sliderRef.current,
         { autoAlpha: 0, y: initialY },
@@ -146,16 +146,16 @@ function S8() {
   }, []);
 
   return (
-    <section className="w-screen flex justify-center items-center bg-gradient-to-b from-[#F9FAFB] via-white to-[#F3F4F6] py-12 sm:py-16 md:py-24 md:pt-0 lg:py-32 overflow-x-hidden">
+    <section className="w-screen  flex justify-center items-center bg-gradient-to-br from-[#F9FAFB] to-[#ffffff] py-12 sm:py-16 md:py-24 md:pt-0 lg:py-20 overflow-x-hidden">
       {/* Centered Align Div  */}
       <div className="w-[90%] max-w-[1400px] flex flex-col items-center gap-8 sm:gap-12 md:gap-16">
         {/* Top Header Div  */}
         <div className="w-full relative flex flex-col justify-center items-center text-center gap-3 sm:gap-4 md:gap-5 px-4 sm:px-0">
-        <button className="inline-flex h-9 w-[156px] items-center justify-center rounded-full bg-[#D4A574] text-[14px] font-[400] text-[#ffffff] ">
-          Clients Testimonials
+          <button className="inline-flex h-9 w-[156px] items-center justify-center rounded-full bg-[#D4A574] text-[14px] font-[400] text-[#ffffff] ">
+            Clients Testimonials
           </button>
-          <h2 className="font-[600] text-[28px] sm:text-[32px] md:text-[40px] lg:text-[48px] leading-[1.2] sm:leading-[1.1] text-[#101828] px-2">
-            What Our Clients <span className="text-[#D4A574]">Say</span>
+          <h2 className="font-[600] text-[28px] sm:text-[32px] md:text-[40px] lg:text-[48px] leading-[1.2] sm:leading-[1.1] text-[#101828] px-2 md:flex">
+            What Our Clients <span className="text-[#D4A574] md:block transform -translate-y-[4px]">Say</span>
           </h2>
           <p className="max-w-[650px] font-[400] text-[16px] sm:text-[18px] md:text-[20px] leading-[1.6] text-[#4A5565] px-4 sm:px-0">
             Don&apos;t just take our word for it – hear from the brands
@@ -177,7 +177,12 @@ function S8() {
           {/* Absolute Positioned Right Line Div - Hidden on mobile, visible on tablet+ */}
           <div className="hidden lg:block absolute right-10 xl:right-20 top-12 xl:top-20 opacity-60">
             <div className="w-[60px] h-[120px] lg:w-[77px] lg:h-[151px] relative rotate-[5deg]">
-              <Image src={"/new-page/icns/rght-line.png"} alt="RMW" fill className="object-contain"></Image>
+              <Image
+                src={"/new-page/icns/rght-line.png"}
+                alt="RMW"
+                fill
+                className="object-contain"
+              ></Image>
             </div>
           </div>
         </div>
@@ -203,7 +208,10 @@ function S8() {
               </p>
             </div>
 
-            <div ref={nameRef} className="flex flex-col items-center gap-1 sm:gap-2">
+            <div
+              ref={nameRef}
+              className="flex flex-col items-center gap-1 sm:gap-2"
+            >
               {/* Here The User Name Will Show  */}
               <p className="text-[18px] sm:text-[20px] md:text-[21px] lg:text-[22px] font-[600] text-[#101828]">
                 {currentSlide.name}
@@ -240,7 +248,12 @@ function S8() {
           {/* Absolute Positioned Left Line Div - Hidden on mobile, visible on large screens */}
           <div className="hidden xl:block absolute -left-30 -bottom-30 opacity-60">
             <div className="w-[70px] h-[120px] xl:w-[87px] xl:h-[151px] relative rotate-[5deg]">
-              <Image src={"/new-page/icns/lft-line.png"} alt="RMW" fill className="object-contain"></Image>
+              <Image
+                src={"/new-page/icns/lft-line.png"}
+                alt="RMW"
+                fill
+                className="object-contain"
+              ></Image>
             </div>
           </div>
         </div>

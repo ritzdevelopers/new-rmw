@@ -29,9 +29,9 @@ function page() {
       <NewBlogSection></NewBlogSection>
       <S11></S11>
       <ASI icn={<InstagramIcon />} py="top-[250px]" px="right-[0px]"></ASI>
-      <ASI icn={<InstagramIcon />} py="top-[320px]" px="right-[0px]"></ASI>
-      <ASI icn={<InstagramIcon />} py="top-[390px]" px="right-[0px]"></ASI>
-      <ASI icn={<InstagramIcon />} py="top-[460px]" px="right-[0px]"></ASI>
+      <ASI icn={<InstagramIcon />} py="top-[310px]" px="right-[0px]"></ASI>
+      <ASI icn={<InstagramIcon />} py="top-[370px]" px="right-[0px]"></ASI>
+      <ASI icn={<InstagramIcon />} py="top-[430px]" px="right-[0px]"></ASI>
     </main>
   );
 }
