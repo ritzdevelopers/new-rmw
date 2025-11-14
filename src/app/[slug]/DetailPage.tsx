@@ -439,10 +439,9 @@ const DetailPage: React.FC = () => {
                 <Image
                   src={
                     isMongo
-                      ? `${staticAPI}${
-                          singleBlog.blogBanner?.split("/images")[1]
+                      ? `${staticAPI}${singleBlog.blogBanner?.split("/images")[1]
                         }`
-                      : `/blogs/${singleBlog.blog_image}`
+                      : `${staticAPI}${singleBlog.blog_image?.split("/images")[1]}`
                   }
                   fill
                   priority

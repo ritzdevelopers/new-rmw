@@ -3,6 +3,7 @@ import { getDBPool } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
 import { writeFile, unlink } from "fs/promises";
 import path from "path";
+import fs from "fs";
 // saveFileToUploads(file: File, filename: string): Promise<string> {
 // GET blog by slug
 export async function GET(
@@ -40,6 +41,32 @@ export async function GET(
       { status: 500 }
     );
   }
+}
+
+
+function deleteFileFromUploads(url: string) {
+    try {
+        const filePath = path.join(process.cwd(), "public", url);
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+    } catch (err) {
+        console.warn("Failed to delete previous image:", err);
+    }
+}
+
+async function saveFileToUploads(file: File, filename: string): Promise<string> {
+  const bytes = await file.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+  const uploadDir = path.join(`${process.env.SERVER_IMG_PATH}`, "images");
+
+  if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+  }
+
+  const filePath = path.join(uploadDir, filename);
+  fs.writeFileSync(filePath, buffer);
+  return `/images/${filename}`;
 }
 
 
@@ -84,26 +111,16 @@ export async function PUT(
     const description = formData.get("description") as string;
     const blogImage = formData.get("blog_image") as File | null;
 
-    let imagePath = existingImage;
+   let imagePath = "";
+   if (blogImage) {
+    imagePath = await saveFileToUploads(blogImage, `${Date.now()}_${blogImage.name}`);
+   }
 
-    if (blogImage) {
-      const bytes = await blogImage.arrayBuffer();
-      const buffer = Buffer.from(bytes);
-      const fileName = `${Date.now()}_${blogImage.name}`;
-      const uploadDir = path.join(process.cwd(), "public/blogs", fileName);
-
-      await writeFile(uploadDir, buffer);
-      imagePath = fileName;
-
-      if (existingImage) {
-        const oldImagePath = path.join(process.cwd(), "public", existingImage);
-        try {
-          await unlink(oldImagePath);
-        } catch (err) {
-          console.warn("Failed to delete old image:", err);
-        }
-      }
-    }
+   if (existingImage) {
+    deleteFileFromUploads(existingImage);
+   }
+console.log("imagePath", imagePath);
+console.log("existingImage", existingImage);
 
     await db.execute(
       `UPDATE blogs 

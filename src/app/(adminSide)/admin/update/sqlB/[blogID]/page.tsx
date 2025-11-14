@@ -35,34 +35,33 @@ function Page() {
   const [imagePreview, setImagePreview] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showPopup, setShowPopup] = useState(false);
-    const [popupData, setPopupData] = useState({ message: "", status: 0 });
+  const [popupData, setPopupData] = useState({ message: "", status: 0 });
 
   useEffect(() => {
     const fetchSingleBlog = async () => {
       try {
         const { data, status } = await axios.get(`/api/blog/${id}`);
         const allCats = await axios.get("/api/blog/categories");
-
         setRitzCats(allCats.data);
         setBlog(data.blog);
         setEditorValue(data.blog.description);
         setImagePreview(data.blog.blog_image); // Existing image
         setPopupData({ message: data.message, status });
-      }  catch (error) {
-      setRMWLoader(false);
-      if (typeof error === "object" && error !== null && "message" in error) {
-        setPopupData({
-          message: (error as { message: string }).message,
-          status:
-            error instanceof Error && "status" in error
-              ? (error as { status?: number }).status ?? 500
-              : 500,
-        });
-      } else {
-        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      } catch (error) {
+        setRMWLoader(false);
+        if (typeof error === "object" && error !== null && "message" in error) {
+          setPopupData({
+            message: (error as { message: string }).message,
+            status:
+              error instanceof Error && "status" in error
+                ? (error as { status?: number }).status ?? 500
+                : 500,
+          });
+        } else {
+          setPopupData({ message: "An unknown error occurred.", status: 500 });
+        }
+        setShowPopup(true);
       }
-      setShowPopup(true);
-    }
     };
 
     if (id) fetchSingleBlog();
@@ -78,7 +77,7 @@ function Page() {
       setImagePreview(URL.createObjectURL(file));
     }
   };
-  
+
   const handleSubmit = async () => {
     if (!blog) return;
 
@@ -96,10 +95,10 @@ function Page() {
     }
 
     try {
-    const {status, data} =  await axios.put(`/api/blog/${id}`, formData);
-    setPopupData({ message: data.message, status });
+      const { status, data } = await axios.put(`/api/blog/${id}`, formData);
+      setPopupData({ message: data.message, status });
       setRMWLoader(false);
-    }  catch (error) {
+    } catch (error) {
       setRMWLoader(false);
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
