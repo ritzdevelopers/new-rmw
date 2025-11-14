@@ -148,10 +148,11 @@ const Page = () => {
         !step1Data.blogCategory ||
         !step1Data.metaKeywords
       ) {
-        alert("Step 1 data missing! Please go back and fill it.");
+        setRMWLoader(false);
+        setPopupData({ message: "Step 1 data missing! Please go back and fill it.", status: 400 });
+        setShowPopup(true);
         return;
       }
-
       const finalBody = [];
       const innerImageMap: Record<number, File> = {};
       for (let i = 1; i <= totalPages; i++) {
@@ -199,6 +200,7 @@ const Page = () => {
       );
       setRMWLoader(false);
       setPopupData({ message: data.message, status });
+      setShowPopup(true);
     } catch (error) {
       setRMWLoader(false);
       if (typeof error === "object" && error !== null && "message" in error) {
@@ -345,6 +347,11 @@ const Page = () => {
           status={popupData.status}
           onClose={() => setShowPopup(false)}
         />
+      )}
+      {rmwLoader && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-[9999]">
+          <RMWLoader />
+        </div>
       )}
       <div className="flex items-center gap-2">
         <Monitor className="w-6 h-6 text-gray-600" />
