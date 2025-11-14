@@ -67,18 +67,18 @@ const servicesData = [
 
 function S4() {
   return (
-    <section className="relative flex w-full justify-center overflow-hidden bg-white py-16 sm:py-20 md:pt-0 lg:py-24">
-      <div className="flex w-full max-w-[1200px] flex-col items-center gap-12 px-4 sm:px-6 lg:px-8">
+    <section className="relative flex w-full justify-center overflow-hidden bg-[#FFFFFF] py-16 sm:py-20 md:pt-0 lg:py-24">
+      <div className="flex w-full max-w-[95%] flex-col items-center gap-12 px-4 sm:px-6 lg:px-8">
         {/* Row 1 */}
         <div className="flex flex-col gap-4 items-center  text-center sm:max-w-3xl">
           <button className="inline-flex w-fit rounded-full bg-[#D4A574] px-5 py-2 text-[14px] font-[400] text-white">
             What We Do
           </button>
-          <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.1]">
+          <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.1] ">
             360° Brand{" "}
             <span className="text-[#D4A574]">Elevation Services</span>
           </h2>
-          <p className="max-w-xl text-base text-[#4A5565] sm:text-lg">
+          <p className="max-w-2xl text-base text-[#4A5565] sm:text-[20px] font-[400]">
             Integrated solutions that work together to build powerful brands and
             drive measurable results
           </p>
@@ -136,12 +136,12 @@ function S4() {
 
         {/* Row 3 */}
         <div className="flex flex-col items-center justify-center gap-4 text-center">
-          <p className="text-sm text-[#364153] sm:text-base">
+          <p className="text-sm font-[400] text-[#364153] sm:text-[18px]">
             Need a custom solution combining multiple services?
           </p>
           <Link
             href="/contact"
-            className="text-base font-semibold text-[#D4A574] underline-offset-4 transition-colors duration-200 hover:underline flex justify-center items-center gap-2 text-center"
+            className="text-base font-[400] text-[#D4A574] underline-offset-4 transition-colors duration-200 hover:underline flex justify-center items-center gap-2 text-center sm:text-[18px]"
           >
             Let's create your integrated strategy <FaArrowRight className="mt-2"/>
           </Link>

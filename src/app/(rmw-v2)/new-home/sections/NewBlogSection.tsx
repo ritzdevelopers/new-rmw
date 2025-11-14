@@ -44,19 +44,19 @@ function NewBlogSection() {
         setBlinkEye((pr) => !pr);
       }, 2000);
 
-      return () => clearInterval(interval); // cleanup on unmount
+      return () => clearInterval(interval);
     } else {
       const interval = setInterval(() => {
         setBlinkEye((pr) => !pr);
       }, 100);
 
-      return () => clearInterval(interval); // cleanup on unmount
+      return () => clearInterval(interval);
     }
   }, [blinkEye]);
-  
+
   return (
     <section className="relative flex w-full justify-center overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
-      <div className="flex w-full max-w-[98%] flex-col gap-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex w-full max-w-[92%] flex-col gap-12 px-4 sm:px-6 lg:px-8">
         {/* Row 1 - Header */}
         <div className="flex flex-col md:flex-row md:justify-between items-center gap-4 text-center sm:gap-6">
           <div className="flex flex-col items-start gap-4">
@@ -78,7 +78,7 @@ function NewBlogSection() {
         </div>
 
         {/* Row 2 - Blog Cards Grid */}
-        <div className="w-full flex justify-evenly items-center">
+        <div className="w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-evenly lg:flex-nowrap lg:justify-start items-center gap-4 sm:gap-6 lg:gap-6">
           {blogsData.map((cd, idx) => {
             return (
               <Link
@@ -86,8 +86,8 @@ function NewBlogSection() {
                 href="#"
                 onMouseEnter={() => setActiveIdx(idx)}
                 ref={cardRef}
-                className={`group flex flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_18px_45px_rgba(16,24,40,0.08)] transition-all duration-400 ease-in hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(16,24,40,0.15)] ${
-                  idx === activeIdx ? "w-[578px]" : "w-[315px]"
+                className={`group flex flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_18px_45px_rgba(16,24,40,0.08)] transition-[width,transform,box-shadow] duration-700 ease-in-out hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(16,24,40,0.15)] w-full sm:w-[calc(50%-12px)] md:w-[calc(50%-18px)] lg:flex-shrink-0 lg:w-[315px] ${
+                  idx === activeIdx ? "lg:w-[calc(100%-680px)]" : ""
                 }`}
               >
                 {/* Image Container */}
@@ -100,20 +100,25 @@ function NewBlogSection() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     loading="lazy"
                   />
-
+                  {/* Absolute Positioned Div  */}
+                  <button className="w-[111px] z-50 h-[36px] rounded-full absolute top-6 right-6 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#D4A574]">
+                   Latest Inside
+                  </button>
                   {/* Absolute Positioned Overlay Div  */}
                   <div
-                    className={`w-full h-full absolute z-10 top-0 left-0 flex justify-center items-center transition-opacity duration-500 ease-in-out ${
+                    className={`w-full h-full absolute z-10 top-0 left-0 flex justify-center items-center transition-opacity duration-500 ease-in-out lg:pointer-events-auto pointer-events-none ${
                       activeIdx === idx
                         ? "opacity-100 bg-[#000000b8]"
-                        : "opacity-0 bg-transparent pointer-events-none"
+                        : "opacity-0 bg-transparent"
                     }`}
                   >
                     {/* Eye Div  */}
-                    <div className="w-[100px] h-[100px] bg-white rounded-full flex justify-center items-center transition-transform duration-300">
+                    <div className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] lg:w-[100px] lg:h-[100px] bg-white rounded-full flex justify-center items-center transition-transform duration-300">
                       <BsEyeFill
-                        className={`text-gray-400 text-6xl transform transition-all duration-300 ease-out ml-1 z-50 ${
-                          blinkEye ? "scale-y-[1] mt-0" : "scale-y-[0.1] mt-2 opacity-60"
+                        className={`text-gray-400 text-3xl sm:text-4xl lg:text-6xl transform transition-all duration-300 ease-out ml-1 z-50 ${
+                          blinkEye
+                            ? "scale-y-[1] mt-0"
+                            : "scale-y-[0.1] mt-2 opacity-60"
                         }`}
                       />
                     </div>

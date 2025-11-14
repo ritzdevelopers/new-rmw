@@ -99,7 +99,7 @@ function S3C() {
   ];
 
   return (
-    <section className="w-full bg-[#F5F5F5] py-12 sm:py-16 lg:py-20">
+      <section className="w-full bg-grediant-lr from-[#FCFCFD] to-[#ffffff] py-12 sm:py-16 lg:py-20">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="mb-8 text-center sm:mb-12 lg:mb-16">

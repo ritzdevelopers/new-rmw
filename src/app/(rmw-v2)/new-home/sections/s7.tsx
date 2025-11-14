@@ -49,7 +49,7 @@ const TIMELINE_STATS = [
     label: "Years of Excellence",
   },
   {
-    value: "1,000+",
+    value: "1000+",
     label: "Campaigns Delivered",
   },
   {
@@ -88,15 +88,15 @@ function TimelineCard({
 
 function S7() {
   return (
-    <section className="relative flex w-full justify-center overflow-hidden bg-[#F7F9FC] py-16 sm:py-20 lg:py-20">
+    <section className="relative flex w-full justify-center overflow-hidden bg-gradient-to-br from-[#F9FAFB] to-[#ffffff] py-16 sm:py-20 lg:py-20">
       <div className="flex w-full max-w-[96%] flex-col gap-14 px-4 sm:px-6 lg:px-0">
         {/* Row 1 */}
         <div className="flex flex-col items-center gap-3 text-center">
           <button className="inline-flex h-9 w-[130px] items-center justify-center rounded-full bg-[#D4A574] text-[14px] font-[400] text-[#ffffff] ">
             Our Journey
           </button>
-          <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.1]">
-            17 Years of <span className="text-[#D4A574]">Brand Excellence</span>
+          <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.1] md:flex">
+            17 Years of <span className="text-[#D4A574] md:block transform -translate-y-[4px]">Brand Excellence</span>
           </h2>
           <p className="max-w-2xl text-base text-[#4A5565] sm:text-lg">
             From pioneering print innovations to 360° digital mastery, our

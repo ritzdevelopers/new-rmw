@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { LuDownload } from "react-icons/lu";
+import { LuDownload, LuMail } from "react-icons/lu";
 import { FaArrowRight, FaArrowRightLong } from "react-icons/fa6";
 import { gsap } from "gsap";
 
@@ -59,10 +59,10 @@ function S11() {
   return (
     <section
       ref={sectionRef}
-      className="w-screen min-h-screen flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden"
+      className="w-screen min-h-screen flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden relative"
     >
       {/* Centered Align Div  */}
-      <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20">
+      <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 relative z-20">
         {/* Left Side Container  */}
         <div
           ref={leftRef}
@@ -74,9 +74,9 @@ function S11() {
               Free Resource
             </button>
             <div className="flex flex-col gap-2">
-              <h2 className="font-[500] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-[#D4A574]">
+              <h3 className="font-[500] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-[#D4A574]">
                 2025 Brand Impact Report
-              </h2>
+              </h3>
               <h3 className="font-[500] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-white">
                 Download Our
               </h3>
@@ -91,19 +91,19 @@ function S11() {
           <div>
             <ul className="flex flex-col gap-3 sm:gap-4">
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-              <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
+                <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
                 <span>Industry benchmarks for real estate marketing ROI</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-              <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
+                <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
                 <span>Proven strategies for UHNI audience targeting</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-              <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
+                <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
                 <span>2025 digital and print advertising trends</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-              <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
+                <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
                 <span>Case studies with measurable results</span>
               </li>
             </ul>
@@ -111,15 +111,21 @@ function S11() {
 
           {/* Bottom Section - Form */}
           <div className="flex flex-col gap-3 sm:gap-4">
-            <form onSubmit={handleDownload} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                required
-                className="flex-1 h-[48px] sm:h-[56px] px-4 sm:px-5 md:px-6 bg-white/10 border border-white/20 rounded-[8px] text-white placeholder:text-[#99A1AF] focus:outline-none focus:border-[#D4A574] focus:bg-white/15 transition-all duration-300 text-[14px] sm:text-[15px] md:text-[16px]"
-              />
+            <form
+              onSubmit={handleDownload}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+            >
+              <div className="flex-1 relative">
+                <LuMail className="absolute left-4 sm:left-5 md:left-6 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-[#99A1AF]" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  required
+                  className="w-full h-[48px] sm:h-[56px] pl-11 sm:pl-12 md:pl-14 pr-4 sm:pr-5 md:pr-6 bg-white/10 border border-white/20 rounded-[8px] text-white placeholder:text-[#99A1AF] focus:outline-none focus:border-[#D4A574] focus:bg-white/15 transition-all duration-300 text-[14px] sm:text-[15px] md:text-[16px]"
+                />
+              </div>
               <button
                 type="submit"
                 className="w-full sm:w-[164px] h-[48px] sm:h-[56px] bg-[#D4A574] text-white flex justify-center items-center gap-2 rounded-[8px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] hover:bg-[#C8955F] transition-colors duration-300 cursor-pointer"
@@ -161,15 +167,15 @@ function S11() {
                 <span>Comprehensive brand analysis</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-              <div className="bg-[#D4A574] w-[6px] h-[6px] rounded-full mt-2"></div>
+                <div className="bg-[#D4A574] w-[6px] h-[6px] rounded-full mt-2"></div>
                 <span>Competitor positioning review</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-              <div className="bg-[#D4A574] w-[6px] h-[6px] rounded-full mt-2"></div>
+                <div className="bg-[#D4A574] w-[6px] h-[6px] rounded-full mt-2"></div>
                 <span>Growth opportunity identification</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-              <div className="bg-[#D4A574] w-[6px] h-[6px] rounded-full mt-2"></div>
+                <div className="bg-[#D4A574] w-[6px] h-[6px] rounded-full mt-2"></div>
                 <span>Customized strategy roadmap</span>
               </li>
             </ul>
@@ -184,6 +190,17 @@ function S11() {
             <FaArrowRight />
           </button>
         </div>
+      </div>
+
+      {/* Absolute Positioned Divs */}
+      {/* div 1  */}
+      <div className="w-[484px] h-[484px] opacity-[10%] absolute bottom-0  -right-5 z-0">
+        <img src="/new-page/cont-1.png" className="w-full h-full object-contain" alt="" />
+      </div>
+
+       {/* div 2  */}
+       <div className="w-[484px] h-[484px] opacity-[10%] absolute left-0  top-0 z-0">
+        <img src="/new-page/cont-2.png" className="w-full h-full object-contain" alt="" />
       </div>
     </section>
   );

@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "InterBold";
+  src: url("../static/Inter_18pt-Bold.ttf");
+}
+@font-face {
+    font-family: 'InterRegular';
+    src: url("../static/Inter_18pt-Regular.ttf");
+}
+@font-face { 
+    font-family: 'InterSemiBold';
+    src: url("../static/Inter_18pt-SemiBold.ttf");
+}
+@font-face {
+    font-family: 'InterMedium';
+    src: url("../static/Inter_18pt-Medium.ttf");
+}
+
+p, a, span, li, ul, ol {
+    font-family: 'InterRegular';
+}
+h1 {
+    font-family: 'InterBold';
+}
+h2 {
+    font-family: 'InterSemiBold';
+}
+h3 {
+    font-family: 'InterMedium';
+}

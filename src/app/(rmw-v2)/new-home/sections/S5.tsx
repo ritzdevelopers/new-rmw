@@ -120,17 +120,20 @@ const storiesData: StoryCard[] = [
 
 function S5() {
   return (
-    <section className="relative flex w-full justify-center overflow-hidden bg-[#FDF8F1] py-16 sm:py-20 md:pb-[5px] lg:py-24">
-      <div className="flex w-full max-w-[99%] flex-col gap-12 px-4 sm:px-6 lg:px-0">
+    <section className="relative flex w-full justify-center overflow-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-0">
+      <div className="flex w-full max-w-[99%] flex-col gap-12 px-4 sm:px-6 lg:px-0 lg:pb-20">
         {/* Row 1 */}
         <div className="flex flex-col items-center gap-4 text-center">
           <button className="inline-flex h-9 w-[130px] items-center justify-center rounded-full bg-[#E8DDD1] text-[14px] font-[400] text-[#8B7355] ">
             Proven Results
           </button>
-          <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.15]">
-            Success Stories That <span className="text-[#D4A574]">Inspire</span>
+          <h2 className="text-3xl font-[500] text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.15] md:flex">
+            Success Stories That{" "}
+            <span className="text-[#D4A574]  md:block transform -translate-y-[4px]">
+              Inspire
+            </span>
           </h2>
-          <p className="text-base text-[#4A5565] sm:text-lg">
+          <p className="text-base text-[#4A5565] sm:text-[20px] font-[400]">
             Real challenges. Creative solutions. Measurable brand impact.
           </p>
         </div>
@@ -140,11 +143,11 @@ function S5() {
           {storiesData.map((story, idx) => (
             <article
               key={story.title}
-              className={`flex flex-col gap-8 lg:items-center lg:justify-center lg:gap-6 ${
+              className={`flex flex-col gap-8 lg:items-center min-h-[384px] lg:justify-center lg:gap-6  ${
                 idx % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               }`}
             >
-              <div className="relative w-full overflow-hidden rounded-[28px] bg-white shadow-[0_25px_65px_rgba(16,24,40,0.12)] sm:w-[85%] sm:self-center lg:w-[46%]">
+              <div className="relative w-full overflow-hidden rounded-[16px] bg-white shadow-[0_25px_65px_rgba(16,24,40,0.12)] sm:w-[85%] sm:self-center lg:w-[46%]">
                 <div className="relative aspect-[4/3] lg:w-full lg:h-[384px]">
                   <Image
                     src={story.img}
@@ -152,6 +155,10 @@ function S5() {
                     fill
                     className="object-cover"
                   />
+                  {/* Absolute Positioned Div  */}
+                  <button className="w-[155px] h-[32px] rounded-full absolute top-4 left-4 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#D4A574]">
+                    {story.title}
+                  </button>
                 </div>
               </div>
 
@@ -208,7 +215,7 @@ function S5() {
 
                 <Link
                   href={story.link}
-                  className="group inline-flex items-center gap-3 text-[14px] font-[500] text-[#3D2817] transition-transform duration-200 hover:translate-x-1 "
+                  className="group inline-flex items-center gap-3 text-[14px] font-[500] w-[198px] h-[36px] border-[0.8px] border-[#3D28171A] rounded-[8px] pl-3 text-[#3D2817] transition-transform duration-200 hover:translate-x-1 "
                 >
                   View Full Case Study
                   <MoveRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -222,9 +229,9 @@ function S5() {
         <div className="flex w-full justify-center">
           <Link
             href="/case-studies"
-            className="inline-flex items-center gap-3 rounded-xl bg-[#D4A574] px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-[#c2925d] sm:px-8 sm:py-4 sm:text-base h-[40px]"
+            className="inline-flex items-center gap-3 rounded-xl bg-[#D4A574] px-6 py-3 text-sm font-[500] text-white transition-colors duration-200 hover:bg-[#c2925d] sm:px-8 sm:py-4 sm:text-base h-[40px]"
           >
-            View All 500+ Success Stories
+            <h3> View All 500+ Success Stories</h3>
             <MoveRight className="h-5 w-5" />
           </Link>
         </div>
