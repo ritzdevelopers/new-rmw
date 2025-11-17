@@ -108,9 +108,7 @@ function Footer() {
 
           {/* Box 2 - Services */}
           <div className="w-full min-h-[206px] flex flex-col justify-start gap-4 sm:gap-5">
-            <h2 className="font-[600] text-[16px] text-white mb-2">
-              Services
-            </h2>
+            <h2 className="font-[600] text-[16px] text-white mb-2">Services</h2>
             <Link
               href="/services/lead-gen-digital"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
@@ -212,7 +210,67 @@ function Footer() {
           </div>
         </div>
 
-        {/* Row 3 - Footer Bottom */}
+        {/* Row 3 - Partners Logos  */}
+        <div className="w-full flex justify-center items-center mb-8">
+          {/* Responsive Centered Align Container */}
+          <div
+            className="
+              flex 
+              flex-row 
+              flex-wrap 
+              justify-between 
+              items-center 
+              gap-[32px] 
+              sm:gap-[40px] 
+              md:gap-[56px] 
+              lg:gap-[56px]
+              w-full 
+              max-w-[360px] 
+              sm:max-w-[480px]
+              md:max-w-none
+              md:w-auto
+              "
+          >
+            <div className="w-[48px] h-[28px] sm:w-[60px] sm:h-[32px] md:w-[72px] md:h-[40px] relative flex-shrink-0">
+              <Image
+                fill
+                className="object-contain"
+                src={"/new-page/footer/ins.png"}
+                alt="INS Partner Logo"
+                sizes="(max-width: 767px) 48px, (max-width: 1023px) 60px, 72px"
+              />
+            </div>
+            <div className="w-[64px] h-[22px] sm:w-[84px] sm:h-[28px] md:w-[104px] md:h-[35px] relative flex-shrink-0">
+              <Image
+                fill
+                className="object-contain"
+                src={"/new-page/footer/meta.png"}
+                alt="Meta Partner Logo"
+                sizes="(max-width: 767px) 64px, (max-width: 1023px) 84px, 104px"
+              />
+            </div>
+            <div className="w-[36px] h-[36px] sm:w-[44px] sm:h-[44px] md:w-[56px] md:h-[56px] relative flex-shrink-0">
+              <Image
+                fill
+                className="object-contain"
+                src={"/new-page/footer/google-partner.png"}
+                alt="Google Partner Logo"
+                sizes="(max-width: 767px) 36px, (max-width: 1023px) 44px, 56px"
+              />
+            </div>
+            <div className="w-[40px] h-[18px] sm:w-[54px] sm:h-[22px] md:w-[71px] md:h-[32px] relative flex-shrink-0">
+              <Image
+                fill
+                className="object-contain"
+                src={"/new-page/footer/msme.png"}
+                alt="MSME Partner Logo"
+                sizes="(max-width: 767px) 40px, (max-width: 1023px) 54px, 71px"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Row 4 - Footer Bottom */}
         <div className="w-full border-t-[0.8px] border-[#1E2939] flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 gap-4 sm:gap-6">
           <p className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] text-center sm:text-left">
             © 2025 RITZ Media World. All rights reserved.

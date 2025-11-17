@@ -55,21 +55,21 @@ function NewBlogSection() {
   }, [blinkEye]);
 
   return (
-    <section className="relative flex w-full justify-center overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
-      <div className="flex w-full max-w-[92%] flex-col gap-12 px-4 sm:px-6 lg:px-8">
+    <section className="relative flex w-full justify-center overflow-hidden bg-white py-12 sm:py-16 md:py-20 lg:py-24">
+      <div className="flex w-full max-w-[92%] flex-col gap-8 sm:gap-10 lg:gap-12 px-4 sm:px-6 lg:px-8">
         {/* Row 1 - Header */}
-        <div className="flex flex-col md:flex-row md:justify-between items-center gap-4 text-center sm:gap-6">
-          <div className="flex flex-col items-start gap-4">
-            <button className="rounded-full bg-[#E8DDD1] px-6 py-2 text-xs font-semibold text-[#8B7355] sm:text-sm">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 sm:gap-8">
+          <div className="flex flex-col items-start gap-3 sm:gap-4 w-full md:w-auto">
+            <button className="rounded-full bg-[#E8DDD1] px-4 py-1.5 text-[10px] font-semibold text-[#8B7355] sm:px-6 sm:py-2 sm:text-xs md:text-sm">
               Latest Insights
             </button>
-            <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] text-start lg:leading-[1.1]">
-              Here's what we've been <br /> up to
+            <h2 className="text-2xl font-semibold text-[#101828] leading-tight sm:text-3xl md:text-4xl lg:text-[48px] lg:leading-[1.1]">
+              Here's what we've been <br className="hidden sm:block" /> up to
             </h2>
           </div>
 
-          <div className="max-w-lg">
-            <p className="text-base text-[#4A5565] sm:text-lg text-start">
+          <div className="max-w-full md:max-w-lg w-full md:w-auto">
+            <p className="text-sm text-[#4A5565] leading-relaxed sm:text-base md:text-lg text-start">
               Explore industry insights, expert tips, and creative inspiration
               from the Ritz team. Our blog is where we share knowledge, ideas,
               and what's next in digital.
@@ -78,7 +78,7 @@ function NewBlogSection() {
         </div>
 
         {/* Row 2 - Blog Cards Grid */}
-        <div className="w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-evenly lg:flex-nowrap lg:justify-start items-center gap-4 sm:gap-6 lg:gap-6">
+        <div className="w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-center md:justify-evenly lg:flex-nowrap lg:justify-start items-stretch sm:items-center gap-4 sm:gap-4 md:gap-5 lg:gap-6">
           {blogsData.map((cd, idx) => {
             return (
               <Link
@@ -86,12 +86,12 @@ function NewBlogSection() {
                 href="#"
                 onMouseEnter={() => setActiveIdx(idx)}
                 ref={cardRef}
-                className={`group flex flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_18px_45px_rgba(16,24,40,0.08)] transition-[width,transform,box-shadow] duration-700 ease-in-out hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(16,24,40,0.15)] w-full sm:w-[calc(50%-12px)] md:w-[calc(50%-18px)] lg:flex-shrink-0 lg:w-[315px] ${
+                className={`group flex flex-col overflow-hidden rounded-[20px] sm:rounded-[24px] bg-white shadow-[0_18px_45px_rgba(16,24,40,0.08)] transition-[width,transform,box-shadow] duration-700 ease-in-out hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(16,24,40,0.15)] w-full sm:w-[calc(50%-8px)] md:w-[calc(50%-10px)] lg:flex-shrink-0 lg:w-[315px] ${
                   idx === activeIdx ? "lg:w-[calc(100%-680px)]" : ""
                 }`}
               >
                 {/* Image Container */}
-                <div className="relative h-[240px] w-full overflow-hidden sm:h-[280px] lg:h-[322px]">
+                <div className="relative h-[200px] w-full overflow-hidden sm:h-[240px] md:h-[280px] lg:h-[322px]">
                   <Image
                     src={cd.img}
                     alt={cd.title}
@@ -101,8 +101,8 @@ function NewBlogSection() {
                     loading="lazy"
                   />
                   {/* Absolute Positioned Div  */}
-                  <button className="w-[111px] z-50 h-[36px] rounded-full absolute top-6 right-6 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#D4A574]">
-                   Latest Inside
+                  <button className="w-[90px] sm:w-[100px] md:w-[111px] z-20 h-[28px] sm:h-[32px] md:h-[36px] rounded-full absolute top-4 right-4 sm:top-5 sm:right-5 md:top-6 md:right-6 cursor-pointer font-[400] text-[11px] sm:text-[12px] md:text-[14px] text-[#ffffff] bg-[#D4A574]">
+                    Latest Inside
                   </button>
                   {/* Absolute Positioned Overlay Div  */}
                   <div
@@ -113,9 +113,9 @@ function NewBlogSection() {
                     }`}
                   >
                     {/* Eye Div  */}
-                    <div className="w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] lg:w-[100px] lg:h-[100px] bg-white rounded-full flex justify-center items-center transition-transform duration-300">
+                    <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] md:w-[80px] md:h-[80px] lg:w-[100px] lg:h-[100px] bg-white rounded-full flex justify-center items-center transition-transform duration-300">
                       <BsEyeFill
-                        className={`text-gray-400 text-3xl sm:text-4xl lg:text-6xl transform transition-all duration-300 ease-out ml-1 z-50 ${
+                        className={`text-gray-400 text-2xl sm:text-3xl md:text-4xl lg:text-6xl transform transition-all duration-300 ease-out ml-1 z-50 ${
                           blinkEye
                             ? "scale-y-[1] mt-0"
                             : "scale-y-[0.1] mt-2 opacity-60"
@@ -126,11 +126,11 @@ function NewBlogSection() {
                 </div>
 
                 {/* Content Container */}
-                <div className="flex flex-col gap-3 px-6 py-6 sm:px-8 sm:py-8">
-                  <p className="text-sm font-normal text-[#4A5565] sm:text-base">
+                <div className="flex flex-col gap-2 sm:gap-3 px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8">
+                  <p className="text-xs font-normal text-[#4A5565] sm:text-sm md:text-base">
                     {cd.date}
                   </p>
-                  <h3 className="text-lg font-semibold text-[#101828] sm:text-xl lg:text-[20px]">
+                  <h3 className="text-base font-semibold text-[#101828] leading-snug sm:text-lg md:text-xl lg:text-[20px]">
                     {cd.title}
                   </h3>
                 </div>

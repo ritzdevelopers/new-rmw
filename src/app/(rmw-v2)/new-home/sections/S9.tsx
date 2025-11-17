@@ -214,7 +214,7 @@ function S9() {
           />
 
           {/* Absolute Position Div - Responsive positioning */}
-          <div className="absolute -right-8 sm:-right-12 md:-right-16 lg:-right-18 -top-10 sm:-top-12 md:-top-16 lg:-top-20 -z-10 opacity-60 lg:opacity-100">
+          <div className="hidde md:absolute -right-8 sm:-right-12 md:-right-16 lg:-right-18 -top-10 sm:-top-12 md:-top-16 lg:-top-20 -z-10 opacity-60 lg:opacity-100">
             <div className="relative w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] lg:w-[218px] lg:h-[218px]">
               <Image
                 src={"/new-page/icns/Ellipse1.png"}
