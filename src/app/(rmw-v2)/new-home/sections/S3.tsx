@@ -17,7 +17,7 @@ function S3() {
               Brand Journey
             </span>
           </h2>
-          <p className="max-w-2xl text-base text-[#4A5565] sm:text-lg">
+          <p className="max-w-2xl text-[16px] text-[#4A5565] sm:text-lg">
             Tailored growth programmes engineered for the industries and
             audiences most.
           </p>
@@ -38,16 +38,16 @@ function S3() {
               </div>
 
               <div className="flex flex-col gap-4">
-                <h3 className="text-[32px] font-semibold text-white sm:text-[36px]">
+                <h2 className="text-[32px] font-[600] text-white sm:text-[30px]">
                   Digital Marketing
-                </h3>
-                <p className="text-sm text-[#FFFFFFE5] sm:text-base">
+                </h2>
+                <p className="text-sm text-[#FFFFFFE5] sm:text-[16px] font-[400]">
                   Cut through the noise with conversion-led performance
                   campaigns crafted for premium audiences.
                 </p>
               </div>
 
-              <ul className="flex flex-col gap-2 text-sm text-[#FFFFFFE5] sm:text-base">
+              <ul className="flex flex-col gap-2 text-sm text-[#FFFFFFE5] sm:text-[16px] font-[400]">
                 <li className="flex items-start gap-3">
                   <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#D4A574]" />
                   <span>Hyper-targeted media planning & buying</span>
@@ -68,7 +68,7 @@ function S3() {
 
               <Link
                 href="/services/digital-marketing"
-                className="group inline-flex  md:h-[40px] w-full items-center justify-center gap-2 rounded-[8px] bg-[#FFFFFF] px-6 py-3 text-base font-[500] text-black transition-colors duration-200 hover:bg-[#c2925d]"
+                className="group inline-flex  md:h-[40px] w-full items-center justify-center gap-2 rounded-[8px] bg-[#FFFFFF] px-6 py-3 text-[16px] font-[500] text-black transition-colors duration-200 hover:bg-[#c2925d]"
               >
                 Explore Digital Marketing
                 <MoveRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -98,16 +98,16 @@ function S3() {
               </div>
 
               <div className="flex flex-col gap-4">
-                <h3 className="text-[32px] font-semibold text-white sm:text-[36px]">
+                <h2 className="text-[32px] font-[600] text-white sm:text-[30px]">
                   Brand & Communication
-                </h3>
-                <p className="text-sm text-[#FFFFFFE5] sm:text-base">
+                </h2>
+                <p className="text-sm text-[#FFFFFFE5] sm:text-[16px] font-[400]">
                   Build an iconic brand voice with insight-backed storytelling
                   that scales across every channel.
                 </p>
               </div>
 
-              <ul className="flex flex-col gap-2 text-sm text-[#D1D5DC] sm:text-base">
+              <ul className="flex flex-col gap-2 text-sm text-[#D1D5DC] sm:text-[16px]">
                 <li className="flex items-start gap-3">
                   <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#D1D5DC]" />
                   <span>Brand workshops & positioning blueprints</span>
@@ -128,7 +128,7 @@ function S3() {
 
               <Link
                 href="/services/brand-communication"
-                className="group inline-flex md:h-[40px] w-full items-center justify-center gap-2 rounded-xl bg-[#ffffff] px-6 py-3 text-base font-[500] text-[#000000] transition-colors duration-200 hover:bg-[#c2925d] hover:text-white"
+                className="group inline-flex md:h-[40px] w-full items-center justify-center gap-2 rounded-xl bg-[#ffffff] px-6 py-3 text-[16px] font-[500] text-[#000000] transition-colors duration-200 hover:bg-[#c2925d] hover:text-white"
               >
                 Explore Brand Communication
                 <MoveRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -148,7 +148,7 @@ function S3() {
 
         {/* Row 3 */}
         <div className="flex justify-center text-center">
-          <p className="max-w-xl text-sm text-[#4A5565] sm:text-base">
+          <p className="max-w-xl text-sm text-[#4A5565] sm:text-[16px]">
             Not sure which path fits your brand?{" "}
             <Link href="/contact" className="text-[#4A5565] underline">
               Let's discuss your unique needs
