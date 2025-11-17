@@ -93,11 +93,11 @@ function Page() {
     if (newImage) {
       formData.append("blog_image", newImage);
     }
-
     try {
       const { status, data } = await axios.put(`/api/blog/${id}`, formData);
       setPopupData({ message: data.message, status });
       setRMWLoader(false);
+      setShowPopup(true);
     } catch (error) {
       setRMWLoader(false);
       if (typeof error === "object" && error !== null && "message" in error) {
@@ -125,6 +125,11 @@ function Page() {
           status={popupData.status}
           onClose={() => setShowPopup(false)}
         />
+      )}
+      {rmwLoader && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-[9999]">
+          <RMWLoader />
+        </div>
       )}
       <h1 className={styles.heading}>Edit Blog</h1>
       <div className={styles.form}>

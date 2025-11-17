@@ -4,20 +4,20 @@ import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import AnimatedBtn from "../components/AnimatedBtn";
 
 type StoryResult = {
   icn: string;
   title: string;
   para: string;
+  bg: string;
 };
 
 type StoryCard = {
   title: string;
   img: string;
   subTitle: string;
-  subPara: string;
-  para: string;
-  subPara2: string;
+
   para2: string;
   res?: string;
   results: StoryResult[];
@@ -28,29 +28,30 @@ type StoryCard = {
 const storiesData: StoryCard[] = [
   {
     title: "Digital Advertising",
-    img: "/new-page/icns/s5-i1.png",
+    img: "/new-page/s5/rw-s5-i1.png",
     subTitle: "Luxury Real Estate",
-    subPara: "Challenge",
-    para: "Launch a high-end residential project in NCR while competing with legacy developers.",
-    subPara2: "Our Approach",
+
     para2:
-      "Integrated marketing with newspaper centrespreads, metro-wide outdoor presence, and precision digital funnels.",
+      "To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs.",
     res: "Results",
     results: [
       {
         icn: "/new-page/icns/badge-icn.png",
         title: "250%",
         para: "Increase in qualified leads",
+        bg: "bg-[#FFD0F6]",
       },
       {
         icn: "/new-page/icns/users-icn.png",
         title: "85%",
         para: "Target audience reach",
+        bg: "bg-[#FFF2D0]",
       },
       {
         icn: "/new-page/icns/globe-icn.png",
         title: "40%",
         para: "Conversion rate",
+        bg: "bg-[#EFFFD0]",
       },
     ],
     link: "/case-studies/digital-advertising",
@@ -58,29 +59,30 @@ const storiesData: StoryCard[] = [
   },
   {
     title: "Print Advertising",
-    img: "/new-page/icns/s5-i2.png",
+    img: "/new-page/s5/rw-s5-i2.png",
     subTitle: "Lifestyle & Retail",
-    subPara: "Challenge",
-    para: "Transform a regional player into a national luxury brand for the UHNI audience.",
-    subPara2: "Our Approach",
+
     para2:
-      "360° brand refresh supported by storytelling-led editorial spreads, experiential OOH, and social advocacy.",
+      "To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs.",
     res: "Results",
     results: [
       {
         icn: "/new-page/icns/badge-icn.png",
         title: "180%",
         para: "Lift in brand awareness",
+        bg: "bg-[#FFD0F6]",
       },
       {
         icn: "/new-page/icns/users-icn.png",
         title: "3X",
         para: "Growth in social engagement",
+        bg: "bg-[#FFF2D0]",
       },
       {
         icn: "/new-page/icns/globe-icn.png",
         title: "65%",
         para: "Increase in market share",
+        bg: "bg-[#EFFFD0]",
       },
     ],
     link: "/case-studies/print-advertising",
@@ -88,29 +90,29 @@ const storiesData: StoryCard[] = [
   },
   {
     title: "Brand Identity",
-    img: "/new-page/icns/s5-i3.png",
+    img: "/new-page/s5/rw-s5-i3.png",
     subTitle: "Healthcare & Wellness",
-    subPara: "Challenge",
-    para: "Reposition a specialised medical network as the go-to destination for international patients.",
-    subPara2: "Our Approach",
     para2:
-      "Research-driven brand architecture, premium visual system, and multilingual patient experience journeys.",
+      "To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs.",
     res: "Results",
     results: [
       {
         icn: "/new-page/icns/badge-icn.png",
         title: "210%",
         para: "Rise in global inquiries",
+        bg: "bg-[#FFD0F6]",
       },
       {
         icn: "/new-page/icns/users-icn.png",
         title: "92%",
         para: "Patient satisfaction scores",
+        bg: "bg-[#FFF2D0]",
       },
       {
         icn: "/new-page/icns/globe-icn.png",
         title: "54%",
         para: "Increase in repeat visits",
+        bg: "bg-[#EFFFD0]",
       },
     ],
     link: "/case-studies/brand-identity",
@@ -120,7 +122,7 @@ const storiesData: StoryCard[] = [
 
 function S5() {
   return (
-    <section className="relative flex w-full justify-center overflow-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-0">
+    <section className="relative flex w-full justify-center overflow-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-0 mb-4 mt-4">
       <div className="flex w-full max-w-[99%] flex-col gap-12 px-4 sm:px-6 lg:px-0 lg:pb-20">
         {/* Row 1 */}
         <div className="flex flex-col items-center gap-4 text-center">
@@ -148,7 +150,7 @@ function S5() {
               }`}
             >
               <div className="relative w-full overflow-hidden rounded-[16px] bg-white shadow-[0_25px_65px_rgba(16,24,40,0.12)] sm:w-[85%] sm:self-center lg:w-[46%]">
-                <div className="relative aspect-[4/3] lg:w-full lg:h-[384px]">
+                <div className="relative aspect-[4/3] lg:w-full lg:h-[481px]">
                   <Image
                     src={story.img}
                     alt={story.title}
@@ -156,13 +158,13 @@ function S5() {
                     className="object-cover"
                   />
                   {/* Absolute Positioned Div  */}
-                  <button className="w-[155px] h-[32px] rounded-full absolute top-4 left-4 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#D4A574]">
+                  <button className="w-[155px] h-[32px] rounded-full absolute top-4 left-4 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#242321]">
                     {story.title}
                   </button>
                 </div>
               </div>
 
-              <div className="flex w-full flex-col gap-4 rounded-[28px]te px-6 py-8 sm:px-10 lg:w-[46%]">
+              <div className="flex w-full flex-col gap-14 rounded-[28px]te px-6 py-8 sm:px-10 lg:w-[46%]">
                 <div className="flex flex-col gap-1">
                   <p className="text-[14px] font-[400] text-[#D4A574]">
                     {story.subTitle}
@@ -170,21 +172,7 @@ function S5() {
                   <h3 className="text-[26px] font-semibold text-[#101828] sm:text-[32px]">
                     {story.title}
                   </h3>
-                </div>
-
-                <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-1">
-                    <p className="text-[14px] font-[400] text-[#6A7282]">
-                      {story.subPara}
-                    </p>
-                    <p className="text-sm text-[#364153] sm:text-base">
-                      {story.para}
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <p className="text-[14px] font-[400] text-[#6A7282]">
-                      {story.subPara2}
-                    </p>
                     <p className="text-sm text-[#364153] sm:text-base">
                       {story.para2}
                     </p>
@@ -192,10 +180,10 @@ function S5() {
                 </div>
 
                 <div className="flex flex-wrap lg:flex-nowrap gap-2">
-                  {story.results.map((result) => (
+                  {story.results.map((result, idx) => (
                     <div
                       key={`${story.title}-${result.title}`}
-                      className="flex h-[110px] w-[190px] flex-col items-center justify-center gap-2 rounded-2xl  bg-[#F9FAFB] text-center sm:w-[200px]"
+                      className={`flex md:h-[110px] w-[160px] h-[110px] md:w-[190px] flex-col items-center justify-center gap-2 rounded-2xl  ${result.bg} text-center sm:w-[200px]`}
                     >
                       <Image
                         src={result.icn}
@@ -225,15 +213,9 @@ function S5() {
           ))}
         </div>
 
-        {/* Row 3 */}
-        <div className="flex w-full justify-center">
-          <Link
-            href="/case-studies"
-            className="inline-flex items-center gap-3 rounded-xl bg-[#D4A574] px-6 py-3 text-sm font-[500] text-white transition-colors duration-200 hover:bg-[#c2925d] sm:px-8 sm:py-4 sm:text-base h-[40px]"
-          >
-            <h3> View All 500+ Success Stories</h3>
-            <MoveRight className="h-5 w-5" />
-          </Link>
+        <div className="w-full flex justify-center items-center">
+          {" "}
+          <AnimatedBtn></AnimatedBtn>
         </div>
       </div>
     </section>

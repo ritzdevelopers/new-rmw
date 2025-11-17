@@ -70,7 +70,7 @@ function S4() {
     <section className="relative flex w-full justify-center overflow-hidden bg-[#FFFFFF] py-16 sm:py-20 md:pt-0 lg:py-24">
       <div className="flex w-full max-w-[95%] flex-col items-center gap-12 px-4 sm:px-6 lg:px-8">
         {/* Row 1 */}
-        <div className="flex flex-col gap-4 items-center  text-center sm:max-w-3xl">
+        <div className="flex flex-col gap-4 items-center text-center sm:max-w-3xl">
           <button className="inline-flex w-fit rounded-full bg-[#D4A574] px-5 py-2 text-[14px] font-[400] text-white">
             What We Do
           </button>

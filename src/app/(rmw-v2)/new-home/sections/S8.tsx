@@ -146,18 +146,21 @@ function S8() {
   }, []);
 
   return (
-    <section className="w-screen  flex justify-center items-center bg-gradient-to-br from-[#F9FAFB] to-[#ffffff] py-12 sm:py-16 md:py-24 md:pt-0 lg:py-20 overflow-x-hidden">
+    <section className="w-screen flex justify-center items-center bg-gradient-to-br from-[#F9FAFB] to-[#ffffff] py-10 sm:py-14 md:py-20 md:pt-4 lg:py-20 overflow-x-hidden overflow-y-visible px-4 sm:px-6">
       {/* Centered Align Div  */}
-      <div className="w-[90%] max-w-[1400px] flex flex-col items-center gap-8 sm:gap-12 md:gap-16">
+      <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%] lg:max-w-[1400px] flex flex-col items-center gap-6 sm:gap-10 md:gap-14 lg:gap-16 relative">
         {/* Top Header Div  */}
-        <div className="w-full relative flex flex-col justify-center items-center text-center gap-3 sm:gap-4 md:gap-5 px-4 sm:px-0">
-          <button className="inline-flex h-9 w-[156px] items-center justify-center rounded-full bg-[#D4A574] text-[14px] font-[400] text-[#ffffff] ">
+        <div className="w-full relative flex flex-col justify-center items-center text-center gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 px-2 sm:px-4 md:px-0">
+          <button className="inline-flex h-8 sm:h-9 w-[140px] sm:w-[156px] items-center justify-center rounded-full bg-[#D4A574] text-[12px] sm:text-[13px] lg:text-[14px] font-[400] text-[#ffffff]">
             Clients Testimonials
           </button>
-          <h2 className="font-[600] text-[28px] sm:text-[32px] md:text-[40px] lg:text-[48px] leading-[1.2] sm:leading-[1.1] text-[#101828] px-2 md:flex">
-            What Our Clients <span className="text-[#D4A574] md:block transform -translate-y-[4px]">Say</span>
+          <h2 className="font-[600] text-[24px] sm:text-[28px] md:text-[36px] lg:text-[48px] leading-[1.2] sm:leading-[1.2] md:leading-[1.1] text-[#101828] px-2 md:flex">
+            What Our Clients{" "}
+            <span className="text-[#D4A574] md:block transform -translate-y-[4px]">
+              Say
+            </span>
           </h2>
-          <p className="max-w-[650px] font-[400] text-[16px] sm:text-[18px] md:text-[20px] leading-[1.6] text-[#4A5565] px-4 sm:px-0">
+          <p className="max-w-full sm:max-w-[600px] md:max-w-[650px] font-[400] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] leading-[1.6] text-[#4A5565] px-2 sm:px-4 md:px-0">
             Don&apos;t just take our word for it – hear from the brands
             we&apos;ve helped transform.
           </p>
@@ -188,11 +191,11 @@ function S8() {
         </div>
 
         {/* Botom Testimonials Div  */}
-        <div className="w-full relative max-w-[1106px] min-h-[280px] sm:min-h-[320px] md:min-h-[360px] lg:min-h-[391px] border-b-[5px] sm:border-b-[7px] md:border-b-[9px] border-[#D4A574] rounded-b-[20px] sm:rounded-b-[25px] md:rounded-b-[30px] shadow-[0_20px_40px_rgba(16,24,40,0.06)] md:shadow-[0_35px_70px_rgba(16,24,40,0.08)] bg-white/90 backdrop-blur flex justify-center items-center px-4 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-8 md:py-10 mx-4 sm:mx-0">
+        <div className="w-full relative min-h-[260px] sm:min-h-[300px] md:min-h-[340px] lg:min-h-[391px] border-b-[4px] sm:border-b-[6px] md:border-b-[8px] lg:border-b-[9px] border-[#D4A574] rounded-b-[16px] sm:rounded-b-[20px] md:rounded-b-[25px] lg:rounded-b-[30px] shadow-[0_15px_30px_rgba(16,24,40,0.06)] sm:shadow-[0_20px_40px_rgba(16,24,40,0.06)] md:shadow-[0_35px_70px_rgba(16,24,40,0.08)] bg-white/90 backdrop-blur flex justify-center items-center px-3 sm:px-5 md:px-7 lg:px-12 py-5 sm:py-7 md:py-9 lg:py-10 mx-2 sm:mx-0 overflow-y-hidden overflow-x-visible xl:w-[1100px]">
           {/* Centered Align Slider  */}
           <div
             ref={sliderRef}
-            className="w-full max-w-[815px] flex flex-col justify-between items-center gap-6 sm:gap-8 md:gap-10"
+            className="w-full  sm:max-w-[600px] md:max-w-[750px] lg:w-[813px] flex flex-col justify-between items-center gap-5 sm:gap-6 md:gap-8 lg:gap-10"
           >
             <div className="relative w-full px-2 sm:px-4 md:px-0">
               {/* Decorative Quote - Smaller on mobile */}
@@ -244,17 +247,17 @@ function S8() {
               ))}
             </div>
           </div>
+        </div>
 
-          {/* Absolute Positioned Left Line Div - Hidden on mobile, visible on large screens */}
-          <div className="hidden xl:block absolute -left-30 -bottom-30 opacity-60">
-            <div className="w-[70px] h-[120px] xl:w-[87px] xl:h-[151px] relative rotate-[5deg]">
-              <Image
-                src={"/new-page/icns/lft-line.png"}
-                alt="RMW"
-                fill
-                className="object-contain"
-              ></Image>
-            </div>
+        {/* Absolute Positioned Left Line Div - Hidden on mobile, visible on large screens */}
+        <div className="hidden xl:block absolute left-[-30px] lg:left-[-60px] xl:left-[10px] bottom-[-30px] lg:bottom-[-90px] xl:bottom-[-80px] z-20 opacity-60">
+          <div className="w-[70px] h-[120px] xl:w-[87px] xl:h-[151px] relative rotate-[5deg]">
+            <Image
+              src={"/new-page/icns/lft-line.png"}
+              alt="RMW"
+              fill
+              className="object-contain"
+            ></Image>
           </div>
         </div>
       </div>
