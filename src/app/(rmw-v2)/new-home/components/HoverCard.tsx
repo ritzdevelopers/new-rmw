@@ -16,7 +16,7 @@ function HoverCard({ width, height, title, para, id }: HoverCardProps) {
         id === "btm" ? "self-end" : ""
       }`}
     >
-      <h2 className="font-[500] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px]">{title}</h2>
+      <h3 className="font-[500] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px]">{title}</h3>
       <p className="font-[400] text-[#00000099] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] text-center px-2">{para}</p>
     </div>
   );

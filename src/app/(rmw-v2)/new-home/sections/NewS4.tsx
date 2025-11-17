@@ -51,7 +51,7 @@ function NewS4() {
     },
   ];
   return (
-    <section className="w-screen flex justify-center items-center py-8 sm:py-10 md:py-12 lg:py-0 px-4 sm:px-6">
+    <section className="w-screen flex justify-center items-center py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-6">
       {/* Center Align Div  */}
       <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%] h-full flex flex-col">
         {/* Top Text Content Div  */}
@@ -63,7 +63,7 @@ function NewS4() {
             360° Brand{" "}
             <span className="text-[#D4A574]">Elevation Services</span>
           </h2>
-          <p className="max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-6xl text-sm sm:text-base md:text-lg lg:text-[20px] text-[#4A5565] font-[400] leading-relaxed">
+          <p className="max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-4xl text-sm sm:text-base md:text-lg lg:text-[20px] text-[#4A5565] font-[400] leading-relaxed">
             Our in-house team masters the entire spectrum of digital marketing ,
             from strategy and creative development to sophisticated campaigns
             .Our in-house team masters the entire spectrum

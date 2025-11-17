@@ -55,12 +55,12 @@ function NewBlogSection() {
   }, [blinkEye]);
 
   return (
-    <section className="relative flex w-full justify-center overflow-hidden bg-white py-12 sm:py-16 md:py-20 lg:py-24">
+    <section className="relative flex w-full justify-center overflow-hidden bg-white py-12 sm:py-16 md:py-20">
       <div className="flex w-full max-w-[92%] flex-col gap-8 sm:gap-10 lg:gap-12 px-4 sm:px-6 lg:px-8">
         {/* Row 1 - Header */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 sm:gap-8">
           <div className="flex flex-col items-start gap-3 sm:gap-4 w-full md:w-auto">
-            <button className="rounded-full bg-[#E8DDD1] px-4 py-1.5 text-[10px] font-semibold text-[#8B7355] sm:px-6 sm:py-2 sm:text-xs md:text-sm">
+            <button className="rounded-full bg-[#D4A574] px-4 py-1.5 text-[10px] font-semibold text-[#ffffff] sm:px-6 sm:py-2 sm:text-xs md:text-sm">
               Latest Insights
             </button>
             <h2 className="text-2xl font-semibold text-[#101828] leading-tight sm:text-3xl md:text-4xl lg:text-[48px] lg:leading-[1.1]">

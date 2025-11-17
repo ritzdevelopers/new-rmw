@@ -199,7 +199,7 @@ function S9() {
       className="w-screen min-h-screen flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden"
     >
       {/* Centered Positioned Div */}
-      <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-between items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20">
+      <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-center items-center gap-8 sm:gap-10 md:gap-12 lg:gap-26">
         {/* Left Side Image  */}
         <div
           ref={imageRef}
@@ -229,17 +229,17 @@ function S9() {
         {/* Right Side Content  */}
         <div
           ref={contentRef}
-          className="w-full lg:w-[623px] xl:w-[700px] flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 order-1 lg:order-2"
+          className="w-full lg:w-[623px] flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-12 order-1 lg:order-2"
         >
           {/* Heading */}
           <div>
-            <h2 className="font-[600] text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] xl:text-[42px] leading-[1.2] text-white">
+            <p className="font-[400] text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] xl:text-[42px] leading-[20px] text-white">
               Frequently Asked <span className="text-[#D4A574]">Questions</span>
-            </h2>
+            </p>
           </div>
 
           {/* FAQ Accordion Items */}
-          <div className="flex flex-col gap-4 sm:gap-5 md:gap-6">
+          <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-12">
             {faqData.map((faq, idx) => {
               return (
                 <div

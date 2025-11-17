@@ -191,7 +191,7 @@ function S8() {
         </div>
 
         {/* Botom Testimonials Div  */}
-        <div className="w-full relative min-h-[260px] sm:min-h-[300px] md:min-h-[340px] lg:min-h-[391px] border-b-[4px] sm:border-b-[6px] md:border-b-[8px] lg:border-b-[9px] border-[#D4A574] rounded-b-[16px] sm:rounded-b-[20px] md:rounded-b-[25px] lg:rounded-b-[30px] shadow-[0_15px_30px_rgba(16,24,40,0.06)] sm:shadow-[0_20px_40px_rgba(16,24,40,0.06)] md:shadow-[0_35px_70px_rgba(16,24,40,0.08)] bg-white/90 backdrop-blur flex justify-center items-center px-3 sm:px-5 md:px-7 lg:px-12 py-5 sm:py-7 md:py-9 lg:py-10 mx-2 sm:mx-0 overflow-y-hidden overflow-x-visible xl:w-[1100px]">
+        <div className="w-full relative min-h-[260px] sm:min-h-[300px] md:min-h-[340px] lg:min-h-[391px] border-b-[4px] sm:border-b-[6px] md:border-b-[8px] lg:border-b-[9px] border-[#D4A574] rounded-[16px] sm:rounded-[20px] md:rounded-[25px] lg:rounded-[30px] shadow-[0_15px_30px_rgba(16,24,40,0.06)] sm:shadow-[0_20px_40px_rgba(16,24,40,0.06)] md:shadow-[0_35px_70px_rgba(16,24,40,0.08)] bg-white/90 backdrop-blur flex justify-center items-center px-3 sm:px-5 md:px-7 lg:px-12 py-5 sm:py-7 md:py-9 lg:py-10 mx-2 sm:mx-0 overflow-y-hidden overflow-x-visible xl:w-[1100px]">
           {/* Centered Align Slider  */}
           <div
             ref={sliderRef}

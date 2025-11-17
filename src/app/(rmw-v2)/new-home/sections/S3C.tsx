@@ -103,8 +103,8 @@ function S3C() {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="mb-8 text-center sm:mb-12 lg:mb-16">
-          <h2 className="text-2xl font-semibold text-[#101828] sm:text-3xl lg:text-4xl">
-            Our Clients
+          <h2 className="text-2xl font-[600] text-[#101828] sm:text-3xl lg:text-[48px]">
+            Clients
           </h2>
         </div>
 

@@ -27,7 +27,7 @@ function S4Card({
 }: S4CardProps) {
   return (
     <div
-      className={`w-full flex flex-col-reverse lg:flex-row justify-between gap-0 ${cardBg} shadow-lg lg:sticky ${top}`}
+      className={`w-full flex flex-col-reverse rounded-[32px] lg:flex-row justify-between gap-0 ${cardBg} shadow-lg lg:sticky ${top}`}
     >
       {/* Left Side Card Div  */}
       <div

@@ -59,10 +59,10 @@ function S11() {
   return (
     <section
       ref={sectionRef}
-      className="w-screen min-h-screen flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden relative"
+      className="w-screen min-h-screen flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] overflow-x-hidden relative"
     >
       {/* Centered Align Div  */}
-      <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 relative z-20">
+      <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 relative z-20 ">
         {/* Left Side Container  */}
         <div
           ref={leftRef}

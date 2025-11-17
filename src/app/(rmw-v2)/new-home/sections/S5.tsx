@@ -123,20 +123,20 @@ const storiesData: StoryCard[] = [
 function S5() {
   return (
     <section className="relative flex w-full justify-center overflow-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-0 mb-4 mt-4">
-      <div className="flex w-full max-w-[99%] flex-col gap-12 px-4 sm:px-6 lg:px-0 lg:pb-20">
+      <div className="flex w-full max-w-[99%] flex-col gap-12 px-4 sm:px-6 lg:px-0 lg:pb-10">
         {/* Row 1 */}
         <div className="flex flex-col items-center gap-4 text-center">
           <button className="inline-flex h-9 w-[130px] items-center justify-center rounded-full bg-[#E8DDD1] text-[14px] font-[400] text-[#8B7355] ">
             Proven Results
           </button>
-          <h2 className="text-3xl font-[500] text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.15] md:flex">
+          <h2 className="text-3xl font-[600] text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.15] md:flex">
             Success Stories That{" "}
-            <span className="text-[#D4A574]  md:block transform -translate-y-[4px]">
+            <span className="text-[#D4A574] font-[600] md:block transform -translate-y-[4px]">
               Inspire
             </span>
           </h2>
           <p className="text-base text-[#4A5565] sm:text-[20px] font-[400]">
-            Real challenges. Creative solutions. Measurable brand impact.
+            Real challenges. Creative solutions. Measurable results
           </p>
         </div>
 
@@ -145,11 +145,11 @@ function S5() {
           {storiesData.map((story, idx) => (
             <article
               key={story.title}
-              className={`flex flex-col gap-8 lg:items-center min-h-[384px] lg:justify-center lg:gap-6  ${
+              className={`flex flex-col gap-8 lg:items-center min-h-[384px] lg:justify-center lg:gap-0  ${
                 idx % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               }`}
             >
-              <div className="relative w-full overflow-hidden rounded-[16px] bg-white shadow-[0_25px_65px_rgba(16,24,40,0.12)] sm:w-[85%] sm:self-center lg:w-[46%]">
+              <div className="relative w-full overflow-hidden rounded-[16px] bg-white shadow-[0_25px_65px_rgba(16,24,40,0.12)] sm:w-[85%] sm:self-center lg:w-[40%]">
                 <div className="relative aspect-[4/3] lg:w-full lg:h-[481px]">
                   <Image
                     src={story.img}
@@ -164,41 +164,43 @@ function S5() {
                 </div>
               </div>
 
-              <div className="flex w-full flex-col gap-14 rounded-[28px]te px-6 py-8 sm:px-10 lg:w-[46%]">
-                <div className="flex flex-col gap-1">
-                  <p className="text-[14px] font-[400] text-[#D4A574]">
-                    {story.subTitle}
-                  </p>
-                  <h3 className="text-[26px] font-semibold text-[#101828] sm:text-[32px]">
-                    {story.title}
-                  </h3>
+              <div className="flex w-full lg:h-full flex-col justify-between gap-14 rounded-[28px]te px-6  sm:px-6 lg:w-[42%]">
+                <div className="flex flex-col gap-[24px]">
                   <div className="flex flex-col gap-1">
-                    <p className="text-sm text-[#364153] sm:text-base">
-                      {story.para2}
+                    <p className="text-[14px] font-[400] text-[#D4A574]">
+                      {story.subTitle}
                     </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap lg:flex-nowrap gap-2">
-                  {story.results.map((result, idx) => (
-                    <div
-                      key={`${story.title}-${result.title}`}
-                      className={`flex md:h-[110px] w-[160px] h-[110px] md:w-[190px] flex-col items-center justify-center gap-2 rounded-2xl  ${result.bg} text-center sm:w-[200px]`}
-                    >
-                      <Image
-                        src={result.icn}
-                        alt={result.title}
-                        width={24}
-                        height={24}
-                      />
-                      <h4 className="text-xl font-semibold text-[#101828]">
-                        {result.title}
-                      </h4>
-                      <p className="text-xs text-[#4A5565] sm:text-sm">
-                        {result.para}
+                    <h3 className="text-[26px] font-semibold text-[#333333] sm:text-[32px]">
+                      {story.title}
+                    </h3>
+                    <div className="flex flex-col gap-1">
+                      <p className="text-sm text-[#364153] sm:text-base">
+                        {story.para2}
                       </p>
                     </div>
-                  ))}
+                  </div>
+
+                  <div className="flex flex-wrap lg:flex-nowrap gap-2">
+                    {story.results.map((result, idx) => (
+                      <div
+                        key={`${story.title}-${result.title}`}
+                        className={`flex md:h-[127px] w-[160px] h-[127px] md:w-[190px] flex-col items-center justify-center gap-2 rounded-2xl  ${result.bg} text-center sm:w-[200px]`}
+                      >
+                        <Image
+                          src={result.icn}
+                          alt={result.title}
+                          width={24}
+                          height={24}
+                        />
+                        <h4 className="text-xl font-semibold text-[#101828]">
+                          {result.title}
+                        </h4>
+                        <p className="text-xs text-[#4A5565] sm:text-sm">
+                          {result.para}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <Link

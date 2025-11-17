@@ -14,8 +14,8 @@ function ASI({
   bgType?: "facebook" | "instagram" | "youtube" | "linkedin";
 }) {
   const bgClasses = {
-    facebook: "bg-[#1877F2]",
-    instagram: "bg-gradient-to-b from-[#405DE6] via-[#833AB4] to-[#FCAF45]",
+    facebook: "bg-[#1877F2]", //f9ce34
+    instagram: "bg-gradient-to-b from-[#6228d7] via-[#ee2a7b] to-[#f9ce34]",
     youtube: "bg-[#FF0000]",
     linkedin: "bg-[#0077B5]",
   };
