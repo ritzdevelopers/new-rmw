@@ -1,19 +1,159 @@
 "use client";
 
-import { MoveRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useRef } from "react";
+import ScrollSlider, { CardData } from "../components/ScrollSlider";
+
+// Card data array with dynamic backgrounds
+const cardsData: CardData[] = [
+  {
+    id: 1,
+    title: "Digital Marketing",
+    description:
+      "Cut through the noise with conversion-led performance campaigns crafted for premium audiences.",
+    icon: "/new-page/icns/build-icn-2.png",
+    iconAlt: "Digital Marketing",
+    features: [
+      "Hyper-targeted media planning & buying",
+      "Persona-driven communication frameworks",
+      "Always-on analytics & optimisation",
+      "Automated lead nurturing journeys",
+    ],
+    link: "/services/digital-marketing",
+    linkText: "Explore Digital Marketing",
+    bg: "#FC5D19", // Solid color
+    ellipseImage: "/new-page/elip.png",
+    featureDotColor: "#D4A574",
+    buttonBg: "bg-[#FFFFFF]",
+    buttonTextColor: "text-black",
+    buttonHoverBg: "hover:bg-[#c2925d]",
+  },
+  {
+    id: 2,
+    title: "Brand & Communication",
+    description:
+      "Build an iconic brand voice with insight-backed storytelling that scales across every channel.",
+    icon: "/new-page/icns/stars-icn.png",
+    iconAlt: "Brand & Communication",
+    features: [
+      "Brand workshops & positioning blueprints",
+      "Integrated creative campaign systems",
+      "Experience-first content architectures",
+      "ATL / BTL orchestration for launches",
+    ],
+    link: "/services/brand-communication",
+    linkText: "Explore Brand Communication",
+    bg: "linear-gradient(to bottom, #103FCB, #081F65)", // Gradient
+    ellipseImage: "/new-page/elip2.png",
+    featureDotColor: "#D1D5DC",
+    buttonBg: "bg-[#ffffff]",
+    buttonTextColor: "text-[#000000]",
+    buttonHoverBg: "hover:bg-[#c2925d] hover:text-white",
+  },
+  {
+    id: 1,
+    title: "Digital Marketing",
+    description:
+      "Cut through the noise with conversion-led performance campaigns crafted for premium audiences.",
+    icon: "/new-page/icns/build-icn-2.png",
+    iconAlt: "Digital Marketing",
+    features: [
+      "Hyper-targeted media planning & buying",
+      "Persona-driven communication frameworks",
+      "Always-on analytics & optimisation",
+      "Automated lead nurturing journeys",
+    ],
+    link: "/services/digital-marketing",
+    linkText: "Explore Digital Marketing",
+    bg: "#FC5D19", // Solid color
+    ellipseImage: "/new-page/elip.png",
+    featureDotColor: "#D4A574",
+    buttonBg: "bg-[#FFFFFF]",
+    buttonTextColor: "text-black",
+    buttonHoverBg: "hover:bg-[#c2925d]",
+  },
+  {
+    id: 2,
+    title: "Brand & Communication",
+    description:
+      "Build an iconic brand voice with insight-backed storytelling that scales across every channel.",
+    icon: "/new-page/icns/stars-icn.png",
+    iconAlt: "Brand & Communication",
+    features: [
+      "Brand workshops & positioning blueprints",
+      "Integrated creative campaign systems",
+      "Experience-first content architectures",
+      "ATL / BTL orchestration for launches",
+    ],
+    link: "/services/brand-communication",
+    linkText: "Explore Brand Communication",
+    bg: "linear-gradient(to bottom, #103FCB, #081F65)", // Gradient
+    ellipseImage: "/new-page/elip2.png",
+    featureDotColor: "#D1D5DC",
+    buttonBg: "bg-[#ffffff]",
+    buttonTextColor: "text-[#000000]",
+    buttonHoverBg: "hover:bg-[#c2925d] hover:text-white",
+  },  {
+    id: 1,
+    title: "Digital Marketing",
+    description:
+      "Cut through the noise with conversion-led performance campaigns crafted for premium audiences.",
+    icon: "/new-page/icns/build-icn-2.png",
+    iconAlt: "Digital Marketing",
+    features: [
+      "Hyper-targeted media planning & buying",
+      "Persona-driven communication frameworks",
+      "Always-on analytics & optimisation",
+      "Automated lead nurturing journeys",
+    ],
+    link: "/services/digital-marketing",
+    linkText: "Explore Digital Marketing",
+    bg: "#FC5D19", // Solid color
+    ellipseImage: "/new-page/elip.png",
+    featureDotColor: "#D4A574",
+    buttonBg: "bg-[#FFFFFF]",
+    buttonTextColor: "text-black",
+    buttonHoverBg: "hover:bg-[#c2925d]",
+  },
+  {
+    id: 2,
+    title: "Brand & Communication",
+    description:
+      "Build an iconic brand voice with insight-backed storytelling that scales across every channel.",
+    icon: "/new-page/icns/stars-icn.png",
+    iconAlt: "Brand & Communication",
+    features: [
+      "Brand workshops & positioning blueprints",
+      "Integrated creative campaign systems",
+      "Experience-first content architectures",
+      "ATL / BTL orchestration for launches",
+    ],
+    link: "/services/brand-communication",
+    linkText: "Explore Brand Communication",
+    bg: "linear-gradient(to bottom, #103FCB, #081F65)", // Gradient
+    ellipseImage: "/new-page/elip2.png",
+    featureDotColor: "#D1D5DC",
+    buttonBg: "bg-[#ffffff]",
+    buttonTextColor: "text-[#000000]",
+    buttonHoverBg: "hover:bg-[#c2925d] hover:text-white",
+  },
+  // Add more cards here as needed
+];
 
 function S3() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
   return (
-    <section className="relative flex w-full justify-center overflow-hidden  bg-[#FFFFFF] py-16 sm:py-2 md:pb-8 lg:py-0">
-      <div className="flex w-full max-w-[95%] flex-col gap-12 px-4 sm:px-6 lg:px-8 ">
+    <section
+      ref={sectionRef}
+      className="relative flex w-full justify-center overflow-hidden bg-[#FFFFFF] py-16 sm:py-2 md:pb-8 lg:py-0"
+    >
+      <div className="flex w-full max-w-[95%] flex-col gap-12 px-4 sm:px-6 lg:px-8">
         {/* Row 1 */}
         <div className="flex flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.1] md:flex">
             Choose Your{" "}
-            <span className="text-[#D4A574]  md:block transform -translate-y-[4px]">
+            <span className="text-[#D4A574] md:block transform -translate-y-[4px]">
               Brand Journey
             </span>
           </h2>
@@ -23,128 +163,8 @@ function S3() {
           </p>
         </div>
 
-        {/* Row 2 */}
-        <div className="grid gap-6 lg:grid-cols-2">
-          {/* Card 1 - Digital Marketing */}
-          <div className="relative md:py-6 flex min-h-[440px] flex-col overflow-hidden rounded-[28px] p-[1px] transition-transform duration-300 hover:-translate-y-2 bg-[#FC5D19]">
-            <div className="relative z-10 flex h-full flex-col justify-between gap-6 rounded-[28px]  px-8 py-10 backdrop-blur-sm sm:px-10">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FFFFFF33]">
-                <Image
-                  src="/new-page/icns/build-icn-2.png"
-                  alt="Digital Marketing"
-                  width={36}
-                  height={36}
-                />
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <h2 className="text-[32px] font-[600] text-white sm:text-[30px]">
-                  Digital Marketing
-                </h2>
-                <p className="text-sm text-[#FFFFFFE5] sm:text-[16px] font-[400]">
-                  Cut through the noise with conversion-led performance
-                  campaigns crafted for premium audiences.
-                </p>
-              </div>
-
-              <ul className="flex flex-col gap-2 text-sm text-[#FFFFFFE5] sm:text-[16px] font-[400]">
-                <li className="flex items-start gap-3">
-                  <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#D4A574]" />
-                  <span>Hyper-targeted media planning & buying</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#D4A574]" />
-                  <span>Persona-driven communication frameworks</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#D4A574]" />
-                  <span>Always-on analytics & optimisation</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#D4A574]" />
-                  <span>Automated lead nurturing journeys</span>
-                </li>
-              </ul>
-
-              <Link
-                href="/services/digital-marketing"
-                className="group inline-flex  md:h-[40px] w-full items-center justify-center gap-2 rounded-[8px] bg-[#FFFFFF] px-6 py-3 text-[16px] font-[500] text-black transition-colors duration-200 hover:bg-[#c2925d]"
-              >
-                Explore Digital Marketing
-                <MoveRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-            </div>
-
-            {/* Absolute Position Image Container  */}
-            <div className="absolute -right-22 -top-22 z-10">
-              <img
-                src="/new-page/elip.png"
-                alt="RMW"
-                className="w-[256px] h-[256px]"
-              />
-            </div>
-          </div>
-
-          {/* Card 2 - Brand & Communication */}
-          <div className="relative  md:py-6 flex min-h-[440px] flex-col overflow-hidden rounded-[28px] p-[1px] transition-transform duration-300 hover:-translate-y-2 bg-gradient-to-b from-[#103FCB] to-[#081F65]">
-            <div className="relative z-10 flex h-full flex-col justify-between gap-6 rounded-[28px]  px-8 py-10 backdrop-blur-sm sm:px-10">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FFFFFF33]">
-                <Image
-                  src="/new-page/icns/stars-icn.png"
-                  alt="Brand & Communication"
-                  width={36}
-                  height={36}
-                />
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <h2 className="text-[32px] font-[600] text-white sm:text-[30px]">
-                  Brand & Communication
-                </h2>
-                <p className="text-sm text-[#FFFFFFE5] sm:text-[16px] font-[400]">
-                  Build an iconic brand voice with insight-backed storytelling
-                  that scales across every channel.
-                </p>
-              </div>
-
-              <ul className="flex flex-col gap-2 text-sm text-[#D1D5DC] sm:text-[16px]">
-                <li className="flex items-start gap-3">
-                  <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#D1D5DC]" />
-                  <span>Brand workshops & positioning blueprints</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#D1D5DC]" />
-                  <span>Integrated creative campaign systems</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#D1D5DC]" />
-                  <span>Experience-first content architectures</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#D1D5DC]" />
-                  <span>ATL / BTL orchestration for launches</span>
-                </li>
-              </ul>
-
-              <Link
-                href="/services/brand-communication"
-                className="group inline-flex md:h-[40px] w-full items-center justify-center gap-2 rounded-xl bg-[#ffffff] px-6 py-3 text-[16px] font-[500] text-[#000000] transition-colors duration-200 hover:bg-[#c2925d] hover:text-white"
-              >
-                Explore Brand Communication
-                <MoveRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-              </Link>
-            </div>
-
-            {/* Absolute Position Image Container  */}
-            <div className="absolute -right-22 -top-22 z-10">
-              <img
-                src="/new-page/elip2.png"
-                alt="RMW"
-                className="w-[256px] h-[256px]"
-              />
-            </div>
-          </div>
-        </div>
+        {/* Row 2 - Slider */}
+        <ScrollSlider cards={cardsData} sectionRef={sectionRef} />
 
         {/* Row 3 */}
         <div className="flex justify-center text-center">

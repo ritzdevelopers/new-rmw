@@ -13,16 +13,21 @@ import InstagramIcon from "./components/InstagramIcon";
 import FacebookIcon from "./components/FacebookIcon";
 import YouTubeIcon from "./components/YouTubeIcon";
 import LinkedInIcon from "./components/LinkedInIcon";
+import XIcon from "./components/XIcon";
 import S3C from "./sections/S3C";
 import NewBlogSection from "./sections/NewBlogSection";
 import NewS2 from "./sections/NewS2";
 import NewS4 from "./sections/NewS4";
 import S4C from "./sections/S4C";
 import S51 from "./sections/S51";
+import CustomCursor from "./components/CustomCursor";
+import LenisSmoothScroll from "./components/LenisSmoothScroll";
 
 function page() {
   return (
     <main className="overflow-x-hidden">
+      <LenisSmoothScroll />
+      <CustomCursor />
       <S1></S1>
       {/* <S2></S2> */}
       <NewS2></NewS2>
@@ -44,6 +49,7 @@ function page() {
       <ASI icn={<InstagramIcon />} py="top-[310px]" px="right-[0px]" bgType="instagram"></ASI>
       <ASI icn={<YouTubeIcon />} py="top-[370px]" px="right-[0px]" bgType="youtube"></ASI>
       <ASI icn={<LinkedInIcon />} py="top-[430px]" px="right-[0px]" bgType="linkedin"></ASI>
+      <ASI icn={<XIcon />} py="top-[490px]" px="right-[0px]" bgType="x"></ASI>
     </main>
   );
 }

@@ -21,7 +21,7 @@ function NewS2() {
             about.
           </h3>
         </div>
-        <AnimatedBtn></AnimatedBtn>
+        <AnimatedBtn btnText="Click Me to know more"></AnimatedBtn>
       </div>
 
       {/* Center Align Main Div  */}

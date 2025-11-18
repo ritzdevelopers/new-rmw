@@ -1,6 +1,9 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import S4Card from "../components/S4Card";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 function NewS4() {
   const s4CardsData = [
@@ -50,8 +53,14 @@ function NewS4() {
       top: "top-8",
     },
   ];
+
+  const cardRefs = useRef<HTMLDivElement[]>([]);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  console.log(cardRefs.current);
+
+
   return (
-    <section className="w-screen flex justify-center items-center py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-6">
+    <section ref={sectionRef} className="w-screen flex justify-center items-center py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-6">
       {/* Center Align Div  */}
       <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%] h-full flex flex-col">
         {/* Top Text Content Div  */}
@@ -71,11 +80,14 @@ function NewS4() {
         </div>
 
         {/* Bottom Cards Div  */}
-        <div className="w-full stCon mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex flex-col gap-6 sm:gap-8 md:gap-9 lg:gap-10 overflow-y-auto relative h-auto sm:h-[80vh] md:h-[90vh] lg:h-[100vh]">
+        <div className="w-full stCon mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex flex-col gap-6 sm:gap-8 md:gap-9 lg:gap-10 overflow-y-auto relative h-auto ">
           {/* Cards Section   */}
           {s4CardsData.map((ob, idx) => {
             return (
               <S4Card
+                ref={(el) => {
+                  if (el) cardRefs.current[idx] = el;
+                }}
                 key={idx}
                 linkTxt={ob.linkTxt}
                 title={ob.title}
@@ -86,7 +98,7 @@ function NewS4() {
                 img={ob.img}
                 top={ob.top}
               />
-            );
+            )
           })}
         </div>
       </div>

@@ -3,8 +3,15 @@
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import AnimatedBtn from "../components/AnimatedBtn";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 type StoryResult = {
   icn: string;
@@ -121,11 +128,227 @@ const storiesData: StoryCard[] = [
 ];
 
 function S5() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const articleRefs = useRef<(HTMLElement | null)[]>([]);
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const resultCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+
+  useGSAP(() => {
+    if (!sectionRef.current) return;
+
+    // Animate header section
+    if (headerRef.current) {
+      gsap.from(headerRef.current.children, {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: headerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+
+    // Animate each article
+    articleRefs.current.forEach((article, idx) => {
+      if (!article) return;
+
+      const imageContainer = imageRefs.current[idx];
+      const contentContainer = contentRefs.current[idx];
+      const isEven = idx % 2 === 0;
+
+      // Set initial states
+      if (imageContainer) {
+        gsap.set(imageContainer, {
+          x: isEven ? -100 : 100,
+          opacity: 0,
+          scale: 0.9,
+        });
+      }
+
+      if (contentContainer) {
+        gsap.set(contentContainer, {
+          x: isEven ? 100 : -100,
+          opacity: 0,
+        });
+      }
+
+      // Animate on scroll
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: article,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      if (imageContainer) {
+        tl.to(imageContainer, {
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+        }, 0);
+      }
+
+      if (contentContainer) {
+        tl.to(contentContainer, {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+        }, 0.2);
+      }
+
+      // Animate result cards with stagger
+      const resultCards = article.querySelectorAll(".result-card");
+      if (resultCards.length > 0) {
+        gsap.from(resultCards, {
+          y: 30,
+          opacity: 0,
+          scale: 0.8,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "back.out(1.2)",
+          scrollTrigger: {
+            trigger: article,
+            start: "top 70%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
+    });
+
+    // Hover effects for images
+    const imageHoverHandlers: Array<{
+      container: HTMLDivElement;
+      enter: () => void;
+      leave: () => void;
+    }> = [];
+
+    imageRefs.current.forEach((imageContainer) => {
+      if (!imageContainer) return;
+      const image = imageContainer.querySelector("img");
+
+      const handleEnter = () => {
+        gsap.to(imageContainer, {
+          scale: 1.05,
+          duration: 0.6,
+          ease: "power2.out",
+        });
+        if (image) {
+          gsap.to(image, {
+            scale: 1.1,
+            duration: 0.6,
+            ease: "power2.out",
+          });
+        }
+      };
+
+      const handleLeave = () => {
+        gsap.to(imageContainer, {
+          scale: 1,
+          duration: 0.6,
+          ease: "power2.out",
+        });
+        if (image) {
+          gsap.to(image, {
+            scale: 1,
+            duration: 0.6,
+            ease: "power2.out",
+          });
+        }
+      };
+
+      imageContainer.addEventListener("mouseenter", handleEnter);
+      imageContainer.addEventListener("mouseleave", handleLeave);
+
+      imageHoverHandlers.push({
+        container: imageContainer,
+        enter: handleEnter,
+        leave: handleLeave,
+      });
+    });
+
+    // Hover effects for result cards
+    const cardHoverHandlers: Array<{
+      card: HTMLDivElement;
+      enter: () => void;
+      leave: () => void;
+    }> = [];
+
+    resultCardRefs.current.forEach((card) => {
+      if (!card) return;
+
+      const handleEnter = () => {
+        gsap.to(card, {
+          y: -8,
+          scale: 1.05,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      };
+
+      const handleLeave = () => {
+        gsap.to(card, {
+          y: 0,
+          scale: 1,
+          duration: 0.4,
+          ease: "power2.out",
+        });
+      };
+
+      card.addEventListener("mouseenter", handleEnter);
+      card.addEventListener("mouseleave", handleLeave);
+
+      cardHoverHandlers.push({
+        card,
+        enter: handleEnter,
+        leave: handleLeave,
+      });
+    });
+
+    return () => {
+      // Cleanup event listeners
+      imageHoverHandlers.forEach(({ container, enter, leave }) => {
+        container.removeEventListener("mouseenter", enter);
+        container.removeEventListener("mouseleave", leave);
+      });
+
+      cardHoverHandlers.forEach(({ card, enter, leave }) => {
+        card.removeEventListener("mouseenter", enter);
+        card.removeEventListener("mouseleave", leave);
+      });
+
+      // Cleanup ScrollTriggers
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (
+          trigger.vars?.trigger === sectionRef.current ||
+          articleRefs.current.some((article) => article && trigger.vars?.trigger === article)
+        ) {
+          trigger.kill();
+        }
+      });
+    };
+  }, { scope: sectionRef });
+
   return (
-    <section className="relative flex w-full justify-center overflow-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-0 mb-4 mt-4">
+    <section 
+      ref={sectionRef}
+      className="relative flex w-full justify-center overflow-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-0 mb-4 mt-4"
+    >
       <div className="flex w-full max-w-[99%] flex-col gap-12 px-4 sm:px-6 lg:px-0 lg:pb-10">
         {/* Row 1 */}
-        <div className="flex flex-col items-center gap-4 text-center">
+        <div 
+          ref={headerRef}
+          className="flex flex-col items-center gap-4 text-center"
+        >
           <button className="inline-flex h-9 w-[130px] items-center justify-center rounded-full bg-[#E8DDD1] text-[14px] font-[400] text-[#8B7355] ">
             Proven Results
           </button>
@@ -145,11 +368,19 @@ function S5() {
           {storiesData.map((story, idx) => (
             <article
               key={story.title}
+              ref={(el) => {
+                if (el) articleRefs.current[idx] = el;
+              }}
               className={`flex flex-col gap-8 lg:items-center min-h-[384px] lg:justify-center lg:gap-0  ${
                 idx % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               }`}
             >
-              <div className="relative w-full overflow-hidden rounded-[16px] bg-white shadow-[0_25px_65px_rgba(16,24,40,0.12)] sm:w-[85%] sm:self-center lg:w-[40%]">
+              <div 
+                ref={(el) => {
+                  if (el) imageRefs.current[idx] = el;
+                }}
+                className="relative w-full overflow-hidden rounded-[16px] bg-white shadow-[0_25px_65px_rgba(16,24,40,0.12)] sm:w-[85%] sm:self-center lg:w-[40%]"
+              >
                 <div className="relative aspect-[4/3] lg:w-full lg:h-[481px]">
                   <Image
                     src={story.img}
@@ -158,13 +389,18 @@ function S5() {
                     className="object-cover"
                   />
                   {/* Absolute Positioned Div  */}
-                  <button className="w-[155px] h-[32px] rounded-full absolute top-4 left-4 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#242321]">
+                  <button className="w-[155px] h-[32px] rounded-full absolute top-4 left-4 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#242321] z-10">
                     {story.title}
                   </button>
                 </div>
               </div>
 
-              <div className="flex w-full lg:h-full flex-col justify-between gap-14 rounded-[28px]te px-6  sm:px-6 lg:w-[42%]">
+              <div 
+                ref={(el) => {
+                  if (el) contentRefs.current[idx] = el;
+                }}
+                className="flex w-full lg:h-full flex-col justify-between gap-14 rounded-[28px]te px-6  sm:px-6 lg:w-[42%]"
+              >
                 <div className="flex flex-col gap-[24px]">
                   <div className="flex flex-col gap-1">
                     <p className="text-[14px] font-[400] text-[#D4A574]">
@@ -181,10 +417,16 @@ function S5() {
                   </div>
 
                   <div className="flex flex-wrap lg:flex-nowrap gap-2">
-                    {story.results.map((result, idx) => (
+                    {story.results.map((result, resultIdx) => (
                       <div
                         key={`${story.title}-${result.title}`}
-                        className={`flex md:h-[127px] w-[160px] h-[127px] md:w-[190px] flex-col items-center justify-center gap-2 rounded-2xl  ${result.bg} text-center sm:w-[200px]`}
+                        ref={(el) => {
+                          if (el) {
+                            const globalIdx = idx * 3 + resultIdx;
+                            resultCardRefs.current[globalIdx] = el;
+                          }
+                        }}
+                        className={`result-card flex md:h-[127px] w-[160px] h-[127px] md:w-[190px] flex-col items-center justify-center gap-2 rounded-2xl  ${result.bg} text-center sm:w-[200px]`}
                       >
                         <Image
                           src={result.icn}
@@ -217,7 +459,7 @@ function S5() {
 
         <div className="w-full flex justify-center items-center">
           {" "}
-          <AnimatedBtn></AnimatedBtn>
+          <AnimatedBtn btnText="Click Me to know more"></AnimatedBtn>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { BsEyeFill } from "react-icons/bs";
 import { RiEyeCloseFill } from "react-icons/ri";
+import gsap from "gsap";
 
 function NewBlogSection() {
   const blogsData = [
@@ -29,12 +30,30 @@ function NewBlogSection() {
 
   const [activeIdx, setActiveIdx] = useState<Number>(0);
   const cardRef = useRef<HTMLAnchorElement>(null);
+  const eyeIconRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const eyeParentRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   useEffect(() => {
     for (let i = 0; i < 3; i++) {
       if (activeIdx === i) {
       }
     }
   }, [activeIdx]);
+
+  // Initialize eye icon positions
+  useEffect(() => {
+    // Wait for refs to be ready
+    const timer = setTimeout(() => {
+      eyeIconRefs.current.forEach((icon) => {
+        if (icon) {
+          gsap.set(icon, { x: 0, y: 0, transformOrigin: "center center" });
+        }
+      });
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const [blinkEye, setBlinkEye] = useState(false);
 
@@ -53,6 +72,78 @@ function NewBlogSection() {
       return () => clearInterval(interval);
     }
   }, [blinkEye]);
+
+  // Handle mouse move for eye icon following cursor
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, idx: number) => {
+    // Only work when this card is active
+    if (activeIdx !== idx) return;
+
+    const overlay = overlayRefs.current[idx];
+    const eyeParent = eyeParentRefs.current[idx];
+    const eyeIcon = eyeIconRefs.current[idx];
+    
+    if (!overlay || !eyeParent || !eyeIcon) return;
+
+    const overlayRect = overlay.getBoundingClientRect();
+    const parentRect = eyeParent.getBoundingClientRect();
+    
+    // Get mouse position relative to overlay
+    const mouseX = e.clientX - overlayRect.left;
+    const mouseY = e.clientY - overlayRect.top;
+
+    // Calculate parent center relative to overlay
+    const parentCenterX = parentRect.left - overlayRect.left + parentRect.width / 2;
+    const parentCenterY = parentRect.top - overlayRect.top + parentRect.height / 2;
+
+    // Calculate offset from parent center
+    const offsetX = mouseX - parentCenterX;
+    const offsetY = mouseY - parentCenterY;
+
+    // Get icon element to calculate its size
+    const iconElement = eyeIcon.querySelector('svg');
+    if (!iconElement) return;
+
+    const iconRect = iconElement.getBoundingClientRect();
+    
+    // Calculate safe area - icon should not touch parent boundary
+    // Get icon size (largest dimension)
+    const iconSize = Math.max(iconRect.width, iconRect.height);
+    const parentSize = Math.min(parentRect.width, parentRect.height);
+    
+    // Calculate max offset: (parent size / 2) - (icon size / 2) - padding
+    // Padding of 5px to ensure icon never touches boundary
+    const padding = 5;
+    const maxOffset = (parentSize / 2) - (iconSize / 2) - padding;
+    
+    // Ensure maxOffset is positive
+    const safeMaxOffset = Math.max(5, maxOffset); // Minimum 5px movement
+
+    // Limit movement to stay within parent bounds
+    const distance = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
+    const limitedX = distance > safeMaxOffset ? (offsetX / distance) * safeMaxOffset : offsetX;
+    const limitedY = distance > safeMaxOffset ? (offsetY / distance) * safeMaxOffset : offsetY;
+
+    // Smoothly animate only the icon position (parent stays static)
+    gsap.to(eyeIcon, {
+      x: limitedX,
+      y: limitedY,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
+
+  // Reset eye icon position when mouse leaves
+  const handleMouseLeave = (idx: number) => {
+    const eyeIcon = eyeIconRefs.current[idx];
+    if (!eyeIcon) return;
+
+    gsap.to(eyeIcon, {
+      x: 0,
+      y: 0,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
 
   return (
     <section className="relative flex w-full justify-center overflow-hidden bg-white py-12 sm:py-16 md:py-20">
@@ -106,21 +197,42 @@ function NewBlogSection() {
                   </button>
                   {/* Absolute Positioned Overlay Div  */}
                   <div
-                    className={`w-full h-full absolute z-10 top-0 left-0 flex justify-center items-center transition-opacity duration-500 ease-in-out lg:pointer-events-auto pointer-events-none ${
+                    ref={(el) => {
+                      overlayRefs.current[idx] = el;
+                    }}
+                    onMouseMove={(e) => handleMouseMove(e, idx)}
+                    onMouseLeave={() => handleMouseLeave(idx)}
+                    className={`w-full h-full absolute z-10 top-0 left-0 flex justify-center items-center transition-opacity duration-500 ease-in-out ${
                       activeIdx === idx
-                        ? "opacity-100 bg-[#000000b8]"
-                        : "opacity-0 bg-transparent"
+                        ? "opacity-100 bg-[#000000b8] pointer-events-auto"
+                        : "opacity-0 bg-transparent pointer-events-none"
                     }`}
                   >
-                    {/* Eye Div  */}
-                    <div className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] md:w-[80px] md:h-[80px] lg:w-[100px] lg:h-[100px] bg-white rounded-full flex justify-center items-center transition-transform duration-300">
-                      <BsEyeFill
-                        className={`text-gray-400 text-2xl sm:text-3xl md:text-4xl lg:text-6xl transform transition-all duration-300 ease-out ml-1 z-50 ${
-                          blinkEye
-                            ? "scale-y-[1] mt-0"
-                            : "scale-y-[0.1] mt-2 opacity-60"
-                        }`}
-                      />
+                    {/* Eye Div - Parent (static, does not move) */}
+                    <div
+                      ref={(el) => {
+                        eyeParentRefs.current[idx] = el;
+                      }}
+                      className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] md:w-[80px] md:h-[80px] lg:w-[100px] lg:h-[100px] bg-white rounded-full flex justify-center items-center relative overflow-hidden"
+                    >
+                      {/* Icon Wrapper - This moves to follow cursor */}
+                      <div
+                        ref={(el) => {
+                          eyeIconRefs.current[idx] = el;
+                        }}
+                        className="absolute inset-0 flex justify-center items-center"
+                        style={{
+                          willChange: "transform",
+                        }}
+                      >
+                        <BsEyeFill
+                          className={`text-gray-400 text-2xl sm:text-3xl md:text-4xl lg:text-6xl transform transition-all duration-300 ease-out ml-1 z-50 ${
+                            blinkEye
+                              ? "scale-y-[1] mt-0"
+                              : "scale-y-[0.1] mt-2 opacity-60"
+                          }`}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { forwardRef } from "react";
 import { FiArrowRight } from "react-icons/fi";
 
 interface S4CardProps {
@@ -15,7 +15,7 @@ interface S4CardProps {
   top: string;
 }
 
-function S4Card({
+const S4Card = forwardRef<HTMLDivElement, S4CardProps>(({
   linkTxt,
   title,
   list,
@@ -24,9 +24,10 @@ function S4Card({
   linkTxtColor,
   img,
   top,
-}: S4CardProps) {
+}, ref) => {
   return (
     <div
+      ref={ref}
       className={`w-full flex flex-col-reverse rounded-[32px] lg:flex-row justify-between gap-0 ${cardBg} shadow-lg lg:sticky ${top}`}
     >
       {/* Left Side Card Div  */}
@@ -71,6 +72,8 @@ function S4Card({
       </div>
     </div>
   );
-}
+});
+
+S4Card.displayName = "S4Card";
 
 export default S4Card;
