@@ -1,16 +1,127 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { MoveRight } from "lucide-react";
 
 function S3C() {
-  // Array of 24 client logos - update these paths with actual logo images
-  const clientsCompanyLogos = [
+  const [showAll, setShowAll] = useState(false);
+
+  // PRM logos - shown first with higher priority
+  const prmLogos = [
     {
-      name: "BJP",
-      src: "/new-page/clients/home-swiper1-img2.avif",
-      alt: "BJP Logo",
+      name: "PRM 1",
+      src: "/new-page/logos/prm-1.png",
+      alt: "PRM Logo 1",
     },
+    {
+      name: "PRM 2",
+      src: "/new-page/logos/prm-2.png",
+      alt: "PRM Logo 2",
+    },
+    {
+      name: "PRM 3",
+      src: "/new-page/logos/prm-3.png",
+      alt: "PRM Logo 3",
+    },
+    {
+      name: "PRM 4",
+      src: "/new-page/logos/prm-4.png",
+      alt: "PRM Logo 4",
+    },
+    {
+      name: "PRM 5",
+      src: "/new-page/logos/prm-5.png",
+      alt: "PRM Logo 5",
+    },
+    {
+      name: "PRM 6",
+      src: "/new-page/logos/prm-6.png",
+      alt: "PRM Logo 6",
+    },
+    {
+      name: "PRM 7",
+      src: "/new-page/logos/prm-7.png",
+      alt: "PRM Logo 7",
+    },
+    {
+      name: "PRM 8",
+      src: "/new-page/logos/prm-8.jpg",
+      alt: "PRM Logo 8",
+    },
+    {
+      name: "PRM 9",
+      src: "/new-page/logos/prm-9.jpg",
+      alt: "PRM Logo 9",
+    },
+    {
+      name: "PRM 10",
+      src: "/new-page/logos/prm-10.png",
+      alt: "PRM Logo 10",
+    },
+    {
+      name: "PRM 11",
+      src: "/new-page/logos/prm-11.jpg",
+      alt: "PRM Logo 11",
+    },
+    {
+      name: "PRM 12",
+      src: "/new-page/logos/prm-12.png",
+      alt: "PRM Logo 12",
+    },
+    {
+      name: "PRM 13",
+      src: "/new-page/logos/prm-13.png",
+      alt: "PRM Logo 13",
+    },
+    {
+      name: "PRM 14",
+      src: "/new-page/logos/prm-14.png",
+      alt: "PRM Logo 14",
+    },
+    {
+      name: "PRM 15",
+      src: "/new-page/logos/prm-15.png",
+      alt: "PRM Logo 15",
+    },
+    {
+      name: "PRM 16",
+      src: "/new-page/logos/prm-16.png",
+      alt: "PRM Logo 16",
+    },
+    {
+      name: "PRM 17",
+      src: "/new-page/logos/prm-17.jpg",
+      alt: "PRM Logo 17",
+    },
+    {
+      name: "PRM 18",
+      src: "/new-page/logos/prm-18.png",
+      alt: "PRM Logo 18",
+    },
+    {
+      name: "PRM 19",
+      src: "/new-page/logos/prm-19.png",
+      alt: "PRM Logo 19",
+    },
+    {
+      name: "PRM 20",
+      src: "/new-page/logos/prm-20.jpg",
+      alt: "PRM Logo 20",
+    },
+    {
+      name: "PRM 21",
+      src: "/new-page/logos/prm-21.png",
+      alt: "PRM Logo 21",
+    },
+    {
+      name: "PRM 22",
+      src: "/new-page/logos/prm-22.jpg",
+      alt: "PRM Logo 22",
+    },
+  ];
+
+  // Other client logos - shown after PRM logos when expanded
+  const otherClientLogos = [
     {
       name: "Honda",
       src: "/new-page/clients/home-swiper1-img3.avif",
@@ -85,18 +196,23 @@ function S3C() {
       name: "IndiGo",
       src: "/new-page/clients/home-swiper1-img17.avif",
       alt: "IndiGo Logo",
-    }, //sanskarLog.png
-    {
-      name: "Visit Monaco",
-      src: "/new-page/clients/eldecoLogo-removebg-preview.png",
-      alt: "Visit Monaco Logo",
     },
     {
-      name: "Visit Monaco",
+      name: "Eldeco",
+      src: "/new-page/clients/eldecoLogo-removebg-preview.png",
+      alt: "Eldeco Logo",
+    },
+    {
+      name: "Sanskar",
       src: "/new-page/clients/sanskarLog.png",
-      alt: "Visit Monaco Logo",
+      alt: "Sanskar Logo",
     },
   ];
+
+  // Combine logos: PRM first, then other logos if expanded
+  const displayedLogos = showAll 
+    ? [...prmLogos, ...otherClientLogos]
+    : prmLogos;
 
   return (
       <section className="w-full bg-grediant-lr from-[#FCFCFD] to-[#ffffff] py-12 sm:py-16 lg:py-20">
@@ -110,7 +226,7 @@ function S3C() {
 
         {/* Logo Grid */}
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-6 lg:gap-5">
-          {clientsCompanyLogos.map((client, index) => (
+          {displayedLogos.map((client, index) => (
             <div
               key={index}
               className="group flex items-center justify-center rounded-lg bg-white p-3 shadow-sm transition-all duration-300 hover:shadow-md sm:p-4 md:p-5 lg:p-6"
@@ -129,13 +245,18 @@ function S3C() {
           ))}
         </div>
 
-        {/* See More Button */}
-        <div className="mt-8 flex justify-center sm:mt-12 lg:mt-16">
-          <button className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#D4A574] px-6 py-3 text-base font-semibold text-white transition-colors duration-200 hover:bg-[#c2925d] sm:px-8 sm:py-3.5">
-            See More
-            <MoveRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-          </button>
-        </div>
+        {/* Show More/Show Less Button */}
+        {otherClientLogos.length > 0 && (
+          <div className="mt-8 flex justify-center sm:mt-12 lg:mt-16">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#D4A574] px-6 py-3 text-base font-semibold text-white transition-colors duration-200 hover:bg-[#c2925d] sm:px-8 sm:py-3.5"
+            >
+              {showAll ? "Show Less" : "Show More"}
+              <MoveRight className={`h-5 w-5 transition-transform duration-200 ${showAll ? 'rotate-180' : 'group-hover:translate-x-1'}`} />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

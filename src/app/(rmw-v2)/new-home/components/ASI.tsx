@@ -34,7 +34,7 @@ function ASI({
     } else if (bgType === "youtube") {
       window.open("https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia", "_blank");
     } else if (bgType === "linkedin") {
-      window.open("hhttps://www.linkedin.com/company/ritzmediaworld/", "_blank");
+      window.open("https://www.linkedin.com/company/ritzmediaworld/", "_blank");
     } else if (bgType === "x") {
       window.open("https://x.com/ritzmediaworld", "_blank");
     } else if (bgType === "facebook") {

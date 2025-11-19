@@ -19,9 +19,9 @@ function NewS2() {
             It’s a potent question with a surprisingly simple answer. You can expect a dose of obsession with creative storytelling with a strong hint of consistency.
             {" "}
             <span className="text-[#F79024]">
-              Best advertising agency in NOIDA?
+              Best advertising agency in NOIDA?  
             </span>
-            That’s what
+             That’s what
             <span className="text-[#F79024]">  Ritz Media World</span> is all about.
           </h3>
         </div>

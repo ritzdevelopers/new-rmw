@@ -8,7 +8,7 @@ import ScrollSlider, { CardData } from "../components/ScrollSlider";
 const cardsData: CardData[] = [
   {
     id: 1,
-    title: "Content Marketing",
+    title: "Digital Marketing",
     description:
       "Content is more than posts; it’s your brand’s ongoing conversation. As the best advertising agency in Delhi NCR, we build content ecosystems that attract, educate and gently sell. Combining the strategy of a performance-led digital marketing agency with the storytelling flair of a creative agency, we turn blogs, videos and social content into lasting recall, trust and qualified leads.",
     icon: "/new-page/icns/build-icn-2.png",
@@ -19,7 +19,7 @@ const cardsData: CardData[] = [
       "Always-on analytics & optimisation",
       "Automated lead nurturing journeys",
     ],
-    link: "/services/digital-marketing",
+    link: "https://ritzmediaworld.com/services/digital-marketing",
     linkText: "Explore Digital Marketing",
     bg: "linear-gradient(to bottom, #6B46C1, #4C1D95)", // Purple to dark purple gradient
     ellipseImage: "/new-page/elip.png",
@@ -30,19 +30,19 @@ const cardsData: CardData[] = [
   },
   {
     id: 2,
-    title: "PPC Advertising",
+    title: "Creative Service",
     description:
       "PPC is more than buying clicks; it’s buying intent. As the best advertising agency in Delhi NCR, we design tightly targeted campaigns that put your brand in front of high-intent customers at the perfect moment. Blending the precision of a performance-led digital marketing agency with the ideas of a creative agency, we turn every ad impression into a smarter opportunity for leads, sales and measurable ROI.",
     icon: "/new-page/icns/stars-icn.png",
-    iconAlt: "PPC Advertising",
+    iconAlt: "Creative Service",
     features: [
       "Brand workshops & positioning blueprints",
       "Integrated creative campaign systems",
       "Experience-first content architectures",
       "ATL / BTL orchestration for launches",
     ],
-    link: "/services/brand-communication",
-    linkText: "Explore Brand Communication",
+    link: "https://ritzmediaworld.com/services/creative-services",
+    linkText: "Explore Creative Service",
     bg: "linear-gradient(to bottom, #103FCB, #081F65)", // Blue gradient
     ellipseImage: "/new-page/elip2.png",
     featureDotColor: "#D1D5DC",
@@ -52,19 +52,19 @@ const cardsData: CardData[] = [
   },
   {
     id: 3,
-    title: "Web Designing & Development",
+    title: "Print Advertisement",
     description:
       "Your website is more than a brochure; it’s your most visible salesperson. As the best advertising agency in Delhi NCR, we design and develop websites that look stunning and sell. Blending UX thinking from a performance-led digital marketing agency with the aesthetics of a creative agency, we build fast, responsive, conversion-focused sites that turn visits into enquiries, and clicks into customers.",
     icon: "/new-page/icns/build-icn-2.png",
-    iconAlt: "Web Designing & Development",
+    iconAlt: "Print Advertisement",
     features: [
       "Hyper-targeted media planning & buying",
       "Persona-driven communication frameworks",
       "Always-on analytics & optimisation",
       "Automated lead nurturing journeys",
     ],
-    link: "/services/digital-marketing",
-    linkText: "Explore Digital Marketing",
+    link: "https://ritzmediaworld.com/services/print-advertising",
+    linkText: "Explore Print Advertisement",
     bg: "linear-gradient(to bottom, #059669, #047857)", // Green to dark green gradient
     ellipseImage: "/new-page/elip.png",
     featureDotColor: "#D4A574",
@@ -74,19 +74,19 @@ const cardsData: CardData[] = [
   },
   {
     id: 4,
-    title: "Branding & Identity Development",
+    title: "Radio Advertisiment",
     description:
       "Your brand is more than a logo, it’s a promise. As the best advertising agency in Delhi NCR, we craft identities that resonate, impress and persuade customers long-term. Combining sharp positioning with the creativity of a leading digital marketing agency and creative agency, we make your brand memorable, authentic and loyalty-worthy in crowded markets.",
     icon: "/new-page/icns/stars-icn.png",
-    iconAlt: "Branding & Identity Development",
+    iconAlt: "Radio Advertisiment",
     features: [
       "Brand workshops & positioning blueprints",
       "Integrated creative campaign systems",
       "Experience-first content architectures",
       "ATL / BTL orchestration for launches",
     ],
-    link: "/services/brand-communication",
-    linkText: "Explore Brand Communication",
+    link: "https://ritzmediaworld.com/services/radio-advertising",
+    linkText: "Explore Radio Advertisiment",
     bg: "linear-gradient(to bottom, #DC2626, #991B1B)", // Red to dark red gradient
     ellipseImage: "/new-page/elip2.png",
     featureDotColor: "#D1D5DC",
@@ -95,19 +95,19 @@ const cardsData: CardData[] = [
     buttonHoverBg: "hover:bg-[#c2925d] hover:text-white",
   }, {
     id: 5,
-    title: "Graphic Design",
+    title: "Content Marketing",
     description:
-      "Great graphic design isn’t just eye candy; it’s visual persuasion. As the best Creative agency in Delhi NCR, our creative agency and digital marketing agency team creates stunning visuals crafted to communicate clearly, resonate emotionally, and convert effectively. Whether digital or print, our graphics don’t just attract, they convince, captivate, and drive decisive action.",
+      "Great Content Marketing isn’t just eye candy; it’s visual persuasion. As the best Creative agency in Delhi NCR, our creative agency and digital marketing agency team creates stunning visuals crafted to communicate clearly, resonate emotionally, and convert effectively. Whether digital or print, our graphics don’t just attract, they convince, captivate, and drive decisive action.",
     icon: "/new-page/icns/build-icn-2.png",
-    iconAlt: "Graphic Design",
+    iconAlt: "Content Marketing",
     features: [
       "Hyper-targeted media planning & buying",
       "Persona-driven communication frameworks",
       "Always-on analytics & optimisation",
       "Automated lead nurturing journeys",
     ],
-    link: "/services/digital-marketing",
-    linkText: "Explore Digital Marketing",
+    link: "https://ritzmediaworld.com/services/contents-marketing",
+    linkText: "Explore Content Marketing",
     bg: "linear-gradient(to bottom, #EA580C, #C2410C)", // Orange to dark orange gradient
     ellipseImage: "/new-page/elip.png",
     featureDotColor: "#D4A574",
@@ -117,19 +117,19 @@ const cardsData: CardData[] = [
   },
   {
     id: 6,
-    title: "Logo Design",
+    title: "Web Development",
     description:
       "Your logo is your brand’s handshake; make it unforgettable. As the best Design agency in Delhi NCR, our creative agency and digital marketing agency design distinctive, instantly recognisable logos that capture your brand essence, build instant credibility and turn casual glances into lasting loyalty and advocacy.",
     icon: "/new-page/icns/stars-icn.png",
-    iconAlt: "Logo Design",
+    iconAlt: "Web Development",
     features: [
       "Brand workshops & positioning blueprints",
       "Integrated creative campaign systems",
       "Experience-first content architectures",
       "ATL / BTL orchestration for launches",
     ],
-    link: "/services/brand-communication",
-    linkText: "Explore Brand Communication",
+    link: "https://ritzmediaworld.com/services/web-designing-and-development",
+    linkText: "Explore Web Development",
     bg: "linear-gradient(to bottom, #7C3AED, #5B21B6)", // Purple to dark purple gradient
     ellipseImage: "/new-page/elip2.png",
     featureDotColor: "#D1D5DC",
@@ -140,19 +140,19 @@ const cardsData: CardData[] = [
 
   {
     id: 7,
-    title: "Print Advertising Design",
+    title: "Influencer Marketing",
     description:
       "Print demands attention; average doesn’t cut it. As one of the top advertising agencies in Delhi NCR, our creative agency crafts high-impact print ads engineered to cut through clutter and stay top-of-mind. Every layout is strategic, every visual is persuasive, and every message is optimised by our digital marketing agency mindset to drive enquiries. Turning paper into profit, that’s smart print advertising.",
     icon: "/new-page/icns/build-icn-2.png",
-    iconAlt: "Digital Marketing",
+    iconAlt: "Influencer Marketing",
     features: [
       "Hyper-targeted media planning & buying",
       "Persona-driven communication frameworks",
       "Always-on analytics & optimisation",
       "Automated lead nurturing journeys",
     ],
-    link: "/services/digital-marketing",
-    linkText: "Explore Digital Marketing",
+    link: "https://ritzmediaworld.com/services/celebrity-endorsements",
+    linkText: "Explore Influencer Marketing",
     bg: "linear-gradient(to bottom, #6B46C1, #4C1D95)", // Purple to dark purple gradient
     ellipseImage: "/new-page/elip.png",
     featureDotColor: "#D4A574",
@@ -162,19 +162,19 @@ const cardsData: CardData[] = [
   },
   {
     id: 8,
-    title: "Packaging Design",
+    title: "Celebrity Endorsement",
     description:
       "Packaging is not just a container; it is your product’s silent salesperson. As the best design agency in Delhi NCR, our creative agency and digital marketing agency craft shelf-ready packaging that stands out, strengthens brand perception and drives impulse purchases. With Ritz packaging, casual interest turns into confident buying decisions.",
     icon: "/new-page/icns/stars-icn.png",
-    iconAlt: "Packaging Design",
+    iconAlt: "Celebrity Endorsement",
     features: [
       "Brand workshops & positioning blueprints",
       "Integrated creative campaign systems",
       "Experience-first content architectures",
       "ATL / BTL orchestration for launches",
     ],
-    link: "/services/brand-communication",
-    linkText: "Explore Brand Communication",
+    link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
+    linkText: "Explore Celebrity Endorsement",
     bg: "linear-gradient(to bottom, #103FCB, #081F65)", // Blue gradient
     ellipseImage: "/new-page/elip2.png",
     featureDotColor: "#D1D5DC",

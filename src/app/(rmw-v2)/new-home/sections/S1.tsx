@@ -29,7 +29,6 @@ function S1() {
         src: "/new-page/s1/rmw-bg-3.webp",
         alt: "Ritz Media World branding showcase",
       },
-
     ],
     []
   );
@@ -117,17 +116,26 @@ function S1() {
       <div className="relative mx-auto flex w-full max-w-[720px] flex-col z-30 gap-8 px-6 text-white sm:px-10">
         <div className="flex flex-col gap-6 text-center justify-center items-center">
           <h1 className="text-[35px] font-[700] leading-tight sm:text-xl lg:text-5xl uppercase">
-            BEYOND YOUR TYPICAL
-            {" "}
+            BEYOND YOUR TYPICAL{" "}
             <span className="text-[#D4A574]"> ADVERTISING AGENCY</span>
           </h1>
         </div>
 
         <div className="flex flex-wrap gap-4 text-sm font-medium sm:text-base justify-center items-center">
-          <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="inline-flex cursor-pointer justify-center items-center gap-3 rounded-[8px] bg-[#D4A574] py-3 text-white transition hover:bg-[#a58059] w-[210px]">
+          <button
+            onClick={() =>
+              window.open("https://ritzmediaworld.com/contact.html", "_blank")
+            }
+            className="inline-flex cursor-pointer justify-center items-center gap-3 rounded-[8px] bg-[#D4A574] py-3 text-white transition hover:bg-[#a58059] w-[210px]"
+          >
             Free Consulting <MoveRight className="h-6 w-6" />
           </button>
-          <button className="inline-flex cursor-pointer justify-center hover:text-white items-center bg-white gap-3 rounded-[8px] w-[210px] py-3 text-black transition  hover:bg-white/10">
+          <button
+            onClick={() =>
+              window.open("https://ritzmediaworld.com/contact.html", "_blank")
+            }
+            className="inline-flex cursor-pointer justify-center hover:text-white items-center bg-white gap-3 rounded-[8px] w-[210px] py-3 text-black transition  hover:bg-white/10"
+          >
             <Play className="h-5 w-5" />
             Watch Our Story
           </button>

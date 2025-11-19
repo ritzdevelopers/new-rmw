@@ -35,7 +35,7 @@ type StoryCard = {
 const storiesData: StoryCard[] = [
   {
     title: "Digital Advertising",
-    img: "/new-page/s5/rw-s5-i1.png",
+    img: "/new-page/digital-ad.jpg",
     subTitle: "Luxury Real Estate",
 
     para2:
@@ -66,7 +66,7 @@ const storiesData: StoryCard[] = [
   },
   {
     title: "Print Advertising",
-    img: "/new-page/s5/rw-s5-i2.png",
+    img: "/new-page/print-ad.jpg",
     subTitle: "Lifestyle & Retail",
 
     para2:
@@ -97,7 +97,37 @@ const storiesData: StoryCard[] = [
   },
   {
     title: "Brand Identity",
-    img: "/new-page/s5/rw-s5-i3.png",
+    img: "/new-page/brand-id.jpg",
+    subTitle: "Healthcare & Wellness",
+    para2:
+      "To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs.",
+    res: "Results",
+    results: [
+      {
+        icn: "/new-page/icns/badge-icn.png",
+        title: "210%",
+        para: "Rise in global inquiries",
+        bg: "bg-[#FFD0F6]",
+      },
+      {
+        icn: "/new-page/icns/users-icn.png",
+        title: "92%",
+        para: "Patient satisfaction scores",
+        bg: "bg-[#FFF2D0]",
+      },
+      {
+        icn: "/new-page/icns/globe-icn.png",
+        title: "54%",
+        para: "Increase in repeat visits",
+        bg: "bg-[#EFFFD0]",
+      },
+    ],
+    link: "/case-studies/brand-identity",
+    btn: "Brand Identity",
+  },
+  {
+    title: "Social Media Management",
+    img: "/new-page/social-media.jpg",
     subTitle: "Healthcare & Wellness",
     para2:
       "To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs.",
@@ -386,7 +416,7 @@ function S5() {
                     src={story.img}
                     alt={story.title}
                     fill
-                    className="object-cover"
+                    className="object-fill"
                   />
                   {/* Absolute Positioned Div  */}
                   <button className="w-[155px] h-[32px] rounded-full absolute top-4 left-4 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#242321] z-10">
