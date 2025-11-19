@@ -50,6 +50,8 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
 
         const trackWidth = track.scrollWidth;
         const viewportWidth = slider.clientWidth;
+        // Calculate scroll distance - we want to scroll until the last card is fully visible
+        // The padding-right we added (100vw) ensures we have extra space
         const scrollDistance = trackWidth - viewportWidth;
         return Math.max(0, scrollDistance);
       };
@@ -64,9 +66,17 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
             trigger: sectionRef.current,
             start: "top top",
             end: () => {
-              const distance = updateScrollDistance();
-              // Add extra space to ensure last card is fully visible
-              return distance ? `+=${distance + 100}` : "+=0";
+              const track = trackRef.current;
+              const slider = sliderRef.current;
+              if (!track || !slider) return "+=0";
+              
+              const trackWidth = track.scrollWidth;
+              const viewportWidth = slider.clientWidth;
+              // Calculate the actual scroll distance needed
+              const actualDistance = trackWidth - viewportWidth;
+              // Add extra space to ensure the last card is fully visible
+              // The padding-right helps, but we need a bit more scroll distance
+              return `+=${actualDistance + viewportWidth * 0.5}`;
             },
             scrub: 1,
             pin: true,
@@ -93,16 +103,16 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
   }, [cards.length, sectionRef]);
 
   return (
-    <div ref={sliderRef} className="w-full overflow-hidden">
+    <div ref={sliderRef} className="w-full">
       <div
         ref={trackRef}
         className="flex gap-6"
-        style={{ willChange: "transform" }}
+        style={{ willChange: "transform", paddingRight: "100vw" }}
       >
         {cards.map((card) => (
           <div
             key={card.id}
-            className="relative md:py-6 flex min-h-[440px] flex-shrink-0 flex-col overflow-hidden rounded-[28px] p-[1px] transition-transform duration-300 hover:-translate-y-2 w-full sm:w-[calc(100vw-3rem)] md:w-[calc(50vw-2rem)] lg:w-[600px]"
+            className="relative md:py-6 flex min-h-[440px] flex-shrink-0 flex-col overflow-hidden rounded-[28px] p-[1px] transition-transform duration-300 hover:-translate-y-2 w-full sm:w-[calc(100vw-3rem)] md:w-[calc(50vw-2rem)] lg:w-[700px]"
             style={{
               background: card.bg,
             }}
@@ -126,25 +136,15 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
                 </p>
               </div>
 
-              <ul className="flex flex-col gap-2 text-sm text-[#FFFFFFE5] sm:text-[16px] font-[400]">
-                {card.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span
-                      className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full"
-                      style={{ backgroundColor: card.featureDotColor }}
-                    />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+           
 
               <Link
                 href={card.link}
                 className={`group inline-flex md:h-[40px] w-full items-center justify-center gap-2 rounded-[8px] px-6 py-3 text-[16px] font-[500] transition-colors duration-200 ${
                   card.buttonBg || "bg-[#FFFFFF]"
                 } ${card.buttonTextColor || "text-black"} ${
-                  card.buttonHoverBg || "hover:bg-[#c2925d]"
-                }`}
+                  card.buttonHoverBg || "hover:bg-[#c2925d] hover:text-[#ffffff]"
+                } hover:text-white`}
               >
                 {card.linkText}
                 <MoveRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />

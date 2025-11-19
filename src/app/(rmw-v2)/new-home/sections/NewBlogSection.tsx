@@ -113,7 +113,7 @@ function NewBlogSection() {
     // Calculate max offset: (parent size / 2) - (icon size / 2) - padding
     // Padding of 5px to ensure icon never touches boundary
     const padding = 5;
-    const maxOffset = (parentSize / 2) - (iconSize / 2) - padding;
+    const maxOffset = (parentSize / 2) - (iconSize / 2) - padding-50;
     
     // Ensure maxOffset is positive
     const safeMaxOffset = Math.max(5, maxOffset); // Minimum 5px movement
@@ -226,7 +226,7 @@ function NewBlogSection() {
                         }}
                       >
                         <BsEyeFill
-                          className={`text-gray-400 text-2xl sm:text-3xl md:text-4xl lg:text-6xl transform transition-all duration-300 ease-out ml-1 z-50 ${
+                          className={`text-gray-400 text-xl sm:text-xl md:text-3xl lg:text-5xl transform transition-all duration-300 ease-out ml-1 z-50 ${
                             blinkEye
                               ? "scale-y-[1] mt-0"
                               : "scale-y-[0.1] mt-2 opacity-60"

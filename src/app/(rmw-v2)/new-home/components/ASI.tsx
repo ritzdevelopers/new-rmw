@@ -28,10 +28,23 @@ function ASI({
     linkedin: "LinkedIn",
     x: "Twitter",
   };
-
+  const handleClick = (bgType: string) => {
+    if (bgType === "instagram") {
+      window.open("https://www.instagram.com/ritzmediaworld", "_blank");
+    } else if (bgType === "youtube") {
+      window.open("https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia", "_blank");
+    } else if (bgType === "linkedin") {
+      window.open("hhttps://www.linkedin.com/company/ritzmediaworld/", "_blank");
+    } else if (bgType === "x") {
+      window.open("https://x.com/ritzmediaworld", "_blank");
+    } else if (bgType === "facebook") {
+      window.open("https://www.facebook.com/ritzmediaworld", "_blank");
+    }
+  };
   return (
     <div
-      className={`w-[34px] h-[48px] ${bgClasses[bgType]} fixed ${px} ${py} flex justify-start pl-2 cursor-pointer ${styles.sbAnime} items-center z-50 overflow-hidden`}
+      className={`w-[34px] h-[42px] ${bgClasses[bgType]} fixed ${px} ${py} flex justify-start pl-2 cursor-pointer ${styles.sbAnime} items-center z-50 overflow-hidden`}
+      onClick={() => handleClick(bgType as keyof typeof socialMediaNames)}
     >
       <div className="flex items-center gap-3 whitespace-nowrap">
         {icn}

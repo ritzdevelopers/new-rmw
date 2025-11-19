@@ -7,11 +7,25 @@ interface HoverCardProps {
   title: string;
   para: string;
   id?: string | number;
+  img: string;
+  imgID: number;
+  setMainImg: (img: string) => void;
+  setSubImg: (img: string) => void;
+  mainImg: string;
 }
 
-function HoverCard({ width, height, title, para, id }: HoverCardProps) {
+function HoverCard({ width, height, title, para, id, img, imgID, setMainImg, setSubImg, mainImg }: HoverCardProps) {
+  const handleHoverCard = () => {
+   if(mainImg === img) {
+    return;
+   }
+    setSubImg(mainImg);
+    setMainImg(img);
+
+  }
   return (
     <div
+    onMouseEnter={handleHoverCard}
       className={`${width} ${height} border-t-[2px] border-[#D9D9D9] flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-[30px] py-4 pt-5 sm:pt-6 lg:pt-7 ${
         id === "btm" ? "self-end" : ""
       }`}
