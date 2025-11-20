@@ -12,21 +12,42 @@ type FAQItem = {
 const faqData: FAQItem[] = [
   {
     question:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
+      "Best Creative Agency In The Real Estate Segment In Delhi NCR",
     // question: "What services does RMW offer?",
     answer:
-      "RMW offers a comprehensive range of digital marketing services including brand identity design, digital advertising, social media management, print advertising, web development, and content creation. We help brands transform their digital presence and achieve their marketing goals.",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
   },
   {
     question:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
+      "Best Real Estate Podcast Beyond The Blueprints",
     // question: "How long does a typical project take?",
     answer:
       "Project timelines vary depending on the scope and complexity of the work. A typical branding project may take 4-6 weeks, while a complete digital marketing campaign can range from 2-8 weeks. We work closely with clients to establish realistic timelines and deliver high-quality results within agreed timeframes.",
   },
   {
     question:
+      "Excellence In Digital Media By Dainik Jagran",
+    // question: "What is your approach to client collaboration?",
+    answer:
+      "We believe in transparent communication and collaborative partnerships. Our team maintains regular check-ins, provides progress updates, and welcomes client feedback throughout the project lifecycle. We strive to be an extension of your team, always available for support and consultation.",
+  },
+  {
+    question:
+      "Trsuted Digital Advertising  Agency In NCR-Awarded by The Economic Times",
+    // question: "What services does RMW offer?",
+    answer:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum",
+  },
+  {
+    question:
+      "Icons By The Times Of India",
+    // question: "How long does a typical project take?",
+    answer:
+      "Project timelines vary depending on the scope and complexity of the work. A typical branding project may take 4-6 weeks, while a complete digital marketing campaign can range from 2-8 weeks. We work closely with clients to establish realistic timelines and deliver high-quality results within agreed timeframes.",
+  },
+  {
+    question:
+      "Soecial Achievement Award In Retail Category",
     // question: "What is your approach to client collaboration?",
     answer:
       "We believe in transparent communication and collaborative partnerships. Our team maintains regular check-ins, provides progress updates, and welcomes client feedback throughout the project lifecycle. We strive to be an extension of your team, always available for support and consultation.",
@@ -199,14 +220,14 @@ function S9() {
       className="w-screen min-h-screen flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden"
     >
       {/* Centered Positioned Div */}
-      <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-center items-center gap-8 sm:gap-10 md:gap-12 lg:gap-26">
+      <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16">
         {/* Left Side Image  */}
         <div
           ref={imageRef}
-          className="w-full sm:w-[400px] md:w-[450px] lg:w-[514px] h-[300px] sm:h-[400px] md:h-[450px] lg:h-[514px] relative flex-shrink-0 order-2 lg:order-1"
+          className="w-full lg:flex-1 h-[280px] sm:h-[350px] md:h-[420px] lg:h-[500px] xl:h-[580px] 2xl:h-[650px] relative flex-shrink-0 order-2 lg:order-1"
         >
           <Image
-            src={"/new-page/s9/s9-img.png"}
+            src={"/new-page/award-img.jpg"}
             alt="RMW FAQ"
             fill
             className="object-contain"
@@ -229,17 +250,17 @@ function S9() {
         {/* Right Side Content  */}
         <div
           ref={contentRef}
-          className="w-full lg:w-[623px] flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-12 order-1 lg:order-2"
+          className="w-full lg:flex-1 flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-12 order-1 lg:order-2"
         >
           {/* Heading */}
           <div>
-            <p className="font-[400] text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] xl:text-[42px] leading-[20px] text-white">
-              Frequently Asked <span className="text-[#D4A574]">Questions</span>
+            <p className="font-[400] text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] xl:text-[42px] leading-[30px] text-white">
+              Awards & Company<span className="text-[#D4A574]">Recognitions</span>
             </p>
           </div>
 
           {/* FAQ Accordion Items */}
-          <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-12">
+          <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
             {faqData.map((faq, idx) => {
               return (
                 <div
@@ -247,7 +268,7 @@ function S9() {
                   ref={(el) => {
                     accordionRefs.current[idx] = el;
                   }}
-                  className="w-full min-h-[80px] sm:min-h-[90px] md:min-h-[100px] lg:h-[112px] bg-[#3A4966] text-white rounded-[16px] sm:rounded-[18px] md:rounded-[20px] overflow-hidden transition-all duration-300  cursor-pointer"
+                  className="group w-full min-h-[56px] sm:min-h-[64px] md:min-h-[72px] lg:min-h-[80px] bg-[#3A4966] hover:bg-[#4A5A76] text-white rounded-[12px] sm:rounded-[14px] md:rounded-[16px] lg:rounded-[18px] xl:rounded-[20px] overflow-hidden transition-all duration-300 cursor-pointer border border-transparent hover:border-[#D4A574]/30 hover:shadow-lg hover:shadow-[#D4A574]/10"
                   onClick={() => toggleAccordion(idx)}
                   role="button"
                   tabIndex={0}
@@ -260,12 +281,12 @@ function S9() {
                   aria-expanded={openIndex === idx}
                 >
                   {/* Question Row */}
-                  <div className="flex justify-between items-center gap-4 px-4 sm:px-5 md:px-6 lg:px-8 py-4 sm:py-5 md:py-6">
-                    <p className="font-[400] text-[14px] sm:text-[16px] md:text-[17px] lg:text-[18px] leading-[1.5] text-white flex-1">
+                  <div className="flex justify-between items-center gap-3 sm:gap-4 md:gap-5 px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 py-3 sm:py-4 md:py-5 lg:py-6">
+                    <p className="font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] leading-[1.4] sm:leading-[1.5] text-white group-hover:text-[#D4A574] transition-colors duration-300 flex-1">
                       {faq.question}
                     </p>
-                    <div className="arrow-icon flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 flex items-center justify-center">
-                      <BsArrowDown className="w-full h-full text-[#ffffff]" />
+                    <div className="arrow-icon flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 flex items-center justify-center transition-transform duration-300 group-hover:-rotate-90">
+                      <BsArrowDown className="w-full h-full text-[#ffffff] group-hover:text-[#D4A574] transition-colors duration-300" />
                     </div>
                   </div>
 

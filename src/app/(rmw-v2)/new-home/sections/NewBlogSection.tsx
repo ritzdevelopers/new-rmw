@@ -5,28 +5,29 @@ import Link from "next/link";
 import { BsEyeFill } from "react-icons/bs";
 import { RiEyeCloseFill } from "react-icons/ri";
 import gsap from "gsap";
+import axios from "axios";
 
+interface Blog {
+  blogBanner: string;
+  date: string;
+  blogTitle: string;
+  _id: string;
+  blogSlug: string;
+}
 function NewBlogSection() {
-  const blogsData = [
-    {
-      img: "/new-page/s10/b2.png",
-      date: "January 10, 2024",
-      title: "Top 15 Skills an SEO Expert Should Have…",
-      key: "Latest Insights",
-    },
-    {
-      img: "/new-page/s10/b1.jpg",
-      date: "January 10, 2024",
-      title: "Top 15 Skills an SEO Expert Should Have…",
-      key: "Latest Insights",
-    },
-    {
-      img: "/new-page/s10/b3.jpg",
-      date: "January 10, 2024",
-      title: "Top 15 Skills an SEO Expert Should Have…",
-      key: "Latest Insights",
-    },
-  ];
+
+  const [blogsData, setBlogsData] = useState<Blog[]>([]);
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const response = await axios.get("/api/ritz_blogs/get-all-blogs");
+      // Exttract Oly 3 Latest Blogs
+      const data = response.data.allBlogs.slice(0, 3);
+      setBlogsData(data);
+      console.log(data);
+
+    }
+    fetchBlogs();
+  }, [])
 
   const [activeIdx, setActiveIdx] = useState<Number>(0);
   const cardRef = useRef<HTMLAnchorElement>(null);
@@ -81,12 +82,12 @@ function NewBlogSection() {
     const overlay = overlayRefs.current[idx];
     const eyeParent = eyeParentRefs.current[idx];
     const eyeIcon = eyeIconRefs.current[idx];
-    
+
     if (!overlay || !eyeParent || !eyeIcon) return;
 
     const overlayRect = overlay.getBoundingClientRect();
     const parentRect = eyeParent.getBoundingClientRect();
-    
+
     // Get mouse position relative to overlay
     const mouseX = e.clientX - overlayRect.left;
     const mouseY = e.clientY - overlayRect.top;
@@ -104,17 +105,17 @@ function NewBlogSection() {
     if (!iconElement) return;
 
     const iconRect = iconElement.getBoundingClientRect();
-    
+
     // Calculate safe area - icon should not touch parent boundary
     // Get icon size (largest dimension)
     const iconSize = Math.max(iconRect.width, iconRect.height);
     const parentSize = Math.min(parentRect.width, parentRect.height);
-    
+
     // Calculate max offset: (parent size / 2) - (icon size / 2) - padding
     // Padding of 5px to ensure icon never touches boundary
     const padding = 5;
-    const maxOffset = (parentSize / 2) - (iconSize / 2) - padding-50;
-    
+    const maxOffset = (parentSize / 2) - (iconSize / 2) - padding - 50;
+
     // Ensure maxOffset is positive
     const safeMaxOffset = Math.max(5, maxOffset); // Minimum 5px movement
 
@@ -170,22 +171,25 @@ function NewBlogSection() {
 
         {/* Row 2 - Blog Cards Grid */}
         <div className="w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-center md:justify-evenly lg:flex-nowrap lg:justify-start items-stretch sm:items-center gap-4 sm:gap-4 md:gap-5 lg:gap-6">
-          {blogsData.map((cd, idx) => {
+          {blogsData.length > 0 && blogsData.map((cd, idx) => {
             return (
               <Link
                 key={idx}
-                href="#"
+                href={`/${cd.blogSlug}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 onMouseEnter={() => setActiveIdx(idx)}
                 ref={cardRef}
-                className={`group flex flex-col overflow-hidden rounded-[20px] sm:rounded-[24px] bg-white shadow-[0_18px_45px_rgba(16,24,40,0.08)] transition-[width,transform,box-shadow] duration-700 ease-in-out hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(16,24,40,0.15)] w-full sm:w-[calc(50%-8px)] md:w-[calc(50%-10px)] lg:flex-shrink-0 lg:w-[315px] ${
-                  idx === activeIdx ? "lg:w-[calc(100%-680px)]" : ""
-                }`}
+                className={`group flex flex-col overflow-hidden rounded-[20px] sm:rounded-[24px] bg-white shadow-[0_18px_45px_rgba(16,24,40,0.08)] transition-[width,transform,box-shadow] duration-700 ease-in-out hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(16,24,40,0.15)] w-full sm:w-[calc(50%-8px)] md:w-[calc(50%-10px)] lg:flex-shrink-0 lg:w-[315px] ${idx === activeIdx ? "lg:w-[calc(100%-680px)]" : ""
+                  }`}
               >
                 {/* Image Container */}
                 <div className="relative h-[200px] w-full overflow-hidden sm:h-[240px] md:h-[280px] lg:h-[322px]">
                   <Image
-                    src={cd.img}
-                    alt={cd.title}
+                    // src={cd.blogBanner}
+                    src={`https://ritzmediaworld.com/api/images${cd.blogBanner.split("/images")[1]}`
+                    }
+                    alt={cd.blogTitle}
                     fill
                     className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -202,11 +206,10 @@ function NewBlogSection() {
                     }}
                     onMouseMove={(e) => handleMouseMove(e, idx)}
                     onMouseLeave={() => handleMouseLeave(idx)}
-                    className={`w-full h-full absolute z-10 top-0 left-0 flex justify-center items-center transition-opacity duration-500 ease-in-out ${
-                      activeIdx === idx
-                        ? "opacity-100 bg-[#000000b8] pointer-events-auto"
-                        : "opacity-0 bg-transparent pointer-events-none"
-                    }`}
+                    className={`w-full h-full absolute z-10 top-0 left-0 flex justify-center items-center transition-opacity duration-500 ease-in-out ${activeIdx === idx
+                      ? "opacity-100 bg-[#000000b8] pointer-events-auto"
+                      : "opacity-0 bg-transparent pointer-events-none"
+                      }`}
                   >
                     {/* Eye Div - Parent (static, does not move) */}
                     <div
@@ -226,11 +229,10 @@ function NewBlogSection() {
                         }}
                       >
                         <BsEyeFill
-                          className={`text-gray-400 text-xl sm:text-xl md:text-3xl lg:text-5xl transform transition-all duration-300 ease-out ml-1 z-50 ${
-                            blinkEye
-                              ? "scale-y-[1] mt-0"
-                              : "scale-y-[0.1] mt-2 opacity-60"
-                          }`}
+                          className={`text-gray-400 text-xl sm:text-xl md:text-3xl lg:text-5xl transform transition-all duration-300 ease-out ml-1 z-50 ${blinkEye
+                            ? "scale-y-[1] mt-0"
+                            : "scale-y-[0.1] mt-2 opacity-60"
+                            }`}
                         />
                       </div>
                     </div>
@@ -243,7 +245,7 @@ function NewBlogSection() {
                     {cd.date}
                   </p>
                   <h3 className="text-base font-semibold text-[#101828] leading-snug sm:text-lg md:text-xl lg:text-[20px]">
-                    {cd.title}
+                    {cd.blogTitle}
                   </h3>
                 </div>
               </Link>

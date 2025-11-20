@@ -39,7 +39,7 @@ const storiesData: StoryCard[] = [
     subTitle: "Luxury Real Estate",
 
     para2:
-      "To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs.",
+      "Content is more than posts; it’s your brand’s ongoing conversation. As the best advertising agency in Delhi NCR, we build content ecosystems that attract, educate and gently sell. Combining the strategy of a performance-led digital marketing agency with the storytelling flair of a creative agency, we turn blogs, videos and social content into lasting recall, trust and qualified leads.",
     res: "Results",
     results: [
       {
@@ -61,7 +61,7 @@ const storiesData: StoryCard[] = [
         bg: "bg-[#EFFFD0]",
       },
     ],
-    link: "/case-studies/digital-advertising",
+    link: "/case-study-indigos-skyrocketing-dominance-in-the-indian-airline-market",
     btn: "Digital Advertising",
   },
   {
@@ -70,7 +70,7 @@ const storiesData: StoryCard[] = [
     subTitle: "Lifestyle & Retail",
 
     para2:
-      "To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs.",
+      "Your website is more than a brochure; it’s your most visible salesperson. As the best advertising agency in Delhi NCR, we design and develop websites that look stunning and sell. Blending UX thinking from a performance-led digital marketing agency with the aesthetics of a creative agency, we build fast, responsive, conversion-focused sites that turn visits into enquiries, and clicks into customers.",
     res: "Results",
     results: [
       {
@@ -92,7 +92,7 @@ const storiesData: StoryCard[] = [
         bg: "bg-[#EFFFD0]",
       },
     ],
-    link: "/case-studies/print-advertising",
+    link: "/the-timeless-rise-of-the-times-of-india-a-branding-and-advertising-case-study",
     btn: "Print Advertising",
   },
   {
@@ -100,7 +100,7 @@ const storiesData: StoryCard[] = [
     img: "/new-page/brand-id.jpg",
     subTitle: "Healthcare & Wellness",
     para2:
-      "To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs.",
+      "Awareness only matters when it comes with admiration. As one of the best advertising agencies in Delhi NCR, Ritz Media World acts as a strategy-led digital marketing agency and creative agency, building campaigns where visibility is rooted in authenticity, so your brand is chosen, not just noticed.",
     res: "Results",
     results: [
       {
@@ -122,7 +122,7 @@ const storiesData: StoryCard[] = [
         bg: "bg-[#EFFFD0]",
       },
     ],
-    link: "/case-studies/brand-identity",
+    link: "/360-audio-branding-strategy",
     btn: "Brand Identity",
   },
   {
@@ -130,7 +130,7 @@ const storiesData: StoryCard[] = [
     img: "/new-page/social-media.jpg",
     subTitle: "Healthcare & Wellness",
     para2:
-      "To reach the new generation you need to know where they are. We are a true 360° agency, working the whole spectrum from TikTok content to TVC and from influencer collabs.",
+      "Social is where brands are built, or broken. As one of the best advertising agencies in Delhi NCR, our digital marketing agency and creative agency teams at Ritz Media World craft intelligent social media strategies powered by compelling content that genuinely engages, nurtures, and grows your community.",
     res: "Results",
     results: [
       {
@@ -152,7 +152,7 @@ const storiesData: StoryCard[] = [
         bg: "bg-[#EFFFD0]",
       },
     ],
-    link: "/case-studies/brand-identity",
+    link: "/how-did-cooking-shows-influence-indias-cooking-utensil-sales",
     btn: "Brand Identity",
   },
 ];
@@ -369,13 +369,13 @@ function S5() {
   }, { scope: sectionRef });
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="relative flex w-full justify-center overflow-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-0 mb-4 mt-4"
     >
       <div className="flex w-full max-w-[99%] flex-col gap-12 px-4 sm:px-6 lg:px-0 lg:pb-10">
         {/* Row 1 */}
-        <div 
+        <div
           ref={headerRef}
           className="flex flex-col items-center gap-4 text-center"
         >
@@ -401,11 +401,10 @@ function S5() {
               ref={(el) => {
                 if (el) articleRefs.current[idx] = el;
               }}
-              className={`flex flex-col gap-8 lg:items-center min-h-[384px] lg:justify-center lg:gap-0  ${
-                idx % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-              }`}
+              className={`flex flex-col gap-8 lg:items-center min-h-[384px] lg:justify-center lg:gap-0  ${idx % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                }`}
             >
-              <div 
+              <div
                 ref={(el) => {
                   if (el) imageRefs.current[idx] = el;
                 }}
@@ -425,7 +424,7 @@ function S5() {
                 </div>
               </div>
 
-              <div 
+              <div
                 ref={(el) => {
                   if (el) contentRefs.current[idx] = el;
                 }}

@@ -3,8 +3,21 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Menu, X } from "lucide-react";
+import { useRouter } from "next/navigation";
+
+interface ServiceSubItem {
+  name: string;
+  link: string;
+}
+
+interface ServiceItem {
+  name: string;
+  link: string;
+  sub: ServiceSubItem[];
+}
 
 function Navbar() {
+  const router = useRouter();
   const navRef = useRef<HTMLElement>(null);
   const ulRef = useRef<HTMLUListElement>(null);
   const servicesDropdownRef = useRef<HTMLDivElement>(null);
@@ -14,8 +27,75 @@ function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [servicesData, setServicesData] = useState<ServiceItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Fetch services data from API
+  useEffect(() => {
+    const fetchServicesData = async () => {
+      try {
+        const response = await fetch("/api/header_data");
+        if (response.ok) {
+          const data = await response.json();
+          setServicesData(data);
+        }
+      } catch (error) {
+        console.error("Error fetching services data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServicesData();
+  }, []);
+
+  // Fix Lenis scrolling issue - prevent Lenis from intercepting wheel events on dropdown
+  useEffect(() => {
+    const dropdown = servicesDropdownRef.current;
+    const mobileMenu = mobileMenuRef.current;
+    
+    const handleWheel = (e: WheelEvent) => {
+      // Stop propagation to prevent Lenis from handling this event
+      e.stopPropagation();
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      // Stop propagation for touch events as well
+      e.stopPropagation();
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      // Stop propagation for touch move events
+      e.stopPropagation();
+    };
+
+    if (dropdown && servicesOpen) {
+      dropdown.addEventListener("wheel", handleWheel, { passive: false });
+      dropdown.addEventListener("touchstart", handleTouchStart, { passive: false });
+      dropdown.addEventListener("touchmove", handleTouchMove, { passive: false });
+    }
+
+    if (mobileMenu && mobileMenuOpen) {
+      mobileMenu.addEventListener("wheel", handleWheel, { passive: false });
+      mobileMenu.addEventListener("touchstart", handleTouchStart, { passive: false });
+      mobileMenu.addEventListener("touchmove", handleTouchMove, { passive: false });
+    }
+
+    return () => {
+      if (dropdown) {
+        dropdown.removeEventListener("wheel", handleWheel);
+        dropdown.removeEventListener("touchstart", handleTouchStart);
+        dropdown.removeEventListener("touchmove", handleTouchMove);
+      }
+      if (mobileMenu) {
+        mobileMenu.removeEventListener("wheel", handleWheel);
+        mobileMenu.removeEventListener("touchstart", handleTouchStart);
+        mobileMenu.removeEventListener("touchmove", handleTouchMove);
+      }
+    };
+  }, [servicesOpen, mobileMenuOpen]);
 
   // Add custom scrollbar styles
   useEffect(() => {
@@ -209,7 +289,7 @@ function Navbar() {
               <Link href={"/new-home"}>Contact Us</Link>
             </li>
               <li>
-                <button className="px-4 xl:px-6 2xl:px-8 h-9 xl:h-10 2xl:h-[42px] cursor-pointer rounded-lg text-white bg-[#D4A574] font-[500] text-sm xl:text-base 2xl:text-lg hover:bg-[#C59564] transition-colors whitespace-nowrap">
+                <button onClick={() => router.push("/contact.html")} className="px-4 xl:px-6 2xl:px-8 h-9 xl:h-10 2xl:h-[42px] cursor-pointer rounded-lg text-white bg-[#D4A574] font-[500] text-sm xl:text-base 2xl:text-lg hover:bg-[#C59564] transition-colors whitespace-nowrap">
                 Free Consulting
               </button>
             </li>
@@ -246,466 +326,140 @@ function Navbar() {
             }}
           >
             <div className="w-full px-4 sm:px-6 lg:px-8 pt-8 pb-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 xl:gap-6 2xl:gap-8">
-                {/* Column 1 - Digital Marketing, Radio Advertising, Web Development */}
-                <div className="space-y-8">
-              <div>
-                    <h2 className="font-[500] text-lg text-black mb-4">
-                  Digital Marketing
-                </h2>
-                    <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                      <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          SEO (Search Engine Optimization)
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          PPC (Google Ads) Services
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Social Media Management
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          ORM (Online Reputation Management)
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Lead Generation
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Brand Awareness
-                        </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                    <h2 className="font-[500] text-lg text-black mb-4">
-                  Radio Advertising
-                </h2>
-                    <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                      <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Advertising Concept Development
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Scriptwriting
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Voiceover Casting
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Recording & Production
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Media Planning And Buying
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Cost Negotiations
-                        </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                    <h2 className="font-[500] text-lg text-black mb-4">
-                  Web Development
-                </h2>
-                    <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                      <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          UI/UX Design
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Custom Design & Development
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          E-Commerce Website Development
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Landing Page Development
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          WordPress Web Design
-                        </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
+              {loading ? (
+                <div className="text-center py-8">Loading...</div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 xl:gap-6 2xl:gap-8">
+                  {/* Dynamically render services in columns - matching original layout order */}
+                  {servicesData.length > 0 && (() => {
+                    // Find services by name to maintain original layout order
+                    const findService = (name: string) => servicesData.find(s => s.name === name);
+                    
+                    const digitalMarketing = findService("Digital Marketing");
+                    const radioAdvertising = findService("Radio Advertising");
+                    const webDevelopment = findService("Web Development");
+                    const creativeServices = findService("Creative Services");
+                    const printAdvertising = findService("Print Advertising");
+                    const contentMarketing = findService("Content Marketing");
+                    const celebrityEndorsements = findService("Celebrity Endorsements");
+                    const influencerMarketing = findService("Influencer Marketing");
 
-                {/* Column 2 - Creative Services, Print Advertising, Content Marketing */}
-                <div className="space-y-8">
-              <div>
-                    <h2 className="font-[500] text-lg text-black mb-4">
-                  Creative Services
-                </h2>
-                    <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                      <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Branding & Identity Development
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Graphic Design
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Logo Design
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Print Advertising Design
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Packaging Design
-                        </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                    <h2 className="font-[500] text-lg text-black mb-4">
-                  Print Advertising
-                </h2>
-                    <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                      <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Advertisement Design
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Ad Placement
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Copywriting
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Cost Negotiation
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Ad Size Optimization
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Ad Scheduling
-                        </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                    <h2 className="font-[500] text-lg text-black mb-4">
-                  Content Marketing
-                </h2>
-                    <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                      <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Customized Content Strategy
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Email and Newsletters Marketing
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Blog Writing & Management
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Asset Creation and Infographics
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Content Promotion and Optimization
-                        </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
+                    const column1 = [digitalMarketing, radioAdvertising, webDevelopment].filter(Boolean);
+                    const column2 = [creativeServices, printAdvertising, contentMarketing].filter(Boolean);
+                    const column3 = [celebrityEndorsements, influencerMarketing].filter(Boolean);
 
-                {/* Column 3 - Celebrity Endorsements, Influencer Marketing */}
-                <div className="space-y-8">
-              <div>
-                    <h2 className="font-[500] text-lg text-black mb-4">
-                  Celebrity Endorsements
-                </h2>
-                    <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                      <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Celebrity Identification
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Contract Negotiations
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Creative Collaboration
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Campaign Integration
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Public Relations
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Legal Compliance
-                        </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                    <h2 className="font-[500] text-lg text-black mb-4">
-                  Influencer Marketing
-                </h2>
-                    <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                      <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Influencer Identification
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Cost-Benefit Analysis
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Terms Negotiations
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Creative Collaboration
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Campaign Integration
-                        </Link>
-                  </li>
-                  <li>
-                        <Link
-                          href={"/"}
-                          className="hover:text-[#D4A574] transition-colors"
-                        >
-                          Messaging Optimization
-                        </Link>
-                  </li>
-                </ul>
-                  </div>
-                </div>
+                    return (
+                      <>
+                        {/* Column 1 - Digital Marketing, Radio Advertising, Web Development */}
+                        <div className="space-y-8">
+                          {column1.map((service, idx) => (
+                            service && (
+                              <div key={idx}>
+                                <h2 className="font-[500] text-lg text-black mb-4">
+                                  {service.name}
+                                </h2>
+                                <ul className="font-[400] text-base text-[#00000099] space-y-2">
+                                  {service.sub.map((subItem, subIdx) => (
+                                    <li key={subIdx}>
+                                      <Link
+                                        href={subItem.link}
+                                        className="hover:text-[#D4A574] transition-colors"
+                                      >
+                                        {subItem.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )
+                          ))}
+                        </div>
 
-                {/* Column 4 - Special Offer Image (Desktop only) */}
-                <div className="hidden xl:block relative h-[698px] overflow-hidden bg-gradient-to-b from-[#1a1a2e] to-[#16213e]">
-                  <Image
-                    src={"/new-page/dog.png"}
-                    fill
-                    alt="Special Offer"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 w-full h-full flex flex-col justify-between items-center p-6 bg-gradient-to-b from-black/200 to-black/40">
-                    {/* Top Section - Text */}
-                    <div className="text-center pt-4">
-                      <p className="uppercase font-[500] text-white text-[18px] sm:text-[20px] mb-2">
-                        SPECIAL OFFER
-                      </p>
-                      <p className="uppercase font-[500] text-white text-[18px] sm:text-[20px] mb-3">
-                        GET UPTO
-                      </p>
-                      <p className="text-[#E3AE59] font-bold text-[20px] sm:text-[25px] lg:text-[35px]">
-                        10% OFF
-                      </p>
-                    </div>
+                        {/* Column 2 - Creative Services, Print Advertising, Content Marketing */}
+                        <div className="space-y-8">
+                          {column2.map((service, idx) => (
+                            service && (
+                              <div key={idx}>
+                                <h2 className="font-[500] text-lg text-black mb-4">
+                                  {service.name}
+                                </h2>
+                                <ul className="font-[400] text-base text-[#00000099] space-y-2">
+                                  {service.sub.map((subItem, subIdx) => (
+                                    <li key={subIdx}>
+                                      <Link
+                                        href={subItem.link}
+                                        className="hover:text-[#D4A574] transition-colors"
+                                      >
+                                        {subItem.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )
+                          ))}
+                        </div>
 
-                    {/* Bottom Section - Button and Small Text */}
-                    <div className="flex flex-col items-center gap-3 pb-4">
-                      <button className="w-[191px] h-[48px] bg-[#E3AE59] text-white rounded-full cursor-pointer font-[500] text-[20px] hover:opacity-90 transition-opacity shadow-lg">
-                        GET NOW
-                      </button>
+                        {/* Column 3 - Celebrity Endorsements, Influencer Marketing */}
+                        <div className="space-y-8">
+                          {column3.map((service, idx) => (
+                            service && (
+                              <div key={idx}>
+                                <h2 className="font-[500] text-lg text-black mb-4">
+                                  {service.name}
+                                </h2>
+                                <ul className="font-[400] text-base text-[#00000099] space-y-2">
+                                  {service.sub.map((subItem, subIdx) => (
+                                    <li key={subIdx}>
+                                      <Link
+                                        href={subItem.link}
+                                        className="hover:text-[#D4A574] transition-colors"
+                                      >
+                                        {subItem.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )
+                          ))}
+                        </div>
+                      </>
+                    );
+                  })()}
+
+                  {/* Column 4 - Special Offer Image (Desktop only) */}
+                  <div className="hidden xl:block relative h-[698px] overflow-hidden bg-gradient-to-b from-[#1a1a2e] to-[#16213e]">
+                    <Image
+                      src={"/new-page/dog.png"}
+                      fill
+                      alt="Special Offer"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 w-full h-full flex flex-col justify-between items-center p-6 bg-gradient-to-b from-black/200 to-black/40">
+                      {/* Top Section - Text */}
+                      <div className="text-center pt-4">
+                        <p className="uppercase font-[500] text-white text-[18px] sm:text-[20px] mb-2">
+                          SPECIAL OFFER
+                        </p>
+                        <p className="uppercase font-[500] text-white text-[18px] sm:text-[20px] mb-3">
+                          GET UPTO
+                        </p>
+                        <p className="text-[#E3AE59] font-bold text-[20px] sm:text-[25px] lg:text-[35px]">
+                          10% OFF
+                        </p>
+                      </div>
+
+                      {/* Bottom Section - Button and Small Text */}
+                      <div className="flex flex-col items-center gap-3 pb-4">
+                        <button onClick={() => router.push("/rdx-digital-marketing-course")} className="w-[191px] h-[48px] bg-[#E3AE59] text-white rounded-full cursor-pointer font-[500] text-[20px] hover:opacity-90 transition-opacity shadow-lg">
+                          GET NOW
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         )}
@@ -784,147 +538,26 @@ function Navbar() {
                 {/* Mobile Services Dropdown */}
                 {mobileServicesOpen && (
                   <div className="pl-4 mt-2 space-y-4 border-l-2 border-gray-200">
-                    <div>
-                      <h3 className="font-[500] text-sm text-gray-700 mb-2">
-                        Digital Marketing
-                      </h3>
-                      <ul className="space-y-1 text-sm text-gray-600">
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            SEO
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            PPC Advertising
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Social Media
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="font-[500] text-sm text-gray-700 mb-2">
-                        Radio Advertising
-                      </h3>
-                      <ul className="space-y-1 text-sm text-gray-600">
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Scriptwriting
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Production
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="font-[500] text-sm text-gray-700 mb-2">
-                        Web Development
-                      </h3>
-                      <ul className="space-y-1 text-sm text-gray-600">
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            UI/UX Design
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            E-Commerce
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="font-[500] text-sm text-gray-700 mb-2">
-                        Creative Services
-                      </h3>
-                      <ul className="space-y-1 text-sm text-gray-600">
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Branding
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Graphic Design
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="font-[500] text-sm text-gray-700 mb-2">
-                        Print Advertising
-                      </h3>
-                      <ul className="space-y-1 text-sm text-gray-600">
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Ad Design
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Ad Placement
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="font-[500] text-sm text-gray-700 mb-2">
-                        Content Marketing
-                      </h3>
-                      <ul className="space-y-1 text-sm text-gray-600">
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Content Strategy
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Blog Writing
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="font-[500] text-sm text-gray-700 mb-2">
-                        Celebrity Endorsements
-                      </h3>
-                      <ul className="space-y-1 text-sm text-gray-600">
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Celebrity Identification
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Contract Negotiations
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="font-[500] text-sm text-gray-700 mb-2">
-                        Influencer Marketing
-                      </h3>
-                      <ul className="space-y-1 text-sm text-gray-600">
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Influencer Identification
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/" onClick={toggleMobileMenu}>
-                            Campaign Integration
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
+                    {servicesData.map((service, idx) => (
+                      <div key={idx}>
+                        <h3 className="font-[500] text-sm text-gray-700 mb-2">
+                          {service.name}
+                        </h3>
+                        <ul className="space-y-1 text-sm text-gray-600">
+                          {service.sub.map((subItem, subIdx) => (
+                            <li key={subIdx}>
+                              <Link
+                                href={subItem.link}
+                                onClick={toggleMobileMenu}
+                                className="hover:text-[#D4A574] transition-colors"
+                              >
+                                {subItem.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
                   </div>
                 )}
               </li>
@@ -969,7 +602,7 @@ function Navbar() {
 
           {/* Mobile Menu Footer */}
           <div className="p-4 border-t-[0.8px] border-[#b8b8b8]">
-            <button className="w-full h-12 bg-[#D4A574] text-white rounded-full font-[500] text-base hover:bg-[#C59564] transition-colors">
+            <button onClick={() => router.push("/contact.html")} className="w-full h-12 bg-[#D4A574] text-white rounded-full font-[500] text-base hover:bg-[#C59564] transition-colors">
               Free Consulting
             </button>
             {/* Special Offer Section for Mobile */}
@@ -986,7 +619,7 @@ function Navbar() {
                     Special Offer <br /> Get upto
                   </p>
                 </div>
-                <button className="w-[160px] h-10 bg-[#D4A574] text-white rounded-full cursor-pointer font-[500] text-base hover:bg-[#D39E49] transition-colors">
+                <button onClick={() => router.push("/rdx-digital-marketing-course")} className="w-[160px] h-10 bg-[#D4A574] text-white rounded-full cursor-pointer font-[500] text-base hover:bg-[#D39E49] transition-colors">
                     Get Now
                   </button>
                 </div>

@@ -21,7 +21,7 @@ const cardsData: CardData[] = [
     ],
     link: "https://ritzmediaworld.com/services/digital-marketing",
     linkText: "Explore Digital Marketing",
-    bg: "linear-gradient(to bottom, #6B46C1, #4C1D95)", // Purple to dark purple gradient
+    bg: "linear-gradient(to bottom, #101828, #1E2939)", // Purple to dark purple gradient
     ellipseImage: "/new-page/elip.png",
     featureDotColor: "#D4A574",
     buttonBg: "bg-[#FFFFFF]",
@@ -43,7 +43,7 @@ const cardsData: CardData[] = [
     ],
     link: "https://ritzmediaworld.com/services/creative-services",
     linkText: "Explore Creative Service",
-    bg: "linear-gradient(to bottom, #103FCB, #081F65)", // Blue gradient
+    bg: "linear-gradient(to bottom, #EA580C, #C2410C)", // Blue gradient
     ellipseImage: "/new-page/elip2.png",
     featureDotColor: "#D1D5DC",
     buttonBg: "bg-[#ffffff]",
@@ -65,7 +65,7 @@ const cardsData: CardData[] = [
     ],
     link: "https://ritzmediaworld.com/services/print-advertising",
     linkText: "Explore Print Advertisement",
-    bg: "linear-gradient(to bottom, #059669, #047857)", // Green to dark green gradient
+    bg: "linear-gradient(to bottom, #103FCB, #081F65)", // Green to dark green gradient
     ellipseImage: "/new-page/elip.png",
     featureDotColor: "#D4A574",
     buttonBg: "bg-[#FFFFFF]",
@@ -87,7 +87,7 @@ const cardsData: CardData[] = [
     ],
     link: "https://ritzmediaworld.com/services/radio-advertising",
     linkText: "Explore Radio Advertisiment",
-    bg: "linear-gradient(to bottom, #DC2626, #991B1B)", // Red to dark red gradient
+    bg: "linear-gradient(to bottom, #CB1048, #430865)", // Red to dark red gradient
     ellipseImage: "/new-page/elip2.png",
     featureDotColor: "#D1D5DC",
     buttonBg: "bg-[#ffffff]",

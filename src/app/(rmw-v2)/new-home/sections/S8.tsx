@@ -12,27 +12,27 @@ type Testimonial = {
 const testimonials: Testimonial[] = [
   {
     comment:
+      "To me, advertising my brand was merely a means to ensure my elongated presence in the market. Thanks to ritz Media world, my advertisements not only ensured my brand’s sustenance but have also got me a great number of quality leads.",
+    name: "Madhusudan Ghee",
+    designation: "Managing Director",
+  },
+  {
+    comment:
+      "If there is one thing serving as a full service digital agency for more than a decade taught us, it has to be the value of relationships. Therefore, our relationship with our clients is both a priority and a point of pride to us.",
+    name: "FAIRFOX - EON",
+    designation: "Marketing Head",
+  },
+  {
+    comment:
+      "They not only make sure that they deliver on their promises, but also educate you on what exactly is needed to be done for your brand, thereby preventing you from under or over spending your precious money.",
+    name: "Eldeco Group",
+    designation: "Managing Director",
+  },
+  {
+    comment:
       "I must admit that RMW and its team of professionals are always on my favourite list. They have always delivered the best services to me even if they had to put in extra efforts and their team has always been available for extensive support.",
-    name: "Limon Ahmed",
-    designation: "Founder, Limon Studio",
-  },
-  {
-    comment:
-      "Working with RMW feels like having an extended in-house team. They are proactive, detail oriented, and the outcomes have consistently exceeded the targets we set together.",
-    name: "Sarah Thompson",
-    designation: "Marketing Lead, Northwood",
-  },
-  {
-    comment:
-      "Their commitment to timelines and quality is unmatched. Every campaign we’ve launched with RMW has had a visible impact on our brand presence.",
-    name: "Rahul Mehta",
-    designation: "Director, Horizon Ventures",
-  },
-  {
-    comment:
-      "From initial strategy to final delivery, the RMW team handles everything with finesse. The collaboration has been seamless and highly productive.",
-    name: "Emily Carter",
-    designation: "Head of Brand, Lighthouse Co.",
+    name: "Escorts Tractor",
+    designation: "Chief Communication Officer",
   },
 ];
 

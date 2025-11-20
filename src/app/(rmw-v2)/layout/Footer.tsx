@@ -9,6 +9,9 @@ import { FiLinkedin } from "react-icons/fi";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { LuTwitter } from "react-icons/lu";
+import { FaYoutube } from "react-icons/fa6";
+import { FaWhatsapp } from "react-icons/fa";
+import { ChevronUp } from "lucide-react";
 
 function Footer() {
   const handleConsultation = () => {
@@ -17,8 +20,15 @@ function Footer() {
     // You can add navigation or modal opening logic here
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <footer className="w-full overflow-x-hidden flex justify-center items-center pt-12 bg-[#101828]">
+    <footer className="relative w-full overflow-x-hidden flex justify-center items-center pt-12 bg-[#101828]">
       {/* Centered Align Div  */}
       <div className="w-full max-w-[95%] flex flex-col">
         {/* Row 1 - CTA Banner */}
@@ -61,23 +71,13 @@ function Footer() {
             {/* Paragraph */}
             <div>
               <p className="font-[400] text-[14px]  leading-[1.6] text-[#D1D5DC]">
-                Transforming brands into household names through creative
-                strategy and digital innovation since 2008.
+              Accelerate your journey to success with result-oriented solutions for Digital Advertising, Social Media Management, SEO, and Compelling Content backed by more than 17 years of advertising wisdom with a wide array of clients across all industries across the Indian subcontinent.
               </p>
             </div>
             {/* Social Media Icons */}
             <div className="flex w-full justify-start items-center gap-3 sm:gap-4">
               <a
-                href="https://www.linkedin.com/company/ritzmediaworld"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
-                aria-label="LinkedIn"
-              >
-                <FiLinkedin className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
-              </a>
-              <a
-                href="https://www.facebook.com/ritzmediaworld"
+                href="https://www.facebook.com/ritzmediaworld/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
@@ -86,7 +86,7 @@ function Footer() {
                 <FaFacebookF className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
               </a>
               <a
-                href="https://www.instagram.com/ritzmediaworld"
+                href="https://www.instagram.com/ritzmediaworld/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
@@ -95,7 +95,7 @@ function Footer() {
                 <FaInstagram className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
               </a>
               <a
-                href="https://www.twitter.com/ritzmediaworld"
+                href="https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
@@ -103,78 +103,126 @@ function Footer() {
               >
                 <LuTwitter className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
               </a>
+              <a
+                href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
+                aria-label="LinkedIn"
+              >
+                <FiLinkedin className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
+              </a>
+              <a
+                href="https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
+                aria-label="YouTube"
+              >
+                <FaYoutube className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
+              </a>
             </div>
           </div>
 
-          {/* Box 2 - Services */}
+          {/* Box 2 - Quick Links */}
           <div className="w-full min-h-[206px] flex flex-col justify-start gap-4 sm:gap-5">
-            <h2 className="font-[600] text-[16px] text-white mb-2">Services</h2>
+            <h2 className="font-[600] text-[16px] text-white mb-2">Quick Links</h2>
             <Link
-              href="/services/lead-gen-digital"
+              href="/"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
-              Lead-Gen Digital
+              Home
             </Link>
             <Link
-              href="/services/creative-print-ooh"
+              href="/about.html"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
-              Creative Print & OOH
+              About
             </Link>
             <Link
-              href="/services/branding-identity"
+              href="/work.html"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
-              Branding & Identity
+              Our Work
             </Link>
             <Link
-              href="/services/web-experience"
+              href="/blogs"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
-              Web & Experience
+              Blogs
             </Link>
             <Link
-              href="/services/content-strategy"
+              href="/web-stories"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
-              Content Strategy
+              Web Stories
+            </Link>
+            <Link
+              href="/contact.html"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+            >
+              Contact
+            </Link>
+            <Link
+              href="/career"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+            >
+              Career
             </Link>
           </div>
 
-          {/* Box 3 - Industries */}
+          {/* Box 3 - Services */}
           <div className="w-full min-h-[206px] flex flex-col justify-start gap-4 sm:gap-5">
             <h2 className="font-[600] text-[16px] sm:text-[17px] md:text-[16px] text-white mb-2">
-              Industries
+              Services
             </h2>
             <Link
-              href="/industries/real-estate"
+              href="/services/digital-marketing"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
-              Real Estate
+              Digital Marketing
             </Link>
             <Link
-              href="/industries/construction"
+              href="/services/print-advertising"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
-              Construction
+              Print Advertising
             </Link>
             <Link
-              href="/industries/lifestyle-brands"
+              href="/services/radio-advertising"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
-              Lifestyle Brands
+              Radio Advertising
             </Link>
             <Link
-              href="/industries/uhni-segment"
+              href="/services/creative-services"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
-              UHNI Segment
+              Creative Services
             </Link>
             <Link
-              href="/industries/consumer-goods"
+              href="/services/contents-marketing"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
             >
-              Consumer Goods
+              Content Marketing
+            </Link>
+            <Link
+              href="/services/web-designing-and-development"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+            >
+              Web Development
+            </Link>
+            <Link
+              href="/services/celebrity-endorsements"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+            >
+              Celebrity Endorsements
+            </Link>
+            <Link
+              href="/services/influencer-marketing-agency-in-india"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+            >
+              Influencer Marketing
             </Link>
           </div>
 
@@ -183,54 +231,56 @@ function Footer() {
             <h2 className="font-[600] text-[16px] sm:text-[17px] md:text-[16px] text-white mb-2">
               Contact Us
             </h2>
-            <div className="flex gap-3 sm:gap-4 items-start">
-              <GrLocation className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 mt-1" />
-              <p className="font-[400] text-[14px]  leading-[1.6] text-[#D1D5DC]">
-                Delhi NCR, India <br /> Serving Pan-India
+            <Link
+              href="/contact.html"
+              className="flex gap-3 sm:gap-4 items-start hover:text-[#D4A574] transition-colors duration-300 cursor-pointer group"
+            >
+              <GrLocation className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300" />
+              <p className="font-[400] text-[14px]  leading-[1.6] text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300">
+                Address: 402 – 404, <br /> 4th floor Corporate Park, <br />
+                Tower A1 Sector 142, <br /> Noida
               </p>
-            </div>
+            </Link>
             <a
-              href="tel:+911234567890"
+              href="tel:09220516777"
               className="flex gap-3 sm:gap-4 items-center hover:text-[#D4A574] transition-colors duration-300 cursor-pointer group"
             >
               <MdOutlineLocalPhone className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
               <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300">
-                +91 123 456 7890
+                09220516777
               </p>
             </a>
             <a
-              href="mailto:hello@ritzmediaworld.com"
+              href="tel:07290002168"
+              className="flex gap-3 sm:gap-4 items-center hover:text-[#D4A574] transition-colors duration-300 cursor-pointer group"
+            >
+              <MdOutlineLocalPhone className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+              <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300">
+                07290002168
+              </p>
+            </a>
+            <a
+              href="mailto:info@ritzmediaworld.com"
               className="flex gap-3 sm:gap-4 items-center hover:text-[#D4A574] transition-colors duration-300 cursor-pointer group"
             >
               <MdOutlineMailOutline className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
               <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300 break-all">
-                hello@ritzmediaworld.com
+                info@ritzmediaworld.com
               </p>
             </a>
+            <div className="flex gap-3 sm:gap-4 items-center">
+              <div className="w-[20px] h-[20px] flex-shrink-0"></div>
+              <p className="font-[400] text-[14px]  text-[#D1D5DC]">
+                Office Hours: 9AM - 7PM
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Row 3 - Partners Logos  */}
         <div className="w-full flex justify-center items-center mb-8">
           {/* Responsive Centered Align Container */}
-          <div
-            className="
-              flex 
-              flex-row 
-              flex-wrap 
-              justify-between 
-              items-center 
-              gap-[32px] 
-              sm:gap-[40px] 
-              md:gap-[56px] 
-              lg:gap-[56px]
-              w-full 
-              max-w-[360px] 
-              sm:max-w-[480px]
-              md:max-w-none
-              md:w-auto
-              "
-          >
+          <div className="flex flex-row flex-wrap justify-between items-center gap-[32px] sm:gap-[40px] md:gap-[56px] lg:gap-[56px] w-full max-w-[360px] sm:max-w-[480px] md:max-w-none md:w-auto">
             <div className="w-[48px] h-[28px] sm:w-[60px] sm:h-[32px] md:w-[72px] md:h-[40px] relative flex-shrink-0">
               <Image
                 fill
@@ -304,6 +354,40 @@ function Footer() {
           </ul>
         </div>
       </div>
+
+      {/* WhatsApp Button */}
+      <a
+        href="https://wa.me/917290002168"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute cursor-pointer bottom-24 left-6 sm:bottom-28 sm:left-8 md:bottom-32 md:left-10 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300 z-50 group animate-bounce-arrow"
+        aria-label="Contact us on WhatsApp"
+      >
+        <FaWhatsapp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white group-hover:scale-110 transition-transform duration-300" />
+      </a>
+
+      {/* Scroll to Top Arrow Button */}
+      <button
+        onClick={scrollToTop}
+        className="absolute cursor-pointer bottom-6 left-6 sm:bottom-8 sm:left-8 md:bottom-10 md:left-10 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300 z-50 group animate-bounce-arrow"
+        aria-label="Scroll to top"
+      >
+        <ChevronUp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#D4A574] group-hover:scale-110 transition-transform duration-300" />
+      </button>
+
+      <style jsx>{`
+        @keyframes bounce-arrow {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+        .animate-bounce-arrow {
+          animation: bounce-arrow 2s ease-in-out infinite;
+        }
+      `}</style>
     </footer>
   );
 }

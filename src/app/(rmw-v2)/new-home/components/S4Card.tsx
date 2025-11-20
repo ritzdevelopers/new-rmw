@@ -13,9 +13,11 @@ interface S4CardProps {
   linkTxtColor: string;
   img: string;
   top: string;
+  link: string;
 }
 
 const S4Card = forwardRef<HTMLDivElement, S4CardProps>(({
+  link,
   linkTxt,
   title,
   list,
@@ -36,7 +38,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(({
       >
         <div className="w-full max-w-[600px] flex flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-8">
           <Link
-            href={"/"}
+            href={link}
             className={`inline-flex w-fit h-[32px] sm:h-[36px] md:h-[40px] lg:h-[42px] px-3 sm:px-4 md:px-5 lg:px-6 justify-center items-center cursor-pointer ${linkBG} rounded-[8px] font-[600] text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] ${linkTxtColor} transition-transform duration-200 hover:scale-105`}
           >
             {linkTxt}
@@ -55,7 +57,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(({
               </li>
             ))}
           </ul>
-          <button className="w-fit min-w-[110px] sm:min-w-[120px] md:min-w-[130px] h-[30px] sm:h-[32px] md:h-[34px] px-3 sm:px-4 border-[0.8px] border-[#3D28171A] bg-white rounded-[8px] text-black cursor-pointer font-[500] text-[12px] sm:text-[13px] md:text-[14px] text-[#3D2817] flex justify-center items-center gap-2 sm:gap-3 transition-transform duration-200 hover:scale-105">
+          <button onClick={() => window.open(link, "_blank")} className="w-fit min-w-[110px] sm:min-w-[120px] md:min-w-[130px] h-[30px] sm:h-[32px] md:h-[34px] px-3 sm:px-4 border-[0.8px] border-[#3D28171A] bg-white rounded-[8px] text-black cursor-pointer font-[500] text-[12px] sm:text-[13px] md:text-[14px] text-[#3D2817] flex justify-center items-center gap-2 sm:gap-3 transition-transform duration-200 hover:scale-105">
             Read More <FiArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
         </div>
@@ -64,6 +66,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(({
       {/* Right Side Image Div  */}
       <div className="w-full lg:w-[400px] xl:w-[595px] h-[250px] sm:h-[300px] md:h-[350px] lg:h-[532px] relative flex-shrink-0">
         <Image
+        onClick={() => window.open(link, "_blank")}
           src={img}
           alt={`RMW ${linkTxt} Services`}
           fill

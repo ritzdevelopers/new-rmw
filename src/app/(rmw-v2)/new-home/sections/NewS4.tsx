@@ -8,49 +8,52 @@ import { useGSAP } from "@gsap/react";
 function NewS4() {
   const s4CardsData = [
     {
-      linkTxt: "Creative Print & OOH",
-      title: "Marketing strategies that work effectively.",
+      linkTxt: "Digital Marketing",
+      title: "Digital marketing strategies that drive growth.",
       list: [
-        "SEO & SEM",
-        "Social Media Marketing",
-        "PPC Campaigns",
-        "Analytics & Optimization",
+        "SEO (Search Engine Optimization)",
+        "PPC (Google Ads) Services",
+        "Social Media Management",
+        "ORM (Online Reputation Management)",
       ],
       cardBg: "bg-gradient-to-tl from-[#D1FFEC] to-[#F7FFDF]",
       linkBG: "bg-[#21EAB5]",
       linkTxtColor: "text-[#101828]",
       img: "/new-page/s4/s4-im1.png",
       top: "top-0",
+      link: "/services/digital-marketing",
     },
     {
-      linkTxt: "Creative Print & OOH",
-      title: "Marketing strategies that work effectively.",
+      linkTxt: "Creatve Services",
+      title: "Creative design solutions that elevate brands.",
       list: [
-        "SEO & SEM",
-        "Social Media Marketing",
-        "PPC Campaigns",
-        "Analytics & Optimization",
+        "Branding & Identity Development",
+        "Graphic Design",
+        "Logo Design",
+        "Print Advertising Design",
       ],
       cardBg: "bg-gradient-to-tl from-[#F7FFDF] to-[#EFFFD1]",
       linkBG: "bg-[#21EAB5]",
       linkTxtColor: "text-[#101828]",
       img: "/new-page/s4/s4-im2.png",
       top: "top-20",
+      link: "/services/creative-services", 
     },
     {
-      linkTxt: "Creative Print & OOH",
-      title: "Marketing strategies that work effectively.",
+      linkTxt: "Print Advertising",
+      title: "Print advertising campaigns that maximize impact.",
       list: [
-        "SEO & SEM",
-        "Social Media Marketing",
-        "PPC Campaigns",
-        "Analytics & Optimization",
+        "Ad Placement",
+        "Copywriting",
+        "Ad Scheduling",
+        "Cost Negotiation",
       ],
       cardBg: "bg-gradient-to-tl from-[#F7FFDF] to-[#FFE8D1]",
       linkBG: "bg-[#21EAB5]",
       linkTxtColor: "text-[#101828]",
       img: "/new-page/s4/s4-im3.png",
       top: "top-8",
+      link: "/services/print-advertising",
     },
   ];
 
@@ -80,11 +83,12 @@ function NewS4() {
         </div>
 
         {/* Bottom Cards Div  */}
-        <div className="w-full stCon mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex flex-col gap-6 sm:gap-8 md:gap-9 lg:gap-10 overflow-y-auto relative h-auto ">
+        <div className="w-full stCon mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex flex-col gap-6 sm:gap-8 md:gap-9 lg:gap-10 overflow-y-auto relative  h-auto ">
           {/* Cards Section   */}
           {s4CardsData.map((ob, idx) => {
             return (
               <S4Card
+                link={ob.link}
                 ref={(el) => {
                   if (el) cardRefs.current[idx] = el;
                 }}
