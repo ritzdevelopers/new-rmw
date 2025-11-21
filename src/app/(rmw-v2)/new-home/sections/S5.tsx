@@ -39,7 +39,7 @@ const storiesData: StoryCard[] = [
     subTitle: "Luxury Real Estate",
 
     para2:
-      "Content is more than posts; it’s your brand’s ongoing conversation. As the best advertising agency in Delhi NCR, we build content ecosystems that attract, educate and gently sell. Combining the strategy of a performance-led digital marketing agency with the storytelling flair of a creative agency, we turn blogs, videos and social content into lasting recall, trust and qualified leads.",
+      "Our digital advertising case studies showcase how smart targeting, compelling creatives, and data-driven optimisation translate into real business outcomes. Explore how brands across sectors achieved higher visibility, stronger engagement, and measurable conversions through strategic, performance-focused campaigns.",
     res: "Results",
     results: [
       {
@@ -66,11 +66,11 @@ const storiesData: StoryCard[] = [
   },
   {
     title: "Print Advertising",
-    img: "/new-page/print-ad.jpg",
+    img: "/new-page/for-print.jpg",
     subTitle: "Lifestyle & Retail",
 
     para2:
-      "Your website is more than a brochure; it’s your most visible salesperson. As the best advertising agency in Delhi NCR, we design and develop websites that look stunning and sell. Blending UX thinking from a performance-led digital marketing agency with the aesthetics of a creative agency, we build fast, responsive, conversion-focused sites that turn visits into enquiries, and clicks into customers.",
+      "Our print advertising case studies show how powerful layouts, sharp messaging, and strategic placements cut through clutter to capture attention instantly. See how brands achieved stronger recall, higher response rates, and impactful visibility through well-crafted print communication.",
     res: "Results",
     results: [
       {
@@ -97,10 +97,10 @@ const storiesData: StoryCard[] = [
   },
   {
     title: "Brand Identity",
-    img: "/new-page/brand-id.jpg",
+    img: "/new-page/brand.jpg",
     subTitle: "Healthcare & Wellness",
     para2:
-      "Awareness only matters when it comes with admiration. As one of the best advertising agencies in Delhi NCR, Ritz Media World acts as a strategy-led digital marketing agency and creative agency, building campaigns where visibility is rooted in authenticity, so your brand is chosen, not just noticed.",
+      "Our content marketing case studies reveal how insightful blogs, videos, and social content build trust over time. See how brands turned storytelling into steady traffic, stronger engagement, and high-intent leads that convert long after campaigns go live.",
     res: "Results",
     results: [
       {
@@ -127,10 +127,10 @@ const storiesData: StoryCard[] = [
   },
   {
     title: "Social Media Management",
-    img: "/new-page/social-media.jpg",
+    img: "/new-page/social.jpg",
     subTitle: "Healthcare & Wellness",
     para2:
-      "Social is where brands are built, or broken. As one of the best advertising agencies in Delhi NCR, our digital marketing agency and creative agency teams at Ritz Media World craft intelligent social media strategies powered by compelling content that genuinely engages, nurtures, and grows your community.",
+      "Our social media management case studies showcase how consistent posting, smart community building, and data-led optimisation turn followers into fans. See how brands achieved better visibility, engagement, and conversions through always-on, platform-native content and active reputation management.",
     res: "Results",
     results: [
       {
@@ -184,7 +184,7 @@ function S5() {
       });
     }
 
-    // Animate each article
+    // Animate each article with responsive animations
     articleRefs.current.forEach((article, idx) => {
       if (!article) return;
 
@@ -192,49 +192,94 @@ function S5() {
       const contentContainer = contentRefs.current[idx];
       const isEven = idx % 2 === 0;
 
-      // Set initial states
-      if (imageContainer) {
-        gsap.set(imageContainer, {
-          x: isEven ? -100 : 100,
-          opacity: 0,
-          scale: 0.9,
-        });
-      }
+      // Mobile/Tablet animations (stack vertically, animate from bottom)
+      const mobileMatch = gsap.matchMedia();
+      mobileMatch.add("(max-width: 1023px)", () => {
+        if (imageContainer) {
+          gsap.set(imageContainer, {
+            y: 50,
+            opacity: 0,
+          });
+        }
+        if (contentContainer) {
+          gsap.set(contentContainer, {
+            y: 50,
+            opacity: 0,
+          });
+        }
 
-      if (contentContainer) {
-        gsap.set(contentContainer, {
-          x: isEven ? 100 : -100,
-          opacity: 0,
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: article,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
         });
-      }
 
-      // Animate on scroll
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: article,
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
+        if (imageContainer) {
+          tl.to(imageContainer, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+          }, 0);
+        }
+
+        if (contentContainer) {
+          tl.to(contentContainer, {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+          }, 0.2);
+        }
       });
 
-      if (imageContainer) {
-        tl.to(imageContainer, {
-          x: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: "power3.out",
-        }, 0);
-      }
+      // Desktop animations (side by side, animate from left/right)
+      const desktopMatch = gsap.matchMedia();
+      desktopMatch.add("(min-width: 1024px)", () => {
+        const imageStartX = isEven ? -150 : 150;
+        const contentStartX = isEven ? 150 : -150;
 
-      if (contentContainer) {
-        tl.to(contentContainer, {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-        }, 0.2);
-      }
+        if (imageContainer) {
+          gsap.set(imageContainer, {
+            x: imageStartX,
+            opacity: 0,
+          });
+        }
+        if (contentContainer) {
+          gsap.set(contentContainer, {
+            x: contentStartX,
+            opacity: 0,
+          });
+        }
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: article,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        if (imageContainer) {
+          tl.to(imageContainer, {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+          }, 0);
+        }
+
+        if (contentContainer) {
+          tl.to(contentContainer, {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+          }, 0.2);
+        }
+      });
 
       // Animate result cards with stagger
       const resultCards = article.querySelectorAll(".result-card");
@@ -255,23 +300,20 @@ function S5() {
       }
     });
 
-    // Hover effects for images
+    // Hover effects for images - only animate the image, not the container
     const imageHoverHandlers: Array<{
       container: HTMLDivElement;
+      image: HTMLImageElement | null;
       enter: () => void;
       leave: () => void;
     }> = [];
 
     imageRefs.current.forEach((imageContainer) => {
       if (!imageContainer) return;
-      const image = imageContainer.querySelector("img");
+      // Find the image element inside the container
+      const image = imageContainer.querySelector("img") as HTMLImageElement | null;
 
       const handleEnter = () => {
-        gsap.to(imageContainer, {
-          scale: 1.05,
-          duration: 0.6,
-          ease: "power2.out",
-        });
         if (image) {
           gsap.to(image, {
             scale: 1.1,
@@ -282,11 +324,6 @@ function S5() {
       };
 
       const handleLeave = () => {
-        gsap.to(imageContainer, {
-          scale: 1,
-          duration: 0.6,
-          ease: "power2.out",
-        });
         if (image) {
           gsap.to(image, {
             scale: 1,
@@ -301,6 +338,7 @@ function S5() {
 
       imageHoverHandlers.push({
         container: imageContainer,
+        image,
         enter: handleEnter,
         leave: handleLeave,
       });
@@ -410,7 +448,7 @@ function S5() {
                 }}
                 className="relative w-full overflow-hidden rounded-[16px] bg-white shadow-[0_25px_65px_rgba(16,24,40,0.12)] sm:w-[85%] sm:self-center lg:w-[40%]"
               >
-                <div className="relative aspect-[4/3] lg:w-full lg:h-[481px]">
+                <div className="relative aspect-[4/3] overflow-hidden lg:w-full lg:h-[481px]">
                   <Image
                     src={story.img}
                     alt={story.title}
@@ -418,7 +456,7 @@ function S5() {
                     className="object-fill"
                   />
                   {/* Absolute Positioned Div  */}
-                  <button className="w-[155px] h-[32px] rounded-full absolute top-4 left-4 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#242321] z-10">
+                  <button className="min-w-[155px] px-4 h-[32px] rounded-full absolute top-4 left-4 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#242321] z-10">
                     {story.title}
                   </button>
                 </div>

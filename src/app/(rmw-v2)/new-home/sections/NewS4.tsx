@@ -19,7 +19,7 @@ function NewS4() {
       cardBg: "bg-gradient-to-tl from-[#D1FFEC] to-[#F7FFDF]",
       linkBG: "bg-[#21EAB5]",
       linkTxtColor: "text-[#101828]",
-      img: "/new-page/s4/s4-im1.png",
+      img: "/new-page/digital.jpg",
       top: "top-0",
       link: "/services/digital-marketing",
     },
@@ -35,7 +35,7 @@ function NewS4() {
       cardBg: "bg-gradient-to-tl from-[#F7FFDF] to-[#EFFFD1]",
       linkBG: "bg-[#21EAB5]",
       linkTxtColor: "text-[#101828]",
-      img: "/new-page/s4/s4-im2.png",
+      img: "/new-page/banners-for-rmw9.jpg",
       top: "top-20",
       link: "/services/creative-services", 
     },
@@ -51,7 +51,7 @@ function NewS4() {
       cardBg: "bg-gradient-to-tl from-[#F7FFDF] to-[#FFE8D1]",
       linkBG: "bg-[#21EAB5]",
       linkTxtColor: "text-[#101828]",
-      img: "/new-page/s4/s4-im3.png",
+      img: "/new-page/banners-for-rmw5.jpg",
       top: "top-8",
       link: "/services/print-advertising",
     },
@@ -59,7 +59,8 @@ function NewS4() {
 
   const cardRefs = useRef<HTMLDivElement[]>([]);
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  console.log(cardRefs.current);
+
+
 
 
   return (

@@ -1,25 +1,190 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { LuDownload, LuMail } from "react-icons/lu";
+import { LuDownload, LuMail, LuPhone } from "react-icons/lu";
 import { FaArrowRight, FaArrowRightLong } from "react-icons/fa6";
 import { gsap } from "gsap";
+import { useRouter } from "next/navigation";
 
 function S11() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const leftRef = useRef<HTMLDivElement | null>(null);
   const rightRef = useRef<HTMLDivElement | null>(null);
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
 
-  const handleDownload = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle download logic here
-    console.log("Download requested for:", email);
+  const [modal, setModal] = useState<{
+    open: boolean;
+    status: "success" | "error";
+    message: string;
+  }>({
+    open: false,
+    status: "success",
+    message: "",
+  });
+
+  // Function to validate phone number
+  const validatePhone = (phoneNumber: string): string => {
+    // Remove all non-digit characters for validation
+    const digitsOnly = phoneNumber.replace(/\D/g, "");
+    
+    // Check if empty
+    if (!phoneNumber.trim()) {
+      return "Phone number is required";
+    }
+    
+    // Check if it contains only digits, spaces, +, -, and ()
+    const phoneRegex = /^[\d\s\+\-\(\)]+$/;
+    if (!phoneRegex.test(phoneNumber)) {
+      return "Phone number can only contain digits, spaces, +, -, and ()";
+    }
+    
+    // Check length (should be 10 digits for Indian numbers, or 10-13 with country code)
+    if (digitsOnly.length < 10) {
+      return "Phone number must have at least 10 digits";
+    }
+    
+    if (digitsOnly.length > 13) {
+      return "Phone number cannot exceed 13 digits";
+    }
+    
+    // Check if it starts with valid Indian country code or direct number
+    if (digitsOnly.length === 10) {
+      // 10-digit Indian mobile number (should start with 6-9)
+      if (!/^[6-9]/.test(digitsOnly)) {
+        return "Indian mobile numbers should start with 6, 7, 8, or 9";
+      }
+    } else if (digitsOnly.length === 11) {
+      // 11 digits - might be with 0 prefix
+      if (!/^0[6-9]/.test(digitsOnly)) {
+        return "Invalid phone number format";
+      }
+    } else if (digitsOnly.length === 12 || digitsOnly.length === 13) {
+      // 12-13 digits - with country code (91 for India)
+      if (!/^91[6-9]/.test(digitsOnly)) {
+        return "Invalid country code. Use +91 for India";
+      }
+    }
+    
+    return ""; // No error
   };
 
+  // Handle phone input change with validation
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPhone(value);
+    
+    // Clear error if user is typing
+    if (phoneError) {
+      setPhoneError("");
+    }
+  };
+
+  // Validate on blur
+  const handlePhoneBlur = () => {
+    const error = validatePhone(phone);
+    setPhoneError(error);
+  };
+
+  // Function to download PDF
+  const downloadPDF = () => {
+    const link = document.createElement("a");
+    link.href = "/RMW Case Studies_250327_081936.pdf";
+    link.download = "RMW Case Studies_250327_081936.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDownload = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate phone number
+    const phoneValidationError = validatePhone(phone);
+    if (phoneValidationError) {
+      setPhoneError(phoneValidationError);
+      setModal({
+        open: true,
+        status: "error",
+        message: phoneValidationError,
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Prepare enquiry data with default values indicating it's from home page
+      const enquiryData = {
+        etype: "HomePageDownload",
+        name: "Home Page Visitor",
+        email: "homepage@ritzmediaworld.com",
+        phone: phone.trim(),
+        message: "Enquiry from Home Page - 2025 Brand Impact Report Download Request",
+        category: "Brand Impact Report Download",
+      };
+
+      const response = await fetch("/api/system-settings/contact-enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(enquiryData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        // Show success modal
+        setModal({
+          open: true,
+          status: "success",
+          message: "Thank you! Your enquiry has been submitted successfully. The PDF will download shortly.",
+        });
+
+        // Reset form
+        setPhone("");
+        setPhoneError("");
+
+        // Download PDF after a short delay
+        setTimeout(() => {
+          downloadPDF();
+        }, 500);
+      } else {
+        setModal({
+          open: true,
+          status: "error",
+          message: result.error || "Failed to submit enquiry. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Enquiry submission error:", error);
+      setModal({
+        open: true,
+        status: "error",
+        message: "Due to internal server errors your enquiry couldn't be sent. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+const router = useRouter();
   const handleAuditRequest = () => {
     // Handle audit request logic here
-    console.log("Audit requested");
+    // console.log("Audit requested");
+    router.push("/contact.html");
   };
+
+  // Auto-close modal for success messages
+  useEffect(() => {
+    if (modal.open && modal.status === "success") {
+      const timer = setTimeout(() => {
+        setModal({ ...modal, open: false });
+      }, 5000); // Close after 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [modal.open, modal.status]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -113,25 +278,38 @@ function S11() {
           <div className="flex flex-col gap-3 sm:gap-4">
             <form
               onSubmit={handleDownload}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start"
             >
-              <div className="flex-1 relative">
-                <LuMail className="absolute left-4 sm:left-5 md:left-6 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-[#99A1AF]" />
+              <div className="flex-1 relative w-full">
+                <LuPhone className={`absolute left-4 sm:left-5 md:left-6 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-300 ${
+                  phoneError ? "text-[#EF4444]" : "text-[#99A1AF]"
+                }`} />
                 <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  type="tel"
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  onBlur={handlePhoneBlur}
+                  placeholder="Enter your phone (e.g., +91 9220516777)"
                   required
-                  className="w-full h-[48px] sm:h-[56px] pl-11 sm:pl-12 md:pl-14 pr-4 sm:pr-5 md:pr-6 bg-white/10 border border-white/20 rounded-[8px] text-white placeholder:text-[#99A1AF] focus:outline-none focus:border-[#D4A574] focus:bg-white/15 transition-all duration-300 text-[14px] sm:text-[15px] md:text-[16px]"
+                  className={`w-full h-[48px] sm:h-[56px] pl-11 sm:pl-12 md:pl-14 pr-4 sm:pr-5 md:pr-6 bg-white/10 border rounded-[8px] text-white placeholder:text-[#99A1AF] focus:outline-none focus:bg-white/15 transition-all duration-300 text-[14px] sm:text-[15px] md:text-[16px] ${
+                    phoneError 
+                      ? "border-[#EF4444] focus:border-[#EF4444]" 
+                      : "border-white/20 focus:border-[#D4A574]"
+                  }`}
                 />
+                {phoneError && (
+                  <p className="absolute top-full left-0 mt-1 text-[12px] sm:text-[13px] text-[#EF4444] font-[400]">
+                    {phoneError}
+                  </p>
+                )}
               </div>
               <button
                 type="submit"
-                className="w-full sm:w-[164px] h-[48px] sm:h-[56px] bg-[#D4A574] text-white flex justify-center items-center gap-2 rounded-[8px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] hover:bg-[#C8955F] transition-colors duration-300 cursor-pointer"
+                disabled={isSubmitting}
+                className="w-full sm:w-[164px] h-[48px] sm:h-[56px] bg-[#D4A574] text-white flex justify-center items-center gap-2 rounded-[8px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] hover:bg-[#C8955F] transition-colors duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <LuDownload className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span>Download Free</span>
+                <span>{isSubmitting ? "Submitting..." : "Download Free"}</span>
               </button>
             </form>
             <p className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#99A1AF]">
@@ -202,6 +380,64 @@ function S11() {
        <div className="w-[484px] h-[484px] opacity-[10%] absolute left-0  top-0 z-0">
         <img src="/new-page/cont-2.png" className="w-full h-full object-contain" alt="" />
       </div>
+
+      {/* Modal */}
+      {modal.open && (
+        <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-[16px] shadow-2xl max-w-[400px] w-[90%] mx-4 overflow-hidden">
+            {/* Modal Header */}
+            <div className={`px-6 py-4 ${
+              modal.status === "success" ? "bg-[#10B981]" : "bg-[#EF4444]"
+            }`}>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  {modal.status === "success" ? (
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  )}
+                  <h3 className="text-lg font-semibold text-white">
+                    {modal.status === "success" ? "Success" : "Error"}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setModal({ ...modal, open: false })}
+                  className="text-white hover:text-gray-200 transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className="px-6 py-4">
+              <p className="text-[#374151] text-sm leading-relaxed">
+                {modal.message}
+              </p>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 border-t border-gray-200 flex justify-end">
+              <button
+                onClick={() => setModal({ ...modal, open: false })}
+                className={`px-4 py-2 rounded-[8px] font-[500] text-sm transition-colors ${
+                  modal.status === "success"
+                    ? "bg-[#10B981] text-white hover:bg-[#059669]"
+                    : "bg-[#EF4444] text-white hover:bg-[#DC2626]"
+                }`}
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

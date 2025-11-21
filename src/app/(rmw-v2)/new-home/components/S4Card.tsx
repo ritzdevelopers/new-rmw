@@ -30,7 +30,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(({
   return (
     <div
       ref={ref}
-      className={`w-full flex flex-col-reverse rounded-[32px] lg:flex-row justify-between gap-0 ${cardBg} shadow-lg lg:sticky ${top}`}
+      className={`w-full flex overflow-hidden flex-col-reverse rounded-[32px] lg:flex-row justify-between gap-0 ${cardBg} shadow-lg lg:sticky ${top}`}
     >
       {/* Left Side Card Div  */}
       <div
@@ -39,7 +39,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(({
         <div className="w-full max-w-[600px] flex flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-8">
           <Link
             href={link}
-            className={`inline-flex w-fit h-[32px] sm:h-[36px] md:h-[40px] lg:h-[42px] px-3 sm:px-4 md:px-5 lg:px-6 justify-center items-center cursor-pointer ${linkBG} rounded-[8px] font-[600] text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] ${linkTxtColor} transition-transform duration-200 hover:scale-105`}
+            className={`inline-flex w-fit h-[32px] sm:h-[36px] md:h-[40px] lg:h-[42px] px-3 sm:px-4 md:px-5 lg:px-6 justify-center items-center cursor-pointer ${linkBG} rounded-[8px] font-[600] text-[18px]  ${linkTxtColor} transition-transform duration-200 hover:scale-105`}
           >
             {linkTxt}
           </Link>

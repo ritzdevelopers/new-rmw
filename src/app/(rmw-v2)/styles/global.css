@@ -1,29 +1,40 @@
 @font-face {
-  font-family: "InterBold";
-  src: url("../static/Inter_18pt-Bold.ttf");
+    font-family: "InterBold";
+    src: url("../static/Inter_18pt-Bold.ttf");
 }
+
 @font-face {
     font-family: 'InterRegular';
     src: url("../static/Inter_18pt-Regular.ttf");
 }
-@font-face { 
+
+@font-face {
     font-family: 'InterSemiBold';
     src: url("../static/Inter_18pt-SemiBold.ttf");
 }
+
 @font-face {
     font-family: 'InterMedium';
     src: url("../static/Inter_18pt-Medium.ttf");
 }
 
-p, a, span, li, ul, ol {
+p,
+a,
+span,
+li,
+ul,
+ol {
     font-family: 'InterRegular';
 }
+
 h1 {
     font-family: 'InterBold';
 }
+
 h2 {
     font-family: 'InterSemiBold';
 }
+
 h3 {
     font-family: 'InterMedium';
 }
@@ -31,15 +42,129 @@ h3 {
 .stCon::-webkit-scrollbar {
     display: none;
 }
+
 .stCon::-webkit-scrollbar-track {
     display: none;
 }
+
 .stCon::-webkit-scrollbar-thumb {
     display: none;
 }
+
 .stCon::-webkit-scrollbar-thumb:hover {
     display: none;
 }
+
 .stCon::-webkit-scrollbar-thumb:active {
     display: none;
+}
+
+.bounceAnim {
+    animation: anim 8s linear infinite;
+}
+
+.bounceAnim2 {
+    animation: anim 10s linear infinite;
+}
+
+@keyframes anim {
+    0% {
+        top: 0px;
+    }
+
+    25% {
+        top: 50px;
+    }
+
+    50% {
+        top: 100px;
+    }
+
+    75% {
+        top: 50px;
+    }
+
+    100% {
+        top: 0px
+    }
+
+}
+
+.leftDirAnim {
+    animation: anim2 6s linear infinite;
+}
+
+@keyframes anim2 {
+    0% {
+        left: 0px;
+    }
+
+    25% {
+        left: 15px;
+    }
+
+    50% {
+        left: 30px;
+    }
+
+    75% {
+        left: 15px;
+    }
+
+    100% {
+        left: 0px
+    }
+
+}
+
+.imgAnim {
+    animation: anim3 4s linear infinite;
+}
+
+@keyframes anim3 {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.imgShadowAnim {
+    animation: anim4 4s linear infinite;
+}
+
+@keyframes anim4 {
+    0% {
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    100% {
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    }
+    }
+
+
+
+.liquid {
+    background: linear-gradient(#646cff 0 0) no-repeat calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.2em);
+    transition: 0.3s var(--t, 0s),
+        background-position 0.3s calc(0.3s - var(--t, 0s));
+    color: #000;
+    border: 1px solid #000;
+}
+
+.liquid:hover {
+    --p: 100%;
+    --t: 0.3s;
+    color: #fff;
 }

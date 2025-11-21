@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import S1 from "./sections/S1";
 import S2 from "./sections/S2";
 import S3 from "./sections/S3";
-import S4 from "./sections/S4";
 import S5 from "./sections/S5";
 import S7 from "./sections/s7";
 import S8 from "./sections/S8";
@@ -19,10 +18,10 @@ import S3C from "./sections/S3C";
 import NewBlogSection from "./sections/NewBlogSection";
 import NewS2 from "./sections/NewS2";
 import NewS4 from "./sections/NewS4";
-import S4C from "./sections/S4C";
 import S51 from "./sections/S51";
 import CustomCursor from "./components/CustomCursor";
 import LenisSmoothScroll from "./components/LenisSmoothScroll";
+import OurAwards from "./sections/OurAwards";
 
 export const metadata: Metadata = {
   title: "Ritz Media World | Best Advertising Agency in Delhi NCR & Creative Digital Marketing Agency",
@@ -83,7 +82,8 @@ function page() {
       <S51></S51>
       <S7></S7>
       <S8></S8>
-      <S9></S9>
+      {/* <S9></S9> */}
+     <OurAwards></OurAwards>
       {/* <S10></S10> */}
       <NewBlogSection></NewBlogSection>
       <S11></S11>

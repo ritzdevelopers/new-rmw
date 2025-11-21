@@ -12,12 +12,12 @@ import { LuTwitter } from "react-icons/lu";
 import { FaYoutube } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
 import { ChevronUp } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 function Footer() {
+  const router = useRouter();
   const handleConsultation = () => {
-    // Handle consultation button click
-    console.log("Schedule consultation clicked");
-    // You can add navigation or modal opening logic here
+    router.push("/contact.html");
   };
 
   const scrollToTop = () => {

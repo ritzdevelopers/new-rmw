@@ -9,7 +9,7 @@ import axios from "axios";
 
 interface Blog {
   blogBanner: string;
-  date: string;
+  createdAt: string;
   blogTitle: string;
   _id: string;
   blogSlug: string;
@@ -187,7 +187,7 @@ function NewBlogSection() {
                 <div className="relative h-[200px] w-full overflow-hidden sm:h-[240px] md:h-[280px] lg:h-[322px]">
                   <Image
                     // src={cd.blogBanner}
-                    src={`https://ritzmediaworld.com/api/images${cd.blogBanner.split("/images")[1]}`
+                    src={`/api/images${cd.blogBanner.split("/images")[1]}`
                     }
                     alt={cd.blogTitle}
                     fill
@@ -242,7 +242,7 @@ function NewBlogSection() {
                 {/* Content Container */}
                 <div className="flex flex-col gap-2 sm:gap-3 px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8">
                   <p className="text-xs font-normal text-[#4A5565] sm:text-sm md:text-base">
-                    {cd.date}
+                    {cd.createdAt}
                   </p>
                   <h3 className="text-base font-semibold text-[#101828] leading-snug sm:text-lg md:text-xl lg:text-[20px]">
                     {cd.blogTitle}

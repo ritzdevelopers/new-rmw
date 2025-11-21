@@ -166,7 +166,7 @@ function S8() {
           </p>
 
           {/* Absoute Positioned Robot Div - Hidden on mobile, visible on tablet+ */}
-          <div className="hidden md:block absolute left-0 lg:left-10 top-0 opacity-60 lg:opacity-100">
+          <div className="hidden md:block absolute left-0 lg:left-10 top-0 opacity-60 bounceAnim lg:opacity-100">
             <div className="w-[60px] h-[60px] lg:w-[90px] lg:h-[90px] relative">
               <Image
                 src={"/new-page/icns/Robot.png"}
@@ -178,7 +178,7 @@ function S8() {
           </div>
 
           {/* Absolute Positioned Right Line Div - Hidden on mobile, visible on tablet+ */}
-          <div className="hidden lg:block absolute right-10 xl:right-20 top-12 xl:top-20 opacity-60">
+          <div className="hidden lg:block absolute right-10 xl:right-20 top-12 xl:top-20 bounceAnim2 opacity-60">
             <div className="w-[60px] h-[120px] lg:w-[77px] lg:h-[151px] relative rotate-[5deg]">
               <Image
                 src={"/new-page/icns/rght-line.png"}
@@ -250,7 +250,7 @@ function S8() {
         </div>
 
         {/* Absolute Positioned Left Line Div - Hidden on mobile, visible on large screens */}
-        <div className="hidden xl:block absolute left-[-30px] lg:left-[-60px] xl:left-[10px] bottom-[-30px] lg:bottom-[-90px] xl:bottom-[-80px] z-20 opacity-60">
+        <div className="hidden leftDirAnim xl:block absolute left-[-30px] lg:left-[-60px] xl:left-[10px] bottom-[-30px] lg:bottom-[-90px] xl:bottom-[-80px] z-20 opacity-60">
           <div className="w-[70px] h-[120px] xl:w-[87px] xl:h-[151px] relative rotate-[5deg]">
             <Image
               src={"/new-page/icns/lft-line.png"}

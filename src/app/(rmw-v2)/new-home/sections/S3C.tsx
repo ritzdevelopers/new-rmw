@@ -78,11 +78,7 @@ function S3C() {
       src: "/new-page/logos/prm-14.png",
       alt: "PRM Logo 14",
     },
-    {
-      name: "PRM 15",
-      src: "/new-page/logos/prm-15.png",
-      alt: "PRM Logo 15",
-    },
+    
     {
       name: "PRM 16",
       src: "/new-page/logos/prm-16.png",
@@ -124,88 +120,83 @@ function S3C() {
   const otherClientLogos = [
     {
       name: "Honda",
-      src: "/new-page/clients/home-swiper1-img3.avif",
+      src: "/new-page/logos/scnd-3.jpg",
       alt: "Honda Logo",
     },
     {
       name: "BMW",
-      src: "/new-page/clients/home-swiper1-img4.avif",
+      src: "/new-page/logos/scnd-4.jpg",
       alt: "BMW Logo",
     },
     {
       name: "Adani Realty",
-      src: "/new-page/clients/home-swiper1-img5.avif",
+      src: "/new-page/logos/scnd-5.jpg",
       alt: "Adani Realty Logo",
     },
     {
       name: "Jindal Steel & Power",
-      src: "/new-page/clients/home-swiper1-img6.avif",
+      src: "/new-page/logos/scnd-6.jpg",
       alt: "Jindal Steel & Power Logo",
     },
     {
       name: "Cars24",
-      src: "/new-page/clients/home-swiper1-img7.avif",
+      src: "/new-page/logos/scnd-7.jpg",
       alt: "Cars24 Logo",
     },
     {
       name: "Zomato",
-      src: "/new-page/clients/home-swiper1-img8.avif",
+      src: "/new-page/logos/scnd-8.jpg",
       alt: "Zomato Logo",
     },
     {
       name: "Honda",
-      src: "/new-page/clients/home-swiper1-img9.avif",
+      src: "/new-page/logos/scnd-9.jpg",
       alt: "Honda Logo",
     },
     {
       name: "HDFC ERGO",
-      src: "/new-page/clients/home-swiper1-img10.avif",
+      src: "/new-page/logos/scnd-10.jpg",
       alt: "HDFC ERGO Logo",
     },
     {
       name: "DLF",
-      src: "/new-page/clients/home-swiper1-img11.avif",
+      src: "/new-page/logos/scnd-11.jpg",
       alt: "DLF Logo",
     },
     {
       name: "Rakesh",
-      src: "/new-page/clients/home-swiper1-img12.avif",
+      src: "/new-page/logos/scnd-12.jpg",
       alt: "Rakesh Logo",
     },
     {
       name: "TVS",
-      src: "/new-page/clients/home-swiper1-img13.avif",
+      src: "/new-page/logos/scnd-13.jpg",
       alt: "TVS Logo",
     },
     {
       name: "SBI",
-      src: "/new-page/clients/home-swiper1-img14.avif",
+      src: "/new-page/logos/scnd-14.jpg",
       alt: "SBI Logo",
     },
     {
       name: "Punjab National Bank",
-      src: "/new-page/clients/home-swiper1-img15.avif",
+      src: "/new-page/logos/scnd-15.jpg",
       alt: "Punjab National Bank Logo",
     },
     {
       name: "Visit Monaco",
-      src: "/new-page/clients/home-swiper1-img16.avif",
+      src: "/new-page/logos/scnd-16.jpg",
       alt: "Visit Monaco Logo",
     },
     {
       name: "IndiGo",
-      src: "/new-page/clients/home-swiper1-img17.avif",
+      src: "/new-page/logos/scnd-17.jpg",
       alt: "IndiGo Logo",
     },
     {
-      name: "Eldeco",
-      src: "/new-page/clients/eldecoLogo-removebg-preview.png",
-      alt: "Eldeco Logo",
-    },
-    {
-      name: "Sanskar",
-      src: "/new-page/clients/sanskarLog.png",
-      alt: "Sanskar Logo",
+      name: "IndiGo",
+      src: "/new-page/logos/scnd-18.jpg",
+      alt: "IndiGo Logo",
     },
   ];
 
@@ -225,18 +216,18 @@ function S3C() {
         </div>
 
         {/* Logo Grid */}
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-6 lg:gap-5">
+        <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 lg:gap-5">
           {displayedLogos.map((client, index) => (
             <div
               key={index}
-              className="group flex items-center justify-center rounded-lg bg-white p-3 shadow-sm transition-all duration-300 hover:shadow-md sm:p-4 md:p-5 lg:p-6"
+              className="group overflow-hidden flex items-center justify-center rounded-lg bg-white p-3 shadow-sm transition-all duration-300 hover:shadow-md sm:p-4 md:p-5 lg:p-6 w-[calc(50%-6px)] sm:w-[calc(33.333%-10.67px)] imgShadowAnim md:w-[calc(25%-12px)] lg:w-[calc(16.666%-16.67px)]"
             >
               <div className="relative h-12 w-full sm:h-14 md:h-16 lg:h-20">
                 <Image
                   src={client.src}
                   alt={client.alt}
                   fill
-                  className="object-contain object-center transition-transform duration-300 group-hover:scale-105"
+                  className="object-contain object-center transition-transform duration-300 group-hover:scale-105 imgAnim"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                   loading="lazy"
                 />
@@ -247,7 +238,7 @@ function S3C() {
 
         {/* Show More/Show Less Button */}
         {otherClientLogos.length > 0 && (
-          <div className="mt-8 flex justify-center sm:mt-12 lg:mt-16">
+          <div className="mt-8 flex justify-center items-center sm:mt-12 lg:mt-16">
             <button
               onClick={() => setShowAll(!showAll)}
               className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#D4A574] px-6 py-3 text-base font-semibold text-white transition-colors duration-200 hover:bg-[#c2925d] sm:px-8 sm:py-3.5"

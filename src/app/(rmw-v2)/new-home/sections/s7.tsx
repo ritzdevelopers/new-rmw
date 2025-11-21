@@ -82,7 +82,11 @@ function TimelineCard({
     <div 
       ref={cardRef}
       className="w-full max-w-[525px] rounded-[20px] bg-white p-6 shadow-[0_20px_60px_rgba(16,24,40,0.08)] timeline-card"
-      style={{ transformStyle: "preserve-3d" }}
+      style={{ 
+        transformStyle: "preserve-3d",
+        backfaceVisibility: "hidden",
+        WebkitBackfaceVisibility: "hidden",
+      }}
     >
       <div className={`flex flex-col gap-3 ${txtAlign}`}>
         <div>
@@ -187,23 +191,40 @@ function S7() {
         animateCard(card, dataIndex);
       });
 
-      // Helper function to animate a card
+      // Helper function to animate a card with page-opening effect
       function animateCard(card: HTMLDivElement, dataIndex: number) {
         const isEven = dataIndex % 2 === 0;
+        
+        // Set transform origin to the edge for page-opening effect
+        // Even cards (left side) open from right edge
+        // Odd cards (right side) open from left edge
+        const transformOrigin = isEven ? "right center" : "left center";
+        
+        // Add perspective to parent for 3D effect
+        const parent = card.parentElement;
+        if (parent) {
+          gsap.set(parent, {
+            perspective: 1200,
+            transformStyle: "preserve-3d",
+          });
+        }
 
-        // Set initial state
+        // Set initial state - card is "closed" (rotated 90 degrees like a closed book page)
         gsap.set(card, {
-          rotationY: isEven ? -90 : 90,
-          opacity: 0,
-          x: isEven ? -50 : 50,
+          rotationY: isEven ? -45 : 45,
+          transformOrigin: transformOrigin,
           transformStyle: "preserve-3d",
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden",
+          // opacity: 0,
+          scale: 0.95, // Slightly smaller when closed
         });
 
-        // Animate to final state
+        // Animate to final state - card "opens" (rotates to 0 like opening a book page)
         gsap.to(card, {
           rotationY: 0,
-          opacity: 1,
-          x: 0,
+          // opacity: 1,
+          scale: 1,
           ease: "power2.out",
           scrollTrigger: {
             trigger: card,
@@ -355,6 +376,7 @@ function S7() {
                   className={`hidden lg:flex ${
                     isEven ? "justify-end" : "justify-end"
                   }`}
+                  style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
                 >
                   {isEven ? (
                     <TimelineCard 
@@ -410,6 +432,7 @@ function S7() {
                   className={`hidden lg:flex ${
                     isEven ? "justify-start" : "justify-start"
                   }`}
+                  style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
                 >
                   {!isEven ? (
                     <TimelineCard 
@@ -426,7 +449,10 @@ function S7() {
                 </div>
 
                 {/* Mobile/Tablet Card - Set ref only if desktop card didn't set it */}
-                <div className="lg:hidden">
+                <div 
+                  className="lg:hidden"
+                  style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
+                >
                   <TimelineCard 
                     item={item} 
                     txtAlign={"text-left"}
