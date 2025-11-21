@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://ritzmediaworld.com
-
-# Sitemaps
-Sitemap: https://ritzmediaworld.com/sitemap.xml
