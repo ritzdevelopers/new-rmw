@@ -155,6 +155,17 @@ const CareerForm = () => {
                   <option value="frontend">Frontend Developer</option>
                   <option value="backend">Backend Developer</option>
                   <option value="marketing">Marketing Executive</option>
+                  {/* <!-- Newly Added Options --> */}
+                  <option value="content-creator-lifestyle">Content Creator Lifestyle</option>
+                  <option value="video-editor-cgi">Video Editor - CGI Specialist</option>
+                  <option value="social-media-executive-spoc">Social Media Executive Spoc</option>
+                  <option value="md-personal-secretary">Managing Director's Personal Secretary</option>
+                  <option value="senior-video-editors">Senior Video Editors</option>
+                  <option value="full-stack-developer">Full Stack Developer</option>
+                  <option value="ai-video-generation-artist">AI Video Generation Artist</option>
+                  <option value="sales-executive-media-agency">Sales Executive - Media Agency</option>
+                  <option value="media-sales-manager">Media Sales Manager</option>
+                  <option value="media-influencer-coordinator">Media Influencer Coordinator</option>
                 </select>
               </div>
             </div>
