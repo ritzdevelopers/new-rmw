@@ -440,8 +440,8 @@ const DetailPage: React.FC = () => {
                   src={
                     isMongo
                       ? `${staticAPI}${singleBlog.blogBanner?.split("/images")[1]
-                        }`
-                      : `${staticAPI}${singleBlog?.blog_image}`
+                      }`
+                      : `${singleBlog?.blog_image?.split("/images")[1] ? `${staticAPI}${singleBlog.blog_image.split("/images")[1]}` :  `/blogs/${singleBlog.blog_image}`}`
                   }
                   fill
                   priority
@@ -468,7 +468,7 @@ const DetailPage: React.FC = () => {
                     {isMongo
                       ? mBC
                       : cats.find((id) => id.id === singleBlog.category_id)
-                          ?.name || "Unknown Category"}
+                        ?.name || "Unknown Category"}
                   </span>
                 </div>
                 <Share2
@@ -484,7 +484,7 @@ const DetailPage: React.FC = () => {
               <div ref={contentRef} id="ctBody" className={styles.contentBody}>
                 {isMongo ? (
                   singleBlog.blogBody?.map((page, idx) => (
-                    <div  key={idx}>
+                    <div key={idx}>
                       {/* This  is Title Of Blog Body  */}
                       <h2>{(isMongo && singleBlog.blogTitle?.includes(page.metaTitle)) ? "" : page.metaTitle}</h2>
 
@@ -492,9 +492,8 @@ const DetailPage: React.FC = () => {
                       {page.innerImg && (
                         <div className={styles.innerImg}>
                           <Image
-                            src={`${staticAPI}${
-                              page.innerImg.split("/images")[1]
-                            }`}
+                            src={`${staticAPI}${page.innerImg.split("/images")[1]
+                              }`}
                             alt={page.metaTitle}
                             fill
                             priority
@@ -589,9 +588,8 @@ const DetailPage: React.FC = () => {
                             <Image
                               src={
                                 data.blogBanner.includes("/images")
-                                  ? `/api/images${
-                                      data.blogBanner.split("/images")[1]
-                                    }`
+                                  ? `/api/images${data.blogBanner.split("/images")[1]
+                                  }`
                                   : `/blogs/${data.blogBanner}`
                               }
                               alt={data.blogTitle}
@@ -599,8 +597,8 @@ const DetailPage: React.FC = () => {
                               priority
                               className={styles.recentInnerImg}
                               onMouseOver={(e) =>
-                                (e.currentTarget.style.transform =
-                                  "scale(1.05)")
+                              (e.currentTarget.style.transform =
+                                "scale(1.05)")
                               }
                               onMouseOut={(e) =>
                                 (e.currentTarget.style.transform = "scale(1)")
@@ -712,9 +710,8 @@ const DetailPage: React.FC = () => {
                           <Image
                             src={
                               blog.banner.includes("/images/")
-                                ? `${staticAPI}${
-                                    blog.banner.split("/images")[1]
-                                  }`
+                                ? `${staticAPI}${blog.banner.split("/images")[1]
+                                }`
                                 : `/blogs/${blog.banner}`
                             }
                             alt={blog.title}
@@ -743,9 +740,8 @@ const DetailPage: React.FC = () => {
                     <div
                       onClick={() =>
                         router.push(
-                          `/category/${
-                            data.name?.toLowerCase().split(" ").join("-") ||
-                            data.categorySlug
+                          `/category/${data.name?.toLowerCase().split(" ").join("-") ||
+                          data.categorySlug
                           }`
                         )
                       }
@@ -779,9 +775,8 @@ const DetailPage: React.FC = () => {
                         <Image
                           src={
                             isMongo
-                              ? `${staticAPI}${
-                                  blog.blogBanner?.split("/images")[1]
-                                }`
+                              ? `${staticAPI}${blog.blogBanner?.split("/images")[1]
+                              }`
                               : `/blogs/${blog.blog_image}`
                           }
                           alt={
