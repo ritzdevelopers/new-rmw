@@ -12,58 +12,173 @@ function NewS2() {
   const subImgRef = useRef<HTMLDivElement | null>(null);
   const prevMainImgRef = useRef<string>("/new-page/s2/rm-s2-i1.jpg");
   const prevSubImgRef = useRef<string>("/new-page/s2/rm-s2.jpg");
+  const mainImgElementRef = useRef<HTMLImageElement | null>(null);
+  const subImgElementRef = useRef<HTMLImageElement | null>(null);
+  const mainImgAnimationRef = useRef<gsap.core.Timeline | null>(null);
+  const subImgAnimationRef = useRef<gsap.core.Timeline | null>(null);
 
-  // Animate main image changes with fade transition
+  // Enhanced animation for main image changes with smooth crossfade
   useEffect(() => {
     if (mainImg !== prevMainImgRef.current && mainImgRef.current) {
-      // Use requestAnimationFrame to ensure DOM is updated
+      // Use requestAnimationFrame to ensure DOM is updated with new src
       requestAnimationFrame(() => {
         const container = mainImgRef.current;
-        if (container) {
-          const imgElement = container.querySelector("img");
-          if (imgElement) {
-            // Set initial opacity and animate fade in
-            gsap.fromTo(
-              imgElement,
-              { opacity: 0 },
-              {
-                opacity: 1,
-                duration: 0.7,
-                ease: "power2.out",
-              }
-            );
+        if (!container) return;
+        
+        const imgElement = container.querySelector("img") as HTMLImageElement;
+        
+        if (imgElement) {
+          mainImgElementRef.current = imgElement;
+          
+          // Kill any existing animation
+          if (mainImgAnimationRef.current) {
+            mainImgAnimationRef.current.kill();
           }
+          
+          // Create a timeline for smooth transition
+          const tl = gsap.timeline();
+          mainImgAnimationRef.current = tl;
+          
+          // Animate out the old image with scale down, blur, and fade
+          tl.to(imgElement, {
+            opacity: 0,
+            scale: 0.92,
+            filter: "blur(12px) brightness(0.75)",
+            duration: 0.45,
+            ease: "power2.in",
+          })
+          // Update the previous image reference
+          .call(() => {
+            prevMainImgRef.current = mainImg;
+          })
+          // Set initial state for new image (after src update)
+          .set(imgElement, {
+            opacity: 0,
+            scale: 1.1,
+            filter: "blur(12px) brightness(1.25)",
+          })
+          // Wait a bit for image to load
+          .to({}, { duration: 0.2 })
+          // Animate in the new image with scale up, blur removal, and fade
+          .to(imgElement, {
+            opacity: 1,
+            scale: 1,
+            filter: "blur(0px) brightness(1)",
+            duration: 0.85,
+            ease: "power3.out",
+          });
         }
       });
-      prevMainImgRef.current = mainImg;
     }
   }, [mainImg]);
 
-  // Animate sub image changes with fade transition
+  // Enhanced animation for sub image changes with smooth crossfade
   useEffect(() => {
     if (subImg !== prevSubImgRef.current && subImgRef.current) {
-      // Use requestAnimationFrame to ensure DOM is updated
+      // Use requestAnimationFrame to ensure DOM is updated with new src
       requestAnimationFrame(() => {
         const container = subImgRef.current;
-        if (container) {
-          const imgElement = container.querySelector("img");
-          if (imgElement) {
-            // Set initial opacity and animate fade in
-            gsap.fromTo(
-              imgElement,
-              { opacity: 0 },
-              {
-                opacity: 1,
-                duration: 0.7,
-                ease: "power2.out",
-              }
-            );
+        if (!container) return;
+        
+        const imgElement = container.querySelector("img") as HTMLImageElement;
+        
+        if (imgElement) {
+          subImgElementRef.current = imgElement;
+          
+          // Kill any existing animation
+          if (subImgAnimationRef.current) {
+            subImgAnimationRef.current.kill();
           }
+          
+          // Create a timeline for smooth transition
+          const tl = gsap.timeline();
+          subImgAnimationRef.current = tl;
+          
+          // Animate out the old image with scale down, blur, and fade
+          tl.to(imgElement, {
+            opacity: 0,
+            scale: 0.92,
+            filter: "blur(12px) brightness(0.75)",
+            duration: 0.45,
+            ease: "power2.in",
+          })
+          // Update the previous image reference
+          .call(() => {
+            prevSubImgRef.current = subImg;
+          })
+          // Set initial state for new image (after src update)
+          .set(imgElement, {
+            opacity: 0,
+            scale: 1.1,
+            filter: "blur(12px) brightness(1.25)",
+          })
+          // Wait a bit for image to load
+          .to({}, { duration: 0.2 })
+          // Animate in the new image with scale up, blur removal, and fade
+          .to(imgElement, {
+            opacity: 1,
+            scale: 1,
+            filter: "blur(0px) brightness(1)",
+            duration: 0.85,
+            ease: "power3.out",
+          });
         }
       });
-      prevSubImgRef.current = subImg;
     }
   }, [subImg]);
+
+  // Set up initial styles for images on mount
+  useEffect(() => {
+    const setupMainImg = () => {
+      if (mainImgRef.current) {
+        const imgElement = mainImgRef.current.querySelector("img") as HTMLImageElement;
+        if (imgElement) {
+          mainImgElementRef.current = imgElement;
+          // Set initial styles
+          gsap.set(imgElement, {
+            opacity: 1,
+            scale: 1,
+            filter: "blur(0px) brightness(1)",
+          });
+        }
+      }
+    };
+    
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(setupMainImg);
+  }, []);
+
+  useEffect(() => {
+    const setupSubImg = () => {
+      if (subImgRef.current) {
+        const imgElement = subImgRef.current.querySelector("img") as HTMLImageElement;
+        if (imgElement) {
+          subImgElementRef.current = imgElement;
+          // Set initial styles
+          gsap.set(imgElement, {
+            opacity: 1,
+            scale: 1,
+            filter: "blur(0px) brightness(1)",
+          });
+        }
+      }
+    };
+    
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(setupSubImg);
+  }, []);
+
+  // Cleanup animations on unmount
+  useEffect(() => {
+    return () => {
+      if (mainImgAnimationRef.current) {
+        mainImgAnimationRef.current.kill();
+      }
+      if (subImgAnimationRef.current) {
+        subImgAnimationRef.current.kill();
+      }
+    };
+  }, []);
 
 
   return (
@@ -101,8 +216,20 @@ function NewS2() {
               src={mainImg}
               alt="RMW"
               fill
-              className="object-cover hover:scale-105 transition-all duration-300 ease-in-out"
-              style={{ opacity: 1 }}
+              className="object-cover"
+              style={{ 
+                willChange: "opacity, transform, filter"
+              }}
+              priority
+              onLoad={() => {
+                // Update ref when image loads
+                if (mainImgRef.current) {
+                  const imgElement = mainImgRef.current.querySelector("img") as HTMLImageElement;
+                  if (imgElement) {
+                    mainImgElementRef.current = imgElement;
+                  }
+                }
+              }}
             ></Image>
           </div>
         </div>
@@ -118,8 +245,20 @@ function NewS2() {
               src={subImg}
               alt="RMW"
               fill
-              className="object-cover hover:scale-105 transition-all duration-300 ease-in-out"
-              style={{ opacity: 1 }}
+              className="object-cover"
+              style={{ 
+                willChange: "opacity, transform, filter"
+              }}
+              priority
+              onLoad={() => {
+                // Update ref when image loads
+                if (subImgRef.current) {
+                  const imgElement = subImgRef.current.querySelector("img") as HTMLImageElement;
+                  if (imgElement) {
+                    subImgElementRef.current = imgElement;
+                  }
+                }
+              }}
             ></Image>
           </div>
 

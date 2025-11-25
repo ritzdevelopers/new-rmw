@@ -51,7 +51,6 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
         const trackWidth = track.scrollWidth;
         const viewportWidth = slider.clientWidth;
         // Calculate scroll distance - we want to scroll until the last card is fully visible
-        // The padding-right we added (100vw) ensures we have extra space
         const scrollDistance = trackWidth - viewportWidth;
         return Math.max(0, scrollDistance);
       };
@@ -74,9 +73,10 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
               const viewportWidth = slider.clientWidth;
               // Calculate the actual scroll distance needed
               const actualDistance = trackWidth - viewportWidth;
-              // Add extra space to ensure the last card is fully visible
-              // The padding-right helps, but we need a bit more scroll distance
-              return `+=${actualDistance + viewportWidth * 0.5}`;
+              // On mobile, use minimal extra space to prevent overflow
+              const isMobileNow = window.innerWidth < 1024;
+              const extraSpace = isMobileNow ? 0 : viewportWidth * 0.5;
+              return `+=${actualDistance + extraSpace}`;
             },
             scrub: 1,
             pin: true,
@@ -103,35 +103,39 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
   }, [cards.length, sectionRef]);
 
   return (
-    <div ref={sliderRef} className="w-full">
+    <div ref={sliderRef} className="w-full overflow-x-hidden">
       <div
         ref={trackRef}
-        className="flex gap-6"
-        style={{ willChange: "transform", paddingRight: "100vw" }}
+        className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 md:pr-0"
+        style={{ 
+          willChange: "transform",
+        }}
       >
         {cards.map((card) => (
           <div
             key={card.id}
-            className="relative md:py-6 flex min-h-[440px] flex-shrink-0 flex-col overflow-hidden rounded-[28px] p-[1px] transition-transform duration-300 hover:-translate-y-2 w-full sm:w-[calc(100vw-3rem)] md:w-[calc(50vw-2rem)] lg:w-[700px]"
+            className="relative md:py-6 flex min-h-[440px] flex-shrink-0 flex-col overflow-hidden rounded-[20px] sm:rounded-[28px] transition-transform duration-300 hover:-translate-y-2 w-[calc(100vw-2rem)] sm:w-[calc(100vw-3rem)] md:w-[calc(50vw-2rem)] lg:w-[700px]"
             style={{
               background: card.bg,
+              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
             }}
           >
-            <div className="relative z-10 flex h-full flex-col justify-between gap-6 rounded-[28px] px-8 py-10 backdrop-blur-sm sm:px-10">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#FFFFFF33]">
+            <div className="relative z-10 flex h-full flex-col justify-between gap-4 sm:gap-6 rounded-[20px] sm:rounded-[28px] px-6 py-8 sm:px-8 sm:py-10 md:px-10">
+              <div className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-[#FFFFFF33]">
                 <Image
                   src={card.icon}
                   alt={card.iconAlt}
                   width={36}
                   height={36}
+                  className="w-8 h-8 sm:w-9 sm:h-9"
                 />
               </div>
 
-              <div className="flex flex-col gap-4">
-                <h2 className="text-[32px] font-[600] text-white sm:text-[30px]">
+              <div className="flex flex-col gap-3 sm:gap-4">
+                <h2 className="text-2xl sm:text-[28px] md:text-[32px] font-[600] text-white leading-tight">
                   {card.title}
                 </h2>
-                <p className="text-sm text-[#FFFFFFE5] sm:text-[16px] font-[400]">
+                <p className="text-sm text-[#FFFFFFE5] sm:text-[15px] md:text-[16px] font-[400] leading-relaxed">
                   {card.description}
                 </p>
               </div>
@@ -140,7 +144,7 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
 
               <Link
                 href={card.link}
-                className={`group inline-flex md:h-[40px] w-full items-center justify-center gap-2 rounded-[8px] px-6 py-3 text-[16px] font-[500] transition-colors duration-200 ${
+                className={`group inline-flex md:h-[40px] w-full items-center justify-center gap-2 rounded-[8px] px-6 py-3 text-[14px] lg:text-[16px] font-[500] transition-colors duration-200 ${
                   card.buttonBg || "bg-[#FFFFFF]"
                 } ${card.buttonTextColor || "text-black"} ${
                   card.buttonHoverBg || "hover:bg-[#c2925d] hover:text-[#ffffff]"
@@ -152,11 +156,11 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
             </div>
 
             {/* Absolute Position Image Container */}
-            <div className="absolute -right-22 -top-22 z-10">
+            <div className="absolute -right-16 -top-16 sm:-right-20 sm:-top-20 md:-right-22 md:-top-22 z-0 opacity-60 sm:opacity-70 md:opacity-100">
               <img
                 src={card.ellipseImage}
                 alt="RMW"
-                className="w-[256px] h-[256px]"
+                className="w-[180px] h-[180px] sm:w-[220px] sm:h-[220px] md:w-[256px] md:h-[256px]"
               />
             </div>
           </div>

@@ -64,4 +64,3 @@ function LenisSmoothScroll() {
 }
 
 export default LenisSmoothScroll;
-

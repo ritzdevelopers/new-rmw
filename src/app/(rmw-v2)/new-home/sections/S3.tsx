@@ -10,7 +10,7 @@ const cardsData: CardData[] = [
     id: 1,
     title: "Digital Marketing",
     description:
-      "Content is more than posts; it’s your brand’s ongoing conversation. As the best advertising agency in Delhi NCR, we build content ecosystems that attract, educate and gently sell. Combining the strategy of a performance-led digital marketing agency with the storytelling flair of a creative agency, we turn blogs, videos and social content into lasting recall, trust and qualified leads.",
+      "We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
     icon: "/new-page/icns/build-icn-2.png",
     iconAlt: "Digital Marketing",
     features: [
@@ -32,7 +32,7 @@ const cardsData: CardData[] = [
     id: 2,
     title: "Creative Service",
     description:
-      "PPC is more than buying clicks; it’s buying intent. As the best advertising agency in Delhi NCR, we design tightly targeted campaigns that put your brand in front of high-intent customers at the perfect moment. Blending the precision of a performance-led digital marketing agency with the ideas of a creative agency, we turn every ad impression into a smarter opportunity for leads, sales and measurable ROI.",
+      "Performance-focused campaigns on Google and social that reach high-intent audiences and convert clicks into enquiries, sales and revenue",
     icon: "/new-page/icns/stars-icn.png",
     iconAlt: "Creative Service",
     features: [
@@ -54,7 +54,7 @@ const cardsData: CardData[] = [
     id: 3,
     title: "Print Advertisement",
     description:
-      "Your website is more than a brochure; it’s your most visible salesperson. As the best advertising agency in Delhi NCR, we design and develop websites that look stunning and sell. Blending UX thinking from a performance-led digital marketing agency with the aesthetics of a creative agency, we build fast, responsive, conversion-focused sites that turn visits into enquiries, and clicks into customers.",
+      "Strategic newspaper and magazine ads with strong ideas, smart headlines and compelling layouts that cut through clutter and generate responses.",
     icon: "/new-page/icns/build-icn-2.png",
     iconAlt: "Print Advertisement",
     features: [
@@ -76,7 +76,7 @@ const cardsData: CardData[] = [
     id: 4,
     title: "Radio Advertisiment",
     description:
-      "Your brand is more than a logo, it’s a promise. As the best advertising agency in Delhi NCR, we craft identities that resonate, impress and persuade customers long-term. Combining sharp positioning with the creativity of a leading digital marketing agency and creative agency, we make your brand memorable, authentic and loyalty-worthy in crowded markets.",
+      "Memorable radio campaigns with scripts, distinctive voices and sound design that keep attention, build recall and drive listeners to act.",
     icon: "/new-page/icns/stars-icn.png",
     iconAlt: "Radio Advertisiment",
     features: [
@@ -97,7 +97,7 @@ const cardsData: CardData[] = [
     id: 5,
     title: "Content Marketing",
     description:
-      "Great Content Marketing isn’t just eye candy; it’s visual persuasion. As the best Creative agency in Delhi NCR, our creative agency and digital marketing agency team creates stunning visuals crafted to communicate clearly, resonate emotionally, and convert effectively. Whether digital or print, our graphics don’t just attract, they convince, captivate, and drive decisive action.",
+      "We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
     icon: "/new-page/icns/build-icn-2.png",
     iconAlt: "Content Marketing",
     features: [
@@ -119,7 +119,7 @@ const cardsData: CardData[] = [
     id: 6,
     title: "Web Development",
     description:
-      "Your logo is your brand’s handshake; make it unforgettable. As the best Design agency in Delhi NCR, our creative agency and digital marketing agency design distinctive, instantly recognisable logos that capture your brand essence, build instant credibility and turn casual glances into lasting loyalty and advocacy.",
+      "Fast, responsive websites that reflect your brand, deliver smooth user journeys and turn visitors into enquiries and loyal customers online.",
     icon: "/new-page/icns/stars-icn.png",
     iconAlt: "Web Development",
     features: [
@@ -142,7 +142,7 @@ const cardsData: CardData[] = [
     id: 7,
     title: "Influencer Marketing",
     description:
-      "Print demands attention; average doesn’t cut it. As one of the top advertising agencies in Delhi NCR, our creative agency crafts high-impact print ads engineered to cut through clutter and stay top-of-mind. Every layout is strategic, every visual is persuasive, and every message is optimised by our digital marketing agency mindset to drive enquiries. Turning paper into profit, that’s smart print advertising.",
+      "Strategic collaborations with credible influencers whose authentic content builds trust, extends reach and turns engaged followers into leads and customers.",
     icon: "/new-page/icns/build-icn-2.png",
     iconAlt: "Influencer Marketing",
     features: [
@@ -164,7 +164,7 @@ const cardsData: CardData[] = [
     id: 8,
     title: "Celebrity Endorsement",
     description:
-      "Packaging is not just a container; it is your product’s silent salesperson. As the best design agency in Delhi NCR, our creative agency and digital marketing agency craft shelf-ready packaging that stands out, strengthens brand perception and drives impulse purchases. With Ritz packaging, casual interest turns into confident buying decisions.",
+      "Celebrities are carefully matched so their image and audience align with your brand, boosting trust and impact across campaigns and events.",
     icon: "/new-page/icns/stars-icn.png",
     iconAlt: "Celebrity Endorsement",
     features: [
@@ -191,9 +191,9 @@ function S3() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex w-full justify-center overflow-hidden bg-[#FFFFFF] py-16 sm:py-2 md:pb-8 lg:py-0"
+      className="relative flex w-full justify-center bg-[#FFFFFF] py-16 sm:py-2 md:pb-8 lg:py-0"
     >
-      <div className="flex w-full max-w-[95%] flex-col gap-12 px-4 sm:px-6 lg:px-8">
+      <div className="flex w-full max-w-[95%] flex-col gap-12 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
         {/* Row 1 */}
         <div className="flex flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.1] md:flex">

@@ -1,10 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { MoveRight } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 function S3C() {
   const [showAll, setShowAll] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const headingRef = useRef<HTMLDivElement | null>(null);
+  const logoGridRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLDivElement | null>(null);
+  const logoCardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // PRM logos - shown first with higher priority
   const prmLogos = [
@@ -205,29 +217,190 @@ function S3C() {
     ? [...prmLogos, ...otherClientLogos]
     : prmLogos;
 
+  // Reset refs array when displayedLogos changes
+  useEffect(() => {
+    logoCardRefs.current = logoCardRefs.current.slice(0, displayedLogos.length);
+  }, [displayedLogos.length]);
+
+  // Set up ScrollTrigger animations
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Animate heading with timeline
+      if (headingRef.current) {
+        const headingTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 85%",
+            end: "top 60%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        headingTl.fromTo(
+          headingRef.current,
+          {
+            opacity: 0,
+            y: 50,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+          }
+        );
+      }
+
+      // Animate logo cards with stagger and timeline
+      if (logoGridRef.current) {
+        // Wait a bit for refs to be populated
+        const checkRefs = () => {
+          const visibleCards = logoCardRefs.current
+            .slice(0, displayedLogos.length)
+            .filter((ref) => ref !== null) as HTMLDivElement[];
+          
+          if (visibleCards.length > 0) {
+            const logoTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: logoGridRef.current,
+                start: "top 80%",
+                end: "top 40%",
+                toggleActions: "play none none reverse",
+              },
+            });
+
+            logoTl.fromTo(
+              visibleCards,
+              {
+                opacity: 0,
+                y: 60,
+                scale: 0.8,
+              },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                stagger: {
+                  amount: 0.6,
+                  from: "start",
+                },
+              }
+            );
+          }
+        };
+
+        // Use requestAnimationFrame to ensure DOM is ready
+        requestAnimationFrame(() => {
+          setTimeout(checkRefs, 100);
+        });
+      }
+
+      // Animate button with timeline
+      if (buttonRef.current) {
+        const buttonTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: buttonRef.current,
+            start: "top 85%",
+            end: "top 60%",
+            scrub: true,
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        buttonTl.fromTo(
+          buttonRef.current,
+          {
+            opacity: 0,
+            y: 30,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => {
+      ctx.revert(); // Cleanup
+    };
+  }, [displayedLogos.length]); // Re-run when logos change
+
+  // Animate newly shown logos when "Show More" is clicked
+  useEffect(() => {
+    if (showAll && logoCardRefs.current.length > prmLogos.length) {
+      // Wait for DOM to update
+      setTimeout(() => {
+        const newCards = logoCardRefs.current
+          .slice(prmLogos.length)
+          .filter((ref) => ref !== null) as HTMLDivElement[];
+        
+        if (newCards.length > 0) {
+          gsap.fromTo(
+            newCards,
+            {
+              opacity: 0,
+              y: 40,
+              scale: 0.9,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              ease: "power3.out",
+              stagger: {
+                amount: 0.4,
+                from: "start",
+              },
+            }
+          );
+        }
+      }, 50);
+    }
+  }, [showAll, prmLogos.length]);
+
   return (
-      <section className="w-full bg-grediant-lr from-[#FCFCFD] to-[#ffffff] py-12 sm:py-16 lg:py-20">
+      <section 
+        ref={sectionRef}
+        className="w-full bg-grediant-lr from-[#FCFCFD] to-[#ffffff] py-12 sm:py-16 lg:py-20"
+      >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
-        <div className="mb-8 text-center sm:mb-12 lg:mb-16">
+        <div 
+          ref={headingRef}
+          className="mb-8 text-center sm:mb-12 lg:mb-16"
+        >
           <h2 className="text-2xl font-[600] text-[#101828] sm:text-3xl lg:text-[48px]">
             Clients
           </h2>
         </div>
 
         {/* Logo Grid */}
-        <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 lg:gap-5">
+        <div 
+          ref={logoGridRef}
+          className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 lg:gap-5"
+        >
           {displayedLogos.map((client, index) => (
             <div
-              key={index}
-              className="group overflow-hidden flex items-center justify-center rounded-lg bg-white p-3 shadow-sm transition-all duration-300 hover:shadow-md sm:p-4 md:p-5 lg:p-6 w-[calc(50%-6px)] sm:w-[calc(33.333%-10.67px)] imgShadowAnim md:w-[calc(25%-12px)] lg:w-[calc(16.666%-16.67px)]"
+              key={`${client.name}-${index}`}
+              ref={(el) => {
+                logoCardRefs.current[index] = el;
+              }}
+              className="group overflow-hidden flex items-center justify-center rounded-lg bg-white p-3 shadow-sm transition-all duration-300 hover:shadow-md sm:p-4 md:p-5 lg:p-6 w-[calc(50%-6px)] sm:w-[calc(33.333%-10.67px)] md:w-[calc(25%-12px)] lg:w-[calc(16.666%-16.67px)]"
             >
               <div className="relative h-12 w-full sm:h-14 md:h-16 lg:h-20">
                 <Image
                   src={client.src}
                   alt={client.alt}
                   fill
-                  className="object-contain object-center transition-transform duration-300 group-hover:scale-105 imgAnim"
+                  className="object-contain object-center transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw"
                   loading="lazy"
                 />
@@ -238,7 +411,10 @@ function S3C() {
 
         {/* Show More/Show Less Button */}
         {otherClientLogos.length > 0 && (
-          <div className="mt-8 flex justify-center items-center sm:mt-12 lg:mt-16">
+          <div 
+            ref={buttonRef}
+            className="mt-8 flex justify-center items-center sm:mt-12 lg:mt-16"
+          >
             <button
               onClick={() => setShowAll(!showAll)}
               className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#D4A574] px-6 py-3 text-base font-semibold text-white transition-colors duration-200 hover:bg-[#c2925d] sm:px-8 sm:py-3.5"

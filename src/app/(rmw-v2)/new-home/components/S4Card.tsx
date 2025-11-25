@@ -34,7 +34,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(({
     >
       {/* Left Side Card Div  */}
       <div
-        className={`flex-1 h-auto min-h-[350px] sm:min-h-[380px] md:min-h-[400px] lg:h-[532px] flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16`}
+        className={`flex-1 h-auto min-h-[350px] sm:min-h-[380px] md:min-h-[400px] lg:h-[532px] flex items-center justify-start p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16`}
       >
         <div className="w-full max-w-[600px] flex flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-8">
           <Link

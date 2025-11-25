@@ -75,20 +75,20 @@ function S1() {
   return (
     <section
       ref={heroRef}
-      className="relative flex h-screen w-full items-center overflow-hidden bg-neutral-900"
+      className="relative flex h-auto min-h-[400px] sm:min-h-[500px] lg:h-screen w-full items-center overflow-hidden bg-neutral-900"
     >
       {/* Slider Container  */}
       <div className="absolute inset-0 overflow-hidden z-10">
         {/* Here The Slider Will Come In Background A Slider Wil Run After Every 5 Sec And The Image Will Slide From Right To Left And It Will Be Fully Responsive  */}
         <div
           ref={trackRef}
-          className="flex h-full"
+          className="flex h-auto lg:h-full"
           style={{ width: `${extendedSlides.length * 100}%` }}
         >
           {extendedSlides.map((image, index) => (
             <div
               key={`${image.src}-${index}`}
-              className="relative h-full flex-shrink-0"
+              className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-full flex-shrink-0"
               style={{ width: `${100 / extendedSlides.length}%` }}
             >
               <Image
@@ -96,7 +96,7 @@ function S1() {
                 alt={image.alt}
                 fill
                 priority={index === 0}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain lg:object-cover"
                 sizes="100vw"
                 quality={100}
               />
@@ -113,30 +113,30 @@ function S1() {
       </div>
 
       {/* Centerd Align Absolute Positioned Content Div  */}
-      <div className="relative mx-auto flex w-full max-w-[720px] flex-col z-30 gap-8 px-6 text-white sm:px-10">
-        <div className="flex flex-col gap-6 text-center justify-center items-center">
-          <h1 className="text-[35px] font-[700] leading-tight sm:text-xl lg:text-5xl uppercase">
+      <div className="relative mx-auto flex w-full max-w-[720px] flex-col z-30 gap-4 sm:gap-6 lg:gap-8 px-6 text-white sm:px-10 py-8 lg:py-0">
+        <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 text-center justify-center items-center self-end md:self-auto">
+          <h1 className="text-[16px] md:text-[28px] font-[700] leading-tight lg:text-5xl uppercase">
             BEYOND YOUR TYPICAL{" "}
             <span className="text-[#D4A574]"> ADVERTISING AGENCY</span>
           </h1>
         </div>
 
-        <div className="flex flex-wrap gap-4 text-sm font-medium sm:text-base justify-center items-center">
+        <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm font-medium lg:text-base justify-center items-center">
           <button
             onClick={() =>
               window.open("https://ritzmediaworld.com/contact.html", "_blank")
             }
-            className="inline-flex cursor-pointer justify-center items-center gap-3 rounded-[8px] bg-[#D4A574] py-3 text-white transition hover:bg-[#a58059] w-[210px]"
+            className="inline-flex cursor-pointer justify-center items-center gap-2 sm:gap-3 rounded-[8px] bg-[#D4A574] py-2 sm:py-2.5 lg:py-3 text-white transition hover:bg-[#a58059] w-[134px] md:w-[180px] lg:w-[210px] text-xs sm:text-sm lg:text-base"
           >
-            Free Consulting <MoveRight className="h-6 w-6" />
+            Free Consulting <MoveRight className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
           </button>
           <button
             onClick={() =>
               window.open("https://ritzmediaworld.com/contact.html", "_blank")
             }
-            className="inline-flex cursor-pointer justify-center hover:text-white items-center bg-white gap-3 rounded-[8px] w-[210px] py-3 text-black transition  hover:bg-white/10"
+            className="inline-flex cursor-pointer justify-center hover:text-white items-center bg-white gap-2 sm:gap-3 rounded-[8px] w-[134px] md:w-[180px] lg:w-[210px] py-2 sm:py-2.5 lg:py-3 text-black transition hover:bg-white/10 text-xs sm:text-sm lg:text-base"
           >
-            <Play className="h-5 w-5" />
+            <Play className="h-4 w-4 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
             Watch Our Story
           </button>
         </div>
@@ -163,13 +163,13 @@ function S1() {
                   fill="#D4A574"
                 />
               </svg>
-              <p className="font-[500] text-[16px] text-white">
+              <p className="font-[500] text-[14px] lg:text-[16px] text-white">
                 Award-Winning Agency{" "}
               </p>
             </div>
             <div>
-              <p className="font-[500] text-[14px] text-[#D4A574]">
-                Since <span className="text-[16px] text-white">2008</span>
+              <p className="font-[500] text-[14px] lg:text-[16px] text-[#D4A574]">
+                Since <span className="text-[14px] lg:text-[16px] text-white">2008</span>
               </p>
             </div>
           </div>

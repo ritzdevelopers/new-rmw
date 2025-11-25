@@ -60,11 +60,8 @@ function NewS4() {
   const cardRefs = useRef<HTMLDivElement[]>([]);
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
-
-
-
   return (
-    <section ref={sectionRef} className="w-screen flex justify-center items-center py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-6">
+    <section ref={sectionRef} className="w-screen flex flex-col justify-center items-center py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-6">
       {/* Center Align Div  */}
       <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%] h-full flex flex-col">
         {/* Top Text Content Div  */}
@@ -82,9 +79,7 @@ function NewS4() {
             .Our in-house team masters the entire spectrum
           </p>
         </div>
-
-        {/* Bottom Cards Div  */}
-        <div className="w-full stCon mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex flex-col gap-6 sm:gap-8 md:gap-9 lg:gap-10 overflow-y-auto relative  h-auto ">
+         <div className="w-full justify-center items-center mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex flex-col gap-6 sm:gap-8 md:gap-9 lg:gap-10  relative h-auto overflow-hidden">
           {/* Cards Section   */}
           {s4CardsData.map((ob, idx) => {
             return (
@@ -107,6 +102,8 @@ function NewS4() {
           })}
         </div>
       </div>
+         {/* Bottom Cards Div  */}
+        
     </section>
   );
 }

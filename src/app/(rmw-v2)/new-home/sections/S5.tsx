@@ -168,25 +168,29 @@ function S5() {
   useGSAP(() => {
     if (!sectionRef.current) return;
 
-    // Animate header section
-    if (headerRef.current) {
-      gsap.from(headerRef.current.children, {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    }
+    // Wait for DOM to be ready
+    const initAnimations = () => {
+      // Animate header section
+      if (headerRef.current && headerRef.current.children.length > 0) {
+        gsap.from(headerRef.current.children, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 80%",
+            end: "top 50%",
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        });
+      }
 
-    // Animate each article with responsive animations
-    articleRefs.current.forEach((article, idx) => {
-      if (!article) return;
+      // Animate each article with responsive animations
+      articleRefs.current.forEach((article, idx) => {
+        if (!article) return;
 
       const imageContainer = imageRefs.current[idx];
       const contentContainer = contentRefs.current[idx];
@@ -212,7 +216,9 @@ function S5() {
           scrollTrigger: {
             trigger: article,
             start: "top 80%",
-            toggleActions: "play none none none",
+            end: "top 40%",
+            scrub: true,
+            invalidateOnRefresh: true,
           },
         });
 
@@ -258,7 +264,9 @@ function S5() {
           scrollTrigger: {
             trigger: article,
             start: "top 80%",
-            toggleActions: "play none none none",
+            end: "top 40%",
+            scrub: true,
+            invalidateOnRefresh: true,
           },
         });
 
@@ -281,24 +289,50 @@ function S5() {
         }
       });
 
-      // Animate result cards with stagger
+      // Animate result cards with stagger and scrub
       const resultCards = article.querySelectorAll(".result-card");
       if (resultCards.length > 0) {
-        gsap.from(resultCards, {
-          y: 30,
+        // Set initial state for all cards
+        gsap.set(resultCards, {
+          y: 50,
           opacity: 0,
-          scale: 0.8,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "back.out(1.2)",
+          scale: 0.9,
+        });
+
+        // Create timeline for smooth scrubbed animation
+        const cardsTl = gsap.timeline({
           scrollTrigger: {
             trigger: article,
-            start: "top 70%",
-            toggleActions: "play none none none",
+            start: "top 75%",
+            end: "top 25%",
+            scrub: 1,
+            invalidateOnRefresh: true,
           },
+        });
+
+        // Animate each card with stagger
+        resultCards.forEach((card, cardIdx) => {
+          cardsTl.to(
+            card,
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.8,
+              ease: "power2.out",
+            },
+            cardIdx * 0.1 // Stagger delay
+          );
         });
       }
     });
+  };
+
+    // Initialize animations after a short delay to ensure refs are populated
+    const timeoutId = setTimeout(() => {
+      initAnimations();
+      ScrollTrigger.refresh();
+    }, 100);
 
     // Hover effects for images - only animate the image, not the container
     const imageHoverHandlers: Array<{
@@ -383,6 +417,8 @@ function S5() {
     });
 
     return () => {
+      clearTimeout(timeoutId);
+      
       // Cleanup event listeners
       imageHoverHandlers.forEach(({ container, enter, leave }) => {
         container.removeEventListener("mouseenter", enter);
@@ -398,13 +434,14 @@ function S5() {
       ScrollTrigger.getAll().forEach((trigger) => {
         if (
           trigger.vars?.trigger === sectionRef.current ||
-          articleRefs.current.some((article) => article && trigger.vars?.trigger === article)
+          articleRefs.current.some((article) => article && trigger.vars?.trigger === article) ||
+          (headerRef.current && trigger.vars?.trigger === headerRef.current)
         ) {
           trigger.kill();
         }
       });
     };
-  }, { scope: sectionRef });
+  }, { scope: sectionRef, dependencies: [storiesData.length] });
 
   return (
     <section
