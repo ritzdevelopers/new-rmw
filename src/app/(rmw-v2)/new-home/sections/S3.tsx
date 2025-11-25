@@ -191,7 +191,7 @@ function S3() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex w-full justify-center bg-[#FFFFFF] py-16 sm:py-2 md:pb-8 lg:py-0"
+      className="relative overflow-x-hidden flex w-full justify-center bg-[#FFFFFF] py-16 sm:py-2 md:pb-8 lg:py-0 max-w-full"
     >
       <div className="flex w-full max-w-[95%] flex-col gap-12 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
         {/* Row 1 */}

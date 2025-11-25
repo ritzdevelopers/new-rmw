@@ -147,7 +147,7 @@ function NewBlogSection() {
   };
 
   return (
-    <section className="relative flex w-full justify-center overflow-hidden bg-white py-12 sm:py-16 md:py-20 bg-gradient-to-b from-[#FFFFFF] to-[#F9FAFB]">
+    <section className="relative flex w-full justify-center overflow-hidden overflow-x-hidden bg-white py-12 sm:py-16 md:py-20 bg-gradient-to-b from-[#FFFFFF] to-[#F9FAFB] max-w-full">
       <div className="flex w-full max-w-[92%] flex-col gap-8 sm:gap-10 lg:gap-12 px-4 sm:px-6 lg:px-8">
         {/* Row 1 - Header */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 sm:gap-8">

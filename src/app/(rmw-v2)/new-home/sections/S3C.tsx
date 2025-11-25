@@ -392,7 +392,7 @@ function S3C() {
   return (
       <section 
         ref={sectionRef}
-        className="w-full bg-grediant-lr from-[#FCFCFD] to-[#ffffff] py-12 sm:py-16 lg:py-20"
+        className="w-full bg-grediant-lr from-[#FCFCFD] to-[#ffffff] py-12 sm:py-16 lg:py-20 overflow-x-hidden max-w-full"
       >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Heading */}
