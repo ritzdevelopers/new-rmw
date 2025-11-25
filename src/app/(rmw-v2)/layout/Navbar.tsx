@@ -260,7 +260,7 @@ function Navbar() {
               <Link href={"/new-home"}>Contact Us</Link>
             </li>
               <li>
-                <button onClick={() => router.push("/contact.html")} className="px-4 xl:px-6 2xl:px-8 h-9 xl:h-10 2xl:h-[42px] cursor-pointer rounded-lg text-white bg-[#D4A574] font-[500] text-sm xl:text-base 2xl:text-lg hover:bg-[#C59564] transition-colors whitespace-nowrap">
+                <button onClick={() => router.push("/contact.html")} className="px-4 liquid xl:px-6 2xl:px-8 h-9 xl:h-10 2xl:h-[42px] cursor-pointer rounded-lg text-white bg-[#D4A574] font-[500] text-sm xl:text-base 2xl:text-lg hover:bg-[#C59564] transition-colors whitespace-nowrap">
                 Free Consulting
               </button>
             </li>

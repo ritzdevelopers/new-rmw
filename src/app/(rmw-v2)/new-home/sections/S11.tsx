@@ -306,7 +306,7 @@ const router = useRouter();
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-[164px] h-[48px] sm:h-[56px] bg-[#D4A574] text-white flex justify-center items-center gap-2 rounded-[8px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] hover:bg-[#C8955F] transition-colors duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full sm:w-[164px] h-[48px] sm:h-[56px] liquid cursor-pointer text-white flex justify-center items-center gap-2 rounded-[8px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] hover:bg-[#C8955F] transition-colors duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <LuDownload className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>{isSubmitting ? "Submitting..." : "Download Free"}</span>
@@ -362,7 +362,7 @@ const router = useRouter();
           {/* Bottom Section - Button */}
           <button
             onClick={handleAuditRequest}
-            className="w-full px-6 sm:px-8 md:px-10 h-[40px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] text-[#101828] rounded-[8px] bg-white hover:bg-[#F0F0F0] flex justify-center items-center gap-2 transition-all duration-300 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full liquid px-6 sm:px-8 md:px-10 h-[40px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] text-[#101828] rounded-[8px] bg-white hover:bg-[#F0F0F0] flex justify-center items-center gap-2 transition-all duration-300 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
           >
             <span>Request A Free Audit</span>
             <FaArrowRight />

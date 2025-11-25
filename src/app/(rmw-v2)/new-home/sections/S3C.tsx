@@ -417,7 +417,7 @@ function S3C() {
           >
             <button
               onClick={() => setShowAll(!showAll)}
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#D4A574] px-6 py-3 text-base font-semibold text-white transition-colors duration-200 hover:bg-[#c2925d] sm:px-8 sm:py-3.5"
+              className="group inline-flex liquid cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#D4A574] px-6 py-3 text-base font-semibold text-white transition-colors duration-200 hover:bg-[#c2925d] sm:px-8 sm:py-3.5"
             >
               {showAll ? "Show Less" : "Show More"}
               <MoveRight className={`h-5 w-5 transition-transform duration-200 ${showAll ? 'rotate-180' : 'group-hover:translate-x-1'}`} />

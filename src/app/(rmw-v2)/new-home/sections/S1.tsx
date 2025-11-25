@@ -126,7 +126,7 @@ function S1() {
             onClick={() =>
               window.open("https://ritzmediaworld.com/contact.html", "_blank")
             }
-            className="inline-flex cursor-pointer justify-center items-center gap-2 sm:gap-3 rounded-[8px] bg-[#D4A574] py-2 sm:py-2.5 lg:py-3 text-white transition hover:bg-[#a58059] w-[134px] md:w-[180px] lg:w-[210px] text-xs sm:text-sm lg:text-base"
+            className="inline-flex liquid cursor-pointer justify-center items-center gap-2 sm:gap-3 rounded-[8px] bg-[#D4A574] py-2 sm:py-2.5 lg:py-3 text-white transition hover:bg-[#a58059] w-[134px] md:w-[180px] lg:w-[210px] text-xs sm:text-sm lg:text-base"
           >
             Free Consulting <MoveRight className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
           </button>

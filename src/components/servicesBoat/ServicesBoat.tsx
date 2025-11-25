@@ -129,6 +129,32 @@ function ServicesBoat() {
     setClickedCTA("");
   };
 
+  // Helper function to download PDF from local public folder (forces download instead of opening)
+  const downloadPDF = async (pdfPath: string, filename: string) => {
+    try {
+      const response = await fetch(pdfPath);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch PDF: ${response.status}`);
+      }
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error("Error downloading PDF:", error);
+      // Fallback to direct download if fetch fails
+      const link = document.createElement("a");
+      link.href = pdfPath;
+      link.download = filename;
+      link.click();
+    }
+  };
+
   // Form states
   const [username, setUserName] = useState<string>("");
   const [userEmail, setUserEmail] = useState<string>("");
@@ -186,13 +212,21 @@ function ServicesBoat() {
             "https://www.youtube.com/watch?v=OK7F9GSysps&list=PLF2LkcQMvAI8JKNM1iRu6eFIbqQvwklUt",
             "_blank"
           );
+        } else if (selectService === "Digital Marketing") {
+          downloadPDF(
+            "/DigitalmarketingCaseStudy.pdf",
+            "DigitalmarketingCaseStudy.pdf"
+          );
+        } else if (selectService === "Celebrity Endorsement") {
+          downloadPDF(
+            "/CelebrityEndorsements.pdf",
+            "CelebrityEndorsements.pdf"
+          );
         } else {
-          let link = document.createElement("a");
-          link.href =
-            "https://ritzmediaworld.com/RMW Case Studies_250327_081936.pdf";
-          link.download = "RMW_CaseStudies.pdf";
-          link.target = "_blank";
-          link.click();
+          downloadPDF(
+            "/RMWCaseStudies_250327_081936.pdf",
+            "RMW_CaseStudies.pdf"
+          );
         }
       } else {
         setModalMessage({
