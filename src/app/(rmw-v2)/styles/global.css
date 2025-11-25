@@ -39,26 +39,6 @@ h3 {
     font-family: 'InterMedium';
 }
 
-.stCon::-webkit-scrollbar {
-    display: none;
-}
-
-.stCon::-webkit-scrollbar-track {
-    display: none;
-}
-
-.stCon::-webkit-scrollbar-thumb {
-    display: none;
-}
-
-.stCon::-webkit-scrollbar-thumb:hover {
-    display: none;
-}
-
-.stCon::-webkit-scrollbar-thumb:active {
-    display: none;
-}
-
 .bounceAnim {
     animation: anim 8s linear infinite;
 }

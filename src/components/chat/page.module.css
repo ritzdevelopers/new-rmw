@@ -134,18 +134,6 @@
   position: relative;
 }
 
-.formPanel::-webkit-scrollbar {
-  width: 4px;
-}
-
-.formPanel::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.formPanel::-webkit-scrollbar-thumb {
-  background-color: #a0580a;
-  border-radius: 4px;
-}
 
 .chatPanel {
   display: flex;
@@ -404,18 +392,6 @@
   background: #fafafa;
 }
 
-.messagesContainer::-webkit-scrollbar {
-  width: 4px;
-}
-
-.messagesContainer::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.messagesContainer::-webkit-scrollbar-thumb {
-  background-color: #a0580a;
-  border-radius: 4px;
-}
 
 .greetingMessage {
   background-color: white;
@@ -539,9 +515,6 @@
   color: #000000;
 }
 
-.messageInput::-webkit-scrollbar {
-  display: none;
-}
 
 .messageInput:focus {
   border-color: #a0580a;
@@ -929,12 +902,6 @@
 
 .chatUiScrollBar {
   overflow-y: auto; /* scrolling allowed */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE & Edge */
-}
-
-.chatUiScrollBar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
 }
 
 /* Chat Scroll Container */

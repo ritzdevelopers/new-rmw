@@ -97,35 +97,6 @@ function Navbar() {
     };
   }, [servicesOpen, mobileMenuOpen]);
 
-  // Add custom scrollbar styles
-  useEffect(() => {
-    const styleId = "services-dropdown-scrollbar-styles";
-    if (!document.getElementById(styleId)) {
-      const style = document.createElement("style");
-      style.id = styleId;
-      style.textContent = `
-        .services-dropdown-scroll {
-          scrollbar-width: thin;
-          scrollbar-color: #cbd5e1 #f1f5f9;
-        }
-        .services-dropdown-scroll::-webkit-scrollbar {
-          width: 8px;
-        }
-        .services-dropdown-scroll::-webkit-scrollbar-track {
-          background: #f1f5f9;
-          border-radius: 4px;
-        }
-        .services-dropdown-scroll::-webkit-scrollbar-thumb {
-          background: #cbd5e1;
-          border-radius: 4px;
-        }
-        .services-dropdown-scroll::-webkit-scrollbar-thumb:hover {
-          background: #94a3b8;
-        }
-      `;
-      document.head.appendChild(style);
-    }
-  }, []);
 
   // Handle scroll effect
   useEffect(() => {

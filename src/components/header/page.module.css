@@ -440,14 +440,6 @@
   color: #fddf82;
 }
 
-/* Optional: Add smooth scroll style */
-.mobileMenu::-webkit-scrollbar {
-  width: 6px;
-}
-.mobileMenu::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
 
 .submenu {
   max-height: 0;
