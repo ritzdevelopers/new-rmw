@@ -168,12 +168,12 @@ function ContactBtns() {
 
   const handlePhoneClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    window.location.href = "tel:+919220516777";
+    window.location.href = "tel:+917290002168";
   };
 
   const handleWhatsAppClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    window.open("https://wa.me/919220516777", "_blank");
+    window.open("https://wa.me/917290002168", "_blank");
   };
 
   const handleChatbotClick = (e: React.MouseEvent) => {

@@ -11,7 +11,7 @@ const cardsData: CardData[] = [
     title: "Digital Marketing",
     description:
       "We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
-    icon: "/new-page/icns/build-icn-2.png",
+    icon: "/new-page/Digital_marketing_wht.png",
     iconAlt: "Digital Marketing",
     features: [
       "Hyper-targeted media planning & buying",
@@ -33,7 +33,7 @@ const cardsData: CardData[] = [
     title: "Creative Service",
     description:
       "Performance-focused campaigns on Google and social that reach high-intent audiences and convert clicks into enquiries, sales and revenue",
-    icon: "/new-page/icns/stars-icn.png",
+    icon: "/new-page/Creative_Services_wht.png",
     iconAlt: "Creative Service",
     features: [
       "Brand workshops & positioning blueprints",
@@ -55,7 +55,7 @@ const cardsData: CardData[] = [
     title: "Print Advertisement",
     description:
       "Strategic newspaper and magazine ads with strong ideas, smart headlines and compelling layouts that cut through clutter and generate responses.",
-    icon: "/new-page/icns/build-icn-2.png",
+    icon: "/new-page/Print_advvertising_wht.png",
     iconAlt: "Print Advertisement",
     features: [
       "Hyper-targeted media planning & buying",
@@ -77,7 +77,7 @@ const cardsData: CardData[] = [
     title: "Radio Advertisiment",
     description:
       "Memorable radio campaigns with scripts, distinctive voices and sound design that keep attention, build recall and drive listeners to act.",
-    icon: "/new-page/icns/stars-icn.png",
+    icon: "/new-page/Radio_advertising_Wht.png",
     iconAlt: "Radio Advertisiment",
     features: [
       "Brand workshops & positioning blueprints",
@@ -98,7 +98,7 @@ const cardsData: CardData[] = [
     title: "Content Marketing",
     description:
       "We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
-    icon: "/new-page/icns/build-icn-2.png",
+    icon: "/new-page/Content_marketing_wht.png",
     iconAlt: "Content Marketing",
     features: [
       "Hyper-targeted media planning & buying",
@@ -120,7 +120,7 @@ const cardsData: CardData[] = [
     title: "Web Development",
     description:
       "Fast, responsive websites that reflect your brand, deliver smooth user journeys and turn visitors into enquiries and loyal customers online.",
-    icon: "/new-page/icns/stars-icn.png",
+    icon: "/new-page/Web_development_wht.png",
     iconAlt: "Web Development",
     features: [
       "Brand workshops & positioning blueprints",
@@ -143,7 +143,7 @@ const cardsData: CardData[] = [
     title: "Influencer Marketing",
     description:
       "Strategic collaborations with credible influencers whose authentic content builds trust, extends reach and turns engaged followers into leads and customers.",
-    icon: "/new-page/icns/build-icn-2.png",
+    icon: "/new-page/influencer_marketing_wht.png",
     iconAlt: "Influencer Marketing",
     features: [
       "Hyper-targeted media planning & buying",
@@ -165,7 +165,7 @@ const cardsData: CardData[] = [
     title: "Celebrity Endorsement",
     description:
       "Celebrities are carefully matched so their image and audience align with your brand, boosting trust and impact across campaigns and events.",
-    icon: "/new-page/icns/stars-icn.png",
+    icon: "/new-page/Celebrity_Endorsements_wht.png",
     iconAlt: "Celebrity Endorsement",
     features: [
       "Brand workshops & positioning blueprints",

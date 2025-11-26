@@ -4,10 +4,15 @@ import Link from "next/link";
 import React, { forwardRef } from "react";
 import { FiArrowRight } from "react-icons/fi";
 
+interface ListItem {
+  text: string;
+  link: string;
+}
+
 interface S4CardProps {
   linkTxt: string;
   title: string;
-  list: string[];
+  list: ListItem[];
   cardBg: string;
   linkBG: string;
   linkTxtColor: string;
@@ -53,7 +58,14 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(({
                 className="flex items-start gap-2.5 sm:gap-3 font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] text-black"
               >
                 <span className="mt-[6px] h-[6px] w-[6px] flex-shrink-0 rounded-full bg-[#21EAB5]" />
-                <span>{item}</span>
+                <Link
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D4A574] transition-colors duration-200 cursor-pointer"
+                >
+                  {item.text}
+                </Link>
               </li>
             ))}
           </ul>

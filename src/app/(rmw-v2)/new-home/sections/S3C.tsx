@@ -370,7 +370,22 @@ function S3C() {
             }
           );
         }
+        
+        // Refresh ScrollTrigger after content expands to prevent affecting other sections
+        // Use double requestAnimationFrame to ensure layout has fully updated
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            ScrollTrigger.refresh();
+          });
+        });
       }, 50);
+    } else if (!showAll) {
+      // Also refresh when collapsing to ensure proper recalculation
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+        });
+      });
     }
   }, [showAll, prmLogos.length]);
 

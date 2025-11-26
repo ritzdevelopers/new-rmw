@@ -28,8 +28,8 @@ import OurAwards from "./sections/OurAwards";
 function page() {
   return (
     <main className="overflow-x-hidden">
-      <LenisSmoothScroll />
-      <RouteChangeHandler />
+      {/* <LenisSmoothScroll />
+      <RouteChangeHandler /> */}
       {/* <CustomCursor /> */}
       <S1></S1>
       {/* <S2></S2> */}

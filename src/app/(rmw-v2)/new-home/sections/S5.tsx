@@ -122,7 +122,7 @@ const storiesData: StoryCard[] = [
         bg: "bg-[#EFFFD0]",
       },
     ],
-    link: "/360-audio-branding-strategy",
+    link: "/buzz-behind-the-brand-apple-iphone-launch-secrets-revealed",
     btn: "Brand Identity",
   },
   {
@@ -510,7 +510,7 @@ function S5() {
                     <p className="text-[14px] font-[400] text-[#D4A574]">
                       {story.subTitle}
                     </p>
-                    <h3 className="text-[26px] font-semibold text-[#333333] sm:text-[32px]">
+                    <h3 onClick={()=>window.open(story.link, "_blank")} className="text-[26px] font-semibold text-[#333333] sm:text-[32px] cursor-pointer">
                       {story.title}
                     </h3>
                     <div className="flex flex-col gap-1">
