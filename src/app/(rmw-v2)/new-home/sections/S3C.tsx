@@ -20,6 +20,23 @@ function S3C() {
 
   // PRM logos - shown first with higher priority
   const prmLogos = [
+
+    {
+      name: "PRM 9",
+      src: "/new-page/logos/prm-9.jpg",
+      alt: "PRM Logo 9",
+    },
+    {
+      name: "PRM 22",
+      src: "/new-page/logos/prm-22.jpg",
+      alt: "PRM Logo 22",
+    },
+    // mpf-logo.webp
+    {
+      name: "MPF",
+      src: "/new-page/logos/mpf-logo.png",
+      alt: "MPF Logo",
+    },
     {
       name: "PRM 1",
       src: "/new-page/logos/prm-1.png",
@@ -60,11 +77,7 @@ function S3C() {
       src: "/new-page/logos/prm-8.jpg",
       alt: "PRM Logo 8",
     },
-    {
-      name: "PRM 9",
-      src: "/new-page/logos/prm-9.jpg",
-      alt: "PRM Logo 9",
-    },
+    
     {
       name: "PRM 10",
       src: "/new-page/logos/prm-10.png",
@@ -82,7 +95,7 @@ function S3C() {
     },
     {
       name: "PRM 13",
-      src: "/new-page/logos/prm-13.png",
+      src: "/new-page/logos/exotica-logo.png",
       alt: "PRM Logo 13",
     },
     {
@@ -116,16 +129,12 @@ function S3C() {
       src: "/new-page/logos/prm-20.jpg",
       alt: "PRM Logo 20",
     },
-    {
-      name: "PRM 21",
-      src: "/new-page/logos/prm-21.png",
-      alt: "PRM Logo 21",
-    },
-    {
-      name: "PRM 22",
-      src: "/new-page/logos/prm-22.jpg",
-      alt: "PRM Logo 22",
-    },
+    // {
+    //   name: "PRM 21",
+    //   src: "/new-page/logos/prm-21.png",
+    //   alt: "PRM Logo 21",
+    // },
+   
   ];
 
   // Other client logos - shown after PRM logos when expanded
@@ -227,14 +236,37 @@ function S3C() {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Animate heading with timeline
+      // Animate entire section from Y axis with scrub
+      if (sectionRef.current) {
+        gsap.fromTo(
+          sectionRef.current,
+          {
+            y: 100,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.1,
+            ease: "linear",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 90%",
+              end: "top 50%",
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      // Animate heading with linear smooth timeline
       if (headingRef.current) {
         const headingTl = gsap.timeline({
           scrollTrigger: {
             trigger: headingRef.current,
             start: "top 85%",
             end: "top 60%",
-            toggleActions: "play none none reverse",
+            scrub: 3, // Smooth scroll-linked animation
           },
         });
 
@@ -247,13 +279,13 @@ function S3C() {
           {
             opacity: 1,
             y: 0,
-            duration: 1,
-            ease: "power3.out",
+            duration: 0.1,
+            ease: "linear", // Linear easing for smooth animation
           }
         );
       }
 
-      // Animate logo cards with stagger and timeline
+      // Animate logo cards with linear smooth ScrollTrigger
       if (logoGridRef.current) {
         // Wait a bit for refs to be populated
         const checkRefs = () => {
@@ -265,9 +297,9 @@ function S3C() {
             const logoTl = gsap.timeline({
               scrollTrigger: {
                 trigger: logoGridRef.current,
-                start: "top 80%",
-                end: "top 40%",
-                toggleActions: "play none none reverse",
+                start: "top 85%",
+                end: "top 30%",
+                scrub: 1, // Smooth scroll-linked animation
               },
             });
 
@@ -275,18 +307,19 @@ function S3C() {
               visibleCards,
               {
                 opacity: 0,
-                y: 60,
-                scale: 0.8,
+                y: 50,
+                scale: 0.9,
               },
               {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                duration: 0.8,
-                ease: "power3.out",
+                duration: 1,
+                ease: "linear", // Linear easing for smooth animation
                 stagger: {
-                  amount: 0.6,
+                  amount: 1, // Total duration for all cards
                   from: "start",
+                  ease: "linear", // Linear stagger distribution
                 },
               }
             );
@@ -299,32 +332,6 @@ function S3C() {
         });
       }
 
-      // Animate button with timeline
-      if (buttonRef.current) {
-        const buttonTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: buttonRef.current,
-            start: "top 85%",
-            end: "top 60%",
-            scrub: true,
-            toggleActions: "play none none reverse",
-          },
-        });
-
-        buttonTl.fromTo(
-          buttonRef.current,
-          {
-            opacity: 0,
-            y: 30,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-          }
-        );
-      }
     }, sectionRef);
 
     return () => {
@@ -332,7 +339,7 @@ function S3C() {
     };
   }, [displayedLogos.length]); // Re-run when logos change
 
-  // Animate newly shown logos when "Show More" is clicked
+  // Animate newly shown logos when "Show More" is clicked with linear animation
   useEffect(() => {
     if (showAll && logoCardRefs.current.length > prmLogos.length) {
       // Wait for DOM to update
@@ -353,11 +360,12 @@ function S3C() {
               opacity: 1,
               y: 0,
               scale: 1,
-              duration: 0.6,
-              ease: "power3.out",
+              duration: 0.8,
+              ease: "linear", // Linear easing for smooth animation
               stagger: {
-                amount: 0.4,
+                amount: 0.6,
                 from: "start",
+                ease: "linear", // Linear stagger distribution
               },
             }
           );

@@ -115,9 +115,21 @@ function S1() {
       {/* Centerd Align Absolute Positioned Content Div  */}
       <div className="relative mx-auto flex w-full max-w-[720px] flex-col z-30 gap-4 sm:gap-6 lg:gap-8 px-6 text-white sm:px-10 py-8 lg:py-0">
         <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 text-center justify-center items-center self-end md:self-auto">
-          <h1 className="text-[16px] md:text-[28px] font-[700] leading-tight lg:text-5xl uppercase">
+          <h1
+            className="text-[16px] md:text-[28px] font-[700] leading-tight lg:text-5xl uppercase"
+            style={{
+              textShadow:
+                "0 2px 8px rgba(0,0,0,0.22), 0 1px 0 rgba(0,0,0,0.13)",
+            }}
+          >
             BEYOND YOUR TYPICAL{" "}
-            <span className="text-[#D4A574]"> ADVERTISING AGENCY</span>
+            <span
+              className="text-[#D4A574]"
+              style={{ textShadow: "0 2px 8px rgba(0,0,0,0.32)" }}
+            >
+              {" "}
+              ADVERTISING AGENCY
+            </span>
           </h1>
         </div>
 
@@ -134,7 +146,7 @@ function S1() {
             onClick={() =>
               window.open("https://ritzmediaworld.com/contact.html", "_blank")
             }
-            className="inline-flex cursor-pointer justify-center hover:text-white items-center bg-white gap-2 sm:gap-3 rounded-[8px] w-[134px] md:w-[180px] lg:w-[210px] py-2 sm:py-2.5 lg:py-3 text-black transition hover:bg-white/10 text-xs sm:text-sm lg:text-base"
+            className="inline-flex liquid3 cursor-pointer justify-center hover:text-white items-center bg-white gap-2 sm:gap-3 rounded-[8px] w-[134px] md:w-[180px] lg:w-[210px] py-2 sm:py-2.5 lg:py-3 text-black transition hover:bg-white/10 text-xs sm:text-sm lg:text-base"
           >
             <Play className="h-4 w-4 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
             Watch Our Story

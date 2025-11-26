@@ -6,9 +6,10 @@ import ScrollSlider2 from "../components/ScrollSlider2";
 
 // Card data array with dynamic backgrounds
 const cardsData = [
-  {
+    {
+   
     id: 1,
-    title: "Best Creative Agency – Big Dream Makers Conclave & Awards (2025)",
+    title: " Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2022)",
     description:
       "A prestigious honour celebrating exceptional creativity, strategic thinking, and breakthrough campaigns. Awarded to Ritz Media World for consistently delivering high-impact advertising solutions that redefine brand storytelling across real estate, lifestyle, and consumer categories.",
     imgSrc: "/new-page/awards/aw1.jpg",

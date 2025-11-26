@@ -1,190 +1,44 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import HoverCard from "../components/HoverCard";
 import AnimatedBtn from "../components/AnimatedBtn";
 
 function NewS2() {
-  const [mainImg, setMainImg] = useState<string>("/new-page/s2/rm-s2-i1.jpg");
-  const [subImg, setSubImg] = useState<string>("/new-page/s2/rm-s2.jpg");
+  // Static images - no longer changing on hover
+  const mainImg = "/new-page/s2/rm-s2-i1.jpg";
+  const subImg = "/new-page/s2/rm-s2.jpg";
   const mainImgRef = useRef<HTMLDivElement | null>(null);
   const subImgRef = useRef<HTMLDivElement | null>(null);
-  const prevMainImgRef = useRef<string>("/new-page/s2/rm-s2-i1.jpg");
-  const prevSubImgRef = useRef<string>("/new-page/s2/rm-s2.jpg");
   const mainImgElementRef = useRef<HTMLImageElement | null>(null);
   const subImgElementRef = useRef<HTMLImageElement | null>(null);
-  const mainImgAnimationRef = useRef<gsap.core.Timeline | null>(null);
-  const subImgAnimationRef = useRef<gsap.core.Timeline | null>(null);
 
-  // Enhanced animation for main image changes with smooth crossfade
-  useEffect(() => {
-    if (mainImg !== prevMainImgRef.current && mainImgRef.current) {
-      // Use requestAnimationFrame to ensure DOM is updated with new src
-      requestAnimationFrame(() => {
-        const container = mainImgRef.current;
-        if (!container) return;
-        
-        const imgElement = container.querySelector("img") as HTMLImageElement;
-        
-        if (imgElement) {
-          mainImgElementRef.current = imgElement;
-          
-          // Kill any existing animation
-          if (mainImgAnimationRef.current) {
-            mainImgAnimationRef.current.kill();
-          }
-          
-          // Create a timeline for smooth transition
-          const tl = gsap.timeline();
-          mainImgAnimationRef.current = tl;
-          
-          // Animate out the old image with scale down, blur, and fade
-          tl.to(imgElement, {
-            opacity: 0,
-            scale: 0.92,
-            filter: "blur(12px) brightness(0.75)",
-            duration: 0.45,
-            ease: "power2.in",
-          })
-          // Update the previous image reference
-          .call(() => {
-            prevMainImgRef.current = mainImg;
-          })
-          // Set initial state for new image (after src update)
-          .set(imgElement, {
-            opacity: 0,
-            scale: 1.1,
-            filter: "blur(12px) brightness(1.25)",
-          })
-          // Wait a bit for image to load
-          .to({}, { duration: 0.2 })
-          // Animate in the new image with scale up, blur removal, and fade
-          .to(imgElement, {
-            opacity: 1,
-            scale: 1,
-            filter: "blur(0px) brightness(1)",
-            duration: 0.85,
-            ease: "power3.out",
-          });
-        }
-      });
-    }
-  }, [mainImg]);
 
-  // Enhanced animation for sub image changes with smooth crossfade
+  // Set up initial refs for images on mount
   useEffect(() => {
-    if (subImg !== prevSubImgRef.current && subImgRef.current) {
-      // Use requestAnimationFrame to ensure DOM is updated with new src
-      requestAnimationFrame(() => {
-        const container = subImgRef.current;
-        if (!container) return;
-        
-        const imgElement = container.querySelector("img") as HTMLImageElement;
-        
-        if (imgElement) {
-          subImgElementRef.current = imgElement;
-          
-          // Kill any existing animation
-          if (subImgAnimationRef.current) {
-            subImgAnimationRef.current.kill();
-          }
-          
-          // Create a timeline for smooth transition
-          const tl = gsap.timeline();
-          subImgAnimationRef.current = tl;
-          
-          // Animate out the old image with scale down, blur, and fade
-          tl.to(imgElement, {
-            opacity: 0,
-            scale: 0.92,
-            filter: "blur(12px) brightness(0.75)",
-            duration: 0.45,
-            ease: "power2.in",
-          })
-          // Update the previous image reference
-          .call(() => {
-            prevSubImgRef.current = subImg;
-          })
-          // Set initial state for new image (after src update)
-          .set(imgElement, {
-            opacity: 0,
-            scale: 1.1,
-            filter: "blur(12px) brightness(1.25)",
-          })
-          // Wait a bit for image to load
-          .to({}, { duration: 0.2 })
-          // Animate in the new image with scale up, blur removal, and fade
-          .to(imgElement, {
-            opacity: 1,
-            scale: 1,
-            filter: "blur(0px) brightness(1)",
-            duration: 0.85,
-            ease: "power3.out",
-          });
-        }
-      });
-    }
-  }, [subImg]);
-
-  // Set up initial styles for images on mount
-  useEffect(() => {
-    const setupMainImg = () => {
-      if (mainImgRef.current) {
-        const imgElement = mainImgRef.current.querySelector("img") as HTMLImageElement;
-        if (imgElement) {
-          mainImgElementRef.current = imgElement;
-          // Set initial styles
-          gsap.set(imgElement, {
-            opacity: 1,
-            scale: 1,
-            filter: "blur(0px) brightness(1)",
-          });
-        }
+    if (mainImgRef.current) {
+      const imgElement = mainImgRef.current.querySelector("img") as HTMLImageElement;
+      if (imgElement) {
+        mainImgElementRef.current = imgElement;
       }
-    };
-    
-    // Use requestAnimationFrame to ensure DOM is ready
-    requestAnimationFrame(setupMainImg);
+    }
   }, []);
 
   useEffect(() => {
-    const setupSubImg = () => {
-      if (subImgRef.current) {
-        const imgElement = subImgRef.current.querySelector("img") as HTMLImageElement;
-        if (imgElement) {
-          subImgElementRef.current = imgElement;
-          // Set initial styles
-          gsap.set(imgElement, {
-            opacity: 1,
-            scale: 1,
-            filter: "blur(0px) brightness(1)",
-          });
-        }
+    if (subImgRef.current) {
+      const imgElement = subImgRef.current.querySelector("img") as HTMLImageElement;
+      if (imgElement) {
+        subImgElementRef.current = imgElement;
       }
-    };
-    
-    // Use requestAnimationFrame to ensure DOM is ready
-    requestAnimationFrame(setupSubImg);
-  }, []);
-
-  // Cleanup animations on unmount
-  useEffect(() => {
-    return () => {
-      if (mainImgAnimationRef.current) {
-        mainImgAnimationRef.current.kill();
-      }
-      if (subImgAnimationRef.current) {
-        subImgAnimationRef.current.kill();
-      }
-    };
+    }
   }, []);
 
 
   return (
-    <section className="w-screen flex flex-col gap-8 sm:gap-8 md:gap-0  items-center min-h-[60vh] py-8 sm:py-10 md:py-20 px-4 sm:px-6">
+    <section className="w-screen relative flex flex-col gap-8 sm:gap-8 md:gap-0  items-center min-h-[60vh] py-8 sm:py-10 md:py-20 px-4 sm:px-6">
       {/* Center Align Text Divs */}
-      <div className="flex flex-col justify-center gap-4 sm:gap-5 md:gap-6 items-center w-full md:w-[85%] lg:w-[65%]">
+      <div className="flex flex-col justify-center gap-4 sm:gap-5 md:gap-6 items-center w-full md:w-[85%] lg:w-[65%] z-10">
         <div className="text-center">
           <h3 className="font-[500] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] leading-tight sm:leading-snug">
             What can you expect from the
@@ -201,7 +55,7 @@ function NewS2() {
       </div>
 
       {/* Center Align Main Div  */}
-      <div className="w-full max-w-[1171px] flex flex-col lg:flex-row justify-between gap-6 sm:gap-8 lg:gap-0">
+      <div className="w-full max-w-[1171px] flex flex-col lg:flex-row justify-between gap-6 sm:gap-8 lg:gap-0 z-10">
         {/* Left Side Div  */}
         <div className="w-full lg:w-[820px] flex flex-col justify-between gap-4 sm:gap-5">
           {/* Top Div  */}
@@ -210,13 +64,31 @@ function NewS2() {
           {/* Bottom Div  */}
           <div
             ref={mainImgRef}
-            className="w-full h-[250px] sm:h-[320px] md:h-[380px] overflow-hidden lg:h-[442px] relative"
+            className="w-full h-[250px] sm:h-[320px] md:h-[380px] overflow-hidden lg:h-[442px] relative group cursor-pointer"
+            onMouseEnter={() => {
+              if (mainImgElementRef.current) {
+                gsap.to(mainImgElementRef.current, {
+                  scale: 1.08,
+                  duration: 0.6,
+                  ease: "power2.out",
+                });
+              }
+            }}
+            onMouseLeave={() => {
+              if (mainImgElementRef.current) {
+                gsap.to(mainImgElementRef.current, {
+                  scale: 1,
+                  duration: 0.6,
+                  ease: "power2.out",
+                });
+              }
+            }}
           >
             <Image
               src={mainImg}
               alt="RMW"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-300 ease-out"
               style={{ 
                 willChange: "opacity, transform, filter"
               }}
@@ -239,13 +111,31 @@ function NewS2() {
           {/* Top Section Image Div  */}
           <div
             ref={subImgRef}
-            className="w-full h-[200px] sm:h-[250px] md:h-[280px] overflow-hidden lg:h-[311px] relative"
+            className="w-full h-[200px] sm:h-[250px] md:h-[280px] overflow-hidden lg:h-[311px] relative group cursor-pointer"
+            onMouseEnter={() => {
+              if (subImgElementRef.current) {
+                gsap.to(subImgElementRef.current, {
+                  scale: 1.08,
+                  duration: 0.6,
+                  ease: "power2.out",
+                });
+              }
+            }}
+            onMouseLeave={() => {
+              if (subImgElementRef.current) {
+                gsap.to(subImgElementRef.current, {
+                  scale: 1,
+                  duration: 0.6,
+                  ease: "power2.out",
+                });
+              }
+            }}
           >
             <Image
               src={subImg}
               alt="RMW"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-300 ease-out"
               style={{ 
                 willChange: "opacity, transform, filter"
               }}
@@ -271,15 +161,12 @@ function NewS2() {
             id={"not-hover"}
             img={"/new-page/s2/rm-s2-i4.jpg"}
             imgID={4}
-            setMainImg={setMainImg}
-            setSubImg={setSubImg}
-            mainImg={mainImg}
           ></HoverCard>
         </div>
       </div>
 
       {/* Center Align Bottom Div  */}
-      <div className="w-full max-w-[1078px] flex flex-col sm:flex-row justify-between gap-4 sm:gap-6 lg:gap-0 sm:h-auto lg:h-[220px] mt-6 sm:mt-8 lg:mt-10">
+      <div className="w-full z-10 max-w-[1078px] flex flex-col sm:flex-row justify-between gap-4 sm:gap-6 lg:gap-0 sm:h-auto lg:h-[220px] mt-6 sm:mt-8 lg:mt-10">
         {[
           {
             ttl: "1M+",
@@ -313,15 +200,25 @@ function NewS2() {
               key={idx}
               img={ob.img}
               imgID={ob.imgID}
-              setMainImg={setMainImg}
-              setSubImg={setSubImg}
-              mainImg={mainImg}
             />
           );
         })}
       </div>
+
+
+
+      {/* Absolute Position Left Elps  */}
+        <div className="absolute top-0 left-0 w-[837px] h-[837px] z-0">
+          <img src="/new-page/rm-el1.png" className="w-full h-full object-cover" alt="RMW" />
+        </div>
+
+         {/* Absolute Position Right Elps  */}
+         <div className="absolute bottom-0 right-0 w-[837px] h-[837px] z-0">
+          <img src="/new-page/rm-el2.png" className="w-full h-full object-cover" alt="RMW" />
+        </div>
     </section>
   );
 }
 
 export default NewS2;
+

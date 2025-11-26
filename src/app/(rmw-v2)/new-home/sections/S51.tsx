@@ -123,21 +123,18 @@ function S51() {
               <button
                 ref={playButtonRef}
                 onClick={handlePlayClick}
-                className="relative w-[88px] h-[88px] xs:w-[110px] xs:h-[110px] sm:w-[132px] sm:h-[132px] md:w-[156px] md:h-[156px] rounded-full cursor-pointer flex items-center justify-center transition-opacity hover:opacity-90 focus:outline-none aspect-square animate-pulse"
+                className="pulse-button w-[88px] h-[88px] xs:w-[110px] xs:h-[110px] sm:w-[132px] sm:h-[132px] md:w-[156px] md:h-[156px] rounded-full cursor-pointer flex items-center justify-center transition-opacity hover:opacity-90 focus:outline-none aspect-square"
                 aria-label="Play video"
               >
-                {/* Pulsing ring effect */}
-                <div className="absolute inset-0 rounded-full border-2 border-white animate-ping opacity-75" />
+                {/* Pulsing background behind border */}
+                <div className="pulse-border-bg" />
                 
-                {/* Outer white circle */}
-                <div className="absolute inset-0 rounded-full border-2 border-white" />
-                
-                {/* Inner gray circle */}
-                <div className="absolute inset-[2px] rounded-full bg-gray-500/80 backdrop-blur-sm" />
+                {/* Outer white border */}
+                <div className="absolute inset-0 rounded-full border-2 border-white z-20" />
                 
                 {/* Play Icon */}
                 <svg
-                  className="relative z-10 w-[30%] h-[30%] text-white ml-1"
+                  className="relative z-30 w-[30%] h-[30%] text-white ml-1"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >

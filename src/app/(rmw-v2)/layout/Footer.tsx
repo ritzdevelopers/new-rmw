@@ -44,7 +44,7 @@ function Footer() {
           <div className="flex-shrink-0">
             <button
               onClick={handleConsultation}
-              className="font-[500] rounded-[8px] bg-white cursor-pointer text-[13px] sm:text-[14px] w-full sm:w-[200px] md:w-[232px] h-[40px]  text-[#D4A574] hover:bg-[#F0F0F0] transition-colors duration-300 whitespace-nowrap"
+              className="font-[500] liquid2 rounded-[8px] bg-white cursor-pointer text-[13px] sm:text-[14px] w-full sm:w-[200px] md:w-[232px] h-[40px]  text-[#D4A574] hover:bg-[#F0F0F0] transition-colors duration-300 whitespace-nowrap"
             >
               Schedule Free Consultation
             </button>
@@ -360,7 +360,7 @@ function Footer() {
         href="https://wa.me/917290002168"
         target="_blank"
         rel="noopener noreferrer"
-        className="absolute cursor-pointer bottom-24 left-6 sm:bottom-28 sm:left-8 md:bottom-32 md:left-10 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300 z-50 group animate-bounce-arrow"
+        className="absolute hidden cursor-pointer bottom-24 left-6 sm:bottom-28 sm:left-8 md:bottom-32 md:left-10 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300 z-50 group animate-bounce-arrow"
         aria-label="Contact us on WhatsApp"
       >
         <FaWhatsapp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white group-hover:scale-110 transition-transform duration-300" />

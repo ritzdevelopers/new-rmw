@@ -155,7 +155,7 @@ function ScrollSlider2({ cards, sectionRef }: ScrollSliderProps) {
                 src={card.imgSrc}
                 alt={card.title}
                 fill
-                style={{ objectFit: "cover", zIndex: 50 }}
+                style={{ objectFit: "contain", zIndex: 50 }}
                 sizes="(min-width: 1024px) 680px, (min-width: 768px) 50vw, 100vw"
                 priority
                 className="px-2 sm:px-4"

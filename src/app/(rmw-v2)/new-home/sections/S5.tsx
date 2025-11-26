@@ -182,7 +182,7 @@ function S5() {
             trigger: headerRef.current,
             start: "top 80%",
             end: "top 50%",
-            scrub: true,
+            scrub: 3,
             invalidateOnRefresh: true,
           },
         });
@@ -217,7 +217,7 @@ function S5() {
             trigger: article,
             start: "top 80%",
             end: "top 40%",
-            scrub: true,
+            scrub: 3,
             invalidateOnRefresh: true,
           },
         });
@@ -226,7 +226,7 @@ function S5() {
           tl.to(imageContainer, {
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 3,
             ease: "power3.out",
           }, 0);
         }
@@ -235,7 +235,7 @@ function S5() {
           tl.to(contentContainer, {
             y: 0,
             opacity: 1,
-            duration: 1,
+            duration: 3,
             ease: "power3.out",
           }, 0.2);
         }
@@ -265,7 +265,7 @@ function S5() {
             trigger: article,
             start: "top 80%",
             end: "top 40%",
-            scrub: true,
+            scrub: 3,
             invalidateOnRefresh: true,
           },
         });
@@ -274,7 +274,7 @@ function S5() {
           tl.to(imageContainer, {
             x: 0,
             opacity: 1,
-            duration: 1,
+            duration: 3,
             ease: "power3.out",
           }, 0);
         }
@@ -283,7 +283,7 @@ function S5() {
           tl.to(contentContainer, {
             x: 0,
             opacity: 1,
-            duration: 1,
+            duration: 3,
             ease: "power3.out",
           }, 0.2);
         }
@@ -305,7 +305,7 @@ function S5() {
             trigger: article,
             start: "top 75%",
             end: "top 25%",
-            scrub: 1,
+            scrub: 3,
             invalidateOnRefresh: true,
           },
         });
@@ -318,7 +318,7 @@ function S5() {
               y: 0,
               opacity: 1,
               scale: 1,
-              duration: 0.8,
+              duration: 3,
               ease: "power2.out",
             },
             cardIdx * 0.1 // Stagger delay
@@ -351,7 +351,7 @@ function S5() {
         if (image) {
           gsap.to(image, {
             scale: 1.1,
-            duration: 0.6,
+            duration: 3,
             ease: "power2.out",
           });
         }
@@ -361,7 +361,7 @@ function S5() {
         if (image) {
           gsap.to(image, {
             scale: 1,
-            duration: 0.6,
+            duration: 3,
             ease: "power2.out",
           });
         }
@@ -392,7 +392,7 @@ function S5() {
         gsap.to(card, {
           y: -8,
           scale: 1.05,
-          duration: 0.4,
+          duration: 3,
           ease: "power2.out",
         });
       };
@@ -401,7 +401,7 @@ function S5() {
         gsap.to(card, {
           y: 0,
           scale: 1,
-          duration: 0.4,
+            duration: 3,
           ease: "power2.out",
         });
       };

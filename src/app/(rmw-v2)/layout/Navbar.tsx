@@ -27,10 +27,13 @@ function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavbarHidden, setIsNavbarHidden] = useState(false);
   const [servicesData, setServicesData] = useState<ServiceItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastScrollY = useRef(0);
+  const isNavbarHiddenRef = useRef(false);
 
   // Fetch services data from API
   useEffect(() => {
@@ -104,27 +107,69 @@ function Navbar() {
       if (!navRef.current) return;
       if (!ulRef.current) return;
 
-      const scrolled = window.scrollY > 0;
+      const currentScrollY = window.scrollY;
+      const scrolled = currentScrollY > 0;
       setIsScrolled(scrolled);
 
+      // Detect scroll direction
+      if (scrolled) {
+        // User is scrolling down
+        if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+          // Hide navbar when scrolling down (after 100px scroll)
+          if (!isNavbarHiddenRef.current) {
+            isNavbarHiddenRef.current = true;
+            setIsNavbarHidden(true);
+            // Close services dropdown when navbar hides
+            setServicesOpen(false);
+          }
+        } 
+        // User is scrolling up
+        else if (currentScrollY < lastScrollY.current) {
+          // Show navbar when scrolling up
+          if (isNavbarHiddenRef.current) {
+            isNavbarHiddenRef.current = false;
+            setIsNavbarHidden(false);
+          }
+        }
+      } else {
+        // At top of page, always show navbar
+        if (isNavbarHiddenRef.current) {
+          isNavbarHiddenRef.current = false;
+          setIsNavbarHidden(false);
+        }
+      }
+
+      // Update last scroll position
+      lastScrollY.current = currentScrollY;
+
+      // Apply background and color styles
       if (scrolled) {
         navRef.current.style.position = "fixed";
         navRef.current.style.top = "0";
         navRef.current.style.backgroundColor = "white";
         navRef.current.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
         ulRef.current.style.color = "black";
+        
+        // Apply transform for hide/show animation
+        if (isNavbarHiddenRef.current) {
+          navRef.current.style.transform = "translateY(-100%)";
+        } else {
+          navRef.current.style.transform = "translateY(0)";
+        }
       } else {
         navRef.current.style.position = "absolute";
         navRef.current.style.top = "0";
         navRef.current.style.backgroundColor = "rgba(0, 0, 0, 0)";
         navRef.current.style.removeProperty("box-shadow");
+        navRef.current.style.transform = "translateY(0)";
         ulRef.current.style.color = "white";
       }
     };
 
     // Set initial state
+    lastScrollY.current = window.scrollY;
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -208,7 +253,10 @@ function Navbar() {
     <>
     <nav
       ref={navRef}
-        className="w-full flex justify-center overflow-x-hidden items-center absolute top-0 left-0 z-50 transition-all duration-300"
+        className="w-full flex justify-center overflow-x-hidden items-center absolute top-0 left-0 z-50 transition-all duration-300 ease-in-out"
+        style={{
+          transition: "transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
+        }}
     >
       {/* Centered Align Div  */}
         <div className="xl:w-[90%] w-full flex justify-between items-center py-3 sm:py-4 px-4 sm:px-6 lg:px-8">

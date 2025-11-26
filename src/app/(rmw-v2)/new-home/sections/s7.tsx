@@ -471,7 +471,7 @@ function S7() {
         </div>
 
         {/* Row 3 */}
-        <div className="grid w-full gap-4 sm:grid-cols-2 lg:gap-6 xl:grid-cols-4">
+        {/* <div className="grid w-full gap-4 sm:grid-cols-2 lg:gap-6 xl:grid-cols-4">
           {TIMELINE_STATS.map((stat) => (
             <div
               key={stat.label}
@@ -485,7 +485,7 @@ function S7() {
               </p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

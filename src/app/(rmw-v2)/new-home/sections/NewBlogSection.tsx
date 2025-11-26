@@ -147,7 +147,7 @@ function NewBlogSection() {
   };
 
   return (
-    <section className="relative flex w-full justify-center overflow-hidden bg-white py-12 sm:py-16 md:py-20">
+    <section className="relative flex w-full justify-center overflow-hidden bg-white py-12 sm:py-16 md:py-20 bg-gradient-to-b from-[#FFFFFF] to-[#F9FAFB]">
       <div className="flex w-full max-w-[92%] flex-col gap-8 sm:gap-10 lg:gap-12 px-4 sm:px-6 lg:px-8">
         {/* Row 1 - Header */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 sm:gap-8">
@@ -180,11 +180,11 @@ function NewBlogSection() {
                 rel="noopener noreferrer"
                 onMouseEnter={() => setActiveIdx(idx)}
                 ref={cardRef}
-                className={`group flex flex-col overflow-hidden rounded-[20px] sm:rounded-[24px] bg-white shadow-[0_18px_45px_rgba(16,24,40,0.08)] transition-[width,transform,box-shadow] duration-700 ease-in-out hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(16,24,40,0.15)] w-full sm:w-[calc(50%-8px)] md:w-[calc(50%-10px)] lg:flex-shrink-0 lg:w-[315px] ${idx === activeIdx ? "lg:w-[calc(100%-680px)]" : ""
+                className={`group flex flex-col overflow-hidden rounded-[20px] sm:rounded-[24px] bg-white transition-[width,transform,box-shadow] duration-700 ease-in-out hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(16,24,40,0.15)] w-full sm:w-[calc(50%-8px)] md:w-[calc(50%-10px)] lg:flex-shrink-0 lg:w-[315px] h-[450px] sm:h-[500px] md:h-[520px] lg:h-[540px] shadow-[0_4px_20px_rgba(16,24,40,0.08)] ${idx === activeIdx ? "lg:w-[calc(100%-680px)]" : ""
                   }`}
               >
                 {/* Image Container */}
-                <div className="relative h-[200px] w-full overflow-hidden sm:h-[240px] md:h-[280px] lg:h-[322px]">
+                <div className="relative h-[200px] w-full overflow-hidden sm:h-[240px] md:h-[280px] lg:h-[322px] flex-shrink-0">
                   <Image
                     // src={cd.blogBanner}
                     src={`/api/images${cd.blogBanner.split("/images")[1]}`
@@ -240,11 +240,11 @@ function NewBlogSection() {
                 </div>
 
                 {/* Content Container */}
-                <div className="flex flex-col gap-2 sm:gap-3 px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8">
+                <div className="flex flex-col gap-2 sm:gap-3 px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8 flex-1 flex-grow">
                   <p className="text-xs font-normal text-[#4A5565] sm:text-sm md:text-base">
                     {cd.createdAt}
                   </p>
-                  <h3 className="text-base font-semibold text-[#101828] leading-snug sm:text-lg md:text-xl lg:text-[20px]">
+                  <h3 className="text-base font-semibold text-[#101828] leading-snug sm:text-lg md:text-xl lg:text-[20px] line-clamp-2">
                     {cd.blogTitle}
                   </h3>
                 </div>

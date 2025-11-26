@@ -224,7 +224,7 @@ const router = useRouter();
   return (
     <section
       ref={sectionRef}
-      className="w-screen min-h-screen flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] overflow-x-hidden relative"
+      className="w-screen min-h-screen pt-[28px] lg:pt-0 flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] overflow-x-hidden relative"
     >
       {/* Centered Align Div  */}
       <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 relative z-20 ">
@@ -325,7 +325,7 @@ const router = useRouter();
         >
           {/* Top Section */}
           <div className="w-full max-w-[518px] flex flex-col justify-center items-center text-center gap-4 sm:gap-5 md:gap-6">
-            <div className="w-[56px] h-[56px] sm:w-[60px] sm:h-[60px] md:w-[64px] md:h-[64px] rounded-[14px] sm:rounded-[15px] md:rounded-[16px] bg-[#D4A574] flex justify-center items-center text-white hover:bg-[#D4A574]/30 transition-colors duration-300">
+            <div className="w-[56px] h-[56px]  sm:w-[60px] sm:h-[60px] md:w-[64px] md:h-[64px] rounded-[14px] sm:rounded-[15px] md:rounded-[16px] bg-[#D4A574] flex justify-center items-center text-white hover:bg-[#D4A574]/30 transition-colors duration-300">
               <FaArrowRightLong className="w-5 h-5 sm:w-6 sm:h-6 text-[#ffffff]" />
             </div>
             <h2 className="font-[600] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-white">
