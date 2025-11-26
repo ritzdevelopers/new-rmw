@@ -106,7 +106,7 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
     <div ref={sliderRef} className="w-full overflow-x-hidden">
       <div
         ref={trackRef}
-        className="flex gap-4 sm:gap-6 pr-4 sm:pr-6 md:pr-0"
+        className="flex gap-4  sm:gap-6 pr-4 sm:pr-6 md:pr-0"
         style={{ 
           willChange: "transform",
         }}

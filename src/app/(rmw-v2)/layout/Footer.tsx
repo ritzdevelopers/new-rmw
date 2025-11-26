@@ -369,10 +369,10 @@ function Footer() {
       {/* Scroll to Top Arrow Button */}
       <button
         onClick={scrollToTop}
-        className="absolute cursor-pointer bottom-6 left-6 sm:bottom-8 sm:left-8 md:bottom-10 md:left-10 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300 z-50 group animate-bounce-arrow"
+        className="absolute cursor-pointer bottom-6 left-6 sm:bottom-8 sm:left-8 md:bottom-10 md:left-10 w-[50px] h-[50px]  bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300 z-50 group animate-bounce-arrow"
         aria-label="Scroll to top"
       >
-        <ChevronUp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#D4A574] group-hover:scale-110 transition-transform duration-300" />
+        <ChevronUp className="w-6 h-6 text-[#D4A574] group-hover:scale-110 transition-transform duration-300" />
       </button>
 
       <style jsx>{`
