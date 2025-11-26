@@ -61,7 +61,7 @@ function NewS4() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
   return (
-    <section ref={sectionRef} className="w-screen flex flex-col justify-center items-center py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-6">
+    <section ref={sectionRef} className="w-full overflow-x-hidden flex flex-col justify-center items-center py-8 sm:py-10 md:py-12 lg:py-14 px-4 sm:px-6 max-w-full">
       {/* Center Align Div  */}
       <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%] h-full flex flex-col">
         {/* Top Text Content Div  */}
@@ -79,27 +79,27 @@ function NewS4() {
             .Our in-house team masters the entire spectrum
           </p>
         </div>
-         <div className="w-full justify-center items-center mt-6 sm:mt-8 md:mt-10 lg:mt-12 flex flex-col gap-6 sm:gap-8 md:gap-9 lg:gap-10  relative h-auto overflow-hidden">
+         <div className="w-full hidden justify-center items-center mt-6 sm:mt-8 md:mt-10 lg:mt-12  flex-col gap-6 sm:gap-8 md:gap-9 lg:gap-10  relative h-[110vh] overflow-hidden">
           {/* Cards Section   */}
-          {s4CardsData.map((ob, idx) => {
+          {/* {s4CardsData.map((ob, idx) => {
             return (
-              <S4Card
-                link={ob.link}
-                ref={(el) => {
-                  if (el) cardRefs.current[idx] = el;
-                }}
-                key={idx}
-                linkTxt={ob.linkTxt}
-                title={ob.title}
-                list={ob.list}
-                cardBg={ob.cardBg}
-                linkBG={ob.linkBG}
-                linkTxtColor={ob.linkTxtColor}
-                img={ob.img}
-                top={ob.top}
-              />
+              // <S4Card
+              //   link={ob.link}
+              //   ref={(el) => {
+              //     if (el) cardRefs.current[idx] = el;
+              //   }}
+              //   key={idx}
+              //   linkTxt={ob.linkTxt}
+              //   title={ob.title}
+              //   list={ob.list}
+              //   cardBg={ob.cardBg}
+              //   linkBG={ob.linkBG}
+              //   linkTxtColor={ob.linkTxtColor}
+              //   img={ob.img}
+              //   top={ob.top}
+              // />
             )
-          })}
+          })} */}
         </div>
       </div>
          {/* Bottom Cards Div  */}

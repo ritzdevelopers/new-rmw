@@ -50,7 +50,7 @@ function OurAwards() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex w-full justify-center overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24"
+      className="relative flex w-full justify-center overflow-hidden overflow-x-hidden py-12 sm:py-16 md:py-20 lg:py-24 max-w-full"
       style={{
         background: "linear-gradient(to bottom, #101828, #1E2939, #101828)",
       }}

@@ -224,14 +224,14 @@ const router = useRouter();
   return (
     <section
       ref={sectionRef}
-      className="w-screen min-h-screen pt-[28px] lg:pt-0 flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] overflow-x-hidden relative"
+      className="w-full min-h-screen pt-[28px] lg:pt-0 flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] overflow-x-hidden overflow-y-hidden relative max-w-full"
     >
       {/* Centered Align Div  */}
-      <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 relative z-20 ">
+      <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 relative z-20 overflow-x-hidden">
         {/* Left Side Container  */}
         <div
           ref={leftRef}
-          className="w-full lg:w-[664px] xl:w-[700px] min-h-[552px] flex flex-col justify-between gap-6 sm:gap-8 md:gap-10"
+          className="w-full lg:w-[664px] xl:w-[700px] min-h-[552px] flex flex-col justify-between gap-6 sm:gap-8 md:gap-10 overflow-x-hidden max-w-full"
         >
           {/* Top Section */}
           <div className="flex flex-col gap-4 sm:gap-5 md:gap-6">
@@ -306,7 +306,7 @@ const router = useRouter();
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-[164px] h-[48px] sm:h-[56px] liquid cursor-pointer text-white flex justify-center items-center gap-2 rounded-[8px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] hover:bg-[#C8955F] transition-colors duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full sm:w-[164px] h-[48px] sm:h-[56px] liquid text-white flex justify-center items-center gap-2 rounded-[8px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] hover:bg-[#C8955F] transition-colors duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <LuDownload className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>{isSubmitting ? "Submitting..." : "Download Free"}</span>
@@ -321,7 +321,7 @@ const router = useRouter();
         {/* Right Side Container  */}
         <div
           ref={rightRef}
-          className="w-full lg:w-[624px] xl:w-[680px] rounded-[20px] sm:rounded-[22px] md:rounded-[24px] border-[0.8px] border-white/30 min-h-[450px] sm:min-h-[480px] md:min-h-[518px] gap-6 sm:gap-8 md:gap-[32px] flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 bg-white/5 backdrop-blur-sm"
+          className="w-full lg:w-[624px] xl:w-[680px] rounded-[20px] sm:rounded-[22px] md:rounded-[24px] border-[0.8px] border-white/30 min-h-[450px] sm:min-h-[480px] md:min-h-[518px] gap-6 sm:gap-8 md:gap-[32px] flex flex-col justify-center items-center px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10 bg-white/5 backdrop-blur-sm overflow-x-hidden max-w-full"
         >
           {/* Top Section */}
           <div className="w-full max-w-[518px] flex flex-col justify-center items-center text-center gap-4 sm:gap-5 md:gap-6">
@@ -372,13 +372,13 @@ const router = useRouter();
 
       {/* Absolute Positioned Divs */}
       {/* div 1  */}
-      <div className="w-[484px] h-[484px] opacity-[10%] absolute bottom-0  -right-5 z-0">
-        <img src="/new-page/cont-1.png" className="w-full h-full object-contain" alt="" />
+      <div className="w-[484px] h-[484px] opacity-[10%] absolute bottom-0 right-0 z-0 overflow-hidden max-w-full pointer-events-none">
+        <img src="/new-page/cont-1.png" className="w-full h-full object-contain max-w-full" alt="" />
       </div>
 
        {/* div 2  */}
-       <div className="w-[484px] h-[484px] opacity-[10%] absolute left-0  top-0 z-0">
-        <img src="/new-page/cont-2.png" className="w-full h-full object-contain" alt="" />
+       <div className="w-[484px] h-[484px] opacity-[10%] absolute left-0 top-0 z-0 overflow-hidden max-w-full pointer-events-none">
+        <img src="/new-page/cont-2.png" className="w-full h-full object-contain max-w-full" alt="" />
       </div>
 
       {/* Modal */}

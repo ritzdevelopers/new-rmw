@@ -24,10 +24,11 @@ import CustomCursor from "./components/CustomCursor";
 import LenisSmoothScroll from "./components/LenisSmoothScroll";
 import RouteChangeHandler from "./components/RouteChangeHandler";
 import OurAwards from "./sections/OurAwards";
+import RDS from "./sections/RDS";
 
 function page() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="">
       {/* <LenisSmoothScroll />
       <RouteChangeHandler /> */}
       {/* <CustomCursor /> */}
@@ -38,6 +39,7 @@ function page() {
       <S3></S3>
       {/* <S4></S4> */}
       <NewS4></NewS4>
+      <RDS></RDS>
       {/* <S4C></S4C> */}
 
       <S5></S5>

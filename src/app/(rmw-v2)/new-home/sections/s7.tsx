@@ -328,7 +328,7 @@ function S7() {
   return (
     <section 
       ref={sectionRef}
-      className="relative flex w-full justify-center overflow-hidden bg-gradient-to-br from-[#F9FAFB] to-[#ffffff] py-16 sm:py-20 lg:py-20"
+      className="relative flex w-full justify-center overflow-hidden overflow-x-hidden bg-gradient-to-br from-[#F9FAFB] to-[#ffffff] py-16 sm:py-20 lg:py-20 max-w-full"
     >
       <div className="flex w-full max-w-[96%] flex-col gap-14 px-4 sm:px-6 lg:px-0">
         {/* Row 1 */}

@@ -75,7 +75,7 @@ function S1() {
   return (
     <section
       ref={heroRef}
-      className="relative flex h-auto min-h-[400px] sm:min-h-[500px] lg:h-screen w-full items-center overflow-hidden bg-neutral-900"
+      className="relative flex h-auto min-h-[400px] sm:min-h-[500px] lg:h-screen w-full items-center overflow-hidden overflow-x-hidden bg-neutral-900 max-w-full"
     >
       {/* Slider Container  */}
       <div className="absolute inset-0 overflow-hidden z-10">

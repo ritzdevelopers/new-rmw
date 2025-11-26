@@ -36,7 +36,7 @@ function NewS2() {
 
 
   return (
-    <section className="w-screen relative flex flex-col gap-8 sm:gap-8 md:gap-0  items-center min-h-[60vh] py-8 sm:py-10 md:py-20 px-4 sm:px-6">
+    <section className="w-full overflow-x-hidden relative flex flex-col gap-8 sm:gap-8 md:gap-0  items-center min-h-[60vh] py-8 sm:py-10 md:py-20 px-4 sm:px-6 max-w-full">
       {/* Center Align Text Divs */}
       <div className="flex flex-col justify-center gap-4 sm:gap-5 md:gap-6 items-center w-full md:w-[85%] lg:w-[65%] z-10">
         <div className="text-center">
@@ -208,13 +208,13 @@ function NewS2() {
 
 
       {/* Absolute Position Left Elps  */}
-        <div className="absolute top-0 left-0 w-[837px] h-[837px] z-0">
-          <img src="/new-page/rm-el1.png" className="w-full h-full object-cover" alt="RMW" />
+        <div className="absolute top-0 left-0 w-[837px] h-[837px] z-0 overflow-hidden max-w-full pointer-events-none">
+          <img src="/new-page/rm-el1.png" className="w-full h-full object-cover max-w-full" alt="RMW" />
         </div>
 
          {/* Absolute Position Right Elps  */}
-         <div className="absolute bottom-0 right-0 w-[837px] h-[837px] z-0">
-          <img src="/new-page/rm-el2.png" className="w-full h-full object-cover" alt="RMW" />
+         <div className="absolute bottom-0 right-0 w-[837px] h-[837px] z-0 overflow-hidden max-w-full pointer-events-none">
+          <img src="/new-page/rm-el2.png" className="w-full h-full object-cover max-w-full" alt="RMW" />
         </div>
     </section>
   );
