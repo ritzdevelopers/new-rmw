@@ -332,7 +332,7 @@ function S7() {
     >
       <div className="flex w-full max-w-[96%] flex-col gap-14 px-4 sm:px-6 lg:px-0">
         {/* Row 1 */}
-        <div className="flex flex-col items-center gap-3 text-center">
+        <div className="flex flex-col items-center gap-5 text-center">
           <button className="inline-flex h-9 w-[130px] items-center justify-center rounded-full bg-[#D4A574] text-[14px] font-[400] text-[#ffffff] ">
             Our Journey
           </button>

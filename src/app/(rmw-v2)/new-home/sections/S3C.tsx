@@ -129,16 +129,6 @@ function S3C() {
       src: "/new-page/logos/prm-20.jpg",
       alt: "PRM Logo 20",
     },
-    // {
-    //   name: "PRM 21",
-    //   src: "/new-page/logos/prm-21.png",
-    //   alt: "PRM Logo 21",
-    // },
-   
-  ];
-
-  // Other client logos - shown after PRM logos when expanded
-  const otherClientLogos = [
     {
       name: "Honda",
       src: "/new-page/logos/scnd-3.jpg",
@@ -154,6 +144,17 @@ function S3C() {
       src: "/new-page/logos/scnd-5.jpg",
       alt: "Adani Realty Logo",
     },
+    // {
+    //   name: "PRM 21",
+    //   src: "/new-page/logos/prm-21.png",
+    //   alt: "PRM Logo 21",
+    // },
+   
+  ];
+
+  // Other client logos - shown after PRM logos when expanded
+  const otherClientLogos = [
+
     {
       name: "Jindal Steel & Power",
       src: "/new-page/logos/scnd-6.jpg",
@@ -251,7 +252,7 @@ function S3C() {
             ease: "linear",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 90%",
+              start: "top 50%",
               end: "top 50%",
               scrub: 1,
             },
@@ -297,9 +298,10 @@ function S3C() {
             const logoTl = gsap.timeline({
               scrollTrigger: {
                 trigger: logoGridRef.current,
-                start: "top 85%",
+                start: "top 95%",
                 end: "top 30%",
                 scrub: 1, // Smooth scroll-linked animation
+                // markers:true
               },
             });
 
@@ -314,7 +316,7 @@ function S3C() {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                duration: 1,
+                duration: 0.2,
                 ease: "linear", // Linear easing for smooth animation
                 stagger: {
                   amount: 1, // Total duration for all cards

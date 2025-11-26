@@ -13,6 +13,7 @@ interface Blog {
   blogTitle: string;
   _id: string;
   blogSlug: string;
+  blogDescription:string;
 }
 function NewBlogSection() {
 
@@ -180,7 +181,10 @@ function NewBlogSection() {
                 rel="noopener noreferrer"
                 onMouseEnter={() => setActiveIdx(idx)}
                 ref={cardRef}
-                className={`group flex flex-col overflow-hidden rounded-[20px] sm:rounded-[24px] bg-white transition-[width,transform,box-shadow] duration-700 ease-in-out hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(16,24,40,0.15)] w-full sm:w-[calc(50%-8px)] md:w-[calc(50%-10px)] lg:flex-shrink-0 lg:w-[315px] h-[450px] sm:h-[500px] md:h-[520px] lg:h-[540px] shadow-[0_4px_20px_rgba(16,24,40,0.08)] ${idx === activeIdx ? "lg:w-[calc(100%-680px)]" : ""
+                className={`group flex flex-col overflow-hidden rounded-[20px] sm:rounded-[24px] bg-white transition-[width,transform,box-shadow] duration-700 ease-in-out hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(16,24,40,0.15)] w-full 
+                  sm:w-[calc(50%-8px)] md:w-[calc(50%-10px)] lg:flex-shrink-0 lg:w-[315px] 
+                  h-auto lg:h-[540px] 
+                  shadow-[0_4px_20px_rgba(16,24,40,0.08)] ${idx === activeIdx ? "lg:w-[calc(100%-680px)]" : ""
                   }`}
               >
                 {/* Image Container */}
@@ -247,6 +251,8 @@ function NewBlogSection() {
                   <h3 className="text-base font-semibold text-[#101828] leading-snug sm:text-lg md:text-xl lg:text-[20px] line-clamp-2">
                     {cd.blogTitle}
                   </h3>
+
+                 
                 </div>
               </Link>
             );

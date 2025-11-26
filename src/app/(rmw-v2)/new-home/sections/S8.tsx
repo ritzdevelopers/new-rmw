@@ -146,9 +146,9 @@ function S8() {
   }, []);
 
   return (
-    <section className="w-full flex justify-center overflow-x-hidden items-center bg-gradient-to-br from-[#F9FAFB] to-[#ffffff] py-10 sm:py-14 md:py-20 md:pt-4 lg:py-20 overflow-y-visible px-4 sm:px-6 max-w-full">
+    <section className="w-full flex justify-center overflow-x-hidden overflow-y-hidden items-center bg-gradient-to-br from-[#F9FAFB] to-[#ffffff] py-10 sm:py-14 md:py-20 md:pt-4 lg:py-20 px-4 sm:px-6 max-w-full min-h-screen">
       {/* Centered Align Div  */}
-      <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%] lg:max-w-[1400px] flex flex-col items-center gap-6 sm:gap-10 md:gap-14 lg:gap-16 relative">
+      <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%] lg:max-w-[1400px] flex flex-col items-center gap-6 sm:gap-10 md:gap-14 lg:gap-16 relative overflow-y-hidden max-h-full">
         {/* Top Header Div  */}
         <div className="w-full relative flex flex-col justify-center items-center text-center gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 px-2 sm:px-4 md:px-0">
           <button className="inline-flex h-8 sm:h-9 w-[140px] sm:w-[156px] items-center justify-center rounded-full bg-[#D4A574] text-[12px] sm:text-[13px] lg:text-[14px] font-[400] text-[#ffffff]">
@@ -166,32 +166,32 @@ function S8() {
           </p>
 
           {/* Absoute Positioned Robot Div - Hidden on mobile, visible on tablet+ */}
-          <div className="hidden md:block absolute left-0 lg:left-10 top-0 opacity-60 bounceAnim lg:opacity-100">
+          <div className="hidden md:block absolute left-0 lg:left-10 top-0 opacity-60 bounceAnim lg:opacity-100 overflow-hidden pointer-events-none">
             <div className="w-[60px] h-[60px] lg:w-[90px] lg:h-[90px] relative">
               <Image
                 src={"/new-page/icns/Robot.png"}
                 alt="RMW Home Page"
                 fill
-                className="object-contain"
+                className="object-contain max-w-full"
               ></Image>
             </div>
           </div>
 
           {/* Absolute Positioned Right Line Div - Hidden on mobile, visible on tablet+ */}
-          <div className="hidden lg:block absolute right-10 xl:right-20 top-12 xl:top-20 bounceAnim2 opacity-60">
+          <div className="hidden lg:block absolute right-10 xl:right-20 top-12 xl:top-20 bounceAnim2 opacity-60 overflow-hidden pointer-events-none">
             <div className="w-[60px] h-[120px] lg:w-[77px] lg:h-[151px] relative rotate-[5deg]">
               <Image
                 src={"/new-page/icns/rght-line.png"}
                 alt="RMW"
                 fill
-                className="object-contain"
+                className="object-contain max-w-full"
               ></Image>
             </div>
           </div>
         </div>
 
         {/* Botom Testimonials Div  */}
-        <div className="w-full relative min-h-[260px] sm:min-h-[300px] md:min-h-[340px] lg:min-h-[391px] border-b-[4px] sm:border-b-[6px] md:border-b-[8px] lg:border-b-[9px] border-[#D4A574] rounded-[16px] sm:rounded-[20px] md:rounded-[25px] lg:rounded-[30px] shadow-[0_15px_30px_rgba(16,24,40,0.06)] sm:shadow-[0_20px_40px_rgba(16,24,40,0.06)] md:shadow-[0_35px_70px_rgba(16,24,40,0.08)] bg-white/90 backdrop-blur flex justify-center items-center px-3 sm:px-5 md:px-7 lg:px-12 py-5 sm:py-7 md:py-9 lg:py-10 mx-2 sm:mx-0 overflow-y-hidden overflow-x-visible xl:w-[1100px]">
+        <div className="w-full relative min-h-[260px] sm:min-h-[300px] md:min-h-[340px] lg:min-h-[391px] border-b-[4px] sm:border-b-[6px] md:border-b-[8px] lg:border-b-[9px] border-[#D4A574] rounded-[16px] sm:rounded-[20px] md:rounded-[25px] lg:rounded-[30px] shadow-[0_15px_30px_rgba(16,24,40,0.06)] sm:shadow-[0_20px_40px_rgba(16,24,40,0.06)] md:shadow-[0_35px_70px_rgba(16,24,40,0.08)] bg-white/90 backdrop-blur flex justify-center items-center px-3 sm:px-5 md:px-7 lg:px-12 py-5 sm:py-7 md:py-9 lg:py-10 mx-2 sm:mx-0 overflow-hidden xl:w-[1100px] max-w-full">
           {/* Centered Align Slider  */}
           <div
             ref={sliderRef}
@@ -250,13 +250,13 @@ function S8() {
         </div>
 
         {/* Absolute Positioned Left Line Div - Hidden on mobile, visible on large screens */}
-        <div className="hidden leftDirAnim xl:block absolute left-[-30px] lg:left-[-60px] xl:left-[10px] bottom-[-30px] lg:bottom-[-90px] xl:bottom-[-80px] z-20 opacity-60">
+        <div className="hidden leftDirAnim xl:block absolute left-0 lg:left-0 xl:left-[10px] bottom-0 lg:bottom-0 xl:bottom-0 z-20 opacity-60 overflow-hidden pointer-events-none">
           <div className="w-[70px] h-[120px] xl:w-[87px] xl:h-[151px] relative rotate-[5deg]">
             <Image
               src={"/new-page/icns/lft-line.png"}
               alt="RMW"
               fill
-              className="object-contain"
+              className="object-contain max-w-full"
             ></Image>
           </div>
         </div>

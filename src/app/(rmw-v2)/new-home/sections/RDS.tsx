@@ -95,7 +95,7 @@ function RDS() {
           <div
             key={idx}
             className="sticky w-full h-[100vh] sm:h-[95vh] md:h-[90vh] lg:h-[80vh] top-0 sm:top-4 md:top-16 lg:top-32 mb-4 sm:mb-6 md:mb-8 lg:mb-0"
-            style={{ zIndex: 10 + idx }}
+            style={{ zIndex: 10 + idx,  top: idx == 0 ? 0 : `${idx*40}px`}}
           >
             <S4Card
               link={ob.link}
