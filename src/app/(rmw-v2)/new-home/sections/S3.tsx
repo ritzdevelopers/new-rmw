@@ -151,7 +151,7 @@ const cardsData: CardData[] = [
       "Always-on analytics & optimisation",
       "Automated lead nurturing journeys",
     ],
-    link: "https://ritzmediaworld.com/services/celebrity-endorsements",
+    link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
     linkText: "Explore Influencer Marketing",
     bg: "linear-gradient(to bottom, #6B46C1, #4C1D95)", // Purple to dark purple gradient
     ellipseImage: "/new-page/elip.png",
@@ -173,7 +173,7 @@ const cardsData: CardData[] = [
       "Experience-first content architectures",
       "ATL / BTL orchestration for launches",
     ],
-    link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
+    link: "https://ritzmediaworld.com/services/celebrity-endorsements",
     linkText: "Explore Celebrity Endorsement",
     bg: "linear-gradient(to bottom, #103FCB, #081F65)", // Blue gradient
     ellipseImage: "/new-page/elip2.png",

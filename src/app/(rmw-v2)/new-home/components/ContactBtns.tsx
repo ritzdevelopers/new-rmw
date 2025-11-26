@@ -33,18 +33,18 @@ function ContactBtns() {
         // Phone: 80 + 64 + 16 = 160px
         // WhatsApp: 160 + 64 + 16 = 240px
         // Chatbot: 240 + 64 + 16 = 320px
-        return { phone: -110, whatsapp: -190, chatbot: -270 };
+        return { phone: -100, whatsapp: -180, chatbot: -260 };
       }
       if (width >= 768) {
         // Main: 4.5rem (72px), Button: 4rem (64px)
-        return { phone: -152, whatsapp: -228, chatbot: -304 };
+        return { phone: -142, whatsapp: -218, chatbot: -294 };
       }
       if (width >= 640) {
         // Main: 4rem (64px), Button: 3.5rem (56px)
-        return { phone: -136, whatsapp: -208, chatbot: -280 };
+        return { phone: -126, whatsapp: -202, chatbot: -278 };
       }
       // Main: 3.5rem (56px), Button: 3rem (48px)
-      return { phone: -120, whatsapp: -184, chatbot: -256 };
+      return { phone: -110, whatsapp: -174, chatbot: -248 };
     };
 
     const distances = getDistance();
@@ -250,7 +250,7 @@ function ContactBtns() {
       <button
         ref={mainButtonRef}
         onClick={toggleMenu}
-        className="w-14 h-14 sm:w-16 sm:h-16 md:w-[4.5rem] md:h-[4.5rem] lg:w-18 lg:h-18 bg-white rounded-full shadow-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 relative z-30"
+        className="w-14 h-14 sm:w-16 sm:h-16 md:w-[4rem] md:h-[4rem] bg-white rounded-full shadow-xl flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 relative z-30"
         style={{ position: "relative" }}
         aria-label={isOpen ? "Close menu" : "Open contact menu"}
       >

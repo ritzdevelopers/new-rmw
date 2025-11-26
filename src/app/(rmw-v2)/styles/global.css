@@ -255,7 +255,7 @@ h3 {
   width: 120%;
   height: 120%;
   border-radius: 50%;
-  border: 2px solid white;
+  /* border: 2px solid white; */
   opacity: 0.6;
   animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
   will-change: transform, opacity;
@@ -285,7 +285,7 @@ h3 {
   pointer-events: none;
 }
 
-@keyframes pulse-ring {
+/* @keyframes pulse-ring {
   0% {
     transform: translate(-50%, -50%) scale(0.9);
     opacity: 0.6;
@@ -297,7 +297,7 @@ h3 {
     transform: translate(-50%, -50%) scale(1.15);
     opacity: 0;
   }
-}
+} */
 
 @keyframes pulse-dot {
   0% {

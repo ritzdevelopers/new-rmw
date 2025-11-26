@@ -89,8 +89,8 @@ function S11() {
   // Function to download PDF
   const downloadPDF = () => {
     const link = document.createElement("a");
-    link.href = "/RMW Case Studies_250327_081936.pdf";
-    link.download = "RMW Case Studies_250327_081936.pdf";
+    link.href = "/RMWCaseStudies_250327_081936.pdf";
+    link.download = "RMWCaseStudies_250327_081936.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

@@ -123,14 +123,14 @@ function S51() {
               <button
                 ref={playButtonRef}
                 onClick={handlePlayClick}
-                className="pulse-button w-[88px] h-[88px] xs:w-[110px] xs:h-[110px] sm:w-[132px] sm:h-[132px] md:w-[156px] md:h-[156px] rounded-full cursor-pointer flex items-center justify-center transition-opacity hover:opacity-90 focus:outline-none aspect-square"
+                className="pulse-button w-[88px] h-[88px] sm:w-[110px] sm:h-[110px] rounded-full cursor-pointer flex items-center justify-center transition-opacity hover:opacity-90 focus:outline-none aspect-square"
                 aria-label="Play video"
               >
                 {/* Pulsing background behind border */}
                 <div className="pulse-border-bg" />
                 
                 {/* Outer white border */}
-                <div className="absolute inset-0 rounded-full border-2 border-white z-20" />
+                <div className="absolute inset-0 rounded-full z-20" />
                 
                 {/* Play Icon */}
                 <svg

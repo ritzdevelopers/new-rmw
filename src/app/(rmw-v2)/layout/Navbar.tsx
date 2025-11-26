@@ -27,13 +27,14 @@ function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isNavbarHidden, setIsNavbarHidden] = useState(false);
   const [servicesData, setServicesData] = useState<ServiceItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isNavbarHidden, setIsNavbarHidden] = useState(false);
+  const [navbarHeight, setNavbarHeight] = useState(72);
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const lastScrollY = useRef(0);
-  const isNavbarHiddenRef = useRef(false);
+  const lastScrollY = useRef<number>(0);
+  const isNavbarHiddenRef = useRef<boolean>(false);
 
   // Fetch services data from API
   useEffect(() => {
@@ -42,10 +43,20 @@ function Navbar() {
         const response = await fetch("/api/header_data");
         if (response.ok) {
           const data = await response.json();
-          setServicesData(data);
+          // Ensure data is an array
+          if (Array.isArray(data)) {
+            setServicesData(data);
+          } else {
+            console.error("Invalid data format received from API:", data);
+            setServicesData([]);
+          }
+        } else {
+          console.error("Failed to fetch services data:", response.status, response.statusText);
+          setServicesData([]);
         }
       } catch (error) {
         console.error("Error fetching services data:", error);
+        setServicesData([]);
       } finally {
         setLoading(false);
       }
@@ -111,67 +122,60 @@ function Navbar() {
       const scrolled = currentScrollY > 0;
       setIsScrolled(scrolled);
 
-      // Detect scroll direction
-      if (scrolled) {
-        // User is scrolling down
-        if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-          // Hide navbar when scrolling down (after 100px scroll)
-          if (!isNavbarHiddenRef.current) {
-            isNavbarHiddenRef.current = true;
-            setIsNavbarHidden(true);
-            // Close services dropdown when navbar hides
-            setServicesOpen(false);
-          }
-        } 
-        // User is scrolling up
-        else if (currentScrollY < lastScrollY.current) {
-          // Show navbar when scrolling up
-          if (isNavbarHiddenRef.current) {
-            isNavbarHiddenRef.current = false;
-            setIsNavbarHidden(false);
-          }
+      // Determine if navbar should be hidden (only when scrolled past threshold)
+      // Don't hide navbar if services dropdown or mobile menu is open
+      if (!servicesOpen && !mobileMenuOpen && scrolled) {
+        // Determine scroll direction
+        if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+          // Scrolling down - hide navbar
+          isNavbarHiddenRef.current = true;
+          setIsNavbarHidden(true);
+        } else if (currentScrollY < lastScrollY.current) {
+          // Scrolling up - show navbar
+          isNavbarHiddenRef.current = false;
+          setIsNavbarHidden(false);
         }
-      } else {
-        // At top of page, always show navbar
-        if (isNavbarHiddenRef.current) {
+        
+        // Always show navbar at the top
+        if (currentScrollY <= 0) {
           isNavbarHiddenRef.current = false;
           setIsNavbarHidden(false);
         }
       }
 
-      // Update last scroll position
       lastScrollY.current = currentScrollY;
 
-      // Apply background and color styles
       if (scrolled) {
         navRef.current.style.position = "fixed";
         navRef.current.style.top = "0";
         navRef.current.style.backgroundColor = "white";
         navRef.current.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
         ulRef.current.style.color = "black";
-        
-        // Apply transform for hide/show animation
-        if (isNavbarHiddenRef.current) {
-          navRef.current.style.transform = "translateY(-100%)";
-        } else {
-          navRef.current.style.transform = "translateY(0)";
-        }
       } else {
         navRef.current.style.position = "absolute";
         navRef.current.style.top = "0";
         navRef.current.style.backgroundColor = "rgba(0, 0, 0, 0)";
         navRef.current.style.removeProperty("box-shadow");
-        navRef.current.style.transform = "translateY(0)";
         ulRef.current.style.color = "white";
+      }
+
+      // Apply transform based on navbar hidden state
+      if (!servicesOpen && !mobileMenuOpen) {
+        if (isNavbarHiddenRef.current && scrolled) {
+          navRef.current.style.transform = "translateY(-100%)";
+        } else {
+          navRef.current.style.transform = "translateY(0)";
+        }
+      } else {
+        navRef.current.style.transform = "translateY(0)";
       }
     };
 
     // Set initial state
-    lastScrollY.current = window.scrollY;
     handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [servicesOpen, mobileMenuOpen]);
 
   // Handle services dropdown hover
   const handleMouseHover = useCallback(() => {
@@ -180,6 +184,12 @@ function Navbar() {
       timeoutRef.current = null;
     }
     setServicesOpen(true);
+    // Ensure navbar is visible when hovering
+    if (navRef.current) {
+      navRef.current.style.transform = "translateY(0)";
+      isNavbarHiddenRef.current = false;
+      setIsNavbarHidden(false);
+    }
   }, []);
 
   const handleMouseLeave = useCallback(() => {
@@ -245,6 +255,49 @@ function Navbar() {
     }
   }, [mobileMenuOpen]);
 
+  // Calculate navbar height dynamically
+  useEffect(() => {
+    const updateNavbarHeight = () => {
+      if (navRef.current) {
+        const height = navRef.current.offsetHeight;
+        setNavbarHeight(height || 72); // Fallback to 72px if height is 0
+      }
+    };
+
+    // Initial calculation
+    updateNavbarHeight();
+    
+    // Update on resize
+    window.addEventListener("resize", updateNavbarHeight);
+    
+    // Update when navbar state changes
+    const timeoutId = setTimeout(updateNavbarHeight, 100);
+    
+    return () => {
+      window.removeEventListener("resize", updateNavbarHeight);
+      clearTimeout(timeoutId);
+    };
+  }, [isScrolled, servicesOpen]);
+
+  // Update dropdown position when navbar height changes
+  useEffect(() => {
+    if (servicesDropdownRef.current) {
+      servicesDropdownRef.current.style.top = `${navbarHeight}px`;
+      servicesDropdownRef.current.style.maxHeight = `calc(100vh - ${navbarHeight}px)`;
+    }
+  }, [navbarHeight, servicesOpen]);
+
+  // Show navbar when services dropdown or mobile menu opens
+  useEffect(() => {
+    if (servicesOpen || mobileMenuOpen) {
+      isNavbarHiddenRef.current = false;
+      setIsNavbarHidden(false);
+      if (navRef.current) {
+        navRef.current.style.transform = "translateY(0)";
+      }
+    }
+  }, [servicesOpen, mobileMenuOpen]);
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -254,9 +307,6 @@ function Navbar() {
     <nav
       ref={navRef}
         className="w-full flex justify-center overflow-x-hidden items-center absolute top-0 left-0 z-50 transition-all duration-300 ease-in-out"
-        style={{
-          transition: "transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
-        }}
     >
       {/* Centered Align Div  */}
         <div className="xl:w-[90%] w-full flex justify-between items-center py-3 sm:py-4 px-4 sm:px-6 lg:px-8">
@@ -329,16 +379,18 @@ function Navbar() {
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
       </div>
+      </nav>
 
-        {/* Desktop Services Dropdown */}
+        {/* Desktop Services Dropdown - Moved outside nav to prevent transform issues */}
         {servicesOpen && (
         <div
             ref={servicesDropdownRef}
           onMouseEnter={handleMouseHover}
           onMouseLeave={handleMouseLeave}
-            className="hidden lg:block fixed top-[72px] left-0 w-full bg-white shadow-lg z-40 transition-opacity duration-200 opacity-100 lg:w-[95%] lg:left-[50%] lg:transform lg:-translate-x-1/2 services-dropdown-scroll"
+            className="hidden lg:block fixed left-0 w-full bg-white shadow-lg z-[100] transition-opacity duration-200 opacity-100 lg:w-[95%] lg:left-[50%] lg:transform lg:-translate-x-1/2 services-dropdown-scroll"
             style={{
-              maxHeight: "calc(100vh - 72px)",
+              top: `${navbarHeight}px`,
+              maxHeight: `calc(100vh - ${navbarHeight}px)`,
               overflowY: "auto",
               overflowX: "hidden",
               WebkitOverflowScrolling: "touch",
@@ -346,39 +398,32 @@ function Navbar() {
           >
             <div className="w-full px-4 sm:px-6 lg:px-8 pt-8 pb-12">
               {loading ? (
-                <div className="text-center py-8">Loading...</div>
+                <div className="text-center py-8">Loading services...</div>
+              ) : servicesData.length === 0 ? (
+                <div className="text-center py-8 text-gray-500">No services available at the moment.</div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 xl:gap-6 2xl:gap-8">
-                  {/* Dynamically render services in columns - matching original layout order */}
-                  {servicesData.length > 0 && (() => {
-                    // Find services by name to maintain original layout order
-                    const findService = (name: string) => servicesData.find(s => s.name === name);
-                    
-                    const digitalMarketing = findService("Digital Marketing");
-                    const radioAdvertising = findService("Radio Advertising");
-                    const webDevelopment = findService("Web Development");
-                    const creativeServices = findService("Creative Services");
-                    const printAdvertising = findService("Print Advertising");
-                    const contentMarketing = findService("Content Marketing");
-                    const celebrityEndorsements = findService("Celebrity Endorsements");
-                    const influencerMarketing = findService("Influencer Marketing");
-
-                    const column1 = [digitalMarketing, radioAdvertising, webDevelopment].filter(Boolean);
-                    const column2 = [creativeServices, printAdvertising, contentMarketing].filter(Boolean);
-                    const column3 = [celebrityEndorsements, influencerMarketing].filter(Boolean);
+                  {/* Dynamically render all services from API */}
+                  {(() => {
+                    // Distribute services evenly across columns (excluding the last column which is for special offer)
+                    // We'll use 3 columns for services on xl screens
+                    const servicesPerColumn = Math.ceil(servicesData.length / 3);
+                    const column1Services = servicesData.slice(0, servicesPerColumn);
+                    const column2Services = servicesData.slice(servicesPerColumn, servicesPerColumn * 2);
+                    const column3Services = servicesData.slice(servicesPerColumn * 2);
 
                     return (
                       <>
-                        {/* Column 1 - Digital Marketing, Radio Advertising, Web Development */}
+                        {/* Column 1 */}
                         <div className="space-y-8">
-                          {column1.map((service, idx) => (
-                            service && (
-                              <div key={idx}>
-                                <h2 className="font-[500] text-lg text-black mb-4">
-                                  {service.name}
-                                </h2>
-                                <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                                  {service.sub.map((subItem, subIdx) => (
+                          {column1Services.map((service, idx) => (
+                            <div key={`col1-${service.name}-${idx}`}>
+                              <h2 className="font-[500] text-lg text-black mb-4">
+                                {service.name}
+                              </h2>
+                              <ul className="font-[400] text-base text-[#00000099] space-y-2">
+                                {service.sub && service.sub.length > 0 ? (
+                                  service.sub.map((subItem, subIdx) => (
                                     <li key={subIdx}>
                                       <Link
                                         href={subItem.link}
@@ -387,23 +432,25 @@ function Navbar() {
                                         {subItem.name}
                                       </Link>
                                     </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )
+                                  ))
+                                ) : (
+                                  <li className="text-gray-400">No sub-services available</li>
+                                )}
+                              </ul>
+                            </div>
                           ))}
                         </div>
 
-                        {/* Column 2 - Creative Services, Print Advertising, Content Marketing */}
+                        {/* Column 2 */}
                         <div className="space-y-8">
-                          {column2.map((service, idx) => (
-                            service && (
-                              <div key={idx}>
-                                <h2 className="font-[500] text-lg text-black mb-4">
-                                  {service.name}
-                                </h2>
-                                <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                                  {service.sub.map((subItem, subIdx) => (
+                          {column2Services.map((service, idx) => (
+                            <div key={`col2-${service.name}-${idx}`}>
+                              <h2 className="font-[500] text-lg text-black mb-4">
+                                {service.name}
+                              </h2>
+                              <ul className="font-[400] text-base text-[#00000099] space-y-2">
+                                {service.sub && service.sub.length > 0 ? (
+                                  service.sub.map((subItem, subIdx) => (
                                     <li key={subIdx}>
                                       <Link
                                         href={subItem.link}
@@ -412,23 +459,25 @@ function Navbar() {
                                         {subItem.name}
                                       </Link>
                                     </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )
+                                  ))
+                                ) : (
+                                  <li className="text-gray-400">No sub-services available</li>
+                                )}
+                              </ul>
+                            </div>
                           ))}
                         </div>
 
-                        {/* Column 3 - Celebrity Endorsements, Influencer Marketing */}
+                        {/* Column 3 */}
                         <div className="space-y-8">
-                          {column3.map((service, idx) => (
-                            service && (
-                              <div key={idx}>
-                                <h2 className="font-[500] text-lg text-black mb-4">
-                                  {service.name}
-                                </h2>
-                                <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                                  {service.sub.map((subItem, subIdx) => (
+                          {column3Services.map((service, idx) => (
+                            <div key={`col3-${service.name}-${idx}`}>
+                              <h2 className="font-[500] text-lg text-black mb-4">
+                                {service.name}
+                              </h2>
+                              <ul className="font-[400] text-base text-[#00000099] space-y-2">
+                                {service.sub && service.sub.length > 0 ? (
+                                  service.sub.map((subItem, subIdx) => (
                                     <li key={subIdx}>
                                       <Link
                                         href={subItem.link}
@@ -437,10 +486,12 @@ function Navbar() {
                                         {subItem.name}
                                       </Link>
                                     </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )
+                                  ))
+                                ) : (
+                                  <li className="text-gray-400">No sub-services available</li>
+                                )}
+                              </ul>
+                            </div>
                           ))}
                         </div>
                       </>
@@ -482,7 +533,6 @@ function Navbar() {
             </div>
           </div>
         )}
-      </nav>
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (

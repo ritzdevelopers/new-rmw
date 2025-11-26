@@ -563,7 +563,7 @@ function S5() {
 
         <div className="w-full flex justify-center items-center">
           {" "}
-          <AnimatedBtn btnText="Click Me to know more"></AnimatedBtn>
+          <AnimatedBtn btnText="Click Me to know more" link="/services"></AnimatedBtn>
         </div>
       </div>
     </section>
