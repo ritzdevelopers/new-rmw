@@ -94,7 +94,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(
             src={img}
             alt={linkTxt}
             fill
-            className="object-cover rounded-tl-[32px] rounded-bl-[32px]"
+            className="object-cover"
           />
         </div>
       </div>

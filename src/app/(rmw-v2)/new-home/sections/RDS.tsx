@@ -103,8 +103,8 @@ function RDS() {
       {s4CardsData.map((ob, idx) => (
           <div
             key={idx}
-            className="sticky w-full mb-4 sm:mb-6 md:mb-8 lg:mb-0"
-            style={{ zIndex: 10 + idx,  top: idx == 0 ?  `${2*30}px` : `${idx*420}px`}}
+            className="sticky w-full mb-4 sm:mb-6 md:mb-8 lg:mb-10"
+            style={{ zIndex: 10 + idx,  top: idx == 0 ?  `${2*5}px` : `${idx*420}px`}}
           >
             {
               idx === 0 && (

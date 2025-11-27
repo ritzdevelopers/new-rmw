@@ -128,11 +128,12 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
                   width={36}
                   height={36}
                   className="w-8 h-8 sm:w-9 sm:h-9"
+                  onClick={() => window.open(card.link, "_blank")}
                 />
               </div>
 
               <div className="flex flex-col gap-3 sm:gap-4">
-                <h2 className="text-2xl sm:text-[28px] md:text-[32px] font-[600] text-white leading-tight">
+                <h2 onClick={() => window.open(card.link, "_blank")} className="text-2xl sm:text-[28px] md:text-[32px] font-[600] text-white leading-tight">
                   {card.title}
                 </h2>
                 <p className="text-sm text-[#FFFFFFE5] sm:text-[15px] md:text-[16px] font-[400] leading-relaxed">
@@ -143,7 +144,7 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
            
 
               <Link
-                href={card.link}
+                href={card.link} target="_blank"
                 className={`group inline-flex md:h-[40px] w-full items-center justify-center gap-2 rounded-[8px] px-6 py-3 text-[14px] lg:text-[16px] font-[500] transition-colors duration-200 ${
                   card.buttonBg || "bg-[#FFFFFF]"
                 } ${card.buttonTextColor || "text-black"} ${

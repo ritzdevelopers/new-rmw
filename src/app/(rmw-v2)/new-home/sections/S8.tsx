@@ -146,7 +146,7 @@ function S8() {
   }, []);
 
   return (
-    <section className="w-full flex justify-center overflow-x-hidden overflow-y-hidden items-center bg-gradient-to-br from-[#F9FAFB] to-[#ffffff] py-10 sm:py-14 md:py-20 md:pt-4 lg:py-20 px-4 sm:px-6 max-w-full md:min-h-screen">
+    <section className="w-full flex justify-center overflow-x-hidden overflow-y-hidden items-center bg-gradient-to-br from-[#F9FAFB] to-[#ffffff] py-10 sm:py-14 md:py-20 md:pt-4 lg:py-20 px-4 sm:px-6 max-w-full min-h-screen">
       {/* Centered Align Div  */}
       <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%] lg:max-w-[1400px] flex flex-col items-center gap-6 sm:gap-10 md:gap-14 lg:gap-16 relative overflow-y-hidden max-h-full">
         {/* Top Header Div  */}
