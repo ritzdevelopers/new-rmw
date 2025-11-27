@@ -6,6 +6,27 @@ import ScrollSlider2 from "../components/ScrollSlider2";
 
 // Card data array with dynamic backgrounds
 const cardsData = [
+  {
+    id: 3,
+    title: "Best Creative Agency (Real Estate) in Delhi/NCR By Big FM",
+    description:
+      "A credibility-driven recognition awarded for long-term reliability, impactful brand results, and ethical advertising practices. Highlights Ritz Media World's leadership in delivering consistent success to real estate giants and corporate brands across NCR.",
+    imgSrc: "/new-page/awards/7.jpg",
+  },
+  {
+    id: 5,
+    title: "Best Real Estate Podcast In India - HT Smartcast Podmasters Awards 2025",
+    description:
+      "Awarded for unmatched marketing performance, integrated communication strategies, and exceptional client satisfaction. Recognises Ritz Media World's dominance in delivering full-funnel marketing outcomes across print, digital, outdoor, and experiential platforms.",
+    imgSrc: "/new-page/awards/aw5.jpg",
+  },
+  {
+    id: 4,
+    title: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2024)",
+    description:
+      "Conferred to leading organisations shaping industry excellence. Ritz Media World received this honour for pioneering creative standards, innovative campaign frameworks, and multi-platform brand strategies that influence consumer behaviour at scale.",
+    imgSrc: "/new-page/awards/aw4.jpg",
+  },
     {
    
     id: 1,
@@ -21,27 +42,7 @@ const cardsData = [
       "Recognises outstanding performance in digital innovation, content strategy, and ROI-focused campaigns. Ritz Media World earned this award for transforming brand visibility through data-driven marketing and high-engagement digital solutions across North India.",
     imgSrc: "/new-page/awards/aw2.jpg",
   },
-  {
-    id: 3,
-    title: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2022)",
-    description:
-      "A credibility-driven recognition awarded for long-term reliability, impactful brand results, and ethical advertising practices. Highlights Ritz Media World's leadership in delivering consistent success to real estate giants and corporate brands across NCR.",
-    imgSrc: "/new-page/awards/aw3.jpg",
-  },
-  {
-    id: 4,
-    title: "Icons Award – The Times of India (2022)",
-    description:
-      "Conferred to leading organisations shaping industry excellence. Ritz Media World received this honour for pioneering creative standards, innovative campaign frameworks, and multi-platform brand strategies that influence consumer behaviour at scale.",
-    imgSrc: "/new-page/awards/aw4.jpg",
-  },
-  {
-    id: 5,
-    title: "Best Marketing Agency in Delhi NCR (2025)",
-    description:
-      "Awarded for unmatched marketing performance, integrated communication strategies, and exceptional client satisfaction. Recognises Ritz Media World's dominance in delivering full-funnel marketing outcomes across print, digital, outdoor, and experiential platforms.",
-    imgSrc: "/new-page/awards/aw5.jpg",
-  },
+  
 ];
 
 function OurAwards() {

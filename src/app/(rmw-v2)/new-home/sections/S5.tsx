@@ -491,6 +491,7 @@ function S5() {
                     alt={story.title}
                     fill
                     className="object-fill"
+                    onClick={()=>window.open(story.link, "_blank")}
                   />
                   {/* Absolute Positioned Div  */}
                   <button className="min-w-[155px] px-4 h-[32px] rounded-full absolute top-4 left-4 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#242321] z-10">
