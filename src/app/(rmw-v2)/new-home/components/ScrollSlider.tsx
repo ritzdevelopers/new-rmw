@@ -114,7 +114,7 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
         {cards.map((card) => (
           <div
             key={card.id}
-            className="relative md:py-6 flex min-h-[440px] flex-shrink-0 flex-col overflow-hidden rounded-[20px] sm:rounded-[28px] transition-transform duration-300 hover:-translate-y-2 w-[calc(100vw-4rem)] md:w-[calc(50vw-2rem)] lg:w-[700px]"
+            className="relative md:py-6 flex min-h-[440px] flex-shrink-0 flex-col overflow-hidden rounded-[20px] sm:rounded-[28px] transition-transform duration-300 md:w-[calc(50vw-2rem)] lg:w-[700px]"
             style={{
               background: card.bg,
               boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",

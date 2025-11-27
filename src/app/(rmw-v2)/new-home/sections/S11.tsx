@@ -172,7 +172,8 @@ const router = useRouter();
   const handleAuditRequest = () => {
     // Handle audit request logic here
     // console.log("Audit requested");
-    router.push("/contact.html");
+    // router.push("/contact.html", { target: "_blank" });
+    window.open("/contact.html", "_blank");
   };
 
   // Auto-close modal for success messages

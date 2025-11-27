@@ -29,8 +29,8 @@ import RDS from "./sections/RDS";
 function page() {
   return (
     <main className="">
-      {/* <LenisSmoothScroll />
-      <RouteChangeHandler /> */}
+      {/* <LenisSmoothScroll />*/}
+      <RouteChangeHandler /> 
       {/* <CustomCursor /> */}
       <S1></S1>
       {/* <S2></S2> */}
@@ -38,7 +38,7 @@ function page() {
       <S3C></S3C>
       <S3></S3>
       {/* <S4></S4> */}
-      <NewS4></NewS4>
+      {/* <NewS4></NewS4> */}
       <RDS></RDS>
       {/* <S4C></S4C> */}
 

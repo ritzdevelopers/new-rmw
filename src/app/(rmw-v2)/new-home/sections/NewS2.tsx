@@ -154,7 +154,7 @@ function NewS2() {
 
           {/* Bottom Section Card  */}
           <HoverCard
-            width="w-full cursor-pointer hover:bg-gray-200 transition-all duration-300 ease-in-out lg:w-[309px]"
+            width="w-full  lg:w-[309px]"
             height="h-[120px] sm:h-[140px] lg:h-[154px]"
             title="1B+"
             para="Words Written"
@@ -192,7 +192,7 @@ function NewS2() {
         ].map((ob, idx) => {
           return (
             <HoverCard
-              width="w-full cursor-pointer hover:bg-gray-200 transition-all duration-300 ease-in-out sm:w-[calc(33.333%-16px)] lg:w-[309px]"
+              width="w-full  sm:w-[calc(33.333%-16px)] lg:w-[309px]"
               height="h-[120px] sm:h-[140px] lg:h-[154px]"
               title={ob.ttl}
               para={ob.para}

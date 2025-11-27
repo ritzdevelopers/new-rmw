@@ -252,9 +252,10 @@ function S3C() {
             ease: "linear",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 50%",
+              start: "top 100%",
               end: "top 50%",
-              scrub: 1,
+              // scrub: 1,
+              // markers:true
             },
           }
         );
@@ -265,9 +266,10 @@ function S3C() {
         const headingTl = gsap.timeline({
           scrollTrigger: {
             trigger: headingRef.current,
-            start: "top 85%",
+            start: "top 100%",
             end: "top 60%",
-            scrub: 3, // Smooth scroll-linked animation
+          
+            // markers:true
           },
         });
 

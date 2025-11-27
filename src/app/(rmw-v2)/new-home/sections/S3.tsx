@@ -215,7 +215,7 @@ function S3() {
         <div className="flex justify-center text-center">
           <p className="max-w-xl text-sm text-[#4A5565] sm:text-[16px]">
             Not sure which path fits your brand?{" "}
-            <Link href="/contact.html" className="text-[#4A5565] underline">
+            <Link href="/contact.html" target="_blank" className="text-[#4A5565] underline">
               Let's discuss your unique needs
             </Link>
           </p>

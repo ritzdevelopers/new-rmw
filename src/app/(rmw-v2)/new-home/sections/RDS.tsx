@@ -88,15 +88,34 @@ function RDS() {
   ];
 
   return (
-    <section className="w-full relative flex flex-col items-center py-6 sm:py-8 md:py-10 lg:py-12 px-4">
-    <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%]">
+    <section className="w-full relative flex flex-col items-center px-4 ">
   
+    <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%]">
+ 
       {s4CardsData.map((ob, idx) => (
           <div
             key={idx}
-            className="sticky w-full h-[100vh] sm:h-[95vh] md:h-[90vh] lg:h-[80vh] top-0 sm:top-4 md:top-16 lg:top-32 mb-4 sm:mb-6 md:mb-8 lg:mb-0"
-            style={{ zIndex: 10 + idx,  top: idx == 0 ? 0 : `${idx*40}px`}}
+            className="sticky w-full mb-4 sm:mb-6 md:mb-8 lg:mb-0"
+            style={{ zIndex: 10 + idx,  top: idx == 0 ?  `${2*30}px` : `${idx*420}px`}}
           >
+            {
+              idx === 0 && (
+                <div className="flex flex-col mb-6 gap-2 sm:gap-2.5 md:gap-3 w-full">
+                <button className="inline-flex w-fit rounded-full bg-[#D4A574] px-4 py-1.5 sm:px-5 sm:py-2 text-[12px] sm:text-[13px] lg:text-[14px] font-[400] text-white">
+                  What We Do
+                </button>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#101828] lg:text-[48px] lg:leading-[1.1]">
+                  360° Brand{" "}
+                  <span className="text-[#D4A574]">Elevation Services</span>
+                </h2>
+                <p className="max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-4xl text-sm sm:text-base md:text-lg lg:text-[20px] text-[#4A5565] font-[400] leading-relaxed">
+                  Our in-house team masters the entire spectrum of digital marketing ,
+                  from strategy and creative development to sophisticated campaigns
+                  .Our in-house team masters the entire spectrum
+                </p>
+              </div>
+              )
+            }
             <S4Card
               link={ob.link}
               linkTxt={ob.linkTxt}

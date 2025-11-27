@@ -8,10 +8,10 @@ import { gsap } from "gsap";
 function S1() {
   const sliderImages = React.useMemo(
     () => [
-      {
-        src: "/new-page/s1/bg-4.jpg",
-        alt: "Ritz Media World branding showcase",
-      },
+      // {
+      //   src: "/new-page/s1/bg-4.jpg",
+      //   alt: "Ritz Media World branding showcase",
+      // },
       {
         src: "/new-page/s1/bg-3.jpg",
         alt: "Ritz Media World branding showcase",
@@ -144,7 +144,7 @@ function S1() {
           </button>
           <button
             onClick={() =>
-              window.open("https://ritzmediaworld.com/contact.html", "_blank")
+              window.open("https://ritzmediaworld.com/web-stories", "_blank")
             }
             className="inline-flex liquid3 cursor-pointer justify-center hover:text-white items-center bg-white gap-2 sm:gap-3 rounded-[8px] w-[134px] md:w-[180px] lg:w-[210px] py-2 sm:py-2.5 lg:py-3 text-black transition hover:bg-white/10 text-xs sm:text-sm lg:text-base"
           >

@@ -446,7 +446,7 @@ function S5() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex w-full justify-center overflow-hidden overflow-x-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-0 mb-4 mt-4 max-w-full"
+      className="relative flex w-full justify-center overflow-hidden overflow-x-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-10 mb-4 mt-4 max-w-full"
     >
       <div className="flex w-full max-w-[99%] flex-col gap-12 px-4 sm:px-6 lg:px-0 lg:pb-10">
         {/* Row 1 */}
@@ -550,7 +550,7 @@ function S5() {
                 </div>
 
                 <Link
-                  href={story.link}
+                  href={story.link} target="_blank"
                   className="group inline-flex items-center gap-3 text-[14px] font-[500] w-[198px] h-[36px] border-[0.8px] border-[#3D28171A] rounded-[8px] pl-3 text-[#3D2817] transition-transform duration-200 hover:translate-x-1 "
                 >
                   View Full Case Study

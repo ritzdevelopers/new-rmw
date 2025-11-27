@@ -11,13 +11,13 @@ import { FaInstagram } from "react-icons/fa";
 import { LuTwitter } from "react-icons/lu";
 import { FaYoutube } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
-import { ChevronUp } from "lucide-react";
+import { ChevronUp, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 function Footer() {
   const router = useRouter();
   const handleConsultation = () => {
-    router.push("/contact.html");
+    window.open("/contact.html", "_blank");
   };
 
   const scrollToTop = () => {
@@ -101,7 +101,7 @@ function Footer() {
                 className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
                 aria-label="Twitter"
               >
-                <LuTwitter className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
+                <X className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
               </a>
               <a
                 href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in"
@@ -328,28 +328,26 @@ function Footer() {
 
           <ul className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-4 md:gap-6">
             <li>
-              <Link
-                href="/privacy-policy"
+              <p
                 className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
               >
                 Privacy Policy
-              </Link>
+              </p>
             </li>
             <li>
-              <Link
-                href="/terms-of-service"
+              <p
+              
                 className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
               >
                 Terms of Service
-              </Link>
+              </p>
             </li>
             <li>
-              <Link
-                href="/sitemap"
+              <p
                 className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
               >
                 Sitemap
-              </Link>
+              </p>
             </li>
           </ul>
         </div>
