@@ -13,6 +13,7 @@ import { FaYoutube } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
 import { ChevronUp, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import XIcon from "../new-home/components/XIcon";
 
 function Footer() {
   const router = useRouter();
@@ -101,7 +102,8 @@ function Footer() {
                 className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
                 aria-label="Twitter"
               >
-                <X className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
+                {/* <X className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" /> */}
+                <XIcon className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
               </a>
               <a
                 href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in"

@@ -43,7 +43,7 @@ function ASI({
   };
   return (
     <div
-      className={`w-[34px] h-[42px] ${bgClasses[bgType]} fixed ${px} ${py} flex justify-start pl-2 cursor-pointer ${styles.sbAnime} items-center z-50 overflow-hidden`}
+      className={`w-[34px] h-[42px] ${bgClasses[bgType]} fixed ${px} ${py} flex justify-start pl-2 cursor-pointer ${styles.sbAnime} items-center rounded-tl-[4px] rounded-bl-[4px] z-50 overflow-hidden`}
       onClick={() => handleClick(bgType as keyof typeof socialMediaNames)}
     >
       <div className="flex items-center gap-3 whitespace-nowrap">
