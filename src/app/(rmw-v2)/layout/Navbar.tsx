@@ -312,7 +312,7 @@ function Navbar() {
         <div className="xl:w-[90%] w-full flex justify-between items-center py-3 sm:py-4 px-4 sm:px-6 lg:px-8">
           {/* Logo div - Responsive */}
           <Link
-            href="/new-home"
+            href="/"
             className="relative h-[32px] w-[180px] sm:h-[38px] sm:w-[210px] md:h-[42px] md:w-[245px]"
           >
           <Image
@@ -331,31 +331,31 @@ function Navbar() {
               className="flex justify-center items-center gap-4 xl:gap-6 2xl:gap-8 font-[500] text-white text-sm xl:text-base 2xl:text-lg transition-colors duration-300"
           >
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/new-home"}>Home</Link>
+              <Link href={"/"}>Home</Link>
             </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/new-home"}>About</Link>
+              <Link href={"/about.html"} target="_blank">About</Link>
             </li>
               <li
                 className="cursor-pointer hover:opacity-80 transition-opacity relative"
                 onMouseEnter={handleMouseHover}
                 onMouseLeave={handleMouseLeave}
               >
-                <Link href={"/new-home"} data-services-link>
+                <Link href={"/services.html"} target="_blank" data-services-link>
                 Services
               </Link>
             </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/new-home"}>Our Work</Link>
+              <Link href={"/work.html"} target="_blank">Our Work</Link>
             </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/new-home"}>Blog</Link>
+              <Link href={"/blogs"} target="_blank">Blog</Link>
             </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/new-home"}>Academy</Link>
+              <Link href={"/rdx-digital-marketing-course"} target="_blank">Academy</Link>
             </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/new-home"}>Contact Us</Link>
+              <Link href={"/contact.html"} target="_blank">Contact Us</Link>
             </li>
               <li>
                 <button onClick={() => router.push("/contact.html")} className="px-4 liquid xl:px-6 2xl:px-8 h-9 xl:h-10 2xl:h-[42px] cursor-pointer rounded-lg text-white bg-[#D4A574] font-[500] text-sm xl:text-base 2xl:text-lg hover:bg-[#C59564] transition-colors whitespace-nowrap">
@@ -574,7 +574,7 @@ function Navbar() {
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/new-home"
+                  href="/" target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -583,7 +583,7 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/new-home"
+                  href="/about.html" target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -632,7 +632,7 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/new-home"
+                  href="/blogs" target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -641,7 +641,7 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/new-home"
+                  href="/"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -650,7 +650,7 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/new-home"
+                    href="/rdx-digital-marketing-course" target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -659,7 +659,7 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/new-home"
+                  href="/contact.html" target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -671,7 +671,7 @@ function Navbar() {
 
           {/* Mobile Menu Footer */}
           <div className="p-4 border-t-[0.8px] border-[#b8b8b8]">
-            <button onClick={() => router.push("/contact.html")} className="w-full h-12 bg-[#D4A574] text-white rounded-full font-[500] text-base hover:bg-[#C59564] transition-colors">
+            <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="w-full h-12 bg-[#D4A574] text-white rounded-full font-[500] text-base hover:bg-[#C59564] transition-colors">
               Free Consulting
             </button>
             {/* Special Offer Section for Mobile */}

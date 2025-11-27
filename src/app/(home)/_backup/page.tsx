@@ -1,5 +1,4 @@
-
-import { Providers } from "../provider/Provider";
+import { Providers } from "@/app/provider/Provider";
 import Elementor from "@/allPages/Elementor";
 import CookieConsentWithLead from "@/components/Cookies/CookieConsentWithLead";
 
