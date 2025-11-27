@@ -114,11 +114,7 @@ function S51() {
         {/* Content - Hide when video is playing */}
         {!isPlaying && (
           <div className="absolute top-1/2 transform -translate-y-1/2 inset-0 flex flex-col items-center px-4 py-6 z-10 transition-opacity duration-300 overflow-x-hidden overflow-y-hidden max-w-full max-h-full">
-            <div className="flex flex-col items-center justify-center w-full h-full gap-8 max-w-full max-h-full overflow-x-hidden overflow-y-hidden pb-8">
-              <h2 className="mt-4 font-[600] h-full text-[22px] xs:text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] leading-tight text-white text-center max-w-[90vw] overflow-x-hidden overflow-y-hidden">
-                Making Your Business Unique
-              </h2>
-              
+            <div className="flex flex-col items-center justify-center w-full h-full max-w-full max-h-full overflow-x-hidden overflow-y-hidden pb-8">       
               {/* Custom Play Button */}
               <button
                 ref={playButtonRef}

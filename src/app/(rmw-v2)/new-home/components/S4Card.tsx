@@ -19,6 +19,8 @@ interface S4CardProps {
   img: string;
   link: string;
   disableSticky?: boolean;
+  border: string;
+  btnBg: string;
 }
 
 const S4Card = forwardRef<HTMLDivElement, S4CardProps>(
@@ -33,13 +35,15 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(
       linkTxtColor,
       img,
       disableSticky = false,
+      border,
+      btnBg,
     },
     ref
   ) => {
     return (
       <div
         ref={ref}
-        className={`w-full flex flex-col-reverse lg:flex-row rounded-[32px] justify-between shadow-lg ${cardBg} overflow-hidden`}
+        className={`w-full flex flex-col-reverse lg:flex-row rounded-[32px] justify-between  ${cardBg} overflow-hidden ${border}`}
 
       >
         {/* LEFT CONTENT */}
@@ -47,7 +51,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(
           <div className="w-full max-w-[600px] flex flex-col gap-5">
             <Link
               href={link}
-              className={`inline-flex w-fit h-[36px] lg:h-[42px] px-5 justify-center items-center cursor-pointer ${linkBG} rounded-[8px] font-[600] text-[18px] ${linkTxtColor} transition-transform hover:scale-105`}
+              className={`inline-flex w-fit h-[36px] lg:h-[42px] px-5 justify-center items-center cursor-pointer ${btnBg} rounded-[8px] font-[600] text-[18px] ${linkTxtColor} transition-transform hover:scale-105`}
             >
               {linkTxt}
             </Link>
@@ -76,7 +80,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(
 
             <button
               onClick={() => window.open(link, "_blank")}
-              className="w-fit min-w-[130px] h-[34px] px-4 border bg-white rounded-[8px] text-black font-[500] text-[14px] flex items-center gap-2 hover:scale-105 transition-transform"
+              className="w-fit min-w-[130px] h-[34px] px-4  bg-white rounded-[8px] text-black font-[500] text-[14px] flex items-center gap-2 hover:scale-105 transition-transform"
             >
               Read More <FiArrowRight className="w-4 h-4" />
             </button>

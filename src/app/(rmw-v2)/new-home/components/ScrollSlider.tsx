@@ -63,7 +63,7 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top top",
+            start: "top 10%",
             end: () => {
               const track = trackRef.current;
               const slider = sliderRef.current;

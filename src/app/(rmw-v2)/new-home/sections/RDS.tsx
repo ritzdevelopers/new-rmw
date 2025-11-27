@@ -25,11 +25,13 @@ function RDS() {
           link: "https://ritzmediaworld.com/services/digital-marketing/orm-in-digital-marketing",
         },
       ],
-      cardBg: "bg-gradient-to-tl from-[#D1FFEC] to-[#F7FFDF]",
+      cardBg: "bg-gradient-to-tl from-[#F7FFDF] to-[#FFE8D1]",
       linkBG: "bg-[#21EAB5]",
       linkTxtColor: "text-[#101828]",
       img: "/new-page/digital.jpg",
       link: "/services/digital-marketing",
+      border:"border-[1px] border-[#EEEEEE]",
+      btnBg:"bg-[#EA2175]"
     },
     {
       linkTxt: "Creative Services",
@@ -57,6 +59,8 @@ function RDS() {
       linkTxtColor: "text-[#101828]",
       img: "/new-page/banners-for-rmw9.jpg",
       link: "/services/creative-services",
+      border:"border-[1px] border-[#EEEEEE]",
+      btnBg:"bg-[#EAE721]"
     },
     {
       linkTxt: "Print Advertising",
@@ -79,16 +83,18 @@ function RDS() {
           link: "https://ritzmediaworld.com/services/print-advertising/negotiating-rates",
         },
       ],
-      cardBg: "bg-gradient-to-tl from-[#F7FFDF] to-[#FFE8D1]",
+      cardBg: "bg-gradient-to-tl from-[#F7FFDF] to-[#D1FFEC]",
       linkBG: "bg-[#21EAB5]",
       linkTxtColor: "text-[#101828]",
       img: "/new-page/banners-for-rmw5.jpg",
       link: "/services/print-advertising",
+      border:"border-[1px] border-[#ECF6FF]",
+      btnBg:"bg-[#21EAB5]"
     },
   ];
 
   return (
-    <section className="w-full relative flex flex-col items-center px-4 ">
+    <section className="w-full relative flex flex-col items-center px-4">
   
     <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%]">
  
@@ -125,6 +131,8 @@ function RDS() {
               linkBG={ob.linkBG}
               linkTxtColor={ob.linkTxtColor}
               img={ob.img}
+              border={ob.border}
+              btnBg={ob.btnBg}
             />
           </div>
       ))}

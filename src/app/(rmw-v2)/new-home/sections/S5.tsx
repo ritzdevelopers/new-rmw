@@ -446,7 +446,7 @@ function S5() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex w-full justify-center overflow-hidden overflow-x-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-10 mb-4 mt-4 max-w-full"
+      className="relative flex w-full justify-center overflow-hidden overflow-x-hidden bg-[#ffffff] py-16 sm:py-0 md:pb-[5px] lg:py-10 mb-4 mt-4 max-w-full "
     >
       <div className="flex w-full max-w-[99%] flex-col gap-12 px-4 sm:px-6 lg:px-0 lg:pb-10">
         {/* Row 1 */}
