@@ -94,7 +94,9 @@ function RDS() {
   ];
 
   return (
-    <section className="w-full relative flex flex-col items-center px-4">
+    <section className="w-full relative flex flex-col items-center px-4" style={{
+      paddingTop: "50px !important"
+    }}>
   
     <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%]">
  

@@ -85,7 +85,8 @@ function NewS2() {
             }}
           >
             <Image
-              src={mainImg}
+              src={'/new-page/s2/new-s2-img2.png'}
+              onClick={() => window.open("https://ritzmediaworld.com/services/digital-marketing/search-engine-optimization-seo", "_blank")}
               alt="RMW"
               fill
               className="object-cover transition-transform duration-300 ease-out"
@@ -132,7 +133,8 @@ function NewS2() {
             }}
           >
             <Image
-              src={subImg}
+              src={'/new-page/s2/new-s2-img.png'}
+              onClick={() => window.open("https://ritzmediaworld.com/services/creative-services/branding-and-identity-development", "_blank")}
               alt="RMW"
               fill
               className="object-cover transition-transform duration-300 ease-out"
