@@ -75,20 +75,20 @@ function S1() {
   return (
     <section
       ref={heroRef}
-      className="relative flex h-auto min-h-[400px] sm:min-h-[500px] lg:h-screen w-full items-center overflow-hidden overflow-x-hidden bg-neutral-900 max-w-full"
+      className="relative flex h-auto h-screen w-full items-center overflow-hidden overflow-x-hidden bg-neutral-900 max-w-full"
     >
       {/* Slider Container  */}
       <div className="absolute inset-0 overflow-hidden z-10">
         {/* Here The Slider Will Come In Background A Slider Wil Run After Every 5 Sec And The Image Will Slide From Right To Left And It Will Be Fully Responsive  */}
         <div
           ref={trackRef}
-          className="flex h-auto lg:h-full"
+          className="flex h-full"
           style={{ width: `${extendedSlides.length * 100}%` }}
         >
           {extendedSlides.map((image, index) => (
             <div
               key={`${image.src}-${index}`}
-              className="relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-full flex-shrink-0"
+              className="relative h-full flex-shrink-0"
               style={{ width: `${100 / extendedSlides.length}%` }}
             >
               <Image
@@ -96,7 +96,7 @@ function S1() {
                 alt={image.alt}
                 fill
                 priority={index === 0}
-                className="h-full w-full object-contain lg:object-cover"
+                className="h-full w-full object-cover"
                 sizes="100vw"
                 quality={100}
               />
@@ -116,7 +116,7 @@ function S1() {
       <div className="relative mx-auto flex w-full max-w-[720px] flex-col z-30 gap-4 sm:gap-6 lg:gap-8 px-6 text-white sm:px-10 py-8 lg:py-0">
         <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 text-center justify-center items-center self-end md:self-auto">
           <h1
-            className="text-[16px] md:text-[28px] font-[700] leading-tight lg:text-5xl uppercase"
+            className="text-[25px] md:text-[28px] font-[700] leading-tight lg:text-5xl uppercase"
             style={{
               textShadow:
                 "0 2px 8px rgba(0,0,0,0.22), 0 1px 0 rgba(0,0,0,0.13)",
