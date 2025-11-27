@@ -45,7 +45,7 @@ function Footer() {
           <div className="flex-shrink-0">
             <button
               onClick={handleConsultation}
-              className="font-[500] liquid2 rounded-[8px] bg-white cursor-pointer text-[13px] sm:text-[14px] w-full sm:w-[200px] md:w-[232px] h-[40px]  text-[#D4A574] hover:bg-[#F0F0F0] transition-colors duration-300 whitespace-nowrap"
+              className="font-[500] liquid2 rounded-[8px] bg-white cursor-pointer text-[13px] px-3 sm:text-[14px] w-full sm:w-[200px] md:w-[232px] h-[40px]  text-[#D4A574] hover:bg-[#F0F0F0] transition-colors duration-300 whitespace-nowrap"
             >
               Schedule Free Consultation
             </button>

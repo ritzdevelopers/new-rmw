@@ -75,7 +75,7 @@ function ScrollSlider2({ cards, sectionRef }: ScrollSliderProps) {
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: isMobile ? "top top" : "top -16%",
+            start: isMobile ? "top 20%" : "top -16%",
             end: () => {
               const track = trackRef.current;
               const slider = sliderRef.current;
