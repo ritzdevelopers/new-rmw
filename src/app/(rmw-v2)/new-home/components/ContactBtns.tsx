@@ -3,7 +3,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { MessageCircle, Phone, X, Bot } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import gsap from "gsap";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+import Image from "next/image";
+import ServicesBoat, { ServicesBoatRef } from "@/components/servicesBoat/ServicesBoat";
 
 function ContactBtns() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +12,7 @@ function ContactBtns() {
   const phoneButtonRef = useRef<HTMLButtonElement>(null);
   const whatsappButtonRef = useRef<HTMLButtonElement>(null);
   const chatbotButtonRef = useRef<HTMLButtonElement>(null);
+  const servicesBoatRef = useRef<ServicesBoatRef>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
@@ -178,12 +180,8 @@ function ContactBtns() {
 
   const handleChatbotClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // Add your chatbot functionality here
-    // For example: open chatbot widget, navigate to chat page, etc.
-    console.log("Chatbot clicked");
-    // You can replace this with your chatbot implementation
-    // window.open("/chat", "_blank");
-    // or trigger chatbot widget: window.chatbotWidget?.open();
+    // Trigger ServicesBoat to open
+    servicesBoatRef.current?.openBoat();
   };
 
   return (
@@ -192,6 +190,9 @@ function ContactBtns() {
       className="fixed bottom-4 right-2 z-[9999] flex flex-col items-center justify-end"
       style={{ position: "fixed", bottom: "1rem", right: "0.5rem" }}
     >
+      {/* ServicesBoat Component - Hidden button, controlled by chatbot button */}
+      <ServicesBoat ref={servicesBoatRef} hideButton={true} />
+
       {/* Chatbot Button - Top button */}
       <button
         ref={chatbotButtonRef}
@@ -205,9 +206,12 @@ function ContactBtns() {
           transform: "translateY(0) scale(0.5)",
         }}
       >
-        <IoChatbubbleEllipsesOutline
-          className="w-6 h-6  text-[#D4A574]"
-          strokeWidth={2}
+        <Image
+          src="/AI_Bot_Icon.png"
+          alt="Services Bot"
+          width={24}
+          height={24}
+          className="object-contain"
         />
       </button>
 

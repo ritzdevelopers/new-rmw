@@ -26,23 +26,32 @@ const Experience = () => {
           data-widget_type="choose-us.default"
         >
           <div className="elementor-widget-container">
-            <section className="tp-chooseus__area fix tp-chooseus__1 p-relative tp-bg-class">
+            <section className="tp-chooseus__area fix tp-chooseus__1 p-relative tp-bg-class" style={{ overflow: 'hidden', minHeight: '500px', position: 'relative' }}>
               <div
                 className="tp-chooseus__bg-thumb d-none d-xl-block wow avtrix_clip_right"
                 style={{
                   backgroundImage: "url(/newImg.jpg)",
                   backgroundPosition:'center',
-                  backgroundSize:'cover'
+                  backgroundSize:'cover',
+                  backgroundRepeat: 'no-repeat',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '40%',
+                  maxWidth: '40%',
+                  height: '100%',
+                  zIndex: 1,
+                  pointerEvents: 'none'
                 }}
                 data-wow-delay=".3s"
                 data-wow-duration="2.5s"
               >
               </div>
-              <div className="container">
+              <div className="container" style={{ position: 'relative', zIndex: 2, paddingTop: '60px', paddingBottom: '60px' }}>
                 <div className="row">
-                  <div className="col-xl-7 offset-xl-5">
-                    <div className="tp-chooseus__wrap">
-                      <div className="tp-chooseus__title-box mb-45">
+                  <div className="col-xl-7 offset-xl-5" style={{ paddingLeft: '30px' }}>
+                    <div className="tp-chooseus__wrap" style={{ position: 'relative' }}>
+                      <div className="tp-chooseus__title-box mb-45" style={{ position: 'relative' }}>
                         <span
                           className="tp-section-title-2-pre tp-split__text tp-split__in-right mb-15"
                         >
@@ -60,17 +69,17 @@ const Experience = () => {
                             }}
                           >
                             17+ Years
-                          </span>{" "}
+                          </span>{" "} 
                           Of Storytelling Turning Brands in to Household Names
                         </p>
                         <p>
-                          We’ve held hands with budding brands that have
+                          We've held hands with budding brands that have
                           shattered sealings of convention. With us behind them,
                           they have achieved great feats in their industry and
                           went on to dominate their competition.
                         </p>
                       </div>
-                      <div className="tp-experience">
+                      <div className="tp-experience" style={{ position: 'relative' }}>
                         <div className="tp-ex-contain">
                           <div className="tp-ex-icon">
                             <SiAdobecreativecloud size={40} color="#8a5a0d" />

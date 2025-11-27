@@ -51,7 +51,11 @@ function Navbar() {
             setServicesData([]);
           }
         } else {
-          console.error("Failed to fetch services data:", response.status, response.statusText);
+          console.error(
+            "Failed to fetch services data:",
+            response.status,
+            response.statusText
+          );
           setServicesData([]);
         }
       } catch (error) {
@@ -69,7 +73,7 @@ function Navbar() {
   useEffect(() => {
     const dropdown = servicesDropdownRef.current;
     const mobileMenu = mobileMenuRef.current;
-    
+
     const handleWheel = (e: WheelEvent) => {
       // Stop propagation to prevent Lenis from handling this event
       e.stopPropagation();
@@ -87,14 +91,22 @@ function Navbar() {
 
     if (dropdown && servicesOpen) {
       dropdown.addEventListener("wheel", handleWheel, { passive: false });
-      dropdown.addEventListener("touchstart", handleTouchStart, { passive: false });
-      dropdown.addEventListener("touchmove", handleTouchMove, { passive: false });
+      dropdown.addEventListener("touchstart", handleTouchStart, {
+        passive: false,
+      });
+      dropdown.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
     }
 
     if (mobileMenu && mobileMenuOpen) {
       mobileMenu.addEventListener("wheel", handleWheel, { passive: false });
-      mobileMenu.addEventListener("touchstart", handleTouchStart, { passive: false });
-      mobileMenu.addEventListener("touchmove", handleTouchMove, { passive: false });
+      mobileMenu.addEventListener("touchstart", handleTouchStart, {
+        passive: false,
+      });
+      mobileMenu.addEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
     }
 
     return () => {
@@ -110,7 +122,6 @@ function Navbar() {
       }
     };
   }, [servicesOpen, mobileMenuOpen]);
-
 
   // Handle scroll effect
   useEffect(() => {
@@ -135,7 +146,7 @@ function Navbar() {
           isNavbarHiddenRef.current = false;
           setIsNavbarHidden(false);
         }
-        
+
         // Always show navbar at the top
         if (currentScrollY <= 0) {
           isNavbarHiddenRef.current = false;
@@ -266,13 +277,13 @@ function Navbar() {
 
     // Initial calculation
     updateNavbarHeight();
-    
+
     // Update on resize
     window.addEventListener("resize", updateNavbarHeight);
-    
+
     // Update when navbar state changes
     const timeoutId = setTimeout(updateNavbarHeight, 100);
-    
+
     return () => {
       window.removeEventListener("resize", updateNavbarHeight);
       clearTimeout(timeoutId);
@@ -304,21 +315,21 @@ function Navbar() {
 
   return (
     <>
-    <nav
-      ref={navRef}
+      <nav
+        ref={navRef}
         className="w-full flex justify-center overflow-x-hidden items-center absolute top-0 left-0 z-50 transition-all duration-300 ease-in-out"
-    >
-      {/* Centered Align Div  */}
+      >
+        {/* Centered Align Div  */}
         <div className="xl:w-[90%] w-full flex justify-between items-center py-3 sm:py-4 px-4 sm:px-6 lg:px-8">
           {/* Logo div - Responsive */}
           <Link
             href="/"
             className="relative h-[32px] w-[180px] sm:h-[38px] sm:w-[210px] md:h-[42px] md:w-[245px]"
           >
-          <Image
-            fill
-            src={"/new-page/new-design-logo.png"}
-            alt="Ritz Media World"
+            <Image
+              fill
+              src={"/new-page/new-design-logo.png"}
+              alt="Ritz Media World"
               className="object-contain"
               priority
             />
@@ -326,44 +337,61 @@ function Navbar() {
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:block">
-          <ul
-            ref={ulRef}
+            <ul
+              ref={ulRef}
               className="flex justify-center items-center gap-4 xl:gap-6 2xl:gap-8 font-[500] text-white text-sm xl:text-base 2xl:text-lg transition-colors duration-300"
-          >
+            >
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/"}>Home</Link>
-            </li>
+                <Link href={"/"}>Home</Link>
+              </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/about.html"} target="_blank">About</Link>
-            </li>
+                <Link href={"/about.html"} target="_blank">
+                  About
+                </Link>
+              </li>
               <li
                 className="cursor-pointer hover:opacity-80 transition-opacity relative"
                 onMouseEnter={handleMouseHover}
                 onMouseLeave={handleMouseLeave}
               >
-                <Link href={"/services.html"} target="_blank" data-services-link>
-                Services
-              </Link>
-            </li>
+                <Link
+                  href={"/services"}
+                  target="_blank"
+                  data-services-link
+                >
+                  Services
+                </Link>
+              </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/work.html"} target="_blank">Our Work</Link>
-            </li>
+                <Link href={"/work.html"} target="_blank">
+                  Our Work
+                </Link>
+              </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/blogs"} target="_blank">Blog</Link>
-            </li>
+                <Link href={"/blogs"} target="_blank">
+                  Blog
+                </Link>
+              </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/rdx-digital-marketing-course"} target="_blank">Academy</Link>
-            </li>
+                <Link href={"/rdx-digital-marketing-course"} target="_blank">
+                  Academy
+                </Link>
+              </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-              <Link href={"/contact.html"} target="_blank">Contact Us</Link>
-            </li>
+                <Link href={"/contact.html"} target="_blank">
+                  Contact Us
+                </Link>
+              </li>
               <li>
-                <button onClick={() => router.push("/contact.html")} className="px-4 liquid xl:px-6 2xl:px-8 h-9 xl:h-10 2xl:h-[42px] cursor-pointer rounded-lg text-white bg-[#D4A574] font-[500] text-sm xl:text-base 2xl:text-lg hover:bg-[#C59564] transition-colors whitespace-nowrap">
-                Free Consulting
-              </button>
-            </li>
-          </ul>
-        </div>
+                <button
+                  onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}
+                  className="px-4 liquid xl:px-6 2xl:px-8 h-9 xl:h-10 2xl:h-[42px] cursor-pointer rounded-lg text-white bg-[#D4A574] font-[500] text-sm xl:text-base 2xl:text-lg hover:bg-[#C59564] transition-colors whitespace-nowrap"
+                >
+                  Free Consulting
+                </button>
+              </li>
+            </ul>
+          </div>
 
           {/* Mobile Navigation Button */}
           <button
@@ -378,161 +406,187 @@ function Navbar() {
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
-      </div>
+        </div>
       </nav>
 
-        {/* Desktop Services Dropdown - Moved outside nav to prevent transform issues */}
-        {servicesOpen && (
+      {/* Desktop Services Dropdown - Moved outside nav to prevent transform issues */}
+      {servicesOpen && (
         <div
-            ref={servicesDropdownRef}
+          ref={servicesDropdownRef}
           onMouseEnter={handleMouseHover}
           onMouseLeave={handleMouseLeave}
-            className="hidden lg:block fixed left-0 w-full bg-white shadow-lg z-[100] transition-opacity duration-200 opacity-100 lg:w-[95%] lg:left-[50%] lg:transform lg:-translate-x-1/2 services-dropdown-scroll"
-            style={{
-              top: `${navbarHeight}px`,
-              maxHeight: `calc(100vh - ${navbarHeight}px)`,
-              overflowY: "auto",
-              overflowX: "hidden",
-              WebkitOverflowScrolling: "touch",
-            }}
-          >
-            <div className="w-full px-4 sm:px-6 lg:px-8 pt-8 pb-12">
-              {loading ? (
-                <div className="text-center py-8">Loading services...</div>
-              ) : servicesData.length === 0 ? (
-                <div className="text-center py-8 text-gray-500">No services available at the moment.</div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 xl:gap-6 2xl:gap-8">
-                  {/* Dynamically render all services from API */}
-                  {(() => {
-                    // Distribute services evenly across columns (excluding the last column which is for special offer)
-                    // We'll use 3 columns for services on xl screens
-                    const servicesPerColumn = Math.ceil(servicesData.length / 3);
-                    const column1Services = servicesData.slice(0, servicesPerColumn);
-                    const column2Services = servicesData.slice(servicesPerColumn, servicesPerColumn * 2);
-                    const column3Services = servicesData.slice(servicesPerColumn * 2);
+          className="hidden lg:block fixed left-0 w-full bg-white shadow-lg z-[100] transition-opacity duration-200 opacity-100 lg:w-[95%] lg:left-[50%] lg:transform lg:-translate-x-1/2 services-dropdown-scroll"
+          style={{
+            top: `${navbarHeight}px`,
+            maxHeight: `calc(100vh - ${navbarHeight}px)`,
+            overflowY: "auto",
+            overflowX: "hidden",
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
+          <div className="w-full px-4 sm:px-6 lg:px-8 pt-8 pb-12">
+            {loading ? (
+              <div className="text-center py-8">Loading services...</div>
+            ) : servicesData.length === 0 ? (
+              <div className="text-center py-8 text-gray-500">
+                No services available at the moment.
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 xl:gap-6 2xl:gap-8">
+                {/* Dynamically render all services from API */}
+                {(() => {
+                  // Distribute services evenly across columns (excluding the last column which is for special offer)
+                  // We'll use 3 columns for services on xl screens
+                  const servicesPerColumn = Math.ceil(servicesData.length / 3);
+                  const column1Services = servicesData.slice(
+                    0,
+                    servicesPerColumn
+                  );
+                  const column2Services = servicesData.slice(
+                    servicesPerColumn,
+                    servicesPerColumn * 2
+                  );
+                  const column3Services = servicesData.slice(
+                    servicesPerColumn * 2
+                  );
 
-                    return (
-                      <>
-                        {/* Column 1 */}
-                        <div className="space-y-8">
-                          {column1Services.map((service, idx) => (
-                            <div key={`col1-${service.name}-${idx}`}>
-                              <h2 className="font-[500] text-lg text-black mb-4">
-                                {service.name}
-                              </h2>
-                              <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                                {service.sub && service.sub.length > 0 ? (
-                                  service.sub.map((subItem, subIdx) => (
-                                    <li key={subIdx}>
-                                      <Link
-                                        href={subItem.link}
-                                        className="hover:text-[#D4A574] transition-colors"
-                                      >
-                                        {subItem.name}
-                                      </Link>
-                                    </li>
-                                  ))
-                                ) : (
-                                  <li className="text-gray-400">No sub-services available</li>
-                                )}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
 
-                        {/* Column 2 */}
-                        <div className="space-y-8">
-                          {column2Services.map((service, idx) => (
-                            <div key={`col2-${service.name}-${idx}`}>
-                              <h2 className="font-[500] text-lg text-black mb-4">
-                                {service.name}
-                              </h2>
-                              <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                                {service.sub && service.sub.length > 0 ? (
-                                  service.sub.map((subItem, subIdx) => (
-                                    <li key={subIdx}>
-                                      <Link
-                                        href={subItem.link}
-                                        className="hover:text-[#D4A574] transition-colors"
-                                      >
-                                        {subItem.name}
-                                      </Link>
-                                    </li>
-                                  ))
-                                ) : (
-                                  <li className="text-gray-400">No sub-services available</li>
-                                )}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
 
-                        {/* Column 3 */}
-                        <div className="space-y-8">
-                          {column3Services.map((service, idx) => (
-                            <div key={`col3-${service.name}-${idx}`}>
-                              <h2 className="font-[500] text-lg text-black mb-4">
-                                {service.name}
-                              </h2>
-                              <ul className="font-[400] text-base text-[#00000099] space-y-2">
-                                {service.sub && service.sub.length > 0 ? (
-                                  service.sub.map((subItem, subIdx) => (
-                                    <li key={subIdx}>
-                                      <Link
-                                        href={subItem.link}
-                                        className="hover:text-[#D4A574] transition-colors"
-                                      >
-                                        {subItem.name}
-                                      </Link>
-                                    </li>
-                                  ))
-                                ) : (
-                                  <li className="text-gray-400">No sub-services available</li>
-                                )}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </>
-                    );
-                  })()}
-
-                  {/* Column 4 - Special Offer Image (Desktop only) */}
-                  <div className="hidden xl:block relative h-[698px] overflow-hidden bg-gradient-to-b from-[#1a1a2e] to-[#16213e]">
-                    <Image
-                      src={"/new-page/dog.png"}
-                      fill
-                      alt="Special Offer"
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 w-full h-full flex flex-col justify-between items-center p-6 bg-gradient-to-b from-black/200 to-black/40">
-                      {/* Top Section - Text */}
-                      <div className="text-center pt-4">
-                        <p className="uppercase font-[500] text-white text-[18px] sm:text-[20px] mb-2">
-                          SPECIAL OFFER
-                        </p>
-                        <p className="uppercase font-[500] text-white text-[18px] sm:text-[20px] mb-3">
-                          GET UPTO
-                        </p>
-                        <p className="text-[#E3AE59] font-bold text-[20px] sm:text-[25px] lg:text-[35px]">
-                          10% OFF
-                        </p>
+                  return (
+                    <>
+                      {/* Column 1 */}
+                      <div className="space-y-8">
+                        {column1Services.map((service, idx) => (
+                          <div key={`col1-${service.name}-${idx}`}>
+                            <h2 className="font-[500] text-lg text-black mb-4">
+                              {service.name}
+                            </h2>
+                            <ul className="font-[400] text-base text-[#00000099] space-y-2">
+                              {service.sub && service.sub.length > 0 ? (
+                                service.sub.map((subItem, subIdx) => (
+                                  <li key={subIdx}>
+                                    <Link
+                                      href={subItem.link}
+                                      target="_blank"
+                                      className="hover:text-[#D4A574] transition-colors"
+                                    >
+                                      {subItem.name}
+                                    </Link>
+                                  </li>
+                                ))
+                              ) : (
+                                <li className="text-gray-400">
+                                  No sub-services available
+                                </li>
+                              )}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
 
-                      {/* Bottom Section - Button and Small Text */}
-                      <div className="flex flex-col items-center gap-3 pb-4">
-                        <button onClick={() => router.push("/rdx-digital-marketing-course")} className="w-[191px] h-[48px] bg-[#E3AE59] text-white rounded-full cursor-pointer font-[500] text-[20px] hover:opacity-90 transition-opacity shadow-lg">
-                          GET NOW
-                        </button>
+                      {/* Column 2 */}
+                      <div className="space-y-8">
+                        {column2Services.map((service, idx) => (
+                          <div key={`col2-${service.name}-${idx}`}>
+                            <h2 className="font-[500] text-lg text-black mb-4">
+                              {service.name}
+                            </h2>
+                            <ul className="font-[400] text-base text-[#00000099] space-y-2">
+                              {service.sub && service.sub.length > 0 ? (
+                                service.sub.map((subItem, subIdx) => (
+                                  <li key={subIdx}>
+                                    <Link
+                                      href={subItem.link}
+                                      target="_blank"
+                                      className="hover:text-[#D4A574] transition-colors"
+                                    >
+                                      {subItem.name}
+                                    </Link>
+                                  </li>
+                                ))
+                              ) : (
+                                <li className="text-gray-400">
+                                  No sub-services available
+                                </li>
+                              )}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
+
+                      {/* Column 3 */}
+                      <div className="space-y-8">
+                        {column3Services.map((service, idx) => (
+                          <div key={`col3-${service.name}-${idx}`}>
+                            <h2 className="font-[500] text-lg text-black mb-4">
+                              {service.name}
+                            </h2>
+                            <ul className="font-[400] text-base text-[#00000099] space-y-2">
+                              {service.sub && service.sub.length > 0 ? (
+                                service.sub.map((subItem, subIdx) => (
+                                  <li key={subIdx}>
+                                    <Link
+                                      href={subItem.link}
+                                      target="_blank"
+                                      className="hover:text-[#D4A574] transition-colors"
+                                    >
+                                      {subItem.name}
+                                    </Link>
+                                  </li>
+                                ))
+                              ) : (
+                                <li className="text-gray-400">
+                                  No sub-services available
+                                </li>
+                              )}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  );
+                })()}
+
+                {/* Column 4 - Special Offer Image (Desktop only) */}
+                <div className="hidden xl:block relative h-[698px] overflow-hidden bg-gradient-to-b from-[#1a1a2e] to-[#16213e]">
+                  <Image
+                    src={"/new-page/dog.png"}
+                    fill
+                    alt="Special Offer"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 w-full h-full flex flex-col justify-between items-center p-6 bg-gradient-to-b from-black/200 to-black/40">
+                    {/* Top Section - Text */}
+                    <div className="text-center pt-4">
+                      <p className="uppercase font-[500] text-white text-[18px] sm:text-[20px] mb-2">
+                        SPECIAL OFFER
+                      </p>
+                      <p className="uppercase font-[500] text-white text-[18px] sm:text-[20px] mb-3">
+                        GET UPTO
+                      </p>
+                      <p className="text-[#E3AE59] font-bold text-[20px] sm:text-[25px] lg:text-[35px]">
+                        10% OFF
+                      </p>
+                    </div>
+
+                    {/* Bottom Section - Button and Small Text */}
+                    <div className="flex flex-col items-center gap-3 pb-4">
+                      <button
+                        onClick={() =>
+                          window.open("https://ritzmediaworld.com/rdx-digital-marketing-course", "_blank")
+                        }
+                        className="w-[191px] h-[48px] bg-[#E3AE59] text-white rounded-full cursor-pointer font-[500] text-[20px] hover:opacity-90 transition-opacity shadow-lg"
+                      >
+                        GET NOW
+                      </button>
                     </div>
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
+      )}
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
@@ -574,7 +628,8 @@ function Navbar() {
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/" target="_blank"
+                  href="/"
+                  target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -583,7 +638,8 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/about.html" target="_blank"
+                  href="/about.html"
+                  target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -632,7 +688,8 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/blogs" target="_blank"
+                  href="/blogs"
+                  target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -650,7 +707,8 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                    href="/rdx-digital-marketing-course" target="_blank"
+                  href="/rdx-digital-marketing-course"
+                  target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -659,7 +717,8 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/contact.html" target="_blank"
+                  href="/contact.html"
+                  target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -671,7 +730,12 @@ function Navbar() {
 
           {/* Mobile Menu Footer */}
           <div className="p-4 border-t-[0.8px] border-[#b8b8b8]">
-            <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="w-full h-12 bg-[#D4A574] text-white rounded-full font-[500] text-base hover:bg-[#C59564] transition-colors">
+            <button
+              onClick={() =>
+                window.open("https://ritzmediaworld.com/contact.html", "_blank")
+              }
+              className="w-full h-12 bg-[#D4A574] text-white rounded-full font-[500] text-base hover:bg-[#C59564] transition-colors"
+            >
               Free Consulting
             </button>
             {/* Special Offer Section for Mobile */}
@@ -688,14 +752,17 @@ function Navbar() {
                     Special Offer <br /> Get upto
                   </p>
                 </div>
-                <button onClick={() => router.push("/rdx-digital-marketing-course")} className="w-[160px] h-10 bg-[#D4A574] text-white rounded-full cursor-pointer font-[500] text-base hover:bg-[#D39E49] transition-colors">
-                    Get Now
-                  </button>
-                </div>
+                <button
+                  onClick={() => window.open("https://ritzmediaworld.com/rdx-digital-marketing-course", "_blank")}
+                  className="w-[160px] h-10 bg-[#D4A574] text-white rounded-full cursor-pointer font-[500] text-base hover:bg-[#D39E49] transition-colors"
+                >
+                  Get Now
+                </button>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </>
   );
 }

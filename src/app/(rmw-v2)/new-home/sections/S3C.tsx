@@ -34,12 +34,12 @@ function S3C() {
     // mpf-logo.webp
     {
       name: "MPF",
-      src: "/new-page/logos/mpf-logo.png",
+      src: "/new-page/logos/mpf-bl.png",
       alt: "MPF Logo",
     },
     {
       name: "PRM 1",
-      src: "/new-page/logos/prm-1.png",
+      src: "/new-page/logos/rdx-lg.avif",
       alt: "PRM Logo 1",
     },
     {

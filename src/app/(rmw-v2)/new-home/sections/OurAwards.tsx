@@ -37,10 +37,10 @@ const cardsData = [
   },
   {
     id: 2,
-    title: "Excellence in Digital Media – Dainik Jagran (2024)",
+    title: "Excellence in Digital Media – Hindustan Times (2024)",
     description:
       "Recognises outstanding performance in digital innovation, content strategy, and ROI-focused campaigns. Ritz Media World earned this award for transforming brand visibility through data-driven marketing and high-engagement digital solutions across North India.",
-    imgSrc: "/new-page/awards/aw2.jpg",
+    imgSrc: "/new-page/awards/aw7.jpg",
   },
   
 ];

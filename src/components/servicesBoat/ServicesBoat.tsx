@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from "react";
 import { X } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -21,7 +21,15 @@ interface ServicesData {
   services: Service[];
 }
 
-function ServicesBoat() {
+interface ServicesBoatProps {
+  hideButton?: boolean;
+}
+
+export interface ServicesBoatRef {
+  openBoat: () => void;
+}
+
+const ServicesBoat = forwardRef<ServicesBoatRef, ServicesBoatProps>(({ hideButton = false }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState<ServicesData | null>(null);
   const [selectedServices, setSelectedServices] = useState<Service[]>([]);
@@ -111,6 +119,11 @@ function ServicesBoat() {
       backdropRef.current.style.display = "block";
     }
   };
+
+  // Expose openBoat function via ref
+  useImperativeHandle(ref, () => ({
+    openBoat,
+  }));
 
   const handleServiceClick = (service: Service) => {
     setSelectedServices([...selectedServices, service]);
@@ -271,28 +284,30 @@ function ServicesBoat() {
 
       <div className={styles.servicesContainer} ref={containerRef}>
         {/* Services Boat Trigger */}
-        <div ref={boatRef} className={styles.servicesBoat}>
-          {isOpen ? (
-            <X
-              className={`text-black ${styles.boatIcon}`}
-              onClick={() => {
-                setIsOpen(false);
-                setShowForm(false);
-                setSelectedServices([]);
-              }}
-            />
-          ) : (
-            <Image
-              src="/AI_Bot_Icon.png"
-              alt="Services Icon"
-              className={`${styles.boatGifIcon} img-fluid`}
-              onClick={openBoat}
-              width={50}
-              height={50}
-            />
-          )}
-          {!isOpen && <span className={styles.pulseAnimation}></span>}
-        </div>
+        {!hideButton && (
+          <div ref={boatRef} className={styles.servicesBoat}>
+            {isOpen ? (
+              <X
+                className={`text-black ${styles.boatIcon}`}
+                onClick={() => {
+                  setIsOpen(false);
+                  setShowForm(false);
+                  setSelectedServices([]);
+                }}
+              />
+            ) : (
+              <Image
+                src="/AI_Bot_Icon.png"
+                alt="Services Icon"
+                className={`${styles.boatGifIcon} img-fluid`}
+                onClick={openBoat}
+                width={50}
+                height={50}
+              />
+            )}
+            {!isOpen && <span className={styles.pulseAnimation}></span>}
+          </div>
+        )}
 
         {isOpen && data && (
           <div
@@ -378,6 +393,33 @@ function ServicesBoat() {
                       {data.title}
                     </h2>
                   </div>
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      setShowForm(false);
+                      setSelectedServices([]);
+                    }}
+                    style={{
+                      padding: "0.5rem",
+                      borderRadius: "0.5rem",
+                      border: "1px solid #d1d5db",
+                      background: "white",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transition: "all 0.2s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "white";
+                    }}
+                    aria-label="Close"
+                  >
+                    <X size={20} color="#111827" />
+                  </button>
                 </div>
 
                 {!showForm ? (
@@ -904,6 +946,8 @@ function ServicesBoat() {
       </div>
     </>
   );
-}
+});
+
+ServicesBoat.displayName = "ServicesBoat";
 
 export default ServicesBoat;
