@@ -346,7 +346,7 @@ function Footer() {
             © 2025 RITZ Media World. All rights reserved.
           </p>
 
-          <ul className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-4 md:gap-6">
+          <ul className="hidden flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-4 md:gap-6">
             <li>
               <p
                 className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
