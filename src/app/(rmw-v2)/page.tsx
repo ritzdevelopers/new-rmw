@@ -30,7 +30,7 @@ function page() {
   return (
     <main className="">
       {/* <LenisSmoothScroll />*/}
-      <RouteChangeHandler /> 
+      {/* <RouteChangeHandler />  */}
       {/* <CustomCursor /> */}
       <S1></S1>
       {/* <S2></S2> */}

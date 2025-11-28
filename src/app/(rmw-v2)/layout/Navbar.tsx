@@ -329,7 +329,7 @@ function Navbar() {
             <Image
               fill
               src={"/new-page/new-design-logo.png"}
-              alt="Ritz Media World"
+              alt="Ritz Media World Logo"
               className="object-contain"
               priority
             />

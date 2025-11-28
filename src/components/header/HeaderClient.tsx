@@ -209,12 +209,15 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
               >
                 <Link
                   className="main-logo"
-                  href="/"
+                  href="/"  
+                    target="_blank"
+                  prefetch={false}
                   style={{ borderRadius: "0px !important", overflow: "hidden" }}
                 >
                   <Image
                     src="/rmw-final-logo.png"
                     alt="rmw-logo"
+                
                     className={styles.lgImg}
                     ref={imgT}
                     width={55}
@@ -233,6 +236,8 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     <li className="nav-item">
                       <Link
                         href="/"
+                        target="_blank"
+                        prefetch={false}
                         className="nav-links"
                         style={{
                           textShadow:
@@ -584,7 +589,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
             <nav>
               <ul className={`${styles.navItem}`}>
                 <li>
-                  <Link href="/">Home</Link>
+                  <Link href="/" prefetch={false} target="_blank">Home</Link>
                 </li>
                 <li>
                   <Link href="/about.html">About</Link>
