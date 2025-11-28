@@ -51,7 +51,6 @@ function S1() {
       const holdDuration = 3.6;
       const tl = gsap.timeline({ repeat: -1 });
 
-      // Calculate the width percentage of each slide
       const slideWidthPercent = 100 / extendedSlides.length;
 
       tl.set(trackRef.current, { xPercent: 0 });
@@ -79,7 +78,6 @@ function S1() {
     >
       {/* Slider Container  */}
       <div className="absolute inset-0 overflow-hidden z-10">
-        {/* Here The Slider Will Come In Background A Slider Wil Run After Every 5 Sec And The Image Will Slide From Right To Left And It Will Be Fully Responsive  */}
         <div
           ref={trackRef}
           className="flex h-full"

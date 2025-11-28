@@ -94,7 +94,7 @@ function RDS() {
   ];
 
   return (
-    <section className="w-full relative flex flex-col items-center px-4" style={{
+    <section className="w-full  relative flex flex-col items-center px-4" style={{
       paddingTop: "50px !important"
     }}>
   
@@ -103,8 +103,8 @@ function RDS() {
       {s4CardsData.map((ob, idx) => (
           <div
             key={idx}
-            className="sticky w-full mb-4 sm:mb-6 md:mb-8 lg:mb-10"
-            style={{ zIndex: 10 + idx,  top: idx == 0 ?  `${2*5}px` : `${idx*420}px`}}
+            className={`lg:sticky w-full mb-4 sm:mb-6 md:mb-8 lg:mb-10 z-[${10 + idx}] `}
+            style={{top: idx == 0 ?  `${2*5}px` : `${idx*350}px`}}
           >
             {
               idx === 0 && (
@@ -135,6 +135,7 @@ function RDS() {
               img={ob.img}
               border={ob.border}
               btnBg={ob.btnBg}
+              idx={idx}
             />
           </div>
       ))}

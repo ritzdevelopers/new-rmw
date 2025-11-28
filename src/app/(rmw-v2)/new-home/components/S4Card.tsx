@@ -21,6 +21,7 @@ interface S4CardProps {
   disableSticky?: boolean;
   border: string;
   btnBg: string;
+  idx:number;
 }
 
 const S4Card = forwardRef<HTMLDivElement, S4CardProps>(
@@ -37,6 +38,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(
       disableSticky = false,
       border,
       btnBg,
+      idx,
     },
     ref
   ) => {
@@ -94,7 +96,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(
             src={img}
             alt={linkTxt}
             fill
-            className="object-cover"
+            className={`lg:object-cover md:object-fill object-cover ${idx == 2 ? "object-top lg:object-center" : "object-center"}`}
           />
         </div>
       </div>
