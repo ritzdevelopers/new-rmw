@@ -3,53 +3,53 @@ import "./styles/global.css";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import ContactBtns from "./new-home/components/ContactBtns";
-import Script from "next/script";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida",
+  description: "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
+  keywords: [
+    "Best advertising agency in Delhi NCR",
+    "Top Advertising Agency",
+    "Advertising Agency in Delhi",
+    "Best Advertising Agency in Delhi NCR",
+    "Ads Agency in Delhi NCR",
+    "Best ad agency in Delhi",
+    "Best ad agency in Noida",
+    "ad agency in Noida",
+    "ad agency in Delhi",
+    "ad agency in Delhi NCR",
+    "Digital marketing agency",
+    "Creative Agency",
+    "Branding agency In Delhi",
+    "Branding agency In Noida",
+    "Branding agency In Delhi NCR",
+    "Creative Advertising Agency",
+    "Social Media Marketing Agency",
+    "Content Marketing Agency",
+    "Best Creative Advertising Agency",
+    "Best marketing agency in India",
+    "Creative service",
+    "SEO company in noida",
+    "Radio advertising agency",
+    "Best ad agency",
+    "Digital Marketing company",
+    "Digital Marketing company in noida",
+    "Digital Marketing company in Delhi",
+    "digital marketing and creative agency",
+    "Best digital marketing agency in Delhi",
+    "Newspaper ad agency",
+    "Top Marketing Agency in India",
+    "creative digital marketing agency",
+    "best seo services in noida",
+    "best seo agency in greater noida",
+  ],
+};
 
 export default function NewRMWW({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-0YHLN54GF7"
-        strategy="afterInteractive"
-      />
-      <Script id="gtag-init" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-0YHLN54GF7');
-        `}
-      </Script>
-
-      {/* Facebook Pixel */}
-      <Script id="facebook-pixel" strategy="afterInteractive">
-        {`
-          !function(f,b,e,v,n,t,s){
-            if(f.fbq)return;
-            n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;
-            n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];
-            t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)
-          }(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '1491326822260603');
-          fbq('track', 'PageView');
-        `}
-      </Script>
-
-      <noscript>
-        <img
-          height="1"
-          width="1"
-          style={{ display: "none" }}
-          src="https://www.facebook.com/tr?id=1491326822260603&ev=PageView&noscript=1"
-          alt="fb-pixel"
-        />
-      </noscript>
+     
       <Navbar></Navbar>
       {children}
       <ContactBtns />

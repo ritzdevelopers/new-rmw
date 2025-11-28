@@ -458,7 +458,7 @@ function Navbar() {
                       <div className="space-y-8">
                         {column1Services.map((service, idx) => (
                           <div key={`col1-${service.name}-${idx}`}>
-                            <h2 className="font-[500] text-lg text-black mb-4">
+                            <h2 onClick={()=>window.open(service.link, "_blank")} className="font-[500] text-lg text-black mb-4 cursor-pointer">
                               {service.name}
                             </h2>
                             <ul className="font-[400] text-base text-[#00000099] space-y-2">
@@ -488,7 +488,7 @@ function Navbar() {
                       <div className="space-y-8">
                         {column2Services.map((service, idx) => (
                           <div key={`col2-${service.name}-${idx}`}>
-                            <h2 className="font-[500] text-lg text-black mb-4">
+                            <h2 onClick={()=>window.open(service.link, "_blank")} className="font-[500] text-lg text-black mb-4 cursor-pointer">
                               {service.name}
                             </h2>
                             <ul className="font-[400] text-base text-[#00000099] space-y-2">
@@ -518,7 +518,7 @@ function Navbar() {
                       <div className="space-y-8">
                         {column3Services.map((service, idx) => (
                           <div key={`col3-${service.name}-${idx}`}>
-                            <h2 className="font-[500] text-lg text-black mb-4">
+                            <h2 onClick={()=>window.open(service.link, "_blank")} className="font-[500] text-lg text-black mb-4 cursor-pointer">
                               {service.name}
                             </h2>
                             <ul className="font-[400] text-base text-[#00000099] space-y-2">
@@ -665,7 +665,7 @@ function Navbar() {
                   <div className="pl-4 mt-2 space-y-4 border-l-2 border-gray-200">
                     {servicesData.map((service, idx) => (
                       <div key={idx}>
-                        <h3 className="font-[500] text-sm text-gray-700 mb-2">
+                        <h3 onClick={()=>window.open(service.link, "_blank")} className="font-[500] text-sm text-gray-700 mb-2 cursor-pointer">
                           {service.name}
                         </h3>
                         <ul className="space-y-1 text-sm text-gray-600">

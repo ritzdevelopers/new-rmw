@@ -27,6 +27,9 @@ import OurAwards from "./new-home/sections/OurAwards";
 import RDS from "./new-home/sections/RDS";
 
 function page() {
+  // useEffect(() => {
+  //   window.location.reload();
+  // }, []);
   return (
     <main className="">
       {/* <LenisSmoothScroll />*/}

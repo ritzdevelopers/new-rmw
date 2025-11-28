@@ -30,6 +30,7 @@ type StoryCard = {
   results: StoryResult[];
   link: string;
   btn: string;
+  imgLink: string;
 };
 
 const storiesData: StoryCard[] = [
@@ -63,6 +64,7 @@ const storiesData: StoryCard[] = [
     ],
     link: "/case-study-indigos-skyrocketing-dominance-in-the-indian-airline-market",
     btn: "Digital Advertising",
+    imgLink: "https://ritzmediaworld.com/services/digital-marketing",
   },
   {
     title: "Print Advertising",
@@ -94,6 +96,7 @@ const storiesData: StoryCard[] = [
     ],
     link: "/the-timeless-rise-of-the-times-of-india-a-branding-and-advertising-case-study",
     btn: "Print Advertising",
+    imgLink: "https://ritzmediaworld.com/services/print-advertising",
   },
   {
     title: "Brand Identity",
@@ -124,6 +127,7 @@ const storiesData: StoryCard[] = [
     ],
     link: "/buzz-behind-the-brand-apple-iphone-launch-secrets-revealed",
     btn: "Brand Identity",
+    imgLink: "https://ritzmediaworld.com/services/digital-marketing/brand-awareness",
   },
   {
     title: "Social Media Management",
@@ -154,6 +158,7 @@ const storiesData: StoryCard[] = [
     ],
     link: "/how-did-cooking-shows-influence-indias-cooking-utensil-sales",
     btn: "Brand Identity",
+    imgLink: "https://ritzmediaworld.com/services/digital-marketing/social-media-management",
   },
 ];
 
@@ -491,7 +496,7 @@ function S5() {
                     alt={story.title}
                     fill
                     className="object-fill"
-                    onClick={()=>window.open(story.link, "_blank")}
+                    onClick={()=>window.open(story.imgLink, "_blank")}
                   />
                   {/* Absolute Positioned Div  */}
                   <button className="min-w-[155px] px-4 h-[32px] rounded-full absolute top-4 left-4 cursor-pointer font-[400] text-[14px] text-[#ffffff] bg-[#242321] z-10">
@@ -511,7 +516,7 @@ function S5() {
                     <p className="text-[14px] font-[400] text-[#D4A574]">
                       {story.subTitle}
                     </p>
-                    <h3 onClick={()=>window.open(story.link, "_blank")} className="text-[26px] font-semibold text-[#333333] sm:text-[32px] cursor-pointer">
+                    <h3 onClick={()=>window.open(story.imgLink, "_blank")} className="text-[26px] font-semibold text-[#333333] sm:text-[32px] cursor-pointer">
                       {story.title}
                     </h3>
                     <div className="flex flex-col gap-1">

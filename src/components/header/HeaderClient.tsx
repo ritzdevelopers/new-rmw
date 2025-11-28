@@ -589,7 +589,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
             <nav>
               <ul className={`${styles.navItem}`}>
                 <li>
-                  <Link href="/" prefetch={false} target="_blank">Home</Link>
+                  <Link href="/" target="_blank">Home</Link>
                 </li>
                 <li>
                   <Link href="/about.html">About</Link>
