@@ -6,7 +6,8 @@ import ContactBtns from "./new-home/components/ContactBtns";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida",
+  metadataBase: new URL("https://ritzmediaworld.com"),
+  title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
   description: "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
   keywords: [
     "Best advertising agency in Delhi NCR",
@@ -44,6 +45,28 @@ export const metadata: Metadata = {
     "best seo services in noida",
     "best seo agency in greater noida",
   ],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://ritzmediaworld.com",
+    siteName: "Ritz Media World",
+    title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
+    description: "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
+    images: [
+      {
+        url: "https://ritzmediaworld.com/RMW_log_alt_2.png",
+        width: 1200,
+        height: 630,
+        alt: "Ritz Media World - Top Advertising Agency in Delhi NCR",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
+    description: "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
+    images: ["https://ritzmediaworld.com/RMW_log_alt_2.png"],
+  },
 };
 
 export default function NewRMWW({ children }: { children: React.ReactNode }) {
