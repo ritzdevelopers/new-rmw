@@ -27,7 +27,6 @@ function ScrollSlider2({ cards, sectionRef }: ScrollSliderProps) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [isDesktop, setIsDesktop] = useState(false);
 
-  // Check if desktop on mount and resize
   useEffect(() => {
     const checkDesktop = () => {
       setIsDesktop(window.innerWidth >= 1024);
@@ -44,15 +43,12 @@ function ScrollSlider2({ cards, sectionRef }: ScrollSliderProps) {
   useEffect(() => {
     if (!trackRef.current || !sliderRef.current || !sectionRef.current || cards.length === 0) return;
 
-    // Set initial position
     gsap.set(trackRef.current, { x: 0 });
 
-    // Update padding based on screen size
     if (trackRef.current) {
       trackRef.current.style.paddingRight = isDesktop ? "calc(100vw - 2rem)" : "1rem";
     }
 
-    // Create ScrollTrigger animation
     const ctx = gsap.context(() => {
       const updateScrollDistance = () => {
         const track = trackRef.current;
@@ -61,7 +57,6 @@ function ScrollSlider2({ cards, sectionRef }: ScrollSliderProps) {
 
         const trackWidth = track.scrollWidth;
         const viewportWidth = slider.clientWidth;
-        // Calculate scroll distance - we want to scroll until the last card is fully visible
         const scrollDistance = trackWidth - viewportWidth;
         return Math.max(0, scrollDistance);
       };
@@ -83,16 +78,13 @@ function ScrollSlider2({ cards, sectionRef }: ScrollSliderProps) {
               
               const trackWidth = track.scrollWidth;
               const viewportWidth = slider.clientWidth;
-              // Calculate the actual scroll distance needed
               const actualDistance = trackWidth - viewportWidth;
               
-              // For mobile/tablet, use minimal extra space to prevent white space
-              // For desktop, use more space for smoother transition
+           
               const isMobileScreen = window.innerWidth < 1024;
               
               if (isMobileScreen) {
-                // On mobile, use minimal buffer - just enough to complete the scroll
-                // This prevents excessive white space at the bottom
+            
                 return `+=${Math.max(actualDistance, 100)}`;
               } else {
                 // On desktop, use more space for smoother transition

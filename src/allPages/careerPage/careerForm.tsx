@@ -166,6 +166,8 @@ const CareerForm = () => {
                   <option value="sales-executive-media-agency">Sales Executive - Media Agency</option>
                   <option value="media-sales-manager">Media Sales Manager</option>
                   <option value="media-influencer-coordinator">Media Influencer Coordinator</option>
+                  <option value="seo-executive">SEO Executive</option>
+                  <option value="seo-intern">SEO Intern</option>
                 </select>
               </div>
             </div>
