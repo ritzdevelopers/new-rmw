@@ -30,8 +30,8 @@ function RDS() {
       linkTxtColor: "text-[#101828]",
       img: "/new-page/digital.jpg",
       link: "/services/digital-marketing",
-      border:"border-[1px] border-[#EEEEEE]",
-      btnBg:"bg-[#EA2175]"
+      border: "border-[1px] border-[#EEEEEE]",
+      btnBg: "bg-[#EA2175]",
     },
     {
       linkTxt: "Creative Services",
@@ -59,8 +59,8 @@ function RDS() {
       linkTxtColor: "text-[#101828]",
       img: "/new-page/banners-for-rmw9.jpg",
       link: "/services/creative-services",
-      border:"border-[1px] border-[#EEEEEE]",
-      btnBg:"bg-[#EAE721]"
+      border: "border-[1px] border-[#EEEEEE]",
+      btnBg: "bg-[#EAE721]",
     },
     {
       linkTxt: "Print Advertising",
@@ -88,42 +88,41 @@ function RDS() {
       linkTxtColor: "text-[#101828]",
       img: "/new-page/banners-for-rmw5.jpg",
       link: "/services/print-advertising",
-      border:"border-[1px] border-[#ECF6FF]",
-      btnBg:"bg-[#21EAB5]"
+      border: "border-[1px] border-[#ECF6FF]",
+      btnBg: "bg-[#21EAB5]",
     },
   ];
 
   return (
-    <section className="w-full  relative flex flex-col items-center px-4" style={{
-      paddingTop: "50px !important"
-    }}>
-  
-    <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%]">
- 
-      {s4CardsData.map((ob, idx) => (
+    <section
+      className="w-full  relative flex flex-col items-center px-4"
+      style={{
+        paddingTop: "50px !important",
+      }}
+    >
+      <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%]">
+        <div className="flex flex-col mb-6 gap-2 sm:gap-2.5 md:gap-3 w-full">
+          <button className="inline-flex w-fit rounded-full bg-[#D4A574] px-4 py-1.5 sm:px-5 sm:py-2 text-[12px] sm:text-[13px] lg:text-[14px] font-[400] text-white">
+            What We Do
+          </button>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#101828] lg:text-[48px] lg:leading-[1.1]">
+            360° Brand{" "}
+            <span className="text-[#D4A574]">Elevation Services</span>
+          </h2>
+          <p className="max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-4xl text-sm sm:text-base md:text-lg lg:text-[20px] text-[#4A5565] font-[400] leading-relaxed">
+            Our in-house team masters the entire spectrum of digital marketing ,
+            from strategy and creative development to sophisticated campaigns
+            .Our in-house team masters the entire spectrum
+          </p>
+        </div>
+        {s4CardsData.map((ob, idx) => (
           <div
             key={idx}
-            className={`lg:sticky w-full mb-4 sm:mb-6 md:mb-8 lg:mb-10 z-[${10 + idx}] `}
-            style={{top: idx == 0 ?  `${2*5}px` : `${idx*350}px`}}
+            className={`lg:sticky w-full mb-4 sm:mb-6 md:mb-8 lg:mb-10 z-[${
+              10 + idx
+            }] `}
+            style={{ top: idx == 0 ? `${2 * 25}px` : `${idx * 200}px` }}
           >
-            {
-              idx === 0 && (
-                <div className="flex flex-col mb-6 gap-2 sm:gap-2.5 md:gap-3 w-full">
-                <button className="inline-flex w-fit rounded-full bg-[#D4A574] px-4 py-1.5 sm:px-5 sm:py-2 text-[12px] sm:text-[13px] lg:text-[14px] font-[400] text-white">
-                  What We Do
-                </button>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#101828] lg:text-[48px] lg:leading-[1.1]">
-                  360° Brand{" "}
-                  <span className="text-[#D4A574]">Elevation Services</span>
-                </h2>
-                <p className="max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-4xl text-sm sm:text-base md:text-lg lg:text-[20px] text-[#4A5565] font-[400] leading-relaxed">
-                  Our in-house team masters the entire spectrum of digital marketing ,
-                  from strategy and creative development to sophisticated campaigns
-                  .Our in-house team masters the entire spectrum
-                </p>
-              </div>
-              )
-            }
             <S4Card
               link={ob.link}
               linkTxt={ob.linkTxt}
@@ -138,12 +137,9 @@ function RDS() {
               idx={idx}
             />
           </div>
-      ))}
-  
-    </div>
-  </section>
-  
-
+        ))}
+      </div>
+    </section>
   );
 }
 
