@@ -4,6 +4,7 @@ import DetailPage from "./DetailPage";
 import { Metadata } from "next";
 import axios from "axios";
 import Header from "@/components/header/Header";
+import { redirect } from "next/navigation";
 
 interface Article {
   _id: string;
@@ -97,6 +98,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         }
       } catch (err) {
         console.error("MongoDB fetch failed:", err);
+        // Both MySQL and MongoDB failed, redirect to 404 page
+        redirect("/404/not-found");
       }
     }
 
@@ -152,7 +155,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         images: [`${baseURL}/uploads/${blog.blog_image || blog.blogBanner}`],
       },
     };
-  } catch (err) {
+  } catch (err: any) {
+    // Re-throw redirect errors so Next.js can handle them
+    if (err?.digest?.startsWith('NEXT_REDIRECT')) {
+      throw err;
+    }
     console.error("Metadata generation error:", err);
     return {
       title: "Error Loading Blog",

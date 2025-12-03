@@ -233,8 +233,15 @@ const DetailPage: React.FC = () => {
           }
           setLatestRBlogs(res.data.latestRBlogs);
           setSingleBlog(res.data.blog);
-        } catch (err) {
+        } catch (err: any) {
           console.error("Fallback MongoDB fetch failed:", err);
+          // Check if the error is a 404 (blog not found)
+          if (err?.response?.status === 404) {
+            setLoading(false);
+            // Navigate to /404/not-found page
+            router.replace('/404/not-found');
+            return;
+          }
         }
       } finally {
         setLoading(false);
