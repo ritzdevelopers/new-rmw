@@ -153,7 +153,7 @@ function NewBlogSection() {
         {/* Row 1 - Header */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 sm:gap-8">
           <div className="flex flex-col items-start gap-3 sm:gap-4 w-full md:w-auto">
-            <button className="rounded-full bg-[#D4A574] px-4 py-1.5 text-[10px] font-semibold text-[#ffffff] sm:px-6 sm:py-2 sm:text-xs md:text-sm">
+            <button className="rounded-full bg-[#F3830E] px-4 py-1.5 text-[10px] font-semibold text-[#ffffff] sm:px-6 sm:py-2 sm:text-xs md:text-sm">
               Latest Insights
             </button>
             <h2 className="text-2xl font-semibold text-[#101828] leading-tight sm:text-3xl md:text-4xl lg:text-[48px] lg:leading-[1.1]">
@@ -200,7 +200,7 @@ function NewBlogSection() {
                     loading="lazy"
                   />
                   {/* Absolute Positioned Div  */}
-                  <button className="w-[90px] sm:w-[100px] md:w-[111px] z-20 h-[28px] sm:h-[32px] md:h-[36px] rounded-full absolute top-4 right-4 sm:top-5 sm:right-5 md:top-6 md:right-6 cursor-pointer font-[400] text-[11px] sm:text-[12px] md:text-[14px] text-[#ffffff] bg-[#D4A574]">
+                  <button className="w-[90px] sm:w-[100px] md:w-[111px] z-20 h-[28px] sm:h-[32px] md:h-[36px] rounded-full absolute top-4 right-4 sm:top-5 sm:right-5 md:top-6 md:right-6 cursor-pointer font-[400] text-[11px] sm:text-[12px] md:text-[14px] text-[#ffffff] bg-[#F3830E]">
                     Latest Inside
                   </button>
                   {/* Absolute Positioned Overlay Div  */}

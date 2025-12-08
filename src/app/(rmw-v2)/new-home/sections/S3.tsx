@@ -23,10 +23,10 @@ const cardsData: CardData[] = [
     linkText: "Explore Digital Marketing",
     bg: "linear-gradient(to bottom, #101828, #1E2939)", // Purple to dark purple gradient
     ellipseImage: "/new-page/elip.png",
-    featureDotColor: "#D4A574",
+    featureDotColor: "#F3830E",
     buttonBg: "bg-[#FFFFFF]",
     buttonTextColor: "text-black",
-    buttonHoverBg: "hover:bg-[#c2925d]",
+    buttonHoverBg: "hover:bg-[#F3830E]",
   },
   {
     id: 2,
@@ -48,7 +48,7 @@ const cardsData: CardData[] = [
     featureDotColor: "#D1D5DC",
     buttonBg: "bg-[#ffffff]",
     buttonTextColor: "text-[#000000]",
-    buttonHoverBg: "hover:bg-[#c2925d] hover:text-white",
+    buttonHoverBg: "hover:bg-[#F3830E] hover:text-white",
   },
   {
     id: 3,
@@ -67,10 +67,10 @@ const cardsData: CardData[] = [
     linkText: "Explore Print Advertisement",
     bg: "linear-gradient(to bottom, #103FCB, #081F65)", // Green to dark green gradient
     ellipseImage: "/new-page/elip.png",
-    featureDotColor: "#D4A574",
+    featureDotColor: "#F3830E",
     buttonBg: "bg-[#FFFFFF]",
     buttonTextColor: "text-black",
-    buttonHoverBg: "hover:bg-[#c2925d]",
+    buttonHoverBg: "hover:bg-[#F3830E]",
   },
   {
     id: 4,
@@ -92,7 +92,7 @@ const cardsData: CardData[] = [
     featureDotColor: "#D1D5DC",
     buttonBg: "bg-[#ffffff]",
     buttonTextColor: "text-[#000000]",
-    buttonHoverBg: "hover:bg-[#c2925d] hover:text-white",
+    buttonHoverBg: "hover:bg-[#F3830E] hover:text-white",
   }, {
     id: 5,
     title: "Content Marketing",
@@ -110,10 +110,10 @@ const cardsData: CardData[] = [
     linkText: "Explore Content Marketing",
     bg: "linear-gradient(to bottom, #EA580C, #C2410C)", // Orange to dark orange gradient
     ellipseImage: "/new-page/elip.png",
-    featureDotColor: "#D4A574",
+    featureDotColor: "#F3830E",
     buttonBg: "bg-[#FFFFFF]",
     buttonTextColor: "text-black",
-    buttonHoverBg: "hover:bg-[#c2925d]",
+    buttonHoverBg: "hover:bg-[#F3830E]",
   },
   {
     id: 6,
@@ -135,7 +135,7 @@ const cardsData: CardData[] = [
     featureDotColor: "#D1D5DC",
     buttonBg: "bg-[#ffffff]",
     buttonTextColor: "text-[#000000]",
-    buttonHoverBg: "hover:bg-[#c2925d] hover:text-white",
+    buttonHoverBg: "hover:bg-[#F3830E] hover:text-white",
   },
 
   {
@@ -155,10 +155,10 @@ const cardsData: CardData[] = [
     linkText: "Explore Influencer Marketing",
     bg: "linear-gradient(to bottom, #6B46C1, #4C1D95)", // Purple to dark purple gradient
     ellipseImage: "/new-page/elip.png",
-    featureDotColor: "#D4A574",
+    featureDotColor: "#F3830E",
     buttonBg: "bg-[#FFFFFF]",
     buttonTextColor: "text-black",
-    buttonHoverBg: "hover:bg-[#c2925d]",
+    buttonHoverBg: "hover:bg-[#F3830E]",
   },
   {
     id: 8,
@@ -180,7 +180,7 @@ const cardsData: CardData[] = [
     featureDotColor: "#D1D5DC",
     buttonBg: "bg-[#ffffff]",
     buttonTextColor: "text-[#000000]",
-    buttonHoverBg: "hover:bg-[#c2925d] hover:text-white",
+    buttonHoverBg: "hover:bg-[#F3830E] hover:text-white",
   },
 
 ];
@@ -198,7 +198,7 @@ function S3() {
         <div className="flex flex-col items-center gap-4 text-center">
           <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.1] md:flex">
             Choose Your{" "}
-            <span className="text-[#D4A574] md:block transform -translate-y-[4px]">
+            <span className="text-[#F3830E] md:block transform -translate-y-[4px]">
               Brand Journey
             </span>
           </h2>

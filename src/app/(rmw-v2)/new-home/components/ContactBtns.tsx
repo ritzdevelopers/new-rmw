@@ -22,19 +22,12 @@ function ContactBtns() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Calculate responsive distances based on screen size and button sizes
     const getDistance = () => {
       if (typeof window === "undefined")
         return { phone: -88, whatsapp: -176, chatbot: -264 };
       const width = window.innerWidth;
 
-      // Calculate based on main button height + button height + spacing (1rem = 16px)
-      // Order: Main (bottom), Phone, WhatsApp, Chatbot (top)
       if (width >= 1024) {
-        // Main: 5rem (80px), Button: 4rem (64px), spacing: 1rem (16px)
-        // Phone: 80 + 64 + 16 = 160px
-        // WhatsApp: 160 + 64 + 16 = 240px
-        // Chatbot: 240 + 64 + 16 = 320px
         return { phone: -60, whatsapp: -120, chatbot: -180 };
       }
       if (width >= 768) {
@@ -228,7 +221,7 @@ function ContactBtns() {
           transform: "translateY(0) scale(0.5)",
         }}
       >
-        <FaWhatsapp className="w-6 h-6 text-[#D4A574]" />
+        <FaWhatsapp className="w-6 h-6 text-[#F3830E]" />
       </button>
 
       {/* Phone Button - Middle button */}
@@ -245,7 +238,7 @@ function ContactBtns() {
         }}
       >
         <Phone
-          className="w-6 h-6  text-[#D4A574]"
+          className="w-6 h-6  text-[#F3830E]"
           strokeWidth={2}
         />
       </button>
@@ -260,7 +253,7 @@ function ContactBtns() {
       >
         {/* Chat Icon (shown when closed) */}
         <MessageCircle
-          className={`main-icon absolute w-6 h-6 text-[#D4A574] transition-opacity duration-300 ${
+          className={`main-icon absolute w-6 h-6 text-[#F3830E] transition-opacity duration-300 ${
             isOpen ? "opacity-0" : "opacity-100"
           }`}
           strokeWidth={2}
@@ -268,7 +261,7 @@ function ContactBtns() {
 
         {/* Close Icon (shown when open) */}
         <X
-          className={`main-icon absolute w-6 h-6 text-[#D4A574] transition-opacity duration-300 ${
+          className={`main-icon absolute w-6 h-6 text-[#F3830E] transition-opacity duration-300 ${
             isOpen ? "opacity-100" : "opacity-0"
           }`}
           strokeWidth={2.5}

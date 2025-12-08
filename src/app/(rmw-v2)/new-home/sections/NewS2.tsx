@@ -51,7 +51,7 @@ function NewS2() {
             <span className="text-[#F79024]">  Ritz Media World</span> is all about.
           </h3>
         </div>
-        <AnimatedBtn btnText="Click Me to know more" link=" https://ritzmediaworld.com/services"></AnimatedBtn>
+        <AnimatedBtn btnText="Click Me to know more" link=" https://ritzmediaworld.com/services" txt="text-white"></AnimatedBtn>
       </div>
 
       {/* Center Align Main Div  */}

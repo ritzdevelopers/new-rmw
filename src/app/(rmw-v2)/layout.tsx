@@ -7,8 +7,10 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ritzmediaworld.com"),
-  title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
-  description: "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
+  title:
+    "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
+  description:
+    "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
   keywords: [
     "Best advertising agency in Delhi NCR",
     "Top Advertising Agency",
@@ -50,8 +52,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://ritzmediaworld.com",
     siteName: "Ritz Media World",
-    title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
-    description: "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
+    title:
+      "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
+    description:
+      "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
     images: [
       {
         url: "https://ritzmediaworld.com/rmw-final-logo.png",
@@ -63,8 +67,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
-    description: "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
+    title:
+      "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
+    description:
+      "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
     images: ["https://ritzmediaworld.com/rmw-final-logo.png"],
     creator: "@ritzmediaworld",
     site: "@ritzmediaworld",
@@ -74,7 +80,6 @@ export const metadata: Metadata = {
 export default function NewRMWW({ children }: { children: React.ReactNode }) {
   return (
     <>
-     
       <Navbar></Navbar>
       {children}
       <ContactBtns />

@@ -32,7 +32,10 @@ function ASI({
     if (bgType === "instagram") {
       window.open("https://www.instagram.com/ritzmediaworld", "_blank");
     } else if (bgType === "youtube") {
-      window.open("https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia", "_blank");
+      window.open(
+        "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
+        "_blank"
+      );
     } else if (bgType === "linkedin") {
       window.open("https://www.linkedin.com/company/ritzmediaworld/", "_blank");
     } else if (bgType === "x") {
@@ -48,7 +51,12 @@ function ASI({
     >
       <div className="flex items-center gap-3 whitespace-nowrap">
         {icn}
-        <span className={`${styles.socialName} text-white font-medium`}>
+        <span
+          className={`${styles.socialName} text-white font-medium`}
+          style={{
+            color: "white !important",
+          }}
+        >
           {socialMediaNames[bgType]}
         </span>
       </div>
