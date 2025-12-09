@@ -1,8 +1,22 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 function Section4() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const topHeaderRef = useRef<HTMLDivElement | null>(null);
+  const centeredContainerRef = useRef<HTMLDivElement | null>(null);
+  const leftTextRef = useRef<HTMLParagraphElement | null>(null);
+  const statCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const imageContainerRef = useRef<HTMLDivElement | null>(null);
+
   const d1 = [
     {
       cnt: 300,
@@ -35,10 +49,144 @@ function Section4() {
       link: "",
     },
   ];
+
+  useGSAP(() => {
+    if (!sectionRef.current) return;
+
+    // Responsive match media
+    const mm = gsap.matchMedia();
+
+    // Animate top header container
+    if (topHeaderRef.current) {
+      const headerChildren = topHeaderRef.current.querySelectorAll("h2, p");
+      gsap.from(headerChildren, {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: topHeaderRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+
+    // Animate centered container elements
+    if (centeredContainerRef.current) {
+      const centeredChildren = centeredContainerRef.current.children;
+      gsap.from(centeredChildren, {
+        y: 40,
+        opacity: 0,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: centeredContainerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+
+    // Animate left side text
+    if (leftTextRef.current) {
+      gsap.from(leftTextRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: leftTextRef.current,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+
+    // Animate stat cards with responsive settings
+    mm.add("(min-width: 640px)", () => {
+      // Desktop/Tablet: Stagger animation
+      statCardRefs.current.forEach((card, idx) => {
+        if (!card) return;
+        gsap.from(card, {
+          y: 50,
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.8,
+          delay: idx * 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    });
+
+    mm.add("(max-width: 639px)", () => {
+      // Mobile: Simpler animation
+      statCardRefs.current.forEach((card) => {
+        if (!card) return;
+        gsap.from(card, {
+          y: 40,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    });
+
+    // Animate image container
+    if (imageContainerRef.current) {
+      mm.add("(min-width: 1024px)", () => {
+        // Desktop: Slide from right
+        gsap.from(imageContainerRef.current, {
+          x: 50,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: imageContainerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+
+      mm.add("(max-width: 1023px)", () => {
+        // Mobile/Tablet: Fade and slide up
+        gsap.from(imageContainerRef.current, {
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: imageContainerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    }
+
+    return () => {
+      mm.revert();
+      // Cleanup is handled by useGSAP scope automatically
+    };
+  }, { scope: sectionRef });
+
   return (
-    <section className="w-full flex flex-col items-center gap-4 md:gap-5 lg:gap-8 pb-8 sm:pb-10 px-4 sm:px-6 md:px-0">
+    <section ref={sectionRef} className="w-full flex flex-col items-center gap-4 md:gap-5 lg:gap-8 pb-8 sm:pb-10 px-4 sm:px-6 md:px-0">
       {/* Top Header Container  */}
-      <div className="w-[100%] min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[234px] bg-[#E7EEFA] flex justify-center items-center py-8 sm:py-10 md:py-12 px-4 sm:px-6">
+      <div ref={topHeaderRef} className="w-[100%] min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[234px] bg-[#E7EEFA] flex justify-center items-center py-8 sm:py-10 md:py-12 px-4 sm:px-6">
         {/* Centered Align Text Container  */}
         <div className=" lg:max-w-4xl text-center px-4">
           <h2
@@ -62,7 +210,7 @@ function Section4() {
       </div>
 
       {/* Centered Align Container  */}
-      <div className="md:w-[90%] flex flex-col justify-between items-center gap-3 sm:gap-4 px-0">
+      <div ref={centeredContainerRef} className="md:w-[90%] flex flex-col justify-between items-center gap-3 sm:gap-4 px-0">
         <p
           style={{
             fontFamily: "InterRegular",
@@ -99,6 +247,7 @@ function Section4() {
         <div className="w-full md:w-[95%] lg:w-[60%] xl:w-[639px] flex flex-col gap-6 sm:gap-8 md:gap-10">
           {/* Text Content  */}
           <p
+            ref={leftTextRef}
             style={{
               fontFamily: "InterRegular",
             }}
@@ -117,6 +266,9 @@ function Section4() {
                 return (
                   <div
                     key={idx}
+                    ref={(el) => {
+                      statCardRefs.current[idx] = el;
+                    }}
                     className="w-full h-[140px] sm:h-[150px] md:h-[155px] shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] relative flex justify-center items-center overflow-hidden abs3"
                   >
                     {/* Centered Align Container  */}
@@ -170,6 +322,9 @@ function Section4() {
                 return (
                   <div
                     key={idx}
+                    ref={(el) => {
+                      statCardRefs.current[d1.length + idx] = el;
+                    }}
                     className="w-full h-[140px] sm:h-[150px] md:h-[155px] shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] relative flex justify-center items-center overflow-hidden abs3"
                   >
                     {/* Centered Align Container  */}
@@ -221,6 +376,7 @@ function Section4() {
 
         {/* Right Side Container  */}
         <div
+          ref={imageContainerRef}
           className="w-full 
       h-[345px]
         md:w-[60%] lg:w-[380px]

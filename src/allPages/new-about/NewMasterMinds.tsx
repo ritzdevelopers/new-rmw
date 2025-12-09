@@ -117,7 +117,7 @@ function NewMasterMinds() {
                 />
 
                 {/* Absolute Position Element  */}
-                <div className="masterMindsArrow absolute top-0 left-0 w-[50px] h-[48px] sm:w-[60px] sm:h-[58px] md:w-[68px] md:h-[66px] lg:w-[74px] lg:h-[72px] flex justify-center items-center bg-[#ED8B24]">
+                <div className="masterMindsArrow absolute top-0 left-0 w-[50px] h-[48px] sm:w-[60px] sm:h-[58px] md:w-[68px] md:h-[66px] lg:w-[74px] lg:h-[72px] flex justify-center items-center bg-[#ED8B24E5]">
                   <FaArrowRight className="masterMindsIcon w-[14px] h-[14px] sm:w-[16px] sm:h-[16px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px] text-white rotate-[-20deg] absolute top-6 left-6" />
 
                   {/* Centered Align Container  */}
