@@ -13,7 +13,7 @@ function SubHero() {
 
       {/* Centered Align Div  */}
       <div
-        className="w-[90%] sm:w-[85%] md:w-[95%] lg:w-[80%] flex flex-col lg:justify-between 
+        className="w-[96%]  md:w-[98%] lg:w-[90%] xl:w-[85%] flex flex-col lg:justify-between 
       gap-3 lg:gap-5
        z-5 px-4 sm:px-6 md:px-8 lg:px-0"
       >
