@@ -33,7 +33,7 @@ function Footer() {
       {/* Centered Align Div  */}
       <div className="w-full max-w-[95%] flex flex-col">
         {/* Row 1 - CTA Banner */}
-        <div className="w-full min-h-[120px] sm:min-h-[130px] md:min-h-[146px] bg-[#D4A574] text-white flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 md:py-10 gap-4 sm:gap-6">
+        <div className="w-full min-h-[120px] sm:min-h-[130px] md:min-h-[146px] bg-[#F3830E] text-white flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 md:px-8 lg:px-10 py-6 sm:py-8 md:py-10 gap-4 sm:gap-6">
           <div className="flex flex-col gap-2 sm:gap-3 text-center sm:text-left">
             <h2 className="font-[600] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] leading-[1.2] text-white">
               Ready to Elevate Your Brand?
@@ -45,7 +45,7 @@ function Footer() {
           <div className="flex-shrink-0">
             <button
               onClick={handleConsultation}
-              className="font-[500] liquid2 rounded-[8px] bg-white cursor-pointer text-[13px] px-3 sm:text-[14px] w-full sm:w-[200px] md:w-[232px] h-[40px]  text-[#D4A574] hover:bg-[#F0F0F0] transition-colors duration-300 whitespace-nowrap"
+              className="font-[500] liquid2 rounded-[8px] bg-white cursor-pointer text-[13px] px-3 sm:text-[14px] w-full sm:w-[200px] md:w-[232px] h-[40px]  text-[#F3830E] hover:bg-[#F0F0F0] transition-colors duration-300 whitespace-nowrap"
             >
               Schedule Free Consultation
             </button>
@@ -72,7 +72,11 @@ function Footer() {
             {/* Paragraph */}
             <div>
               <p className="font-[400] text-[14px]  leading-[1.6] text-[#D1D5DC]">
-              Accelerate your journey to success with result-oriented solutions for Digital Advertising, Social Media Management, SEO, and Compelling Content backed by more than 17 years of advertising wisdom with a wide array of clients across all industries across the Indian subcontinent.
+                Accelerate your journey to success with result-oriented
+                solutions for Digital Advertising, Social Media Management, SEO,
+                and Compelling Content backed by more than 17 years of
+                advertising wisdom with a wide array of clients across all
+                industries across the Indian subcontinent.
               </p>
             </div>
             {/* Social Media Icons */}
@@ -81,7 +85,7 @@ function Footer() {
                 href="https://www.facebook.com/ritzmediaworld/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
+                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#F3830E] transition-colors duration-300 cursor-pointer group"
                 aria-label="Facebook"
               >
                 <FaFacebookF className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
@@ -90,7 +94,7 @@ function Footer() {
                 href="https://www.instagram.com/ritzmediaworld/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
+                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#F3830E] transition-colors duration-300 cursor-pointer group"
                 aria-label="Instagram"
               >
                 <FaInstagram className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
@@ -99,7 +103,7 @@ function Footer() {
                 href="https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
+                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#F3830E] transition-colors duration-300 cursor-pointer group"
                 aria-label="Twitter"
               >
                 {/* <X className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" /> */}
@@ -109,7 +113,7 @@ function Footer() {
                 href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
+                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#F3830E] transition-colors duration-300 cursor-pointer group"
                 aria-label="LinkedIn"
               >
                 <FiLinkedin className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
@@ -118,7 +122,7 @@ function Footer() {
                 href="https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#D4A574] transition-colors duration-300 cursor-pointer group"
+                className="w-[40px] h-[40px] bg-[#1E2939] flex justify-center items-center rounded-[10px] hover:bg-[#F3830E] transition-colors duration-300 cursor-pointer group"
                 aria-label="YouTube"
               >
                 <FaYoutube className="w-5 h-5 text-white group-hover:text-[#101828] transition-colors duration-300" />
@@ -128,52 +132,54 @@ function Footer() {
 
           {/* Box 2 - Quick Links */}
           <div className="w-full min-h-[206px] flex flex-col justify-start gap-4 sm:gap-5">
-            <h2 className="font-[600] text-[16px] text-white mb-2">Quick Links</h2>
+            <h2 className="font-[600] text-[16px] text-white mb-2">
+              Quick Links
+            </h2>
             <Link
               href="/"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Home
             </Link>
             <Link
               href="/about.html"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               About
             </Link>
             <Link
               href="/work.html"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Our Work
             </Link>
             <Link
               href="/blogs"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Blogs
             </Link>
             <Link
               href="/web-stories"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Web Stories
             </Link>
             <Link
               href="/contact.html"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Contact
             </Link>
             <Link
               href="/career"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Career
             </Link>
@@ -187,56 +193,56 @@ function Footer() {
             <Link
               href="/services/digital-marketing"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Digital Marketing
             </Link>
             <Link
               href="/services/print-advertising"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Print Advertising
             </Link>
             <Link
               href="/services/radio-advertising"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Radio Advertising
             </Link>
             <Link
               href="/services/creative-services"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Creative Services
             </Link>
             <Link
               href="/services/contents-marketing"
               target="_blank"
-              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Content Marketing
             </Link>
             <Link
               href="/services/web-designing-and-development"
               target="_blank"
-                  className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Web Development
             </Link>
             <Link
               href="/services/celebrity-endorsements"
               target="_blank"
-                  className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Celebrity Endorsements
             </Link>
             <Link
               href="/services/influencer-marketing-agency-in-india"
               target="_blank"
-                  className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Influencer Marketing
             </Link>
@@ -250,10 +256,10 @@ function Footer() {
             <Link
               href="/contact.html"
               target="_blank"
-              className="flex gap-3 sm:gap-4 items-start hover:text-[#D4A574] transition-colors duration-300 cursor-pointer group"
+              className="flex gap-3 sm:gap-4 items-start hover:text-[#F3830E] transition-colors duration-300 cursor-pointer group"
             >
-              <GrLocation className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300" />
-              <p className="font-[400] text-[14px]  leading-[1.6] text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300">
+              <GrLocation className="w-[20px] h-[20px] text-[#F3830E] flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300" />
+              <p className="font-[400] text-[14px]  leading-[1.6] text-[#D1D5DC] group-hover:text-[#F3830E] transition-colors duration-300">
                 Address: 402 – 404, <br /> 4th floor Corporate Park, <br />
                 Tower A1 Sector 142, <br /> Noida
               </p>
@@ -261,30 +267,30 @@ function Footer() {
             <a
               href="tel:09220516777"
               target="_blank"
-              className="flex gap-3 sm:gap-4 items-center hover:text-[#D4A574] transition-colors duration-300 cursor-pointer group"
+              className="flex gap-3 sm:gap-4 items-center hover:text-[#F3830E] transition-colors duration-300 cursor-pointer group"
             >
-              <MdOutlineLocalPhone className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-              <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300">
+              <MdOutlineLocalPhone className="w-[20px] h-[20px] text-[#F3830E] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+              <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#F3830E] transition-colors duration-300">
                 09220516777
               </p>
             </a>
             <a
               href="tel:07290002168"
               target="_blank"
-              className="flex gap-3 sm:gap-4 items-center hover:text-[#D4A574] transition-colors duration-300 cursor-pointer group"
+              className="flex gap-3 sm:gap-4 items-center hover:text-[#F3830E] transition-colors duration-300 cursor-pointer group"
             >
-              <MdOutlineLocalPhone className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-              <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300">
+              <MdOutlineLocalPhone className="w-[20px] h-[20px] text-[#F3830E] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+              <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#F3830E] transition-colors duration-300">
                 07290002168
               </p>
             </a>
             <a
               href="mailto:info@ritzmediaworld.com"
               target="_blank"
-                className="flex gap-3 sm:gap-4 items-center hover:text-[#D4A574] transition-colors duration-300 cursor-pointer group"
+              className="flex gap-3 sm:gap-4 items-center hover:text-[#F3830E] transition-colors duration-300 cursor-pointer group"
             >
-              <MdOutlineMailOutline className="w-[20px] h-[20px] text-[#D4A574] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-              <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#D4A574] transition-colors duration-300 break-all">
+              <MdOutlineMailOutline className="w-[20px] h-[20px] text-[#F3830E] flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+              <p className="font-[400] text-[14px]  text-[#D1D5DC] group-hover:text-[#F3830E] transition-colors duration-300 break-all">
                 info@ritzmediaworld.com
               </p>
             </a>
@@ -348,24 +354,17 @@ function Footer() {
 
           <ul className="hidden flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-4 md:gap-6">
             <li>
-              <p
-                className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
-              >
+              <p className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer">
                 Privacy Policy
               </p>
             </li>
             <li>
-              <p
-              
-                className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
-              >
+              <p className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer">
                 Terms of Service
               </p>
             </li>
             <li>
-              <p
-                className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] hover:text-[#D4A574] transition-colors duration-300 cursor-pointer"
-              >
+              <p className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer">
                 Sitemap
               </p>
             </li>
@@ -390,12 +389,13 @@ function Footer() {
         className="absolute cursor-pointer bottom-6 left-6 sm:bottom-8 sm:left-8 md:bottom-10 md:left-10 w-[50px] h-[50px]  bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300 z-50 group animate-bounce-arrow"
         aria-label="Scroll to top"
       >
-        <ChevronUp className="w-6 h-6 text-[#D4A574] group-hover:scale-110 transition-transform duration-300" />
+        <ChevronUp className="w-6 h-6 text-[#F3830E] group-hover:scale-110 transition-transform duration-300" />
       </button>
 
       <style jsx>{`
         @keyframes bounce-arrow {
-          0%, 100% {
+          0%,
+          100% {
             transform: translateY(0);
           }
           50% {

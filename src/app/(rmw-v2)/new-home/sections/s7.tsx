@@ -90,7 +90,7 @@ function TimelineCard({
     >
       <div className={`flex flex-col gap-3 ${txtAlign}`}>
         <div>
-          <span className="text-[28px] font-semibold text-[#D4A574]">
+          <span className="text-[28px] font-semibold text-[#F3830E]">
             {item.year}
           </span>
         </div>
@@ -272,7 +272,7 @@ function S7() {
 
         // Create fill element
         const fillLine = document.createElement("span");
-        fillLine.className = "mobile-timeline-fill absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-[#D4A574] to-transparent";
+        fillLine.className = "mobile-timeline-fill absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent via-[#F3830E] to-transparent";
         lineElement.style.position = "relative";
         lineElement.appendChild(fillLine);
 
@@ -333,11 +333,11 @@ function S7() {
       <div className="flex w-full max-w-[96%] flex-col gap-14 px-4 sm:px-6 lg:px-0">
         {/* Row 1 */}
         <div className="flex flex-col items-center gap-5 text-center">
-          <button className="inline-flex h-9 w-[130px] items-center justify-center rounded-full bg-[#D4A574] text-[14px] font-[400] text-[#ffffff] ">
+          <button className="inline-flex h-9 w-[130px] items-center justify-center rounded-full bg-[#F3830E] text-[14px] font-[400] text-[#ffffff] ">
             Our Journey
           </button>
           <h2 className="text-3xl font-semibold text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.1] md:flex">
-            17 Years of <span className="text-[#D4A574] md:block transform -translate-y-[4px]">Brand Excellence</span>
+            17 Years of <span className="text-[#F3830E] md:block transform -translate-y-[4px]">Brand Excellence</span>
           </h2>
           <p className="max-w-2xl text-base text-[#4A5565] sm:text-lg">
             From pioneering print innovations to 360° digital mastery, our
@@ -359,7 +359,7 @@ function S7() {
           {/* Desktop Timeline Line - Fill (Gold) */}
           <div 
             ref={timelineLineFillRef}
-            className="hidden lg:block absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#E4C08C] via-[#D4A574] to-[#E4C08C]"
+            className="hidden lg:block absolute left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#E4C08C] via-[#F3830E] to-[#E4C08C]"
             style={{ transformOrigin: "top" }}
           />
 
@@ -406,7 +406,7 @@ function S7() {
                     }}
                     className="relative flex h-10 w-10 sm:h-12 sm:w-12 items-center overflow-hidden justify-center rounded-full border border-[#F6E2C8] bg-white shadow-[0_12px_30px_rgba(212,165,116,0.28)] p-1 z-10"
                   >
-                    <div className="bg-[#D4A574] w-full h-full rounded-full flex justify-center items-center">
+                    <div className="bg-[#F3830E] w-full h-full rounded-full flex justify-center items-center">
                       <Image
                         src={item.icn}
                         alt={item.title}
@@ -477,7 +477,7 @@ function S7() {
               key={stat.label}
               className="flex min-h-[120px] flex-col items-center justify-center gap-2 rounded-[14px] border border-[#E5E7EB] bg-white px-6 py-6 text-center "
             >
-              <h2 className="text-3xl font-semibold text-[#D4A574] sm:text-[36px]">
+              <h2 className="text-3xl font-semibold text-[#F3830E] sm:text-[36px]">
                 {stat.value}
               </h2>
               <p className="text-[16px] font-[400] text-[#364153] sm:text-[13px]">

@@ -151,12 +151,12 @@ function S8() {
       <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%] lg:max-w-[1400px] flex flex-col items-center gap-6 sm:gap-10 md:gap-14 lg:gap-16 relative overflow-y-hidden max-h-full">
         {/* Top Header Div  */}
         <div className="w-full relative flex flex-col justify-center items-center text-center gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 px-2 sm:px-4 md:px-0">
-          <button className="inline-flex h-8 sm:h-9 w-[140px] sm:w-[156px] items-center justify-center rounded-full bg-[#D4A574] text-[12px] sm:text-[13px] lg:text-[14px] font-[400] text-[#ffffff]">
+          <button className="inline-flex h-8 sm:h-9 w-[140px] sm:w-[156px] items-center justify-center rounded-full bg-[#F3830E] text-[12px] sm:text-[13px] lg:text-[14px] font-[400] text-[#ffffff]">
             Clients Testimonials
           </button>
           <h2 className="font-[600] text-[24px] sm:text-[28px] md:text-[36px] lg:text-[48px] leading-[1.2] sm:leading-[1.2] md:leading-[1.1] text-[#101828] px-2 md:flex">
             What Our Clients{" "}
-            <span className="text-[#D4A574] md:block transform -translate-y-[4px]">
+            <span className="text-[#F3830E] md:block transform -translate-y-[4px]">
               Say
             </span>
           </h2>
@@ -191,7 +191,7 @@ function S8() {
         </div>
 
         {/* Botom Testimonials Div  */}
-        <div className="w-full relative min-h-[260px] sm:min-h-[300px] md:min-h-[340px] lg:min-h-[391px] border-b-[4px] sm:border-b-[6px] md:border-b-[8px] lg:border-b-[9px] border-[#D4A574] rounded-[16px] sm:rounded-[20px] md:rounded-[25px] lg:rounded-[30px] shadow-[0_15px_30px_rgba(16,24,40,0.06)] sm:shadow-[0_20px_40px_rgba(16,24,40,0.06)] md:shadow-[0_35px_70px_rgba(16,24,40,0.08)] bg-white/90 backdrop-blur flex justify-center items-center px-3 sm:px-5 md:px-7 lg:px-12 py-5 sm:py-7 md:py-9 lg:py-10 mx-2 sm:mx-0 overflow-hidden xl:w-[1100px] max-w-full">
+        <div className="w-full relative min-h-[260px] sm:min-h-[300px] md:min-h-[340px] lg:min-h-[391px] border-b-[4px] sm:border-b-[6px] md:border-b-[8px] lg:border-b-[9px] border-[#F3830E] rounded-[16px] sm:rounded-[20px] md:rounded-[25px] lg:rounded-[30px] shadow-[0_15px_30px_rgba(16,24,40,0.06)] sm:shadow-[0_20px_40px_rgba(16,24,40,0.06)] md:shadow-[0_35px_70px_rgba(16,24,40,0.08)] bg-white/90 backdrop-blur flex justify-center items-center px-3 sm:px-5 md:px-7 lg:px-12 py-5 sm:py-7 md:py-9 lg:py-10 mx-2 sm:mx-0 overflow-hidden xl:w-[1100px] max-w-full">
           {/* Centered Align Slider  */}
           <div
             ref={sliderRef}
@@ -199,7 +199,7 @@ function S8() {
           >
             <div className="relative w-full px-2 sm:px-4 md:px-0">
               {/* Decorative Quote - Smaller on mobile */}
-              {/* <span className="pointer-events-none absolute -top-6 sm:-top-8 md:-top-10 lg:-top-12 left-1/2 -translate-x-1/2 text-[60px] sm:text-[80px] md:text-[100px] lg:text-[120px] text-[#D4A574]/20 leading-none">
+              {/* <span className="pointer-events-none absolute -top-6 sm:-top-8 md:-top-10 lg:-top-12 left-1/2 -translate-x-1/2 text-[60px] sm:text-[80px] md:text-[100px] lg:text-[120px] text-[#F3830E]/20 leading-none">
                 &ldquo;
               </span> */}
               {/* Here The Testimonial Message Will Show */}

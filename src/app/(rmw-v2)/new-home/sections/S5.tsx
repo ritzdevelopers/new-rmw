@@ -418,7 +418,7 @@ function S5() {
         card,
         enter: handleEnter,
         leave: handleLeave,
-      });
+      });  
     });
 
     return () => {
@@ -464,7 +464,7 @@ function S5() {
           </button>
           <h2 className="text-3xl font-[600] text-[#101828] sm:text-4xl lg:text-[48px] lg:leading-[1.15] md:flex">
             Success Stories That{" "}
-            <span className="text-[#D4A574] font-[600] md:block transform -translate-y-[4px]">
+            <span className="text-[#F3830E] font-[600] md:block transform -translate-y-[4px]">
               Inspire
             </span>
           </h2>
@@ -513,7 +513,7 @@ function S5() {
               >
                 <div className="flex flex-col gap-[24px]">
                   <div className="flex flex-col gap-1">
-                    <p className="text-[14px] font-[400] text-[#D4A574]">
+                    <p className="text-[14px] font-[400] text-[#F3830E]">
                       {story.subTitle}
                     </p>
                     <h3 onClick={()=>window.open(story.imgLink, "_blank")} className="text-[26px] font-semibold text-[#333333] sm:text-[32px] cursor-pointer">
@@ -569,7 +569,7 @@ function S5() {
 
         <div className="w-full flex justify-center items-center">
           {" "}
-          <AnimatedBtn btnText="Click Me to know more" link="/services"></AnimatedBtn>
+          <AnimatedBtn btnText="Click Me to know more" link="/services" txt="text-white"></AnimatedBtn>
         </div>
       </div>
     </section>

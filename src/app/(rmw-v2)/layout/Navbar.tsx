@@ -385,7 +385,7 @@ function Navbar() {
               <li>
                 <button
                   onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}
-                  className="px-4 liquid xl:px-6 2xl:px-8 h-9 xl:h-10 2xl:h-[42px] cursor-pointer rounded-lg text-white bg-[#D4A574] font-[500] text-sm xl:text-base 2xl:text-lg hover:bg-[#C59564] transition-colors whitespace-nowrap"
+                  className="px-4 liquid xl:px-6 2xl:px-8 h-9 xl:h-10 2xl:h-[42px] cursor-pointer rounded-lg text-white bg-[#F3830E] font-[500] text-sm xl:text-base 2xl:text-lg hover:bg-[#F3830E] transition-colors whitespace-nowrap"
                 >
                   Free Consulting
                 </button>
@@ -468,7 +468,7 @@ function Navbar() {
                                     <Link
                                       href={subItem.link}
                                       target="_blank"
-                                      className="hover:text-[#D4A574] transition-colors"
+                                      className="hover:text-[#F3830E] transition-colors"
                                     >
                                       {subItem.name}
                                     </Link>
@@ -498,7 +498,7 @@ function Navbar() {
                                     <Link
                                       href={subItem.link}
                                       target="_blank"
-                                      className="hover:text-[#D4A574] transition-colors"
+                                      className="hover:text-[#F3830E] transition-colors"
                                     >
                                       {subItem.name}
                                     </Link>
@@ -528,7 +528,7 @@ function Navbar() {
                                     <Link
                                       href={subItem.link}
                                       target="_blank"
-                                      className="hover:text-[#D4A574] transition-colors"
+                                      className="hover:text-[#F3830E] transition-colors"
                                     >
                                       {subItem.name}
                                     </Link>
@@ -674,7 +674,7 @@ function Navbar() {
                               <Link
                                 href={subItem.link}
                                 onClick={toggleMobileMenu}
-                                className="hover:text-[#D4A574] transition-colors"
+                                className="hover:text-[#F3830E] transition-colors"
                               >
                                 {subItem.name}
                               </Link>
@@ -734,7 +734,7 @@ function Navbar() {
               onClick={() =>
                 window.open("https://ritzmediaworld.com/contact.html", "_blank")
               }
-              className="w-full h-12 bg-[#D4A574] text-white rounded-full font-[500] text-base hover:bg-[#C59564] transition-colors"
+              className="w-full h-12 bg-[#F3830E] text-white rounded-full font-[500] text-base hover:bg-[#F3830E] transition-colors"
             >
               Free Consulting
             </button>
@@ -754,7 +754,7 @@ function Navbar() {
                 </div>
                 <button
                   onClick={() => window.open("https://ritzmediaworld.com/rdx-digital-marketing-course", "_blank")}
-                  className="w-[160px] h-10 bg-[#D4A574] text-white rounded-full cursor-pointer font-[500] text-base hover:bg-[#D39E49] transition-colors"
+                  className="w-[160px] h-10 bg-[#F3830E] text-white rounded-full cursor-pointer font-[500] text-base hover:bg-[#D39E49] transition-colors"
                 >
                   Get Now
                 </button>

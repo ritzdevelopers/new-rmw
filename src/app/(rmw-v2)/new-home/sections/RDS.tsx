@@ -102,12 +102,12 @@ function RDS() {
     >
       <div className="w-full sm:w-[95%] md:w-[92%] lg:w-[90%]">
         <div className="flex flex-col mb-6 gap-2 sm:gap-2.5 md:gap-3 w-full">
-          <button className="inline-flex w-fit rounded-full bg-[#D4A574] px-4 py-1.5 sm:px-5 sm:py-2 text-[12px] sm:text-[13px] lg:text-[14px] font-[400] text-white">
+          <button className="inline-flex w-fit rounded-full bg-[#F3830E] px-4 py-1.5 sm:px-5 sm:py-2 text-[12px] sm:text-[13px] lg:text-[14px] font-[400] text-white">
             What We Do
           </button>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#101828] lg:text-[48px] lg:leading-[1.1]">
             360° Brand{" "}
-            <span className="text-[#D4A574]">Elevation Services</span>
+            <span className="text-[#F3830E]">Elevation Services</span>
           </h2>
           <p className="max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-4xl text-sm sm:text-base md:text-lg lg:text-[20px] text-[#4A5565] font-[400] leading-relaxed">
             Our in-house team masters the entire spectrum of digital marketing ,

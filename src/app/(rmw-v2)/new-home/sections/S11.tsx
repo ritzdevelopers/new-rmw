@@ -236,11 +236,11 @@ const router = useRouter();
         >
           {/* Top Section */}
           <div className="flex flex-col gap-4 sm:gap-5 md:gap-6">
-            <button className="w-fit px-4 sm:px-5 py-2 sm:py-2.5 font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-white rounded-full bg-[#D4A574] cursor-pointer hover:bg-[#C8955F] transition-colors duration-300">
+            <button className="w-fit px-4 sm:px-5 py-2 sm:py-2.5 font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-white rounded-full bg-[#F3830E] cursor-pointer hover:bg-[#f3840ed2] transition-colors duration-300">
               Free Resource
             </button>
             <div className="flex flex-col gap-2">
-              <h3 className="font-[500] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-[#D4A574]">
+              <h3 className="font-[500] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-[#F3830E]">
                 2025 Brand Impact Report
               </h3>
               <h3 className="font-[500] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-white">
@@ -257,19 +257,19 @@ const router = useRouter();
           <div>
             <ul className="flex flex-col gap-3 sm:gap-4">
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
+                <div className="bg-[#F3830E] w-[24px] h-[24px] rounded-full"></div>
                 <span>Industry benchmarks for real estate marketing ROI</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
+                <div className="bg-[#F3830E] w-[24px] h-[24px] rounded-full"></div>
                 <span>Proven strategies for UHNI audience targeting</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
+                <div className="bg-[#F3830E] w-[24px] h-[24px] rounded-full"></div>
                 <span>2025 digital and print advertising trends</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#D4A574] w-[24px] h-[24px] rounded-full"></div>
+                <div className="bg-[#F3830E] w-[24px] h-[24px] rounded-full"></div>
                 <span>Case studies with measurable results</span>
               </li>
             </ul>
@@ -295,7 +295,7 @@ const router = useRouter();
                   className={`w-full h-[48px] sm:h-[56px] pl-11 sm:pl-12 md:pl-14 pr-4 sm:pr-5 md:pr-6 bg-white/10 border rounded-[8px] text-white placeholder:text-[#99A1AF] focus:outline-none focus:bg-white/15 transition-all duration-300 text-[14px] sm:text-[15px] md:text-[16px] ${
                     phoneError 
                       ? "border-[#EF4444] focus:border-[#EF4444]" 
-                      : "border-white/20 focus:border-[#D4A574]"
+                      : "border-white/20 focus:border-[#F3830E]"
                   }`}
                 />
                 {phoneError && (
@@ -307,7 +307,7 @@ const router = useRouter();
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-[164px] h-[48px] sm:h-[56px] liquid text-white flex justify-center items-center gap-2 rounded-[8px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] hover:bg-[#C8955F] transition-colors duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full sm:w-[164px] h-[48px] sm:h-[56px] liquid text-white flex justify-center items-center gap-2 rounded-[8px] font-[500] text-[14px] sm:text-[15px] md:text-[16px] hover:bg-[#f3840ed2] transition-colors duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <LuDownload className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>{isSubmitting ? "Submitting..." : "Download Free"}</span>
@@ -326,11 +326,11 @@ const router = useRouter();
         >
           {/* Top Section */}
           <div className="w-full max-w-[518px] flex flex-col justify-center items-center text-center gap-4 sm:gap-5 md:gap-6">
-            <div onClick={()=>window.open("/contact.html", "_blank")} className="w-[56px] h-[56px]  sm:w-[60px] sm:h-[60px] md:w-[64px] md:h-[64px] rounded-[14px] sm:rounded-[15px] md:rounded-[16px] bg-[#D4A574] flex justify-center items-center text-white hover:bg-[#D4A574]/30 transition-colors duration-300">
+            <div onClick={()=>window.open("/contact.html", "_blank")} className="w-[56px] h-[56px]  sm:w-[60px] sm:h-[60px] md:w-[64px] md:h-[64px] rounded-[14px] sm:rounded-[15px] md:rounded-[16px] bg-[#F3830E] flex justify-center items-center text-white hover:bg-[#F3830E]/30 transition-colors duration-300">
               <FaArrowRightLong className="w-5 h-5 sm:w-6 sm:h-6 text-[#ffffff]" />
             </div>
             <h2 className="font-[600] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-white">
-              Or Get a Free <span className="text-[#D4A574]">Brand Audit</span>
+              Or Get a Free <span className="text-[#F3830E]">Brand Audit</span>
             </h2>
             <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] leading-[1.6] text-[#D1D5DC]">
               Let our experts analyze your current brand positioning and provide
@@ -342,19 +342,19 @@ const router = useRouter();
           <div className="w-full max-w-[500px]">
             <ul className="flex flex-col gap-3 sm:gap-4">
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#D4A574] w-[6px] h-[6px] rounded-full mt-2"></div>
+                <div className="bg-[#F3830E] w-[6px] h-[6px] rounded-full mt-2"></div>
                 <span>Comprehensive brand analysis</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#D4A574] w-[6px] h-[6px] rounded-full mt-2"></div>
+                <div className="bg-[#F3830E] w-[6px] h-[6px] rounded-full mt-2"></div>
                 <span>Competitor positioning review</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#D4A574] w-[6px] h-[6px] rounded-full mt-2"></div>
+                <div className="bg-[#F3830E] w-[6px] h-[6px] rounded-full mt-2"></div>
                 <span>Growth opportunity identification</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#D4A574] w-[6px] h-[6px] rounded-full mt-2"></div>
+                <div className="bg-[#F3830E] w-[6px] h-[6px] rounded-full mt-2"></div>
                 <span>Customized strategy roadmap</span>
               </li>
             </ul>

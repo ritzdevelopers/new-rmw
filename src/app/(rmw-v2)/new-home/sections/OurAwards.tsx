@@ -59,12 +59,12 @@ function OurAwards() {
       <div className="flex w-full max-w-[95%] sm:max-w-[90%] lg:max-w-[95%] flex-col gap-8 sm:gap-10 md:gap-12 px-4 sm:px-6 md:px-8 lg:px-12">
         {/* Row 1 */}
         <div className="flex flex-col items-center gap-3 sm:gap-4 md:gap-5 text-center">
-          <button className="inline-flex h-8 sm:h-9 md:h-10 w-[140px] sm:w-[150px] md:w-[156px] items-center justify-center rounded-full bg-[#D4A574] text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] font-[400] text-[#ffffff] px-3">
+          <button className="inline-flex h-8 sm:h-9 md:h-10 w-[140px] sm:w-[150px] md:w-[156px] items-center justify-center rounded-full bg-[#F3830E] text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] font-[400] text-[#ffffff] px-3">
             Achievement Awards
           </button>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-semibold text-[#ffffff] leading-tight sm:leading-snug lg:leading-[1.1] md:flex">
             Awards & Company
-            <span className="text-[#D4A574] md:block transform -translate-y-[2px] sm:-translate-y-[4px]">
+            <span className="text-[#F3830E] md:block transform -translate-y-[2px] sm:-translate-y-[4px]">
               Recognitions
             </span>
           </h2>
