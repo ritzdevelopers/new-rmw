@@ -83,24 +83,23 @@ function Section5() {
             anticipatePin: 1,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
-              // Calculate which card should show text based on scroll progress
               const progress = self.progress;
               const totalCards = cardElements.length;
-              
+
               cardElements.forEach((card, index) => {
                 if (!card) return;
                 const textElement = card.querySelector(".card-text");
                 if (!textElement) return;
-                
+
                 // Calculate progress for this specific card
                 const cardStart = index / totalCards;
                 const cardEnd = (index + 1) / totalCards;
-                const cardProgress = (progress - cardStart) / (cardEnd - cardStart);
-                
-                // Fade in when card is in center (between 0.3 and 0.7 of card's scroll range)
+                const cardProgress =
+                  (progress - cardStart) / (cardEnd - cardStart);
+
                 let opacity = 0;
                 let yOffset = 20;
-                
+
                 if (progress >= cardStart && progress <= cardEnd) {
                   // Smooth fade in/out
                   if (cardProgress < 0.3) {
@@ -121,7 +120,7 @@ function Section5() {
                   opacity = 0;
                   yOffset = 20;
                 }
-                
+
                 gsap.set(textElement, { opacity, y: yOffset });
               });
             },
@@ -188,4 +187,3 @@ function Section5() {
 }
 
 export default Section5;
-// 
