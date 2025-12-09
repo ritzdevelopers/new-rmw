@@ -122,7 +122,7 @@ function S1() {
           >
             BEYOND YOUR TYPICAL{" "}
             <span
-              className="text-[#F3830E]"
+              className="text-[#ffffff]"
               style={{ textShadow: "0 2px 8px rgba(0,0,0,0.32)" }}
             >
               {" "}

@@ -79,6 +79,19 @@ function Footer() {
                 industries across the Indian subcontinent.
               </p>
             </div>
+            {/* Google Reviews  */}
+            <div
+              className="w-[220px] h-[54px] relative overflow-hidden rounded-full cursor-pointer"
+              onClick={() =>
+                window.open("https://share.google/vdKYtVQQ8Ym2AvZj3", "_blank")
+              }
+            >
+              <Image
+                src={"/new-about/google-reviews.png"}
+                fill
+                alt="Ritz Media World"
+              ></Image>
+            </div>
             {/* Social Media Icons */}
             <div className="flex w-full justify-start items-center gap-3 sm:gap-4">
               <a
@@ -131,7 +144,7 @@ function Footer() {
           </div>
 
           {/* Box 2 - Quick Links */}
-          <div className="w-full min-h-[206px] flex flex-col justify-start gap-4 sm:gap-5">
+          <div className="w-full min-h-[206px] flex flex-col justify-start gap-4 sm:gap-5 lg:pl-[90px]">
             <h2 className="font-[600] text-[16px] text-white mb-2">
               Quick Links
             </h2>
