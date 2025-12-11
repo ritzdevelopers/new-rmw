@@ -13,8 +13,7 @@ function Section7() {
             Our Culture
           </h2>
           <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#00000099] max-w-3xl md:px-4">
-            Life at Ritzs Media is all about creativity, collaboration, and
-            growth. We work smart, think bold, and innovate every day
+            In our culture, we nurture creativity, seek out innovation, encourage collaboration, cultivate happiness, and occasionally break into senseless laughter.
           </p>
         </div>
 
@@ -53,11 +52,10 @@ function Section7() {
                 (img, idx) => {
                   return (
                     <div
-                      className={`w-full ${
-                        idx === 0
-                          ? "h-[200px] sm:h-[250px] md:h-[280px] lg:h-[303px]"
-                          : "h-[300px] sm:h-[350px] md:h-[400px] lg:h-[449px]"
-                      } relative overflow-hidden group cursor-pointer`}
+                      className={`w-full ${idx === 0
+                        ? "h-[200px] sm:h-[250px] md:h-[280px] lg:h-[303px]"
+                        : "h-[300px] sm:h-[350px] md:h-[400px] lg:h-[449px]"
+                        } relative overflow-hidden group cursor-pointer`}
                       key={idx}
                     >
                       <Image
@@ -90,7 +88,7 @@ function Section7() {
 
         {/* Bottom Button Section  */}
         <div className="w-full flex justify-center items-center">
-          <button className="w-[155px] liquid h-[42px] font-[500] text-[18px] text-white rounded-[8px] bg-[#ED8B24] cursor-pointer">
+          <button onClick={() => window.open("https://ritzmediaworld.com/ritzmediaworld-gallery", "_blank")} className="w-[155px] liquid h-[42px] font-[500] text-[18px] text-white rounded-[8px] bg-[#ED8B24] cursor-pointer">
             View More
           </button>
         </div>

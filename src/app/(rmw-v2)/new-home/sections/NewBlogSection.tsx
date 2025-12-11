@@ -43,9 +43,7 @@ function NewBlogSection() {
     }
   }, [activeIdx]);
 
-  // Initialize eye icon positions
   useEffect(() => {
-    // Wait for refs to be ready
     const timer = setTimeout(() => {
       eyeIconRefs.current.forEach((icon) => {
         if (icon) {
@@ -75,9 +73,7 @@ function NewBlogSection() {
     }
   }, [blinkEye]);
 
-  // Handle mouse move for eye icon following cursor
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, idx: number) => {
-    // Only work when this card is active
     if (activeIdx !== idx) return;
 
     const overlay = overlayRefs.current[idx];
@@ -89,43 +85,31 @@ function NewBlogSection() {
     const overlayRect = overlay.getBoundingClientRect();
     const parentRect = eyeParent.getBoundingClientRect();
 
-    // Get mouse position relative to overlay
     const mouseX = e.clientX - overlayRect.left;
     const mouseY = e.clientY - overlayRect.top;
 
-    // Calculate parent center relative to overlay
     const parentCenterX = parentRect.left - overlayRect.left + parentRect.width / 2;
     const parentCenterY = parentRect.top - overlayRect.top + parentRect.height / 2;
 
-    // Calculate offset from parent center
     const offsetX = mouseX - parentCenterX;
     const offsetY = mouseY - parentCenterY;
 
-    // Get icon element to calculate its size
     const iconElement = eyeIcon.querySelector('svg');
     if (!iconElement) return;
 
     const iconRect = iconElement.getBoundingClientRect();
 
-    // Calculate safe area - icon should not touch parent boundary
-    // Get icon size (largest dimension)
     const iconSize = Math.max(iconRect.width, iconRect.height);
     const parentSize = Math.min(parentRect.width, parentRect.height);
 
-    // Calculate max offset: (parent size / 2) - (icon size / 2) - padding
-    // Padding of 5px to ensure icon never touches boundary
     const padding = 5;
     const maxOffset = (parentSize / 2) - (iconSize / 2) - padding - 50;
 
-    // Ensure maxOffset is positive
-    const safeMaxOffset = Math.max(5, maxOffset); // Minimum 5px movement
-
-    // Limit movement to stay within parent bounds
+    const safeMaxOffset = Math.max(5, maxOffset); 
     const distance = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
     const limitedX = distance > safeMaxOffset ? (offsetX / distance) * safeMaxOffset : offsetX;
     const limitedY = distance > safeMaxOffset ? (offsetY / distance) * safeMaxOffset : offsetY;
 
-    // Smoothly animate only the icon position (parent stays static)
     gsap.to(eyeIcon, {
       x: limitedX,
       y: limitedY,
@@ -134,7 +118,6 @@ function NewBlogSection() {
     });
   };
 
-  // Reset eye icon position when mouse leaves
   const handleMouseLeave = (idx: number) => {
     const eyeIcon = eyeIconRefs.current[idx];
     if (!eyeIcon) return;
@@ -150,7 +133,6 @@ function NewBlogSection() {
   return (
     <section className="relative flex w-full justify-center overflow-hidden overflow-x-hidden bg-white py-12 sm:py-16 md:py-20 bg-gradient-to-b from-[#FFFFFF] to-[#F9FAFB] max-w-full">
       <div className="flex w-full max-w-[92%] flex-col gap-8 sm:gap-10 lg:gap-12 px-4 sm:px-6 lg:px-8">
-        {/* Row 1 - Header */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 sm:gap-8">
           <div className="flex flex-col items-start gap-3 sm:gap-4 w-full md:w-auto">
             <button className="rounded-full bg-[#F3830E] px-4 py-1.5 text-[10px] font-semibold text-[#ffffff] sm:px-6 sm:py-2 sm:text-xs md:text-sm">
@@ -170,7 +152,6 @@ function NewBlogSection() {
           </div>
         </div>
 
-        {/* Row 2 - Blog Cards Grid */}
         <div className="w-full flex flex-col sm:flex-row sm:flex-wrap sm:justify-center md:justify-evenly lg:flex-nowrap lg:justify-start items-stretch sm:items-center gap-4 sm:gap-4 md:gap-5 lg:gap-6">
           {blogsData.length > 0 && blogsData.map((cd, idx) => {
             return (
@@ -187,7 +168,6 @@ function NewBlogSection() {
                   shadow-[0_4px_20px_rgba(16,24,40,0.08)] ${idx === activeIdx ? "lg:w-[calc(100%-680px)]" : ""
                   }`}
               >
-                {/* Image Container */}
                 <div className="relative h-[200px] w-full overflow-hidden sm:h-[240px] md:h-[280px] lg:h-[322px] flex-shrink-0">
                   <Image
                     // src={cd.blogBanner}
@@ -215,14 +195,12 @@ function NewBlogSection() {
                       : "opacity-0 bg-transparent pointer-events-none"
                       }`}
                   >
-                    {/* Eye Div - Parent (static, does not move) */}
                     <div
                       ref={(el) => {
                         eyeParentRefs.current[idx] = el;
                       }}
                       className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] md:w-[80px] md:h-[80px] lg:w-[100px] lg:h-[100px] bg-white rounded-full flex justify-center items-center relative overflow-hidden"
                     >
-                      {/* Icon Wrapper - This moves to follow cursor */}
                       <div
                         ref={(el) => {
                           eyeIconRefs.current[idx] = el;
@@ -251,8 +229,6 @@ function NewBlogSection() {
                   <h3 className="text-base font-semibold text-[#101828] leading-snug sm:text-lg md:text-xl lg:text-[20px] line-clamp-2">
                     {cd.blogTitle}
                   </h3>
-
-                 
                 </div>
               </Link>
             );

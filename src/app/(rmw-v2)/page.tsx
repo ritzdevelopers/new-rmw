@@ -48,7 +48,7 @@ function page() {
       <S5></S5>
       <S51></S51>
       <S7></S7>
-      <S8></S8>
+      <S8 ></S8>
       {/* <S9></S9> */}
      <OurAwards></OurAwards>
       {/* <S10></S10> */}
