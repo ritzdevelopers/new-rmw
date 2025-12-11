@@ -15,6 +15,27 @@ interface Blog {
   blogSlug: string;
   blogDescription:string;
 }
+
+// Helper function to convert UTC date to Indian date format (date only)
+const formatIndianDate = (dateString: string): string => {
+  try {
+    const date = new Date(dateString);
+    
+    // Format as DD MMM YYYY (e.g., "15 Jan 2025") in Indian timezone
+    const options: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      timeZone: 'Asia/Kolkata'
+    };
+    
+    return date.toLocaleDateString('en-IN', options);
+  } catch (error) {
+    // If date parsing fails, return original string
+    return dateString;
+  }
+};
+
 function NewBlogSection() {
 
   const [blogsData, setBlogsData] = useState<Blog[]>([]);
@@ -24,7 +45,6 @@ function NewBlogSection() {
       // Exttract Oly 3 Latest Blogs
       const data = response.data.allBlogs.slice(0, 3);
       setBlogsData(data);
-      console.log(data);
 
     }
     fetchBlogs();
@@ -224,7 +244,7 @@ function NewBlogSection() {
                 {/* Content Container */}
                 <div className="flex flex-col gap-2 sm:gap-3 px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8 flex-1 flex-grow">
                   <p className="text-xs font-normal text-[#4A5565] sm:text-sm md:text-base">
-                    {cd.createdAt}
+                    {formatIndianDate(cd.createdAt)}
                   </p>
                   <h3 className="text-base font-semibold text-[#101828] leading-snug sm:text-lg md:text-xl lg:text-[20px] line-clamp-2">
                     {cd.blogTitle}

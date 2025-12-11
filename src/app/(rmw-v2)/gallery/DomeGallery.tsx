@@ -33,126 +33,111 @@ type ItemDef = {
   sizeY: number;
 };
 
-// const DEFAULT_IMAGES: ImageItem[] = [
-//   {
-//     src: 'https://images.unsplash.com/photo-1755331039789-7e5680e26e8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-//     alt: 'Abstract art'
-//   },
-//   {
-//     src: 'https://images.unsplash.com/photo-1755569309049-98410b94f66d?q=80&w=772&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-//     alt: 'Modern sculpture'
-//   },
-//   {
-//     src: 'https://images.unsplash.com/photo-1755497595318-7e5e3523854f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-//     alt: 'Digital artwork'
-//   },
-//   {
-//     src: 'https://images.unsplash.com/photo-1755353985163-c2a0fe5ac3d8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-//     alt: 'Contemporary art'
-//   },
-//   {
-//     src: 'https://images.unsplash.com/photo-1745965976680-d00be7dc0377?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-//     alt: 'Geometric pattern'
-//   },
-//   {
-//     src: 'https://images.unsplash.com/photo-1752588975228-21f44630bb3c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-//     alt: 'Textured surface'
-//   },
-//   {
-//     src: 'https://pbs.twimg.com/media/Gyla7NnXMAAXSo_?format=jpg&name=large',
-//     alt: 'Social media image'
-//   }
-// ];
-const DEFAULT_IMAGES: ImageItem[] = [
-  '/gallery/17e24618-1ebc-dd6c-1887-291bde275d77_1460_550.webp',
-  '/gallery/Best Real Estate Podcast_Beyond The Blueprints Team.jpeg',
-  '/gallery/Best Real Estate Podcast_Beyond The Blueprints.jpeg',
-  '/gallery/Boss.jpg',
-  '/gallery/Creative team Editing.JPG',
-  '/gallery/Creative team.JPG',
-  '/gallery/Creative Team2.JPG',
-  '/gallery/Digital marketing agency in noida.png',
-  '/gallery/DSC00086.JPG',
+const DEFAULT_IMAGES = [
   '/gallery/DSC01566.JPG',
-  '/gallery/DSC03053 (2).JPG',
-  '/gallery/DSC03053.JPG',
-  '/gallery/DSC03108.JPG',
-  '/gallery/DSC03178.JPG',
-  '/gallery/enhanced-image (7).jpg',
-  '/gallery/IMG-20250930-WA0091.jpg',
-  '/gallery/IMG-20250930-WA0102.jpg',
-  '/gallery/IMG-20250930-WA0103.jpg',
-  '/gallery/IMG-20251211-WA0004.jpg',
-  '/gallery/IMG-20251211-WA0007.jpg',
-  '/gallery/IMG-20251211-WA0010.jpg',
-  '/gallery/IMG-20251211-WA0011.jpg',
-  '/gallery/IMG-20251211-WA0016.jpg',
-  '/gallery/IMG-20251211-WA0018.jpg',
-  '/gallery/IMG-20251211-WA0020.jpg',
-  '/gallery/IMG-20251211-WA0026.jpg',
-  '/gallery/IMG-20251211-WA0030.jpg',
-  '/gallery/IMG-20251211-WA0032.jpg',
-  '/gallery/IMG-20251211-WA0034.jpg',
-  '/gallery/IMG-20251211-WA0038.jpg',
-  '/gallery/IMG-20251211-WA0040.jpg',
-  '/gallery/IMG-20251211-WA0041.jpg',
-  '/gallery/IMG-20251211-WA0042.jpg',
-  '/gallery/IMG-20251211-WA0043.jpg',
-  '/gallery/IMG-20251211-WA0044.jpg',
-  '/gallery/IMG-20251211-WA0045.jpg',
-  '/gallery/IMG-20251211-WA0052.jpg',
-  '/gallery/IMG-20251211-WA0088.jpg',
-  '/gallery/IMG-20251211-WA0095.jpg',
-  '/gallery/IMG20250916125830.jpg',
-  '/gallery/Media 2.jpg',
-  '/gallery/Most Trusted Advertising Agency in NCR by The Economic Times.jpg',
-  '/gallery/New Team Image (18-Nov-2025).jpg',
-  '/gallery/New team photo.jpg',
-  '/gallery/Nishi maam.jpg',
-  '/gallery/photo_2025-03-12_18-48-19.jpg',
-  '/gallery/photo_2025-03-12_18-48-20.jpg',
-  '/gallery/photo_2025-03-12_18-58-33.jpg',
-  '/gallery/photo_2025-06-24_12-32-10.jpg',
-  '/gallery/photo_2025-09-16_15-21-08.jpg',
-  '/gallery/photo_2025-10-17_18-11-07.jpg',
-  '/gallery/photo_2025-10-17_18-11-11.jpg',
-  '/gallery/photo_2025-10-17_18-11-15.jpg',
-  '/gallery/photo_2025-10-17_18-15-59.jpg',
-  '/gallery/photo_2025-11-11_10-40-36.jpg',
-  '/gallery/photo_2025-11-14_22-06-41.jpg',
-  '/gallery/photo_2025-11-14_22-06-51.jpg',
-  '/gallery/photo_2025-11-14_22-07-05.jpg',
-  '/gallery/photo_2025-11-15_00-42-59.jpg',
-  '/gallery/photo_2025-11-15_00-43-00.jpg',
-  '/gallery/photo_2025-11-15_00-43-02.jpg',
   '/gallery/photo_2025-11-28_21-59-05 (2).jpg',
-  '/gallery/photo_2025-11-28_21-59-05 (3).jpg',
-  '/gallery/photo_2025-11-28_21-59-05.jpg',
-  '/gallery/photo_2025-11-28_22-19-27.jpg',
-  '/gallery/photo_2025-11-28_22-19-28.jpg',
-  '/gallery/photo_2025-11-28_22-22-29.jpg',
-  '/gallery/Ritz Media World Digital Office.jpg',
-  '/gallery/RITz media world main.jpg',
+  '/gallery/Creative Team2.JPG',
+  '/gallery/photo_2025-03-12_18-48-20.jpg',
   '/gallery/Ritz media world R.jpg',
-  '/gallery/Ritz media world_.jpg',
-  '/gallery/Ritz Media world_Digital Marketing Agency in Noida.JPG',
-  '/gallery/Ritz.JPG',
-  '/gallery/Ritz1.JPG',
-  '/gallery/RMW 17 Years Complete.png',
-  '/gallery/RMW.jpg',
-  '/gallery/rmw2.jpg',
-  '/gallery/rmw3.jpg',
-  '/gallery/s.png',
-  '/gallery/Special Achievement Award in Retail Category.jpg',
-  '/gallery/team 4.jpg',
-  '/gallery/Team 6.jpg',
+  '/gallery/IMG-20251211-WA0007.jpg',
+  '/gallery/Best Real Estate Podcast_Beyond The Blueprints.jpeg',
   '/gallery/Team party.jpg',
-  '/gallery/team.jpg',
-  '/gallery/Trusted Digital Advertising Agency in NCR-Awarded by The Economic Times.jpg',
+  '/gallery/IMG20250916125830.jpg',
+  '/gallery/Creative team Editing.JPG',
+  '/gallery/WhatsApp Image 2025-12-11 at 13.21.14_8262e416.jpg',
+  '/gallery/Team 6.jpg',
+  '/gallery/IMG-20251211-WA0043.jpg',
+  '/gallery/RITz media world main.jpg',
+  '/gallery/photo_2025-10-17_18-11-15.jpg',
+  '/gallery/IMG-20251211-WA0038.jpg',
+  '/gallery/IMG-20251211-WA0020.jpg',
+  '/gallery/IMG-20251211-WA0010.jpg',
+  '/gallery/photo_2025-11-28_21-59-05.jpg',
+  '/gallery/IMG-20251211-WA0030.jpg',
+  '/gallery/DSC03053 (2).JPG',
+  '/gallery/New team photo.jpg',
+  '/gallery/Ritz.JPG',
+  '/gallery/photo_2025-09-16_15-21-08.jpg',
+  '/gallery/Creative team.JPG',
+  '/gallery/Most Trusted Advertising Agency in NCR by The Economic Times.jpg',
+  '/gallery/Ritz media world_.jpg',
+  '/gallery/Media 2.jpg',
+  '/gallery/IMG-20251211-WA0095.jpg',
+  '/gallery/IMG-20251211-WA0016.jpg',
+  '/gallery/photo_2025-11-14_22-06-51.jpg',
   '/gallery/WhatsApp Image 2025-12-11 at 13.17.51_db030edb.jpg',
+  '/gallery/IMG-20251211-WA0052.jpg',
+  '/gallery/Team 6.jpg',
+  '/gallery/DSC03178.JPG',
+  '/gallery/IMG-20251211-WA0034.jpg',
+  '/gallery/photo_6186250402882325663_x.jpg',
+  '/gallery/IMG-20250930-WA0091.jpg',
+  '/gallery/Nishi maam.jpg',
+  '/gallery/Creative team Editing.JPG',
+  '/gallery/photo_2025-03-12_18-48-19.jpg',
+  '/gallery/photo_2025-11-11_10-40-36.jpg',
+  '/gallery/s.png',
+  '/gallery/IMG-20251211-WA0040.jpg',
+  '/gallery/photo_2025-06-24_12-32-10.jpg',
+  '/gallery/Trusted Digital Advertising Agency in NCR-Awarded by The Economic Times.jpg',
+  '/gallery/RMW.jpg',
+  '/gallery/IMG-20251211-WA0045.jpg',
+  '/gallery/DSC00086.JPG',
+  '/gallery/DSC03108.JPG',
+  '/gallery/photo_2025-11-15_00-42-59.jpg',
+  '/gallery/photo_2025-09-16_15-21-08.jpg',
+  '/gallery/photo_2025-11-14_22-06-41.jpg',
+  '/gallery/IMG-20251211-WA0026.jpg',
+  '/gallery/IMG-20251211-WA0011.jpg',
+  '/gallery/rmw3.jpg',
+  '/gallery/IMG-20250930-WA0103.jpg',
+  '/gallery/photo_2025-11-28_22-19-27.jpg',
+  '/gallery/enhanced-image (7).jpg',
+  '/gallery/RMW 17 Years Complete.png',
+  '/gallery/photo_2025-11-28_22-19-28.jpg',
+  '/gallery/Ritz Media World Digital Office.jpg',
+  '/gallery/New Team Image (18-Nov-2025).jpg',
+  '/gallery/IMG-20251211-WA0004.jpg',
   '/gallery/WhatsApp Image 2025-12-11 at 13.18.12_625665af.jpg',
-  '/gallery/WhatsApp Image 2025-12-11 at 13.21.14_8262e416.jpg'
+  '/gallery/RMW.jpg',
+  '/gallery/photo_2025-10-17_18-11-07.jpg',
+  '/gallery/photo_2025-11-15_00-43-02.jpg',
+  '/gallery/IMG-20251211-WA0018.jpg',
+  '/gallery/IMG-20250930-WA0102.jpg',
+  '/gallery/photo_2025-03-12_18-58-33.jpg',
+  '/gallery/DSC03053.JPG',
+  '/gallery/team.jpg',
+  '/gallery/Ritz1.JPG',
+  '/gallery/IMG-20251211-WA0042.jpg',
+  '/gallery/photo_2025-10-17_18-11-11.jpg',
+  '/gallery/IMG-20251211-WA0032.jpg',
+  '/gallery/Creative team.JPG',
+  '/gallery/Team 6.jpg',
+  '/gallery/rmw2.jpg',
+  '/gallery/photo_2025-11-28_21-59-05 (3).jpg',
+  '/gallery/IMG-20251211-WA0041.jpg',
+  '/gallery/DSC03108.JPG',
+  '/gallery/photo_2025-10-17_18-15-59.jpg',
+  '/gallery/17e24618-1ebc-dd6c-1887-291bde275d77_1460_550.webp',
+  '/gallery/Digital marketing agency in noida.png',
+  '/gallery/IMG-20251211-WA0034.jpg',
+  '/gallery/photo_2025-11-15_00-43-00.jpg',
+  '/gallery/RMW.jpg',
+  '/gallery/team 4.jpg',
+  '/gallery/IMG-20251211-WA0088.jpg',
+  '/gallery/Special Achievement Award in Retail Category.jpg',
+  '/gallery/Best Real Estate Podcast_Beyond The Blueprints Team.jpeg',
+
+  '/gallery/photo_6186250402882325663_x.jpg',
+  '/gallery/photo_6186250402882325664_x.jpg',
+  '/gallery/photo_6186250402882325665_x.jpg',
+  '/gallery/photo_6186250402882325716_y (1).jpg',
+  '/gallery/photo_6186250402882325716_y.jpg',
+  '/gallery/photo_6186250402882325717_y.jpg',
+  '/gallery/photo_6186250402882325719_y.jpg',
+
 ];
+
 
 const DEFAULTS = {
   maxVerticalRotationDeg: 5,
@@ -261,12 +246,6 @@ export default function DomeGallery({
     width: number;
     height: number;
   } | null>(null);
-
-
-
-  // Get All Images 
-
-
 
   const rotationRef = useRef({ x: 0, y: 0 });
   const startRotRef = useRef({ x: 0, y: 0 });
@@ -717,7 +696,7 @@ export default function DomeGallery({
     const img = document.createElement('img');
     img.src = rawSrc;
     img.alt = rawAlt;
-    img.style.cssText = `width:100%; height:100%; object-fit:cover; filter:${grayscale ? 'grayscale(1)' : 'none'};`;
+    img.style.cssText = `width:100%; height:100%; object-fit:cover;`;
     overlay.appendChild(img);
     viewerRef.current!.appendChild(overlay);
     const tx0 = tileR.left - frameR.left;
@@ -1015,3 +994,10 @@ export default function DomeGallery({
     </>
   );
 }
+
+
+
+
+
+
+// "build": "NODE_OPTIONS='--max-old-space-size=3072' next build --no-lint",

@@ -88,7 +88,7 @@ function Section7() {
 
         {/* Bottom Button Section  */}
         <div className="w-full flex justify-center items-center">
-          <button onClick={() => window.open("https://ritzmediaworld.com/ritzmediaworld-gallery", "_blank")} className="w-[155px] liquid h-[42px] font-[500] text-[18px] text-white rounded-[8px] bg-[#ED8B24] cursor-pointer">
+          <button onClick={() => window.open("https://ritzmediaworld.com/gallery", "_blank")} className="w-[155px] liquid h-[42px] font-[500] text-[18px] text-white rounded-[8px] bg-[#ED8B24] cursor-pointer">
             View More
           </button>
         </div>
