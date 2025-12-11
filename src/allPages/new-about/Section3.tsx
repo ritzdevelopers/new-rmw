@@ -23,7 +23,7 @@ function Section3() {
     },
     {
       img: "/new-about/s3/ab-s3-d2i2.png",
-      service: "Advertising Design",
+      service: "Digital Marketing",
       link: "https://ritzmediaworld.com/services/digital-marketing",
     },
   ];
@@ -78,6 +78,7 @@ function Section3() {
           {d2.map((idx, i) => {
             return (
               <div
+              onClick={() => window.open(idx.link, "_blank")}
                 className="w-full sm:w-[90%] md:w-[85%] lg:w-[450px]
                   xl:w-[489px] h-[300px] sm:h-[400px] md:h-[480px] lg:h-[565px] relative overflow-hidden group cursor-pointer"
                 key={i}
@@ -86,10 +87,11 @@ function Section3() {
                   src={idx.img}
                   alt={idx.service}
                   fill
+                  
                   style={{ objectFit: "cover" }}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 85vw, 489px"
                   className="transition-transform duration-700 ease-in-out group-hover:scale-110"
-                  onClick={() => window.open(idx.link, "_blank")}
+                  
                 />
                 <button
                   onClick={() => window.open(idx.link, "_blank")}
