@@ -10,6 +10,8 @@ import { AlertTriangle, Home, Monitor } from "lucide-react";
 import { useRouter } from "next/navigation";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
+import * as XLSX from "xlsx";
+
 interface Blog {
   _id: string;
   blogBanner: string;
@@ -35,6 +37,37 @@ interface MERGEDBLOGS {
   blogID: string;
   blogStatus: string;
   mongoID?: string;
+}
+
+interface MONGOEXCELBLOG {
+  blogBanner: string;
+  metaDescription: string;
+  metaTitle: string;
+  _id: string;
+  blogCategoryId: string;
+  blogDescription: string;
+  blogSlug: string;
+  blogStatus: boolean;
+  blogTitle: string;
+  createdAt: string;
+  updatedAt: string;
+  metaKeywords: string;
+  mtDesc: string;
+}
+
+interface MYSQLBLOGS {
+  blog_image: string;
+  category_id: number;
+  created_at: string;
+  description: string;
+  id: number;
+  meta_description: string;
+  meta_keywords: string;
+  meta_title: string;
+  slug: string;
+  status: string;
+  title: string;
+  updated_at: string;
 }
 
 export default function ManageBlogs() {
@@ -141,10 +174,10 @@ export default function ManageBlogs() {
         if (typeof error === "object" && error !== null && "message" in error) {
           setPopupData({
             message: (error as { message: string }).message,
-          status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+            status:
+              error instanceof Error && "status" in error
+                ? (error as { status?: number }).status ?? 500
+                : 500,
           });
         } else {
           setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -175,10 +208,10 @@ export default function ManageBlogs() {
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -225,10 +258,10 @@ export default function ManageBlogs() {
         if (typeof error === "object" && error !== null && "message" in error) {
           setPopupData({
             message: (error as { message: string }).message,
-          status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+            status:
+              error instanceof Error && "status" in error
+                ? (error as { status?: number }).status ?? 500
+                : 500,
           });
         } else {
           setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -378,15 +411,162 @@ export default function ManageBlogs() {
       if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-        status: (error instanceof Error && "status" in error)
-  ? (error as { status?: number }).status ?? 500
-  : 500,
-
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
       }
       setShowPopup(true);
+    }
+  };
+
+  function stripHTML(html: string) {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  }
+
+  const [backupLoading, setBackupLoading] = useState(false);
+
+  const rmwBackUpHandler = async () => {
+    setBackupLoading(true);
+    let mongoBlogs: MONGOEXCELBLOG[] | undefined;
+    let sqlBlogs: MYSQLBLOGS[] | undefined;
+
+    try {
+      // Fetch All The MongoDb Blogs ::
+      try {
+        const { data } = await axios.get<{ allBlogs: MONGOEXCELBLOG[] }>(
+          "/api/ritz_blogs/get-all-blogs"
+        );
+        if (data && data.allBlogs && data.allBlogs.length > 0) {
+          mongoBlogs = data.allBlogs.map((ob: MONGOEXCELBLOG) => {
+            const plainText = stripHTML(ob.blogDescription);
+            return {
+              ...ob,
+              blogDescription: plainText,
+            };
+          });
+        }
+      } catch (error) {
+        console.error("Error in fetching MongoDB blogs:", error);
+        setPopupData({
+          message: "Failed to fetch MongoDB blogs. Continuing with available data...",
+          status: 500,
+        });
+        setShowPopup(true);
+      }
+
+      // Fetch All The MySQL Blogs ::
+      try {
+        const { data } = await axios.get<MYSQLBLOGS[]>("/api/all_mysql_blogs");
+        if (data && Array.isArray(data) && data.length > 0) {
+          sqlBlogs = data.map((ob: MYSQLBLOGS) => {
+            const plainText = stripHTML(ob.description);
+            return {
+              ...ob,
+              description: plainText,
+            };
+          });
+        }
+      } catch (error) {
+        console.error("Error in fetching MySQL blogs:", error);
+        setPopupData({
+          message: "Failed to fetch MySQL blogs. Continuing with available data...",
+          status: 500,
+        });
+        setShowPopup(true);
+      }
+
+      const blogsForDownload = [
+        ...(mongoBlogs || []),
+        ...(sqlBlogs || []),
+      ];
+
+      if (blogsForDownload.length === 0) {
+        setPopupData({
+          message: "No blogs found to backup.",
+          status: 404,
+        });
+        setShowPopup(true);
+        setBackupLoading(false);
+        return;
+      }
+
+      // Convert All JSON Data Into Excel File And Download
+      const worksheet = XLSX.utils.json_to_sheet(blogsForDownload);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "RMW_BLOGS_BACKUPSHEET");
+      const excelBuffer = XLSX.write(workbook, {
+        bookType: "xlsx",
+        type: "buffer",
+      });
+
+      // Blob create
+      const blob = new Blob([excelBuffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      });
+
+      // Temporary link create for download
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `rmw-blogs-backup-${new Date().toISOString().split("T")[0]}.xlsx`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+
+      // Download images zip
+      try {
+        const res = await axios.get<{ url: string; success: boolean; message?: string }>(
+          "/api/all_images_download"
+        );
+        if (res.data && res.data.success && res.data.url) {
+          // Trigger download of zip file
+          window.location.href = res.data.url;
+          setPopupData({
+            message: res.data.message || "Backup completed successfully! Excel file and images zip downloaded.",
+            status: 200,
+          });
+          setShowPopup(true);
+        } else {
+          setPopupData({
+            message: res.data?.message || "Excel file downloaded, but images zip generation failed.",
+            status: 500,
+          });
+          setShowPopup(true);
+        }
+      } catch (error) {
+        console.error("Errors in downloading images", error);
+        setPopupData({
+          message:
+            error instanceof Error && "message" in error
+              ? (error as { message: string }).message
+              : "Excel file downloaded, but failed to download images zip.",
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+        setShowPopup(true);
+      }
+    } catch (error) {
+      console.error("Error in backup process:", error);
+      setPopupData({
+        message:
+          error instanceof Error && "message" in error
+            ? (error as { message: string }).message
+            : "An error occurred during backup process.",
+        status:
+          error instanceof Error && "status" in error
+            ? (error as { status?: number }).status ?? 500
+            : 500,
+      });
+      setShowPopup(true);
+    } finally {
+      setBackupLoading(false);
     }
   };
   return (
@@ -441,6 +621,39 @@ export default function ManageBlogs() {
           <Monitor className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
           Manage Blogs
         </h1>
+        <button
+          onClick={rmwBackUpHandler}
+          disabled={backupLoading}
+          className="px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer transition duration-200 flex items-center gap-2"
+        >
+          {backupLoading ? (
+            <>
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Creating Backup...
+            </>
+          ) : (
+            "Get Backup"
+          )}
+        </button>
       </div>
 
       {/* Breadcrumb */}
@@ -542,13 +755,11 @@ export default function ManageBlogs() {
                     <tr key={blog.blogID} className="border-b">
                       <td className="p-2">
                         <Image
-                          src={`${
-                            blog.blogIMG.includes("/images")
-                              ? `${
-                                  process.env.NEXT_PUBLIC_SERVER_IMG_PATH
-                                }/api/images${blog.blogIMG.split("/images")[1]}`
-                              : `/blogs/${blog.blogIMG}`
-                          }`}
+                          src={`${blog.blogIMG.includes("/images")
+                            ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH
+                            }/api/images${blog.blogIMG.split("/images")[1]}`
+                            : `/blogs/${blog.blogIMG}`
+                            }`}
                           alt={blog.title}
                           width={120}
                           height={120}
@@ -564,21 +775,20 @@ export default function ManageBlogs() {
                           onClick={() =>
                             blog.blogIMG.includes("/images")
                               ? handleActiveBtnToggle(
-                                  blog.blogStatus,
-                                  "mongo",
-                                  blog.mongoID ? blog.mongoID : blog.blogID
-                                )
+                                blog.blogStatus,
+                                "mongo",
+                                blog.mongoID ? blog.mongoID : blog.blogID
+                              )
                               : handleActiveBtnToggle(
-                                  blog.blogStatus,
-                                  "mysql",
-                                  blog.blogID
-                                )
+                                blog.blogStatus,
+                                "mysql",
+                                blog.blogID
+                              )
                           }
-                          className={`px-2 py-1 cursor-pointer rounded-md text-white ${
-                            blog.blogStatus === "active"
-                              ? "bg-green-500"
-                              : "bg-red-500"
-                          }`}
+                          className={`px-2 py-1 cursor-pointer rounded-md text-white ${blog.blogStatus === "active"
+                            ? "bg-green-500"
+                            : "bg-red-500"
+                            }`}
                         >
                           {blog.blogStatus}
                         </span>
@@ -635,11 +845,10 @@ export default function ManageBlogs() {
                 <p className="text-sm text-gray-600">{blog.createdAT}</p>
                 <div className="flex justify-between items-center mt-2">
                   <span
-                    className={`px-2 py-1 rounded-md text-white ${
-                      blog.blogStatus === "active"
-                        ? "bg-green-500"
-                        : "bg-red-500"
-                    }`}
+                    className={`px-2 py-1 rounded-md text-white ${blog.blogStatus === "active"
+                      ? "bg-green-500"
+                      : "bg-red-500"
+                      }`}
                   >
                     {blog.blogStatus}
                   </span>

@@ -78,7 +78,6 @@ function Section5() {
     const track = trackRef.current;
     const cardElements = cardsRef.current;
 
-    // Set initial positions
     gsap.set(track, { y: 0 });
 
     const ctx = gsap.context(() => {
@@ -94,7 +93,6 @@ function Section5() {
       const isMobile = window.innerWidth < 1024;
 
       if (scrollDistance && scrollDistance > 0) {
-        // Animate track sliding up
         const mainScrollTrigger = gsap.to(track, {
           y: -scrollDistance,
           ease: "none",
@@ -120,8 +118,6 @@ function Section5() {
                 if (!card) return;
                 const textElement = card.querySelector(".card-text");
                 if (!textElement) return;
-
-                // Calculate progress for this specific card
                 const cardStart = index / totalCards;
                 const cardEnd = (index + 1) / totalCards;
                 const cardProgress =
@@ -167,14 +163,10 @@ function Section5() {
         });
       }
     }, section);
-
-    // Handle window resize
     const handleResize = () => {
       ScrollTrigger.refresh();
     };
-
     window.addEventListener("resize", handleResize);
-
     return () => {
       ctx.revert();
       window.removeEventListener("resize", handleResize);

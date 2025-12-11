@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-
+  import { useRouter } from "next/navigation";
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -17,36 +17,46 @@ function Section4() {
   const statCardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const imageContainerRef = useRef<HTMLDivElement | null>(null);
 
+
+
+const router = useRouter();
+
+
+
   const d1 = [
     {
-      cnt: 300,
+      cnt: 350,
       icn: "+",
       ttl: "Satisfied Clients",
       para: "Brands we've helped grow and succeed",
-      link: "",
+      link: "/#testimonials",
+      lft: "left-12 sm:left-14 md:left-16"
     },
     {
-      cnt: 300,
+      cnt: 40,
       icn: "+",
-      ttl: "Satisfied Clients",
-      para: "Brands we've helped grow and succeed",
-      link: "",
+      ttl: "Service Categories",
+      para: "Designed to suit your growth needs at every stage.",
+      link: "/#testimonials",
+      lft: "left-12 sm:left-14 md:left-10"
     },
   ];
   const d2 = [
     {
-      cnt: 300,
+      cnt: 35,
       icn: "+",
-      ttl: "Satisfied Clients",
-      para: "Brands we've helped grow and succeed",
-      link: "",
+      ttl: "Awards",
+      para: "Passion, Obsession, and Persistence always pay off.",
+      link: "/#testimonials",
+      lft: "left-12 sm:left-14 md:left-10"
     },
     {
-      cnt: 300,
+      cnt: 17,
       icn: "+",
-      ttl: "Satisfied Clients",
-      para: "Brands we've helped grow and succeed",
-      link: "",
+      ttl: "Glorious Years",
+      para: "grueling hours that have led to remarkable branding success.",
+      link: "/#testimonials",
+      lft: "left-12 sm:left-14 md:left-8"
     },
   ];
 
@@ -203,8 +213,8 @@ function Section4() {
             }}
             className="font-[400] text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-[#00000099] capitalize mt-2 sm:mt-3"
           >
-            A future-driven organization empowering clients with innovative
-            digital solutions that lead to measurable success.
+            Building a tapestry of visuals that inspire intent. Seeking innovation before it occurs, and delivering measurable success.
+
           </p>
         </div>
       </div>
@@ -235,9 +245,7 @@ function Section4() {
           }}
           className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] md:max-w-4xl text-center text-[#00000099] px-4"
         >
-          Our Mad Men are obsessed with building stories. Like a moth to a
-          flame, they're just obsessed with any branding problem that may need a
-          solution.
+          We take pride in challenges that agencies tend to avoid. It is what drives us to do things never done before. That is what brings us our recognition and some awards along the way.
         </p>
       </div>
 
@@ -253,10 +261,7 @@ function Section4() {
             }}
             className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#00000099] text-center lg:text-start"
           >
-            Our Mad Men are obsessed with building stories. Like a moth to a
-            flame, they're just obsessed with any branding problem that may need
-            a solution.Our Mad Men are obsessed with building stories. Like a
-            moth.
+            Our Mad Men are obsessed with building stories. Like a moth to a flame, they're just obsessed with any branding problem that may need a solution. Our Mad Men are obsessed with building stories. Like a moth.
           </p>
 
           <div className="w-full relative flex flex-col sm:flex-row  justify-center xl:justify-between gap-4 lg:gap-8">
@@ -266,10 +271,11 @@ function Section4() {
                 return (
                   <div
                     key={idx}
+                   
                     ref={(el) => {
                       statCardRefs.current[idx] = el;
                     }}
-                    className="w-full h-[140px] sm:h-[150px] md:h-[155px] shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] relative flex justify-center items-center overflow-hidden abs3"
+                    className="w-full h-[140px] sm:h-[150px] md:h-[155px] capitalize shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] relative flex justify-center items-center overflow-hidden abs3"
                   >
                     {/* Centered Align Container  */}
                     <div className="w-[90%] z-10">
@@ -286,7 +292,7 @@ function Section4() {
                           style={{
                             fontFamily: "InterSemiBold",
                           }}
-                          className="font-[500] text-[28px] sm:text-[32px] md:text-[36px] absolute -top-3 sm:-top-4 left-12 sm:left-14 md:left-16"
+                          className={`font-[500] text-[28px] sm:text-[32px] md:text-[36px] absolute -top-3 sm:-top-4 ${val.lft}`}
                         >
                           {val.icn}
                         </p>
@@ -322,10 +328,11 @@ function Section4() {
                 return (
                   <div
                     key={idx}
+                   
                     ref={(el) => {
                       statCardRefs.current[d1.length + idx] = el;
                     }}
-                    className="w-full h-[140px] sm:h-[150px] md:h-[155px] shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] relative flex justify-center items-center overflow-hidden abs3"
+                    className="w-full h-[140px] sm:h-[150px] md:h-[155px] capitalize shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] relative flex justify-center items-center overflow-hidden abs3"
                   >
                     {/* Centered Align Container  */}
                     <div className="w-[90%] z-10">
@@ -342,7 +349,7 @@ function Section4() {
                           style={{
                             fontFamily: "InterSemiBold",
                           }}
-                          className="font-[500] text-[28px] sm:text-[32px] md:text-[36px] absolute -top-3 sm:-top-4 left-12 sm:left-14 md:left-16"
+                          className={`font-[500] text-[28px] sm:text-[32px] md:text-[36px] absolute -top-3 sm:-top-4 ${val.lft}`}
                         >
                           {val.icn}
                         </p>

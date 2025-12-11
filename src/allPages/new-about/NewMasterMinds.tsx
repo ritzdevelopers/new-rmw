@@ -13,73 +13,73 @@ function NewMasterMinds() {
       img: "/rm.png",
       name: "Ritesh Malik",
       role: "Founder",
-      para: "Innovation and Leadership, We Drive Impactful Digital Solutions",
-      social: [
-        {
-          icn: <FaFacebookF />,
-          link: "/",
-        },
-        {
-          icn: <FaXTwitter />,
-          link: "/",
-        },
-        {
-          icn: <RiInstagramFill />,
-          link: "/",
-        },
-        {
-          icn: <FaLinkedinIn />,
-          link: "/",
-        },
-      ],
+      para: "Driven by an obsession with storytelling and innovation",
+      // social: [
+      //   {
+      //     icn: <FaFacebookF />,
+      //     link: "/",
+      //   },
+      //   {
+      //     icn: <FaXTwitter />,
+      //     link: "/",
+      //   },
+      //   {
+      //     icn: <RiInstagramFill />,
+      //     link: "/",
+      //   },
+      //   {
+      //     icn: <FaLinkedinIn />,
+      //     link: "/",
+      //   },
+      // ],
     },
     {
       img: "/sk.png",
       name: "Satwinder Kaur",
       role: "Founder",
-      para: "Innovation and Leadership, We Drive Impactful Digital Solutions",
-      social: [
-        {
-          icn: <FaFacebookF />,
-          link: "/",
-        },
-        {
-          icn: <FaXTwitter />,
-          link: "/",
-        },
-        {
-          icn: <RiInstagramFill />,
-          link: "/",
-        },
-        {
-          icn: <FaLinkedinIn />,
-          link: "/",
-        },
-      ],
+      para: "The name that everyone knows as soon as they walk into the room.",
+      // social: [
+      //   {
+      //     icn: <FaFacebookF />,
+      //     link: "/",
+      //   },
+      //   {
+      //     icn: <FaXTwitter />,
+      //     link: "/",
+      //   },
+      //   {
+      //     icn: <RiInstagramFill />,
+      //     link: "/",
+      //   },
+      //   {
+      //     icn: <FaLinkedinIn />,
+      //     link: "/",
+      //   },
+      // ],
     },
     {
       img: "/nm.png",
       name: "Nishi Malik",
-      role: "Founder",
-      para: "Innovation and Leadership, We Drive Impactful Digital Solutions",
-      social: [
-        {
-          icn: <FaFacebookF />,
-          link: "/",
-        },
-        {
-          icn: <FaXTwitter />,
-          link: "/",
-        },
-        {
-          icn: <RiInstagramFill />,
-          link: "/",
-        },
-        {
-          icn: <FaLinkedinIn />,
-          link: "/",
-        },
-      ],
+      role: "Content Head",
+      para: "The voice of reason is recognised by the creative team and clients alike.",
+      // social: [
+      //   {
+      //     icn: <FaFacebookF />,
+      //     link: "/",
+      //   },
+      //   {
+      //     icn: <FaXTwitter />,
+      //     link: "/",
+      //   },
+      //   {
+      //     icn: <RiInstagramFill />,
+      //     link: "/",
+      //   },
+      //   {
+      //     icn: <FaLinkedinIn />,
+      //     link: "/",
+      //   },
+      // ],
     },
   ];
   return (
@@ -88,11 +88,11 @@ function NewMasterMinds() {
         {/* Top Centered Div  */}
         <div className="text-center flex flex-col justify-center items-center gap-3 sm:gap-4 md:px-4">
           <h2 className="font-[600] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] text-white xl:max-w-xl">
-            The People Who Power Ritz Media World
+          The People at the Helm of RITZ MEDIA WORLD
           </h2>
           <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#FFFFFF99] lg:max-w-2xl">
-            A skilled team of digital specialists working together to build
-            strong, engaging, and results-driven brand experiences.
+          The group of leaders that lead with vision and determination. They inspire innovation and drive growth. 
+
           </p>
         </div>
 
@@ -141,7 +141,7 @@ function NewMasterMinds() {
                       </div>
 
                       {/* 3rd Row - Social Icons  */}
-                      <div className="flex justify-center items-center gap-4 sm:gap-5 pt-2">
+                      {/* <div className="flex justify-center items-center gap-4 sm:gap-5 pt-2">
                         {ob.social.map((scl, socialIdx) => {
                           const socialPlatforms = ['facebook', 'x', 'instagram', 'linkedin'];
                           const platform = socialPlatforms[socialIdx] || '';
@@ -155,7 +155,7 @@ function NewMasterMinds() {
                             </Link>
                           );
                         })}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

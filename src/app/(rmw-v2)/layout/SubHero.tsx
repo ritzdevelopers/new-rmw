@@ -31,7 +31,7 @@ function SubHero() {
           }}
           className="font-[600] text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] text-white leading-tight lg:leading-normal"
         >
-          Powering Brands in the Digital Era
+         Our Reputation is the success we deliver
         </h1>
 
         {/* Page Tracker  */}
@@ -61,7 +61,7 @@ function SubHero() {
           {" "}
           <AnimatedBtn
             btnText="Click Me to know more"
-            link="https://ritzmediaworld.com/services"
+            link="https://ritzmediaworld.com/contact.html"
             bg="bg-white"
             txt="text-black"
           ></AnimatedBtn>

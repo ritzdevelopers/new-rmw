@@ -7,24 +7,24 @@ function Section3() {
     {
       img: "/new-about/s3/ab-s3-d1i1.png",
       service: "Brand Identity",
-      link: "/about.html2",
+      link: "https://ritzmediaworld.com/services/creative-services/branding-and-identity-development",
     },
     {
       img: "/new-about/s3/ab-s3-d1i2.png",
       service: "Content Marketing",
-      link: "/about.html2",
+      link: "https://ritzmediaworld.com/services/contents-marketing",
     },
   ];
   const d2 = [
     {
       img: "/new-about/s3/ab-s3-d2i1.png",
       service: "Advertising Design",
-      link: "/about.html2",
+      link: "https://ritzmediaworld.com/services/print-advertising/advertisement-designing",
     },
     {
       img: "/new-about/s3/ab-s3-d2i2.png",
       service: "Advertising Design",
-      link: "/about.html2",
+      link: "https://ritzmediaworld.com/services/digital-marketing",
     },
   ];
   return (
@@ -56,6 +56,7 @@ function Section3() {
                   fill
                   style={{ objectFit: "cover" }}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 85vw, 489px"
+                  onClick={() => window.open(idx.link, "_blank")}
                   className="transition-transform duration-700 ease-in-out group-hover:scale-110"
                 />
                 <button
@@ -88,6 +89,7 @@ function Section3() {
                   style={{ objectFit: "cover" }}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 85vw, 489px"
                   className="transition-transform duration-700 ease-in-out group-hover:scale-110"
+                  onClick={() => window.open(idx.link, "_blank")}
                 />
                 <button
                   onClick={() => window.open(idx.link, "_blank")}

@@ -5,7 +5,6 @@ import Script from "next/script";
 import { LuArrowUpRight } from "react-icons/lu";
 import AnimatedBtn from "@/app/(rmw-v2)/new-home/components/AnimatedBtn";
 
-// Declare confetti type for TypeScript
 declare global {
   interface Window {
     confetti: (options: {
@@ -21,7 +20,6 @@ function Section2() {
   const confettiLoaded = useRef(false);
 
   useEffect(() => {
-    // Check if confetti is already loaded
     if (
       typeof window !== "undefined" &&
       typeof window.confetti === "function"
@@ -31,12 +29,10 @@ function Section2() {
   }, []);
 
   const handleHover = () => {
-    // Wait for confetti to be available
     if (
       typeof window !== "undefined" &&
       typeof window.confetti === "function"
     ) {
-      // Trigger confetti animation
       window.confetti({
         particleCount: 100,
         spread: 70,
@@ -57,7 +53,6 @@ function Section2() {
 
   return (
     <>
-      {/* Load canvas-confetti from CDN */}
       <Script
         src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"
         strategy="lazyOnload"
@@ -67,14 +62,12 @@ function Section2() {
       />
 
       <section className="w-full lg:overflow-x-hidden h-auto lg:min-h-screen flex items-center relative px-4 sm:px-6 md:px-8 lg:px-10 lg:pt-10 pt-10 lg:py-0 ">
-        {/* Centered Align Main Container  */}
         <div
           className="w-full xl:w-[95%] 
            xl:p-0
             min-h-[400px]
         gap-6 sm:gap-4 xl:gap-10 relative flex flex-col items-center lg:items-start xl:items-end z-10"
         >
-          {/* Absolute Positioned Start Circle  */}
           <div className="w-[280px] h-[260px] sm:w-[380px] sm:h-[350px] md:w-[450px] md:h-[415px] lg:w-[535px] lg:h-[494px] absolute inset-0 opacity-50 sm:opacity-70 md:opacity-90 lg:opacity-100 hidden xl:block">
             <img
               src="/new-about/s2/ab-s2-i1.png"
@@ -82,8 +75,6 @@ function Section2() {
               className="w-full h-full object-contain"
             />
           </div>
-
-          {/* Text Container  */}
           <div className="w-full sm:w-[90%] md:w-[95%] lg:w-[826px] z-10">
             <h2
               style={{
@@ -91,14 +82,9 @@ function Section2() {
               }}
               className="font-[500] text-[20px] sm:text-[24px] md:text-[26px] lg:text-[36px] leading-tight sm:leading-normal lg:text-start text-center"
             >
-              A good <span className="text-[#F79024]">STRATEGY</span> delivers a
-              STORY that builds <span className="text-[#F79024]">BRANDS</span>{" "}
-              that leave a lasting{" "}
-              <span className="text-[#F79024]">IMPRESSION</span>.
+              We believe in staying ahead, with <span className="text-[#F79024]">CREATIVE STORYTELLING</span> and <span className="text-[#F79024]">LEVERAGING A.I.</span> to deliver <span className="text-[#F79024]">STUNNING VISUALS</span> in <span className="text-[#F79024]">RECORD TIME</span>.
             </h2>
           </div>
-
-          {/* Image Container  */}
           <div
             className="w-full
            sm:w-[95%]
@@ -112,8 +98,6 @@ function Section2() {
               style={{ objectFit: "cover" }}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1079px"
             />
-
-            {/* Absolute Positioned Circle Container  */}
             <div
               ref={circleRef}
               className="w-[150px] h-[150px] scale-100 hover:scale-90 sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] lg:w-[270px] lg:h-[270px] bg-[#F3830E] rounded-full hidden xl:flex justify-center items-center 
@@ -126,7 +110,6 @@ function Section2() {
                cursor-pointer transition-transform duration-100 z-20"
               onMouseEnter={handleHover}
             >
-              {/* Centered Align Div  */}
               <div className="flex flex-col justify-center items-center text-center w-[90px] sm:w-[110px] md:w-[135px] lg:w-[162px] h-[90px] sm:h-[110px] md:h-[135px] lg:h-[162px]">
                 <div className="relative mb-[-12px] sm:mb-[-16px] md:mb-[-20px] lg:mb-[-26px]">
                   <h2
@@ -180,14 +163,13 @@ function Section2() {
             <div className="mt-2 sm:mt-4 md:mt-6 flex lg:justify-start md:items-start justify-center items-center">
               <AnimatedBtn
                 btnText="Click Me to know more"
-                link="https://ritzmediaworld.com/services"
+                  link="https://ritzmediaworld.com/contact.html"
                 txt="text-white"
               />
             </div>
           </div>
         </div>
 
-        {/* Absolute Positioned Element  */}
         <div className="w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] md:w-[700px] md:h-[700px] lg:w-[837px] lg:h-[837px] z-0 absolute bottom-0 right-0 rounded-full blur-[400px] sm:blur-[600px] md:blur-[700px] lg:blur-[800px] bg-[#FFECD9]"></div>
 
         <div

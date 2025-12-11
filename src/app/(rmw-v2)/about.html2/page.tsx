@@ -19,6 +19,7 @@ import XIcon from "../new-home/components/XIcon";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import GSAPService from "@/allPages/new-about/GSAPService";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -83,7 +84,7 @@ function page() {
           const statCards = section4.querySelectorAll('[class*="shadow"]');
           const heading = section4.querySelector("h2");
           const paragraphs = section4.querySelectorAll("p");
-          
+
           if (heading) {
             gsap.fromTo(
               heading,
@@ -172,7 +173,9 @@ function page() {
         // S51 - Stagger animation
         const sectionS51 = sections[5];
         if (sectionS51) {
-          const content = sectionS51.querySelectorAll("h2, p, div[class*='flex']");
+          const content = sectionS51.querySelectorAll(
+            "h2, p, div[class*='flex']"
+          );
           if (content.length > 0) {
             gsap.fromTo(
               content,
@@ -199,10 +202,12 @@ function page() {
         // NewMasterMinds - Cards slide in animation
         const masterMinds = sections[6];
         if (masterMinds) {
-          const masterCards = masterMinds.querySelectorAll('[class*="relative"]');
+          const masterCards = masterMinds.querySelectorAll(
+            '[class*="relative"]'
+          );
           const heading = masterMinds.querySelector("h2");
           const paragraph = masterMinds.querySelector("p");
-          
+
           if (heading) {
             gsap.fromTo(
               heading,
@@ -279,7 +284,7 @@ function page() {
           const heading = section7.querySelector("h2");
           const paragraph = section7.querySelector("p");
           const galleryItems = section7.querySelectorAll('[class*="relative"]');
-          
+
           if (heading) {
             gsap.fromTo(
               heading,
@@ -381,7 +386,7 @@ function page() {
           const paragraphs = section8.querySelectorAll("p");
           const statsItems = section8.querySelectorAll('[class*="border-t"]');
           const glassCard = section8.querySelector('[class*="glassCard"]');
-          
+
           if (heading) {
             gsap.fromTo(
               heading,
@@ -476,7 +481,9 @@ function page() {
         // NewBlogSection - Stagger animation
         const blogSection = sections[9];
         if (blogSection) {
-          const blogItems = blogSection.querySelectorAll('[class*="relative"], [class*="flex"]');
+          const blogItems = blogSection.querySelectorAll(
+            '[class*="relative"], [class*="flex"]'
+          );
           if (blogItems.length > 0) {
             gsap.fromTo(
               blogItems,
@@ -492,7 +499,7 @@ function page() {
                 ease: "power3.out",
                 scrollTrigger: {
                   trigger: blogSection,
-                  start: "top 80%",
+                  start: "top 95%",
                   toggleActions: "play none none reverse",
                 },
               }
@@ -527,6 +534,7 @@ function page() {
       <Section3></Section3>
       <Section4></Section4>
       <Section5></Section5>
+      {/* <GSAPService /> */}
       <S51></S51>
       <NewMasterMinds></NewMasterMinds>
       <Section7></Section7>
