@@ -66,7 +66,7 @@ function Section2() {
           className="w-full xl:w-[95%] 
            xl:p-0
             min-h-[400px]
-        gap-6 sm:gap-4 xl:gap-10 relative flex flex-col items-center lg:items-start xl:items-end z-10"
+        gap-6 sm:gap-4 xl:gap-10 relative flex flex-col items-center  xl:items-end z-10"
         >
           <div className="w-[280px] h-[260px] sm:w-[380px] sm:h-[350px] md:w-[450px] md:h-[415px] lg:w-[535px] lg:h-[494px] absolute inset-0 opacity-50 sm:opacity-70 md:opacity-90 lg:opacity-100 hidden xl:block">
             <img
@@ -80,7 +80,7 @@ function Section2() {
               style={{
                 fontFamily: "InterMedium",
               }}
-              className="font-[500] text-[20px] sm:text-[24px] md:text-[26px] lg:text-[36px] leading-tight sm:leading-normal lg:text-start text-center"
+              className="font-[500] text-[20px] sm:text-[24px] md:text-[26px] lg:text-[36px] leading-tight sm:leading-normal xl:text-start text-center"
             >
               We believe in staying ahead, with <span className="text-[#F79024]">CREATIVE STORYTELLING</span> and <span className="text-[#F79024]">LEVERAGING A.I.</span> to deliver <span className="text-[#F79024]">STUNNING VISUALS</span> in <span className="text-[#F79024]">RECORD TIME</span>.
             </h2>
@@ -88,7 +88,7 @@ function Section2() {
           <div
             className="w-full
            sm:w-[95%]
-            md:w-[90%] lg:w-[900px]
+            md:w-[90%] xl:w-[900px]
              xl:w-[1079px] h-[250px] sm:h-[350px] md:h-[450px] lg:h-[582px] relative z-10"
           >
             <Image
@@ -98,16 +98,23 @@ function Section2() {
               style={{ objectFit: "cover" }}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1079px"
             />
+
+
+
+
             <div
               ref={circleRef}
-              className="w-[150px] h-[150px] scale-100 hover:scale-90 sm:w-[180px] sm:h-[180px] md:w-[220px] md:h-[220px] lg:w-[270px] lg:h-[270px] bg-[#F3830E] rounded-full hidden xl:flex justify-center items-center 
+              className="w-[150px] h-[150px] scale-100 hover:scale-90  md:w-[200px] md:h-[200px] lg:w-[270px] lg:h-[270px] bg-[#F3830E] rounded-full hidden xl:flex justify-center items-center 
               
               absolute -bottom-[15px] -left-[15px] 
               sm:-bottom-[20px] sm:-left-[20px] 
               md:-bottom-[25px] md:-left-[25px]
 
                lg:-bottom-30 lg:-left-30 
-               cursor-pointer transition-transform duration-100 z-20"
+               cursor-pointer transition-transform duration-100 z-20
+               absDeks
+               
+               "
               onMouseEnter={handleHover}
             >
               <div className="flex flex-col justify-center items-center text-center w-[90px] sm:w-[110px] md:w-[135px] lg:w-[162px] h-[90px] sm:h-[110px] md:h-[135px] lg:h-[162px]">
@@ -172,10 +179,14 @@ function Section2() {
 
         <div className="w-[400px] h-[400px] sm:w-[600px] sm:h-[600px] md:w-[700px] md:h-[700px] lg:w-[837px] lg:h-[837px] z-0 absolute bottom-0 right-0 rounded-full blur-[400px] sm:blur-[600px] md:blur-[700px] lg:blur-[800px] bg-[#FFECD9]"></div>
 
+
         <div
           ref={circleRef}
-          className="w-[120px] h-[120px] 
-               md:w-[220px] md:h-[220px] 
+          className="w-[100px] h-[100px] 
+               md:w-[180px] md:h-[180px] 
+              
+               lg:w-[200px] lg:h-[200px]
+
                 bg-[#F3830E] rounded-full xl:hidden 
                 flex justify-center items-center
              
@@ -193,7 +204,7 @@ function Section2() {
                 style={{
                   fontFamily: "InterBold",
                 }}
-                className="font-[700] text-[48px] sm:text-[60px] md:text-[75px] lg:text-[76px] text-[#FFFFFF]"
+                className="font-[700] text-[36px] md:text-[75px] lg:text-[76px] text-[#FFFFFF]"
               >
                 17
               </h2>

@@ -127,7 +127,6 @@ const DEFAULT_IMAGES = [
   '/gallery/IMG-20251211-WA0088.jpg',
   '/gallery/Special Achievement Award in Retail Category.jpg',
   '/gallery/Best Real Estate Podcast_Beyond The Blueprints Team.jpeg',
-
   '/gallery/photo_6186250402882325663_x.jpg',
   '/gallery/photo_6186250402882325664_x.jpg',
   '/gallery/photo_6186250402882325665_x.jpg',
@@ -994,10 +993,5 @@ export default function DomeGallery({
     </>
   );
 }
-
-
-
-
-
 
 // "build": "NODE_OPTIONS='--max-old-space-size=3072' next build --no-lint",
