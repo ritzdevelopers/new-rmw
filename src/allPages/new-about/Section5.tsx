@@ -10,7 +10,7 @@ if (typeof window !== "undefined") {
 interface CardData {
   id: number;
   title: string;
-  link:string;
+  link: string;
   text?: string;
 }
 
@@ -24,49 +24,49 @@ function Section5() {
     {
       id: 1,
       title: "DIGITAL_MARKETING",
-      link:"https://ritzmediaworld.com/services/digital-marketing",
+      link: "https://ritzmediaworld.com/services/digital-marketing",
       text: "Innovative radio marketing solutions that reach your audience",
     },
     {
       id: 2,
       title: "CELEBRITY_ENDORSEMENTS",
-      link:"https://ritzmediaworld.com/services/celebrity-endorsements",
+      link: "https://ritzmediaworld.com/services/celebrity-endorsements",
       text: "Strategic campaigns that drive engagement and results",
     },
     {
       id: 3,
       title: "INFLUENCER_MARKETING",
-      link:"https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
+      link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
       text: "Creative content that connects with listeners",
     },
     {
       id: 4,
       title: "PRINT_ADVERTISING",
-      link:"https://ritzmediaworld.com/services/print-advertising",
+      link: "https://ritzmediaworld.com/services/print-advertising",
       text: "Measurable impact through powerful radio advertising",
     },
     {
       id: 5,
       title: "RADIO_ADVERTISING",
-      link:"https://ritzmediaworld.com/services/radio-advertising",
+      link: "https://ritzmediaworld.com/services/radio-advertising",
       text: "Measurable impact through powerful radio advertising",
     },
     {
       id: 6,
       title: "CREATIVE_SERVICES",
-      link:"https://ritzmediaworld.com/services/creative-services",
+      link: "https://ritzmediaworld.com/services/creative-services",
       text: "Measurable impact through powerful radio advertising",
     },
     {
       id: 7,
       title: "WEB_DEVELOPMENT",
-      link:"https://ritzmediaworld.com/services/web-designing-and-development",
+      link: "https://ritzmediaworld.com/services/web-designing-and-development",
       text: "Measurable impact through powerful radio advertising",
     },
     {
       id: 8,
-      title: "CONTENTS_MARKETING",
-      link:" https://ritzmediaworld.com/services/contents-marketing",
+      title: "CONTENT_MARKETING",
+      link: " https://ritzmediaworld.com/services/contents-marketing",
       text: "Measurable impact through powerful radio advertising",
     },
   ];
@@ -192,10 +192,10 @@ function Section5() {
             className="w-full h-screen flex-shrink-0 flex justify-center items-center px-4 sm:px-6 md:px-8 lg:px-0"
           >
             <div className="w-full max-w-7xl flex flex-col justify-center items-center text-center gap-4 sm:gap-6 md:gap-8">
-              <h2 onClick={()=>window.open(card.link, "_blank")} className="font-[700] cursor-pointer hover:text-[#e1e1e1] transition-all duration-300 text-[21px] sm:text-[26px]  md:text-[48px] lg:text-[56px] xl:text-[64px] text-white break-words">
+              <h2 onClick={() => window.open(card.link, "_blank")} className="font-[700] cursor-pointer hover:text-[#e1e1e1] transition-all duration-300 text-[21px] sm:text-[26px]  md:text-[48px] lg:text-[56px] xl:text-[64px] text-white break-words">
                 {card.title}
               </h2>
-            
+
             </div>
           </div>
         ))}
