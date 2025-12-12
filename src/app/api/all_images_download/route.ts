@@ -53,7 +53,6 @@ export async function GET() {
 
     archive.pipe(output);
 
-    // Process images with error handling
     for (const image of allImages) {
       try {
         let imageUrl = image.blogBanner || image.blog_image;
@@ -61,15 +60,11 @@ export async function GET() {
           continue;
         }
 
-        // Convert to absolute URL if needed
-        // Check if already a valid URL (starts with http:// or https://)
         if (!imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
-          // Get base URL, ensure it doesn't have trailing slash
           let baseUrl = process.env.NEXT_PUBLIC_SERVER_IMG_PATH || "http://localhost:3000";
-          baseUrl = baseUrl.replace(/\/$/, ""); // Remove trailing slash if present
+          baseUrl = baseUrl.replace(/\/$/, ""); 
           
           if (imageUrl.startsWith("/")) {
-            // Relative path starting with / (MongoDB format: /images/filename)
             if (imageUrl.includes("/images")) {
               imageUrl = `${baseUrl}/api/images${imageUrl.split("/images")[1]}`;
             } else if (imageUrl.startsWith("/blogs/")) {
@@ -78,58 +73,48 @@ export async function GET() {
               imageUrl = `${baseUrl}${imageUrl}`;
             }
           } else {
-            // Just a filename without leading slash (MySQL format)
-            // MySQL stores as just filename, so we need to add /blogs/ prefix
             imageUrl = `${baseUrl}/blogs/${imageUrl}`;
           }
         }
 
-        // Validate URL before making request
         try {
-          new URL(imageUrl); // This will throw if URL is invalid
+          new URL(imageUrl); 
         } catch (urlError) {
           console.error(`Invalid URL constructed for blog: ${image.blogTitle || image.title}`, {
             originalUrl: image.blogBanner || image.blog_image,
             constructedUrl: imageUrl,
           });
-          continue; // Skip this image
+          continue; 
         }
         const response = await axios.get(imageUrl, {
           responseType: "arraybuffer",
-          timeout: 10000, // 10 second timeout
+          timeout: 10000, 
         });
         const nodeBuffer = Buffer.from(response.data, "binary");
 
-        // Sanitize folder name (remove invalid characters)
         const blogTitle = image.blogTitle || image.title || "image";
         const sanitizedTitle = blogTitle
           .replace(/[<>:"/\\|?*]/g, "_")
           .trim()
-          .substring(0, 100); // Limit length
+          .substring(0, 100); 
 
-        // Get image extension
         const imageExtension = imageUrl.split(".").pop()?.toLowerCase() || "jpg";
         const imageName = `rmw-blogs/${sanitizedTitle}/image.${imageExtension}`;
 
         archive.append(nodeBuffer, { name: imageName });
       } catch (error) {
         console.error(`Error downloading image for blog: ${image.blogTitle || image.title}`, error);
-        // Continue with next image instead of failing entire process
         continue;
       }
     }
-
-    // Finalize archive
     await archive.finalize();
 
-    // Wait until file is written
     await new Promise<void>((resolve, reject) => {
       output.on("close", () => resolve());
       archive.on("error", (err: Error) => reject(err));
       output.on("error", (err: Error) => reject(err));
     });
 
-    // Return ZIP file URL
     return NextResponse.json({ url: `/${zipFileName}`, success: true });
   } catch (err) {
     console.log(

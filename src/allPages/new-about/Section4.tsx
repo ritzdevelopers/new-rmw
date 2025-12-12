@@ -30,7 +30,7 @@ const router = useRouter();
       ttl: "Satisfied Clients",
       para: "Brands we've helped grow and succeed",
       link: "/#testimonials",
-      lft: "left-12 sm:left-14 md:left-16"
+      lft: "left-12 md:left-16"
     },
     {
       cnt: 40,
@@ -38,7 +38,7 @@ const router = useRouter();
       ttl: "Service Categories",
       para: "Designed to suit your growth needs at every stage.",
       link: "/#testimonials",
-      lft: "left-12 sm:left-14 md:left-10"
+      lft: "left-8 md:left-10"
     },
   ];
   const d2 = [
@@ -48,7 +48,7 @@ const router = useRouter();
       ttl: "Awards",
       para: "Passion, Obsession, and Persistence always pay off.",
       link: "/#testimonials",
-      lft: "left-12 sm:left-14 md:left-10"
+      lft: "left-8 md:left-10"
     },
     {
       cnt: 17,
@@ -56,7 +56,7 @@ const router = useRouter();
       ttl: "Glorious Years",
       para: "grueling hours that have led to remarkable branding success.",
       link: "/#testimonials",
-      lft: "left-12 sm:left-14 md:left-8"
+      lft: "left-7 md:left-8"
     },
   ];
 
