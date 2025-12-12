@@ -385,10 +385,10 @@ const router = useRouter();
         <div
           ref={imageContainerRef}
           className="w-full 
-      h-[345px]
-        md:w-[60%] lg:w-[380px]
-        xl:w-[545px]
-         sm:h-[500px] imgCont md:h-[450px] lg:h-[450px] xl:h-[652px] relative mt-4 sm:mt-6 lg:mt-0"
+          h-[345px]
+          md:w-[60%] lg:w-[380px]
+          xl:w-[545px]
+          sm:h-[500px] imgCont md:h-[450px] lg:h-[450px] xl:h-[652px] relative mt-4 sm:mt-6 lg:mt-0"
         >
           <Image
             src={"/new-about/aw1.png"}
