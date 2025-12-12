@@ -92,15 +92,12 @@ function Section2() {
              xl:w-[1079px] h-[250px] sm:h-[350px] md:h-[450px] lg:h-[582px] relative z-10"
           >
             <Image
-              src={"/new-about/s2/ab-s2-i2.png"}
+             src={"/gallery/New Team Image (18-Nov-2025).jpg"}
               alt="RMW"
               fill
               style={{ objectFit: "cover" }}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1079px"
             />
-
-
-
 
             <div
               ref={circleRef}
@@ -144,12 +141,12 @@ function Section2() {
           </div>
 
           {/* Bottom Paragraph Container  */}
-          <div className="w-full sm:w-[95%] md:w-[90%] lg:w-[900px] flex flex-col gap-3 z-10">
+          <div className="w-full sm:w-[95%] md:w-[90%] xl:w-[900px] flex flex-col gap-3 z-10">
             <p
               style={{
                 fontFamily: "InterRegular",
               }}
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] lg:text-start text-center text-[#00000099]"
+              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] xl:text-start text-center text-[#00000099]"
             >
               For the better part of the last two decades, RITZ MEDIA WORLD has
               been building narratives that drive competitive movements. They
@@ -159,7 +156,7 @@ function Section2() {
               style={{
                 fontFamily: "InterRegular",
               }}
-              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] lg:text-start text-center text-[#00000099]"
+              className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] xl:text-start text-center text-[#00000099]"
             >
               We pride ourselves in going out of our way to understand the
               consumer mindset in every walk of life. This enables us to build

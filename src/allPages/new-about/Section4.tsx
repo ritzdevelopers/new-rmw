@@ -379,8 +379,8 @@ const router = useRouter();
               })}
             </div>
           </div>
-        </div>
-
+        </div> 
+       
         {/* Right Side Container  */}
         <div
           ref={imageContainerRef}
@@ -391,7 +391,7 @@ const router = useRouter();
          sm:h-[500px] imgCont md:h-[450px] lg:h-[450px] xl:h-[652px] relative mt-4 sm:mt-6 lg:mt-0"
         >
           <Image
-            src={"/new-about/s4/ab-s4-i1.png"}
+            src={"/new-about/aw1.png"}
             fill
             alt="RMW"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 545px"
