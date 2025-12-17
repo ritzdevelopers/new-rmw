@@ -2,7 +2,8 @@
 import Image from 'next/image';
 import React from 'react'
 import { CiCalendar } from "react-icons/ci";
-
+import { Download } from 'lucide-react';
+import Link from 'next/link';
 function S8() {
     return (
         <section className='w-full min-h-screen bg-[#ffffff] flex justify-center items-center'>
@@ -68,10 +69,58 @@ function S8() {
                 {/* Row 2  */}
                 <div className="w-full flex justify-between">
                     {/* Left Side Container  */}
-                    <div className="w-[603px] h-[526px] bg-[#F7F7F7]"></div>
+                    <div className="w-[603px] h-[526px] bg-[#F7F7F7]">
+                        <div>
+                            <p className='uppercase font-[600] text-[16px] text-[#C99237]'>Free Resource</p>
+                            <h2 className='font-[700] text-[36px]'>2025 Brand Impact Report</h2>
+                        </div>
+                        <p className='font-[700] text-[24px]'>
+                            Download Our
+                        </p>
 
-                      {/* Right Side Container  */}
-                      <div className="w-[603px] h-[526px] border-1 border-[#D4D4D4]"></div>
+                        <p className='font-[400] text-[16px]'>Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2025.</p>
+
+                        <ul className='font-[400] text-[16px]'>
+                            <li>Industry benchmarks for real estate marketing ROI</li>
+                            <li>Proven strategies for UHNI audience targeting</li>
+                            <li> 2025 digital and print advertising trends</li>
+                            <li>Case studies with measurable results</li>
+                        </ul>
+
+                        <div>
+                            <div className='flex justify-between'>
+                                <input type="text" placeholder='Enter your phone (e.g., +91 9220516777)' className='w-[319px] h-[50px] border-1 rounded-[4px] border-[#DAD4D4] bg-white' />
+
+                                <button className='w-[209px] h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[15px] flex justify-center items-center gap-2'>
+                                    <p> Free Download</p>
+                                    <Download className='w-[19px] h-[19px]' />
+                                </button>
+                            </div>
+                            <p className='font-[400] text-[14px] text-[#6E6E6E]'>
+                                No spam, unsubscribe anytime. We respect your privacy.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Right Side Container  */}
+                    <div className="w-[603px] h-[526px] border-1 border-[#D4D4D4]">
+                        <h2 className='font-[700] text-[36px]'>Or Get a Free Brand Audit</h2>
+
+                        <p className='font-[400] text-[16px]'>Let our experts analyze your current brand positioning and provide actionable recommendations.</p>
+
+                        <ul>
+                            <li>Comprehensive brand analysis</li>
+                            <li>Competitor positioning review</li>
+                            <li>Growth opportunity identification</li>
+                            <li>Customized strategy roadmap</li>
+                        </ul>
+                        
+
+                       <div className="flex border-b-1 border-b-black">
+                       <Link href={"/"}>Request A Free Audit</Link>
+                       <img src="/home-v3/s3/rhgt.png" alt="RMW" className='w-[27px] h-[27px]' />
+                       </div>
+                    </div>
                 </div>
             </div>
         </section>
