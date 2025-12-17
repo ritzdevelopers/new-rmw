@@ -165,9 +165,9 @@ function Navbar() {
       } else {
         navRef.current.style.position = "absolute";
         navRef.current.style.top = "0";
-        navRef.current.style.backgroundColor = "rgba(0, 0, 0, 0)";
+        navRef.current.style.backgroundColor = "white";
         navRef.current.style.removeProperty("box-shadow");
-        ulRef.current.style.color = "white";
+        ulRef.current.style.color = "black";
       }
 
       // Apply transform based on navbar hidden state
@@ -400,7 +400,7 @@ function Navbar() {
             className={`block lg:hidden transition-colors p-2 ${
               isScrolled || mobileMenuOpen
                 ? "text-black hover:text-gray-700"
-                : "text-white hover:text-gray-200"
+                : "text-black hover:text-gray-200"
             }`}
             aria-label="Toggle mobile menu"
           >

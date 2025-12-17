@@ -189,7 +189,6 @@ const router = useRouter();
 
     return () => {
       mm.revert();
-      // Cleanup is handled by useGSAP scope automatically
     };
   }, { scope: sectionRef });
 
@@ -248,8 +247,7 @@ const router = useRouter();
           We take pride in challenges that agencies tend to avoid. It is what drives us to do things never done before. That is what brings us our recognition and some awards along the way.
         </p>
       </div>
-
-      {/* Bottom Main Container  */}
+      
       <div className="w-[90%] flex flex-col lg:flex-row justify-between items-center gap-8 sm:gap-10 md:gap-12 xl:gap-0">
         {/* Left Side Container  */}
         <div className="w-full md:w-[95%] lg:w-[60%] xl:w-[639px] flex flex-col gap-6 sm:gap-8 md:gap-10">
