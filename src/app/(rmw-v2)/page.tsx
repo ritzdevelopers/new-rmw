@@ -25,6 +25,8 @@ import LenisSmoothScroll from "./new-home/components/LenisSmoothScroll";
 import RouteChangeHandler from "./new-home/components/RouteChangeHandler";
 import OurAwards from "./new-home/sections/OurAwards";
 import RDS from "./new-home/sections/RDS";
+import Christmas from "./new-home/components/Christmas";
+import FlyingSanta2 from "./new-home/components/FlyingSanta2";
 
 function page() {
   // useEffect(() => {
@@ -35,7 +37,10 @@ function page() {
       {/* <LenisSmoothScroll />*/}
       {/* <RouteChangeHandler />  */}
       {/* <CustomCursor /> */}
-      <S1></S1>
+
+
+      <Christmas></Christmas>
+      {/* <S1></S1> */}
       {/* <S2></S2> */}
       <NewS2></NewS2>
       <S3C></S3C>
@@ -59,6 +64,7 @@ function page() {
       <ASI icn={<YouTubeIcon />} py="top-[345px]" px="right-[0px]" bgType="youtube"></ASI>
       <ASI icn={<LinkedInIcon />} py="top-[395px]" px="right-[0px]" bgType="linkedin"></ASI>
       <ASI icn={<XIcon />} py="top-[444px]" px="right-[0px]" bgType="x"></ASI>
+      <FlyingSanta2 />
     </main>
   );
 }
