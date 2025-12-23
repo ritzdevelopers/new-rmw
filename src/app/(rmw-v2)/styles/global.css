@@ -1,3 +1,7 @@
+/* Google Fonts Import - OpenSans & Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* Inter Fonts */
 @font-face {
   font-family: "InterBold";
   src: url("../static/Inter_18pt-Bold.ttf");
@@ -18,7 +22,83 @@
   src: url("../static/Inter_18pt-Medium.ttf");
 }
 
-p,
+/* Montserrat Fonts */
+@font-face {
+  font-family: "MontserratRegular";
+  src: url("../static/static/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: "MontserratMedium";
+  src: url("../static/static/Montserrat-Medium.ttf");
+}
+
+@font-face {
+  font-family: "MontserratSemiBold";
+  src: url("../static/static/Montserrat-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "MontserratBold";
+  src: url("../static/static/Montserrat-Bold.ttf");
+}
+
+@font-face {
+  font-family: "MontserratExtraBold";
+  src: url("../static/static/Montserrat-ExtraBold.ttf");
+}
+
+/* Poppins Fonts */
+@font-face {
+  font-family: "PoppinsRegular";
+  font-style: normal;
+  font-display: swap;
+  src: local("Poppins Regular"), local("Poppins-Regular"),
+    url("https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2")
+      format("woff2");
+}
+
+@font-face {
+  font-family: "PoppinsSemiBold";
+  font-style: normal;
+  font-display: swap;
+  src: local("Poppins SemiBold"), local("Poppins-SemiBold"),
+    url("https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2")
+      format("woff2");
+}
+
+@font-face {
+  font-family: "PoppinsBold";
+  font-style: normal;
+  font-display: swap;
+  src: local("Poppins Bold"), local("Poppins-Bold"),
+    url("https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2")
+      format("woff2");
+}
+
+/* Open Sans Font  */
+
+@font-face {
+  font-family: "OpenSansRegular";
+  src: url("../static/static2/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "OpenSansSemiBold";
+  src: url("../static/static2/OpenSans-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "OpenSansBold";
+  src: url("../static/static2/OpenSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "OpenSansExtraBold";
+  src: url("../static/static2/OpenSans-ExtraBold.ttf");
+}
+
+/* p,
 a,
 span,
 li,
@@ -37,7 +117,7 @@ h2 {
 
 h3 {
   font-family: "InterMedium";
-}
+} */
 
 .bounceAnim {
   animation: anim 8s linear infinite;
@@ -533,7 +613,6 @@ h3 {
   font-weight: 600;
   color: #000000;
   font-size: 4vh;
-  
 }
 
 .menu__item-link:hover {
@@ -607,3 +686,4 @@ h3 {
     transform: translateX(-50%);
   }
 }
+

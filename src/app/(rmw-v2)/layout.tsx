@@ -4,6 +4,8 @@ import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import ContactBtns from "./new-home/components/ContactBtns";
 import { Metadata } from "next";
+import NewNavbar from "./layout/NewNavbar";
+import NewFooter from "./layout/NewFooter";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ritzmediaworld.com"),
@@ -80,10 +82,12 @@ export const metadata: Metadata = {
 export default function NewRMWW({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar> */}
+      <NewNavbar></NewNavbar>
       {children}
       <ContactBtns />
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
+      <NewFooter></NewFooter>
     </>
   );
 }

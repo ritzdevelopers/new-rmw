@@ -1,0 +1,16 @@
+.swiperContainer {
+  width: 100%;
+  height: auto;
+  padding-bottom: 20px;
+}
+
+.swiperContainer :global(.swiper-wrapper) {
+  display: flex;
+  align-items: stretch;
+}
+
+.swiperContainer :global(.swiper-slide) {
+  height: auto;
+  display: flex;
+}
+
