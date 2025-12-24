@@ -15,39 +15,44 @@ function S7() {
 
     const awardsData = [
         {
-            img: "/home-v3/s7/v3aw3.png",
-            para: "Best Creative Agency (Real Estate) in Delhi/NCR By Big FM",
+            img: "/new-page/awards/aw1.jpg",
+            para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2022)",
             highlite: "Excellence"
         },
         {
-            img: "/home-v3/s7/v3aw2.png",
+            img: "/new-page/awards/aw2.jpg",
             para: "Best Real Estate Podcast In India - HT Smartcast Podmasters Awards 2025",
             highlite: "Excellence"
         },
         {
-            img: "/home-v3/s7/v3aw1.png",
+            img: "/new-page/awards/aw3.jpg",
             para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2024)",
             highlite: "Excellence"
         },
         {
-            img: "/home-v3/s7/v3aw3.png",
-            para: "Best Creative Agency (Real Estate) in Delhi/NCR By Big FM",
+            img: "/new-page/awards/aw4.jpg",
+            para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2024)",
             highlite: "Excellence"
         },
         {
-            img: "/home-v3/s7/v3aw2.png",
+            img: "/new-page/awards/aw5.jpg",
             para: "Best Real Estate Podcast In India - HT Smartcast Podmasters Awards 2025",
             highlite: "Excellence"
         },
         {
-            img: "/home-v3/s7/v3aw1.png",
+            img: "/new-page/awards/aw6.jpg",
+            para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2024)",
+            highlite: "Excellence"
+        },
+        {
+            img: "/new-page/awards/aw7.jpg",
             para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2024)",
             highlite: "Excellence"
         },
     ];
 
     return (
-        <section className='w-full min-h-[647px] bg-[url(/home-v3/s6/s6bg2.png)] bg-cover bg-no-repeat bg-center bg-black flex justify-center items-center py-10 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-0'>
+        <section className='w-full lg:min-h-[647px] bg-[url(/home-v3/s6/s6bg2.png)] bg-cover bg-no-repeat bg-center bg-black flex justify-center items-center py-10  lg:py-16 px-4 sm:px-6 lg:px-0'>
 
             {/* Center Align Container  */}
             <div className='w-full sm:w-[95%] lg:w-[90%] flex flex-col gap-6'>

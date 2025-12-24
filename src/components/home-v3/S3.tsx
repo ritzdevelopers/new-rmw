@@ -17,81 +17,105 @@ function S3() {
   // Data array for slides
   const slidesData = [
     {
-      img: "/home-v3/s3/v2s3i1.png",
+      img: "/home-v3/s3/450-digital.png",
       category: "Digital Marketing",
       ttl: "Digital marketing strategies that drive growth",
       list: [
-        "SEO (Search Engine Optimization)",
-        "PPC (Google Ads) Services",
-        "Social Media Management",
-        "ORM (Online Reputation Management)",
+        {subService:"SEO (Search Engine Optimization)", link: "https://ritzmediaworld.com/services/digital-marketing/search-engine-optimization-seo"},
+        {subService:"PPC (Google Ads) Services", link: "https://ritzmediaworld.com/services/digital-marketing/ppc-google-ads-agency"},
+        {subService:"Social Media Management", link: "https://ritzmediaworld.com/services/digital-marketing/social-media-management"},
+        {subService:"ORM (Online Reputation Management)", link: "https://ritzmediaworld.com/services/digital-marketing/orm-in-digital-marketing"},
       ],
-      link: "/",
+      link: "https://ritzmediaworld.com/services/digital-marketing",
     },
     {
-      img: "/home-v3/s3/v2s3i2.png",
+      img: "/home-v3/s3/450creative.png",
       category: "Creative Services",
       ttl: "Creative design solutions that elevate brands",
       list: [
-        "Branding & Identity Development",
-        "Graphic Design",
-        "Logo Design",
-        "Print Advertising Design",
+        {subService:"Branding & Identity Development", link: "https://ritzmediaworld.com/services/digital-marketing/brand-awareness"},
+        {subService:"Graphic Design", link: "https://ritzmediaworld.com/services/creative-services/graphic-designing"},
+        {subService:"Logo Design", link: "https://ritzmediaworld.com/services/creative-services/logo-design"},
+        {subService:"Print Advertising Design", link: "https://ritzmediaworld.com/services/print-advertising"},
       ],
-      link: "/",
+      link: "https://ritzmediaworld.com/services/creative-services",
     },
     {
-      img: "/home-v3/s3/v2s2i2.png",
+      img: "/home-v3/s3/450-print.png",
       category: "Print Advertising",
       ttl: "Print advertising campaigns that maximize impact",
       list: [
-        "Ad Placement",
-        "Copywriting",
-        "Ad Scheduling",
-        "Cost Negotiation",
+        {subService:"Ad Placement", link: "https://ritzmediaworld.com/services/print-advertising/ad-placements"}, 
+        {subService:"Copywriting", link: "https://ritzmediaworld.com/services/print-advertising/copywriting"},
+        {subService:"Ad Scheduling", link: "https://ritzmediaworld.com/services/print-advertising/advertisement-scheduling"},
+        {subService:"Cost Negotiation", link: "https://ritzmediaworld.com/services/print-advertising/negotiating-rates"},
       ],
-      link: "/",
+      link: "https://ritzmediaworld.com/services/print-advertising",
     },
     {
-      img: "/home-v3/s3/v2s3i1.png",
-      category: "Digital Marketing",
-      ttl: "Digital marketing strategies that drive growth",
+      img: "/home-v3/s3/450-influncer.png",
+      category: "Influencer Marketing",
+      ttl: "Influencer marketing strategies that drive growth",
       list: [
-        "SEO (Search Engine Optimization)",
-        "PPC (Google Ads) Services",
-        "Social Media Management",
-        "ORM (Online Reputation Management)",
+        {subService:"SEO (Search Engine Optimization)", link: "https://ritzmediaworld.com/services/digital-marketing/search-engine-optimization-seo"},
+        {subService:"PPC (Google Ads) Services", link: "https://ritzmediaworld.com/services/digital-marketing/ppc-google-ads-agency"},
+        {subService:"Social Media Management", link: "https://ritzmediaworld.com/services/digital-marketing/social-media-management"},
+        {subService:"ORM (Online Reputation Management)", link: "https://ritzmediaworld.com/services/digital-marketing/orm-in-digital-marketing"},
       ],
-      link: "/",
+      link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
     },
     {
-      img: "/home-v3/s3/v2s3i2.png",
-      category: "Creative Services",
+      img: "/home-v3/s3/450radio4.png",
+      category: "Radio Advertising",
       ttl: "Creative design solutions that elevate brands",
       list: [
-        "Branding & Identity Development",
-        "Graphic Design",
-        "Logo Design",
-        "Print Advertising Design",
+        {subService:"Branding & Identity Development", link: "https://ritzmediaworld.com/services/digital-marketing/brand-awareness"},
+        {subService:"Graphic Design", link: "https://ritzmediaworld.com/services/creative-services/graphic-designing"},
+        {subService:"Logo Design", link: "https://ritzmediaworld.com/services/creative-services/logo-design"},
+        {subService:"Print Advertising Design", link: "https://ritzmediaworld.com/services/print-advertising"},
       ],
-      link: "/",
+      link: "https://ritzmediaworld.com/services/radio-advertising",
     },
     {
-      img: "/home-v3/s3/v2s2i2.png",
-      category: "Print Advertising",
-      ttl: "Print advertising campaigns that maximize impact",
+      img: "/home-v3/s3/450web.png",
+      category: "Web Development",
+      ttl: "Web Development campaigns that maximize impact",
       list: [
-        "Ad Placement",
-        "Copywriting",
-        "Ad Scheduling",
-        "Cost Negotiation",
+        {subService:"Ad Placement", link: "https://ritzmediaworld.com/services/print-advertising/ad-placements"},
+        {subService:"Copywriting", link: "https://ritzmediaworld.com/services/print-advertising/copywriting"},
+        {subService:"Ad Scheduling", link: "https://ritzmediaworld.com/services/print-advertising/advertisement-scheduling"},
+        {subService:"Cost Negotiation", link: "https://ritzmediaworld.com/services/print-advertising/negotiating-rates"},
       ],
-      link: "/",
+      link: "https://ritzmediaworld.com/services/web-designing-and-development",
+    },
+    {
+      img: "/home-v3/s3/450-content.png",
+      category: "Content Marketing",
+      ttl: "Creative design solutions that elevate brands",
+      list: [
+        {subService:"Branding & Identity Development", link: "https://ritzmediaworld.com/services/digital-marketing/brand-awareness"},
+        {subService:"Graphic Design", link: "https://ritzmediaworld.com/services/creative-services/graphic-designing"},
+        {subService:"Logo Design", link: "https://ritzmediaworld.com/services/creative-services/logo-design"},
+        {subService:"Print Advertising Design", link: "https://ritzmediaworld.com/services/print-advertising"},
+      ],
+      link: "https://ritzmediaworld.com/services/contents-marketing",
+    },
+    {
+      img: "/home-v3/s3/450celebrate.png",
+      category: "Celebrity Endorsements",
+      ttl: "Celebrity Endorsements campaigns that maximize impact",
+      list: [
+        {subService:"Ad Placement", link: "https://ritzmediaworld.com/services/print-advertising/ad-placements"},
+        {subService:"Copywriting", link: "https://ritzmediaworld.com/services/print-advertising/copywriting"},
+        {subService:"Ad Scheduling", link: "https://ritzmediaworld.com/services/print-advertising/advertisement-scheduling"},
+        {subService:"Cost Negotiation", link: "https://ritzmediaworld.com/services/print-advertising/negotiating-rates"},
+      ],
+      link: "https://ritzmediaworld.com/services/celebrity-endorsements",
     },
   ];
 
   return (
-    <section className="w-full min-h-[895px] bg-[#F7F7F7] flex justify-end items-center">
+    <section className="w-full min-h-[895px] bg-[#F7F7F7] flex justify-end items-center md:pt-0 pt-10">
       {/* Centered Align End Container  */}
       <div className="w-[95%] h-[90%]">
         {/* Top Row  */}
@@ -197,6 +221,7 @@ function S3() {
                       <div className="w-full min-h-[336px] relative z-0">
                         <Image
                           src={ob.img}
+                          onClick={()=>window.open(ob.link, "_blank")}
                           alt={ob.ttl}
                           fill
                           className="object-cover"
@@ -228,7 +253,7 @@ function S3() {
                                   fontFamily: "OpenSansRegular",
                                 }}
                               >
-                                {item}
+                                <Link href={item.link} target="_blank">{item.subService}</Link>
                               </li>
                             );
                           })}
@@ -236,6 +261,7 @@ function S3() {
                         <div>
                           <Link
                             href={ob.link}
+                            target="_blank"
                             className="font-[600] text-[14px] sm:text-[16px] border-b-1 border-b-black"
                             style={{
                               fontFamily: "OpenSansSemiBold",

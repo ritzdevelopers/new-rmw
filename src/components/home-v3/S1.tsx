@@ -9,10 +9,10 @@ function S1() {
 
       <div className="w-full max-w-[600px] flex flex-col gap-12 sm:gap-16 lg:gap-20 mt-0 sm:mt-12 lg:mt-20">
         {/* Top Row  */}
-        <div className="font-[500] text-[12px] sm:text-[13px] lg:text-[14px] flex flex-col gap-4 sm:gap-5 lg:gap-6">
+        <div className="font-[500] text-[12px] sm:text-[13px] lg:text-[14px] flex flex-col gap-4 sm:gap-5 lg:gap-6 md:mt-0 mt-10">
           <div>
             <p
-              className="text-[13px] sm:text-[13.5px] lg:text-[14px] uppercase MontserratRegular"
+              className="text-[13px] sm:text-[13.5px]  lg:text-[14px] uppercase MontserratRegular"
               style={{
                 fontFamily: "MontserratRegular",
               }}
@@ -66,11 +66,11 @@ function S1() {
 
         {/* Bottom Row  */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8">
-          <button className="w-full sm:w-[199px] h-[48px] sm:h-[50px] lg:h-[54px] bg-[#C99237] rounded-[5px] shadow-[0_4px_4px_0_rgba(0, 0, 0, 0.25)] text-[14px] sm:text-[14.5px] lg:text-[15px] font-[700] cursor-pointer hover:bg-[#B8822F] transition-colors" >
+          <button onClick={()=>window.open("https://ritzmediaworld.com/contact.html","_blank")} className="w-full sm:w-[199px] h-[48px] sm:h-[50px] lg:h-[54px] bg-[#C99237] rounded-[5px] shadow-[0_4px_4px_0_rgba(0, 0, 0, 0.25)] text-[14px] sm:text-[14.5px] lg:text-[15px] font-[700] cursor-pointer hover:bg-[#B8822F] transition-colors" >
             Free Consulting
           </button>
 
-          <button className="w-full sm:w-[191px] h-[48px] sm:h-[50px] lg:h-[54px] text-[14px] sm:text-[14.5px] lg:text-[15px] font-[700] cursor-pointer flex justify-center gap-3 sm:gap-4 items-center">
+          <button onClick={()=>window.open("https://ritzmediaworld.com/web-stories","_blank")} className="w-full sm:w-[191px] h-[48px] sm:h-[50px] lg:h-[54px] text-[14px] sm:text-[14.5px] lg:text-[15px] font-[700] cursor-pointer flex justify-center gap-3 sm:gap-4 items-center">
             <div className="flex cursor-pointer w-[48px] h-[48px] sm:w-[50px] sm:h-[50px] lg:w-[54px] lg:h-[54px] rounded-full justify-center items-center bg-[#FFFFFF]">
               <svg
                 width="10"

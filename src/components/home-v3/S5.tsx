@@ -38,95 +38,19 @@ function S5() {
             para: "Scaled into 360° digital marketing, unifying performance, content, and automation for premium brands."
         },
         {
-            year: "2008",
+            year: "2020",
             img: "/home-v3/s5/s5i5.jpg",
-            ttl: "Foundation",
-            para: "Ritz Media World launched with a mission to reimagine brand communication for India's growth markets."
+            ttl: "Premium Positioning",
+            para: "Became the go-to agency for UHNI and luxury lifestyle brands across India and the Middle East."
         },
         {
-            year: "2012",
+            year: "2025",
             img: "/home-v3/s5/s5i2.png",
-            ttl: "Innovation Leadership",
-            para: "Pioneered centrespread storytelling in Hindustan Times, setting new creative benchmarks for print."
+            ttl: "Today",
+            para: "17+ years, 1000+ campaigns, 500+ success stories—and we’re still elevating brands to market leadership."
         },
-        {
-            year: "2016",
-            img: "/home-v3/s5/s5i3.png",
-            ttl: "Digital Expansion",
-            para: "Scaled into 360° digital marketing, unifying performance, content, and automation for premium brands."
-        },
-        {
-            year: "2008",
-            img: "/home-v3/s5/s5i5.jpg",
-            ttl: "Foundation",
-            para: "Ritz Media World launched with a mission to reimagine brand communication for India's growth markets."
-        },
-        {
-            year: "2012",
-            img: "/home-v3/s5/s5i2.png",
-            ttl: "Innovation Leadership",
-            para: "Pioneered centrespread storytelling in Hindustan Times, setting new creative benchmarks for print."
-        },
-        {
-            year: "2016",
-            img: "/home-v3/s5/s5i3.png",
-            ttl: "Digital Expansion",
-            para: "Scaled into 360° digital marketing, unifying performance, content, and automation for premium brands."
-        },
-        {
-            year: "2008",
-            img: "/home-v3/s5/s5i5.jpg",
-            ttl: "Foundation",
-            para: "Ritz Media World launched with a mission to reimagine brand communication for India's growth markets."
-        },
-        {
-            year: "2012",
-            img: "/home-v3/s5/s5i2.png",
-            ttl: "Innovation Leadership",
-            para: "Pioneered centrespread storytelling in Hindustan Times, setting new creative benchmarks for print."
-        },
-        {
-            year: "2016",
-            img: "/home-v3/s5/s5i3.png",
-            ttl: "Digital Expansion",
-            para: "Scaled into 360° digital marketing, unifying performance, content, and automation for premium brands."
-        },
-        {
-            year: "2008",
-            img: "/home-v3/s5/s5i5.jpg",
-            ttl: "Foundation",
-            para: "Ritz Media World launched with a mission to reimagine brand communication for India's growth markets."
-        },
-        {
-            year: "2012",
-            img: "/home-v3/s5/s5i2.png",
-            ttl: "Innovation Leadership",
-            para: "Pioneered centrespread storytelling in Hindustan Times, setting new creative benchmarks for print."
-        },
-        {
-            year: "2016",
-            img: "/home-v3/s5/s5i3.png",
-            ttl: "Digital Expansion",
-            para: "Scaled into 360° digital marketing, unifying performance, content, and automation for premium brands."
-        },
-        {
-            year: "2008",
-            img: "/home-v3/s5/s5i5.jpg",
-            ttl: "Foundation",
-            para: "Ritz Media World launched with a mission to reimagine brand communication for India's growth markets."
-        },
-        {
-            year: "2012",
-            img: "/home-v3/s5/s5i2.png",
-            ttl: "Innovation Leadership",
-            para: "Pioneered centrespread storytelling in Hindustan Times, setting new creative benchmarks for print."
-        },
-        {
-            year: "2016",
-            img: "/home-v3/s5/s5i3.png",
-            ttl: "Digital Expansion",
-            para: "Scaled into 360° digital marketing, unifying performance, content, and automation for premium brands."
-        },
+       
+      
     ];
 
     // Sync swipers when both are ready
@@ -192,7 +116,7 @@ function S5() {
     };
 
     return (
-        <section className='w-full min-h-[632px] bg-[#F7F7F7] py-10 sm:py-16 lg:py-20 flex justify-center items-center px-4 sm:px-6 lg:px-0'>
+        <section className='w-full lg:min-h-[632px] bg-[#F7F7F7] py-10 lg:py-20 flex justify-center items-center px-4 sm:px-6 lg:px-0'>
             {/* Center Align Container  */}
             <div className="w-full sm:w-[95%] lg:w-[90%] flex flex-col gap-6 sm:gap-8">
                 {/* Top Row  */}
@@ -243,8 +167,6 @@ function S5() {
                                 spaceBetween={0}
                                 slidesPerView={3}
                                 allowTouchMove={false}
-                                loop={true}
-                                loopAdditionalSlides={2}
                                 controller={{ control: cardsSwiper }}
                                 breakpoints={{
                                     // Mobile
@@ -276,21 +198,25 @@ function S5() {
                                             <div className="flex justify-center items-center w-full">
                                                 {isMiddleItem && isCardVisible ? (
                                                     <h2
-                                                        className="relative font-[700] text-[24px] sm:text-[28px] lg:text-[30px] px-2 sm:px-4
+                                                        className={`relative font-[700] text-[24px] sm:text-[28px] lg:text-[30px] px-2 sm:px-4 ${styles.timelineYearWithLines}
                                                             before:content-['']
                                                             before:absolute
                                                             before:top-1/2
                                                             before:right-full
-                                                            before:w-[100px] sm:before:w-[150px] md:before:w-[200px] lg:before:w-[280px] xl:before:w-[345px]
+                                                            before:w-0
                                                             before:h-[1px]
                                                             before:bg-[#B2B2B2]
                                                             after:content-['']
                                                             after:absolute
                                                             after:top-1/2
                                                             after:left-full
-                                                            after:w-[100px] sm:after:w-[150px] md:after:w-[200px] lg:after:w-[280px] xl:after:w-[345px]
+                                                            after:w-0
                                                             after:h-[1px]
-                                                            after:bg-[#B2B2B2]"
+                                                            after:bg-[#B2B2B2]
+                                                            lg:before:w-[200px]
+                                                            xl:before:w-[345px]
+                                                            lg:after:w-[200px]
+                                                            xl:after:w-[345px]`}
                                                         style={{
                                                             fontFamily: "OpenSansBold",
                                                         }}
@@ -326,8 +252,6 @@ function S5() {
                                 modules={[Navigation, Controller]}
                                 spaceBetween={40}
                                 slidesPerView={1}
-                                loop={true}
-                                loopAdditionalSlides={2}
                                 controller={{ control: timelineSwiper }}
                                 breakpoints={{
                                     // Mobile

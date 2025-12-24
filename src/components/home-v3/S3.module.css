@@ -14,3 +14,16 @@
   display: flex;
 }
 
+/* Timeline year with connecting lines - only visible on lg screens and above */
+.timelineYearWithLines::before,
+.timelineYearWithLines::after {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .timelineYearWithLines::before,
+  .timelineYearWithLines::after {
+    display: block;
+  }
+}
+

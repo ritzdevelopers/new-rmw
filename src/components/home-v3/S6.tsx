@@ -57,11 +57,15 @@ function S6() {
                             fontFamily: "OpenSansRegular",
                         }}>Don't just take our word for it – hear from the brands we've helped transform.</p>
                     </div>
-                    <div className='flex flex-col sm:flex-row gap-2'>
-                        <button className='w-full sm:w-[146px] h-[37px] rounded-[5px] bg-[#C99237] cursor-pointer text-white font-[600] text-[14px] sm:text-[16px]' style={{
+                    <div className='flex flex-row gap-2'>
+                        <button
+                        onClick={()=>window.open("https://ritzmediaworld.com/contact.html", "_blank")}
+                        className='w-full sm:w-[146px] h-[37px] rounded-[5px] bg-[#C99237] cursor-pointer text-white font-[600] text-[14px] sm:text-[16px]' style={{
                             fontFamily: "OpenSansSemiBold",
                         }}>Text Tutorial</button>
-                        <button className='w-full sm:w-[146px] h-[37px] rounded-[5px] bg-[#ffffff] cursor-pointer text-black font-[600] text-[14px] sm:text-[16px]' style={{
+                        <button
+                        onClick={()=>window.open("https://ritzmediaworld.com/web-stories", "_blank")}
+                        className='w-full sm:w-[146px] h-[37px] rounded-[5px] bg-[#ffffff] cursor-pointer text-black font-[600] text-[14px] sm:text-[16px]' style={{
                             fontFamily: "OpenSansSemiBold",
                         }}>Video Tutorial</button>
                     </div>

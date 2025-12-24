@@ -45,6 +45,7 @@ function S8() {
 
             {/* Right Side Container  */}
             <button
+              onClick={()=>window.open("https://ritzmediaworld.com/blogs", "_blank")}
               className="font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] w-full sm:w-[179px] h-[48px] sm:h-[50px] lg:h-[54px] border-1 border-[#C99237] rounded-[5px] cursor-pointer hover:bg-[#C99237] hover:text-white transition-colors flex-shrink-0"
               style={{
                 fontFamily: "OpenSansSemiBold",
@@ -79,10 +80,10 @@ function S8() {
               return (
                 <div
                   key={idx}
-                  className="w-full sm:w-[calc(33.333%-10px)] lg:w-[405px] h-auto sm:h-[311px] flex flex-col gap-2"
+                  className="w-full sm:w-[calc(33.333%-10px)] lg:w-[405px] h-auto lg:h-[311px] flex flex-col gap-2"
                 >
                   {/* Image Container  */}
-                  <div className="w-full relative h-[180px] sm:h-[200px] lg:h-[212px]">
+                  <div className="w-full relative h-[250px] lg:h-[212px]">
                     <Image
                       src={ob.img}
                       alt="RMW"
@@ -109,9 +110,9 @@ function S8() {
         </div>
 
         {/* Row 2  */}
-        <div className="w-full flex flex-col lg:flex-row justify-between gap-6 lg:gap-0">
+        <div className="w-full flex flex-col lg:flex-row justify-between gap-6 lg:gap-6">
           {/* Left Side Container  */}
-          <div className="w-full lg:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8">
+          <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8">
             <div>
               <p
                 className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237]"
@@ -157,7 +158,7 @@ function S8() {
             </ul>
 
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0">
+              <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-3">
                 <input
                   type="text"
                   placeholder="Enter your phone (e.g., +91 9220516777)"
@@ -186,7 +187,7 @@ function S8() {
           </div>
 
           {/* Right Side Container  */}
-          <div className="w-full lg:w-[603px] min-h-[400px] lg:h-[526px] border-1 border-[#D4D4D4] bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
+          <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[400px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
             <h2
               className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px]"
               style={{
@@ -220,7 +221,8 @@ function S8() {
 
             <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] mt-auto">
               <Link
-                href={"/"}
+                href={"https://ritzmediaworld.com/contact.html"}
+                target="_blank"
                 className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black"
                 style={{
                   fontFamily: "MontserratSemiBold",
@@ -258,6 +260,7 @@ function S8() {
               Let's discuss your next brand-elevating campaign
             </p>
             <button
+              onClick={()=>window.open("https://ritzmediaworld.com/contact.html", "_blank")}
               className="w-full sm:w-[260px] lg:w-[282px] h-[48px] sm:h-[50px] lg:h-[54px] mt-4 bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] rounded-[5px] hover:bg-[#B8822F] transition-colors"
               style={{
                 fontFamily: "OpenSansBold",

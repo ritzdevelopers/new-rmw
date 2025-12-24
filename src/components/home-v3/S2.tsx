@@ -10,23 +10,28 @@ interface CardItem {
   ttl: string;
   img: string;
   para: string;
+  link: string;
 }
 function S2() {
   const [activeCard, setActiveCard] = useState<CardItem>({
     act: true,
     id: "01",
     ttl: "Digital Marketing",
-    img: "/home-v3/s2/v2s2i2.png",
+    img: "/home-v3/s2/530-digital.png",
     para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+    link: "https://ritzmediaworld.com/services/digital-marketing",
   });
 
-  const [prevImage, setPrevImage] = useState<string>("/home-v3/s2/v2s2i2.png");
-  const [nextImage, setNextImage] = useState<string>("/home-v3/s2/v2s2i2.png");
+  const [prevImage, setPrevImage] = useState<string>("/home-v3/s2/530-digital.png");
+  const [nextImage, setNextImage] = useState<string>("/home-v3/s2/530-digital.png");
   const [showTransition, setShowTransition] = useState(false);
-  const [displayImage, setDisplayImage] = useState<string>("/home-v3/s2/v2s2i2.png");
+  const [displayImage, setDisplayImage] = useState<string>("/home-v3/s2/530-digital.png");
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [videoType, setVideoType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   const pendingCardRef = useRef<CardItem | null>(null);
   const imagePreloadRef = useRef<HTMLImageElement | null>(null);
   const stateChangeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const handleCardHover = (ob: CardItem) => {
     if (ob.img !== activeCard.img && !showTransition) {
@@ -46,16 +51,12 @@ function S2() {
         // Image is loaded, start transition (keep old image visible underneath)
         setShowTransition(true);
         
-        // Calculate total animation time:
-        // - Setup delay: 200ms
-        // - Petal animation duration: 800ms
-        // - Max petal delay: ~1.9s (sin(19*0.1) + 19*0.05)
-        // - Total: ~200ms + 800ms + 1900ms = ~2.9 seconds
-        // Change state 1 second before completion: 2.9s - 1s = 1.9s
-        const totalAnimationTime = 2900; // milliseconds
-        const stateChangeTime = totalAnimationTime - 1500; // 1 second before completion
+        // Enhanced animation duration: 1400ms (1.4 seconds) for ultra-smooth feel
+        // Update state at 55% progress for optimal smooth transition
+        const totalAnimationTime = 1400; // milliseconds
+        const stateChangeTime = totalAnimationTime * 0.55; // 55% through animation
         
-        // Update state 1 second before animation completes
+        // Update state at optimal point for smooth transition
         stateChangeTimeoutRef.current = setTimeout(() => {
           if (pendingCardRef.current) {
             const newCard = { ...pendingCardRef.current };
@@ -77,8 +78,8 @@ function S2() {
         setShowTransition(true);
         
         // Same timing calculation
-        const totalAnimationTime = 2900;
-        const stateChangeTime = totalAnimationTime - 1500;
+        const totalAnimationTime = 1400;
+        const stateChangeTime = totalAnimationTime * 0.55;
         
         stateChangeTimeoutRef.current = setTimeout(() => {
           if (pendingCardRef.current) {
@@ -124,6 +125,75 @@ function S2() {
       setShowTransition(false);
     }
   };
+
+  // Detect screen size for video selection
+  useEffect(() => {
+    const determineVideoType = () => {
+      const width = window.innerWidth;
+      if (width >= 1024) {
+        setVideoType('desktop');
+      } else if (width >= 768) {
+        setVideoType('tablet');
+      } else {
+        setVideoType('mobile');
+      }
+    };
+
+    // Set initial video type
+    determineVideoType();
+
+    // Update on resize
+    window.addEventListener('resize', determineVideoType);
+    return () => window.removeEventListener('resize', determineVideoType);
+  }, []);
+
+  const handlePlayClick = () => {
+    // Determine video type before opening
+    const width = window.innerWidth;
+    if (width >= 1024) {
+      setVideoType('desktop');
+    } else if (width >= 768) {
+      setVideoType('tablet');
+    } else {
+      setVideoType('mobile');
+    }
+    
+    setIsVideoOpen(true);
+    // Prevent body scroll when video is open
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleCloseVideo = () => {
+    setIsVideoOpen(false);
+    // Restore body scroll
+    document.body.style.overflow = 'unset';
+    // Pause and reset video
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  // Get video source based on type
+  const getVideoSource = () => {
+    switch (videoType) {
+      case 'desktop':
+        return '/new-page/dekstop-vd.mp4';
+      case 'tablet':
+        return '/new-page/tab-vd.mp4';
+      case 'mobile':
+        return '/new-page/mobile-vd.mp4';
+      default:
+        return '/new-page/dekstop-vd.mp4';
+    }
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
   
   return (
     <section className="bg-white w-full flex flex-col items-center justify-center min-h-screen py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-0">
@@ -132,8 +202,8 @@ function S2() {
         {/* Row 1  */}
         <div className="w-full flex flex-col lg:flex-row justify-between gap-8 lg:gap-0">
           {/* Col 1  */}
-          <div className="w-full lg:max-w-[422px] flex flex-col gap-4 sm:gap-5 lg:gap-6">
-            <p className="font-[700] text-[22px] sm:text-[26px] lg:text-[30px]" style={{
+          <div className="w-full xl:max-w-[422px] lg:max-w-[380px] flex flex-col gap-4 sm:gap-5 lg:gap-6">
+            <p className="font-[700] text-[22px] sm:text-[26px] xl:text-[30px]" style={{
               fontFamily: 'MontserratBold',
             }}>
               What can you expect from the It's a potent question with a
@@ -151,7 +221,7 @@ function S2() {
                 fontFamily: 'OpenSansBold',
               }}>Ritz Media World</b>  is all about.
             </p>
-            <button className="w-full sm:w-[200px] lg:w-[219px] h-[48px] sm:h-[50px] lg:h-[54px] border-[1px] border-[#C99237] rounded-[5px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] hover:bg-[#C99237] hover:text-white transition-colors">
+            <button onClick={()=>window.open("https://ritzmediaworld.com/about.html", "_blank")} className="w-full sm:w-[200px] lg:w-[219px] h-[48px] sm:h-[50px] lg:h-[54px] border-[1px] border-[#C99237] rounded-[5px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] hover:bg-[#C99237] hover:text-white transition-colors">
               Click to know more
             </button>
           </div>
@@ -166,7 +236,7 @@ function S2() {
             {/* Row 1  */}
             <div className="flex w-full h-[50%] border-b-[1px] border-b-[#AFAFAF]">
               <div className="w-[50%] h-full flex flex-col justify-center items-center text-center border-r-[1px] border-r-[#AFAFAF] ">
-                <p className="font-[700] text-[36px] sm:text-[48px] lg:text-[60px]" style={{
+                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px]" style={{
                   fontFamily: 'MontserratBold',
                 }}>1M+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
@@ -174,7 +244,7 @@ function S2() {
                 }}>Creatives Published</p>
               </div>
               <div className="w-[50%] h-full flex flex-col justify-center items-center text-center ">
-                <p className="font-[700] text-[36px] sm:text-[48px] lg:text-[60px]" style={{
+                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px]" style={{
                   fontFamily: 'MontserratBold',
                 }}>1K+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
@@ -186,7 +256,7 @@ function S2() {
             {/* Row 2 */}
             <div className="flex w-full h-[50%]">
               <div className="w-[50%] h-full flex flex-col justify-center items-center text-center border-r-[1px] border-r-[#AFAFAF]">
-                <p className="font-[700] text-[36px] sm:text-[48px] lg:text-[60px]" style={{
+                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px]" style={{
                   fontFamily: 'MontserratBold',
                 }}>500+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
@@ -194,7 +264,7 @@ function S2() {
                 }}>Success Stories</p>
               </div>
               <div className="w-[50%] h-full flex flex-col justify-center items-center text-center">
-                <p className="font-[700] text-[36px] sm:text-[48px] lg:text-[60px]" style={{
+                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px]" style={{
                   fontFamily: 'MontserratBold',
                 }}>1B+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
@@ -256,7 +326,10 @@ function S2() {
           <div className="flex justify-center items-center w-full h-[250px] sm:h-[350px] lg:h-[426px] relative">
             <Image src={"/home-v3/s2/team-bg2.png"} alt="" fill className="object-cover"></Image>
 
-            <div className="flex absolute top-[50%] right-[50%] transform -translate-x-[50%] -translate-y-[50%] cursor-pointer w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] lg:w-[54px] lg:h-[54px] rounded-full justify-center items-center bg-[#FFFFFF] z-10">
+            <div 
+              onClick={handlePlayClick}
+              className="flex absolute top-[50%] right-[50%] transform -translate-x-[50%] -translate-y-[50%] cursor-pointer w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] lg:w-[54px] lg:h-[54px] rounded-full justify-center items-center bg-[#FFFFFF] z-10 hover:scale-110 transition-transform"
+            >
               <svg
                 width="10"
                 height="11"
@@ -270,7 +343,6 @@ function S2() {
                 />
               </svg>
             </div>
-
             {/* Overlay  */}
             <div className="absolute inset-0 bg-[#0000007b] w-full h-full z-0"></div>
           </div>
@@ -306,23 +378,24 @@ function S2() {
             <div className="w-full overflow-hidden">
               <div className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}>
                 {[
-                  "/home-v3/clients/sikka.png",
-                  "/home-v3/clients/landmark.png",
-                  "/home-v3/clients/master.png",
-                  "/home-v3/clients/ace.png",
-                  "/home-v3/clients/tdi.png",
+                  "/new-page/clients/home-swiper1-img2.avif",
+                  "/new-page/clients/home-swiper1-img3.avif",
+                  "/new-page/clients/home-swiper1-img4.avif",
+                  "/new-page/clients/home-swiper1-img5.avif",
+                  "/new-page/clients/home-swiper1-img6.avif",
                   // duplicate set 1
-                  "/home-v3/clients/sikka.png",
-                  "/home-v3/clients/landmark.png",
-                  "/home-v3/clients/master.png",
-                  "/home-v3/clients/ace.png",
-                  "/home-v3/clients/tdi.png",
+                  "/new-page/clients/home-swiper1-img7.avif",
+                  "/new-page/clients/home-swiper1-img8.avif",
+                  "/new-page/clients/home-swiper1-img9.avif",
+                  "/new-page/clients/home-swiper1-img10.avif",
+                  "/new-page/clients/home-swiper1-img11.avif",
                   // duplicate set 2 for seamless loop
-                  "/home-v3/clients/sikka.png",
-                  "/home-v3/clients/landmark.png",
-                  "/home-v3/clients/master.png",
-                  "/home-v3/clients/ace.png",
-                  "/home-v3/clients/tdi.png",
+                  "/new-page/clients/home-swiper1-img12.avif",
+                  "/new-page/clients/home-swiper1-img17.avif",
+                  "/new-page/clients/home-swiper1-img13.avif",
+                  "/new-page/clients/home-swiper1-img14.avif",
+                  "/new-page/clients/home-swiper1-img15.avif",
+                  "/new-page/clients/home-swiper1-img16.avif",
                 ].map((url, idx) => (
                   <div
                     key={idx}
@@ -337,7 +410,8 @@ function S2() {
             {/* View More Container  */}
             <div className="w-[100px] sm:w-[120px] lg:w-[146px] h-[56px] sm:h-[67px] lg:h-[81px] flex justify-center items-center flex-shrink-0">
               <Link
-                href={"/"}
+                href={"https://ritzmediaworld.com/about.html"}
+                target="_blank"
                 className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] cursor-pointer border-b"
               >
                 Show more
@@ -372,84 +446,93 @@ function S2() {
                   act: true,
                   id: "01",
                   ttl: "Digital Marketing",
-                  img: "/home-v3/s2/v2s2i2.png",
+                  img: "/home-v3/s2/530-digital.png",
                   para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  link: "https://ritzmediaworld.com/services/digital-marketing",
                 },
                 {
                   act: false,
                   id: "02",
                   ttl: "Creative Service",
-                  img: "/blogs/2a8692ff-eefd-94f3-8020-2974bb230a51_700_393.jpg",
+                  img: "/home-v3/s2/530-creative.png",
                   para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  link: "https://ritzmediaworld.com/services/creative-services",
                 },
                 {
                   act: false,
                   id: "03",
                   ttl: "Print Advertisement",
-                  img: "/blogs/2a88be34-7ea0-035b-8362-8a99a3023d06_1280_720.jpg",
+                  img: "/home-v3/s2/530-print.png",
                   para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  link: "https://ritzmediaworld.com/services/print-advertising",
                 },
                 {
                   act: false,
                   id: "04",
                   ttl: "Radio Advertisement",
-                  img: "/blogs/7e70bd60-2e03-5cdf-12a4-465c84fbdadf_825_319.jpg",
+                  img: "/home-v3/s2/530-radio.png",
                   para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  link: "https://ritzmediaworld.com/services/radio-advertising",
                 },
                 {
                   act: false,
                   id: "05",
                   ttl: "Content Marketing",
-                  img: "/blogs/88ac7d72-e41b-b348-cb5a-6f1f8a78f9a7_1280_720.jpg",
+                  img: "/home-v3/s2/530content.png",
                   para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  link: "https://ritzmediaworld.com/services/contents-marketing",
                 },
                 {
                   act: false,
                   id: "06",
                   ttl: "Web Development",
-                  img: "/blogs/713bc1de-9f00-294a-fd52-e58490e8e042_1280_720.jpg",
+                  img: "/home-v3/s2/530-web.png",
                   para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  link: "https://ritzmediaworld.com/services/web-designing-and-development",
                 },
                 {
                   act: false,
                   id: "07",
                   ttl: "Influencer Marketing",
-                  img: "/blogs/2639b489-6083-8912-6a05-a7d5e49c1220_2100_1050.png",
+                  img: "/home-v3/s2/530-influencer.png",
                   para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
                 },
                 {
                   act: false,
                   id: "08",
                   ttl: "Celebrity Endorsement",
-                  img: "/blogs/a3c2daad-70f4-8775-021d-59aaa762d660_960_640.jpeg",
+                  img: "/home-v3/s2/530-endrosement.png",
                   para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  link: "https://ritzmediaworld.com/services/celebrity-endorsements",
                 },
               ].map((ob) => {
                 return (
                   <div
                     key={ob.id}
+                    onClick={()=>window.open(ob.link, "_blank")}
                     onMouseEnter={() => handleCardHover(ob)}
-                    className={`relative pl-8 sm:pl-12 lg:pl-16 flex gap-2 sm:gap-3 lg:gap-4 ${
+                    className={`relative xl:pl-16 flex gap-2 sm:gap-3 lg:gap-4 ${
                       ob.ttl === activeCard.ttl ? "text-[#000000]" : "text-[#C5C5C5]"
                     } cursor-pointer transition-colors`}
                   >
                     <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
                       fontFamily: 'MontserratRegular',
                     }}>{ob.id}</p>
-                    <h2 className="font-[700] text-[20px] sm:text-[24px] lg:text-[30px]">{ob.ttl}</h2>
+                    <h2 className="font-[700] text-[20px] sm:text-[24px] xl:text-[30px]">{ob.ttl}</h2>
                   </div>
                 );
               })}
             </div>
             {/* Right Side Container  */}
-            <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full lg:max-w-[602px]">
-              <div className="w-full lg:w-[602px] h-[200px] sm:h-[250px] md:h-[300px] lg:h-[336px] relative overflow-hidden mx-auto lg:mx-0">
+            <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full lg:max-w-[580px] xl:max-w-[602px] xl:pr-0 lg:pr-8">
+              <div className="w-full xl:w-[602px] h-[200px] sm:h-[250px] md:h-[300px] lg:h-[336px] relative overflow-hidden mx-auto lg:mx-0">
                 <Image 
                   src={displayImage} 
+                  onClick={()=>window.open(activeCard.link, "_blank")}
                   alt="RMW" 
                   fill 
                   priority
-                  className="object-cover"
                   style={{ transition: 'opacity 0.1s' }}
                 />
                 {showTransition && (
@@ -468,7 +551,7 @@ function S2() {
               }}>
                 {activeCard.para}
               </p>
-              <button className="w-full sm:w-[240px] lg:max-w-[261px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] h-[48px] sm:h-[50px] lg:h-[54px] rounded-[5px] cursor-pointer border-[1px] border-[#C99237] hover:bg-[#C99237] hover:text-white transition-colors">
+              <button onClick={()=>window.open(activeCard.link, "_blank")} className="w-full sm:w-[240px] lg:max-w-[261px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] h-[48px] sm:h-[50px] lg:h-[54px] rounded-[5px] cursor-pointer border-[1px] border-[#C99237] hover:bg-[#C99237] hover:text-white transition-colors">
                 Explore {activeCard.ttl}
               </button>
             </div>
@@ -485,6 +568,58 @@ function S2() {
           </div>
         </div>
       </div>
+
+      {/* Video Modal */}
+      {isVideoOpen && (
+        <div 
+          className="fixed inset-0 z-[9999] flex justify-center items-center"
+          onClick={handleCloseVideo}
+        >
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-90"></div>
+          
+          {/* Video Container */}
+          <div 
+            className="relative w-[90vw] h-[90vh] flex justify-center items-center z-10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={handleCloseVideo}
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 w-[40px] h-[40px] sm:w-[48px] sm:h-[48px] rounded-full bg-white bg-opacity-90 hover:bg-opacity-100 flex justify-center items-center cursor-pointer transition-all hover:scale-110"
+              aria-label="Close video"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px]"
+              >
+                <path
+                  d="M18 6L6 18M6 6L18 18"
+                  stroke="black"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+
+            {/* Single Video Element - Source changes based on screen size */}
+            <video
+              ref={videoRef}
+              src={getVideoSource()}
+              className="w-full h-full object-contain"
+              autoPlay
+              controls
+              playsInline
+              key={videoType} // Force re-render when video type changes
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

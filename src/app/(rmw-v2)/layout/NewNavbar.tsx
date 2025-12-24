@@ -37,225 +37,225 @@ function NewNavbar() {
   const items = [
     {
       name: "Digital Marketing",
-      link: "/services/digital-marketing",
+      link: "https://ritzmediaworld.com/services/digital-marketing",
       sub: [
         {
           name: "SEO (Search Engine Optimization)",
-          link: "/services/digital-marketing/search-engine-optimization-seo"
+          link: "https://ritzmediaworld.com/services/digital-marketing/search-engine-optimization-seo"
         },
         {
           name: "PPC (Google Ads) Services",
-          link: "/services/digital-marketing/ppc-google-ads-agency"
+          link: "https://ritzmediaworld.com/services/digital-marketing/ppc-google-ads-agency"
         },
         {
           name: "Social Media Management",
-          link: "/services/digital-marketing/social-media-management"
+          link: "https://ritzmediaworld.com/services/digital-marketing/social-media-management"
         },
         {
           name: "ORM (Online Reputation Management)",
-          link: "/services/digital-marketing/orm-in-digital-marketing"
+          link: "https://ritzmediaworld.com/services/digital-marketing/orm-in-digital-marketing"
         },
         {
           name: "Lead Generation",
-          link: "/services/digital-marketing/lead-generation"
+          link: "https://ritzmediaworld.com/services/digital-marketing/lead-generation"
         },
         {
           name: "Brand Awareness",
-          link: "/services/digital-marketing/brand-awareness"
+          link: "https://ritzmediaworld.com/services/digital-marketing/brand-awareness"
         }
       ]
     },
     {
       name: "Creative Services",
-      link: "/services/creative-services",
+      link: "https://ritzmediaworld.com/services/creative-services",
       sub: [
         {
           name: "Branding & Identity Development",
-          link: "/services/creative-services/branding-and-identity-development"
+          link: "https://ritzmediaworld.com/services/creative-services/branding-and-identity-development"
         },
         {
           name: "Graphic Design",
-          link: "/services/creative-services/graphic-designing"
+          link: "https://ritzmediaworld.com/services/creative-services/graphic-designing"
         },
         {
           name: "Logo Design",
-          link: "/services/creative-services/logo-design"
+          link: "https://ritzmediaworld.com/services/creative-services/logo-design"
         },
         {
           name: "Print Advertising Design",
-          link: "/services/creative-services/print-advertisement-design"
+          link: "https://ritzmediaworld.com/services/creative-services/print-advertisement-design"
         },
         {
           name: "Packaging Design",
-          link: "/services/creative-services/packaging-design"
+          link: "https://ritzmediaworld.com/services/creative-services/packaging-design"
         }
       ]
     },
     {
       name: "Print Advertising",
-      link: "/services/print-advertising",
+      link: "https://ritzmediaworld.com/services/print-advertising",
       sub: [
         {
           name: "Advertisement Design",
-          link: "/services/print-advertising/advertisement-designing"
+          link: "https://ritzmediaworld.com/services/print-advertising/advertisement-designing"
         },
         {
           name: "Ad Placement",
-          link: "/services/print-advertising/ad-placements"
+          link: "https://ritzmediaworld.com/services/print-advertising/ad-placements"
         },
         {
           name: "Copywriting",
-          link: "/services/print-advertising/copywriting"
+          link: "https://ritzmediaworld.com/services/print-advertising/copywriting"
         },
         {
           name: "Cost Negotiation",
-          link: "/services/print-advertising/negotiating-rates"
+          link: "https://ritzmediaworld.com/services/print-advertising/negotiating-rates"
         },
         {
           name: "Ad Size Optimization",
-          link: "/services/print-advertising/ad-size-optimization"
+          link: "https://ritzmediaworld.com/services/print-advertising/ad-size-optimization"
         },
         {
           name: "Ad Scheduling",
-          link: "/services/print-advertising/advertisement-scheduling"
+          link: "https://ritzmediaworld.com/services/print-advertising/advertisement-scheduling"
         }
       ]
     },
     {
       name: "Radio Advertising",
-      link: "/services/radio-advertising",
+      link: "https://ritzmediaworld.com/services/radio-advertising",
       sub: [
         {
           name: "Advertising Concept Development",
-          link: "/services/radio-advertising/advertisement-concept-development"
+          link: "https://ritzmediaworld.com/services/radio-advertising/advertisement-concept-development"
         },
         {
           name: "Scriptwriting",
-          link: "/services/radio-advertising/scriptwriting"
+          link: "https://ritzmediaworld.com/services/radio-advertising/scriptwriting"
         },
         {
           name: "Voiceover Casting",
-          link: "/services/radio-advertising/voiceover-casting"
+          link: "https://ritzmediaworld.com/services/radio-advertising/voiceover-casting"
         },
         {
           name: "Recording & Production",
-          link: "/services/radio-advertising/recording-and-production"
+          link: "https://ritzmediaworld.com/services/radio-advertising/recording-and-production"
         },
         {
           name: "Media Planning And Buying",
-          link: "/services/radio-advertising/media-planning-and-buying"
+          link: "https://ritzmediaworld.com/services/radio-advertising/media-planning-and-buying"
         },
         {
           name: "Cost Negotiations",
-          link: "/services/radio-advertising/radio-cost-negotiation-india"
+          link: "https://ritzmediaworld.com/services/radio-advertising/radio-cost-negotiation-india"
         }
       ]
     },
     {
       name: "Content Marketing",
-      link: "/services/contents-marketing",
+      link: "https://ritzmediaworld.com/services/contents-marketing",
       sub: [
         {
           name: "Customized Content Strategy",
-          link: "/services/contents-marketing/content-marketing"
+          link: "https://ritzmediaworld.com/services/contents-marketing/content-marketing"
         },
         {
           name: "Email and Newsletters Marketing",
-          link: "/services/contents-marketing/email-and-newsletters-marketing"
+          link: "https://ritzmediaworld.com/services/contents-marketing/email-and-newsletters-marketing"
         },
         {
           name: "Asset Creation and Infographics",
-          link: "/services/contents-marketing/asset-creation-and-infographics"
+          link: "https://ritzmediaworld.com/services/contents-marketing/asset-creation-and-infographics"
         },
         {
           name: "Content Promotion and Optimization",
-          link: "/services/contents-marketing/content-promotion-and-optimization"
+          link: "https://ritzmediaworld.com/services/contents-marketing/content-promotion-and-optimization"
         }
       ]
     },
     {
       name: "Web Development",
-      link: "/services/web-designing-and-development",
+      link: "https://ritzmediaworld.com/services/web-designing-and-development",
       sub: [
         {
           name: "UI/UX Design",
-          link: "/services/web-designing-and-development/ui-ux-design"
+          link: "https://ritzmediaworld.com/services/web-designing-and-development/ui-ux-design"
         },
         {
           name: "Custom Design & Development",
-          link: "/services/web-designing-and-development/custom-design-development"
+          link: "https://ritzmediaworld.com/services/web-designing-and-development/custom-design-development"
         },
         {
           name: "E-Commerce Website Development",
-          link: "/services/web-designing-and-development/e-commerce-web-designing"
+          link: "https://ritzmediaworld.com/services/web-designing-and-development/e-commerce-web-designing"
         },
         {
           name: "Landing Page Development",
-          link: "/services/web-designing-and-development/landing-page-development-services"
+          link: "https://ritzmediaworld.com/services/web-designing-and-development/landing-page-development-services"
         },
         {
           name: "WordPress Web Design",
-          link: "/services/web-designing-and-development/wordpress-web-designing"
+          link: "https://ritzmediaworld.com/services/web-designing-and-development/wordpress-web-designing"
         }
       ]
     },
     {
       name: "Celebrity Endorsements",
-      link: "/services/celebrity-endorsements",
+      link: "https://ritzmediaworld.com/services/celebrity-endorsements",
       sub: [
         {
           name: "Celebrity Identification",
-          link: "/services/celebrity-endorsements/celebrity-identification-services"
+          link: "https://ritzmediaworld.com/services/celebrity-endorsements/celebrity-identification-services"
         },
         {
           name: "Contract Negotiations",
-          link: "/services/celebrity-endorsements/negotiating-contracts"
+          link: "https://ritzmediaworld.com/services/celebrity-endorsements/negotiating-contracts"
         },
         {
           name: "Creative Collaboration",
-          link: "/services/celebrity-endorsements/creative-collaboration"
+          link: "https://ritzmediaworld.com/services/celebrity-endorsements/creative-collaboration"
         },
         {
           name: "Campaign Integration",
-          link: "/services/celebrity-endorsements/campaign-integration"
+          link: "https://ritzmediaworld.com/services/celebrity-endorsements/campaign-integration"
         },
         {
           name: "Public Relations",
-          link: "/services/celebrity-endorsements/public-relations"
+          link: "https://ritzmediaworld.com/services/celebrity-endorsements/public-relations"
         },
         {
           name: "Legal Compliance",
-          link: "/services/celebrity-endorsements/legal-compliance"
+          link: "https://ritzmediaworld.com/services/celebrity-endorsements/legal-compliance"
         }
       ]
     },
     {
       name: "Influencer Marketing",
-      link: "/services/influencer-marketing-agency-in-india",
+      link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
       sub: [
         {
           name: "Influencer Identification",
-          link: "/services/influencer-marketing-agency-in-india/identification-influence-marketing-agency"
+          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/identification-influence-marketing-agency"
         },
         {
           name: "Cost-Benefit Analysis",
-          link: "/services/influencer-marketing-agency-in-india/cost-benefit-analysis"
+          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/cost-benefit-analysis"
         },
         {
           name: "Terms Negotiations",
-          link: "/services/influencer-marketing-agency-in-india/terms-negotiations"
+          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/terms-negotiations"
         },
         {
           name: "Creative Collaboration",
-          link: "/services/influencer-marketing-agency-in-india/creative-collaboration"
+          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/creative-collaboration"
         },
         {
           name: "Campaign Integration",
-          link: "/services/influencer-marketing-agency-in-india/campaign-integration"
+          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/campaign-integration"
         },
         {
           name: "Messaging Optimization",
-          link: "/services/influencer-marketing-agency-in-india/messaging-optimization"
+          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/messaging-optimization"
         }
       ]
     }
@@ -354,16 +354,19 @@ function NewNavbar() {
 
 
   const menuItems = [
-    { label: 'Services', ariaLabel: 'View our services', link: '/services' },
-    { label: 'Our Work', ariaLabel: 'View our work', link: '/' },
-    { label: 'Company', ariaLabel: 'Learn about our company', link: '/' },
-    { label: 'Contact', ariaLabel: 'Get in touch', link: '/' }
+    { label: 'Blogs', ariaLabel: 'View our services', link: 'https://ritzmediaworld.com/blogs' },
+    { label: 'Academy', ariaLabel: 'View our work', link: 'https://ritzmediaworld.com/rdx-digital-marketing-course' },
+    { label: 'Career', ariaLabel: 'Learn about our company', link: 'https://ritzmediaworld.com/career' },
+    { label: 'Gallery', ariaLabel: 'Visit our gallery', link: 'https://ritzmediaworld.com/gallery' },
+    { label: 'Web Stories', ariaLabel: 'Visit our web stories', link: 'https://ritzmediaworld.com/web-stories' }
   ];
   
   const socialItems = [
-    { label: 'Twitter', link: 'https://twitter.com' },
-    { label: 'LinkedIn', link: 'https://linkedin.com' },
-    { label: 'Facebook', link: 'https://facebook.com' }
+    { label: 'X (Twitter)', link: 'https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld' },
+    { label: 'LinkedIn', link: 'https://www.facebook.com/ritzmediaworld/' },
+    { label: 'Facebook', link: 'https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in' },
+    { label: 'YouTube', link: 'https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia' },
+    { label: 'Instagram', link: 'https://www.instagram.com/ritzmediaworld/' }
   ];
   
 
@@ -395,7 +398,7 @@ function NewNavbar() {
         gsap.set(menuItems, { opacity: 0, y: -20 });
         
         tl.to(mobileMenuRef.current, {
-          height: height,
+          height:'90vh',
           opacity: 1,
           duration: 0.4,
           ease: "power3.out"
@@ -544,7 +547,7 @@ function NewNavbar() {
       <div className="w-[90%] flex justify-between items-center">
         {/* Left Side Container  */}
         <div>
-          <img src="/home-v3/logo.png" alt="RMW Logo" />
+          <img src="/home-v3/logo.png" alt="RMW Logo" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className="cursor-pointer" />
         </div>
         {/* Right Side Container  */}
         <div
@@ -552,7 +555,7 @@ function NewNavbar() {
             isScrolled ? "text-black" : "text-white"
           }`}
         >
-          <ul className="flex justify-end items-center gap-12">
+          <ul className="flex justify-end items-center gap-6 xl:gap-12">
             <li>
               <Link
                 onMouseEnter={() => {
@@ -573,7 +576,8 @@ function NewNavbar() {
                     hoverTimeoutRef.current = null;
                   }, 800);
                 }}
-                href="/"
+                href="https://ritzmediaworld.com/services"
+                target="_blank"
                 className={`font-[700] text-[16px] transition-colors duration-300 ${
                   isScrolled
                     ? "text-black hover:text-[#C99237]"
@@ -585,7 +589,8 @@ function NewNavbar() {
             </li>
             <li>
               <Link
-                href="/"
+                href="https://ritzmediaworld.com/work.html"
+                target="_blank"
                 className={`font-[700] text-[16px] transition-colors duration-300 ${
                   isScrolled
                     ? "text-black hover:text-[#C99237]"
@@ -597,7 +602,8 @@ function NewNavbar() {
             </li>
             <li>
               <Link
-                href="/"
+                href="https://ritzmediaworld.com/about.html"
+                target="_blank"
                 className={`font-[700] text-[16px] transition-colors duration-300 ${
                   isScrolled
                     ? "text-black hover:text-[#C99237]"
@@ -609,7 +615,8 @@ function NewNavbar() {
             </li>
             <li>
               <Link
-                href="/"
+                href="https://ritzmediaworld.com/contact.html"
+                target="_blank"
                 className={`font-[700] text-[16px] transition-colors duration-300 ${
                   isScrolled
                     ? "text-black hover:text-[#C99237]"
@@ -621,7 +628,7 @@ function NewNavbar() {
             </li>
             <li>
               <div className="flex gap-4 justify-center items-center">
-                <button className="w-[168px] h-[44px] font-[700] text-[15px] rounded-[5px] bg-[#C99237] cursor-pointer text-white hover:bg-[#B8822F] transition-colors duration-300">
+                <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="w-[168px] h-[44px] font-[700] text-[15px] rounded-[5px] bg-[#C99237] cursor-pointer text-white hover:bg-[#B8822F] transition-colors duration-300">
                   Free Consulting
                 </button>
                 <button
@@ -679,6 +686,7 @@ function NewNavbar() {
                   <div>
                     <Link
                       href={item.link}
+                      target="_blank"
                       className="font-[700] text-[18px] transition-colors duration-300 text-white hover:text-[#C99237] cursor-pointer block mb-3"
                     >
                       {item.name}
@@ -693,6 +701,7 @@ function NewNavbar() {
                           <HiOutlineChevronRight className="w-[16px] h-[16px] text-white flex-shrink-0" />
                           <Link
                             href={subItem.link}
+                            target="_blank"
                             className="font-[400] text-[14px] transition-colors duration-300 text-white hover:text-[#C99237] cursor-pointer"
                           >
                             {subItem.name}
@@ -745,17 +754,17 @@ function NewNavbar() {
 
       {/* Mobile Navbar - Only visible below lg */}
       <nav
-        className={`lg:hidden w-full flex justify-center items-center py-3 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white shadow-md" : "bg-transparent"
+        className={`lg:hidden w-full flex justify-center items-center py-3.5 sm:py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+          isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg shadow-black/5" : "bg-transparent"
         }`}
       >
-        <div className="w-[95%] flex justify-between items-center">
+        <div className="w-[95%] max-w-[1200px] flex justify-between items-center">
           {/* Logo */}
-          <div>
+          <div className="flex items-center">
             <img 
               src="/home-v3/logo.png" 
               alt="RMW Logo" 
-              className="h-[32px] sm:h-[36px] w-auto object-contain"
+              className="h-[34px] sm:h-[38px] w-auto object-contain transition-transform duration-300 hover:scale-105"
             />
           </div>
 
@@ -764,51 +773,50 @@ function NewNavbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`${
               isScrolled ? "text-black" : "text-white"
-            } h-[32px] w-[32px] cursor-pointer transition-colors duration-300 active:text-[#C99237] flex items-center justify-center relative z-10`}
+            } h-[38px] w-[38px] sm:h-[40px] sm:w-[40px] cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center relative z-10 rounded-full hover:bg-black/5 active:bg-black/10`}
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
           >
-            <HiOutlineMenuAlt1 className="h-full w-full" />
+            <HiOutlineMenuAlt1 className={`h-6 w-6 sm:h-7 sm:w-7 transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90' : ''}`} />
           </button>
         </div>
 
         {/* Mobile Menu Dropdown */}
         <div
           ref={mobileMenuRef}
-          className="absolute top-full left-0 right-0 bg-white shadow-lg overflow-hidden max-h-[calc(100vh-60px)] overflow-y-auto"
+          className="absolute top-full left-0 right-0 bg-white/98 backdrop-blur-xl shadow-2xl shadow-black/10 overflow-hidden min-h-[calc(100vh-64px)] overflow-y-auto border-t border-gray-100"
           style={{ opacity: 0, zIndex: 50 }}
         >
-          <div className="w-[95%] mx-auto py-4 space-y-1">
+          <div className="w-[95%] max-w-[1200px] mx-auto py-6 sm:py-8 space-y-2">
             {/* Services Link with Dropdown */}
-            <div>
+            <div className="border-b border-gray-100 pb-2">
               <button
                 onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className={`mobile-menu-item w-full text-left font-[700] text-[16px] py-3 px-4 rounded-lg transition-colors duration-300 ${
-                  isScrolled
-                    ? "text-black hover:bg-gray-100 active:bg-gray-100"
-                    : "text-black hover:bg-gray-100 active:bg-gray-100"
-                } flex items-center justify-between`}
+                className="mobile-menu-item w-full text-left font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 flex items-center justify-between group"
               >
-                <span>Services</span>
+                <span className="relative">
+                  Services
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
+                </span>
                 <svg
-                  className={`w-5 h-5 transition-transform duration-300 ${
-                    isMobileServicesOpen ? "rotate-180" : ""
+                  className={`w-5 h-5 text-gray-600 transition-all duration-300 ${
+                    isMobileServicesOpen ? "rotate-180 text-[#C99237]" : "group-hover:text-[#C99237]"
                   }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
 
               {/* Services Dropdown */}
               <div
                 ref={mobileServicesRef}
-                className="overflow-hidden mt-2"
+                className="overflow-hidden mt-3 overflow-y-auto"
                 style={{ height: 0, opacity: 0 }}
               >
-                <div className="px-4 pb-4 space-y-3">
+                <div className="px-2 pb-4 space-y-3">
                   {items.map((item, index) => (
                     <div
                       key={index}
@@ -819,11 +827,12 @@ function NewNavbar() {
                         backgroundColor: bgColors[index] || "#0D0716",
                         color: "#fff",
                       }}
-                      className="rounded-lg p-4 shadow-md"
+                      className="rounded-xl p-5 shadow-lg shadow-black/10 hover:shadow-xl hover:shadow-black/15 transition-all duration-300 hover:scale-[1.02] border border-white/10"
                     >
                       <Link
                         href={item.link}
-                        className="font-[700] text-[16px] text-white block mb-2"
+                        target="_blank"
+                        className="font-[700] text-[17px] sm:text-[18px] text-white block mb-3 hover:text-[#C99237] transition-colors duration-300"
                         onClick={() => {
                           setIsMobileServicesOpen(false);
                           setIsMobileMenuOpen(false);
@@ -831,19 +840,20 @@ function NewNavbar() {
                       >
                         {item.name}
                       </Link>
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-2.5">
                         {item.sub.map((subItem, subIndex) => (
                           <Link
                             key={subIndex}
                             href={subItem.link}
-                            className="font-[400] text-[13px] text-white/90 hover:text-[#C99237] flex items-center gap-2"
+                            target="_blank"
+                            className="font-[400] text-[14px] sm:text-[15px] text-white/90 hover:text-[#C99237] flex items-center gap-2.5 py-1.5 px-2 rounded-lg hover:bg-white/10 transition-all duration-300 group"
                             onClick={() => {
                               setIsMobileServicesOpen(false);
                               setIsMobileMenuOpen(false);
                             }}
                           >
-                            <HiOutlineChevronRight className="w-[14px] h-[14px] flex-shrink-0" />
-                            {subItem.name}
+                            <HiOutlineChevronRight className="w-[16px] h-[16px] flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
+                            <span className="flex-1">{subItem.name}</span>
                           </Link>
                         ))}
                       </div>
@@ -854,41 +864,62 @@ function NewNavbar() {
             </div>
 
             {/* Other Menu Items */}
-            <Link
-              href="/"
-              className="mobile-menu-item block font-[700] text-[16px] py-3 px-4 rounded-lg transition-colors duration-300 text-black hover:bg-gray-100 active:bg-gray-100"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Our Work
-            </Link>
-            <Link
-              href="/"
-              className="mobile-menu-item block font-[700] text-[16px] py-3 px-4 rounded-lg transition-colors duration-300 text-black hover:bg-gray-100 active:bg-gray-100"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Company
-            </Link>
-            <Link
-              href="/"
-              className="mobile-menu-item block font-[700] text-[16px] py-3 px-4 rounded-lg transition-colors duration-300 text-black hover:bg-gray-100 active:bg-gray-100"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Contact
-            </Link>
-            <button
-              className="mobile-menu-item w-full font-[700] text-[15px] py-3 px-4 rounded-lg bg-[#C99237] text-white hover:bg-[#B8822F] active:bg-[#B8822F] transition-colors duration-300 mt-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Free Consulting
-            </button>
+            <div className="space-y-1 pt-2">
+              <Link
+                href="https://ritzmediaworld.com/work.html"
+                target="_blank"
+                className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="relative">
+                  Our Work
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
+                </span>
+              </Link>
+              <Link
+                href="https://ritzmediaworld.com/about.html"
+                target="_blank"
+                className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="relative">
+                  Company
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
+                </span>
+              </Link>
+              <Link
+                href="https://ritzmediaworld.com/contact.html"
+                target="_blank"
+                className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="relative">
+                  Contact
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
+                </span>
+              </Link>
+            </div>
+
+            {/* CTA Button */}
+            <div className="pt-4 border-t border-gray-100">
+              <button
+                className="mobile-menu-item w-full font-[700] text-[16px] sm:text-[17px] py-4 px-6 rounded-xl bg-gradient-to-r from-[#C99237] to-[#B8822F] text-white hover:from-[#B8822F] hover:to-[#A67227] active:from-[#A67227] active:to-[#956217] transition-all duration-300 shadow-lg shadow-[#C99237]/20 hover:shadow-xl hover:shadow-[#C99237]/30 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+                onClick={() =>{ setIsMobileMenuOpen(false), window.open("https://ritzmediaworld.com/contact.html", "_blank")}}
+              >
+                <span>Free Consulting</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu Backdrop */}
         {isMobileMenuOpen && (
           <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
-            style={{ top: '60px', zIndex: 40 }}
+            className="fixed inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60 backdrop-blur-sm transition-opacity duration-300"
+            style={{ top: '64px', zIndex: 40 }}
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />
