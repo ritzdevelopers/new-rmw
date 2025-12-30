@@ -198,11 +198,11 @@ function S2() {
   return (
     <section className="bg-white w-full flex flex-col items-center justify-center min-h-screen py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-0">
       {/* Centered Align Main Container  */}
-      <div className="w-full sm:w-[95%] lg:w-[90%] flex flex-col gap-8 sm:gap-9 lg:gap-10">
+      <div className="w-full sm:w-[95%] lg:w-[90%] flex flex-col gap-8 sm:gap-9 lg:gap-10 xl:gap-18">
         {/* Row 1  */}
-        <div className="w-full flex flex-col lg:flex-row justify-between gap-8 lg:gap-0">
+        <div className="w-full flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 xl:gap-10">
           {/* Col 1  */}
-          <div className="w-full xl:max-w-[422px] lg:max-w-[380px] flex flex-col gap-4 sm:gap-5 lg:gap-6">
+          <div className="w-full xl:max-w-[422px] lg:max-w-[380px] xl:w-auto flex flex-col gap-4 sm:gap-5 lg:gap-6">
             <p className="font-[700] text-[22px] sm:text-[26px] xl:text-[30px]" style={{
               fontFamily: 'MontserratBold',
             }}>
@@ -241,7 +241,7 @@ function S2() {
                 }}>1M+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
                   fontFamily: 'OpenSansSemiBold',
-                }}>Creatives Published</p>
+                }}>Campaigns Executed</p>
               </div>
               <div className="w-[50%] h-full flex flex-col justify-center items-center text-center ">
                 <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px]" style={{
@@ -249,7 +249,7 @@ function S2() {
                 }}>1K+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
                   fontFamily: 'OpenSansSemiBold',
-                }}>Campaigns Executed</p>
+                }}>Happy Clients</p>
               </div>
             </div>
 
@@ -261,7 +261,7 @@ function S2() {
                 }}>500+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
                   fontFamily: 'OpenSansSemiBold',
-                }}>Success Stories</p>
+                }}>Solutions</p>
               </div>
               <div className="w-[50%] h-full flex flex-col justify-center items-center text-center">
                 <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px]" style={{
@@ -269,7 +269,7 @@ function S2() {
                 }}>1B+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
                   fontFamily: 'OpenSansSemiBold',
-                }}>Words Written</p>
+                }}>Impressions</p>
               </div>
             </div>
           </div>
@@ -284,12 +284,12 @@ function S2() {
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
-                Seamless Global <br /> Time-Zone Alignment
+                Global Reach <br /> Local Alignment
               </h3>
               <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
                 fontFamily: 'OpenSansRegular',
               }}>
-                Smooth collaboration with near-zero time differences
+                A global mindset aligned with regional market realities.
               </p>
             </div>
 
@@ -298,12 +298,12 @@ function S2() {
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
-                Expert Talent Delivered <br /> at Competitive Prices
+                Outcome-Focused Execution
               </h3>
               <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
                 fontFamily: 'OpenSansRegular',
               }}>
-                Premium expertise delivered at the right value
+                Experienced teams driving solutions based on business objectives.
               </p>
             </div>
 
@@ -312,23 +312,32 @@ function S2() {
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
-                Culture-Driven Values & Clear Communication
+                Creative Integrity
               </h3>
               <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
                 fontFamily: 'OpenSansRegular',
               }}>
-                Smooth, reliable support — always just a call away
+                Building work that respects brand identity and long-term credibility.
               </p>
             </div>
           </div>
 
           {/* Row 2  */}
-          <div className="flex justify-center items-center w-full h-[250px] sm:h-[350px] lg:h-[426px] relative">
+          <div className="w-full h-[250px] sm:h-[350px] lg:h-[426px] relative">
             <Image src={"/home-v3/s2/team-bg2.png"} alt="" fill className="object-cover"></Image>
+
+            {/* Overlay  */}
+            <div className="absolute inset-0 bg-[#0000007b] w-full h-full z-0"></div>
 
             <div 
               onClick={handlePlayClick}
-              className="flex absolute top-[50%] right-[50%] transform -translate-x-[50%] -translate-y-[50%] cursor-pointer w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] lg:w-[54px] lg:h-[54px] rounded-full justify-center items-center bg-[#FFFFFF] z-10 hover:scale-110 transition-transform"
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}
+              className="cursor-pointer w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] lg:w-[54px] lg:h-[54px] rounded-full flex justify-center items-center bg-[#FFFFFF] z-10 hover:scale-110 transition-transform"
             >
               <svg
                 width="10"
@@ -343,8 +352,6 @@ function S2() {
                 />
               </svg>
             </div>
-            {/* Overlay  */}
-            <div className="absolute inset-0 bg-[#0000007b] w-full h-full z-0"></div>
           </div>
         </div>
 
@@ -373,7 +380,7 @@ function S2() {
           </div>
 
           {/* Right Side Container  */}
-          <div className="flex w-full sm:w-[calc(100%-194px)] overflow-x-hidden">
+          <div className="flex w-full md:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden">
             {/* Slider Container  */}
             <div className="w-full overflow-hidden">
               <div className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}>
@@ -447,7 +454,7 @@ function S2() {
                   id: "01",
                   ttl: "Digital Marketing",
                   img: "/home-v3/s2/530-digital.png",
-                  para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  para: "We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
                   link: "https://ritzmediaworld.com/services/digital-marketing",
                 },
                 {
@@ -455,7 +462,7 @@ function S2() {
                   id: "02",
                   ttl: "Creative Service",
                   img: "/home-v3/s2/530-creative.png",
-                  para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  para: "Performance-focused campaigns on Google and social that reach high-intent audiences and convert clicks into enquiries, sales and revenue",
                   link: "https://ritzmediaworld.com/services/creative-services",
                 },
                 {
@@ -463,7 +470,7 @@ function S2() {
                   id: "03",
                   ttl: "Print Advertisement",
                   img: "/home-v3/s2/530-print.png",
-                  para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  para: "Strategic newspaper and magazine ads with strong ideas, smart headlines and compelling layouts that cut through clutter and generate responses.",
                   link: "https://ritzmediaworld.com/services/print-advertising",
                 },
                 {
@@ -471,7 +478,7 @@ function S2() {
                   id: "04",
                   ttl: "Radio Advertisement",
                   img: "/home-v3/s2/530-radio.png",
-                  para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  para: "Memorable radio campaigns with scripts, distinctive voices and sound design that keep attention, build recall and drive listeners to act.",
                   link: "https://ritzmediaworld.com/services/radio-advertising",
                 },
                 {
@@ -479,7 +486,7 @@ function S2() {
                   id: "05",
                   ttl: "Content Marketing",
                   img: "/home-v3/s2/530content.png",
-                  para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  para: "We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
                   link: "https://ritzmediaworld.com/services/contents-marketing",
                 },
                 {
@@ -487,7 +494,7 @@ function S2() {
                   id: "06",
                   ttl: "Web Development",
                   img: "/home-v3/s2/530-web.png",
-                  para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  para: "Fast, responsive websites that reflect your brand, deliver smooth user journeys and turn visitors into enquiries and loyal customers online.",
                   link: "https://ritzmediaworld.com/services/web-designing-and-development",
                 },
                 {
@@ -495,7 +502,7 @@ function S2() {
                   id: "07",
                   ttl: "Influencer Marketing",
                   img: "/home-v3/s2/530-influencer.png",
-                  para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  para: "Strategic collaborations with credible influencers whose authentic content builds trust, extends reach and turns engaged followers into leads and customers.",
                   link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
                 },
                 {
@@ -503,15 +510,15 @@ function S2() {
                   id: "08",
                   ttl: "Celebrity Endorsement",
                   img: "/home-v3/s2/530-endrosement.png",
-                  para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  para: "Celebrities are carefully matched so their image and audience align with your brand, boosting trust and impact across campaigns and events.",
                   link: "https://ritzmediaworld.com/services/celebrity-endorsements",
                 },
               ].map((ob) => {
                 return (
                   <div
                     key={ob.id}
-                    onClick={()=>window.open(ob.link, "_blank")}
-                    onMouseEnter={() => handleCardHover(ob)}
+                    onClick={()=>handleCardHover(ob)}
+                    // onMouseEnter={() => handleCardHover(ob)}
                     className={`relative xl:pl-16 flex gap-2 sm:gap-3 lg:gap-4 ${
                       ob.ttl === activeCard.ttl ? "text-[#000000]" : "text-[#C5C5C5]"
                     } cursor-pointer transition-colors`}
@@ -562,8 +569,12 @@ function S2() {
             <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
               fontFamily: 'OpenSansRegular',
             }}>
-              Not sure which path fits your brand? Let's discuss your unique
+              Not sure which path fits your brand? <span className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] underline" style={{
+              fontFamily: 'OpenSansSemiBold',
+            }}>
+              Let's discuss your unique
               needs
+              </span>
             </p>
           </div>
         </div>

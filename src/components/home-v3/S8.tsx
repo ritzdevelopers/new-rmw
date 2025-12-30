@@ -4,7 +4,18 @@ import React from "react";
 import { CiCalendar } from "react-icons/ci";
 import { Download } from "lucide-react";
 import Link from "next/link";
-function S8() {
+
+
+interface BLOGSTRUCTURE {
+  blogTitle:string,
+  blogBanner:string,
+  blogSlug:string,
+  createdAt:Date,
+ 
+}
+
+
+function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boolean }) {
   return (
     <section className="w-full min-h-screen bg-[#ffffff] flex justify-center items-center py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-0">
       {/* Centered Align Container  */}
@@ -37,9 +48,7 @@ function S8() {
                   fontFamily: "OpenSansRegular",
                 }}
               >
-                Explore industry insights, expert tips, and creative inspiration
-                from the Ritz team. Our blog is where we share knowledge, ideas,
-                and what's next in digital.
+               Insights, launches, partnerships, and stories from across our ecosystem.
               </p>
             </div>
 
@@ -57,26 +66,9 @@ function S8() {
 
           {/* Main Container  */}
           <div className="w-full flex flex-col sm:flex-row justify-between gap-6 sm:gap-4 ">
-            {[
-              {
-                img: "/home-v3/s8/v3s8i1.png",
-                date: "09-12-2025",
-                ttl: "UGC & Influencers: How to Brief, Track, and Pay for Performance",
-                link: "/",
-              },
-              {
-                img: "/home-v3/s8/v3s8i2.png",
-                date: "08-12-2025",
-                ttl: "How Generative AI Is Helping Brands Evolve Through Storytelling",
-                link: "/",
-              },
-              {
-                img: "/home-v3/s8/v3s8i1.png",
-                date: "03-12-2025",
-                ttl: "Salary & Roles in India: Performance Marketer, SEO, Analyst: 2025 Snapshot",
-                link: "/",
-              },
-            ].map((ob, idx) => {
+            {
+            blogs.length > 0 ? 
+            blogs.map((ob, idx) => {
               return (
                 <div
                   key={idx}
@@ -85,7 +77,7 @@ function S8() {
                   {/* Image Container  */}
                   <div className="w-full relative h-[250px] lg:h-[212px]">
                     <Image
-                      src={ob.img}
+                      src={ob.blogBanner}
                       alt="RMW"
                       fill
                       className="object-cover"
@@ -93,7 +85,7 @@ function S8() {
                   </div>
                   <p className="font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center">
                     <CiCalendar className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px]" />{" "}
-                    {ob.date}
+                    {ob.createdAt.toLocaleDateString('en-US', {day: '2-digit', month: '2-digit', year: 'numeric'})}
                   </p>
                   <h3
                     className="font-[600] text-[16px] sm:text-[17px] lg:text-[18px] text-black"
@@ -101,16 +93,40 @@ function S8() {
                       fontFamily: "OpenSansSemiBold",
                     }}
                   >
-                    {ob.ttl}
+                    {ob.blogTitle}
                   </h3>
                 </div>
               );
-            })}
+            })
+          :
+          [1,2,3].map((idx)=>{
+            return (
+              <div
+                key={idx}
+                className="w-full sm:w-[calc(33.333%-10px)] lg:w-[405px] h-auto lg:h-[311px] flex flex-col gap-2"
+              >
+                {/* Image Skeleton */}
+                <div className="w-full relative h-[250px] lg:h-[212px] bg-gray-200 rounded animate-pulse"></div>
+                {/* Date Skeleton */}
+                <div className="flex gap-2 items-center">
+                  <div className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px] bg-gray-200 rounded animate-pulse"></div>
+                  <div className="w-[100px] h-[15px] sm:h-[16px] lg:h-[17px] bg-gray-200 rounded animate-pulse"></div>
+                </div>
+                {/* Title Skeleton */}
+                <div className="flex flex-col gap-2">
+                  <div className="w-full h-[18px] sm:h-[19px] lg:h-[20px] bg-gray-200 rounded animate-pulse"></div>
+                  <div className="w-[80%] h-[18px] sm:h-[19px] lg:h-[20px] bg-gray-200 rounded animate-pulse"></div>
+                </div>
+              </div>
+            )
+          })
+          
+          }
           </div>
         </div>
 
         {/* Row 2  */}
-        <div className="w-full flex flex-col lg:flex-row justify-between gap-6 lg:gap-6">
+        <div className="w-full flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10">
           {/* Left Side Container  */}
           <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8">
             <div>
@@ -141,8 +157,7 @@ function S8() {
                 fontFamily: "PoppinsRegular",
               }}
             >
-              Get exclusive insights into real estate and lifestyle brand
-              marketing trends, strategies, and ROI benchmarks for 2025.
+              Download our latest report exploring how brands can build trust, relevance, and growth in an increasingly digital-first landscape.
             </p>
 
             <ul
@@ -219,7 +234,7 @@ function S8() {
               <li>Customized strategy roadmap</li>
             </ul>
 
-            <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] mt-auto">
+            <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5">
               <Link
                 href={"https://ritzmediaworld.com/contact.html"}
                 target="_blank"

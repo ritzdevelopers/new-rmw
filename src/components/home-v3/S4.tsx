@@ -73,13 +73,13 @@ function S4() {
     {
       img: "/home-v3/s4/590-print.png",
       category: "Print Marketing",
-      title: "Social Media Marketing",
+      title: "Print Advertising",
       description:
-        "Our social media marketing campaigns drive engagement and conversions through strategic content creation, community building, and data-driven optimization. Discover how brands achieved remarkable growth in followers, engagement rates, and sales through our comprehensive social media strategies.",
+        "Our print advertising case studies show how powerful layouts, sharp messaging, and strategic placements cut through clutter to capture attention instantly. See how brands achieved stronger recall, higher response rates, and impactful visibility through well-crafted print communication.",
       stats: [
-        { value: "300%", label: "Increase in followers" },
-        { value: "120%", label: "Engagement rate" },
-        { value: "65%", label: "Sales growth" },
+        { value: "180%", label: "Lift in brand awareness" },
+        { value: "3X", label: "Growth in social engagement" },
+        { value: "65%", label: "Increase in market share" },
       ],
       link: "https://ritzmediaworld.com/services/print-advertising",
     },
@@ -330,7 +330,7 @@ function S4() {
                           {story.description}
                         </p>
 
-                        <div className="w-full flex flex-row justify-between items-center gap-4 sm:gap-2 lg:gap-4">
+                        <div className="w-full flex flex-row justify-between items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-2">
                           {story.stats.map((stat, statIdx) => {
                             return (
                               <div
@@ -338,7 +338,7 @@ function S4() {
                                 onClick={()=>window.open(story.link, "_blank")}
                                 className={`flex flex-col justify-center items-center gap-1 w-full sm:w-auto ${
                                   statIdx === 1
-                                    ? "sm:px-4 lg:px-8 sm:border-l-[1px] sm:border-r-[1px] sm:border-l-[#D8D8D8] sm:border-r-[#D8D8D8]"
+                                    ? "sm:px-4 lg:px-8 xl:px-4 py-4 sm:border-l-[1px] sm:border-r-[1px] sm:border-l-[#D8D8D8] sm:border-r-[#D8D8D8]"
                                     : ""
                                 }`}
                               >
@@ -388,7 +388,7 @@ function S4() {
 
         <div 
           onClick={handlePlayClick}
-          className="flex absolute top-[50%] right-[50%] transform -translate-x-[50%] -translate-y-[50%] cursor-pointer w-[44px] h-[44px] sm:w-[50px] sm:h-[50px] lg:w-[54px] lg:h-[54px] rounded-full justify-center items-center bg-[#FFFFFF] z-10 hover:scale-110 transition-transform"
+          className="flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer w-[44px] h-[44px] sm:w-[50px] sm:h-[50px] lg:w-[54px] lg:h-[54px] rounded-full justify-center items-center bg-[#FFFFFF] z-10 hover:scale-110 transition-transform"
         >
           <svg
             width="10"

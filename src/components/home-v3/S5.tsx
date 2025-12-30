@@ -214,9 +214,9 @@ function S5() {
                                                             after:h-[1px]
                                                             after:bg-[#B2B2B2]
                                                             lg:before:w-[200px]
-                                                            xl:before:w-[345px]
+                                                            xl:before:w-[305px]
                                                             lg:after:w-[200px]
-                                                            xl:after:w-[345px]`}
+                                                            xl:after:w-[305px]`}
                                                         style={{
                                                             fontFamily: "OpenSansBold",
                                                         }}

@@ -650,7 +650,7 @@ function NewNavbar() {
       {isHovered && (
         <div
           ref={containerRef}
-          className="w-[90%] max-w-[1400px] fixed top-20 left-1/2 py-6 px-6 bg-white rounded-lg shadow-2xl transform -translate-x-1/2 z-[100] overflow-y-auto max-h-[calc(100vh-100px)]"
+          className="w-[95%] xl:max-w-[1195px] fixed top-20 left-1/2 py-2 px-2 bg-white rounded-lg shadow-2xl transform -translate-x-1/2 z-[100]"
           onMouseEnter={() => {
             // Clear timeout when mouse enters the container - keep it visible
             if (hoverTimeoutRef.current) {
@@ -668,7 +668,7 @@ function NewNavbar() {
             }
           }}
         >
-          <div className="flex flex-wrap justify-center items-start gap-4">
+          <div className="flex flex-wrap justify-center items-start gap-2 xl:gap-4">
             {items.map((item, index) => {
               return (
                 <div
@@ -680,7 +680,7 @@ function NewNavbar() {
                     backgroundColor: bgColors[index] || "#0D0716",
                     color: "#fff",
                   }}
-                  className="w-[280px] min-h-[280px] rounded-[8px] flex flex-col justify-between p-5 shadow-lg"
+                  className="xl:w-[280px] w-[230px] h-[300px] xl:min-h-[280px] rounded-[8px] flex flex-col justify-between p-5 shadow-lg"
                 >
                   {/* Main Service Name  */}
                   <div>
@@ -719,36 +719,87 @@ function NewNavbar() {
 
       {/* Staggered Menu */}
       {(isMenuOpen || isMenuClosing) && (
-        <div className="fixed inset-0 z-[9999]" style={{ height: '100vh', background: '#1a1a1a' }}>
-          <div className="relative w-full h-full">
-            <StaggeredMenu
-              position="right"
-              items={menuItems}
-              socialItems={socialItems}
-              displaySocials={true}
-              displayItemNumbering={true}
-              menuButtonColor={isScrolled ? "#000" : "#fff"}
-              openMenuButtonColor="#000"
-              changeMenuColorOnOpen={true}
-              colors={['#1a1a1a', '#2a2a2a']}
-              logoUrl="/home-v3/logo.png"
-              accentColor="#C99237"
-              isFixed={true}
-              closeOnClickAway={true}
-              onMenuOpen={() => {
-                setIsMenuOpen(true);
-              }}
-              onMenuClose={() => {
-                setIsMenuClosing(true);
-                // Delay unmounting to allow close animation to complete
-                setTimeout(() => {
-                  setIsMenuOpen(false);
-                  setIsMenuClosing(false);
-                }, 800); // Match the close animation duration
-              }}
-            />
+        <>
+          <div className="fixed inset-0 z-[9999] responsive-staggered-menu" style={{ height: '100vh', background: '#1a1a1a' }}>
+            <div className="relative w-full h-full">
+              <StaggeredMenu
+                position="right"
+                items={menuItems}
+                socialItems={socialItems}
+                displaySocials={true}
+                displayItemNumbering={false}
+                menuButtonColor={isScrolled ? "#000" : "#fff"}
+                openMenuButtonColor="#000"
+                changeMenuColorOnOpen={true}
+                colors={['#1a1a1a', '#2a2a2a']}
+                logoUrl="/home-v3/logo.png"
+                accentColor="#C99237"
+                isFixed={true}
+                closeOnClickAway={true}
+                onMenuOpen={() => {
+                  setIsMenuOpen(true);
+                }}
+                onMenuClose={() => {
+                  setIsMenuClosing(true);
+                  // Delay unmounting to allow close animation to complete
+                  setTimeout(() => {
+                    setIsMenuOpen(false);
+                    setIsMenuClosing(false);
+                  }, 800); // Match the close animation duration
+                }}
+              />
+            </div>
           </div>
-        </div>
+          <style dangerouslySetInnerHTML={{__html: `
+            /* Responsive font sizing for StaggeredMenu - default for mobile */
+            .responsive-staggered-menu .sm-panel-item {
+              font-size: 3rem !important;
+            }
+            
+            /* For >=lg screens - default size */
+            @media (min-width: 1024px) {
+              .responsive-staggered-menu .sm-panel-item {
+                font-size: 3.5rem !important;
+              }
+            }
+            
+            /* For >=xl screens - full size */
+            @media (min-width: 1280px) {
+              .responsive-staggered-menu .sm-panel-item {
+                font-size: 4rem !important;
+              }
+            }
+            
+            /* For <xl screens (lg to xl) with small height - reduce font size progressively */
+            /* Largest height range first, then smaller ones override */
+            @media (min-width: 1024px) and (max-width: 1279px) and (max-height: 800px) and (min-height: 701px) {
+              .responsive-staggered-menu .sm-panel-item {
+                font-size: 2.5rem !important;
+              }
+              .responsive-staggered-menu .sm-panel-list {
+                gap: 1.5rem !important;
+              }
+            }
+            
+            @media (min-width: 1024px) and (max-width: 1279px) and (max-height: 700px) {
+              .responsive-staggered-menu .sm-panel-item {
+                font-size: 2rem !important;
+              }
+              .responsive-staggered-menu .sm-panel-list {
+                gap: 1rem !important;
+              }
+            }
+            
+            @media (min-width: 1024px) and (max-width: 1279px) and (max-height: 600px) {
+              .responsive-staggered-menu .sm-panel-item {
+                font-size: 1.75rem !important;
+              }
+              .responsive-staggered-menu .sm-panel-list {
+                gap: 1rem !important;
+              }
+            }
+          `}} />
+        </>
       )}
     </nav>
 

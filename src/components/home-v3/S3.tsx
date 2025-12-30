@@ -132,9 +132,7 @@ function S3() {
             360° Brand Elevation Services
           </h2>
           <p className="font-[400] text-[16px] max-w-6xl">
-            Our in-house team masters the entire spectrum of digital marketing ,
-            from strategy and creative development to sophisticated campaigns.
-            Our in-house team masters the entire spectrum
+          From strategy to execution, we help brands grow with clarity, consistency, and impact across every touchpoint.
           </p>
         </div>
 
@@ -227,7 +225,7 @@ function S3() {
                           className="object-cover"
                         ></Image>
                       </div>
-                      <div className="w-full max-w-[442px] sm:w-[442px] z-10 h-[calc(100%-336px)] bg-[#F7F7F7] absolute bottom-8 right-0 pl-4 sm:pl-8 py-6 sm:py-8 flex flex-col gap-3">
+                      <div className="w-full max-w-[442px] sm:w-[442px] z-10 h-[calc(100%-336px)] bg-[#F7F7F7] absolute bottom-8 right-0 pl-4 sm:pl-8 py-6 sm:py-8 flex flex-col gap-3 xl:p-5">
                         <p
                           className="font-[600] text-[16px] sm:text-[18px] text-[#C99237]"
                           style={{
@@ -262,7 +260,7 @@ function S3() {
                           <Link
                             href={ob.link}
                             target="_blank"
-                            className="font-[600] text-[14px] sm:text-[16px] border-b-1 border-b-black"
+                            className="font-[600] text-[14px] sm:text-[16px] underline"
                             style={{
                               fontFamily: "OpenSansSemiBold",
                             }}

@@ -88,7 +88,7 @@ function S7() {
                 </div>
 
                 {/* Bottom Main Container - Swiper Slider  */}
-                <div className="w-full overflow-visible">
+                <div className="w-full overflow-visible ">
                     <Swiper
                         onSwiper={(swiper) => {
                             swiperRef.current = swiper;
@@ -120,7 +120,7 @@ function S7() {
                             // Desktop
                             1280: {
                                 slidesPerView: 3,
-                                spaceBetween: 30,
+                                spaceBetween: 20,
                             },
                         }}
                         className={styles.swiperContainer}
@@ -128,9 +128,9 @@ function S7() {
                         {awardsData.map((ob, idx) => {
                             return (
                                 <SwiperSlide key={idx} style={{ height: 'auto' }}>
-                                    <div className='w-full max-w-[401px] mx-auto'>
+                                    <div className='w-full max-w-[401px] mx-auto xl:pl-[10px]'>
                                         <div className="w-full h-[250px] sm:h-[280px] lg:h-[326px] border-1 border-[#C9923780] relative flex justify-center items-center">
-                                            <div className="w-[90%] h-[90%] flex justify-center items-center relative">
+                                            <div className="w-[90%] h-[95%] flex justify-center items-center relative">
                                                 <Image src={ob.img} alt={ob.highlite} fill className='object-contain'></Image>
                                             </div>
 

@@ -117,7 +117,7 @@ function S6() {
                             data.map((ob, idx) => {
                                 return (
                                     <SwiperSlide key={idx}>
-                                        <div className='w-full max-w-[393px] mx-auto min-h-[280px] sm:min-h-[300px] lg:h-[331px] bg-white rounded-lg shadow-[0_2px_15px_0_rgba(208,208,208,0.25)] flex flex-col gap-8 sm:gap-9 lg:gap-10 p-6 sm:p-7 lg:p-8'>
+                                        <div className='w-full max-w-[393px] mx-auto min-h-[280px] sm:min-h-[300px] lg:h-[331px] bg-white rounded-lg shadow-[0_2px_15px_0_rgba(208,208,208,0.25)] flex flex-col gap-8 sm:gap-9 lg:gap-10 p-6 sm:p-7 lg:p-8 relative'>
                                             <p className='font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-[#060606] flex-grow' style={{
                                                 fontFamily: "OpenSansRegular",
                                             }}>{ob.para}</p>
@@ -130,6 +130,9 @@ function S6() {
                                                     fontFamily: "OpenSansRegular",
                                                 }}>{ob.role}</p>
                                             </div>
+
+                                            {/* Absolute Positioned Image */}
+                                            <img src="/home-v3/exl-icn.png" alt="" className='absolute bottom-4 z-0 right-4' />
                                         </div>
                                     </SwiperSlide>
                                 )
