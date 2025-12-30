@@ -77,11 +77,12 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                   {/* Image Container  */}
                   <div className="w-full relative h-[250px] lg:h-[212px]">
                     <Image
-                      src={ob.blogBanner}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}${ob.blogBanner}`}
                       alt="RMW"
                       fill
                       className="object-cover"
                     ></Image>
+                    
                   </div>
                   <p className="font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center">
                     <CiCalendar className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px]" />{" "}
