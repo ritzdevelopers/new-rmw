@@ -51,10 +51,10 @@ function S2() {
         // Image is loaded, start transition (keep old image visible underneath)
         setShowTransition(true);
         
-        // Enhanced animation duration: 1400ms (1.4 seconds) for ultra-smooth feel
-        // Update state at 55% progress for optimal smooth transition
-        const totalAnimationTime = 1400; // milliseconds
-        const stateChangeTime = totalAnimationTime * 0.55; // 55% through animation
+        // Fast animation duration: 600ms (0.6 seconds) for quick response
+        // Update state at 50% progress for optimal smooth transition
+        const totalAnimationTime = 600; // milliseconds
+        const stateChangeTime = totalAnimationTime * 0.5; // 50% through animation
         
         // Update state at optimal point for smooth transition
         stateChangeTimeoutRef.current = setTimeout(() => {
@@ -78,8 +78,8 @@ function S2() {
         setShowTransition(true);
         
         // Same timing calculation
-        const totalAnimationTime = 1400;
-        const stateChangeTime = totalAnimationTime * 0.55;
+        const totalAnimationTime = 600;
+        const stateChangeTime = totalAnimationTime * 0.5;
         
         stateChangeTimeoutRef.current = setTimeout(() => {
           if (pendingCardRef.current) {
@@ -221,8 +221,8 @@ function S2() {
                 fontFamily: 'OpenSansBold',
               }}>Ritz Media World</b>  is all about.
             </p>
-            <button onClick={()=>window.open("https://ritzmediaworld.com/about.html", "_blank")} className="w-full sm:w-[200px] lg:w-[219px] h-[48px] sm:h-[50px] lg:h-[54px] border-[1px] border-[#C99237] rounded-[5px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] hover:bg-[#C99237] hover:text-white transition-colors">
-              Click to know more
+            <button onClick={()=>window.open("https://ritzmediaworld.com/services", "_blank")} className="w-full sm:w-[200px] lg:w-[219px] h-[48px] sm:h-[50px] lg:h-[54px] border-[1px] border-[#C99237] rounded-[5px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] s1-btn-transparent cursor-pointer">
+              <p>Click to know more</p>
             </button>
           </div>
 
@@ -521,7 +521,7 @@ function S2() {
                     // onMouseEnter={() => handleCardHover(ob)}
                     className={`relative xl:pl-16 flex gap-2 sm:gap-3 lg:gap-4 ${
                       ob.ttl === activeCard.ttl ? "text-[#000000]" : "text-[#C5C5C5]"
-                    } cursor-pointer transition-colors`}
+                    } cursor-pointer transition-colors duration-200`}
                   >
                     <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
                       fontFamily: 'MontserratRegular',
@@ -533,7 +533,7 @@ function S2() {
             </div>
             {/* Right Side Container  */}
             <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full lg:max-w-[580px] xl:max-w-[602px] xl:pr-0 lg:pr-8">
-              <div className="w-full xl:w-[602px] h-[200px] sm:h-[250px] md:h-[300px] lg:h-[336px] relative overflow-hidden mx-auto lg:mx-0">
+              <div className="w-full xl:w-[602px] h-[200px] sm:h-[250px] md:h-[300px] lg:h-[336px] relative overflow-hidden mx-auto lg:mx-0 cursor-pointer">
                 <Image 
                   src={displayImage} 
                   onClick={()=>window.open(activeCard.link, "_blank")}
@@ -558,8 +558,8 @@ function S2() {
               }}>
                 {activeCard.para}
               </p>
-              <button onClick={()=>window.open(activeCard.link, "_blank")} className="w-full sm:w-[240px] lg:max-w-[261px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] h-[48px] sm:h-[50px] lg:h-[54px] rounded-[5px] cursor-pointer border-[1px] border-[#C99237] hover:bg-[#C99237] hover:text-white transition-colors">
-                Explore {activeCard.ttl}
+              <button onClick={()=>window.open(activeCard.link, "_blank")} className="w-full sm:w-[240px] lg:max-w-[261px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] h-[48px] sm:h-[50px] lg:h-[54px] rounded-[5px] cursor-pointer border-[1px] border-[#C99237]  s1-btn-transparent">
+                <p>Explore {activeCard.ttl}</p>
               </button>
             </div>
           </div>
@@ -569,11 +569,10 @@ function S2() {
             <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
               fontFamily: 'OpenSansRegular',
             }}>
-              Not sure which path fits your brand? <span className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] underline" style={{
+              Not sure which path fits your brand? <span className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] underline cursor-pointer" style={{
               fontFamily: 'OpenSansSemiBold',
-            }}>
-              Let's discuss your unique
-              needs
+            }} onClick={()=>window.open("https://ritzmediaworld.com/contact.html", "_blank")}>
+              Let's discuss your unique needs
               </span>
             </p>
           </div>

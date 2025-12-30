@@ -227,7 +227,8 @@ function S3() {
                       </div>
                       <div className="w-full max-w-[442px] sm:w-[442px] z-10 h-[calc(100%-336px)] bg-[#F7F7F7] absolute bottom-8 right-0 pl-4 sm:pl-8 py-6 sm:py-8 flex flex-col gap-3 xl:p-5">
                         <p
-                          className="font-[600] text-[16px] sm:text-[18px] text-[#C99237]"
+                          className="font-[600] text-[16px] sm:text-[18px] text-[#C99237] cursor-pointer"
+                          onClick={()=>window.open(ob.link, "_blank")}
                           style={{
                             fontFamily: "OpenSansSemiBold",
                           }}
@@ -235,7 +236,8 @@ function S3() {
                           {ob.category}
                         </p>
                         <h2
-                          className="font-[600] text-[22px] sm:text-[26px]"
+                          className="font-[600] text-[22px] sm:text-[26px] cursor-pointer"
+                          onClick={()=>window.open(ob.link, "_blank")}
                           style={{
                             fontFamily: "OpenSansSemiBold",
                           }}

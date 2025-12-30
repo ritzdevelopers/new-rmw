@@ -27,6 +27,8 @@ import OurAwards from "./new-home/sections/OurAwards";
 import RDS from "./new-home/sections/RDS";
 import Christmas from "./new-home/components/Christmas";
 import FlyingSanta2 from "./new-home/components/FlyingSanta2";
+import NewYear from "./new-home/sections/NewYear";
+import NewYearAnimation from "@/components/home-v3/NewYearAnimation";
 
 function page() {
   // useEffect(() => {
@@ -37,9 +39,13 @@ function page() {
       {/* <LenisSmoothScroll />*/}
       {/* <RouteChangeHandler />  */}
       {/* <CustomCursor /> */}
+ 
+    <NewYearAnimation></NewYearAnimation>
+
+      {/* <Christmas></Christmas> */}
+    <NewYear></NewYear>
 
 
-      <Christmas></Christmas>
       {/* <S1></S1> */}
       {/* <S2></S2> */}
       <NewS2></NewS2>
@@ -64,7 +70,7 @@ function page() {
       <ASI icn={<YouTubeIcon />} py="top-[345px]" px="right-[0px]" bgType="youtube"></ASI>
       <ASI icn={<LinkedInIcon />} py="top-[395px]" px="right-[0px]" bgType="linkedin"></ASI>
       <ASI icn={<XIcon />} py="top-[444px]" px="right-[0px]" bgType="x"></ASI>
-      <FlyingSanta2 />
+      {/* <FlyingSanta2 /> */}
     </main>
   );
 }

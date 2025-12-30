@@ -20,7 +20,7 @@ function S4() {
   const successStories = [
     {
       img: "/home-v3/s4/590-celebrity.png",
-      category: "Celebrity Endorsements",
+      category: "Digital Advertising",
       title: "Digital Advertising",
       description:
         "Our digital advertising case studies showcase how smart targeting, compelling creatives, and data-driven optimisation translate into real business outcomes. Explore how brands across sectors achieved higher visibility, stronger engagement, and measurable conversions through strategic, performance-focused campaigns.",
@@ -33,7 +33,7 @@ function S4() {
     },
     {
       img: "/home-v3/s4/590-content.png",
-      category: "Content Marketing",
+      category: "Social Media Marketing",
       title: "Social Media Marketing",
       description:
         "Our social media marketing campaigns drive engagement and conversions through strategic content creation, community building, and data-driven optimization. Discover how brands achieved remarkable growth in followers, engagement rates, and sales through our comprehensive social media strategies.",
@@ -46,7 +46,7 @@ function S4() {
     },
     {
       img: "/home-v3/s4/590-digtal.png",
-      category: "Digital Marketing",
+      category: "SEO & Content Marketing",
       title: "SEO & Content Marketing",
       description:
         "Our SEO and content marketing strategies help brands achieve top search rankings and organic growth. Learn how we've helped companies increase their online visibility, drive qualified traffic, and generate leads through comprehensive SEO optimization and strategic content creation.",
@@ -59,7 +59,7 @@ function S4() {
     },
     {
       img: "/home-v3/s4/590-influncer.png",
-      category: "Influencer Marketing",
+      category: "Digital Advertising",
       title: "Digital Advertising",
       description:
         "Our digital advertising case studies showcase how smart targeting, compelling creatives, and data-driven optimisation translate into real business outcomes. Explore how brands across sectors achieved higher visibility, stronger engagement, and measurable conversions through strategic, performance-focused campaigns.",
@@ -72,7 +72,7 @@ function S4() {
     },
     {
       img: "/home-v3/s4/590-print.png",
-      category: "Print Marketing",
+      category: "Print Advertising",
       title: "Print Advertising",
       description:
         "Our print advertising case studies show how powerful layouts, sharp messaging, and strategic placements cut through clutter to capture attention instantly. See how brands achieved stronger recall, higher response rates, and impactful visibility through well-crafted print communication.",
@@ -85,7 +85,7 @@ function S4() {
     },
     {
       img: "/home-v3/s4/590-radio.png",
-      category: "Radio Marketing",
+      category: "SEO & Content Marketing",
       title: "SEO & Content Marketing",
       description:
         "Our SEO and content marketing strategies help brands achieve top search rankings and organic growth. Learn how we've helped companies increase their online visibility, drive qualified traffic, and generate leads through comprehensive SEO optimization and strategic content creation.",
@@ -99,7 +99,7 @@ function S4() {
 
     {
       img: "/home-v3/s4/590-web.png",
-      category: "Web Development",
+      category: "Social Media Marketing",
       title: "Social Media Marketing",
       description:
         "Our social media marketing campaigns drive engagement and conversions through strategic content creation, community building, and data-driven optimization. Discover how brands achieved remarkable growth in followers, engagement rates, and sales through our comprehensive social media strategies.",
@@ -112,7 +112,7 @@ function S4() {
     },
     {
       img: "/home-v3/s4/creative-590.png",
-      category: "Creative Services",
+      category: "SEO & Content Marketing",
       title: "SEO & Content Marketing",
       description:
         "Our SEO and content marketing strategies help brands achieve top search rankings and organic growth. Learn how we've helped companies increase their online visibility, drive qualified traffic, and generate leads through comprehensive SEO optimization and strategic content creation.",
@@ -304,7 +304,7 @@ function S4() {
                       <div className="w-full lg:w-[500px] xl:w-[604px] flex flex-col gap-4 lg:gap-2 xl:gap-5">
                         <p
                           onClick={()=>window.open(story.link, "_blank")}
-                          className="font-[600] text-[16px] sm:text-[18px] text-[#C99237]"
+                          className="font-[600] text-[16px] sm:text-[18px] text-[#C99237] cursor-pointer"
                           style={{
                             fontFamily: "OpenSansSemiBold",
                           }}
@@ -313,7 +313,7 @@ function S4() {
                         </p>
                         <h2
                           onClick={()=>window.open(story.link, "_blank")}
-                          className="font-[600] text-[22px] sm:text-[24px] lg:text-[26px]"
+                          className="font-[600] text-[22px] sm:text-[24px] lg:text-[26px] cursor-pointer"
                           style={{
                             fontFamily: "OpenSansSemiBold",
                           }}
@@ -322,7 +322,7 @@ function S4() {
                         </h2>
                         <p
                           onClick={()=>window.open(story.link, "_blank")}
-                          className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]"
+                          className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] cursor-pointer"
                           style={{
                             fontFamily: "OpenSansRegular",
                           }}

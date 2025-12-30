@@ -628,8 +628,8 @@ function NewNavbar() {
             </li>
             <li>
               <div className="flex gap-4 justify-center items-center">
-                <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="w-[168px] h-[44px] font-[700] text-[15px] rounded-[5px] bg-[#C99237] cursor-pointer text-white hover:bg-[#B8822F] transition-colors duration-300">
-                  Free Consulting
+                <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="w-[168px] h-[44px] font-[700] text-[15px] rounded-[5px] bg-[#C99237] cursor-pointer text-white hover:bg-[#B8822F] transition-colors duration-300 s1-btn-gold">
+                  <p className="text-white">Free Consulting</p>
                 </button>
                 <button
                   onClick={() => setIsMenuOpen(!isMenuOpen)}

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CiCalendar } from "react-icons/ci";
 import { Download } from "lucide-react";
 import Link from "next/link";
@@ -16,6 +16,176 @@ interface BLOGSTRUCTURE {
 
 
 function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boolean }) {
+  const [phone, setPhone] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
+
+  const [modal, setModal] = useState<{
+    open: boolean;
+    status: "success" | "error";
+    message: string;
+  }>({
+    open: false,
+    status: "success",
+    message: "",
+  });
+
+  // Function to validate phone number
+  const validatePhone = (phoneNumber: string): string => {
+    // Remove all non-digit characters for validation
+    const digitsOnly = phoneNumber.replace(/\D/g, "");
+    
+    // Check if empty
+    if (!phoneNumber.trim()) {
+      return "Phone number is required";
+    }
+    
+    // Check if it contains only digits, spaces, +, -, and ()
+    const phoneRegex = /^[\d\s\+\-\(\)]+$/;
+    if (!phoneRegex.test(phoneNumber)) {
+      return "Phone number can only contain digits, spaces, +, -, and ()";
+    }
+    
+    // Check length (should be 10 digits for Indian numbers, or 10-13 with country code)
+    if (digitsOnly.length < 10) {
+      return "Phone number must have at least 10 digits";
+    }
+    
+    if (digitsOnly.length > 13) {
+      return "Phone number cannot exceed 13 digits";
+    }
+    
+    // Check if it starts with valid Indian country code or direct number
+    if (digitsOnly.length === 10) {
+      // 10-digit Indian mobile number (should start with 6-9)
+      if (!/^[6-9]/.test(digitsOnly)) {
+        return "Indian mobile numbers should start with 6, 7, 8, or 9";
+      }
+    } else if (digitsOnly.length === 11) {
+      // 11 digits - might be with 0 prefix
+      if (!/^0[6-9]/.test(digitsOnly)) {
+        return "Invalid phone number format";
+      }
+    } else if (digitsOnly.length === 12 || digitsOnly.length === 13) {
+      // 12-13 digits - with country code (91 for India)
+      if (!/^91[6-9]/.test(digitsOnly)) {
+        return "Invalid country code. Use +91 for India";
+      }
+    }
+    
+    return ""; // No error
+  };
+
+  // Handle phone input change with validation
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPhone(value);
+    
+    // Clear error if user is typing
+    if (phoneError) {
+      setPhoneError("");
+    }
+  };
+
+  // Validate on blur
+  const handlePhoneBlur = () => {
+    const error = validatePhone(phone);
+    setPhoneError(error);
+  };
+
+  // Function to download PDF
+  const downloadPDF = () => {
+    const link = document.createElement("a");
+    link.href = "/RMWCaseStudies_250327_081936.pdf";
+    link.download = "RMWCaseStudies_250327_081936.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDownload = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate phone number
+    const phoneValidationError = validatePhone(phone);
+    if (phoneValidationError) {
+      setPhoneError(phoneValidationError);
+      setModal({
+        open: true,
+        status: "error",
+        message: phoneValidationError,
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Prepare enquiry data with default values indicating it's from home page
+      const enquiryData = {
+        etype: "HomePageDownload",
+        name: "Home Page Visitor",
+        email: "homepage@ritzmediaworld.com",
+        phone: phone.trim(),
+        message: "Enquiry from Home Page - 2025 Brand Impact Report Download Request",
+        category: "Brand Impact Report Download",
+      };
+
+      const response = await fetch("/api/system-settings/contact-enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(enquiryData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        // Show success modal
+        setModal({
+          open: true,
+          status: "success",
+          message: "Thank you! Your enquiry has been submitted successfully. The PDF will download shortly.",
+        });
+
+        // Reset form
+        setPhone("");
+        setPhoneError("");
+
+        // Download PDF after a short delay
+        setTimeout(() => {
+          downloadPDF();
+        }, 500);
+      } else {
+        setModal({
+          open: true,
+          status: "error",
+          message: result.error || "Failed to submit enquiry. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Enquiry submission error:", error);
+      setModal({
+        open: true,
+        status: "error",
+        message: "Due to internal server errors your enquiry couldn't be sent. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Auto-close modal for success messages
+  useEffect(() => {
+    if (modal.open && modal.status === "success") {
+      const timer = setTimeout(() => {
+        setModal({ ...modal, open: false });
+      }, 5000); // Close after 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [modal.open, modal.status]);
   return (
     <section className="w-full min-h-screen bg-[#ffffff] flex justify-center items-center py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-0">
       {/* Centered Align Container  */}
@@ -55,12 +225,12 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
             {/* Right Side Container  */}
             <button
               onClick={()=>window.open("https://ritzmediaworld.com/blogs", "_blank")}
-              className="font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] w-full sm:w-[179px] h-[48px] sm:h-[50px] lg:h-[54px] border-1 border-[#C99237] rounded-[5px] cursor-pointer hover:bg-[#C99237] hover:text-white transition-colors flex-shrink-0"
+              className="font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] w-full sm:w-[179px] h-[48px] sm:h-[50px] lg:h-[54px] border-1 border-[#C99237] rounded-[5px] cursor-pointer  flex-shrink-0 s1-btn-transparent"
               style={{
                 fontFamily: "OpenSansSemiBold",
               }}
             >
-              Read more blogs
+              <p>Read more blogs</p>
             </button>
           </div>
 
@@ -173,21 +343,38 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
               <li>Case studies with measurable results</li>
             </ul>
 
-            <div className="flex flex-col gap-4">
+            <form onSubmit={handleDownload} className="flex flex-col gap-4">
               <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-3">
-                <input
-                  type="text"
-                  placeholder="Enter your phone (e.g., +91 9220516777)"
-                  className="w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] border-[#DAD4D4] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px]"
-                />
+                <div className="flex-1 relative">
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={handlePhoneChange}
+                    onBlur={handlePhoneBlur}
+                    placeholder="Enter your phone (e.g., +91 9220516777)"
+                    required
+                    className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${
+                      phoneError 
+                        ? "border-[#EF4444]" 
+                        : "border-[#DAD4D4]"
+                    }`}
+                  />
+                  {phoneError && (
+                    <p className="absolute top-full left-0 mt-1 text-[12px] text-[#EF4444] font-[400]">
+                      {phoneError}
+                    </p>
+                  )}
+                </div>
 
                 <button
-                  className="w-full sm:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors"
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{
                     fontFamily: "PoppinsRegular",
                   }}
                 >
-                  <p> Free Download</p>
+                  <p className="text-white">{isSubmitting ? "Submitting..." : "Free Download"}</p>
                   <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px]" />
                 </button>
               </div>
@@ -199,7 +386,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
               >
                 No spam, unsubscribe anytime. We respect your privacy.
               </p>
-            </div>
+            </form>
           </div>
 
           {/* Right Side Container  */}
@@ -277,16 +464,74 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
             </p>
             <button
               onClick={()=>window.open("https://ritzmediaworld.com/contact.html", "_blank")}
-              className="w-full sm:w-[260px] lg:w-[282px] h-[48px] sm:h-[50px] lg:h-[54px] mt-4 bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] rounded-[5px] hover:bg-[#B8822F] transition-colors"
+              className="w-full sm:w-[260px] lg:w-[282px] h-[48px] sm:h-[50px] lg:h-[54px] mt-4 bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] rounded-[5px] hover:bg-[#B8822F] transition-colors  s1-btn-gold"
               style={{
                 fontFamily: "OpenSansBold",
               }}
             >
-              Schedule Free Consultation
-            </button>
+                <p className="text-white">Schedule Free Consultation</p>
+              </button>
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {modal.open && (
+        <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-[16px] shadow-2xl max-w-[400px] w-[90%] mx-4 overflow-hidden">
+            {/* Modal Header */}
+            <div className={`px-6 py-4 ${
+              modal.status === "success" ? "bg-[#10B981]" : "bg-[#EF4444]"
+            }`}>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  {modal.status === "success" ? (
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  )}
+                  <h3 className="text-lg font-semibold text-white">
+                    {modal.status === "success" ? "Success" : "Error"}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setModal({ ...modal, open: false })}
+                  className="text-white hover:text-gray-200 transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className="px-6 py-4">
+              <p className="text-[#374151] text-sm leading-relaxed">
+                {modal.message}
+              </p>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 border-t border-gray-200 flex justify-end">
+              <button
+                onClick={() => setModal({ ...modal, open: false })}
+                className={`px-4 py-2 rounded-[8px] font-[500] text-sm transition-colors ${
+                  modal.status === "success"
+                    ? "bg-[#10B981] text-white hover:bg-[#059669]"
+                    : "bg-[#EF4444] text-white hover:bg-[#DC2626]"
+                }`}
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

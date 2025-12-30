@@ -2,6 +2,7 @@
 
 import React from "react";
 import { FaFacebookF, FaPhoneAlt, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 function NewFooter() {
   return (
@@ -19,7 +20,7 @@ function NewFooter() {
             {/* Address Container  */}
             <div className="flex flex-col gap-2 sm:gap-3">
               <p className="text-white text-[14px] sm:text-[16px] font-[700] mb-0.5 sm:mb-1">Address</p>
-              <ul className="text-white text-[13px] sm:text-[15px] font-[400] flex flex-col gap-1 sm:gap-1.5">
+              <ul className="text-white text-[13px] sm:text-[15px] font-[400] flex flex-col gap-1 sm:gap-1.5 cursor-pointer">
                 <li>402 - 404,</li>
                 <li>4th floor Corporate Park,</li>
                 <li>Tower A1 Sector 142, Noida</li>
@@ -28,8 +29,8 @@ function NewFooter() {
           </div>
 
           {/* Row 2  */}
-          <div className="flex flex-col gap-2 sm:gap-3">
-            <p className="font-[700] text-[14px] sm:text-[16px] text-white">Email Us</p>
+          <div className="flex flex-col gap-2 sm:gap-3 cursor-pointer" onClick={()=>window.open("mailto:info@ritzmediaworld.com", "_blank")}>
+            <p className="font-[700] text-[14px] sm:text-[16px] text-white ">Email Us</p>
             <p className="text-white text-[13px] sm:text-[15px] font-[400] break-words">
               info@ritzmediaworld.com
             </p>
@@ -37,7 +38,7 @@ function NewFooter() {
 
           {/* Row 3  */}
           <div className="flex flex-col gap-2 sm:gap-3">
-            <p className="font-[700] text-[14px] sm:text-[16px] text-white">Call Us</p>
+            <p className="font-[700] text-[14px] sm:text-[16px] text-white ">Call Us</p>
             <div className="flex gap-2 sm:gap-3">
               {/* Left Side Call Icon  */}
               <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] border-[1px] border-[#17205E] flex justify-center items-center flex-shrink-0">
@@ -45,8 +46,8 @@ function NewFooter() {
               </div>
               {/* Right Side Call Number  */}
               <div className="flex flex-col gap-1 sm:gap-1.5">
-                 <p className="text-white text-[13px] sm:text-[15px] font-[400]">+91 9220516777</p>
-                <p className="text-white text-[13px] sm:text-[15px] font-[400]">+91 7290002168</p>
+                 <p className="text-white text-[13px] sm:text-[15px] font-[400] cursor-pointer" onClick={()=>window.open("tel:+919220516777", "_blank")}>+91 9220516777</p>
+                <p className="text-white text-[13px] sm:text-[15px] font-[400] cursor-pointer" onClick={()=>window.open("tel:+917290002168", "_blank")}>+91 7290002168</p>
                
               </div>
             </div>
@@ -69,7 +70,7 @@ function NewFooter() {
                 {/* Col 1  */}
                 <div className="flex flex-col gap-3 sm:gap-4">
                     <p className="font-[700] text-[14px] sm:text-[16px] text-white mb-0.5 sm:mb-1">Quick Links</p>
-                    <ul className="text-white text-[13px] sm:text-[14px] lg:text-[15px] font-[400] flex flex-col gap-2.5 sm:gap-3 lg:gap-4 list-disc">
+                    <ul className="text-white text-[13px] sm:text-[14px] lg:text-[15px] font-[400] flex flex-col gap-2.5 sm:gap-3 lg:gap-4 list-disc cursor-pointer">
                         <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/", "_blank")}>Home</li>
                         <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/about.html", "_blank")}>About</li>
                         <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/work.html", "_blank")}>Our Work</li>
@@ -82,15 +83,15 @@ function NewFooter() {
                 {/* Col 2  */}
                 <div className="flex flex-col gap-3 sm:gap-4">
                     <p className="font-[700] text-[14px] sm:text-[16px] text-white mb-0.5 sm:mb-1">Services</p>
-                    <ul className="text-white text-[13px] sm:text-[14px] lg:text-[15px] font-[400] flex flex-col gap-2.5 sm:gap-3 lg:gap-4 list-disc">
+                    <ul className="text-white text-[13px] sm:text-[14px] lg:text-[15px] font-[400] flex flex-col gap-2.5 sm:gap-3 lg:gap-4 list-disc cursor-pointer">
                         <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/digital-marketing", "_blank")}>Digital Marketing</li>
                         <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/print-advertising", "_blank")}>Print Advertising</li>
                         <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/radio-advertising", "_blank")}>Radio Advertising</li>
                         <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/creative-services", "_blank")}>Creative Services</li>
-                        <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/content-marketing", "_blank")}>Content Marketing</li>
-                        <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/web-development", "_blank")}>Web Development</li>
+                        <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/contents-marketing", "_blank")}>Content Marketing</li>
+                        <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/web-designing-and-development", "_blank")}>Web Development</li>
                         <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/celebrity-endorsements", "_blank")}>Celebrity Endorsements</li>
-                        <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/influencer-marketing", "_blank")}>Influencer Marketing</li>
+                        <li className="ml-4" onClick={()=>window.open("https://ritzmediaworld.com/services/influencer-marketing-agency-in-india", "_blank")}>Influencer Marketing</li>
                     </ul>
                 </div>
 
@@ -113,7 +114,7 @@ function NewFooter() {
                         <FaLinkedinIn className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-white" />
                     </div>
                     <div onClick={()=>window.open("https://x.com/ritzmediaworld", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] flex justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
-                        <FaTwitter className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-white" />
+                        <FaXTwitter className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-white" />
                     </div>
                     <div onClick={()=>window.open("https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] flex justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer"> 
                         <FaYoutube className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-white" />

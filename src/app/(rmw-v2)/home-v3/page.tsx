@@ -7,7 +7,6 @@ import S5 from "@/components/home-v3/S5";
 import S6 from "@/components/home-v3/S6";
 import S7 from "@/components/home-v3/S7";
 import S8 from "@/components/home-v3/S8";
-import NewYearAnimation from "@/components/home-v3/NewYearAnimation";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 import Lenis from "lenis";
@@ -427,31 +426,11 @@ function page() {
       try{
         const response = await axios.get("/api/latest-rmw-blogs");
         if(response.status === 200) {
-          // Convert createdAt strings to Date objects with proper error handling
-          const blogsWithDates = response.data.latestBlogs.map((blog: any) => {
-            let date: Date;
-            if (blog.createdAt) {
-              date = new Date(blog.createdAt);
-              // Check if date is valid
-              if (isNaN(date.getTime())) {
-                // If invalid, use current date as fallback
-                date = new Date();
-              }
-            } else {
-              // If createdAt is missing, use current date as fallback
-              date = new Date();
-            }
-            return {
-              ...blog,
-              createdAt: date
-            };
-          });
-          setLatestBlogs(blogsWithDates as BLOGSSTRUCTURE[]);
+          setLatestBlogs(response.data.latestBlogs as BLOGSSTRUCTURE[]);
           setBlogsLoading(false);
         }
       } catch(err) {
         console.log("There are some errors in fetching the latest RMW blogs plz fix the bug first ", err);
-        setBlogsLoading(false);
       }
     }
     fetchLatestBlogs();
@@ -459,9 +438,6 @@ function page() {
 
   return (
     <>
-      {/* New Year Animation Overlay */}
-      {/* <NewYearAnimation /> */}
-
       {/* Hero Section - Full Width */}
       <S1></S1>
 

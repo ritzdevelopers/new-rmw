@@ -22,7 +22,7 @@ function NewYearAnimation() {
 
     const makeChar = (c: string) => {
       const tmp = document.createElement("canvas");
-      const size = (tmp.width = tmp.height = wRef.current < 400 ? 200 : 300);
+      const size = (tmp.width = tmp.height = wRef.current < 400 ? 300 : 450);
       const tmpCtx = tmp.getContext("2d");
       if (!tmpCtx) return [];
 
@@ -48,7 +48,7 @@ function NewYearAnimation() {
     const resize = () => {
       wRef.current = canvas.width = window.innerWidth;
       hRef.current = canvas.height = window.innerHeight;
-      particlesRef.current = window.innerWidth < 400 ? 55 : 99;
+      particlesRef.current = window.innerWidth < 400 ? 80 : 150;
     };
 
     const makeChars = (t: number) => {
@@ -66,7 +66,7 @@ function NewYearAnimation() {
 
     const rocket = (x: number, y: number, id: number, t: number) => {
       ctx.fillStyle = "white";
-      const r = 2 - 2 * t + Math.pow(t, 15 * t) * 16;
+      const r = 3 - 3 * t + Math.pow(t, 15 * t) * 24;
       y = hRef.current - y * t;
       circle(x, y, r);
     };
@@ -79,7 +79,7 @@ function NewYearAnimation() {
       t: number
     ) => {
       const dy = t * t * t * 20;
-      let r = Math.sin(id) * 1 + 3;
+      let r = Math.sin(id) * 2 + 5;
       r = t < 0.5 ? (t + 0.5) * t * r : r - t * r;
       ctx.fillStyle = `hsl(${id * 55}, 55%, 55%)`;
       pts.forEach((xy, i) => {
@@ -108,8 +108,7 @@ function NewYearAnimation() {
     const render = (t: number) => {
       makeChars(t);
       animationFrameRef.current = requestAnimationFrame(render);
-      ctx.fillStyle = "#00000010";
-      ctx.fillRect(0, 0, wRef.current, hRef.current);
+      ctx.clearRect(0, 0, wRef.current, hRef.current);
       charsRef.current.forEach((pts, i) => firework(t, i, pts));
     };
 
