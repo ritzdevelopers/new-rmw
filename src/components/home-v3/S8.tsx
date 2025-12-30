@@ -85,7 +85,9 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                   </div>
                   <p className="font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center">
                     <CiCalendar className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px]" />{" "}
-                    {ob.createdAt.toLocaleDateString('en-US', {day: '2-digit', month: '2-digit', year: 'numeric'})}
+                    {ob.createdAt instanceof Date 
+                      ? ob.createdAt.toLocaleDateString('en-US', {day: '2-digit', month: '2-digit', year: 'numeric'})
+                      : new Date(ob.createdAt).toLocaleDateString('en-US', {day: '2-digit', month: '2-digit', year: 'numeric'})}
                   </p>
                   <h3
                     className="font-[600] text-[16px] sm:text-[17px] lg:text-[18px] text-black"
