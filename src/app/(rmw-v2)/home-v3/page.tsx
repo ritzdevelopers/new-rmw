@@ -427,16 +427,31 @@ function page() {
       try{
         const response = await axios.get("/api/latest-rmw-blogs");
         if(response.status === 200) {
-          // Convert createdAt strings to Date objects
-          const blogsWithDates = response.data.latestBlogs.map((blog: any) => ({
-            ...blog,
-            createdAt: new Date(blog.createdAt)
-          }));
+          // Convert createdAt strings to Date objects with proper error handling
+          const blogsWithDates = response.data.latestBlogs.map((blog: any) => {
+            let date: Date;
+            if (blog.createdAt) {
+              date = new Date(blog.createdAt);
+              // Check if date is valid
+              if (isNaN(date.getTime())) {
+                // If invalid, use current date as fallback
+                date = new Date();
+              }
+            } else {
+              // If createdAt is missing, use current date as fallback
+              date = new Date();
+            }
+            return {
+              ...blog,
+              createdAt: date
+            };
+          });
           setLatestBlogs(blogsWithDates as BLOGSSTRUCTURE[]);
           setBlogsLoading(false);
         }
       } catch(err) {
         console.log("There are some errors in fetching the latest RMW blogs plz fix the bug first ", err);
+        setBlogsLoading(false);
       }
     }
     fetchLatestBlogs();
