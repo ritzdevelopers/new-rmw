@@ -39,9 +39,9 @@ function page() {
       {/* <CustomCursor /> */}
 
 
-      <Christmas></Christmas>
-      {/* <S1></S1> */}
-      {/* <S2></S2> */}
+      {/* <Christmas></Christmas> */}
+      <S1></S1>
+      <S2></S2>
       <NewS2></NewS2>
       <S3C></S3C>
       <S3></S3>
