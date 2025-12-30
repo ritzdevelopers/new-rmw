@@ -1,0 +1,24 @@
+.clientSlider {
+    animation: clientSlider 30s linear infinite;
+    will-change: transform;
+  }
+  
+  .clientSlider:hover {
+    animation-play-state: paused;
+  }
+  
+  @keyframes clientSlider {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-33.333%);
+    }
+  }
+  
+
+  @media (min-width: 1400px) {
+    .s1Sec {
+      padding-left: 93px !important;
+    }
+  }

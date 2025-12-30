@@ -1,0 +1,29 @@
+.swiperContainer {
+  width: 100%;
+  height: auto;
+  padding-bottom: 20px;
+}
+
+.swiperContainer :global(.swiper-wrapper) {
+  display: flex;
+  align-items: stretch;
+}
+
+.swiperContainer :global(.swiper-slide) {
+  height: auto;
+  display: flex;
+}
+
+/* Timeline year with connecting lines - only visible on lg screens and above */
+.timelineYearWithLines::before,
+.timelineYearWithLines::after {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .timelineYearWithLines::before,
+  .timelineYearWithLines::after {
+    display: block;
+  }
+}
+

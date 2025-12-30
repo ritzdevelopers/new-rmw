@@ -130,6 +130,8 @@ function NewBlogSection() {
     const limitedX = distance > safeMaxOffset ? (offsetX / distance) * safeMaxOffset : offsetX;
     const limitedY = distance > safeMaxOffset ? (offsetY / distance) * safeMaxOffset : offsetY;
 
+
+
     gsap.to(eyeIcon, {
       x: limitedX,
       y: limitedY,

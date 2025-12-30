@@ -35,7 +35,7 @@ function Snowfall() {
 
     // Create snowflakes
     const createSnowflakes = () => {
-      const count = 200; // Number of snowflakes
+      const count = 300; // Number of snowflakes
       snowflakesRef.current = [];
 
       for (let i = 0; i < count; i++) {
