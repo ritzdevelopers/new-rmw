@@ -427,7 +427,12 @@ function page() {
       try{
         const response = await axios.get("/api/latest-rmw-blogs");
         if(response.status === 200) {
-          setLatestBlogs(response.data.latestBlogs as BLOGSSTRUCTURE[]);
+          // Convert createdAt strings to Date objects
+          const blogsWithDates = response.data.latestBlogs.map((blog: any) => ({
+            ...blog,
+            createdAt: new Date(blog.createdAt)
+          }));
+          setLatestBlogs(blogsWithDates as BLOGSSTRUCTURE[]);
           setBlogsLoading(false);
         }
       } catch(err) {
