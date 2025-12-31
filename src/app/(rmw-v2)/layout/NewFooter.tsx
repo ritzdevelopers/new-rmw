@@ -6,7 +6,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 function NewFooter() {
   return (
-    <footer className="w-full bg-[#0F1640] flex flex-col-reverse lg:flex-row lg:items-stretch">
+    <footer className="w-full bg-[#0F1640] flex flex-col lg:flex-row lg:items-stretch">
       {/* Left Side Container  */}
       <div className="w-full lg:w-[321px]  bg-[#0C123A] flex  py-8 sm:py-12 lg:py-[72px] xl:py-0 px-6 sm:px-8 lg:px-12 lg:self-stretch">
         {/* Centered Align Container  */}
