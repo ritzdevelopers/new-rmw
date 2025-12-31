@@ -18,7 +18,7 @@ function S2() {
     id: "01",
     ttl: "Digital Marketing",
     img: "/home-v3/s2/530-digital.png",
-    para: " We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+    para: "We design digital strategies that balance reach and relevance, combining performance marketing, data insights, and platform intelligence to drive sustained visibility, intent, and measurable business growth.",
     link: "https://ritzmediaworld.com/services/digital-marketing",
   });
 

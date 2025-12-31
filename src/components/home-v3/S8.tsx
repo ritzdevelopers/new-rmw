@@ -247,7 +247,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                   {/* Image Container  */}
                   <div className="w-full relative h-[250px] lg:h-[212px]">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${ob.blogBanner}`}
+                      src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
                       alt="RMW"
                       fill
                       className="object-cover"
