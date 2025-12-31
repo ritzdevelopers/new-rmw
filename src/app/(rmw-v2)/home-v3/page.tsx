@@ -20,11 +20,11 @@ if (typeof window !== "undefined") {
 }
 
 interface BLOGSSTRUCTURE {
-  blogTitle:string,
-  blogBanner:string,
-  blogSlug:string,
-  createdAt:Date,
- 
+  blogTitle: string,
+  blogBanner: string,
+  blogSlug: string,
+  createdAt: Date,
+
 }
 
 function page() {
@@ -423,13 +423,13 @@ function page() {
   const [latestBlogs, setLatestBlogs] = useState<BLOGSSTRUCTURE[]>([]);
   useEffect(() => {
     async function fetchLatestBlogs() {
-      try{
+      try {
         const response = await axios.get("/api/latest-rmw-blogs");
-        if(response.status === 200) {
+        if (response.status === 200) {
           setLatestBlogs(response.data.latestBlogs as BLOGSSTRUCTURE[]);
           setBlogsLoading(false);
         }
-      } catch(err) {
+      } catch (err) {
         console.log("There are some errors in fetching the latest RMW blogs plz fix the bug first ", err);
       }
     }
@@ -442,15 +442,37 @@ function page() {
       <S1></S1>
 
       {/* Other Sections - Fixed Width Above 1440px */}
+
+
       <div ref={containerRef} className={styles.container}>
-        <S2></S2>
-        <S3></S3>
-        <S4></S4>
-        <S5></S5>
-        <S6></S6>
-        <S7></S7>
-        <S8 blogs={latestBlogs} blogsLoading={blogsLoding}></S8>
+      <S2></S2>
       </div>
+
+
+
+      <S3></S3>
+
+      <div ref={containerRef} className={styles.container}>
+      <S4></S4>
+      </div>
+
+
+
+      <S5></S5>
+
+
+      <div ref={containerRef} className={styles.container}>
+      <S6></S6>
+      </div>
+
+
+
+      <S7></S7>
+
+      <div ref={containerRef} className={styles.container}>
+      <S8 blogs={latestBlogs} blogsLoading={blogsLoding}></S8>
+      </div>
+
     </>
   );
 }

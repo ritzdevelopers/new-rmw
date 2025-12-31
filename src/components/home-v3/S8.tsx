@@ -256,7 +256,10 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                   </div>
                   <p className="font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center">
                     <CiCalendar className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px]" />{" "}
-                   {ob.createdAt.toLocaleDateString()}
+                   {(() => {
+                     const date = ob.createdAt instanceof Date ? ob.createdAt : new Date(ob.createdAt);
+                     return isNaN(date.getTime()) ? '' : date.toLocaleDateString();
+                   })()}
                   </p>
                   <h3
                     className="font-[600] text-[16px] sm:text-[17px] lg:text-[18px] text-black"
@@ -328,7 +331,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                 fontFamily: "PoppinsRegular",
               }}
             >
-              Download our latest report exploring how brands can build trust, relevance, and growth in an increasingly digital-first landscape.
+              Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2025.
             </p>
 
             <ul

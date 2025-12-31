@@ -9,9 +9,9 @@ import { Pagination, Autoplay } from "swiper/modules";
 function S6() {
   const data = [
     {
-      client: "Madhusudan Ghee",
-      para: "To me, advertising my brand was merely a means to ensure my elongated presence in the market. Thanks to ritz Media world, my advertisements not only ensured my brand’s sustenance but have also got me a great number of quality leads.",
-      role: "Managing Director",
+      client: "FAIRFOX - EON",
+      para: "They not only make sure that they deliver on their promises, but also educate you on what exactly is needed to be done for your brand, thereby preventing you from under or over spending your precious money.",
+      role: "Marketing Head",
     },
     {
       client: "Madhusudan Ghee",
@@ -24,19 +24,9 @@ function S6() {
       role: "Managing Director",
     },
     {
-      client: "Madhusudan Ghee",
-      para: "To me, advertising my brand was merely a means to ensure my elongated presence in the market. Thanks to ritz Media world, my advertisements not only ensured my brand’s sustenance but have also got me a great number of quality leads.",
-      role: "Managing Director",
-    },
-    {
-      client: "Madhusudan Ghee",
-      para: "If there is one thing serving as a full service digital agency for more than a decade taught us, it has to be the value of relationships. Therefore, our relationship with our clients is both a priority and a point of pride to us.",
-      role: "Managing Director",
-    },
-    {
-      client: "Eldeco Group",
-      para: "They not only make sure that they deliver on their promises, but also educate you on what exactly is needed to be done for your brand, thereby preventing you from under or over spending your precious money.",
-      role: "Managing Director",
+      client: "Escorts Tractor",
+      para: "I must admit that RMW and its team of professionals are always on my favourite list. They have always delivered the best services to me even if they had to put in extra efforts and their team has always been available for extensive support.",
+      role: "Chief Communication Officer",
     },
   ];
   return (

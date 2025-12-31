@@ -71,6 +71,7 @@ function page() {
       <ASI icn={<LinkedInIcon />} py="top-[395px]" px="right-[0px]" bgType="linkedin"></ASI>
       <ASI icn={<XIcon />} py="top-[444px]" px="right-[0px]" bgType="x"></ASI>
       {/* <FlyingSanta2 /> */}
+      {/* <FlyingSanta2 /> */}
     </main>
   );
 }
