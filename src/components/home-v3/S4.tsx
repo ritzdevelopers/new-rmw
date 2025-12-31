@@ -20,46 +20,46 @@ function S4() {
   const successStories = [
     {
       img: "/home-v3/s4/590-celebrity.png",
-      category: "Celebrity Endorsements",
+      category: "Digital Advertising",
       title: "Digital Advertising",
       description:
-        "Our digital advertising case studies showcase how smart targeting, compelling creatives, and data-driven optimisation translate into real business outcomes. Explore how brands across sectors achieved higher visibility, stronger engagement, and measurable conversions through strategic, performance-focused campaigns.",
+        "Our digital marketing strategies help brands scale visibility while maintaining lead quality. By combining performance media, analytics, and audience intelligence, we deliver sustainable growth across platforms.",
       stats: [
-        { value: "250%", label: "Increase in qualified leads" },
-        { value: "85%", label: "Target audience reach" },
-        { value: "40%", label: "Conversion rate" },
-      ],
-      link: "https://ritzmediaworld.com/services/celebrity-endorsements",
-    },
-    {
-      img: "/home-v3/s4/590-content.png",
-      category: "Content Marketing",
-      title: "Social Media Marketing",
-      description:
-        "Our social media marketing campaigns drive engagement and conversions through strategic content creation, community building, and data-driven optimization. Discover how brands achieved remarkable growth in followers, engagement rates, and sales through our comprehensive social media strategies.",
-      stats: [
-        { value: "300%", label: "Increase in followers" },
-        { value: "120%", label: "Engagement rate" },
-        { value: "65%", label: "Sales growth" },
-      ],
-      link: "https://ritzmediaworld.com/services/contents-marketing",
-    },
-    {
-      img: "/home-v3/s4/590-digtal.png",
-      category: "Digital Marketing",
-      title: "SEO & Content Marketing",
-      description:
-        "Our SEO and content marketing strategies help brands achieve top search rankings and organic growth. Learn how we've helped companies increase their online visibility, drive qualified traffic, and generate leads through comprehensive SEO optimization and strategic content creation.",
-      stats: [
-        { value: "400%", label: "Organic traffic growth" },
-        { value: "95%", label: "Keyword rankings" },
-        { value: "180%", label: "Lead generation" },
+        { value: "320%", label: "Increase in campaign reach" },
+        { value: "78%", label: "Improvement in lead quality" },
+        { value: "210%", label: "Growth in digital enquiries" },
       ],
       link: "https://ritzmediaworld.com/services/digital-marketing",
     },
     {
+      img: "/home-v3/s4/590-content.png",
+      category: "Social Media Marketing",
+      title: "Social Media Marketing",
+      description:
+        "Our social media management case studies showcase how consistent posting, smart community building, and data-led optimisation turn followers into fans. See how brands achieved better visibility, engagement, and conversions through always-on, platform-native content and active reputation management.",
+      stats: [
+        { value: "210%", label: "Rise in global inquiries" },
+        { value: "92%", label: "Patient satisfaction scores" },
+        { value: "54%", label: "Increase in repeat visits" },
+      ],
+      link: "https://ritzmediaworld.com/services/digital-marketing/social-media-management",
+    },
+    {
+      img: "/home-v3/s4/590-digtal.png",
+      category: "Web Development",
+      title: "High-Performance Digital Platforms",
+      description:
+        "We build scalable, user-centric websites that enhance brand credibility, improve user experience, and support long-term digital growth through optimized design and technology.",
+      stats: [
+        { value: "60%", label: "Improvement in page load speed" },
+        { value: "75%", label: "Improvement in page load speed" },
+        { value: "140%", label: "Growth in conversion rates" },
+      ],
+      link: "https://ritzmediaworld.com/services/web-designing-and-development",
+    },
+    {
       img: "/home-v3/s4/590-influncer.png",
-      category: "Influencer Marketing",
+      category: "Digital Advertising",
       title: "Digital Advertising",
       description:
         "Our digital advertising case studies showcase how smart targeting, compelling creatives, and data-driven optimisation translate into real business outcomes. Explore how brands across sectors achieved higher visibility, stronger engagement, and measurable conversions through strategic, performance-focused campaigns.",
@@ -72,7 +72,7 @@ function S4() {
     },
     {
       img: "/home-v3/s4/590-print.png",
-      category: "Print Marketing",
+      category: "Print Advertising",
       title: "Print Advertising",
       description:
         "Our print advertising case studies show how powerful layouts, sharp messaging, and strategic placements cut through clutter to capture attention instantly. See how brands achieved stronger recall, higher response rates, and impactful visibility through well-crafted print communication.",
@@ -85,7 +85,7 @@ function S4() {
     },
     {
       img: "/home-v3/s4/590-radio.png",
-      category: "Radio Marketing",
+      category: "SEO & Content Marketing",
       title: "SEO & Content Marketing",
       description:
         "Our SEO and content marketing strategies help brands achieve top search rankings and organic growth. Learn how we've helped companies increase their online visibility, drive qualified traffic, and generate leads through comprehensive SEO optimization and strategic content creation.",
@@ -99,7 +99,7 @@ function S4() {
 
     {
       img: "/home-v3/s4/590-web.png",
-      category: "Web Development",
+      category: "Social Media Marketing",
       title: "Social Media Marketing",
       description:
         "Our social media marketing campaigns drive engagement and conversions through strategic content creation, community building, and data-driven optimization. Discover how brands achieved remarkable growth in followers, engagement rates, and sales through our comprehensive social media strategies.",
@@ -108,21 +108,9 @@ function S4() {
         { value: "120%", label: "Engagement rate" },
         { value: "65%", label: "Sales growth" },
       ],
-      link: "https://ritzmediaworld.com/services/web-designing-and-development",
+      link: "https://ritzmediaworld.com/services/digital-marketing/social-media-management",
     },
-    {
-      img: "/home-v3/s4/creative-590.png",
-      category: "Creative Services",
-      title: "SEO & Content Marketing",
-      description:
-        "Our SEO and content marketing strategies help brands achieve top search rankings and organic growth. Learn how we've helped companies increase their online visibility, drive qualified traffic, and generate leads through comprehensive SEO optimization and strategic content creation.",
-      stats: [
-        { value: "400%", label: "Organic traffic growth" },
-        { value: "95%", label: "Keyword rankings" },
-        { value: "180%", label: "Lead generation" },
-      ],
-      link: "https://ritzmediaworld.com/services/creative-services",
-        },
+  
     ];
 
     // Detect screen size for video selection
@@ -304,7 +292,7 @@ function S4() {
                       <div className="w-full lg:w-[500px] xl:w-[604px] flex flex-col gap-4 lg:gap-2 xl:gap-5">
                         <p
                           onClick={()=>window.open(story.link, "_blank")}
-                          className="font-[600] text-[16px] sm:text-[18px] text-[#C99237]"
+                          className="font-[600] text-[16px] sm:text-[18px] text-[#C99237] cursor-pointer"
                           style={{
                             fontFamily: "OpenSansSemiBold",
                           }}
@@ -313,7 +301,7 @@ function S4() {
                         </p>
                         <h2
                           onClick={()=>window.open(story.link, "_blank")}
-                          className="font-[600] text-[22px] sm:text-[24px] lg:text-[26px]"
+                          className="font-[600] text-[22px] sm:text-[24px] lg:text-[26px] cursor-pointer"
                           style={{
                             fontFamily: "OpenSansSemiBold",
                           }}
@@ -322,7 +310,7 @@ function S4() {
                         </h2>
                         <p
                           onClick={()=>window.open(story.link, "_blank")}
-                          className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]"
+                          className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] cursor-pointer"
                           style={{
                             fontFamily: "OpenSansRegular",
                           }}

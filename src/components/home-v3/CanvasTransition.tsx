@@ -64,8 +64,8 @@ const CanvasTransition: React.FC<CanvasTransitionProps> = ({
   const imagesLoadedRef = useRef(0);
   const completionCalledRef = useRef(false);
 
-  // Animation parameters - tuned for ultra-smooth luxurious feel
-  const DURATION = 1400; // 1.4 seconds - smooth and luxurious
+  // Animation parameters - tuned for fast and responsive feel
+  const DURATION = 600; // 0.6 seconds - fast and responsive
   const SCALE_MIN = 0.96; // More pronounced scale down (elegant zoom out)
   const SCALE_MAX = 1.04; // More pronounced scale up (elegant zoom in)
 

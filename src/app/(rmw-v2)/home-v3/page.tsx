@@ -7,7 +7,6 @@ import S5 from "@/components/home-v3/S5";
 import S6 from "@/components/home-v3/S6";
 import S7 from "@/components/home-v3/S7";
 import S8 from "@/components/home-v3/S8";
-import NewYearAnimation from "@/components/home-v3/NewYearAnimation";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 import Lenis from "lenis";
@@ -21,11 +20,11 @@ if (typeof window !== "undefined") {
 }
 
 interface BLOGSSTRUCTURE {
-  blogTitle:string,
-  blogBanner:string,
-  blogSlug:string,
-  createdAt:Date,
- 
+  blogTitle: string,
+  blogBanner: string,
+  blogSlug: string,
+  createdAt: Date,
+
 }
 
 function page() {
@@ -424,34 +423,14 @@ function page() {
   const [latestBlogs, setLatestBlogs] = useState<BLOGSSTRUCTURE[]>([]);
   useEffect(() => {
     async function fetchLatestBlogs() {
-      try{
+      try {
         const response = await axios.get("/api/latest-rmw-blogs");
-        if(response.status === 200) {
-          // Convert createdAt strings to Date objects with proper error handling
-          const blogsWithDates = response.data.latestBlogs.map((blog: any) => {
-            let date: Date;
-            if (blog.createdAt) {
-              date = new Date(blog.createdAt);
-              // Check if date is valid
-              if (isNaN(date.getTime())) {
-                // If invalid, use current date as fallback
-                date = new Date();
-              }
-            } else {
-              // If createdAt is missing, use current date as fallback
-              date = new Date();
-            }
-            return {
-              ...blog,
-              createdAt: date
-            };
-          });
-          setLatestBlogs(blogsWithDates as BLOGSSTRUCTURE[]);
+        if (response.status === 200) {
+          setLatestBlogs(response.data.latestBlogs as BLOGSSTRUCTURE[]);
           setBlogsLoading(false);
         }
-      } catch(err) {
+      } catch (err) {
         console.log("There are some errors in fetching the latest RMW blogs plz fix the bug first ", err);
-        setBlogsLoading(false);
       }
     }
     fetchLatestBlogs();
@@ -459,22 +438,41 @@ function page() {
 
   return (
     <>
-      {/* New Year Animation Overlay */}
-      {/* <NewYearAnimation /> */}
-
       {/* Hero Section - Full Width */}
       <S1></S1>
 
       {/* Other Sections - Fixed Width Above 1440px */}
+
+
       <div ref={containerRef} className={styles.container}>
-        <S2></S2>
-        <S3></S3>
-        <S4></S4>
-        <S5></S5>
-        <S6></S6>
-        <S7></S7>
-        <S8 blogs={latestBlogs} blogsLoading={blogsLoding}></S8>
+      <S2></S2>
       </div>
+
+
+
+      <S3></S3>
+
+      <div ref={containerRef} className={styles.container}>
+      <S4></S4>
+      </div>
+
+
+
+      <S5></S5>
+
+
+      <div ref={containerRef} className={styles.container}>
+      <S6></S6>
+      </div>
+
+
+
+      <S7></S7>
+
+      <div ref={containerRef} className={styles.container}>
+      <S8 blogs={latestBlogs} blogsLoading={blogsLoding}></S8>
+      </div>
+
     </>
   );
 }

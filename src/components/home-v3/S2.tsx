@@ -51,10 +51,10 @@ function S2() {
         // Image is loaded, start transition (keep old image visible underneath)
         setShowTransition(true);
         
-        // Enhanced animation duration: 1400ms (1.4 seconds) for ultra-smooth feel
-        // Update state at 55% progress for optimal smooth transition
-        const totalAnimationTime = 1400; // milliseconds
-        const stateChangeTime = totalAnimationTime * 0.55; // 55% through animation
+        // Fast animation duration: 600ms (0.6 seconds) for quick response
+        // Update state at 50% progress for optimal smooth transition
+        const totalAnimationTime = 600; // milliseconds
+        const stateChangeTime = totalAnimationTime * 0.5; // 50% through animation
         
         // Update state at optimal point for smooth transition
         stateChangeTimeoutRef.current = setTimeout(() => {
@@ -78,8 +78,8 @@ function S2() {
         setShowTransition(true);
         
         // Same timing calculation
-        const totalAnimationTime = 1400;
-        const stateChangeTime = totalAnimationTime * 0.55;
+        const totalAnimationTime = 600;
+        const stateChangeTime = totalAnimationTime * 0.5;
         
         stateChangeTimeoutRef.current = setTimeout(() => {
           if (pendingCardRef.current) {
@@ -221,8 +221,8 @@ function S2() {
                 fontFamily: 'OpenSansBold',
               }}>Ritz Media World</b>  is all about.
             </p>
-            <button onClick={()=>window.open("https://ritzmediaworld.com/about.html", "_blank")} className="w-full sm:w-[200px] lg:w-[219px] h-[48px] sm:h-[50px] lg:h-[54px] border-[1px] border-[#C99237] rounded-[5px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] hover:bg-[#C99237] hover:text-white transition-colors">
-              Click to know more
+            <button onClick={()=>window.open("https://ritzmediaworld.com/services", "_blank")} className="w-full sm:w-[200px] lg:w-[219px] h-[48px] sm:h-[50px] lg:h-[54px] border-[1px] border-[#C99237] rounded-[5px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] s1-btn-transparent cursor-pointer">
+              <p>Click to know more</p>
             </button>
           </div>
 
@@ -454,7 +454,7 @@ function S2() {
                   id: "01",
                   ttl: "Digital Marketing",
                   img: "/home-v3/s2/530-digital.png",
-                  para: "We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  para: "We design digital strategies that balance reach and relevance, combining performance marketing, data insights, and platform intelligence to drive sustained visibility, intent, and measurable business growth.",
                   link: "https://ritzmediaworld.com/services/digital-marketing",
                 },
                 {
@@ -462,7 +462,7 @@ function S2() {
                   id: "02",
                   ttl: "Creative Service",
                   img: "/home-v3/s2/530-creative.png",
-                  para: "Performance-focused campaigns on Google and social that reach high-intent audiences and convert clicks into enquiries, sales and revenue",
+                  para: "We craft brand identities and visual systems that feel consistent, contemporary, and meaningful, helping brands communicate clearly while standing out across digital, print, and physical environments.",
                   link: "https://ritzmediaworld.com/services/creative-services",
                 },
                 {
@@ -470,7 +470,7 @@ function S2() {
                   id: "03",
                   ttl: "Print Advertisement",
                   img: "/home-v3/s2/530-print.png",
-                  para: "Strategic newspaper and magazine ads with strong ideas, smart headlines and compelling layouts that cut through clutter and generate responses.",
+                  para: "We create high-impact print campaigns that deliver credibility and recall, blending strong creative thinking with strategic placements across newspapers, magazines, outdoor formats, and on-ground brand touchpoints.",
                   link: "https://ritzmediaworld.com/services/print-advertising",
                 },
                 {
@@ -478,7 +478,7 @@ function S2() {
                   id: "04",
                   ttl: "Radio Advertisement",
                   img: "/home-v3/s2/530-radio.png",
-                  para: "Memorable radio campaigns with scripts, distinctive voices and sound design that keep attention, build recall and drive listeners to act.",
+                  para: "We develop audio-led brand stories that connect emotionally with listeners, using strategic scripting, voice, and media planning to deliver reach, frequency, and regional relevance.",
                   link: "https://ritzmediaworld.com/services/radio-advertising",
                 },
                 {
@@ -486,7 +486,7 @@ function S2() {
                   id: "05",
                   ttl: "Content Marketing",
                   img: "/home-v3/s2/530content.png",
-                  para: "We plan and create content that attracts, educates and nurtures your audience, building brand authority, engagement and high-quality leads.",
+                  para: "We plan and create content that attracts, educates, and nurtures your audience, building brand authority, engagement, and long-term trust through consistent, platform-native storytelling.",
                   link: "https://ritzmediaworld.com/services/contents-marketing",
                 },
                 {
@@ -494,7 +494,7 @@ function S2() {
                   id: "06",
                   ttl: "Web Development",
                   img: "/home-v3/s2/530-web.png",
-                  para: "Fast, responsive websites that reflect your brand, deliver smooth user journeys and turn visitors into enquiries and loyal customers online.",
+                  para: "We build digital platforms that are intuitive, scalable, and performance-ready, aligning design, user experience, and technology to support brand credibility, discovery, and conversion.",
                   link: "https://ritzmediaworld.com/services/web-designing-and-development",
                 },
                 {
@@ -502,7 +502,7 @@ function S2() {
                   id: "07",
                   ttl: "Influencer Marketing",
                   img: "/home-v3/s2/530-influencer.png",
-                  para: "Strategic collaborations with credible influencers whose authentic content builds trust, extends reach and turns engaged followers into leads and customers.",
+                  para: "We enable authentic influencer collaborations that align with brand values, helping businesses reach niche communities through credible voices, contextual storytelling, and measurable campaign performance.",
                   link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
                 },
                 {
@@ -510,7 +510,7 @@ function S2() {
                   id: "08",
                   ttl: "Celebrity Endorsement",
                   img: "/home-v3/s2/530-endrosement.png",
-                  para: "Celebrities are carefully matched so their image and audience align with your brand, boosting trust and impact across campaigns and events.",
+                  para: "We manage strategic celebrity associations that enhance brand perception, handling selection, negotiation, and execution to ensure relevance, credibility, and long-term brand equity.",
                   link: "https://ritzmediaworld.com/services/celebrity-endorsements",
                 },
               ].map((ob) => {
@@ -520,8 +520,8 @@ function S2() {
                     onClick={()=>handleCardHover(ob)}
                     // onMouseEnter={() => handleCardHover(ob)}
                     className={`relative xl:pl-16 flex gap-2 sm:gap-3 lg:gap-4 ${
-                      ob.ttl === activeCard.ttl ? "text-[#000000]" : "text-[#C5C5C5]"
-                    } cursor-pointer transition-colors`}
+                      ob.ttl === activeCard.ttl ? "text-[#000000] " + styles.activeCardLine : "text-[#C5C5C5]"
+                    } cursor-pointer transition-colors duration-200`}
                   >
                     <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
                       fontFamily: 'MontserratRegular',
@@ -533,7 +533,7 @@ function S2() {
             </div>
             {/* Right Side Container  */}
             <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full lg:max-w-[580px] xl:max-w-[602px] xl:pr-0 lg:pr-8">
-              <div className="w-full xl:w-[602px] h-[200px] sm:h-[250px] md:h-[300px] lg:h-[336px] relative overflow-hidden mx-auto lg:mx-0">
+              <div className="w-full xl:w-[602px] h-[200px] sm:h-[250px] md:h-[300px] lg:h-[336px] relative overflow-hidden mx-auto lg:mx-0 cursor-pointer">
                 <Image 
                   src={displayImage} 
                   onClick={()=>window.open(activeCard.link, "_blank")}
@@ -558,8 +558,8 @@ function S2() {
               }}>
                 {activeCard.para}
               </p>
-              <button onClick={()=>window.open(activeCard.link, "_blank")} className="w-full sm:w-[240px] lg:max-w-[261px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] h-[48px] sm:h-[50px] lg:h-[54px] rounded-[5px] cursor-pointer border-[1px] border-[#C99237] hover:bg-[#C99237] hover:text-white transition-colors">
-                Explore {activeCard.ttl}
+              <button onClick={()=>window.open(activeCard.link, "_blank")} className="w-full sm:w-[240px] lg:max-w-[261px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] h-[48px] sm:h-[50px] lg:h-[54px] rounded-[5px] cursor-pointer border-[1px] border-[#C99237]  s1-btn-transparent">
+                <p>Explore {activeCard.ttl}</p>
               </button>
             </div>
           </div>
@@ -569,11 +569,10 @@ function S2() {
             <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
               fontFamily: 'OpenSansRegular',
             }}>
-              Not sure which path fits your brand? <span className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] underline" style={{
+              Not sure which path fits your brand? <span className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] underline cursor-pointer" style={{
               fontFamily: 'OpenSansSemiBold',
-            }}>
-              Let's discuss your unique
-              needs
+            }} onClick={()=>window.open("https://ritzmediaworld.com/contact.html", "_blank")}>
+              Let's discuss your unique needs
               </span>
             </p>
           </div>

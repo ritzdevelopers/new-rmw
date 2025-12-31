@@ -15,23 +15,8 @@ function S7() {
 
     const awardsData = [
         {
-            img: "/new-page/awards/aw1.jpg",
-            para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2022)",
-            highlite: "Excellence"
-        },
-        {
-            img: "/new-page/awards/aw2.jpg",
-            para: "Best Real Estate Podcast In India - HT Smartcast Podmasters Awards 2025",
-            highlite: "Excellence"
-        },
-        {
-            img: "/new-page/awards/aw3.jpg",
-            para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2024)",
-            highlite: "Excellence"
-        },
-        {
-            img: "/new-page/awards/aw4.jpg",
-            para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2024)",
+            img: "/new-page/awards/7.jpg",
+            para: "Best Creative Agency (Real Estate) in Delhi/NCR By Big FM",
             highlite: "Excellence"
         },
         {
@@ -40,15 +25,21 @@ function S7() {
             highlite: "Excellence"
         },
         {
-            img: "/new-page/awards/aw6.jpg",
+            img: "/new-page/awards/aw4.jpg",
             para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2024)",
             highlite: "Excellence"
         },
         {
-            img: "/new-page/awards/aw7.jpg",
-            para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2024)",
+            img: "/new-page/awards/aw1.jpg",
+            para: "Most Trusted Advertising Agency in Delhi/NCR – The Economic Times (2022)",
             highlite: "Excellence"
         },
+        {
+            img: "/new-page/awards/aw7.jpg",
+            para: "Excellence in Digital Media – Hindustan Times (2024)",
+            highlite: "Excellence"
+        },
+       
     ];
 
     return (
