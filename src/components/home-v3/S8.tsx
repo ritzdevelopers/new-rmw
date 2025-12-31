@@ -247,6 +247,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                   {/* Image Container  */}
                   <div className="w-full relative h-[250px] lg:h-[212px]">
                     <Image
+                    onClick={()=>window.open(`https://ritzmediaworld.com/${ob.blogSlug}`, "_blank")}
                       src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
                       alt="RMW"
                       fill
@@ -262,6 +263,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                    })()}
                   </p>
                   <h3
+                  onClick={()=>window.open(`https://ritzmediaworld.com/${ob.blogSlug}`, "_blank")}
                     className="font-[600] text-[16px] sm:text-[17px] lg:text-[18px] text-black"
                     style={{
                       fontFamily: "OpenSansSemiBold",

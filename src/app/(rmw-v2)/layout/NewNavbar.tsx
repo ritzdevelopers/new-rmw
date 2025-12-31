@@ -610,7 +610,7 @@ function NewNavbar() {
                     : "text-white hover:text-[#C99237]"
                 }`}
               >
-                Company
+                About Us
               </Link>
             </li>
             <li>
@@ -720,7 +720,7 @@ function NewNavbar() {
       {/* Staggered Menu */}
       {(isMenuOpen || isMenuClosing) && (
         <>
-          <div className="fixed inset-0 z-[9999] responsive-staggered-menu" style={{ height: '100vh', background: '#1a1a1a' }}>
+          <div className="fixed inset-0 z-[9999] responsive-staggered-menu" style={{ height: '100vh', background: 'transparent' }}>
             <div className="relative w-full h-full">
               <StaggeredMenu
                 position="right"
@@ -934,7 +934,7 @@ function NewNavbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <span className="relative">
-                  Company
+                  About Us
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </Link>

@@ -370,15 +370,22 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
     if (target) {
       onMenuOpen?.();
+      // Animate icon and color immediately
+      animateIcon(target);
+      animateColor(target);
+      // Delay text animation to happen after panel starts opening
+      setTimeout(() => {
+        animateText(target);
+      }, 200);
       playOpen();
     } else {
       onMenuClose?.();
+      // Animate everything immediately on close
+      animateIcon(target);
+      animateColor(target);
+      animateText(target);
       playClose();
     }
-
-    animateIcon(target);
-    animateColor(target);
-    animateText(target);
   }, [playOpen, playClose, animateIcon, animateColor, animateText, onMenuOpen, onMenuClose]);
 
   const closeMenu = useCallback(() => {
@@ -392,6 +399,63 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       animateText(false);
     }
   }, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
+
+  // Body scroll lock when menu is open
+  React.useEffect(() => {
+    if (open) {
+      // Prevent body scroll
+      const originalOverflow = document.body.style.overflow;
+      const originalPosition = document.body.style.position;
+      const originalTop = document.body.style.top;
+      const scrollY = window.scrollY;
+      
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+
+      return () => {
+        // Restore body scroll
+        document.body.style.overflow = originalOverflow;
+        document.body.style.position = originalPosition;
+        document.body.style.top = originalTop;
+        document.body.style.width = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [open]);
+
+  // Prevent scroll propagation when menu is open
+  React.useEffect(() => {
+    if (!open) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      const panel = panelRef.current;
+      if (!panel) {
+        // If panel doesn't exist, prevent all scrolling
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+
+      const { target } = e;
+      const isInsidePanel = panel.contains(target as Node);
+      
+      if (!isInsidePanel) {
+        // Prevent scrolling outside the panel
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      // If inside panel, allow normal scrolling behavior
+    };
+
+    // Use capture phase to catch events before they bubble
+    document.addEventListener('wheel', handleWheel, { passive: false, capture: true });
+    
+    return () => {
+      document.removeEventListener('wheel', handleWheel, { capture: true });
+    };
+  }, [open]);
 
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
@@ -415,7 +479,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
   return (
     <div
-      className={`sm-scope z-40 ${isFixed ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden' : 'w-full h-full overflow-hidden'}`}
+      className={`sm-scope z-40 ${isFixed ? 'fixed top-0 left-0 w-screen h-screen' : 'w-full h-full'}`}
+      style={open ? { overflow: 'hidden' } : {}}
     >
       <div
         className={
@@ -464,7 +529,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
           <button
             ref={toggleBtnRef}
-            className={`sm-toggle relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto ${
+            className={`sm-toggle relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto hidden ${
               open ? 'text-black' : 'text-[#e9e9ef]'
             }`}
             aria-label={open ? 'Close menu' : 'Open menu'}
@@ -472,6 +537,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             aria-controls="staggered-menu-panel"
             onClick={toggleMenu}
             type="button"
+            style={{ display: 'none' }}
           >
             <span
               ref={textWrapRef}
@@ -507,10 +573,46 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-50 backdrop-blur-[12px] pointer-events-auto"
-          style={{ WebkitBackdropFilter: 'blur(12px)' }}
+          className="staggered-menu-panel absolute top-0 right-0 h-full max-h-screen bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-50 backdrop-blur-[12px] pointer-events-auto"
+          style={{ 
+            WebkitBackdropFilter: 'blur(12px)', 
+            maxHeight: '100vh', 
+            overflowY: 'auto', 
+            overflowX: 'hidden',
+            overscrollBehavior: 'contain',
+            WebkitOverflowScrolling: 'touch'
+          }}
+          onWheel={(e) => {
+            // Allow wheel events to work normally within the panel
+            e.stopPropagation();
+          }}
           aria-hidden={!open}
         >
+          {/* Close Button */}
+          <button
+            onClick={closeMenu}
+            className="sm-close-btn absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-transparent border-none cursor-pointer z-[60] hover:opacity-70 transition-opacity duration-200"
+            aria-label="Close menu"
+            type="button"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-6 h-6 text-black"
+            >
+              <path
+                d="M18 6L6 18M6 6L18 18"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+
           <div className="sm-panel-inner flex-1 flex flex-col gap-5">
             <ul
               className="sm-panel-list list-none m-0 p-0 flex flex-col gap-8"
@@ -577,7 +679,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .staggered-menu-header > * { pointer-events: auto; }
 .sm-scope .sm-logo { display: flex; align-items: center; user-select: none; }
 .sm-scope .sm-logo-img { display: block; height: 32px; width: auto; object-fit: contain; }
-.sm-scope .sm-toggle { position: relative; display: inline-flex; align-items: center; gap: 0.3rem; background: transparent; border: none; cursor: pointer; color: #e9e9ef; font-weight: 500; line-height: 1; overflow: visible; }
+.sm-scope .sm-toggle { position: relative; display: none !important; align-items: center; gap: 0.3rem; background: transparent; border: none; cursor: pointer; color: #e9e9ef; font-weight: 500; line-height: 1; overflow: visible; }
 .sm-scope .sm-toggle:focus-visible { outline: 2px solid #ffffffaa; outline-offset: 4px; border-radius: 4px; }
 .sm-scope .sm-line:last-of-type { margin-top: 6px; }
 .sm-scope .sm-toggle-textWrap { position: relative; margin-right: 0.5em; display: inline-block; height: 1em; overflow: hidden; white-space: nowrap; width: var(--sm-toggle-width, auto); min-width: var(--sm-toggle-width, auto); }
@@ -587,12 +689,12 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-panel-itemWrap { position: relative; overflow: hidden; line-height: 1; }
 .sm-scope .sm-icon-line { position: absolute; left: 50%; top: 50%; width: 100%; height: 2px; background: currentColor; border-radius: 2px; transform: translate(-50%, -50%); will-change: transform; }
 .sm-scope .sm-line { display: none !important; }
-.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; z-index: 10; pointer-events: auto; }
+.sm-scope .staggered-menu-panel { position: absolute; top: 0; right: 0; width: clamp(260px, 38vw, 420px); height: 100%; max-height: 100vh; background: white; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; padding: 6em 2em 2em 2em; overflow-y: auto; overflow-x: hidden; z-index: 10; pointer-events: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
 .sm-scope [data-position='left'] .staggered-menu-panel { right: auto; left: 0; }
 .sm-scope .sm-prelayers { position: absolute; top: 0; right: 0; bottom: 0; width: clamp(260px, 38vw, 420px); pointer-events: none; z-index: 5; }
 .sm-scope [data-position='left'] .sm-prelayers { right: auto; left: 0; }
 .sm-scope .sm-prelayer { position: absolute; top: 0; right: 0; height: 100%; width: 100%; transform: translateX(0); }
-.sm-scope .sm-panel-inner { flex: 1; display: flex; flex-direction: column; gap: 1.25rem; z-index: 50;}
+.sm-scope .sm-panel-inner { flex: 1; display: flex; flex-direction: column; gap: 1.25rem; z-index: 50; min-height: 0; }
 .sm-scope .sm-socials { margin-top: auto; padding-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
 .sm-scope .sm-socials-title { margin: 0; font-size: 1rem; font-weight: 500; color: var(--sm-accent, #ff0000); }
 .sm-scope .sm-socials-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: row; align-items: center; gap: 1rem; flex-wrap: wrap; }
@@ -612,6 +714,10 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-panel-itemWrap { pointer-events: auto; }
 .sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }
 .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after { counter-increment: smItem; content: counter(smItem, decimal-leading-zero); position: absolute; top: 0.1em; right: 3.2em; font-size: 18px; font-weight: 400; color: var(--sm-accent, #ff0000); letter-spacing: 0; pointer-events: none; user-select: none; opacity: var(--sm-num-opacity, 0); }
+.sm-scope .sm-close-btn { position: absolute; top: 1.5rem; right: 1.5rem; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; z-index: 60; transition: opacity 0.2s ease; pointer-events: auto; }
+.sm-scope .sm-close-btn:hover { opacity: 0.7; }
+.sm-scope .sm-close-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 4px; }
+.sm-scope .sm-close-btn svg { width: 1.5rem; height: 1.5rem; color: #000; }
 @media (max-width: 1024px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open]  }
 @media (max-width: 640px) { .sm-scope .staggered-menu-panel { width: 100%; left: 0; right: 0; } .sm-scope .staggered-menu-wrapper[data-open]  }
       `}</style>

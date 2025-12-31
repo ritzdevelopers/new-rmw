@@ -32,17 +32,17 @@ function S4() {
       link: "https://ritzmediaworld.com/services/digital-marketing",
     },
     {
-      img: "/home-v3/s4/590-content.png",
-      category: "Social Media Marketing",
-      title: "Social Media Marketing",
+      img: "/home-v3/s4/seo595.jpg",
+      category: "Content Marketing",
+      title: "SEO & Content Marketing",
       description:
-        "Our social media management case studies showcase how consistent posting, smart community building, and data-led optimisation turn followers into fans. See how brands achieved better visibility, engagement, and conversions through always-on, platform-native content and active reputation management.",
+        "Our content marketing strategies help brands build authority and organic growth by combining SEO-led planning with consistent, high-quality storytelling across digital platforms.",
       stats: [
-        { value: "210%", label: "Rise in global inquiries" },
-        { value: "92%", label: "Patient satisfaction scores" },
-        { value: "54%", label: "Increase in repeat visits" },
+        { value: "400%", label: "Organic traffic growth" },
+        { value: "95%", label: "Organic traffic growth" },
+        { value: "180%", label: "Increase in qualified leads" },
       ],
-      link: "https://ritzmediaworld.com/services/digital-marketing/social-media-management",
+      link: "https://ritzmediaworld.com/services/digital-marketing/search-engine-optimization-seo",
     },
     {
       img: "/home-v3/s4/590-digtal.png",
@@ -57,19 +57,19 @@ function S4() {
       ],
       link: "https://ritzmediaworld.com/services/web-designing-and-development",
     },
-    {
-      img: "/home-v3/s4/590-influncer.png",
-      category: "Digital Advertising",
-      title: "Digital Advertising",
-      description:
-        "Our digital advertising case studies showcase how smart targeting, compelling creatives, and data-driven optimisation translate into real business outcomes. Explore how brands across sectors achieved higher visibility, stronger engagement, and measurable conversions through strategic, performance-focused campaigns.",
-      stats: [
-        { value: "250%", label: "Increase in qualified leads" },
-        { value: "85%", label: "Target audience reach" },
-        { value: "40%", label: "Conversion rate" },
-      ],
-      link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
-    },
+    // {
+    //   img: "/home-v3/s4/590-influncer.png",
+    //   category: "Digital Advertising",
+    //   title: "Digital Advertising",
+    //   description:
+    //     "Our digital advertising case studies showcase how smart targeting, compelling creatives, and data-driven optimisation translate into real business outcomes. Explore how brands across sectors achieved higher visibility, stronger engagement, and measurable conversions through strategic, performance-focused campaigns.",
+    //   stats: [
+    //     { value: "250%", label: "Increase in qualified leads" },
+    //     { value: "85%", label: "Target audience reach" },
+    //     { value: "40%", label: "Conversion rate" },
+    //   ],
+    //   link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
+    // },
     {
       img: "/home-v3/s4/590-print.png",
       category: "Print Advertising",
@@ -85,20 +85,20 @@ function S4() {
     },
     {
       img: "/home-v3/s4/590-radio.png",
-      category: "SEO & Content Marketing",
-      title: "SEO & Content Marketing",
+      category: "Radio Advertisement",
+      title: "Audio-Led Brand Storytelling",
       description:
-        "Our SEO and content marketing strategies help brands achieve top search rankings and organic growth. Learn how we've helped companies increase their online visibility, drive qualified traffic, and generate leads through comprehensive SEO optimization and strategic content creation.",
+        "We create radio campaigns that connect emotionally with listeners through compelling scripts, strong voice selection, and optimized media planning across regional and national stations.",
       stats: [
-        { value: "400%", label: "Organic traffic growth" },
-        { value: "95%", label: "Keyword rankings" },
-        { value: "180%", label: "Lead generation" },
+        { value: "250%", label: "Increase in listener engagement" },
+        { value: "85%", label: "Campaign frequency efficiency" },
+        { value: "160%", label: "Growth in local brand recall" },
       ],
       link: "https://ritzmediaworld.com/services/radio-advertising",
     },
 
     {
-      img: "/home-v3/s4/590-web.png",
+      img: "/home-v3/s4/590-influncer.png",
       category: "Social Media Marketing",
       title: "Social Media Marketing",
       description:
@@ -284,7 +284,7 @@ function S4() {
                           onClick={()=>window.open(story.link, "_blank")}
                           alt={story.title}
                           fill
-                          className="object-cover"
+                          className="object-cover cursor-pointer"
                         ></Image>
                       </div>
 
