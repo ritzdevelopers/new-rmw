@@ -387,6 +387,8 @@ function NewNavbar() {
         if (mobileMenuTimelineRef.current) {
           mobileMenuTimelineRef.current.kill();
         }
+        // Remove hidden class to allow GSAP to animate
+        mobileMenuRef.current?.classList.remove('hidden');
         const menuItems = mobileMenuRef.current.querySelectorAll('.mobile-menu-item');
         const tl = gsap.timeline();
         
@@ -434,7 +436,13 @@ function NewNavbar() {
             height: 0,
             opacity: 0,
             duration: 0.3,
-            ease: "power3.in"
+            ease: "power3.in",
+            onComplete: () => {
+              // Add hidden class after animation completes
+              if (mobileMenuRef.current && !isMobileMenuOpen) {
+                mobileMenuRef.current.classList.add('hidden');
+              }
+            }
           }, "-=0.1");
           
           mobileMenuTimelineRef.current = tl;
@@ -456,6 +464,8 @@ function NewNavbar() {
         if (mobileServicesTimelineRef.current) {
           mobileServicesTimelineRef.current.kill();
         }
+        // Remove hidden class to allow GSAP to animate
+        mobileServicesRef.current?.classList.remove('hidden');
         
         // Get actual height
         gsap.set(mobileServicesRef.current, { height: 'auto' });
@@ -508,7 +518,13 @@ function NewNavbar() {
             height: 0,
             opacity: 0,
             duration: 0.3,
-            ease: "power3.in"
+            ease: "power3.in",
+            onComplete: () => {
+              // Add hidden class after animation completes
+              if (mobileServicesRef.current && !isMobileServicesOpen) {
+                mobileServicesRef.current.classList.add('hidden');
+              }
+            }
           }, "-=0.1");
           
           mobileServicesTimelineRef.current = tl;
@@ -835,8 +851,8 @@ function NewNavbar() {
         {/* Mobile Menu Dropdown */}
         <div
           ref={mobileMenuRef}
-          className="absolute top-full left-0 right-0 bg-white/98 backdrop-blur-xl shadow-2xl shadow-black/10 overflow-hidden min-h-[calc(100vh-64px)] overflow-y-auto border-t border-gray-100"
-          style={{ opacity: 0, zIndex: 50 }}
+          className={`absolute top-full left-0 right-0 bg-white/98 backdrop-blur-xl shadow-2xl shadow-black/10 overflow-hidden min-h-[calc(100vh-64px)] overflow-y-auto border-t border-gray-100 ${!isMobileMenuOpen && !isMenuClosing ? 'hidden' : 'flex flex-col'}`}
+          style={{ zIndex: 50 }}
         >
           <div className="w-[95%] max-w-[1200px] mx-auto py-6 sm:py-8 space-y-2">
             {/* Services Link with Dropdown */}
@@ -864,8 +880,7 @@ function NewNavbar() {
               {/* Services Dropdown */}
               <div
                 ref={mobileServicesRef}
-                className="overflow-hidden mt-3 overflow-y-auto"
-                style={{ height: 0, opacity: 0 }}
+                className={`overflow-hidden mt-3 overflow-y-auto ${isMobileServicesOpen ? 'block' : 'hidden'}`}
               >
                 <div className="px-2 pb-4 space-y-3">
                   {items.map((item, index) => (
