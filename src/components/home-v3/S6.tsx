@@ -5,17 +5,17 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./S6.css";
 import { Pagination, Autoplay } from "swiper/modules";
-
+ 
 function S6() {
-  const data = [
+  const data = [  
     {
       client: "FAIRFOX - EON",
-      para: "They not only make sure that they deliver on their promises, but also educate you on what exactly is needed to be done for your brand, thereby preventing you from under or over spending your precious money.",
+      para: "If there is one thing serving as a full service digital agency for more than a decade taught us, it has to be the value of relationships. Therefore, our relationship with our clients is both a priority and a point of pride to us.",
       role: "Marketing Head",
     },
     {
       client: "Madhusudan Ghee",
-      para: "If there is one thing serving as a full service digital agency for more than a decade taught us, it has to be the value of relationships. Therefore, our relationship with our clients is both a priority and a point of pride to us.",
+      para: "To me, advertising my brand was merely a means to ensure my elongated presence in the market. Thanks to ritz Media world, my advertisements not only ensured my brand’s sustenance but have also got me a great number of quality leads.",
       role: "Managing Director",
     },
     {
