@@ -47,7 +47,8 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
         const blogTitle = formData.get("blogTitle");
         const metaKeywords = formData.get("metaKeywords");
         const blogBodyRaw = formData.get("blogBody");
-        const blogCategory = formData.get("blogCategory");
+        const blogCategoryId = formData.get("blogCategoryId") || formData.get("blogCategory"); // Support both for backward compatibility
+        const mtDesc = formData.get("mtDesc");
 
         let blogBannerPath = "";
         const innerImgMap: Record<string, string> = {};
@@ -100,17 +101,19 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             blogTitle: string | FormDataEntryValue | null;
             blogBody: BlogBodyItem[];
             metaKeywords: FormDataEntryValue | null;
-            blogCategory: FormDataEntryValue | null;
+            blogCategoryId: string | FormDataEntryValue | null;
             blogStatus: boolean;
             blogBanner?: string;
             blogSlug?:string;
+            mtDesc?: FormDataEntryValue | null;
         }> = {
             blogTitle,
             blogBody: updatedBlogBody,
             metaKeywords,
-            blogCategory,
+            blogCategoryId: blogCategoryId || undefined,
             blogStatus:true,
             blogSlug: generateSlug(blogTitle),
+            mtDesc: mtDesc || undefined,
         };
 
         if (blogBannerPath) {

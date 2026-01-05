@@ -21,14 +21,24 @@ interface MergedBlogs {
   title: string;
   createdAt: string;
   meta_description: string;
+  mtDesc?: string;
+  metaKeywords?: string;
+  blogBody?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    innerImg?: string;
+  }[];
 }
 
-const normalizeArticle = (blog: Article): MergedBlogs => ({
+const normalizeArticle = (blog: any): MergedBlogs => ({
   id: blog.blogTitle,
   banner: blog.blogBanner,
   title: blog.blogTitle,
   createdAt: blog.createdAt,
   meta_description: blog.blogDescription,
+  mtDesc: blog.mtDesc,
+  metaKeywords: blog.metaKeywords,
+  blogBody: blog.blogBody,
 });
 
 function stripHtmlTags(html: string): string {
@@ -93,7 +103,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           `${baseURL}/api/ritz_blogs/get-single-blog/${slug}`
         );
         if (mongoRes?.data?.blog) {
-          blog = normalizeArticle(mongoRes.data.blog);
+          // Preserve all fields including mtDesc and metaKeywords
+          const normalized = normalizeArticle(mongoRes.data.blog);
+          blog = {
+            ...normalized,
+            ...mongoRes.data.blog, // Preserve original blog object with all fields
+          };
           isMongo = true;
         }
       } catch (err) {
@@ -115,9 +130,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       blog.meta_title || blog.title || blog.blogTitle || "Untitled Blog";
     const keywords = blog.meta_keywords || blog.metaKeywords || "ritz media";
 
-    const baseDescription = getCleanDescription(
-      blog.description || blog.mtDesc || ""
-    ).slice(0, 160);
+    // Use mtDesc as primary description, fallback to other sources
+    const mtDescText = getCleanDescription(blog.mtDesc || "");
+    const baseDescription = mtDescText.slice(0, 160);
 
     let dsc = "";
     if (isMongo && Array.isArray(blog.blogBody)) {
@@ -128,17 +143,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       dsc = fullText.slice(0, 160); // Trim to 160 characters
     }
 
-    const ogDescription = (isMongo && dsc) || baseDescription;
+    // Prioritize mtDesc, then blogBody content, then meta_description
+    const finalDescription = mtDescText || (isMongo && dsc) || (blog.meta_description ? getCleanDescription(blog.meta_description) : "");
+    const ogDescription = finalDescription.slice(0, 160);
+
+    // Prepare keywords array
+    const keywordsArray = keywords.split(",").map((k: string) => k.trim()).filter(k => k.length > 0);
 
     return {
       title,
-      description: blog.meta_description
-        ? getCleanDescription(blog.meta_description).slice(0, 160)
-        : baseDescription,
-      keywords: keywords.split(",").map((k: string) => k.trim()),
+      description: ogDescription,
+      keywords: keywordsArray,
+      other: {
+        "keywords": keywords,
+      },
       openGraph: {
         title,
-        description: ogDescription.slice(0, 160),
+        description: ogDescription,
         type: "article",
         url: `${baseURL}/blog/${slug}`,
         images: [
@@ -151,7 +172,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       twitter: {
         card: "summary_large_image",
         title,
-        description: ogDescription.slice(0, 160),
+        description: ogDescription,
         images: [`${baseURL}/uploads/${blog.blog_image || blog.blogBanner}`],
       },
     };
