@@ -32,6 +32,7 @@ const UpdateBlog = () => {
     meta_keywords: "",
     blogImage: null as File | null, // Store new image file
     description: "",
+    mtDesc: "",
   });
 
   const [existingImage, setExistingImage] = useState<string | null>(null); // Store current image path
@@ -70,12 +71,12 @@ const UpdateBlog = () => {
         setFormData({
           category_id: data.blog.category_id?.toString() || "",
           title: data.blog.title || "",
-
           meta_title: data.blog.meta_title || "",
           meta_description: data.blog.meta_description || "",
           meta_keywords: data.blog.meta_keywords || "",
           blogImage: null, // Don't set the image directly
           description: data.blog.description || "",
+          mtDesc: data.blog.mtDesc || "",
         });
 
         setExistingImage(data.blog.blog_image);

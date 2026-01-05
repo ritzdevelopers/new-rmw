@@ -2,7 +2,7 @@
 
 import { Home, ImagePlus, Monitor } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useBlogContext } from "@/blogContext/BlogContext";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
@@ -24,8 +24,9 @@ const Page = () => {
     blogBanner: string;
     blogBody: BlogBody[];
     createdAt: string;
-    blogCategory: string;
+    blogCategoryId: string;
     metaKeywords: string;
+    mtDesc: string;                         
   }
 
   const {
@@ -35,12 +36,32 @@ const Page = () => {
     blogBanner,
     blogTitle,
     metaKeywords,
+    mtDesc,
+    setMtDesc,
   } = useBlogContext();
 
   const [localTitle, setLocalTitle] = useState<string>(blogTitle || "");
   const [localMeta, setLocalMeta] = useState<string>(metaKeywords || "");
   const [localBanner, setLocalBanner] = useState<string>(blogBanner || "");
-  const [localCategory, setLocalCategory] = useState<string>("All Category"); // Load from localStorage or fetch from backend
+  const [localCategory, setLocalCategory] = useState<string>("none-selected"); // Category ID - Load from localStorage or fetch from backend
+  const [localCategoryName, setLocalCategoryName] = useState<string>(""); // Category Name for display
+  const [localMtDesc, setLocalMtDesc] = useState(mtDesc || "");
+  const apiCategoryRef = useRef<string>("none-selected"); // Store category ID from latest API call
+  
+  // Sync localMtDesc with mtDesc from context if localMtDesc is empty
+  useEffect(() => {
+    if (!localMtDesc && mtDesc) {
+      setLocalMtDesc(mtDesc);
+    }
+  }, [mtDesc]);
+
+
+  // Sync localCategory with API category if localCategory is empty or default
+  useEffect(() => {
+    if ((!localCategory || localCategory === "none-selected" || localCategory === "All Category") && apiCategoryRef.current && apiCategoryRef.current !== "none-selected") {
+      setLocalCategory(apiCategoryRef.current);
+    }
+  }, [localCategory]);
 
   useEffect(() => {
     if (!blogID) return;
@@ -55,17 +76,30 @@ const Page = () => {
       setLocalTitle(parsed.blogTitle || "");
       setLocalMeta(parsed.metaKeywords || "");
       setLocalBanner(parsed.blogBanner || "");
-      setLocalCategory(parsed.blogCategory || "All Category");
+      // Use parsed category ID if available and valid, otherwise will be set from API
+      const savedCategoryId = parsed.blogCategoryId || parsed.blogCategory;
+      if (savedCategoryId && savedCategoryId !== "none-selected" && savedCategoryId !== "All Category") {
+        setLocalCategory(savedCategoryId);
+      }
+      // Set category name if available
+      if (parsed.blogCategoryName) {
+        setLocalCategoryName(parsed.blogCategoryName);
+      }
 
       setBlogTitle(parsed.blogTitle || "");
       setMetaTitle(parsed.metaKeywords || "");
       setBlogBanner(parsed.blogBanner || "");
-    } else {
-      getSingleBlogInfo(blogID, LOCAL_KEY);
+      // Use parsed.mtDesc if available, otherwise fallback to context mtDesc
+      const mtDescValue = parsed.mtDesc || mtDesc || "";
+      setLocalMtDesc(mtDescValue);
+      setMtDesc(mtDescValue);
     }
+    
+    // Always fetch from API to get latest category (will be used if localStorage doesn't have valid category)
+    getSingleBlogInfo(blogID, LOCAL_KEY);
   }, [blogID]);
 
-  const getSingleBlogInfo = async (id: string, LOCAL_KEY: string) => {
+  const getSingleBlogInfo = async (id: string, LOCAL_KEY: string): Promise<void> => {
     try {
       const res = await axios.get<{ blog: BlogInfo }>(
         `/api/ritz_blogs/get-single-blog/obj_id/${id}`
@@ -77,19 +111,44 @@ const Page = () => {
       setLocalTitle(blog.blogTitle || "");
       setLocalMeta(blog.metaKeywords || "");
       setLocalBanner(blog.blogBanner || "");
-      setLocalCategory(blog.blogCategory || "All Category");
+      
+      // Store API category ID in ref for fallback
+      const apiCategoryId = blog.blogCategoryId || "none-selected";
+      apiCategoryRef.current = apiCategoryId;
+      
+      // Set category from API only if localCategory is not set or is default value
+      // This ensures localStorage category takes priority, but API category is used as fallback
+      if (!localCategory || localCategory === "none-selected" || localCategory === "All Category") {
+        setLocalCategory(apiCategoryId);
+      }
 
       setBlogTitle(blog.blogTitle || "");
       // setMetaTitle(blog.metaDescription || "");
       setBlogBanner(blog.blogBanner || "");
+      
+      // Set mtDesc from API response, fallback to context if empty
+      const mtDescValue = blog.mtDesc || mtDesc || "";
+      setLocalMtDesc(mtDescValue);
+      setMtDesc(mtDescValue);
 
+      // Find category name from fetched categories
+      let categoryName = "";
+      if (ritzCategories.length > 0 && blog.blogCategoryId) {
+        const matchedCategory = ritzCategories.find(cat => cat._id === blog.blogCategoryId);
+        if (matchedCategory) {
+          categoryName = matchedCategory.categoryName;
+        }
+      }
+
+      // Save to localStorage (category name will be set later when categories are loaded)
       localStorage.setItem(
         LOCAL_KEY,
         JSON.stringify({
           blogTitle: blog.blogTitle,
           metaKeywords: blog.metaKeywords,
           blogBanner: blog.blogBanner,
-          blogCategory: blog.blogCategory,
+          blogCategoryId: blog.blogCategoryId,
+          mtDesc: blog.mtDesc || mtDesc || "",
         })
       );
     } catch (error) {
@@ -105,7 +164,9 @@ const Page = () => {
       blogTitle: localTitle,
       metaKeywords: localMeta,
       blogBanner: localBanner,
-      blogCategory: localCategory,
+      blogCategoryId: localCategory,
+      blogCategoryName: localCategoryName,
+      mtDesc: localMtDesc,
     };
     localStorage.setItem(LOCAL_KEY, JSON.stringify(data));
   };
@@ -114,7 +175,7 @@ const Page = () => {
 
   const handleNavigation = (path: string) => {
     if (path.includes(`/admin/update/step-2/page/${blogID}/${count}`)) {
-      if (!localTitle || !localMeta || !localBanner || !localCategory) {
+      if (!localTitle || !localMeta || !localBanner || !localCategory || !localMtDesc) {
         alert("Please fill in all fields before proceeding to the next step.");
         return;
       }
@@ -164,6 +225,26 @@ const Page = () => {
     useEffect(() => {
       fetchAllCategories();
     }, []);
+
+    // Match category ID with categories and set category name (after categories are loaded)
+    useEffect(() => {
+      if (localCategory && localCategory !== "none-selected" && ritzCategories.length > 0) {
+        const matchedCategory = ritzCategories.find(cat => cat._id === localCategory);
+        if (matchedCategory) {
+          setLocalCategoryName(matchedCategory.categoryName);
+          
+          // Update localStorage with category name
+          const LOCAL_KEY = `update-blog-step-1-${blogID}`;
+          const currentData = localStorage.getItem(LOCAL_KEY);
+          if (currentData) {
+            const parsed = JSON.parse(currentData);
+            parsed.blogCategoryId = localCategory;
+            parsed.blogCategoryName = matchedCategory.categoryName;
+            localStorage.setItem(LOCAL_KEY, JSON.stringify(parsed));
+          }
+        }
+      }
+    }, [localCategory, ritzCategories, blogID]);
 
   return (
     <div className="bg-[#EEEEEE] flex flex-col gap-6 sm:gap-8 md:gap-12 p-4 md:p-8 min-h-screen">
@@ -258,11 +339,46 @@ const Page = () => {
 
           <div className="flex flex-col gap-2 p-4">
             <label className="text-sm font-semibold text-[#444]">
+              Meta Description (mtDesc)
+            </label>
+            <textarea
+              value={localMtDesc || mtDesc || ""}
+              onChange={(e) => {
+                setLocalMtDesc(e.target.value);
+                setMtDesc(e.target.value);
+              }}
+              placeholder="Enter meta description..."
+              className="w-full border rounded-md px-4 py-2 min-h-[100px] resize-y"
+              rows={4}
+            />
+          </div>
+
+          <div className="flex flex-col gap-2 p-4">
+            <label className="text-sm font-semibold text-[#444]">
               Blog Category
             </label>
             <select
               value={localCategory}
-              onChange={(e) => setLocalCategory(e.target.value)}
+              onChange={(e) => {
+                const selectedCategoryId = e.target.value;
+                setLocalCategory(selectedCategoryId);
+                
+                // Find and set category name
+                const selectedCategory = ritzCategories.find(cat => cat._id === selectedCategoryId);
+                if (selectedCategory) {
+                  setLocalCategoryName(selectedCategory.categoryName);
+                }
+                
+                // Save to localStorage immediately when category changes
+                const LOCAL_KEY = `update-blog-step-1-${blogID}`;
+                const currentData = localStorage.getItem(LOCAL_KEY);
+                if (currentData) {
+                  const parsed = JSON.parse(currentData);
+                  parsed.blogCategoryId = selectedCategoryId;
+                  parsed.blogCategoryName = selectedCategory?.categoryName || "";
+                  localStorage.setItem(LOCAL_KEY, JSON.stringify(parsed));
+                }
+              }}
               className="w-full border rounded-md px-4 py-2"
             >
           {/* All Categories Will Be Show Here  */}
@@ -270,7 +386,7 @@ const Page = () => {
               {ritzCategories.length > 0 ? (
                 ritzCategories.map((data, idx) => {
                   return (
-                    <option key={idx} value={data.categorySlug}>
+                    <option key={idx} value={data._id}>
                       {data.categoryName}
                     </option>
                   );
