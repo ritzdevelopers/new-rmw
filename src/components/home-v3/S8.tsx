@@ -30,23 +30,18 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
     message: "",
   });
 
-  // Function to validate phone number
   const validatePhone = (phoneNumber: string): string => {
-    // Remove all non-digit characters for validation
     const digitsOnly = phoneNumber.replace(/\D/g, "");
     
-    // Check if empty
     if (!phoneNumber.trim()) {
       return "Phone number is required";
     }
     
-    // Check if it contains only digits, spaces, +, -, and ()
     const phoneRegex = /^[\d\s\+\-\(\)]+$/;
     if (!phoneRegex.test(phoneNumber)) {
       return "Phone number can only contain digits, spaces, +, -, and ()";
     }
     
-    // Check length (should be 10 digits for Indian numbers, or 10-13 with country code)
     if (digitsOnly.length < 10) {
       return "Phone number must have at least 10 digits";
     }
@@ -55,45 +50,37 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
       return "Phone number cannot exceed 13 digits";
     }
     
-    // Check if it starts with valid Indian country code or direct number
     if (digitsOnly.length === 10) {
-      // 10-digit Indian mobile number (should start with 6-9)
       if (!/^[6-9]/.test(digitsOnly)) {
         return "Indian mobile numbers should start with 6, 7, 8, or 9";
       }
     } else if (digitsOnly.length === 11) {
-      // 11 digits - might be with 0 prefix
       if (!/^0[6-9]/.test(digitsOnly)) {
         return "Invalid phone number format";
       }
     } else if (digitsOnly.length === 12 || digitsOnly.length === 13) {
-      // 12-13 digits - with country code (91 for India)
       if (!/^91[6-9]/.test(digitsOnly)) {
         return "Invalid country code. Use +91 for India";
       }
     }
     
-    return ""; // No error
+    return ""; 
   };
 
-  // Handle phone input change with validation
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPhone(value);
     
-    // Clear error if user is typing
     if (phoneError) {
       setPhoneError("");
     }
   };
 
-  // Validate on blur
   const handlePhoneBlur = () => {
     const error = validatePhone(phone);
     setPhoneError(error);
   };
 
-  // Function to download PDF
   const downloadPDF = () => {
     const link = document.createElement("a");
     link.href = "/RMWCaseStudies_250327_081936.pdf";
@@ -106,7 +93,6 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
   const handleDownload = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate phone number
     const phoneValidationError = validatePhone(phone);
     if (phoneValidationError) {
       setPhoneError(phoneValidationError);
@@ -121,7 +107,6 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
     setIsSubmitting(true);
 
     try {
-      // Prepare enquiry data with default values indicating it's from home page
       const enquiryData = {
         etype: "HomePageDownload",
         name: "Home Page Visitor",
@@ -142,18 +127,15 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
       const result = await response.json();
 
       if (response.ok && result.success) {
-        // Show success modal
         setModal({
           open: true,
           status: "success",
           message: "Thank you! Your enquiry has been submitted successfully. The PDF will download shortly.",
         });
 
-        // Reset form
         setPhone("");
         setPhoneError("");
 
-        // Download PDF after a short delay
         setTimeout(() => {
           downloadPDF();
         }, 500);
@@ -176,12 +158,11 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
     }
   };
 
-  // Auto-close modal for success messages
   useEffect(() => {
     if (modal.open && modal.status === "success") {
       const timer = setTimeout(() => {
         setModal({ ...modal, open: false });
-      }, 5000); // Close after 5 seconds
+      }, 5000); 
 
       return () => clearTimeout(timer);
     }

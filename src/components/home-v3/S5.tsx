@@ -53,7 +53,6 @@ function S5() {
       
     ];
 
-    // Sync swipers when both are ready
     useEffect(() => {
         if (timelineSwiper && cardsSwiper) {
             timelineSwiper.controller.control = cardsSwiper;
@@ -61,7 +60,6 @@ function S5() {
         }
     }, [timelineSwiper, cardsSwiper]);
 
-    // Intersection Observer to detect visible cards
     useEffect(() => {
         const observers: IntersectionObserver[] = [];
         
@@ -83,7 +81,7 @@ function S5() {
                     });
                 },
                 {
-                    threshold: 0.3, // Card is considered visible when 30% is in viewport
+                    threshold: 0.3, 
                     rootMargin: '0px',
                 }
             );
@@ -156,7 +154,6 @@ function S5() {
                 {/* Bottom Row - Swiper Slider  */}
                 <div className="w-full">
                     <div className="w-full flex flex-col gap-6">
-                        {/* Timeline Header - Slides with cards */}
                         <div className="w-full overflow-hidden">
                             <Swiper
                                 onSwiper={(swiper) => {
@@ -188,8 +185,6 @@ function S5() {
                                 style={{ width: '100%' }}
                             >
                                 {timelineData.map((item, idx) => {
-                                    // Determine if this is a middle item (should have connecting lines)
-                                    // Middle items are at positions 1, 4, 7, etc. (every 3rd item starting from index 1)
                                     const isMiddleItem = (idx % 2) !== 0;
                                     const isCardVisible = visibleCards.has(idx);
                                     
@@ -237,13 +232,11 @@ function S5() {
                             </Swiper>
                         </div>
 
-                        {/* Cards Slider - Synchronized with timeline */}
                         <div className="w-full overflow-visible">
                             <Swiper
                                 onSwiper={(swiper) => {
                                     cardsSwiperRef.current = swiper;
                                     setCardsSwiper(swiper);
-                                    // Sync with timeline swiper when it's ready
                                     if (timelineSwiper) {
                                         swiper.controller.control = timelineSwiper;
                                         timelineSwiper.controller.control = swiper;
