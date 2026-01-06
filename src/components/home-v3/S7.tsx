@@ -60,7 +60,6 @@ function S7() {
                     </div>
 
                     <div className="flex gap-2 flex-shrink-0">
-                        {/* These Are Slider Buttons  */}
                         <button 
                             onClick={() => swiperRef.current?.slidePrev()}
                             className='cursor-pointer'
@@ -78,7 +77,6 @@ function S7() {
                     </div>
                 </div>
 
-                {/* Bottom Main Container - Swiper Slider  */}
                 <div className="w-full overflow-visible ">
                     <Swiper
                         onSwiper={(swiper) => {

@@ -37,82 +37,48 @@ function S2() {
     if (ob.img !== activeCard.img && !showTransition) {
       setPrevImage(activeCard.img);
       setNextImage(ob.img);
-      setDisplayImage(activeCard.img); // Keep showing old image during transition
+      setDisplayImage(activeCard.img); 
       pendingCardRef.current = ob;
 
-      // Clear any existing timeout
       if (stateChangeTimeoutRef.current) {
         clearTimeout(stateChangeTimeoutRef.current);
       }
+      setShowTransition(true);
+      
+      const totalAnimationTime = 350; 
+      const stateChangeTime = totalAnimationTime * 0.35; 
 
-      // Preload the new image first
+      stateChangeTimeoutRef.current = setTimeout(() => {
+        if (pendingCardRef.current) {
+          const newCard = { ...pendingCardRef.current };
+          
+          setDisplayImage(newCard.img);
+          
+          setActiveCard((prev) => {
+            prev.act = false;
+            newCard.act = true;
+            return newCard;
+          });
+        }
+      }, stateChangeTime);
+
       const img = document.createElement("img");
-      img.onload = () => {
-        // Image is loaded, start transition (keep old image visible underneath)
-        setShowTransition(true);
-        
-        // Fast animation duration: 600ms (0.6 seconds) for quick response
-        // Update state at 50% progress for optimal smooth transition
-        const totalAnimationTime = 600; // milliseconds
-        const stateChangeTime = totalAnimationTime * 0.5; // 50% through animation
-        
-        // Update state at optimal point for smooth transition
-        stateChangeTimeoutRef.current = setTimeout(() => {
-          if (pendingCardRef.current) {
-            const newCard = { ...pendingCardRef.current };
-            
-            // Update display image to new image
-            setDisplayImage(newCard.img);
-            
-            // Update active card state
-            setActiveCard((prev) => {
-              prev.act = false;
-              newCard.act = true;
-              return newCard;
-            });
-          }
-        }, stateChangeTime);
-      };
-      img.onerror = () => {
-        // Even if image fails to load, start transition
-        setShowTransition(true);
-        
-        // Same timing calculation
-        const totalAnimationTime = 600;
-        const stateChangeTime = totalAnimationTime * 0.5;
-        
-        stateChangeTimeoutRef.current = setTimeout(() => {
-          if (pendingCardRef.current) {
-            const newCard = { ...pendingCardRef.current };
-            setDisplayImage(newCard.img);
-            setActiveCard((prev) => {
-              prev.act = false;
-              newCard.act = true;
-              return newCard;
-            });
-          }
-        }, stateChangeTime);
-      };
       img.src = ob.img;
       imagePreloadRef.current = img;
     }
   };
 
   const handleTransitionComplete = () => {
-    // Clear the state change timeout if it hasn't fired yet
     if (stateChangeTimeoutRef.current) {
       clearTimeout(stateChangeTimeoutRef.current);
       stateChangeTimeoutRef.current = null;
     }
 
-    // Final cleanup after transition fully completes
     if (pendingCardRef.current) {
       const newCard = { ...pendingCardRef.current };
       
-      // Ensure display image is updated (in case timeout didn't fire)
       setDisplayImage(newCard.img);
       
-      // Ensure active card is updated (in case timeout didn't fire)
       setActiveCard((prev) => {
         prev.act = false;
         newCard.act = true;
@@ -121,12 +87,10 @@ function S2() {
       
       pendingCardRef.current = null;
       
-      // Hide transition overlay after image is updated
       setShowTransition(false);
     }
   };
 
-  // Detect screen size for video selection
   useEffect(() => {
     const determineVideoType = () => {
       const width = window.innerWidth;
@@ -139,16 +103,13 @@ function S2() {
       }
     };
 
-    // Set initial video type
     determineVideoType();
 
-    // Update on resize
     window.addEventListener('resize', determineVideoType);
     return () => window.removeEventListener('resize', determineVideoType);
   }, []);
 
   const handlePlayClick = () => {
-    // Determine video type before opening
     const width = window.innerWidth;
     if (width >= 1024) {
       setVideoType('desktop');
@@ -159,22 +120,18 @@ function S2() {
     }
     
     setIsVideoOpen(true);
-    // Prevent body scroll when video is open
     document.body.style.overflow = 'hidden';
   };
 
   const handleCloseVideo = () => {
     setIsVideoOpen(false);
-    // Restore body scroll
     document.body.style.overflow = 'unset';
-    // Pause and reset video
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
   };
 
-  // Get video source based on type
   const getVideoSource = () => {
     switch (videoType) {
       case 'desktop':
@@ -188,7 +145,6 @@ function S2() {
     }
   };
 
-  // Cleanup on unmount
   useEffect(() => {
     return () => {
       document.body.style.overflow = 'unset';

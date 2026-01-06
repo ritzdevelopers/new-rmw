@@ -17,18 +17,12 @@ function NewNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if user has scrolled down from the top
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 0);
     };
 
-    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
-
-    // Check initial scroll position
     handleScroll();
-
-    // Cleanup event listener on unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -696,7 +690,7 @@ function NewNavbar() {
                     backgroundColor: bgColors[index] || "#0D0716",
                     color: "#fff",
                   }}
-                  className="xl:w-[280px] w-[230px] h-[300px] xl:min-h-[280px] rounded-[8px] flex flex-col justify-between p-5 shadow-lg"
+                  className="xl:w-[280px] w-[230px] h-[270px] rounded-[8px] flex flex-col  p-5 shadow-lg"
                 >
                   {/* Main Service Name  */}
                   <div>
@@ -710,7 +704,7 @@ function NewNavbar() {
                   </div>
 
                   {/* Sub Services  */}
-                  <div className="flex flex-col gap-2.5">
+                  <div className="flex flex-col xl:gap-2.5 gap-1">
                     {item.sub.map((subItem, subIndex) => {
                       return (
                         <div key={subIndex} className="flex items-center gap-2">

@@ -126,16 +126,13 @@ function S4() {
             }
         };
 
-        // Set initial video type
         determineVideoType();
 
-        // Update on resize
         window.addEventListener('resize', determineVideoType);
         return () => window.removeEventListener('resize', determineVideoType);
     }, []);
 
     const handlePlayClick = () => {
-        // Determine video type before opening
         const width = window.innerWidth;
         if (width >= 1024) {
             setVideoType('desktop');
@@ -146,22 +143,18 @@ function S4() {
         }
         
         setIsVideoOpen(true);
-        // Prevent body scroll when video is open
         document.body.style.overflow = 'hidden';
     };
 
     const handleCloseVideo = () => {
         setIsVideoOpen(false);
-        // Restore body scroll
         document.body.style.overflow = 'unset';
-        // Pause and reset video
         if (videoRef.current) {
             videoRef.current.pause();
             videoRef.current.currentTime = 0;
         }
     };
 
-    // Get video source based on type
     const getVideoSource = () => {
         switch (videoType) {
             case 'desktop':
@@ -175,7 +168,6 @@ function S4() {
         }
     };
 
-    // Cleanup on unmount
     useEffect(() => {
         return () => {
             document.body.style.overflow = 'unset';
@@ -435,7 +427,6 @@ function S4() {
               </svg>
             </button>
 
-            {/* Single Video Element - Source changes based on screen size */}
             <video
               ref={videoRef}
               src={getVideoSource()}
@@ -443,7 +434,7 @@ function S4() {
               autoPlay
               controls
               playsInline
-              key={videoType} // Force re-render when video type changes
+              key={videoType} 
             />
           </div>
         </div>

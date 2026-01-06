@@ -1,30 +1,24 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 
-// ============================================================================
-// EASING FUNCTIONS - Ultra-smooth, luxurious animation curves
-// ============================================================================
+
 const easingFunctions = {
-  // Ultra-smooth ease-in-out quartic (more refined than cubic)
   easeInOutQuart: (t: number): number => {
     return t < 0.5
       ? 8 * t * t * t * t
       : 1 - Math.pow(-2 * t + 2, 4) / 2;
   },
   
-  // Smooth ease-in-out cubic (luxurious feel)
   easeInOutCubic: (t: number): number => {
     return t < 0.5
       ? 4 * t * t * t
       : 1 - Math.pow(-2 * t + 2, 3) / 2;
   },
   
-  // Smooth ease-out quintic (very elegant deceleration)
   easeOutQuint: (t: number): number => {
     return 1 - Math.pow(1 - t, 5);
   },
   
-  // Smooth ease-in-out with slight back (premium feel)
   easeInOutBack: (t: number): number => {
     const c1 = 1.70158;
     const c2 = c1 * 1.525;
@@ -34,20 +28,14 @@ const easingFunctions = {
   },
 };
 
-// ============================================================================
-// COMPONENT PROPS INTERFACE
-// ============================================================================
 interface CanvasTransitionProps {
-  width: number;        // Width of the canvas
-  height: number;       // Height of the canvas
-  oldImage: string;     // URL of the old image (currently visible)
-  newImage: string;     // URL of the new image (to transition to)
-  onComplete?: () => void;  // Callback when transition finishes
+  width: number;        
+  height: number;       
+  oldImage: string;     
+  newImage: string;     
+  onComplete?: () => void;  
 }
 
-// ============================================================================
-// CANVAS TRANSITION COMPONENT - Ultra-smooth luxurious animation
-// ============================================================================
 const CanvasTransition: React.FC<CanvasTransitionProps> = ({
   width,
   height,
@@ -63,11 +51,11 @@ const CanvasTransition: React.FC<CanvasTransitionProps> = ({
   const newImgRef = useRef<HTMLImageElement | null>(null);
   const imagesLoadedRef = useRef(0);
   const completionCalledRef = useRef(false);
+  const fallbackTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Animation parameters - tuned for fast and responsive feel
-  const DURATION = 600; // 0.6 seconds - fast and responsive
-  const SCALE_MIN = 0.96; // More pronounced scale down (elegant zoom out)
-  const SCALE_MAX = 1.04; // More pronounced scale up (elegant zoom in)
+  const DURATION = 350; 
+  const SCALE_MIN = 0.96; 
+  const SCALE_MAX = 1.04; 
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -76,17 +64,14 @@ const CanvasTransition: React.FC<CanvasTransitionProps> = ({
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    // Set canvas dimensions
     canvas.width = width;
     canvas.height = height;
 
-    // Reset state
     setIsAnimating(true);
     startTimeRef.current = null;
     imagesLoadedRef.current = 0;
     completionCalledRef.current = false;
 
-    // Create image objects
     const oldImg = new Image();
     const newImg = new Image();
 
@@ -96,109 +81,75 @@ const CanvasTransition: React.FC<CanvasTransitionProps> = ({
     oldImgRef.current = oldImg;
     newImgRef.current = newImg;
 
-    // ========================================================================
-    // ANIMATION FUNCTION - Ultra-smooth crossfade with multiple effects
-    // ========================================================================
     function animate(currentTime: number) {
       if (!ctx || !oldImgRef.current || !newImgRef.current) return;
 
-      // Initialize start time on first frame
       if (startTimeRef.current === null) {
         startTimeRef.current = currentTime;
       }
 
       const elapsed = currentTime - startTimeRef.current;
-      const progress = Math.min(elapsed / DURATION, 1); // 0 to 1
+        const progress = Math.min(elapsed / DURATION, 1); 
 
-      // Use ultra-smooth easing function
       const easedProgress = easingFunctions.easeInOutQuart(progress);
 
-      // Clear canvas
       ctx.clearRect(0, 0, width, height);
 
-      // Calculate smooth transition values with multiple curves
-      // Scale for old image (elegant zoom out)
       const oldScale = 1 + (1 - easedProgress) * (SCALE_MIN - 1);
       
-      // Scale for new image (elegant zoom in)
       const newScale = SCALE_MIN + easedProgress * (SCALE_MAX - SCALE_MIN);
 
-      // Multi-layered opacity for ultra-smooth fade
-      // Old image: fade out with smooth curve
       const oldOpacity = Math.pow(1 - easedProgress, 1.5);
       
-      // New image: fade in with different curve for natural feel
       const newOpacity = Math.pow(easedProgress, 0.7);
 
-      // Calculate transition progress for effects (peaks in middle)
       const blurProgress = Math.sin(easedProgress * Math.PI);
 
-      // Calculate subtle brightness/contrast adjustments for depth
-      const brightnessAdjust = 1 - (blurProgress * 0.08); // Slight darkening during transition
-      const contrastAdjust = 1 + (blurProgress * 0.05); // Slight contrast boost
+      const brightnessAdjust = 1 - (blurProgress * 0.08); 
+      const contrastAdjust = 1 + (blurProgress * 0.05); 
 
-      // Calculate center point for scaling
       const centerX = width / 2;
       const centerY = height / 2;
 
-      // ======================================================================
-      // DRAW OLD IMAGE (fading out with multiple effects)
-      // ======================================================================
       if (oldOpacity > 0.01) {
         ctx.save();
 
-        // Apply smooth opacity fade
         ctx.globalAlpha = oldOpacity;
 
-        // Apply brightness adjustment
         ctx.filter = `brightness(${brightnessAdjust}) contrast(${contrastAdjust})`;
 
-        // Apply elegant zoom-out transformation
         ctx.translate(centerX, centerY);
         ctx.scale(oldScale, oldScale);
         ctx.translate(-centerX, -centerY);
 
-        // Draw old image
         ctx.drawImage(oldImgRef.current!, 0, 0, width, height);
 
         ctx.restore();
       }
 
-      // ======================================================================
-      // DRAW NEW IMAGE (fading in with multiple effects)
-      // ======================================================================
       if (newOpacity > 0.01) {
         ctx.save();
 
-        // Apply smooth opacity fade
         ctx.globalAlpha = newOpacity;
 
-        // Apply brightness adjustment (slightly brighter as it comes in)
         const newBrightness = 1 - (blurProgress * 0.04);
         ctx.filter = `brightness(${newBrightness}) contrast(${contrastAdjust})`;
 
-        // Apply elegant zoom-in transformation
         ctx.translate(centerX, centerY);
         ctx.scale(newScale, newScale);
         ctx.translate(-centerX, -centerY);
 
-        // Draw new image
         ctx.drawImage(newImgRef.current!, 0, 0, width, height);
 
         ctx.restore();
       }
 
-      // ======================================================================
-      // ADD SUBTLE OVERLAY GRADIENT FOR DEPTH
-      // ======================================================================
       if (progress > 0.2 && progress < 0.8) {
         ctx.save();
         
-        // Create subtle gradient overlay for depth effect
         const gradientOpacity = Math.sin(progress * Math.PI) * 0.15;
         ctx.globalAlpha = gradientOpacity;
         
-        // Create radial gradient from center
         const gradient = ctx.createRadialGradient(
           centerX, centerY, 0,
           centerX, centerY, Math.max(width, height) * 0.8
@@ -213,14 +164,10 @@ const CanvasTransition: React.FC<CanvasTransitionProps> = ({
         ctx.restore();
       }
 
-      // ======================================================================
-      // COMPLETION CHECK
-      // ======================================================================
       if (progress >= 1 && !completionCalledRef.current) {
         completionCalledRef.current = true;
         setIsAnimating(false);
 
-        // Small delay to ensure final frame is rendered
         setTimeout(() => {
           if (onComplete) {
             onComplete();
@@ -229,31 +176,24 @@ const CanvasTransition: React.FC<CanvasTransitionProps> = ({
         return;
       }
 
-      // Continue animation
       if (isAnimating && progress < 1) {
         animationFrameRef.current = requestAnimationFrame(animate);
       }
     }
 
-    // ========================================================================
-    // IMAGE LOADING HANDLERS
-    // ========================================================================
     const handleImageLoad = () => {
       imagesLoadedRef.current++;
-      if (imagesLoadedRef.current === 2) {
-        // Both images loaded, start animation
+      if (imagesLoadedRef.current >= 1 && !animationFrameRef.current) {
         animationFrameRef.current = requestAnimationFrame(animate);
       }
     };
 
     const handleImageError = (img: HTMLImageElement, isOld: boolean) => {
-      // Create a subtle gradient placeholder if image fails to load
       const placeholder = document.createElement("canvas");
       placeholder.width = width;
       placeholder.height = height;
       const placeholderCtx = placeholder.getContext("2d");
       if (placeholderCtx) {
-        // Create gradient background
         const gradient = placeholderCtx.createLinearGradient(0, 0, width, height);
         gradient.addColorStop(0, "#f5f5f5");
         gradient.addColorStop(1, "#e0e0e0");
@@ -268,7 +208,6 @@ const CanvasTransition: React.FC<CanvasTransitionProps> = ({
         placeholderCtx.fillText("Loading...", width / 2, height / 2 + 10);
       }
 
-      // Replace the failed image with placeholder
       if (isOld) {
         oldImgRef.current = placeholder as any;
       } else {
@@ -278,27 +217,31 @@ const CanvasTransition: React.FC<CanvasTransitionProps> = ({
       handleImageLoad();
     };
 
-    // Set up image load handlers
     oldImg.onload = handleImageLoad;
     oldImg.onerror = () => handleImageError(oldImg, true);
 
     newImg.onload = handleImageLoad;
     newImg.onerror = () => handleImageError(newImg, false);
 
-    // Start loading images
     oldImg.src = oldImage;
     newImg.src = newImage;
 
-    // ========================================================================
-    // CLEANUP
-    // ========================================================================
+    fallbackTimeoutRef.current = setTimeout(() => {
+      if (!animationFrameRef.current && isAnimating) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+      }
+    }, 50); 
+
     return () => {
       setIsAnimating(false);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      if (fallbackTimeoutRef.current) {
+        clearTimeout(fallbackTimeoutRef.current);
+        fallbackTimeoutRef.current = null;
+      }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [oldImage, newImage, width, height]);
 
   return (
