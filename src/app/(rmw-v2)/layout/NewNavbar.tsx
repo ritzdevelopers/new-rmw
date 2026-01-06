@@ -690,7 +690,7 @@ function NewNavbar() {
                     backgroundColor: bgColors[index] || "#0D0716",
                     color: "#fff",
                   }}
-                  className="xl:w-[280px] w-[230px] h-[250px] rounded-[8px] flex flex-col  p-5 shadow-lg"
+                  className="xl:w-[280px] w-[230px] h-[260px] rounded-[8px] flex flex-col  p-5 shadow-lg"
                 >
                   {/* Main Service Name  */}
                   <div>
