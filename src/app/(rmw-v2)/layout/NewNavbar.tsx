@@ -704,7 +704,7 @@ function NewNavbar() {
                   </div>
 
                   {/* Sub Services  */}
-                  <div className="flex flex-col xl:gap-2.5 gap-1">
+                  <div className="flex flex-col gap-1">
                     {item.sub.map((subItem, subIndex) => {
                       return (
                         <div key={subIndex} className="flex items-center gap-2">

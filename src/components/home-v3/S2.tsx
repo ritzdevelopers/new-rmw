@@ -17,15 +17,15 @@ function S2() {
     act: true,
     id: "01",
     ttl: "Digital Marketing",
-    img: "/home-v3/s2/530-digital.png",
+    img: "/home-v3/new/602-banner1.png",
     para: "We design digital strategies that balance reach and relevance, combining performance marketing, data insights, and platform intelligence to drive sustained visibility, intent, and measurable business growth.",
     link: "https://ritzmediaworld.com/services/digital-marketing",
   });
 
-  const [prevImage, setPrevImage] = useState<string>("/home-v3/s2/530-digital.png");
-  const [nextImage, setNextImage] = useState<string>("/home-v3/s2/530-digital.png");
+  const [prevImage, setPrevImage] = useState<string>("/home-v3/new/602-banner1.png");
+  const [nextImage, setNextImage] = useState<string>("/home-v3/new/602-banner1.png");
   const [showTransition, setShowTransition] = useState(false);
-  const [displayImage, setDisplayImage] = useState<string>("/home-v3/s2/530-digital.png");
+  const [displayImage, setDisplayImage] = useState<string>("/home-v3/new/602-banner1.png");
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [videoType, setVideoType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   const pendingCardRef = useRef<CardItem | null>(null);
@@ -184,7 +184,7 @@ function S2() {
 
           {/* Col 2 */}
           <div className="w-full lg:w-[375px] h-[250px] sm:h-[300px] lg:h-[370px] relative mx-auto lg:mx-0">
-            <Image src={"/home-v3/s2/s2-i1.png"} alt="rmw" fill className="object-contain"></Image>
+            <Image src={"/home-v3/new/s2-i1.png"} alt="rmw" fill className="object-contain"></Image>
           </div>
 
           {/* Col 3  */}
@@ -236,7 +236,7 @@ function S2() {
           {/* Row 1  */}
           <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-12 lg:gap-20 border-[1px] border-[#E2E2E2] py-6 sm:py-7 lg:py-8 px-4 sm:px-6 lg:px-0">
             <div className="w-full sm:w-[280px] flex flex-col justify-center items-center gap-2 text-center">
-              <img src="/home-v3/s2/clock.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
+              <img src="/home-v3/new/clock.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
@@ -250,7 +250,7 @@ function S2() {
             </div>
 
             <div className="w-full sm:w-[280px] flex flex-col justify-center items-center gap-2 text-center">
-              <img src="/home-v3/s2/board.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
+              <img src="/home-v3/new/board.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
@@ -264,7 +264,7 @@ function S2() {
             </div>
 
             <div className="w-full sm:w-[280px] flex flex-col justify-center items-center gap-2 text-center">
-              <img src="/home-v3/s2/wave.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
+              <img src="/home-v3/new/wave.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
@@ -280,7 +280,7 @@ function S2() {
 
           {/* Row 2  */}
           <div className="w-full h-[250px] sm:h-[350px] lg:h-[426px] relative">
-            <Image src={"/home-v3/s2/team-bg2.png"} alt="" fill className="object-cover"></Image>
+            <Image src={"/home-v3/new/team-bg2.png"} alt="" fill className="object-cover"></Image>
 
             {/* Overlay  */}
             <div className="absolute inset-0 bg-[#0000007b] w-full h-full z-0"></div>
@@ -409,7 +409,7 @@ function S2() {
                   act: true,
                   id: "01",
                   ttl: "Digital Marketing",
-                  img: "/home-v3/s2/530-digital.png",
+                  img: "/home-v3/new/602-banner1.png",
                   para: "We design digital strategies that balance reach and relevance, combining performance marketing, data insights, and platform intelligence to drive sustained visibility, intent, and measurable business growth.",
                   link: "https://ritzmediaworld.com/services/digital-marketing",
                 },
@@ -417,7 +417,7 @@ function S2() {
                   act: false,
                   id: "02",
                   ttl: "Creative Service",
-                  img: "/home-v3/s2/530-creative.png",
+                  img: "/home-v3/new/602-banner2.png",
                   para: "We craft brand identities and visual systems that feel consistent, contemporary, and meaningful, helping brands communicate clearly while standing out across digital, print, and physical environments.",
                   link: "https://ritzmediaworld.com/services/creative-services",
                 },
@@ -425,7 +425,7 @@ function S2() {
                   act: false,
                   id: "03",
                   ttl: "Print Advertisement",
-                  img: "/home-v3/s2/530-print.png",
+                  img: "/home-v3/new/2223.jpg",
                   para: "We create high-impact print campaigns that deliver credibility and recall, blending strong creative thinking with strategic placements across newspapers, magazines, outdoor formats, and on-ground brand touchpoints.",
                   link: "https://ritzmediaworld.com/services/print-advertising",
                 },
@@ -433,7 +433,7 @@ function S2() {
                   act: false,
                   id: "04",
                   ttl: "Radio Advertisement",
-                  img: "/home-v3/s2/530-radio.png",
+                  img: "/home-v3/new/602-banner-3.png",
                   para: "We develop audio-led brand stories that connect emotionally with listeners, using strategic scripting, voice, and media planning to deliver reach, frequency, and regional relevance.",
                   link: "https://ritzmediaworld.com/services/radio-advertising",
                 },
@@ -441,7 +441,7 @@ function S2() {
                   act: false,
                   id: "05",
                   ttl: "Content Marketing",
-                  img: "/home-v3/s2/530content.png",
+                  img: "/home-v3/new/content-marketing.png",
                   para: "We plan and create content that attracts, educates, and nurtures your audience, building brand authority, engagement, and long-term trust through consistent, platform-native storytelling.",
                   link: "https://ritzmediaworld.com/services/contents-marketing",
                 },
@@ -449,7 +449,7 @@ function S2() {
                   act: false,
                   id: "06",
                   ttl: "Web Development",
-                  img: "/home-v3/s2/530-web.png",
+                  img: "/home-v3/new/602-banner4.png",
                   para: "We build digital platforms that are intuitive, scalable, and performance-ready, aligning design, user experience, and technology to support brand credibility, discovery, and conversion.",
                   link: "https://ritzmediaworld.com/services/web-designing-and-development",
                 },
@@ -457,7 +457,7 @@ function S2() {
                   act: false,
                   id: "07",
                   ttl: "Influencer Marketing",
-                  img: "/home-v3/s2/530-influencer.png",
+                  img: "/home-v3/new/602-banner5.png",
                   para: "We enable authentic influencer collaborations that align with brand values, helping businesses reach niche communities through credible voices, contextual storytelling, and measurable campaign performance.",
                   link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
                 },
@@ -465,7 +465,7 @@ function S2() {
                   act: false,
                   id: "08",
                   ttl: "Celebrity Endorsement",
-                  img: "/home-v3/s2/530-endrosement.png",
+                  img: "/home-v3/new/immages-602.png",
                   para: "We manage strategic celebrity associations that enhance brand perception, handling selection, negotiation, and execution to ensure relevance, credibility, and long-term brand equity.",
                   link: "https://ritzmediaworld.com/services/celebrity-endorsements",
                 },
