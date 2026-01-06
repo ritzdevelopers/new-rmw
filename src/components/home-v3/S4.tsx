@@ -19,7 +19,7 @@ function S4() {
   // Data array for success stories
   const successStories = [
     {
-      img: "/home-v3/s4/590-celebrity.png",
+      img: "/home-v3/new/website-images-590.png",
       category: "Digital Advertising",
       title: "Digital Advertising",
       description:

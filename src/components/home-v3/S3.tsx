@@ -41,7 +41,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/creative-services",
     },
     {
-      img: "/home-v3/s3/450-print.png",
+      img: "/home-v3/new/471-newspaper-2.png",
       category: "Print Advertising",
       ttl: "Print advertising campaigns that maximize impact",
       list: [
