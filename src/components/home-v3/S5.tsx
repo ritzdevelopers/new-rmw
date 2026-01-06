@@ -116,7 +116,7 @@ function S5() {
     };
 
     return (
-        <section className='w-full lg:min-h-[632px] bg-[#F7F7F7] py-10 lg:py-20 flex justify-center items-center px-4 sm:px-6 lg:px-0'>
+        <section className='w-full lg:min-h-[632px] bg-[#F7F7F7] py-10 lg:py-[70px] flex justify-center items-center px-4 sm:px-6 lg:px-0'>
             {/* Center Align Container  */}
             <div className="w-full sm:w-[95%] lg:w-[90%] flex flex-col gap-6 sm:gap-8">
                 {/* Top Row  */}

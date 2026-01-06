@@ -187,7 +187,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
     }
   }, [modal.open, modal.status]);
   return (
-    <section className="w-full min-h-screen bg-[#ffffff] flex justify-center items-center py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-0">
+    <section className="w-full min-h-screen bg-[#ffffff] flex justify-center items-center py-10 sm:py-14 lg:py-[70px] px-4 sm:px-6 lg:px-0">
       {/* Centered Align Container  */}
       <div className="w-full sm:w-[95%] lg:w-[92%] flex flex-col gap-12 sm:gap-16 lg:gap-20">
         {/* Row 1  */}
