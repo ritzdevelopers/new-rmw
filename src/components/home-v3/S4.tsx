@@ -183,7 +183,7 @@ function S4() {
     }, []);
 
     return (
-    <section className="w-full min-h-screen bg-white flex justify-center items-center flex-col gap-10 sm:gap-16 lg:gap-20 py-10 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-0">
+    <section className="w-full min-h-screen bg-white flex justify-center items-center flex-col gap-10 sm:gap-16 lg:gap-20 py-10 sm:py-16 lg:py-[70px] px-4 sm:px-6 lg:px-0">
       {/* Center Align Container 1 */}
       <div className="w-full sm:w-[95%] lg:w-[90%] h-[95%] flex flex-col gap-4 sm:gap-6">
         {/* Top Row  */}

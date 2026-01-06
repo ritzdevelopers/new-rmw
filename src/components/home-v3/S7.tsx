@@ -43,7 +43,7 @@ function S7() {
     ];
 
     return (
-        <section className='w-full lg:min-h-[647px] bg-[url(/home-v3/s6/s6bg2.png)] bg-cover bg-no-repeat bg-center bg-black flex justify-center items-center py-10  lg:py-16 px-4 sm:px-6 lg:px-0'>
+        <section className='w-full lg:min-h-[647px] bg-[url(/home-v3/s6/s6bg2.png)] bg-cover bg-no-repeat bg-center bg-black flex justify-center items-center py-10  lg:py-[70px] px-4 sm:px-6 lg:px-0'>
 
             {/* Center Align Container  */}
             <div className='w-full sm:w-[95%] lg:w-[90%] flex flex-col gap-6'>

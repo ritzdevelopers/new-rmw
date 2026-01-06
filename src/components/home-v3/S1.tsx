@@ -4,7 +4,7 @@ import styles from "./page.module.css"
 
 function S1() {
   return (
-    <section className={`${styles.s1Sec} flex items-center bg-[#000000] text-white min-h-[400px] sm:min-h-[500px] lg:min-h-[648px] w-full relative bg-[url(/home-v3/s1/slider1.jpg)] bg-center bg-cover bg-no-repeat px-4 sm:px-6 md:pl-8 lg:pl-16 py-12 sm:py-16 lg:py-0`}>
+    <section className={`${styles.s1Sec} flex items-center bg-[#000000] text-white min-h-[400px] sm:min-h-[500px] lg:min-h-[648px] w-full relative bg-[url(/home-v3/s1/rmw-hr-home.jpg)] bg-center bg-cover bg-no-repeat px-4 sm:px-6 md:pl-8 lg:pl-16 py-12 sm:py-16 lg:py-0`}>
 
       <div className="w-full max-w-[600px] flex flex-col gap-12 sm:gap-16 lg:gap-20 mt-0 sm:mt-12 lg:mt-20">
         {/* Top Row  */}

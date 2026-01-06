@@ -196,7 +196,7 @@ function S2() {
   }, []);
   
   return (
-    <section className="bg-white w-full flex flex-col items-center justify-center min-h-screen py-10 sm:py-14 lg:py-20 px-4 sm:px-6 lg:px-0">
+    <section className="bg-white w-full flex flex-col items-center justify-center min-h-screen py-10 sm:py-14 lg:py-[70px] px-4 sm:px-6 lg:px-0">
       {/* Centered Align Main Container  */}
       <div className="w-full sm:w-[95%] lg:w-[90%] flex flex-col gap-8 sm:gap-9 lg:gap-10 xl:gap-18">
         {/* Row 1  */}
@@ -526,7 +526,9 @@ function S2() {
                     <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
                       fontFamily: 'MontserratRegular',
                     }}>{ob.id}</p>
-                    <h2 className="font-[700] text-[20px] sm:text-[24px] xl:text-[30px]">{ob.ttl}</h2>
+                    <h2 className="font-[700] text-[20px] sm:text-[24px] xl:text-[30px] " style={{
+                      fontFamily: 'OpenSansBold',
+                    }}>{ob.ttl}</h2>
                   </div>
                 );
               })}

@@ -115,7 +115,7 @@ function S3() {
   ];
 
   return (
-    <section className="w-full min-h-[895px] bg-[#F7F7F7] flex justify-end items-center md:pt-0 pt-10">
+    <section className="w-full min-h-[895px] bg-[#F7F7F7] flex justify-end items-center md:pt-0 pt-[70px]">
       {/* Centered Align End Container  */}
       <div className="w-[95%] h-[90%]">
         {/* Top Row  */}
@@ -131,7 +131,11 @@ function S3() {
           >
             360° Brand Elevation Services
           </h2>
-          <p className="font-[400] text-[16px] max-w-6xl">
+          <p className="font-[400] text-[16px] max-w-6xl" 
+          style={{
+            fontFamily: "OpenSansRegular",
+          }}
+          >
           From strategy to execution, we help brands grow with clarity, consistency, and impact across every touchpoint.
           </p>
         </div>
