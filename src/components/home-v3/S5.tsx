@@ -44,10 +44,10 @@ function S5() {
             para: "Became the go-to agency for UHNI and luxury lifestyle brands across India and the Middle East."
         },
         {
-            year: "2025",
+            year: "2026",
             img: "/home-v3/s5/s5i2.png",
             ttl: "Today",
-            para: "17+ years, 1000+ campaigns, 500+ success stories—and we’re still elevating brands to market leadership."
+            para: "18+ years, 1000+ campaigns, 500+ success stories—and we’re still elevating brands to market leadership."
         },
        
       

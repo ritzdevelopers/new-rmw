@@ -399,14 +399,26 @@ const Articles: React.FC = memo(() => {
                      lineHeight: "1.6",
                      flexGrow: 1,
                      contain: "layout style",
+                     minHeight: "76.8px", // Fixed height: 1rem * 1.6 lineHeight * 3 lines = 48px, but using 76.8px for 3 lines with line-height
+                     display: "flex",
+                     alignItems: "flex-start",
                    }}
                  >
                   {(() => {
                     const description = article?.meta_description || "";
                     const plainText = stripHtml(description) || "";
-                    const words = plainText.split(/\s+/);
-                    const shortened = words.slice(0, 30).join(" ");
-                    return words.length > 30 ? `${shortened}...` : shortened;
+                    // Fixed character limit: 120 characters for consistent card heights
+                    const maxChars = 120;
+                    if (plainText.length <= maxChars) {
+                      return plainText;
+                    }
+                    // Truncate at character limit, ensuring we don't cut in the middle of a word
+                    const truncated = plainText.slice(0, maxChars);
+                    const lastSpace = truncated.lastIndexOf(" ");
+                    const finalText = lastSpace > maxChars * 0.8 
+                      ? truncated.slice(0, lastSpace) 
+                      : truncated;
+                    return `${finalText.trim()}...`;
                   })()}
                 </p>
 
