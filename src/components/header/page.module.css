@@ -440,6 +440,15 @@
   color: #fddf82;
 }
 
+/* Dropdown hover styles */
+.position-relative:hover .dropdown-menu {
+  display: block !important;
+}
+
+.position-relative .dropdown-menu:hover {
+  display: block !important;
+}
+
 
 .submenu {
   max-height: 0;
