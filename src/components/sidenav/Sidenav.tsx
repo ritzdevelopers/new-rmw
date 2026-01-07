@@ -552,6 +552,45 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
           {expanded && webpagesLinks && (
             <div className=" space-y-2">
+                <Link href="/admin/home/manage-banners">
+                <div
+                  onClick={() => setActiveSubMenu("Manage Banners")}
+                  style={{  
+                    ...(!webpagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Manage Banners" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                 Manage Banners
+                </div>
+              </Link>
+
+              <Link href="/admin/home/add-banners">
+                <div
+                  onClick={() => setActiveSubMenu("Add Banners")}
+                  style={{  
+                    ...(!webpagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Add Banners" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                 Add Banners
+                </div>
+              </Link>
               <Link href="/admin/content">
                 <div
                   onClick={() => setActiveSubMenu("Manage Page")}
