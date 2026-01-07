@@ -184,7 +184,7 @@ function S2() {
 
           {/* Col 2 */}
           <div className="w-full lg:w-[375px] h-[250px] sm:h-[300px] lg:h-[370px] relative mx-auto lg:mx-0">
-            <Image src={"/home-v3/new/s2-i1.png"} alt="rmw" fill className="object-contain"></Image>
+            <Image src={"/home-v3/s2/s2-i22.png"} alt="rmw" fill className="object-contain"></Image>
           </div>
 
           {/* Col 3  */}
@@ -236,7 +236,7 @@ function S2() {
           {/* Row 1  */}
           <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-12 lg:gap-20 border-[1px] border-[#E2E2E2] py-6 sm:py-7 lg:py-8 px-4 sm:px-6 lg:px-0">
             <div className="w-full sm:w-[280px] flex flex-col justify-center items-center gap-2 text-center">
-              <img src="/home-v3/new/clock.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
+              <img src="/home-v3/s2/clock.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
@@ -250,7 +250,7 @@ function S2() {
             </div>
 
             <div className="w-full sm:w-[280px] flex flex-col justify-center items-center gap-2 text-center">
-              <img src="/home-v3/new/board.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
+              <img src="/home-v3/s2/board.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
@@ -264,7 +264,7 @@ function S2() {
             </div>
 
             <div className="w-full sm:w-[280px] flex flex-col justify-center items-center gap-2 text-center">
-              <img src="/home-v3/new/wave.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
+              <img src="/home-v3/s2/wave.png" alt="RMW" className="w-[48px] sm:w-[56px] lg:w-auto" />
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
@@ -280,7 +280,7 @@ function S2() {
 
           {/* Row 2  */}
           <div className="w-full h-[250px] sm:h-[350px] lg:h-[426px] relative">
-            <Image src={"/home-v3/new/team-bg2.png"} alt="" fill className="object-cover"></Image>
+            <Image src={"/home-v3/s2/team-bg2.png"} alt="" fill className="object-cover"></Image>
 
             {/* Overlay  */}
             <div className="absolute inset-0 bg-[#0000007b] w-full h-full z-0"></div>
