@@ -65,6 +65,8 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
   const [isDesktopSidebarOpen, setIsDesktopSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const imgT = useRef<HTMLImageElement | null>(null);
 
   // 🔹 Close menu & reset dropdown when route changes
@@ -83,6 +85,34 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
 
   // 🔹 Sticky elements
   useStickyElements();
+
+  // 🔹 Handle dropdown hover with delay
+  const handleMouseEnter = useCallback((index: number) => {
+    // Clear any existing timeout
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    // Immediately show the new dropdown
+    setHoveredIndex(index);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    // Set a delay before hiding (300ms)
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredIndex(null);
+      hoverTimeoutRef.current = null;
+    }, 300);
+  }, []);
+
+  // 🔹 Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
 
   // 🔹 Click outside dropdown → reset service dropdown
   const handleClickOutside = useCallback((event: MouseEvent) => {
@@ -254,6 +284,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     <li className="nav-item">
                       <Link
                         href="/about.html"
+                        target="_blank"
                         className="nav-links"
                         style={{
                           fontWeight: "bold",
@@ -304,15 +335,17 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                             <div className="elementor-element elementor-element-f21576b e-con-full d-flex justify-content-center align-items-center e-con e-child">
                               <div className="elementor-element elementor-element-08a5267 elementor-widget elementor-widget-tp-menu-demo">
                                 <div className="w-100">
-                                  <ul className="d-flex justify-content-evenly align-items-center flex-wrap list-unstyled m-0 p-0">
+                                  <ul className="d-flex justify-content-evenly align-items-center flex-nowrap list-unstyled m-0 p-0"
+                                 
+                                  
+                                  >
                                     {menuData.map((item, index) => (
                                       <li
                                         key={index}
-                                        className="position-relative flex-fill text-center px-2"
+                                        className="position-relative text-center px-2"
                                         style={{
-                                          width: "190px",
+                                          width: "180px",
                                           height: "50px",
-                                          // backgroundColor:'yellow',
                                           display: "flex",
                                           justifyContent: "center",
                                           alignItems: "center",
@@ -322,7 +355,9 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                                         <Link
                                           href={`${item.link}`}
                                           className="nav-link"
-                                          style={{ fontSize: "14px" }}
+                                          style={{ fontSize: "14px"  }}
+                                          onMouseEnter={() => handleMouseEnter(index)}
+                                          onMouseLeave={handleMouseLeave}
                                         >
                                           {item.name}{" "}
                                           {index !== menuData.length - 2 && (
@@ -338,10 +373,13 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                                             left: "50%",
                                             transform: "translateX(-50%)",
                                             minWidth: "200px",
-                                            display: "none",
+                                            display: hoveredIndex === index ? "block" : "none",
                                             background: "#f2f2f2eb",
                                             color: "#0c0c0c",
+                                            zIndex: 999999999999,
                                           }}
+                                          onMouseEnter={() => handleMouseEnter(index)}
+                                          onMouseLeave={handleMouseLeave}
                                         >
                                           {item.sub.map((subItem, subIndex) => (
                                             <li key={subIndex}>
@@ -365,12 +403,6 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                                     ))}
                                   </ul>
 
-                                  {/* ✅ CSS to Show Dropdown on Hover */}
-                                  <style jsx>{`
-                                    li.position-relative:hover .dropdown-menu {
-                                      display: block !important;
-                                    }
-                                  `}</style>
                                 </div>
                               </div>
                             </div>
