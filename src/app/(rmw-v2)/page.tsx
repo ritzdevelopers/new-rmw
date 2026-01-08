@@ -28,6 +28,16 @@ interface BLOGSSTRUCTURE {
 
 }
 
+interface SITEBANNERSSTRUCTURE {
+  id: number,
+  title: string,
+  paragraph: string,
+  mobile_banner: string,
+  tab_banner: string,
+  desktop_banner: string,
+  banner_status: boolean,
+}
+
 function page() {
   const lenisRef = useRef<Lenis | null>(null);
   const rafIdRef = useRef<number | null>(null);
@@ -36,13 +46,10 @@ function page() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-
-    // IMMEDIATELY set initial hidden state for all animated elements (prevents blinking)
-    // This must run synchronously before any animations
+    
     const setInitialStates = () => {
       const sections = document.querySelectorAll("section");
       sections.forEach((section, index) => {
-        // Skip S1 as it will be animated on load
         if (index === 0) return;
 
         const headings = section.querySelectorAll("h1, h2, h3");
@@ -51,7 +58,6 @@ function page() {
         const buttons = section.querySelectorAll("button");
         const lists = section.querySelectorAll("ul, ol");
 
-        // Set initial hidden state IMMEDIATELY (synchronously) to prevent flash
         const allElements = [
           ...headings,
           ...paragraphs,
@@ -435,6 +441,24 @@ function page() {
       }
     }
     fetchLatestBlogs();
+  }, []);
+
+  const [siteBanners, setSiteBanners] = useState<SITEBANNERSSTRUCTURE[]>([]);
+
+
+  useEffect(() => {
+    async function fetchSiteBanners() {
+      try {
+        const response = await axios.get("/api/site_banners/get");
+        if (response.status === 200) {
+          setSiteBanners(response.data.rows as SITEBANNERSSTRUCTURE[]);
+        }
+        console.log("Site banners fetched successfully", response.data.rows);
+      } catch (err) {
+        console.log("There are some errors in fetching the site banners plz fix the bug first ", err);
+      }
+    }
+    fetchSiteBanners();
   }, []);
 
   return (

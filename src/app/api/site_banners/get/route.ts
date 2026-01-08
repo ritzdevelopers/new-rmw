@@ -11,4 +11,3 @@ export async function GET() {
         return NextResponse.json({ message: "Error in site banners get", error }, { status: 500 });
     }
 }
-
