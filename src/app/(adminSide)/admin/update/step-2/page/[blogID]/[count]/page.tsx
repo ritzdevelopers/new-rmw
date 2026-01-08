@@ -143,16 +143,7 @@ const Page = () => {
       const step1Key = `update-blog-step-1-${blogID}`;
       const step1Data = JSON.parse(localStorage.getItem(step1Key) || "{}");
       setRMWLoader(true);
-      if (
-        !step1Data.blogTitle ||
-        !step1Data.blogCategory ||
-        !step1Data.metaKeywords
-      ) {
-        setRMWLoader(false);
-        setPopupData({ message: "Step 1 data missing! Please go back and fill it.", status: 400 });
-        setShowPopup(true);
-        return;
-      }
+  
       const finalBody = [];
       const innerImageMap: Record<number, File> = {};
       for (let i = 1; i <= totalPages; i++) {
@@ -220,8 +211,6 @@ const Page = () => {
       setShowPopup(true);
     }
   };
-
-  // -----------------------------------------------------------------
 
   interface IMGFORPREVIEW {
     url: string;
