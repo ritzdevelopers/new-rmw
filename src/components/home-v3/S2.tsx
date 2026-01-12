@@ -37,23 +37,23 @@ function S2() {
     if (ob.img !== activeCard.img && !showTransition) {
       setPrevImage(activeCard.img);
       setNextImage(ob.img);
-      setDisplayImage(activeCard.img); 
+      setDisplayImage(activeCard.img);
       pendingCardRef.current = ob;
 
       if (stateChangeTimeoutRef.current) {
         clearTimeout(stateChangeTimeoutRef.current);
       }
       setShowTransition(true);
-      
-      const totalAnimationTime = 350; 
-      const stateChangeTime = totalAnimationTime * 0.35; 
+
+      const totalAnimationTime = 350;
+      const stateChangeTime = totalAnimationTime * 0.35;
 
       stateChangeTimeoutRef.current = setTimeout(() => {
         if (pendingCardRef.current) {
           const newCard = { ...pendingCardRef.current };
-          
+
           setDisplayImage(newCard.img);
-          
+
           setActiveCard((prev) => {
             prev.act = false;
             newCard.act = true;
@@ -76,17 +76,17 @@ function S2() {
 
     if (pendingCardRef.current) {
       const newCard = { ...pendingCardRef.current };
-      
+
       setDisplayImage(newCard.img);
-      
+
       setActiveCard((prev) => {
         prev.act = false;
         newCard.act = true;
         return newCard;
       });
-      
+
       pendingCardRef.current = null;
-      
+
       setShowTransition(false);
     }
   };
@@ -118,7 +118,7 @@ function S2() {
     } else {
       setVideoType('mobile');
     }
-    
+
     setIsVideoOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -150,7 +150,7 @@ function S2() {
       document.body.style.overflow = 'unset';
     };
   }, []);
-  
+
   return (
     <section className="bg-white w-full flex flex-col items-center justify-center min-h-screen py-10 sm:py-14 lg:py-[70px] px-4 sm:px-6 lg:px-0">
       {/* Centered Align Main Container  */}
@@ -159,29 +159,28 @@ function S2() {
         <div className="w-full flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 xl:gap-10">
           {/* Col 1  */}
           <div className="w-full xl:max-w-[422px] lg:max-w-[380px] xl:w-auto flex flex-col gap-4 sm:gap-5 lg:gap-6">
-            <p className="font-[700] text-[22px] sm:text-[26px] xl:text-[30px]" style={{
+            <p className="font-[700] text-[22px] sm:text-[26px] xl:text-[30px] text-center md:text-left" style={{
               fontFamily: 'MontserratBold',
             }}>
-              What can you expect from the It's a potent question with a
-              surprisingly simple answer.
+              What can you expect from us?
             </p>
-            <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
+            <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-center md:text-left" style={{
               fontFamily: 'OpenSansRegular',
             }}>
-              You can expect a dose of obsession with creative storytelling with
-              a strong hint of consistency.
-              <b style={{
+              We create   <b style={{
                 fontFamily: 'OpenSansBold',
-              }}> Best advertising agency in NOIDA?</b> That's what{" "}
-              <b className="text-[#C99237]" style={{
+              }}>campaigns</b>  that look great and work even better, with consistency you can rely on. <br />
+             <b className="text-[#C99237]" style={{
                 fontFamily: 'OpenSansBold',
-              }}>Ritz Media World</b>  is all about.
+              }}>Ritz Media World</b> , your <b className="text-[#C99237]" style={{
+                fontFamily: 'OpenSansBold',
+              }}>advertising partner in Noida.</b> 
+        
             </p>
-            <button onClick={()=>window.open("https://ritzmediaworld.com/services", "_blank")} className="w-full sm:w-[200px] lg:w-[219px] h-[48px] sm:h-[50px] lg:h-[54px] border-[1px] border-[#C99237] rounded-[5px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] s1-btn-transparent cursor-pointer">
+            <button onClick={() => window.open("https://ritzmediaworld.com/services", "_blank")} className="w-full sm:w-[200px] lg:w-[219px] h-[48px] sm:h-[50px] lg:h-[54px] border-[1px] border-[#C99237] rounded-[5px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] s1-btn-transparent cursor-pointer">
               <p>Click to know more</p>
             </button>
           </div>
-
           {/* Col 2 */}
           <div className="w-full lg:w-[375px] h-[250px] sm:h-[300px] lg:h-[370px] relative mx-auto lg:mx-0">
             <Image src={"/home-v3/s2/s2-i22.png"} alt="rmw" fill className="object-contain"></Image>
@@ -280,12 +279,10 @@ function S2() {
 
           {/* Row 2  */}
           <div className="w-full h-[250px] sm:h-[350px] lg:h-[426px] relative">
-            <Image src={"/home-v3/s2/team-bg2.png"} alt="" fill className="object-cover"></Image>
+            <Image src={"/home-v3/s2/team-bg.jpg"} alt="" fill className="object-cover"></Image>
 
-            {/* Overlay  */}
-            <div className="absolute inset-0 bg-[#0000007b] w-full h-full z-0"></div>
 
-            <div 
+            <div
               onClick={handlePlayClick}
               style={{
                 position: 'absolute',
@@ -341,47 +338,47 @@ function S2() {
             <div className="w-full overflow-hidden">
               <div className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}>
                 {[
-                   "/new-page/logos/prm-9.jpg",
-                 "/new-page/logos/prm-22.jpg",
-                 "/new-page/logos/mpf-bl.png",
-                 "/new-page/logos/rdx-lg.avif",
-                 "/new-page/logos/prm-9.jpg",
-                 "/new-page/logos/prm-2.png",
+                  "/new-page/logos/prm-9.jpg",
+                  "/new-page/logos/prm-22.jpg",
+                  "/new-page/logos/mpf-bl.png",
+                  "/new-page/logos/rdx-lg.avif",
+                  "/new-page/logos/prm-9.jpg",
+                  "/new-page/logos/prm-2.png",
                   // duplicate set 1
                   "/new-page/logos/prm-3.png",
-                "/new-page/logos/prm-4.png",
-                 "/new-page/logos/prm-5.png",
-                 "/new-page/logos/prm-6.png",
-                 "/new-page/logos/prm-9.jpg",
-                 "/new-page/logos/prm-7.png",
+                  "/new-page/logos/prm-4.png",
+                  "/new-page/logos/prm-5.png",
+                  "/new-page/logos/prm-6.png",
+                  "/new-page/logos/prm-9.jpg",
+                  "/new-page/logos/prm-7.png",
                   // duplicate set 2 for seamless loop
                   "/new-page/logos/prm-8.jpg",
                   "/new-page/logos/prm-10.png",
-                 "/new-page/logos/prm-11.jpg",
-                 "/new-page/logos/prm-12.png",
-                "/new-page/logos/exotica-logo.png",
-                "/new-page/logos/prm-14.png",
-                "/new-page/logos/prm-16.png",
-                "/new-page/logos/prm-17.jpg",
-                "/new-page/logos/prm-18.png",
-                "/new-page/logos/prm-19.png",
-                "/new-page/logos/prm-20.jpg",
-                "/new-page/logos/scnd-3.jpg",
-                "/new-page/logos/scnd-4.jpg",
-                "/new-page/logos/scnd-5.jpg",
-                "/new-page/logos/scnd-6.jpg",
-                "/new-page/logos/scnd-7.jpg",
-                "/new-page/logos/scnd-8.jpg",
-                "/new-page/logos/scnd-9.jpg",
-                "/new-page/logos/scnd-10.jpg",
-                "/new-page/logos/scnd-11.jpg",
-                "/new-page/logos/scnd-12.jpg",
-                "/new-page/logos/scnd-13.jpg",
-                "/new-page/logos/scnd-14.jpg",
-                "/new-page/logos/scnd-15.jpg",
-                "/new-page/logos/scnd-16.jpg",
-                "/new-page/logos/scnd-17.jpg",
-                "/new-page/logos/scnd-18.jpg",
+                  "/new-page/logos/prm-11.jpg",
+                  "/new-page/logos/prm-12.png",
+                  "/new-page/logos/exotica-logo.png",
+                  "/new-page/logos/prm-14.png",
+                  "/new-page/logos/prm-16.png",
+                  "/new-page/logos/prm-17.jpg",
+                  "/new-page/logos/prm-18.png",
+                  "/new-page/logos/prm-19.png",
+                  "/new-page/logos/prm-20.jpg",
+                  "/new-page/logos/scnd-3.jpg",
+                  "/new-page/logos/scnd-4.jpg",
+                  "/new-page/logos/scnd-5.jpg",
+                  "/new-page/logos/scnd-6.jpg",
+                  "/new-page/logos/scnd-7.jpg",
+                  "/new-page/logos/scnd-8.jpg",
+                  "/new-page/logos/scnd-9.jpg",
+                  "/new-page/logos/scnd-10.jpg",
+                  "/new-page/logos/scnd-11.jpg",
+                  "/new-page/logos/scnd-12.jpg",
+                  "/new-page/logos/scnd-13.jpg",
+                  "/new-page/logos/scnd-14.jpg",
+                  "/new-page/logos/scnd-15.jpg",
+                  "/new-page/logos/scnd-16.jpg",
+                  "/new-page/logos/scnd-17.jpg",
+                  "/new-page/logos/scnd-18.jpg",
                 ].map((url, idx) => (
                   <div
                     key={idx}
@@ -410,12 +407,12 @@ function S2() {
         <div className="w-full flex flex-col gap-8 sm:gap-10 lg:gap-12">
           {/* Div 1  */}
           <div className="w-full">
-            <h3 className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px]" style={{
+            <h3 className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left" style={{
               fontFamily: 'MontserratBold',
             }}  >
               Choose Your Brand Journey
             </h3>
-            <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
+            <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-center md:text-left" style={{
               fontFamily: 'OpenSansRegular',
             }}>
               Tailored growth programmes engineered for the industries and
@@ -426,7 +423,7 @@ function S2() {
           {/* Div 2  */}
           <div className="w-full flex flex-col lg:flex-row justify-between gap-8 lg:gap-0">
             {/* Left Side Container  */}
-            <div className="flex flex-col gap-3 sm:gap-4">
+            <div className="lg:flex lg:flex-col grid grid-cols-2 gap-4 lg:gap-4">
               {[
                 {
                   act: true,
@@ -496,16 +493,15 @@ function S2() {
                 return (
                   <div
                     key={ob.id}
-                    onClick={()=>handleCardHover(ob)}
+                    onClick={() => handleCardHover(ob)}
                     // onMouseEnter={() => handleCardHover(ob)}
-                    className={`relative xl:pl-16 flex gap-2 sm:gap-3 lg:gap-4 ${
-                      ob.ttl === activeCard.ttl ? "text-[#000000] " + styles.activeCardLine : "text-[#C5C5C5]"
-                    } cursor-pointer transition-colors duration-200`}
+                    className={`relative xl:pl-16 flex gap-2 sm:gap-3 lg:gap-4 ${ob.ttl === activeCard.ttl ? "text-[#000000] " + styles.activeCardLine : "text-[#C5C5C5]"
+                      } cursor-pointer transition-colors duration-200`}
                   >
                     <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
                       fontFamily: 'MontserratRegular',
                     }}>{ob.id}</p>
-                    <h2 className="font-[700] text-[20px] sm:text-[24px] xl:text-[30px] " style={{
+                    <h2 className="font-[700] text-[14px] md:text-[24px] xl:text-[30px] " style={{
                       fontFamily: 'OpenSansBold',
                     }}>{ob.ttl}</h2>
                   </div>
@@ -515,11 +511,11 @@ function S2() {
             {/* Right Side Container  */}
             <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 w-full lg:max-w-[580px] xl:max-w-[602px] xl:pr-0 lg:pr-8">
               <div className="w-full xl:w-[602px] h-[200px] sm:h-[250px] md:h-[300px] lg:h-[336px] relative overflow-hidden mx-auto lg:mx-0 cursor-pointer">
-                <Image 
-                  src={displayImage} 
-                  onClick={()=>window.open(activeCard.link, "_blank")}
-                  alt="RMW" 
-                  fill 
+                <Image
+                  src={displayImage}
+                  onClick={() => window.open(activeCard.link, "_blank")}
+                  alt="RMW"
+                  fill
                   priority
                   style={{ transition: 'opacity 0.1s' }}
                 />
@@ -534,12 +530,12 @@ function S2() {
                   />
                 )}
               </div>
-              <p className="font-[400] text-[13px] sm:text-[13.5px] lg:text-[14px]" style={{
+              <p className="font-[400] text-[13px] sm:text-[13.5px] lg:text-[14px] text-center md:text-left" style={{
                 fontFamily: 'OpenSansRegular',
               }}>
                 {activeCard.para}
               </p>
-              <button onClick={()=>window.open(activeCard.link, "_blank")} className="w-full sm:w-[240px] lg:max-w-[261px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] h-[48px] sm:h-[50px] lg:h-[54px] rounded-[5px] cursor-pointer border-[1px] border-[#C99237]  s1-btn-transparent">
+              <button onClick={() => window.open(activeCard.link, "_blank")} className="w-full sm:w-[240px] lg:max-w-[261px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] h-[48px] sm:h-[50px] lg:h-[54px] rounded-[5px] cursor-pointer border-[1px] border-[#C99237]  s1-btn-transparent">
                 <p>Explore {activeCard.ttl}</p>
               </button>
             </div>
@@ -547,13 +543,13 @@ function S2() {
 
           {/* Div 3  */}
           <div className="w-full">
-            <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
+            <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-center md:text-left" style={{
               fontFamily: 'OpenSansRegular',
             }}>
               Not sure which path fits your brand? <span className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] underline cursor-pointer" style={{
-              fontFamily: 'OpenSansSemiBold',
-            }} onClick={()=>window.open("https://ritzmediaworld.com/contact.html", "_blank")}>
-              Let's discuss your unique needs
+                fontFamily: 'OpenSansSemiBold',
+              }} onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}>
+                Let's discuss your unique needs
               </span>
             </p>
           </div>
@@ -562,15 +558,15 @@ function S2() {
 
       {/* Video Modal */}
       {isVideoOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-[9999] flex justify-center items-center"
           onClick={handleCloseVideo}
         >
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black bg-opacity-90"></div>
-          
+
           {/* Video Container */}
-          <div 
+          <div
             className="relative w-[90vw] h-[90vh] flex justify-center items-center z-10"
             onClick={(e) => e.stopPropagation()}
           >

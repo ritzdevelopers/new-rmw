@@ -176,7 +176,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
           {/* Header  */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-6">
             {/* Left Side Container  */}
-            <div className="flex flex-col gap-2 sm:gap-3">
+            <div className="flex flex-col gap-2 sm:gap-3 text-center md:text-left">
               <p
                 className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237] uppercase"
                 style={{
@@ -226,14 +226,14 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                   className="w-full sm:w-[calc(33.333%-10px)] lg:w-[405px] h-auto lg:h-[311px] flex flex-col gap-2"
                 >
                   {/* Image Container  */}
-                  <div className="w-full relative h-[250px] lg:h-[212px]">
-                    <Image
+                  <div className="w-full relative h-auto lg:h-[212px]">
+                    <img
                     onClick={()=>window.open(`https://ritzmediaworld.com/${ob.blogSlug}`, "_blank")}
                       src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
                       alt="RMW"
-                      fill
-                      className="object-cover"
-                    ></Image>
+                      className="w-full h-full"
+                      // className="object-cover"
+                    ></img>
                     
                   </div>
                   <p className="font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center">
@@ -245,7 +245,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                   </p>
                   <h3
                   onClick={()=>window.open(`https://ritzmediaworld.com/${ob.blogSlug}`, "_blank")}
-                    className="font-[600] text-[16px] sm:text-[17px] lg:text-[18px] text-black"
+                    className="font-[600] text-[15px] xl:text-[18px] text-black"
                     style={{
                       fontFamily: "OpenSansSemiBold",
                     }}
@@ -285,8 +285,8 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
         {/* Row 2  */}
         <div className="w-full flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10">
           {/* Left Side Container  */}
-          <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8">
-            <div>
+          <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
+            <div className="text-center md:text-left mb-2 md:mb-0">
               <p
                 className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237]"
                 style={{
@@ -296,7 +296,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                 Free Resource
               </p>
               <h2
-                className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px]"
+                className="font-[700] text-[21px]  lg:text-[36px]"
                 style={{
                   fontFamily: "MontserratBold",
                 }}
@@ -304,12 +304,12 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                 2025 Brand Impact Report
               </h2>
             </div>
-            <p className="font-[700] text-[20px] sm:text-[22px] lg:text-[24px]">
+            <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
               Download Our
             </p>
 
             <p
-              className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]"
+              className="font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-2 md:mb-0"
               style={{
                 fontFamily: "PoppinsRegular",
               }}
@@ -318,7 +318,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
             </p>
 
             <ul
-              className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] list-disc pl-4 flex flex-col gap-2 sm:gap-3"
+              className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
               style={{
                 fontFamily: "PoppinsRegular",
               }}
@@ -365,7 +365,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                 </button>
               </div>
               <p
-                className="font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E]"
+                className="font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E] text-center md:text-left"
                 style={{
                   fontFamily: "PoppinsRegular",
                 }}
@@ -376,9 +376,9 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
           </div>
 
           {/* Right Side Container  */}
-          <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[400px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
+          <div className="w-full lg:w-[48%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
             <h2
-              className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px]"
+              className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left"
               style={{
                 fontFamily: "MontserratBold",
               }}
@@ -387,7 +387,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
             </h2>
 
             <p
-              className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]"
+              className="font-[400] text-[14px] md:text-[15px] lg:text-[16px] text-center md:text-left"
               style={{
                 fontFamily: "PoppinsRegular",
               }}
@@ -397,7 +397,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
             </p>
 
             <ul
-              className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[14px] sm:text-[15px] lg:text-[16px]"
+              className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-center md:text-left"
               style={{
                 fontFamily: "PoppinsRegular",
               }}
@@ -408,7 +408,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
               <li>Customized strategy roadmap</li>
             </ul>
 
-            <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5">
+            <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-center md:text-left">
               <Link
                 href={"https://ritzmediaworld.com/contact.html"}
                 target="_blank"
@@ -433,7 +433,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
           {/* Center Align Container  */}
           <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
             <h2
-              className="font-[800] text-[24px] sm:text-[28px] lg:text-[36px]"
+              className="font-[800] text-[19px] md:text-[28px] lg:text-[36px]"
               style={{
                 fontFamily: "MontserratExtraBold",
               }}
@@ -441,7 +441,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
               Ready to Elevate Your Brand?
             </h2>
             <p
-              className="font-[400] text-[18px] sm:text-[24px] lg:text-[30px]"
+              className="font-[400] text-[16px] md:text-[24px] lg:text-[30px]"
               style={{
                 fontFamily: "OpenSansRegular",
               }}

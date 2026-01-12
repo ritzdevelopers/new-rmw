@@ -120,7 +120,7 @@ function S5() {
                 {/* Top Row  */}
                 <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
                     {/* Left Side Container  */}
-                    <div className='w-full sm:w-auto'>
+                    <div className='w-full sm:w-auto text-center md:text-left'>
                         <p className='font-[600] text-[14px] sm:text-[16px] text-[#C99237] uppercase' style={{
                             fontFamily: "OpenSansSemiBold",
                         }}>our Journey</p>
