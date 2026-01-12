@@ -34,7 +34,7 @@ function S6() {
       {/* Center Align Container  */}
       <div className="w-full sm:w-[95%] lg:w-[90%] flex flex-col">
         {/* Top Row  */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 text-center md:text-left">
           <p
             className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] uppercase text-[#C99237]"
             style={{
@@ -43,7 +43,7 @@ function S6() {
           >
             Clients Testimonials
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 items-start sm:items-end">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 items-center md:items-end text-center md:text-left">
             <h2
               className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px]"
               style={{
