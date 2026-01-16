@@ -39,13 +39,13 @@ function S5() {
         },
         {
             year: "2020",
-            img: "/home-v3/s5/s5i5.jpg",
+            img: "/home-v3/s5/2020-img.png",
             ttl: "Premium Positioning",
             para: "Became the go-to agency for UHNI and luxury lifestyle brands across India and the Middle East."
         },
         {
             year: "2026",
-            img: "/home-v3/s5/s5i2.png",
+            img: "/home-v3/s5/2026-img.png",
             ttl: "Today",
             para: "18+ years, 1000+ campaigns, 500+ success stories—and we’re still elevating brands to market leadership."
         },
@@ -132,7 +132,7 @@ function S5() {
                         }}>From pioneering print innovations to 360° digital mastery, our journey reflects our commitment to excellence.</p>
                     </div>
 
-                    <div className="flex gap-2 flex-shrink-0">
+                    <div className="flex gap-2 w-full md:w-auto md:flex-shrink-0 justify-center md:justify-end">
                         {/* Slider Buttons  */}
                         <button 
                             onClick={handlePrev}
