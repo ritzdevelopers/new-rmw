@@ -143,7 +143,7 @@ function S3() {
         {/* Bottom Row  */}
         <div className="w-full flex flex-col gap-6">
           {/* Btn Container  */}
-          <div className="w-full flex justify-end items-center gap-2 pr-6">
+          <div className="w-full flex justify-center md:justify-end items-center gap-2 pr-6 mt-4 md:mt-0">
             <button
               onClick={() => swiperRef.current?.slidePrev()}
               className="cursor-pointer"

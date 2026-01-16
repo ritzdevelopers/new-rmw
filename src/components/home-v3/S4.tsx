@@ -208,7 +208,7 @@ function S4() {
             </p>
           </div>
           {/* Slider Btns  */}
-          <div className="flex gap-2 flex-shrink-0">
+          <div className="flex gap-2 md:flex-shrink-0 justify-center md:justify-end w-full md:w-auto">
             <button
               onClick={() => swiperRef.current?.slidePrev()}
               className="cursor-pointer"
