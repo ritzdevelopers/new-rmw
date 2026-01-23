@@ -19,13 +19,13 @@ async function callServicesData() {
 }
 
 export default async function ServicePage1() {
-    const {data} = await callServicesData();
+    // const {data} = await callServicesData();
 
     return (
         <>
             <Section1 />
             <Section2 />
-            <Section3 servicesData={data}></Section3>
+            <Section3 servicesData={[]}></Section3>
         </>
     )
 }
