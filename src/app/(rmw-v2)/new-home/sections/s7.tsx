@@ -40,13 +40,13 @@ const TIMELINE_DATA: TimelineItem[] = [
     icn: "/new-page/icns/glob_white.png",
     year: "2020",
     title: "Premium Positioning",
-    para: "Became the go-to agency for UHNI and luxury lifestyle brands across India and the Middle East.",
+    para: "Became the go to agency for UHNI and luxury lifestyle brands across India and the Middle East.",
   },
   {
     icn: "/new-page/icns/glob_white.png",
     year: "2025",
     title: "Today",
-    para: "17+ years, 1000+ campaigns, 500+ success stories—and we’re still elevating brands to market leadership.",
+    para: "17+ years, 1000+ campaigns, 500+ success stories and we’re still elevating brands to market leadership.",
   },
 ];
 

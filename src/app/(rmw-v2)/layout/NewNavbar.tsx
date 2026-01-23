@@ -925,6 +925,28 @@ function NewNavbar() {
 
             {/* Other Menu Items */}
             <div className="space-y-1 pt-2">
+            <Link
+                href="https://ritzmediaworld.com/blogs"
+                target="_blank"
+                className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="relative">
+                  Blogs
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
+                </span>
+              </Link>
+              <Link
+                href="https://ritzmediaworld.com/rdx-digital-marketing-course"
+                target="_blank"
+                className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <span className="relative">
+                  Academy
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
+                </span>
+              </Link>
               <Link
                 href="https://ritzmediaworld.com/work.html"
                 target="_blank"

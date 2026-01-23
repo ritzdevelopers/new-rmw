@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./S6.css";
 import { Pagination, Autoplay } from "swiper/modules";
- 
+import styles from "./S3.module.css"
 function S6() {
   const data = [  
     {
@@ -32,7 +32,7 @@ function S6() {
   return (
     <section className="w-full flex justify-center items-center py-10 sm:py-12 lg:py-[70px] px-4 sm:px-6 lg:px-0">
       {/* Center Align Container  */}
-      <div className="w-full sm:w-[95%] lg:w-[90%] flex flex-col">
+      <div className={`w-full lg:px-20 px-4 flex flex-col ${styles.container}`}>
         {/* Top Row  */}
         <div className="flex flex-col gap-2 text-center md:text-left">
           <p

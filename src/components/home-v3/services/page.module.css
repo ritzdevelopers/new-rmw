@@ -1,0 +1,18 @@
+@media (min-width: 1370px) {
+    .containerWidth {
+       width: 1400px !important; 
+       margin: 0 auto;
+    }
+}
+
+@media (max-width: 880px) {
+   .hidenElips {
+    display: none  !important;
+   }
+   .yofText {
+    font-size: 23px !important;
+   }
+   .yofImage {
+    width: 230px !important;
+   }
+}

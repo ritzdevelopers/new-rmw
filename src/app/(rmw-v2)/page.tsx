@@ -464,12 +464,12 @@ function page() {
   return (
     <>
       {/* Hero Section - Full Width */}
-      <S1></S1>
-      {/* <NewYear></NewYear> */}
+      {/* <S1></S1> */}
+      <NewYear></NewYear>
       {/* Other Sections - Fixed Width Above 1440px */}
 
 
-      <div ref={containerRef} className={styles.container}>
+      <div ref={containerRef} >
       <S2></S2>
       </div>
 

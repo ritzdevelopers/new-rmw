@@ -33,9 +33,9 @@ function S1() {
   // Single image configuration
   const imageConfig = React.useMemo(
     () => ({
-      desktop: "/new-year/dekstop5-2026.png",
-      tablet: "/new-year/tab3-2026.png",
-      mobile: "/new-year/mobile3-2026.png",
+      desktop: "/republic-day/banner-21-januaryRMW-BANNER2.jpg",
+      tablet: "/republic-day/768-by500.png",
+      mobile: "/republic-day/banner-26-jan-phone2.jpg",
       alt: "Ritz Media World branding showcase",
     }),
     []
@@ -51,7 +51,7 @@ function S1() {
   }, [imageConfig, screenSize]);
 
   return (
-    <section className="relative flex h-auto h-screen w-full items-center overflow-hidden overflow-x-hidden max-w-full">
+    <section className="relative flex h-[88vh]   md:h-screen w-full items-center overflow-hidden overflow-x-hidden max-w-full">
       {/* Single Banner Image */}
       <div className="absolute inset-0 overflow-hidden z-10">
         <div className="relative h-full w-full">
@@ -64,13 +64,13 @@ function S1() {
             sizes="100vw"
             quality={100}
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/30 to-transparent" />
+          {/* <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/30 to-transparent" /> */}
         </div>
       </div>
 
       {/* Top Centered Align Absolute Positioned Div - Award Info */}
       <div
-        className={`pointer-events-none absolute z-30 bottom-10 left-1/2 hidden sm:flex -translate-x-1/2`}
+        className={`pointer-events-none absolute z-30 lg:bottom-10 bottom-0 left-1/2 -translate-x-1/2 hidden sm:flex `}
       >
         <div
           className={`w-full h-full min-w-[435px] border border-white/10 items-center justify-center rounded-full ${styles.glasscard} py-3`}
@@ -89,13 +89,13 @@ function S1() {
                   fill="#F3830E"
                 />
               </svg>
-              <p className="font-[500] text-[14px] lg:text-[16px] text-white">
+              <p className="font-[500] text-[14px] lg:text-[16px] text-[#0f8502]">
                 Award-Winning Agency{" "}
               </p>
             </div>
             <div>
               <p className="font-[500] text-[14px] lg:text-[16px] text-[#F3830E]">
-                Since <span className="text-[14px] lg:text-[16px] text-white">2008</span>
+                Since <span className="text-[14px] lg:text-[16px] text-[#0f8502]">2008</span>
               </p>
             </div>
           </div>
@@ -103,7 +103,7 @@ function S1() {
       </div>
 
       {/* Bottom Centered Align Absolute Positioned Div - Buttons */}
-      <div className="absolute bottom-26 left-1/2 -translate-x-1/2 z-30 w-full max-w-[720px] px-6 sm:px-10">
+      <div className="hidden bottom-26 left-6 z-30 w-full max-w-[720px] ">
         <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm font-medium lg:text-base justify-center items-center">
           <button
             onClick={() =>

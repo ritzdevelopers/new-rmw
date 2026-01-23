@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./page.module.css";
+import styles from "./S3.module.css";
 import CanvasTransition from "./CanvasTransition";
 interface CardItem {
   act: boolean;
@@ -154,7 +154,7 @@ function S2() {
   return (
     <section className="bg-white w-full flex flex-col items-center justify-center min-h-screen py-10 sm:py-14 lg:py-[70px] px-4 sm:px-6 lg:px-0">
       {/* Centered Align Main Container  */}
-      <div className="w-full sm:w-[95%] lg:w-[90%] flex flex-col gap-8 sm:gap-9 lg:gap-10 xl:gap-18">
+      <div className={`w-full lg:px-20 px-4 flex flex-col gap-8 sm:gap-9 lg:gap-10 xl:gap-18 ${styles.container}`}>
         {/* Row 1  */}
         <div className="w-full flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 xl:gap-10">
           {/* Col 1  */}

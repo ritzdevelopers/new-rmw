@@ -46,7 +46,7 @@ function S7() {
         <section className='w-full lg:min-h-[647px] bg-[url(/home-v3/s6/s6bg2.png)] bg-cover bg-no-repeat bg-center bg-black flex justify-center items-center py-10  lg:py-[70px] px-4 sm:px-6 lg:px-0'>
 
             {/* Center Align Container  */}
-            <div className={`w-full sm:w-[95%] lg:w-[90%] flex flex-col gap-6 ${styles.container}`}>
+            <div className={`w-full lg:px-20 px-4 flex flex-col gap-6 ${styles.container}`}>
                 {/* Top Row  */}
                 <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
                     {/* Left Side Container  */}
