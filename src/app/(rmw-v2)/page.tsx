@@ -162,7 +162,7 @@ function page() {
           const sectionTl = gsap.timeline({
             scrollTrigger: {
               trigger: section,
-              start: "top 85%",
+              start: "top 95%",
               toggleActions: "play none none none",
               invalidateOnRefresh: true,
             },
@@ -393,8 +393,6 @@ function page() {
       });
     };
 
-    // Initialize animations after a short delay to ensure DOM is ready
-    // Initial states are already set synchronously above, so no blinking will occur
     const initTimeout = setTimeout(() => {
       // Set initial states again in case new elements were added
       setInitialStates();

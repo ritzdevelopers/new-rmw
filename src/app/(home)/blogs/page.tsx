@@ -1,34 +1,23 @@
-"use client";
 
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
+import styles from "./loading.module.css";
 
 // Optimized dynamic imports for better code splitting and LCP
+// Server-side rendering enabled for better page speed
 const Articles = dynamic(() => import("@/allPages/blogPage/Articles"), {
   loading: () => (
     <div 
-      className="d-flex justify-content-center align-items-center" 
+      className={`d-flex justify-content-center align-items-center ${styles.shimmer}`}
       style={{ 
-        minHeight: '400px',
-        background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-        backgroundSize: '200% 100%',
-        animation: 'shimmer 1.5s infinite'
+        minHeight: '400px'
       }}
-    >
-      <style jsx>{`
-        @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
-        }
-      `}</style>
-    </div>
-  ),
-  ssr: false
+    />
+  )
 });
 
 const Footer = dynamic(() => import("@/components/footer/Footer"), {
-  loading: () => <div style={{ height: '200px', background: '#f8f9fa' }} />,
-  ssr: false
+  loading: () => <div style={{ height: '200px', background: '#f8f9fa' }} />
 });
 
 const PagesBanner = dynamic(() => import("@/components/pagesBanner/PagesBanner"), {
@@ -44,21 +33,14 @@ const PagesBanner = dynamic(() => import("@/components/pagesBanner/PagesBanner")
     >
       <h1 style={{ fontSize: '3rem', fontWeight: '700', color: '#333' }}>Blogs</h1>
     </div>
-  ),
-  ssr: false
+  )
 });
 
 const page = () => {
   return (
-    <>
-      {/* Preload critical resources for better LCP */}
-      <link rel="preload" href="/videos/bg_pattern.mp4" as="video" type="video/mp4" />
-      <link rel="preload" href="/api/ritz_blogs/get-all-blogs" as="fetch" crossOrigin="anonymous" />
-      <link rel="preload" href="/api/all_blogs" as="fetch" crossOrigin="anonymous" />
-      
-      <section
-        style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      >
+    <section
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
         <div className="body-overlay"></div>
         
         <Suspense fallback={
@@ -85,21 +67,11 @@ const page = () => {
 
         <Suspense fallback={
           <div 
-            className="d-flex justify-content-center align-items-center" 
+            className={`d-flex justify-content-center align-items-center ${styles.shimmer}`}
             style={{ 
-              minHeight: '400px',
-              background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-              backgroundSize: '200% 100%',
-              animation: 'shimmer 1.5s infinite'
+              minHeight: '400px'
             }}
-          >
-            <style jsx>{`
-              @keyframes shimmer {
-                0% { background-position: -200% 0; }
-                100% { background-position: 200% 0; }
-              }
-            `}</style>
-          </div>
+          />
         }>
           <Articles />
         </Suspense>
@@ -108,7 +80,6 @@ const page = () => {
           <Footer />
         </Suspense>
       </section>
-    </>
   );
 };
 
