@@ -1,34 +1,51 @@
 import React from 'react';
 import { BsArrowUpRight } from "react-icons/bs";
+import styles2 from "./page.module.css";
 
 function Section2() {
     return (
-        <section className='flex justify-center items-center px-20 py-[70px]'>
+        <section className='flex justify-center items-center px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px] border-b-[1px] border-[#D9D9D9]'>
 
             {/* Center Align Container  */}
-            <div className="flex justify-between items-center gap-10 w-full">
+            <div className={`flex flex-col md:flex-row justify-between items-center lg:items-center gap-6 sm:gap-8 md:gap-4 w-full ${styles2.containerWidth}`}>
                 {/* Left Side Container  */}
-                <div className="flex flex-col gap-6 w-[547px]">
-                    <h2 className="font-[600] text-[30px] text-black">At Ritz Media World, we have an obsession with being wizards of quirkiness that morph good ideas into Brilliant ones.</h2>
-                    <p className="font-[400] text-[16px] text-black">
-                        Our services deliver results that drive your competitor’s envy. We blend digital magic, classic & modern mediums, and creative ingenuity to ensure that your brand doesn’t just speak; it captivates.
+                <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full maxw-[547px]">
+                    <h2 className={`font-[600] text-[18px] lg:text-[20px] xl:text-[30px] text-black leading-tight sm:leading-snug md:leading-normal ${styles2.yofText}`}>
+                        At <span className='text-[#C99237]'>Ritz Media World</span>, we have an obsession with being wizards of quirkiness that morph good ideas into Brilliant ones.
+                    </h2>
+                    <p className="font-[400] text-[14px] sm:text-[15px] xl:text-[16px] text-black leading-relaxed">
+                        Our services deliver results that drive your competitor's envy. We blend digital magic, classic & modern mediums, and creative ingenuity to ensure that your brand doesn't just speak; it captivates.
                     </p>
                     <div>
-                        <button className="flex justify-between items-center gap-4 bg-transparent border-none">
-                            <p className="font-[500] text-[18px] text-black">Contact us</p>
+                        <button className="flex justify-between items-center gap-3 sm:gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                            <p className="font-[500] text-[16px]  xl:text-[18px] text-black">Contact us</p>
 
-                            <div className="bg-[#C99237] h-[40px] w-[40px] rounded-[50px] flex justify-center items-center text-white">
-                                <BsArrowUpRight className='text-white' />
+                            <div className="bg-[#C99237] h-[36px] w-[36px] sm:h-[38px] sm:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-white">
+                                <BsArrowUpRight className='text-white text-[16px] sm:text-[17px] lg:text-[18px]' />
                             </div>
                         </button>
                     </div>
                 </div>
 
                 {/* Right Side Container  */}
-                <div className="flex gap-10">
-                    <div className='w-[253px] h-[341px] bg-black'></div>
-                    <div className='w-[443px] h-[417px]'>
-                        <img src="/home-v3/service-imgs/s2/s2-circle-container.png" alt="" className='w-full h-full' />
+                <div className="flex flex-col sm:flex-row gap-4  xl:gap-10 items-center justify-center lg:justify-start w-full lg:w-auto">
+                    <div className='border-[1px] border-[#DEDEDE] flex flex-col justify-center items-center gap-2 sm:gap-3 p-3 sm:p-4'>
+                        {/* Row 1  */}
+                        <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full sm:w-[180px] md:w-[195px] lg:w-[205px]">
+                            <div className="w-full sm:w-auto flex justify-center sm:justify-start">
+                                <img src="/home-v3/service-imgs/s2/17+.png" alt="" className='w-[100px] sm:w-[110px] md:w-[120px] lg:w-[130px] h-auto' />
+                            </div>
+
+                            <p className="font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] text-center sm:text-left inline">Years working experience</p>
+                        </div>
+
+                        {/* Row 2  */}
+                        <div className={`w-full lg:w-[205px] ${styles2.yofImage}`}>
+                            <img src="/home-v3/service-imgs/s2/frame-img.png" alt="" className='w-full h-full object-contain' />
+                        </div>
+                    </div>
+                    <div className={`w-[280px] xl:w-[403px] h-auto ${styles2.hidenElips}`}>
+                        <img src="/home-v3/service-imgs/s2/s2-elips2.png" alt="" className='w-full h-full object-contain' />
                     </div>
                 </div>
             </div>
