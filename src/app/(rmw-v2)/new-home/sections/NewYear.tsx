@@ -35,7 +35,7 @@ function S1() {
     () => ({
       desktop: "/republic-day/banner-21-januaryRMW-BANNER2.jpg",
       tablet: "/republic-day/768-by500.png",
-      mobile: "/republic-day/banner-26-jan-phone2.jpg",
+      mobile: "/republic-day/banner-26-jan-phone4.jpg",
       alt: "Ritz Media World branding showcase",
     }),
     []
@@ -51,7 +51,7 @@ function S1() {
   }, [imageConfig, screenSize]);
 
   return (
-    <section className="relative flex h-[88vh]   md:h-screen w-full items-center overflow-hidden overflow-x-hidden max-w-full">
+    <section className="relative flex h-[78vh]   md:h-screen w-full items-center overflow-hidden overflow-x-hidden max-w-full">
       {/* Single Banner Image */}
       <div className="absolute inset-0 overflow-hidden z-10">
         <div className="relative h-full w-full">
