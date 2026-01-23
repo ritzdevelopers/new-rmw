@@ -51,7 +51,7 @@ function S1() {
   }, [imageConfig, screenSize]);
 
   return (
-    <section className="relative flex h-[78vh]   md:h-screen w-full items-center overflow-hidden overflow-x-hidden max-w-full">
+    <section className="relative flex h-[70vh]   md:h-screen w-full items-center overflow-hidden overflow-x-hidden max-w-full">
       {/* Single Banner Image */}
       <div className="absolute inset-0 overflow-hidden z-10">
         <div className="relative h-full w-full">
