@@ -38,7 +38,7 @@ function NewFooter() {
 
             {/* Row 3  */}
             <div className="flex flex-col gap-2 sm:gap-3">
-              <p className="font-[700] text-left lg:text-center text-[14px] sm:text-[16px] text-white ">Call Us</p>
+              <p className="font-[700] text-left  text-[14px] sm:text-[16px] text-white ">Call Us</p>
               <div className="flex lg:w-auto gap-2 sm:gap-3 justify-start lg:justify-center items-center">
                 {/* Left Side Call Icon  */}
                 <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] border-[1px] border-[#17205E] flex justify-center items-center flex-shrink-0">

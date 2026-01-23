@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./S3.module.css";
+import styles2 from "./page.module.css";
 import CanvasTransition from "./CanvasTransition";
 interface CardItem {
   act: boolean;
@@ -336,7 +337,7 @@ function S2() {
           <div className="flex w-full md:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden">
             {/* Slider Container  */}
             <div className="w-full overflow-hidden">
-              <div className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}>
+              <div className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles2.clientSlider}`}>
                 {[
                   "/new-page/logos/prm-9.jpg",
                   "/new-page/logos/prm-22.jpg",
