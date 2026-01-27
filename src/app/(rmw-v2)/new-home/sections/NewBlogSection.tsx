@@ -20,7 +20,7 @@ interface Blog {
 const formatIndianDate = (dateString: string): string => {
   try {
     const date = new Date(dateString);
-    
+ 
     // Format as DD MMM YYYY (e.g., "15 Jan 2025") in Indian timezone
     const options: Intl.DateTimeFormatOptions = {
       day: '2-digit',

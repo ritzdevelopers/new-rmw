@@ -361,8 +361,6 @@ function Section3({ servicesData }: Section3Props) {
                             )
                         })}
                 </div>
-
-
                 {/* Row 3  */}
                 <div className={`flex flex-col gap-6 sm:gap-8 px-4 sm:px-8 md:px-12 lg:px-20 lg:py-[70px] ${styles2.containerWidth}`}>
 
@@ -435,8 +433,6 @@ function Section3({ servicesData }: Section3Props) {
                     <div className="w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4">
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
                             <Image fill src={"/home-v3/service-imgs/s3/profitable-product.png"} alt="" className="w-full h-full object-cover"></Image>
-
-                            
                             {/* Absolute Positioned Button  */}
                             <div className="w-full absolute left-0 top-[60%] pl-10 z-10">
                                 <button className="w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff]">
