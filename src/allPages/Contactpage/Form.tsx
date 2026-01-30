@@ -686,7 +686,7 @@ const Form = () => {
                                 className="inputText"
                                 style={{ background: "white" }}
                                 placeholder="Phone Number"
-                                type="text"
+                                type="number"
                                 name="phone"
                                 required
                               />
