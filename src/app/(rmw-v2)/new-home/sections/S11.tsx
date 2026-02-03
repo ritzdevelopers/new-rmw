@@ -120,7 +120,7 @@ function S11() {
         name: "Home Page Visitor",
         email: "homepage@ritzmediaworld.com",
         phone: phone.trim(),
-        message: "Enquiry from Home Page - 2025 Brand Impact Report Download Request",
+        message: "Enquiry from Home Page - 2026 Brand Impact Report Download Request",
         category: "Brand Impact Report Download",
       };
 
@@ -241,7 +241,7 @@ const router = useRouter();
             </button>
             <div className="flex flex-col gap-2">
               <h3 className="font-[500] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-[#F3830E]">
-                2025 Brand Impact Report
+                2026 Brand Impact Report
               </h3>
               <h3 className="font-[500] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-white">
                 Download Our
@@ -249,7 +249,7 @@ const router = useRouter();
             </div>
             <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] leading-[1.6] text-[#D1D5DC] max-w-[600px]">
               Get exclusive insights into real estate and lifestyle brand
-              marketing trends, strategies, and ROI benchmarks for 2025.
+              marketing trends, strategies, and ROI benchmarks for 2026.
             </p>
           </div>
 
@@ -266,7 +266,7 @@ const router = useRouter();
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
                 <div className="bg-[#F3830E] w-[24px] h-[24px] rounded-full"></div>
-                <span>2025 digital and print advertising trends</span>
+                <span>2026 digital and print advertising trends</span>
               </li>
               <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
                 <div className="bg-[#F3830E] w-[24px] h-[24px] rounded-full"></div>

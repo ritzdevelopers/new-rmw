@@ -83,8 +83,8 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
 
   const downloadPDF = () => {
     const link = document.createElement("a");
-    link.href = "/RMWCaseStudies_250327_081936.pdf";
-    link.download = "RMWCaseStudies_250327_081936.pdf";
+    link.href = "/ELDECO-Digital-Campaign-Post-Mortem-Report-by-RMW.pdf";
+    link.download = "ELDECO-Digital-Campaign-Post-Mortem-Report-by-RMW.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -112,7 +112,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
         name: "Home Page Visitor",
         email: "homepage@ritzmediaworld.com",
         phone: phone.trim(),
-        message: "Enquiry from Home Page - 2025 Brand Impact Report Download Request",
+        message: "Enquiry from Home Page - 2026 Brand Impact Report Download Request",
         category: "Brand Impact Report Download",
       };
 
@@ -301,7 +301,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                   fontFamily: "MontserratBold",
                 }}
               >
-                2025 Brand Impact Report
+                2026 Brand Impact Report
               </h2>
             </div>
             <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
@@ -314,7 +314,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                 fontFamily: "PoppinsRegular",
               }}
             >
-              Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2025.
+              Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2026.
             </p>
 
             <ul
@@ -325,7 +325,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
             >
               <li>Industry benchmarks for real estate marketing ROI</li>
               <li>Proven strategies for UHNI audience targeting</li>
-              <li> 2025 digital and print advertising trends</li>
+              <li> 2026 digital and print advertising trends</li>
               <li>Case studies with measurable results</li>
             </ul>
 
@@ -333,7 +333,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
               <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-3">
                 <div className="flex-1 relative">
                   <input
-                    type="tel"
+                    type="number"
                     value={phone}
                     onChange={handlePhoneChange}
                     onBlur={handlePhoneBlur}
