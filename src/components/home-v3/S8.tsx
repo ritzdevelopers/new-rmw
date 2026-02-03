@@ -285,7 +285,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
         {/* Row 2  */}
         <div className="w-full flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10">
           {/* Left Side Container  */}
-          <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
+          <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:min-h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
             <div className="text-center md:text-left mb-2 md:mb-0">
               <p
                 className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237]"
@@ -309,12 +309,12 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
             </p>
 
             <p
-              className="font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-2 md:mb-0"
+              className="font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-3 mt-3"
               style={{
                 fontFamily: "PoppinsRegular",
               }}
             >
-              Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2026.
+             A focused look at how a real estate brand leveraged digital strategy to drive visibility, trust, and qualified demand. This case study unpacks what worked, why it worked, and the business impact it created.
             </p>
 
             <ul
@@ -323,14 +323,14 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
                 fontFamily: "PoppinsRegular",
               }}
             >
-              <li>Industry benchmarks for real estate marketing ROI</li>
-              <li>Proven strategies for UHNI audience targeting</li>
-              <li> 2026 digital and print advertising trends</li>
-              <li>Case studies with measurable results</li>
+              <li>Digital lead generation and cost-per-lead benchmarks</li>
+              <li>Channel performance across property portals, search, social, and display</li>
+              <li> Buyer intent mapping for end-users, investors, and NRIs</li>
+              <li>Campaign outcomes including site visits, bookings, and revenue impact</li>
             </ul>
 
-            <form onSubmit={handleDownload} className="flex flex-col gap-4">
-              <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-3">
+            <form onSubmit={handleDownload} className="flex flex-col gap-4 mt-3">
+              <div className="flex flex-col xl:flex-row justify-between gap-3 sm:gap-3">
                 <div className="flex-1 relative">
                   <input
                     type="number"
@@ -376,7 +376,7 @@ function S8({ blogs, blogsLoading }: { blogs: BLOGSTRUCTURE[], blogsLoading: boo
           </div>
 
           {/* Right Side Container  */}
-          <div className="w-full lg:w-[48%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
+          <div className="w-full lg:w-[48%] xl:w-[603px] lg:min-h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
             <h2
               className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left"
               style={{
