@@ -239,8 +239,8 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
               >
                 <Link
                   className="main-logo"
-                  href="/"  
-                    target="_blank"
+                  href="/" target="_blank"  
+             
                   prefetch={false}
                   style={{ borderRadius: "0px !important", overflow: "hidden" }}
                 >
@@ -265,8 +265,8 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                   <ul id="menu-main-menu" className="menu-main-menu">
                     <li className="nav-item">
                       <Link
-                        href="/"
-                        target="_blank"
+                        href="/" target="_blank"
+                       
                         prefetch={false}
                         className="nav-links"
                         style={{
@@ -624,7 +624,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                   <Link href="/" target="_blank">Home</Link>
                 </li>
                 <li>
-                  <Link href="/about.html">About</Link>
+                  <Link href="/about.html" target="_blank">About</Link>
                 </li>
 
                 {/* Service Dropdown (Smooth) */}
@@ -863,13 +863,13 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                   142, Noida
                 </p>
                 <p>
-                  <Link href="/">info@ritzmediaworld.com</Link>
+                  <Link href="/" target="_blank">info@ritzmediaworld.com</Link>
                 </p>
                 <p>
-                  <Link href="/">09220516777</Link>
+                  <Link href="/" target="_blank">09220516777</Link>
                 </p>
                 <p>
-                  <Link href="/">07290002168</Link>
+                  <Link href="/" target="_blank">07290002168</Link>
                 </p>
               </div>
 

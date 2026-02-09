@@ -30,7 +30,6 @@ const ServiceMainWorkSwiper = () => {
                   decoding="async"
                   src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/work-1-shape-1.png"
                   alt=""
-                  
                 />
               </div>
               <div className="container">
@@ -76,8 +75,8 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
-                              href="/"
-                              target=""
+                              href="/" target="_blank"
+                             
                               rel=""
                             >
                               <span>
@@ -128,8 +127,8 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
-                              href="/"
-                              target=""
+                              href="/" target="_blank"
+                             
                               rel=""
                             >
                               <span>
@@ -181,7 +180,7 @@ const ServiceMainWorkSwiper = () => {
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
                               href="/services/digital-marketing/"
-                              target=""
+                             
                               rel=""
                             >
                               <span>
@@ -233,7 +232,7 @@ const ServiceMainWorkSwiper = () => {
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
                               href="/services/digital-marketing/"
-                              target=""
+                             
                               rel=""
                             >
                               <span>
@@ -284,8 +283,8 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
-                              href="/"
-                              target=""
+                              href="/" target="_blank"
+                             
                               rel=""
                             >
                               <span>
@@ -309,7 +308,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__content">
                             <h3 className="tp-work__title">
-                              <Link href="/">
+                              <Link href="/" target="_blank">
                                 Digital Marketing
                               </Link>
                             </h3>
@@ -336,8 +335,8 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
-                              href="/"
-                              target=""
+                              href="/" target="_blank"
+                             
                               rel=""
                             >
                               <span>
@@ -361,7 +360,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__content">
                             <h3 className="tp-work__title">
-                              <Link href="/">
+                              <Link href="/" target="_blank">
                                 Digital Marketing
                               </Link>
                             </h3>

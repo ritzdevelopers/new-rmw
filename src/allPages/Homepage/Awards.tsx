@@ -74,7 +74,7 @@ const Awards = () => {
                               <Link
                                 href="/about.html"
                                 rel="nofollow"
-                                target="_self"
+                                target="_blank"
                               >
                                 Excellence in Digital Media by Dainik Jagran
                               </Link>
@@ -86,7 +86,7 @@ const Awards = () => {
                             <Link
                               href="/about.html"
                               rel="nofollow"
-                              target="_self"
+                              target="_blank"
                               className="awards-icon"
                             >
                               <GoArrowRight
@@ -117,7 +117,7 @@ const Awards = () => {
                           </div>
                           <div className="tp-awards__name d-flex align-items-center">
                             <h3 className="tp-awards__title">
-                              <Link href="/about.html" rel="nofollow" target="_self">
+                              <Link href="/about.html" rel="nofollow" target="_blank">
                                 Trusted Digital Advertising Agency in
                                 NCR-Awarded by The Economic Times
                               </Link>
@@ -129,7 +129,7 @@ const Awards = () => {
                             <Link
                               href="/about.html"
                               rel="nofollow"
-                              target="_self"
+                              target="_blank"
                               className="awards-icon"
                             >
                               <GoArrowRight
@@ -164,7 +164,7 @@ const Awards = () => {
                               <Link
                                 href="/about.html"
                                 rel="nofollow"
-                                target="_self"
+                                target="_blank"
                               >
                                 Icons by The Times of India
                               </Link>
@@ -176,7 +176,7 @@ const Awards = () => {
                             <Link
                               href=" /about.html"
                               rel="nofollow"
-                              target="_self"
+                              target="_blank"
                               className="awards-icon"
                             >
                               <GoArrowRight
@@ -210,7 +210,7 @@ const Awards = () => {
                               <Link
                                 href="/about.html"
                                 rel="nofollow"
-                                target="_self"
+                                target="_blank"
                               >
                                 Special Achievement Award in Retail Category
                               </Link>
@@ -222,7 +222,7 @@ const Awards = () => {
                             <Link
                               href="/about.html"
                               rel="nofollow"
-                              target="_self"
+                              target="_blank"
                               className="awards-icon"
                             >
                               <GoArrowRight

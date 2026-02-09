@@ -36,7 +36,7 @@ const ServiceThirdVideo = () => {
                   <div className="col-md-12">
                     <div className="tp-video__content text-center">
                       <Link
-                        href="/"
+                        href="/" target="_blank"
                         className="tp-video__3-play-icon popup-video p-relative"
                       >
                         <div

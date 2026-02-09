@@ -278,7 +278,7 @@
 //                         <div className="col-xl-9 col-lg-9">
 //                           <div className="tp-blog__content d-sm-flex align-items-center">
 //                             <div className="tp-blog__thumb tp-blog-post-widget-thumb">
-//                               <Link href="/">
+//                               <Link href="/" target="_blank">
 //                                 <img
 //                                   decoding="async"
 //                                   src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/blog-post-6.png"
@@ -296,7 +296,7 @@
 //                                 </span>
 //                               </div>
 //                               <h3 className="tp-blog__title">
-//                                 <Link href="/">
+//                                 <Link href="/" target="_blank">
 //                                   Transform Your Business with Expert Digital
 //                                 </Link>
 //                               </h3>
@@ -307,7 +307,7 @@
 //                           <div className="tp-blog__button p-relative text-lg-end">
 //                             <Link
 //                               className="tp-btn-blog"
-//                               href="/"
+//                               href="/" target="_blank"
 //                             >
 //                               <span>BLOG DETAILS</span>
 //                               <b>
@@ -332,7 +332,7 @@
 //                         <div className="col-xl-9 col-lg-9">
 //                           <div className="tp-blog__content d-sm-flex align-items-center">
 //                             <div className="tp-blog__thumb tp-blog-post-widget-thumb">
-//                               <Link href="/">
+//                               <Link href="/" target="_blank">
 //                                 <img
 //                                   decoding="async"
 //                                   src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/blog-post-2.jpg"
@@ -350,7 +350,7 @@
 //                                 </span>
 //                               </div>
 //                               <h3 className="tp-blog__title">
-//                                 <Link href="/">
+//                                 <Link href="/" target="_blank">
 //                                   Boost Your Online Presence with Our
 //                                 </Link>
 //                               </h3>
@@ -361,7 +361,7 @@
 //                           <div className="tp-blog__button p-relative text-lg-end">
 //                             <Link
 //                               className="tp-btn-blog"
-//                               href="/"
+//                               href="/" target="_blank"
 //                             >
 //                               <span>BLOG DETAILS</span>
 //                               <b>
@@ -386,7 +386,7 @@
 //                         <div className="col-xl-9 col-lg-9">
 //                           <div className="tp-blog__content d-sm-flex align-items-center">
 //                             <div className="tp-blog__thumb tp-blog-post-widget-thumb">
-//                               <Link href="/">
+//                               <Link href="/" target="_blank">
 //                                 <img
 //                                   decoding="async"
 //                                   src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/blog-post-5.png"
@@ -404,7 +404,7 @@
 //                                 </span>
 //                               </div>
 //                               <h3 className="tp-blog__title">
-//                                 <Link href="/">
+//                                 <Link href="/" target="_blank">
 //                                   Innovative Solutions for a Digital Tomorrow
 //                                 </Link>
 //                               </h3>
@@ -415,7 +415,7 @@
 //                           <div className="tp-blog__button p-relative text-lg-end">
 //                             <Link
 //                               className="tp-btn-blog"
-//                               href="/"
+//                               href="/" target="_blank"
 //                             >
 //                               <span>BLOG DETAILS</span>
 //                               <b>

@@ -58,7 +58,7 @@ function Footer() {
           <div className="flex flex-col w-full min-h-[206px] justify-between gap-6 sm:gap-8">
             {/* Logo Container */}
             <div className="w-[140px] sm:w-[160px] md:w-[180px] h-auto">
-              <Link href="/" className="block">
+              <Link href="/" target="_blank" className="block">
                 <Image
                   src="/new-page/new-design-logo.png"
                   alt="RITZ Media World Logo"
@@ -149,7 +149,7 @@ function Footer() {
               Quick Links
             </h2>
             <Link
-              href="/"
+              href="/" target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Home
@@ -362,7 +362,7 @@ function Footer() {
         {/* Row 4 - Footer Bottom */}
         <div className="w-full border-t-[0.8px] border-[#1E2939] flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 md:px-8 lg:px-10 py-4 sm:py-5 md:py-6 gap-4 sm:gap-6">
           <p className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] text-[#D1D5DC] text-center sm:text-left">
-            © 2025 RITZ Media World. All rights reserved.
+            © 2026 RITZ Media World. All rights reserved.
           </p>
 
           <ul className="hidden flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-4 md:gap-6">

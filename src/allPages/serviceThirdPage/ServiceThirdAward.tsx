@@ -732,7 +732,7 @@ const ServiceThirdAward = () => {
                           className="tp-btn-primary"
                           href="/about.html"
                           rel="nofollow"
-                          target="_self"
+                          target="_blank"
                         >
                           <span> More about us </span>
                           <i className="far fa-arrow-right"></i>

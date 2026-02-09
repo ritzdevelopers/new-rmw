@@ -323,7 +323,7 @@ function Navbar() {
         <div className="xl:w-[90%] w-full flex justify-between items-center py-3 sm:py-4 px-4 sm:px-6 lg:px-8">
           {/* Logo div - Responsive */}
           <Link
-            href="/"
+            href="/" target="_blank"
             className="relative h-[32px] w-[180px] sm:h-[38px] sm:w-[210px] md:h-[42px] md:w-[245px]"
           >
             <Image
@@ -628,8 +628,7 @@ function Navbar() {
             <ul className="space-y-1">
               <li>
                 <Link
-                  href="/"
-                  target="_blank"
+                  href="/" target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -698,7 +697,7 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="/" target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >

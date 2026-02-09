@@ -351,7 +351,7 @@
 //                           }}
 //                         >
 //                           <div className="tp-team__3-thumb p-relative">
-//                             <Link href="/" rel="nofollow" target="_self">
+//                             <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                               <img
 //                                 decoding="async"
 //                                 src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/team-3-3.jpg"
@@ -359,7 +359,7 @@
 //                               />
 //                             </Link>
 //                             <div className="tp-team__3-action">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <svg
 //                                     width="42"
@@ -402,7 +402,7 @@
 //                           <div className="tp-team__3-content d-flex align-items-center justify-content-between">
 //                             <div className="tp-team__3-text">
 //                               <h3 className="tp-team__3-title">
-//                                 <Link href="/" rel="nofollow" target="_self">
+//                                 <Link href="/" target="_blank" rel="nofollow" target="_self">
                                   
 //                                   Kristin Watson
 //                                 </Link>
@@ -412,7 +412,7 @@
 //                               </span>
 //                             </div>
 //                             <div className="tp-team__3-link">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <i className="fas fa-long-arrow-right"></i>
 //                                 </span>
@@ -440,7 +440,7 @@
 //                           }}
 //                         >
 //                           <div className="tp-team__3-thumb p-relative">
-//                             <Link href="/" rel="nofollow" target="_self">
+//                             <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                               <img
 //                                 decoding="async"
 //                                 src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/team-3-4.png"
@@ -448,7 +448,7 @@
 //                               />
 //                             </Link>
 //                             <div className="tp-team__3-action">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <svg
 //                                     width="42"
@@ -491,7 +491,7 @@
 //                           <div className="tp-team__3-content d-flex align-items-center justify-content-between">
 //                             <div className="tp-team__3-text">
 //                               <h3 className="tp-team__3-title">
-//                                 <Link href="/" rel="nofollow" target="_self">
+//                                 <Link href="/" target="_blank" rel="nofollow" target="_self">
                                   
 //                                   Ronald Richards
 //                                 </Link>
@@ -501,7 +501,7 @@
 //                               </span>
 //                             </div>
 //                             <div className="tp-team__3-link">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <i className="fas fa-long-arrow-right"></i>
 //                                 </span>
@@ -529,7 +529,7 @@
 //                           }}
 //                         >
 //                           <div className="tp-team__3-thumb p-relative">
-//                             <Link href="/" rel="nofollow" target="_self">
+//                             <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                               <img
 //                                 decoding="async"
 //                                 src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/team-3-1.png"
@@ -537,7 +537,7 @@
 //                               />
 //                             </Link>
 //                             <div className="tp-team__3-action">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <svg
 //                                     width="42"
@@ -580,7 +580,7 @@
 //                           <div className="tp-team__3-content d-flex align-items-center justify-content-between">
 //                             <div className="tp-team__3-text">
 //                               <h3 className="tp-team__3-title">
-//                                 <Link href="/" rel="nofollow" target="_self">
+//                                 <Link href="/" target="_blank" rel="nofollow" target="_self">
                                   
 //                                   Alextina Ditarson
 //                                 </Link>
@@ -590,7 +590,7 @@
 //                               </span>
 //                             </div>
 //                             <div className="tp-team__3-link">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <i className="fas fa-long-arrow-right"></i>
 //                                 </span>
@@ -618,7 +618,7 @@
 //                           }}
 //                         >
 //                           <div className="tp-team__3-thumb p-relative">
-//                             <Link href="/" rel="nofollow" target="_self">
+//                             <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                               <img
 //                                 decoding="async"
 //                                 src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/team-3-2.png"
@@ -626,7 +626,7 @@
 //                               />
 //                             </Link>
 //                             <div className="tp-team__3-action">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <svg
 //                                     width="42"
@@ -669,7 +669,7 @@
 //                           <div className="tp-team__3-content d-flex align-items-center justify-content-between">
 //                             <div className="tp-team__3-text">
 //                               <h3 className="tp-team__3-title">
-//                                 <Link href="/" rel="nofollow" target="_self">
+//                                 <Link href="/" target="_blank" rel="nofollow" target="_self">
                                   
 //                                   Robin Khan
 //                                 </Link>
@@ -679,7 +679,7 @@
 //                               </span>
 //                             </div>
 //                             <div className="tp-team__3-link">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <i className="fas fa-long-arrow-right"></i>
 //                                 </span>
@@ -707,7 +707,7 @@
 //                           }}
 //                         >
 //                           <div className="tp-team__3-thumb p-relative">
-//                             <Link href="/" rel="nofollow" target="_self">
+//                             <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                               <img
 //                                 decoding="async"
 //                                 src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/team-3-3.jpg"
@@ -715,7 +715,7 @@
 //                               />
 //                             </Link>
 //                             <div className="tp-team__3-action">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <svg
 //                                     width="42"
@@ -758,7 +758,7 @@
 //                           <div className="tp-team__3-content d-flex align-items-center justify-content-between">
 //                             <div className="tp-team__3-text">
 //                               <h3 className="tp-team__3-title">
-//                                 <Link href="/" rel="nofollow" target="_self">
+//                                 <Link href="/" target="_blank" rel="nofollow" target="_self">
                                   
 //                                   Kristin Watson
 //                                 </Link>
@@ -768,7 +768,7 @@
 //                               </span>
 //                             </div>
 //                             <div className="tp-team__3-link">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <i className="fas fa-long-arrow-right"></i>
 //                                 </span>
@@ -796,7 +796,7 @@
 //                           }}
 //                         >
 //                           <div className="tp-team__3-thumb p-relative">
-//                             <Link href="/" rel="nofollow" target="_self">
+//                             <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                               <img
 //                                 decoding="async"
 //                                 src="https://etorisoft.com/wp/avtrix/wp-content/uploads/2024/09/team-3-4.png"
@@ -804,7 +804,7 @@
 //                               />
 //                             </Link>
 //                             <div className="tp-team__3-action">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <svg
 //                                     width="42"
@@ -847,7 +847,7 @@
 //                           <div className="tp-team__3-content d-flex align-items-center justify-content-between">
 //                             <div className="tp-team__3-text">
 //                               <h3 className="tp-team__3-title">
-//                                 <Link href="/" rel="nofollow" target="_self">
+//                                 <Link href="/" target="_blank" rel="nofollow" target="_self">
                                   
 //                                   Ronald Richards
 //                                 </Link>
@@ -857,7 +857,7 @@
 //                               </span>
 //                             </div>
 //                             <div className="tp-team__3-link">
-//                               <Link href="/" rel="nofollow" target="_self">
+//                               <Link href="/" target="_blank" rel="nofollow" target="_self">
 //                                 <span>
 //                                   <i className="fas fa-long-arrow-right"></i>
 //                                 </span>
