@@ -130,7 +130,7 @@ const CareerForm = () => {
                   name="email"
                   type="email"
                   className="form-control"
-                  placeholder="Email Address"
+                  placeholder="Email A"
                   required
                 />
               </div>

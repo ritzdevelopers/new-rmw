@@ -326,6 +326,7 @@ const Articles: React.FC = memo(() => {
                  cursor: "pointer",
                  contain: "layout style paint",
                  willChange: "transform",
+                  minHeight: "440px",
                }}
                onMouseEnter={(e) => {
                  e.currentTarget.style.transform = "translateY(-5px)";

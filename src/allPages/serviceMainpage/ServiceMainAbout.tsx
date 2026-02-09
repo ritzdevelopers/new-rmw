@@ -45,8 +45,8 @@ const ServiceMainAbout = () => {
                             Profitable Products
                           </h3>
                           <Link
-                            className="tp-btn-secondary"
-                            href="https://ritzmediaworld.com/about.html"
+                            className="tp-btn-secondary hover:text-white"
+                            href="/about.html"
                             target="_blank"
                             rel="nofollow"
                           >

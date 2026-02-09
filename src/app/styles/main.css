@@ -16062,6 +16062,9 @@ xclip
   color: var(--tp-common-black);
   background-color: var(--tp-theme-primary);
 }
+.tp-btn-secondary:hover {
+  color: var(--tp-theme-primary) !important;
+}
 
 .tp-btn-secondary:hover {
   color: var(--tp-common-black);
@@ -22235,7 +22238,7 @@ input.search-input-field {
 }
 
 .tp-about__funfact-item {
-  padding: 53px 15px;
+  padding: 25px 15px;
   text-align: center;
   border-radius: 15px 15px 0 0;
   border: 1px solid rgba(255, 255, 255, 0.11);
@@ -24338,7 +24341,8 @@ input.search-input-field {
 }
 
 .tp-cta_2-mission-arrow span {
-  display: block;
+  display: flex;
+  justify-content:center;
   margin-top: 50px;
 }
 
@@ -24635,18 +24639,29 @@ input.search-input-field {
   }
 }
 
+.tp-contact__social-link {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
 .tp-contact__social-link a {
   width: 38px;
   height: 38px;
-  line-height: 38px;
-  text-align: center;
-  /* background-color: black; */
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   border: 1px solid rgb(255, 255, 255);
-  margin-right: 5px;
   transition: 0.3s;
   color: white;
+}
+
+.tp-contact__social-link a i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tp-contact__social-link .fbI {
@@ -24676,9 +24691,6 @@ input.search-input-field {
   background: linear-gradient(45deg, #ff0000, #cc0000);
 }
 
-.tp-contact__social-link a:last-child {
-  margin-right: 0;
-}
 
 .tp-contact__social-link a:hover {
   color: var(--tp-common-white);
@@ -25691,9 +25703,9 @@ input.search-input-field {
   position: relative;
   width: 45px;
   height: 45px;
-  line-height: 45px;
-  text-align: center;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--tp-common-black);
   background-color: #1a1919;
   border-radius: 50%;
@@ -33030,7 +33042,7 @@ img.mfp-img {
 }
 
 .mb-70 {
-  margin-bottom: 70px
+  margin-top: 76px
 }
 
 .mb-75 {
@@ -33507,7 +33519,7 @@ img.mfp-img {
 }
 
 .pt-60 {
-  padding-top: 60px
+  padding-top: 36px
 }
 
 .pt-65 {
