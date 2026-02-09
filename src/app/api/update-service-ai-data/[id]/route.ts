@@ -12,7 +12,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
               { status: 400 }
             );
           }
-          await pool.query("UPDATE services SET s2para = ? WHERE id = ?", [s3para, id]);
+        //   await pool.query("UPDATE services SET s2para = ? WHERE id = ?", [s3para, id]);
         return NextResponse.json({ message: "Service AI data updated successfully" }, { status: 200 });
     } catch (error) {
         console.error("Error updating service AI data:", error);
