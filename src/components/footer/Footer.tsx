@@ -34,7 +34,7 @@ const Footer = memo(() => {
                       className="textwidget custom-html-widget"
                     >
                       <div className="tp-footer__logo">
-                        <Link href="/" target="_blank">
+                        <Link href="/" target="_blank" >
                           <Image
                             width={100}
                             height={100}
@@ -127,7 +127,7 @@ const Footer = memo(() => {
                           id="menu-item-140"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-140"
                         >
-                          <Link href="/" target="_blank" style={{ color: "#FBD98C" }}>
+                          <Link href="/" target="_blank"  style={{ color: "#FBD98C" }}>
                             Home
                           </Link>
                         </li>

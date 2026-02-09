@@ -58,7 +58,7 @@
 //                           animationName: "tpFadeInUp",
 //                         }}
 //                       >
-//                         <Link href="/" target="_self" rel="nofollow">
+//                         <Link href="/" target="_blank" target="_self" rel="nofollow">
 //                           <div className="tp-featured__2-content">
 //                             <h3 className="tp-featured__2-title">
 //                               CUSTOM WEB DESIGN{" "}
@@ -85,7 +85,7 @@
 //                           animationName: "tpFadeInUp",
 //                         }}
 //                       >
-//                         <Link href="/" target="_self" rel="nofollow">
+//                         <Link href="/" target="_blank" target="_self" rel="nofollow">
 //                           <div className="tp-featured__2-content">
 //                             <h3 className="tp-featured__2-title">
 //                               WEB DEVELOPMENT{" "}
@@ -112,7 +112,7 @@
 //                           animationName: "tpFadeInUp",
 //                         }}
 //                       >
-//                         <Link href="/" target="_self" rel="nofollow">
+//                         <Link href="/" target="_blank" target="_self" rel="nofollow">
 //                           <div className="tp-featured__2-content">
 //                             <h3 className="tp-featured__2-title">
 //                               UI/UX DESIGNER{" "}
@@ -139,7 +139,7 @@
 //                           animationName: "tpFadeInUp",
 //                         }}
 //                       >
-//                         <Link href="/" target="_self" rel="nofollow">
+//                         <Link href="/" target="_blank" target="_self" rel="nofollow">
 //                           <div className="tp-featured__2-content">
 //                             <h3 className="tp-featured__2-title">
 //                               CUSTOM WEB DESIGN{" "}
@@ -168,7 +168,7 @@
 //                       }}
 //                     >
 //                       <div className="tp-featured__2-button">
-//                         <Link href="/" target="_self" rel="nofollow">
+//                         <Link href="/" target="_blank" target="_self" rel="nofollow">
 //                           <b>EXPLORE MORE</b>
 //                           <span>
 //                             <svg

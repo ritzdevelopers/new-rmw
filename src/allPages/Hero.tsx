@@ -23,7 +23,7 @@ const Header = () => {
                   background: "blue",
                 }}
               >
-                <Link className="main-logo" href="/">
+                <Link className="main-logo" href="/" target="_blank">
                   <Image
                     width={50}
                     height={50}
@@ -44,7 +44,7 @@ const Header = () => {
                       id="menu-item-2496"
                       className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-17 current_page_item active menu-item-2496 has-mega-menu has-dropdown nav-item"
                     >
-                      <Link title="Home" href="/" className="nav-links">
+                      <Link title="Home" href="/" target="_blank" className="nav-links">
                         Home
                       </Link>
                     </li>
@@ -101,7 +101,7 @@ const Header = () => {
                                         <h4 className="homemenu-title">
                                           <Link
                                             href="/digital-marketing/#"
-                                            target="_self"
+
                                             rel="nofollow"
                                           >
                                             Digital Marketing
@@ -118,8 +118,8 @@ const Header = () => {
                                         <div className="homemenu-btn">
                                           <Link
                                             className="tp-menu-btn"
-                                            href="/"
-                                            target="_self"
+                                            href="/" target="_blank"
+                                            
                                             rel="nofollow"
                                           >
                                             Multi page
@@ -129,8 +129,8 @@ const Header = () => {
                                       <div className="homemenu-content text-center">
                                         <h4 className="homemenu-title">
                                           <Link
-                                            href="/"
-                                            target="_self"
+                                            href="/" target="_blank"
+
                                             rel="nofollow"
                                           >
                                             Branding
@@ -147,8 +147,8 @@ const Header = () => {
                                         <div className="homemenu-btn">
                                           <Link
                                             className="tp-menu-btn"
-                                            href="/"
-                                            target="_self"
+                                            href="/" target="_blank"
+                                            
                                             rel="nofollow"
                                           >
                                             Multi page
@@ -158,8 +158,8 @@ const Header = () => {
                                       <div className="homemenu-content text-center">
                                         <h4 className="homemenu-title">
                                           <Link
-                                            href="/"
-                                            target="_self"
+                                            href="/" target="_blank"
+
                                             rel="nofollow"
                                           >
                                             Design Studio
@@ -176,8 +176,8 @@ const Header = () => {
                                         <div className="homemenu-btn">
                                           <Link
                                             className="tp-menu-btn"
-                                            href="/"
-                                            target="_self"
+                                            href="/" target="_blank"
+                                            
                                             rel="nofollow"
                                           >
                                             Multi page
@@ -187,8 +187,8 @@ const Header = () => {
                                       <div className="homemenu-content text-center">
                                         <h4 className="homemenu-title">
                                           <Link
-                                            href="/"
-                                            target="_self"
+                                            href="/" target="_blank"
+
                                             rel="nofollow"
                                           >
                                             Freelancer
@@ -205,8 +205,8 @@ const Header = () => {
                                         <div className="homemenu-btn">
                                           <Link
                                             className="tp-menu-btn"
-                                            href="/"
-                                            target="_self"
+                                            href="/" target="_blank"
+                                            
                                             rel="nofollow"
                                           >
                                             Multi page
@@ -216,8 +216,8 @@ const Header = () => {
                                       <div className="homemenu-content text-center">
                                         <h4 className="homemenu-title">
                                           <Link
-                                            href="/"
-                                            target="_self"
+                                            href="/" target="_blank"
+
                                             rel="nofollow"
                                           >
                                             Creative Agency
@@ -234,8 +234,8 @@ const Header = () => {
                                         <div className="homemenu-btn">
                                           <Link
                                             className="tp-menu-btn"
-                                            href="/"
-                                            target="_self"
+                                            href="/" target="_blank"
+                                            
                                             rel="nofollow"
                                           >
                                             Multi page
@@ -245,8 +245,8 @@ const Header = () => {
                                       <div className="homemenu-content text-center">
                                         <h4 className="homemenu-title">
                                           <Link
-                                            href="/"
-                                            target="_self"
+                                            href="/" target="_blank"
+
                                             rel="nofollow"
                                           >
                                             Portfolio Showcase

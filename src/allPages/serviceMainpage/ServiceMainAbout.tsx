@@ -46,8 +46,8 @@ const ServiceMainAbout = () => {
                           </h3>
                           <Link
                             className="tp-btn-secondary"
-                            href="/about/"
-                            target="_self"
+                            href="https://ritzmediaworld.com/about.html"
+                            target="_blank"
                             rel="nofollow"
                           >
                             more about
@@ -82,8 +82,7 @@ const ServiceMainAbout = () => {
                           </h3>
                           <Link
                             className="tp-cta_2-mission-arrow"
-                            href="/"
-                            target="_self"
+                            href="https://ritzmediaworld.com/about.html" target="_blank"
                             rel="nofollow"
                           >
                             <span>
