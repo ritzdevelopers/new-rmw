@@ -20,7 +20,7 @@ function Page() {
                 setError(null);
                 const response = await axios.get('/api/update-service-ai-data');
                 const responseData = response.data.data[0];
-                
+
                 if (responseData && responseData.rows) {
                     setData(responseData.rows);
                 } else if (Array.isArray(responseData)) {
@@ -45,8 +45,8 @@ function Page() {
             if (data.length > 0) {
                 for (let i = 0; i < data.length; i++) {
                     let obj = data[i];
-                    let newS33Para = obj.s3para.split("—").join("-");
-                    console.log('this is obj id ', obj.id);
+                    let newS33Para = obj.s2para.split("—").join(", ");
+                    console.log('this is obj id ', obj.id, 'and this is new s3para ', newS33Para);
                     const res = await axios.patch(`/api/update-service-ai-data/${obj.id}`, { s3para: newS33Para });
                     console.log("this is response ", res);
                 }
