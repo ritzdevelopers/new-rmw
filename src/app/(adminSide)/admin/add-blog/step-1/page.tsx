@@ -125,7 +125,7 @@ const Page = () => {
         </h1>
       </div>
       <div className="flex flex-wrap items-center gap-2 sm:gap-4 bg-white p-3 rounded-md shadow-sm text-sm">
-        <Link href="/" className="text-[#2955B3] flex items-center gap-2">
+        <Link href="/" target="_blank" className="text-[#2955B3] flex items-center gap-2">
           <Home className="w-4 h-4" /> Home
         </Link>
         <span className="text-[#ACACAC] font-bold">/</span>

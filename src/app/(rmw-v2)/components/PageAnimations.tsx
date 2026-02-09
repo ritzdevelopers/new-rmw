@@ -21,11 +21,26 @@ export default function PageAnimations() {
       sections.forEach((section, index) => {
         if (index === 0) return;
 
-        const headings = section.querySelectorAll("h1, h2, h3");
-        const paragraphs = section.querySelectorAll("p");
-        const images = section.querySelectorAll("img");
-        const buttons = section.querySelectorAll("button");
-        const lists = section.querySelectorAll("ul, ol");
+        // Helper function to filter out elements within no-animation containers
+        const filterNoAnimationElements = (elements: NodeListOf<Element>): Element[] => {
+          return Array.from(elements).filter((el) => {
+            // Check if element or any of its ancestors has data-no-gsap-animation
+            let current: Element | null = el;
+            while (current && current !== section) {
+              if (current.hasAttribute('data-no-gsap-animation')) {
+                return false;
+              }
+              current = current.parentElement;
+            }
+            return true;
+          });
+        };
+
+        const headings = filterNoAnimationElements(section.querySelectorAll("h1, h2, h3"));
+        const paragraphs = filterNoAnimationElements(section.querySelectorAll("p"));
+        const images = filterNoAnimationElements(section.querySelectorAll("img"));
+        const buttons = filterNoAnimationElements(section.querySelectorAll("button"));
+        const lists = filterNoAnimationElements(section.querySelectorAll("ul, ol"));
 
         const allElements = [
           ...headings,
@@ -41,9 +56,17 @@ export default function PageAnimations() {
 
         // Set initial state for list items
         lists.forEach((list) => {
-          const listItems = list.querySelectorAll(
-            "li"
-          ) as NodeListOf<HTMLElement>;
+          const listItems = Array.from(list.querySelectorAll("li") as NodeListOf<HTMLElement>).filter((item) => {
+            // Check if list item or any of its ancestors has data-no-gsap-animation
+            let current: Element | null = item;
+            while (current && current !== section) {
+              if (current.hasAttribute('data-no-gsap-animation')) {
+                return false;
+              }
+              current = current.parentElement;
+            }
+            return true;
+          });
           listItems.forEach((item) => {
             if (item) {
               gsap.set(item, { autoAlpha: 0 });
@@ -120,12 +143,27 @@ export default function PageAnimations() {
 
           if (section.children.length === 0) return;
 
+          // Helper function to filter out elements within no-animation containers
+          const filterNoAnimationElements = (elements: NodeListOf<Element>): Element[] => {
+            return Array.from(elements).filter((el) => {
+              // Check if element or any of its ancestors has data-no-gsap-animation
+              let current: Element | null = el;
+              while (current && current !== section) {
+                if (current.hasAttribute('data-no-gsap-animation')) {
+                  return false;
+                }
+                current = current.parentElement;
+              }
+              return true;
+            });
+          };
+
           // Get all elements to animate
-          const headings = section.querySelectorAll("h1, h2, h3");
-          const paragraphs = section.querySelectorAll("p");
-          const images = section.querySelectorAll("img");
-          const buttons = section.querySelectorAll("button");
-          const lists = section.querySelectorAll("ul, ol");
+          const headings = filterNoAnimationElements(section.querySelectorAll("h1, h2, h3"));
+          const paragraphs = filterNoAnimationElements(section.querySelectorAll("p"));
+          const images = filterNoAnimationElements(section.querySelectorAll("img"));
+          const buttons = filterNoAnimationElements(section.querySelectorAll("button"));
+          const lists = filterNoAnimationElements(section.querySelectorAll("ul, ol"));
 
           // Create a timeline for section animations
           const sectionTl = gsap.timeline({
@@ -226,9 +264,19 @@ export default function PageAnimations() {
 
           // S2 - Service cards/interactive elements
           if (index === 1) {
-            const interactiveElements = section.querySelectorAll(
-              '[class*="flex"] > div:not(:empty)'
-            ) as NodeListOf<HTMLElement>;
+            const interactiveElements = Array.from(
+              section.querySelectorAll('[class*="flex"] > div:not(:empty)') as NodeListOf<HTMLElement>
+            ).filter((el) => {
+              // Exclude elements within no-animation containers
+              let current: Element | null = el;
+              while (current && current !== section) {
+                if (current.hasAttribute('data-no-gsap-animation')) {
+                  return false;
+                }
+                current = current.parentElement;
+              }
+              return true;
+            });
             if (interactiveElements.length > 0) {
               gsap.set(interactiveElements, { y: 40 });
               sectionTl.to(

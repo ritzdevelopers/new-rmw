@@ -317,7 +317,7 @@
 //                           </span>
 //                           <h3 className="tp-team__2-title">
 //                             <Link
-//                               href="/"
+//                               href="/" target="_blank"
 //                               target="_self"
 //                               rel="nofollow"
 //                             >
@@ -368,7 +368,7 @@
 //                           </span>
 //                           <h3 className="tp-team__2-title">
 //                             <Link
-//                               href="/"
+//                               href="/" target="_blank"
 //                               target="_self"
 //                               rel="nofollow"
 //                             >
@@ -419,7 +419,7 @@
 //                           </span>
 //                           <h3 className="tp-team__2-title">
 //                             <Link
-//                               href="/"
+//                               href="/" target="_blank"
 //                               target="_self"
 //                               rel="nofollow"
 //                             >
@@ -434,7 +434,7 @@
 //                   <div className="tp-team__2-action text-center mt-90">
 //                     <Link
 //                       className="tp-btn-secondary"
-//                       href="/"
+//                       href="/" target="_blank"
 //                       rel="nofollow"
 //                       target="_self"
 //                     >

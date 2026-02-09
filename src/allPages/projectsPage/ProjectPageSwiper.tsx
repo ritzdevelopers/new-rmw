@@ -60,7 +60,7 @@
 //                   </div>
 //                   <div className="tp-work__icon d-none d-md-block">
 //                     <Link
-//                       href="/"
+//                       href="/" target="_blank"
 //                       target=""
 //                       rel=""
 //                     >
@@ -85,7 +85,7 @@
 //                   </div>
 //                   <div className="tp-work__content">
 //                     <h3 className="tp-work__title">
-//                       <Link href="/">
+//                       <Link href="/" target="_blank">
 //                         Digital Marketing
 //                       </Link>
 //                     </h3>
@@ -106,7 +106,7 @@
 //                   </div>
 //                   <div className="tp-work__icon d-none d-md-block">
 //                     <Link
-//                       href="/"
+//                       href="/" target="_blank"
 //                       target=""
 //                       rel=""
 //                     >
@@ -151,7 +151,7 @@
 //                   </div>
 //                   <div className="tp-work__icon d-none d-md-block">
 //                     <Link
-//                       href="/"
+//                       href="/" target="_blank"
 //                       target=""
 //                       rel=""
 //                     >

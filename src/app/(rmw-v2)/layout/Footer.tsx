@@ -58,7 +58,7 @@ function Footer() {
           <div className="flex flex-col w-full min-h-[206px] justify-between gap-6 sm:gap-8">
             {/* Logo Container */}
             <div className="w-[140px] sm:w-[160px] md:w-[180px] h-auto">
-              <Link href="/" className="block">
+              <Link href="/" target="_blank" className="block">
                 <Image
                   src="/new-page/new-design-logo.png"
                   alt="RITZ Media World Logo"
@@ -149,7 +149,7 @@ function Footer() {
               Quick Links
             </h2>
             <Link
-              href="/"
+              href="/" target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Home

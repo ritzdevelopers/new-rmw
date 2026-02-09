@@ -46,7 +46,7 @@ const CategoryBanner: React.FC<CategoryBannerProps> = ({ categoryTitle }) => {
                     property="item"
                     typeof="WebPage"
                     title="Go to Ritz Media World."
-                    href="/"
+                    href="/" target="_blank"
                     className="home"
                   >
                     <span property="name">Blog / Category</span>

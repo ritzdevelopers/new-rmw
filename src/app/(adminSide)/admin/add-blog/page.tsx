@@ -18,7 +18,7 @@ const Page = () => {
       <div className="flex flex-wrap items-center gap-2 sm:gap-4 bg-white p-3 rounded-md shadow-sm text-sm sm:text-base">
         <h1 className="text-[#2955B3] flex items-center gap-2">
           <Home className="w-4 h-4" />
-          <Link href="/" className="hover:underline">Home</Link>
+          <Link href="/" target="_blank" className="hover:underline">Home</Link>
         </h1>
         <span className="text-[#ACACAC] font-bold">/</span>
         <h1 className="text-[#838383] flex items-center gap-2">
