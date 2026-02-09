@@ -27,7 +27,6 @@ const ServiceMainAwards = () => {
                         <i> Achievements </i>
                       </h3>
                       <p>
-                        
                         Whether it&apos;s crafting a visually stunning brand identity
                         designing immersive digital experiences, or developing
                       </p>
