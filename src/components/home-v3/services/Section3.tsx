@@ -397,7 +397,7 @@ function Section3({ servicesData }: Section3Props) {
                                     PERPETUAL <br />
                                     <span className="font-[800]">GROWTH</span>
                                 </h4>
-                            </div>
+                            </div>  a
                         </div>
 
 
@@ -619,7 +619,7 @@ function Section3({ servicesData }: Section3Props) {
                                     fontFamily: "MontserratBold",
                                 }}
                             >
-                                2025 Brand Impact Report
+                                2026 Brand Impact Report
                             </h2>
                         </div>
                         <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">

@@ -241,7 +241,7 @@ const router = useRouter();
             </button>
             <div className="flex flex-col gap-2">
               <h3 className="font-[500] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-[#F3830E]">
-                2025 Brand Impact Report
+                2026 Brand Impact Report
               </h3>
               <h3 className="font-[500] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-white">
                 Download Our

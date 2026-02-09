@@ -23,13 +23,14 @@ const SwiperSlider: React.FC<SwiperSliderProps> = ({ dt }) => {
       fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
       margin: 0,
       padding: 0,
-      height: "80vh",
+      display: "flex",
+      flexDirection: "column",
       position: "relative",
     } as React.CSSProperties,
 
     swiper: {
       width: "100%",
-      height: "100%",
+      height: "502px",
     } as React.CSSProperties,
 
     card: {
@@ -46,12 +47,12 @@ const SwiperSlider: React.FC<SwiperSliderProps> = ({ dt }) => {
     } as React.CSSProperties,
 
     btnWrapper: {
-      width: "100%",
+      width: "auto",
+      maxWidth: "100%",
       display: "flex",
       justifyContent: "flex-end",
-      position: "absolute",
-      bottom: 0,
-      right: "20px",
+      marginTop: "16px",
+      alignSelf: "flex-end",
       zIndex: 10,
     } as React.CSSProperties,
 
@@ -59,7 +60,8 @@ const SwiperSlider: React.FC<SwiperSliderProps> = ({ dt }) => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      gap: "20px",
+      gap: "10px",
+      flexShrink: 0,
     } as React.CSSProperties,
 
     btnBase: {

@@ -45,9 +45,9 @@ const ServiceMainAbout = () => {
                             Profitable Products
                           </h3>
                           <Link
-                            className="tp-btn-secondary"
-                            href="/about/"
-                            target="_self"
+                            className="tp-btn-secondary hover:text-white"
+                            href="/about.html"
+                            target="_blank"
                             rel="nofollow"
                           >
                             more about

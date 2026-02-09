@@ -373,7 +373,7 @@ info@ritzmediaworld.com"
                   <div className="col-xl-6 col-lg-7 ">
                     <div className="tp-copyright__text">
                       <p style={{ color: "#FBD98C" }}>
-                        © 2025{" "}
+                        © 2026{" "}
                         <span style={{ color: "#FBD98C" }}>
                           {" "}
                           RITZ MEDIA WORLD,
