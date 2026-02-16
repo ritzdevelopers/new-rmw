@@ -22,12 +22,9 @@ async function page() {
     <>
       {/* Client-side animations component */}
       <PageAnimations />
-      
       {/* Hero Section - Full Width */}
       <S1></S1>
       {/* <NewYear></NewYear> */}
-      {/* Other Sections - Fixed Width Above 1440px */}
-
       <div>
         <S2></S2>
       </div>

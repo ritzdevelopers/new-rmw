@@ -14,7 +14,7 @@ const Footer = memo(() => {
       {/* <!-- tp footer area start  --> */}
 
       <section
-        className="tp-footer-area fix tp-footer__1 tp-footer__plr black-bg-2 z-index-11 p-relative"
+        className="tp-footer-area fix tp-footer__1 tp-footer__plr   z-index-11 p-relative"
         data-background=""
         data-bg-color=""
       >
@@ -46,7 +46,7 @@ const Footer = memo(() => {
                           />
                         </Link>
                       </div>
-                      <p style={{ color: "#FBD98C", fontSize: "14px" }}>
+                      <p style={{ color: "#ffffff", fontSize: "14px" }}>
                         Accelerate your journey to success with result-oriented
                         solutions for Digital Advertising, Social Media
                         Management, SEO, and Compelling Content backed by more
@@ -61,7 +61,7 @@ const Footer = memo(() => {
                           style={{ border: "none" }}
                         >
                           <i aria-hidden="true">
-                            <FaFacebookF color="black" />
+                            <FaFacebookF color="white" />
                           </i>
                         </Link>
                         <Link
@@ -70,7 +70,7 @@ const Footer = memo(() => {
                           style={{ border: "none" }}
                         >
                           <i aria-hidden="true">
-                            <FaInstagram color="black" />
+                            <FaInstagram color="white" />
                           </i>
                         </Link>
                         <Link
@@ -81,7 +81,7 @@ const Footer = memo(() => {
                           style={{ border: "none" }}
                         >
                           <i aria-hidden="true">
-                            <FaXTwitter color="black" />
+                            <FaXTwitter color="white" />
                           </i>
                         </Link>
                         <Link
@@ -90,7 +90,7 @@ const Footer = memo(() => {
                           style={{ border: "none" }}
                         >
                           <i aria-hidden="true">
-                            <FaLinkedin color="black" />
+                            <FaLinkedin color="white" />
                           </i>
                         </Link>
                         <Link
@@ -101,7 +101,7 @@ const Footer = memo(() => {
                           rel="http://1"
                         >
                           <i aria-hidden="true">
-                            <FaYoutube color="black" />
+                            <FaYoutube color="white" />
                           </i>
                         </Link>
                       </div>
@@ -117,7 +117,7 @@ const Footer = memo(() => {
                   <div className="tp-footer-widget-content">
                     <h3
                       className="tp-footer__widget-title"
-                      style={{ color: "#F7A31C", fontSize: "20px" }}
+                      style={{ color: "#ffffff", fontSize: "20px" }}
                     >
                       Quick Links
                     </h3>
@@ -127,7 +127,7 @@ const Footer = memo(() => {
                           id="menu-item-140"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-140"
                         >
-                          <Link href="/" target="_blank"  style={{ color: "#FBD98C" }}>
+                          <Link href="/" target="_blank" style={{ color: "#ffffff" }}>
                             Home
                           </Link>
                         </li>
@@ -135,7 +135,7 @@ const Footer = memo(() => {
                           id="menu-item-141"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-141"
                         >
-                          <Link href="/about.html" style={{ color: "#FBD98C" }}>
+                          <Link href="/about.html" style={{ color: "#ffffff" }}>
                             About
                           </Link>
                         </li>
@@ -143,7 +143,7 @@ const Footer = memo(() => {
                           id="menu-item-142"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-142"
                         >
-                          <Link href="/services" style={{ color: "#FBD98C" }}>
+                          <Link href="/services" style={{ color: "#ffffff" }}>
                             Services
                           </Link>
                         </li> */}
@@ -151,7 +151,7 @@ const Footer = memo(() => {
                           id="menu-item-143"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-143"
                         >
-                          <Link href="/work.html" style={{ color: "#FBD98C" }}>
+                          <Link href="/work.html" style={{ color: "#ffffff" }}>
                             Our Work
                           </Link>
                         </li>
@@ -159,7 +159,7 @@ const Footer = memo(() => {
                           id="menu-item-144"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
                         >
-                          <Link href="/blogs" style={{ color: "#FBD98C" }}>
+                          <Link href="/blogs" style={{ color: "#ffffff" }}>
                             Blogs
                           </Link>
                         </li>
@@ -169,7 +169,7 @@ const Footer = memo(() => {
                         >
                           <Link
                             href="/web-stories"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Web Stories
                           </Link>
@@ -180,7 +180,7 @@ const Footer = memo(() => {
                         >
                           <Link
                             href="/contact.html"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Contact
                           </Link>
@@ -189,7 +189,7 @@ const Footer = memo(() => {
                           id="menu-item-144"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
                         >
-                          <Link href="/career" style={{ color: "#FBD98C" }}>
+                          <Link href="/career" style={{ color: "#ffffff" }}>
                             Career
                           </Link>
                         </li>
@@ -206,7 +206,7 @@ const Footer = memo(() => {
                   <div className="tp-footer-widget-content">
                     <h3
                       className="tp-footer__widget-title"
-                      style={{ color: "#F7A31C", fontSize: "20px" }}
+                      style={{ color: "#ffffff", fontSize: "20px" }}
                     >
                       our services
                     </h3>
@@ -218,7 +218,7 @@ const Footer = memo(() => {
                         >
                           <Link
                             href="/services/digital-marketing"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Digital Marketing
                           </Link>
@@ -229,7 +229,7 @@ const Footer = memo(() => {
                         >
                           <Link
                             href="/services/print-advertising"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Print Advertising
                           </Link>
@@ -240,7 +240,7 @@ const Footer = memo(() => {
                         >
                           <Link
                             href="/services/radio-advertising"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Radio Advertising
                           </Link>
@@ -251,7 +251,7 @@ const Footer = memo(() => {
                         >
                           <Link
                             href="/services/creative-services"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Creative Services
                           </Link>
@@ -262,7 +262,7 @@ const Footer = memo(() => {
                         >
                           <Link
                             href="/services/contents-marketing"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Content Marketing
                           </Link>
@@ -273,7 +273,7 @@ const Footer = memo(() => {
                         >
                           <Link
                             href="/services/web-designing-and-development"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Web Development
                           </Link>
@@ -284,7 +284,7 @@ const Footer = memo(() => {
                         >
                           <Link
                             href="/services/celebrity-endorsements"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Celebrity Endorsements
                           </Link>
@@ -295,7 +295,7 @@ const Footer = memo(() => {
                         >
                           <Link
                             href="/services/influencer-marketing-agency-in-india"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Influencer Marketing
                           </Link>
@@ -313,7 +313,7 @@ const Footer = memo(() => {
                   <div className="widget_text tp-footer-widget-content">
                     <h3
                       className="tp-footer__widget-title"
-                      style={{ color: "#F7A31C", fontSize: "20px" }}
+                      style={{ color: "#ffffff", fontSize: "20px" }}
                     >
                       Contact info
                     </h3>
@@ -322,7 +322,7 @@ const Footer = memo(() => {
                         <div className="tp-footer__list">
                           <Link
                             href="/contact.html"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             Address: 402 – 404, <br /> 4th floor Corporate Park,{" "}
                             <br />
@@ -330,24 +330,24 @@ const Footer = memo(() => {
                           </Link>
                           <Link
                             href="tel:09220516777"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             09220516777
                           </Link>
                           <Link
                             href="tel:07290002168"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             07290002168
                           </Link>
                           <Link
                             href="mailto:
 info@ritzmediaworld.com"
-                            style={{ color: "#FBD98C" }}
+                            style={{ color: "#ffffff" }}
                           >
                             info@ritzmediaworld.com
                           </Link>
-                          <div style={{ color: "#FBD98C" }}>
+                          <div style={{ color: "#ffffff" }}>
                             Office Hours: 9AM - 7PM
                           </div>
                         </div>
@@ -372,9 +372,9 @@ info@ritzmediaworld.com"
                 <div className="row align-items-center">
                   <div className="col-xl-6 col-lg-7 ">
                     <div className="tp-copyright__text">
-                      <p style={{ color: "#FBD98C" }}>
+                      <p style={{ color: "#ffffff" }}>
                         © 2026{" "}
-                        <span style={{ color: "#FBD98C" }}>
+                        <span style={{ color: "#ffffff" }}>
                           {" "}
                           RITZ MEDIA WORLD,
                         </span>{" "}
@@ -384,20 +384,36 @@ info@ritzmediaworld.com"
                   </div>
                   <div className="col-xl-6 col-lg-5">
                     <div className="tp-copyright__social text-lg-end">
-                      <Link href="#" target="_blank">
-                        <i className="fab fa-facebook-f"></i>
+                      <Link href="#" target="_blank" style={{
+                        color: "#ffffff",
+                      }}>
+                        <i className="fab fa-facebook-f" style={{
+                          color: "#ffffff" ,
+                        }}></i>
                       </Link>
 
-                      <Link href="#" target="_blank">
-                        <i className="fab fa-twitter"></i>
+                      <Link href="#" target="_blank" style={{
+                        color: "#ffffff",
+                      }}>
+                        <i className="fab fa-twitter" style={{
+                          color: "#ffffff",
+                        }}></i>
                       </Link>
 
-                      <Link href="#" target="_blank">
-                        <i className="fab fa-instagram"></i>
+                      <Link href="#" target="_blank" style={{
+                        color: "#ffffff",
+                      }}>
+                        <i className="fab fa-instagram" style={{
+                          color: "#ffffff",
+                        }}></i>
                       </Link>
 
-                      <Link href="#" target="_blank">
-                        <i className="fab fa-linkedin-in"></i>
+                      <Link href="#" target="_blank" style={{
+                        color: "#ffffff",
+                      }}>
+                        <i className="fab fa-linkedin-in" style={{
+                          color: "#ffffff",
+                        }}></i>
                       </Link>
                     </div>
                   </div>

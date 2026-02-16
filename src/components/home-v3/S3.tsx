@@ -41,7 +41,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/creative-services",
     },
     {
-      img: "/home-v3/new/471-newspaper-2.png",
+      img: "/home-v3/new/rmw-news-paper1.jpg",
       category: "Print Advertising",
       ttl: "Print advertising campaigns that maximize impact",
       list: [

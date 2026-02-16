@@ -6,6 +6,7 @@ import { Download } from "lucide-react";
 import styles from "../page.module.css";
 import S6 from "../S6";
 import S7 from "../S7";
+import ServiceCard from "./cards/ServiceCard";
 
 import styles2 from "./page.module.css";
 import { BsArrowUpRight } from "react-icons/bs";
@@ -191,181 +192,277 @@ function Section3({ servicesData }: Section3Props) {
 
 
     return (
-        <section className="flex justify-center items-center py-[70px]">
+        <section className="flex justify-center items-center">
             {/* Center Align Container  */}
-            <div className="flex flex-col w-full">
+            <div className={`flex flex-col p-4 sm:px-8 gap-6 xl:px-20 w-full ${styles2.containerWidth}`}>
 
                 {/* Row 1 For Heading  */}
-                <div className={`flex items-end px-20 ${styles2.containerWidth}`}>
+                <div className={`flex items-end justify-center lg:justify-start `}>
                     <p className="font-[700] text-[36px]">What we d</p>
                     <img src="/home-v3/service-imgs/s3/do-txt.png" alt="arrow-right" className="h-[17px] mb-[11px]" />
                 </div>
 
                 {/* Row 2 For Services Cards  */}
-                <div className={`flex flex-col gap-3 ${styles2.containerWidth}`}>
+                <div className={`flex flex-col gap-3 `}>
                     {/* Cards   */}
                     {
                         [
                             {
-                                img1: "/home-v3/service-imgs/s3/s1.png",
-                                img2: "/home-v3/service-imgs/s3/s1-c.png",
-                                lft: "-right-[15%]  xl:-right-[50%]",
-                                copyHeight: "h-auto",
-                                copyWidth: "w-[305px]",
-                                mainHeight: "lg:h-[377px]",
-                                txtLft: "left-14",
-                                paddingTop: "pt-[0px]",
-                                paddingLeft: "pl-[0px]",
-                                mainWidth: "w-[377px]"
+                                title: "Digital <br /> Marketing",
+                                margin: "mr-[0px] pr-8 sm:pr-48 lg:pr-14",
+                                description: "Digital marketing without a strategy is like driving blindfolded. It may be exciting, perhaps, but it also comes with a high probability of disastrous consequences. At Ritz Media World, we collectively leverage a calculated sorcery of SEO, PPC, Social Media, and some Reputation alchemy to ensure that your brand doesn’t just survive, but flourishes spectacularly.",
+                                image: "/services/Digital-Marketing.png",
+                                link: "/services/brand-strategy",
+                                subServices: [
+                                    {
+                                        title: "SEO (Search Engine Optimization)",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "PPC (Google Ads) Services",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Social Media Management",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "ORM (Online Reputation Management)",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Lead Generation",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Brand Awareness",
+                                        slug: "",
+                                    },
+                                ]
                             },
                             {
-                                img1: "/home-v3/service-imgs/s3/s2.png",
-                                img2: "/home-v3/service-imgs/s3/s2-c.png",
-                                lft: "-right-[23%]  xl:-right-[50%]",
-                                copyHeight: "h-auto",
-                                copyWidth: "w-[305px]",
-                                mainHeight: "h-[377px]",
-                                txtLft: "left-14",
-                                paddingTop: "pt-[0px]",
-                                paddingLeft: "pl-[0px]",
-                                mainWidth: "w-[344px]"
+                                title: "Creative <br /> Services",
+                                margin: "lg:mr-[30px] pr-20 sm:pr-48 lg:pr-20 ",
+                                description: "Creativity isn’t just decoration, it’s the entire point. from Branding, to Graphic Design to captivating logos that leave an impression. We produce ideas that other companies contemplate stealing (Although we strongly advise against it). So it's your choice. Do you want your audience to fall in love at first sight? ",
+                                image: "/services/Creative-Service.png",
+                                link: "/services/creative-services",
+                                subServices: [
+                                    {
+                                        title: "Branding & Identity Development",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Graphic Design",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Logo Design",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Print Advertising Design",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Packaging Design",
+                                        slug: "",
+                                    },
+                                ]
                             },
                             {
-                                img1: "/home-v3/service-imgs/s3/s3.png",
-                                img2: "/home-v3/service-imgs/s3/s3-c.png",
-                                lft: "-right-[23%]  xl:-right-[80%]",
-                                copyHeight: "h-auto",
-                                copyWidth: "w-[305px]",
-                                mainHeight: "h-[373px]",
-                                txtLft: "left-14",
-                                paddingTop: "pt-[0px]",
-                                paddingLeft: "pl-[0px]",
-                                mainWidth: "w-[335px]"
+                                title: "Print <br /> Advertising",
+                                margin: "mr-[0px] pr-10 sm:pr-48 lg:pr-14",
+                                description: "Contrary to popular belief, Print is more prominent than ever! To put it simply, It has upgraded from mainstream to a premium audience. <br /> <br /> Ritz Media World has always been in the business of making print ads breathe life into paper, and BUSINESS IS GOOD! We turn simple pages into captivating conversation.Print advertising is like a well-crafted newspaper ad that grabs attention and sticks in the mind. At Ritz Media World, we blend creative thinking with strategic placement to ensure that your brand makes a lasting impression across newspapers, magazines, and other print media.",
+                                image: "/services/Print-Advertisement1.png",
+                                link: "/services/print-advertising",
+                                subServices: [
+                                    {
+                                        title: "Advertisement Design",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Ad Placement",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Copywriting",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Cost Negotiation",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Ad Size Optimization",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Ad Scheduling",
+                                        slug: "",
+                                    },
+                                ]
                             },
                             {
-                                img1: "/home-v3/service-imgs/s3/s4.png",
-                                img2: "/home-v3/service-imgs/s3/s4-c.png",
-                                lft: "-right-[23%]  xl:-right-[2%]",
-                                copyHeight: "h-[280px]",
-                                copyWidth: "w-[280px]",
-                                mainHeight: "h-[386px]",
-                                txtLft: "left-24",
-                                paddingTop: "pt-[50px]",
-                                paddingLeft: "pl-[10px]",
-                                mainWidth: "w-[386px]"
+                                title: "Radio <br /> Advertising",
+                                margin: "pr-8 sm:pr-36 lg:pl-20",
+                                description: "You may have noticed that people still have ears. The most wonderful way to effectively market to the masses in this digital age is an ear-catching captivating narrative. <br /> <br /> We add some more magic with Jingles and persuasive soundscapes that resonate with the masses.",
+                                image: "/services/Radio-Advertisement.png",
+                                link: "/services/radio-advertising",
+                                subServices: [
+                                    {
+                                        title: "Advertising Concept Development",
+                                    },
+                                    {
+                                        title: "Scriptwriting",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Voiceover Casting",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Recording & Production",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Media Planning And Buying",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Cost Negotiation",
+                                        slug: "",
+                                    },
+                                ]
                             },
                             {
-                                img1: "/home-v3/service-imgs/s3/s5.png",
-                                img2: "/home-v3/service-imgs/s3/s5-c.png",
-                                lft: "-right-[18%]  xl:-right-[50%]",
-                                copyHeight: "h-auto",
-                                copyWidth: "w-[305px]",
-                                mainHeight: "h-[373px]",
-                                txtLft: "left-14",
-                                paddingTop: "pt-[0px]",
-                                paddingLeft: "pl-[0px]",
-                                mainWidth: "w-[373px]"
+                                title: "Content <br /> Marketing",
+                                margin: "pr-12 sm:pr-44 lg:pr-14",
+                                description: "Content Isn’t king, Compelling Content is. Anyone can tell stories or put words together, but will that inspire action? We didn’t think so either. <br /> <br /> Be it blogs that educate, videos that entertain, or posts that persuade, our persuasive storytelling ensures that your brand stays relevant, remarkable, and unmistakably real.",
+                                image: "/services/Content-Marketing.png",
+                                link: "/services/content-marketing",
+                                subServices: [
+                                    {
+                                        title: "Customized Content Strategy",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Email and Newsletters Marketing",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Asset Creation and Infographics",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Content Promotion and Optimization",
+                                        slug: "",
+                                    }
+                                ]
                             },
                             {
-                                img1: "/home-v3/service-imgs/s3/s6.png",
-                                img2: "/home-v3/service-imgs/s3/s6-c.png",
-                                lft: "-right-[18%]  xl:-right-[50%]",
-                                copyHeight: "h-auto",
-                                copyWidth: "w-[305px]",
-                                mainHeight: "h-[372px]",
-                                txtLft: "left-14",
-                                paddingTop: "pt-[0px]",
-                                paddingLeft: "pl-[40px]",
-                                mainWidth: "w-[372px]"
+                                title: "Web <br /> Development",
+                                margin: "pr-4 sm:pr-34 lg:pl-14",
+                                description: "Your website is your digital handshake, so let’s make sure that it’s firm and welcoming. We design intuitive and visually delightful digital experiences that charm visitors into becoming loyal patrons. <br /> <br /> Remember, nothing signals credibility like a brilliantly functional website that customers love and don’t leave.",
+                                image: "/services/Web-Development.png",
+                                link: "/services/web-development",
+                                subServices: [
+                                    {
+                                        title: "UI/UX Design",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Custom Design & Development",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "E-Commerce Website Development",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Landing Page Development",
+                                        slug: "",
+                                    }
+                                ]
                             },
                             {
-                                img1: "/home-v3/service-imgs/s3/s8.png",
-                                img2: "/home-v3/service-imgs/s3/s8-c.png",
-                                lft: "-right-[18%]  xl:-right-[35%]",
-                                copyHeight: "h-auto",
-                                copyWidth: "w-[305px]",
-                                mainHeight: "h-[373px]",
-                                txtLft: "left-14",
-                                paddingTop: "pt-[0px]",
-                                paddingLeft: "pl-[70px]",
-                                mainWidth: "w-[373px]"
+                                title: "Celebrity <br /> Endorsements",
+                                margin: "pr-4 sm:pr-34 lg:pl-14",
+                                description: "Why scream when a Celebrity’s whisper can say it louder? <br /> <br /> We connect your brand with influential names whose endorsement doesn’t just sell but elevate your products and services. Because familiar faces are more effective in earning trust.",
+                                image: "/services/Celebrity-Endorsment.png",
+                                link: "/services/celebrity-endorsements",
+                                subServices: [
+                                    {
+                                        title: "Celebrity Identification",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Contract Negotiations",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Creative Collaboration",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Campaign Integration",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Public Relations",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Legal Compliance",
+                                        slug: "",
+                                    }
+                                ]
                             },
                             {
-                                img1: "/home-v3/service-imgs/s3/s9.png",
-                                img2: "/home-v3/service-imgs/s3/s9-c.png",
-                                lft: "-right-[10%]  xl:-right-[18%]",
-                                copyHeight: "h-[255px]",
-                                copyWidth: "w-[255px]",
-                                mainHeight: "h-[414px]",
-                                txtLft: "left-18",
-                                paddingTop: "pt-[0px]",
-                                paddingLeft: "pl-[40px]",
-                                mainWidth: "w-[414px]"
-                            },
-                        ].map((idx, i) => {
-                            const service = servicesData?.[i];
+                                title: "Influencer <br />   Marketing",
+                                margin: "lg:-mr-[10px] pr-10 sm:pr-38 lg:pr-0    ",
+                                description: "Influencer marketing isn’t about chasing vanity metrics—it’s strategic persuasion by trusted voices. At Ritz Media World, we cleverly match your brand with influential personalities whose authentic engagement transforms casual followers into loyal customers. <br /> <br /> Because genuine influence doesn’t shout—it whispers convincingly, profitably, and irresistibly to the right ears.",
+                                image: "/services/Influencer-Marketing3.png",
+                                link: "/services/influencer-marketing",
+                                subServices: [
+                                    {
+                                        title: "Influencer Identification",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Cost-Benefit Analysis",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Terms Negotiations",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Creative Collaboration",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Campaign Integration",
+                                        slug: "",
+                                    },
+                                    {
+                                        title: "Messaging Optimization",
+                                        slug: "",
+                                    },
+                                ]
+                            }
+
+                        ].map((service, idx) => {
                             return (
-                                <div key={service?.id || i} className="flex justify-between items-center py-10 border-b border-[#D9D9D9] relative px-8 xl:px-20 ">
-
-                                    {/* ABS Div  */}
-                                    <div className="w-[283px] h-[125px] absolute top-1/2 left-0 -translate-y-1/2 bg-[#F7F7F7]"></div>
-
-                                    {/* Left Side Container  */}
-                                    <div className="relative ">
-                                        {/* Image Container  */}
-                                        <div className={`relative `}>
-                                            <img src={idx.img1} alt="RMW" className={`${idx.mainWidth} ${idx.mainHeight}`}></img>
-
-
-                                            {/* Absolute Positioned Copy img  */}
-                                            <div className={` ${i === 3 ? "pt-[30px]" : "pt-0"}  absolute ${idx.lft} top-1/2 -translate-y-1/2 `}>
-                                                <div className="w-full h-full relative">
-                                                    <img src={idx.img2} alt=""
-                                                        className={`${idx.copyWidth} ${idx.copyHeight} `}></img>
-
-                                                    {/* Absolute Positioned Copy Text  */}
-                                                    <div className={`absolute top-1/2 ${idx.txtLft} -translate-y-1/2 flex flex-col ${idx.paddingTop} ${idx.paddingLeft}`}>
-                                                        <p className="font-[400] text-[15px] text-black pl-[4px]">0{i + 1}</p>
-                                                        <h3 className="font-[500] mb-6 text-[36px]">{service?.title || "Digital Marketing"}</h3>
-                                                        <div className="w-[50px] h-[50px] bg-[#C99237] rounded-full relative">
-                                                            <BsArrowUpRight className='text-white text-[16px] sm:text-[17px] lg:text-[25px]
-                                                        absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                                                        ' />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Right Side Container  */}
-                                    <div className="w-[496px] h-full  flex flex-col justify-between gap-8">
-
-                                        {/* Row 1 For Text  */}
-                                        <div className="flex flex-col gap-2">
-                                            <p className="font-[400] text-[16px]">{service?.description || ""}</p>
-                                        </div>
-
-                                        {/* Div Row 2  */}
-                                        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 ">
-                                            {service?.sub && service.sub.length > 0 ? (
-                                                service.sub.map((subItem: any, subIdx: number) => (
-                                                    <div key={subItem.id || subIdx} className="w-[161px] h-[78px] bg-[#F2F2F2] flex items-center px-3">
-                                                        <p className="font-[400] text-[14px] text-black">{subItem.s3heading1 || subItem.title || ""}</p>
-                                                    </div>
-                                                ))
-                                            ) : null}
-                                        </div>
-                                    </div>
-                                </div>
+                                <ServiceCard key={idx} service={service} index={idx} />
                             )
-                        })}
+                        })
+                    }
                 </div>
                 {/* Row 3  */}
-                <div className={`flex flex-col gap-6 sm:gap-8 px-4 sm:px-8 md:px-12 lg:px-20 lg:py-[70px] ${styles2.containerWidth}`}>
+                <div className={`flex flex-col gap-6 `}>
 
                     {/* Row 1  */}
-                    <div className="flex flex-col">
+                    <div className="flex flex-col text-center md:text-left">
                         <p className="font-[600] text-[12px] sm:text-[14px] md:text-[16px] uppercase text-[#C99237]">
                             Legendary Stories
                         </p>
@@ -389,7 +486,7 @@ function Section3({ servicesData }: Section3Props) {
                             <Image src={"/home-v3/service-imgs/s3/s3-increase.png"} alt="Ritz Media World" fill className="w-full h-full object-cover"></Image>
 
                             {/* Absolute Position Text Container  */}
-                            <div className="absolute inset-0 w-full h-full flex flex-col p-4 sm:p-6 md:p-8 lg:p-10">
+                            <div className="absolute inset-0 w-full h-full flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 text-center md:text-left">
                                 <p className="font-[400] text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] text-white">
                                     We command growth with millions of hours in collective experience. At this point, It's not a matter of 'if', it becomes a matter of 'when' you will attain the tipping point that will drive your.
                                 </p>
@@ -397,7 +494,7 @@ function Section3({ servicesData }: Section3Props) {
                                     PERPETUAL <br />
                                     <span className="font-[800]">GROWTH</span>
                                 </h4>
-                            </div>  a
+                            </div>  
                         </div>
 
 
@@ -436,7 +533,7 @@ function Section3({ servicesData }: Section3Props) {
                             {/* Absolute Positioned Button  */}
                             <div className="w-full absolute left-0 top-[60%] pl-10 z-10">
                                 <button className="w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff]">
-                                More About Us
+                                    More About Us
                                 </button>
                             </div>
                         </div>
@@ -448,7 +545,7 @@ function Section3({ servicesData }: Section3Props) {
                 </div>
 
                 {/* Copy Components  */}
-                <div className={`flex flex-col px-20 ${styles2.containerWidth}`}>
+                <div className={`flex flex-col `}>
                     {/* Copy Row 1  */}
                     <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
                         {/* Left Side Container  */}
@@ -548,9 +645,9 @@ function Section3({ servicesData }: Section3Props) {
                 {/*  Components  */}
                 <div className="w-full">
                     {/* Row 2  */}
-                    <div className="w-full min-h-[180px] xs:min-h-[190px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[247px] bg-[#F7F7F7] flex justify-center items-center py-5 xs:py-6 sm:py-8 md:py-10 lg:py-0">
+                    <div className="w-full min-h-[160px] sm:min-h-[180px] md:min-h-[200px] lg:min-h-[220px] xl:min-h-[247px] bg-[#F7F7F7] flex justify-center items-center py-4 sm:py-5 md:py-6 lg:py-8 xl:py-0">
                         {/* Center Align Cards Container  */}
-                        <div className="flex flex-wrap sm:flex-nowrap justify-center items-center gap-3 xs:gap-4 sm:gap-6 md:gap-10 lg:gap-16 w-full px-3 xs:px-4 sm:px-6 md:px-8 lg:px-0 max-w-[1920px] mx-auto">
+                        <div className="grid grid-cols-2 sm:flex sm:flex-wrap md:flex-nowrap justify-center items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-10 2xl:gap-16 w-full px-4 sm:px-5 md:px-6 lg:px-8 xl:px-0 max-w-[1920px] mx-auto">
                             {
                                 [
                                     {
@@ -577,12 +674,14 @@ function Section3({ servicesData }: Section3Props) {
                                 ].map((ob, idx) => {
                                     return (
                                         <div key={idx} className={`flex flex-col justify-center items-center text-center
-                                         px-3 xs:px-4 sm:px-5 md:px-8 lg:px-14 
-                                         py-2.5 xs:py-3 sm:py-3.5 md:py-4
-                                         w-[calc(50%-6px)] xs:w-[calc(50%-8px)] sm:w-auto
-                                         ${idx < 3 ? "border-b-[1px] border-b-[#C9C9C9] pb-3 xs:pb-3.5 sm:pb-0 sm:border-b-0 sm:border-r-[1px] sm:border-r-[#C9C9C9]" : "pb-0 sm:border-r-0"}`}>
-                                            <h5 className="font-[700] text-[28px] xs:text-[32px] sm:text-[36px] md:text-[45px] lg:text-[60px] text-[#000000] leading-tight">{ob.ttl}</h5>
-                                            <p className="font-[400] text-[11px] xs:text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] text-[#000000] mt-1 xs:mt-1.5 sm:mt-2">{ob.desc}</p>
+                                         px-2 sm:px-3 md:px-4 lg:px-6 xl:px-10 2xl:px-14 
+                                         py-2 sm:py-2.5 md:py-3 lg:py-3.5 xl:py-4
+                                         w-full sm:w-[calc(50%-6px)] md:w-auto
+                                         ${idx < 2 ? "border-b-[1px] border-b-[#C9C9C9] sm:border-b-[1px] sm:border-r-0 md:border-b-0 md:border-r-[1px] md:border-r-[#C9C9C9]" : ""}
+                                         ${idx === 2 ? "border-b-[1px] border-b-[#C9C9C9] sm:border-b-0 sm:border-r-[1px] sm:border-r-[#C9C9C9] md:border-b-0 md:border-r-[1px] md:border-r-[#C9C9C9]" : ""}
+                                         ${idx === 3 ? "sm:border-r-0 md:border-r-0" : ""}`}>
+                                            <h5 className="font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[50px] 2xl:text-[60px] text-[#000000] leading-tight">{ob.ttl}</h5>
+                                            <p className="font-[400] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[16px] text-[#000000] mt-1 sm:mt-1.5 md:mt-2">{ob.desc}</p>
                                         </div>
                                     )
                                 })
@@ -592,8 +691,8 @@ function Section3({ servicesData }: Section3Props) {
                 </div>
 
                 {/* Copy Components  */}
-                <div className={`${styles2.containerWidth}`}>
-                    <S6 />
+                <div className={``}>
+                    <S6 padding="px-0" padding2="px-0" />
                 </div>
 
                 {/* Copy Components  */}
@@ -601,7 +700,7 @@ function Section3({ servicesData }: Section3Props) {
 
                 {/* Copy Components  */}
                 {/* Row 2  */}
-                <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 px-10 lg:gap-6  lg:py-[70px] py-10  ${styles2.containerWidth}`}>
+                <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 `}>
                     {/* Left Side Container  */}
                     <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
                         <div className="text-center md:text-left mb-2 md:mb-0">
@@ -658,8 +757,8 @@ function Section3({ servicesData }: Section3Props) {
                                         placeholder="Enter your phone (e.g., +91 9220516777)"
                                         required
                                         className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
-                                                ? "border-[#EF4444]"
-                                                : "border-[#DAD4D4]"
+                                            ? "border-[#EF4444]"
+                                            : "border-[#DAD4D4]"
                                             }`}
                                     />
                                     {phoneError && (
@@ -746,7 +845,7 @@ function Section3({ servicesData }: Section3Props) {
                 </div>
 
                 {/* Row 3  */}
-                <div className={`w-full flex justify-center px-10 items-center ${styles2.containerWidth}`}>
+                <div className={`w-full flex justify-center items-center `}>
                     {/* Center Align Container  */}
                     <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
                         <h2
@@ -823,8 +922,8 @@ function Section3({ servicesData }: Section3Props) {
                             <button
                                 onClick={() => setModal({ ...modal, open: false })}
                                 className={`px-4 py-2 rounded-[8px] font-[500] text-sm transition-colors ${modal.status === "success"
-                                        ? "bg-[#10B981] text-white hover:bg-[#059669]"
-                                        : "bg-[#EF4444] text-white hover:bg-[#DC2626]"
+                                    ? "bg-[#10B981] text-white hover:bg-[#059669]"
+                                    : "bg-[#EF4444] text-white hover:bg-[#DC2626]"
                                     }`}
                             >
                                 OK

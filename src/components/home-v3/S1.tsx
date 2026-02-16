@@ -43,7 +43,7 @@ function S1() {
             </div>
 
             {/* Right Side Container  */}
-            <div className="flex flex-row 
+            <div className="flex flex-row
             items-end  md:-ml-[23px]">
               <h2 className="font-[600] text-[13px] md:text-[17px] lg:text-[19px]" style={{
                 fontFamily: 'MontserratSemiBold',

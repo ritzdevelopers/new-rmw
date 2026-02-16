@@ -1,0 +1,62 @@
+[
+    {
+        "title": "SEO (Search Engine Optimization)",
+        "description": "For us, SEO is more than mere ranking, it's about relevance and long-term authority. As a reliable SEO agency in India, we offer the best SEO services and ensure your business appears at the top of search results and stays there with content that engages and converts your audience.",
+        "image": "/service-v3/",
+        "link": "https://ritzmediaworld.com/services/digital-marketing/search-engine-optimization-seo",
+        "meta_titles": "Best SEO Services in India | Top SEO Agency",
+        "meta_description": "Improve your website ranking with our best SEO services in India. Attract organic traffic, boost leads, and expand your business with our effective SEO solutions.",
+        "meta_keywords": "SEO services India, best SEO agency, search engine optimization, SEO company, organic SEO services, top SEO agency India, SEO services for business",
+        "parent_slug": "digital-marketing"
+    },
+    {
+        "title": "PPC (Google Ads) Services",
+        "description": "At our performance-driven digital marketing agency, we ensure that our campaigns are always optimized to deliver the highest ROI and business growth. Our PPC specialists design targeted Google Ads campaigns that capture users at the peak of their interest and convert them into customers quickly.",
+        "image": "",
+        "link": "https://ritzmediaworld.com/services/digital-marketing/ppc-google-ads-agency",
+        "meta_titles": "Best PPC Services in India | high ROI with Google Ads",
+        "meta_description": "Maximize ROI with our PPC services. Our expert team creates targeted Google Ads campaigns that convert clicks into high-quality leads and business growth.",
+        "meta_keywords": "PPC services India, Google Ads services, PPC advertising, pay per click marketing, Google Ads agency, PPC management, high ROI PPC campaigns",
+        "parent_slug": "digital-marketing"
+    },
+    {
+        "title": "Social Media Management",
+        "description": "Social media can make or break a brand. Our team creates powerful strategies supported by engaging content that builds meaningful connections with your audience and strengthens brand loyalty.",
+        "image": "",
+        "link": "https://ritzmediaworld.com/services/digital-marketing/social-media-management",
+        "meta_titles": "Social Media Marketing Services for Brand Growth",
+        "meta_description": "Best social media management services to help you grow your brand, increase engagement, and boost visibility on Facebook, Instagram, and LinkedIn.",
+        "meta_keywords": "social media management, social media marketing services, SMM services, Facebook marketing, Instagram marketing, LinkedIn marketing, social media agency",
+        "parent_slug": "digital-marketing"
+    },
+    {
+        "title": "ORM (Online Reputation Management)",
+        "description": "Your reputation defines your brand value. We proactively monitor, protect, and enhance your online presence by addressing negative feedback and amplifying positive brand sentiment.",
+        "image": "",
+        "link": "https://ritzmediaworld.com/services/digital-marketing/orm-in-digital-marketing",
+        "meta_titles": "Build Your Brand with Online Reputation Management Services",
+        "meta_description": "Use our ORM services to improve your online reputation. To establish credibility and trust, keep an eye on reviews, respond to unfavorable comments, and boost favorable brand sentiment.",
+        "meta_keywords": "ORM services, online reputation management, reputation management services, brand reputation, online reputation, reputation monitoring, ORM agency India",
+        "parent_slug": "digital-marketing"
+    },
+    {
+        "title": "Lead Generation",
+        "description": "Leads don’t appear automatically — they are strategically created. Our lead generation campaigns use precise targeting and persuasive messaging to attract high-quality prospects and convert interest into revenue",
+        "image": "",
+        "link": "https://ritzmediaworld.com/services/digital-marketing/lead-generation",
+        "meta_titles": "Best PPC Services in India | high ROI with Google Ads",
+        "meta_description": "Maximize ROI with our PPC services. Our expert team creates targeted Google Ads campaigns that convert clicks into high-quality leads and business growth.",
+        "meta_keywords": "PPC services India, Google Ads services, PPC advertising, pay per click marketing, Google Ads agency, PPC management, high ROI PPC campaigns",
+        "parent_slug": "digital-marketing"
+    },
+    {
+        "title": "Brand Awareness",
+        "description": "Awareness only works when it creates admiration. We build brand campaigns that ensure your business is not just noticed but remembered and preferred by your audience.",
+        "image": "",
+        "link": "https://ritzmediaworld.com/services/digital-marketing/brand-awareness",
+        "meta_titles": "Social Media Marketing Services for Brand Growth",
+        "meta_description": "Best social media management services to help you grow your brand, increase engagement, and boost visibility on Facebook, Instagram, and LinkedIn.",
+        "meta_keywords": "social media management, social media marketing services, SMM services, Facebook marketing, Instagram marketing, LinkedIn marketing, social media agency",
+        "parent_slug": "digital-marketing"
+    }
+]
