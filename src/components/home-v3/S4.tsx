@@ -71,7 +71,7 @@ function S4() {
     //   link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
     // },
     {
-      img: "/home-v3/s4/590-print.png",
+      img: "/home-v3/new/rmw-news-paper2.jpg",
       category: "Print Advertising",
       title: "Print Advertising",
       description:

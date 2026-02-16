@@ -1,7 +1,8 @@
 @media (min-width: 1370px) {
     .containerWidth {
        width: 1400px !important; 
-       margin: 0 auto;
+       margin: 0 auto !important;
+       align-self: center !important;
     }
 }
 

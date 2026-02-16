@@ -35,10 +35,10 @@ interface ISpeechRecognition extends EventTarget {
 declare global {
   interface Window {
     SpeechRecognition?: {
-      new (): ISpeechRecognition;
+      new(): ISpeechRecognition;
     };
     webkitSpeechRecognition?: {
-      new (): ISpeechRecognition;
+      new(): ISpeechRecognition;
     };
   }
 }
@@ -58,10 +58,10 @@ function ChatBoat() {
   const backdropRef = useRef<HTMLDivElement>(null);
   const boatRef = useRef<HTMLDivElement>(null);
   const path = usePathname();
- // Determine if the component should render
-const hideChatBoat =
-  path.includes("/rdx-digital-marketing-course") ||
-  path.includes("/rdx-digital-marketing-Course");
+  // Determine if the component should render
+  const hideChatBoat =
+    path.includes("/rdx-digital-marketing-course") ||
+    path.includes("/rdx-digital-marketing-Course");
 
 
 
@@ -182,6 +182,21 @@ const hideChatBoat =
 
   const chattingHandler = async () => {
     if (!msg) return;
+    console.log('api hit');
+
+    const res2 = await axios.post(
+      "https://chatbot.ritzmediaworld.com/chat",
+      {
+        query: msg,
+        history: ['']
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    );
+    console.log(res2);
     setMsgsQue((pr) => [
       ...pr,
       { msg, id: pr.length > 0 ? pr[pr.length - 1].id + 1 : 1 },
@@ -201,6 +216,7 @@ const hideChatBoat =
           },
         }
       );
+
       setResLoader(false);
       if (res.data.answer_html) {
         setSuggestionsQue([]);
@@ -217,7 +233,7 @@ const hideChatBoat =
           });
         }
 
-        new Audio("/msg-receive.mp3").play().catch(() => {});
+        new Audio("/msg-receive.mp3").play().catch(() => { });
       }
     } catch (err) {
       console.log(err);
@@ -230,7 +246,7 @@ const hideChatBoat =
           id: pr.length > 0 ? pr[pr.length - 1].id + 1 : 1,
         },
       ]);
-      new Audio("/msg-receive.mp3").play().catch(() => {});
+      new Audio("/msg-receive.mp3").play().catch(() => { });
     }
   };
 
@@ -254,6 +270,8 @@ const hideChatBoat =
           },
         }
       );
+      const res2 = await axios.post("https://chatbot.ritzmediaworld.com/chat", data);
+      console.log(res2);
       setResLoader(false);
       if (res.data.answer_html) {
         setSuggestionsQue([]);
@@ -269,7 +287,7 @@ const hideChatBoat =
             setSuggestionsQue((prev) => [...prev, { id: idx, msg: ob }]);
           });
         }
-        new Audio("/msg-receive.mp3").play().catch(() => {});
+        new Audio("/msg-receive.mp3").play().catch(() => { });
       }
     } catch (err) {
       console.log(err);
@@ -282,7 +300,7 @@ const hideChatBoat =
           id: pr.length > 0 ? pr[pr.length - 1].id + 1 : 1,
         },
       ]);
-      new Audio("/msg-receive.mp3").play().catch(() => {});
+      new Audio("/msg-receive.mp3").play().catch(() => { });
     }
   };
 
@@ -406,9 +424,9 @@ const hideChatBoat =
 
   // Generative AI Content,
   if (hideChatBoat) {
-  // Return null for rendering, but hooks above are still called
-  return null;
-}
+    // Return null for rendering, but hooks above are still called
+    return null;
+  }
   return (
     <>
       <style>

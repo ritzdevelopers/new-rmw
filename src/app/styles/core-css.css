@@ -2433,16 +2433,16 @@ xclip
 }
 
 .awards-icon {
-  background: linear-gradient(90deg, #f1850f, #8b4d09);
+  background: #1E2939;
 }
 
 .footer-icon {
-  background: linear-gradient(90deg, #f1850f, #8b4d09);
+  background: #1E2939;
   border: none;
 }
 
 .footer-icon:hover {
-  background: #a1611c;
+  background: #1E2939;
 }
 
 .why-us-color-text {
@@ -6082,7 +6082,7 @@ input.search-input-field {
 
 .tp-footer__wrap {
   margin: 0 77px;
-  background: #060606;
+  background: #0F1640;
   border-radius: 12px;
 }
 

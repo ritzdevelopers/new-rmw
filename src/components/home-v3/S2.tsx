@@ -446,7 +446,7 @@ function S2() {
                   act: false,
                   id: "03",
                   ttl: "Print Advertisement",
-                  img: "/home-v3/new/2223.jpg",
+                  img: "/home-v3/new/rmw-news-paper3.png",
                   para: "We create high-impact print campaigns that deliver credibility and recall, blending strong creative thinking with strategic placements across newspapers, magazines, outdoor formats, and on-ground brand touchpoints.",
                   link: "https://ritzmediaworld.com/services/print-advertising",
                 },

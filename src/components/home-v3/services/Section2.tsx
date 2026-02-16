@@ -9,7 +9,7 @@ function Section2() {
             {/* Center Align Container  */}
             <div className={`flex flex-col md:flex-row justify-between items-center lg:items-center gap-6 sm:gap-8 md:gap-4 w-full ${styles2.containerWidth}`}>
                 {/* Left Side Container  */}
-                <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full maxw-[547px]">
+                <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full maxw-[547px] text-center md:text-left">
                     <h2 className={`font-[600] text-[18px] lg:text-[20px] xl:text-[30px] text-black leading-tight sm:leading-snug md:leading-normal ${styles2.yofText}`}>
                         At <span className='text-[#C99237]'>Ritz Media World</span>, we have an obsession with being wizards of quirkiness that morph good ideas into Brilliant ones.
                     </h2>
