@@ -184,7 +184,7 @@ function S2() {
           </div>
           {/* Col 2 */}
           <div className="w-full lg:w-[375px] h-[250px] sm:h-[300px] lg:h-[370px] relative mx-auto lg:mx-0">
-            <Image src={"/home-v3/s2/s2-i22.png"} alt="rmw" fill className="object-contain"></Image>
+            <Image src={"/home-v3/s2/s2-i2222.png"} alt="rmw" fill className="object-contain"></Image>
           </div>
 
           {/* Col 3  */}

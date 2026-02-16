@@ -370,51 +370,16 @@ info@ritzmediaworld.com"
                 }}
               >
                 <div className="row align-items-center">
-                  <div className="col-xl-6 col-lg-7 ">
+                  <div className="">
                     <div className="tp-copyright__text">
                       <p style={{ color: "#ffffff" }}>
                         © 2026{" "}
                         <span style={{ color: "#ffffff" }}>
                           {" "}
                           RITZ MEDIA WORLD,
-                        </span>{" "}
+                        </span>{" "} <br />
                         All Rights Reserved
                       </p>
-                    </div>
-                  </div>
-                  <div className="col-xl-6 col-lg-5">
-                    <div className="tp-copyright__social text-lg-end">
-                      <Link href="#" target="_blank" style={{
-                        color: "#ffffff",
-                      }}>
-                        <i className="fab fa-facebook-f" style={{
-                          color: "#ffffff" ,
-                        }}></i>
-                      </Link>
-
-                      <Link href="#" target="_blank" style={{
-                        color: "#ffffff",
-                      }}>
-                        <i className="fab fa-twitter" style={{
-                          color: "#ffffff",
-                        }}></i>
-                      </Link>
-
-                      <Link href="#" target="_blank" style={{
-                        color: "#ffffff",
-                      }}>
-                        <i className="fab fa-instagram" style={{
-                          color: "#ffffff",
-                        }}></i>
-                      </Link>
-
-                      <Link href="#" target="_blank" style={{
-                        color: "#ffffff",
-                      }}>
-                        <i className="fab fa-linkedin-in" style={{
-                          color: "#ffffff",
-                        }}></i>
-                      </Link>
                     </div>
                   </div>
                 </div>
