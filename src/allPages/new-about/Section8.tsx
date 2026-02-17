@@ -73,7 +73,7 @@ function Section8() {
                 className="w-full md:w-[calc(33.333%-1rem)] lg:w-[343px] min-h-[77px] border-t-2 border-t-[#D9D9D9] flex justify-between items-center gap-4 pt-4"
               >
                 <p className="font-[600] text-[16px] sm:text-[17px] md:text-[18px] text-[#00000099]">
-                  <span className="text-black font-bold">{ob.boldText}</span>
+                  <span className="text-[#0F1640] font-bold">{ob.boldText}</span>
                   {ob.restText}
                 </p>
                 <div className="flex-shrink-0">{ob.icn}</div>

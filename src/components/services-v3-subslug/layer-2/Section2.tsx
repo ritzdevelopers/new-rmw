@@ -1,0 +1,56 @@
+import Link from "next/link";
+import { GoArrowUpRight } from "react-icons/go";
+
+export default function Section2() {
+  return (
+    <section className="w-full flex items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+      <div className="w-[92%] sm:w-[85%] md:w-[80%] lg:w-[70%] text-center">
+        <h2
+          className="text-black font-[800] text-[28px] sm:text-[36px] md:text-[44px] lg:text-[30px] leading-tight"
+          style={{ fontFamily: "MontserratBold" }}
+        >
+          Creativity isn’t just decoration—it’s competitive advantage.
+          <br className="hidden sm:block" /> At{" "}
+          <span className="text-[#C99237]">Ritz Media World</span>, we believe
+          blandness is a luxury you can’t afford.
+        </h2>
+
+        <div
+          className="mt-6 sm:mt-7 md:mt-8 text-[#2d2d2d] space-y-3 sm:space-y-4 text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed"
+          style={{ fontFamily: "OpenSansRegular" }}
+        >
+          <p>
+            From branding that shapes perception to design that demands
+            attention, our creative services are strategically inventive,
+            memorably original, and reliably persuasive.Whether it’s crafting identities that resonate deeply or visuals
+            that linger delightfully, every piece of creative is engineered not
+            just to be seen, but to sell. Good design gets noticed; great
+            design gets chosen.
+          </p>
+          <p>
+            With Ritz, your brand won’t merely blend in—it will confidently
+            stand apart, win hearts, and effortlessly outperform competitors
+            stuck in the predictable rut of convention.
+          </p>
+        </div>
+
+        <div className="mt-8 sm:mt-10 md:mt-12 flex items-center justify-center gap-4">
+          <span
+            className="text-black text-[15px] sm:text-[16px] md:text-[17px sop]"
+            style={{ fontFamily: "MontserratMedium" }}
+          >
+            Contact us
+          </span>
+          <Link
+            href="/contact.html"
+            target="_blank"
+            aria-label="Contact us"
+            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+          >
+            <GoArrowUpRight className="text-white" size={20} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}

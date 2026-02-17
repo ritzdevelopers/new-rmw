@@ -19,7 +19,7 @@ function AnimatedBtn({
     <div
       onClick={() => window.open(link, "_blank")}
       className={`w-[62px] h-[62px] rounded-full text-white flex items-center justify-center cursor-pointer ${
-        bg ? bg : "bg-[#242424]"
+        bg ? bg : "bg-[#0F1640]"
       } ${styles.animatedBtn}`}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
@@ -31,7 +31,7 @@ function AnimatedBtn({
           } w-[20px] h-[20px] rotate-[329deg] flex-shrink-0  ${
             styles.animatedBtnIcn
           }
-          ${isHover && txt ? "text-white" : "text-black"}  
+          ${isHover && txt ? "text-white" : "text-[#0F1640]"}  
           `}
         />
         <span className={`text-white font-medium ${styles.animatedBtnText}`}>

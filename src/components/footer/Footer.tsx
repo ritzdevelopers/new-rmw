@@ -20,7 +20,7 @@ const Footer = memo(() => {
         <div className="tp-footer__wrap">
           <div className="tp-cta-area  pb-40"></div>
           {/* <!-- tp cta area end  --> */}
-          <div className="container  ">
+          <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
             <div className="row" style={{ justifyContent: "space-between" }}>
               <div className="col-12 col-md-6 col-lg-3">
                 <div
@@ -304,12 +304,12 @@ const Footer = memo(() => {
                   </div>
                 </div>
               </div>
-              <div className="col-12 col-md-6 col-lg-3">
+              <div className="col-12 col-md-6 col-lg-3 w-full min-h-[206px]">
                 <div
                   id="custom_html-4"
-                  className="widget_text tp-footer__widget footer-col-1-3 mb-40 widget_custom_html"
+                  className="widget_text tp-footer__widget footer-col-1-3 mb-40 widget_custom_html w-full min-h-[206px]"
                 >
-                  <div className="widget_text tp-footer-widget-content">
+                  <div className="widget_text tp-footer-widget-content w-full min-h-[206px] flex flex-col">
                     <h3
                       className="tp-footer__widget-title"
                       style={{ color: "#ffffff", fontSize: "20px" }}
@@ -347,7 +347,7 @@ info@ritzmediaworld.com"
                             info@ritzmediaworld.com
                           </Link>
                           <div style={{ color: "#ffffff" }}>
-                            Office Hours: 9AM - 7PM
+                            Office Hours: 9:30AM - 6:30PM
                           </div>
                         </div>
                       </div>
@@ -359,7 +359,7 @@ info@ritzmediaworld.com"
           </div>
           {/* <!-- tp copyright area start --> */}
           <div className="tp-copyright-area pb-5">
-            <div className="container">
+            <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
               <div
                 className="tp-copyright__wrap   pt-20"
                 style={{
