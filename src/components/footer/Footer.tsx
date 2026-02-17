@@ -7,7 +7,6 @@ import { FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { memo } from "react";
 
 const Footer = memo(() => {
-  // const textRefs = useSplitText();
 
   return (
     <footer>
