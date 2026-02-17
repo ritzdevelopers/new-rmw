@@ -217,7 +217,7 @@ function S9() {
   return (
     <section
       ref={sectionRef}
-      className="w-screen min-h-screen flex justify-center items-center bg-gradient-to-b from-[#101828] via-[#1E2939] to-[#1E2939] py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden"
+      className="w-screen min-h-screen flex justify-center items-center py-12 sm:py-16 md:py-20 lg:py-24 overflow-x-hidden bg-cover bg-no-repeat bg-center bg-[url(/home-v3/awards-bg/awards-bg-mobile.png)] md:bg-[url(/home-v3/awards-bg/awards-bg-desktop.png)]"
     >
       {/* Centered Positioned Div */}
       <div className="w-[90%] max-w-[1400px] flex flex-col lg:flex-row justify-center items-center gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16">

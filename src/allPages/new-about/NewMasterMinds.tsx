@@ -83,7 +83,7 @@ function NewMasterMinds() {
     },
   ];
   return (
-    <section className="w-full bg-[#181818] min-h-[500px] sm:min-h-[600px] md:min-h-[700px] xl:min-h-[874px] flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-10 xl:py-20 px-4 sm:px-6 md:px-8 lg:px-0 overflow-x-hidden">
+    <section className="w-full bg-[#0F1640] min-h-[500px] sm:min-h-[600px] md:min-h-[700px] xl:min-h-[874px] flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-10 xl:py-20 px-4 sm:px-6 md:px-8 lg:px-0 overflow-x-hidden">
       <div className="w-[95%] sm:w-[95%] lg:w-[90%] flex flex-col justify-center items-center gap-10 sm:gap-14 md:gap-16 lg:gap-10 xl:gap-20">
         {/* Top Centered Div  */}
         <div className="text-center flex flex-col justify-center items-center gap-3 sm:gap-4 md:px-4">
@@ -117,7 +117,7 @@ function NewMasterMinds() {
                 />
 
                 {/* Absolute Position Element  */}
-                <div className="masterMindsArrow absolute top-0 left-0 w-[50px] h-[48px] sm:w-[60px] sm:h-[58px] md:w-[68px] md:h-[66px] lg:w-[74px] lg:h-[72px] flex justify-center items-center bg-[#ED8B24E5]">
+                <div className="masterMindsArrow absolute top-0 left-0 w-[50px] h-[48px] sm:w-[60px] sm:h-[58px] md:w-[68px] md:h-[66px] lg:w-[74px] lg:h-[72px] flex justify-center items-center bg-[#0F1640]">
                   <FaArrowRight className="masterMindsIcon w-[14px] h-[14px] sm:w-[16px] sm:h-[16px] md:w-[18px] md:h-[18px] lg:w-[20px] lg:h-[20px] text-white rotate-[-20deg] absolute top-6 left-6" />
 
                   {/* Centered Align Container  */}

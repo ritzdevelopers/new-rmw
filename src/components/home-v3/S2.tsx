@@ -18,15 +18,15 @@ function S2() {
     act: true,
     id: "01",
     ttl: "Digital Marketing",
-    img: "/home-v3/new/602-banner1.png",
+    img: "/home-v3/new/602-banner1.jpg",
     para: "We design digital strategies that balance reach and relevance, combining performance marketing, data insights, and platform intelligence to drive sustained visibility, intent, and measurable business growth.",
     link: "https://ritzmediaworld.com/services/digital-marketing",
   });
 
-  const [prevImage, setPrevImage] = useState<string>("/home-v3/new/602-banner1.png");
-  const [nextImage, setNextImage] = useState<string>("/home-v3/new/602-banner1.png");
+  const [prevImage, setPrevImage] = useState<string>("/home-v3/new/602-banner1.jpg");
+  const [nextImage, setNextImage] = useState<string>("/home-v3/new/602-banner1.jpg");
   const [showTransition, setShowTransition] = useState(false);
-  const [displayImage, setDisplayImage] = useState<string>("/home-v3/new/602-banner1.png");
+  const [displayImage, setDisplayImage] = useState<string>("/home-v3/new/602-banner1.jpg");
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [videoType, setVideoType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   const pendingCardRef = useRef<CardItem | null>(null);
@@ -192,7 +192,7 @@ function S2() {
             {/* Row 1  */}
             <div className="flex w-full h-[50%] border-b-[1px] border-b-[#AFAFAF]">
               <div className="w-[50%] h-full flex flex-col justify-center items-center text-center border-r-[1px] border-r-[#AFAFAF] ">
-                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px]" style={{
+                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px] text-[#0F1640]" style={{
                   fontFamily: 'MontserratBold',
                 }}>1M+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
@@ -200,7 +200,7 @@ function S2() {
                 }}>Campaigns Executed</p>
               </div>
               <div className="w-[50%] h-full flex flex-col justify-center items-center text-center ">
-                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px]" style={{
+                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px] text-[#0F1640]" style={{
                   fontFamily: 'MontserratBold',
                 }}>1K+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
@@ -212,7 +212,7 @@ function S2() {
             {/* Row 2 */}
             <div className="flex w-full h-[50%]">
               <div className="w-[50%] h-full flex flex-col justify-center items-center text-center border-r-[1px] border-r-[#AFAFAF]">
-                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px]" style={{
+                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px] text-[#0F1640]" style={{
                   fontFamily: 'MontserratBold',
                 }}>500+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
@@ -220,7 +220,7 @@ function S2() {
                 }}>Solutions</p>
               </div>
               <div className="w-[50%] h-full flex flex-col justify-center items-center text-center">
-                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px]" style={{
+                <p className="font-[700] text-[36px] sm:text-[48px] xl:text-[60px] text-[#0F1640]" style={{
                   fontFamily: 'MontserratBold',
                 }}>1B+</p>
                 <p className="font-[600] text-[13px] sm:text-[14px] lg:text-[16px]" style={{
@@ -280,7 +280,7 @@ function S2() {
 
           {/* Row 2  */}
           <div className="w-full h-[250px] sm:h-[350px] lg:h-[426px] relative">
-            <Image src={"/home-v3/s2/team-bg.jpg"} alt="" fill className="object-cover"></Image>
+            <Image src={"/home-v3/s2/team-bg.jpeg"} alt="" fill className="object-cover"></Image>
 
 
             <div
@@ -430,7 +430,7 @@ function S2() {
                   act: true,
                   id: "01",
                   ttl: "Digital Marketing",
-                  img: "/home-v3/new/602-banner1.png",
+                  img: "/home-v3/new/602-banner1.jpg",
                   para: "We design digital strategies that balance reach and relevance, combining performance marketing, data insights, and platform intelligence to drive sustained visibility, intent, and measurable business growth.",
                   link: "https://ritzmediaworld.com/services/digital-marketing",
                 },
@@ -478,7 +478,7 @@ function S2() {
                   act: false,
                   id: "07",
                   ttl: "Influencer Marketing",
-                  img: "/home-v3/new/602-banner5.png",
+                  img: "/home-v3/new/influence_marketing.jpg",
                   para: "We enable authentic influencer collaborations that align with brand values, helping businesses reach niche communities through credible voices, contextual storytelling, and measurable campaign performance.",
                   link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
                 },

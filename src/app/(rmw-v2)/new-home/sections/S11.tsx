@@ -65,8 +65,14 @@ function S11() {
         return "Invalid country code. Use +91 for India";
       }
     }
-    
-    return ""; // No error
+
+   
+    const mobilePart = digitsOnly.slice(-10);
+    if (/^(\d)\1{9}$/.test(mobilePart)) {
+      return "Please enter a valid phone number";
+    }
+
+    return ""; 
   };
 
   // Handle phone input change with validation

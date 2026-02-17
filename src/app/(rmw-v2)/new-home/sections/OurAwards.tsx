@@ -51,10 +51,7 @@ function OurAwards() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex w-full justify-center overflow-hidden overflow-x-hidden py-12 sm:py-16 md:py-20 lg:py-24 max-w-full"
-      style={{
-        background: "linear-gradient(to bottom, #101828, #1E2939, #101828)",
-      }}
+      className="relative flex w-full justify-center overflow-hidden overflow-x-hidden py-12 sm:py-16 md:py-20 lg:py-24 max-w-full bg-cover bg-no-repeat bg-center bg-[url(/home-v3/awards-bg/awards-bg-mobile.png)] md:bg-[url(/home-v3/awards-bg/awards-bg-desktop.png)]"
     >
       <div className="flex w-full max-w-[95%] sm:max-w-[90%] lg:max-w-[95%] flex-col gap-8 sm:gap-10 md:gap-12 px-4 sm:px-6 md:px-8 lg:px-12">
         {/* Row 1 */}

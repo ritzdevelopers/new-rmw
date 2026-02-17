@@ -41,7 +41,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/creative-services",
     },
     {
-      img: "/home-v3/new/rmw-news-paper1.jpg",
+      img: "/home-v3/new/13 february webstories-11.jpg",
       category: "Print Advertising",
       ttl: "Print advertising campaigns that maximize impact",
       list: [
@@ -53,7 +53,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/print-advertising",
     },
     {
-      img: "/home-v3/s3/450-influncercopy.png",
+      img: "/home-v3/s3/rmw influncer.jpg",
       category: "Influencer Marketing",
       ttl: "Authentic collaborations that build trust and reach",
       list: [
