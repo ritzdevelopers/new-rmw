@@ -110,7 +110,6 @@ function S4() {
       ],
       link: "https://ritzmediaworld.com/services/digital-marketing/social-media-management",
     },
-  
     ];
 
     // Detect screen size for video selection
@@ -141,7 +140,6 @@ function S4() {
         } else {
             setVideoType('mobile');
         }
-        
         setIsVideoOpen(true);
         document.body.style.overflow = 'hidden';
     };
@@ -391,15 +389,14 @@ function S4() {
 
       {/* Video Modal */}
       {isVideoOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-[9999] flex justify-center items-center"
           onClick={handleCloseVideo}
         >
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black bg-opacity-90"></div>
-          
           {/* Video Container */}
-          <div 
+          <div
             className="relative w-[90vw] h-[90vh] flex justify-center items-center z-10"
             onClick={(e) => e.stopPropagation()}
           >
@@ -434,7 +431,7 @@ function S4() {
               autoPlay
               controls
               playsInline
-              key={videoType} 
+              key={videoType}
             />
           </div>
         </div>
