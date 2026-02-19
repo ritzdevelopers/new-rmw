@@ -21,7 +21,7 @@ async function page() {
   return (
     <>
       {/* Client-side animations component */}
-      <PageAnimations />
+      {/* <PageAnimations /> */}
       {/* Hero Section - Full Width */}
       <S1></S1>
       {/* <NewYear></NewYear> */}

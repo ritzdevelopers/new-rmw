@@ -36,25 +36,93 @@ function RubyBot() {
     ]);
     const [inputValue, setInputValue] = useState('');
     const [isTyping, setIsTyping] = useState(false);
+    const [showEnquiryButton, setShowEnquiryButton] = useState(false);
+    const [showEnquiryForm, setShowEnquiryForm] = useState(false);
+    const [isSubmittingEnquiry, setIsSubmittingEnquiry] = useState(false);
+    const [enquiryForm, setEnquiryForm] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        message: '',
+    });
     const [quickReplies] = useState<QuickReply[]>([
         { id: '1', text: 'Get Started' },
         { id: '2', text: 'Learn More' },
         { id: '3', text: 'Contact Sales' },
     ]);
+
+    // Keywords for service-related queries
+    const serviceKeywords = [
+        'service', 'services', 'what do you do', 'what do you offer', 'what you do', 'what you offer',
+        'what can you', 'what are your', 'tell me about', 'tell me more', 'list', 'details', 'offerings',
+        'how can you help', 'help me with', 'your company', 'about ritz', 'about you',
+        'all service', 'complete service', 'show me', 'available service'
+    ];
+
+    // Keywords for contact/pricing queries
+    const contactKeywords = [
+        'contact', 'price', 'pricing', 'cost', 'charge', 'charges', 'quote', 'quotation', 'hire', 'project',
+        'call', 'email', 'interested', 'talk', 'budget', 'estimate', 'how much', 'rate', 'fees', 'package'
+    ];
+
+    // Function to detect keywords in message
+    const detectKeywords = (text: string): boolean => {
+        const lowerText = text.toLowerCase();
+        const allKeywords = [...serviceKeywords, ...contactKeywords];
+        return allKeywords.some(keyword => lowerText.includes(keyword.toLowerCase()));
+    };
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
+    // Initialize audio on mount
+    useEffect(() => {
+        const audio = new Audio('/msg-receive.mp3');
+        audio.preload = 'auto';
+        audio.volume = 0.7;
+        audioRef.current = audio;
+
+        // Try to load the audio
+        try {
+            audio.load();
+        } catch (error) {
+            console.log('Audio load failed:', error);
+        }
+
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current = null;
+            }
+        };
+    }, []);
+
     const playNotificationSound = () => {
         try {
             if (audioRef.current) {
-                audioRef.current.currentTime = 0; // Reset to start
-                audioRef.current.play().catch((error) => {
-                    console.log('Audio play failed:', error);
-                });
+                // Reset to start and play
+                audioRef.current.currentTime = 0;
+                const playPromise = audioRef.current.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(() => {
+                            // Audio is playing
+                        })
+                        .catch((error) => {
+                            console.log('Audio play failed:', error);
+                            // Try to create a new audio instance if the current one fails
+                            const newAudio = new Audio('/msg-receive.mp3');
+                            newAudio.volume = 0.7;
+                            newAudio.play().catch((err) => {
+                                console.log('Retry audio play failed:', err);
+                            });
+                        });
+                }
             } else {
                 // Create audio element if it doesn't exist
                 const audio = new Audio('/msg-receive.mp3');
+                audio.volume = 0.7;
                 audioRef.current = audio;
                 audio.play().catch((error) => {
                     console.log('Audio play failed:', error);
@@ -73,15 +141,6 @@ function RubyBot() {
         scrollToBottom();
     }, [messages, isTyping]);
 
-    // Cleanup audio on unmount
-    useEffect(() => {
-        return () => {
-            if (audioRef.current) {
-                audioRef.current.pause();
-                audioRef.current = null;
-            }
-        };
-    }, []);
 
     const handleSendMessage = (text?: string) => {
         const messageText = text || inputValue.trim();
@@ -96,6 +155,11 @@ function RubyBot() {
 
         setMessages((prev) => [...prev, newMessage]);
         setInputValue('');
+
+        // Check for keywords in user message
+        if (detectKeywords(messageText)) {
+            setShowEnquiryButton(true);
+        }
 
         // Show typing indicator
         setTimeout(() => {
@@ -113,16 +177,25 @@ function RubyBot() {
                 .then((response) => {
                     // After API response, display the message
                     setTimeout(() => {
+                        const botResponseText = response.data.answer || "I'm sorry, I couldn't process that. Please try again.";
                         const botResponse: Message = {
                             id: Date.now().toString(),
-                            text: response.data.answer || "I'm sorry, I couldn't process that. Please try again.",
+                            text: botResponseText,
                             sender: 'bot',
                             timestamp: new Date(),
                         };
                         setMessages((prev) => [...prev, botResponse]);
                         setIsTyping(false);
-                        // Play notification sound when bot replies
-                        playNotificationSound();
+                        
+                        // Check for keywords in bot response
+                        if (detectKeywords(botResponseText)) {
+                            setShowEnquiryButton(true);
+                        }
+                        
+                        // Play notification sound when bot replies (with small delay to ensure message is rendered)
+                        setTimeout(() => {
+                            playNotificationSound();
+                        }, 100);
                     }, 500); // Small delay after API response
                 })
                 .catch((error) => {
@@ -153,36 +226,136 @@ function RubyBot() {
         }
     };
 
+    const handleEnquiryFormChange = (field: string, value: string) => {
+        setEnquiryForm((prev) => ({
+            ...prev,
+            [field]: value,
+        }));
+    };
+
+    const handleSubmitEnquiry = async () => {
+        // Validate form
+        if (!enquiryForm.name.trim() || !enquiryForm.phone.trim() || !enquiryForm.email.trim()) {
+            const errorMessage: Message = {
+                id: Date.now().toString(),
+                text: "Please fill in all required fields (Name, Phone, Email)",
+                sender: 'bot',
+                timestamp: new Date(),
+            };
+            setMessages((prev) => [...prev, errorMessage]);
+            return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(enquiryForm.email)) {
+            const errorMessage: Message = {
+                id: Date.now().toString(),
+                text: "Please enter a valid email address",
+                sender: 'bot',
+                timestamp: new Date(),
+            };
+            setMessages((prev) => [...prev, errorMessage]);
+            return;
+        }
+
+        // Set loading state
+        setIsSubmittingEnquiry(true);
+
+        // Prepare enquiry data
+        const enquiryData = {
+            etype: "ContactUs",
+            name: enquiryForm.name.trim(),
+            phone: enquiryForm.phone.trim(),
+            email: enquiryForm.email.trim(),
+            message: enquiryForm.message.trim() || "Enquiry from Ruby Chatbot",
+        };
+
+        try {
+            const response = await axios.post('/api/system-settings/contact-enquiry', enquiryData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.data.success) {
+                // Show success message
+                const successMessage: Message = {
+                    id: Date.now().toString(),
+                    text: "Thank you for your enquiry! We'll get back to you soon. 😊",
+                    sender: 'bot',
+                    timestamp: new Date(),
+                };
+                setMessages((prev) => [...prev, successMessage]);
+                
+                // Reset form and close
+                setEnquiryForm({ name: '', phone: '', email: '', message: '' });
+                setShowEnquiryForm(false);
+                setShowEnquiryButton(false);
+            } else {
+                // Show error message
+                const errorMessage: Message = {
+                    id: Date.now().toString(),
+                    text: response.data.error || "Failed to submit enquiry. Please try again.",
+                    sender: 'bot',
+                    timestamp: new Date(),
+                };
+                setMessages((prev) => [...prev, errorMessage]);
+            }
+        } catch (error: any) {
+            console.error('Enquiry submission error:', error);
+            // Show error message
+            const errorMessage: Message = {
+                id: Date.now().toString(),
+                text: error.response?.data?.error || "Due to internal server errors your enquiry couldn't be sent. Please try again.",
+                sender: 'bot',
+                timestamp: new Date(),
+            };
+            setMessages((prev) => [...prev, errorMessage]);
+        } finally {
+            // Reset loading state
+            setIsSubmittingEnquiry(false);
+        }
+    };
+
+    const handleCloseEnquiryForm = () => {
+        setShowEnquiryForm(false);
+        setEnquiryForm({ name: '', phone: '', email: '', message: '' });
+    };
+
     return (
         isRubyOpen && (
-            <div className="fixed bottom-4 right-16 z-50 flex flex-col">
-                <div className="w-[400px] max-w-[calc(100vw-2rem)] bg-white rounded-xl shadow-2xl flex flex-col h-[600px] max-h-[calc(100vh-8rem)]">
+            <div className="fixed inset-0 sm:inset-auto sm:bottom-4 sm:right-4 md:right-16 z-50 flex items-end sm:items-start justify-center sm:justify-end p-0 sm:p-4">
+                <div className="w-full h-full sm:w-[400px] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] sm:rounded-xl bg-white shadow-2xl flex flex-col sm:max-w-[calc(100vw-2rem)]">
                     {/* Header */}
-                    <div className="bg-[#bc8429] px-4 py-3 rounded-t-xl flex items-center justify-between">
-                        <div className="flex items-center gap-3">
+                    <div className="bg-[#bc8429] px-3 sm:px-4 py-2.5 sm:py-3 sm:rounded-t-xl flex items-center justify-between flex-shrink-0">
+                        <div className="flex items-center gap-2 sm:gap-3">
                             <div className="relative">
-                                <div className="w-10 h-10 border-2 border-[#001697] bg-white rounded-full flex items-center justify-center">
+                                <div className="w-8 h-8 sm:w-10 sm:h-10 border-2 border-[#001697] bg-white rounded-full flex items-center justify-center">
                                     <img src="/ruby-logo2.png" alt="RubyBot" className="w-[100%] h-[100%] object-cover" />
                                 </div>
-                                <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-[#19d408]"></div>
+                                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-green-500 rounded-full border-2 border-[#19d408]"></div>
                             </div>
                             <div className="flex flex-col">
-                                <h2 className="text-white font-semibold text-sm leading-tight">Ruby</h2>
+                                <h2 className="text-white font-semibold text-xs sm:text-sm leading-tight">Ruby</h2>
                                 <div className="flex items-center gap-1.5">
-                                    <span className="text-xs text-white/90">Online Now</span>
+                                    <span className="text-[10px] sm:text-xs text-white/90">Online Now</span>
                                 </div>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
-
-                            <button onClick={() => setIsRubyOpen(false)} className="text-white/90 cursor-pointer hover:text-white transition-all duration-300 ease-in-out hover:rotate-[360deg] p-1">
-                                <IoMdClose className="w-5 h-5" />
+                            <button 
+                                onClick={() => setIsRubyOpen(false)} 
+                                className="text-white/90 cursor-pointer hover:text-white transition-all duration-300 ease-in-out hover:rotate-[360deg] p-1.5 sm:p-1 touch-manipulation"
+                                aria-label="Close chat"
+                            >
+                                <IoMdClose className="w-5 h-5 sm:w-5 sm:h-5" />
                             </button>
                         </div>
                     </div>
 
                     {/* Message Area */}
-                    <div className="flex-1 overflow-y-auto bg-white px-4 py-4 space-y-3">
+                    <div className="flex-1 overflow-y-auto bg-white px-3 sm:px-4 py-3 sm:py-4 space-y-2 sm:space-y-3">
                         {messages.map((message, index) => {
                             const isFirstInSequence =
                                 index === 0 ||
@@ -193,14 +366,14 @@ function RubyBot() {
                                 return (
                                     <div key={message.id} className="flex items-start gap-2">
                                         {isFirstInSequence && (
-                                            <div className="w-6 h-6 border border-[#001697] bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-1 overflow-hidden">
+                                            <div className="w-5 h-5 sm:w-6 sm:h-6 border border-[#001697] bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-1 overflow-hidden">
                                                 <img src="/ruby-logo2.png" alt="Ruby" className="w-full h-full object-cover rounded-full" />
                                             </div>
                                         )}
-                                        {!isFirstInSequence && <div className="w-6"></div>}
-                                        <div className="flex flex-col gap-1 max-w-[75%]">
+                                        {!isFirstInSequence && <div className="w-5 sm:w-6"></div>}
+                                        <div className="flex flex-col gap-1 max-w-[85%] sm:max-w-[75%]">
                                             <div
-                                                className="bg-[#f3f4f6] text-[#1f2937] px-4 py-2.5 rounded-3xl rounded-bl-md text-sm leading-relaxed whitespace-pre-line"
+                                                className="bg-[#f3f4f6] text-[#1f2937] px-3 sm:px-4 py-2 sm:py-2.5 rounded-3xl rounded-bl-md text-xs sm:text-sm leading-relaxed whitespace-pre-line"
                                             >
                                                 {message.text}
                                             </div>
@@ -210,8 +383,8 @@ function RubyBot() {
                             } else {
                                 return (
                                     <div key={message.id} className="flex justify-end">
-                                        <div className="flex flex-col gap-1 max-w-[75%]">
-                                            <div className="bg-[#001697] text-white px-4 py-2.5 rounded-3xl rounded-br-md text-sm leading-relaxed whitespace-pre-line">
+                                        <div className="flex flex-col gap-1 max-w-[85%] sm:max-w-[75%]">
+                                            <div className="bg-[#001697] text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-3xl rounded-br-md text-xs sm:text-sm leading-relaxed whitespace-pre-line">
                                                 {message.text}
                                             </div>
                                         </div>
@@ -223,11 +396,11 @@ function RubyBot() {
                         {/* Typing Indicator */}
                         {isTyping && (
                             <div className="flex items-start gap-2">
-                                <div className="w-6 h-6 border border-[#001697] bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-1 overflow-hidden">
+                                <div className="w-5 h-5 sm:w-6 sm:h-6 border border-[#001697] bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-1 overflow-hidden">
                                     <img src="/ruby-logo2.png" alt="Ruby" className="w-full h-full object-cover rounded-full" />
                                 </div>
-                                <div className="flex flex-col gap-1 max-w-[75%]">
-                                    <div className="bg-[#f3f4f6] text-[#1f2937] px-4 py-2.5 rounded-3xl rounded-bl-md text-sm leading-relaxed">
+                                <div className="flex flex-col gap-1 max-w-[85%] sm:max-w-[75%]">
+                                    <div className="bg-[#f3f4f6] text-[#1f2937] px-3 sm:px-4 py-2 sm:py-2.5 rounded-3xl rounded-bl-md text-xs sm:text-sm leading-relaxed">
                                         <div className="flex gap-1.5 items-center py-1">
                                             <span className="w-2 h-2 bg-[#6b7280] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
                                             <span className="w-2 h-2 bg-[#6b7280] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
@@ -241,15 +414,104 @@ function RubyBot() {
                         <div ref={messagesEndRef} />
                     </div>
 
+                    {/* Enquiry Button */}
+                    {showEnquiryButton && !showEnquiryForm && (
+                        <div className="px-3 sm:px-4 pb-2">
+                            <button
+                                onClick={() => setShowEnquiryForm(true)}
+                                className="w-full px-4 py-2.5 bg-[#001697] text-white rounded-lg text-sm font-medium hover:bg-[#001580] transition-colors cursor-pointer touch-manipulation active:scale-95"
+                            >
+                                📋 Fill Enquiry Form
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Enquiry Form */}
+                    {showEnquiryForm && (
+                        <div className="px-3 sm:px-4 pb-3 border-t border-gray-200 bg-gray-50">
+                            <div className="pt-3 space-y-3">
+                                <div className="flex items-center justify-between mb-2">
+                                    <h3 className="text-sm font-semibold text-[#1f2937]">Enquiry Form</h3>
+                                    <button
+                                        onClick={handleCloseEnquiryForm}
+                                        className="text-[#6b7280] hover:text-[#1f2937] transition-colors p-1"
+                                        aria-label="Close form"
+                                    >
+                                        <IoMdClose className="w-4 h-4" />
+                                    </button>
+                                </div>
+                                
+                                <input
+                                    type="text"
+                                    placeholder="Your Name *"
+                                    value={enquiryForm.name}
+                                    onChange={(e) => handleEnquiryFormChange('name', e.target.value)}
+                                    className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
+                                />
+                                
+                                <input
+                                    type="tel"
+                                    placeholder="Phone Number *"
+                                    value={enquiryForm.phone}
+                                    onChange={(e) => handleEnquiryFormChange('phone', e.target.value)}
+                                    className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
+                                />
+                                
+                                <input
+                                    type="email"
+                                    placeholder="Email Address *"
+                                    value={enquiryForm.email}
+                                    onChange={(e) => handleEnquiryFormChange('email', e.target.value)}
+                                    className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
+                                />
+                                
+                                <textarea
+                                    placeholder="Your Message (Optional)"
+                                    value={enquiryForm.message}
+                                    onChange={(e) => handleEnquiryFormChange('message', e.target.value)}
+                                    rows={3}
+                                    className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white resize-none"
+                                />
+                                
+                                <div className="flex gap-2 pt-1">
+                                    <button
+                                        onClick={handleSubmitEnquiry}
+                                        disabled={isSubmittingEnquiry}
+                                        className="flex-1 px-4 py-2 bg-[#001697] text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-[#001580] transition-colors cursor-pointer touch-manipulation active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-[#001697] flex items-center justify-center gap-2"
+                                    >
+                                        {isSubmittingEnquiry ? (
+                                            <>
+                                                <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                </svg>
+                                                <span>Submitting...</span>
+                                            </>
+                                        ) : (
+                                            'Submit Enquiry'
+                                        )}
+                                    </button>
+                                    <button
+                                        onClick={handleCloseEnquiryForm}
+                                        disabled={isSubmittingEnquiry}
+                                        className="px-4 py-2 border border-gray-300 text-[#1f2937] rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 transition-colors cursor-pointer touch-manipulation active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Quick Reply Buttons */}
-                    {messages.length === 1 && (
-                        <div className="px-4 pb-3">
+                    {messages.length === 1 && !showEnquiryForm && (
+                        <div className="px-3 sm:px-4 pb-2 sm:pb-3">
                             <div className="flex flex-wrap gap-2">
                                 {quickReplies.map((reply) => (
                                     <button
                                         key={reply.id}
                                         onClick={() => handleQuickReply(reply)}
-                                        className="px-4 py-2 border border-[#001697] text-[#001697] rounded-full text-xs font-medium hover:bg-[#001697] hover:text-white transition-colors cursor-pointer"
+                                        className="px-3 sm:px-4 py-1.5 sm:py-2 border border-[#001697] text-[#001697] rounded-full text-xs font-medium hover:bg-[#001697] hover:text-white transition-colors cursor-pointer touch-manipulation active:scale-95"
                                     >
                                         {reply.text}
                                     </button>
@@ -259,8 +521,8 @@ function RubyBot() {
                     )}
 
                     {/* Footer */}
-                    <div className="border-t border-gray-200 bg-white rounded-b-xl">
-                        <div className="px-4 py-3">
+                    <div className="border-t border-gray-200 bg-white sm:rounded-b-xl flex-shrink-0">
+                        <div className="px-3 sm:px-4 py-2.5 sm:py-3">
                             <div className="flex items-center gap-2">
                                 <input
                                     ref={inputRef}
@@ -269,20 +531,21 @@ function RubyBot() {
                                     onChange={(e) => setInputValue(e.target.value)}
                                     onKeyPress={handleKeyPress}
                                     placeholder="Reply to Ruby..."
-                                    className="flex-1 text-sm text-[#1f2937] placeholder:text-[#6b7280] outline-none bg-transparent"
+                                    className="flex-1 text-xs sm:text-sm text-[#1f2937] placeholder:text-[#6b7280] outline-none bg-transparent py-1.5 sm:py-0"
                                 />
                                 <button
                                     onClick={() => handleSendMessage()}
                                     type="button"
-                                    className="text-[#001697] hover:text-[#001697] transition-colors p-1"
+                                    className="text-[#001697] hover:text-[#001697] transition-colors p-1.5 sm:p-1 touch-manipulation active:scale-95"
                                     style={{ cursor: 'pointer' }}
+                                    aria-label="Send message"
                                 >
-                                    <FiSend className="w-5 h-5" style={{ cursor: 'pointer' }} />
+                                    <FiSend className="w-5 h-5 sm:w-5 sm:h-5" style={{ cursor: 'pointer' }} />
                                 </button>
                             </div>
                         </div>
-                        <div className="px-4 pb-2">
-                            <p className="text-[10px] text-[#6b7280] text-right">
+                        <div className="px-3 sm:px-4 pb-2 sm:pb-2">
+                            <p className="text-[9px] sm:text-[10px] text-[#6b7280] text-right">
                                 We're ⚡ by Ritz Media World
                             </p>
                         </div>

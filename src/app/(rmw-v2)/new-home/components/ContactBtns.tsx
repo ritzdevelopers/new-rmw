@@ -189,7 +189,7 @@ function ContactBtns() {
       style={{ position: "fixed", bottom: "1rem", right: "0.5rem" }}
     >
       {/* ServicesBoat Component - Hidden button, controlled by chatbot button */}
-      <ServicesBoat ref={servicesBoatRef} hideButton={true} />
+      {/* <ServicesBoat ref={servicesBoatRef} hideButton={true} /> */}
 
       {/* Chatbot Button - Top button */}
       <button
