@@ -33,7 +33,7 @@ const ServiceEndTag = ({ endtag }: ServiceEndtagProp) => {
               data-wow-duration="s"
               data-wow-delay="s"
               style={{ visibility: "visible",
-                backgroundColor: "#0f1640 !important",
+                backgroundColor: "#0f1640",
               }}
               
             >
