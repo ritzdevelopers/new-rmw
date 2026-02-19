@@ -29,11 +29,11 @@ const ServiceEndTag = ({ endtag }: ServiceEndtagProp) => {
         >
           <div className="elementor-widget-container">
             <section
-              className="tp-cta__2-area fix bg-[#0f1640] wow none animated"
+              className="tp-cta__2-area fix wow none animated"
               data-wow-duration="s"
               data-wow-delay="s"
               style={{ visibility: "visible",
-                backgroundColor: "#0f1640"
+                backgroundColor: "#0f1640 !important",
               }}
               
             >
