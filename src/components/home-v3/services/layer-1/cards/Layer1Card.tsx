@@ -1,34 +1,95 @@
+"use client";
+import Image from "next/image";
+import Link from "next/link";
 import { BsArrowUpRight } from "react-icons/bs";
 
-function Layer1Card() {
-    return (
-        <div className="w-[390px] flex flex-col justify-between gap-4">
-            {/* Row 1  */}
-            <div className="flex w-full justify-center border-b-[1px] border-b-[#D9D9D9] pb-4"></div>
 
+interface Item {
+    title: string;
+    description: string;
+    image: string;
+    link: string;
+    meta_titles: string;
+    meta_description: string;
+    meta_keywords: string;
+}
+function Layer1Card({ item, idx }: { item: Item, idx: number }) {
+    const { title, description, image, link, meta_titles, meta_description, meta_keywords } = item;
+    return (
+        <article 
+            className="w-full sm:w-[calc(50%-8px)] lg:w-[390px] h-full flex flex-col justify-between gap-4"
+            itemScope 
+            itemType="https://schema.org/Service"
+            aria-label={meta_titles || title}
+        >
+            {/* Row 1 - Header with Meta Info */}
+            <header className="flex w-full justify-start pb-2">
+                <div className="flex items-center gap-3">
+                    <p className="font-[400] text-[13px] sm:text-[14px] text-[#000000]">{String(idx + 1).padStart(2, '0')}</p>
+                    {meta_titles && (
+                        <meta itemProp="name" content={meta_titles} />
+                    )}
+                    {meta_keywords && (
+                        <meta itemProp="keywords" content={meta_keywords} />
+                    )}
+                </div>
+            </header>
 
             {/* Row 2  */}
-            <div className="w-full flex flex-col justify-between gap-3 border-r-[1px] border-r-[#D9D9D9] pr-4">
+            <div className="w-full h-full flex flex-col justify-between gap-3 sm:gap-4 border-t-[1px] border-t-[#D9D9D9] border-r-[1px] border-r-[#D9D9D9]  pt-3 sm:pt-6">
                 {/* Content Container  */}
-                <div className="flex flex-col w-full gap-2">
-                    <p className="font-[700] text-[18px] text-[#000000]">SEO (Search Engine Optimization)</p>
-                    <p className="font-[400] text-[14px] text-[#000000]">For us, SEO is more than mere ranking, it's about relevance and long-term authority. As a reliable SEO agency in India, we offer the best SEO services and ensure your business appears at the top of search results and stays there with content that engages and converts your audience.</p>
+                <div className="flex flex-col w-full gap-2 sm:gap-3 flex-grow">
+                    <h3 
+                        className="font-[700] text-[16px] sm:text-[17px] lg:text-[18px] text-[#000000] leading-tight"
+                        itemProp="name"
+                        title={meta_titles || title}
+                    >
+                        {title}
+                    </h3>
+                    {meta_titles && meta_titles !== title && (
+                        <p className="sr-only" itemProp="alternateName">{meta_titles}</p>
+                    )}
+                    <p 
+                        className="font-[400] max-w-[90%] text-[13px] sm:text-[14px] text-[#000000] leading-relaxed line-clamp-4"
+                        itemProp="description"
+                        title={meta_description || description}
+                    >
+                        {description}
+                    </p>
+                    {meta_description && (
+                        <meta itemProp="description" content={meta_description} />
+                    )}
                 </div>
 
                 {/* Button Container  */}
-                <div className="w-full">
-                    <button className="w-[154px] h-[46px] flex justify-between items-center gap-2 bg-transparent border-none cursor-point">
-                        <p className="font-[500] text-[18px]">More</p>
-                        <div className="bg-[#C99237] h-[36px] w-[36px] sm:h-[38px] sm:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-white">
-                            <BsArrowUpRight className="text-white text-[16px] sm:text-[17px] lg:text-[18px]" />
-                        </div>
-                    </button>
+                <div className="w-full flex flex-col gap-3 sm:gap-4">
+                    <Link 
+                        href={link || "#"} 
+                        target="_blank" 
+                        className="w-fit"
+                        itemProp="url"
+                        aria-label={`Learn more about ${meta_titles || title}`}
+                    >
+                        <button className="w-[140px] sm:w-[154px] h-[42px] sm:h-[46px] flex justify-start items-center gap-6 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity group">
+                            <p className="font-[500] text-[16px] sm:text-[17px] lg:text-[18px] text-[#000000]">More</p>
+                            <div className="bg-[#C99237] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-white group-hover:scale-110 transition-transform">
+                                <BsArrowUpRight className="text-white text-[15px] sm:text-[16px] lg:text-[18px]" />
+                            </div>
+                        </button>
+                    </Link>
+                    <div className="w-full h-[150px] sm:h-[160px] lg:h-[169px] relative overflow-hidden">
+                        <Image 
+                            src={image} 
+                            alt={meta_titles || title} 
+                            fill 
+                            className="object-cover hover:scale-105 transition-transform duration-300"
+                            itemProp="image"
+                            title={meta_description || description}
+                        />
+                    </div>
                 </div>
             </div>
-
-            {/* Row 3  */}
-            <div></div>
-        </div>
+        </article>
     )
 }
 

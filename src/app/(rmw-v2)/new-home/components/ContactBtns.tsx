@@ -1,12 +1,17 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { MessageCircle, Phone, X, Bot } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import gsap from "gsap";
 import Image from "next/image";
 import ServicesBoat, { ServicesBoatRef } from "@/components/servicesBoat/ServicesBoat";
-
+import { RubyContext } from "@/ruby-context/ruby.context";
 function ContactBtns() {
+  const context = useContext(RubyContext);
+  if (!context) {
+    throw new Error('ContactBtns must be used within RubyProvider');
+  }
+  const { setIsRubyOpen } = context;
   const [isOpen, setIsOpen] = useState(false);
   const mainButtonRef = useRef<HTMLButtonElement>(null);
   const phoneButtonRef = useRef<HTMLButtonElement>(null);
@@ -174,7 +179,7 @@ function ContactBtns() {
   const handleChatbotClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     // Trigger ServicesBoat to open
-    servicesBoatRef.current?.openBoat();
+    setIsRubyOpen(true);
   };
 
   return (
