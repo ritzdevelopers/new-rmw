@@ -18,7 +18,7 @@ const ServiceMainAbout = () => {
           data-widget_type="cta.default"
         >
           <div className="elementor-widget-container">
-            <section className="tp-cta__2-area black-bg fix pt-110">
+            <section className="tp-cta__2-area bg-[#0f1640] fix pt-110" style={{ backgroundColor: "#0f1640" }}>
               <div className="container-fluid p-0">
                 <div className="row">
                   <div className="col-xl-6 col-lg-6">

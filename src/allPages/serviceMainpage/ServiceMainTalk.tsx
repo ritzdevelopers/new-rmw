@@ -25,10 +25,10 @@ const ServiceMainTalk = () => {
         >
           <div className="elementor-widget-container">
             <section
-              className="tp-cta__2-area fix black-bg pt-65 pb-40 wow none animated"
+              className="tp-cta__2-area fix bg-[#0f1640] pt-65 pb-40 wow none animated"
               data-wow-duration="s"
               data-wow-delay="s"
-              style={{ visibility: "visible" }}
+              style={{ visibility: "visible", backgroundColor: "#0f1640" }}
             >
               <div className="container">
                 <div className="tp-cta__3-box">
