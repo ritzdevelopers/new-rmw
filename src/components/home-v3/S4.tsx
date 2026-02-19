@@ -364,7 +364,7 @@ function S4() {
           className="object-cover"
         ></Image>
 
-        <div 
+        <div
           onClick={handlePlayClick}
           className="flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer w-[44px] h-[44px] sm:w-[50px] sm:h-[50px] lg:w-[54px] lg:h-[54px] rounded-full justify-center items-center bg-[#FFFFFF] z-10 hover:scale-110 transition-transform"
         >

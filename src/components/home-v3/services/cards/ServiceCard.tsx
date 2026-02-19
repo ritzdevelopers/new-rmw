@@ -1,19 +1,22 @@
 import React from 'react';
-
+import styles2 from '../page.module.css';
+import styles from './page.module.css';
 function ServiceCard({ service, index }: { service: any, index: number }) {
-    const { title, image, link, subServices, description, margin } = service;
+    const { title, image, slug, subServices, description, margin, link } = service;
     return (
         <div className="w-full flex flex-col justify-center lg:flex-row lg:justify-between gap-4 sm:gap-6 lg:gap-4 py-6 sm:py-8 md:py-10 lg:py-[50px] border-b-[1px] border-b-[#D9D9D9]">
 
             {/* Left Side Container  */}
-            <div className="w-full lg:w-[55%]  xl:w-auto h-[200px] sm:h-[250px] md:h-[300px] lg:h-[377px] relative overflow-hidden">
-                <img src={image} alt={title} className="w-full h-full object-contain xl:object-cover" />
+            <div className="w-full lg:w-[55%] xl:w-auto h-[200px] sm:h-[250px] md:h-[300px] lg:h-[377px] relative  " onClick={() => window.open(`${link}`, "_blank")}>
+
+                <div className={`${styles.absDiv} md:w-[390px] lg:w-[313px] h-[125px] bg-[#F7F7F7] absolute top-[50%] translate-y-[-50%] -left-[100px] z-0`}></div>
+                <img src={image} alt={title} className="w-full z-10 relative h-full object-contain xl:object-cover" />
 
                 {/* Absolute Positioned Container  */}
-                <div className="absolute  top-[50%] translate-y-[-50%] w-full h-full flex flex-col justify-center items-end gap-1 sm:gap-2 pr-2 sm:pr-3 md:pr-4">
+                <div className="absolute z-10 top-[50%] translate-y-[-50%] w-full h-full flex flex-col justify-center items-end gap-1 sm:gap-2 pr-2 sm:pr-3 md:pr-4">
                   <div className={`flex flex-col gap-1 sm:gap-2 ${margin || ""}`}>
-                    <p className="font-[400] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px]">{String(index + 1).padStart(2, '0')}</p>
-                    <h2 className="font-[500] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px]">
+                    <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] ${styles2.fontopensans}`}>{String(index + 1).padStart(2, '0')}</p>
+                    <h2 className={`font-[500] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] ${styles2.fontmontserrat}`}>
                         {title?.split(/<br\s*\/?>/i).map((line: string, index: number, array: string[]) => (
                             <React.Fragment key={index}>
                                 {line}
@@ -32,7 +35,7 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
             </div>
 
             {/* Right Side Container  */}
-            <div className='w-full lg:w-[40%] xl:max-w-[480px] flex flex-col gap-3 sm:gap-4'>
+            <div className='w-full lg:w-[40%] xl:max-w-[500px] flex flex-col gap-3 sm:gap-4'>
                 <p className='font-[400] text-[13px] sm:text-[14px] md:text-[15px] leading-relaxed text-center lg:text-left'>
                     {description?.split(/<br\s*\/?>/i).map((line: string, index: number, array: string[]) => (
                         <React.Fragment key={index}>
@@ -43,9 +46,9 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
                 </p>
                 <div className="grid  grid-cols-3 gap-x-2 sm:gap-x-3 gap-y-2 sm:gap-y-3">
                     {subServices.map((subService: any) => (
-                        <div key={subService.title} className='bg-[#F2F2F2] lg:pl-2
-                          rounded-[2px] px-2 lg:px-0 lg:py-3 min-h-[70px] sm:min-h-[80px] lg:h-[88px] flex justify-center lg:justify-start items-center text-center lg:text-left'>
-                            <p className='font-[400] text-[13px] sm:text-[14px] md:text-[15px] leading-snug'>{subService.title}</p>
+                        <div onClick={() => window.open(subService.slug, "_blank")} key={subService.title} className='bg-[#F2F2F2] lg:pl-2
+                          rounded-[2px] px-2 lg:py-5  min-h-[70px] cursor-pointer sm:min-h-[80px]  lg:h-[88px] flex justify-center lg:justify-start items-center text-center lg:text-left'>
+                            <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] leading-snug ${styles2.fontopensans}`}>{subService.title}</p>
                         </div>
                     ))}
                 </div>

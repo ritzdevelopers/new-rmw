@@ -4,21 +4,21 @@ import styles2 from "./page.module.css";
 
 function Section2() {
     return (
-        <section className='flex justify-center items-center px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px] border-b-[1px] border-[#D9D9D9]'>
+        <section className='flex justify-center items-center  py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px] border-b-[1px] border-[#D9D9D9]'>
 
             {/* Center Align Container  */}
             <div className={`flex flex-col md:flex-row justify-between items-center lg:items-center gap-6 sm:gap-8 md:gap-4 w-full ${styles2.containerWidth}`}>
                 {/* Left Side Container  */}
                 <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full maxw-[547px] text-center md:text-left">
-                    <h2 className={`font-[600] text-[18px] lg:text-[20px] xl:text-[30px] text-black leading-tight sm:leading-snug md:leading-normal ${styles2.yofText}`}>
+                    <h2 className={`font-[600] text-[18px] lg:text-[20px] xl:text-[30px] text-black leading-tight sm:leading-snug md:leading-normal ${styles2.fontmontserrat}  ${styles2.yofText}`}>
                         At <span className='text-[#C99237]'>Ritz Media World</span>, we have an obsession with being wizards of quirkiness that morph good ideas into Brilliant ones.
                     </h2>
-                    <p className="font-[400] text-[14px] sm:text-[15px] xl:text-[16px] text-black leading-relaxed">
+                    <p className={`font-[400] text-[14px] sm:text-[15px] xl:text-[16px] text-black leading-relaxed ${styles2.fontopensans}`}>
                         Our services deliver results that drive your competitor's envy. We blend digital magic, classic & modern mediums, and creative ingenuity to ensure that your brand doesn't just speak; it captivates.
                     </p>
-                    <div>
+                    <div className='flex justify-center md:justify-start'>
                         <button className="flex justify-between items-center gap-3 sm:gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
-                            <p className="font-[500] text-[16px]  xl:text-[18px] text-black">Contact us</p>
+                            <p className={`font-[500] text-[16px]  xl:text-[18px] text-black ${styles2.fontopensans}`}>Contact us</p>
 
                             <div className="bg-[#C99237] h-[36px] w-[36px] sm:h-[38px] sm:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-white">
                                 <BsArrowUpRight className='text-white text-[16px] sm:text-[17px] lg:text-[18px]' />
@@ -36,7 +36,7 @@ function Section2() {
                                 <img src="/home-v3/service-imgs/s2/17+.png" alt="" className='w-[100px] sm:w-[110px] md:w-[120px] lg:w-[130px] h-auto' />
                             </div>
 
-                            <p className="font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] text-center sm:text-left inline">Years working experience</p>
+                            <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] text-center sm:text-left inline ${styles2.fontopensans}`}>Years working experience</p>
                         </div>
 
                         {/* Row 2  */}

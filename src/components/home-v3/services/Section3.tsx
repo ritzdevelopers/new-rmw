@@ -192,51 +192,51 @@ function Section3({ servicesData }: Section3Props) {
 
 
     return (
-        <section className="flex justify-center items-center">
+        <section className="flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px]">
             {/* Center Align Container  */}
-            <div className={`flex flex-col p-4 sm:px-8 gap-6 xl:px-20 w-full ${styles2.containerWidth}`}>
+            <div className={`flex flex-col  gap-6 w-full  `}>
 
                 {/* Row 1 For Heading  */}
-                <div className={`flex items-end justify-center lg:justify-start `}>
-                    <p className="font-[700] text-[36px]">What we d</p>
-                    <img src="/home-v3/service-imgs/s3/do-txt.png" alt="arrow-right" className="h-[17px] mb-[11px]" />
+                <div className={`flex items-end justify-center lg:justify-start ${styles2.containerWidth}`}>
+                    <p className={`font-[700] text-[36px] ${styles2.fontmontserrat}`}>What we d</p>
+                    <img src="/home-v3/service-imgs/s3/do-txt.png" alt="arrow-right" className="h-[19px] mb-[14px]" />
                 </div>
 
                 {/* Row 2 For Services Cards  */}
-                <div className={`flex flex-col gap-3 `}>
+                <div className={`flex flex-col gap-3 ${styles2.containerWidth}`}>
                     {/* Cards   */}
                     {
                         [
                             {
                                 title: "Digital <br /> Marketing",
-                                margin: "mr-[0px] pr-8 sm:pr-48 lg:pr-14",
-                                description: "Digital marketing without a strategy is like driving blindfolded. It may be exciting, perhaps, but it also comes with a high probability of disastrous consequences. At Ritz Media World, we collectively leverage a calculated sorcery of SEO, PPC, Social Media, and some Reputation alchemy to ensure that your brand doesn’t just survive, but flourishes spectacularly.",
+                                margin: "mr-[0px] pr-8 md:pr-40 lg:pr-14",
+                                description: "Digital marketing without a strategy is like driving blindfolded. It may be exciting, perhaps, but it also comes with a high probability of disastrous consequences. At <span className='font-[700]'>Ritz Media World</span>, we collectively leverage a calculated sorcery of SEO, PPC, Social Media, and some Reputation alchemy to ensure that your brand doesn’t just survive, but flourishes spectacularly.",
                                 image: "/services/Digital-Marketing.png",
-                                link: "/services/brand-strategy",
+                                link: "/services-v3/brand-strategy",
                                 subServices: [
                                     {
                                         title: "SEO (Search Engine Optimization)",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/digital-marketing/search-engine-optimization-seo",
                                     },
                                     {
                                         title: "PPC (Google Ads) Services",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/digital-marketing/ppc-google-ads-agency",
                                     },
                                     {
                                         title: "Social Media Management",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/digital-marketing/social-media-management",
                                     },
                                     {
                                         title: "ORM (Online Reputation Management)",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/digital-marketing/orm-in-digital-marketing",
                                     },
                                     {
                                         title: "Lead Generation",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/digital-marketing/lead-generation",
                                     },
                                     {
                                         title: "Brand Awareness",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/digital-marketing/brand-awareness",
                                     },
                                 ]
                             },
@@ -245,208 +245,213 @@ function Section3({ servicesData }: Section3Props) {
                                 margin: "lg:mr-[30px] pr-20 sm:pr-48 lg:pr-20 ",
                                 description: "Creativity isn’t just decoration, it’s the entire point. from Branding, to Graphic Design to captivating logos that leave an impression. We produce ideas that other companies contemplate stealing (Although we strongly advise against it). So it's your choice. Do you want your audience to fall in love at first sight? ",
                                 image: "/services/Creative-Service.png",
-                                link: "/services/creative-services",
+                                link: "/services-v3/creative-services",
                                 subServices: [
                                     {
                                         title: "Branding & Identity Development",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/creative-services/branding-and-identity-development",
                                     },
                                     {
                                         title: "Graphic Design",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/creative-services/graphic-designing",
                                     },
                                     {
                                         title: "Logo Design",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/creative-services/logo-design",
                                     },
                                     {
                                         title: "Print Advertising Design",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/creative-services/print-advertisement-design",
                                     },
                                     {
                                         title: "Packaging Design",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/creative-services/packaging-design",
                                     },
                                 ]
                             },
                             {
                                 title: "Print <br /> Advertising",
-                                margin: "mr-[0px] pr-10 sm:pr-48 lg:pr-14",
+                                margin: "mr-[0px] pr-10 md:pr-40 lg:pr-14",
                                 description: "Contrary to popular belief, Print is more prominent than ever! To put it simply, It has upgraded from mainstream to a premium audience. <br /> <br /> Ritz Media World has always been in the business of making print ads breathe life into paper, and BUSINESS IS GOOD! We turn simple pages into captivating conversation.Print advertising is like a well-crafted newspaper ad that grabs attention and sticks in the mind. At Ritz Media World, we blend creative thinking with strategic placement to ensure that your brand makes a lasting impression across newspapers, magazines, and other print media.",
                                 image: "/services/Print-Advertisement1.png",
-                                link: "/services/print-advertising",
+                                link: "/services-v3/print-advertising",
                                 subServices: [
                                     {
                                         title: "Advertisement Design",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/print-advertising/advertisement-designing",
                                     },
                                     {
                                         title: "Ad Placement",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/print-advertising/ad-placements",
                                     },
                                     {
                                         title: "Copywriting",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/print-advertising/copywriting",
                                     },
                                     {
                                         title: "Cost Negotiation",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/print-advertising/negotiating-rates",
                                     },
                                     {
                                         title: "Ad Size Optimization",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/print-advertising/ad-size-optimization",
                                     },
                                     {
                                         title: "Ad Scheduling",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/print-advertising/advertisement-scheduling",
                                     },
                                 ]
                             },
                             {
                                 title: "Radio <br /> Advertising",
-                                margin: "pr-8 sm:pr-36 lg:pl-20",
+                                margin: "pr-8 md:pr-30 lg:pr-4 xl:pr-0 xl:-mr-10 2xl:-mr-10   ",
                                 description: "You may have noticed that people still have ears. The most wonderful way to effectively market to the masses in this digital age is an ear-catching captivating narrative. <br /> <br /> We add some more magic with Jingles and persuasive soundscapes that resonate with the masses.",
                                 image: "/services/Radio-Advertisement.png",
-                                link: "/services/radio-advertising",
+                                link: "/services-v3/radio-advertising",
                                 subServices: [
                                     {
                                         title: "Advertising Concept Development",
+                                        slug: "https://ritzmediaworld.com/services/radio-advertising/advertisement-concept-development"
                                     },
                                     {
                                         title: "Scriptwriting",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/radio-advertising/scriptwriting",
                                     },
                                     {
                                         title: "Voiceover Casting",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/radio-advertising/voiceover-casting",
                                     },
                                     {
                                         title: "Recording & Production",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/radio-advertising/recording-and-production",
                                     },
                                     {
                                         title: "Media Planning And Buying",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/radio-advertising/media-planning-and-buying",
                                     },
                                     {
                                         title: "Cost Negotiation",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/radio-advertising/radio-cost-negotiation-india",
                                     },
                                 ]
                             },
                             {
                                 title: "Content <br /> Marketing",
-                                margin: "pr-12 sm:pr-44 lg:pr-14",
+                                margin: "pr-12 md:pr-38 lg:pr-14 xl:pr-0 xl:-mr-0 ",
                                 description: "Content Isn’t king, Compelling Content is. Anyone can tell stories or put words together, but will that inspire action? We didn’t think so either. <br /> <br /> Be it blogs that educate, videos that entertain, or posts that persuade, our persuasive storytelling ensures that your brand stays relevant, remarkable, and unmistakably real.",
                                 image: "/services/Content-Marketing.png",
-                                link: "/services/content-marketing",
+                                link: "/services-v3/content-marketing",
                                 subServices: [
                                     {
                                         title: "Customized Content Strategy",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/contents-marketing/content-marketing",
                                     },
                                     {
                                         title: "Email and Newsletters Marketing",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/contents-marketing/email-and-newsletters-marketing",
                                     },
                                     {
                                         title: "Asset Creation and Infographics",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/contents-marketing/asset-creation-and-infographics",
                                     },
                                     {
                                         title: "Content Promotion and Optimization",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/contents-marketing/content-promotion-and-optimization",
                                     }
                                 ]
                             },
                             {
                                 title: "Web <br /> Development",
-                                margin: "pr-4 sm:pr-34 lg:pl-14",
+                                margin: "pr-4 md:pr-30  lg:pr-0 xl:pr-0 xl:-mr-10",
                                 description: "Your website is your digital handshake, so let’s make sure that it’s firm and welcoming. We design intuitive and visually delightful digital experiences that charm visitors into becoming loyal patrons. <br /> <br /> Remember, nothing signals credibility like a brilliantly functional website that customers love and don’t leave.",
                                 image: "/services/Web-Development.png",
-                                link: "/services/web-development",
+                                link: "/services-v3/web-development",
                                 subServices: [
                                     {
                                         title: "UI/UX Design",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/web-designing-and-development/ui-ux-design",
                                     },
                                     {
                                         title: "Custom Design & Development",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/web-designing-and-development/custom-design-development",
                                     },
                                     {
                                         title: "E-Commerce Website Development",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/web-designing-and-development/e-commerce-web-designing",
                                     },
                                     {
                                         title: "Landing Page Development",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/web-designing-and-development/landing-page-development-services",
+                                    },
+                                    {
+                                        title: "WordPress Web Design",
+                                        slug: "https://ritzmediaworld.com/services/web-designing-and-development/wordpress-web-designing",
                                     }
                                 ]
                             },
                             {
                                 title: "Celebrity <br /> Endorsements",
-                                margin: "pr-4 sm:pr-34 lg:pl-14",
+                                margin: "pr-4 md:pr-26  lg:pr-0 xl:pr-0 xl:-mr-20",
                                 description: "Why scream when a Celebrity’s whisper can say it louder? <br /> <br /> We connect your brand with influential names whose endorsement doesn’t just sell but elevate your products and services. Because familiar faces are more effective in earning trust.",
                                 image: "/services/Celebrity-Endorsment.png",
-                                link: "/services/celebrity-endorsements",
+                                link: "/services-v3/celebrity-endorsements",
                                 subServices: [
                                     {
                                         title: "Celebrity Identification",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/celebrity-endorsements/celebrity-identification-services",
                                     },
                                     {
                                         title: "Contract Negotiations",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/celebrity-endorsements/negotiating-contracts",
                                     },
                                     {
                                         title: "Creative Collaboration",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/celebrity-endorsements/creative-collaboration",
                                     },
                                     {
                                         title: "Campaign Integration",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/celebrity-endorsements/campaign-integration",
                                     },
                                     {
                                         title: "Public Relations",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/celebrity-endorsements/public-relations",
                                     },
                                     {
                                         title: "Legal Compliance",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/celebrity-endorsements/legal-compliance",
                                     }
                                 ]
                             },
                             {
                                 title: "Influencer <br />   Marketing",
-                                margin: "lg:-mr-[10px] pr-10 sm:pr-38 lg:pr-0    ",
+                                margin: "lg:-mr-[10px] pr-10 md:pr-32 lg:pr-4 xl:pr-0 xl:-mr-6    ",
                                 description: "Influencer marketing isn’t about chasing vanity metrics—it’s strategic persuasion by trusted voices. At Ritz Media World, we cleverly match your brand with influential personalities whose authentic engagement transforms casual followers into loyal customers. <br /> <br /> Because genuine influence doesn’t shout—it whispers convincingly, profitably, and irresistibly to the right ears.",
                                 image: "/services/Influencer-Marketing3.png",
-                                link: "/services/influencer-marketing",
+                                link: "/services-v3/influencer-marketing",
                                 subServices: [
                                     {
                                         title: "Influencer Identification",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/identification-influence-marketing-agency",
                                     },
                                     {
                                         title: "Cost-Benefit Analysis",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/cost-benefit-analysis",
                                     },
                                     {
                                         title: "Terms Negotiations",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/terms-negotiations",
                                     },
                                     {
                                         title: "Creative Collaboration",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/creative-collaboration",
                                     },
                                     {
                                         title: "Campaign Integration",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/campaign-integration",
                                     },
                                     {
                                         title: "Messaging Optimization",
-                                        slug: "",
+                                        slug: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/messaging-optimization",
                                     },
                                 ]
                             }
@@ -459,17 +464,17 @@ function Section3({ servicesData }: Section3Props) {
                     }
                 </div>
                 {/* Row 3  */}
-                <div className={`flex flex-col gap-6 `}>
+                <div className={`flex flex-col gap-6 ${styles2.containerWidth}`}>
 
                     {/* Row 1  */}
                     <div className="flex flex-col text-center md:text-left">
-                        <p className="font-[600] text-[12px] sm:text-[14px] md:text-[16px] uppercase text-[#C99237]">
+                        <p className={`font-[600] text-[12px] sm:text-[14px] md:text-[16px] uppercase text-[#C99237] ${styles2.fontopensans}`}>
                             Legendary Stories
                         </p>
-                        <h3 className="font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] text-black">
+                        <h3 className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] text-black ${styles2.fontmontserrat}`}>
                             We tell stories that lead to LEGENDS
                         </h3>
-                        <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px]">
+                        <p className={`font-[400] text-[14px] sm:text-[15px] md:text-[16px] ${styles2.fontopensans}`}>
                             Crafting Stories That Build Timeless Legends
                         </p>
                     </div>
@@ -487,34 +492,34 @@ function Section3({ servicesData }: Section3Props) {
 
                             {/* Absolute Position Text Container  */}
                             <div className="absolute inset-0 w-full h-full flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 text-center md:text-left">
-                                <p className="font-[400] text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] text-white">
+                                <p className={`font-[400] text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] text-white ${styles2.fontopensans} max-w-[90%]`}>
                                     We command growth with millions of hours in collective experience. At this point, It's not a matter of 'if', it becomes a matter of 'when' you will attain the tipping point that will drive your.
                                 </p>
-                                <h4 className="font-[300] text-[28px] sm:text-[36px] md:text-[42px] xl:text-[50px] text-white mt-2 sm:mt-4">
+                                <h4 className={`font-[300] text-[28px] sm:text-[36px] md:text-[42px] xl:text-[50px] text-white mt-2 sm:mt-4 leading-[1.1] ${styles2.fontopensans}`}>
                                     PERPETUAL <br />
                                     <span className="font-[800]">GROWTH</span>
                                 </h4>
-                            </div>  
+                            </div>
                         </div>
 
 
                         <div className="hidden lg:flex flex-col lg:pl-8 gap-4 sm:gap-6 lg:gap-8 justify-start lg:justify-end w-full lg:w-auto">
 
-                            <div className="flex flex-row lg:flex-col gap-6 sm:gap-8 lg:gap-4">
+                            <div className="flex flex-row  lg:flex-col gap-6 sm:gap-8 lg:gap-6">
                                 <div>
-                                    <p className="font-[700] text-[40px] sm:text-[50px] md:text-[41px] xl:text-[60px] text-[#0F1640]">
+                                    <p className={`font-[700] text-[40px] sm:text-[50px] md:text-[41px] xl:text-[60px] text-[#0F1640] ${styles2.fontmontserrat}`}>
                                         1B+
                                     </p>
-                                    <p className="font-[600] text-[14px] sm:text-[15px] md:text-[16px]">
+                                    <p className={`font-[600] text-[14px] sm:text-[15px] md:text-[16px] ${styles2.fontopensans}`}>
                                         Creatives Published
                                     </p>
                                 </div>
 
                                 <div>
-                                    <p className="font-[700] text-[40px] sm:text-[50px] md:text-[41px] xl:text-[60px] text-[#0F1640]">
+                                    <p className={`font-[700] text-[40px] sm:text-[50px] md:text-[41px] xl:text-[60px] text-[#0F1640] ${styles2.fontmontserrat}`}>
                                         500+
                                     </p>
-                                    <p className="font-[600] text-[14px] sm:text-[15px] md:text-[16px]">
+                                    <p className={`font-[600] text-[14px] sm:text-[15px] md:text-[16px] ${styles2.fontopensans}`}>
                                         Success Stories
                                     </p>
                                 </div>
@@ -532,7 +537,7 @@ function Section3({ servicesData }: Section3Props) {
                             <Image fill src={"/home-v3/service-imgs/s3/profitable-product.png"} alt="" className="w-full h-full object-cover"></Image>
                             {/* Absolute Positioned Button  */}
                             <div className="w-full absolute left-0 top-[60%] pl-10 z-10">
-                                <button className="w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff]">
+                                <button className={`w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff] ${styles2.fontopensans}`}>
                                     More About Us
                                 </button>
                             </div>
@@ -545,7 +550,7 @@ function Section3({ servicesData }: Section3Props) {
                 </div>
 
                 {/* Copy Components  */}
-                <div className={`flex flex-col `}>
+                <div className={`flex flex-col ${styles2.containerWidth}`}>
                     {/* Copy Row 1  */}
                     <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
                         {/* Left Side Container  */}
@@ -647,7 +652,7 @@ function Section3({ servicesData }: Section3Props) {
                     {/* Row 2  */}
                     <div className="w-full min-h-[160px] sm:min-h-[180px] md:min-h-[200px] lg:min-h-[220px] xl:min-h-[247px] bg-[#F7F7F7] flex justify-center items-center py-4 sm:py-5 md:py-6 lg:py-8 xl:py-0">
                         {/* Center Align Cards Container  */}
-                        <div className="grid grid-cols-2 sm:flex sm:flex-wrap md:flex-nowrap justify-center items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-10 2xl:gap-16 w-full px-4 sm:px-5 md:px-6 lg:px-8 xl:px-0 max-w-[1920px] mx-auto">
+                        <div className="grid grid-cols-2 sm:flex sm:flex-wrap md:flex-nowrap justify-center items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-20 2xl:gap-16 w-full px-4 sm:px-5 md:px-6 lg:px-8 xl:px-0 max-w-[1920px] mx-auto">
                             {
                                 [
                                     {
@@ -680,8 +685,8 @@ function Section3({ servicesData }: Section3Props) {
                                          ${idx < 2 ? "border-b-[1px] border-b-[#C9C9C9] sm:border-b-[1px] sm:border-r-0 md:border-b-0 md:border-r-[1px] md:border-r-[#C9C9C9]" : ""}
                                          ${idx === 2 ? "border-b-[1px] border-b-[#C9C9C9] sm:border-b-0 sm:border-r-[1px] sm:border-r-[#C9C9C9] md:border-b-0 md:border-r-[1px] md:border-r-[#C9C9C9]" : ""}
                                          ${idx === 3 ? "sm:border-r-0 md:border-r-0" : ""}`}>
-                                            <h5 className="font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[50px] 2xl:text-[60px] text-[#000000] leading-tight">{ob.ttl}</h5>
-                                            <p className="font-[400] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[16px] text-[#000000] mt-1 sm:mt-1.5 md:mt-2">{ob.desc}</p>
+                                            <h5 className={` font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#000000] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</h5>
+                                            <p className={`font-[600] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[16px] 2xl:text-[16px] text-[#000000] mt-1 sm:mt-1.5 md:mt-2 ${styles2.fontopensans}`}>{ob.desc}</p>
                                         </div>
                                     )
                                 })
@@ -700,7 +705,7 @@ function Section3({ servicesData }: Section3Props) {
 
                 {/* Copy Components  */}
                 {/* Row 2  */}
-                <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 `}>
+                <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 ${styles2.containerWidth}`}>
                     {/* Left Side Container  */}
                     <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
                         <div className="text-center md:text-left mb-2 md:mb-0">
@@ -845,7 +850,7 @@ function Section3({ servicesData }: Section3Props) {
                 </div>
 
                 {/* Row 3  */}
-                <div className={`w-full flex justify-center items-center `}>
+                <div className={`w-full flex justify-center items-center ${styles2.containerWidth}`}>
                     {/* Center Align Container  */}
                     <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
                         <h2
