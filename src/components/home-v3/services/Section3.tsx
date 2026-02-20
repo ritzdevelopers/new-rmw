@@ -685,8 +685,8 @@ function Section3({ servicesData }: Section3Props) {
                                          ${idx < 2 ? "border-b-[1px] border-b-[#C9C9C9] sm:border-b-[1px] sm:border-r-0 md:border-b-0 md:border-r-[1px] md:border-r-[#C9C9C9]" : ""}
                                          ${idx === 2 ? "border-b-[1px] border-b-[#C9C9C9] sm:border-b-0 sm:border-r-[1px] sm:border-r-[#C9C9C9] md:border-b-0 md:border-r-[1px] md:border-r-[#C9C9C9]" : ""}
                                          ${idx === 3 ? "sm:border-r-0 md:border-r-0" : ""}`}>
-                                            <h5 className={` font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#000000] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</h5>
-                                            <p className={`font-[600] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[16px] 2xl:text-[16px] text-[#000000] mt-1 sm:mt-1.5 md:mt-2 ${styles2.fontopensans}`}>{ob.desc}</p>
+                                            <h5 className={` font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#0F1640] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</h5>
+                                            <p className={`font-[600] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[16px] 2xl:text-[16px] text-[#0F1640] mt-1 sm:mt-1.5 md:mt-2 ${styles2.fontopensans}`}>{ob.desc}</p>
                                         </div>
                                     )
                                 })
