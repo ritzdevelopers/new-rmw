@@ -534,16 +534,16 @@ function Section3({ servicesData }: Section3Props) {
                     {/* Row 3  */}
                     <div className="w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4">
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image fill src={"/home-v3/service-imgs/s3/profitable-product.png"} alt="" className="w-full h-full object-cover"></Image>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product.png"} alt="" className="w-full h-full object-cover"></Image>
                             {/* Absolute Positioned Button  */}
                             <div className="w-full absolute left-0 top-[60%] pl-10 z-10">
-                                <button className={`w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff] ${styles2.fontopensans}`}>
+                                <button onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} className={`w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff] ${styles2.fontopensans}`}>
                                     More About Us
                                 </button>
                             </div>
                         </div>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image fill src={"/home-v3/service-imgs/s3/company-mission.png"} alt="" className="w-full h-full object-cover"></Image>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} alt="" className="w-full h-full object-cover"></Image>
                         </div>
                     </div>
 
