@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BsArrowUpRight } from "react-icons/bs";
-
+import styles from "../page.module.css";
 
 interface Item {
     title: string;
@@ -25,7 +25,7 @@ function Layer1Card({ item, idx }: { item: Item, idx: number }) {
             {/* Row 1 - Header with Meta Info */}
             <header className="flex w-full justify-start pb-2">
                 <div className="flex items-center gap-3">
-                    <p className="font-[400] text-[13px] sm:text-[14px] text-[#000000]">{String(idx + 1).padStart(2, '0')}</p>
+                    <p className={`font-[600] text-[13px] sm:text-[18px] text-[#000000] ${styles.fontmontserrat}`}>{String(idx + 1).padStart(2, '0')}</p>
                     {meta_titles && (
                         <meta itemProp="name" content={meta_titles} />
                     )}
@@ -40,7 +40,7 @@ function Layer1Card({ item, idx }: { item: Item, idx: number }) {
                 {/* Content Container  */}
                 <div className="flex flex-col w-full gap-2 sm:gap-3 flex-grow">
                     <h3 
-                        className="font-[700] text-[16px] sm:text-[17px] lg:text-[18px] text-[#000000] leading-tight"
+                        className={`font-[700] text-[16px] sm:text-[17px] lg:text-[18px] text-[#000000] leading-tight ${styles.fontopensans}`}
                         itemProp="name"
                         title={meta_titles || title}
                     >
@@ -50,7 +50,7 @@ function Layer1Card({ item, idx }: { item: Item, idx: number }) {
                         <p className="sr-only" itemProp="alternateName">{meta_titles}</p>
                     )}
                     <p 
-                        className="font-[400] max-w-[90%] text-[13px] sm:text-[14px] text-[#000000] leading-relaxed line-clamp-4"
+                            className={`font-[400] max-w-[90%] text-[13px] sm:text-[14px] text-[#000000] leading-relaxed line-clamp-4 ${styles.fontopensans}`}
                         itemProp="description"
                         title={meta_description || description}
                     >
@@ -71,7 +71,7 @@ function Layer1Card({ item, idx }: { item: Item, idx: number }) {
                         aria-label={`Learn more about ${meta_titles || title}`}
                     >
                         <button className="w-[140px] sm:w-[154px] h-[42px] sm:h-[46px] flex justify-start items-center gap-6 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity group">
-                            <p className="font-[500] text-[16px] sm:text-[17px] lg:text-[18px] text-[#000000]">More</p>
+                            <p className={`font-[500] text-[16px] sm:text-[17px] lg:text-[18px] text-[#000000] ${styles.fontmontserrat}`}>More</p>
                             <div className="bg-[#C99237] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-white group-hover:scale-110 transition-transform">
                                 <BsArrowUpRight className="text-white text-[15px] sm:text-[16px] lg:text-[18px]" />
                             </div>

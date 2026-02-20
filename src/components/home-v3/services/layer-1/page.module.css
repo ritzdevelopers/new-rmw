@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 .clientSlider {
   animation: clientSlider 30s linear infinite;
@@ -25,6 +25,10 @@
 
 .fontopensans {
   font-family: 'Open Sans', sans-serif;
+}
+
+.fontpoppins {
+  font-family: 'Poppins', sans-serif;
 }
 
 .containerWidth {
@@ -78,4 +82,81 @@
 .testimonialSwiper :global(.swiper-button-next),
 .testimonialSwiper :global(.swiper-button-prev) {
   display: none !important;
+}
+
+/* Section4 Cards Container - 3 cards per row on lg screens */
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* For md to lg: Make cards take 50% width (2 per row) */
+/* Gap is 1.5rem (24px) at md, so 1 gap = 24px between 2 cards */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .cardsContainer :global(article) {
+    width: calc((100% - 1.5rem) / 2) !important;
+    max-width: calc((100% - 1.5rem) / 2) !important;
+    flex: 0 0 calc((100% - 1.5rem) / 2) !important;
+  }
+}
+
+/* For lg to 1360px: Make cards take ~33.33% width (3 per row) */
+/* Gap is 2rem (32px) at lg, so 2 gaps = 64px between 3 cards */
+@media (min-width: 1024px) and (max-width: 1359px) {
+  .cardsContainer :global(article) {
+    width: calc((100% - 4rem) / 3) !important;
+    max-width: calc((100% - 4rem) / 3) !important;
+    flex: 0 0 calc((100% - 4rem) / 3) !important;
+  }
+}
+
+/* After 1360px: Keep original fixed width styling */
+@media (min-width: 1360px) {
+  .cardsContainer :global(article) {
+    width: 390px !important;
+    max-width: 390px !important;
+    flex: 0 0 390px !important;
+  }
+}
+
+/* Section7 Awards Container - Responsive cards */
+.awardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* For md to lg: Make cards take 50% width (2 per row) */
+/* Gap is 1rem (16px) at gap-4, so 1 gap = 16px between 2 cards */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .awardsContainer > :global(div) {
+    width: calc((100% - 1rem) / 2) !important;
+    max-width: calc((100% - 1rem) / 2) !important;
+    flex: 0 0 calc((100% - 1rem) / 2) !important;
+  }
+}
+
+/* For lg to 1355px: Make cards take ~33.33% width (3 per row) */
+/* Gap is 1rem (16px) at gap-4, so 2 gaps = 32px between 3 cards */
+@media (min-width: 1024px) and (max-width: 1354px) {
+  .awardsContainer > :global(div) {
+    width: calc((100% - 2rem) / 3) !important;
+    max-width: calc((100% - 2rem) / 3) !important;
+    flex: 0 0 calc((100% - 2rem) / 3) !important;
+  }
+}
+
+/* After 1355px: Keep original fixed width styling */
+@media (min-width: 1355px) {
+  .awardsContainer > :global(div:first-child) {
+    width: 406px !important;
+    max-width: 406px !important;
+    flex: 0 0 406px !important;
+  }
+  .awardsContainer > :global(div:not(:first-child)) {
+    width: 407px !important;
+    max-width: 407px !important;
+    flex: 0 0 407px !important;
+  }
 }

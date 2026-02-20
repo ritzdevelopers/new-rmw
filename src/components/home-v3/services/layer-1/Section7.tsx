@@ -32,7 +32,7 @@ function Section7() {
     return (
         <section className="w-full flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-[70px]">
             {/* Centered Align Container  */}
-            <div className={`w-full flex flex-wrap justify-center items-center gap-4 ${styles.containerWidth}`}>
+            <div className={`w-full flex flex-wrap justify-center items-center gap-4 ${styles.containerWidth} ${styles.awardsContainer}`}>
                 {/* Card 1  */}
                 <div className="w-[406px] h-[414px] border-[1px] border-[#D4D4D4] relative p-4">
                     {/* Absolute Image 1  */}
@@ -44,8 +44,8 @@ function Section7() {
 
                     {/* Top Row Content Container   */}
                     <div className="w-full flex flex-col justify-end items-end text-end">
-                        <p className="font-[600] text-[16px] uppercase text-[#C99237]">Achievement Awards</p>
-                        <h2 className="font-[500] text-[30px] text-black max-w-[200px]"><span className="font-[700]">Awards</span> & Company Recognitions</h2>
+                        <p className={`font-[600] text-[16px] uppercase text-[#C99237] ${styles.fontopensans}`}>Achievement Awards</p>
+                        <h2 className={`font-[500] text-[30px] text-black max-w-[200px] ${styles.fontmontserrat}`}><span className="font-[700]">Awards</span> & Company Recognitions</h2>
                     </div>
                 </div>
 

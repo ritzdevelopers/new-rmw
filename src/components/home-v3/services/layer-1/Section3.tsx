@@ -24,7 +24,7 @@ function Section3() {
 
                         {/* Row 1  */}
                         <div className="w-full text-center">
-                            <p className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px]">Customer Research</p>
+                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Customer Research</p>
                         </div>
 
 
@@ -50,8 +50,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
-                                        <p className="font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase">user</p>
-                                        <p className="font-[600] text-[16px] sm:text-[17px] lg:text-[18px]">38%</p>
+                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
+                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>38%</p>
                                     </div>
                                 </li>
 
@@ -67,8 +67,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
-                                        <p className="font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase">user</p>
-                                        <p className="font-[600] text-[16px] sm:text-[17px] lg:text-[18px]">38%</p>
+                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
+                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>38%</p>
                                     </div>
                                 </li>
 
@@ -85,8 +85,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
-                                        <p className="font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase">user</p>
-                                        <p className="font-[600] text-[16px] sm:text-[17px] lg:text-[18px]">38%</p>
+                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
+                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>38%</p>
                                     </div>
                                 </li>
                             </ul>
@@ -97,7 +97,7 @@ function Section3() {
                     <div className="bg-white xl:-ml-[15rem] px-6 sm:px-3 lg:px-6  py-3 sm:py-8 lg:py-4 rounded-[15px] sm:rounded-[20px]
                      flex flex-col justify-center items-center gap-2 sm:gap-3 w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
-                            <p className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px]">Team of Experts</p>
+                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Team of Experts</p>
                         </div>
                         <div className="flex justify-center items-center -gap-2">
                             <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full">
@@ -120,7 +120,7 @@ function Section3() {
 
                         {/* Row 1  */}
                         <div className="w-full text-center">
-                            <p className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px]">Generated Traffic <br />
+                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Generated Traffic <br />
                                 & Leads</p>
                         </div>
 
@@ -131,8 +131,8 @@ function Section3() {
 
                         {/* Row 3  */}
                         <div className="flex flex-col justify-center items-center text-center">
-                            <p className="font-[700] text-[20px] sm:text-[22px] lg:text-[24px]">90%</p>
-                            <p className="font-[500] text-[11px] sm:text-[12px] text-[#827F7F]">Average annual grow rate</p>
+                            <p className={`font-[700] text-[20px] sm:text-[22px] lg:text-[24px] ${styles.fontmontserrat}`}>90%</p>
+                            <p className={`font-[500] text-[11px] sm:text-[12px] text-[#827F7F] ${styles.fontmontserrat}`}>Average annual grow rate</p>
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@ function Section3() {
                     {/* Bottom Button  */}
                     <div className="w-full flex justify-center items-center">
                         <button className="flex justify-between items-center gap-3 sm:gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
-                            <p className="font-[500] text-[15px] sm:text-[16px] lg:text-[18px] text-black">
+                            <p className={`font-[500] text-[15px] sm:text-[16px] lg:text-[18px] text-black ${styles.fontmontserrat}`}>
                                 Get Free Consulting
                             </p>
                             <div className="bg-[#ffffff] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] md:h-[38px] md:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-[#C99237]">
@@ -164,17 +164,17 @@ function Section3() {
                 {/* Right Side Container   */}
                 <div className="flex flex-col lg:flex-col items-stretch xl:items-start justify-between gap-6 relative w-full lg:w-auto order-3 lg:order-none h-full">
                     {/* Row 1 Card  */}
-                    <div className="flex flex-col justify-between gap-4 sm:gap-6 items-center text-center py-5 sm:py-6 px-6 sm:px-3 rounded-[15px] sm:rounded-[20px] bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
+                    <div className="flex flex-col justify-between gap-4 sm:gap-6 items-center text-center py-5 sm:py-6 px-6 sm:px-3 xl:px-10 rounded-[15px] sm:rounded-[20px] bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
-                            <p className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px]">Facebook Marketing <br />
+                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Facebook Marketing <br />
                                 Campaign</p>
                         </div>
 
                         <div className="relative w-[110px] sm:w-[120px] lg:w-[132px]">
                             <img src="/service-v3/layer1/charts/circle-chart2.png" alt="" className="w-full h-auto object-cover" />
                             <div className="flex justify-center items-center gap-1 sm:gap-2 flex-col text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                <p className="font-[700] text-[20px] sm:text-[22px] lg:text-[24px]">690</p>
-                                <p className="font-[500] text-[11px] sm:text-[12px] text-[#827F7F]">Goal : 1000</p>
+                                <p className={`font-[700] text-[20px] sm:text-[22px] lg:text-[24px] ${styles.fontmontserrat}`}>690</p>
+                                <p className={`font-[500] text-[11px] sm:text-[12px] text-[#827F7F] ${styles.fontmontserrat}`}>Goal : 1000</p>
                             </div>
                         </div>
 
@@ -195,8 +195,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex justify-center items-center gap-1 sm:gap-2">
-                                        <p className="font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase">user</p>
-                                        <p className="font-[600] text-[11px] sm:text-[12px]">38%</p>
+                                        <p className={`font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
+                                        <p className={`font-[600] text-[11px] sm:text-[12px] ${styles.fontmontserrat}`}>38%</p>
                                     </div>
                                 </li>
 
@@ -212,8 +212,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex justify-center items-center gap-1 sm:gap-2">
-                                        <p className="font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase">user</p>
-                                        <p className="font-[600] text-[11px] sm:text-[12px]">38%</p>
+                                        <p className={`font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
+                                        <p className={`font-[600] text-[11px] sm:text-[12px] ${styles.fontmontserrat}`}>38%</p>
                                     </div>
                                 </li>
                             </ul>
@@ -223,16 +223,16 @@ function Section3() {
                     {/* Row 2 Card   */}
                         <div className="flex xl:ml-[5rem] flex-col bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] py-3 px-6 sm:px-3 md:px-8 rounded-[15px] sm:rounded-[20px] gap-4 sm:gap-[17px] justify-center items-center w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
-                            <p className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black">Content Score</p>
+                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black ${styles.fontmontserrat}`}>Content Score</p>
                         </div>
 
                         <div className="w-[120px] sm:w-[135px] lg:w-[144px]"><img
                             src="/service-v3/layer1/charts/half-circle-graph.png" alt="" className="w-full h-auto object-cover" /></div>
 
                         <div className="flex justify-center items-center gap-2 text-center">
-                            <p className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black">
+                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black ${styles.fontmontserrat}`}>
                                 93
-                                <span className="font-[500] text-[#827F7F]"> /100</span>
+                                <span className={`font-[500] text-[#827F7F] ${styles.fontmontserrat}`}> /100</span>
                             </p>
                         </div>
                     </div>
