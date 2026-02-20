@@ -4,7 +4,7 @@ function Section2() {
     return (
         <section className={`w-full flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px]`}>
             {/* Centered Align Container   */}
-            <div className={`w-full text-center flex flex-col gap-3 sm:gap-4 items-center justify-center max-w-[1075px] ${styles.containerWidth}`}>
+            <div className={`w-full text-center flex flex-col gap-3 sm:gap-4 items-center justify-center max-w-[1175px] ${styles.containerWidth}`}>
                 <h2 className={`font-[700] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px] xl:text-[30px] leading-tight sm:leading-snug md:leading-normal px-2 sm:px-0 ${styles.fontmontserrat}`}>
                     The digital landscape is, unfortunately, noisier than a crowded fish market. Convention marketing practices are necessary, but are barely effective on their own.
                 </h2>

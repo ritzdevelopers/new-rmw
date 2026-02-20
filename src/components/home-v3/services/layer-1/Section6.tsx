@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 
 function Section6() {
     return (
-        <section className="w-full flex justify-center items-center pt-8 sm:pt-12 md:pt-16 lg:pt-[70px] px-4 sm:px-6 md:px-12 lg:px-20">
+        <section className="w-full flex justify-center items-center pt-8 sm:pt-12 md:pt-16 lg:pt-[70px] ">
             {/* Centered Align Container  */}
             <div className={`w-full  mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10 overflow-hidden ${styles.containerWidth}`}>
                 {/* Top Row  */}
