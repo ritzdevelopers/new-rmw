@@ -55,7 +55,7 @@ function Section5() {
                     <div className="flex flex-col lg:flex-row w-full justify-between gap-3 sm:gap-4 xl:gap-5">
                         {/* Left Side Container  */}
                         <div className="w-full lg:w-[827px] xl:w-[900px] h-[200px] sm:h-[250px] md:h-[280px] lg:h-[319px] xl:h-[350px] relative">
-                            <Image src="/service-v3/layer1/s5/s5-team-img.jpg" alt="Why Leading Brands Choose Our IT Solutions" fill className="object-cover" />
+                            <Image src="/service-v3/layer1/s5/s5-team-img.jpg" alt="Why Leading Brands Choose Our IT Solutions" fill className="" />
 
                             <div className="absolute left-0 bottom-0 bg-white max-w-full lg:max-w-[417px] xl:max-w-[450px] py-3 sm:py-4 lg:py-5 xl:py-6 px-3 sm:px-4 lg:px-5 xl:px-6">
                                 <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] max-w-[95%] lg:max-w-[90%] xl:max-w-[95%] leading-tight sm:leading-normal ${styles.fontopensans}`}>A Skilled Team Delivering Reliable Technology Solutions That Drive Business Growth</p>
