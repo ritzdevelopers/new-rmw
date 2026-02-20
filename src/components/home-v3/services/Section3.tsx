@@ -304,7 +304,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Radio <br /> Advertising",
-                                margin: "pr-8 md:pr-30 lg:pr-4 xl:pr-0 xl:-mr-10 2xl:-mr-10   ",
+                                margin: "pr-3 md:pr-30 lg:pr-4 xl:pr-0 xl:-mr-10 2xl:-mr-10   ",
                                 description: "You may have noticed that people still have ears. The most wonderful way to effectively market to the masses in this digital age is an ear-catching captivating narrative. <br /> <br /> We add some more magic with Jingles and persuasive soundscapes that resonate with the masses.",
                                 image: "/services/Radio-Advertisement.png",
                                 link: "/services-v3/radio-advertising",
@@ -362,7 +362,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Web <br /> Development",
-                                margin: "pr-4 md:pr-30  lg:pr-0 xl:pr-0 xl:-mr-10",
+                                margin: "pr-2 md:pr-30  lg:pr-0 xl:pr-0 xl:-mr-10",
                                 description: "Your website is your digital handshake, so let’s make sure that it’s firm and welcoming. We design intuitive and visually delightful digital experiences that charm visitors into becoming loyal patrons. <br /> <br /> Remember, nothing signals credibility like a brilliantly functional website that customers love and don’t leave.",
                                 image: "/services/Web-Development.png",
                                 link: "/services-v3/web-development",
@@ -391,7 +391,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Celebrity <br /> Endorsements",
-                                margin: "pr-4 md:pr-26  lg:pr-0 xl:pr-0 xl:-mr-20",
+                                margin: "pr-0 md:pr-26  lg:pr-0 xl:pr-0 xl:-mr-20",
                                 description: "Why scream when a Celebrity’s whisper can say it louder? <br /> <br /> We connect your brand with influential names whose endorsement doesn’t just sell but elevate your products and services. Because familiar faces are more effective in earning trust.",
                                 image: "/services/Celebrity-Endorsment.png",
                                 link: "/services-v3/celebrity-endorsements",
