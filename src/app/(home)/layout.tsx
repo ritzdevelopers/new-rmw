@@ -1,7 +1,10 @@
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/header/Header";
 import Script from "next/script";
-import ClientOnlyComponents from "@/components/ClientOnlyComponents";
+// import ClientOnlyComponents from "@/components/ClientOnlyComponents";
+import ContactButtonBootstrap from "@/components/ruby-bot/ContactButtonBootstrap";
+import RubyBotBootstrap from "@/components/ruby-bot/RubyBotBootstrap";
+import RubyProvider from "@/ruby-context/ruby.context";
 
 // Import CSS once at layout level to avoid duplication
 import "./bootstrap.css";
@@ -60,8 +63,12 @@ export default function HomeLayout({
 
       <Toaster position="top-right" reverseOrder={false} />
         <Header />
-        <ClientOnlyComponents />
-        {children}
+        <RubyProvider>
+          {children}
+          <ContactButtonBootstrap />
+          <RubyBotBootstrap />
+        </RubyProvider>
+        {/* <ClientOnlyComponents /> */}
     </>
   );
 }
