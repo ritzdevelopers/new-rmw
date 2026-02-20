@@ -1,10 +1,43 @@
 "use client";
 import Image from "next/image";
+import React, { useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
 import styles from './page.module.css';
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
 function Section5() {
+    const swiperRef = useRef<SwiperType | null>(null);
+
+    // Testimonial data - you can add more testimonials here
+    const testimonials = [
+        {
+            quote: "To me, advertising my brand was merely a means to ensure my elongated presence in the market. Thanks to ritz Media world, my advertisements not only ensured my brand's sustenance but have also got me a great number of quality leads.",
+            name: "Madhusudan Ghee",
+            position: "Managing Director"
+        },
+        {
+            quote: "Ritz Media World has transformed our digital presence completely. Their strategic approach and creative solutions have significantly increased our brand visibility and customer engagement.",
+            name: "John Smith",
+            position: "CEO, Tech Solutions Inc."
+        },
+        {
+            quote: "Working with Ritz Media World has been a game-changer for our business. Their team's expertise in digital marketing and SEO has driven exceptional results for our company.",
+            name: "Sarah Johnson",
+            position: "Marketing Director"
+        },
+        {
+            quote: "The professionalism and results-driven approach of Ritz Media World exceeded our expectations. They truly understand how to connect brands with their target audience effectively.",
+            name: "Michael Chen",
+            position: "Founder, StartupXYZ"
+        }
+    ];
     return (
-        <section className="w-full flex justify-center items-center pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-[70px] pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-[70px]">
+        <section className="w-full flex justify-center items-center  ~">
 
             {/* Centered Align Container  */}
             <div className={`w-full flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10 ${styles.containerWidth}`}>
@@ -73,25 +106,47 @@ function Section5() {
                             <div className="w-full flex justify-between items-center">
                                 <p className="font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] uppercase">reviews</p>
                                 <div className="flex gap-3 sm:gap-4">
-                                    <button className="cursor-pointer hover:opacity-80 transition-opacity">
+                                    <button 
+                                        className="cursor-pointer hover:opacity-80 transition-opacity"
+                                        onClick={() => swiperRef.current?.slidePrev()}
+                                        aria-label="Previous review"
+                                    >
                                         <img src="/lft.svg" alt="" className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px]" />
                                     </button>
-                                    <button className="cursor-pointer hover:opacity-80 transition-opacity">
+                                    <button 
+                                        className="cursor-pointer hover:opacity-80 transition-opacity"
+                                        onClick={() => swiperRef.current?.slideNext()}
+                                        aria-label="Next review"
+                                    >
                                         <img src="/rght.svg" alt="" className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px]" />
                                     </button>
                                 </div>
                             </div>
                             {/* Bottom Dynamic Slider Container */}
-                            <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 max-w-full lg:max-w-[90%]">
-                                <p className="font-[400] text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] leading-relaxed">
-                                    "To me, advertising my brand was merely a means to ensure my elongated presence in the market. Thanks to ritz Media world, my advertisements not only ensured my brand's sustenance but have also got me a great number of quality leads."
-                                </p>
+                            <Swiper
+                                onSwiper={(swiper) => {
+                                    swiperRef.current = swiper;
+                                }}
+                                loop={true}
+                                modules={[Navigation]}
+                                className={styles.testimonialSwiper}
+                                style={{ width: '100%', maxWidth: '100%', height: 'auto' }}
+                            >
+                                {testimonials.map((testimonial, idx) => (
+                                    <SwiperSlide key={idx}>
+                                        <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 max-w-full lg:max-w-[90%]">
+                                            <p className="font-[400] text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] leading-relaxed">
+                                                "{testimonial.quote}"
+                                            </p>
 
-                                <div className="flex flex-col gap-1 sm:gap-2">
-                                    <p className="font-[700] text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px]">Madhusudan Ghee</p>
-                                    <p className="font-[400] text-[12px] sm:text-[13px] lg:text-[14px]">Managing Director</p>
-                                </div>
-                            </div>
+                                            <div className="flex flex-col gap-1 sm:gap-2">
+                                                <p className="font-[700] text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px]">{testimonial.name}</p>
+                                                <p className="font-[400] text-[12px] sm:text-[13px] lg:text-[14px]">{testimonial.position}</p>
+                                            </div>
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
                         </div>
                     </div>
                 </div>

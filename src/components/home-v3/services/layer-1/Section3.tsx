@@ -13,13 +13,13 @@ function Section3() {
             }}
         >
             {/* Centered Align Container   */}
-            <div className={`w-full flex flex-col lg:flex-row justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-6 z-20 ${styles.containerWidth}`}>
+            <div className={`w-full  flex flex-col md:flex-row justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-4 xl:gap-10 z-20 ${styles.containerWidth}`}>
 
                 {/* Left Side Container   */}
-                <div className="relative flex justify-center lg:justify-between items-center flex-col gap-6 sm:gap-8 lg:gap-10 w-full lg:w-auto">
+                <div className="relative flex flex-col lg:flex-col justify-between lg:justify-between items-stretch lg:items-center gap-4 lg:gap-10 w-full lg:w-auto order-1 lg:order-none h-full">
 
                     {/* Card 1  */}
-                    <div className="px-6 sm:px-8 lg:px-10 h-auto sm:h-[280px] lg:h-[313px] w-full sm:w-[260px] lg:w-[281px] rounded-[15px] sm:rounded-[20px] bg-white
+                    <div className="px-6 sm:px-3 lg:px-10 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-[313px] w-full lg:w-[281px] rounded-[15px] sm:rounded-[20px] bg-white
                      shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8 py-6 sm:py-0">
 
                         {/* Row 1  */}
@@ -94,8 +94,8 @@ function Section3() {
                     </div>
 
                     {/* Card 2  */}
-                    <div className="bg-white lg:-ml-[15rem] px-6 sm:px-8 lg:px-6 py-6 sm:py-8 lg:py-4 rounded-[15px] sm:rounded-[20px]
-                     flex flex-col justify-center items-center gap-2 sm:gap-3 w-full sm:w-auto">
+                    <div className="bg-white xl:-ml-[15rem] px-6 sm:px-3 lg:px-6  py-3 sm:py-8 lg:py-4 rounded-[15px] sm:rounded-[20px]
+                     flex flex-col justify-center items-center gap-2 sm:gap-3 w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
                             <p className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px]">Team of Experts</p>
                         </div>
@@ -116,7 +116,7 @@ function Section3() {
                     </div>
 
                     {/* Card 3  */}
-                    <div className="px-6 sm:px-8 py-4 sm:py-6 lg:py-4 rounded-[15px] sm:rounded-[20px] bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10 lg:ml-8 w-full sm:w-auto">
+                    <div className="px-6 sm:px-3 md:px-8 py-4 sm:py-6 lg:py-4 rounded-[15px] sm:rounded-[20px] bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10 lg:ml-8 w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
 
                         {/* Row 1  */}
                         <div className="w-full text-center">
@@ -139,9 +139,9 @@ function Section3() {
 
 
                 {/* Centered Align Container  */}
-                <div className="flex flex-col justify-between items-center text-center gap-6 sm:gap-8 w-full lg:w-auto">
+                <div className="flex flex-col justify-between items-center text-center gap-6 sm:gap-8 col-span-2 lg:col-span-1 w-full lg:w-auto order-2 lg:order-none">
                     {/* Top Mobile Frame Video  */}
-                    <div className="relative w-[280px] h-[550px] sm:w-[320px] sm:h-[630px] md:w-[350px] md:h-[690px] lg:w-[381px] lg:h-[750px] overflow-hidden rounded-[50px] sm:rounded-[60px] lg:rounded-[70px] mx-auto">
+                    <div className="relative w-[280px] h-[550px] sm:w-[320px] sm:h-[630px] md:w-[250px] md:h-[496px] lg:w-[381px] lg:h-[750px] overflow-hidden rounded-[50px] sm:rounded-[43px] lg:rounded-[70px] mx-auto">
                         <Image src="/service-v3/layer1/charts/mobile-frame-img.png" alt="" fill className="w-full h-full object-cover z-10" />
 
                         <video src="/test-images/test-video.mp4" className="absolute z-1 top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[92%] h-[97%] object-cover" autoPlay loop muted playsInline preload="metadata"></video>
@@ -162,9 +162,9 @@ function Section3() {
                 </div>
 
                 {/* Right Side Container   */}
-                <div className="flex flex-col items-center lg:items-start justify-between gap-6 relative w-full lg:w-auto">
+                <div className="flex flex-col lg:flex-col items-stretch xl:items-start justify-between gap-6 relative w-full lg:w-auto order-3 lg:order-none h-full">
                     {/* Row 1 Card  */}
-                    <div className="flex flex-col justify-between gap-4 sm:gap-6 items-center text-center py-5 sm:py-6 px-6 sm:px-8 rounded-[15px] sm:rounded-[20px] bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] w-full sm:w-auto">
+                    <div className="flex flex-col justify-between gap-4 sm:gap-6 items-center text-center py-5 sm:py-6 px-6 sm:px-3 rounded-[15px] sm:rounded-[20px] bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
                             <p className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px]">Facebook Marketing <br />
                                 Campaign</p>
@@ -221,7 +221,7 @@ function Section3() {
                     </div>
 
                     {/* Row 2 Card   */}
-                    <div className="flex lg:ml-[5rem] flex-col bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] py-6 sm:py-8 lg:py-10 px-6 sm:px-8 rounded-[15px] sm:rounded-[20px] gap-4 sm:gap-[17px] justify-center items-center w-full sm:w-auto">
+                        <div className="flex xl:ml-[5rem] flex-col bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] py-3 px-6 sm:px-3 md:px-8 rounded-[15px] sm:rounded-[20px] gap-4 sm:gap-[17px] justify-center items-center w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
                             <p className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black">Content Score</p>
                         </div>
@@ -238,7 +238,7 @@ function Section3() {
                     </div>
 
                     {/* Row 3 Card   */}
-                    <div className="w-full sm:w-[200px] lg:w-[218px] lg:mr-[5rem] relative mx-auto lg:mx-0">
+                    <div className="w-full lg:w-[218px] lg:mr-[5rem] relative mx-auto lg:mx-0 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto flex items-center justify-center">
                         <img src="/service-v3/layer1/charts/s3-g-review.png" alt="" className="w-full h-auto object-cover" />
                     </div>
                 </div>

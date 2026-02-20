@@ -56,3 +56,26 @@
      align-self: center !important;
   }
 }
+
+/* Swiper Testimonial Styles */
+.testimonialSwiper {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.testimonialSwiper :global(.swiper-wrapper) {
+  align-items: stretch;
+}
+
+.testimonialSwiper :global(.swiper-slide) {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hide default Swiper navigation arrows since we're using custom buttons */
+.testimonialSwiper :global(.swiper-button-next),
+.testimonialSwiper :global(.swiper-button-prev) {
+  display: none !important;
+}
