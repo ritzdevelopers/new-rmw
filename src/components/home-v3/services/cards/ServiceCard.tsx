@@ -22,8 +22,8 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
                 {/* Absolute Positioned Container  */}
                 <div className="absolute z-10 top-[50%] translate-y-[-50%] w-full h-full flex flex-col justify-center items-end gap-1 sm:gap-2 pr-2 sm:pr-3 md:pr-4">
                     <div className={`flex flex-col gap-1 sm:gap-2 ${margin || ""}`}>
-                        <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] ${styles2.fontopensans}`}>{String(index + 1).padStart(2, '0')}</p>
-                        <h2 className={`font-[500] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] ${styles2.fontmontserrat}`}>
+                        <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] ${styles2.fontopensans} text-[#0F1640]`}>{String(index + 1).padStart(2, '0')}</p>
+                        <h2 className={`font-[500] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] ${styles2.fontmontserrat} text-[#0F1640]`}>
                             {title?.split(/<br\s*\/?>/i).map((line: string, index: number, array: string[]) => (
                                 <React.Fragment key={index}>
                                     {line}
@@ -43,8 +43,8 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
 
             {/* Right Side Container  */}
             <div className='w-full lg:w-[40%] xl:max-w-[500px] flex flex-col gap-3 sm:gap-4'>
-                <p 
-                    className='font-[400] text-[13px] sm:text-[14px] md:text-[15px] leading-relaxed text-center lg:text-left'
+                <p
+                    className='font-[400] text-[13px] sm:text-[14px] md:text-[16px] leading-relaxed text-center lg:text-left'
                     dangerouslySetInnerHTML={{ __html: convertClassNameToClass(description || '') }}
                 />
                 <div className="grid  grid-cols-3 gap-x-2 sm:gap-x-3 gap-y-2 sm:gap-y-3">
