@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import { HiDotsVertical } from 'react-icons/hi';
 import { IoMdClose } from 'react-icons/io';
 import { FiSend } from 'react-icons/fi';
 import axios from 'axios';
 import { RubyContext } from '@/ruby-context/ruby.context';
+import styles from './page.module.css';
 
 interface Message {
     id: string;
@@ -19,10 +19,10 @@ interface QuickReply {
     text: string;
 }
 
-function RubyBot() {
+function RubyBotBootstrap() {
     const context = useContext(RubyContext);
     if (!context) {
-        throw new Error('RubyBot must be used within RubyProvider');
+        throw new Error('RubyBotBootstrap must be used within RubyProvider');
     }
     const { isRubyOpen, setIsRubyOpen } = context;
     const [messages, setMessages] = useState<Message[]>([
@@ -325,37 +325,37 @@ function RubyBot() {
 
     return (
         isRubyOpen && (
-            <div className="fixed inset-0 sm:inset-auto sm:bottom-4 sm:right-4 md:right-16 z-50 flex items-end sm:items-start justify-center sm:justify-end p-0 sm:p-4">
-                <div className="w-full h-full sm:w-[400px] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] sm:rounded-xl bg-white shadow-2xl flex flex-col sm:max-w-[calc(100vw-2rem)]">
+            <div className={styles.chatContainer}>
+                <div className={styles.chatWindow}>
                     {/* Header */}
-                    <div className="bg-[#bc8429] px-3 sm:px-4 py-2.5 sm:py-3 sm:rounded-t-xl flex items-center justify-between flex-shrink-0">
-                        <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="relative">
-                                <div className="w-8 h-8 sm:w-10 sm:h-10 border-2 overflow-hidden  bg-white rounded-full flex items-center justify-center">
-                                    <img src="/ruby-logo3.png" alt="RubyBot" className="w-[100%] h-[100%] object-cover" />
+                    <div className={styles.header}>
+                        <div className={styles.headerLeft}>
+                            <div className={styles.avatarContainer}>
+                                <div className={styles.avatar}>
+                                    <img src="/ruby-logo3.png" alt="RubyBot" className={styles.avatarImage} />
                                 </div>
-                                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-green-500 rounded-full border-2 border-[#19d408]"></div>
+                                <div className={styles.statusIndicator}></div>
                             </div>
-                            <div className="flex flex-col">
-                                <h2 className="text-white font-semibold text-xs sm:text-sm leading-tight">Ruby</h2>
-                                <div className="flex items-center gap-1.5">
-                                    <span className="text-[10px] sm:text-xs text-white/90">Online Now</span>
+                            <div className={styles.headerInfo}>
+                                <h2 className={styles.headerTitle}>Ruby</h2>
+                                <div className={styles.statusContainer}>
+                                    <span className={styles.statusText}>Online Now</span>
                                 </div>
                             </div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className={styles.headerRight}>
                             <button 
                                 onClick={() => setIsRubyOpen(false)} 
-                                className="text-white/90 cursor-pointer hover:text-white transition-all duration-300 ease-in-out hover:rotate-[360deg] p-1.5 sm:p-1 touch-manipulation"
+                                className={styles.closeButton}
                                 aria-label="Close chat"
                             >
-                                <IoMdClose className="w-5 h-5 sm:w-5 sm:h-5" />
+                                <IoMdClose className={styles.closeIcon} />
                             </button>
                         </div>
                     </div>
 
                     {/* Message Area */}
-                    <div className="flex-1 overflow-y-auto bg-white px-3 sm:px-4 py-3 sm:py-4 space-y-2 sm:space-y-3">
+                    <div className={styles.messageArea}>
                         {messages.map((message, index) => {
                             const isFirstInSequence =
                                 index === 0 ||
@@ -364,17 +364,15 @@ function RubyBot() {
 
                             if (message.sender === 'bot') {
                                 return (
-                                    <div key={message.id} className="flex items-start gap-2">
+                                    <div key={message.id} className={styles.messageRow}>
                                         {isFirstInSequence && (
-                                            <div className="w-5 h-5 sm:w-6 sm:h-6 border border-[#001697] bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-1 overflow-hidden">
-                                                <img src="/ruby-logo3.png" alt="Ruby" className="w-full h-full object-cover rounded-full" />
+                                            <div className={styles.botAvatar}>
+                                                <img src="/ruby-logo3.png" alt="Ruby" className={styles.botAvatarImage} />
                                             </div>
                                         )}
-                                        {!isFirstInSequence && <div className="w-5 sm:w-6"></div>}
-                                        <div className="flex flex-col gap-1 max-w-[85%] sm:max-w-[75%]">
-                                            <div
-                                                className="bg-[#f3f4f6] text-[#1f2937] px-3 sm:px-4 py-2 sm:py-2.5 rounded-3xl rounded-bl-md text-xs sm:text-sm leading-relaxed whitespace-pre-line"
-                                            >
+                                        {!isFirstInSequence && <div className={styles.avatarSpacer}></div>}
+                                        <div className={styles.messageContent}>
+                                            <div className={styles.botMessage}>
                                                 {message.text}
                                             </div>
                                         </div>
@@ -382,9 +380,9 @@ function RubyBot() {
                                 );
                             } else {
                                 return (
-                                    <div key={message.id} className="flex justify-end">
-                                        <div className="flex flex-col gap-1 max-w-[85%] sm:max-w-[75%]">
-                                            <div className="bg-[#001697] text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-3xl rounded-br-md text-xs sm:text-sm leading-relaxed whitespace-pre-line">
+                                    <div key={message.id} className={styles.userMessageRow}>
+                                        <div className={styles.messageContent}>
+                                            <div className={styles.userMessage}>
                                                 {message.text}
                                             </div>
                                         </div>
@@ -395,16 +393,16 @@ function RubyBot() {
 
                         {/* Typing Indicator */}
                         {isTyping && (
-                            <div className="flex items-start gap-2">
-                                <div className="w-5 h-5 sm:w-6 sm:h-6 border border-[#001697] bg-white rounded-full flex items-center justify-center flex-shrink-0 mt-1 overflow-hidden">
-                                    <img src="/ruby-logo3.png" alt="Ruby" className="w-full h-full object-cover rounded-full" />
+                            <div className={styles.messageRow}>
+                                <div className={styles.botAvatar}>
+                                    <img src="/ruby-logo3.png" alt="Ruby" className={styles.botAvatarImage} />
                                 </div>
-                                <div className="flex flex-col gap-1 max-w-[85%] sm:max-w-[75%]">
-                                    <div className="bg-[#f3f4f6] text-[#1f2937] px-3 sm:px-4 py-2 sm:py-2.5 rounded-3xl rounded-bl-md text-xs sm:text-sm leading-relaxed">
-                                        <div className="flex gap-1.5 items-center py-1">
-                                            <span className="w-2 h-2 bg-[#6b7280] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                                            <span className="w-2 h-2 bg-[#6b7280] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                                            <span className="w-2 h-2 bg-[#6b7280] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                                <div className={styles.messageContent}>
+                                    <div className={styles.botMessage}>
+                                        <div className={styles.typingDots}>
+                                            <span className={styles.typingDot} style={{ animationDelay: '0ms' }}></span>
+                                            <span className={styles.typingDot} style={{ animationDelay: '150ms' }}></span>
+                                            <span className={styles.typingDot} style={{ animationDelay: '300ms' }}></span>
                                         </div>
                                     </div>
                                 </div>
@@ -413,12 +411,12 @@ function RubyBot() {
 
                         {/* Enquiry Button - Aligned with bot messages */}
                         {showEnquiryButton && !showEnquiryForm && (
-                            <div className="flex items-start gap-2">
-                                <div className="w-5 sm:w-6"></div>
-                                <div className="flex flex-col gap-1 max-w-[85%] sm:max-w-[75%]">
+                            <div className={styles.messageRow}>
+                                <div className={styles.avatarSpacer}></div>
+                                <div className={styles.messageContent}>
                                     <button
                                         onClick={() => setShowEnquiryForm(true)}
-                                        className="w-auto inline-flex items-center px-3 sm:px-4 py-2 sm:py-2.5 bg-[#001697] text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-[#001580] transition-colors cursor-pointer touch-manipulation active:scale-95"
+                                        className={styles.enquiryButton}
                                     >
                                         📋 Fill Enquiry Form
                                     </button>
@@ -431,16 +429,16 @@ function RubyBot() {
 
                     {/* Enquiry Form */}
                     {showEnquiryForm && (
-                        <div className="px-3 sm:px-4 pb-3 border-t border-gray-200 bg-gray-50">
-                            <div className="pt-3 space-y-3">
-                                <div className="flex items-center justify-between mb-2">
-                                    <h3 className="text-sm font-semibold text-[#1f2937]">Enquiry Form</h3>
+                        <div className={styles.enquiryFormContainer}>
+                            <div className={styles.enquiryFormContent}>
+                                <div className={styles.enquiryFormHeader}>
+                                    <h3 className={styles.enquiryFormTitle}>Enquiry Form</h3>
                                     <button
                                         onClick={handleCloseEnquiryForm}
-                                        className="text-[#6b7280] hover:text-[#1f2937] transition-colors p-1"
+                                        className={styles.enquiryFormCloseButton}
                                         aria-label="Close form"
                                     >
-                                        <IoMdClose className="w-4 h-4" />
+                                        <IoMdClose className={styles.enquiryFormCloseIcon} />
                                     </button>
                                 </div>
                                 
@@ -449,7 +447,7 @@ function RubyBot() {
                                     placeholder="Your Name *"
                                     value={enquiryForm.name}
                                     onChange={(e) => handleEnquiryFormChange('name', e.target.value)}
-                                    className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
+                                    className={styles.formInput}
                                 />
                                 
                                 <input
@@ -457,7 +455,7 @@ function RubyBot() {
                                     placeholder="Phone Number *"
                                     value={enquiryForm.phone}
                                     onChange={(e) => handleEnquiryFormChange('phone', e.target.value)}
-                                    className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
+                                    className={styles.formInput}
                                 />
                                 
                                 <input
@@ -465,7 +463,7 @@ function RubyBot() {
                                     placeholder="Email Address *"
                                     value={enquiryForm.email}
                                     onChange={(e) => handleEnquiryFormChange('email', e.target.value)}
-                                    className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
+                                    className={styles.formInput}
                                 />
                                 
                                 <textarea
@@ -473,20 +471,20 @@ function RubyBot() {
                                     value={enquiryForm.message}
                                     onChange={(e) => handleEnquiryFormChange('message', e.target.value)}
                                     rows={3}
-                                    className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white resize-none"
+                                    className={styles.formTextarea}
                                 />
                                 
-                                <div className="flex gap-2 pt-1">
+                                <div className={styles.formButtons}>
                                     <button
                                         onClick={handleSubmitEnquiry}
                                         disabled={isSubmittingEnquiry}
-                                        className="flex-1 px-4 py-2 bg-[#001697] text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-[#001580] transition-colors cursor-pointer touch-manipulation active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-[#001697] flex items-center justify-center gap-2"
+                                        className={styles.submitButton}
                                     >
                                         {isSubmittingEnquiry ? (
                                             <>
-                                                <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                <svg className={styles.spinner} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                    <circle className={styles.spinnerCircle} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                    <path className={styles.spinnerPath} fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                 </svg>
                                                 <span>Submitting...</span>
                                             </>
@@ -497,7 +495,7 @@ function RubyBot() {
                                     <button
                                         onClick={handleCloseEnquiryForm}
                                         disabled={isSubmittingEnquiry}
-                                        className="px-4 py-2 border border-gray-300 text-[#1f2937] rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-100 transition-colors cursor-pointer touch-manipulation active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+                                        className={styles.cancelButton}
                                     >
                                         Close
                                     </button>
@@ -508,13 +506,13 @@ function RubyBot() {
 
                     {/* Quick Reply Buttons */}
                     {messages.length === 1 && !showEnquiryForm && (
-                        <div className="px-3 sm:px-4 pb-2 sm:pb-3">
-                            <div className="flex flex-wrap gap-2">
+                        <div className={styles.quickRepliesContainer}>
+                            <div className={styles.quickReplies}>
                                 {quickReplies.map((reply) => (
                                     <button
                                         key={reply.id}
                                         onClick={() => handleQuickReply(reply)}
-                                        className="px-3 sm:px-4 py-1.5 sm:py-2 border border-[#001697] text-[#001697] rounded-full text-xs font-medium hover:bg-[#001697] hover:text-white transition-colors cursor-pointer touch-manipulation active:scale-95"
+                                        className={styles.quickReplyButton}
                                     >
                                         {reply.text}
                                     </button>
@@ -524,9 +522,9 @@ function RubyBot() {
                     )}
 
                     {/* Footer */}
-                    <div className="border-t border-gray-200 bg-white sm:rounded-b-xl flex-shrink-0">
-                        <div className="px-3 sm:px-4 py-2.5 sm:py-3">
-                            <div className="flex items-center gap-2">
+                    <div className={styles.footer}>
+                        <div className={styles.footerInputContainer}>
+                            <div className={styles.inputWrapper}>
                                 <input
                                     ref={inputRef}
                                     type="text"
@@ -534,21 +532,20 @@ function RubyBot() {
                                     onChange={(e) => setInputValue(e.target.value)}
                                     onKeyPress={handleKeyPress}
                                     placeholder="Reply to Ruby..."
-                                    className="flex-1 text-xs sm:text-sm text-[#1f2937] placeholder:text-[#6b7280] outline-none bg-transparent py-1.5 sm:py-0"
+                                    className={styles.messageInput}
                                 />
                                 <button
                                     onClick={() => handleSendMessage()}
                                     type="button"
-                                    className="text-[#001697] hover:text-[#001697] transition-colors p-1.5 sm:p-1 touch-manipulation active:scale-95"
-                                    style={{ cursor: 'pointer' }}
+                                    className={styles.sendButton}
                                     aria-label="Send message"
                                 >
-                                    <FiSend className="w-5 h-5 sm:w-5 sm:h-5" style={{ cursor: 'pointer' }} />
+                                    <FiSend className={styles.sendIcon} />
                                 </button>
                             </div>
                         </div>
-                        <div className="px-3 sm:px-4 pb-2 sm:pb-2">
-                            <p className="text-[9px] sm:text-[10px] text-[#6b7280] text-right">
+                        <div className={styles.footerText}>
+                            <p className={styles.footerCredits}>
                                 We're ⚡ by Ritz Media World
                             </p>
                         </div>
@@ -559,4 +556,4 @@ function RubyBot() {
     );
 }
 
-export default RubyBot;
+export default RubyBotBootstrap;
