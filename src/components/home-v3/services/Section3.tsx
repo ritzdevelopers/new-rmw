@@ -62,6 +62,14 @@ function Section3({ servicesData }: Section3Props) {
             return "Phone number cannot exceed 13 digits";
         }
 
+        // Check for repetitive digits (e.g., 9999999999, 8888888888, etc.)
+        if (digitsOnly.length >= 10) {
+            const firstDigit = digitsOnly[0];
+            if (digitsOnly.split('').every(digit => digit === firstDigit)) {
+                return "Please enter a valid phone number";
+            }
+        }
+
         if (digitsOnly.length === 10) {
             if (!/^[6-9]/.test(digitsOnly)) {
                 return "Indian mobile numbers should start with 6, 7, 8, or 9";

@@ -246,6 +246,24 @@ function RubyBot() {
             return;
         }
 
+        // Validate repetitive digits
+        if (enquiryForm.phone) {
+            const digitsOnly = enquiryForm.phone.replace(/\D/g, "");
+            if (digitsOnly.length >= 10) {
+                const firstDigit = digitsOnly[0];
+                if (digitsOnly.split('').every(digit => digit === firstDigit)) {
+                    const errorMessage: Message = {
+                        id: Date.now().toString(),
+                        text: "Please enter a valid phone number",
+                        sender: 'bot',
+                        timestamp: new Date(),
+                    };
+                    setMessages((prev) => [...prev, errorMessage]);
+                    return;
+                }
+            }
+        }
+
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(enquiryForm.email)) {

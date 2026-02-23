@@ -48,6 +48,14 @@ function S11() {
       return "Phone number cannot exceed 13 digits";
     }
     
+    // Check for repetitive digits (e.g., 9999999999, 8888888888, etc.)
+    if (digitsOnly.length >= 10) {
+      const firstDigit = digitsOnly[0];
+      if (digitsOnly.split('').every(digit => digit === firstDigit)) {
+        return "Please enter a valid phone number";
+      }
+    }
+    
     // Check if it starts with valid Indian country code or direct number
     if (digitsOnly.length === 10) {
       // 10-digit Indian mobile number (should start with 6-9)

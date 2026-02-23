@@ -32,6 +32,20 @@ const Form = () => {
 
         const form = e.currentTarget;
         const formData = new FormData(form);
+        const phone = formData.get("phone") as string;
+        
+        // Validate repetitive digits
+        if (phone) {
+            const digitsOnly = phone.replace(/\D/g, "");
+            if (digitsOnly.length >= 10) {
+                const firstDigit = digitsOnly[0];
+                if (digitsOnly.split('').every(digit => digit === firstDigit)) {
+                    toast.error("Please enter a valid phone number");
+                    return;
+                }
+            }
+        }
+        
         const service = formData.get("service") as string;
         const query = formData.get("query") as string;
         const message = `Service: ${service}\n\nQuery: ${query}`;
@@ -39,7 +53,7 @@ const Form = () => {
         const data = {
             etype: "ContactUs",
             name: formData.get("name"),
-            phone: formData.get("phone"),
+            phone: phone,
             email: formData.get("email"),
             message,
         };
