@@ -99,6 +99,21 @@ function RDXModal({ onClick }: RDXModalProps) {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> {
     e.preventDefault();
+    
+    // Validate repetitive digits
+    if (Phone) {
+      const digitsOnly = Phone.replace(/\D/g, "");
+      if (digitsOnly.length >= 10) {
+        const firstDigit = digitsOnly[0];
+        if (digitsOnly.split('').every(digit => digit === firstDigit)) {
+          setPopupMessage("❌ Please enter a valid phone number");
+          setPopupType("error");
+          setShowPopup(true);
+          return;
+        }
+      }
+    }
+    
     setFormLoader(true);
     const crTime = currentData.toLocaleTimeString();
     setCurrentTime(crTime);
