@@ -49,7 +49,7 @@ function Section4() {
                     </div>
 
                     {/* Absolute Positioned text container  */}
-                    <div className="absolute top-[50%] left-[50%] w-full flex justify-center -translate-x-1/2 -translate-y-1/2 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0 gap-[35rem]">
+                    <div className="absolute top-[50%] left-[50%] w-full flex justify-between  md:justify-center -translate-x-1/2 -translate-y-1/2 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0  md:gap-[25rem] xl:gap-[35rem]">
                         <h4 className={`font-[500] text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#0F1640] ${styles.fontMontserrat}`}>Reach</h4>
                         <h4 className={`font-[500] text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#0F1640]  ${styles.fontMontserrat}`}>Convert</h4>
                     </div>
@@ -58,21 +58,21 @@ function Section4() {
                 {/* Bottom Slider Container  */}
                 <div className="flex flex-col xl:w-[70%] w-full sm:flex-row justify-center items-center gap-4 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-2 px-4">
                     {/* Left Side Button Container  */}
-                    <div className="order-2 sm:order-1">
+                    <div className="order-2 sm:order-1 hidden sm:block">
                         <button onClick={goToPrev} className="flex items-center justify-center"><BsArrowLeft className="w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] lg:w-[25px] lg:h-[25px] xl:w-[27px] xl:h-[27px] cursor-pointer" /></button>
                     </div>
                     {/* Centered Align Slide Container  */}
                     <div className="flex flex-col gap-2 text-center order-1 sm:order-2 flex-1 max-w-full sm:max-w-none overflow-hidden">
                         <div className="relative ">
-                            <div 
+                            <div
                                 className="flex transition-transform duration-500 ease-in-out"
-                                style={{ 
+                                style={{
                                     transform: `translateX(-${currentSlide * (100 / slidesData.length)}%)`,
                                     width: `${slidesData.length * 100}%`
                                 }}
                             >
                                 {slidesData.map((slide, index) => (
-                                    <div 
+                                    <div
                                         key={index}
                                         className="flex flex-col gap-2 text-center flex-shrink-0"
                                         style={{ width: `calc(100% / ${slidesData.length})` }}
@@ -84,9 +84,12 @@ function Section4() {
                             </div>
                         </div>
                     </div>
-
+                    <div className="flex gap-4 w-full justify-center items-center sm:hidden">
+                        <button onClick={goToPrev} className="flex items-center justify-center"><BsArrowLeft className="w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] lg:w-[25px] lg:h-[25px] xl:w-[27px] xl:h-[27px] cursor-pointer" /></button>
+                        <button onClick={goToNext} className="flex items-center justify-center"><BsArrowRight className="w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] lg:w-[25px] lg:h-[25px] xl:w-[27px] xl:h-[27px] cursor-pointer" /></button>
+                    </div>
                     {/* Right Side Button Container  */}
-                    <div className="order-3">
+                    <div className="order-3 hidden sm:block">
                         <button onClick={goToNext} className="flex items-center justify-center"><BsArrowRight className="w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] lg:w-[25px] lg:h-[25px] xl:w-[27px] xl:h-[27px] cursor-pointer" /></button>
                     </div>
                 </div>

@@ -19,7 +19,7 @@ function Page() {
             <Section5></Section5>
             <Section6></Section6>
             <Section7></Section7>
-            <S6 padding="px-0" padding2="px-0"></S6>
+            <S6 padding="lg:px-0 md:px-6" padding2="lg:px-0 md:px-6"></S6>
             <S7></S7>
             <Section8></Section8>
         </>

@@ -1,7 +1,10 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
+import { BsArrowUpRight } from "react-icons/bs";
 import S3SliderCard from "./cards/S3SliderCard";
 import styles from "./page.module.css";
+
 function Section3() {
     const [activeCard, setActiveCard] = useState(0);
     const cardsData = [
@@ -12,7 +15,7 @@ function Section3() {
 
         },
         {
-            image: "/service-v3/content-marketing/s3/ctm-s3-i1.png",
+            image: "/service-v3/content-marketing/s3/ctm-s3-i2.png",
             title: "Email and Newsletter Marketing",
             desc: "Boost your business to the next level with our email marketing and newsletters solutions. We design customized email marketing campaigns that not only engage your subscribers but also help you generate high conversions. From automated campaigns or a promotional newsletter, our approach ensures that every email gives you a measurable return on investment (ROI).",
 
@@ -31,7 +34,7 @@ function Section3() {
         },
     ]
     return (
-        <section className="w-full pt-[70px] flex justify-center gap-10 items-center flex-col border-t border-[#D9D9D9]">
+        <section className="w-full xl:pt-[70px] pt-[35px] flex justify-center gap-10 items-center flex-col border-t border-[#D9D9D9]">
             {/* Heading Container  */}
             <div className="w-full flex flex-col gap-2 items-center justify-center ">
                 <p className={`font-[600] text-[16px] uppercase text-[#C99237] ${styles.fontpoppins}`}>Services</p>
@@ -39,26 +42,48 @@ function Section3() {
                 <p className={`font-[400] text-[16px] ${styles.fontopensans}`}>Is more than what you’ll ever need</p>
             </div>
 
-            {/* Bottom Cinntainer Animated Slider */}
-            <div className="w-full bg-[#0F1640] flex justify-between h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px] xl:h-[631px] overflow-x-hidden">
+            {/* Mobile: Simple top image + bottom content cards (visible only < 768px) */}
+            <div className={`w-full px-4 pb-6 sm:hidden ${styles.s3MobileCards}`}>
+                {cardsData.map((item: { image: string; title: string; desc: string }, index: number) => (
+                    <div
+                        key={index}
+                        className="w-full flex flex-col rounded-lg overflow-hidden bg-[#0F1640] border border-[#323E84] mb-4"
+                    >
+                        <div className="w-full relative aspect-[16/10] shrink-0">
+                            <Image src={item.image} alt={item.title} fill className="object-cover" />
+                        </div>
+                        <div className="flex flex-col gap-2 p-4">
+                            <h3 className={`font-[600] text-[14px] text-white uppercase leading-tight ${styles.fontMontserrat}`}>
+                                {item.title}
+                            </h3>
+                            <p className={`font-[400] text-[11px] text-white/90 line-clamp-4 ${styles.fontMontserrat}`}>
+                                {item.desc}
+                            </p>
+                            <button className="mt-1 w-[110px] h-[34px] flex justify-between items-center gap-2 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                                <p className={`font-[500] text-[12px] text-white ${styles.fontMontserrat}`}>Learn More</p>
+                                <div className="bg-[#C99237] h-[24px] w-[24px] rounded-full flex justify-center items-center shrink-0">
+                                    <BsArrowUpRight className="text-white text-[12px]" />
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
 
-                {/* Centered Align Container  */}
+            {/* Tablet & Desktop: Animated Slider (hidden on mobile, visible from 768px) */}
+            <div className="hidden sm:flex w-full bg-[#0F1640] justify-between h-[500px] md:h-[550px] lg:h-[600px] xl:h-[631px] overflow-x-hidden">
                 <div className={`w-full h-full flex overflow-x-hidden ${styles.containerWidth2}`}>
-                    {
-                        cardsData.map((item: any, index: number) => {
-                            return (
-                                <S3SliderCard 
-                                    key={index} 
-                                    index={index} 
-                                    image={item.image}
-                                    title={item.title} 
-                                    desc={item.desc} 
-                                    activeCard={activeCard}
-                                    setActiveCard={setActiveCard}
-                                />
-                            )
-                        })
-                    }
+                    {cardsData.map((item: { image: string; title: string; desc: string }, index: number) => (
+                        <S3SliderCard
+                            key={index}
+                            index={index}
+                            image={item.image}
+                            title={item.title}
+                            desc={item.desc}
+                            activeCard={activeCard}
+                            setActiveCard={setActiveCard}
+                        />
+                    ))}
                 </div>
             </div>
         </section>

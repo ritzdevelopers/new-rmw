@@ -4,14 +4,14 @@ import styles from "./page.module.css"
 
 function S1() {
   return (
-    <section className={`${styles.s1Sec} flex items-center bg-[#000000] text-white min-h-[400px] sm:min-h-[500px] lg:min-h-[648px] w-full relative 
+    <section className={`${styles.s1Sec} flex items-center bg-[#000000] text-white min-h-[400px] sm:min-h-[500px] lg:min-h-[608px] w-full relative 
     md:bg-[url(/home-v3/s1/s1-new-banner-desktop.png)]
     bg-[url(/home-v3/s1/s1-new-banner-mobile.png)]
     bg-center bg-cover bg-no-repeat px-4 sm:px-6 md:pl-8 lg:pl-16 py-12 sm:py-16 lg:py-0`}>
 
-      <div className={`${styles.s1SDv} w-full max-w-[600px] flex flex-col gap-7 md:gap-16 lg:gap-20 mt-0 sm:mt-12 lg:mt-20`}>
+      <div className={`${styles.s1SDv} w-full max-w-[600px] flex flex-col gap-7 md:gap-16 lg:gap-14 mt-0 sm:mt-12 lg:mt-20`}>
         {/* Top Row  */}
-        <div className="font-[500] text-[12px] sm:text-[13px] lg:text-[14px] flex flex-col gap-4 sm:gap-5 lg:gap-6 md:mt-0 mt-10">
+        <div className="font-[500] text-[12px] sm:text-[13px] lg:text-[14px] flex flex-col gap-4  md:mt-0 mt-10">
           <div className="text-center md:text-left flex flex-col items-center md:items-start gap-2">
             <p
               className=" w-[80%] md:w-auto text-[13px] md:text-[14px] uppercase MontserratRegular"
@@ -22,7 +22,7 @@ function S1() {
               We craft brands, websites, & campaigns that move your business
               closer to its vision.
             </p>
-            <h1 className="font-[500] text-[24px] md:text-[42px] lg:text-[52px] leading-tight sm:leading-tight lg:leading-normal" style={{
+            <h1 className="font-[500] text-[24px] md:text-[42px] lg:text-[52px] leading-tight sm:leading-tight  " style={{
               fontFamily: 'MontserratMedium',
             }}>
               <span className="text-[#C99237] font-[800]" style={{
@@ -75,11 +75,11 @@ function S1() {
 
         w-[92%] md:w-auto
         ">
-          <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="s1-btn-gold w-full h-[43px] md:h-[58px] bg-[#C99237] rounded-[5px] shadow-[0_4px_4px_0_rgba(0, 0, 0, 0.25)] text-[13px] md:text-[14.5px] lg:text-[15px] font-[700] cursor-pointer" >
+          <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="s1-btn-gold w-[199px] h-[43px] md:h-[58px] bg-[#C99237] rounded-[5px] shadow-[0_4px_4px_0_rgba(0, 0, 0, 0.25)] text-[13px] md:text-[14.5px] lg:text-[15px] font-[700] cursor-pointer" >
             <p className="text-white ">Free Consulting</p>
           </button>
 
-          <button onClick={() => window.open("https://ritzmediaworld.com/web-stories", "_blank")} className="s1-btn-transparent w-full h-[43px] md:h-[58px] text-[13px] md:text-[14.5px] lg:text-[15px] font-[700] cursor-pointer flex justify-center gap-2 sm:gap-3 px-2 py-2 rounded-[5px] items-center">
+          <button onClick={() => window.open("https://ritzmediaworld.com/web-stories", "_blank")} className="s1-btn-transparent min-w-[191px] h-[43px] md:h-[58px] text-[13px] md:text-[14.5px] lg:text-[15px] font-[700] cursor-pointer flex justify-center gap-2 sm:gap-3 px-2 py-2 rounded-[5px] items-center">
             <div className=" flex cursor-pointer px-2 py-2 w-[37px] h-[37px] md:w-[54px] md:h-[54px] rounded-full justify-center items-center bg-[#FFFFFF]">
               <svg
                 width="10"

@@ -29,10 +29,10 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image }: 
     return (
         <div onClick={() => setActiveCard(index)} className={`h-full overflow-hidden cursor-pointer ${index === 3 ? "border-r-0" : "border-r border-[#323E84]"} flex justify-between flex-col ${activeCard === index ? `${styles.cardContainerActive} pt-10 min-w-0` : "w-[80px] sm:w-[100px] md:w-[120px] lg:w-[140px] xl:w-[150px] min-[1360px]:w-[140px] flex-shrink-0"} ${styles.cardContainer}`}>
             {/* Top Container * Main Card */}
-            <div className={`flex h-[calc(100%-50px)] flex-col w-full justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 ${activeCard !== index ? "px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20" : "px-18"} min-w-0`}>
+            <div className={`flex h-[calc(100%-50px)] flex-col w-full justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 ${activeCard !== index ? "px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20" : "px-5"} min-w-0`}>
                 {/* Upper Side  */}
                 <div className={`flex flex-col w-full gap-3 sm:gap-4 md:gap-5 ${activeCard === index ? "" : "relative"}`}>
-                    <h3 className={`font-[600] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] xl:text-[24px] text-white uppercase ${styles.fontMontserrat} ${styles.cardTitle} ${activeCard === index
+                    <h3 className={`font-[600] text-[14px] sm:text-[16px] md:text-[16px] lg:text-[20px] xl:text-[24px] text-white uppercase ${styles.fontMontserrat} ${styles.cardTitle} ${activeCard === index
                             ? "rotate-0"
                             : "-rotate-90 origin-left absolute left-0 top-[100px] sm:top-[120px] md:top-[150px] lg:top-[180px] xl:top-[260px] whitespace-nowrap"
                         }`} style={activeCard !== index ? { width: rotatedTextWidth } : {}}>
@@ -53,7 +53,7 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image }: 
                     <div className={`${styles.cardImage} ${activeCard === index ? styles.cardImageActive : styles.cardImageInactive} rounded-[4px] overflow-hidden]`}>
                         <Image src={image} alt="Customized content strategy" fill className="object-cover" />
                     </div>
-                    <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] text-white ${styles.fontMontserrat} ${styles.cardDescription} ${activeCard === index ? styles.cardDescriptionActive : styles.cardDescriptionInactive}`}>{desc}
+                    <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[12px] lg:text-[15px] xl:text-[16px] text-white ${styles.fontMontserrat} ${styles.cardDescription} ${activeCard === index ? styles.cardDescriptionActive : styles.cardDescriptionInactive}`}>{desc}
                     </p>
                 </div>
                 {/* Bottom Side  */}
