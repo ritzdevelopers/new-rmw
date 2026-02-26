@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
 
-function Section6() {
+function Section8() {
     return (
-        <section className="w-full flex justify-center items-center py-[35px] xl:py-[35px] ">
+        <section className="w-full flex justify-center items-center py-[40px] md:pb-0 md:pt-16 lg:pt-[70px] ">
             {/* Centered Align Container  */}
-            <div className={`w-full mx-auto flex flex-col justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 overflow-hidden ${styles.containerWidth}`}>
+            <div className={`w-full  mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10 overflow-hidden ${styles.containerWidth}`}>
                 {/* Top Row  */}
                 {/* Copy Components  */}
                 <div className="flex flex-col w-full">
@@ -14,7 +14,7 @@ function Section6() {
                     <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
                         {/* Left Side Container  */}
                         <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0 px-4 sm:px-0">
-                            <p className="font-[700] text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] text-center sm:text-left" style={{
+                            <p className="font-[700] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] text-center sm:text-left" style={{
                                 fontFamily: 'MontserratBold',
                             }}>Brands That Trust Us</p>
 
@@ -35,10 +35,10 @@ function Section6() {
                         </div>
 
                         {/* Right Side Container  */}
-                        <div className="flex w-full sm:w-[calc(100%-194px)] md:pl-6 lg:pl-[47px] overflow-x-hidden">
+                        <div className="flex w-full md:pl-6 lg:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden">
                             {/* Slider Container  */}
                             <div className="w-full overflow-hidden">
-                                <div className={`flex gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}>
+                                <div className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}>
                                     {[
                                         "/new-page/logos/prm-9.jpg",
                                         "/new-page/logos/prm-22.jpg",
@@ -84,7 +84,7 @@ function Section6() {
                                     ].map((url, idx) => (
                                         <div
                                             key={idx}
-                                            className="w-[90px] h-[50px] sm:w-[120px] sm:h-[67px] md:w-[130px] md:h-[72px] lg:w-[146px] lg:h-[81px] relative shrink-0"
+                                            className="w-[100px] h-[56px] sm:w-[120px] sm:h-[67px] lg:w-[146px] lg:h-[81px] relative shrink-0"
                                         >
                                             <Image src={url} fill alt="RMW" className="object-contain" />
                                         </div>
@@ -93,11 +93,11 @@ function Section6() {
                             </div>
 
                             {/* View More Container  */}
-                            <div className="w-[90px] h-[50px] sm:w-[120px] sm:h-[67px] md:w-[130px] md:h-[72px] lg:w-[146px] lg:h-[81px] flex justify-center items-center flex-shrink-0 ml-2 sm:ml-3 md:ml-4">
+                            <div className="w-[100px] sm:w-[120px] lg:w-[146px] h-[56px] sm:h-[67px] lg:h-[81px] flex justify-center items-center flex-shrink-0 ml-2 sm:ml-4">
                                 <Link
                                     href={"https://ritzmediaworld.com/about.html"}
                                     target="_blank"
-                                    className="font-[600] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] cursor-pointer border-b hover:opacity-80 transition-opacity"
+                                    className="font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] cursor-pointer border-b hover:opacity-80 transition-opacity"
                                 >
                                     Show more
                                 </Link>
@@ -110,4 +110,4 @@ function Section6() {
     )
 }
 
-export default Section6;
+export default Section8;
