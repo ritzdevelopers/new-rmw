@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
-function Section6() {
+function Section6({imgPath = "/service-v3/print-advertising/s7/s7-graphics.png"} : {imgPath?: string}) {
     return (
         <section className="w-full flex justify-center items-center border-b border-t border-[#E6E3E3] py-6 sm:py-8 md:py-10 lg:py-[35px] xl:py-[70px]">
             {/* Centered Align Container  */}
@@ -43,7 +43,7 @@ function Section6() {
                     <div className="w-full  lg:w-[200px] xl:w-[295px] flex flex-col  lg:gap-4 xl:gap-4 order-1 lg:order-2">
                         {/* Row 1  */}
                         <div className="w-full flex flex-col gap-3">
-                            <div className="w-full min-w-0"><img src="/service-v3/print-advertising/s7/s7-graphics.png" alt="" className="w-full h-auto object-contain" /></div>
+                            <div className="w-full min-w-0"><img src={imgPath} alt="" className="w-full h-auto object-contain" /></div>
 
                             <div className="flex w-full justify-between gap-4">
                                 <div className="flex flex-col gap-0 lg:gap-2">
