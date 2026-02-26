@@ -58,7 +58,7 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
                 fontFamily: "OpenSansRegular",
               }}
             >
-              Don't just take our word for it – hear from the brands we've
+              Don't just take our word for it, hear from the brands we've
               helped transform.
             </p>
           </div>
