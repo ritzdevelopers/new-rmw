@@ -13,7 +13,6 @@ function Section7() {
                     <div className="h-[120px] sm:h-[160px] xl:h-[194px] flex items-center">
                         <img src="/service-v3/content-marketing/s5/17-yow2.png" alt="" className="w-auto h-full object-contain" />
                     </div>
-
                     {/* Bottom Container  */}
                     <div className="w-full flex flex-col gap-5 lg:gap-2">
                         {/* Row 1  */}
@@ -28,7 +27,6 @@ function Section7() {
                         </div>
                     </div>
                 </div>
-
                 {/* Right Side Container  */}
                 <div className="w-full sm:w-[40%] lg:w-auto flex flex-col md:flex-row justify-between items-center gap-6 xl:gap-8 min-w-0">
                     {/* Col 1 - Mobile Frame Video  */}
@@ -39,7 +37,6 @@ function Section7() {
                             <video src="/test-images/test-video.mp4" className="absolute z-[1] top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[92%] h-[90%] sm:h-[80%] xl:h-[97%] rounded-[54px] sm:rounded-[30px] object-cover" autoPlay loop muted playsInline preload="metadata"></video>
                         </div>
                     </div>
-
                     {/* Col 2 - Stats & Reviews  */}
                     <div className="w-full  lg:w-[200px] xl:w-[295px] flex flex-col  lg:gap-4 xl:gap-4 order-1 lg:order-2">
                         {/* Row 1  */}
@@ -57,7 +54,6 @@ function Section7() {
                                 </div>
                             </div>
                         </div>
-
                         {/* Row 2  */}
                         <div className="w-full min-w-0">
                             <img src="/service-v3/content-marketing/s5/google-reviews.png" alt="Google Reviews" className="w-full sm:w-[189px] lg:max-w-[271px] xl:w-[271px] h-auto object-contain" />
