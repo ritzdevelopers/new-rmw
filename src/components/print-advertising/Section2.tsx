@@ -20,7 +20,6 @@ function Section2() {
                             From newspapers and glossy magazines to bespoke publications, our print ads stand out distinctly amid digital fatigue. If your goal is authenticity, memorability, and conversion, there’s simply no medium more refreshingly effective than good old-fashioned print. Screens might scroll away, but paper stays persuasive.
                         </p>
                     </div>
-
                     {/* Bottom Container  */}
                     <div className="w-full flex justify-center sm:justify-start">
                         <button className="flex justify-between items-center gap-3 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
@@ -33,13 +32,12 @@ function Section2() {
                         </button>
                     </div>
                 </div>
-
                 {/* Right Side Container  */}
                 <div className="w-full lg:w-[480px] xl:w-[579px] lg:shrink-0 border border-[#E6E3E3]">
                     <img src="/service-v3/print-advertising/s2/pd-s2-i1.png" alt="Print Advertising" className="w-full h-auto object-cover" />
                 </div>
             </div>
-        </section >
+        </section>
     )
 }
 export default Section2;

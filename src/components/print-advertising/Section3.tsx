@@ -63,9 +63,7 @@ function Section3() {
                     <p className={`font-[400] text-[14px] sm:text-[16px] ${styles.fontopensans}`}>
                         Is more than what you’ll ever need
                     </p>
-
                 </div>
-
                 {/* Bottom Slider Container  */}
                 <div className="w-full flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-4 xl:gap-6 items-stretch lg:items-start">
                     {/* Left Side Container  */}
@@ -76,7 +74,6 @@ function Section3() {
                             ))
                         }
                     </div>
-
                     {/* Right Side Container  */}
                     <div className="w-full hidden lg:block min-w-0 lg:w-[400px] xl:w-[560px] lg:flex-shrink-0 relative">
                         {/* Absolute Positioned Container  */}
@@ -86,7 +83,6 @@ function Section3() {
                                 <rect x="3.18524" y="24.2398" width="24" height="1" transform="rotate(-39.5724 3.18524 24.2398)" fill="white" />
                             </svg>
                         </div>
-
                         {/* Main Image Container  */}
                         <div className="w-full"><img src="/service-v3/print-advertising/s3/Advertisement-Design-B.jpg" alt="" className="w-full h-auto object-cover" /></div>
                     </div>
