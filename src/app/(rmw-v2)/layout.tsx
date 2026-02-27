@@ -6,6 +6,7 @@ import NewNavbar from "./layout/NewNavbar";
 import NewFooter from "./layout/NewFooter";
 import RubyBot from "@/components/ruby-bot/RubyBot";
 import RubyProvider from "@/ruby-context/ruby.context";
+import EnquiryForm from "@/components/auto/EnquiryForm";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ritzmediaworld.com"),
@@ -88,6 +89,7 @@ export default function NewRMWW({ children }: { children: React.ReactNode }) {
         {children}
         <ContactBtns />
         <RubyBot />
+        <EnquiryForm />
       </RubyProvider>
       {/* <Footer></Footer> */}
       <NewFooter></NewFooter>

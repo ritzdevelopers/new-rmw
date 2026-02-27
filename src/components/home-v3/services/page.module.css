@@ -30,7 +30,13 @@
       align-self: center !important;
    }
 }
-
+@media (min-width: 1370px) {
+   .containerWidth2 {
+      width: 1300px !important;
+      margin: 0 auto !important;
+      align-self: center !important;
+   }
+}
 @media (max-width: 1023px) {
    .hidenElips {
       display: none !important;

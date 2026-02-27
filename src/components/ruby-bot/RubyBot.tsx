@@ -35,6 +35,7 @@ function RubyBot() {
         },
     ]);
     const [inputValue, setInputValue] = useState('');
+    const [selectedService, setSelectedService] = useState<string>('Select a service');
     const [isTyping, setIsTyping] = useState(false);
     const [showEnquiryButton, setShowEnquiryButton] = useState(false);
     const [showEnquiryForm, setShowEnquiryForm] = useState(false);
@@ -50,6 +51,19 @@ function RubyBot() {
         { id: '2', text: 'Learn More' },
         { id: '3', text: 'Contact Sales' },
     ]);
+
+    // Services list
+    const services = [
+        'Select a service',
+        'Digital Marketing',
+        'Print Advertising',
+        'Radio Advertising',
+        'Creative Services',
+        'Content Marketing',
+        'Web Development',
+        'Celebrity Endorsements',
+        'Influencer Marketing',
+    ];
 
     // Keywords for service-related queries
     const serviceKeywords = [
@@ -103,7 +117,7 @@ function RubyBot() {
                 // Reset to start and play
                 audioRef.current.currentTime = 0;
                 const playPromise = audioRef.current.play();
-                
+
                 if (playPromise !== undefined) {
                     playPromise
                         .then(() => {
@@ -146,9 +160,15 @@ function RubyBot() {
         const messageText = text || inputValue.trim();
         if (!messageText) return;
 
+        // Concatenate selected service with message if service is selected
+        let finalMessage = messageText;
+        if (selectedService && selectedService !== 'Select a service') {
+            finalMessage = `[Service: ${selectedService}] ${messageText}`;
+        }
+
         const newMessage: Message = {
             id: Date.now().toString(),
-            text: messageText,
+            text: messageText, // Display original message without service prefix
             sender: 'user',
             timestamp: new Date(),
         };
@@ -165,9 +185,9 @@ function RubyBot() {
         setTimeout(() => {
             setIsTyping(true);
 
-            // Call API to get bot response
+            // Call API to get bot response with concatenated message
             axios.post('https://rmw-chatbot-5jm3.onrender.com/v1/chat', {
-                message: messageText,
+                message: finalMessage,
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -186,12 +206,12 @@ function RubyBot() {
                         };
                         setMessages((prev) => [...prev, botResponse]);
                         setIsTyping(false);
-                        
+
                         // Check for keywords in bot response
                         if (detectKeywords(botResponseText)) {
                             setShowEnquiryButton(true);
                         }
-                        
+
                         // Play notification sound when bot replies (with small delay to ensure message is rendered)
                         setTimeout(() => {
                             playNotificationSound();
@@ -280,13 +300,19 @@ function RubyBot() {
         // Set loading state
         setIsSubmittingEnquiry(true);
 
+        // Prepare message with selected service if applicable
+        let enquiryMessage = enquiryForm.message.trim() || "Enquiry from Ruby Chatbot";
+        if (selectedService && selectedService !== 'Select a service') {
+            enquiryMessage = `[Service: ${selectedService}] ${enquiryMessage}`;
+        }
+
         // Prepare enquiry data
         const enquiryData = {
             etype: "ContactUs",
             name: enquiryForm.name.trim(),
             phone: enquiryForm.phone.trim(),
             email: enquiryForm.email.trim(),
-            message: enquiryForm.message.trim() || "Enquiry from Ruby Chatbot",
+            message: enquiryMessage,
         };
 
         try {
@@ -305,7 +331,7 @@ function RubyBot() {
                     timestamp: new Date(),
                 };
                 setMessages((prev) => [...prev, successMessage]);
-                
+
                 // Reset form and close
                 setEnquiryForm({ name: '', phone: '', email: '', message: '' });
                 setShowEnquiryForm(false);
@@ -344,7 +370,7 @@ function RubyBot() {
     return (
         isRubyOpen && (
             <div className="fixed inset-0 sm:inset-auto sm:bottom-4 sm:right-4 md:right-16 z-50 flex items-end sm:items-start justify-center sm:justify-end p-0 sm:p-4">
-                <div className="w-full h-full sm:w-[400px] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] sm:rounded-xl bg-white shadow-2xl flex flex-col sm:max-w-[calc(100vw-2rem)]">
+                <div className="w-full h-full sm:w-[400px] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] sm:rounded-xl bg-white shadow-2xl flex flex-col sm:max-w-[calc(100vw-2rem)] relative">
                     {/* Header */}
                     <div className="bg-[#bc8429] px-3 sm:px-4 py-2.5 sm:py-3 sm:rounded-t-xl flex items-center justify-between flex-shrink-0">
                         <div className="flex items-center gap-2 sm:gap-3">
@@ -362,8 +388,8 @@ function RubyBot() {
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
-                            <button 
-                                onClick={() => setIsRubyOpen(false)} 
+                            <button
+                                onClick={() => setIsRubyOpen(false)}
                                 className="text-white/90 cursor-pointer hover:text-white transition-all duration-300 ease-in-out hover:rotate-[360deg] p-1.5 sm:p-1 touch-manipulation"
                                 aria-label="Close chat"
                             >
@@ -373,7 +399,7 @@ function RubyBot() {
                     </div>
 
                     {/* Message Area */}
-                    <div className="flex-1 overflow-y-auto bg-white px-3 sm:px-4 py-3 sm:py-4 space-y-2 sm:space-y-3">
+                    <div className={`flex-1 overflow-y-auto bg-white px-3 sm:px-4 py-3 sm:py-4 space-y-2 sm:space-y-3 relative ${!showEnquiryForm ? 'pb-14 sm:pb-6' : ''}`}>
                         {messages.map((message, index) => {
                             const isFirstInSequence =
                                 index === 0 ||
@@ -429,22 +455,20 @@ function RubyBot() {
                             </div>
                         )}
 
-                        {/* Enquiry Button - Aligned with bot messages */}
-                        {showEnquiryButton && !showEnquiryForm && (
-                            <div className="flex items-start gap-2">
-                                <div className="w-5 sm:w-6"></div>
-                                <div className="flex flex-col gap-1 max-w-[85%] sm:max-w-[75%]">
-                                    <button
-                                        onClick={() => setShowEnquiryForm(true)}
-                                        className="w-auto inline-flex items-center px-3 sm:px-4 py-2 sm:py-2.5 bg-[#001697] text-white rounded-lg text-xs sm:text-sm font-medium hover:bg-[#001580] transition-colors cursor-pointer touch-manipulation active:scale-95"
-                                    >
-                                        📋 Fill Enquiry Form
-                                    </button>
-                                </div>
-                            </div>
-                        )}
-
                         <div ref={messagesEndRef} />
+
+                        {/* Permanent Enquiry Form Button - Fixed position right side in chat history */}
+                        {!showEnquiryForm && (
+                            <div className="w-full flex justify-end items-end">
+                                <button
+                                    onClick={() => setShowEnquiryForm(true)}
+                                    className="px-2  sm:px-3 py-1.5 sm:py-2 bg-[#001697] text-white rounded-lg text-[10px] sm:text-xs font-medium hover:bg-[#001580] transition-colors cursor-pointer touch-manipulation active:scale-95 flex items-center gap-1 shadow-lg z-10"
+                                    aria-label="Open enquiry form"
+                                >
+                                    <span>📋</span>
+                                    <span className="hidden sm:inline">Enquiry</span>
+                                </button></div>
+                        )}
                     </div>
 
                     {/* Enquiry Form */}
@@ -461,7 +485,7 @@ function RubyBot() {
                                         <IoMdClose className="w-4 h-4" />
                                     </button>
                                 </div>
-                                
+
                                 <input
                                     type="text"
                                     placeholder="Your Name *"
@@ -469,7 +493,7 @@ function RubyBot() {
                                     onChange={(e) => handleEnquiryFormChange('name', e.target.value)}
                                     className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
                                 />
-                                
+
                                 <input
                                     type="tel"
                                     placeholder="Phone Number *"
@@ -477,7 +501,7 @@ function RubyBot() {
                                     onChange={(e) => handleEnquiryFormChange('phone', e.target.value)}
                                     className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
                                 />
-                                
+
                                 <input
                                     type="email"
                                     placeholder="Email Address *"
@@ -485,7 +509,20 @@ function RubyBot() {
                                     onChange={(e) => handleEnquiryFormChange('email', e.target.value)}
                                     className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
                                 />
-                                
+
+                                {/* Service Select Dropdown */}
+                                <select
+                                    value={selectedService}
+                                    onChange={(e) => setSelectedService(e.target.value)}
+                                    className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white text-[#1f2937] cursor-pointer"
+                                >
+                                    {services.map((service, index) => (
+                                        <option key={index} value={service}>
+                                            {service}
+                                        </option>
+                                    ))}
+                                </select>
+
                                 <textarea
                                     placeholder="Your Message (Optional)"
                                     value={enquiryForm.message}
@@ -493,7 +530,7 @@ function RubyBot() {
                                     rows={3}
                                     className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white resize-none"
                                 />
-                                
+
                                 <div className="flex gap-2 pt-1">
                                     <button
                                         onClick={handleSubmitEnquiry}
@@ -542,7 +579,7 @@ function RubyBot() {
                     )}
 
                     {/* Footer */}
-                    <div className="border-t border-gray-200 bg-white sm:rounded-b-xl flex-shrink-0">
+                    <div className="border-t border-gray-200 bg-white sm:rounded-b-xl flex-shrink-0 relative">
                         <div className="px-3 sm:px-4 py-2.5 sm:py-3">
                             <div className="flex items-center gap-2">
                                 <input

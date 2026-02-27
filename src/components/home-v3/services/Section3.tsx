@@ -206,12 +206,12 @@ function Section3({ servicesData }: Section3Props) {
 
                 {/* Row 1 For Heading  */}
                 <div className={`flex items-end justify-center lg:justify-start ${styles2.containerWidth}`}>
-                    <p className={`font-[700] text-[36px] ${styles2.fontmontserrat}`}>What we d</p>
+                    <p className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we d</p>
                     <img src="/home-v3/service-imgs/s3/do-txt.png" alt="arrow-right" className="h-[19px] mb-[14px]" />
                 </div>
 
                 {/* Row 2 For Services Cards  */}
-                <div className={`flex flex-col gap-3 ${styles2.containerWidth}`}>
+                <div className={`flex flex-col gap-3 ${styles2.containerWidth2}`}>
                     {/* Cards   */}
                     {
                         [
@@ -479,10 +479,10 @@ function Section3({ servicesData }: Section3Props) {
                         <p className={`font-[600] text-[12px] sm:text-[14px] md:text-[16px] uppercase text-[#C99237] ${styles2.fontopensans}`}>
                             Legendary Stories
                         </p>
-                        <h3 className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] text-black ${styles2.fontmontserrat}`}>
+                        <h3 className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] text-[#0F1640] ${styles2.fontmontserrat}`}>
                             We tell stories that lead to LEGENDS
                         </h3>
-                        <p className={`font-[400] text-[14px] sm:text-[15px] md:text-[16px] ${styles2.fontopensans}`}>
+                        <p className={`font-[400] text-[14px] text-[#0F1640] sm:text-[15px] md:text-[16px] ${styles2.fontopensans}`}>
                             Crafting Stories That Build Timeless Legends
                         </p>
                     </div>
@@ -518,7 +518,7 @@ function Section3({ servicesData }: Section3Props) {
                                     <p className={`font-[700] text-[40px] sm:text-[50px] md:text-[41px] xl:text-[60px] text-[#0F1640] ${styles2.fontmontserrat}`}>
                                         1B+
                                     </p>
-                                    <p className={`font-[600] text-[14px] sm:text-[15px] md:text-[16px] ${styles2.fontopensans}`}>
+                                    <p className={`font-[600] text-[14px] text-[#0F1640] sm:text-[15px] md:text-[16px] ${styles2.fontopensans}`}>
                                         Creatives Published
                                     </p>
                                 </div>
@@ -527,7 +527,7 @@ function Section3({ servicesData }: Section3Props) {
                                     <p className={`font-[700] text-[40px] sm:text-[50px] md:text-[41px] xl:text-[60px] text-[#0F1640] ${styles2.fontmontserrat}`}>
                                         500+
                                     </p>
-                                    <p className={`font-[600] text-[14px] sm:text-[15px] md:text-[16px] ${styles2.fontopensans}`}>
+                                    <p className={`font-[600] text-[14px] text-[#0F1640] sm:text-[15px] md:text-[16px] ${styles2.fontopensans}`}>
                                         Success Stories
                                     </p>
                                 </div>
@@ -726,7 +726,7 @@ function Section3({ servicesData }: Section3Props) {
                                 Free Resource
                             </p>
                             <h2
-                                className="font-[700] text-[21px]  lg:text-[36px]"
+                                className="font-[700] text-[21px] text-[#0F1640] lg:text-[36px]"
                                 style={{
                                     fontFamily: "MontserratBold",
                                 }}
@@ -734,12 +734,12 @@ function Section3({ servicesData }: Section3Props) {
                                 2026 Brand Impact Report
                             </h2>
                         </div>
-                        <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
+                        <p className="font-[700] text-[16px] lg:text-[24px] text-[#0F1640] text-center md:text-left mb-2 md:mb-0">
                             Download Our
                         </p>
 
                         <p
-                            className="font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-2 md:mb-0"
+                            className="font-[400] text-[13px]  lg:text-[16px] text-[#0F1640] text-center md:text-left mb-2 md:mb-0"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -748,7 +748,7 @@ function Section3({ servicesData }: Section3Props) {
                         </p>
 
                         <ul
-                            className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
+                            className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-[#0F1640] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -769,7 +769,7 @@ function Section3({ servicesData }: Section3Props) {
                                         onBlur={handlePhoneBlur}
                                         placeholder="Enter your phone (e.g., +91 9220516777)"
                                         required
-                                        className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
+                                        className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#0F1640] text-[#0F1640] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
                                             ? "border-[#EF4444]"
                                             : "border-[#DAD4D4]"
                                             }`}
@@ -807,7 +807,7 @@ function Section3({ servicesData }: Section3Props) {
                     {/* Right Side Container  */}
                     <div className="w-full lg:w-[48%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
                         <h2
-                            className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left"
+                            className="font-[700] text-[24px] text-[#0F1640] sm:text-[28px] lg:text-[36px] text-center md:text-left"
                             style={{
                                 fontFamily: "MontserratBold",
                             }}
@@ -816,7 +816,7 @@ function Section3({ servicesData }: Section3Props) {
                         </h2>
 
                         <p
-                            className="font-[400] text-[14px] md:text-[15px] lg:text-[16px] text-center md:text-left"
+                            className="font-[400] text-[14px] md:text-[15px] lg:text-[16px] text-[#0F1640] text-center md:text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -826,7 +826,7 @@ function Section3({ servicesData }: Section3Props) {
                         </p>
 
                         <ul
-                            className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-center md:text-left"
+                            className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-[#0F1640] text-center md:text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -841,7 +841,7 @@ function Section3({ servicesData }: Section3Props) {
                             <Link
                                 href={"https://ritzmediaworld.com/contact.html"}
                                 target="_blank"
-                                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black"
+                                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#0F1640]"
                                 style={{
                                     fontFamily: "MontserratSemiBold",
                                 }}
@@ -862,7 +862,7 @@ function Section3({ servicesData }: Section3Props) {
                     {/* Center Align Container  */}
                     <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
                         <h2
-                            className="font-[800] text-[19px] md:text-[28px] lg:text-[36px]"
+                            className="font-[800] text-[19px] md:text-[28px] text-[#0F1640] lg:text-[36px]"
                             style={{
                                 fontFamily: "MontserratExtraBold",
                             }}
@@ -870,7 +870,7 @@ function Section3({ servicesData }: Section3Props) {
                             Ready to Elevate Your Brand?
                         </h2>
                         <p
-                            className="font-[400] text-[16px] md:text-[24px] lg:text-[30px]"
+                            className="font-[400] text-[16px] text-[#0F1640] md:text-[24px] lg:text-[30px]"
                             style={{
                                 fontFamily: "OpenSansRegular",
                             }}
