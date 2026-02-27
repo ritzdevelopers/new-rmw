@@ -45,7 +45,7 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 items-center md:items-end text-center md:text-left">
             <h2
-              className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px]"
+              className="font-[700] text-[24px] text-[#0F1640] sm:text-[28px] lg:text-[36px]"
               style={{
                 fontFamily: "MontserratBold",
               }}
@@ -53,7 +53,7 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
               What Our Clients Say
             </h2>
             <p
-              className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]"
+              className="font-[400] text-[14px] text-[#0F1640] sm:text-[15px] lg:text-[16px]"
               style={{
                 fontFamily: "OpenSansRegular",
               }}
@@ -79,7 +79,7 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
               onClick={() =>
                 window.open("https://ritzmediaworld.com/web-stories", "_blank")
               }
-              className="s1-btn-transparent w-full sm:w-[146px] h-[37px] rounded-[5px] bg-[#ffffff] cursor-pointer text-black font-[600] text-[14px] sm:text-[16px]"
+              className="s1-btn-transparent w-full text-[#0F1640] sm:w-[146px] h-[37px] rounded-[5px] bg-[#ffffff] cursor-pointer  font-[600] text-[14px] sm:text-[16px]"
               style={{
                 fontFamily: "OpenSansSemiBold",
               }}
@@ -146,7 +146,7 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
 
                     <div>
                       <p
-                        className="text-[16px] sm:text-[17px] lg:text-[18px]"
+                        className="text-[16px] sm:text-[17px] text-[#0F1640] lg:text-[18px]"
                         style={{
                           fontFamily: "OpenSansBold",
                         }}

@@ -2,9 +2,9 @@
 
 import styles from "../page.module.css";
 
-type S5CardProps = { isActive?: boolean; isOpen: boolean };
+type S5CardProps = { isActive?: boolean; isOpen: boolean, title: string, content: string, image: string, link: string };
 
-function S5Card({ isOpen }: S5CardProps) {
+function S5Card({ isOpen, title, content, image, link }: S5CardProps) {
     return (
         <div
             className={`${styles.bookCardContainer} ${isOpen ? styles.bookCardContainerOpen : ""} h-[464px] flex flex-shrink-0`}
@@ -13,12 +13,12 @@ function S5Card({ isOpen }: S5CardProps) {
             <div className="w-[378px] h-full relative bg-[#F2F2F2] flex flex-col gap-4 p-8 flex-shrink-0">
                 {/* Top Heading Row  */}
                 <div className="w-full">
-                    <h3 className={`font-[500] text-[24px] ${styles.fontmontserrat}`}>Advertising Concept Development</h3>
+                    <h3 className={`font-[500] text-[24px] ${styles.fontmontserrat}`}>{title}</h3>
                 </div>
 
                 {/* Bottom Image Row  */}
                 <div className="w-full flex justify-end">
-                    <img src="/radio-advertising-page/s5/s5i1.png" alt="" className="w-[264px] h-auto object-cover" />
+                    <img src={image} alt="" className="w-[264px] h-auto object-cover" />
                 </div>
 
                 {/* Absolute Positioned Div  */}
@@ -31,11 +31,10 @@ function S5Card({ isOpen }: S5CardProps) {
             <div
                 className={`${styles.bookRightPage} ${isOpen ? styles.bookOpenRight : styles.bookCloseright} h-full flex flex-col items-start gap-6 p-10 bg-white border-[0.94px] border-[#F2F2F2]`}
             >
-                <p className={`font-[400] text-[16px] ${styles.fontopensans}`}>As a leading radio advertising agency, we craft compelling, audio-centric campaign ideas, specifically designed to resonate with FM radio audiences. <br /><br />
-                    Our approach is designed to guarantee that your radio advertisement breaks through, delivers brand awareness, and generates measurable results in the target market.
+                <p className={`font-[400] text-[16px] ${styles.fontopensans}`}>{content}
                 </p>
 
-                <button type="button" className="flex justify-center items-center gap-2">
+                <button type="button" className="flex justify-center items-center gap-2" onClick={() => window.open(link, "_blank")}    >
                     <p className={`font-[500] text-[18px] ${styles.fontopensans}`}>Learn more</p>
                     <div className="w-[40px] h-[40px] bg-[#C99237] rounded-[50px] flex justify-center items-center">
 

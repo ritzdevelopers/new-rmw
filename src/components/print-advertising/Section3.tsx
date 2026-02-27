@@ -10,37 +10,37 @@ function Section3() {
     const cardsData = [
         {
             tile: "Advertisement Design",
-            para: "Your brand is more than a logo—it’s a promise. We strategically craft identities that resonate, impress, and persuade customers long-term. Combining insightful positioning with imaginative visuals, we make your brand memorable, authentic, and compelling enough to command loyalty in crowded markets.",
+            para: "Our expert designers create custom print advertisements that are engaging and clear in message, while evoking customer reaction instantly. We create beautiful print advertising that makes an impression. From flyers to brochures and magazine ads, we’ll make it happen! Allow us to assist you with your print marketing campaigns that convert readers to customers, page after page.",
             imgPath: "/service-v3/print-advertising/s3/Ad-Scheduling-S.png",
             bigImgPath: "",
         },
         {
             tile: "Ad Placement",
-            para: "Your brand is more than a logo—it’s a promise. We strategically craft identities that resonate, impress, and persuade customers long-term. Combining insightful positioning with imaginative visuals, we make your brand memorable, authentic, and compelling enough to command loyalty in crowded markets.",
+            para: "Wherever it is that your ad appears, it is just as important as the physical message itself. With years of experience and in-depth market knowledge, our media placement strategy gets your print ads, digital ads, marketing materials, etc., in front of your target audience. We utilize precise targeting around right places, geographies, to ensure maximum visibility, engagement and conversion of ads. Placement of the ad is not left to fate. The placement is designed to result in a profitable interaction with the audience.",
             imgPath: "/service-v3/print-advertising/s3/Ad-Placement-S.png",
             bigImgPath: "",
         },
         {
             tile: "Copywriting",
-            para: "Your brand is more than a logo—it’s a promise. We strategically craft identities that resonate, impress, and persuade customers long-term. Combining insightful positioning with imaginative visuals, we make your brand memorable, authentic, and compelling enough to command loyalty in crowded markets.",
+            para: " Words can persuade and great copy can convert. When you choose our expert copywriters, you are guaranteed not just any writing but effective marketing copy that will entice and convert.  Advertising copy is clever and trustworthy messaging to deliver results whether it is for print adverts, brochures or ad campaigns. We create the words that make your brand memorable",
             imgPath: "/service-v3/print-advertising/s3/Copywriting-S.png",
             bigImgPath: "",
         },
         {
             tile: "Cost Negotiation",
-            para: "Your brand is more than a logo—it’s a promise. We strategically craft identities that resonate, impress, and persuade customers long-term. Combining insightful positioning with imaginative visuals, we make your brand memorable, authentic, and compelling enough to command loyalty in crowded markets.",
+            para: "Why pay full price when you can negotiate it down? Backed by solid media relations and strong negotiation skills, Ritz ensures your ads get top-notch placements at an affordable price. We utilize your advertising budget as best as possible and get you the best placements without overspending. Save money for celebrating a success, not for paying an invoice.",
             imgPath: "/service-v3/print-advertising/s3/Cost-Negotiation-S.png",
             bigImgPath: "",
         },
         {
             tile: "Ad Size Optimization",
-            para: "Your brand is more than a logo—it’s a promise. We strategically craft identities that resonate, impress, and persuade customers long-term. Combining insightful positioning with imaginative visuals, we make your brand memorable, authentic, and compelling enough to command loyalty in crowded markets.",
+            para: "Bigger is not always better, smarter is. We optimize ad size to achieve the best of both worlds: maximum visibility and maximum ROI, ensuring your ad gets noticed without overspending. Every aspect is designed to deliver maximum visibility, maximum impact, and minimum waste, providing a smart solution to maximize your return on investment.",
             imgPath: "/service-v3/print-advertising/s3/Ad-Size-Optimization.png",
             bigImgPath: "",
         },
         {
             tile: "Ad Scheduling",
-            para: "Your brand is more than a logo—it’s a promise. We strategically craft identities that resonate, impress, and persuade customers long-term. Combining insightful positioning with imaginative visuals, we make your brand memorable, authentic, and compelling enough to command loyalty in crowded markets.",
+            para: "Timing is everything. We time your print advertising to fit in with the reader habits, seasonality and market opportunities so that your message does not just come in time but is impossible to miss. With expert ad scheduling, we ensure your campaigns reach the right audience at the right time. After all, being perfectly on time is substantially more impactful than shouting every day.",
             imgPath: "/service-v3/print-advertising/s3/Ad-Scheduling-S.png",
             bigImgPath: "",
         },
@@ -51,7 +51,7 @@ function Section3() {
     return (
         <section className="w-full justify-center items-center py-8 sm:py-12 md:py-14 xl:py-[70px] border-t border-b border-[#E5E5E5]">
             {/* Centered Align Container  */}
-            <div className={`w-full flex flex-col gap-4 sm:gap-6 ${styles.containerWidth2} px-4 sm:px-6 md:pl-8 xl:pl-10`}>
+            <div className={`w-full flex flex-col gap-4 sm:gap-14 ${styles.containerWidth2} px-4 sm:px-6 md:pl-8 xl:pr-0 xl:pl-10`}>
                 {/* Top Container  */}
                 <div className="w-full flex flex-col justify-center items-center text-center">
                     <p className={`font-[600] text-[14px] sm:text-[16px] uppercase text-[#C99237] ${styles.fontpopins}`}>

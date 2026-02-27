@@ -59,9 +59,9 @@ function Section4() {
                 </div>
 
                 {/* Col 2  */}
-                <div className="flex gap-2 sm:gap-3 w-full max-w-[400px] lg:max-w-none justify-center lg:justify-start">
+                <div className="flex gap-2 sm:gap-3 w-full max-w-[400px] lg:max-w-none justify-center lg:justify-end xl:justify-start">
                     {/* Left Side Container  */}
-                    <div className="flex flex-col gap-2 sm:gap-3 flex-1 min-w-0 max-w-[189px] lg:max-w-none">
+                    <div className="flex flex-col gap-2 sm:gap-3  min-w-0 max-w-[189px] lg:max-w-none">
                         <div className="w-full aspect-[189/205] lg:w-[160px] lg:h-[174px] xl:w-[189px] xl:h-[205px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
                             <img src="/service-v3/print-advertising/s4/Business.jpg" alt="" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-black`}>Business</p>
@@ -79,7 +79,7 @@ function Section4() {
                     </div>
 
                     {/* Right Side Container  */}
-                    <div className="flex flex-col gap-2 sm:gap-3 flex-1 min-w-0 max-w-[189px] lg:max-w-none">
+                    <div className="flex flex-col gap-2 sm:gap-3  min-w-0 max-w-[189px] lg:max-w-none">
                         <div className="w-full aspect-[189/127] lg:w-[160px] lg:h-[108px] xl:w-[189px] xl:h-[127px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
                             <img src="/service-v3/print-advertising/s4/ToRent.jpg" alt="" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-white`}>To Rent</p>
@@ -99,7 +99,7 @@ function Section4() {
 
                 {/* Col 3  */}
                 <div className="w-full max-w-[317px] lg:w-[269px] lg:h-[429px] xl:w-[317px] xl:h-[505px] h-auto min-h-[320px] sm:min-h-[400px] lg:min-h-0 xl:min-h-0 rounded-[10px] relative flex-shrink-0">
-                    <img src="/service-v3/print-advertising/s4/news-paper-frame.jpg" alt="" className="w-full h-full object-cover rounded-[10px]" />
+                    <img src="/service-v3/print-advertising/s4/news-paper-frame.jpg" alt="" className="w-full h-full rounded-[10px]" />
 
                     <div className="absolute text-center top-0 left-0 z-10 w-full flex justify-center items-center px-3 pt-4 flex-col gap-2 sm:gap-3">
                         <h3 className={`font-[700] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[27px] xl:text-[30px] text-black ${styles.fontmontserrat}`}>Book Newspaper Ads Online at Lowest Rates</h3>
@@ -110,7 +110,7 @@ function Section4() {
                 {/* Col 4  */}
                 <div className="flex gap-2 sm:gap-3 w-full max-w-[400px] lg:max-w-none justify-center lg:justify-start">
                     {/* Left Side Container  */}
-                    <div className="flex flex-col gap-2 sm:gap-3 flex-1 min-w-0 max-w-[190px] lg:max-w-none">
+                    <div className="flex flex-col gap-2 sm:gap-3  min-w-0 max-w-[190px] lg:max-w-none">
                         <div className="w-full aspect-[190/205] lg:w-[161px] lg:h-[174px] xl:w-[190px] xl:h-[205px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
                             <img src="/service-v3/print-advertising/s4/Retail.jpg" alt="" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-white`}>Retail</p>
@@ -128,7 +128,7 @@ function Section4() {
                     </div>
 
                     {/* Right Side Container  */}
-                    <div className="flex flex-col gap-2 sm:gap-3 flex-1 min-w-0 max-w-[190px] lg:max-w-none">
+                    <div className="flex flex-col gap-2 sm:gap-3  min-w-0 max-w-[190px] lg:max-w-none">
                         <div className="w-full aspect-[190/127] lg:w-[161px] lg:h-[108px] xl:w-[190px] xl:h-[127px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
                             <img src="/service-v3/print-advertising/s4/Services.jpg" alt="" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-black`}>Services</p>

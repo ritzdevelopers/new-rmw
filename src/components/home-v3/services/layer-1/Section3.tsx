@@ -154,7 +154,12 @@ function Section3() {
                                 Get Free Consulting
                             </p>
                             <div className="bg-[#ffffff] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] md:h-[38px] md:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-[#C99237]">
-                                <BsArrowUpRight className="text-[#C99237] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[18px]" />
+                               
+<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.4276 2.92431L17.1346 9.08101L12.9493 4.01684L19.4276 2.92431Z" fill="#C99237"/>
+<rect x="2.19678" y="16.7173" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19678 16.7173)" fill="#C99237"/>
+</svg>
+
                             </div>
                         </button>
                     </div>
@@ -164,7 +169,7 @@ function Section3() {
                 {/* Right Side Container   */}
                 <div className="flex flex-col lg:flex-col items-stretch xl:items-start justify-between gap-6 relative w-full lg:w-auto order-3 lg:order-none h-full">
                     {/* Row 1 Card  */}
-                    <div className="flex flex-col justify-between gap-4 sm:gap-6 items-center text-center py-5 sm:py-6 px-6 sm:px-3 xl:px-10 rounded-[15px] sm:rounded-[20px] bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
+                    <div className="flex flex-col justify-between gap-4 sm:gap-6 items-center text-center py-5 sm:py-6 px-6 sm:px-3 xl:px-6 rounded-[15px] sm:rounded-[20px] bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
                             <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Facebook Marketing <br />
                                 Campaign</p>

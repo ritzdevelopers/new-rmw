@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './page.module.css';
 function Section1() {
     return (
-        <section className='w-full h-[460px] md:min-h-[500px] lg:min-h-[615px] bg-[url("/service-v3/layer1/s1/digital-marketing.jpg")] bg-cover bg-no-repeat bg-center flex md:items-end pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-26 px-4 sm:px-6 md:px-8 lg:px-0
+        <section className='w-full h-[460px] md:min-h-[500px] lg:min-h-[515px] bg-[url("/service-v3/layer1/s1/digital-marketing.jpg")] bg-cover bg-no-repeat bg-center flex md:items-end pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-26 px-4 sm:px-6 md:px-8 lg:px-0
         justify-center items-center md:justify-start
         '>
 
