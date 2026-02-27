@@ -350,7 +350,7 @@ function RubyBotBootstrap() {
                         <div className={styles.headerLeft}>
                             <div className={styles.avatarContainer}>
                                 <div className={styles.avatar}>
-                                    <img src="/ruby-logo3.png" alt="RubyBot" className={styles.avatarImage} />
+                                    <img src="/ruby-bot-icn2.png" alt="RubyBot" className={styles.avatarImage} />
                                 </div>
                                 <div className={styles.statusIndicator}></div>
                             </div>
@@ -385,7 +385,7 @@ function RubyBotBootstrap() {
                                     <div key={message.id} className={styles.messageRow}>
                                         {isFirstInSequence && (
                                             <div className={styles.botAvatar}>
-                                                <img src="/ruby-logo3.png" alt="Ruby" className={styles.botAvatarImage} />
+                                                <img src="/ruby-bot-icn2.png" alt="Ruby" className={styles.botAvatarImage} />
                                             </div>
                                         )}
                                         {!isFirstInSequence && <div className={styles.avatarSpacer}></div>}
@@ -413,7 +413,7 @@ function RubyBotBootstrap() {
                         {isTyping && (
                             <div className={styles.messageRow}>
                                 <div className={styles.botAvatar}>
-                                    <img src="/ruby-logo3.png" alt="Ruby" className={styles.botAvatarImage} />
+                                    <img src="/ruby-bot-icn2.png" alt="Ruby" className={styles.botAvatarImage} />
                                 </div>
                                 <div className={styles.messageContent}>
                                     <div className={styles.botMessage}>
