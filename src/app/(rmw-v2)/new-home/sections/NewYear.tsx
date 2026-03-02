@@ -33,7 +33,7 @@ function S1() {
   // Single image configuration
   const imageConfig = React.useMemo(
     () => ({
-      desktop: "/republic-day/banner-21-januaryRMW-BANNER2.jpg",
+      desktop: "/holi/Holi-Banners-2.png",
       tablet: "/republic-day/768-by500.png",
       mobile: "/republic-day/banner-26-jan-phone4.jpg",
       alt: "Ritz Media World branding showcase",

@@ -36,7 +36,7 @@ export default function Section2() {
 
         <div className="mt-8 sm:mt-10 md:mt-12 flex items-center justify-center gap-4">
           <span
-            className="text-black text-[15px] sm:text-[16px] md:text-[17px sop]"
+            className="text-black text-[15px] sm:text-[16px] md:text-[17px]"
             style={{ fontFamily: "MontserratMedium" }}
           >
             Contact us

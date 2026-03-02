@@ -22,7 +22,7 @@ export default function Section1() {
           <p className="font-[500] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal" style={{ fontFamily: "MontserratMedium" }}>
             We blend design, content, and strategy to drive growth.
           </p>
-          <h1 className="font-[800] text-[28px] sm:text-[36px] md:text-[48px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-18 mt-1 sm:mt-2 md:mt-3" style={{ fontFamily: "MontserratBold" }}>
+          <h1 className="font-[800] text-[28px] sm:text-[36px] md:text-[48px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-16 mt-1 sm:mt-2 md:mt-3" style={{ fontFamily: "MontserratBold" }}>
             Creative Solutions for <br/> Modern Brands
           </h1>
         </div>
