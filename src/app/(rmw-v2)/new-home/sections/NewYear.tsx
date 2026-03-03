@@ -33,9 +33,9 @@ function S1() {
   // Single image configuration
   const imageConfig = React.useMemo(
     () => ({
-      desktop: "/holi/Holi-Banners-2.png",
-      tablet: "/republic-day/768-by500.png",
-      mobile: "/republic-day/banner-26-jan-phone4.jpg",
+      desktop: "/holi/Holi-Banners.png",
+      tablet: "/holi/Holi-Banners.png",
+      mobile: "/holi/Holi-Banners-mob.png",
       alt: "Ritz Media World branding showcase",
     }),
     []
@@ -51,7 +51,7 @@ function S1() {
   }, [imageConfig, screenSize]);
 
   return (
-    <section className="relative flex h-[70vh]   md:h-screen w-full items-center overflow-hidden overflow-x-hidden max-w-full">
+    <section className="relative flex h-[76vh]  md:h-[44vh] lg:h-[78vh] w-full items-center overflow-hidden overflow-x-hidden max-w-full">
       {/* Single Banner Image */}
       <div className="absolute inset-0 overflow-hidden z-10">
         <div className="relative h-full w-full">
@@ -60,7 +60,7 @@ function S1() {
             alt={imageConfig.alt}
             fill
             priority
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover md:max-lg:object-center"
             sizes="100vw"
             quality={100}
           />
@@ -72,10 +72,8 @@ function S1() {
       <div
         className={`pointer-events-none absolute z-30 lg:bottom-10 bottom-0 left-1/2 -translate-x-1/2 hidden sm:flex `}
       >
-        <div
-          className={`w-full h-full min-w-[435px] border border-white/10 items-center justify-center rounded-full ${styles.glasscard} py-3`}
-        >
-          <div className="flex justify-center gap-8 w-full items-center px-12">
+        
+          {/* <div className="flex justify-center gap-8 w-full items-center px-12">
             <div className="flex border-r-2 border-white px-4">
               <svg
                 width="24"
@@ -98,30 +96,39 @@ function S1() {
                 Since <span className="text-[14px] lg:text-[16px] text-[#0f8502]">2008</span>
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
-      </div>
+      
 
-      {/* Bottom Centered Align Absolute Positioned Div - Buttons */}
-      <div className="hidden bottom-26 left-6 z-30 w-full max-w-[720px] ">
-        <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm font-medium lg:text-base justify-center items-center">
-          <button
-            onClick={() =>
-              window.open("https://ritzmediaworld.com/contact.html", "_blank")
-            }
-            className="inline-flex liquid cursor-pointer justify-center items-center gap-2 sm:gap-3 rounded-[8px] bg-[#F3830E] py-2 sm:py-2.5 lg:py-3 text-white transition w-[134px] md:w-[180px] lg:w-[210px] text-xs sm:text-sm lg:text-base"
+      {/* Right Side Content on Holi Banner */}
+      <div className="absolute inset-0 z-30 flex justify-end items-center max-[480px]:justify-center max-[480px]:items-end max-[480px]:pb-6 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 pointer-events-none">
+        <div className="w-[92%] sm:w-[64%] md:w-[46%] lg:w-[38%] xl:w-[34%] ml-auto max-[480px]:mx-auto flex flex-col items-end max-[480px]:items-center text-right max-[480px]:text-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+          <h2
+            className="text-white font-[800] text-[20px] sm:text-[22px] md:text-[20px] lg:text-[25px] leading-[1.5] uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
+            style={{ fontFamily: "MontserratExtraBold" }}
           >
-            Free Consulting <MoveRight className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
-          </button>
-          <button
-            onClick={() =>
-              window.open("https://ritzmediaworld.com/web-stories", "_blank")
-            }
-            className="inline-flex liquid3 cursor-pointer justify-center hover:text-white items-center bg-white gap-2 sm:gap-3 rounded-[8px] w-[134px] md:w-[180px] lg:w-[210px] py-2 sm:py-2.5 lg:py-3 text-black transition hover:bg-white/10 text-xs sm:text-sm lg:text-base"
-          >
-            <Play className="h-4 w-4 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
-            Watch Our Story
-          </button>
+            Beyond Your Typical <br className="hidden lg:block" /> Advertising Agency
+          </h2>
+
+          <div className="flex justify-end max-[480px]:justify-center gap-3 sm:gap-4 pointer-events-auto">
+            <button
+              onClick={() =>
+                window.open("https://ritzmediaworld.com/contact.html", "_blank")
+              }
+              className="inline-flex cursor-pointer justify-center items-center gap-2 rounded-[8px] bg-[#C99237] hover:bg-[#b8822f] py-2.5 sm:py-3 text-white transition w-[150px] sm:w-[165px] md:w-[170px] lg:w-[195px] xl:w-[210px] text-[13px] sm:text-[14px] lg:text-[16px]"
+            >
+              Free Consulting <MoveRight className="h-4 w-4 sm:h-5 sm:w-5" />
+            </button>
+            <button
+              onClick={() =>
+                window.open("https://ritzmediaworld.com/web-stories", "_blank")
+              }
+              className="inline-flex liquid3 cursor-pointer justify-center items-center bg-white/95 hover:bg-white gap-2 rounded-[8px] w-[150px] sm:w-[165px] md:w-[170px] lg:w-[195px] xl:w-[210px] py-2.5 sm:py-3 text-[#8B1A1A] transition text-[13px] sm:text-[14px] lg:text-[16px]"
+            >
+              <Play className="h-4 w-4 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+              Watch Our Story
+            </button>
+          </div>
         </div>
       </div>
     </section>

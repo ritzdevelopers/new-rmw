@@ -6,7 +6,7 @@ export default function Section2() {
     <section className="w-full flex items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
       <div className="w-[92%] sm:w-[85%] md:w-[80%] lg:w-[70%] text-center">
         <h2
-          className="text-black font-[800] text-[28px] sm:text-[36px] md:text-[44px] lg:text-[30px] leading-tight"
+          className="text-black font-[800] text-[22px] sm:text-[26px] md:text-[28px] lg:text-[30px] leading-[1.3] sm:leading-tight"
           style={{ fontFamily: "MontserratBold" }}
         >
           Creativity isn’t just decoration—it’s competitive advantage.

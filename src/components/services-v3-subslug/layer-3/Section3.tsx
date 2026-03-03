@@ -56,19 +56,19 @@ export default function Section3() {
 
         <div className="flex items-start justify-between gap-3 mb-4 sm:mb-6">
           <h4
-            className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] text-black font-[500] max-w-[88%]"
+            className="text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] text-black font-[500] max-w-[88%]"
             style={{ fontFamily: "PoppinsMedium" }}
           >
             Branding &amp; Identity Development
           </h4>
-          <X className="text-[#6E6E6E] shrink-0 mt-1" />
+          <X className="text-[#6E6E6E] shrink-0 mt-1 w-5 h-5 sm:w-6 sm:h-6" />
         </div>
 
         <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-14 justify-center">
           {/* Left Media Block */}
           <div className="relative w-full sm:w-auto lg:max-w-[430px] xl:max-w-[480px]">
             {/* Gold decorative rectangle (image) */}
-            <div className="absolute -left-10 top-6 hidden sm:block w-[179px] h-[208px]">
+            <div className="absolute -left-4 md:-left-10 top-6 hidden md:block w-[140px] md:w-[179px] h-[170px] md:h-[208px]">
               <Image
                 src="/services-v3-slug/images/Rectangle%2045282.jpg"
                 alt="Decorative shape"
@@ -79,7 +79,7 @@ export default function Section3() {
               />
             </div>
             {/* Main photo */}
-            <div className="relative w-full max-w-[320px] h-[250px] sm:w-[249px] sm:h-[270px] mx-auto lg:mx-0 rounded-[22px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.08)] z-[1]">
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[220px] sm:h-[250px] sm:w-[249px] sm:h-[270px] mx-auto lg:mx-0 rounded-[22px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.08)] z-[1]">
               <Image
                 src="/services-v3-slug/images/what_we_provide.png"
                 alt="What we provide"
@@ -102,9 +102,9 @@ export default function Section3() {
               </p>
             </div>
 
-            <div className="mt-8 flex items-center gap-4 flex-wrap">
+            <div className="mt-6 sm:mt-8 flex items-center gap-3 sm:gap-4 flex-wrap">
               <span
-                className="text-[#101828] text-[16px]"
+                className="text-[#101828] text-[14px] sm:text-[15px] lg:text-[16px]"
                 style={{ fontFamily: "MontserratSemiBold" }}
               >
                 Learn more
@@ -113,7 +113,7 @@ export default function Section3() {
                 href="/contact.html"
                 target="_blank"
                 aria-label="Learn more"
-                className="w-10 h-10 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
               >
                 <GoArrowUpRight className="text-white" size={18} />
               </Link>
@@ -121,7 +121,7 @@ export default function Section3() {
           </div>
         </div>
 
-        <div className="mt-10 sm:mt-12 md:mt-14 space-y-4">
+        <div className="mt-8 sm:mt-10 md:mt-14 space-y-4">
           {accordionItems.map((label) => {
             const isOpen = openItem === label;
 
@@ -148,7 +148,7 @@ export default function Section3() {
                   <div className="pt-6 sm:pt-8">
                     <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-14 justify-center">
                       <div className="relative w-full sm:w-auto lg:max-w-[430px] xl:max-w-[480px]">
-                        <div className="absolute -left-10 top-6 hidden sm:block w-[179px] h-[208px]">
+                        <div className="absolute -left-4 md:-left-10 top-6 hidden md:block w-[140px] md:w-[179px] h-[170px] md:h-[208px]">
                           <Image
                             src="/services-v3-slug/images/Rectangle%2045282.jpg"
                             alt="Decorative shape"
@@ -157,7 +157,7 @@ export default function Section3() {
                             sizes="128px"
                           />
                         </div>
-                        <div className="relative w-full max-w-[320px] h-[250px] sm:w-[249px] sm:h-[270px] mx-auto lg:mx-0 rounded-[22px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.08)] z-[1]">
+                        <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[220px] sm:h-[250px] sm:w-[249px] sm:h-[270px] mx-auto lg:mx-0 rounded-[22px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.08)] z-[1]">
                           <Image
                             src="/services-v3-slug/images/what_we_provide.png"
                             alt={label}
