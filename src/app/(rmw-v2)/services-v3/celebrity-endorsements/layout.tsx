@@ -1,7 +1,7 @@
-export default function CelebrityEndorsementsLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <>
-            {children}
-        </>
-    )
+export default function CelebrityEndorsementsLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return <div>{children}</div>;
 }

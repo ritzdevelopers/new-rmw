@@ -1,12 +1,16 @@
-import Banner from "@/components/celebrity-endorsements/Banner";
+import Section1 from "@/components/celebrity-endorsements/Section1";
+import Section2 from "@/components/celebrity-endorsements/Section2";
+import Section3 from "@/components/celebrity-endorsements/Section3";
+import Section4 from "@/components/celebrity-endorsements/Section4";
 
-
-function Page() {
+export default function Page() {
     return (
-        <>
-            <Banner />
-        </>
+        <main className="w-full overflow-x-hidden">
+            <Section1/>
+            <Section2 />
+            <Section3 />
+            <Section4 />
+        
+        </main>
     )
 }
-
-export default Page;

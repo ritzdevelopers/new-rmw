@@ -1,9 +1,33 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { GoArrowUpRight } from "react-icons/go";
 import { X } from "lucide-react";
 
 export default function Section3() {
+  const [openItem, setOpenItem] = useState<string | null>(null);
+  const brandingContent =
+    "Take your brand identity to the next level with our branding and design solutions. We help you in developing a memorable and authentic brand identity that connects with your customers, builds loyalty, and helps you stand out in the cutthroat market. Our full-service branding solutions include logo design, brand positioning, and visual communication that helps you succeed.";
+
+  const accordionItems = [
+    "Graphic Design",
+    "Logo Design",
+    "Print Advertising Design",
+    "Packaging Design",
+  ];
+  const accordionContent: Record<string, string> = {
+    "Graphic Design":
+      "Tap into the power of visual communication with our professional graphic design solutions. Whether it is digital or offline media, our breathtaking designs engage, impress, and convert your audience. From infographics to marketing collateral, we design graphics that communicate effectively and deliver results, resulting in higher engagement and ROI.",
+    "Logo Design":
+      "Your logo is the face of your brand. We are logo design experts who can help you in designing a unique and memorable logo that builds trust and leaves a lasting impression. Our logo design solutions ensure that your brand gets noticed, builds customer loyalty, and achieves instant recognition, making it an essential part of brand promotion.",
+    "Print Advertising Design":
+      "Leave your mark in the competitive world of print media with our effective print advertising design. Our designs are created in a manner that generates interest and encourages response, whether it is brochure design, flyer design, or poster design. With our professional print ad design, we turn paper into profit, ensuring that your message is seen, remembered, and acted upon.",
+    "Packaging Design":
+      "Use your product packaging as a marketing tool. Our packaging design services create highly persuasive and effective packaging that influences buying decisions and creates brand identity. Whether it is retail or e-commerce, our packaging design is created to capture attention, create brand loyalty, and boost sales.",
+  };
+
   return (
     <section className="w-full bg-[#F7F7F7] py-10 sm:py-12 md:py-16 lg:py-20">
       <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto">
@@ -30,21 +54,21 @@ export default function Section3() {
 
         <div className="h-px w-full bg-[#AAA8A8] mb-8 sm:mb-10 md:mb-12" />
 
-        <div className="flex items-start justify-between mb-4 sm:mb-6">
+        <div className="flex items-start justify-between gap-3 mb-4 sm:mb-6">
           <h4
-            className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] text-black font-[500]"
+            className="text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] text-black font-[500] max-w-[88%]"
             style={{ fontFamily: "PoppinsMedium" }}
           >
             Branding &amp; Identity Development
           </h4>
-          <X className="text-[#6E6E6E]" />
+          <X className="text-[#6E6E6E] shrink-0 mt-1 w-5 h-5 sm:w-6 sm:h-6" />
         </div>
 
         <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-14 justify-center">
           {/* Left Media Block */}
-          <div className="relative lg:max-w-[430px] xl:max-w-[480px]">
+          <div className="relative w-full sm:w-auto lg:max-w-[430px] xl:max-w-[480px]">
             {/* Gold decorative rectangle (image) */}
-            <div className="absolute -left-10 top-6 hidden sm:block w-[179px] h-[208px]">
+            <div className="absolute -left-4 md:-left-10 top-6 hidden md:block w-[140px] md:w-[179px] h-[170px] md:h-[208px]">
               <Image
                 src="/services-v3-slug/images/Rectangle%2045282.jpg"
                 alt="Decorative shape"
@@ -55,7 +79,7 @@ export default function Section3() {
               />
             </div>
             {/* Main photo */}
-            <div className="relative  sm:w-[249px] sm:h-[270px] rounded-[22px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.08)] z-[1]">
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[220px] sm:h-[250px] sm:w-[249px] sm:h-[270px] mx-auto lg:mx-0 rounded-[22px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.08)] z-[1]">
               <Image
                 src="/services-v3-slug/images/what_we_provide.png"
                 alt="What we provide"
@@ -71,26 +95,16 @@ export default function Section3() {
           <div className="flex-1 max-w-[680px] justify-center">
             <div className="space-y-4 justify-center mt-[24px]">
               <p
-                className="text-[16px] leading-[28px] text-[#2D2D2D]"
+                className="text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed md:leading-[28px] text-[#2D2D2D]"
                 style={{ fontFamily: "PoppinsRegular" }}
               >
-                Your brand is more than a logo—it’s a promise. We strategically
-                craft identities that resonate, impress, and persuade customers
-                long-term.
-              </p>
-              <p
-                className="text-[16px] leading-[28px] text-[#2D2D2D]"
-                style={{ fontFamily: "PoppinsRegular" }}
-              >
-                Combining insightful positioning with imaginative visuals, we
-                make your brand memorable, authentic, and compelling enough to
-                command loyalty in crowded markets.
+                {brandingContent}
               </p>
             </div>
 
-            <div className="mt-8 flex items-center gap-4">
+            <div className="mt-6 sm:mt-8 flex items-center gap-3 sm:gap-4 flex-wrap">
               <span
-                className="text-[#101828] text-[16px]"
+                className="text-[#101828] text-[14px] sm:text-[15px] lg:text-[16px]"
                 style={{ fontFamily: "MontserratSemiBold" }}
               >
                 Learn more
@@ -99,7 +113,7 @@ export default function Section3() {
                 href="/contact.html"
                 target="_blank"
                 aria-label="Learn more"
-                className="w-10 h-10 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
               >
                 <GoArrowUpRight className="text-white" size={18} />
               </Link>
@@ -107,28 +121,85 @@ export default function Section3() {
           </div>
         </div>
 
-        <div className="mt-10 sm:mt-12 md:mt-14 space-y-4">
-          {[
-            "Graphic Design",
-            "Logo Design",
-            "Print Advertising Design",
-            "Packaging Design",
-          ].map((label) => (
-            <div
-              key={label}
-              className="flex items-center justify-between border-b border-[#AAA8A8] pb-4"
-            >
-              <p
-                className="text-[16px] sm:text-[18px] text-[#101828]"
-                style={{ fontFamily: "MontserratMedium" }}
-              >
-                {label}
-              </p>
-              <span className="text-[#6E6E6E] text-2xl leading-none select-none">
-                +
-              </span>
-            </div>
-          ))}
+        <div className="mt-8 sm:mt-10 md:mt-14 space-y-4">
+          {accordionItems.map((label) => {
+            const isOpen = openItem === label;
+
+            return (
+              <div key={label} className="border-b border-[#AAA8A8] pb-4">
+                <button
+                  type="button"
+                  onClick={() => setOpenItem(isOpen ? null : label)}
+                  className="w-full flex items-center justify-between text-left"
+                  aria-expanded={isOpen}
+                >
+                  <p
+                    className="text-[16px] sm:text-[18px] text-[#101828]"
+                    style={{ fontFamily: "MontserratMedium" }}
+                  >
+                    {label}
+                  </p>
+                  <span className="text-[#6E6E6E] text-2xl leading-none select-none">
+                    {isOpen ? "−" : "+"}
+                  </span>
+                </button>
+
+                {isOpen && (
+                  <div className="pt-6 sm:pt-8">
+                    <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-14 justify-center">
+                      <div className="relative w-full sm:w-auto lg:max-w-[430px] xl:max-w-[480px]">
+                        <div className="absolute -left-4 md:-left-10 top-6 hidden md:block w-[140px] md:w-[179px] h-[170px] md:h-[208px]">
+                          <Image
+                            src="/services-v3-slug/images/Rectangle%2045282.jpg"
+                            alt="Decorative shape"
+                            fill
+                            className="object-contain"
+                            sizes="128px"
+                          />
+                        </div>
+                        <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[220px] sm:h-[250px] sm:w-[249px] sm:h-[270px] mx-auto lg:mx-0 rounded-[22px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.08)] z-[1]">
+                          <Image
+                            src="/services-v3-slug/images/what_we_provide.png"
+                            alt={label}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex-1 max-w-[680px] justify-center">
+                        <div className="space-y-4 justify-center mt-[24px]">
+                          <p
+                            className="text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed md:leading-[28px] text-[#2D2D2D]"
+                            style={{ fontFamily: "PoppinsRegular" }}
+                          >
+                            {accordionContent[label]}
+                          </p>
+                        </div>
+
+                        <div className="mt-8 flex items-center gap-4 flex-wrap">
+                          <span
+                            className="text-[#101828] text-[16px]"
+                            style={{ fontFamily: "MontserratSemiBold" }}
+                          >
+                            Learn more
+                          </span>
+                          <Link
+                            href="/contact.html"
+                            target="_blank"
+                            aria-label={`Learn more about ${label}`}
+                            className="w-10 h-10 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+                          >
+                            <GoArrowUpRight className="text-white" size={18} />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
