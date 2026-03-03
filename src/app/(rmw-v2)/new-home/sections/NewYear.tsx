@@ -52,7 +52,7 @@ function S1() {
 
   
   return (
-    <section className="relative flex w-full aspect-[100/123] sm:aspect-[16/6] lg:aspect-[16/6] xl:aspect-[16/5.5] items-center overflow-hidden overflow-x-hidden max-w-full bg-neutral-900">
+    <section className="relative flex w-full aspect-[100/123] sm:aspect-[100/123] md:aspect-[16/6] lg:aspect-[16/6] xl:aspect-[16/5.5] items-center overflow-hidden overflow-x-hidden max-w-full bg-neutral-900">
       {/* Single Banner Image */}
       <div className="absolute inset-0 overflow-hidden z-10">
         <div className="relative w-full h-full">
@@ -103,7 +103,7 @@ function S1() {
 
  
       {/* Right Side Content on Holi Banner */}
-      <div className="absolute inset-0 z-30 flex items-end md:items-center justify-center md:justify-end px-4 sm:px-6 md:pl-10 md:pr-3 lg:pl-16 lg:pr-4 xl:pl-24 xl:pr-6 2xl:pr-8 pb-10 sm:pb-12 md:pb-0">
+      <div className="absolute inset-0 z-30 flex items-end md:items-center justify-center md:justify-end px-4 sm:px-6 md:px-7 lg:px-16 pb-10 sm:pb-12 md:pb-0 md:mt-[38px]">
 
         <div className="w-full md:max-w-[520px] flex flex-col items-center md:items-end text-center md:text-right gap-4 sm:gap-5 lg:gap-6">
 
@@ -111,7 +111,7 @@ function S1() {
             className="text-white font-[700] text-[19px] sm:text-[20px] md:text-[22px] lg:text-[25px] leading-[1.5] uppercase drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
             style={{ fontFamily: "MontserratBold" }}
           >
-            Beyond Your Typical <br className="hidden lg:block" /> Advertising Agency
+            Beyond Your Typical <br className="hidden lg:block md:block" /> Advertising Agency
           </h2>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pointer-events-auto">
