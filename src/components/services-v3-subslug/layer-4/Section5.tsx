@@ -4,7 +4,7 @@ import styles from "./Section5.module.css";
 
 export default function Section5() {
   return (
-    <section className="w-full bg-[#F7F7F7] sm:py-16">
+    <section className="w-full bg-[#F7F7F7] py-10 sm:py-16">
       <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto">
         <div
           className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0"
@@ -13,7 +13,7 @@ export default function Section5() {
           {/* Left Side Container */}
           <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0">
             <p
-              className="font-[700] text-[20px] sm:text-[22px] lg:text-[24px]"
+              className="font-[700] text-[18px] sm:text-[20px] lg:text-[24px]"
               style={{ fontFamily: "MontserratBold" }}
             >
               Brands That Trust Us

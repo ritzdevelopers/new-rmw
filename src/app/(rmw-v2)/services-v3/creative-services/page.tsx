@@ -7,12 +7,12 @@ import Section6 from "@/components/services-v3-subslug/layer-4/Section6";
 import Section7 from "@/components/services-v3-subslug/layer-4/Section7";
 import Section8 from "@/components/services-v3-subslug/layer-4/Section8";
 import Section9 from "@/components/services-v3-subslug/layer-4/Section9";
-import PageAnimations from "@/app/(rmw-v2)/components/PageAnimations";
+// import PageAnimations from "@/app/(rmw-v2)/components/PageAnimations";
 
 export default function Page() {
   return (
-    <main>
-      <PageAnimations />
+    <main className="w-full overflow-x-hidden">
+      {/* <PageAnimations /> */}
       <Section1 />
       <Section2 />
       <Section3 />

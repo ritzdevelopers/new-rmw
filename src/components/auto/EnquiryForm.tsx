@@ -169,7 +169,7 @@ function EnquiryForm() {
                 {/* Close Button */}
                 <button
                     onClick={handleClose}
-                    className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-all duration-200 p-2 z-10 hover:bg-gray-100 rounded-full"
+                    className="absolute top-4 right-4 cursor-pointer text-gray-400 hover:text-gray-600 transition-all duration-200 p-2 z-10 hover:bg-gray-100 rounded-full"
                     aria-label="Close form"
                 >
                     <IoMdClose className="w-6 h-6" />

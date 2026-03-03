@@ -42,27 +42,27 @@ export default function Section6() {
           >
             Clients Testimonials
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 items-center md:items-end text-center md:text-left">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 lg:gap-8 items-center md:items-end text-center md:text-left">
             <h2
-              className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px]"
+              className="font-[700] text-[22px] sm:text-[26px] md:text-[28px] lg:text-[36px]"
               style={{ fontFamily: "MontserratBold" }}
             >
               What Our Clients Say
             </h2>
             <p
-              className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]"
+              className="font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]"
               style={{ fontFamily: "OpenSansRegular" }}
             >
               Don&apos;t just take our word for it – hear from the brands we&apos;ve
               helped transform.
             </p>
           </div>
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-row gap-2 justify-center md:justify-start">
             <button
               onClick={() =>
                 window.open("https://ritzmediaworld.com/contact.html", "_blank")
               }
-              className="s1-btn-gold w-full sm:w-[146px] h-[37px] rounded-[5px] bg-[#C99237] cursor-pointer text-white font-[600] text-[14px] sm:text-[16px]"
+              className="s1-btn-gold w-[140px] sm:w-[146px] h-[37px] rounded-[5px] bg-[#C99237] cursor-pointer text-white font-[600] text-[13px] sm:text-[14px] md:text-[16px]"
               style={{ fontFamily: "OpenSansSemiBold" }}
             >
               <p className="text-white">Text Tutorial</p>
@@ -71,7 +71,7 @@ export default function Section6() {
               onClick={() =>
                 window.open("https://ritzmediaworld.com/web-stories", "_blank")
               }
-              className="s1-btn-transparent w-full sm:w-[146px] h-[37px] rounded-[5px] bg-[#ffffff] cursor-pointer text-black font-[600] text-[14px] sm:text-[16px]"
+              className="s1-btn-transparent w-[140px] sm:w-[146px] h-[37px] rounded-[5px] bg-[#ffffff] cursor-pointer text-black font-[600] text-[13px] sm:text-[14px] md:text-[16px]"
               style={{ fontFamily: "OpenSansSemiBold" }}
             >
               <p>Video Tutorial</p>

@@ -6,13 +6,13 @@ export default function Section9() {
       <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto flex justify-center items-center">
         <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-12">
           <h2
-            className="font-[800] text-[19px] md:text-[28px] lg:text-[36px]"
+            className="font-[800] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[36px]"
             style={{ fontFamily: "MontserratExtraBold" }}
           >
             Ready to Elevate Your Brand?
           </h2>
           <p
-            className="font-[400] text-[16px] md:text-[24px] lg:text-[30px]"
+            className="font-[400] text-[14px] sm:text-[18px] md:text-[24px] lg:text-[30px]"
             style={{ fontFamily: "OpenSansRegular" }}
           >
             Let&apos;s discuss your next brand-elevating campaign
