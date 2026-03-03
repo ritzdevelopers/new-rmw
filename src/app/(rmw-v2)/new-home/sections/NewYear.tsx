@@ -43,24 +43,25 @@ function S1() {
 
   // Get responsive image source based on screen size
   const imageSrc = React.useMemo(() => {
-    return screenSize === "mobile" 
-      ? imageConfig.mobile 
-      : screenSize === "tablet" 
-      ? imageConfig.tablet 
-      : imageConfig.desktop;
+    return screenSize === "mobile"
+      ? imageConfig.mobile
+      : screenSize === "tablet"
+        ? imageConfig.tablet
+        : imageConfig.desktop;
   }, [imageConfig, screenSize]);
 
+  
   return (
-    <section className="relative flex h-[76vh]  md:h-[44vh] lg:h-[78vh] w-full items-center overflow-hidden overflow-x-hidden max-w-full">
+    <section className="relative flex w-full aspect-[100/123] sm:aspect-[16/6] lg:aspect-[16/6] xl:aspect-[16/5.5] items-center overflow-hidden overflow-x-hidden max-w-full bg-neutral-900">
       {/* Single Banner Image */}
       <div className="absolute inset-0 overflow-hidden z-10">
-        <div className="relative h-full w-full">
+        <div className="relative w-full h-full">
           <Image
             src={imageSrc}
             alt={imageConfig.alt}
             fill
             priority
-            className="h-full w-full object-cover md:max-lg:object-center"
+            className=" w-full object-cover"
             sizes="100vw"
             quality={100}
           />
@@ -72,8 +73,8 @@ function S1() {
       <div
         className={`pointer-events-none absolute z-30 lg:bottom-10 bottom-0 left-1/2 -translate-x-1/2 hidden sm:flex `}
       >
-        
-          {/* <div className="flex justify-center gap-8 w-full items-center px-12">
+
+        {/* <div className="flex justify-center gap-8 w-full items-center px-12">
             <div className="flex border-r-2 border-white px-4">
               <svg
                 width="24"
@@ -97,37 +98,43 @@ function S1() {
               </p>
             </div>
           </div> */}
-        </div>
-      
+      </div>
 
+
+ 
       {/* Right Side Content on Holi Banner */}
-      <div className="absolute inset-0 z-30 flex justify-end items-center max-[480px]:justify-center max-[480px]:items-end max-[480px]:pb-6 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-14 pointer-events-none">
-        <div className="w-[92%] sm:w-[64%] md:w-[46%] lg:w-[38%] xl:w-[34%] ml-auto max-[480px]:mx-auto flex flex-col items-end max-[480px]:items-center text-right max-[480px]:text-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+      <div className="absolute inset-0 z-30 flex items-end md:items-center justify-center md:justify-end px-4 sm:px-6 md:pl-10 md:pr-3 lg:pl-16 lg:pr-4 xl:pl-24 xl:pr-6 2xl:pr-8 pb-10 sm:pb-12 md:pb-0">
+
+        <div className="w-full md:max-w-[520px] flex flex-col items-center md:items-end text-center md:text-right gap-4 sm:gap-5 lg:gap-6">
+
           <h2
-            className="text-white font-[800] text-[20px] sm:text-[22px] md:text-[20px] lg:text-[25px] leading-[1.5] uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
-            style={{ fontFamily: "MontserratExtraBold" }}
+            className="text-white font-[700] text-[19px] sm:text-[20px] md:text-[22px] lg:text-[25px] leading-[1.5] uppercase drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
+            style={{ fontFamily: "MontserratBold" }}
           >
             Beyond Your Typical <br className="hidden lg:block" /> Advertising Agency
           </h2>
 
-          <div className="flex justify-end max-[480px]:justify-center gap-3 sm:gap-4 pointer-events-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pointer-events-auto">
+
             <button
               onClick={() =>
                 window.open("https://ritzmediaworld.com/contact.html", "_blank")
               }
-              className="inline-flex cursor-pointer justify-center items-center gap-2 rounded-[8px] bg-[#C99237] hover:bg-[#b8822f] py-2.5 sm:py-3 text-white transition w-[150px] sm:w-[165px] md:w-[170px] lg:w-[195px] xl:w-[210px] text-[13px] sm:text-[14px] lg:text-[16px]"
+              className="inline-flex justify-center items-center gap-2 rounded-[10px] bg-[#C99237] hover:bg-[#b8822f] px-6 py-3 text-white font-medium transition-all duration-300 shadow-lg hover:scale-105"
             >
-              Free Consulting <MoveRight className="h-4 w-4 sm:h-5 sm:w-5" />
+              Free Consulting
             </button>
+
             <button
               onClick={() =>
                 window.open("https://ritzmediaworld.com/web-stories", "_blank")
               }
-              className="inline-flex liquid3 cursor-pointer justify-center items-center bg-white/95 hover:bg-white gap-2 rounded-[8px] w-[150px] sm:w-[165px] md:w-[170px] lg:w-[195px] xl:w-[210px] py-2.5 sm:py-3 text-[#8B1A1A] transition text-[13px] sm:text-[14px] lg:text-[16px]"
+              className="inline-flex justify-center items-center gap-2 rounded-[10px] bg-white hover:bg-gray-100 px-6 py-3 text-[#8B1A1A] font-medium transition-all duration-300 shadow-lg hover:scale-105"
             >
-              <Play className="h-4 w-4 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+              <Play className="h-4 w-4" />
               Watch Our Story
             </button>
+
           </div>
         </div>
       </div>
