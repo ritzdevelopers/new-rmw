@@ -50,6 +50,7 @@ function S1() {
         : imageConfig.desktop;
   }, [imageConfig, screenSize]);
 
+  
   return (
     <section className="relative flex w-full aspect-[100/123] sm:aspect-[16/6] lg:aspect-[16/6] xl:aspect-[16/5.5] items-center overflow-hidden overflow-x-hidden max-w-full bg-neutral-900">
       {/* Single Banner Image */}
