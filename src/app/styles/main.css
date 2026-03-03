@@ -19871,21 +19871,13 @@ input.search-input-field {
   z-index: -1;
 }
 
-.tp-footer__wrap {
-  margin: 0 77px;
+.tp-footer__wrap { 
   background: #0F1640;
-  border-radius: 12px;
-}
-
-.tp-footer__wrap.tp-footer__wrap-unset {
-  margin: unset;
-  border-radius: unset;
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
-  .tp-footer__wrap {
-    margin: 0 35px;
-  }
+
+ 
 
   .tp-footer__wrap.tp-footer__wrap-unset {
     margin: unset;

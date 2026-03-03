@@ -6081,25 +6081,11 @@ input.search-input-field {
 }
 
 .tp-footer__wrap {
-  margin: 0 77px;
   background: #0F1640;
-  border-radius: 12px;
-}
-
-.tp-footer__wrap.tp-footer__wrap-unset {
-  margin: unset;
-  border-radius: unset;
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1599px) {
-  .tp-footer__wrap {
-    margin: 0 35px;
-  }
-
-  .tp-footer__wrap.tp-footer__wrap-unset {
-    margin: unset;
-    border-radius: unset;
-  }
+ 
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px),
@@ -6108,8 +6094,6 @@ input.search-input-field {
   only screen and (min-width: 576px) and (max-width: 767px),
   (max-width: 575px) {
   .tp-footer__wrap {
-    margin: 0;
-    border-radius: 0;
   }
 }
 
