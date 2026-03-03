@@ -16,6 +16,7 @@ function S1() {
       } else if (width < 1024) {
         setScreenSize("tablet");
       } else {
+        
         setScreenSize("desktop");
       }
     };
