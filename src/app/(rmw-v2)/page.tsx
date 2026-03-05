@@ -24,8 +24,8 @@ async function page() {
       {/* <PageAnimations /> */}
       {/* Hero Section - Full Width */}
       {/* <S1></S1> */}
-      <NewYear></NewYear>
-      {/* <S1></S1> */}
+      {/* <NewYear></NewYear> */}
+      <S1></S1>
       {/* <NewYear></NewYear>  */}
       <div>
         <S2></S2>
