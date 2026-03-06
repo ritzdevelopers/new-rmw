@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Download } from "lucide-react";
+import styles from "./Section4.module.css";
 
 const validatePhone = (phoneNumber: string): string => {
   const digitsOnly = phoneNumber.replace(/\D/g, "");
@@ -126,9 +127,9 @@ export default function Section8() {
 
   return (
     <section className="w-full bg-white flex justify-center items-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-0">
-      <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10">
+      <div className={`w-full max-w-[1300px] mx-auto flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10 overflow-hidden ${styles.containerWidth}`}>
         {/* Left – 2026 Brand Impact Report */}
-        <div className="w-full lg:w-[48%] xl:w-[603px] min-h-auto lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around gap-3 sm:gap-4 lg:gap-0 px-4 sm:px-5 md:px-6 lg:px-8 py-6 sm:py-7 lg:py-8">
+        <div className="w-full lg:w-[48%] min-w-0 min-h-auto lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around gap-3 sm:gap-4 lg:gap-0 px-4 sm:px-5 md:px-6 lg:px-8 py-6 sm:py-7 lg:py-8">
           <div className="text-center md:text-left mb-2 md:mb-0">
             <p
               className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237]"
@@ -204,7 +205,7 @@ export default function Section8() {
         </div>
 
         {/* Right – Brand Audit */}
-        <div className="w-full lg:w-[48%] xl:w-[603px] lg:h-[526px] border border-[#D4D4D4] bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-4 sm:px-6 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
+        <div className="w-full lg:w-[48%] min-w-0 lg:h-[526px] border border-[#D4D4D4] bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-4 sm:px-6 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
           <h2
             className="font-[700] text-[22px] sm:text-[26px] md:text-[28px] lg:text-[36px] text-center md:text-left"
             style={{ fontFamily: "MontserratBold" }}

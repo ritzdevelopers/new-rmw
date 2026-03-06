@@ -1,5 +1,6 @@
 import Image from "next/image";
 import BrandThatTrustUs from "@/components/influencer-marketing-agency-in-india/BrandThatTrustUs";
+import styles from "@/components/shared/container.module.css";
 import Section5 from "@/components/influencer-marketing-agency-in-india/Section5";
 import Section8 from "../influencer-marketing-agency-in-india/Section8";
 import Section7 from "../influencer-marketing-agency-in-india/Section7";
@@ -35,8 +36,8 @@ const rampOffsets = ["lg:mt-[180px]", "lg:mt-[120px]", "lg:mt-[60px]", "lg:mt-[0
 
 export default function Section4() {
   return (
-    <section className="w-full bg-white py-14 sm:py-16 md:py-20 overflow-hidden">
-      <div className="mx-auto w-[94%] sm:w-[92%] md:w-[90%] lg:w-[88%] xl:w-[84%] max-w-[1280px]">
+    <section className="w-full bg-white py-14 sm:py-16 md:py-20 overflow-x-hidden flex flex-col items-center">
+      <div className={`w-full max-w-[1300px] mx-auto ${styles.containerWidth}`}>
         <h2
           className="text-center text-black font-[700] text-[38px] sm:text-[44px] md:text-[50px] lg:text-[52px] leading-[1.1]"
           style={{ fontFamily: "MontserratBold" }}
@@ -102,14 +103,14 @@ export default function Section4() {
           />
         </div>
       </div>
-      <div className="mt-2">
+      <div className="mt-2 w-full">
         <BrandThatTrustUs/>
       </div>
-      <div className="mt-2">
+      <div className="mt-2 w-full">
         <Section5/>
       </div>
-      <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9">
-        <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[88%] xl:w-[86%] mx-auto flex items-center justify-center text-center">
+      <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center">
+        <div className={`w-full max-w-[1300px] mx-auto flex items-center justify-center text-center ${styles.containerWidth}`}>
           <h3
             className="text-white font-[600] text-[22px] sm:text-[28px] md:text-[34px] leading-tight"
             style={{ fontFamily: "MontserratSemiBold" }}
@@ -118,10 +119,10 @@ export default function Section4() {
           </h3>
         </div>
       </section>
-      <div>
+      <div className="w-full">
         <Section7/>
       </div>
-      <div>
+      <div className="w-full">
         <Section8/>
       </div>
     </section>

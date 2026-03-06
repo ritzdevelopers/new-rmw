@@ -42,7 +42,7 @@ export default function Section7() {
 
   return (
     <section className="w-full lg:min-h-[647px] bg-[url(/services-v3-slug/award-bg.png)] bg-cover bg-no-repeat bg-center bg-black flex justify-center items-center py-10 lg:py-[70px] px-4 sm:px-6 lg:px-0">
-      <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto flex flex-col gap-6">
+      <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto flex flex-col gap-6 ${styles.containerWidth}`}>
         {/* Top Row */}
         <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
           <div className="text-center md:text-left">

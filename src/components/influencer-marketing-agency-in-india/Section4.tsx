@@ -1,4 +1,5 @@
 import BrandThatTrustUs from "./BrandThatTrustUs";
+import styles from "@/components/shared/container.module.css";
 
 type Card = {
   title: string;
@@ -42,8 +43,8 @@ const cards: Card[] = [
 export default function Section4() {
   return (
     <>
-      <section className="w-full bg-white py-10 sm:py-12 md:py-16">
-        <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[88%] xl:w-[86%] mx-auto">
+      <section className="w-full bg-white py-10 sm:py-12 md:py-16 flex justify-center">
+        <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[88%] xl:w-[86%] mx-auto ${styles.containerWidth}`}>
           <div className="flex flex-wrap">
             {cards.map((card) => (
               <div
@@ -114,8 +115,8 @@ export default function Section4() {
         </div>
       </section>
       <BrandThatTrustUs />
-      <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9">
-        <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[88%] xl:w-[86%] mx-auto flex items-center justify-center text-center">
+      <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center">
+        <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[88%] xl:w-[86%] mx-auto flex items-center justify-center text-center ${styles.containerWidth}`}>
           <h3
             className="text-white font-[600] text-[22px] sm:text-[28px] md:text-[34px] leading-tight"
             style={{ fontFamily: "MontserratSemiBold" }}

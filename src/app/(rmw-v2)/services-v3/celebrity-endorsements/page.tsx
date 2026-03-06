@@ -5,12 +5,11 @@ import Section4 from "@/components/celebrity-endorsements/Section4";
 
 export default function Page() {
     return (
-        <main className="w-full overflow-x-hidden">
-            <Section1/>
+        <>
+            <Section1 />
             <Section2 />
             <Section3 />
             <Section4 />
-        
-        </main>
+        </>
     )
 }

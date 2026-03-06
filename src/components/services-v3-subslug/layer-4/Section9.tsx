@@ -1,9 +1,11 @@
 "use client";
 
+import styles from "./Section4.module.css";
+
 export default function Section9() {
   return (
     <section className="w-full flex justify-center items-center py-12 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-0">
-      <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto flex justify-center items-center">
+      <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto flex justify-center items-center ${styles.containerWidth}`}>
         <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-12">
           <h2
             className="font-[800] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[36px]"

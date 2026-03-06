@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./Section6.css";
+import styles from "./Section6.module.css";
 import { Pagination, Autoplay } from "swiper/modules";
 
 const testimonialData = [
@@ -32,8 +33,8 @@ const testimonialData = [
 
 export default function Section6() {
   return (
-    <section className="w-full bg-[#F7F7F7] py-10 sm:py-12">
-      <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto flex flex-col">
+    <section className="w-full bg-[#F7F7F7] py-10 sm:py-12 flex justify-center">
+      <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto flex flex-col ${styles.containerWidth}`}>
         {/* Top Row */}
         <div className="flex flex-col gap-2 text-center md:text-left">
           <p

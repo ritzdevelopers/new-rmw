@@ -10,18 +10,15 @@ import Section8 from "@/components/influencer-marketing-agency-in-india/Section8
 // import Section9 from "@/components/services-v3-subslug/layer-4/Section9";
 export default function Page() {
   return (
-    <main className="w-full overflow-x-hidden">
-      {/* <PageAnimations /> */}
-      <Section1/>
-      <Section2/>
-      <Section3/>
-      <Section4/>
-      <Section5/>
-      <Section6/>
-      <Section7/>
-      <Section8/>
-      {/* <Section9/> */}
-      
-    </main>
+    <>
+      <Section1 />
+      <Section2 />
+      <Section3 />
+      <Section4 />
+      <Section5 />
+      <Section6 />
+      <Section7 />
+      <Section8 />
+    </>
   );
 }

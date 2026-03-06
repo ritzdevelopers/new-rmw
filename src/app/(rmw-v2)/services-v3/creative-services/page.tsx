@@ -11,8 +11,7 @@ import Section9 from "@/components/services-v3-subslug/layer-4/Section9";
 
 export default function Page() {
   return (
-    <main className="w-full overflow-x-hidden">
-      {/* <PageAnimations /> */}
+    <>
       <Section1 />
       <Section2 />
       <Section3 />
@@ -22,6 +21,6 @@ export default function Page() {
       <Section7 />
       <Section8 />
       <Section9 />
-    </main>
+    </>
   );
 }
