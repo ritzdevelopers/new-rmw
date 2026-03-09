@@ -1,6 +1,7 @@
 "use client";
 import { CiSearch } from "react-icons/ci";
 import S2Card from "./cards/S2Card";
+import S2CardSkeleton from "./cards/S2CardSkeleton";
 import styles from "./page.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -21,7 +22,7 @@ function Section2() {
             description: blog.description || blog.blogDescription,
         }));
     }
-
+    
     const fetchBlogs = async () => {
         try {
             setLoadingState(true);
@@ -49,25 +50,38 @@ function Section2() {
                 {/* Row 1 For Search Filter  */}
                 <div className="w-full flex justify-center items-center">
                     <div className="w-full max-w-[342px] h-[46px] border border-[#D0CFCF] rounded-full flex items-center gap-3 px-5 focus-within:border-[#0F1640]/40 focus-within:ring-2 focus-within:ring-[#0F1640]/10 transition-shadow">
-                        <CiSearch className="w-[22px] h-[22px] text-[#6B6B6B] shrink-0" />
+                        <CiSearch className="w-[22px] h-[22px] text-[#484848] shrink-0" />
                         <input
                             type="text"
-                            placeholder="Search here..."
-                            className="flex-1 h-full outline-none bg-transparent text-[14px] font-[400] text-[#484848] placeholder:text-[#9CA3AF]"
+                            placeholder="Search by title ..."
+                            className="flex-1 h-full outline-none bg-transparent text-[14px] font-[400] text-[#484848] placeholder:text-[#484848]"
                         />
                     </div>
                 </div>
 
                 {/* Row 2 For Cards - 1 col below sm, 2 cols from sm  */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
-                 {blogs && blogs.length > 0 && blogs.map((blog) => (
-                    <S2Card key={blog.slug} blog={blog} />
-                 ))}
-                    <div
-                        onClick={fetchBlogs}
-                        className="col-span-1 sm:col-span-2 flex justify-center items-center py-4 text-center border-t border-b border-[#D3D9FF] cursor-pointer mt-6 sm:mt-10">
-                        {loadingState ? <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Loading...</p> : <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Load more</p>}
-                    </div>
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-2">
+                    {loadingState && blogs.length === 0 ? (
+                        <>
+                            {[1, 2, 3, 4].map((i) => (
+                                <S2CardSkeleton key={i} />
+                            ))}
+                            <div className="col-span-1 sm:col-span-2 flex justify-center items-center py-4 text-center border-t border-b border-[#D3D9FF] mt-6 sm:mt-10">
+                                <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Loading...</p>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            {blogs && blogs.length > 0 && blogs.map((blog) => (
+                                <S2Card key={blog.slug} blog={blog} />
+                            ))}
+                            <div
+                                onClick={fetchBlogs}
+                                className="col-span-1 sm:col-span-2 flex justify-center items-center py-4 text-center border-t border-b border-[#D3D9FF] cursor-pointer mt-6 sm:mt-10">
+                                {loadingState ? <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Loading...</p> : <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Load more</p>}
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
 

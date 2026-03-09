@@ -10,11 +10,9 @@ export async function GET(req: NextRequest) {
         await connectMongoDB();
         const page = Number(req.nextUrl.searchParams.get("page")) || 1;
         const limit = 10;
-
         // MongoDB total blogs
         let mongoTotal = Number(await redisClient.get("rest_blogs_length"));
-        console.log("Page", page);
-        console.log("MongoTotal", mongoTotal);
+
         if (!mongoTotal || mongoTotal === 0) {
             mongoTotal = await RitzBlogModel.countDocuments({ blogStatus: true });
             console.log("MongoTotal Feched", mongoTotal);

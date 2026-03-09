@@ -6,8 +6,8 @@ import { FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import { LuLink } from "react-icons/lu";
 import { useState } from "react";
+import styles from "../page.module.css";
 
-/** Strip HTML tags and return plain text only (safe for display). */
 function stripHtml(html: string): string {
     if (typeof html !== "string") return "";
     const tmp = html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
@@ -23,6 +23,12 @@ interface Blog {
     banner: string;
     description: string;
 }
+
+// src={
+//     blog.banner.includes("/images")
+//         ? `/api/images${blog.banner.split("/images")[1]}`
+//         : `/blogs/${blog.banner}`
+// }
 
 function S2Card({ blog }: { blog: Blog }) {
     const [shareModalOpen, setShareModalOpen] = useState(false);
@@ -49,7 +55,6 @@ function S2Card({ blog }: { blog: Blog }) {
         }
     };
 
-    /** Try native share (opens system sheet with Instagram, etc. on mobile); fallback to copy. */
     const handleShareInstagram = async () => {
         if (!shareUrl) return;
         const sharePayload = {
@@ -63,7 +68,7 @@ function S2Card({ blog }: { blog: Blog }) {
                 setShareModalOpen(false);
                 return;
             } catch (err) {
-                if ((err as Error)?.name === "AbortError") return; // user cancelled
+                if ((err as Error)?.name === "AbortError") return; 
             }
         }
         await handleCopyLink();
@@ -75,23 +80,24 @@ function S2Card({ blog }: { blog: Blog }) {
     const preview = plainDescription.length > 100 ? `${plainDescription.slice(0, 100)}...` : plainDescription;
 
     return (
-        <div className="w-full max-w-[613px] mx-auto flex flex-col gap-4 sm:gap-5 lg:gap-6 mb-4">
+        <div className="w-full max-w-[613px] mx-auto flex flex-col gap-4 sm:gap-5 lg:gap-6 mb-12">
             {/* Top Row  */}
             <div className="w-full flex flex-col gap-3 sm:gap-4 lg:gap-5">
                 {/* Image Here  */}
                 <div className="w-full relative h-[220px] sm:h-[200px] lg:h-[250px] xl:h-[345px] overflow-hidden">
-                    <Image src={
-                     blog.banner.includes("/images")
-                       ? `/api/images${blog.banner.split("/images")[1]}`
-                       : `/blogs/${blog.banner}`
-                   } alt="Blog Image" fill className="" />
+                    <Image
+                       src="/blogs2/s2/s2-img.jpg"
+                        quality={75}
+                        priority={false}
+                        loading="lazy"
+                        alt="Blog Image" fill className="" />
                 </div>
 
-                <h2 className="font-[700] text-[18px] sm:text-[17px] lg:text-[22px] leading-[1.3] text-[#0F1640] max-w-[500px]">
+                <h2 className={`font-[700] text-[18px] sm:text-[17px] lg:text-[22px] leading-[1.3] text-[#0F1640] max-w-[500px] ${styles.fontmontserrat}`}>
                     {blog.title}
                 </h2>
 
-                <p className="font-[400] text-[14px] sm:text-[14px] lg:text-[16px] leading-[1.6] text-[#000000] max-w-[540px]">
+                <p className={`font-[400] text-[14px] sm:text-[14px] lg:text-[16px] leading-[1.6] text-[#000000] max-w-[540px] ${styles.fontopensans}`}>
                     {preview}
                 </p>
             </div>
@@ -99,13 +105,13 @@ function S2Card({ blog }: { blog: Blog }) {
             <div className="flex  items-center gap-2 lg:gap-6 pt-1">
                 {/* Div 1  */}
                 <div>
-                    <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-[#000000]">{new Date(blog.created_at).toLocaleDateString()}</p>
+                    <p className={`font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-[#000000] ${styles.fontopensans}`}>{new Date(blog.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
                 </div>
 
                 {/* Div 2  */}
                 <div className="pl-4 sm:pl-5 lg:pl-6 pr-4 sm:pr-5 lg:pr-6 border-l border-r border-[#B4B4B4]">
                     <button onClick={() => window.open(`/${blog.slug}`, "_blank")} className="flex justify-center items-center gap-2 sm:gap-3 cursor-pointer hover:opacity-90 transition-opacity">
-                        <p className="font-[500] text-[16px] sm:text-[14px] lg:text-[18px] text-[#0F1640]">Read more</p>
+                        <p className={`font-[500] text-[16px] sm:text-[14px] lg:text-[18px] text-[#0F1640] ${styles.fontmontserrat}`}>Read more</p>
                         <div className="w-[36px] h-[36px] sm:w-[38px] sm:h-[38px] lg:w-[40px] lg:h-[40px] bg-[#C99237] flex justify-center items-center rounded-full shrink-0">
                             <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[18px] h-[16px] sm:w-[20px] sm:h-[18px] lg:w-[22px] lg:h-[20px]">
                                 <path d="M19.4276 2.92383L17.1346 9.08052L12.9492 4.01635L19.4276 2.92383Z" fill="white" />
@@ -134,7 +140,7 @@ function S2Card({ blog }: { blog: Blog }) {
                         <div className="flex justify-between items-center mb-5">
                             <h3 id="share-modal-title" className="font-[600] text-[18px] text-[#0F1640]">Share this blog</h3>
                             <button type="button" onClick={() => setShareModalOpen(false)} className="p-1 rounded-full hover:bg-gray-100" aria-label="Close">
-                                <IoMdClose className="w-6 h-6 text-[#0F1640]" />
+                                <IoMdClose className="w-6 h-6 text-[#0F1640] cursor-pointer" />
                             </button>
                         </div>
                         <p className="text-[14px] text-gray-600 mb-4 line-clamp-2">{shareTitle}</p>
@@ -151,12 +157,12 @@ function S2Card({ blog }: { blog: Blog }) {
                             <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.preventDefault(); openShare(shareLinks.linkedin); }} className="w-12 h-12 rounded-full bg-[#0A66C2] flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Share on LinkedIn" title="Share on LinkedIn">
                                 <FaLinkedinIn className="w-5 h-5" />
                             </a>
-                            <button type="button" onClick={handleShareInstagram} className="w-12 h-12 rounded-full bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF] flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Share via Instagram or copy link" title="Share (Instagram, Stories, or copy link)">
+                            <button type="button" onClick={handleShareInstagram} className="w-12 h-12 rounded-full bg-gradient-to-br from-[#F58529] via-[#DD2A7B] to-[#8134AF] flex cursor-pointer items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Share via Instagram or copy link" title="Share (Instagram, Stories, or copy link)">
                                 <FaInstagram className="w-5 h-5" />
                             </button>
                         </div>
                         <div className="mt-4 pt-4 border-t border-gray-200">
-                            <button type="button" onClick={handleCopyLink} className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-[#0F1640] font-[500] text-[14px] transition-colors">
+                            <button type="button" onClick={handleCopyLink} className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg bg-gray-100 cursor-pointer hover:bg-gray-200 text-[#0F1640] font-[500] text-[14px] transition-colors">
                                 <LuLink className="w-4 h-4 shrink-0" />
                                 Copy URL only
                             </button>
