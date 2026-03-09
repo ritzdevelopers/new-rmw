@@ -2,8 +2,44 @@
 import { CiSearch } from "react-icons/ci";
 import S2Card from "./cards/S2Card";
 import styles from "./page.module.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Section2() {
+    const [page, setPage] = useState<number>(0);
+    const [loadingState, setLoadingState] = useState<boolean>(false);
+    const [blogs, setBlogs] = useState<any[]>([]);
+
+    function normalizeMongoMsqlBlogs(blogs: any[]): any[] {
+        return blogs.map((blog) => ({
+            title: blog.title || blog.blogTitle,
+            slug: blog.slug || blog.blogSlug,
+            meta_description: blog.meta_description || blog.mtDesc,
+            meta_keywords: blog.meta_keywords || blog.metaKeywords, 
+            created_at: blog.created_at || blog.createdAt,
+            banner: blog.blog_image || blog.blogBanner,
+            description: blog.description || blog.blogDescription,
+        }));
+    }
+
+    const fetchBlogs = async () => {
+        try {
+            setLoadingState(true);
+            const nextPage = page + 1;
+            const response = await axios.get(`/api/get_all_blogs?page=${nextPage}`);
+            setPage(nextPage);
+            setBlogs([...blogs, ...normalizeMongoMsqlBlogs(response.data.blogs)]);
+        } catch (error) {
+            console.error("Error in fetching blogs", error);
+        } finally {
+            setLoadingState(false);
+        }
+    }
+    useEffect(() => {
+        fetchBlogs();
+    }, []);
+
+    console.log("blogs", blogs);
     return (
         <section className="w-full flex justify-center items-center   py-16 md:py-[70px]">
 
@@ -24,14 +60,13 @@ function Section2() {
 
                 {/* Row 2 For Cards - 1 col below sm, 2 cols from sm  */}
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <S2Card />
-                    <S2Card />
-                    <S2Card />
-                    <S2Card />
-                    <S2Card />
-                    <S2Card />
-                    <div className="col-span-1 sm:col-span-2 flex justify-center items-center py-4 text-center border-t border-b border-[#D3D9FF] cursor-pointer mt-6 sm:mt-10">
-                        <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Load more</p>
+                 {blogs && blogs.length > 0 && blogs.map((blog) => (
+                    <S2Card key={blog.slug} blog={blog} />
+                 ))}
+                    <div
+                        onClick={fetchBlogs}
+                        className="col-span-1 sm:col-span-2 flex justify-center items-center py-4 text-center border-t border-b border-[#D3D9FF] cursor-pointer mt-6 sm:mt-10">
+                        {loadingState ? <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Loading...</p> : <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Load more</p>}
                     </div>
                 </div>
             </div>
