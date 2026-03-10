@@ -1,8 +1,8 @@
 import BlogInner from "@/components/blogs/inner/BlogInner"; 
-function Page() {
+function Page({ params, }: { params: { slug: string, category: string } }) {
     return (
         <>
-            <BlogInner />
+            <BlogInner slug={params.slug} category={params.category} />
         </>
     )
 }
