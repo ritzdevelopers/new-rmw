@@ -86,7 +86,10 @@ function S2Card({ blog }: { blog: Blog }) {
                 {/* Image Here  */}
                 <div className="w-full relative h-[220px] sm:h-[200px] lg:h-[250px] xl:h-[345px] overflow-hidden">
                     <Image
-                       src="/blogs2/s2/s2-img.jpg"
+                       src={blog.banner.includes("/images")
+                        ? `/api/images${blog.banner.split("/images")[1]}`
+                        : `/blogs/${blog.banner}`
+                    }
                         quality={75}
                         priority={false}
                         loading="lazy"

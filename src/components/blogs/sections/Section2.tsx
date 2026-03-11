@@ -1,7 +1,7 @@
 "use client";
 import { CiSearch } from "react-icons/ci";
 import S2Card from "./cards/S2Card";
-import S2CardSkeleton from "./cards/S2CardSkeleton";
+import LoadingLinesAndDots from "@/components/ui/LoadingLinesAndDots";
 import styles from "./page.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -40,7 +40,6 @@ function Section2() {
         fetchBlogs();
     }, []);
 
-    console.log("blogs", blogs);
     return (
         <section className="w-full flex justify-center items-center   py-16 md:py-[70px]">
 
@@ -62,14 +61,9 @@ function Section2() {
                 {/* Row 2 For Cards - 1 col below sm, 2 cols from sm  */}
                 <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-2">
                     {loadingState && blogs.length === 0 ? (
-                        <>
-                            {[1, 2, 3, 4].map((i) => (
-                                <S2CardSkeleton key={i} />
-                            ))}
-                            <div className="col-span-1 sm:col-span-2 flex justify-center items-center py-4 text-center border-t border-b border-[#D3D9FF] mt-6 sm:mt-10">
-                                <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Loading...</p>
-                            </div>
-                        </>
+                        <div className="col-span-1 sm:col-span-2 flex justify-center items-center min-h-[280px] py-12">
+                            <LoadingLinesAndDots className="text-[#0F1640]" />
+                        </div>
                     ) : (
                         <>
                             {blogs && blogs.length > 0 && blogs.map((blog) => (
@@ -78,7 +72,13 @@ function Section2() {
                             <div
                                 onClick={fetchBlogs}
                                 className="col-span-1 sm:col-span-2 flex justify-center items-center py-4 text-center border-t border-b border-[#D3D9FF] cursor-pointer mt-6 sm:mt-10">
-                                {loadingState ? <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Loading...</p> : <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Load more</p>}
+                                {loadingState ? (
+                                    <div className="flex justify-center">
+                                        <LoadingLinesAndDots className="text-[#0F1640] w-[6em] h-[6em]" />
+                                    </div>
+                                ) : (
+                                    <p className="font-[600] text-[16px] sm:text-[18px] text-[#0F1640]">Load more</p>
+                                )}
                             </div>
                         </>
                     )}

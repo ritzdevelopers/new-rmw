@@ -3,34 +3,15 @@ import Section2 from "./sections/Section2";
 import Section3 from "./sections/Section3";
 
 
-function BlogInner({ slug , category }: { slug: string, category: string }) {
+function BlogInner({ slug , category, blog, categoryName, all_categories, latest_3_blogs, related_blogs, all_blogs }: { slug: string, category: string, blog: any, categoryName: string, all_categories: any, latest_3_blogs: any, related_blogs: any, all_blogs: any }) {
 
-    const dummyBlogs = [
-        {
-            blogTitle: "Rise and Fall of Micromax: A Case Study in the Indian..",
-            blogBanner: "/inner-demo-img.jpg",
-            blogSlug: "rise-and-fall-of-micromax-a-case-study-in-the-indian",
-            createdAt: new Date(),
-        },
-        {
-            blogTitle: "Rise and Fall of Micromax: A Case Study in the Indian..",
-            blogBanner: "/inner-demo-img.jpg",
-            blogSlug: "rise-and-fall-of-micromax-a-case-study-in-the-indian",
-            createdAt: new Date(),
-        },
-        {
-            blogTitle: "Rise and Fall of Micromax: A Case Study in the Indian..",
-            blogBanner: "/inner-demo-img.jpg",
-            blogSlug: "rise-and-fall-of-micromax-a-case-study-in-the-indian",
-            createdAt: new Date(),
-        },
-    ];
-   
+    const { title, blogSlug,  meta_description, meta_keywords } = blog;
+
     return (
         <>
-            <Banner title="260° Audio Branding Strategy" />
-            <Section2 slug={slug} category={category} />
-            <Section3 blogs={dummyBlogs} blogsLoading={false} />
+            <Banner title={blog?.title || blog?.blogTitle || ""} />
+            <Section2 slug={slug} category={category} blog={blog} all_categories={all_categories} related_blogs={related_blogs} all_blogs={all_blogs} />
+            <Section3 blogs={latest_3_blogs} />
         </>
     )
   }
