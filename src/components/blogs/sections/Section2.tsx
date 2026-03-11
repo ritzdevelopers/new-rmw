@@ -6,7 +6,7 @@ import styles from "./page.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function Section2() {
+function Section2({ all_blogs }: { all_blogs: any[] }) {
     const [page, setPage] = useState<number>(0);
     const [loadingState, setLoadingState] = useState<boolean>(false);
     const [blogs, setBlogs] = useState<any[]>([]);
@@ -16,13 +16,13 @@ function Section2() {
             title: blog.title || blog.blogTitle,
             slug: blog.slug || blog.blogSlug,
             meta_description: blog.meta_description || blog.mtDesc,
-            meta_keywords: blog.meta_keywords || blog.metaKeywords, 
+            meta_keywords: blog.meta_keywords || blog.metaKeywords,
             created_at: blog.created_at || blog.createdAt,
             banner: blog.blog_image || blog.blogBanner,
             description: blog.description || blog.blogDescription,
         }));
     }
-    
+
     const fetchBlogs = async () => {
         try {
             setLoadingState(true);
@@ -40,6 +40,14 @@ function Section2() {
         fetchBlogs();
     }, []);
 
+
+    const [searchValue, setSearchValue] = useState<string>("");
+    const [filteredBlogs, setFilteredBlogs] = useState<any[]>([]);
+    useEffect(() => {
+        const list = all_blogs ?? [];
+        const filtered = list.filter((blog: any) => (blog?.title ?? "").toLowerCase().includes((searchValue ?? "").toLowerCase()));
+        setFilteredBlogs(filtered.slice(0, 10));
+    }, [searchValue, all_blogs]);
     return (
         <section className="w-full flex justify-center items-center   py-16 md:py-[70px]">
 
@@ -54,6 +62,7 @@ function Section2() {
                             type="text"
                             placeholder="Search by title ..."
                             className="flex-1 h-full outline-none bg-transparent text-[14px] font-[400] text-[#484848] placeholder:text-[#484848]"
+                            onChange={(e) => setSearchValue(e.target.value)}
                         />
                     </div>
                 </div>
@@ -66,9 +75,17 @@ function Section2() {
                         </div>
                     ) : (
                         <>
-                            {blogs && blogs.length > 0 && blogs.map((blog) => (
-                                <S2Card key={blog.slug} blog={blog} />
-                            ))}
+                            {
+
+                                searchValue && filteredBlogs && filteredBlogs.length > 0 && filteredBlogs.map((blog: any) => (
+                                    <S2Card key={blog.slug || blog.blogSlug} blog={blog} />
+                                ))
+                            }
+                            {
+                                !searchValue && blogs && blogs.length > 0 && blogs.map((blog: any) => (
+                                    <S2Card key={blog.slug} blog={blog} />
+                                ))
+                            }
                             <div
                                 onClick={fetchBlogs}
                                 className="col-span-1 sm:col-span-2 flex justify-center items-center py-4 text-center border-t border-b border-[#D3D9FF] cursor-pointer mt-6 sm:mt-10">

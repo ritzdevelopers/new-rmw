@@ -5,7 +5,6 @@ import Image from "next/image";
 import { CiSearch } from "react-icons/ci";
 import styles from "../../sections/page.module.css";
 
-
 interface Blog {
     title: string;
     slug: string;
@@ -42,10 +41,10 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
     useEffect(() => {
         const list = all_blogs ?? [];
         const filtered = list.filter((blog: any) => (blog?.title ?? "").toLowerCase().includes((searchValue ?? "").toLowerCase()));
-        setFilteredBlogs(filtered);
+        setFilteredBlogs(filtered.slice(0, 5));
     }, [searchValue, all_blogs]);
     return (
-        <section className="w-full py-8 sm:py-10 md:py-12 lg:py-14 xl:py-[70px] flex justify-center items-center ">
+        <section className="w-full pt-8 sm:pt-10 md:pt-12 lg:pt-14 xl:pt-[70px] flex justify-center items-center ">
             {/* Centered Align Container  */}
             <div className={`w-full  relative flex flex-col lg:flex-row xl:justify-between xl:items-start gap-8 sm:gap-10 lg:gap-12 xl:gap-14 ${styles.containerWidth}`}>
 
@@ -57,7 +56,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                             <Image src={formattedBlog?.banner?.includes("/images")
                                 ? `/api/images${formattedBlog.banner.split("/images")[1]}`
                                 : formattedBlog?.banner ? `/blogs/${formattedBlog.banner}` : "/inner-demo-img.jpg"
-                            } alt="Blog Image" fill className="object-cover w-full h-full" />
+                            } alt="Blog Image" fill className="w-full h-full" />
                         </div>
 
                         <div className="flex gap-3 sm:gap-4 w-full items-center flex-wrap">
@@ -181,8 +180,8 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
 
                                             {/* Right Side Image Container  */}
                                             <div className="flex flex-col gap-1 sm:gap-2 justify-center items-start min-w-0 flex-1">
-                                                <h3 className={`font-[600] text-[13px] sm:text-[14px] xl:text-[16px] text-[#000000] ${styles.fontopensans} line-clamp-2 group-hover:text-[#0F1640] transition-colors`}>{blog.title}</h3>
-                                                <p className={`font-[400] text-[11px] sm:text-[12px] text-[#535353] ${styles.fontopensans}`}>{new Date(blog.created_at || "").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
+                                                <h3 className={`font-[600] text-[13px] sm:text-[14px] xl:text-[16px] text-[#000000] ${styles.fontopensans} line-clamp-2 group-hover:text-[#0F1640] transition-colors`}>{blog.title || blog.blogTitle}</h3>
+                                                <p className={`font-[400] text-[11px] sm:text-[12px] text-[#535353] ${styles.fontopensans}`}>{new Date(blog.created_at || blog.createdAt || "").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
                                             </div>
                                         </div>
                                     )

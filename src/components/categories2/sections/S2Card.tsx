@@ -6,7 +6,7 @@ import { FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import { LuLink } from "react-icons/lu";
 import { useState } from "react";
-import styles from "../page.module.css";
+import styles from "./page.module.css";
 
 function stripHtml(html: string): string {
     if (typeof html !== "string") return "";
@@ -68,7 +68,7 @@ function S2Card({ blog }: { blog: Blog }) {
                 setShareModalOpen(false);
                 return;
             } catch (err) {
-                if ((err as Error)?.name === "AbortError") return; 
+                if ((err as Error)?.name === "AbortError") return;
             }
         }
         await handleCopyLink();
@@ -80,16 +80,17 @@ function S2Card({ blog }: { blog: Blog }) {
     const preview = plainDescription.length > 100 ? `${plainDescription.slice(0, 100)}...` : plainDescription;
 
     return (
-        <div  className="w-full max-w-[613px] mx-auto flex flex-col gap-4 sm:gap-5 lg:gap-6 mb-12">
+        <div className="w-full max-w-[613px] mx-auto flex flex-col gap-4 sm:gap-5 lg:gap-6 mb-12">
             {/* Top Row  */}
             <div className="w-full flex flex-col gap-3 sm:gap-4 lg:gap-5">
                 {/* Image Here  */}
                 <div onClick={() => window.open(`/${blog.slug}`, "_blank")} className="w-full cursor-pointer relative h-[220px] sm:h-[200px] lg:h-[250px] xl:h-[345px] overflow-hidden">
                     <Image
-                       src={blog.banner.includes("/images")
-                        ? `/api/images${blog.banner.split("/images")[1]}`
-                        : `/blogs/${blog.banner}`
-                    }
+                        // src={blog.banner.includes("/images")
+                        //     ? `/api/images${blog.banner.split("/images")[1]}`
+                        //     : `/blogs/${blog.banner}`
+                        // }
+                        src={"/inner-demo-img.jpg"}
                         quality={75}
                         priority={false}
                         loading="lazy"

@@ -1,9 +1,11 @@
 import Blog from "@/components/blogs/Blog";
+import { GET_ALL_BLOGS } from "@/app/api/get_all_blogs/route";
 
-function Page() {
+async function Page() {
+    const all_blogs = await GET_ALL_BLOGS();
     return (
         <>
-            <Blog />
+            <Blog all_blogs={all_blogs?.data ?? null} />
         </>
     )
 }
