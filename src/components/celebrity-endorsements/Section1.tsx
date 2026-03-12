@@ -30,9 +30,9 @@ export default function Section1() {
         <div className="pl-0 sm:pl-3 md:pl-6 lg:pl-16">
           <p
             className="font-[500] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[19px] xl:text-[21px] text-white leading-[1.45] sm:leading-snug md:leading-normal"
-            style={{ fontFamily: "OpenSansRegular" }}
+            style={{ fontFamily: "MontserratMedium" }}
           >
-            Talent selection to campaign execution, we build brand{" "}
+            Talent selection to campaign execution, we build brand <br/>
             <span className="block sm:inline">engagement, visibility, & trust.</span>
           </p>
           <h1

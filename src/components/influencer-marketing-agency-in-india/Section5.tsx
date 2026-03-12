@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
+import styles from "@/components/shared/container.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -34,8 +35,8 @@ export default function Section5() {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <section className="w-full bg-[#FFFFFF] py-10 sm:py-12 md:py-14 lg:py-16 mb-[50px]">
-      <div className="w-[100%] sm:w-[90%] md:w-[86%] lg:w-[90%] mx-auto">
+    <section className="w-full bg-[#FFFFFF] py-10 sm:py-12 md:py-14 lg:py-16 mb-[50px] flex justify-center">
+      <div className={`w-full mx-auto overflow-hidden ${styles.containerWidth}`}>
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 xl:gap-10 items-start">
           <div className="w-full lg:w-[30%] xl:w-[26%] pt-1 mt-0 lg:mt-10 xl:mt-[100px]">
             <p
@@ -80,8 +81,8 @@ export default function Section5() {
             </div>
           </div>
 
-          <div className="w-full lg:w-[78%]  relative">
-            <div className="hidden lg:block absolute right-0 top-0 h-[510px] w-[50vw] bg-[#F7F7F7] z-0" />
+          <div className="w-full lg:w-[78%] relative overflow-hidden">
+            <div className="hidden lg:block absolute right-0 top-0 h-[510px] left-auto w-[70%] min-w-[400px] max-w-[700px] xl:max-w-[800px] 2xl:max-w-[900px] bg-[#F7F7F7] z-0" />
             <div className="hidden lg:block absolute top-7 right-7 z-20">
               <div className="relative w-[71px] h-[27px]">
                 <Image

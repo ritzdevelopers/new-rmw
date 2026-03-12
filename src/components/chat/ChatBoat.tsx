@@ -427,6 +427,40 @@ function ChatBoat() {
     // Return null for rendering, but hooks above are still called
     return null;
   }
+
+  const chatPanelStyle: React.CSSProperties = mobileView
+    ? {
+        width: "100%",
+        height: "100dvh",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        transform: "none",
+        overflow: "hidden",
+        borderRadius: 0,
+      }
+    : isSmall
+      ? {
+          width: "min(460px, calc(100vw - 2rem))",
+          height: "min(88dvh, 820px)",
+          position: "absolute",
+          top: "50%",
+          right: "1.5rem",
+          transform: "translateY(-50%)",
+          overflow: "hidden",
+          borderRadius: "1rem",
+        }
+      : {
+          width: "min(92vw, 1100px)",
+          height: "min(90dvh, 900px)",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          overflow: "hidden",
+          borderRadius: "1rem",
+        };
+
   return (
     <>
       <style>
@@ -483,19 +517,7 @@ function ChatBoat() {
           >
             <div
               className={`${styles.txtureClr}`}
-              style={{
-                width: isSmall ? "460px" : "90%",
-                height: "90%",
-                position: "absolute",
-                top: "50%",
-                left: isSmall ? undefined : "50%",
-                right: isSmall ? "20%" : undefined,
-                transform: isSmall
-                  ? "translateY(-50%) translateX(50%)"
-                  : "translate(-50%, -50%)",
-                overflow: "hidden",
-                borderRadius: "1rem",
-              }}
+              style={chatPanelStyle}
             >
               <div
                 style={{
@@ -841,19 +863,20 @@ function ChatBoat() {
                   <div
                     style={{
                       width: "100%",
-                      height: "100%",
+                      height: "calc(100% - 4rem)",
                       position: "absolute",
                       top: "4rem",
                       backgroundColor: "white",
                       display: "flex",
                       flexDirection: "column",
                       color: "black",
+                      overflowY: "auto",
                     }}
                   >
                     {/* Form Header */}
                     <div
                       style={{
-                        padding: "1.5rem",
+                        padding: mobileView ? "1rem" : "1.5rem",
                       }}
                     >
                       <h2 style={{ fontWeight: "bold", fontSize: "1.5rem" }}>
@@ -872,12 +895,11 @@ function ChatBoat() {
                       style={{
                         width: "100%",
                         margin: "0",
-                        padding: "1.5rem",
+                        padding: mobileView ? "1rem" : "1.5rem",
                         borderRadius: "1rem",
                         display: "flex",
                         flexDirection: "column",
                         gap: "1rem",
-                        marginTop: "-50px",
                       }}
                     >
                       {modalMsg && (
@@ -938,6 +960,7 @@ function ChatBoat() {
                       <div
                         style={{
                           display: "flex",
+                          flexDirection: mobileView ? "column" : "row",
                           gap: "0.5rem",
                           marginBottom: "1rem",
                         }}
@@ -948,7 +971,7 @@ function ChatBoat() {
                           value={countryCode}
                           onChange={(e) => setCountryCode(e.target.value)}
                           style={{
-                            width: "127px",
+                            width: mobileView ? "100%" : "127px",
                             padding: "0.75rem",
                             border: "none",
                             borderBottom: "2px solid #AEAEAE",

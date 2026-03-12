@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./BrandThatTrustUs.module.css";
+import containerStyles from "@/components/shared/container.module.css";
 
 export default function BrandThatTrustUs() {
   return (
-    <section className="w-full bg-[#FFFFFF] sm:py-16">
-      <div className="w-[100%] sm:w-[90%] md:w-[86%] lg:w-[90%] mx-auto">
+    <section className="w-full bg-[#FFFFFF] sm:py-16 flex justify-center">
+      <div className={`w-[100%] sm:w-[90%] md:w-[86%] lg:w-[90%] mx-auto ${containerStyles.containerWidth}`}>
         <div
           className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0"
           data-no-gsap-animation
@@ -36,10 +37,11 @@ export default function BrandThatTrustUs() {
           </div>
 
           {/* Right Side Container */}
-          <div className="relative flex w-full md:pl-[47px] sm:w-[calc(100%-194px)] pt-0 sm:pt-5">
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-[#EBEBEB] sm:left-[-12px] sm:w-[calc(100%+12px)]" />
-            {/* Slider Container */}
-            <div className="w-full overflow-hidden">
+          <div className="relative flex w-full md:pl-[47px] sm:w-[calc(100%-194px)] pt-0 sm:pt-5 gap-2 sm:gap-3 min-w-0">
+            <div className="absolute top-[-28px] left-0 w-full h-[1px] bg-[#EBEBEB] sm:left-[0px] sm:w-[calc(100%+12px)]" />
+            <div className="absolute bottom-[-28px] left-0 w-full h-[1px] bg-[#EBEBEB] sm:left-[0px] sm:w-[calc(100%+12px)]" />
+            {/* Slider Container - logoStrip clips top/bottom with boundary cover */}
+            <div className={`flex-1 min-w-0 ${styles.logoStrip}`}>
               <div
                 className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}
               >
