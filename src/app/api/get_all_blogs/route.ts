@@ -202,6 +202,9 @@ export async function FIND_BLOGS_BY_KEYWORD(keyword: string) {
                 data: null
             }
         }
+        await connectMongoDB();
+        console.log("This keyword is coming from the route", keyword);
+
         const [mysql_blogs] = await getDBPool().query<any[]>("SELECT blog_image, title, slug, description, created_at FROM blogs WHERE FIND_IN_SET(?, LOWER(REPLACE(meta_keywords, ', ', ','))) ORDER BY id DESC, created_at DESC", [keyword]);
         const mongo_blogs = await RitzBlogModel.find({ metaKeywords: { $regex: keyword, $options: "i" } }, {
             blogTitle: 1,
