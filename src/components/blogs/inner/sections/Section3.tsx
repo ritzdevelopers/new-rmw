@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { CiCalendar } from "react-icons/ci";
 import { Download } from "lucide-react";
 import Link from "next/link";
+import styles from "../../sections/page.module.css";
 
 interface BLOGSTRUCTURE {
     blogTitle: string;
@@ -12,13 +13,12 @@ interface BLOGSTRUCTURE {
     createdAt: Date;
 }
 
-function S8({
+function Section3({
     blogs,
-    blogsLoading,
 }: {
-    blogs: BLOGSTRUCTURE[];
-    blogsLoading: boolean;
+    blogs: BLOGSTRUCTURE[] | null | undefined;
 }) {
+    const safeBlogs = blogs ?? [];
     const [phone, setPhone] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [phoneError, setPhoneError] = useState("");
@@ -191,7 +191,7 @@ function S8({
     return (
         <section className="w-full min-h-screen bg-[#ffffff] flex justify-center items-center py-10 sm:py-14 lg:py-[70px] px-4 sm:px-6 lg:px-0">
             {/* Centered Align Container  */}
-            <div className="w-full px-4 lg:px-20 flex flex-col gap-12 sm:gap-16 lg:gap-20">
+            <div className={`w-full flex flex-col gap-12 sm:gap-16 lg:gap-20 ${styles.containerWidth}`}>
                 {/* Row 1  */}
                 <div className="w-full flex flex-col gap-8 sm:gap-9 lg:gap-10">
                     {/* Header  */}
@@ -207,7 +207,7 @@ function S8({
                                 Latest Insights
                             </p>
                             <h2
-                                className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-black"
+                                className={`font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-black ${styles.fontmontserrat}`}
                                 style={{
                                     fontFamily: "MontserratBold",
                                 }}
@@ -215,13 +215,12 @@ function S8({
                                 Here's what we've been up to
                             </h2>
                             <p
-                                className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-black max-w-5xl"
+                                className={`font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-black max-w-5xl ${styles.fontopensans}`}
                                 style={{
                                     fontFamily: "OpenSansRegular",
                                 }}
                             >
-                                Insights, launches, partnerships, and stories
-                                from across our ecosystem.
+                               Explore industry insights, expert tips, and creative inspiration from the Ritz team. Our blog is where we share knowledge, ideas, and what's next in digital.
                             </p>
                         </div>
 
@@ -238,14 +237,14 @@ function S8({
                                 fontFamily: "OpenSansSemiBold",
                             }}
                         >
-                            <p>Read more blogs</p>
+                            <p className={`font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] ${styles.fontopensans}`}>Read more blogs</p>
                         </button>
                     </div>
 
                     {/* Main Container  */}
                     <div className="w-full flex flex-col sm:flex-row justify-between gap-6 sm:gap-4 ">
-                        {blogs.length > 0
-                            ? blogs.map((ob, idx) => {
+                        {safeBlogs.length > 0
+                            ? safeBlogs.map((ob, idx) => {
                                   return (
                                       <div
                                           key={idx}
@@ -267,7 +266,7 @@ function S8({
                                                   // className="object-cover"
                                               ></img>
                                           </div>
-                                          <p className="font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center">
+                                          <p className={`font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center ${styles.fontopensans}`}>
                                               <CiCalendar className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px]" />{" "}
                                               {(() => {
                                                   const date =
@@ -289,7 +288,7 @@ function S8({
                                                       "_blank",
                                                   )
                                               }
-                                              className="font-[600] text-[15px] xl:text-[18px] text-black"
+                                              className={`font-[600] text-[15px] xl:text-[18px] text-black ${styles.fontopensans}`}
                                               style={{
                                                   fontFamily:
                                                       "OpenSansSemiBold",
@@ -330,7 +329,7 @@ function S8({
                     <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
                         <div className="text-center md:text-left mb-2 md:mb-0">
                             <p
-                                className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237]"
+                                className={`uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237] ${styles.fontopensans}`}
                                 style={{
                                     fontFamily: "OpenSansSemiBold",
                                 }}
@@ -338,7 +337,7 @@ function S8({
                                 Free Resource
                             </p>
                             <h2
-                                className="font-[700] text-[21px]  lg:text-[36px]"
+                                className={`font-[700] text-[21px]  lg:text-[36px] ${styles.fontmontserrat}`}
                                 style={{
                                     fontFamily: "MontserratBold",
                                 }}
@@ -346,12 +345,12 @@ function S8({
                                 2026 Brand Impact Report
                             </h2>
                         </div>
-                        <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
+                        <p className={`font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0 ${styles.fontmontserrat}`}>
                             Download Our
                         </p>
 
                         <p
-                            className="font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-2 md:mb-0"
+                            className={`font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-2 md:mb-0 ${styles.fontopensans}`}
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -362,7 +361,7 @@ function S8({
                         </p>
 
                         <ul
-                            className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
+                            className={`font-[400] text-[13px] md:text-[15px] lg:text-[16px] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0 ${styles.fontopensans}`}
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -391,14 +390,14 @@ function S8({
                                         onBlur={handlePhoneBlur}
                                         placeholder="Enter your phone (e.g., +91 9220516777)"
                                         required
-                                        className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${
+                                        className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${styles.fontopensans} ${
                                             phoneError
                                                 ? "border-[#EF4444]"
                                                 : "border-[#DAD4D4]"
                                         }`}
                                     />
                                     {phoneError && (
-                                        <p className="absolute top-full left-0 mt-1 text-[12px] text-[#EF4444] font-[400]">
+                                        <p className={`absolute top-full left-0 mt-1 text-[12px] text-[#EF4444] font-[400] ${styles.fontopensans}`}>
                                             {phoneError}
                                         </p>
                                     )}
@@ -407,12 +406,12 @@ function S8({
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full sm:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className={`w-full sm:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed ${styles.fontopensans}`}
                                     style={{
                                         fontFamily: "PoppinsRegular",
                                     }}
                                 >
-                                    <p className="text-white">
+                                    <p className={`text-white ${styles.fontopensans}`}>
                                         {isSubmitting
                                             ? "Submitting..."
                                             : "Free Download"}
@@ -421,7 +420,7 @@ function S8({
                                 </button>
                             </div>
                             <p
-                                className="font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E] text-center md:text-left"
+                                className={`font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E] text-center md:text-left ${styles.fontopensans}`}
                                 style={{
                                     fontFamily: "PoppinsRegular",
                                 }}
@@ -435,7 +434,7 @@ function S8({
                     {/* Right Side Container  */}
                     <div className="w-full lg:w-[48%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
                         <h2
-                            className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left"
+                            className={`font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left ${styles.fontmontserrat}`}
                             style={{
                                 fontFamily: "MontserratBold",
                             }}
@@ -447,7 +446,7 @@ function S8({
                         </h2>
 
                         <p
-                            className="font-[400] text-[14px] md:text-[15px] lg:text-[16px] text-center md:text-left"
+                            className={`font-[400] text-[14px] md:text-[15px] lg:text-[16px] text-center md:text-left ${styles.fontopensans}`}
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -457,7 +456,7 @@ function S8({
                         </p>
 
                         <ul
-                            className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-center md:text-left"
+                            className={`list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-center md:text-left ${styles.fontopensans}`}
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -468,11 +467,11 @@ function S8({
                             <li>Customized strategy roadmap</li>
                         </ul>
 
-                        <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-center md:text-left">
+                        <div className={`flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-center md:text-left ${styles.fontopensans}`}>
                             <Link
                                 href={"https://ritzmediaworld.com/contact.html"}
                                 target="_blank"
-                                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black"
+                                className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black ${styles.fontopensans}`}
                                 style={{
                                     fontFamily: "MontserratSemiBold",
                                 }}
@@ -493,7 +492,7 @@ function S8({
                     {/* Center Align Container  */}
                     <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
                         <h2
-                            className="font-[800] text-[19px] md:text-[28px] lg:text-[36px]"
+                            className={`font-[800] text-[19px] md:text-[28px] lg:text-[36px] ${styles.fontmontserrat}`}
                             style={{
                                 fontFamily: "MontserratExtraBold",
                             }}
@@ -501,7 +500,7 @@ function S8({
                             Ready to Elevate Your Brand?
                         </h2>
                         <p
-                            className="font-[400] text-[16px] md:text-[24px] lg:text-[30px]"
+                            className={`font-[400] text-[16px] md:text-[24px] lg:text-[30px] ${styles.fontopensans}`}
                             style={{
                                 fontFamily: "OpenSansRegular",
                             }}
@@ -515,12 +514,12 @@ function S8({
                                     "_blank",
                                 )
                             }
-                            className="w-full sm:w-[260px] lg:w-[282px] h-[48px] sm:h-[50px] lg:h-[54px] mt-4 bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] rounded-[5px] hover:bg-[#B8822F] transition-colors  s1-btn-gold"
+                            className={`w-full sm:w-[260px] lg:w-[282px] h-[48px] sm:h-[50px] lg:h-[54px] mt-4 bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] rounded-[5px] hover:bg-[#B8822F] transition-colors  s1-btn-gold ${styles.fontopensans}`}
                             style={{
                                 fontFamily: "OpenSansBold",
                             }}
                         >
-                            <p className="text-white">
+                            <p className={`text-white ${styles.fontopensans}`}>
                                 Schedule Free Consultation
                             </p>
                         </button>
@@ -530,11 +529,11 @@ function S8({
 
             {/* Modal */}
             {modal.open && (
-                <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm">
+                <div className={`fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm ${styles.fontopensans}`}>
                     <div className="bg-white rounded-[16px] shadow-2xl max-w-[400px] w-[90%] mx-4 overflow-hidden">
                         {/* Modal Header */}
                         <div
-                            className={`px-6 py-4 ${
+                            className={`px-6 py-4 ${styles.fontopensans} ${
                                 modal.status === "success"
                                     ? "bg-[#10B981]"
                                     : "bg-[#EF4444]"
@@ -544,7 +543,7 @@ function S8({
                                 <div className="flex items-center gap-3">
                                     {modal.status === "success" ? (
                                         <svg
-                                            className="w-6 h-6 text-white"
+                                            className={`w-6 h-6 text-white ${styles.fontopensans}`}
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
@@ -558,7 +557,7 @@ function S8({
                                         </svg>
                                     ) : (
                                         <svg
-                                            className="w-6 h-6 text-white"
+                                            className={`w-6 h-6 text-white ${styles.fontopensans}`}
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
@@ -571,7 +570,7 @@ function S8({
                                             />
                                         </svg>
                                     )}
-                                    <h3 className="text-lg font-semibold text-white">
+                                    <h3 className={`text-lg font-semibold text-white ${styles.fontopensans}`}>
                                         {modal.status === "success"
                                             ? "Success"
                                             : "Error"}
@@ -581,10 +580,10 @@ function S8({
                                     onClick={() =>
                                         setModal({ ...modal, open: false })
                                     }
-                                    className="text-white hover:text-gray-200 transition-colors"
+                                    className={`text-white hover:text-gray-200 transition-colors ${styles.fontopensans}`}
                                 >
                                     <svg
-                                        className="w-5 h-5"
+                                        className={`w-5 h-5 ${styles.fontopensans}`}
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -602,13 +601,13 @@ function S8({
 
                         {/* Modal Body */}
                         <div className="px-6 py-4">
-                            <p className="text-[#374151] text-sm leading-relaxed">
+                            <p className={`text-[#374151] text-sm leading-relaxed ${styles.fontopensans}`}>
                                 {modal.message}
                             </p>
                         </div>
 
                         {/* Modal Footer */}
-                        <div className="px-6 py-4 border-t border-gray-200 flex justify-end">
+                        <div className={`px-6 py-4 border-t border-gray-200 flex justify-end ${styles.fontopensans}`}>
                             <button
                                 onClick={() =>
                                     setModal({ ...modal, open: false })
@@ -629,4 +628,4 @@ function S8({
     );
 }
 
-export default S8;
+export default Section3;
