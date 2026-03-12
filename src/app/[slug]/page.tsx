@@ -55,6 +55,24 @@ function getCleanDescription(input: string): string {
   return stripHtmlTags(input).replace(/\s+/g, " ").trim();
 }
 
+/** Get first ~100 words of text for rich share card description. */
+function getFirst100Words(text: string, maxChars = 600): string {
+  const cleaned = getCleanDescription(text);
+  if (cleaned.length <= maxChars) return cleaned;
+  const truncated = cleaned.slice(0, maxChars);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return lastSpace > maxChars * 0.6 ? truncated.slice(0, lastSpace) : truncated;
+}
+
+/** Build absolute image URL for og:image / twitter:image (required for rich cards). */
+function buildAbsoluteImageUrl(baseURL: string | undefined, path: string | undefined): string {
+  if (!baseURL || !path) return "";
+  if (path.startsWith("http://") || path.startsWith("https://")) return path;
+  const base = baseURL.replace(/\/$/, "");
+  if (path.startsWith("/")) return `${base}${path}`;
+  return `${base}/uploads/${path}`;
+}
+
 interface Blog {
   id?: string | number;
   title?: string;
@@ -132,20 +150,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     // Use mtDesc as primary description, fallback to other sources
     const mtDescText = getCleanDescription(blog.mtDesc || "");
-    const baseDescription = mtDescText.slice(0, 160);
+    const shortDesc = mtDescText.slice(0, 160);
 
-    let dsc = "";
+    let blogBodyText = "";
     if (isMongo && Array.isArray(blog.blogBody)) {
-      const fullText = blog.blogBody
+      blogBodyText = blog.blogBody
         .map((item) => getCleanDescription(item?.metaDescription || ""))
         .join(" ");
-
-      dsc = fullText.slice(0, 160); // Trim to 160 characters
     }
 
-    // Prioritize mtDesc, then blogBody content, then meta_description
-    const finalDescription = mtDescText || (isMongo && dsc) || (blog.meta_description ? getCleanDescription(blog.meta_description) : "");
-    const ogDescription = finalDescription.slice(0, 160);
+    // For rich share card: ~100 words (~600 chars) for WhatsApp, Facebook, Twitter, LinkedIn
+    const rawLongDesc = mtDescText || blogBodyText || (blog.meta_description ? getCleanDescription(blog.meta_description) : "") || (blog.blogDescription ? getCleanDescription(blog.blogDescription) : "");
+    const ogDescriptionLong = getFirst100Words(rawLongDesc);
+    const ogDescription = ogDescriptionLong.length > 160 ? ogDescriptionLong : (shortDesc || ogDescriptionLong);
 
     // Prepare keywords array
     const keywordsArray = keywords.split(",").map((k: string) => k.trim()).filter(k => k.length > 0);
@@ -161,10 +178,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title,
         description: ogDescription,
         type: "article",
-        url: `${baseURL}/blog/${slug}`,
+        url: `${baseURL}/${slug}`,
         images: [
           {
-            url: `${baseURL}/uploads/${blog.blog_image || blog.blogBanner}`,
+            url: buildAbsoluteImageUrl(baseURL, blog.blog_image || blog.blogBanner),
             alt: title,
           },
         ],
@@ -173,7 +190,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         card: "summary_large_image",
         title,
         description: ogDescription,
-        images: [`${baseURL}/uploads/${blog.blog_image || blog.blogBanner}`],
+        images: [buildAbsoluteImageUrl(baseURL, blog.blog_image || blog.blogBanner)],
       },
     };
   } catch (err: any) {

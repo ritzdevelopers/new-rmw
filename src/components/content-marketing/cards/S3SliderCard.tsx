@@ -27,7 +27,10 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image }: 
     }, []);
 
     return (
-        <div onClick={() => setActiveCard(index)} className={`h-full overflow-hidden cursor-pointer ${index === 3 ? "border-r-0" : "border-r border-[#323E84]"} flex justify-between flex-col ${activeCard === index ? `${styles.cardContainerActive} pt-10 min-w-0` : "w-[80px] sm:w-[100px] md:w-[120px] lg:w-[140px] xl:w-[150px] min-[1360px]:w-[140px] flex-shrink-0"} ${styles.cardContainer}`}>
+        <div
+            onClick={() => setActiveCard(index)}
+            className={`h-full overflow-hidden cursor-pointer transition-[width] duration-300 ease-in-out ${index === 3 ? "border-r-0" : "border-r border-[#323E84]"} flex justify-between flex-col ${activeCard === index ? `${styles.cardContainerActive} pt-10 min-w-0` : "w-[80px] sm:w-[100px] md:w-[120px] lg:w-[140px] xl:w-[150px] min-[1360px]:w-[140px] flex-shrink-0"} ${styles.cardContainer}`}
+        >
             {/* Top Container * Main Card */}
             <div className={`flex h-[calc(100%-50px)] flex-col w-full justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 ${activeCard !== index ? "px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20" : "px-5"} min-w-0`}>
                 {/* Upper Side  */}
