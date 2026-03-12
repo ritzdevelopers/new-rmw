@@ -24,7 +24,7 @@ function Section7() {
             {[
               "/new-about/s7/s7-r1-i1.png",
               "/new-about/s7/s7-r1-i2.png",
-              "/new-about/s7/s7-r1-i3.png",
+              "/varunimage/employeeimage.jpg",
             ].map((img, idx) => {
               return (
                 <div

@@ -11,66 +11,75 @@ type CaseStudy = {
   slug: string;
 };
 
-const ITEMS_PER_BATCH = 6;
+const WORK_HTML_IMAGES = [
+  "/work-html/s2/Mask group (1).jpg",
+  "/work-html/s2/Mask group (2).jpg",
+  "/work-html/s2/Mask group (3).jpg",
+  "/work-html/s2/Mask group (4).jpg",
+  "/work-html/s2/Mask group (5).jpg",
+  "/work-html/s2/Mask group (6).jpg",
+];
+
+const ITEMS_PER_BATCH = 8;
 const MOCK_CARDS: CaseStudy[] = [
   {
     title: "Unleashing Digital Dominance: The PAYTM Success Story",
-    image: "/work-html/banners/wave_work.png",
+    image: "/work-html/s2/rmw-devices.jpg",
     slug: "#",
   },
   {
     title: "Creative Services vs. Marketing Services: What's the Difference?",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[1],
     slug: "#",
   },
   {
     title: "From Reality to Virtuality - Metaverse Technology",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[2],
     slug: "#",
   },
   {
     title: "Navigating Success: A Case Study on MakeMyTrip",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[3],
     slug: "#",
   },
   {
     title: "360° Audio Branding Strategy with hit 360° Audio Branding",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[4],
     slug: "#",
   },
   {
     title: "Dominating the Indian Small Car Market: A Maruti Case Study",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[5],
     slug: "#",
   },
   {
     title: "Reinventing Brand Presence Through Social Storytelling",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[0],
     slug: "#",
   },
   {
     title: "Scaling Engagement with Performance-Led Content",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[1],
     slug: "#",
   },
   {
     title: "How Regional Campaigns Drove Pan-India Awareness",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[2],
     slug: "#",
   },
   {
     title: "Driving App Installs with Creative-First Paid Media",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[3],
     slug: "#",
   },
   {
     title: "Building Trust with Community-Led Digital Campaigns",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[4],
     slug: "#",
   },
   {
     title: "From Product Launch to Market Leadership in 90 Days",
-    image: "/work-html/banners/wave_work.png",
+    image: WORK_HTML_IMAGES[5],
     slug: "#",
   },
 ];
@@ -142,7 +151,7 @@ export default function Section2() {
             <button
               type="button"
               onClick={onLoadMore}
-              className="text-[#0F1640] text-[18px] leading-[50px] text-center"
+              className="text-[#0F1640] text-[18px] leading-[50px] text-center cursor-pointer"
               style={{ fontFamily: "MontserratSemiBold", fontWeight: 600 }}
             >
               Load more

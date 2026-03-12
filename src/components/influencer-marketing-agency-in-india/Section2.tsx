@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { GoArrowUpRight } from "react-icons/go";
+import styles from "@/components/shared/container.module.css";
 
 export default function Section2() {
   return (
     <section className="w-full flex items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
-      <div className="w-[92%] sm:w-[88%] md:w-[82%] lg:w-[70%] text-center">
+      <div className={`w-[92%] sm:w-[88%] md:w-[82%] lg:w-[70%] text-center mx-auto ${styles.containerWidth}`}>
         <h2
           className="text-black font-[400] text-[25px] sm:text-[31px] md:text-[37px] lg:text-[24px] leading-[1.5]"
           style={{ fontFamily: "MontserratRegular" }}

@@ -8,24 +8,24 @@ function Section5() {
             <div className={`w-full px-4 pb-6 md:hidden ${styles.s5Mobile}`}>
                 <div className="w-full flex flex-col gap-5 text-center">
                     <div className="w-full flex justify-center items-center py-6 bg-[#F1F1F1] rounded-lg">
-                        <h3 className="font-[700] text-[22px] leading-tight">Why Content <br /> Marketing Matters</h3>
+                        <h3 className={`font-[700] text-[22px] leading-tight ${styles.fontmontserrat}`}>Why Content <br /> Marketing Matters</h3>
                     </div>
                     <div className="w-full flex flex-col gap-3 items-center">
-                        <h6 className="font-[700] text-[16px]">Increase Organic Traffic</h6>
-                        <p className="font-[400] text-[14px] text-[#333]">SEO is a key factor for your website to get ranked in the search engines and if that happens, more people looking for answers will be able to find your page.</p>
+                        <h6 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Increase Organic Traffic</h6>
+                        <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>SEO is a key factor for your website to get ranked in the search engines and if that happens, more people looking for answers will be able to find your page.</p>
                         <img src="/service-v3/content-marketing/s5/s5-i1.jpg" alt="Why Content Marketing Matters" className="w-full h-auto object-cover rounded-lg" />
                     </div>
                     <div className="w-full flex flex-col gap-2 py-4 items-center">
-                        <h6 className="font-[700] text-[16px]">Build Trust & Authority</h6>
-                        <p className="font-[400] text-[14px] text-[#333]">Producing informative content can be a key factor in your company gaining the status of an authority figure in the market.</p>
+                        <h6 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Build Trust & Authority</h6>
+                        <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>Producing informative content can be a key factor in your company gaining the status of an authority figure in the market.</p>
                     </div>
                     <div className="w-full flex flex-col gap-2 py-4 px-4 border border-[#DFDDDD] rounded-lg items-center">
-                        <h6 className="font-[700] text-[16px]">Encourage Engagement & Conversation</h6>
-                        <p className="font-[400] text-[14px] text-[#333]">Creating content for your audience that resonates will lead to engagement, sharing, and conversions.</p>
+                        <h6 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Encourage Engagement & Conversation</h6>
+                        <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>Creating content for your audience that resonates will lead to engagement, sharing, and conversions.</p>
                     </div>
                     <div className="w-full flex flex-col gap-2 py-4 items-center">
-                        <h6 className="font-[700] text-[16px]">Increase Sales & Lead Generation</h6>
-                        <p className="font-[400] text-[14px] text-[#333]">Content is a major driver behind sales from signing up to newsletters to purchasing.</p>
+                        <h6 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Increase Sales & Lead Generation</h6>
+                        <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>Content is a major driver behind sales  from signing up to newsletters to purchasing.</p>
                     </div>
                     <div className="w-full">
                         <img src="/service-v3/content-marketing/s5/s5-i2.jpg" alt="Why Content Marketing Matters" className="w-full h-auto object-cover rounded-lg" />
@@ -35,12 +35,12 @@ function Section5() {
                         <img src="/service-v3/content-marketing/s5/google-reviews.png" alt="Google Reviews" className="w-full max-w-[271px] h-auto object-contain" />
                         <div className="w-full border-t border-[#D9D9D9] pt-4 flex justify-between max-w-[280px] mx-auto">
                             <div className="flex flex-col gap-0 items-center">
-                                <h6 className="font-[700] text-[28px] text-[#0F1640]">1M+</h6>
-                                <p className="font-[600] text-[14px] text-[#0F1640]">Creatives Published</p>
+                                <h6 className={`font-[700] text-[28px] text-[#0F1640] ${styles.fontmontserrat}`}>1M+</h6>
+                                <p className={`font-[600] text-[14px] text-[#0F1640] ${styles.fontopensans}`}>Creatives Published</p>
                             </div>
                             <div className="flex flex-col gap-0 items-center">
-                                <h6 className="font-[700] text-[28px] text-[#0F1640]">500+</h6>
-                                <p className="font-[600] text-[14px] text-[#0F1640]">Success Stories</p>
+                                <h6 className={`font-[700] text-[28px] text-[#0F1640] ${styles.fontmontserrat}`}>500+</h6>
+                                <p className={`font-[600] text-[14px] text-[#0F1640] ${styles.fontopensans}`}>Success Stories</p>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@ function Section5() {
             </div>
 
             {/* Tablet & Desktop (visible from md) */}
-            <div className={`hidden md:flex w-full flex-col ${styles.containerWidth} gap-6 sm:gap-8 md:gap-9 lg:gap-10 xl:gap-10`}>
+            <div className={`hidden md:flex w-full flex-col ${styles.containerWidth} gap-6 sm:gap-8 md:gap-9 lg:gap-10 xl:gap-20`}>
                 {/* Row 1  */}
                 <div className="w-full">
                     {/* Top Row  */}
@@ -81,7 +81,7 @@ function Section5() {
                         </div>
                         <div className={`w-full md:flex-1 flex flex-col gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
                             <h6 className={`font-[700] ${styles.s5CardSubtitle}`}>Increase Sales & Lead <br className="hidden xl:block" /> Generation</h6>
-                            <p className={`font-[400] max-w-full xl:max-w-[313px] ${styles.s5CardDesc}`}>Content is a major driver behind sales from signing up to newsletters to purchasing. </p>
+                            <p className={`font-[400] max-w-full xl:max-w-[303px] ${styles.s5CardDesc}`}>Content is a major driver behind sales from signing up to newsletters to purchasing. </p>
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ function Section5() {
                 {/* Row 2  */}
                 <div className="w-full flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-0">
                     {/* Left Side Container  */}
-                    <div className="w-[70%] xl:w-[831px] h-auto xl:h-[430px] relative">
+                    <div className="w-[70%] xl:w-[863px] h-auto xl:h-[430px] relative">
                         <img src="/service-v3/content-marketing/s5/s5-i2.jpg" alt="Why Content Marketing Matters" className="xl:object-cover" />
                     </div>  
 

@@ -3,5 +3,5 @@ export default function CelebrityEndorsementsLayout({
 }: {
     children: React.ReactNode;
 }) {
-    return <div>{children}</div>;
+    return <div className="w-full overflow-x-hidden">{children}</div>;
 }

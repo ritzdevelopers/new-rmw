@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { GoArrowUpRight } from "react-icons/go";
-import { X } from "lucide-react";
+import styles from "./Section3.module.css";
 
 export default function Section3() {
   const [openItem, setOpenItem] = useState<string | null>(null);
@@ -12,12 +12,14 @@ export default function Section3() {
     "Take your brand identity to the next level with our branding and design solutions. We help you in developing a memorable and authentic brand identity that connects with your customers, builds loyalty, and helps you stand out in the cutthroat market. Our full-service branding solutions include logo design, brand positioning, and visual communication that helps you succeed.";
 
   const accordionItems = [
+    "Branding & Identity Development",
     "Graphic Design",
     "Logo Design",
     "Print Advertising Design",
     "Packaging Design",
   ];
   const accordionContent: Record<string, string> = {
+    "Branding & Identity Development": brandingContent,
     "Graphic Design":
       "Tap into the power of visual communication with our professional graphic design solutions. Whether it is digital or offline media, our breathtaking designs engage, impress, and convert your audience. From infographics to marketing collateral, we design graphics that communicate effectively and deliver results, resulting in higher engagement and ROI.",
     "Logo Design":
@@ -29,8 +31,8 @@ export default function Section3() {
   };
 
   return (
-    <section className="w-full bg-[#F7F7F7] py-10 sm:py-12 md:py-16 lg:py-20">
-      <div className="w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto">
+    <section className="w-full bg-[#F7F7F7] py-10 sm:py-12 md:py-16 lg:py-20 flex justify-center">
+      <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto ${styles.containerWidth}`}>
         <div className="text-center mb-6 sm:mb-8 md:mb-10">
           <p
             className="uppercase text-[12px] sm:text-[13px] md:text-[14px] tracking-wide text-[#C99237] font-[700]"
@@ -54,74 +56,7 @@ export default function Section3() {
 
         <div className="h-px w-full bg-[#AAA8A8] mb-8 sm:mb-10 md:mb-12" />
 
-        <div className="flex items-start justify-between gap-3 mb-4 sm:mb-6">
-          <h4
-            className="text-[16px] sm:text-[18px] md:text-[22px] lg:text-[24px] text-black font-[500] max-w-[88%]"
-            style={{ fontFamily: "PoppinsMedium" }}
-          >
-            Branding &amp; Identity Development
-          </h4>
-          <X className="text-[#6E6E6E] shrink-0 mt-1 w-5 h-5 sm:w-6 sm:h-6" />
-        </div>
-
-        <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-14 justify-center">
-          {/* Left Media Block */}
-          <div className="relative w-full sm:w-auto lg:max-w-[430px] xl:max-w-[480px]">
-            {/* Gold decorative rectangle (image) */}
-            <div className="absolute -left-4 md:-left-10 top-6 hidden md:block w-[140px] md:w-[179px] h-[170px] md:h-[208px]">
-              <Image
-                src="/services-v3-slug/images/Rectangle%2045282.jpg"
-                alt="Decorative shape"
-                fill
-                className="object-contain"
-                sizes="128px"
-                priority
-              />
-            </div>
-            {/* Main photo */}
-            <div className="relative w-full max-w-[280px] sm:max-w-[320px] h-[220px] sm:h-[250px] sm:w-[249px] sm:h-[270px] mx-auto lg:mx-0 rounded-[22px] overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.08)] z-[1]">
-              <Image
-                src="/services-v3-slug/images/what_we_provide.png"
-                alt="What we provide"
-                fill
-                className="object-cover"
-                
-                priority
-              />
-            </div>
-          </div>
-
-          {/* Right Copy Block */}
-          <div className="flex-1 max-w-[680px] justify-center">
-            <div className="space-y-4 justify-center mt-[24px]">
-              <p
-                className="text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed md:leading-[28px] text-[#2D2D2D]"
-                style={{ fontFamily: "PoppinsRegular" }}
-              >
-                {brandingContent}
-              </p>
-            </div>
-
-            <div className="mt-6 sm:mt-8 flex items-center gap-3 sm:gap-4 flex-wrap">
-              <span
-                className="text-[#101828] text-[14px] sm:text-[15px] lg:text-[16px]"
-                style={{ fontFamily: "MontserratSemiBold" }}
-              >
-                Learn more
-              </span>
-              <Link
-                href="/contact.html"
-                target="_blank"
-                aria-label="Learn more"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
-              >
-                <GoArrowUpRight className="text-white" size={18} />
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 sm:mt-10 md:mt-14 space-y-4">
+        <div className="space-y-4">
           {accordionItems.map((label) => {
             const isOpen = openItem === label;
 
@@ -144,7 +79,9 @@ export default function Section3() {
                   </span>
                 </button>
 
-                {isOpen && (
+                <div
+                  className={`${styles.accordionContent} ${isOpen ? styles.accordionContentOpen : styles.accordionContentClosed}`}
+                >
                   <div className="pt-6 sm:pt-8">
                     <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-14 justify-center">
                       <div className="relative w-full sm:w-auto lg:max-w-[430px] xl:max-w-[480px]">
@@ -196,7 +133,7 @@ export default function Section3() {
                       </div>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

@@ -89,7 +89,7 @@ export default function NewRMWW({ children }: { children: React.ReactNode }) {
         {children}
         <ContactBtns />
         <RubyBot />
-        <EnquiryForm />
+        {/* <EnquiryForm /> */}
       </RubyProvider>
       {/* <Footer></Footer> */}
       <NewFooter></NewFooter>

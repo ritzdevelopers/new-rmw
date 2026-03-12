@@ -241,7 +241,7 @@
 
 .cardImageActive {
    opacity: 1;
-   width: 100%;
+   width: 90%;
    height: 150px;
    transform: translateY(0) scale(1);
    pointer-events: auto;
