@@ -1,10 +1,11 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { CiSearch } from "react-icons/ci";
+import { FiFileText } from "react-icons/fi";
 import styles from "../../sections/page.module.css";
-
+import LoadingLinesAndDots from "@/components/ui/LoadingLinesAndDots";
 
 interface Blog {
     title: string;
@@ -18,6 +19,7 @@ interface Blog {
 function Section2({ slug, category, blog, all_categories, related_blogs, all_blogs }: { slug: string, category: string, blog: any, all_categories: any, related_blogs: any, all_blogs: any }) {
 
     const [formattedBlog, setFormattedBlog] = useState<Blog | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
     const [keywords, setKeywords] = useState<string[]>([]);
     function formatBlog(blog: any): Blog {
         return {
@@ -26,15 +28,23 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
             meta_description: blog.meta_description || blog.mtDesc,
             meta_keywords: blog.meta_keywords || blog.metaKeywords,
             created_at: blog.created_at || blog.createdAt,
-            banner: blog.banner || blog.blogBanner,
+            banner: blog.banner || blog.blogBanner || blog.blog_image,
             description: blog.description || blog.blogDescription,
         }
     }
 
     useEffect(() => {
-        console.log("blog", blog);
-        setFormattedBlog(formatBlog(blog));
-        setKeywords((blog.meta_keywords || blog.metaKeywords || "").split(','));
+        if (blog) {
+            setLoading(true);
+            setFormattedBlog(formatBlog(blog));
+            setKeywords((blog.meta_keywords || blog.metaKeywords || "").split(','));
+            const id = setTimeout(() => setLoading(false), 0);
+            return () => clearTimeout(id);
+        } else {
+            setFormattedBlog(null);
+            setKeywords([]);
+            setLoading(false);
+        }
     }, [blog]);
 
     const [filteredBlogs, setFilteredBlogs] = useState<any[]>([]);
@@ -42,11 +52,38 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
     useEffect(() => {
         const list = all_blogs ?? [];
         const filtered = list.filter((blog: any) => (blog?.title ?? "").toLowerCase().includes((searchValue ?? "").toLowerCase()));
-        setFilteredBlogs(filtered);
+        setFilteredBlogs(filtered.slice(0, 5));
     }, [searchValue, all_blogs]);
+
+    console.log("related_blogs", related_blogs);
+    
+
+    if (!blog) {
+        return (
+            <section className="w-full pt-8 sm:pt-10 md:pt-12 lg:pt-14 xl:pt-[70px] flex justify-center items-center">
+                <div className={`w-full flex flex-col items-center justify-center min-h-[280px] py-16 px-6 text-center ${styles.containerWidth}`}>
+                    <div className="w-16 h-16 rounded-2xl bg-[#E8EBFF] flex items-center justify-center mb-5">
+                        <FiFileText className="w-8 h-8 text-[#0F1640]/60" aria-hidden />
+                    </div>
+                    <h3 className="font-semibold text-[#0F1640] text-lg sm:text-xl mb-2">
+                        Blog not found
+                    </h3>
+                    <p className="text-[#0F1640]/70 text-sm sm:text-base max-w-sm">
+                        The blog you&apos;re looking for doesn&apos;t exist or has been removed.
+                    </p>
+                </div>
+            </section>
+        );
+    }
+
     return (
-        <section className="w-full py-8 sm:py-10 md:py-12 lg:py-14 xl:py-[70px] flex justify-center items-center ">
+        <section className="w-full pt-8 sm:pt-10 md:pt-12 lg:pt-14 xl:pt-[70px] flex justify-center items-center ">
             {/* Centered Align Container  */}
+            {loading ? (
+                <div className="w-full flex justify-center items-center min-h-[280px] py-16 px-6 text-center">
+                    <LoadingLinesAndDots className="text-[#0F1640]" />
+                </div>
+            ) : (
             <div className={`w-full  relative flex flex-col lg:flex-row xl:justify-between xl:items-start gap-8 sm:gap-10 lg:gap-12 xl:gap-14 ${styles.containerWidth}`}>
 
                 {/* Left Side Container  */}
@@ -55,9 +92,9 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                     <div className="w-full flex flex-col gap-3 sm:gap-4 pb-4 border-b border-[#D9D9D9]">
                         <div className="w-full relative h-[220px] sm:h-[280px] md:h-[360px] lg:h-[420px] xl:h-[480px] overflow-hidden rounded-[5px]">
                             <Image src={formattedBlog?.banner?.includes("/images")
-                                ? `/api/images${formattedBlog.banner.split("/images")[1]}`
-                                : formattedBlog?.banner ? `/blogs/${formattedBlog.banner}` : "/inner-demo-img.jpg"
-                            } alt="Blog Image" fill className="object-cover w-full h-full" />
+                                ? `https://ritzmediaworld.com/api/images${formattedBlog.banner.split("/images")[1]}`
+                                :  `https://ritzmediaworld.com/blogs/${formattedBlog?.banner}`  
+                            } alt="Blog Image" fill className="w-full h-full" />
                         </div>
 
                         <div className="flex gap-3 sm:gap-4 w-full items-center flex-wrap">
@@ -89,18 +126,18 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                         {
                             searchValue && filteredBlogs && filteredBlogs.length > 0 && filteredBlogs.map((blog: Blog, idx: number) => {
                                 return (
-                                    <div key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
+                                    <div onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
                                         {/* Left Side Image Container  */}
                                         <div className="w-[80px] h-[52px] sm:w-[92px] sm:h-[60px] xl:w-[108px] xl:h-[69px] relative rounded-[2px] overflow-hidden shrink-0 group-hover:opacity-95 transition-opacity">
                                             <Image src={(blog?.banner ?? "").includes("/images")
-                                                ? `/api/images${(blog?.banner ?? "").split("/images")[1]}`
-                                                : blog?.banner ? `/blogs/${blog.banner}` : "/inner-demo-img.jpg"
+                                                ? `https://ritzmediaworld.com/api/images${(blog?.banner ?? "").split("/images")[1]}`
+                                                : blog?.banner ? `https://ritzmediaworld.com/blogs/${blog.banner}` : "/inner-demo-img.jpg"
                                             } alt="Blog Image" fill className="object-cover w-full h-full" />
                                         </div>
 
                                         {/* Right Side Image Container  */}
                                         <div className="flex flex-col gap-1 sm:gap-2 justify-center text-left items-start min-w-0 flex-1">
-                                            <h3 className={`font-[600] text-[13px] sm:text-[14px] xl:text-[16px] text-[#000000] ${styles.fontopensans} line-clamp-2 group-hover:text-[#0F1640] transition-colors`}>{blog.title}</h3>
+                                            <h3 className={`font-[600] text-[13px] sm:text-[14px] xl:text-[16px] text-[#000000] ${styles.fontopensans} line-clamp-2 hover:underline cursor-pointer group-hover:text-[#0F1640] transition-colors`}>{blog.title}</h3>
                                             <p className={`font-[400] text-[11px] sm:text-[12px] text-[#535353] ${styles.fontopensans}`}>{new Date(blog.created_at || "").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
                                         </div>
                                     </div>
@@ -122,7 +159,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                 all_categories && all_categories.length > 0 && all_categories.map((category: any, idx: number) => {
                                     return [...(category?.mongo_categories ?? []), ...(category?.mysql_categories ?? [])].map((cat: any, idx: number) => {
                                         return (
-                                            <div key={idx} className="w-full flex justify-between pb-4 border-b border-[#F0F0F0] cursor-pointer rounded px-2 py-1 -mx-2 -my-1 hover:bg-gray-50/80 transition-colors duration-200">
+                                            <div onClick={() => window.open(`/category2/${cat.link}`, "_blank")} key={idx} className="w-full flex justify-between pb-4 border-b border-[#F0F0F0] cursor-pointer rounded px-2 py-1 -mx-2 -my-1 hover:bg-gray-50/80 transition-colors duration-200">
                                                 {/* Left Side div  */}
                                                 <div className="flex items-center gap-2">
                                                     <div className="w-[7px] h-[7px] rounded-full border border-[#5E5E5E]"></div>
@@ -173,16 +210,18 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                         <div key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
                                             {/* Left Side Image Container  */}
                                             <div className="w-[80px] h-[52px] sm:w-[92px] sm:h-[60px] xl:w-[108px] xl:h-[69px] relative rounded-[2px] overflow-hidden shrink-0 group-hover:opacity-95 transition-opacity">
-                                                <Image priority={false} loading="lazy" src={(blog?.banner ?? "").includes("/images")
-                                                    ? `/api/images${(blog?.banner ?? "").split("/images")[1]}`
-                                                    : blog?.banner ? `/blogs/${blog.banner}` : "/inner-demo-img.jpg"
+                                                <Image priority={false} loading="lazy"
+                                                quality={75}
+                                                src={blog?.blog_image?.includes("/images")
+                                                    ? `https://ritzmediaworld.com/api/images${blog?.blog_image?.split("/images")[1]}`
+                                                    : `https://ritzmediaworld.com/blogs/${blog?.blog_image}`
                                                 } alt="Blog Image" fill className="object-cover w-full h-full" />
                                             </div>
 
                                             {/* Right Side Image Container  */}
                                             <div className="flex flex-col gap-1 sm:gap-2 justify-center items-start min-w-0 flex-1">
-                                                <h3 className={`font-[600] text-[13px] sm:text-[14px] xl:text-[16px] text-[#000000] ${styles.fontopensans} line-clamp-2 group-hover:text-[#0F1640] transition-colors`}>{blog.title}</h3>
-                                                <p className={`font-[400] text-[11px] sm:text-[12px] text-[#535353] ${styles.fontopensans}`}>{new Date(blog.created_at || "").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
+                                                <h3 className={`font-[600] text-[13px] sm:text-[14px] xl:text-[16px] text-[#000000] ${styles.fontopensans} line-clamp-2 group-hover:text-[#0F1640] transition-colors`}>{blog.title || blog.blogTitle}</h3>
+                                                <p className={`font-[400] text-[11px] sm:text-[12px] text-[#535353] ${styles.fontopensans}`}>{new Date(blog.created_at || blog.createdAt || "").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
                                             </div>
                                         </div>
                                     )
@@ -192,6 +231,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                     </div>
                 </div>
             </div>
+            )}
         </section>
     )
 }

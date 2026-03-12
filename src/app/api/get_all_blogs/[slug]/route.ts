@@ -174,12 +174,14 @@ async function get_all_blogs_categories() {
             mongo_categories: mongo_categories.map((category) => ({
                 id: category._id,
                 name: category.categoryName,
-                total_blogs: mongo_msql_cached_blogs.filter((blog: any) => blog.category_id === category._id).length
+                total_blogs: mongo_msql_cached_blogs.filter((blog: any) => blog.category_id === category._id).length,
+                link: category.categorySlug
             })),
             mysql_categories: mysql_categories.map((category) => ({
                 id: category.id,
                 name: category.name,
-                total_blogs: mongo_msql_cached_blogs.filter((blog: any) => blog.category_id === category.id).length
+                total_blogs: mongo_msql_cached_blogs.filter((blog: any) => blog.category_id === category.id).length,
+                link: category.link
             }))
         }]
         if (categories.length > 0) {

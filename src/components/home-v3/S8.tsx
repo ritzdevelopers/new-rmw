@@ -260,8 +260,8 @@ function S8({
                                                           "_blank",
                                                       )
                                                   }
-                                                //   src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
-                                                src="/inner-demo-img.jpg"
+                                                  src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
+                                                // src="/inner-demo-img.jpg"
                                                   alt="RMW"
                                                   className="w-full h-full"
                                                   // className="object-cover"

@@ -1,9 +1,8 @@
-import React, { Suspense } from "react";
+import React from "react";
 import type { Metadata } from "next";
 import BlogInner from "@/components/blogs/inner/BlogInner";
 import { get_single_blog } from "@/app/api/get_all_blogs/[slug]/route";
 import { GET_ALL_BLOGS } from "@/app/api/get_all_blogs/route";
-import LoadingLinesAndDots from "@/components/ui/LoadingLinesAndDots";
 
 type BlogLayoutData = { blog: any; categoryName: string; all_categories: any; latest_3_blogs: any; related_blogs: any };
 
@@ -43,15 +42,7 @@ async function BlogPageContent({ slug }: { slug: string }) {
         : null;
     const { blog, categoryName, all_categories, latest_3_blogs, related_blogs } = data ?? { blog: null, categoryName: "", all_categories: null, latest_3_blogs: null, related_blogs: null };
     const all_blogs = await GET_ALL_BLOGS();
-
-    if (!blog) {
-        return (
-            <div className="min-h-[50vh] grid place-items-center">
-                <p className="text-[#0F1640] font-[500]">Blog not found.</p>
-            </div>
-        );
-    }
-
+ 
     return (
         <BlogInner
             slug={slug}
@@ -68,16 +59,5 @@ async function BlogPageContent({ slug }: { slug: string }) {
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-
-    return (
-        <Suspense
-            fallback={
-                <div className="min-h-[60vh] w-full grid place-items-center bg-[#F7F7F7]">
-                    <LoadingLinesAndDots className="text-[#0F1640]" />
-                </div>
-            }
-        >
-            <BlogPageContent slug={slug} />
-        </Suspense>
-    );
+    return <BlogPageContent slug={slug} />;
 }

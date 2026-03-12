@@ -4,9 +4,7 @@ import Section3 from "./sections/Section3";
 
 
 function BlogInner({ slug , category, blog, categoryName, all_categories, latest_3_blogs, related_blogs, all_blogs }: { slug: string, category: string, blog: any, categoryName: string, all_categories: any, latest_3_blogs: any, related_blogs: any, all_blogs: any }) {
-
-    const { title, blogSlug,  meta_description, meta_keywords } = blog;
-
+  
     return (
         <>
             <Banner title={blog?.title || blog?.blogTitle || ""} />

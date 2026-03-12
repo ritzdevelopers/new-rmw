@@ -16,8 +16,9 @@ interface BLOGSTRUCTURE {
 function Section3({
     blogs,
 }: {
-    blogs: BLOGSTRUCTURE[];
+    blogs: BLOGSTRUCTURE[] | null | undefined;
 }) {
+    const safeBlogs = blogs ?? [];
     const [phone, setPhone] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [phoneError, setPhoneError] = useState("");
@@ -242,8 +243,8 @@ function Section3({
 
                     {/* Main Container  */}
                     <div className="w-full flex flex-col sm:flex-row justify-between gap-6 sm:gap-4 ">
-                        {blogs.length > 0
-                            ? blogs.map((ob, idx) => {
+                        {safeBlogs.length > 0
+                            ? safeBlogs.map((ob, idx) => {
                                   return (
                                       <div
                                           key={idx}
