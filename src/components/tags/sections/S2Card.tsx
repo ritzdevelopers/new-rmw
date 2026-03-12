@@ -6,7 +6,7 @@ import { FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import { LuLink } from "react-icons/lu";
 import { useState } from "react";
-import styles from "../page.module.css";
+import styles from "./page.module.css";
 
 function stripHtml(html: string): string {
     if (typeof html !== "string") return "";
