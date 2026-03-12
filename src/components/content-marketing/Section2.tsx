@@ -10,8 +10,6 @@ function Section2() {
                 </h2>
                 <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] max-w-full sm:max-w-[896px] leading-relaxed px-2 sm:px-0 ${styles.fontopensans}`}>
                     Our strategy includes <span className="font-[700]">SEO content, social media content, email marketing, video content, infographics</span>, and <span className="font-[700]">promotional activities</span> to capture attention, build credibility, and drive measurable business results. Each piece of content is designed for <span className="font-[700]">high engagement, lead generation</span>, and <span className="font-[700]">brand building</span>.
-
-
                 </p>
             </div>
         </section>

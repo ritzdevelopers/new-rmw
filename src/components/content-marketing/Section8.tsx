@@ -169,9 +169,9 @@ function Section8() {
 
 
     return (
-        <section className="w-full bg-white py-[70px] flex flex-col gap-6">
+        <section className="w-full bg-white py-[70px] flex flex-col gap-6 xl:gap-20">
             {/* Row 2  */}
-            <div className={`w-full flex ${styles.containerWidth} flex-col xl:flex-row justify-between gap-6`}>
+            <div className={`w-full flex ${styles.containerWidth} flex-col xl:flex-row justify-between gap-10`}>
                 {/* Left Side Container  */}
                 <div className="w-full xl:flex-1 min-h-[500px] xl:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
                     <div className="text-center md:text-left mb-2 md:mb-0">
@@ -183,6 +183,9 @@ function Section8() {
                         >
                             Free Resource
                         </p>
+                        <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
+                        Download Our
+                    </p>
                         <h2
                             className="font-[700] text-[21px]  lg:text-[36px]"
                             style={{
@@ -192,9 +195,7 @@ function Section8() {
                             2026 Brand Impact Report
                         </h2>
                     </div>
-                    <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
-                        Download Our
-                    </p>
+                   
 
                     <p
                         className="font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-2 md:mb-0"
@@ -202,7 +203,7 @@ function Section8() {
                             fontFamily: "PoppinsRegular",
                         }}
                     >
-                        Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2025.
+                        Get exclusive insights into real estate and lifestyle brand <br className="hidden xl:block" /> marketing trends, strategies, and ROI benchmarks for 2026.
                     </p>
 
                     <ul
@@ -218,7 +219,7 @@ function Section8() {
                     </ul>
 
                     <form onSubmit={handleDownload} className="flex flex-col gap-4">
-                        <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-3">
+                        <div className="flex flex-col sm:flex-row justify-between gap-3">
                             <div className="flex-1 relative">
                                 <input
                                     type="tel"
@@ -227,7 +228,7 @@ function Section8() {
                                     onBlur={handlePhoneBlur}
                                     placeholder="Enter your phone (e.g., +91 9220516777)"
                                     required
-                                    className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
+                                    className={`w-full   h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
                                         ? "border-[#EF4444]"
                                         : "border-[#DAD4D4]"
                                         }`}
