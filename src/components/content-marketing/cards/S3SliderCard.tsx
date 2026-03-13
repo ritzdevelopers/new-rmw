@@ -61,7 +61,7 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image, ac
                 </div>
             </div>
             {/* Bottom Container  */}
-            <div className={`w-full border-t border-[#323E84] text-white ${activeCard !== index ? "px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 lg:pl-0" : "px-[30px] lg:pl-[50px]"} py-4 sm:py-5 lg:py-6`}>
+            <div className={`w-full border-t border-[#323E84] text-white ${activeCard !== index ? "px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20" : "px-[30px] lg:pl-[50px]"} py-4 sm:py-5 lg:py-6`}>
                 <p className={`font-[500] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] ${styles.fontMontserrat}`}>{String(index + 1).padStart(2, '0')}</p>
             </div>
         </div>

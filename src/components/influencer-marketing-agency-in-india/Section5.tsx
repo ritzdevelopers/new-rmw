@@ -35,13 +35,13 @@ export default function Section5() {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <section className="w-full bg-[#FFFFFF] py-10 sm:py-12 md:py-14 lg:py-16 mb-[50px] flex justify-center">
+    <section className="w-full bg-[#FFFFFF] py-10 sm:py-12 md:py-14 lg:py-16  flex justify-center">
       <div className={`w-full mx-auto overflow-hidden ${styles.containerWidth}`}>
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 xl:gap-10 items-start">
           <div className="w-full lg:w-[30%] xl:w-[26%] pt-1 mt-0 lg:mt-10 xl:mt-[100px]">
             <p
-              className="uppercase text-[#C99237] text-[14px] tracking-wide font-[600]"
-              style={{ fontFamily: "OpenSansSemiBold" }}
+              className="uppercase text-[#C99237] text-[16px] tracking-wide font-[600]"
+              style={{ fontFamily: "PoppinsSemiBold" }}
             >
               Clients Testimonials
             </p>
@@ -52,7 +52,7 @@ export default function Section5() {
               What Our Clients Say
             </h2>
             <p
-              className="text-[#1C1C1C] text-[16px] sm:text-[17px] lg:text-[18px] leading-[1.45] mt-3 max-w-[390px] lg:max-w-[400px] xl:max-w-[390px]"
+              className="text-[#1C1C1C] text-[16px] sm:text-[17px] lg:text-[16px] leading-[1.45] mt-3 max-w-[281px]"
               style={{ fontFamily: "PoppinsRegular" }}
             >
               Don&apos;t just take our word for it, hear from the brands we&apos;ve
@@ -65,7 +65,7 @@ export default function Section5() {
                   window.open("https://ritzmediaworld.com/contact.html", "_blank")
                 }
                 className="h-[40px] px-6 rounded-[6px] bg-[#C99237] text-white text-[15px] sm:text-[16px] font-[600] cursor-pointer"
-                style={{ fontFamily: "OpenSansSemiBold" }}
+                style={{ fontFamily: "PoppinsSemiBold" }}
               >
                 Text Tutorial
               </button>
@@ -74,7 +74,7 @@ export default function Section5() {
                   window.open("https://ritzmediaworld.com/web-stories", "_blank")
                 }
                 className="h-[40px] px-3 rounded-[6px] bg-transparent text-black text-[15px] sm:text-[16px] font-[600] cursor-pointer"
-                style={{ fontFamily: "OpenSansSemiBold" }}
+                style={{ fontFamily: "PoppinsSemiBold" }}
               >
                 Video Tutorial
               </button>
@@ -82,7 +82,7 @@ export default function Section5() {
           </div>
 
           <div className="w-full lg:w-[78%] relative overflow-hidden">
-            <div className="hidden lg:block absolute right-0 top-0 h-[510px] left-auto w-[70%] min-w-[400px] max-w-[700px] xl:max-w-[800px] 2xl:max-w-[900px] bg-[#F7F7F7] z-0" />
+            <div className="hidden lg:block absolute right-0 top-0 bottom-0 left-auto w-[70%] min-w-[400px] max-w-[700px] xl:max-w-[800px] 2xl:max-w-[900px] bg-[#F7F7F7] z-0" />
             <div className="hidden lg:block absolute top-7 right-7 z-20">
               <div className="relative w-[71px] h-[27px]">
                 <Image

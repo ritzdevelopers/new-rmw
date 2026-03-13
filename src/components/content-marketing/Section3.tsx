@@ -58,7 +58,7 @@ function Section3() {
             >
                 {cardsData.map(
                     (
-                        item: { image: string; title: string; desc: string },
+                        item: { image: string; title: string; desc: string; activeCardTitle: string },
                         index: number,
                     ) => (
                         <div
@@ -77,7 +77,7 @@ function Section3() {
                                 <h3
                                     className={`font-[600] text-[14px] text-white uppercase leading-tight ${styles.fontMontserrat}`}
                                 >
-                                    {item.title}
+                                    {item.activeCardTitle}
                                 </h3>
                                 <p
                                     className={`font-[400] text-[11px] text-white/90 line-clamp-4 ${styles.fontMontserrat}`}

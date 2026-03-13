@@ -1,9 +1,9 @@
 import Image from "next/image";
 import BrandThatTrustUs from "@/components/influencer-marketing-agency-in-india/BrandThatTrustUs";
 import styles from "@/components/shared/container.module.css";
-import Section5 from "@/components/influencer-marketing-agency-in-india/Section5";
+import ClientTestimonials from "@/components/influencer-marketing-agency-in-india/Section5";
+import CelebritySection5 from "@/components/celebrity-endorsements/Section5";
 import Section8 from "../influencer-marketing-agency-in-india/Section8";
-import Section7 from "../influencer-marketing-agency-in-india/Section7";
 
 const cards = [
   {
@@ -39,7 +39,7 @@ export default function Section4() {
     <section className="w-full bg-white py-14 sm:py-16 md:py-20 overflow-x-hidden flex flex-col items-center">
       <div className={`w-full max-w-[1300px] mx-auto ${styles.containerWidth}`}>
         <h2
-          className="text-center text-black font-[700] text-[38px] sm:text-[44px] md:text-[50px] lg:text-[52px] leading-[1.1]"
+          className="text-center text-black font-[700] text-[38px] sm:text-[44px] md:text-[36px] lg:text-[36px] leading-[1.1]"
           style={{ fontFamily: "MontserratBold" }}
         >
           Why Celebrity
@@ -54,19 +54,24 @@ export default function Section4() {
                 key={card.title}
                 className={`w-full sm:w-1/2 lg:w-1/4 pb-10 sm:pb-12 lg:pb-0 ${rampOffsets[index]}`}
               >
-                <div className="relative lg:border-l lg:border-[#D9D9D9] lg:pl-6 xl:pl-7 lg:pr-4 xl:pr-5 lg:pt-6">
-                  <div className="w-[20px] h-[20px] mb-4 lg:mb-0 lg:absolute lg:top-0 lg:left-0 lg:-translate-x-1/2">
-                    <Image
-                      src={card.icon}
+                <div
+                  className="relative lg:pl-7 xl:pl-8 lg:pr-4 xl:pr-5 lg:pt-0"
+                >
+                  {index === 0 ? (
+                    <div className="hidden lg:block absolute left-0 top-[2px] w-px h-[226px] bg-[#D9D9D9]" />
+                  ) : (
+                    <div className="hidden lg:block absolute left-0 top-0 w-px h-full bg-[#D9D9D9]" />
+                  )}
+                  <div className=" mb-4 lg:mb-0 lg:absolute lg:top-[-33px] lg:left-0 lg:-translate-x-1/2">
+                    <img
+                      src={card.icon} 
                       alt=""
-                      width={20}
-                      height={20}
-                      className="object-contain"
+                      className="w-full h-auto object-contain"
                     />
                   </div>
 
                   <h3
-                    className="text-black font-[700] text-[20px] leading-[30px] tracking-[0em] max-w-[204px]"
+                    className="text-black font-[700] text-[20px] leading-[30px] tracking-[0em] max-w-[248px]"
                     style={{ fontFamily: "MontserratBold" }}
                   >
                     {card.title === "Generate Engagement & Influence" ? (
@@ -94,7 +99,7 @@ export default function Section4() {
 
         <div className="mt-8 sm:mt-10 md:mt-12 lg:-mt-[120px]">
           <Image
-            src="/service-v3/celebrity-endorsements/s4/new_wave.jpg"
+            src="/service-v3/celebrity-endorsements/s4/new_wave2.jpg"
             alt="Decorative wave"
             width={1014}
             height={282}
@@ -103,27 +108,32 @@ export default function Section4() {
           />
         </div>
       </div>
+
       <div className="mt-2 w-full">
-        <BrandThatTrustUs/>
+        <BrandThatTrustUs />
       </div>
-      <div className="mt-2 w-full">
-        <Section5/>
+
+      <div className="w-full">
+        <ClientTestimonials />
       </div>
+
       <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center">
         <div className={`w-full max-w-[1300px] mx-auto flex items-center justify-center text-center ${styles.containerWidth}`}>
           <h3
             className="text-white font-[600] text-[22px] sm:text-[28px] md:text-[34px] leading-tight"
             style={{ fontFamily: "MontserratSemiBold" }}
           >
-            Ready to Leverage Star Power into Real Business Results?
+            Ready to Leverage Star Power into Real Business Results?
           </h3>
         </div>
       </section>
+
       <div className="w-full">
-        <Section7/>
+        <CelebritySection5 />
       </div>
+
       <div className="w-full">
-        <Section8/>
+        <Section8 />
       </div>
     </section>
   );

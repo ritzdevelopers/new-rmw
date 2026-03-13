@@ -79,7 +79,7 @@ function S3Card({ setActiveCard, activeCard, setActiveCardImg, index, data }: { 
     {/* Absolute Positioned Border Black Bottom Container  */}
     {
       activeCard === index && (
-        <div className="w-[80%] h-[1px] absolute bottom-0 left-0 bg-[#000000] z-10"></div>
+        <div className={`w-[80%] h-[2px] absolute bottom-0 left-0 bg-[#000000] z-10 ${styles.slideLeft}`}></div>
       )
     }
 
@@ -103,7 +103,7 @@ function S3Card({ setActiveCard, activeCard, setActiveCardImg, index, data }: { 
 
       {/* Right Side In-Active  */}
       <div ref={ref2} className={`transform transition-all duration-200 ease-linear ${activeCard !== index ? "flex justify-start items-center gap-3 sm:gap-4 lg:gap-5 xl:gap-6 min-w-0 flex-1" : "hidden"}`}>
-        <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-[50px] lg:h-[50px] xl:w-[58px] flex-shrink-0 rounded-[4px] relative">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 overflow-hidden lg:w-[50px] lg:h-[50px]  xl:h-[58px] xl:w-[58px] flex-shrink-0 rounded-[4px] relative">
           <img src={data.imgPath} alt="Print Advertising" className="w-full h-auto object-cover" />
         </div>
         <h3 className={`font-[600] text-[16px] sm:text-[18px] lg:text-[19px] xl:text-[20px] ${styles.fontmontserrat}`}>

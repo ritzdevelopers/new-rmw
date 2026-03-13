@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { GoArrowUpRight } from "react-icons/go";
 import styles from "@/components/shared/container.module.css";
 import accordionStyles from "./Section3.module.css";
 
 const CELEBRITY_IMAGE = "/service-v3/celebrity-endorsements/s3/celebrity.jpg";
+const EXPLORE_ARROW_IMAGE =
+  "/service-v3/celebrity-endorsements/s3/group-105398.svg";
 
 const servicesData = [
   {
@@ -23,15 +24,15 @@ const servicesData = [
   },
   {
     id: "03",
-    title: "Creative Collaboration",
-    description:
-      "Celebrities can tell great stories that can influence people. Our in-house creative team collaborates with the best to create endorsement campaigns that are authentic, engaging, and build brand trust. Every collaboration is carefully designed to take advantage of the celebrity figure and transform the admiration into action by loyal customers. This effect creates measurable results.",
-  },
-  {
-    id: "04",
     title: "Campaign Integration",
     description:
       "Celebrity endorsements are pivotal when they seamlessly integrate. We utilize celebrity endorsements in all marketing channels to enhance effectiveness. We infuse the personality of a celebrity in all your advertising – digital, prints, radio, events and more – to make your investment of a celebrity 100 times effective.",
+  },
+  {
+    id: "04",
+    title: "Creative Collaboration",
+    description:
+      "Celebrities can tell great stories that can influence people. Our in-house creative team collaborates with the best to create endorsement campaigns that are authentic, engaging, and build brand trust. Every collaboration is carefully designed to take advantage of the celebrity figure and transform the admiration into action by loyal customers. This effect creates measurable results.",
   },
   {
     id: "05",
@@ -48,7 +49,7 @@ const servicesData = [
 ];
 
 export default function Section3() {
-  const [openItem, setOpenItem] = useState<string | null>("01");
+  const [openItem, setOpenItem] = useState<string | null>(null);
 
   const toggleExplore = (id: string) => {
     setOpenItem((prev) => (prev === id ? null : id));
@@ -66,12 +67,12 @@ export default function Section3() {
               Services
             </p>
             <h2
-              className="text-white text-[34px] sm:text-[40px] md:text-[46px] lg:text-[48px] leading-[1.05] font-[700]"
+              className="text-white text-[30px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.25] lg:leading-[50px] font-[700]"
               style={{ fontFamily: "MontserratBold" }}
             >
               What We Provide{" "}
               <span
-                className="text-[#FFFFFF] text-[16px] md:text-[17px] lg:text-[16px]"
+                className="text-[#FFFFFF] text-[16px] leading-[28px] font-[400]"
                 style={{ fontFamily: "OpenSansRegular" }}
               >
                 Is more than what you&apos;ll ever need
@@ -79,7 +80,7 @@ export default function Section3() {
             </h2>
           </div>
 
-          <div className="w-full max-w-[1246px] mx-auto rounded-[10px] overflow-hidden">
+          <div className="w-full lg:w-[1246px] max-w-[1246px] mx-auto rounded-[10px] overflow-hidden">
             {servicesData.map((item, index) => {
               const isOpen = openItem === item.id;
               const isFirst = index === 0;
@@ -88,22 +89,25 @@ export default function Section3() {
               return (
                 <div
                   key={item.id}
+                  onMouseEnter={() => setOpenItem(item.id)}
+                  onMouseLeave={() =>
+                    setOpenItem((prev) => (prev === item.id ? null : prev))
+                  }
                   className={`${isFirst ? "rounded-t-[10px]" : ""} ${
                     isLast ? "rounded-b-[10px]" : ""
-                  } ${isOpen ? "overflow-visible" : "overflow-hidden"}`}
+                  } ${accordionStyles.accordionItem} ${
+                    isOpen ? "overflow-visible lg:min-h-[506px]" : "overflow-hidden"
+                  }`}
                   style={{
-                    background: isOpen
-                      ? "linear-gradient(149.48deg, #C1892C -2.74%, #EFBB68 114.55%)"
-                      : "#161E4E",
                     borderBottom:
                       !isLast ? "1px solid rgba(255,255,255,0.15)" : "none",
                   }}
                 >
-                  <div className="flex items-start justify-between gap-6 sm:gap-8 px-4 sm:px-5 md:px-6 lg:px-7 py-5 sm:py-6">
-                    <div className="flex-1 flex items-start gap-8 sm:gap-10 md:gap-12 lg:gap-17">
+                  <div className="flex items-start justify-between gap-6 sm:gap-8 px-4 sm:px-5 md:px-6 lg:px-6 py-5 sm:py-6">
+                    <div className="flex-1 flex items-start gap-8 sm:gap-10 md:gap-12 lg:gap-[155px]">
                       <p
-                        className="text-white text-[24px] sm:text-[26px] md:text-[28px] leading-[1] pt-1"
-                        style={{ fontFamily: "MontserratRegular" }}
+                        className="text-white text-[18px] leading-[20px] pt-1 font-[500]"
+                        style={{ fontFamily: "MontserratMedium" }}
                       >
                         {item.id}.
                       </p>
@@ -129,10 +133,13 @@ export default function Section3() {
                         >
                           Explore More
                         </span>
-                        <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center transition-transform duration-200">
-                          <GoArrowUpRight
-                            className={`text-[#C99237] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-                            size={18}
+                        <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ease-in-out">
+                          <Image
+                            src={EXPLORE_ARROW_IMAGE}
+                            alt="Explore more arrow"
+                            width={22}
+                            height={20}
+                            className="transition-transform duration-500 ease-in-out"
                           />
                         </span>
                       </button>
@@ -143,16 +150,16 @@ export default function Section3() {
                   <div
                     className={`${accordionStyles.accordionContent} ${isOpen ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed}`}
                   >
-                    <div className="px-4 sm:px-5 md:px-6 lg:px-7 pb-5 sm:pb-6 md:pb-7">
-                      <div className="pl-0 sm:pl-[86px] lg:pl-[96px]">
+                    <div className="px-4 sm:px-5 md:px-6 lg:px-6 pb-5 sm:pb-6 md:pb-7">
+                      <div className="pl-0 sm:pl-[80px] lg:pl-[180px]">
                         <p
-                          className="mt-0 pt-0 text-white font-[400] text-[16px] leading-[28px] tracking-[0em] max-w-[796px] lg:ml-[10px] lg:text-[17px]"
+                          className="mt-0 pt-0 text-white font-[400] text-[16px] leading-[28px] tracking-[0em] max-w-[796px]"
                           style={{ fontFamily: "OpenSansRegular" }}
                         >
                           {item.description}
                         </p>
 
-                        <div className="mt-8 sm:mt-9 md:mt-10 relative w-full max-w-[760px] h-[190px] sm:h-[225px] md:h-[250px] lg:h-[206px] xl:h-[210px] rounded-[8px] overflow-hidden">
+                        <div className="mt-6 sm:mt-7 md:mt-8 relative w-full max-w-[760px] h-[190px] sm:h-[225px] md:h-[250px] lg:w-[749px] lg:max-w-[749px] lg:h-[258px] rounded-[8px] overflow-hidden">
                           <Image
                             src={CELEBRITY_IMAGE}
                             alt={item.title}

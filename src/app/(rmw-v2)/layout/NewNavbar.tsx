@@ -354,7 +354,7 @@ function NewNavbar() {
     { label: 'Gallery', ariaLabel: 'Visit our gallery', link: 'https://ritzmediaworld.com/gallery' },
     { label: 'Web Stories', ariaLabel: 'Visit our web stories', link: 'https://ritzmediaworld.com/web-stories' }
   ];
-  
+
   const socialItems = [
     { label: 'X (Twitter)', link: 'https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld' },
     { label: 'LinkedIn', link: 'https://www.facebook.com/ritzmediaworld/' },
@@ -362,7 +362,7 @@ function NewNavbar() {
     { label: 'YouTube', link: 'https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia' },
     { label: 'Instagram', link: 'https://www.instagram.com/ritzmediaworld/' }
   ];
-  
+
 
   // Mobile-specific states
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -385,21 +385,21 @@ function NewNavbar() {
         mobileMenuRef.current?.classList.remove('hidden');
         const menuItems = mobileMenuRef.current.querySelectorAll('.mobile-menu-item');
         const tl = gsap.timeline();
-        
+
         // Get actual height
         gsap.set(mobileMenuRef.current, { height: 'auto' });
         const height = mobileMenuRef.current.scrollHeight;
         gsap.set(mobileMenuRef.current, { height: 0, opacity: 0 });
-        
+
         gsap.set(menuItems, { opacity: 0, y: -20 });
-        
+
         tl.to(mobileMenuRef.current, {
-          height:'90vh',
+          height: '90vh',
           opacity: 1,
           duration: 0.4,
           ease: "power3.out"
         });
-        
+
         tl.to(menuItems, {
           opacity: 1,
           y: 0,
@@ -407,7 +407,7 @@ function NewNavbar() {
           stagger: 0.08,
           ease: "power2.out"
         }, "-=0.2");
-        
+
         mobileMenuTimelineRef.current = tl;
       } else {
         // Close animation - also close services if open
@@ -417,7 +417,7 @@ function NewNavbar() {
         if (mobileMenuTimelineRef.current) {
           const menuItems = mobileMenuRef.current.querySelectorAll('.mobile-menu-item');
           const tl = gsap.timeline();
-          
+
           tl.to(menuItems, {
             opacity: 0,
             y: -20,
@@ -425,7 +425,7 @@ function NewNavbar() {
             stagger: 0.05,
             ease: "power2.in"
           });
-          
+
           tl.to(mobileMenuRef.current, {
             height: 0,
             opacity: 0,
@@ -438,12 +438,12 @@ function NewNavbar() {
               }
             }
           }, "-=0.1");
-          
+
           mobileMenuTimelineRef.current = tl;
         }
       }
     }
-    
+
     return () => {
       if (mobileMenuTimelineRef.current) {
         mobileMenuTimelineRef.current.kill();
@@ -460,22 +460,22 @@ function NewNavbar() {
         }
         // Remove hidden class to allow GSAP to animate
         mobileServicesRef.current?.classList.remove('hidden');
-        
+
         // Get actual height
         gsap.set(mobileServicesRef.current, { height: 'auto' });
         const height = mobileServicesRef.current.scrollHeight;
         gsap.set(mobileServicesRef.current, { height: 0, opacity: 0 });
-        
+
         const tl = gsap.timeline();
         gsap.set(mobileItemsRef.current.filter(Boolean), { opacity: 0, x: -30, scale: 0.9 });
-        
+
         tl.to(mobileServicesRef.current, {
           height: height,
           opacity: 1,
           duration: 0.5,
           ease: "power3.out"
         });
-        
+
         mobileItemsRef.current.forEach((item, index) => {
           if (item) {
             tl.to(
@@ -491,14 +491,14 @@ function NewNavbar() {
             );
           }
         });
-        
+
         mobileServicesTimelineRef.current = tl;
       } else if (!isMobileServicesOpen && mobileServicesRef.current) {
         // Close animation
         if (mobileServicesTimelineRef.current) {
           const tl = gsap.timeline();
           const items = mobileItemsRef.current.filter(Boolean);
-          
+
           tl.to(items, {
             opacity: 0,
             x: -20,
@@ -507,7 +507,7 @@ function NewNavbar() {
             stagger: 0.05,
             ease: "power2.in"
           });
-          
+
           tl.to(mobileServicesRef.current, {
             height: 0,
             opacity: 0,
@@ -520,12 +520,12 @@ function NewNavbar() {
               }
             }
           }, "-=0.1");
-          
+
           mobileServicesTimelineRef.current = tl;
         }
       }
     }
-    
+
     return () => {
       if (mobileServicesTimelineRef.current) {
         mobileServicesTimelineRef.current.kill();
@@ -545,222 +545,226 @@ function NewNavbar() {
     };
   }, [isMobileMenuOpen, isMobileServicesOpen]);
 
+
+  const [isHomePage, setIsHomePage] = useState(false);
+  useEffect(() => {
+    if (window.location.pathname === "/") {
+      setIsHomePage(true);
+    } else {
+      setIsHomePage(false);
+    }
+  }, [window.location.pathname])
   return (
     <>
       {/* Desktop Navbar - Only visible on lg and above */}
       <nav
-        className={`hidden lg:flex w-full justify-center items-center py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white shadow-md" : "bg-transparent"
-        }`}
-      >
-      {/* Centered Align Div  */}
-      <div className="w-[90%] flex justify-between items-center">
-        {/* Left Side Container  */}
-        <div>
-          <img src="/home-v3/logo.png" alt="RMW Logo" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className="cursor-pointer" />
-        </div>
-        {/* Right Side Container  */}
-        <div
-          className={`flex justify-end items-center gap-4 transition-colors duration-300 ${
-            isScrolled ? "text-black" : "text-white"
+        className={`hidden lg:flex w-full justify-center items-center py-2 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"
           }`}
-        >
-          <ul className="flex justify-end items-center gap-6 xl:gap-12">
-            <li>
-              <Link
-                onMouseEnter={() => {
-                  // Clear any existing timeout
-                  if (hoverTimeoutRef.current) {
-                    clearTimeout(hoverTimeoutRef.current);
-                    hoverTimeoutRef.current = null;
-                  }
-                  setIsHovered(true);
-                }}
-                onMouseLeave={() => {
-                  // Set timeout to hide after 2 seconds, but only if mouse doesn't enter the container
-                  if (hoverTimeoutRef.current) {
-                    clearTimeout(hoverTimeoutRef.current);
-                  }
-                  hoverTimeoutRef.current = setTimeout(() => {
-                    setIsHovered(false);
-                    hoverTimeoutRef.current = null;
-                  }, 800);
-                }}
-                href="https://ritzmediaworld.com/services"
-                target="_blank"
-                className={`font-[700] text-[16px] transition-colors duration-300 ${
-                  isScrolled
-                    ? "text-black hover:text-[#C99237]"
-                    : "text-white hover:text-[#C99237]"
-                }`}
-              >
-                Services
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://ritzmediaworld.com/work.html"
-                target="_blank"
-                className={`font-[700] text-[16px] transition-colors duration-300 ${
-                  isScrolled
-                    ? "text-black hover:text-[#C99237]"
-                    : "text-white hover:text-[#C99237]"
-                }`}
-              >
-                Our Work
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://ritzmediaworld.com/about.html"
-                target="_blank"
-                className={`font-[700] text-[16px] transition-colors duration-300 ${
-                  isScrolled
-                    ? "text-black hover:text-[#C99237]"
-                    : "text-white hover:text-[#C99237]"
-                }`}
-              >
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://ritzmediaworld.com/contact.html"
-                target="_blank"
-                className={`font-[700] text-[16px] transition-colors duration-300 ${
-                  isScrolled
-                    ? "text-black hover:text-[#C99237]"
-                    : "text-white hover:text-[#C99237]"
-                }`}
-              >
-                Contact
-              </Link>
-            </li>
-            <li>
-              <div className="flex gap-4 justify-center items-center">
-                <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="w-[168px] h-[44px] font-[700] text-[15px] rounded-[5px] bg-[#C99237] cursor-pointer text-white hover:bg-[#B8822F] transition-colors duration-300 s1-btn-gold">
-                  <p className="text-white">Free Consulting</p>
-                </button>
-                <button
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className={`${
-                    isScrolled ? "text-black" : "text-white"
-                  } h-[34px] w-[34px] cursor-pointer transition-colors duration-300 hover:text-[#C99237] flex items-center justify-center`}
-                  aria-label="Toggle menu"
-                >
-                  <HiOutlineMenuAlt1 className="h-full w-full" />
-                </button>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
+      >
+        {/* Centered Align Div  */}
+        <div className="w-[90%] flex justify-between items-center">
+          {/* Left Side Container  */}
+          <div>
 
-      {/* Fixed Position Container  */}
-      {isHovered && (
-        <div
-          ref={containerRef}
-          className="w-[95%] xl:max-w-[1195px] fixed top-20 left-1/2 py-2 px-2 bg-white rounded-lg shadow-2xl transform -translate-x-1/2 z-[100]"
-          onMouseEnter={() => {
-            // Clear timeout when mouse enters the container - keep it visible
-            if (hoverTimeoutRef.current) {
-              clearTimeout(hoverTimeoutRef.current);
-              hoverTimeoutRef.current = null;
-            }
-            setIsHovered(true);
-          }}
-          onMouseLeave={() => {
-            // Hide immediately when mouse leaves the container
-            setIsHovered(false);
-            if (hoverTimeoutRef.current) {
-              clearTimeout(hoverTimeoutRef.current);
-              hoverTimeoutRef.current = null;
-            }
-          }}
-        >
-          <div className="flex flex-wrap justify-center items-start gap-[18px]">
-            {items.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  ref={(el) => {
-                    itemsRef.current[index] = el;
+            <img src="/rmw-final-logo.png" alt="RMW Logo" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`} />
+          </div>
+          {/* Right Side Container  */}
+          <div
+            className={`flex justify-end items-center gap-4 transition-colors duration-300 ${isScrolled ? "text-black" : "text-white"
+              }`}
+          >
+            <ul className="flex justify-end items-center gap-6 xl:gap-12">
+              <li>
+                <Link
+                  onMouseEnter={() => {
+                    // Clear any existing timeout
+                    if (hoverTimeoutRef.current) {
+                      clearTimeout(hoverTimeoutRef.current);
+                      hoverTimeoutRef.current = null;
+                    }
+                    setIsHovered(true);
                   }}
-                  style={{
-                    backgroundColor: bgColors[index] || "#0D0716",
-                    color: "#fff",
+                  onMouseLeave={() => {
+                    // Set timeout to hide after 2 seconds, but only if mouse doesn't enter the container
+                    if (hoverTimeoutRef.current) {
+                      clearTimeout(hoverTimeoutRef.current);
+                    }
+                    hoverTimeoutRef.current = setTimeout(() => {
+                      setIsHovered(false);
+                      hoverTimeoutRef.current = null;
+                    }, 800);
                   }}
-                  className="xl:w-[280px] w-[230px] h-[260px] rounded-[8px] flex flex-col  p-5 shadow-lg"
+                  href="https://ritzmediaworld.com/services"
+                  target="_blank"
+                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
+                      ? "text-black hover:text-[#C99237]"
+                      : "text-white hover:text-[#C99237]"
+                    }`}
                 >
-                  {/* Main Service Name  */}
-                  <div>
-                    <Link
-                      href={item.link}
-                      target="_blank"
-                      className="font-[700] text-[18px] transition-colors duration-300 text-white hover:text-[#C99237] cursor-pointer block mb-3"
-                    >
-                      {item.name}
-                    </Link>
-                  </div>
-
-                  {/* Sub Services  */}
-                  <div className="flex flex-col gap-1">
-                    {item.sub.map((subItem, subIndex) => {
-                      return (
-                        <div key={subIndex} className="flex items-center gap-2">
-                          <HiOutlineChevronRight className="w-[16px] h-[16px] text-white flex-shrink-0" />
-                          <Link
-                            href={subItem.link}
-                            target="_blank"
-                            className="font-[400] text-[14px] transition-colors duration-300 text-white hover:text-[#C99237] cursor-pointer"
-                          >
-                            {subItem.name}
-                          </Link>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://ritzmediaworld.com/work.html"
+                  target="_blank"
+                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
+                      ? "text-black hover:text-[#C99237]"
+                      : "text-white hover:text-[#C99237]"
+                    }`}
+                >
+                  Our Work
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://ritzmediaworld.com/about.html"
+                  target="_blank"
+                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
+                      ? "text-black hover:text-[#C99237]"
+                      : "text-white hover:text-[#C99237]"
+                    }`}
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://ritzmediaworld.com/contact.html"
+                  target="_blank"
+                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
+                      ? "text-black hover:text-[#C99237]"
+                      : "text-white hover:text-[#C99237]"
+                    }`}
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <div className="flex gap-4 justify-center items-center">
+                  <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="w-[168px] h-[44px] font-[700] text-[15px] rounded-[5px] bg-[#C99237] cursor-pointer text-white hover:bg-[#B8822F] transition-colors duration-300 s1-btn-gold">
+                    <p className="text-white">Free Consulting</p>
+                  </button>
+                  <button
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    className={`${isScrolled ? "text-black" : "text-white"
+                      } h-[34px] w-[34px] cursor-pointer transition-colors duration-300 hover:text-[#C99237] flex items-center justify-center`}
+                    aria-label="Toggle menu"
+                  >
+                    <HiOutlineMenuAlt1 className="h-full w-full" />
+                  </button>
                 </div>
-              );
-            })}
+              </li>
+            </ul>
           </div>
         </div>
-      )}
 
-      {/* Staggered Menu */}
-      {(isMenuOpen || isMenuClosing) && (
-        <>
-          <div className="fixed inset-0 z-[9999] responsive-staggered-menu" style={{ height: '100vh', background: 'transparent' }}>
-            <div className="relative w-full h-full">
-              <StaggeredMenu
-                position="right"
-                items={menuItems}
-                socialItems={socialItems}
-                displaySocials={true}
-                displayItemNumbering={false}
-                menuButtonColor={isScrolled ? "#000" : "#fff"}
-                openMenuButtonColor="#000"
-                changeMenuColorOnOpen={true}
-                colors={['#1a1a1a', '#2a2a2a']}
-                logoUrl="/home-v3/logo.png"
-                accentColor="#C99237"
-                isFixed={true}
-                closeOnClickAway={true}
-                onMenuOpen={() => {
-                  setIsMenuOpen(true);
-                }}
-                onMenuClose={() => {
-                  setIsMenuClosing(true);
-                  // Delay unmounting to allow close animation to complete
-                  setTimeout(() => {
-                    setIsMenuOpen(false);
-                    setIsMenuClosing(false);
-                  }, 800); // Match the close animation duration
-                }}
-              />
+        {/* Fixed Position Container  */}
+        {isHovered && (
+          <div
+            ref={containerRef}
+            className="w-[95%] xl:max-w-[1195px] fixed top-20 left-1/2 py-2 px-2 bg-white rounded-lg shadow-2xl transform -translate-x-1/2 z-[100]"
+            onMouseEnter={() => {
+              // Clear timeout when mouse enters the container - keep it visible
+              if (hoverTimeoutRef.current) {
+                clearTimeout(hoverTimeoutRef.current);
+                hoverTimeoutRef.current = null;
+              }
+              setIsHovered(true);
+            }}
+            onMouseLeave={() => {
+              // Hide immediately when mouse leaves the container
+              setIsHovered(false);
+              if (hoverTimeoutRef.current) {
+                clearTimeout(hoverTimeoutRef.current);
+                hoverTimeoutRef.current = null;
+              }
+            }}
+          >
+            <div className="flex flex-wrap justify-center items-start gap-[18px]">
+              {items.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    ref={(el) => {
+                      itemsRef.current[index] = el;
+                    }}
+                    style={{
+                      backgroundColor: bgColors[index] || "#0D0716",
+                      color: "#fff",
+                    }}
+                    className="xl:w-[280px] w-[230px] h-[260px] rounded-[8px] flex flex-col  p-5 shadow-lg"
+                  >
+                    {/* Main Service Name  */}
+                    <div>
+                      <Link
+                        href={item.link}
+                        target="_blank"
+                        className="font-[700] text-[18px] transition-colors duration-300 text-white hover:text-[#C99237] cursor-pointer block mb-3"
+                      >
+                        {item.name}
+                      </Link>
+                    </div>
+
+                    {/* Sub Services  */}
+                    <div className="flex flex-col gap-1">
+                      {item.sub.map((subItem, subIndex) => {
+                        return (
+                          <div key={subIndex} className="flex items-center gap-2">
+                            <HiOutlineChevronRight className="w-[16px] h-[16px] text-white flex-shrink-0" />
+                            <Link
+                              href={subItem.link}
+                              target="_blank"
+                              className="font-[400] text-[14px] transition-colors duration-300 text-white hover:text-[#C99237] cursor-pointer"
+                            >
+                              {subItem.name}
+                            </Link>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
-          <style dangerouslySetInnerHTML={{__html: `
+        )}
+
+        {/* Staggered Menu */}
+        {(isMenuOpen || isMenuClosing) && (
+          <>
+            <div className="fixed inset-0 z-[9999] responsive-staggered-menu" style={{ height: '100vh', background: 'transparent' }}>
+              <div className="relative w-full h-full">
+                <StaggeredMenu
+                  position="right"
+                  items={menuItems}
+                  socialItems={socialItems}
+                  displaySocials={true}
+                  displayItemNumbering={false}
+                  menuButtonColor={isScrolled ? "#000" : "#fff"}
+                  openMenuButtonColor="#000"
+                  changeMenuColorOnOpen={true}
+                  colors={['#1a1a1a', '#2a2a2a']}
+                  logoUrl="/rmw-final-logo.png"
+                  accentColor="#C99237"
+                  isFixed={true}
+                  closeOnClickAway={true}
+                  onMenuOpen={() => {
+                    setIsMenuOpen(true);
+                  }}
+                  onMenuClose={() => {
+                    setIsMenuClosing(true);
+                    // Delay unmounting to allow close animation to complete
+                    setTimeout(() => {
+                      setIsMenuOpen(false);
+                      setIsMenuClosing(false);
+                    }, 800); // Match the close animation duration
+                  }}
+                />
+              </div>
+            </div>
+            <style dangerouslySetInnerHTML={{
+              __html: `
             /* Responsive font sizing for StaggeredMenu - default for mobile */
             .responsive-staggered-menu .sm-panel-item {
               font-size: 3rem !important;
@@ -809,32 +813,30 @@ function NewNavbar() {
               }
             }
           `}} />
-        </>
-      )}
-    </nav>
+          </>
+        )}
+      </nav>
 
       {/* Mobile Navbar - Only visible below lg */}
       <nav
-        className={`lg:hidden w-full flex justify-center items-center py-3.5 sm:py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
-          isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg shadow-black/5" : "bg-transparent"
-        }`}
+        className={`lg:hidden w-full flex justify-center items-center py-3.5 sm:py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg shadow-black/5" : "bg-transparent"
+          }`}
       >
         <div className="w-[95%] max-w-[1200px] flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <img 
-              src="/home-v3/logo.png" 
-              alt="RMW Logo" 
-              className="h-[34px] sm:h-[38px] w-auto object-contain transition-transform duration-300 hover:scale-105"
+            <img
+              src="/rmw-final-logo.png"
+              alt="RMW Logo"
+              className={`w-auto object-contain transition-all duration-300 hover:scale-105 ${isScrolled ? "h-[36px] sm:h-[40px]" : "h-[52px] sm:h-[56px]"}`}
             />
           </div>
 
           {/* Menu Toggle Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`${
-              isScrolled ? "text-black" : "text-white"
-            } h-[38px] w-[38px] sm:h-[40px] sm:w-[40px] cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center relative z-10 rounded-full hover:bg-black/5 active:bg-black/10`}
+            className={`${isScrolled ? "text-black" : "text-white"
+              } h-[38px] w-[38px] sm:h-[40px] sm:w-[40px] cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center relative z-10 rounded-full hover:bg-black/5 active:bg-black/10`}
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
           >
@@ -860,9 +862,8 @@ function NewNavbar() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
                 </span>
                 <svg
-                  className={`w-5 h-5 text-gray-600 transition-all duration-300 ${
-                    isMobileServicesOpen ? "rotate-180 text-[#C99237]" : "group-hover:text-[#C99237]"
-                  }`}
+                  className={`w-5 h-5 text-gray-600 transition-all duration-300 ${isMobileServicesOpen ? "rotate-180 text-[#C99237]" : "group-hover:text-[#C99237]"
+                    }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -925,7 +926,7 @@ function NewNavbar() {
 
             {/* Other Menu Items */}
             <div className="space-y-1 pt-2">
-            <Link
+              <Link
                 href="https://ritzmediaworld.com/blogs"
                 target="_blank"
                 className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
@@ -986,7 +987,7 @@ function NewNavbar() {
             <div className="pt-4 border-t border-gray-100">
               <button
                 className="mobile-menu-item w-full font-[700] text-[16px] sm:text-[17px] py-4 px-6 rounded-xl bg-gradient-to-r from-[#C99237] to-[#B8822F] text-white hover:from-[#B8822F] hover:to-[#A67227] active:from-[#A67227] active:to-[#956217] transition-all duration-300 shadow-lg shadow-[#C99237]/20 hover:shadow-xl hover:shadow-[#C99237]/30 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
-                onClick={() =>{ setIsMobileMenuOpen(false), window.open("https://ritzmediaworld.com/contact.html", "_blank")}}
+                onClick={() => { setIsMobileMenuOpen(false), window.open("https://ritzmediaworld.com/contact.html", "_blank") }}
               >
                 <span>Free Consulting</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

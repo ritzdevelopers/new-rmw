@@ -3,7 +3,7 @@ import styles from "@/components/shared/container.module.css";
 
 export default function Section8() {
   return (
-    <section className="w-full bg-[#FFFFFF] py-12 sm:py-14 md:py-16 lg:py-20 flex justify-center">
+    <section className="w-full bg-[#FFFFFF] flex justify-center pb-10 sm:pb-12 md:pb-14">
       <div className={`w-full max-w-[1300px] mx-auto text-center flex flex-col items-center ${styles.containerWidth}`}>
         <h2
           className="text-black font-[700] text-[36px] sm:text-[44px] md:text-[34px] lg:text-[36px] leading-tight"

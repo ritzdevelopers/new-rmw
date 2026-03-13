@@ -20,7 +20,7 @@ function Section3() {
 
                     {/* Card 1  */}
                     <div className="px-6 sm:px-3 lg:px-10 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-[313px] w-full lg:w-[281px] rounded-[15px] sm:rounded-[20px] bg-white
-                     shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8 py-6 sm:py-0">
+                     shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8 py-6 sm:py-2 lg:py-0">
 
                         {/* Row 1  */}
                         <div className="w-full text-center">
@@ -94,22 +94,22 @@ function Section3() {
                     </div>
 
                     {/* Card 2  */}
-                    <div className="bg-white xl:-ml-[15rem] px-6 sm:px-3 lg:px-6  py-3 sm:py-8 lg:py-4 rounded-[15px] sm:rounded-[20px]
+                    <div className="bg-white xl:-ml-[15rem] px-6 sm:px-3 lg:px-8  py-3 sm:py-8 lg:py-4 rounded-[15px] sm:rounded-[20px]
                      flex flex-col justify-center items-center gap-2 sm:gap-3 w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
                             <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Team of Experts</p>
                         </div>
-                        <div className="flex justify-center items-center -gap-2">
-                            <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full">
+                        <div className="flex justify-center items-center">
+                            <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden ">
                                 <img src="/service-v3/layer1/team/vinay.jpg" alt="" className="w-full h-full object-cover" />
                             </div>
-                            <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full">
+                            <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden  -ml-[10px]">
                                 <img src="/service-v3/layer1/team/shahvez.jpg" alt="" className="w-full h-full object-cover" />
                             </div>
-                            <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full">
+                            <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden  -ml-[10px]">
                                 <img src="/service-v3/layer1/team/aakansha.jpg" alt="" className="w-full h-full object-cover" />
                             </div>
-                            <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full">
+                            <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden  -ml-[10px]">
                                 <img src="/service-v3/layer1/team/aunty.jpg" alt="" className="w-full h-full object-cover" />
                             </div>
                         </div>

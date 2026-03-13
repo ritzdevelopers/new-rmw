@@ -11,6 +11,7 @@ import styles from "./page.module.css";
 import NewYear from "./new-home/sections/NewYear";
 import PageAnimations from "./components/PageAnimations";
 import { fetchLatestBlogs, fetchSiteBanners, type BLOGSSTRUCTURE, type SITEBANNERSSTRUCTURE } from "./lib/fetchData";
+import NewBanner from "@/components/home-v3/NewBanner";
 
 async function page() {
   // Fetch data server-side
@@ -25,8 +26,8 @@ async function page() {
       {/* Hero Section - Full Width */}
       {/* <S1></S1> */}
       {/* <NewYear></NewYear> */}
-      <S1></S1>
-      {/* <NewYear></NewYear>  */}
+      {/* <S1></S1>  */}
+      <NewBanner />
       <div>
         <S2></S2>
       </div>

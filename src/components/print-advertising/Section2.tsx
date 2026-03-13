@@ -34,7 +34,7 @@ function Section2() {
                 </div>
                 {/* Right Side Container  */}
                 <div className="w-full lg:w-[480px] xl:w-[579px] lg:shrink-0 border border-[#E6E3E3]">
-                    <img src="/service-v3/print-advertising/s2/pd-s2-i1.png" alt="Print Advertising" className="w-full h-auto object-cover" />
+                    <img src="/service-v3/print-advertising/s2/rumors-of-print-demise.jpg" alt="Print Advertising" className="w-full h-auto object-cover" />
                 </div>
             </div>
         </section>

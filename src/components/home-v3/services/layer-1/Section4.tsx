@@ -16,7 +16,7 @@ function Section4() {
             {/* Centered Align Container  */}
             <div className="w-full flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10">
                 {/* Row 1 For Heading  */}
-                <div className="w-full flex flex-col text-center justify-center items-center gap-2 sm:gap-3 px-4 sm:px-0">
+                <div className="w-full flex flex-col text-center justify-center items-center  px-4 sm:px-0">
                     <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] text-[#C99237] uppercase ${styles.fontopensans}`}>Services</p>
                     <h2 className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[34px] xl:text-[36px] text-[#000000] leading-tight sm:leading-snug  ${styles.fontmontserrat}`}>What We Provide</h2>
                     <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] text-[#000000] ${styles.fontopensans}`}>is more than what you'll ever need</p>
