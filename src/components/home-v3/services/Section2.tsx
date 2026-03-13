@@ -7,9 +7,9 @@ function Section2() {
         <section className='flex justify-center items-center  py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px] border-b-[1px] border-[#D9D9D9]'>
 
             {/* Center Align Container  */}
-            <div className={`flex flex-col md:flex-row justify-between items-center lg:items-center gap-6 sm:gap-8 md:gap-4 w-full ${styles2.containerWidth}`}>
+            <div className={`flex flex-col md:flex-row justify-between items-center lg:items-center gap-6 sm:gap-8 md:gap-4 xl:gap-0 w-full ${styles2.containerWidth}`}>
                 {/* Left Side Container  */}
-                <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full maxw-[547px] text-center md:text-left">
+                <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full max-w-[547px] text-center md:text-left">
                     <h2 className={`font-[600] text-[18px] lg:text-[20px] xl:text-[30px] text-[#0F1640] leading-tight sm:leading-snug md:leading-normal ${styles2.fontmontserrat}  ${styles2.yofText}`}>
                         At <span className='text-[#C99237]'>Ritz Media World</span>, we have an obsession with being wizards of quirkiness that morph good ideas into Brilliant ones.
                     </h2>
@@ -31,12 +31,12 @@ function Section2() {
                 <div className="flex flex-col sm:flex-row gap-4  xl:gap-10 items-center justify-center lg:justify-start w-full lg:w-auto">
                     <div className='border-[1px] border-[#DEDEDE] flex flex-col justify-center items-center gap-2 sm:gap-3 p-3 sm:p-4'>
                         {/* Row 1  */}
-                        <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full sm:w-[180px] md:w-[195px] lg:w-[205px]">
+                        <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 md:gap-6 lg:gap-6 w-full sm:w-[180px] md:w-[195px] lg:w-[205px]">
                             <div className="w-full sm:w-auto flex justify-center sm:justify-start">
                                 <img src="/home-v3/service-imgs/s2/17+.png" alt="" className='w-[100px] sm:w-[110px] md:w-[120px] lg:w-[130px] h-auto' />
                             </div>
 
-                            <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] text-center sm:text-left inline ${styles2.fontopensans}`}>Years working experience</p>
+                            <p className={`font-[600] text-[13px] text-[#0F1640] sm:text-[14px] md:text-[15px] lg:text-[16px] text-center sm:text-left inline ${styles2.fontopensans}`}>Years working experience</p>
                         </div>
 
                         {/* Row 2  */}
