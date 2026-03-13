@@ -50,7 +50,7 @@ function Layer1Card({ item, idx }: { item: Item, idx: number }) {
                         <p className="sr-only" itemProp="alternateName">{meta_titles}</p>
                     )}
                     <p 
-                            className={`font-[400] max-w-[90%] text-[13px] sm:text-[14px] text-[#000000] leading-relaxed line-clamp-4 ${styles.fontopensans}`}
+                            className={`font-[400] max-w-[90%] text-[13px] sm:text-[16px] text-[#000000] leading-relaxed line-clamp-4 ${styles.fontopensans}`}
                         itemProp="description"
                         title={meta_description || description}
                     >

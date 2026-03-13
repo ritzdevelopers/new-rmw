@@ -5,7 +5,7 @@ function AwardCard({ img, title, description }: { img: string, title: string, de
     return (
         <div className="w-[407px]">
             {/* Top Row For Image */}
-            <div className="w-full h-[328px] relative">
+            <div className="w-full  lg:h-[273px] xl:h-[328px] h-[328px] relative">
                 <Image src={img} alt={title} fill className="object-cover" />
 
                 {/* Absolute Positioned Div For Star Image  */}
@@ -16,7 +16,7 @@ function AwardCard({ img, title, description }: { img: string, title: string, de
 
             {/* Bottom Row For Description */}
             <div className="w-full bg-white border-[1px] border-[#D4D4D4] h-[86px] p-4 xl:px-8">
-                <p className={`font-[500] text-[16px] text-black ${styles.fontpoppins}`}>{description}</p>
+                <p className={`font-[500] text-[16px] lg:text-[14px] xl:text-[16px] text-black ${styles.fontpoppins}`}>{description}</p>
             </div>
 
         </div>

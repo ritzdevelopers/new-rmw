@@ -42,7 +42,7 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
             </div>
 
             {/* Right Side Container  */}
-            <div className='w-full lg:w-[40%] xl:max-w-[500px] flex flex-col gap-3 sm:gap-4'>
+            <div className='w-full lg:w-[42%] xl:max-w-[550px] flex flex-col gap-3 sm:gap-4'>
                 <p
                     className='font-[400] text-[13px] sm:text-[14px] text-[#0F1640] md:text-[16px] leading-relaxed text-center lg:text-left'
                     dangerouslySetInnerHTML={{ __html: convertClassNameToClass(description || '') }}
@@ -50,7 +50,7 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
                 <div className="grid  grid-cols-3 gap-x-2 sm:gap-x-3 gap-y-2 sm:gap-y-3">
                     {subServices.map((subService: any) => (
                         <div onClick={() => window.open(subService.slug, "_blank")} key={subService.title} className='bg-[#F2F2F2] lg:pl-2
-                          rounded-[2px] px-2 lg:py-5  min-h-[70px] cursor-pointer sm:min-h-[80px]  lg:h-[88px] flex justify-center lg:justify-start items-center text-center lg:text-left'>
+                          rounded-[2px] px-2 pl-4 lg:py-5  min-h-[70px] cursor-pointer sm:min-h-[80px]  lg:h-[88px] flex justify-center lg:justify-start items-center text-center lg:text-left'>
                             <p className={`font-[400] text-[13px] text-[#0F1640] sm:text-[14px] md:text-[15px] leading-snug ${styles2.fontopensans}`}>{subService.title}</p>
                         </div>
                     ))}

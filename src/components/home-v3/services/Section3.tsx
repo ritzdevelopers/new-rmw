@@ -500,8 +500,8 @@ function Section3({ servicesData }: Section3Props) {
 
                             {/* Absolute Position Text Container  */}
                             <div className="absolute inset-0 w-full h-full flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 text-center md:text-left">
-                                <p className={`font-[400] text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] text-white ${styles2.fontopensans} max-w-[90%]`}>
-                                    We command growth with millions of hours in collective experience. At this point, It's not a matter of 'if', it becomes a matter of 'when' you will attain the tipping point that will drive your.
+                                <p className={`font-[400] text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] text-white ${styles2.fontopensans} max-w-[100%]`}>
+                                    We command growth with millions of <br className="hidden xl:block" /> hours in collective experience. At this point, <br className="hidden xl:block" /> It's not a matter of 'if', it becomes a matter of 'when' you will attain the tipping point that will drive your.
                                 </p>
                                 <h4 className={`font-[300] text-[28px] sm:text-[36px] md:text-[42px] xl:text-[50px] text-white mt-2 sm:mt-4 leading-[1.1] ${styles2.fontopensans}`}>
                                     PERPETUAL <br />
@@ -660,7 +660,7 @@ function Section3({ servicesData }: Section3Props) {
                     {/* Row 2  */}
                     <div className="w-full min-h-[160px] sm:min-h-[180px] md:min-h-[200px] lg:min-h-[220px] xl:min-h-[247px] bg-[#F7F7F7] flex justify-center items-center py-4 sm:py-5 md:py-6 lg:py-8 xl:py-0">
                         {/* Center Align Cards Container  */}
-                        <div className="grid grid-cols-2 sm:flex sm:flex-wrap md:flex-nowrap justify-center items-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 xl:gap-20 2xl:gap-16 w-full px-4 sm:px-5 md:px-6 lg:px-8 xl:px-0 max-w-[1920px] mx-auto">
+                        <div className="flex flex-wrap md:flex-nowrap justify-center items-center w-full px-4 sm:px-5 md:px-6 lg:px-8 xl:px-0 max-w-[1920px] mx-auto md:gap-10 lg:gap-16 xl:gap-20">
                             {
                                 [
                                     {
@@ -686,15 +686,17 @@ function Section3({ servicesData }: Section3Props) {
 
                                 ].map((ob, idx) => {
                                     return (
-                                        <div key={idx} className={`flex flex-col justify-center items-center text-center
-                                         px-2 sm:px-3 md:px-4 lg:px-6 xl:px-10 2xl:px-14 
-                                         py-2 sm:py-2.5 md:py-3 lg:py-3.5 xl:py-4
-                                         w-full sm:w-[calc(50%-6px)] md:w-auto
-                                         ${idx < 2 ? "border-b-[1px] border-b-[#C9C9C9] sm:border-b-[1px] sm:border-r-0 md:border-b-0 md:border-r-[1px] md:border-r-[#C9C9C9]" : ""}
-                                         ${idx === 2 ? "border-b-[1px] border-b-[#C9C9C9] sm:border-b-0 sm:border-r-[1px] sm:border-r-[#C9C9C9] md:border-b-0 md:border-r-[1px] md:border-r-[#C9C9C9]" : ""}
-                                         ${idx === 3 ? "sm:border-r-0 md:border-r-0" : ""}`}>
-                                            <h5 className={` font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#0F1640] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</h5>
-                                            <p className={`font-[600] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[16px] 2xl:text-[16px] text-[#0F1640] mt-1 sm:mt-1.5 md:mt-2 ${styles2.fontopensans}`}>{ob.desc}</p>
+                                        <div key={idx} className="flex items-center">
+                                            <div className={`flex flex-col justify-center items-center text-center
+                                                px-4 sm:px-6 md:px-4 lg:px-6 xl:px-10 2xl:px-14
+                                                py-3 sm:py-4 md:py-3 lg:py-3.5 xl:py-4
+                                                w-[calc(50vw-2rem)] sm:w-auto
+                                                ${idx < 2 ? "border-b border-b-[#C9C9C9] sm:border-b-0" : ""}
+                                                ${idx % 2 === 0 ? "border-r border-r-[#C9C9C9] sm:border-r-0" : ""}`}>
+                                                <h5 className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#0F1640] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</h5>
+                                                <p className={`font-[600] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[16px] 2xl:text-[16px] text-[#0F1640] mt-1 sm:mt-1.5 md:mt-2 ${styles2.fontopensans}`}>{ob.desc}</p>
+                                            </div>
+                                            {idx !== 3 && <div className="hidden sm:block w-[1px] min-h-[80px] md:min-h-[100px] lg:min-h-[120px] xl:min-h-[137px] bg-[#C9C9C9]"></div>}
                                         </div>
                                     )
                                 })
@@ -702,17 +704,8 @@ function Section3({ servicesData }: Section3Props) {
                         </div>
                     </div>
                 </div>
-
-                {/* Copy Components  */}
-                <div className={``}>
-                    <S6 padding="px-0" padding2="px-0" />
-                </div>
-
-                {/* Copy Components  */}
-                <S7 />
-
-                {/* Copy Components  */}
-                {/* Row 2  */}
+                <S6 padding="px-0" padding2="px-0"></S6>
+                <S7></S7>
                 <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 ${styles2.containerWidth}`}>
                     {/* Left Side Container  */}
                     <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
