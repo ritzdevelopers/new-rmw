@@ -1,13 +1,16 @@
+import Image from "next/image";
 import Link from "next/link";
-import { GoArrowUpRight } from "react-icons/go";
-import styles from "@/components/shared/container.module.css";
+// import styles from "@/components/shared/container.module.css";
+
+const EXPLORE_ARROW_IMAGE =
+  "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
 
 export default function Section2() {
   return (
-    <section className="w-full flex items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
-      <div className={`w-[92%] sm:w-[88%] md:w-[82%] lg:w-[70%] text-center mx-auto ${styles.containerWidth}`}>
+    <section className="w-full flex items-center justify-center py-12 sm:py-12 md:py-15 lg:py-17 bg-white">
+      <div className={`w-[92%] sm:w-[88%] md:w-[82%] lg:w-[70%] text-center mx-auto`}>
         <h2
-          className="text-black font-[400] text-[25px] sm:text-[31px] md:text-[37px] lg:text-[24px] leading-[1.5]"
+          className="text-black font-[400] text-[25px] sm:text-[31px] md:text-[37px] lg:text-[24px] leading-[40px]"
           style={{ fontFamily: "MontserratRegular" }}
         >
           Influencer marketing services are more than social media hype, they are
@@ -21,7 +24,7 @@ export default function Section2() {
         </h2>
 
         <div
-          className="mt-6 sm:mt-7 md:mt-8 text-[#2d2d2d] text-[15px] sm:text-[17px] md:text-[18px] leading-[1.75] lg:text-[18px]"
+          className="mt-6 sm:mt-7 md:mt-8 text-[#2d2d2d] text-[15px] sm:text-[17px] md:text-[15px] leading-[1.75] lg:text-[16px] w-[849px] mx-auto"
           style={{ fontFamily: "OpenSansRegular" }}
         >
           <p>
@@ -54,7 +57,12 @@ export default function Section2() {
             aria-label="Let's Talk Today"
             className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
           >
-            <GoArrowUpRight className="text-white" size={18} />
+            <Image
+              src={EXPLORE_ARROW_IMAGE}
+              alt="Arrow"
+              width={22}
+              height={20}
+            />
           </Link>
         </div>
       </div>

@@ -3,7 +3,13 @@ import React from "react";
 
 export default function Section1() {
   return (
-    <section className={`w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[615px] bg-[url("/services-v3-slug/banner/freepik__talk__30805%201.jpg")] bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-26 px-4 sm:px-6 md:px-8 lg:px-0`}>
+    <section
+      className="w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[615px] bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-26 px-4 sm:px-6 md:px-8 lg:px-0"
+      style={{
+        backgroundImage:
+          'url("/services-v3-slug/banner/RMW%20Creative%20Services%20page.jpg")',
+      }}
+    >
       <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-none">
         <div className="w-[120px] sm:w-[140px] md:w-[155px] lg:w-[179px] h-[28px] sm:h-[32px] md:h-[35px] lg:h-[37px] relative">
           <Image

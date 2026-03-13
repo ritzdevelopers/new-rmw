@@ -2,36 +2,27 @@
 .accordionContent {
   overflow: hidden;
   transition:
-    max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.35s ease-in-out;
+    max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.55s ease-in-out;
 }
 
 .accordionContentClosed {
   max-height: 0;
   opacity: 0;
+  transition-delay: 0ms;
 }
 
 .accordionContentOpen {
   max-height: 700px;
   opacity: 1;
+  transition-delay: 90ms;
 }
 
-/* Explore More dropdown */
-.exploreDropdown {
-  overflow: hidden;
-  transition:
-    max-height 0.3s ease-in-out,
-    opacity 0.25s ease-in-out;
+.accordionItem {
+  background: #161E4E;
+  transition: background 0.25s ease-in-out;
 }
 
-.exploreDropdownOpen {
-  max-height: 150px;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.exploreDropdownClosed {
-  max-height: 0;
-  opacity: 0;
-  pointer-events: none;
+.accordionItem:hover {
+  background: linear-gradient(149.48deg, #C1892C -2.74%, #EFBB68 114.55%);
 }

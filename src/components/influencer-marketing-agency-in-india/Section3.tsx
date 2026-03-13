@@ -3,10 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { GoArrowUpRight } from "react-icons/go";
 import { Plus } from "lucide-react";
-import styles from "@/components/shared/container.module.css";
+// import styles from "@/components/shared/container.module.css";
 import accordionStyles from "./Section3.module.css";
+
+const EXPLORE_ARROW_IMAGE =
+  "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
 
 const servicesData = [
   {
@@ -55,7 +57,7 @@ export default function Section3() {
 
   return (
     <section className="w-full bg-[#0F1640] py-12 sm:py-14 md:py-16 lg:py-20">
-      <div className={`w-[94%] sm:w-[92%] md:w-[90%] lg:w-[88%] xl:w-[84%] mx-auto ${styles.containerWidth}`}>
+      <div className={`w-[94%] sm:w-[92%] md:w-[90%] lg:w-[90%] mx-auto`}>
         <div className="text-center">
           <p
             className="uppercase text-[11px] sm:text-[12px] tracking-[0.1em] text-[#C99237]"
@@ -101,7 +103,7 @@ export default function Section3() {
           >
             <div className="py-5 sm:py-6">
               <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 xl:gap-10 items-start">
-                <div className="flex items-start gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-[-22px]">
+                <div className="flex items-start gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-0">
                   <span
                     className="text-[#FFFFFF] text-[13px] sm:text-[15px] lg:pt-1"
                     style={{ fontFamily: "MontserratMedium" }}
@@ -124,7 +126,7 @@ export default function Section3() {
                   >
                     {servicesData[0].description}
                   </p>
-                  <div className="mt-5 sm:mt-6 flex items-center gap-3">
+                  <div className="mt-5 sm:mt-6 flex items-center gap-2.5">
                     <span
                       className="text-white text-[14px] sm:text-[15px]"
                       style={{ fontFamily: "MontserratMedium" }}
@@ -135,9 +137,14 @@ export default function Section3() {
                       href="/contact.html"
                       target="_blank"
                       aria-label="Learn more"
-                      className="w-8 h-8 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+                      className="w-[40px] h-[40px] rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
                     >
-                      <GoArrowUpRight className="text-white" size={16} />
+                      <Image
+                        src={EXPLORE_ARROW_IMAGE}
+                        alt="Arrow"
+                        width={22}
+                        height={7}
+                      />
                     </Link>
                   </div>
                 </div>
@@ -197,7 +204,7 @@ export default function Section3() {
               >
                 <div className="py-5 sm:py-6">
                   <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 xl:gap-10 items-start">
-                    <div className="flex items-start gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-[-22px]">
+                    <div className="flex items-start gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-0">
                       <span
                         className="text-[#FFFFFF] text-[13px] sm:text-[15px] lg:pt-1"
                         style={{ fontFamily: "MontserratMedium" }}
@@ -218,7 +225,7 @@ export default function Section3() {
                       >
                         {item.description}
                       </p>
-                      <div className="mt-5 sm:mt-6 flex items-center gap-3">
+                      <div className="mt-5 sm:mt-6 flex items-center gap-2.5">
                         <span
                           className="text-white text-[14px] sm:text-[15px]"
                           style={{ fontFamily: "MontserratMedium" }}
@@ -229,9 +236,14 @@ export default function Section3() {
                           href="/contact.html"
                           target="_blank"
                           aria-label="Learn more"
-                          className="w-8 h-8 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+                          className="w-6 h-6 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
                         >
-                          <GoArrowUpRight className="text-white" size={16} />
+                          <Image
+                            src={EXPLORE_ARROW_IMAGE}
+                            alt="Arrow"
+                            width={12}
+                            height={12}
+                          />
                         </Link>
                       </div>
                     </div>

@@ -1,19 +1,21 @@
+import Image from "next/image";
 import Link from "next/link";
-import { GoArrowUpRight } from "react-icons/go";
-import styles from "./Section2.module.css";
+// import styles from "./Section2.module.css";
+
+const EXPLORE_ARROW_IMAGE =
+  "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
 
 export default function Section2() {
   return (
     <section className="w-full flex items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
-      <div className={`w-[92%] sm:w-[85%] md:w-[80%] lg:w-[70%] text-center mx-auto ${styles.containerWidth}`}>
+      <div className={`w-[92%] sm:w-[85%] md:w-[80%] lg:w-[70%] text-center mx-auto`}>
         <h2
           className="text-black font-[800] text-[22px] sm:text-[26px] md:text-[28px] lg:text-[30px] leading-[1.3] sm:leading-tight"
           style={{ fontFamily: "MontserratBold" }}
         >
-          Creativity isn’t just decoration—it’s competitive advantage.
-          <br className="hidden sm:block" /> At{" "}
-          <span className="text-[#C99237]">Ritz Media World</span>, we believe
-          blandness is a luxury you can’t afford.
+          Creativity is not an afterthought, but an advantage. At{" "}
+          <span className="text-[#C99237]">Ritz Media World</span>, we realize
+          that mediocracy is something no brand can truly afford.
         </h2>
 
         <div
@@ -48,7 +50,12 @@ export default function Section2() {
             aria-label="Contact us"
             className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
           >
-            <GoArrowUpRight className="text-white" size={20} />
+            <Image
+              src={EXPLORE_ARROW_IMAGE}
+              alt="Arrow"
+              width={20}
+              height={18}
+            />
           </Link>
         </div>
       </div>
