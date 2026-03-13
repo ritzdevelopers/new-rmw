@@ -239,7 +239,7 @@ function Section5() {
             )}
 
             {/* ——— LG AND ABOVE: Original layout (filter sidebar + cards) ——— */}
-            <div className={`hidden lg:flex w-full flex-col justify-center items-center gap-4 sm:gap-6 ${styles.containerWidth}`}>
+            <div className={`hidden lg:flex w-full flex-col justify-center items-center gap-4 sm:gap-16 ${styles.containerWidth}`}>
                 {/* Top Container  */}
                 <div className="w-full flex justify-center items-center text-center px-2 sm:px-0">
                     <h2 className={`font-[400] text-[20px] sm:text-[26px] md:text-[30px] lg:text-[36px] leading-tight ${styles.fontmontserrat}`}>
@@ -249,7 +249,7 @@ function Section5() {
                 </div>
 
                 {/* Bottom Container  */}
-                <div className="w-full flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-6 items-stretch lg:items-start">
+                <div className="w-full flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-10 items-stretch lg:items-start">
                     {/* Left Side Container  */}
                     <div className="flex flex-col gap-2 w-full max-w-full lg:w-[278px] lg:flex-shrink-0 shadow-[0_0_10px_0_rgba(192,191,191,0.25)] rounded-[5px] overflow-hidden">
                         {/* Filter Header  */}
@@ -440,7 +440,7 @@ function Section5() {
                         <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
                             <h4 className={`font-[500] text-[18px] sm:text-[20px] lg:text-[24px] text-[#222222] ${styles.fontmontserrat}`}>Newspapers type</h4>
                             <div className="w-full sm:w-auto sm:min-w-[200px] lg:min-w-[280px] px-3 sm:px-4 rounded-[10px] bg-white">
-                                <select name="sort" id="sort" className={`w-full h-[48px] sm:h-[54px] text-[13px] sm:text-[14px] text-[#000000] font-[400] focus:outline-none ${styles.fontmontserrat}`}>
+                                <select name="sort" id="sort" className={`w-full h-[48px] sm:h-[54px] text-[13px] sm:text-[16px] text-[#000000] font-[400] focus:outline-none ${styles.fontopensans}`}>
                                     <option value="" className="text-[#000000]">Sort By: Top Searched</option>
                                 </select>
                             </div>

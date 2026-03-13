@@ -558,7 +558,7 @@ function NewNavbar() {
     <>
       {/* Desktop Navbar - Only visible on lg and above */}
       <nav
-        className={`hidden lg:flex w-full justify-center items-center py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"
+        className={`hidden lg:flex w-full justify-center items-center py-2 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"
           }`}
       >
         {/* Centered Align Div  */}
@@ -566,7 +566,7 @@ function NewNavbar() {
           {/* Left Side Container  */}
           <div>
 
-            <img src="/rmw-final-logo.png" alt="RMW Logo" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[72px]"}`} />
+            <img src="/rmw-final-logo.png" alt="RMW Logo" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`} />
           </div>
           {/* Right Side Container  */}
           <div

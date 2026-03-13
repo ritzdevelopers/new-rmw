@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 export default function Banner() {
     return (
         <section className={`w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[515px] 
-        bg-[url("/service-v3/print-advertising/banners/print-advertising-banner.png")] 
+        bg-[url("/service-v3/print-advertising/banners/print-advertising-services.jpg")] 
         bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-12 md:pb-16 lg:pb-20
          xl:pb-26 px-4 sm:px-6 md:px-8 lg:px-0`}>
             <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-none">
@@ -18,7 +18,7 @@ export default function Banner() {
                         sizes="(min-width:1024px) 165px, (min-width:768px) 155px, (min-width:640px) 140px, 120px"
                         priority
                     />
-                    <p className={`font-[700]  text-[12px] sm:text-[13px] md:text-[14px] lg:text-[12px] text-white absolute top-[50%] uppercase -translate-y-1/2 right-4 sm:right-5 md:right-6 lg:right-8 ${styles.fontmontserrat}`}>
+                    <p className={`font-[700]  text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] text-white absolute top-[50%] uppercase -translate-y-1/2 right-4 sm:right-5 md:right-6 lg:right-8 ${styles.fontmontserrat}`}>
                         Services
                     </p>
                 </div>

@@ -1,5 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+.slideIn {
+    animation: slideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slideLeft {
+    animation: slideLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideLeft {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 80%;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        clip-path: inset(100% 0 0 0);
+    }
+
+    to {
+        transform: translateY(0);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
 .clientSlider {
     animation: clientSlider 30s linear infinite;
     will-change: transform;
@@ -185,7 +215,7 @@
         min-height: 260px !important;
     }
 
-    .s5CardsGrid .s5Card > div:first-child {
+    .s5CardsGrid .s5Card>div:first-child {
         height: 90px !important;
         min-height: 90px !important;
     }
@@ -194,7 +224,7 @@
         font-size: 13px !important;
     }
 
-    .s5CardsGrid .s5Card > div:last-child > div:first-child p {
+    .s5CardsGrid .s5Card>div:last-child>div:first-child p {
         font-size: 11px !important;
     }
 
@@ -206,7 +236,7 @@
         font-size: 12px !important;
     }
 
-    .s5CardsGrid .s5Card > div:last-child > div:last-child > p {
+    .s5CardsGrid .s5Card>div:last-child>div:last-child>p {
         font-size: 11px !important;
     }
 }
