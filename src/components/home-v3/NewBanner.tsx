@@ -3,31 +3,8 @@ import { useEffect, useState } from "react";
 
 const bannerSlides = [
     {
-        image: "/4th_floor_rmw/home/banner/rmw-bn-i1.jpg",
-        textColor: "text-white",
-        highlightColor: "text-[#C99237]",
-        domainColor: "text-[#C99237]",
-        subHeadingColor: "text-white",
-    },
-
-    {
-        image: "/4th_floor_rmw/home/banner/rmw-bn-i2.jpg",
-        textColor: "text-[#1F2A44]",
-        highlightColor: "text-[#C99237]",
-        domainColor: "text-[#C99237]",
-        subHeadingColor: "text-[#1F2A44]",
-    },
-
-    {
-        image: "/4th_floor_rmw/home/banner/rmw-bn-i3.jpg",
-        textColor: "text-white",
-        highlightColor: "text-[#C99237]",
-        domainColor: "text-[#C99237]",
-        subHeadingColor: "text-white",
-    },
-
-    {
-        image: "/4th_floor_rmw/home/banner/rmw-bn-i4.jpg",
+        desktop: "/4th_floor_rmw/home/banner/bn-1-desktop.png",
+        mobile: "/4th_floor_rmw/home/banner/bn-1-mobile.png",
         textColor: "text-[#0A3B3B]",
         highlightColor: "text-white",
         domainColor: "text-white",
@@ -35,10 +12,29 @@ const bannerSlides = [
     },
 
     {
-        image: "/4th_floor_rmw/home/banner/rmw-bn-i5.jpg",
+        desktop: "/4th_floor_rmw/home/banner/bn-2-desktop.png",
+        mobile: "/4th_floor_rmw/home/banner/bn-2-mobile.png",
+        textColor: "text-white",
+        highlightColor: "text-[#C99237]",
+        domainColor: "text-[#C99237]",
+        subHeadingColor: "text-white",
+    },
+
+    {
+        desktop: "/4th_floor_rmw/home/banner/bn-3-desktop.png",
+        mobile: "/4th_floor_rmw/home/banner/bn-3-mobile.png",
         textColor: "text-white",
         highlightColor: "text-black",
         domainColor: "text-black",
+        subHeadingColor: "text-white",
+    },
+
+    {
+        desktop: "/4th_floor_rmw/home/banner/bn-4-desktop.png",
+        mobile: "/4th_floor_rmw/home/banner/bn-4-mobile.png",
+        textColor: "text-white",
+        highlightColor: "text-[#C99237]",
+        domainColor: "text-[#C99237]",
         subHeadingColor: "text-white",
     },
 ];
@@ -59,44 +55,80 @@ function NewBanner() {
     return (
         <section className="w-full relative overflow-hidden">
             <img
-                src={activeSlide.image}
+                src={activeSlide.desktop}
                 alt="Ritz Media World banner"
-                className="w-full h-auto object-cover transition-all duration-500 ease-linear"
+                className="hidden md:block w-full h-auto object-cover transition-all duration-500 ease-linear"
+            />
+            <img
+                src={activeSlide.mobile}
+                alt="Ritz Media World banner"
+                className="block md:hidden w-full h-auto object-cover transition-all duration-500 ease-linear"
             />
 
             {/* TEXT OVERLAY */}
-            <div className="absolute left-[3%] top-[69%] -translate-y-1/2 w-[92%] max-w-[820px]">
+            {/* TEXT OVERLAY */}
+            <div className="
+absolute
+left-[5%]
+top-[38%]
+md:top-[55%]
+-translate-y-1/2
+w-[90%]
+max-w-[820px]
+text-left
+md:left-[5%]
+md:translate-x-0
+md:text-left
+">
 
                 <h1
-                    className="font-normal leading-[1.1] tracking-[-0.01em] whitespace-nowrap"
-                    style={{
-                        fontFamily: "Arial",
-                        fontSize: "clamp(20px, 3.2vw, 48px)"
-                    }}
+                    className="
+leading-[1.15]
+tracking-[-0.01em]
+
+font-bold
+text-[17px]
+
+sm:text-[22px]
+
+md:text-[18px]
+lg:text-[33px]
+md:font-normal
+"
+                    style={{ fontFamily: "Arial" }}
                 >
-                    <span className={activeSlide.highlightColor}>W</span>
-                    <span className={activeSlide.textColor}>hoever </span>
+                    <span className={`${activeSlide.highlightColor} font-bold`}>W</span>
+                    <span className={`${activeSlide.textColor} font-bold md:font-light`}>hoever </span>
 
-                    <span className={activeSlide.highlightColor}>W</span>
-                    <span className={activeSlide.textColor}>herever </span>
+                    <span className={`${activeSlide.highlightColor} font-bold`}>W</span>
+                    <span className={`${activeSlide.textColor} font-bold md:font-light`}>herever </span>
 
-                    <span className={activeSlide.highlightColor}>W</span>
-                    <span className={activeSlide.textColor}>henever</span>
+                    <span className={`${activeSlide.highlightColor} font-bold`}>W</span>
+                    <span className={`${activeSlide.textColor} font-bold md:font-light`}>henever</span>
 
-                    <span className={`${activeSlide.domainColor} font-normal`}>
-                        .ritzmediaworld.com
+                    <span className={`${activeSlide.textColor} md:hidden`}>.</span>
+
+                    <span className={`${activeSlide.domainColor} block md:inline font-bold md:font-normal`}>
+                        <span className="hidden md:inline">.</span>ritzmediaworld.com
                     </span>
                 </h1>
 
                 <p
-                    className={`mt-[6px] ${activeSlide.subHeadingColor}`}
+                    className={`
+mt-[6px]
+text-[11px]
+sm:text-[14px]
+md:text-[12px]
+lg:text-[17px]
+xl:text-[20px]
+${activeSlide.subHeadingColor}
+`}
                     style={{
                         fontFamily: "Arial",
-                        fontSize: "clamp(12px, 1.2vw, 20px)",
                         lineHeight: "1.35"
                     }}
                 >
-                    Your brand keeps working, even when you don’t.
+                    Your brand keeps working,<br className="md:hidden" />{" "}even when you don’t.
                 </p>
 
             </div>

@@ -566,9 +566,7 @@ function NewNavbar() {
           {/* Left Side Container  */}
           <div>
 
-            <img src="/home-v3/logo.png" alt="RMW Logo" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className={`cursor-pointer
-               ${(isHomePage) ? isScrolled ? "opacity-100" : "opacity-0" : "opacity-100"} 
-               transition-all duration-300 ease-in-out`} />
+            <img src="/rmw-final-logo.png" alt="RMW Logo" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[72px]"}`} />
           </div>
           {/* Right Side Container  */}
           <div
@@ -747,7 +745,7 @@ function NewNavbar() {
                   openMenuButtonColor="#000"
                   changeMenuColorOnOpen={true}
                   colors={['#1a1a1a', '#2a2a2a']}
-                  logoUrl="/home-v3/logo.png"
+                  logoUrl="/rmw-final-logo.png"
                   accentColor="#C99237"
                   isFixed={true}
                   closeOnClickAway={true}
@@ -828,9 +826,9 @@ function NewNavbar() {
           {/* Logo */}
           <div className="flex items-center">
             <img
-              src="/home-v3/logo.png"
+              src="/rmw-final-logo.png"
               alt="RMW Logo"
-              className="h-[34px] sm:h-[38px] w-auto object-contain transition-transform duration-300 hover:scale-105"
+              className={`w-auto object-contain transition-all duration-300 hover:scale-105 ${isScrolled ? "h-[36px] sm:h-[40px]" : "h-[52px] sm:h-[56px]"}`}
             />
           </div>
 
