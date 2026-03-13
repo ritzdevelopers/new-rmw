@@ -44,19 +44,21 @@ function Section4() {
                     <div className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[280px] md:h-[280px] lg:w-[350px] lg:h-[350px] xl:w-[425px] xl:h-[425px] rounded-full border border-[#D6A047] -ml-[15px] sm:-ml-[20px] md:-ml-[30px] lg:-ml-[35px] xl:-ml-[40px]"></div>
 
                     {/* Absolute Positioned circle container  */}
-                    <div className="absolute top-[50%] left-[50%] w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[280px] md:h-[280px] lg:w-[350px] lg:h-[350px] xl:w-[425px] xl:h-[425px] rounded-full bg-gradient-to-b from-[#C1892C] to-[#EFBB68] -translate-x-1/2 -translate-y-1/2 flex justify-center items-center text-center">
+                    <div className="absolute top-[50%] left-[50%] w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[280px] md:h-[280px] lg:w-[350px] lg:h-[350px] xl:w-[425px] xl:h-[425px] rounded-full
+                     bg-gradient-to-br from-[#C1892C] to-[#EFBB68]
+                      -translate-x-1/2 -translate-y-1/2 flex justify-center items-center text-center">
                         <h4 className={`font-[500] text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#ffffff] ${styles.fontMontserrat}`}>Engage</h4>
                     </div>
 
                     {/* Absolute Positioned text container  */}
                     <div className="absolute top-[50%] left-[50%] w-full flex justify-between  md:justify-center -translate-x-1/2 -translate-y-1/2 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0  md:gap-[25rem] xl:gap-[35rem]">
                         <h4 className={`font-[500] text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#0F1640] ${styles.fontMontserrat}`}>Reach</h4>
-                        <h4 className={`font-[500] text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#0F1640]  ${styles.fontMontserrat}`}>Convert</h4>
+                        <h4 className={`font-[500]  text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#0F1640]  ${styles.fontMontserrat}`}>Convert</h4>
                     </div>
                 </div>
 
                 {/* Bottom Slider Container  */}
-                <div className="flex flex-col xl:w-[70%] w-full sm:flex-row justify-center items-center gap-4 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-2 px-4">
+                <div className="flex flex-col xl:w-[75%] w-full sm:flex-row justify-center items-center gap-4 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-2 px-4">
                     {/* Left Side Button Container  */}
                     <div className="order-2 sm:order-1 hidden sm:block">
                         <button onClick={goToPrev} className="flex items-center justify-center"><BsArrowLeft className="w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px] lg:w-[25px] lg:h-[25px] xl:w-[27px] xl:h-[27px] cursor-pointer" /></button>

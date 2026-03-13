@@ -38,7 +38,7 @@ export default function Section5() {
     <section className="w-full bg-[#FFFFFF] py-10 sm:py-12 md:py-14 lg:py-16 mb-[50px] flex justify-center">
       <div className={`w-full mx-auto overflow-hidden ${styles.containerWidth}`}>
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 xl:gap-10 items-start">
-          <div className="w-full lg:w-[26%] pt-1 mt-[100px]">
+          <div className="w-full lg:w-[30%] xl:w-[26%] pt-1 mt-0 lg:mt-10 xl:mt-[100px]">
             <p
               className="uppercase text-[#C99237] text-[14px] tracking-wide font-[600]"
               style={{ fontFamily: "OpenSansSemiBold" }}
@@ -46,20 +46,20 @@ export default function Section5() {
               Clients Testimonials
             </p>
             <h2
-              className="text-black text-[34px] sm:text-[40px] lg:text-[34px] leading-[1.02] font-[700] mt-1 lg:whitespace-nowrap"
+              className="text-black text-[34px] sm:text-[40px] lg:text-[30px] xl:text-[34px] leading-[1.02] font-[700] mt-1 xl:whitespace-nowrap"
               style={{ fontFamily: "MontserratBold" }}
             >
               What Our Clients Say
             </h2>
             <p
-              className="text-[#1C1C1C] text-[16px] sm:text-[17px] lg:text-[18px] leading-[1.45] mt-3 max-w-[390px]"
+              className="text-[#1C1C1C] text-[16px] sm:text-[17px] lg:text-[18px] leading-[1.45] mt-3 max-w-[390px] lg:max-w-[400px] xl:max-w-[390px]"
               style={{ fontFamily: "PoppinsRegular" }}
             >
               Don&apos;t just take our word for it, hear from the brands we&apos;ve
               helped transform.
             </p>
 
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 flex flex-wrap xl:flex-nowrap gap-3">
               <button
                 onClick={() =>
                   window.open("https://ritzmediaworld.com/contact.html", "_blank")
