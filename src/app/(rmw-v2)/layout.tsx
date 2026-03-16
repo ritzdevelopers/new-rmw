@@ -10,6 +10,9 @@ import EnquiryForm from "@/components/auto/EnquiryForm";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ritzmediaworld.com"),
+  alternates: {
+    canonical: "https://ritzmediaworld.com",
+  },
   title:
     "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
   description:
@@ -80,9 +83,25 @@ export const metadata: Metadata = {
   },
 };
 
+const websiteJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "WebSite",
+  name: "Ritz Media World",
+  url: "https://ritzmediaworld.com/",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://ritzmediaworld.com/services{search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function NewRMWW({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
       {/* <Navbar></Navbar> */}
       <NewNavbar></NewNavbar>
       <RubyProvider>

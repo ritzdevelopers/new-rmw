@@ -1,109 +1,203 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
   const token = req.cookies.get("auth_token")?.value;
   const { pathname } = req.nextUrl;
 
-  const url = req.nextUrl;
+  const url = req.nextUrl; 
+
+  // Ignore Next.js internal paths
+  if (url.pathname.startsWith("/_next") || url.pathname.startsWith("/api")) {
+    return NextResponse.next();
+  }
+
+  const splitLink = url.pathname.split("/");
+  const year = splitLink[1];
+  const day = splitLink[2];
+  const month = splitLink[3];
+  if (year && day && month && splitLink[4]) {
+    const dateStr = `${year}/${month}/${day}`;
+    const dateObj = new Date(dateStr);
+    if (!isNaN(dateObj.getTime())) {
+      return NextResponse.redirect(
+        new URL(`/${splitLink[4]}`, req.url),
+        301
+      );
+    }
+  }
+
   // List Of Solo Links Navigation 
-  if(url.pathname.startsWith("/campaign-integration.html")) {
+  if (url.pathname.startsWith("/campaign-integration.html")) {
     return NextResponse.redirect(
       new URL("/services/influencer-marketing-agency-in-india/campaign-integration", req.url),
       301
     );
   }
 
-  if(url.pathname.startsWith("/radio-advertising.html")) {
+  if (url.pathname.startsWith("/radio-advertising.html")) {
     return NextResponse.redirect(
       new URL("/services/radio-advertising", req.url),
       301
     );
   }
 
-  if(url.pathname.startsWith("/creative-services.html")) {
+  if (url.pathname.startsWith("/creative-services.html")) {
     return NextResponse.redirect(
       new URL("/services/creative-services", req.url),
       301
     );
   }
 
-  if(url.pathname.startsWith("/celebrity-selection.html")) {
+  if (url.pathname.startsWith("/celebrity-selection.html")) {
     return NextResponse.redirect(
       new URL("/services/celebrity-endorsements", req.url),
       301
     );
   }
 
-  if(url.pathname.startsWith("/graphic-designing.html")) {
+  if (url.pathname.startsWith("/graphic-designing.html")) {
     return NextResponse.redirect(
       new URL("/services/creative-services/graphic-designing", req.url),
       301
     );
   }
 
-  if(url.pathname.startsWith("/web-designing-development.html")) {
-    return NextResponse.redirect(
-      new URL("/services/web-designing-and-development", req.url),
-      301
-    );
-  }
-
-  if(url.pathname.startsWith("/real-estate-companies-dubai")) {
-    return NextResponse.redirect(
-      new URL("/top-real-estate-companies-dubai-property-investment", req.url),
-      301
-    );
-  }
-
-  if(url.pathname.startsWith("/contents-marketing.html")) {
-    return NextResponse.redirect(
-      new URL("/services/contents-marketing", req.url),
-      301
-    );
-  }
-
-  if(url.pathname.startsWith("/realestate-industry.html")) {
-    return NextResponse.redirect(
-      new URL("/digital-marketing-strategies-for-real-estate-businesses", req.url),
-      301
-    );
-  }
-
-  if(url.pathname.startsWith("/orm-in-digital-marketing.html")) {
-    return NextResponse.redirect(
-      new URL("/services/digital-marketing/orm-in-digital-marketing", req.url),
-      301
-    );
-  }
-
-  if(url.pathname.startsWith("/advertisement-designing.html")) {
-    return NextResponse.redirect(
-      new URL("/services/print-advertising/advertisement-designing", req.url),
-      301
-    );
-  }
-
-  if(url.pathname.startsWith("/what-is-fm-radio-advertising-agency")) {
-    return NextResponse.redirect(
-      new URL("/fm-radio-advertising-benefits-costs-strategies", req.url),
-      301
-    );
-  }
-
-  if(url.pathname.startsWith("/about-2")) {
+  if (url.pathname.startsWith("/about")) {
     return NextResponse.redirect(
       new URL("/about.html", req.url),
       301
     );
   }
 
-  if(url.pathname.startsWith("/custom-design-development.html")) {
+  if (url.pathname.startsWith("/contact")) {
+    return NextResponse.redirect(
+      new URL("/contact.html", req.url),
+      301
+    )
+  }
+
+  if (url.pathname.startsWith("/web-designing-development.html")) {
+    return NextResponse.redirect(
+      new URL("/services/web-designing-and-development", req.url),
+      301
+    );
+  }
+
+  if (url.pathname.startsWith("/real-estate-companies-dubai")) {
+    return NextResponse.redirect(
+      new URL("/top-real-estate-companies-dubai-property-investment", req.url),
+      301
+    );
+  }
+
+  if (url.pathname.startsWith("/contents-marketing.html")) {
+    return NextResponse.redirect(
+      new URL("/services/contents-marketing", req.url),
+      301
+    );
+  }
+
+  if (url.pathname.startsWith("/realestate-industry.html")) {
+    return NextResponse.redirect(
+      new URL("/digital-marketing-strategies-for-real-estate-businesses", req.url),
+      301
+    );
+  }
+
+  if (url.pathname.startsWith("/orm-in-digital-marketing.html")) {
+    return NextResponse.redirect(
+      new URL("/services/digital-marketing/orm-in-digital-marketing", req.url),
+      301
+    );
+  }
+
+  if (url.pathname.startsWith("/advertisement-designing.html")) {
+    return NextResponse.redirect(
+      new URL("/services/print-advertising/advertisement-designing", req.url),
+      301
+    );
+  }
+
+  if (url.pathname.startsWith("/what-is-fm-radio-advertising-agency")) {
+    return NextResponse.redirect(
+      new URL("/fm-radio-advertising-benefits-costs-strategies", req.url),
+      301
+    );
+  }
+
+  if (url.pathname.startsWith("/about-2")) {
+    return NextResponse.redirect(
+      new URL("/about.html", req.url),
+      301
+    );
+  }
+
+  if (url.pathname.startsWith("/custom-design-development.html")) {
     return NextResponse.redirect(
       new URL("/services/web-designing-and-development/custom-design-development", req.url),
       301
     );
   }
+
+  if (url.pathname.startsWith("/influencer-marketing-agency-in-india")) {
+    return NextResponse.redirect(
+      new URL("/services/influencer-marketing-agency-in-india", req.url),
+      301
+    )
+  }
+
+  if (url.pathname.startsWith("/celebrity-endorsements")) {
+    return NextResponse.redirect(
+      new URL("/services/celebrity-endorsements", req.url),
+      301
+    )
+  }
+
+  if (url.pathname.startsWith("/web-designing-and-development")) {
+    return NextResponse.redirect(
+      new URL("/services/web-designing-and-development", req.url),
+      301
+    )
+  }
+
+  if (url.pathname.startsWith("/contents-marketing")) {
+    return NextResponse.redirect(
+      new URL("/services/contents-marketing", req.url),
+      301
+    )
+  }
+
+  if (url.pathname.startsWith("/digital-marketing")) {
+    return NextResponse.redirect(
+      new URL("/services/digital-marketing", req.url),
+      301
+    )
+  }
+
+  if (url.pathname.startsWith("/print-advertising")) {
+    return NextResponse.redirect(
+      new URL("/services/print-advertising", req.url),
+      301
+    )
+  }
+
+  if (url.pathname.startsWith("/creative-services")) {
+    return NextResponse.redirect(
+      new URL("/services/creative-services", req.url),
+      301
+    )
+  }
+
+  if (url.pathname.startsWith("/radio-advertising")) {
+    return NextResponse.redirect(
+      new URL("/services/radio-advertising", req.url),
+      301
+    )
+  }
+
+
+
 
   // **************************************************************************
 
@@ -159,9 +253,11 @@ export function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-// ✅ Apply middleware to all `/admin` routes
+// ✅ Apply middleware to matching routes (including date-style URLs: /year/day/month/slug)
 export const config = {
   matcher: [
+    // Date-style redirect: /2024/15/01/blog-slug -> /blog-slug
+    "/:year/:day/:month/:slug*",
     // ✅ Previous matchers (keep as they are)
     "/admin/:path*",
     "/blog/:path*",

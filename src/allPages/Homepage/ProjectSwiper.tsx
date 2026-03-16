@@ -68,12 +68,12 @@ const ProjectSwiper = () => (
                 {slidesData.map(({ href, text }, index) => (
                   <SwiperSlide key={index}>
                     <div className="tp-text__2-wrap">
-                      <h3 className="tp-text__2-text">
+                      <h2 className="tp-text__2-text">
                         <Link href={href}>{text}</Link>
                         <span>
                           <HexagonSVG />
                         </span>
-                      </h3>
+                      </h2>
                     </div>
                   </SwiperSlide>
                 ))}

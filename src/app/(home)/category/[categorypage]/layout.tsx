@@ -7,11 +7,14 @@ export async function generateMetadata({ params }: { params: { categorypage: str
     const getParam = await params;
     // console.log(getParam.categorypage);
     const data = await getMetaOrThrow(getParam.categorypage, 'category')
-    // debugger
+    const canonicalUrl = `https://ritzmediaworld.com/category/${getParam.categorypage}`
     return {
       title: data.meta_title,
       description: data.meta_description,
-      keywords: data.meta_keywords
+      keywords: data.meta_keywords,
+      alternates: {
+        canonical: canonicalUrl,
+      },
     }
   } catch {
     notFound()

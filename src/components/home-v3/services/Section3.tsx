@@ -219,7 +219,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Digital <br /> Marketing",
                                 margin: "mr-[0px] pr-8 md:pr-40 lg:pr-14",
                                 description: "Digital marketing without a strategy is like driving blindfolded. It may be exciting, perhaps, but it also comes with a high probability of disastrous consequences. At <span className='font-[700]'>Ritz Media World</span>, we collectively leverage a calculated sorcery of SEO, PPC, Social Media, and some Reputation alchemy to ensure that your brand doesn’t just survive, but flourishes spectacularly.",
-                                image: "/services/Digital-Marketing.png",
+                                image: "/services/rm-shadow.png",
                                 link: "/services-v3/brand-strategy",
                                 subServices: [
                                     {

@@ -39,13 +39,13 @@ const ServiceThirdQuality: React.FC<ServiceThirdQualityProps> = ({
                     <div className="">
                       <div className="tp-services__3-title-box">
                         <div className="tp-section-title-wrap">
-                          <h3
+                          <h2
                             className="tp-section-title"
                             // style={{color:'red'}}
                           >
                             Committed For Deliver <span>Top</span> Quality
                             <span> Services</span>
-                          </h3>
+                          </h2>
                         </div>
                       </div>
                       <div className={`${styles.serviceCardsMain}`}>

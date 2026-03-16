@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const bannerSlides = [
     {
-        desktop: "/4th_floor_rmw/home/banner/bn-1-desktop.png",
+        desktop: "/4th_floor_rmw/home/banner/bn1.jpg",
         mobile: "/4th_floor_rmw/home/banner/bn-1-mobile.png",
         textColor: "text-[#0A3B3B]",
         highlightColor: "text-white",
@@ -12,7 +12,7 @@ const bannerSlides = [
     },
 
     {
-        desktop: "/4th_floor_rmw/home/banner/bn-2-desktop.png",
+        desktop: "/4th_floor_rmw/home/banner/bn2.jpg",
         mobile: "/4th_floor_rmw/home/banner/bn-2-mobile.png",
         textColor: "text-white",
         highlightColor: "text-[#C99237]",
@@ -21,7 +21,7 @@ const bannerSlides = [
     },
 
     {
-        desktop: "/4th_floor_rmw/home/banner/bn-3-desktop.png",
+        desktop: "/4th_floor_rmw/home/banner/bn3.jpg",
         mobile: "/4th_floor_rmw/home/banner/bn-3-mobile.png",
         textColor: "text-white",
         highlightColor: "text-black",
@@ -30,7 +30,7 @@ const bannerSlides = [
     },
 
     {
-        desktop: "/4th_floor_rmw/home/banner/bn-4-desktop.png",
+        desktop: "/4th_floor_rmw/home/banner/bn5.jpg",
         mobile: "/4th_floor_rmw/home/banner/bn-4-mobile.png",
         textColor: "text-white",
         highlightColor: "text-[#C99237]",

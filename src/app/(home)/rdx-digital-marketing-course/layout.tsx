@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://ritzmediaworld.com/rdx-digital-marketing-course",
+  },
   title:
     "Best Digital Marketing Course in Delhi NCR with placement - RDX | Ritz Media World",
   description:

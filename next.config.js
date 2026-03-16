@@ -40,7 +40,7 @@ const nextConfig = {
   // experimental: {
   //   optimizeCss: true,
   // },
-  // Headers for better caching
+  // Headers for better caching and security
   async headers() {
     return [
       {
@@ -49,6 +49,15 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload',
           },
         ],
       },

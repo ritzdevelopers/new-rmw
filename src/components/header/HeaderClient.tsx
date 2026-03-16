@@ -857,7 +857,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
               </div>
 
               <div className={styles.contactInfo}>
-                <h3>Contact</h3>
+                <p style={{ fontSize: "20px", fontWeight: "bold" }}>Contact</p>
                 <p>
                   Address: 402 – 404 , 4th floor Corporate Park, Tower A1 Sector
                   142, Noida

@@ -10,10 +10,14 @@ export async function generateMetadata({
   try {
     const getParam = await params;
     const data = await getMetaOrThrow(getParam.secondPage, "serviceSecond");
+    const canonicalUrl = `https://ritzmediaworld.com/services/${getParam.secondPage}`;
     return {
       title: data.meta_title,
       description: data.meta_description,
       keywords: data.meta_keywords,
+      alternates: {
+        canonical: canonicalUrl,
+      },
     };
   } catch {
     notFound();
