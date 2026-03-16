@@ -283,5 +283,17 @@ export const config = {
     "/what-is-fm-radio-advertising-agency",
     "/about-2",
     "/custom-design-development.html",
+
+    // ✅ Top-level and service route redirects
+    "/about",
+    "/contact",
+    "/influencer-marketing-agency-in-india",
+    "/celebrity-endorsements",
+    "/web-designing-and-development",
+    "/contents-marketing",
+    "/digital-marketing",
+    "/print-advertising",
+    "/creative-services",
+    "/radio-advertising",
   ],
 };
