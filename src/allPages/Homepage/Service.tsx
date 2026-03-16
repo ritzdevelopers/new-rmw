@@ -53,7 +53,7 @@ const Service: React.FC<ServiceProps> = ({ data }) => {
                 Services
               </span>
               <div className="tp-section-title-wrap d-md-flex align-items-center justify-content-between">
-                <h3 className="tp-section-title">
+                <h2 className="tp-section-title">
                   What We Provide
                   <br />
                   <span>
@@ -64,7 +64,7 @@ const Service: React.FC<ServiceProps> = ({ data }) => {
                       is more than what you’ll ever need
                     </i>
                   </span>
-                </h3>
+                </h2>
               </div>
             </div>
           </div>

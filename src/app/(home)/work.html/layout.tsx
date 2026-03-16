@@ -4,6 +4,9 @@
 // };
 
 export const metadata = {
+  alternates: {
+    canonical: "https://ritzmediaworld.com/work.html",
+  },
   title: "Portfolio & Case Studies | Ritz Media World Delhi NCR",
   description:
     "Explore the portfolio of Ritz Media World – award-winning ad & digital agency in Delhi NCR showcasing brand campaigns, print, radio, web & immersive storytelling.",

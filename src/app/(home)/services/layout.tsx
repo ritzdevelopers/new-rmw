@@ -1,4 +1,7 @@
 export const metadata = {
+  alternates: {
+    canonical: "https://ritzmediaworld.com/services",
+  },
   title: "Advertising & Digital Services | Ritz Media World Delhi-NCR",
   description:
     "Discover Ritz Media World’s full-service solutions in digital, print, radio and creative advertising designed to grow your brand and drive real results.",

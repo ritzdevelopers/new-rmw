@@ -2,6 +2,9 @@ import { Providers } from "@/app/provider/Provider";
 import type { Metadata } from "next";
 
 export const metadata = {
+  alternates: {
+    canonical: "https://ritzmediaworld.com/blogs",
+  },
   title: "Insights & Marketing Trends | Ritz Media World Blog Delhi NCR",
   description:
     "Explore expert blogs from Ritz Media World covering advertising trends, creative campaigns, brand strategy, and the future of digital marketing.",

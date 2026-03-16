@@ -64,6 +64,9 @@ function getFirst100Words(text: string, maxChars = 600): string {
   return lastSpace > maxChars * 0.6 ? truncated.slice(0, lastSpace) : truncated;
 }
 
+/** Site base URL for canonical and openGraph (SEO). */
+const SITE_URL = "https://ritzmediaworld.com";
+
 /** Build absolute image URL for og:image / twitter:image (required for rich cards). */
 function buildAbsoluteImageUrl(baseURL: string | undefined, path: string | undefined): string {
   if (!baseURL || !path) return "";
@@ -140,6 +143,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       return {
         title: "Blog Not Found",
         description: "This blog post does not exist or has been deleted.",
+        alternates: { canonical: `${SITE_URL}/${slug}` },
       };
     }
 
@@ -164,21 +168,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const ogDescriptionLong = getFirst100Words(rawLongDesc);
     const ogDescription = ogDescriptionLong.length > 160 ? ogDescriptionLong : (shortDesc || ogDescriptionLong);
 
-    // Prepare keywords array
+    // Prepare keywords (single string for meta name="keywords" in head)
     const keywordsArray = keywords.split(",").map((k: string) => k.trim()).filter(k => k.length > 0);
+
+    const canonicalUrl = `${SITE_URL}/${slug}`;
 
     return {
       title,
       description: ogDescription,
       keywords: keywordsArray,
-      other: {
-        "keywords": keywords,
+      alternates: {
+        canonical: canonicalUrl,
       },
       openGraph: {
         title,
         description: ogDescription,
         type: "article",
-        url: `${baseURL}/${slug}`,
+        url: canonicalUrl,
         images: [
           {
             url: buildAbsoluteImageUrl(baseURL, blog.blog_image || blog.blogBanner),
@@ -202,6 +208,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: "Error Loading Blog",
       description: "There was an issue generating metadata for this blog.",
+      alternates: { canonical: `${SITE_URL}/${slug}` },
     };
   }
 }

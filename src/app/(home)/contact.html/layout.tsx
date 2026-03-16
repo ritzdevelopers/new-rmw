@@ -4,6 +4,9 @@
 // };
 
 export const metadata = {
+  alternates: {
+    canonical: "https://ritzmediaworld.com/contact.html",
+  },
   title: "Contact Ritz Media World | Digital & Brand Agency in Delhi NCR",
   description:
     "Get in touch with Ritz Media World, your full-service advertising & digital agency in Delhi NCR. Call us or fill the form for a free consultation today.",
