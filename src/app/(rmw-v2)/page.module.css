@@ -10,3 +10,6 @@
   }
 }
 
+.circle {
+  border-radius: 20px 80px 80px 20px;
+}
