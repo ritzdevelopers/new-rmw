@@ -13,32 +13,42 @@ export default function Section3() {
   const accordionItems = [
     {
       label: "Branding & Identity Development",
-      content:
-        "Take your brand identity to the next level with our branding and design solutions. We help you in developing a memorable and authentic brand identity that connects with your customers, builds loyalty, and helps you stand out in the cutthroat market. Our full-service branding solutions include logo design, brand positioning, and visual communication that helps you succeed.",
+      paragraphs: [
+        "Take your brand identity to the next level with our branding and design solutions. We help you in developing a memorable and authentic brand identity that connects with your customers, builds loyalty, and helps you stand out in the cutthroat market.",
+        "Our full-service branding solutions include logo design, brand positioning, and visual communication that helps you succeed.",
+      ],
       imageSrc: "/services-v3-slug/images/Mask group (1).png",
     },
     {
       label: "Graphic Design",
-      content:
-        "Tap into the power of visual communication with our professional graphic design solutions. Whether it is digital or offline media, our breathtaking designs engage, impress, and convert your audience. From infographics to marketing collateral, we design graphics that communicate effectively and deliver results, resulting in higher engagement and ROI.",
+      paragraphs: [
+        "Tap into the power of visual communication with our professional graphic design solutions. Whether it is digital or offline media, our breathtaking designs engage, impress, and convert your audience.",
+        "From infographics to marketing collateral, we design graphics that communicate effectively and deliver results, resulting in higher engagement and ROI.",
+      ],
       imageSrc: "/services-v3-slug/images/Mask group (2).png",
     },
     {
       label: "Logo Design",
-      content:
-        "Your logo is the face of your brand. We are logo design experts who can help you in designing a unique and memorable logo that builds trust and leaves a lasting impression. Our logo design solutions ensure that your brand gets noticed, builds customer loyalty, and achieves instant recognition, making it an essential part of brand promotion.",
+      paragraphs: [
+        "Your logo is the face of your brand. We are logo design experts who can help you in designing a unique and memorable logo that builds trust and leaves a lasting impression.",
+        "Our logo design solutions ensure that your brand gets noticed, builds customer loyalty, and achieves instant recognition, making it an essential part of brand promotion.",
+      ],
       imageSrc: "/services-v3-slug/images/Mask group (3).png",
     },
     {
       label: "Print Advertising Design",
-      content:
-        "Leave your mark in the competitive world of print media with our effective print advertising design. Our designs are created in a manner that generates interest and encourages response, whether it is brochure design, flyer design, or poster design. With our professional print ad design, we turn paper into profit, ensuring that your message is seen, remembered, and acted upon.",
+      paragraphs: [
+        "Leave your mark in the competitive world of print media with our effective print advertising design. Our designs are created in a manner that generates interest and encourages response, whether it is brochure design, flyer design, or poster design.",
+        "With our professional print ad design, we turn paper into profit, ensuring that your message is seen, remembered, and acted upon.",
+      ],
       imageSrc: "/services-v3-slug/images/Mask group (4).png",
     },
     {
       label: "Packaging Design",
-      content:
-        "Use your product packaging as a marketing tool. Our packaging design services create highly persuasive and effective packaging that influences buying decisions and creates brand identity. Whether it is retail or e-commerce, our packaging design is created to capture attention, create brand loyalty, and boost sales.",
+      paragraphs: [
+        "Use your product packaging as a marketing tool. Our packaging design services create highly persuasive and effective packaging that influences buying decisions and creates brand identity.",
+        "Whether it is retail or e-commerce, our packaging design is created to capture attention, create brand loyalty, and boost sales.",
+      ],
       imageSrc: "/services-v3-slug/images/Mask group (5).png",
     },
   ];
@@ -70,8 +80,14 @@ export default function Section3() {
         <div className="h-px w-full bg-[#AAA8A8] mb-8 sm:mb-10 md:mb-12" />
 
         <div className="space-y-4">
-          {accordionItems.map((item) => {
+          {accordionItems.map((item, index) => {
             const isOpen = openItem === item.label;
+            const shapeSrc =
+              index === 0 ? "/services-v3-slug/yellow-rectangle-accordion.png" :
+              index === 1 ? "/services-v3-slug/accordion-shape-2.png" :
+              index === 2 ? "/services-v3-slug/accordion-shape-3.png" :
+              index === 3 ? "/services-v3-slug/accordion-shape-4.png" :
+              "/services-v3-slug/accordion-shape-5.png";
 
             return (
               <div key={item.label} className="border-b border-[#AAA8A8] pb-4">
@@ -98,16 +114,15 @@ export default function Section3() {
                   <div className="pt-6 sm:pt-8">
                     <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-14 justify-center">
                       <div className="relative w-full sm:w-auto lg:max-w-[430px] xl:max-w-[480px] flex justify-center lg:justify-start">
-                        <div className="absolute left-[6px] sm:left-[10px] md:left-[14px] top-[26px] sm:top-[30px] w-[92px] sm:w-[105px] md:w-[120px] h-[210px] sm:h-[232px] md:h-[246px] z-0">
+                        <div className="absolute left-[6px] sm:left-[10px] md:left-[4px] lg:left-[5px] top-[6px] w-[92px] sm:w-[105px] md:w-[120px] lg:w-[298px] h-[210px] sm:h-[232px] md:h-[246px] lg:h-[345px] z-0">
                           <Image
-                            src="/home-v3/service-imgs/s1/yellow-reactangle.png"
-                            alt="Decorative shape"
+                            src={shapeSrc}
+                            alt=""
                             fill
                             className="object-contain"
-                            sizes="128px"
                           />
                         </div>
-                        <div className="relative w-[230px] h-[250px] sm:w-[249px] sm:h-[270px] mx-auto lg:mx-0 z-[1]">
+                        <div className="relative w-[364px] h-[392px] mx-auto lg:mx-9 z-[1]">
                           <Image
                             src={item.imageSrc}
                             alt={item.label}
@@ -118,19 +133,22 @@ export default function Section3() {
                       </div>
 
                       <div className="flex-1 max-w-[680px] justify-center">
-                        <div className="space-y-4 justify-center mt-[24px]">
-                          <p
-                            className="text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed md:leading-[28px] text-[#2D2D2D]"
-                            style={{ fontFamily: "PoppinsRegular" }}
-                          >
-                            {item.content}
-                          </p>
+                        <div className="space-y-5 justify-center mt-[24px]">
+                          {item.paragraphs.map((para, i) => (
+                            <p
+                              key={i}
+                              className="text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed md:leading-[28px] text-[#2D2D2D]"
+                              style={{ fontFamily: "PoppinsRegular" }}
+                            >
+                              {para}
+                            </p>
+                          ))}
                         </div>
 
                         <div className="mt-8 flex items-center gap-4 flex-wrap">
                           <span
                             className="text-[#101828] text-[16px]"
-                            style={{ fontFamily: "MontserratSemiBold" }}
+                            style={{ fontFamily: "MontserratMedium" }}
                           >
                             Learn more
                           </span>
