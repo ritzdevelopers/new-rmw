@@ -1,5 +1,6 @@
 import "./styles/globals.css";
 import ClientProviders from "./ClientProviders";
+import WebsiteGateway from "@/components/gateway/WebsiteGateway";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -87,6 +88,7 @@ export default function RootLayout({children}: { children: React.ReactNode}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
+        <WebsiteGateway />
         <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
