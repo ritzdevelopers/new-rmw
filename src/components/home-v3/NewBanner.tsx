@@ -88,6 +88,7 @@ function NewBanner() {
                                     <span className={`${slide.domainColor} block md:inline font-bold md:font-normal`}>
                                         <span className="hidden md:inline">.</span>ritzmediaworld.com
                                     </span>
+                                    
                                 </h1>
 
                                 <p

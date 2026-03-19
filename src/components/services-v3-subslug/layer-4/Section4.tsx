@@ -4,6 +4,7 @@ import styles from "./Section4.module.css";
 
 function Section4() {
     return (
+        <>
         <section className="w-full flex justify-center items-center border-b border-t border-[#E6E3E3] py-6 sm:py-8 md:py-10 lg:py-[35px] xl:py-[70px]">
             {/* Centered Align Container  */}
             <div className={`w-full flex flex-col items-center sm:items-start sm:h-auto lg:h-auto sm:flex-row justify-between gap-6 sm:gap-4 lg:gap-4 ${styles.containerWidth}`}>
@@ -62,6 +63,8 @@ function Section4() {
                 </div>
             </div>
         </section>
+        <div className="w-full h-[1px] bg-[#D9D9D9]"></div>
+        </>
     )
 }
 
