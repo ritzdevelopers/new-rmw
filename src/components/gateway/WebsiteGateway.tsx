@@ -2,6 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { Montserrat } from "next/font/google";
+
+
+const montserratDisplay = Montserrat({
+  weight: "700",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 interface WebsiteGatewayProps {
   onComplete?: () => void;
@@ -23,14 +31,12 @@ export default function WebsiteGateway({ onComplete }: WebsiteGatewayProps) {
     let charIndex = 0;
     let typeInterval: ReturnType<typeof setInterval>;
 
-    // 1. Container floats up and fades in initially
     gsap.fromTo(
       text,
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
     );
 
-    // 2. Typing effect starts slightly after
     const startTimeout = setTimeout(() => {
       typeInterval = setInterval(() => {
         if (charIndex <= fullText.length) {
@@ -39,7 +45,7 @@ export default function WebsiteGateway({ onComplete }: WebsiteGatewayProps) {
         } else {
           clearInterval(typeInterval);
           
-          // 3. Typing finished, start squeeze and exit animation
+
           const tl = gsap.timeline();
           
           tl.to(text, {
@@ -90,7 +96,7 @@ export default function WebsiteGateway({ onComplete }: WebsiteGatewayProps) {
     >
       <div
         ref={textRef}
-        className="font-mono text-2xl md:text-4xl lg:text-6xl font-bold flex items-center"
+        className={`${montserratDisplay.className} text-2xl md:text-4xl lg:text-6xl font-bold flex items-center`}
       >
         <span
           style={{
