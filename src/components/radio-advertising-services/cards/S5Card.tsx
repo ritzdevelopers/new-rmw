@@ -2,9 +2,10 @@
 
 import styles from "../page.module.css";
 
-type S5CardProps = { isActive?: boolean; isOpen: boolean, title: string, content: string, image: string, link: string };
+type S5CardProps = { isActive?: boolean; isOpen: boolean, title: string, content: string, image: string, link: string, index: number; };
 
-function S5Card({ isOpen, title, content, image, link }: S5CardProps) {
+function S5Card({ isOpen, title, content, image, link, index }: S5CardProps) {
+    const badge = (index + 1).toString().padStart(2, "0");
     return (
         <div
             className={`${styles.bookCardContainer} ${isOpen ? styles.bookCardContainerOpen : ""} h-[464px] flex flex-shrink-0`}
@@ -17,13 +18,13 @@ function S5Card({ isOpen, title, content, image, link }: S5CardProps) {
                 </div>
 
                 {/* Bottom Image Row  */}
-                <div className="w-full flex justify-end">
+                <div className="w-full flex justify-center">
                     <img src={image} alt="" className="w-[264px] h-auto object-cover" />
                 </div>
 
                 {/* Absolute Positioned Div  */}
                 <div className="absolute top-4 right-4">
-                    <p className={`font-[500] text-[16px] ${styles.fontmontserrat}`}>01</p>
+                    <p className={`font-[500] text-[16px] ${styles.fontmontserrat}`}> {badge}</p>
                 </div>
             </div>
 
@@ -31,12 +32,12 @@ function S5Card({ isOpen, title, content, image, link }: S5CardProps) {
             <div
                 className={`${styles.bookRightPage} ${isOpen ? styles.bookOpenRight : styles.bookCloseright} h-full flex flex-col items-start gap-6 p-10 bg-white border-[0.94px] border-[#F2F2F2]`}
             >
-                <p className={`font-[400] text-[16px] ${styles.fontopensans}`}>{content}
+                <p className={`font-[400] text-[16px] justify-center text-justify ${styles.fontopensans}`}>{content}
                 </p>
 
                 <button type="button" className="flex justify-center items-center gap-2" onClick={() => window.open(link, "_blank")}    >
                     <p className={`font-[500] text-[18px] ${styles.fontopensans}`}>Learn more</p>
-                    <div className="w-[40px] h-[40px] bg-[#C99237] rounded-[50px] flex justify-center items-center">
+                    <div className="w-[40px] h-[40px] bg-[#C99237] hover:bg-[#0F1640]  rounded-[50px] flex justify-center items-center cursor-pointer">
 
                         <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19.4276 2.92383L17.1346 9.08052L12.9493 4.01635L19.4276 2.92383Z" fill="white" />

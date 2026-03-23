@@ -35,23 +35,23 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
       <div className={`w-full lg:px-20 px-4 flex flex-col ${styles.container} ${padding2}`}>
         {/* Top Row  */}
         <div className="flex flex-col gap-2 text-center md:text-left">
-          <p
+          <h2
             className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] uppercase text-[#C99237]"
             style={{
               fontFamily: "OpenSansSemiBold",
             }}
           >
-            Clients Testimonials
-          </p>
+            Client Testimonials
+          </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 items-center md:items-end text-center md:text-left">
-            <h2
+            <h3
               className="font-[700] text-[24px] text-[#0F1640] sm:text-[28px] lg:text-[36px]"
               style={{
                 fontFamily: "MontserratBold",
               }}
             >
               What Our Clients Say
-            </h2>
+            </h3>
             <p
               className="font-[400] text-[14px] text-[#0F1640] sm:text-[15px] lg:text-[16px]"
               style={{
@@ -146,7 +146,7 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
 
                     <div>
                       <p
-                        className="text-[16px] sm:text-[17px] text-[#0F1640] lg:text-[18px]"
+                        className="text-[16px] sm:text-[17px] text-[#000  ] lg:text-[18px]"
                         style={{
                           fontFamily: "OpenSansBold",
                         }}

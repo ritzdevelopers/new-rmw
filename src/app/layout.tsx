@@ -1,6 +1,6 @@
 import "./styles/globals.css";
 import ClientProviders from "./ClientProviders";
-// import WebsiteGateway from "@/components/gateway/WebsiteGateway";
+import WebsiteGateway from "@/components/gateway/WebsiteGateway";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
