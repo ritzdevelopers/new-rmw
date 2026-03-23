@@ -1,16 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-// import styles from "@/components/shared/container.module.css";
 
 const EXPLORE_ARROW_IMAGE =
   "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
 
 export default function Section2() {
   return (
-    <section className="w-full flex items-center justify-center py-12 sm:py-12 md:py-15 lg:py-17 bg-white">
-      <div className={`w-[92%] sm:w-[88%] md:w-[82%] lg:w-[70%] text-center mx-auto`}>
+    <section className="w-full flex items-center justify-center py-[35px] lg:py-[70px] bg-white">
+      <div className="w-[92%] sm:w-[88%] md:w-[82%] lg:w-[70%] text-center mx-auto">
         <h2
-          className="text-black font-[400] text-[25px] sm:text-[31px] md:text-[37px] lg:text-[24px] leading-[40px]"
+          className="text-black font-[400] text-[20px] sm:text-[20px] md:text-[20px] lg:text-[24px] leading-[25px]   md:leading-[30px] lg:leading-[30px]"
           style={{ fontFamily: "MontserratRegular" }}
         >
           Influencer marketing services are more than social media hype, they are
@@ -24,7 +23,7 @@ export default function Section2() {
         </h2>
 
         <div
-          className="mt-6 sm:mt-7 md:mt-8 text-[#2d2d2d] text-[15px] sm:text-[17px] md:text-[15px] leading-[1.75] lg:text-[16px] w-[849px] mx-auto"
+          className="mt-3 lg:mt-8 text-[#2d2d2d] text-[15px] sm:text-[17px] md:text-[15px] leading-[23px] md:leading-[25px] lg:text-[16px] w-full max-w-[849px] mx-auto text-center"
           style={{ fontFamily: "OpenSansRegular" }}
         >
           <p>
@@ -44,9 +43,9 @@ export default function Section2() {
           </p>
         </div>
 
-        <div className="mt-8 sm:mt-10 md:mt-12 flex items-center justify-center gap-4">
+        <div className="mt-4 lg:mt-12 flex items-center justify-center gap-4">
           <span
-            className="text-black text-[24px] sm:text-[26px] md:text-[18px] font-[500]"
+            className="text-black text-[18px]   md:text-[20px] font-[500]"
             style={{ fontFamily: "MontserratMedium" }}
           >
             Let&apos;s Talk Today

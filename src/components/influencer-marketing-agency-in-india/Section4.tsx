@@ -43,13 +43,15 @@ const cards: Card[] = [
 export default function Section4() {
   return (
     <>
-      <section className="w-full bg-white py-10 sm:py-12 md:py-16 flex justify-center">
-        <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[88%] xl:w-[86%] mx-auto ${styles.containerWidth}`}>
+      <section className="w-full bg-white pt-10 sm:pt-12 md:pt-16 flex justify-center">
+        <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[100%] xl:w-[86%] mx-auto ${styles.containerWidth}`}>
           <div className="flex flex-wrap">
-            {cards.map((card) => (
+            {cards.map((card, index) => (
               <div
                 key={card.title}
                 className={`w-full sm:w-1/2 lg:w-1/3 min-h-[180px] sm:min-h-[210px] px-6 sm:px-8 lg:px-6 xl:px-8 py-8 sm:py-10 flex flex-col items-center justify-center text-center border border-[#DFDDDD] -ml-px -mt-px ${
+                  card.highlighted ? "order-first lg:order-none" : (["order-2", "order-3", "order-4", "order-5", "order-6"][index === 0 ? 0 : index - 1] + " lg:order-none")
+                } ${
                   card.highlighted
                     ? "bg-[linear-gradient(149.48deg,#C1892C_-2.74%,#EFBB68_114.55%)]"
                     : "bg-white"
@@ -60,7 +62,7 @@ export default function Section4() {
                 <h3
                   className={`${
                     card.highlighted
-                      ? "text-white text-[32px] md:text-[36px] leading-[50px]"
+                      ? "text-white text-[22px] md:text-[25px] leading-normal lg:text-[32px] xl:text-[36px] lg:leading-[50px]"
                       : "text-black text-[20px] leading-[30px]"
                   } font-[700]`}
                   style={{
@@ -118,7 +120,7 @@ export default function Section4() {
       <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center">
         <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[88%] xl:w-[86%] mx-auto flex items-center justify-center text-center ${styles.containerWidth}`}>
           <h3
-            className="text-white font-[600] text-[22px] sm:text-[28px] md:text-[34px] leading-tight"
+            className="text-white font-[600] text-[22px] sm:text-[28px] md:text-[28px] leading-tight"
             style={{ fontFamily: "MontserratSemiBold" }}
           >
             Ready to Turn Followers into Genuine Customers?

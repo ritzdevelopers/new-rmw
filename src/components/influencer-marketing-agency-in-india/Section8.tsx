@@ -25,9 +25,11 @@ export default function Section8() {
           style={{ fontFamily: "MontserratSemiBold" }}
         >
           <span>Schedule Free Consultation</span>
-          <span aria-hidden="true" className="text-[24px] md:text-[30px]">
-            →
-          </span>
+          <img
+              src="/home-v3/s3/rhgt.png"
+              alt=""
+              className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
+            />
         </Link>
       </div>
     </section>

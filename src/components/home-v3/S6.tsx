@@ -146,7 +146,7 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
 
                     <div>
                       <p
-                        className="text-[16px] sm:text-[17px] text-[#0F1640] lg:text-[18px]"
+                        className="text-[16px] sm:text-[17px] text-[#000  ] lg:text-[18px]"
                         style={{
                           fontFamily: "OpenSansBold",
                         }}

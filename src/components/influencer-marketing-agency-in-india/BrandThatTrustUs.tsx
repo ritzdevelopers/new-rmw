@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./BrandThatTrustUs.module.css";
-  // import containerStyles from "@/components/shared/container.module.css";
+import containerStyles from "@/components/shared/container.module.css";
 
 export default function BrandThatTrustUs() {
   return (
+    <div className="container mx-auto">
     <section className="w-full bg-[#FFFFFF] sm:py-16 flex justify-center">
-      <div className={`w-[100%] sm:w-[90%] md:w-[86%] lg:w-[90%] mx-auto containerWidth`}>
+      <div className={`w-[100%] sm:w-[90%] md:w-[100%%] lg:w-[100%] mx-auto ${containerStyles.containerWidth} ${styles.align1366}`}>
         <div
           className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0"
           data-no-gsap-animation
@@ -113,5 +114,6 @@ export default function BrandThatTrustUs() {
         <div className="h-[1px] w-full bg-[#D9D9D9]" />
       </div> */}
     </section>
+    </div>
   );
 }
