@@ -28,6 +28,12 @@ export default function WebsiteGateway({ onComplete }: WebsiteGatewayProps) {
 
     if (!container || !text) return;
 
+    if (typeof window !== "undefined") {
+      sessionStorage.removeItem("rmw_gateway_hide_started");
+      const runtimeWindow = window as Window & { __rmwGatewayHideStarted?: boolean };
+      runtimeWindow.__rmwGatewayHideStarted = false;
+    }
+
     let charIndex = 0;
     let typeInterval: ReturnType<typeof setInterval>;
 
@@ -68,7 +74,18 @@ export default function WebsiteGateway({ onComplete }: WebsiteGatewayProps) {
             duration: 1.2,
             ease: "power3.inOut",
             delay: 0.4,
+            onStart: () => {
+              if (typeof window !== "undefined") {
+                sessionStorage.setItem("rmw_gateway_hide_started", "true");
+                const runtimeWindow = window as Window & { __rmwGatewayHideStarted?: boolean };
+                runtimeWindow.__rmwGatewayHideStarted = true;
+                window.dispatchEvent(new Event("rmw:gateway-hide-start"));
+              }
+            },
             onComplete: () => {
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(new Event("rmw:gateway-closed"));
+              }
               setIsVisible(false);
               if (onComplete) {
                 onComplete();
