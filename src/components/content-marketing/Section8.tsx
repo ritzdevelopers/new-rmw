@@ -169,7 +169,7 @@ function Section8() {
 
 
     return (
-        <section className="w-full bg-white py-[70px] flex flex-col gap-6 xl:gap-20">
+        <section className="w-full bg-white py-[30px] sm:py-[70px] flex flex-col gap-6 xl:gap-20">
             {/* Row 2  */}
             <div className={`w-full flex ${styles.containerWidth} flex-col xl:flex-row justify-between gap-10`}>
                 {/* Left Side Container  */}
