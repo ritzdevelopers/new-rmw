@@ -23,8 +23,8 @@ function NewFooter() {
               <p className="text-white text-[14px] sm:text-[16px] font-[700] mb-0.5 sm:mb-1">Address</p>
               <ul className="text-white text-[13px] sm:text-[15px] font-[400] flex flex-col gap-1 sm:gap-1.5 cursor-pointer">
                 <li>402 - 404,</li>
-                <li>4th floor Corporate Park,</li>
-                <li>Tower A1 Sector 142, Noida</li>
+                <li>4th floor, Corporate Park,</li>
+                <li>Tower A1, Sector 142, Noida</li>
               </ul>
             </div>
           </div>
@@ -63,7 +63,7 @@ function NewFooter() {
           {/* Row 1  */}
           <div className="pr-0 sm:pr-4 text-left">
             <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-white leading-relaxed text-center md:text-left">
-              Accelerate your journey to success with result-oriented solutions for Digital Advertising, Social Media Management, SEO, and Compelling Content backed by more than 17 years of advertising wisdom with a wide array of clients across all industries across the Indian subcontinent.
+              Accelerate your journey to success with result-oriented solutions for Digital Advertising, Social Media Management, SEO, and Compelling Content. Backed by more than 17 years of advertising expertise, we serve a wide range of clients across industries in the Indian subcontinent.
             </p>
           </div>
 
@@ -79,7 +79,7 @@ function NewFooter() {
                 <li onClick={() => window.open("https://ritzmediaworld.com/blogs", "_blank")}>Blogs</li>
                 <li onClick={() => window.open("https://ritzmediaworld.com/web-stories", "_blank")}>Web Stories</li>
                 <li onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}>Contact</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/career", "_blank")}>Career</li>
+                <li onClick={() => window.open("https://ritzmediaworld.com/career", "_blank")}>Careers</li>
               </ul>
             </div>
             {/* Col 2  */}

@@ -34,10 +34,10 @@ function Section8() {
             Why Choose Us
           </h2>
           <p className="font-[400] text-[18px] sm:text-[20px] md:text-[22px] text-[#00000099]">
-            17+ Years Of Storytelling Turning Brands in to Household Names
+            17+ Years Of Storytelling Turning Brands into Household Names
           </p>
           <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#00000099] text-center max-w-4xl">
-            We've held hands with budding brands that have shattered sealings of
+            We've held hands with budding brands that have shattered ceilings of
             convention. With us behind them, they have achieved great feats in
             their industry and went on to dominate their competition.
           </p>

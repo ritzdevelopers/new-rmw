@@ -58,4 +58,22 @@
     transform: translateX(-33.333%);
   }
 }
+
+/* Alignment for 1366px+ screens */
+@media (min-width: 1366px) {
+  .align1366 {
+    width: 1300px !important;
+    max-width: 1300px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Alignment for 1500px+ screens */
+@media (min-width: 1500px) {
+  .align1366 {
+    width: 1500px !important;
+    max-width: 1500px !important;
+  }
+}
   

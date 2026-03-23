@@ -17,7 +17,7 @@ function Section2() {
                         </h2>
                         <p className={`font-[400]  text-[12px] text-center sm:text-left lg:text-[14px]  xl:text-[16px] ${styles.fontopensans}`}>
                             <span className="font-[700] text-[#C99237]"> Ritz Media World</span>, we harness the unmatched credibility and focused engagement that <span className="font-[700]">print advertising</span> uniquely offers. By expertly combining eye-catching visuals, persuasive copy, and strategic placements, we create print advertisements that not only capture attention but actively shape perception and influence decisions. <br className="hidden lg:block"/> <br className="hidden lg:block"/>
-                            From newspapers and glossy magazines to bespoke publications, our print ads stand out distinctly amid digital fatigue. If your goal is authenticity, memorability, and conversion, there’s simply no medium more refreshingly effective than good old-fashioned print. Screens might scroll away, but paper stays persuasive.
+                            From newspapers and glossy magazines to bespoke publication, our print ads stand out distinctly amid digital fatigue. If your goal is authenticity, memorability, and conversion, there’s simply no medium more refreshingly effective than good old-fashioned print. Screens might scroll away, but paper stays persuasive.
                         </p>
                     </div>
                     {/* Bottom Container  */}
