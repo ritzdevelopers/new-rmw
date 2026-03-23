@@ -230,7 +230,7 @@ function S3() {
                         ></Image>
                       </div>
                       <div className="w-full max-w-[442px] sm:w-[442px] z-10 h-[calc(100%-336px)] bg-[#F7F7F7] absolute bottom-8 right-0 pl-4 sm:pl-8 py-6 sm:py-8 flex flex-col gap-3 xl:p-5">
-                        <p
+                        <h3
                           className="font-[600] text-[16px] sm:text-[18px] text-[#C99237] cursor-pointer"
                           onClick={()=>window.open(ob.link, "_blank")}
                           style={{
@@ -238,8 +238,8 @@ function S3() {
                           }}
                         >
                           {ob.category}
-                        </p>
-                        <h2
+                        </h3>
+                        <h4
                           className="font-[600] text-[22px] sm:text-[26px] cursor-pointer"
                           onClick={()=>window.open(ob.link, "_blank")}
                           style={{
@@ -247,7 +247,7 @@ function S3() {
                           }}
                         >
                           {ob.ttl}
-                        </h2>
+                        </h4>
                         <ul className="font-[400] text-[14px] sm:text-[16px] flex flex-col gap-2 list-disc pl-5">
                           {ob.list.map((item, listIdx) => {
                             return (
@@ -257,7 +257,7 @@ function S3() {
                                   fontFamily: "OpenSansRegular",
                                 }}
                               >
-                                <Link href={item.link} target="_blank">{item.subService}</Link>
+                                <Link href={item.link} target="_blank"><h5 className="inline font-[400] text-[14px] sm:text-[16px]">{item.subService}</h5></Link>
                               </li>
                             );
                           })}
