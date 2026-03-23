@@ -148,9 +148,8 @@ function AnimatedBannerText({
                             ref={(el) => {
                                 if (el) mainRefs.current[idx] = el;
                             }}
-                            className={`inline-block mr-1 md:mr-2 font-bold md:font-normal ${
-                                showStaticLines ? "" : "will-change-transform"
-                            }`}
+                            className={`inline-block mr-1 md:mr-2 font-bold md:font-normal ${showStaticLines ? "" : "will-change-transform"
+                                }`}
                         >
                             <span className={`${slide.highlightColor} font-bold`}>W</span>
                             <span className={`${slide.textColor} font-bold md:font-light`}>{word.slice(1)}</span>
