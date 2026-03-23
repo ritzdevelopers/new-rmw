@@ -183,6 +183,9 @@ function Section9() {
                         >
                             Free Resource
                         </p>
+                        <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
+                            Download Our
+                        </p>
                         <h2
                             className="font-[700] text-[21px]  lg:text-[36px]"
                             style={{
@@ -192,9 +195,7 @@ function Section9() {
                             2026 Brand Impact Report
                         </h2>
                     </div>
-                    <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
-                        Download Our
-                    </p>
+
 
                     <p
                         className="font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-2 md:mb-0"
@@ -202,11 +203,11 @@ function Section9() {
                             fontFamily: "PoppinsRegular",
                         }}
                     >
-                        Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2025.
+                        Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2026.
                     </p>
 
                     <ul
-                        className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
+                        className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-justify md:text-left mb-4 md:mb-0"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -284,7 +285,7 @@ function Section9() {
                     </p>
 
                     <ul
-                        className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-center md:text-left"
+                        className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-justify md:text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}

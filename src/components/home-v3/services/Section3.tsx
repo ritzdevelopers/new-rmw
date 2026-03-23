@@ -219,7 +219,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Digital <br /> Marketing",
                                 margin: "mr-[0px] pr-8 md:pr-40 lg:pr-14",
                                 description: "Digital marketing without a strategy is like driving blindfolded. It may be exciting, perhaps, but it also comes with a high probability of disastrous consequences. At <span className='font-[700]'>Ritz Media World</span>, we collectively leverage a calculated sorcery of SEO, PPC, Social Media, and some Reputation alchemy to ensure that your brand doesn’t just survive, but flourishes spectacularly.",
-                                image: "/services/rm-shadow.png",
+                                image: "/alishba-services-v3/seo-analytics.png",
                                 link: "/services-v3/brand-strategy",
                                 subServices: [
                                     {
@@ -251,8 +251,8 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Creative <br /> Services",
                                 margin: "lg:mr-[30px] pr-20 sm:pr-48 lg:pr-20 ",
-                                description: "Creativity isn’t just decoration, it’s the entire point. from Branding, to Graphic Design to captivating logos that leave an impression. We produce ideas that other companies contemplate stealing (Although we strongly advise against it). So it's your choice. Do you want your audience to fall in love at first sight? ",
-                                image: "/services/Creative-Service.png",
+                                description: "Creativity isn’t just decoration, it’s the entire point. from Branding, to Graphic Design to captivating logos that leave an impression. <br /> <br /> We produce ideas that other companies contemplate stealing (Although we strongly advise against it). So it's your choice. Do you want your audience to fall in love at first sight? ",
+                                image: "/alishba-services-v3/creative-service.png",
                                 link: "/services-v3/creative-services",
                                 subServices: [
                                     {
@@ -280,8 +280,8 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Print <br /> Advertising",
                                 margin: "mr-[0px] pr-10 md:pr-40 lg:pr-14",
-                                description: "Contrary to popular belief, Print is more prominent than ever! To put it simply, It has upgraded from mainstream to a premium audience. <br /> <br /> Ritz Media World has always been in the business of making print ads breathe life into paper, and BUSINESS IS GOOD! We turn simple pages into captivating conversation.Print advertising is like a well-crafted newspaper ad that grabs attention and sticks in the mind. At Ritz Media World, we blend creative thinking with strategic placement to ensure that your brand makes a lasting impression across newspapers, magazines, and other print media.",
-                                image: "/services/Print-Advertisement1.png",
+                                description: "Contrary to popular belief, Print is more prominent than ever! To put it simply, It has upgraded from mainstream to a premium audience. <br /> <br /> Ritz Media World has always been in the business of making print ads breathe life into paper, and BUSINESS IS GOOD! We turn simple pages into captivating conversation.",
+                                image: "/alishba-services-v3/print-ad.png",
                                 link: "/services-v3/print-advertising",
                                 subServices: [
                                     {
@@ -314,7 +314,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Radio <br /> Advertising",
                                 margin: "pr-3 md:pr-30 lg:pr-4 xl:pr-0 xl:-mr-10 2xl:-mr-10   ",
                                 description: "You may have noticed that people still have ears. The most wonderful way to effectively market to the masses in this digital age is an ear-catching captivating narrative. <br /> <br /> We add some more magic with Jingles and persuasive soundscapes that resonate with the masses.",
-                                image: "/services/Radio-Advertisement.png",
+                                image: "/alishba-services-v3/radio.png",
                                 link: "/services-v3/radio-advertising",
                                 subServices: [
                                     {
@@ -347,7 +347,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Content <br /> Marketing",
                                 margin: "pr-12 md:pr-38 lg:pr-14 xl:pr-0 xl:-mr-0 ",
                                 description: "Content Isn’t king, Compelling Content is. Anyone can tell stories or put words together, but will that inspire action? We didn’t think so either. <br /> <br /> Be it blogs that educate, videos that entertain, or posts that persuade, our persuasive storytelling ensures that your brand stays relevant, remarkable, and unmistakably real.",
-                                image: "/services/Content-Marketing.png",
+                                image: "/alishba-services-v3/content-marketing.png",
                                 link: "/services-v3/content-marketing",
                                 subServices: [
                                     {
@@ -372,7 +372,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Web <br /> Development",
                                 margin: "pr-2 md:pr-30  lg:pr-0 xl:pr-0 xl:-mr-10",
                                 description: "Your website is your digital handshake, so let’s make sure that it’s firm and welcoming. We design intuitive and visually delightful digital experiences that charm visitors into becoming loyal patrons. <br /> <br /> Remember, nothing signals credibility like a brilliantly functional website that customers love and don’t leave.",
-                                image: "/services/Web-Development.png",
+                                image: "/alishba-services-v3/webdev.png",
                                 link: "/services-v3/web-development",
                                 subServices: [
                                     {
@@ -401,7 +401,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Celebrity <br /> Endorsements",
                                 margin: "pr-0 md:pr-26  lg:pr-0 xl:pr-0 xl:-mr-20",
                                 description: "Why scream when a Celebrity’s whisper can say it louder? <br /> <br /> We connect your brand with influential names whose endorsement doesn’t just sell but elevate your products and services. Because familiar faces are more effective in earning trust.",
-                                image: "/services/Celebrity-Endorsment.png",
+                                image: "/alishba-services-v3/celebraty.png",
                                 link: "/services-v3/celebrity-endorsements",
                                 subServices: [
                                     {
@@ -434,7 +434,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Influencer <br />   Marketing",
                                 margin: "lg:-mr-[10px] pr-10 md:pr-32 lg:pr-4 xl:pr-0 xl:-mr-6    ",
                                 description: "Influencer marketing isn’t about chasing vanity metrics—it’s strategic persuasion by trusted voices. At Ritz Media World, we cleverly match your brand with influential personalities whose authentic engagement transforms casual followers into loyal customers. <br /> <br /> Because genuine influence doesn’t shout—it whispers convincingly, profitably, and irresistibly to the right ears.",
-                                image: "/services/Influencer-Marketing3.png",
+                                image: "/alishba-services-v3/influencer-marketing.png",
                                 link: "/services-v3/influencer-marketing",
                                 subServices: [
                                     {

@@ -123,6 +123,48 @@ function NewFooter() {
                 </div>
               </div>
             </div>
+            {/* <div className="w-full flex flex-col gap-4 sm:gap-6 items-end ju">
+
+              <div
+                onClick={() => window.open("https://www.facebook.com/ritzmediaworld", "_blank")}
+                className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] md:w-[40px] md:h-[40px] 
+    flex items-center justify-center bg-[#1877F2] cursor-pointer rounded-l-md">
+                <FaFacebookF className="text-white text-[14px] sm:text-[16px] md:text-[18px]" />
+              </div>
+
+              
+              <div
+                onClick={() => window.open("https://www.instagram.com/ritzmediaworld", "_blank")}
+                className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] md:w-[40px] md:h-[40px] 
+    flex items-center justify-center bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 
+    cursor-pointer rounded-l-md">
+                <FaInstagram className="text-white text-[14px] sm:text-[16px] md:text-[18px]" />
+              </div>
+
+              <div
+                onClick={() => window.open("https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia", "_blank")}
+                className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] md:w-[40px] md:h-[40px] 
+    flex items-center justify-center bg-[#FF0000] cursor-pointer rounded-l-md">
+                <FaYoutube className="text-white text-[14px] sm:text-[16px] md:text-[18px]" />
+              </div>
+
+             
+              <div
+                onClick={() => window.open("https://www.linkedin.com/company/ritzmediaworld/", "_blank")}
+                className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] md:w-[40px] md:h-[40px] 
+    flex items-center justify-center bg-[#0A66C2] cursor-pointer rounded-l-md">
+                <FaLinkedinIn className="text-white text-[14px] sm:text-[16px] md:text-[18px]" />
+              </div>
+
+            
+              <div
+                onClick={() => window.open("https://x.com/ritzmediaworld", "_blank")}
+                className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] md:w-[40px] md:h-[40px] 
+    flex items-center justify-center bg-black cursor-pointer rounded-l-md">
+                <FaXTwitter className="text-white text-[14px] sm:text-[16px] md:text-[18px]" />
+              </div>
+
+            </div> */}
           </div>
 
           {/* Row 3  */}
