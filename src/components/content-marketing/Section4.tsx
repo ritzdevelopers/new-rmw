@@ -52,8 +52,8 @@ function Section4() {
 
                     {/* Absolute Positioned text container  */}
                     <div className="absolute top-[50%] left-[50%] w-full flex justify-between  md:justify-center -translate-x-1/2 -translate-y-1/2 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-0  md:gap-[25rem] xl:gap-[35rem]">
-                        <h4 className={`font-[500] text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#0F1640] ${styles.fontMontserrat}`}>Reach</h4>
-                        <h4 className={`font-[500]  text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#0F1640]  ${styles.fontMontserrat}`}>Convert</h4>
+                        <h4 className={`font-[500] text-[18px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#0F1640] ${styles.fontMontserrat}`}>Reach</h4>
+                        <h4 className={`font-[500]  text-[18px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#0F1640]  ${styles.fontMontserrat}`}>Convert</h4>
                     </div>
                 </div>
 

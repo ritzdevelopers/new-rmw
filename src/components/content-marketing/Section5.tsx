@@ -62,7 +62,7 @@ function Section5() {
                             </p>
                         </div>
                         <div className={`w-full md:flex-1 xl:h-[252px] min-w-0 ${styles.s5Card}`}>
-                            <img src="/service-v3/content-marketing/s5/s5-i1.jpg" alt="Why Content Marketing Matters" className="w-full h-full lg:h-auto xl:h-full object-cover" />
+                            <img src="/service-v3/content-marketing/s5/s5-i1-new.jpg" alt="Why Content Marketing Matters" className="w-full h-full lg:h-auto xl:h-full object-cover" />
                         </div>
                     </div>
 
