@@ -44,11 +44,25 @@ function Section2() {
                             <img src="/home-v3/service-imgs/s2/frame-img.png" alt="" className='w-full h-full object-contain' />
                         </div>
                     </div>
-                    <div className={`w-[280px] xl:w-[403px] h-auto ${styles2.hidenElips}`}>
-                        <img src="/home-v3/service-imgs/s2/s2-elips2.png" alt="" className='w-full h-full object-contain' />
+                    <div className={`relative w-[280px] xl:w-[403px] h-auto  overflow-hidden  ${styles2.hidenElips}`}>
+                        <div className='spin-slow'>
+                            <img src="/home-v3/service-imgs/s2/s2-elips2.png"
+                            alt=""
+                            className='w-full h-full object-contain ' />
+                        <span className='
+                                            absolute 
+                                            -top-9 right-48
+                                            text-white md:text-[#C99237] 
+                                            text-[24px] md:text-[28px] lg:text-[46px]
+                                            font-bold
+                                            '>
+                            .
+                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
+            
         </section>
     )
 }
