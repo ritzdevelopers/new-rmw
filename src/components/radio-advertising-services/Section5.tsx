@@ -11,38 +11,38 @@ const CARD_GAP = 16;
 const cardContent = [
     {
         title: "Advertising Concept Development",
-        content: "As a leading radio advertising agency, we craft compelling, audio-centric campaign ideas, specifically designed to resonate with FM radio audiences. Our approach is designed to guarantee that your radio advertisement breaks through, delivers brand awareness, and generates measurable results in the target market.",
-        image: "/radio-advertising-page/s5/s5i1.png",
+        content: "As a leading radio advertising agency, we craft compelling, audio-centric campaign ideas, specifically designed to resonate with FM radio audiences.               Our approach is designed to guarantee that your radio advertisement breaks through, delivers brand awareness, and generates measurable results in the target market.",
+        image: "/alishba-services-v3/radio-advertising/Adv-Con-Dev.png",
         link: "https://ritzmediaworld.com/services/radio-advertising",
     },
     {
         title: "Scriptwriting ",
         content: "For successful FM ad campaigns, storytelling is a great beginning. Our skilled scriptwriters write attention-grabbing, conversion-oriented scripts for radio ads and commercials. Every message is crafted with the goal of communicating value and inspiring people to take action.",
-        image: "/radio-advertising-page/s5/s5i1.png",
+        image: "/alishba-services-v3/radio-advertising/Scriptwriting.png",
         link: "https://ritzmediaworld.com/services/radio-advertising",
     },
     {
         title: "Professional Voiceover Casting",
         content: "The key to any successful radio ad campaign really comes down to finding the right voice. We offer voiceover casting that fits with your brand personality and target audience. We help you build credibility and keep listeners engaged with our voice talent.",
-        image: "/radio-advertising-page/s5/s5i1.png",
+        image: "/alishba-services-v3/radio-advertising/professional-voice-cov.png",
         link: "https://ritzmediaworld.com/services/radio-advertising",
     },
     {
         title: "Radio Recording & Production",
         content: "With our radio commercial production services, we provide quality audio, precise editing, and effective sound designs, ensuring that your advertisements reach the wider audience of popular FM channels through professional studio recordings and efficient production techniques.",
-        image: "/radio-advertising-page/s5/s5i1.png",
+        image: "/alishba-services-v3/radio-advertising/recording-production.png",
         link: "https://ritzmediaworld.com/services/radio-advertising",
     },
     {
         title: "Media Planning & Buying",
         content: "For effective campaigns, strategic media planning is essential for successful radio advertising. As an experienced radio advertising agency, we recognize that the media planning and buying service is crucial for selecting the most appropriate FM stations, time slots, and programs that are more likely to reach out to your target audience.",
-        image: "/radio-advertising-page/s5/s5i1.png",
+        image: "/alishba-services-v3/radio-advertising/media-planning.png",
         link: "https://ritzmediaworld.com/services/radio-advertising",
     },
     {
         title: "Cost Negotiation & Slot Optimization",
         content: "Unlike other forms of smart radio media buying, where placement is not enough and relationships are crucial, smart radio media buying includes superior relationships and negotiation skills. With our smart radio media buying strategy, you get prime time and cost-effective FM radio advertising.",
-        image: "/radio-advertising-page/s5/s5i1.png",
+        image: "/alishba-services-v3/radio-advertising/cost-nagotiation.png",
         link: "https://ritzmediaworld.com/services/radio-advertising",
     },
 ];
@@ -76,7 +76,7 @@ function Section5() {
     const trackTransform = isXl
         ? `translateX(-${currentIndex * SLIDE_STEP}px)`
         : `translateX(-${currentIndex * SLIDE_PERCENT}%)`;
-    
+
     const cardWidthPercent = 100 / TOTAL_CARDS;
 
     return (
@@ -149,6 +149,7 @@ function Section5() {
                                                 content={card.content}
                                                 image={card.image}
                                                 link={card.link}
+                                                index={index}
                                             />
                                         </div>
                                     </div>

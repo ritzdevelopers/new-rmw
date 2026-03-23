@@ -1,3 +1,4 @@
+
 import styles from "./page.module.css";
 
 function Section3() {
@@ -10,10 +11,11 @@ function Section3() {
                 {/* Col 1 – left image: narrow on mobile, fixed 222px at xl */}
                 <div className="w-full max-w-[200px] sm:max-w-[20%] xl:w-[222px] xl:max-w-[222px] xl:flex-shrink-0 flex flex-col justify-end items-center pb-4 sm:pb-6 xl:pb-8">
                     <img
-                        src="/radio-advertising-page/s3/s3-i2.png"
+                        src="/alishba-services-v3/radio-advertising/s3-i2.png"
                         alt=""
                         className="w-full h-auto object-cover"
                     />
+
                 </div>
 
                 {/* Col 2 – main image + floating text box */}
@@ -28,7 +30,7 @@ function Section3() {
                         </div>
                     </div>
                     <img
-                        src="/radio-advertising-page/s3/s3-i1.png"
+                        src="/alishba-services-v3/radio-advertising/s3-i1.png"
                         alt=""
                         className="w-full h-auto object-cover"
                     />
@@ -41,7 +43,7 @@ function Section3() {
                         className="flex justify-center items-center gap-2 text-black px-4 py-2 rounded-[5px] cursor-pointer hover:opacity-90 transition-opacity min-w-[200px] "
                     >
                         <p className="font-[500] text-[16px] sm:text-[18px] whitespace-nowrap ">Let's Talk Today</p>
-                        <div className="w-[40px] h-[40px] bg-[#C99237] rounded-full flex-shrink-0 flex justify-center items-center">
+                        <div className="w-[40px] h-[40px] bg-[#C99237] hover:bg-[#0F1640] rounded-full flex-shrink-0 flex justify-center items-center">
                             <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19.4276 2.92383L17.1346 9.08052L12.9493 4.01635L19.4276 2.92383Z" fill="white" />
                                 <rect x="2.19678" y="16.7172" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19678 16.7172)" fill="white" />

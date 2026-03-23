@@ -8,8 +8,8 @@ function Section2() {
                 <h2 className={`font-[700] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px] xl:text-[30px] leading-tight sm:leading-snug md:leading-normal px-2 sm:px-0 ${styles.fontmontserrat}`}>
                 In a visually crowded world, audio remains the only way to command undivided attention.
                 </h2>
-                <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] max-w-full sm:max-w-[896px] leading-relaxed px-2 sm:px-0 ${styles.fontopensans}`}>
-                <span className="font-[700] text-[#C99237]">At Ritz Media World</span>, we develop compelling radio campaigns that break through the clutter, stay memorable, and stick in the consumer's head. We turn airtime into impactful brand communication through persuading scripts, engaging voiceovers, and smart media buying. Whether the need be for immediate response or building long-term brand recall, our radio advertising ensures your message is heard clearly, confidently, and unmistakably spoken.
+                <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] max-w-full sm:max-w-[896px] leading-relaxed px-2 sm:px-0 md:text-center text-justify ${styles.fontopensans}`}>
+                <span className="font-[700] text-[#C99237] ">At Ritz Media World</span>, we develop compelling radio campaigns that break through the clutter, stay memorable, and stick in the consumer's head. We turn airtime into impactful brand communication through persuading scripts, engaging voiceovers, and smart media buying. Whether the need be for immediate response or building long-term brand recall, our radio advertising ensures your message is heard clearly, confidently, and unmistakably spoken.
                 </p>
             </div>
         </section>
