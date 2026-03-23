@@ -44,13 +44,14 @@ export default function Banner() {
                     </p>
                 </div>
                 <div className="pl-0 sm:pl-4 md:pl-8 lg:pl-16">
-                    <p className={`font-[500] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontmontserrat}`}>
-                        Broadcast your brand message louder, clearer, more effectively.
-                    </p>
+
                     <h1 className={`font-[800] text-[28px] sm:text-[36px] md:text-[48px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-14 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
                         Radio Advertising<br />
                         <span className="font-[500]">Services</span>
                     </h1>
+                    <p className={`font-[500] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontmontserrat}`}>
+                        Broadcast your brand message louder, clearer, more effectively.
+                    </p>
                 </div>
             </div>
         </section>
