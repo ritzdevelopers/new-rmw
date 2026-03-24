@@ -206,9 +206,9 @@ const ServiceMainHero = () => {
                         <p className="mt-20">
                           At Ritz Media World, we have an obsession with being
                           wizards of quirkiness that morph good ideas into
-                          Brilliant ones. Our services deliver results that
-                          drive your competitor’s envy. We blend digital magic,
-                          classic & modern mediums, and creative ingenuity to
+                          brilliant ones. Our services deliver results that
+                          drive your competitors' desire. We blend digital magic,
+                          classic & modern media, and creative ingenuity to
                           ensure that your brand doesn’t just speak; it
                           captivates.
                         </p>

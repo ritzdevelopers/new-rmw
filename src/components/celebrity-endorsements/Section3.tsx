@@ -106,7 +106,7 @@ export default function Section3() {
                   <div className="flex items-start justify-between gap-6 sm:gap-8 px-4 sm:px-5 md:px-6 lg:px-6 py-5 sm:py-6">
                     <div className="flex-1 flex items-start gap-8 sm:gap-10 md:gap-12 lg:gap-[155px]">
                       <p
-                        className="text-white text-[18px] leading-[20px] pt-1 font-[500]"
+                        className="text-white text-[18px] leading-[20px] pt-1 lg:mt-2 font-[500]"
                         style={{ fontFamily: "MontserratMedium" }}
                       >
                         {item.id}.

@@ -6,14 +6,14 @@ import containerStyles from "@/components/shared/container.module.css";
 export default function BrandThatTrustUs() {
   return (
     <div className="container mx-auto">
-    <section className="w-full bg-[#FFFFFF] sm:py-16 flex justify-center">
+    <section className="w-full bg-[#FFFFFF] py-[35px] lg:py-[70px] flex justify-center">
       <div className={`w-[100%] sm:w-[90%] md:w-[100%%] lg:w-[100%] mx-auto ${containerStyles.containerWidth} ${styles.align1366}`}>
         <div
           className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0"
           data-no-gsap-animation
         >
           {/* Left Side Container */}
-          <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0">
+          <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0">
             <p
               className="font-[700] text-[20px] sm:text-[22px] lg:text-[24px]"
               style={{ fontFamily: "MontserratBold" }}

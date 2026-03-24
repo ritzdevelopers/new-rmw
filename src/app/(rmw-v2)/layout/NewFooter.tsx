@@ -98,10 +98,10 @@ function NewFooter() {
             </div>
 
             {/* Col 3  */}
-            <div className="w-full flex flex-col gap-4 sm:gap-6 items-center min-[1657px]:items-end">
+            <div className="w-full flex flex-col gap-4 sm:gap-6 items-start min-[1657px]:items-end">
               {/* Google Review Image  */}
               <div className="mb-1 sm:mb-2">
-                <img src="/home-v3/clients/reviews.png" alt="google review" className="w-full max-w-[200px] mx-auto lg:mx-0" />
+                <img src="/home-v3/clients/reviews.png" alt="google review" className="w-full max-w-[200px] " />
               </div>
 
               {/* Social Media Links  */}

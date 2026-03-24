@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { IoMdClose } from 'react-icons/io';
-import { FiSend } from 'react-icons/fi';
+import { FiMic, FiMicOff, FiSend } from 'react-icons/fi';
 import axios from 'axios';
 import { RubyContext } from '@/ruby-context/ruby.context';
 import styles from './page.module.css';
@@ -74,6 +74,33 @@ function RubyBotBootstrap() {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const recognitionRef = useRef<any>(null);
+    const silenceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const [isListening, setIsListening] = useState(false);
+    const [isSpeechSupported, setIsSpeechSupported] = useState(true);
+
+    const clearSilenceTimer = () => {
+        if (silenceTimeoutRef.current) {
+            clearTimeout(silenceTimeoutRef.current);
+            silenceTimeoutRef.current = null;
+        }
+    };
+
+    const stopSpeechRecognition = () => {
+        clearSilenceTimer();
+        if (recognitionRef.current) {
+            recognitionRef.current.stop();
+        } else {
+            setIsListening(false);
+        }
+    };
+
+    const resetSilenceTimer = () => {
+        clearSilenceTimer();
+        silenceTimeoutRef.current = setTimeout(() => {
+            stopSpeechRecognition();
+        }, 5000);
+    };
 
     // Initialize audio on mount
     useEffect(() => {
@@ -96,6 +123,74 @@ function RubyBotBootstrap() {
             }
         };
     }, []);
+
+    useEffect(() => {
+        const SpeechRecognitionCtor =
+            typeof window !== 'undefined'
+                ? (
+                    (window as typeof window & {
+                        SpeechRecognition?: new () => any;
+                        webkitSpeechRecognition?: new () => any;
+                    }).SpeechRecognition ||
+                    (window as typeof window & {
+                        SpeechRecognition?: new () => any;
+                        webkitSpeechRecognition?: new () => any;
+                    }).webkitSpeechRecognition
+                )
+                : undefined;
+
+        if (!SpeechRecognitionCtor) {
+            setIsSpeechSupported(false);
+            return;
+        }
+
+        const recognition = new SpeechRecognitionCtor();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = 'en-US';
+
+        (recognition as any).onstart = () => {
+            setIsListening(true);
+            resetSilenceTimer();
+        };
+
+        recognition.onresult = (event: any) => {
+            let transcript = '';
+            for (let i = 0; i < event.results.length; i += 1) {
+                transcript += event.results[i][0].transcript;
+            }
+            setInputValue(transcript.trimStart());
+            resetSilenceTimer();
+        };
+
+        (recognition as any).onerror = () => {
+            stopSpeechRecognition();
+        };
+
+        (recognition as any).onend = () => {
+            clearSilenceTimer();
+            setIsListening(false);
+        };
+
+        recognitionRef.current = recognition;
+
+        return () => {
+            clearSilenceTimer();
+            recognition.stop();
+            recognitionRef.current = null;
+        };
+    }, []);
+
+    const handleSpeechToggle = () => {
+        if (!isSpeechSupported || !recognitionRef.current) return;
+        if (isListening) {
+            stopSpeechRecognition();
+            return;
+        }
+
+        recognitionRef.current.start();
+        inputRef.current?.focus();
+    };
 
     const playNotificationSound = () => {
         try {
@@ -552,6 +647,25 @@ function RubyBotBootstrap() {
                                     placeholder="Reply to Ruby..."
                                     className={styles.messageInput}
                                 />
+                                <button
+                                    onClick={handleSpeechToggle}
+                                    type="button"
+                                    disabled={!isSpeechSupported}
+                                    className={styles.sendButton}
+                                    aria-label={isListening ? 'Stop voice input' : 'Start voice input'}
+                                    title={isSpeechSupported ? (isListening ? 'Stop voice input' : 'Start voice input') : 'Speech recognition not supported in this browser'}
+                                    style={{
+                                        color: isListening ? '#ef4444' : '#001697',
+                                        opacity: isSpeechSupported ? 1 : 0.4,
+                                        cursor: isSpeechSupported ? 'pointer' : 'not-allowed',
+                                    }}
+                                >
+                                    {isListening ? (
+                                        <FiMicOff className={styles.sendIcon} />
+                                    ) : (
+                                        <FiMic className={styles.sendIcon} />
+                                    )}
+                                </button>
                                 <button
                                     onClick={() => handleSendMessage()}
                                     type="button"

@@ -217,7 +217,7 @@ function Section3({ servicesData }: Section3Props) {
                         [
                             {
                                 title: "Digital <br /> Marketing",
-                                margin: "mr-[0px] pr-8 md:pr-40 lg:pr-14",
+                                margin: "mr-[12px] pr-8 md:pr-40 lg:pr-18",
                                 description: "Digital marketing without a strategy is like driving blindfolded. It may be exciting, perhaps, but it also comes with a high probability of disastrous consequences. At <span className='font-[700]'>Ritz Media World</span>, we collectively leverage a calculated sorcery of SEO, PPC, Social Media, and some Reputation alchemy to ensure that your brand doesn’t just survive, but flourishes spectacularly.",
                                 image: "/alishba-services-v3/seo-analytics.png",
                                 link: "/services-v3/brand-strategy",
@@ -278,8 +278,8 @@ function Section3({ servicesData }: Section3Props) {
                                 ]
                             },
                             {
-                                title: "Print <br /> Advertising",
-                                margin: "mr-[0px] pr-10 md:pr-40 lg:pr-14",
+                                title: "Print <br /> Advertisement",
+                                margin: "mr-[0px] pr-4 md:pr-40 lg:pr-4",
                                 description: "Contrary to popular belief, Print is more prominent than ever! To put it simply, It has upgraded from mainstream to a premium audience. <br /> <br /> Ritz Media World has always been in the business of making print ads breathe life into paper, and BUSINESS IS GOOD! We turn simple pages into captivating conversation.",
                                 image: "/alishba-services-v3/print-ad.png",
                                 link: "/services-v3/print-advertising",
@@ -312,7 +312,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Radio <br /> Advertising",
-                                margin: "pr-3 md:pr-30 lg:pr-4 xl:pr-0 xl:-mr-10 2xl:-mr-10   ",
+                                margin: "pr-8 md:pr-40 lg:pr-12 xl:pr-24 xl:-mr-20 2xl:-mr-10   ",
                                 description: "You may have noticed that people still have ears. The most wonderful way to effectively market to the masses in this digital age is an ear-catching captivating narrative. <br /> <br /> We add some more magic with Jingles and persuasive soundscapes that resonate with the masses.",
                                 image: "/alishba-services-v3/radio.png",
                                 link: "/services-v3/radio-advertising",
@@ -345,7 +345,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Content <br /> Marketing",
-                                margin: "pr-12 md:pr-38 lg:pr-14 xl:pr-0 xl:-mr-0 ",
+                                margin: "pr-12 md:pr-42 lg:pr-18 xl:pr-16 2xl:pr-16",
                                 description: "Content Isn’t king, Compelling Content is. Anyone can tell stories or put words together, but will that inspire action? We didn’t think so either. <br /> <br /> Be it blogs that educate, videos that entertain, or posts that persuade, our persuasive storytelling ensures that your brand stays relevant, remarkable, and unmistakably real.",
                                 image: "/alishba-services-v3/content-marketing.png",
                                 link: "/services-v3/content-marketing",
@@ -370,7 +370,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Web <br /> Development",
-                                margin: "pr-2 md:pr-30  lg:pr-0 xl:pr-0 xl:-mr-10",
+                                margin: "pr-2 md:pr-36 lg:pr-6 xl:pr-8 2xl:pr-10 xl:-mr-10",
                                 description: "Your website is your digital handshake, so let’s make sure that it’s firm and welcoming. We design intuitive and visually delightful digital experiences that charm visitors into becoming loyal patrons. <br /> <br /> Remember, nothing signals credibility like a brilliantly functional website that customers love and don’t leave.",
                                 image: "/alishba-services-v3/webdev.png",
                                 link: "/services-v3/web-development",
@@ -399,7 +399,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Celebrity <br /> Endorsements",
-                                margin: "pr-0 md:pr-26  lg:pr-0 xl:pr-0 xl:-mr-20",
+                                margin: "pr-0 md:pr-36  lg:pr-3 xl:pr-14 xl:-mr-20",
                                 description: "Why scream when a Celebrity’s whisper can say it louder? <br /> <br /> We connect your brand with influential names whose endorsement doesn’t just sell but elevate your products and services. Because familiar faces are more effective in earning trust.",
                                 image: "/alishba-services-v3/celebraty.png",
                                 link: "/services-v3/celebrity-endorsements",
@@ -432,7 +432,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Influencer <br />   Marketing",
-                                margin: "lg:-mr-[10px] pr-10 md:pr-32 lg:pr-4 xl:pr-0 xl:-mr-6    ",
+                                margin: "lg:-mr-[10px] pr-8 md:pr-40 lg:pr-4 xl:pr-5 xl:-mr-6    ",
                                 description: "Influencer marketing isn’t about chasing vanity metrics—it’s strategic persuasion by trusted voices. At Ritz Media World, we cleverly match your brand with influential personalities whose authentic engagement transforms casual followers into loyal customers. <br /> <br /> Because genuine influence doesn’t shout—it whispers convincingly, profitably, and irresistibly to the right ears.",
                                 image: "/alishba-services-v3/influencer-marketing.png",
                                 link: "/services-v3/influencer-marketing",
@@ -706,7 +706,7 @@ function Section3({ servicesData }: Section3Props) {
                 </div>
                 <S6 padding="px-0" padding2="px-0"></S6>
                 <S7></S7>
-                <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 ${styles2.containerWidth}`}>
+                <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 pt-5 md:pt-16  ${styles2.containerWidth}`}>
                     {/* Left Side Container  */}
                     <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
                         <div className="text-center md:text-left mb-2 md:mb-0">
@@ -724,7 +724,7 @@ function Section3({ servicesData }: Section3Props) {
                                     fontFamily: "MontserratBold",
                                 }}
                             >
-                                2026 Brand Impact Report
+                                2026 Brand Impact Repor
                             </h2>
                         </div>
                         <p className="font-[700] text-[16px] lg:text-[24px] text-[#0F1640] text-center md:text-left mb-2 md:mb-0">
@@ -741,7 +741,7 @@ function Section3({ servicesData }: Section3Props) {
                         </p>
 
                         <ul
-                            className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-[#0F1640] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
+                            className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-[#0F1640] list-disc px-4 flex flex-col gap-2 sm:gap-3 text-left md:text-left mb-4 md:mb-0"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -819,7 +819,7 @@ function Section3({ servicesData }: Section3Props) {
                         </p>
 
                         <ul
-                            className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-[#0F1640] text-center md:text-left"
+                            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-[#0F1640] text-left md:text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import styles from "@/components/shared/container.module.css";
 
 const EXPLORE_ARROW_IMAGE =
   "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
@@ -7,9 +8,9 @@ const EXPLORE_ARROW_IMAGE =
 export default function Section2() {
   return (
     <section className="w-full flex items-center justify-center py-[35px] lg:py-[70px] bg-white">
-      <div className="w-[92%] sm:w-[88%] md:w-[82%] lg:w-[70%] text-center mx-auto">
+      <div className={`w-[92%] sm:w-[88%] md:w-[82%] lg:w-[70%] xl:w-[74%] text-center  mx-auto ${styles.containerWidth}`}>
         <h2
-          className="text-black font-[400] text-[20px] sm:text-[20px] md:text-[20px] lg:text-[24px] leading-[25px]   md:leading-[30px] lg:leading-[30px]"
+          className="text-black font-[400] text-[20px] sm:text-[20px] md:text-[20px] lg:text-[24px] leading-[25px]   md:leading-[30px] lg:leading-[30px] xl:leading-[40px] max-w-[849px] mx-auto"
           style={{ fontFamily: "MontserratRegular" }}
         >
           Influencer marketing services are more than social media hype, they are

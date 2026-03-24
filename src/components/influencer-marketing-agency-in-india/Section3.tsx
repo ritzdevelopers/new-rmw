@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import accordionStyles from "./Section3.module.css";
+import styles from "@/components/shared/container.module.css";
 
 const EXPLORE_ARROW_IMAGE =
   "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
@@ -61,7 +62,9 @@ export default function Section3() {
 
   return (
     <section className="w-full bg-[#0F1640] py-[35px] lg:py-[70px]">
-      <div className="w-[94%] sm:w-[92%] md:w-[90%] lg:w-[90%] mx-auto">
+
+
+      <div className={`w-[94%] sm:w-[92%] md:w-[90%] lg:w-[90%] mx-auto ${styles.containerWidth}`}> 
         <div className="text-center">
           <p
             className="uppercase text-[11px] sm:text-[12px] tracking-[0.1em] text-[#C99237]"
@@ -110,7 +113,7 @@ export default function Section3() {
                 <div className="flex items-start justify-between gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-0">
                   <div className="flex items-center sm:items-center lg:items-start gap-3 sm:gap-4 lg:gap-5 min-w-0">
                     <span
-                      className="text-[#FFFFFF] text-[13px] sm:text-[15px] lg:pt-2"
+                      className="text-[#FFFFFF] text-[13px] sm:text-[15px] lg:pt-2 lg:mt-2"
                       style={{ fontFamily: "MontserratMedium" }}
                     >
                       01
@@ -228,7 +231,7 @@ export default function Section3() {
                     <div className="flex items-start justify-between gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-0">
                       <div className="flex items-center sm:items-center lg:items-start gap-3 sm:gap-4 lg:gap-5 min-w-0">
                         <span
-                          className="text-[#FFFFFF] text-[13px] sm:text-[15px] lg:pt-1"
+                          className="text-[#FFFFFF] text-[13px] sm:text-[15px] lg:pt-1 lg:mt-2"
                           style={{ fontFamily: "MontserratMedium" }}
                         >
                           {item.id}

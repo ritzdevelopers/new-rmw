@@ -23,7 +23,7 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
                 <div className="absolute z-10 top-[50%] translate-y-[-50%] w-full h-full flex flex-col justify-center items-end gap-1 sm:gap-2 pr-2 sm:pr-3 md:pr-4">
                     <div className={`flex flex-col gap-1 sm:gap-2 ${margin || ""}`}>
                         <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] ${styles2.fontopensans} text-[#0F1640]`}>{String(index + 1).padStart(2, '0')}</p>
-                        <h2 className={`text-[16px] sm:text-[18px] md:text-[22px] lg:text-[28px] xl:text-[36px] ${styles2.fontmontserrat} text-[#0F1640]`}>
+                        <h2 className={`text-[16px] sm:text-[18px] md:text-[22px] lg:text-[28px] font-medium xl:text-[30px] ${styles2.fontmontserrat} text-[#0F1640]`}>
                             {title?.split(/<br\s*\/?>/i).map((line: string, index: number, array: string[]) => (
                                 <React.Fragment key={index}>
                                     {line}
@@ -47,11 +47,11 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
                     className='font-[400] text-[13px] sm:text-[14px] text-[#0F1640] md:text-[16px] leading-relaxed text-center lg:text-left'
                     dangerouslySetInnerHTML={{ __html: convertClassNameToClass(description || '') }}
                 />
-                <div className="grid  grid-cols-3 gap-x-2 sm:gap-x-3 gap-y-2 sm:gap-y-3 ">
+                <div className="grid  grid-cols-3 gap-x-2 sm:gap-x-2 gap-y-2 sm:gap-y-2 ">
                     {subServices.map((subService: any) => (
                         <div onClick={() => window.open(subService.slug, "_blank")} key={subService.title} className='bg-[#F2F2F2] hover:bg-[#0F1640] lg:pl-2
-                          rounded-[2px] px-2 pl-4 lg:py-5  min-h-[70px] cursor-pointer sm:min-h-[80px]  lg:h-[88px] flex justify-center lg:justify-start items-center text-center lg:text-left  text-[#0F1640] hover:text-white'>
-                            <p className={`font-[400] text-[13px]  sm:text-[14px] md:text-[15px] leading-snug p-2 ${styles2.fontopensans}`}>{subService.title}</p>
+                          rounded-[2px] px-2 pl-4 lg:py-2  min-h-[70px] cursor-pointer sm:min-h-[80px]  lg:h-[88px] flex justify-center lg:justify-start items-center text-center lg:text-left  text-[#0F1640] hover:text-white'>
+                            <p className={`font-[400] text-[13px]  sm:text-[14px] md:text-[13px] leading-snug p-1.5 ${styles2.fontopensans}`}>{subService.title}</p>
                         </div>
                     ))}
                 </div>

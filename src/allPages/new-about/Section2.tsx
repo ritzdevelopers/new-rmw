@@ -148,9 +148,8 @@ function Section2() {
               }}
               className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] xl:text-start text-center text-[#00000099]"
             >
-              For the better part of the last two decades, RITZ MEDIA WORLD has
-              been building narratives that drive competitive movements. They
-              don't just influence behaviors but develop lasting habits.
+              For the better part of the last two decades, RITZ MEDIA WORLD has been building narratives that market momentum
+. It doesn’t just influence behaviors but develop lasting habits.
             </p>
             <p
               style={{
@@ -158,10 +157,9 @@ function Section2() {
               }}
               className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] xl:text-start text-center text-[#00000099]"
             >
-              We pride ourselves in going out of our way to understand the
-              consumer mindset in every walk of life. This enables us to build
-              campaigns that don't just speak at them, but we build campaigns
-              that speak to them.
+              {/* We pride ourselves on going out of our way to understand the consumer mindset across all demographics. This enables us to build campaigns that don't just speak at them, but we build campaigns
+              that speak to them. */}
+              We pride ourselves on going out of our way to understand the consumer mindset across all demographics.This enables us to build campaigns that don’t just speak at audiences, but speak to them.
             </p>
             {/* Circle Div  */}
             <div className="mt-2 sm:mt-4 md:mt-6 flex lg:justify-start md:items-start justify-center items-center">

@@ -29,51 +29,97 @@ function Section6() {
     };
 
     return (
-        <section className="w-full py-[70px] flex justify-center items-center">
-            <div className={`w-full flex justify-between items-center gap-6 ${styles.containerWidth}`}>
-
-                {/* Left Side Container  */}
-                <div className="w-[621px] h-[621px] bg-[#0F1640] rounded-full flex flex-col gap-12 pt-20 relative">
+        <section className="flex w-full justify-center overflow-visible py-8 pb-28 sm:py-10 sm:pb-32 lg:py-12 lg:pb-16 xl:items-center xl:py-[70px]">
+            <div
+                className={`flex w-full flex-col items-center gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-6  ${styles.containerWidth}`}
+            >
+                {/* Left Side Container — circle: scaled lg…xl, exact 621px at xl+ */}
+                <div className="relative mx-auto mb-0 flex aspect-square w-[88%] shrink-0 flex-col rounded-full bg-[#0F1640] sm:w-[82%] md:w-[76%] lg:mx-0 lg:mb-0 lg:w-[52%] lg:max-w-[min(100%,520px)] xl:aspect-auto xl:h-[621px] xl:w-[621px] xl:max-w-none gap-6 pt-12 sm:gap-8 sm:pt-14 lg:gap-10 lg:pt-16 xl:gap-12 xl:pt-20">
 
                     {/* Row 1  */}
-                    <div className="w-full text-center">
-                        <h3 className={`font-[700] text-[30px] text-white ${styles.fontmontserrat}`}>Let’s Connect & Bring <br /> Your Vision to Life.</h3>
+                    <div className="w-full text-center px-2">
+                        <h3
+                            className={`font-[700] text-[17px] leading-snug text-white sm:text-[20px] lg:text-[24px] xl:text-[30px] ${styles.fontmontserrat}`}
+                        >
+                            Let’s Connect & Bring <br /> Your Vision to Life.
+                        </h3>
                     </div>
 
                     {/* Row 2  */}
-                    <div className="flex flex-col w-full gap-6 px-20">
+                    <div className="flex w-full flex-col gap-4 px-6 sm:gap-5 sm:px-10 md:px-12 lg:gap-6 lg:px-14 xl:gap-8 xl:px-20">
                         {/* Top Div  */}
-                        <div className="w-full flex justify-between items-center gap-4">
+                        <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
                             {/* Left Side Container  */}
-                            <div className="flex flex-col gap-4">
-                                <p className={`font-[400] text-[16px] text-white ${styles.fontopensans}`}>Address</p>
-                                <p className={`font-[600] text-[16px] text-white ${styles.fontmontserrat}`}> <span onClick={() => window.open("https://maps.app.goo.gl/tjeEjr4GgaLjGLCA7", "_blank")}>402 – 404, 4th Floor, <br /> Corporate Park, Tower A1, <br /> Sector 142, Noida</span></p>
+                            <div className="flex min-w-0 flex-1 flex-col gap-1 sm:gap-2 xl:gap-4">
+                                <p
+                                    className={`font-[400] text-[12px] text-white sm:text-[14px] xl:text-[16px] ${styles.fontopensans}`}
+                                >
+                                    Address
+                                </p>
+                                <p
+                                    className={`font-[600] text-[11px] leading-snug text-white sm:text-[13px] lg:text-[14px] xl:text-[16px] ${styles.fontmontserrat}`}
+                                >
+                                    <span
+                                    className="leading-[28px]"
+                                        onClick={() =>
+                                            window.open("https://maps.app.goo.gl/tjeEjr4GgaLjGLCA7", "_blank")
+                                        }
+                                    >
+                                        402 – 404, 4th Floor, <br /> Corporate Park, Tower A1, <br /> Sector 142,
+                                        Noida
+                                    </span>
+                                </p>
                             </div>
 
                             {/* Right Side Container  */}
-                            <div>
-                                <p className={`font-[400] text-[16px] text-white ${styles.fontopensans}`}>Phone Number</p>
-                                <p className={`font-[600] text-[18px] text-white ${styles.fontmontserrat}`}>      <span onClick={() => window.open("tel:09220516777", "_blank")}>09220516777</span> 
-                                    <br />
-                                <span onClick={() => window.open("tel:07290002168", "_blank")}>07290002168</span>
+                            <div className="flex min-w-0 flex-col gap-3 sm:shrink-0">
+                                <p
+                                    className={`font-[400] text-[12px] text-white sm:text-[14px] xl:text-[16px] ${styles.fontopensans}`}
+                                >
+                                    Phone Number
+                                </p>
+                                <p
+                                    className={`font-[600] text-[13px] text-white sm:text-[15px] xl:text-[18px] ${styles.fontmontserrat}`}
+                                >
+                                    <span onClick={() => window.open("tel:09220516777", "_blank")}>09220516777</span>
+                                    
+                                </p>
+                                <p
+                                    className={`font-[600] text-[13px] text-white sm:text-[15px] xl:text-[18px] ${styles.fontmontserrat}`}
+                                >
+                                   
+                                    <span onClick={() => window.open("tel:07290002168", "_blank")}>07290002168</span>
                                 </p>
                             </div>
                         </div>
 
                         {/* Bottom Div  */}
-                        <div className="w-full flex justify-between items-center">
-                            <div className="flex flex-col ">
-                                <p className={`font-[400] text-[16px] text-white ${styles.fontopensans}`}>Email Address</p>
-                                <p className={`font-[600] text-[20px] text-white ${styles.fontmontserrat}`}> <span onClick={() => window.open("mailto:info@ritzmediaworld.com", "_blank")}>info@ritzmediaworld.com</span></p>
+                        <div className="flex w-full justify-between">
+                            <div className="flex flex-col gap-2">
+                                <p
+                                    className={`font-[400] text-[12px] text-white sm:text-[14px] xl:text-[16px] ${styles.fontopensans}`}
+                                >
+                                    Email Address
+                                </p>
+                                <p className={`font-[600] text-[13px] text-white sm:text-[15px] xl:text-[20px] ${styles.fontmontserrat}`}>
+                                    <span
+                                        className="break-all"
+                                        onClick={() => window.open("mailto:info@ritzmediaworld.com", "_blank")}
+                                    >
+                                        info@ritzmediaworld.com
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div>
 
 
                     {/* Absolute Position Div  */}
-                    <div className="absolute bottom-[-40px] right-[30px] w-[265px] h-[265px] bg-white rounded-full border-[1px] border-[#0F1640] flex flex-col gap-4 justify-center items-center text-center">
-                        <p className={`font-[600] text-[18px] ${styles.fontmontserrat}`}>Follow Us</p>
-                        <div className="flex justify-center items-center gap-4">
+                    <div className="absolute bottom-[-28px] right-[10px] flex h-[160px] w-[160px] flex-col items-center justify-center gap-2 rounded-full border-[1px] border-[#0F1640] bg-white text-center sm:bottom-[-32px] sm:right-[16px] sm:h-[200px] sm:w-[200px] sm:gap-3
+                     lg:bottom-[-44px] lg:right-[-15px] 
+                     lg:h-[230px] lg:w-[230px] xl:bottom-[-40px] xl:right-[30px] xl:h-[265px] xl:w-[265px] xl:gap-4">
+                        <p className={`font-[600] text-[14px] xl:text-[18px] ${styles.fontmontserrat}`}>Follow Us</p>
+                        <div className="flex justify-center items-center gap-2 sm:gap-3 xl:gap-4">
                             <a href="#" className="w-[22px] h-[22px] flex justify-center items-center">
                                 <MdFacebook className="w-full h-full text-[#1877F2]" />
                             </a>
@@ -95,15 +141,22 @@ function Section6() {
                 </div>
 
                 {/* Right Side Container  */}
-                <div className="w-full max-w-[538px] flex flex-col justify-between gap-4">
+                <div className="flex w-full   flex-col gap-4 lg:flex-1 lg:max-w-[min(100%,384px)] xl:max-w-[538px] xl:flex-none justify-between">
                     {/* Row 1  */}
                     <div>
-                        <h5 className={`font-[600] text-[40px] ${styles.fontmontserrat}`}>Your Big Idea Starts Here</h5>
-                        <p className={`font-[400] text-[15px] ${styles.fontpoppins}`}>Got a project you're thinking about? Fill out the form below, & our team will reach out to you soon to make your ideas happen!</p>
+                        <h5
+                            className={`font-[600] text-[26px] leading-tight sm:text-[30px] lg:text-[34px] xl:text-[40px] ${styles.fontmontserrat}`}
+                        >
+                            Your Big Idea Starts Here
+                        </h5>
+                        <p className={`mt-2 font-[400] text-[14px] leading-relaxed sm:text-[15px] ${styles.fontpoppins}`}>
+                            Got a project you&apos;re thinking about? Fill out the form below, & our team will reach out
+                            to you soon to make your ideas happen!
+                        </p>
                     </div>
                     {/* Row 2  */}
                     <div>
-                        <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
+                        <form className="flex flex-col gap-6 xl:gap-8" onSubmit={handleSubmit}>
                             <input type="text" className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[400] ${styles.fontmontserrat}`} placeholder="Your Name" />
                             <input type="tel" className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[400]  ${styles.fontmontserrat}`} placeholder="Phone Number" />
                             <input type="email" className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[400] ${styles.fontmontserrat}`} placeholder="Email Address" />
@@ -118,10 +171,14 @@ function Section6() {
                                 <option value="8" className="text-[#5C5C5C]">Celebrity Endorsements</option>
                                 <option value="9" className="text-[#5C5C5C]">Influencer Marketing</option>
                             </select>
-                            <input type="textarea" className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[400] ${styles.fontmontserrat}`} placeholder="Write Message"></input>
+                            <textarea
+                                rows={3}
+                                className={`w-full resize-y border-b border-[#0F1640] bg-transparent pb-4 outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[400] ${styles.fontmontserrat}`}
+                                placeholder="Write Message"
+                            />
 
                             {/* H Captcha  */}
-                            <div className="w-full flex justify-start">
+                            <div className="flex w-full justify-start overflow-x-auto">
                                 <HCaptcha
                                     sitekey={HCAPTCHA_SITEKEY}
                                     onVerify={handleCaptchaVerify}
@@ -130,7 +187,7 @@ function Section6() {
                             </div>
                             <div>
                                 <button className="flex justify-between items-center gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
-                                    <p className={`font-[500] text-[18px] ${styles.fontmontserrat}`}>Submit</p>
+                                    <p className={`font-[500] text-[16px] xl:text-[18px] ${styles.fontmontserrat}`}>Submit</p>
                                     <div className="w-[40px] h-[40px] bg-[#C99237] rounded-full flex justify-center items-center">
 
                                         <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">

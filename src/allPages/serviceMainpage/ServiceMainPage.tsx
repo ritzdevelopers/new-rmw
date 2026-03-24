@@ -13,7 +13,7 @@ const SwiperHome = dynamic(() => import('../Homepage/SwiperHome'), { ssr: false 
 const ProjectMarque = dynamic(() => import('../projectsPage/ProjectMarque'), { ssr: false });
 const ProjectNumbers = dynamic(() => import('../projectsPage/ProjectNumbers'), { ssr: false });
 const Awards = dynamic(() => import('../Homepage/Awards'), { ssr: false });
-const Experts = dynamic(() => import("../aboutPage/Experts"), { ssr: false });
+// const Experts = dynamic(() => import("../aboutPage/Experts"), { ssr: false });
 const ServiceMainTestimonial = dynamic(() => import('./ServiceMainTestimonial'), { ssr: false });
 const ServiceMainTalk = dynamic(() => import('./ServiceMainTalk'), { ssr: false });
 
@@ -32,7 +32,7 @@ const ServiceMainPage = () => {
       <ProjectMarque />
       <ProjectNumbers />
       <Awards/>
-      <Experts/>
+      {/* <Experts/>  */}
       <ServiceMainTestimonial />
       <ServiceMainTalk />
 
