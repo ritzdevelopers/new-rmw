@@ -55,7 +55,7 @@ function NewFooter() {
           </div>
         </div>
       </div>
-      {/* Right Side Container  */}
+    {/* Right Side Container  */}
       <div className="w-full lg:w-[calc(100%-321px)] bg-[#0F1640] flex justify-center items-center py-8 sm:py-12 lg:py-[72px] xl:py-[52px] px-4 sm:px-6 lg:px-8 xl:px-12 lg:self-stretch flex-1">
         {/* Centered Align Container  */}
         <div className="flex flex-col gap-6 sm:gap-8 w-full max-w-[1200px]">
