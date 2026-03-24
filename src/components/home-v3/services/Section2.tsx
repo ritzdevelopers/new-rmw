@@ -11,7 +11,7 @@ function Section2() {
                 {/* Left Side Container  */}
                 <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full max-w-[547px] text-center md:text-left">
                     <h2 className={`font-[600] text-[18px] lg:text-[20px] xl:text-[30px] text-[#0F1640] leading-tight sm:leading-snug md:leading-normal ${styles2.fontmontserrat}  ${styles2.yofText}`}>
-                        At <span className='text-[#C99237]'>Ritz Media World</span>, we have an obsession with being wizards of quirkiness that morph good ideas into Brilliant ones.
+                        At <span className='text-[#C99237]'>Ritz Media World</span>, we have an obsession with being wizards of quirkiness that morph good ideas into brilliant ones.
                     </h2>
                     <p className={`font-[400] text-[14px] sm:text-[15px] xl:text-[16px] text-[#0F1640] leading-relaxed ${styles2.fontopensans}`}>
                         Our services deliver results that drive your competitor's envy. We blend digital magic, classic & modern mediums, and creative ingenuity to ensure that your brand doesn't just speak; it captivates.

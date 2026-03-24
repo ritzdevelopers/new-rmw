@@ -55,8 +55,8 @@ export default function Section4() {
                   card.highlighted
                     ? "bg-[linear-gradient(149.48deg,#C1892C_-2.74%,#EFBB68_114.55%)]"
                     : "bg-white"
-                } ${card.title === "Engagement & Social Influence" ? "!border-l-0 !border-b-0" : ""} ${
-                  card.title === "Brand Positioning" ? "!border-r-0 !border-b-0" : ""
+                } ${card.title === "Engagement & Social Influence" ? "sm:!border-l-0 sm:!border-b-0" : ""} ${
+                  card.title === "Brand Positioning" ? "sm:!border-r-0 sm:!border-b-0" : ""
                 }`}
               >
                 <h3
@@ -120,7 +120,7 @@ export default function Section4() {
       <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center">
         <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[88%] xl:w-[86%] mx-auto flex items-center justify-center text-center ${styles.containerWidth}`}>
           <h3
-            className="text-white font-[600] text-[22px] sm:text-[28px] md:text-[28px] leading-tight"
+            className="text-white font-[600] text-[20px] sm:text-[28px] md:text-[28px] leading-tight"
             style={{ fontFamily: "MontserratSemiBold" }}
           >
             Ready to Turn Followers into Genuine Customers?

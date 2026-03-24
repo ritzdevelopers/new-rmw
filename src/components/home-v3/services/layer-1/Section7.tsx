@@ -30,7 +30,7 @@ function Section7() {
         
     ]
     return (
-        <section className="w-full flex justify-center items-center pt-8 sm:pt-12 md:pt-16 lg:pt-[70px]">
+        <section className="w-full flex justify-center items-center sm:pt-0 md:pt-0 lg:pt-[70px]">
             {/* Centered Align Container  */}
             <div className={`w-full flex flex-wrap justify-center items-center gap-4 ${styles.containerWidth} ${styles.awardsContainer}`}>
                 {/* Card 1  */}

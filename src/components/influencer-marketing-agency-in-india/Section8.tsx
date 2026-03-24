@@ -6,13 +6,13 @@ export default function Section8() {
     <section className="w-full bg-[#FFFFFF] flex justify-center pb-10 sm:pb-12 md:pb-14">
       <div className={`w-full max-w-[1300px] mx-auto text-center flex flex-col items-center ${styles.containerWidth}`}>
         <h2
-          className="text-black font-[700] text-[36px] sm:text-[44px] md:text-[34px] lg:text-[36px] leading-tight"
+          className="text-black font-[700] text-[20px] sm:text-[20px] md:text-[28px] lg:text-[36px] leading-tight"
           style={{ fontFamily: "MontserratBold" }}
         >
           Ready to Elevate Your Brand?
         </h2>
         <p
-          className="text-black text-[17px] sm:text-[21px] md:text-[30px] lg:text-[26px] leading-[1.35] mt-2 sm:mt-3"
+          className="text-black text-[18px] sm:text-[18px] md:text-[24px] lg:text-[26px] leading-[1.35] mt-2 sm:mt-3"
           style={{ fontFamily: "PoppinsRegular" }}
         >
           Let&apos;s discuss your next brand-elevating campaign
