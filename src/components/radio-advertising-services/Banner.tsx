@@ -1,11 +1,32 @@
+"use client"
+
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 
 export default function Banner() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkScreen = () => {
+            setIsMobile(window.innerWidth < 768); // md breakpoint
+        };
+
+        checkScreen();
+        window.addEventListener("resize", checkScreen);
+
+        return () => window.removeEventListener("resize", checkScreen);
+    }, []);
+
     return (
-        <section className={`w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[490px] 
-        bg-[url("/radio-advertising-page/s1/banner1.png")] 
+        <section
+            style={{
+                backgroundImage: `url(${isMobile
+                    ? "/alishba-services-v3/radio-advertising/Radio-banner-mobile.png"
+                    : "/alishba-services-v3/radio-advertising/radio-advertising.jpg"
+                    })`,
+            }}
+            className={`w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[490px] 
         bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-12 md:pb-16 lg:pb-20
          xl:pb-26 px-4 sm:px-6 md:px-8 lg:px-0`}>
             <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-none">
@@ -23,13 +44,14 @@ export default function Banner() {
                     </p>
                 </div>
                 <div className="pl-0 sm:pl-4 md:pl-8 lg:pl-16">
-                    <p className={`font-[500] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontmontserrat}`}>
-                    Broadcast your brand message louder, clearer, more effectively.
-                    </p>
+
                     <h1 className={`font-[800] text-[28px] sm:text-[36px] md:text-[48px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-14 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
-                    Radio Advertising<br />
+                        Radio Advertising<br />
                         <span className="font-[500]">Services</span>
                     </h1>
+                    <p className={`font-[500] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontmontserrat}`}>
+                        Broadcast your brand message louder, clearer, more effectively.
+                    </p>
                 </div>
             </div>
         </section>

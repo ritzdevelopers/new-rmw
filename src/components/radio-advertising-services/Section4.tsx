@@ -32,7 +32,7 @@ function Section4() {
                 </p>
             </div>
 
-            <Image src="/radio-advertising-page/s4/s4-banner2.jpg" alt="Radio Advertising" fill className="object-cover" />
+            <Image src="/alishba-services-v3/radio-advertising/s4-banner2.jpg" alt="Radio Advertising" fill className="object-cover" />
         </section>
     );
 }
