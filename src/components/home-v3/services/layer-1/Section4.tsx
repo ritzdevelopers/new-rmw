@@ -9,6 +9,7 @@ interface Item {
     meta_titles: string;
     meta_description: string;
     meta_keywords: string;
+    service2_id: number;
 }
 function Section4() {
     return (

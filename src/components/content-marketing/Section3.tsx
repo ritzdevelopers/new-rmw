@@ -13,28 +13,28 @@ function Section3() {
             title: "Customized<br /> content  strategy",
             activeCardTitle:"Customized content strategy",
             desc: "Generic content yields generic results. At Ritz Media World, we develop personalized content marketing campaigns that suit your brand, audience, and goals. Our content marketing strategy is a result of expert insights, search engine optimization, and creative storytelling that ensures every word counts and every word drives readers to act and convert.",
-            link: "https://ritzmediaworld.com/services/contents-marketing/content-marketing",
+            link: "/services-v3/contents-marketing/content-marketing",
         },
         {
             image: "/service-v3/content-marketing/s3/ctm-s3-i2-new.jpg",
             title: "Email and Newsletter <br /> Marketing",
             activeCardTitle:"Email and Newsletter Marketing",
             desc: "Boost your business to the next level with our email marketing and newsletters solutions. We design customized email marketing campaigns that not only engage your subscribers but also help you generate high conversions. From automated campaigns or a promotional newsletter, our approach ensures that every email gives you a measurable return on investment (ROI).",
-            link: "https://ritzmediaworld.com/services/contents-marketing/email-and-newsletters-marketing",
+            link: "/services-v3/contents-marketing/email-and-newsletters-marketing",
         },
         {
             image: "/service-v3/content-marketing/s3/Asset-Creation-Infographics-new.jpg",
             title: "Asset Creation and <br /> Infographics",
             activeCardTitle:"Asset Creation and Infographics",
             desc: "Use our content asset creation and infographics services to bring your brand to life. We create visual content, infographics, and digital assets that make complex information simple, increase engagement, and boost social media reach. Our graphic content strategies will help your business communicate ideas effectively and make your brand more visible on the internet.",
-            link: "https://ritzmediaworld.com/services/contents-marketing/asset-creation-and-infographics",
+            link: "/services-v3/contents-marketing/asset-creation-and-infographics",
         },
         {
             image: "/service-v3/content-marketing/s3/Content%20Promotion%20and%20Optimization-new.jpg",
             title: "Content Promotion <br /> and Optimization",
             activeCardTitle:"Content Promotion and Optimization",
             desc: "Undiscovered great content means wasted opportunity. At Ritz Media World, we maximize the reach and conversion potential of your content by promoting and optimizing it across all platforms. Through the strategic application of SEO, social media marketing, and paid advertising, we ensure that the right people are reached, and our results are constantly refined for maximum ROI.",
-            link: "https://ritzmediaworld.com/services/contents-marketing/content-promotion-and-optimization",
+            link: "/services-v3/contents-marketing/content-promotion-and-optimization",
         },
     ];
     return (
