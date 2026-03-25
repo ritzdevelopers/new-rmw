@@ -5,6 +5,126 @@ import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 
+const TESTIMONIAL_SLIDE_STYLE = {
+  width: "446px",
+  marginRight: "30px",
+} as const;
+
+type TestimonialSlideConfig = {
+  swiperSlideClassName: string;
+  dataSwiperSlideIndex: string;
+  ariaLabel: string;
+  headingIsH2: boolean;
+  quote: string;
+  authorName: string;
+  authorDesignation: string;
+  authorInfoClassName: string;
+};
+
+const TESTIMONIAL_SLIDES: TestimonialSlideConfig[] = [
+  {
+    swiperSlideClassName:
+      "swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active",
+    dataSwiperSlideIndex: "2",
+    ariaLabel: "1 / 5",
+    headingIsH2: true,
+    quote:
+      "To me, advertising my brand was merely a means to ensure my elongated presence in the market. Thanks to ritz Media world, my advertisements not only ensured my brand’s sustenance but have also got me a great number of quality leads.",
+    authorName: "Madhusudan Ghee",
+    authorDesignation: "Managing Director",
+    authorInfoClassName:
+      "tp-testi__2-author-info d-flex align-items-center gap-1",
+  },
+  {
+    swiperSlideClassName: "swiper-slide swiper-slide-duplicate-next",
+    dataSwiperSlideIndex: "0",
+    ariaLabel: "2 / 5",
+    headingIsH2: false,
+    quote:
+      "If there is one thing serving as a full service digital agency for more than a decade taught us, it has to be the value of relationships. Therefore, our relationship with our clients is both a priority and a point of pride to us.",
+    authorName: "FAIRFOX - EON",
+    authorDesignation: "Marketing Head",
+    authorInfoClassName: "tp-testi__2-author-info d-flex align-items-center",
+  },
+  {
+    swiperSlideClassName: "swiper-slide swiper-slide-prev",
+    dataSwiperSlideIndex: "1",
+    ariaLabel: "3 / 5",
+    headingIsH2: false,
+    quote:
+      "They not only make sure that they deliver on their promises, but also educate you on what exactly is needed to be done for your brand, thereby preventing you from under or over spending your precious money.",
+    authorName: "Eldeco Group",
+    authorDesignation: "Managing Director",
+    authorInfoClassName: "tp-testi__2-author-info d-flex align-items-center",
+  },
+];
+
+function TestimonialSectionTitle({ asH2 }: { asH2: boolean }) {
+  const inner = (
+    <>
+      Best Creative
+      <span>
+        <i>Agency</i>
+      </span>
+      <br /> In Our Town Forever
+    </>
+  );
+  if (asH2) {
+    return <h2 className="tp-section-title mb-60">{inner}</h2>;
+  }
+  return (
+    <div className="tp-section-title mb-60" style={{ lineHeight: "60px" }}>
+      {inner}
+    </div>
+  );
+}
+
+function TestimonialAuthorStars() {
+  return (
+    <div className="tp-testi__2-author-review">
+      <span>
+        <i className="fas fa-star"></i>
+      </span>
+      <span>
+        <i className="fas fa-star"></i>
+      </span>
+      <span>
+        <i className="fas fa-star"></i>
+      </span>
+      <span>
+        <i className="fas fa-star"></i>
+      </span>
+      <span>
+        <i className="fas fa-star-half-alt"></i>
+      </span>
+    </div>
+  );
+}
+
+function TestimonialSlideBody(slide: TestimonialSlideConfig) {
+  return (
+    <div className="tp-testi__2-item">
+      <div className="tp-testi__2-content">
+        <div className="tp-testi__2-title-box mb-45">
+          <TestimonialSectionTitle asH2={slide.headingIsH2} />
+          <p>{slide.quote}</p>
+        </div>
+        <div className="tp-testi__2-author-box d-sm-flex align-items-center justify-content-between">
+          <div className={slide.authorInfoClassName}>
+            <div className="tp-testi__2-author-text">
+              <p className="tp-testi__2-author-title">{slide.authorName}</p>
+              <span className="tp-testi__2-author-designation text-black">
+                {slide.authorDesignation}
+              </span>
+            </div>
+          </div>
+          <TestimonialAuthorStars />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const ServiceMainTestimonial = () => {
   return (
     <div
@@ -61,182 +181,20 @@ const ServiceMainTestimonial = () => {
                           id="swiper-wrapper-7d773315613f04db"
                           aria-live="off"
                         >
-                          <SwiperSlide
-                            className="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active"
-                            data-swiper-slide-index="2"
-                            role="group"
-                            aria-label="1 / 5"
-                            style={{ width: "446px", marginRight: "30px" }}
-                          >
-                            <div className="tp-testi__2-item">
-                              <div className="tp-testi__2-content">
-                                <div className="tp-testi__2-title-box mb-45">
-                                  <h3 className="tp-section-title mb-60">
-                                    Best Creative
-                                    <span>
-                                      <i>Agency</i>
-                                    </span>
-                                    <br /> In Our Town Forever
-                                  </h3>
-                                  <p>
-                                    To me, advertising my brand was merely a
-                                    means to ensure my elongated presence in the
-                                    market. Thanks to ritz Media world, my
-                                    advertisements not only ensured my brand’s
-                                    sustenance but have also got me a great
-                                    number of quality leads.
-                                  </p>
-                                </div>
-                                <div className="tp-testi__2-author-box d-sm-flex align-items-center justify-content-between">
-                                  <div className="tp-testi__2-author-info d-flex align-items-center gap-1">
-                                
-                                    <div className="tp-testi__2-author-text">
-                                      <h3 className="tp-testi__2-author-title">
-                                        Madhusudan Ghee
-                                      </h3>
-                                      <span className="tp-testi__2-author-designation text-black">
-                                        Managing Director
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div className="tp-testi__2-author-review">
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star-half-alt"></i>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide
-                            className="swiper-slide swiper-slide-duplicate-next"
-                            data-swiper-slide-index="0"
-                            role="group"
-                            aria-label="2 / 5"
-                            style={{ width: "446px", marginRight: "30px" }}
-                          >
-                            <div className="tp-testi__2-item">
-                              <div className="tp-testi__2-content">
-                                <div className="tp-testi__2-title-box mb-45">
-                                  <h3 className="tp-section-title mb-60">
-                                    Best Creative
-                                    <span>
-                                      <i>Agency</i>
-                                    </span>
-                                    <br /> In Our Town Forever
-                                  </h3>
-                                  <p>
-                                    If there is one thing serving as a full
-                                    service digital agency for more than a
-                                    decade taught us, it has to be the value of
-                                    relationships. Therefore, our relationship
-                                    with our clients is both a priority and a
-                                    point of pride to us.
-                                  </p>
-                                </div>
-                                <div className="tp-testi__2-author-box d-sm-flex align-items-center justify-content-between">
-                                  <div className="tp-testi__2-author-info d-flex align-items-center">
-                                   
-                                    <div className="tp-testi__2-author-text">
-                                      <h3 className="tp-testi__2-author-title">
-                                        FAIRFOX - EON
-                                      </h3>
-                                      <span className="tp-testi__2-author-designation text-black">
-                                        Marketing Head
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div className="tp-testi__2-author-review">
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star-half-alt"></i>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                          <SwiperSlide
-                            className="swiper-slide swiper-slide-prev"
-                            data-swiper-slide-index="1"
-                            role="group"
-                            aria-label="3 / 5"
-                            style={{ width: "446px", marginRight: "30px" }}
-                          >
-                            <div className="tp-testi__2-item">
-                              <div className="tp-testi__2-content">
-                                <div className="tp-testi__2-title-box mb-45">
-                                  <h3 className="tp-section-title mb-60">
-                                    Best Creative
-                                    <span>
-                                      <i>Agency</i>
-                                    </span>
-                                    <br /> In Our Town Forever
-                                  </h3>
-                                  <p>
-                                    They not only make sure that they deliver on
-                                    their promises, but also educate you on what
-                                    exactly is needed to be done for your brand,
-                                    thereby preventing you from under or over
-                                    spending your precious money.
-                                  </p>
-                                </div>
-                                <div className="tp-testi__2-author-box d-sm-flex align-items-center justify-content-between">
-                                  <div className="tp-testi__2-author-info d-flex align-items-center">
-                                  
-                                    <div className="tp-testi__2-author-text">
-                                      <h3 className="tp-testi__2-author-title">
-                                        Eldeco Group
-                                      </h3>
-                                      <span className="tp-testi__2-author-designation text-black">
-                                        Managing Director
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div className="tp-testi__2-author-review">
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star"></i>
-                                    </span>
-                                    <span>
-                                      <i className="fas fa-star-half-alt"></i>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </SwiperSlide>
+                          {TESTIMONIAL_SLIDES.map((slide, index) => (
+                            <SwiperSlide
+                              key={`${slide.ariaLabel}-${index}`}
+                              className={slide.swiperSlideClassName}
+                              data-swiper-slide-index={
+                                slide.dataSwiperSlideIndex
+                              }
+                              role="group"
+                              aria-label={slide.ariaLabel}
+                              style={TESTIMONIAL_SLIDE_STYLE}
+                            >
+                              <TestimonialSlideBody {...slide} />
+                            </SwiperSlide>
+                          ))}
                         </Swiper>
                         <span
                           className="swiper-notification"

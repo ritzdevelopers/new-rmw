@@ -76,9 +76,9 @@ const ServiceMainOurService = () => {
   return (
     <div className="elementor-element elementor-element-9978344 e-con-full e-flex e-con e-parent e-lazyloaded">
       <div className="container">
-        <h3 className="tp-section-title">
+        <h2 className="tp-section-title">
           OUR <span><i>SERVICE</i></span>
-        </h3>
+        </h2>
 
         <div className="tp-services__widget mb-85">
           {services.map((list, index) => (
@@ -87,7 +87,7 @@ const ServiceMainOurService = () => {
                 <div className="row align-items-center">
                   <div className="col-xl-2 col-lg-2">
                     <div className="tp-services__number">
-                      <h3 className="tp-services__number-text">{`0${index + 1}`}</h3>
+                      <span className="tp-services__number-text">{`0${index + 1}`}</span>
                     </div>
                   </div>
                   <div className="col-xl-3 col-lg-3">

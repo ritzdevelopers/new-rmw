@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import styles from "@/components/shared/container.module.css";
 
 
 const EXPLORE_ARROW_IMAGE =
@@ -7,20 +8,18 @@ const EXPLORE_ARROW_IMAGE =
 
 export default function Section2() {
   return (
-    <section className="w-full bg-white py-10 sm:py-12 md:py-14 lg:py-16 border-b border-[#E6E3E3]">
-      <div className={`w-full max-w-[1300px] mx-auto containerWidth`}>
-        <div className="w-full flex flex-col lg:flex-row gap-0 items-start">
-          <div className="w-full lg:w-[54%]">
-            <div className="w-full max-w-[760px]">
-              <div className="w-full max-w-[616px]">
+    <section className="w-full bg-white py-[35px] lg:py-[70px] border-b border-[#E6E3E3]">
+      <div className={`w-full max-w-[1300px] mx-auto ${styles.containerWidth}`}>
+        <div className="w-full flex flex-col  lg:flex-row gap-0 lg:gap-[10px] items-center lg:items-start">
+          <div className="w-full min-w-0 max-lg:text-center lg:min-w-0 lg:w-[calc((100%-10px)*0.54)] lg:text-left">
+            <div className="mx-auto w-full max-w-[760px] min-w-0 lg:mx-0">
+              <div className="mx-auto w-full max-w-[616px] min-w-0 lg:mx-0">
                 <h2
-                  className="text-[#1C1C1C]"
+                  className="text-[#1C1C1C] text-[18px]  leading-[normal] lg:leading-[42px] lg:text-[23px] lg:leading-[38px] xl:text-[26px] xl:leading-[42px]"
                   style={{
                     fontFamily: "MontserratRegular",
                     fontWeight: 400,
                     fontStyle: "normal",
-                    fontSize: "26px",
-                    lineHeight: "42px",
                     letterSpacing: 0,
                   }}
                 >
@@ -38,19 +37,19 @@ export default function Section2() {
               </div>
 
               <div
-                className="mt-5 sm:mt-6 text-[#000000] text-[14px] sm:text-[15px] md:text-[16px] leading-[1.7] lg:w-[604px]"
+                className="mt-5 sm:mt-2 text-[#000000] text-[16px] leading-[1.7] lg:max-w-[604px] lg:w-full"
                 style={{ fontFamily: "OpenSansRegular" }}
               >
                 <p>
                   Whether you are searching for{" "}
-                  <span className="font-[700]" style={{ fontFamily: "OpenSansBold" }}>
+                  <span className="font-[700] " style={{ fontFamily: "OpenSansBold" }}>
                     celebrity endorsement services for brand promotion
                   </span>
                   , planning celebrity marketing campaigns, or seeking high-performing
                   brand ambassador partnerships, our team takes care of the entire
                   process with utmost care.
                 </p>
-                <p className="mt-4">
+                <p className="mt-4 md:mt-2">
                   From scouting the best talent and setting up collaboration agreements
                   to executing flawless celebrity influencer marketing campaigns, we
                   ensure that every celebrity endorsement campaign enhances
@@ -58,7 +57,7 @@ export default function Section2() {
                 </p>
               </div>
 
-              <div className="mt-7 sm:mt-8 md:mt-9 flex items-center gap-4">
+              <div className="mt-7 sm:mt-2 md:mt-3 lg:mt-7 flex items-center justify-center gap-4 lg:justify-start">
                 <span
                   className="text-black text-[19px] sm:text-[20px] md:text-[30px] lg:text-[18px] font-[500]"
                   style={{ fontFamily: "MontserratMedium" }}
@@ -82,12 +81,12 @@ export default function Section2() {
             </div>
           </div>
 
-          <div className="w-full lg:w-[46%]">
-            <div className="grid grid-cols-[42%_58%]">
-              <div className="flex flex-col">
-                <div className="pl-0 pr-5 pt-6 sm:pt-7 md:pt-2 lg:min-h-[189px] pl-[16px] border-l border-[#D9D9D9]">
+          <div className="w-full min-w-0 max-lg:text-center md:mt-5 lg:mt-0 lg:min-w-0 lg:w-[calc((100%-10px)*0.46)] lg:text-left">
+            <div className="grid w-full min-w-0 grid-cols-[42%_58%]">
+              <div className="flex min-w-0 flex-col">
+                <div className="border-l border-[#D9D9D9] pl-[16px] pr-5 pt-6 sm:pt-7 md:pt-2 max-lg:border-l-0 max-lg:pl-0 max-lg:pr-0 max-lg:text-center lg:min-h-[189px] lg:text-left">
                   <h3
-                    className="text-[#0F1640] text-[52px] sm:text-[56px] md:text-[58px] lg:text-[60px] leading-none font-[700]"
+                    className="text-[#0F1640] text-[52px] sm:text-[56px] md:text-[58px] lg:text-[56px] xl:text-[60px] leading-none font-[700]"
                     style={{ fontFamily: "MontserratSemiBold" }}
                   >
                     35
@@ -100,7 +99,7 @@ export default function Section2() {
                     Awards
                   </p>
                   <p
-                    className="mt-3 text-[#000000] text-[16px] leading-[28px] font-[400] tracking-[0em]"
+                    className="mt-3 lg:mt-0 xl:mt-3 text-[#000000] text-[15px] leading-[28px] font-[400] tracking-[0em]"
                     style={{ fontFamily: "OpenSansRegular" }}
                   >
                     Passion, Obsession, and Persistence always pay off.
@@ -118,7 +117,7 @@ export default function Section2() {
                 </div>
               </div>
 
-              <div className="flex flex-col">
+              <div className="flex min-w-0 flex-col">
                 <div className="relative w-full h-[150px] sm:h-[170px] md:h-[190px] lg:h-[190px] overflow-hidden">
                   <Image
                     src="/service-v3/celebrity-endorsements/s2/team.jpg"
@@ -129,7 +128,7 @@ export default function Section2() {
                   />
                 </div>
 
-                <div className="px-6 sm:px-7 py-6 sm:py-7 md:py-8 lg:px-7 lg:py-7">
+                <div className="px-6 sm:px-7 py-6 sm:py-7 md:py-8 max-lg:text-center lg:px-7 lg:py-4 lg:text-left xl:py-7">
                   <p
                     className="text-[#000000] text-[20px] leading-[28px] font-[400] tracking-[0em]"
                     style={{ fontFamily: "MontserratRegular" }}
@@ -137,17 +136,17 @@ export default function Section2() {
                     Years of Storytelling, Turning Ideas Into Stories That Matter
                   </p>
 
-                  <div className="relative w-full mt-6 sm:mt-7 h-[120px] sm:h-[140px] md:h-[150px] lg:h-[174px]">
+                  <div className="relative mx-auto mt-6 w-full max-w-full sm:mt-7 lg:mx-0 lg:mt-4 xl:mt-7 h-[120px] sm:h-[140px] md:h-[150px] lg:h-[174px]">
                     <Image
                       src="/service-v3/content-marketing/s5/17-yow2.png"
                       alt="17 years working experience"
                       fill
-                      className="object-contain object-left"
+                      className="object-contain object-center lg:object-left"
                       sizes="(min-width:1280px) 340px, (min-width:1024px) 300px, 58vw"
                     />
                   </div>
 
-                  <div className="mt-5 sm:mt-6">
+                  <div className="mt-5 sm:mt-6 lg:mt-3 xl:mt-6">
                     <img
                       src="/service-v3/content-marketing/s5/google-reviews.png"
                       alt="Google reviews rating"

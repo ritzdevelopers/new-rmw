@@ -26,9 +26,9 @@ const Awards = () => {
                 <div className="row">
                   <div className="col-xl-12">
                     <div className="tp-awards__title-box mb-15">
-                      <span className="tp-section-title-pre mb-20" style={{borderRadius:"0px"}}>
+                      <h2 className="tp-section-title-pre mb-20" style={{borderRadius:"0px"}}>
                         Achievement Awards
-                      </span>
+                      </h2>
                       <div className="tp-section-title-wrap d-flex align-items-center justify-content-between">
                         <h3 className="tp-section-title">
                           Awards &amp; Company
@@ -70,7 +70,7 @@ const Awards = () => {
                             </span>
                           </div>
                           <div className="tp-awards__name d-flex align-items-center">
-                            <h3 className="tp-awards__title">
+                            <h4 className="tp-awards__title">
                               <Link
                                 href="/about.html"
                                 rel="nofollow"
@@ -78,7 +78,7 @@ const Awards = () => {
                               >
                                 Excellence in Digital Media by Dainik Jagran
                               </Link>
-                            </h3>
+                            </h4>
                           </div>
                         </div>
                         <div className="tp-awards__right">
@@ -116,12 +116,12 @@ const Awards = () => {
                             </span>
                           </div>
                           <div className="tp-awards__name d-flex align-items-center">
-                            <h3 className="tp-awards__title">
+                            <h4 className="tp-awards__title">
                               <Link href="/about.html" rel="nofollow" target="_blank">
                                 Trusted Digital Advertising Agency in
                                 NCR-Awarded by The Economic Times
                               </Link>
-                            </h3>
+                            </h4>
                           </div>
                         </div>
                         <div className="tp-awards__right">
@@ -160,7 +160,7 @@ const Awards = () => {
                             </span>
                           </div>
                           <div className="tp-awards__name d-flex align-items-center ">
-                            <h3 className="tp-awards__title mr-40">
+                            <h4 className="tp-awards__title mr-40">
                               <Link
                                 href="/about.html"
                                 rel="nofollow"
@@ -168,7 +168,7 @@ const Awards = () => {
                               >
                                 Icons by The Times of India
                               </Link>
-                            </h3>
+                            </h4>
                           </div>
                         </div>
                         <div className="tp-awards__right">
@@ -206,7 +206,7 @@ const Awards = () => {
                             </span>
                           </div>
                           <div className="tp-awards__name d-flex align-items-center">
-                            <h3 className="tp-awards__title">
+                            <h4 className="tp-awards__title">
                               <Link
                                 href="/about.html"
                                 rel="nofollow"
@@ -214,7 +214,7 @@ const Awards = () => {
                               >
                                 Special Achievement Award in Retail Category
                               </Link>
-                            </h3>
+                            </h4>
                           </div>
                         </div>
                         <div className="tp-awards__right">

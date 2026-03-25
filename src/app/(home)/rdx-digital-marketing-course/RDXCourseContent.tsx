@@ -285,7 +285,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
             src="/RITZ DIGITAL XPERTS ACADEMY.png"
             alt="Ritz Digital Xperts Academy"
           />
-          <div className={styles.heading}>
+          {/* <div className={styles.heading}>
             <h1>
               <span className={styles.highlight}>Digital marketing course</span>{" "}
               with <span className={styles.highlight}>generative AI</span>{" "}
@@ -294,7 +294,17 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <span className={styles.highlight}>Job Ready skills</span> that
               hiring managers actually want.
             </h2>
-          </div>
+          </div> */}
+          <div className={styles.heading}>
+            <h1>
+              <span className={styles.highlight}> AI-Powered Digital Marketing Course</span>{" "}
+              Build Job-Ready Skills That Get You Hired.
+            </h1>
+            {/* <h2>
+              <span className={styles.highlight}>Job Ready skills</span> that
+              hiring managers actually want.
+            </h2> */}
+          </div> 
         </div>
 
         {/* This Is Row 2 */}
@@ -426,11 +436,12 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                 />
               </div>
               <h2 className={styles.cardHeading}>
-                India is the world growth market online
+               India is the world’s fastest-growing online market
+
               </h2>
               <p className={styles.cardText}>
-                Exploding mobile usage, vernacular adoption, and video first
-                behaviour mean brands need skilled marketers more than ever.
+                Exploding mobile usage, vernacular adoption, and video-first behaviour mean brands need skilled marketers more than ever.
+
               </p>
             </div>
 
@@ -444,10 +455,10 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                   alt="India growth market icon"
                 />
               </div>
-              <h2 className={styles.cardHeading}>Performance promises</h2>
+              <h2 className={styles.cardHeading}>Performance drives budgets</h2>
               <p className={styles.cardText}>
-                budgets follow outcomes. If you can plan, run, and scale
-                campaigns, you will never be bench.
+               Budgets follow outcomes. If you can plan, run, and scale campaigns, you will never be on the bench.
+
               </p>
             </div>
 
@@ -463,11 +474,12 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                 />
               </div>
               <h2 className={styles.cardHeading}>
-                AI is a copilot, not a replacement
+                 AI is a copilot, not a replacement.
+
               </h2>
               <p className={styles.cardText}>
-                the pros who pair human insight with AI tools out-ship everyone
-                else.
+                The pros who pair human insight with AI tools outpace everyone else.
+
               </p>
             </div>
 
@@ -484,8 +496,8 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               </div>
               <h2 className={styles.cardHeading}>First-party data & privacy</h2>
               <p className={styles.cardText}>
-                smart tagging, consent, and CRM fluency are now core skills, not
-                nice to haves.
+                 Smart tagging, consent, and CRM fluency are now core skills, not nice-to-haves.
+
               </p>
             </div>
 
@@ -500,12 +512,11 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                   alt="India growth market icon"
                 />
               </div>
-              <h2 className={styles.cardHeading}>
-                Creator economy meets commerce
+              <h2 className={styles.cardHeading}>Creator economy meets commerce
+ Creator economy meets commerce
               </h2>
               <p className={styles.cardText}>
-                social + search + influencers + landing pages = measurable
-                revenue.
+                Social + search + influencers + landing pages = measurable revenue.
               </p>
             </div>
 
@@ -521,11 +532,11 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                 />
               </div>
               <h2 className={styles.cardHeading}>
-                Real skills beat certificates
+               Real skills beat certificates
               </h2>
               <p className={styles.cardText}>
-                portfolios with live results move resumes to the top of the
-                pile.
+                Portfolios with live results move resumes to the top of the pile.
+
               </p>
             </div>
           </div>
