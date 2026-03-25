@@ -35,13 +35,13 @@ const ServiceMainTalk = () => {
                   <div className="row align-items-center">
                     <div className="col-xl-8 col-lg-8 col-md-8">
                       <div className="tp-cta__3-text">
-                        <h3
+                        <h2
                         ref={(el) => { if (el) textRefs.current.push(el) }}
                           className="text-white text-6xl tp-split__text tp-split__in-right"
                           style={{ perspective: "400px" }}
                         >
                           Let&apos;s Do Something Remarkable Together.
-                        </h3>
+                        </h2>
                       </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-4">
