@@ -621,12 +621,12 @@ const Form = () => {
                                             animationDelay: "0.3s",
                                         }}
                                     >
-                                        You’ve got a Project, an Idea, or a
-                                        marketing Emergency that needs our
+                                        You’ve got a project, an idea, or a
+                                        marketing emergency that needs our
                                         genius intervention? Well, we’ve seen
                                         them all. Let’s get in touch and fall in
                                         love. All you need to do is fill out the
-                                        details below and we’ll get in touch.
+                                        details below.
                                     </p>
                                 </div>
                                 <div

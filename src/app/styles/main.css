@@ -610,9 +610,9 @@
 .fa-badge:before {
   content: "\f335";
 }
-.fa-badge-check:before {
+/* .fa-badge-check:before {
   content: "\f336";
-}
+} */
 .fa-badge-dollar:before {
   content: "\f645";
 }
@@ -26081,7 +26081,7 @@ input.search-input-field {
   position: relative;
   list-style: none;
   display: inline-block;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   color: var(--tp-common-black);
   margin-bottom: 15px;
 }

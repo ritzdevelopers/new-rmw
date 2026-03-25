@@ -1,46 +1,54 @@
-import Image from "next/image";
+import React from "react";
+import styles from "./Section1.module.css";
 
 export default function Section1() {
   return (
     <section
-      className='w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[515px]
-      bg-[url("/service-v3/celebrity-endorsements/banners/celebrity_mobile.png")]
-      md:bg-[url("/service-v3/celebrity-endorsements/banners/celebrity_endorsement_banner.jpeg")]
-      bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-12 md:pb-16 lg:pb-10 px-4 sm:px-6 md:px-8 lg:px-0'
+      className='w-full h-[550px] md:h-[300px] md:min-h-[300px] lg:h-[400px] lg:min-h-[400px] xl:h-auto xl:min-h-[615px] bg-[url("/service-v3/celebrity-endorsements/banners/celebrity_mobile.png")] md:bg-[url("/service-v3/celebrity-endorsements/banners/celebrity_endorsement_banner.jpeg")] bg-cover bg-no-repeat bg-center flex md:items-stretch lg:items-end pb-8 sm:pb-12 md:pb-3 lg:pb-10 xl:pb-26 px-4 sm:px-6 md:px-0 overflow-visible
+        justify-center items-center md:justify-start
+        '
     >
-      <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-[95%] sm:max-w-[88%] md:max-w-[80%] lg:max-w-none">
-        <div className="w-[120px] sm:w-[140px] md:w-[155px] lg:w-[179px] h-[28px] sm:h-[32px] md:h-[35px] lg:h-[37px] relative">
-          <Image
+      <div className='flex flex-col md:gap-2 lg:gap-3 xl:gap-6 w-full max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-none text-center md:text-left md:h-full md:justify-end lg:h-auto lg:justify-start -translate-y-14 sm:-translate-y-16 md:translate-y-0 lg:translate-y-3 xl:translate-y-17'>
+        <div className="hidden lg:block lg:w-[182px] lg:h-[30px] xl:h-[37px] relative">
+          <img
             src="/home-v3/service-imgs/s1/yellow-reactangle.png"
-            alt="RMW"
-            fill
-            className="object-contain"
-            sizes="(min-width:1024px) 165px, (min-width:768px) 155px, (min-width:640px) 140px, 120px"
-            priority
+            alt=""
+            className="w-full h-full"
           />
           <p
-            className="font-[700] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] text-white absolute top-[50%] uppercase -translate-y-1/2 right-4 sm:right-5 md:right-6 lg:right-8"
-            style={{ fontFamily: "MontserratBold" }}
+            className={`font-[700] uppercase text-[16px] text-white absolute top-[50%] transform translate-y-[-50%] right-8 ${styles.fontmontserrat}`}
           >
             Services
           </p>
         </div>
 
-        <div className="pl-0 sm:pl-3 md:pl-6 lg:pl-16">
-          <p
-            className="font-[500] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[19px] xl:text-[21px] text-white leading-[1.45] sm:leading-snug md:leading-normal"
-            style={{ fontFamily: "MontserratMedium" }}
-          >
-            Talent selection to campaign execution, we build brand <br/>
-            <span className="block sm:inline">engagement, visibility, & trust.</span>
-          </p>
-          <h1
-            className="font-[800] text-[26px] sm:text-[34px] md:text-[42px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-[55px] mt-1 sm:mt-2 md:mt-3"
-            style={{ fontFamily: "MontserratExtraBold" }}
-          >
-            Celebrity Endorsements <br className="hidden sm:block" />
-            <span className="font-[500]" style={{ fontFamily: "MontserratMedium" }}>
-              Services
+        <div className="pl-0 sm:pl-4 md:pl-8 lg:pl-16">
+          <h1 className="text-white leading-[1.1] sm:leading-[1.15] md:leading-tight lg:leading-snug xl:leading-16 mt-1 sm:mt-2 md:mt-0 lg:mt-2 xl:mt-3 lg:py-0 xl:py-0">
+            <p
+              className={`font-[500] mt-0 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-tight sm:leading-snug md:leading-snug md:max-w-[300px] lg:max-w-[350px] xl:max-w-[690px]`}
+              style={{ fontFamily: "MontserratMedium" }}
+            >
+              Talent selection to campaign execution, we build brand
+            
+                engagement, visibility, & trust.
+            
+            </p>
+            <span className="block mt-2 lg:mt-3 xl:mt-2 mb-[20px] md:mb-2 lg:mb-3 xl:mb-[20px]">
+              <span className="max-md:inline-block max-md:whitespace-nowrap md:contents lg:inline-block lg:whitespace-nowrap lg:translate-y-2 xl:translate-y-0 xl:contents">
+                <span
+                  className={`${styles.bannerHeadlineSm} font-[800] md:text-[26px] lg:text-[30px] lg:font-[600] xl:inline-block xl:translate-y-1 xl:text-[55px] xl:font-[800]`}
+                  style={{ fontFamily: "MontserratExtraBold" }}
+                >
+                  Celebrity Endorsements{" "}
+                </span>
+                <br className="hidden md:block lg:hidden xl:block" />
+                <span
+                  className={`${styles.bannerHeadlineSm} font-[500] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[65px] xl:font-[500] ${styles.bannerServicesMatchLg}`}
+                  style={{ fontFamily: "MontserratMedium" }}
+                >
+                  Services
+                </span>
+              </span>
             </span>
           </h1>
         </div>
