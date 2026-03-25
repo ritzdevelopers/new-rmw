@@ -7,7 +7,7 @@ function Section2() {
         <section className='flex justify-center items-center  py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px] border-b-[1px] border-[#D9D9D9]'>
 
             {/* Center Align Container  */}
-            <div className={`flex flex-col md:flex-row justify-between items-center lg:items-center gap-6 sm:gap-8 md:gap-4 xl:gap-0 w-full ${styles2.containerWidth}`}>
+            <div className={`flex flex-col md:flex-row justify-between items-center lg:items-center gap-6 sm:gap-8 md:gap-4 xl:gap-0 w-full  ${styles2.containerWidth}`}>
                 {/* Left Side Container  */}
                 <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full max-w-[547px] text-center md:text-left">
                     <h2 className={`font-[600] text-[18px] lg:text-[20px] xl:text-[30px] text-[#0F1640] leading-tight sm:leading-snug md:leading-normal ${styles2.fontmontserrat}  ${styles2.yofText}`}>

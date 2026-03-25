@@ -11,7 +11,7 @@ const convertClassNameToClass = (html: string): string => {
 function ServiceCard({ service, index }: { service: any, index: number }) {
     const { title, image, slug, subServices, description, margin, link } = service;
     return (
-        <div className="w-full flex flex-col justify-center lg:flex-row lg:justify-between gap-4 sm:gap-6 lg:gap-4 py-6 sm:py-8 md:py-10 lg:py-[50px] border-b-[1px] border-b-[#D9D9D9] px-6 lg:px-10 xl:px-20">
+        <div className="w-full flex flex-col justify-center lg:flex-row lg:justify-between gap-4 sm:gap-6 lg:gap-4 py-6 sm:py-8 md:py-10 lg:py-[50px] border-b-[1px] border-b-[#D9D9D9]  px-4 sm:px-6 md:px-10 lg:px-10 xl:px-12">
 
             {/* Left Side Container  */}
             <div className="w-full lg:w-[55%] xl:w-auto h-[200px] sm:h-[250px] md:h-[300px] lg:h-[377px] relative" >
@@ -47,11 +47,11 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
                     className='font-[400] text-[13px] sm:text-[14px] text-[#0F1640] md:text-[16px] leading-relaxed text-center lg:text-left'
                     dangerouslySetInnerHTML={{ __html: convertClassNameToClass(description || '') }}
                 />
-                <div className="grid  grid-cols-3 gap-x-2 sm:gap-x-2 gap-y-2 sm:gap-y-2 ">
+                <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-x-2 sm:gap-x-2 gap-y-2 sm:gap-y-2  ">
                     {subServices.map((subService: any) => (
                         <div onClick={() => window.open(subService.slug, "_blank")} key={subService.title} className='bg-[#F2F2F2] hover:bg-[#0F1640] lg:pl-2
-                          rounded-[2px] px-2 pl-4 lg:py-2  min-h-[70px] cursor-pointer sm:min-h-[80px]  lg:h-[88px] flex justify-center lg:justify-start items-center text-center lg:text-left  text-[#0F1640] hover:text-white'>
-                            <p className={`font-[400] text-[13px]  sm:text-[14px] md:text-[13px] leading-snug p-1.5 ${styles2.fontopensans}`}>{subService.title}</p>
+                          rounded-[2px] px-2  lg:py-2  min-h-[70px] cursor-pointer sm:min-h-[80px]  lg:h-[88px] flex justify-center lg:justify-start items-center text-center lg:text-left  text-[#0F1640] hover:text-white'>
+                            <p className={`font-[400] text-[13px]  sm:text-[14px] md:text-[13px] leading-relaxed p-1.5 ${styles2.fontopensans}`}>{subService.title}</p>
                         </div>
                     ))}
                 </div>
