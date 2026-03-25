@@ -261,7 +261,7 @@ function RubyBotBootstrap() {
             setIsTyping(true);
 
             // Call API to get bot response
-            axios.post('https://rmw-chatbot-5jm3.onrender.com/v1/chat', {
+            axios.post('https://api.ritzmediaworld.in/api/v1/chat', {
                 message: messageText,
             }, {
                 headers: {

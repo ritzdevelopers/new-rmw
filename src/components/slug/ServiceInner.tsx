@@ -6,11 +6,16 @@ import Section5 from "@/components/influencer-marketing-agency-in-india/Section5
 import Section6 from "./sections/Section6";
 import Section7 from "@/components/content-marketing/Section7";
 import Section8 from "./sections/Section8";
-function ServiceInner() {
+import { getServiceThirdData } from "@/lib/getServiceThirdLayerData";
+async function ServiceInner({slug}: {slug: string}) {
+
+
+    const res = await getServiceThirdData(slug as string);
+
     return (
         <>
-            <Banner />
-            <Section2 />
+            <Banner slug={slug}/>
+            <Section2 data={res}/>
             <Section3 />
             <Section4 />
             <Section5 />

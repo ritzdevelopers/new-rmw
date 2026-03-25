@@ -12,6 +12,7 @@ interface Item {
     meta_titles: string;
     meta_description: string;
     meta_keywords: string;
+    service2_id: number;
 }
 function Layer1Card({ item, idx }: { item: Item, idx: number }) {
     const { title, description, image, link, meta_titles, meta_description, meta_keywords } = item;
@@ -64,13 +65,13 @@ function Layer1Card({ item, idx }: { item: Item, idx: number }) {
                 {/* Button Container  */}
                 <div className="w-full flex flex-col gap-3 sm:gap-4">
                     <Link 
-                        href={link || "#"} 
+                        href={`${link}`} 
                         target="_blank" 
                         className="w-fit"
                         itemProp="url"
                         aria-label={`Learn more about ${meta_titles || title}`}
                     >
-                        <button className="w-[140px] sm:w-[154px] h-[42px] sm:h-[46px] flex justify-start items-center gap-6 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity group">
+                        <button  className="w-[140px] sm:w-[154px] h-[42px] sm:h-[46px] flex justify-start items-center gap-6 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity group">
                             <p className={`font-[500] text-[16px] sm:text-[17px] lg:text-[18px] text-[#000000] ${styles.fontmontserrat}`}>More</p>
                             <div className="bg-[#C99237] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-white group-hover:scale-110 transition-transform">
                                 <BsArrowUpRight className="text-white text-[15px] sm:text-[16px] lg:text-[18px]" />
