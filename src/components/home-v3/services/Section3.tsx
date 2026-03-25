@@ -205,7 +205,7 @@ function Section3({ servicesData }: Section3Props) {
             <div className={`flex flex-col  gap-6 w-full  `}>
 
                 {/* Row 1 For Heading  */}
-                <div className={`flex items-end justify-center lg:justify-start ${styles2.containerWidth}`}>
+                <div className={`flex items-end justify-center lg:justify-start mx-0 lg:mx-2 ${styles2.containerWidth}`}>
                     <p className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we d</p>
                     <img src="/home-v3/service-imgs/s3/do-txt.png" alt="arrow-right" className="h-[19px] mb-[14px]" />
                 </div>
@@ -279,7 +279,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Print <br /> Advertisement",
-                                margin: "mr-[0px] pr-4 md:pr-40 lg:pr-4",
+                                margin: "pr-4 pr-4 md:pr-32 lg:pr-0",
                                 description: "Contrary to popular belief, Print is more prominent than ever! To put it simply, It has upgraded from mainstream to a premium audience. <br /> <br /> Ritz Media World has always been in the business of making print ads breathe life into paper, and BUSINESS IS GOOD! We turn simple pages into captivating conversation.",
                                 image: "/alishba-services-v3/print-ad.png",
                                 link: "/services-v3/print-advertising",
@@ -312,7 +312,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Radio <br /> Advertising",
-                                margin: "pr-8 md:pr-40 lg:pr-12 xl:pr-24 xl:-mr-20 2xl:-mr-10   ",
+                                margin: "pr-8 md:pr-36 lg:pr-4 xl:pr-20 xl:-mr-20 2xl:-mr-10   ",
                                 description: "You may have noticed that people still have ears. The most wonderful way to effectively market to the masses in this digital age is an ear-catching captivating narrative. <br /> <br /> We add some more magic with Jingles and persuasive soundscapes that resonate with the masses.",
                                 image: "/alishba-services-v3/radio.png",
                                 link: "/services-v3/radio-advertising",
@@ -345,7 +345,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Content <br /> Marketing",
-                                margin: "pr-12 md:pr-42 lg:pr-18 xl:pr-16 2xl:pr-16",
+                                margin: "pr-12 md:pr-42 lg:pr-12 xl:pr-16 2xl:pr-16",
                                 description: "Content Isn’t king, Compelling Content is. Anyone can tell stories or put words together, but will that inspire action? We didn’t think so either. <br /> <br /> Be it blogs that educate, videos that entertain, or posts that persuade, our persuasive storytelling ensures that your brand stays relevant, remarkable, and unmistakably real.",
                                 image: "/alishba-services-v3/content-marketing.png",
                                 link: "/services-v3/content-marketing",
@@ -370,7 +370,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Web <br /> Development",
-                                margin: "pr-2 md:pr-36 lg:pr-6 xl:pr-8 2xl:pr-10 xl:-mr-10",
+                                margin: "pr-4 md:pr-32 lg:pr-0 xl:pr-8 2xl:pr-10 xl:-mr-10",
                                 description: "Your website is your digital handshake, so let’s make sure that it’s firm and welcoming. We design intuitive and visually delightful digital experiences that charm visitors into becoming loyal patrons. <br /> <br /> Remember, nothing signals credibility like a brilliantly functional website that customers love and don’t leave.",
                                 image: "/alishba-services-v3/webdev.png",
                                 link: "/services-v3/web-development",
@@ -399,7 +399,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Celebrity <br /> Endorsements",
-                                margin: "pr-0 md:pr-36  lg:pr-3 xl:pr-14 xl:-mr-20",
+                                margin: "pr-4  md:pr-30  lg:pr-0 xl:pr-14 xl:-mr-20",
                                 description: "Why scream when a Celebrity’s whisper can say it louder? <br /> <br /> We connect your brand with influential names whose endorsement doesn’t just sell but elevate your products and services. Because familiar faces are more effective in earning trust.",
                                 image: "/alishba-services-v3/celebraty.png",
                                 link: "/services-v3/celebrity-endorsements",
@@ -432,7 +432,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Influencer <br />   Marketing",
-                                margin: "lg:-mr-[10px] pr-8 md:pr-40 lg:pr-4 xl:pr-5 xl:-mr-6    ",
+                                margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-8 xl:pr-5 xl:-mr-6    ",
                                 description: "Influencer marketing isn’t about chasing vanity metrics—it’s strategic persuasion by trusted voices. At Ritz Media World, we cleverly match your brand with influential personalities whose authentic engagement transforms casual followers into loyal customers. <br /> <br /> Because genuine influence doesn’t shout—it whispers convincingly, profitably, and irresistibly to the right ears.",
                                 image: "/alishba-services-v3/influencer-marketing.png",
                                 link: "/services-v3/influencer-marketing",
@@ -472,7 +472,7 @@ function Section3({ servicesData }: Section3Props) {
                     }
                 </div>
                 {/* Row 3  */}
-                <div className={`flex flex-col gap-6 ${styles2.containerWidth}`}>
+                <div className={`flex flex-col gap-6  ${styles2.containerWidth}`}>
 
                     {/* Row 1  */}
                     <div className="flex flex-col text-center md:text-left">
@@ -708,8 +708,8 @@ function Section3({ servicesData }: Section3Props) {
                 <S7></S7>
                 <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 pt-5 md:pt-16  ${styles2.containerWidth}`}>
                     {/* Left Side Container  */}
-                    <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
-                        <div className="text-center md:text-left mb-2 md:mb-0">
+                    <div className="w-full lg:w-[48%] xl:w-[603px]  bg-[#F7F7F7] flex flex-col justify-around px-4 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
+                        <div className="text-left md:text-left mb-2 md:mb-0">
                             <p
                                 className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237]"
                                 style={{
@@ -727,12 +727,12 @@ function Section3({ servicesData }: Section3Props) {
                                 2026 Brand Impact Repor
                             </h2>
                         </div>
-                        <p className="font-[700] text-[16px] lg:text-[24px] text-[#0F1640] text-center md:text-left mb-2 md:mb-0">
+                        <p className="font-[700] text-[16px] lg:text-[24px] text-[#0F1640] text-left md:text-left mb-2 xl:mb-0">
                             Download Our
                         </p>
 
                         <p
-                            className="font-[400] text-[13px]  lg:text-[16px] text-[#0F1640] text-center md:text-left mb-2 md:mb-0"
+                            className="font-[400] text-[13px]  lg:text-[14px] text-[#0F1640] text-left md:text-left mb-4 xl:mb-0"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -741,7 +741,7 @@ function Section3({ servicesData }: Section3Props) {
                         </p>
 
                         <ul
-                            className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-[#0F1640] list-disc px-4 flex flex-col gap-2 sm:gap-3 text-left md:text-left mb-4 md:mb-0"
+                            className="font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] list-disc px-4 flex flex-col gap-2 sm:gap-3 text-left md:text-left mb-5 xl:mb-0"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -753,7 +753,7 @@ function Section3({ servicesData }: Section3Props) {
                         </ul>
 
                         <form onSubmit={handleDownload} className="flex flex-col gap-4">
-                            <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-3">
+                            <div className="flex flex-col  lg:flex-col xl:flex-row justify-between gap-3 sm:gap-3 ">
                                 <div className="flex-1 relative">
                                     <input
                                         type="tel"
@@ -762,7 +762,7 @@ function Section3({ servicesData }: Section3Props) {
                                         onBlur={handlePhoneBlur}
                                         placeholder="Enter your phone (e.g., +91 9220516777)"
                                         required
-                                        className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#0F1640] text-[#0F1640] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
+                                        className={`w-full xl:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#0F1640] text-[#0F1640] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
                                             ? "border-[#EF4444]"
                                             : "border-[#DAD4D4]"
                                             }`}
@@ -777,7 +777,7 @@ function Section3({ servicesData }: Section3Props) {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full sm:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full xl:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
                                     style={{
                                         fontFamily: "PoppinsRegular",
                                     }}
@@ -787,7 +787,7 @@ function Section3({ servicesData }: Section3Props) {
                                 </button>
                             </div>
                             <p
-                                className="font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E] text-center md:text-left"
+                                className="font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E] text-left md:text-left"
                                 style={{
                                     fontFamily: "PoppinsRegular",
                                 }}
@@ -800,7 +800,7 @@ function Section3({ servicesData }: Section3Props) {
                     {/* Right Side Container  */}
                     <div className="w-full lg:w-[48%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
                         <h2
-                            className="font-[700] text-[24px] text-[#0F1640] sm:text-[28px] lg:text-[36px] text-center md:text-left"
+                            className="font-[700] text-[24px] text-[#0F1640] sm:text-[28px] lg:text-[36px] text-left md:text-left"
                             style={{
                                 fontFamily: "MontserratBold",
                             }}
@@ -809,7 +809,7 @@ function Section3({ servicesData }: Section3Props) {
                         </h2>
 
                         <p
-                            className="font-[400] text-[14px] md:text-[15px] lg:text-[16px] text-[#0F1640] text-center md:text-left"
+                            className="font-[400] text-[14px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -819,7 +819,7 @@ function Section3({ servicesData }: Section3Props) {
                         </p>
 
                         <ul
-                            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-[#0F1640] text-left md:text-left"
+                            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
