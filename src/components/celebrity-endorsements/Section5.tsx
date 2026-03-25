@@ -166,8 +166,8 @@ export default function Section5() {
             <li>Case studies with measurable results</li>
           </ul>
           <form onSubmit={handleDownload} className="flex flex-col gap-4">
-            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row justify-between gap-3">
-              <div className="flex-1 relative">
+            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row justify-between md:justify-start lg:justify-between xl:justify-between gap-3">
+              <div className="flex-1 relative md:flex-initial xl:flex-1">
                 <input
                   type="tel"
                   value={phone}

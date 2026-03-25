@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./BrandThatTrustUs.module.css";
-import containerStyles from "@/components/shared/container.module.css";
+import brandStyles from "./BrandThatTrustUs.module.css";
+import containerStyles from "@/components/celebrity-endorsements/page.module.css";
 
 export default function BrandThatTrustUs() {
   return (
-    <div className="container mx-auto">
-    <section className="w-full bg-[#FFFFFF] py-[35px] lg:py-[70px] flex justify-center">
-      <div className={`w-[100%] sm:w-[90%] md:w-[100%%] lg:w-[100%] mx-auto ${containerStyles.containerWidth} ${styles.align1366}`}>
+    <section className="w-full bg-[#FFFFFF] py-[35px] lg:py-[70px] flex justify-center px-4 sm:px-6 lg:px-0">
+      <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
         <div
           className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0"
           data-no-gsap-animation
@@ -42,9 +41,9 @@ export default function BrandThatTrustUs() {
             <div className="absolute top-[-28px] left-0 w-full h-[1px] bg-[#EBEBEB] sm:left-[0px] sm:w-[calc(100%+12px)]" />
             <div className="absolute bottom-[-28px] left-0 w-full h-[1px] bg-[#EBEBEB] sm:left-[0px] sm:w-[calc(100%+12px)]" />
             {/* Slider Container - logoStrip clips top/bottom with boundary cover */}
-            <div className={`flex-1 min-w-0 ${styles.logoStrip}`}>
+            <div className={`flex-1 min-w-0 ${brandStyles.logoStrip}`}>
               <div
-                className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}
+                className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${brandStyles.clientSlider}`}
               >
                 {[
                   "/new-page/logos/prm-9.jpg",
@@ -114,6 +113,5 @@ export default function BrandThatTrustUs() {
         <div className="h-[1px] w-full bg-[#D9D9D9]" />
       </div> */}
     </section>
-    </div>
   );
 }

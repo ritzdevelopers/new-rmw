@@ -40,10 +40,10 @@ const ServiceMainAbout = () => {
                       <div className="tp-cta__2-circle"></div>
                       <div className="tp-cta__2-content">
                         <div className="tp-cta__2-text p-relative">
-                          <h3 className="tp-cta__2-title mb-45 text-white">
+                          <p className="tp-cta__2-title mb-45 text-white" style={{lineHeight:"50px"}}>
                             We Build <span>Successful</span> <br />
                             Profitable Products
-                          </h3>
+                          </p>
                           <Link
                             className="tp-btn-secondary hover:text-white"
                             href="/about.html"
@@ -76,10 +76,10 @@ const ServiceMainAbout = () => {
                       ></div>
                       <div className="tp-cta__2-content">
                         <div className="tp-cta__2-text-2 p-relative">
-                          <h3 className="tp-cta__2-title tp-cta-mission text-white">
+                          <p className="tp-cta__2-title tp-cta-mission text-white">
                             <span>COMPANY</span> <br />
                             MISSION
-                          </h3>
+                          </p>
                           <Link
                             className="tp-cta_2-mission-arrow"
                             href="https://ritzmediaworld.com/about.html" target="_blank"

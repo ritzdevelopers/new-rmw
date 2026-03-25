@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import accordionStyles from "./Section3.module.css";
-import styles from "@/components/shared/container.module.css";
+import containerStyles from "@/components/celebrity-endorsements/page.module.css";
 
 const EXPLORE_ARROW_IMAGE =
   "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
@@ -61,10 +61,9 @@ export default function Section3() {
   const [openItem, setOpenItem] = useState<string | null>("01");
 
   return (
-    <section className="w-full bg-[#0F1640] py-[35px] lg:py-[70px]">
+    <section className="w-full bg-[#0F1640] py-[35px] lg:py-[70px] flex justify-center px-4 sm:px-6 lg:px-0">
 
-
-      <div className={`w-[94%] sm:w-[92%] md:w-[90%] lg:w-[90%] mx-auto ${styles.containerWidth}`}> 
+      <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
         <div className="text-center">
           <p
             className="uppercase text-[11px] sm:text-[12px] tracking-[0.1em] text-[#C99237]"
@@ -151,7 +150,7 @@ export default function Section3() {
                       </p>
                     ))}
                   </div>
-                  <div className="mt-2 lg:mt-6 flex items-center gap-2.5">
+                  <div className="mt-2 lg:mt-6 hidden lg:flex items-center gap-2.5">
                     <span
                       className="text-white text-[14px] sm:text-[15px]"
                       style={{ fontFamily: "MontserratMedium" }}
@@ -173,7 +172,8 @@ export default function Section3() {
                     </Link>
                   </div>
                 </div>
-                <div className="w-full lg:w-auto flex items-start gap-3 shrink-0 mt-4 lg:mt-0">
+                <div className="w-full lg:w-auto flex flex-col items-start gap-3 shrink-0 mt-4 lg:mt-0">
+                  <div className="flex items-start gap-3 w-full">
                   <div
                     className="relative w-full aspect-[4/3] md:w-[280px] md:h-[198px] md:aspect-auto rounded-[5px] overflow-hidden"
                   >
@@ -197,6 +197,28 @@ export default function Section3() {
                       height={30}
                     />
                   </button>
+                  </div>
+                  <div className="flex lg:hidden mt-1 items-center gap-2.5 w-full md:w-[280px]">
+                    <span
+                      className="text-white text-[14px] sm:text-[15px]"
+                      style={{ fontFamily: "MontserratMedium" }}
+                    >
+                      Learn more
+                    </span>
+                    <Link
+                      href="/contact.html"
+                      target="_blank"
+                      aria-label="Learn more"
+                      className="w-[40px] h-[40px] rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+                    >
+                      <Image
+                        src={EXPLORE_ARROW_IMAGE}
+                        alt="Arrow"
+                        width={22}
+                        height={7}
+                      />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -269,7 +291,7 @@ export default function Section3() {
                           </p>
                         ))}
                       </div>
-                      <div className="mt-2 lg:mt-6 flex items-center gap-2.5">
+                      <div className="mt-2 lg:mt-6 hidden lg:flex items-center gap-2.5">
                         <span
                           className="text-white text-[14px] sm:text-[15px]"
                           style={{ fontFamily: "MontserratMedium" }}
@@ -291,7 +313,8 @@ export default function Section3() {
                         </Link>
                       </div>
                     </div>
-                    <div className="w-full lg:w-auto flex items-start gap-3 shrink-0 mt-2 lg:mt-0">
+                    <div className="w-full lg:w-auto flex flex-col items-start gap-3 shrink-0 mt-2 lg:mt-0">
+                      <div className="flex items-start gap-3 w-full">
                       <div
                         className="relative w-full aspect-[4/3] md:w-[280px] md:h-[198px] md:aspect-auto rounded-[5px] overflow-hidden"
                       >
@@ -315,6 +338,28 @@ export default function Section3() {
                           height={30}
                         />
                       </button>
+                      </div>
+                      <div className="flex lg:hidden mt-1 items-center gap-2.5 w-full md:w-[280px]">
+                        <span
+                          className="text-white text-[14px] sm:text-[15px]"
+                          style={{ fontFamily: "MontserratMedium" }}
+                        >
+                          Learn more
+                        </span>
+                        <Link
+                          href="/contact.html"
+                          target="_blank"
+                          aria-label="Learn more"
+                          className="w-[40px] h-[40px] rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+                        >
+                          <Image
+                            src={EXPLORE_ARROW_IMAGE}
+                            alt="Arrow"
+                            width={22}
+                            height={7}
+                          />
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -323,15 +368,18 @@ export default function Section3() {
           );
         })}
 
-        <p
-          className="text-[#FFFFFF] text-[14px] font-[400] leading-[24px] tracking-[0] mt-4 text-center md:text-center lg:text-left lg:ml-[-22px]"
+        <Link
+          href="/contact.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block cursor-pointer text-[#FFFFFF] text-[14px] font-[400] leading-[24px] tracking-[0] mt-4 text-center md:text-center lg:text-left hover:opacity-90 outline-none focus-visible:underline"
           style={{ fontFamily: "OpenSansRegular" }}
         >
           Not sure which path fits your brand?{" "}
           <span className="underline">
             Let&apos;s discuss your unique needs,
           </span>
-        </p>
+        </Link>
       </div>
     </section>
   );
