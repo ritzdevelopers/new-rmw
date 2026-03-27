@@ -1,18 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./BrandThatTrustUs.module.css";
-  // import containerStyles from "@/components/shared/container.module.css";
+import brandStyles from "./BrandThatTrustUs.module.css";
+import containerStyles from "@/components/celebrity-endorsements/page.module.css";
 
 export default function BrandThatTrustUs() {
   return (
-    <section className="w-full bg-[#FFFFFF] sm:py-16 flex justify-center">
-      <div className={`w-[100%] sm:w-[90%] md:w-[86%] lg:w-[90%] mx-auto containerWidth`}>
+    <section className="w-full bg-[#FFFFFF] py-[35px] lg:py-[70px] flex justify-center px-4 sm:px-6 lg:px-0">
+      <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
         <div
           className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0"
           data-no-gsap-animation
         >
           {/* Left Side Container */}
-          <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0">
+          <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0">
             <p
               className="font-[700] text-[20px] sm:text-[22px] lg:text-[24px]"
               style={{ fontFamily: "MontserratBold" }}
@@ -41,9 +41,9 @@ export default function BrandThatTrustUs() {
             <div className="absolute top-[-28px] left-0 w-full h-[1px] bg-[#EBEBEB] sm:left-[0px] sm:w-[calc(100%+12px)]" />
             <div className="absolute bottom-[-28px] left-0 w-full h-[1px] bg-[#EBEBEB] sm:left-[0px] sm:w-[calc(100%+12px)]" />
             {/* Slider Container - logoStrip clips top/bottom with boundary cover */}
-            <div className={`flex-1 min-w-0 ${styles.logoStrip}`}>
+            <div className={`flex-1 min-w-0 ${brandStyles.logoStrip}`}>
               <div
-                className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}
+                className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${brandStyles.clientSlider}`}
               >
                 {[
                   "/new-page/logos/prm-9.jpg",

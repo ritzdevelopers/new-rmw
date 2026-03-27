@@ -562,7 +562,7 @@ function NewNavbar() {
           }`}
       >
         {/* Centered Align Div  */}
-        <div className="w-[90%] flex justify-between items-center">
+        <div className="w-[92%]  flex justify-between items-center">
           {/* Left Side Container  */}
           <div>
 
@@ -822,7 +822,7 @@ function NewNavbar() {
         className={`lg:hidden w-full flex justify-center items-center py-3.5 sm:py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg shadow-black/5" : "bg-transparent"
           }`}
       >
-        <div className="w-[95%] max-w-[1200px] flex justify-between items-center">
+        <div className="w-[90%] max-w-[1200px] flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
             <img

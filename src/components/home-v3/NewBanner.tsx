@@ -59,11 +59,13 @@ function AnimatedBannerText({
     shouldAnimate,
     gatewayStarted,
     onAnimationComplete,
+    isH1 = false,
 }: {
     slide: BannerSlideConfig;
     shouldAnimate: boolean;
     gatewayStarted: boolean;
     onAnimationComplete?: () => void;
+    isH1?: boolean;
 }) {
     const [phase, setPhase] = useState<BannerPhase>("lines");
     const [typedDomain, setTypedDomain] = useState("");
@@ -119,6 +121,7 @@ function AnimatedBannerText({
     }, [shouldAnimate, onAnimationComplete]);
 
     const showStaticLines = phase === "lines" && !shouldAnimate;
+    const Tag = isH1 ? "h1" : "div";
 
     return (
         <div
@@ -135,7 +138,7 @@ function AnimatedBannerText({
                 ref={lineGroupRef}
                 className={`${phase === "lines" ? "opacity-100" : "opacity-0 pointer-events-none"} transition-opacity duration-200`}
             >
-                <h1
+                <Tag
                     className="
                         leading-[1.15] tracking-[-0.01em]
                         text-[17px] sm:text-[22px] md:text-[18px] lg:text-[33px]
@@ -148,15 +151,22 @@ function AnimatedBannerText({
                             ref={(el) => {
                                 if (el) mainRefs.current[idx] = el;
                             }}
-                            className={`inline-block mr-1 md:mr-2 font-bold md:font-normal ${
-                                showStaticLines ? "" : "will-change-transform"
-                            }`}
+                            className={`inline-block mr-1 md:mr-2 font-bold md:font-normal ${showStaticLines ? "" : "will-change-transform"
+                                }`}
                         >
                             <span className={`${slide.highlightColor} font-bold`}>W</span>
                             <span className={`${slide.textColor} font-bold md:font-light`}>{word.slice(1)}</span>
                         </span>
                     ))}
-                </h1>
+                    <span
+                        ref={(el) => {
+                            if (el) mainRefs.current[3] = el;
+                        }}
+                        className={`inline-block font-bold md:font-normal ${slide.domainColor} ${showStaticLines ? "" : "will-change-transform"}`}
+                    >
+                        .ritzmediaworld.com
+                    </span>
+                </Tag>
 
                 <p
                     className={`
@@ -174,14 +184,13 @@ function AnimatedBannerText({
                     </span>
                 </p>
             </div>
-
         </div>
     );
 }
 
 function NewBanner() {
     const [activeSlide, setActiveSlide] = useState(0);
-    const [gatewayStarted, setGatewayStarted] = useState(false);
+    const [gatewayStarted, setGatewayStarted] = useState(true); // default true so its always visible even without gateway
     const [playToken, setPlayToken] = useState(0);
 
     useEffect(() => {
@@ -242,6 +251,7 @@ function NewBanner() {
                                 gatewayStarted={gatewayStarted}
                                 shouldAnimate={gatewayStarted && index === activeSlide}
                                 onAnimationComplete={() => undefined}
+                                isH1={index === activeSlide}
                             />
                         </div>
                     </SwiperSlide>

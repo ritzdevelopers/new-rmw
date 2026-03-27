@@ -7,6 +7,13 @@ export function middleware(req: NextRequest) {
 
   const url = req.nextUrl; 
 
+  // Canonicalize /web-stories from www -> non-www
+  if (pathname === "/web-stories" && url.hostname === "www.ritzmediaworld.com") {
+    const redirectUrl = url.clone();
+    redirectUrl.hostname = "ritzmediaworld.com";
+    return NextResponse.redirect(redirectUrl, 301);
+  }
+
   // Ignore Next.js internal paths
   if (url.pathname.startsWith("/_next") || url.pathname.startsWith("/api")) {
     return NextResponse.next();
@@ -287,6 +294,7 @@ export const config = {
     // ✅ Top-level and service route redirects
     "/about",
     "/contact",
+    "/web-stories",
     "/influencer-marketing-agency-in-india",
     "/celebrity-endorsements",
     "/web-designing-and-development",

@@ -610,9 +610,9 @@
 .fa-badge:before {
   content: "\f335";
 }
-.fa-badge-check:before {
+/* .fa-badge-check:before {
   content: "\f336";
-}
+} */
 .fa-badge-dollar:before {
   content: "\f645";
 }
@@ -5776,9 +5776,9 @@
 .fa-stamp:before {
   content: "\f5bf";
 }
-.fa-star:before {
+/* .fa-star:before {
   content: "\f005";
-}
+} */
 .fa-star-and-crescent:before {
   content: "\f699";
 }
@@ -5791,9 +5791,9 @@
 .fa-star-half:before {
   content: "\f089";
 }
-.fa-star-half-alt:before {
+/* .fa-star-half-alt:before {
   content: "\f5c0";
-}
+} */
 .fa-star-of-david:before {
   content: "\f69a";
 }
@@ -26081,7 +26081,7 @@ input.search-input-field {
   position: relative;
   list-style: none;
   display: inline-block;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   color: var(--tp-common-black);
   margin-bottom: 15px;
 }

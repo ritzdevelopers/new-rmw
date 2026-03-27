@@ -11,10 +11,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 function S4() {
-    const swiperRef = useRef<SwiperType | null>(null);
-    const [isVideoOpen, setIsVideoOpen] = useState(false);
-    const [videoType, setVideoType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
-    const videoRef = useRef<HTMLVideoElement | null>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [videoType, setVideoType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Data array for success stories
   const successStories = [
@@ -110,69 +110,69 @@ function S4() {
       ],
       link: "https://ritzmediaworld.com/services/digital-marketing/social-media-management",
     },
-    ];
+  ];
 
-    // Detect screen size for video selection
-    useEffect(() => {
-        const determineVideoType = () => {
-            const width = window.innerWidth;
-            if (width >= 1024) {
-                setVideoType('desktop');
-            } else if (width >= 768) {
-                setVideoType('tablet');
-            } else {
-                setVideoType('mobile');
-            }
-        };
-
-        determineVideoType();
-
-        window.addEventListener('resize', determineVideoType);
-        return () => window.removeEventListener('resize', determineVideoType);
-    }, []);
-
-    const handlePlayClick = () => {
-        const width = window.innerWidth;
-        if (width >= 1024) {
-            setVideoType('desktop');
-        } else if (width >= 768) {
-            setVideoType('tablet');
-        } else {
-            setVideoType('mobile');
-        }
-        setIsVideoOpen(true);
-        document.body.style.overflow = 'hidden';
+  // Detect screen size for video selection
+  useEffect(() => {
+    const determineVideoType = () => {
+      const width = window.innerWidth;
+      if (width >= 1024) {
+        setVideoType('desktop');
+      } else if (width >= 768) {
+        setVideoType('tablet');
+      } else {
+        setVideoType('mobile');
+      }
     };
 
-    const handleCloseVideo = () => {
-        setIsVideoOpen(false);
-        document.body.style.overflow = 'unset';
-        if (videoRef.current) {
-            videoRef.current.pause();
-            videoRef.current.currentTime = 0;
-        }
+    determineVideoType();
+
+    window.addEventListener('resize', determineVideoType);
+    return () => window.removeEventListener('resize', determineVideoType);
+  }, []);
+
+  const handlePlayClick = () => {
+    const width = window.innerWidth;
+    if (width >= 1024) {
+      setVideoType('desktop');
+    } else if (width >= 768) {
+      setVideoType('tablet');
+    } else {
+      setVideoType('mobile');
+    }
+    setIsVideoOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleCloseVideo = () => {
+    setIsVideoOpen(false);
+    document.body.style.overflow = 'unset';
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  const getVideoSource = () => {
+    switch (videoType) {
+      case 'desktop':
+        return '/new-page/dekstop-vd.mp4';
+      case 'tablet':
+        return '/new-page/tab-vd.mp4';
+      case 'mobile':
+        return '/new-page/mobile-vd.mp4';
+      default:
+        return '/new-page/dekstop-vd.mp4';
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'unset';
     };
+  }, []);
 
-    const getVideoSource = () => {
-        switch (videoType) {
-            case 'desktop':
-                return '/new-page/dekstop-vd.mp4';
-            case 'tablet':
-                return '/new-page/tab-vd.mp4';
-            case 'mobile':
-                return '/new-page/mobile-vd.mp4';
-            default:
-                return '/new-page/dekstop-vd.mp4';
-        }
-    };
-
-    useEffect(() => {
-        return () => {
-            document.body.style.overflow = 'unset';
-        };
-    }, []);
-
-    return (
+  return (
     <section className="w-full min-h-screen bg-white flex justify-center items-center flex-col gap-10 sm:gap-16 lg:gap-20 py-10 sm:py-16 lg:py-[70px] px-4 sm:px-6 lg:px-0">
       {/* Center Align Container 1 */}
       <div className={`w-full lg:px-20 px-4 h-[95%] flex flex-col gap-4 sm:gap-6 ${styles.container}`}>
@@ -271,7 +271,7 @@ function S4() {
                       <div className="h-[250px] sm:h-[300px] md:h-[350px] lg:h-[395px] w-full lg:w-[500px] xl:w-[590px] relative flex-shrink-0">
                         <Image
                           src={story.img}
-                          onClick={()=>window.open(story.link, "_blank")}
+                          onClick={() => window.open(story.link, "_blank")}
                           alt={story.title}
                           fill
                           className="object-cover cursor-pointer"
@@ -280,26 +280,26 @@ function S4() {
 
                       {/* Content Card  */}
                       <div className="w-full lg:w-[500px] xl:w-[604px] flex flex-col gap-4 lg:gap-2 xl:gap-5">
-                        <p
-                          onClick={()=>window.open(story.link, "_blank")}
+                        <h3
+                          onClick={() => window.open(story.link, "_blank")}
                           className="font-[600] text-[16px] sm:text-[18px] text-[#C99237] cursor-pointer"
                           style={{
                             fontFamily: "OpenSansSemiBold",
                           }}
                         >
                           {story.category}
-                        </p>
-                        <h2
-                          onClick={()=>window.open(story.link, "_blank")}
+                        </h3>
+                        <h4
+                          onClick={() => window.open(story.link, "_blank")}
                           className="font-[600] text-[22px] sm:text-[24px] lg:text-[26px] cursor-pointer"
                           style={{
                             fontFamily: "OpenSansSemiBold",
                           }}
                         >
                           {story.title}
-                        </h2>
+                        </h4>
                         <p
-                          onClick={()=>window.open(story.link, "_blank")}
+                          onClick={() => window.open(story.link, "_blank")}
                           className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] cursor-pointer"
                           style={{
                             fontFamily: "OpenSansRegular",
@@ -313,26 +313,25 @@ function S4() {
                             return (
                               <div
                                 key={statIdx}
-                                onClick={()=>window.open(story.link, "_blank")}
-                                className={`flex flex-col justify-center items-center gap-1 w-full sm:w-auto ${
-                                  statIdx === 1
-                                    ? "sm:px-4 lg:px-8 xl:px-4 py-4 sm:border-l-[1px] sm:border-r-[1px] sm:border-l-[#D8D8D8] sm:border-r-[#D8D8D8]"
-                                    : ""
-                                }`}
+                                onClick={() => window.open(story.link, "_blank")}
+                                className={`flex flex-col justify-center items-center gap-1 w-full sm:w-auto ${statIdx === 1
+                                  ? "sm:px-4 lg:px-8 xl:px-4 py-4 sm:border-l-[1px] sm:border-r-[1px] sm:border-l-[#D8D8D8] sm:border-r-[#D8D8D8]"
+                                  : ""
+                                  }`}
                               >
                                 <img
                                   src="/home-v3/s4/arrow.png"
                                   alt="RMW"
                                   className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px]"
                                 />
-                                <h2
+                                <p
                                   className="font-[700] text-[32px] sm:text-[33px] xl:text-[44px]"
                                   style={{
                                     fontFamily: "MontserratBold",
                                   }}
                                 >
                                   {stat.value}
-                                </h2>
+                                </p>
                                 <p
                                   className="font-[600] text-[12px] sm:text-[14px] lg:text-[15px] text-center"
                                   style={{

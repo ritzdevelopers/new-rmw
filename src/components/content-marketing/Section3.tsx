@@ -9,32 +9,36 @@ function Section3() {
     const [activeCard, setActiveCard] = useState(0);
     const cardsData = [
         {
-            image: "/service-v3/content-marketing/s3/Customized-content-strategy.jpg",
+            image: "/service-v3/content-marketing/s3/Customized-content-strategy-new.jpg",
             title: "Customized<br /> content  strategy",
             activeCardTitle:"Customized content strategy",
             desc: "Generic content yields generic results. At Ritz Media World, we develop personalized content marketing campaigns that suit your brand, audience, and goals. Our content marketing strategy is a result of expert insights, search engine optimization, and creative storytelling that ensures every word counts and every word drives readers to act and convert.",
+            link: "/services-v3/contents-marketing/content-marketing",
         },
         {
-            image: "/service-v3/content-marketing/s3/ctm-s3-i2.png",
+            image: "/service-v3/content-marketing/s3/ctm-s3-i2-new.jpg",
             title: "Email and Newsletter <br /> Marketing",
             activeCardTitle:"Email and Newsletter Marketing",
             desc: "Boost your business to the next level with our email marketing and newsletters solutions. We design customized email marketing campaigns that not only engage your subscribers but also help you generate high conversions. From automated campaigns or a promotional newsletter, our approach ensures that every email gives you a measurable return on investment (ROI).",
+            link: "/services-v3/contents-marketing/email-and-newsletters-marketing",
         },
         {
-            image: "/service-v3/content-marketing/s3/Asset-Creation-Infographics.jpg",
+            image: "/service-v3/content-marketing/s3/Asset-Creation-Infographics-new.jpg",
             title: "Asset Creation and <br /> Infographics",
             activeCardTitle:"Asset Creation and Infographics",
             desc: "Use our content asset creation and infographics services to bring your brand to life. We create visual content, infographics, and digital assets that make complex information simple, increase engagement, and boost social media reach. Our graphic content strategies will help your business communicate ideas effectively and make your brand more visible on the internet.",
+            link: "/services-v3/contents-marketing/asset-creation-and-infographics",
         },
         {
-            image: "/service-v3/content-marketing/s3/Customized-content-strategy.jpg",
+            image: "/service-v3/content-marketing/s3/Content%20Promotion%20and%20Optimization-new.jpg",
             title: "Content Promotion <br /> and Optimization",
             activeCardTitle:"Content Promotion and Optimization",
             desc: "Undiscovered great content means wasted opportunity. At Ritz Media World, we maximize the reach and conversion potential of your content by promoting and optimizing it across all platforms. Through the strategic application of SEO, social media marketing, and paid advertising, we ensure that the right people are reached, and our results are constantly refined for maximum ROI.",
+            link: "/services-v3/contents-marketing/content-promotion-and-optimization",
         },
     ];
     return (
-        <section className="w-full xl:pt-[70px] pt-[35px] flex justify-center gap-10 items-center flex-col border-t border-[#D9D9D9]">
+        <section className="w-full xl:pt-[70px] pt-[35px] flex justify-center gap-5 sm:gap-10 items-center flex-col border-t border-[#D9D9D9]">
             {/* Heading Container  */}
             <div className="w-full flex flex-col   items-center justify-center ">
                 <p
@@ -43,9 +47,9 @@ function Section3() {
                     Services
                 </p>
                 <h2
-                    className={`font-[700] text-[36px] ${styles.fontmontserrat}`}
+                    className={`font-[700] text-[22px] text-center sm:text-[36px]  ${styles.fontmontserrat}`}
                 >
-                    What We Provide
+                    What We Provider
                 </h2>
                 <p className={`font-[400] text-[16px] pt-3 ${styles.fontopensans}`}>
                     Is more than what you’ll ever need
@@ -58,7 +62,7 @@ function Section3() {
             >
                 {cardsData.map(
                     (
-                        item: { image: string; title: string; desc: string; activeCardTitle: string },
+                        item: { image: string; title: string; desc: string; activeCardTitle: string; link: string },
                         index: number,
                     ) => (
                         <div
@@ -84,7 +88,7 @@ function Section3() {
                                 >
                                     {item.desc}
                                 </p>
-                                <button className="mt-1 w-[110px] h-[34px] flex justify-between items-center gap-2 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                                <a href={item.link} target="_blank" rel="noopener noreferrer" className="mt-1 w-[110px] h-[34px] flex items-center gap-2 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
                                     <p
                                         className={`font-[500] text-[12px] text-white ${styles.fontMontserrat}`}
                                     >
@@ -93,7 +97,7 @@ function Section3() {
                                     <div className="bg-[#C99237] h-[24px] w-[24px] rounded-full flex justify-center items-center shrink-0">
                                         <BsArrowUpRight className="text-white text-[12px]" />
                                     </div>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     ),
@@ -112,6 +116,7 @@ function Section3() {
                                 title: string;
                                 activeCardTitle: string;
                                 desc: string;
+                                link: string;
                             },
                             index: number,
                         ) => (
@@ -122,6 +127,7 @@ function Section3() {
                                 title={item.title}
                                 activeCardTitle={item.activeCardTitle}
                                 desc={item.desc}
+                                link={item.link}
                                 activeCard={activeCard}
                                 setActiveCard={setActiveCard}
                             />

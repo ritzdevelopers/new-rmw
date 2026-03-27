@@ -121,12 +121,12 @@ function S5() {
                 <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
                     {/* Left Side Container  */}
                     <div className='w-full sm:w-auto text-center md:text-left'>
-                        <p className='font-[600] text-[14px] sm:text-[16px] text-[#C99237] uppercase' style={{
+                        <h2 className='font-[600] text-[14px] sm:text-[16px] text-[#C99237] uppercase' style={{
                             fontFamily: "OpenSansSemiBold",
-                        }}>our Journey</p>
-                        <h2 className='font-[700] text-[24px] sm:text-[30px] lg:text-[36px]' style={{
+                        }}>Our Journey</h2>
+                        <h3 className='font-[700] text-[24px] sm:text-[30px] lg:text-[36px]' style={{
                             fontFamily: "MontserratBold",
-                        }}>17 Years of Brand Excellence</h2>
+                        }}>17 Years of Brand Excellence</h3>
                         <p className='font-[400] text-[14px] sm:text-[16px]' style={{
                             fontFamily: "OpenSansRegular",
                         }}>From pioneering print innovations to 360° digital mastery, our journey reflects our commitment to excellence.</p>
@@ -192,7 +192,7 @@ function S5() {
                                         <SwiperSlide key={idx}>
                                             <div className="flex justify-center items-center w-full">
                                                 {isMiddleItem && isCardVisible ? (
-                                                    <h2
+                                                    <p
                                                         className={`relative font-[700] text-[24px] sm:text-[28px] lg:text-[30px] px-2 sm:px-4 ${styles.timelineYearWithLines}
                                                             before:content-['']
                                                             before:absolute
@@ -217,13 +217,13 @@ function S5() {
                                                         }}
                                                     >
                                                         {item.year}
-                                                    </h2>
+                                                    </p>
                                                 ) : (
-                                                    <h2 className="font-[700] text-[24px] sm:text-[28px] lg:text-[30px]" style={{
+                                                    <p className="font-[700] text-[24px] sm:text-[28px] lg:text-[30px]" style={{
                                                         fontFamily: "OpenSansBold",
                                                     }}>
                                                         {item.year}
-                                                    </h2>
+                                                    </p>
                                                 )}
                                             </div>
                                         </SwiperSlide>
@@ -287,9 +287,9 @@ function S5() {
                                                 <div className='w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] lg:w-[165px] lg:h-[165px] border-1 border-[#E2DEDE] rounded-full flex justify-center items-center'>
                                                     <img src={ob.img} alt={ob.ttl} className='w-[95%] h-[95%] rounded-full object-cover' />
                                                 </div>
-                                                <h2 className='font-[600] text-[18px] sm:text-[20px]' style={{
+                                                <p className='font-[600] text-[18px] sm:text-[20px]' style={{
                                                     fontFamily: "OpenSansSemiBold",
-                                                }}>{ob.ttl}</h2>
+                                                }}>{ob.ttl}</p>
                                                 <p className='font-[400] text-[13px] sm:text-[14px]' style={{
                                                     fontFamily: "OpenSansRegular",
                                                 }}>

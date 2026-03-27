@@ -46,17 +46,17 @@ function S7() {
         <section className='w-full lg:min-h-[647px] bg-[url(/home-v3/awards-bg/awards-bg-mobile.png)] md:bg-[url(/home-v3/awards-bg/awards-bg-desktop.png)] bg-cover bg-no-repeat bg-center flex justify-center items-center py-10  lg:py-[70px] px-4 sm:px-6 lg:px-0'>
 
             {/* Center Align Container  */}
-            <div className={`w-full lg:px-20 px-2 sm:px-10 flex flex-col gap-6 ${styles.container}`}>
+            <div className={`w-full lg:px-12 md:px-4 px-2 sm:px-10 flex flex-col gap-6 ${styles.container}`}>
                 {/* Top Row  */}
                 <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
                     {/* Left Side Container  */}
                     <div className="text-center md:text-left">
-                        <p className='font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237] uppercase' style={{
+                        <h2 className='font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237] uppercase' style={{
                             fontFamily: "OpenSansSemiBold",
-                        }}>Achievement Awards</p>
-                        <h2 className='font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-white' style={{
+                        }}>Achievement Awards</h2>
+                        <h3 className='font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-white' style={{
                             fontFamily: "MontserratBold",
-                        }}>Awards & Company Recognitions</h2>
+                        }}>Awards & Company Recognitions</h3>
                     </div>
 
                     <div className="flex gap-2 md:flex-shrink-0 justify-center md:justify-end w-full md:w-auto">

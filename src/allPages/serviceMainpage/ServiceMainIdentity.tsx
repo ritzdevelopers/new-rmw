@@ -31,7 +31,7 @@ const ServiceMainIdentity = () => {
                 <div className="row">
                   <div className="col-xl-8 col-lg-8">
                     <div className="tp-about__title-box mb-50">
-                      <h3
+                      <h2
                       ref={(el) => { if (el) textRefs.current.push(el) }}
                         className="tp-section-title tp-split__text tp-split__in-right"
                         style={{ perspective: "400px" }}
@@ -429,7 +429,7 @@ const ServiceMainIdentity = () => {
                             </div>
                           </div>
                         </div>
-                      </h3>
+                      </h2>
                     </div>
                   </div>
                 </div>
@@ -450,7 +450,7 @@ const ServiceMainIdentity = () => {
                       </div>
                       <div className="tp-about__funfact-box mr-70">
                         <div className="tp-about__funfact-item">
-                          <h3 className="tp-about__funfact-number">
+                          <p className="tp-about__funfact-number">
                             <b
                               className="purecounter"
                               data-purecounter-duration="0"
@@ -459,13 +459,13 @@ const ServiceMainIdentity = () => {
                               1
                             </b>
                             B+
-                          </h3>
+                          </p>
                           <span className="tp-about__funfact-title">
                           Words Written
                           </span>
                         </div>
                         <div className="tp-about__funfact-item">
-                          <h3 className="tp-about__funfact-number">
+                          <p className="tp-about__funfact-number">
                             <b
                               className="purecounter"
                               data-purecounter-duration="0"
@@ -474,7 +474,7 @@ const ServiceMainIdentity = () => {
                               1
                             </b>
                             M+
-                          </h3>
+                          </p>
                           <span className="tp-about__funfact-title">
                           Creatives Published
                           </span>
@@ -489,10 +489,10 @@ const ServiceMainIdentity = () => {
                           
                           We command growth with millions of hours in collective experience. At this point, It’s not a matter of ‘if’, it becomes a matter of ‘when’ you will attain the tipping point that will drive your.
                         </p>
-                        <h3 className="tp-about__title mb-70">
+                        <p className="tp-about__title mb-70">
                         PERPETUAL  <br />
                         <span>GROWTH</span>
-                        </h3>
+                        </p>
                        
                       </div>
                   

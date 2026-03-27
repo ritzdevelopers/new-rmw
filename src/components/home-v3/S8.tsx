@@ -94,8 +94,8 @@ function S8({
 
     const downloadPDF = () => {
         const link = document.createElement("a");
-        link.href = "/RMWCaseStudies_250327_081936.pdf";
-        link.download = "RMWCaseStudies_250327_081936.pdf";
+        link.href = "/Eldeco-Lvb-Overview-Report.pdf";
+        link.download = "Eldeco-Lvb-Overview-Report.pdf";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -198,22 +198,22 @@ function S8({
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-6">
                         {/* Left Side Container  */}
                         <div className="flex flex-col gap-2 sm:gap-3 text-center md:text-left">
-                            <p
+                            <h2
                                 className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237] uppercase"
                                 style={{
                                     fontFamily: "OpenSansSemiBold",
                                 }}
                             >
                                 Latest Insights
-                            </p>
-                            <h2
+                            </h2>
+                            <h3
                                 className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-black"
                                 style={{
                                     fontFamily: "MontserratBold",
                                 }}
                             >
                                 Here's what we've been up to
-                            </h2>
+                            </h3>
                             <p
                                 className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-black max-w-5xl"
                                 style={{
@@ -282,7 +282,7 @@ function S8({
                                                       : date.toLocaleDateString();
                                               })()}
                                           </p>
-                                          <h3
+                                          <h4
                                               onClick={() =>
                                                   window.open(
                                                       `https://ritzmediaworld.com/${ob.blogSlug}`,
@@ -296,7 +296,7 @@ function S8({
                                               }}
                                           >
                                               {ob.blogTitle}
-                                          </h3>
+                                          </h4>
                                       </div>
                                   );
                               })

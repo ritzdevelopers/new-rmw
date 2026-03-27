@@ -125,10 +125,10 @@ export default function Section5() {
   }, [modal.open, modal.status]);
 
   return (
-    <section className="w-full bg-white flex justify-center items-center py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-0">
-      <div className={`w-full max-w-[1300px] mx-auto flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10 overflow-hidden ${styles.containerWidth}`}>
+    <section className="w-full bg-white flex justify-center items-center py-[35px] lg:py-[70px] px-4 sm:px-6 lg:px-0">
+      <div className={`w-full  mx-auto flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10 overflow-hidden ${styles.containerWidth}`}>
         {/* Left – 2026 Brand Impact Report */}
-        <div className="w-full lg:w-[48%] min-w-0 min-h-auto lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around gap-3 sm:gap-4 lg:gap-0 px-4 sm:px-5 md:px-6 lg:px-8 py-6 sm:py-7 lg:py-8">
+        <div className="w-full lg:w-[54%] xl:w-[48%] min-w-0 min-h-auto lg:h-[600px] xl:h-[526px] bg-[#F7F7F7] flex flex-col justify-around gap-3 sm:gap-4 lg:gap-4 xl:gap-0 px-4 sm:px-5 md:px-6 lg:px-8 py-6 sm:py-7 lg:py-8">
           <div className="text-center md:text-left mb-2 md:mb-0">
             <p
               className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237]"
@@ -166,8 +166,8 @@ export default function Section5() {
             <li>Case studies with measurable results</li>
           </ul>
           <form onSubmit={handleDownload} className="flex flex-col gap-4">
-            <div className="flex flex-col sm:flex-row justify-between gap-3">
-              <div className="flex-1 relative">
+            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row justify-between md:justify-start lg:justify-between xl:justify-between gap-3">
+              <div className="flex-1 relative md:flex-initial xl:flex-1">
                 <input
                   type="tel"
                   value={phone}
@@ -175,7 +175,7 @@ export default function Section5() {
                   onBlur={handlePhoneBlur}
                   placeholder="Enter your phone (e.g., +91 9220516777)"
                   required
-                  className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${
+                  className={`w-full sm:w-[319px] lg:w-full h-[48px] sm:h-[50px] border rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${
                     phoneError ? "border-[#EF4444]" : "border-[#DAD4D4]"
                   }`}
                 />
@@ -188,7 +188,7 @@ export default function Section5() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full sm:w-[209px] lg:w-full xl:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{ fontFamily: "PoppinsRegular" }}
               >
                 <span className="text-white">
@@ -207,7 +207,7 @@ export default function Section5() {
         </div>
 
         {/* Right – Brand Audit */}
-        <div className="w-full lg:w-[48%] min-w-0 lg:h-[526px] border border-[#D4D4D4] bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-4 sm:px-6 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
+        <div className="w-full lg:w-[46%] xl:w-[48%] min-w-0 lg:h-[600px] xl:h-[526px] border border-[#D4D4D4] bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-4 sm:px-6 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
           <h2
             className="font-[700] text-[22px] sm:text-[26px] md:text-[28px] lg:text-[36px] text-center md:text-left"
             style={{ fontFamily: "MontserratBold" }}
@@ -230,11 +230,11 @@ export default function Section5() {
             <li>Growth opportunity identification</li>
             <li>Customized strategy roadmap</li>
           </ul>
-          <div className="flex border-b border-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-center md:text-left mx-auto md:mx-0">
+          <div className="flex border-b border-black items-center justify-center sm:justify-center md:justify-between gap-5 sm:gap-5 md:gap-0 cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 mx-auto md:mx-0 whitespace-nowrap">
             <Link
               href="https://ritzmediaworld.com/contact.html"
               target="_blank"
-              className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black"
+              className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black whitespace-nowrap"
               style={{ fontFamily: "MontserratSemiBold" }}
             >
               Request A Free Audit

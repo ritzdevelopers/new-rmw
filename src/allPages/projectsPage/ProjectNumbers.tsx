@@ -19,7 +19,7 @@ const ProjectNumbers = () => {
                   }}
                 >
                   <div className="tp-funfact__content">
-                    <h3 className="tp-funfact__number">
+                    <p className="tp-funfact__number">
                       <b
                         className="purecounter"
                         data-purecounter-duration="0"
@@ -28,7 +28,7 @@ const ProjectNumbers = () => {
                         1
                       </b>
                       B+
-                    </h3>
+                    </p>
                     <div className="tp-funfact__text">
                       <span> Words Written </span>
                     </div>
@@ -48,7 +48,7 @@ const ProjectNumbers = () => {
                   }}
                 >
                   <div className="tp-funfact__content">
-                    <h3 className="tp-funfact__number">
+                    <p className="tp-funfact__number">
                       <b
                         className="purecounter"
                         data-purecounter-duration="0"
@@ -57,7 +57,7 @@ const ProjectNumbers = () => {
                         1
                       </b>
                       M+
-                    </h3>
+                    </p>
                     <div className="tp-funfact__text">
                       <span> Creatives Published </span>
                     </div>
@@ -77,7 +77,7 @@ const ProjectNumbers = () => {
                   }}
                 >
                   <div className="tp-funfact__content">
-                    <h3 className="tp-funfact__number">
+                    <p className="tp-funfact__number">
                       <b
                         className="purecounter"
                         data-purecounter-duration="0"
@@ -86,7 +86,7 @@ const ProjectNumbers = () => {
                         1
                       </b>
                       K+
-                    </h3>
+                    </p>
                     <div className="tp-funfact__text">
                       <span>Campaigns Executed</span>
                     </div>
@@ -106,7 +106,7 @@ const ProjectNumbers = () => {
                   }}
                 >
                   <div className="tp-funfact__content">
-                    <h3 className="tp-funfact__number">
+                    <p className="tp-funfact__number">
                       <b
                         className="purecounter"
                         data-purecounter-duration="0"
@@ -115,7 +115,7 @@ const ProjectNumbers = () => {
                         500
                       </b>
                       +
-                    </h3>
+                    </p>
                     <div className="tp-funfact__text">
                       <span>Success Stories </span>
                     </div>

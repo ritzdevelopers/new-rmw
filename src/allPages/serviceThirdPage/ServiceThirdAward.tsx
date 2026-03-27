@@ -685,7 +685,7 @@ const ServiceThirdAward = () => {
                             </span>
                             <p>
                               
-                              Your site will be more visible and accessible We
+                              Your site will be more visible and accessible we
                               are creative
                             </p>
                           </li>
@@ -698,8 +698,8 @@ const ServiceThirdAward = () => {
                             </span>
                             <p>
                               
-                              Optimizing your web pages to improve ranking
-                              brands Taken
+                              optimizing your web pages to improve ranking
+                              brands taken
                             </p>
                           </li>
                           <li>

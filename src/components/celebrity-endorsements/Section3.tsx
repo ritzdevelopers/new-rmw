@@ -9,10 +9,19 @@ const CELEBRITY_IMAGE = "/service-v3/celebrity-endorsements/s3/celebrity.jpg";
 const EXPLORE_ARROW_IMAGE =
   "/service-v3/celebrity-endorsements/s3/group-105398.svg";
 
-const servicesData = [
+type ServiceItem = {
+  id: string;
+  title: string;
+  description: string;
+  image?: string;
+};
+
+const servicesData: ServiceItem[] = [
   {
     id: "01",
     title: "Celebrity Identification",
+    image:
+      "/varun/celebrity-endorsements/Celebrity%20Identification.jpg",
     description:
       "Choosing the right celebrity endorsement isn't luck, it's strategy. At Ritz Media World, we identify celebrities for brand endorsement which bears an image, values, and fan following that fully coincides with your brand. We make sure that every recommendation we offer is authentic, credible, conversion focused, turning celebrity fans into lifelong customers of your brand.",
   },
@@ -25,12 +34,15 @@ const servicesData = [
   {
     id: "03",
     title: "Campaign Integration",
+    image: "/varun/celebrity-endorsements/Campaign%20Integration.jpg",
     description:
       "Celebrity endorsements are pivotal when they seamlessly integrate. We utilize celebrity endorsements in all marketing channels to enhance effectiveness. We infuse the personality of a celebrity in all your advertising – digital, prints, radio, events and more – to make your investment of a celebrity 100 times effective.",
   },
   {
     id: "04",
     title: "Creative Collaboration",
+    image:
+      "/varun/celebrity-endorsements/Creative%20Collaboration.jpg",
     description:
       "Celebrities can tell great stories that can influence people. Our in-house creative team collaborates with the best to create endorsement campaigns that are authentic, engaging, and build brand trust. Every collaboration is carefully designed to take advantage of the celebrity figure and transform the admiration into action by loyal customers. This effect creates measurable results.",
   },
@@ -43,6 +55,7 @@ const servicesData = [
   {
     id: "06",
     title: "Legal Compliance",
+    image: "/varun/celebrity-endorsements/Legal%20Compliance.jpg",
     description:
       "Careful attention to detail makes a good celebrity endorsement campaign. At Ritz Media World, we handle the legalities involved in making sure that your brand is legally protected. Every celebrity endorsement campaign will be beneficial for your brand, transparent and risk-free thanks to our attention to detail.",
   },
@@ -106,7 +119,7 @@ export default function Section3() {
                   <div className="flex items-start justify-between gap-6 sm:gap-8 px-4 sm:px-5 md:px-6 lg:px-6 py-5 sm:py-6">
                     <div className="flex-1 flex items-start gap-8 sm:gap-10 md:gap-12 lg:gap-[155px]">
                       <p
-                        className="text-white text-[18px] leading-[20px] pt-1 font-[500]"
+                        className="text-white text-[18px] leading-[20px] pt-1 lg:mt-2 font-[500]"
                         style={{ fontFamily: "MontserratMedium" }}
                       >
                         {item.id}.
@@ -161,7 +174,7 @@ export default function Section3() {
 
                         <div className="mt-6 sm:mt-7 md:mt-8 relative w-full max-w-[760px] h-[190px] sm:h-[225px] md:h-[250px] lg:w-[749px] lg:max-w-[749px] lg:h-[258px] rounded-[8px] overflow-hidden">
                           <Image
-                            src={CELEBRITY_IMAGE}
+                            src={item.image ?? CELEBRITY_IMAGE}
                             alt={item.title}
                             fill
                             className="object-cover"

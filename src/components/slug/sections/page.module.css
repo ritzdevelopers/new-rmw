@@ -18,16 +18,8 @@
 
 @media (min-width: 1024px) and (max-width: 1379px) {
    .containerWidth {
-     padding-left: 50px !important;
-     padding-right: 50px !important;
-   }
-}
-
-@media (min-width: 1370px) {
-   .containerWidth {
-      width: 1300px !important;
-      margin: 0 auto !important;
-      align-self: center !important;
+     padding-left: 70px !important;
+     padding-right: 70px !important;
    }
 }
 
@@ -38,6 +30,22 @@
       align-self: center !important;
    }
 }
+@media (max-width: 1023px) {
+   .containerWidth2 {
+      padding-left: 40px !important;
+      padding-right: 40px !important;
+   }
+}
+
+
+@media (min-width: 1370px) {
+   .containerWidth {
+      width: 1300px !important;
+      margin: 0 auto !important;
+      align-self: center !important;
+   }
+}
+
 
 /* Section3 mobile cards: visible only < 768px */
 .s3MobileCards {

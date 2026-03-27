@@ -160,23 +160,23 @@ function S2() {
         <div className="w-full flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 xl:gap-10">
           {/* Col 1  */}
           <div className="w-full xl:max-w-[422px] lg:max-w-[380px] xl:w-auto flex flex-col gap-4 sm:gap-5 lg:gap-6">
-            <p className="font-[700] text-[22px] sm:text-[26px] xl:text-[30px] text-center md:text-left" style={{
+            <h2 className="font-[700] text-[22px] sm:text-[26px] xl:text-[30px] text-center md:text-left" style={{
               fontFamily: 'MontserratBold',
             }}>
               What can you expect from us?
-            </p>
+            </h2>
             <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-center md:text-left" style={{
               fontFamily: 'OpenSansRegular',
             }}>
               We create   <b style={{
                 fontFamily: 'OpenSansBold',
               }}>campaigns</b>  that look great and work even better, with consistency you can rely on. <br />
-             <b className="text-[#C99237]" style={{
+              <b className="text-[#C99237]" style={{
                 fontFamily: 'OpenSansBold',
               }}>Ritz Media World</b> , your <b className="text-[#C99237]" style={{
                 fontFamily: 'OpenSansBold',
-              }}>advertising partner in Noida.</b> 
-        
+              }}>advertising partner in Noida.</b>
+
             </p>
             <button onClick={() => window.open("https://ritzmediaworld.com/services", "_blank")} className="w-full sm:w-[200px] lg:w-[219px] h-[48px] sm:h-[50px] lg:h-[54px] border-[1px] border-[#C99237] rounded-[5px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] s1-btn-transparent cursor-pointer">
               <p>Click to know more</p>
@@ -280,8 +280,8 @@ function S2() {
 
           {/* Row 2  */}
           <div className="w-full h-[250px] sm:h-[350px] lg:h-[426px] relative">
-            <Image src={"/home-v3/s2/team-bg.jpeg"} alt="" fill className="object-cover"></Image>
-
+            {/* <Image src={"/home-v3/s2/team-bg.jpeg"} alt="" fill className="object-cover"></Image> */}
+             <Image src={"/home-v3/s2/team-bg1.png"} alt="" fill className="object-cover"></Image> 
 
             <div
               onClick={handlePlayClick}
@@ -408,11 +408,11 @@ function S2() {
         <div className="w-full flex flex-col gap-8 sm:gap-10 lg:gap-12">
           {/* Div 1  */}
           <div className="w-full">
-            <h3 className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left" style={{
+            <h2 className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left" style={{
               fontFamily: 'MontserratBold',
             }}  >
               Choose Your Brand Journey
-            </h3>
+            </h2>
             <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-center md:text-left" style={{
               fontFamily: 'OpenSansRegular',
             }}>
@@ -502,9 +502,9 @@ function S2() {
                     <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px]" style={{
                       fontFamily: 'MontserratRegular',
                     }}>{ob.id}</p>
-                    <h2 className="font-[700] text-[14px] md:text-[24px] xl:text-[30px] " style={{
+                    <h3 className="font-[700] text-[14px] md:text-[24px] xl:text-[30px] " style={{
                       fontFamily: 'OpenSansBold',
-                    }}>{ob.ttl}</h2>
+                    }}>{ob.ttl}</h3>
                   </div>
                 );
               })}

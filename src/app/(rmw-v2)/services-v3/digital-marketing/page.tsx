@@ -8,7 +8,8 @@ import Section7 from "@/components/home-v3/services/layer-1/Section7";
 import Section8 from "@/components/home-v3/services/layer-1/Section8";
 import type { Metadata } from 'next';
 import { readFileSync } from 'fs';
-import { join } from 'path';
+import { join } from 'path'; 
+import { getServiceThirdData } from "@/lib/getServiceThirdLayerData";
 
 type Props = {
     params: {
@@ -18,16 +19,16 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = await params;
-    
+
     try {
         // Read service meta JSON file
         const filePath = join(process.cwd(), 'service_meta.json');
         const fileContents = readFileSync(filePath, 'utf8');
         const serviceMeta = JSON.parse(fileContents);
-        
+
         // Find the service meta data matching the slug
         const serviceData = serviceMeta.find((service: any) => service.slug === slug);
-        
+
         if (!serviceData || !serviceData.meta) {
             // Return default metadata if slug not found
             return {
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         }
 
         const { title, description, keywords } = serviceData.meta;
-        
+
         // Combine primary and secondary keywords
         const allKeywords = [
             keywords.primary,
@@ -71,10 +72,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 }
 
-function Page() {
+async function Page() {
+
+
+
     return (
         <>
-            <Section1 /> 
+            <Section1 />
             <Section2 />
             <Section3 />
             <Section4 />
