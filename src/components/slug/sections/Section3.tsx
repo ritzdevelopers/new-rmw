@@ -55,7 +55,7 @@ function Section3() {
     ]
     const renderItems = () =>
         data.map((itm, idx) => (
-            <h2 key={idx} className="font-[700] text-[100px] flex gap-4">
+            <h2 key={idx} className="m-0 flex shrink-0 gap-2 whitespace-nowrap font-[700] text-[34px] leading-none sm:text-[54px] md:gap-4 md:text-[100px]">
                 {itm.title.split(" ").map((word, i) => (
                     <span key={i} className={i === 0 ? styles.combined : ""}>{word}</span>
                 ))}
@@ -64,13 +64,13 @@ function Section3() {
         ));
 
     return (
-        <section className="w-full py-4 flex justify-center items-center bg-[#F7F7F7]">
+        <section className="flex w-full items-center justify-center overflow-x-hidden bg-[#F7F7F7] py-3 md:py-4">
             {/* Centered Align Container  */}
-            <div className="w-full flex justify-center items-center overflow-hidden">
+            <div className="flex w-full items-center justify-center overflow-hidden">
                 {/* Slides left to right infinitely  */}
-                <div className={`flex justify-center items-center w-full ${styles.s3SlideTrack}`}>
-                    <div className="flex justify-center items-center gap-4">{renderItems()}</div>
-                    <div className="flex justify-center items-center gap-4">{renderItems()}</div>
+                <div className={`flex w-full items-center justify-center ${styles.s3SlideTrack}`}>
+                    <div className="flex items-center justify-center gap-2 md:gap-4">{renderItems()}</div>
+                    <div className="flex items-center justify-center gap-2 md:gap-4">{renderItems()}</div>
                 </div>
             </div>
         </section>

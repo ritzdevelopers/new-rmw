@@ -13,13 +13,13 @@ function Section3() {
             }}
         >
             {/* Centered Align Container   */}
-            <div className={`w-full  flex flex-col md:flex-row justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-4 xl:gap-10 z-20 ${styles.containerWidth}`}>
+            <div className={`w-full  flex flex-col md:flex-row justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-4 xl:gap-10 z-20 `}>
 
                 {/* Left Side Container   */}
                 <div className="relative flex flex-col lg:flex-col justify-between lg:justify-between items-stretch lg:items-center gap-4 lg:gap-10 w-full lg:w-auto order-1 lg:order-none h-full">
 
                     {/* Card 1  */}
-                    <div className="px-6 sm:px-3 lg:px-10 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-[313px] w-full lg:w-[281px] rounded-[15px] sm:rounded-[20px] bg-white
+                    <div className="px-4 sm:px-3 lg:px-10 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-[313px] w-full lg:w-[281px] rounded-[15px] sm:rounded-[20px] bg-white
                      shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] flex flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-8 py-6 sm:py-2 lg:py-0">
 
                         {/* Row 1  */}

@@ -23,7 +23,7 @@ export async function fetchLatestBlogs(): Promise<BLOGSSTRUCTURE[]> {
   try {
     await connectMongoDB();
     // Latest 3 Blogs
-    const latestBlogs = await RitzBlogModel.find()
+    const latestBlogs = await RitzBlogModel.find({blogStatus: true})
       .sort({ createdAt: -1 })
       .limit(3)
       .lean();

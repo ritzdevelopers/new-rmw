@@ -10,13 +10,12 @@ import React from "react";
 import styles from "@/app/(rmw-v2)/page.module.css";
 // import NewYear from "./new-home/sections/NewYear";
 // import PageAnimations from "./components/PageAnimations";
-import { fetchLatestBlogs, fetchSiteBanners, type BLOGSSTRUCTURE, type SITEBANNERSSTRUCTURE } from "@/app/(rmw-v2)/lib/fetchData";
+import { fetchLatestBlogs } from "@/app/(rmw-v2)/lib/fetchData";
 import NewBanner from "@/components/home-v3/NewBanner";
 
 async function HomePage() {
   // Fetch data server-side
-  const latestBlogs = await fetchLatestBlogs();
-  const siteBanners = await fetchSiteBanners();
+  const latestBlogs = await fetchLatestBlogs(); 
   const blogsLoading = latestBlogs.length === 0;
 
   return (
