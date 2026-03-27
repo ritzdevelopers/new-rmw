@@ -8,8 +8,7 @@ import Section7 from "@/components/home-v3/services/layer-1/Section7";
 import Section8 from "@/components/home-v3/services/layer-1/Section8";
 import type { Metadata } from 'next';
 import { readFileSync } from 'fs';
-import { join } from 'path'; 
-import { getServiceThirdData } from "@/lib/getServiceThirdLayerData";
+import { join } from 'path';  
 
 type Props = {
     params: {
