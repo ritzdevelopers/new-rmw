@@ -37,30 +37,30 @@ export default function Section5() {
   return (
     <section className="relative w-full bg-[#FFFFFF] py-10 py-[35px] lg:py-[70px] flex justify-center px-4 sm:px-6 lg:px-0">
       <div className="hidden lg:block absolute right-0 top-10 bottom-0 sm:top-12 sm:bottom-0 md:top-14 md:bottom-0 lg:top-16 lg:bottom-0 left-[45%] bg-[#F7F7F7] z-0" />
-      <div className={`w-full mx-auto overflow-hidden ${styles.containerWidth}`}>
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 xl:gap-10 items-start">
-          <div className="w-full lg:w-[30%] xl:w-[26%] pt-1 mt-0 lg:mt-10 xl:mt-[100px] flex flex-col items-center md:items-center lg:items-start text-center md:text-center lg:text-left">
+      <div className={`w-full mx-auto overflow-x-hidden ${styles.containerWidth}`}>
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 xl:gap-10 items-start lg:items-center xl:items-start">
+          <div className="flex w-full max-lg:mx-auto flex-col items-center text-center lg:w-[30%] lg:items-start lg:text-left xl:w-[26%] pt-1 mt-0 lg:mt-0 xl:mt-[100px]">
             <p
-              className="uppercase text-[#C99237] text-[16px] tracking-wide font-[600]"
+              className="uppercase text-[#C99237] text-[16px] tracking-wide font-[600] leading-[28px]"
               style={{ fontFamily: "OpenSansSemiBold" }}
             >
               Clients Testimonials
             </p>
             <h2
-              className="text-black text-[24px] md:text-[30px] lg:text-[23px]  xl:text-[34px] leading-[1.02] font-[700] mt-1 xl:whitespace-nowrap"
+              className="text-black text-[24px] md:text-[30px] lg:text-[23px]  xl:text-[34px] leading-[1.02] font-[700] mt-3 xl:whitespace-nowrap"
               style={{ fontFamily: "MontserratBold" }}
             >
               What Our Clients Say
             </h2>
             <p
-              className="text-[#1C1C1C] text-[16px] sm:text-[17px] lg:text-[16px] leading-[1.45] mt-3 w-full md:max-w-none lg:max-w-[281px] lg:mx-0"
+              className="text-[#1C1C1C] text-[16px] sm:text-[17px] lg:text-[16px] leading-[1.45] mt-3 w-full max-lg:max-w-none lg:max-w-[281px] lg:mx-0"
               style={{ fontFamily: "OpenSansRegular" }}
             >
               Don&apos;t just take our word for it, hear from the brands we&apos;ve
               helped transform.
             </p>
 
-            <div className="mt-6 flex flex-wrap lg:flex-nowrap gap-3 justify-center md:justify-center lg:justify-start">
+            <div className="mt-6 flex flex-wrap justify-center gap-3 lg:flex-nowrap lg:justify-start">
               <button
                 onClick={() =>
                   window.open("https://ritzmediaworld.com/contact.html", "_blank")
@@ -82,7 +82,7 @@ export default function Section5() {
             </div>
           </div>
 
-          <div className="w-full lg:w-[78%] relative overflow-hidden">
+          <div className="w-full lg:w-[78%] relative overflow-x-hidden">
             <div className="hidden lg:block absolute top-6 right-2 z-20">
               <div className="relative w-[71px] h-[27px]">
                 <Image
@@ -108,6 +108,7 @@ export default function Section5() {
 
             <div className="relative z-10 lg:ml-19 lg:pt-14 w-full">
               <Swiper
+                className="[&_.swiper]:!overflow-visible [&_.swiper-wrapper]:items-stretch"
                 modules={[Autoplay]}
                 onSwiper={(swiper) => {
                   swiperRef.current = swiper;
@@ -124,10 +125,12 @@ export default function Section5() {
                 }}
               >
                 {testimonials.map((item) => (
-                  <SwiperSlide key={item.client} className="!w-full sm:!w-full md:!w-[calc((100%-16px)/2)] lg:!w-[395px]">
-                    <div className="w-full mx-auto lg:mx-0 h-[295px] bg-white rounded-none border-[#E7E7E7] flex flex-col gap-3 px-6 pl-12 pt-12 pb-7 relative text-center lg:text-left" style={{ boxShadow: '0px 2px 15px 0px #D0D0D040' }}>
+                  <SwiperSlide key={item.client} className="!box-border !w-full sm:!w-full md:!w-[calc((100%-16px)/2)] lg:!w-[405px] p-2">
+                    <div
+                      className="relative mx-auto flex h-[330px] w-full flex-col gap-5 bg-white p-6 text-center shadow-[0px_2px_15px_0px_#D0D0D040] rounded-none border-[#E7E7E7] lg:mx-0 lg:gap-3 lg:px-6 lg:pb-7 lg:pl-12 lg:pt-12 lg:text-left"
+                    >
                       <p
-                        className="font-[400] text-[15px] text-[#060606] overflow-y-auto flex-1 min-h-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                        className="font-[400] text-[16px] text-[#060606] leading-[28px] overflow-y-auto flex-1 min-h-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                         style={{ fontFamily: "OpenSansRegular" }}
                       >
                         {item.para}
@@ -149,7 +152,7 @@ export default function Section5() {
                       <img
                         src="/home-v3/exl-icn.png"
                         alt="Quote"
-                        className="absolute top-4 left-4 z-0 w-[32px] h-[28px] object-contain rotate-180"
+                        className="pointer-events-none absolute top-4 left-4 z-0 hidden h-[28px] w-[32px] object-contain rotate-180 lg:block"
                       />
                     </div>
                   </SwiperSlide>
