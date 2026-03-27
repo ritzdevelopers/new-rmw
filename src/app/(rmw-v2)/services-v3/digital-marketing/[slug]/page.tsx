@@ -1,9 +1,14 @@
 import ServiceInner from "@/components/slug/ServiceInner";
-async function Page({params}: {params: {slug: string}}) {
-    const {slug} = await params;
+
+type PageProps = {
+    params: Promise<{ slug: string }>;
+};
+
+async function Page({ params }: PageProps) {
+    const { slug } = await params;
     return (
         <>
-            <ServiceInner slug={slug as string} />
+            <ServiceInner slug={slug} />
         </>
     )
 }

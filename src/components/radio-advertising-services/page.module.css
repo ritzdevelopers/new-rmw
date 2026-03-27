@@ -213,3 +213,10 @@
 .bookOpenRight {
     transform: rotateY(0deg);
 }
+
+@media (min-width: 1024px) {
+  .cardSection {
+    padding-left: 41px!important;
+    padding-right: 41px!important;
+  }
+}

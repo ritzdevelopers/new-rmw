@@ -30,9 +30,9 @@ function Section7() {
         
     ]
     return (
-        <section className="w-full flex justify-center items-center sm:pt-0 md:pt-0 lg:pt-[70px]">
+          <section className="w-full flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-[70px]">
             {/* Centered Align Container  */}
-            <div className={`w-full flex flex-wrap justify-center items-center gap-4 ${styles.containerWidth} ${styles.awardsContainer}`}>
+            <div className={`w-full flex flex-wrap justify-center items-center gap-x-4 gap-y-8 ${styles.containerWidth} ${styles.awardsContainer}`}>
                 {/* Card 1  */}
                 <div className="w-[406px] lg:h-[360px] xl:h-[414px] h-[414px] border-[1px] border-[#D4D4D4] relative p-4">
                     {/* Absolute Image 1  */}

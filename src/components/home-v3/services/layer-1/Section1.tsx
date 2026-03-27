@@ -5,12 +5,12 @@ import styles from "./page.module.css";
 export default function Section1() {
     return (
         <section className={`w-full h-[460px] md:min-h-[360px] lg:min-h-[515px] 
-        md:bg-[url("/service-v3/layer1/s1/rmw-digital-mimg2.jpg")] 
-        bg-[url("/service-v3/layer1/s1/dm-mob-banner1-1.jpg")]
+        md:bg-[url("/alishba-services-v3/digital-marketing/Digital-Marketing-banner.png")] 
+        bg-[url("/alishba-services-v3/digital-marketing/Digital-Marketing-banner-mob.png")]
         bg-cover bg-no-repeat bg-center flex items-center md:items-end pb-8 sm:pb-4 lg:pb-22
          xl:pb-20 px-0`}>
             <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-none">
-                <div className="sm:w-[225px] w-[200px] lg:w-[283px] h-[28px] sm:h-[32px] md:h-[35px] lg:h-[37px] relative">
+                <div className="sm:w-[225px] w-[200px] lg:w-[283px] h-[28px] sm:h-[32px] md:h-[35px] lg:h-[37px] relative hidden lg:block">
                     <Image
                         src="/home-v3/service-imgs/s1/yellow-reactangle.png"
                         alt="RMW"
@@ -23,11 +23,11 @@ export default function Section1() {
                         digital marketing
                     </p>
                 </div>
-                <div className="pl-4 md:pl-8 lg:pl-16">
+               <div className="pl-5 md:pl-9 lg:pl-10 xl:pl-12 pb-[58px] lg:pb-0">
                     <p className={`font-[500] text-[14px] sm:text-[16px] not-last-of-type: lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontopensans}`}>
                         High-Impact Digital Marketing Solutions
                     </p>
-                    <h1 className={`font-[800] text-[28px] sm:text-[36px] md:text-[31px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-18 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
+                    <h1 className={`font-[800] text-[26px] sm:text-[36px] md:text-[31px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-18 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
                     Where Ideas Become <br /> Digital Success
                     </h1>
                 </div>

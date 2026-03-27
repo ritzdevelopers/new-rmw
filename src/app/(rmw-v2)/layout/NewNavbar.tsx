@@ -545,15 +545,6 @@ function NewNavbar() {
     };
   }, [isMobileMenuOpen, isMobileServicesOpen]);
 
-
-  const [isHomePage, setIsHomePage] = useState(false);
-  useEffect(() => {
-    if (window.location.pathname === "/") {
-      setIsHomePage(true);
-    } else {
-      setIsHomePage(false);
-    }
-  }, [window.location.pathname])
   return (
     <>
       {/* Desktop Navbar - Only visible on lg and above */}

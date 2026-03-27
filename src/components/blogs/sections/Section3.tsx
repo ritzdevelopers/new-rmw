@@ -173,12 +173,12 @@ function Section3() {
     return (
         <section className="w-full bg-white pb-[70px] flex flex-col gap-12">
             {/* Row 2  */}
-            <div className={`w-full flex ${styles.containerWidth} flex-col xl:flex-row justify-between gap-6`}>
+            <div className={`w-full flex ${styles.containerWidth} flex-col lg:flex-row justify-between gap-6`}>
                 {/* Left Side Container  */}
-                <div className="w-full xl:flex-1 min-h-[500px] xl:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
+                <div className="w-full xl:w-full lg:w-[50%] xl:flex-1 min-h-[500px] xl:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
                     <div className="text-center md:text-left mb-2 md:mb-0">
                         <p
-                            className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237]"
+                            className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-[#C99237]"
                             style={{
                                 fontFamily: "OpenSansSemiBold",
                             }}
@@ -186,7 +186,7 @@ function Section3() {
                             Free Resource
                         </p>
                         <h2
-                            className="font-[700] text-[21px]  lg:text-[36px]"
+                            className="font-[700] text-[21px]  lg:text-[22px] xl:text-[36px]"
                             style={{
                                 fontFamily: "MontserratBold",
                             }}
@@ -199,7 +199,7 @@ function Section3() {
                     </p>
 
                     <p
-                        className="font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-2 md:mb-0"
+                        className="font-[400] text-[13px]  lg:text-[15px] xl:text-[16px] text-center md:text-left mb-2 md:mb-0"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -208,7 +208,7 @@ function Section3() {
                     </p>
 
                     <ul
-                        className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
+                        className="font-[400] text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -220,7 +220,7 @@ function Section3() {
                     </ul>
 
                     <form onSubmit={handleDownload} className="flex flex-col gap-4">
-                        <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-3">
+                        <div className="flex flex-col xl:flex-row justify-between gap-3 sm:gap-3 md:p-0 p-2">
                             <div className="flex-1 relative">
                                 <input
                                     type="tel"
@@ -229,7 +229,7 @@ function Section3() {
                                     onBlur={handlePhoneBlur}
                                     placeholder="Enter your phone (e.g., +91 9220516777)"
                                     required
-                                    className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
+                                    className={`w-full xl:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
                                         ? "border-[#EF4444]"
                                         : "border-[#DAD4D4]"
                                         }`}
@@ -244,7 +244,7 @@ function Section3() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full sm:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full xl:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
                                 style={{
                                     fontFamily: "PoppinsRegular",
                                 }}
@@ -265,9 +265,9 @@ function Section3() {
                 </div>
 
                 {/* Right Side Container  */}
-                <div className="w-full lg:w-[48%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
+                <div className="w-full lg:w-[50%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4 md:px-6">
                     <h2
-                        className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left"
+                        className="font-[700] text-[24px] sm:text-[28px] lg:text-[22px] xl:text-[36px] text-center md:text-left"
                         style={{
                             fontFamily: "MontserratBold",
                         }}
@@ -276,7 +276,7 @@ function Section3() {
                     </h2>
 
                     <p
-                        className="font-[400] text-[14px] md:text-[15px] lg:text-[16px] text-center md:text-left"
+                        className="font-[400] text-[14px] md:text-[15px] lg:text-[15px] xl:text-[16px] text-center md:text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -286,7 +286,7 @@ function Section3() {
                     </p>
 
                     <ul
-                        className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-center md:text-left"
+                        className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[15px] xl:text-[16px] text-center md:text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -301,7 +301,7 @@ function Section3() {
                         <Link
                             href={"https://ritzmediaworld.com/contact.html"}
                             target="_blank"
-                            className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black"
+                            className="font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-black"
                             style={{
                                 fontFamily: "MontserratSemiBold",
                             }}

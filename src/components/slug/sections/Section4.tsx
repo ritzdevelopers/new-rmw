@@ -3,41 +3,41 @@ import styles from "./page.module.css"
 
 function Section4() {
     return (
-        <section className="w-full py-[70px] flex justify-center items-center">
+        <section className="flex w-full items-center justify-center pt-10 lg:pt-[70px]">
             {/* Centered Align Container  */}
-            <div className={`w-full flex flex-col-reverse lg:flex-row  justify-between items-center lg:items-stretch lg:gap-4 gap-12 ${styles.containerWidth}`}>
+            <div className={`flex w-full flex-col-reverse items-center justify-between gap-8 md:gap-12 lg:flex-row lg:items-stretch lg:gap-4 ${styles.containerWidth}`}>
                 {/* Left Side Container  */}
-                <div className="xl:w-[603px] xl:h-[566px] lg:w-[500px] lg:h-[480px] shrink-0 relative w-full h-[615px]">
+                <div className="relative w-full shrink-0 max-md:h-auto max-md:aspect-[603/566] md:h-[615px] lg:w-[500px] lg:h-[480px] xl:w-[603px] xl:h-[566px]">
                     <Image src={'/slug/s3/seo-s3-img1.jpg'} fill alt="SEO"></Image>
                 </div>
 
                 {/* Right Side Container — stretches to row height (matches tallest sibling) */}
-                <div className="flex min-h-0 flex-1 flex-col items-start justify-between self-stretch lg:max-w-[593px] w-full gap-4 lg:gap-0">
+                <div className="flex min-h-0 flex-1 flex-col items-start justify-between self-stretch lg:max-w-[593px] w-full gap-4 lg:gap-6">
                     {/* Row 1  */}
-                    <div>
-                        <h2 className={`font-[700] xl:text-[36px] text-[23px]  ${styles.fontmontserrat}`}>We’re Award-Winning Development Agencies</h2>
-                        <p className={`font-[400] xl:text-[16px] text-[14px]  ${styles.fontpoppins}`}>
+                    <div className="flex flex-col gap-2">
+                        <h2 className={`font-[700] text-center md:text-left xl:text-[36px] text-[23px] md:text-[28px] ${styles.fontmontserrat}`}>We’re Award-Winning Development Agencies</h2>
+                        <p className={`font-[400] text-center md:text-left xl:text-[16px] text-[14px] lg:text-[13px]  xl:leading-[28px]  ${styles.fontpoppins}`}>
                             We’ve held hands with budding brands that have shattered sealings of convention. With us behind them, they have achieved great feats in their industry and went on to dominate their competition.
                         </p>
                     </div>
 
                     {/* Row 2  */}
-                    <div className="flex justify-between lg:gap-2 gap-8">
-                        <div>  <img src="/services-v3-slug/s4/17_plus.png" alt="" className="xl:w-[429px] w-[300px] h-auto" /></div>
+                    <div className="flex items-center gap-5 flex-row md:justify-between md:gap-8 lg:gap-2 xl:gap-12">
+                        <div>  <img src="/services-v3-slug/s4/17_plus.png" alt="" className="h-auto w-[220px] md:w-[300px] xl:w-[429px]" /></div>
 
                         <div className="flex flex-col   justify-center items-center">
-                            <h4 className={`font-[600] text-[50px] ${styles.fontmontserrat}`}>300+</h4>
+                            <h4 className={`font-[600] text-[40px] md:text-[50px] ${styles.fontmontserrat}`}>300+</h4>
                             <p className={`font-[400] text-[14px] ${styles.fontopensans}`}>Successful Projects</p></div>
                     </div>
 
                     {/* Row 3  */}
                     <div className="w-full flex flex-col gap-4 justify-between">
-                        <ul className={`font-[400] text-[14px] list-none md:list-disc pl-4 flex flex-col gap-2 xl:gap-3  text-center md:text-left mb-4 md:mb-0 [&>li::marker]:text-[20px] ${styles.fontpoppins}`}>
+                        <ul className={`font-[400] text-[14px] lg:text-[13px] xl:text-[14px] list-none md:list-disc pl-4 flex flex-col xl:gap-1  text-center md:text-left mb-4 md:mb-0 [&>li::marker]:text-[20px] ${styles.fontpoppins}`}>
                             <li>Your site will be more accessible & visible with creative optimization</li>
                             <li>Optimize your web pages to boost brand rankings</li>
                             <li>Increase your sales with high-quality SEO customized services</li>
                         </ul>
-                        <div>
+                        <div className="flex justify-center md:justify-start">
                             <button className="flex justify-between items-center gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
                                 <p className={`font-[500] text-[18px] ${styles.fontmontserrat}`}>More about us</p>
                                 <div className="w-[40px] h-[40px] bg-[#C99237] rounded-full flex justify-center items-center">
