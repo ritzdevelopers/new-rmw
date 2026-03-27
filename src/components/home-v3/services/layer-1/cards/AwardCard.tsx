@@ -15,8 +15,8 @@ function AwardCard({ img, title, description }: { img: string, title: string, de
             </div>
 
             {/* Bottom Row For Description */}
-            <div className="w-full bg-white border-[1px] border-[#D4D4D4] h-[86px] p-4 xl:px-6">
-                <p className={`font-[500] text-[16px] lg:text-[14px] xl:text-[16px] text-black ${styles.fontpoppins}`}>{description}</p>
+            <div className="w-full bg-white border-[1px] border-[#D4D4D4] h-[86px] p-4 xl:px-8">
+                <p className={`font-[500] text-[16px] lg:text-[14px] xl:text-[16px] text-black py-2${styles.fontpoppins}`}>{description}</p>
             </div>
 
         </div>
