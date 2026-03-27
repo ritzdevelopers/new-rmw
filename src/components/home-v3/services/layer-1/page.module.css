@@ -86,38 +86,11 @@
 
 /* Section4 Cards Container - 3 cards per row on lg screens */
 .cardsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: stretch;
 }
 
-/* For md to lg: Make cards take 50% width (2 per row) */
-/* Gap is 1.5rem (24px) at md, so 1 gap = 24px between 2 cards */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .cardsContainer :global(article) {
-    width: calc((100% - 1.5rem) / 2) !important;
-    max-width: calc((100% - 1.5rem) / 2) !important;
-    flex: 0 0 calc((100% - 1.5rem) / 2) !important;
-  }
-}
-
-/* For lg to 1360px: Make cards take ~33.33% width (3 per row) */
-/* Gap is 2rem (32px) at lg, so 2 gaps = 64px between 3 cards */
-@media (min-width: 1024px) and (max-width: 1359px) {
-  .cardsContainer :global(article) {
-    width: calc((100% - 4rem) / 3) !important;
-    max-width: calc((100% - 4rem) / 3) !important;
-    flex: 0 0 calc((100% - 4rem) / 3) !important;
-  }
-}
-
-/* After 1360px: Keep original fixed width styling */
-@media (min-width: 1360px) {
-  .cardsContainer :global(article) {
-    width: 390px !important;
-    max-width: 390px !important;
-    flex: 0 0 390px !important;
-  }
+.cardsContainer :global(article) {
+  height: 100%;
 }
 
 /* Section7 Awards Container - Responsive cards */
