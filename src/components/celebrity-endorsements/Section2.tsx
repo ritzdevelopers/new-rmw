@@ -8,7 +8,7 @@ const EXPLORE_ARROW_IMAGE =
 
 export default function Section2() {
   return (
-    <section className="w-full bg-white py-[35px] lg:pt-[70px] border-b border-[#E6E3E3] px-4 sm:px-6 lg:px-0">
+    <section className="w-full bg-white py-[35px] lg:pt-[70px] border-b border-[#E6E3E3] px-5 sm:px-6 lg:px-0">
       <div
         className={`w-full mx-auto flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10 overflow-hidden ${styles.containerWidth}`}
       >

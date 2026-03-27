@@ -724,7 +724,7 @@ function Section3({ servicesData }: Section3Props) {
                                     fontFamily: "MontserratBold",
                                 }}
                             >
-                                2026 Brand Impact Repor
+                                2026 Brand Impact Report
                             </h2>
                         </div>
                         <p className="font-[700] text-[16px] lg:text-[24px] text-[#0F1640] text-left md:text-left mb-2 xl:mb-0">

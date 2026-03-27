@@ -1,9 +1,10 @@
 import Image from "next/image";
 import BrandThatTrustUs from "@/components/influencer-marketing-agency-in-india/BrandThatTrustUs";
 import styles from "./page.module.css";
+
 import ClientTestimonials from "@/components/influencer-marketing-agency-in-india/Section5";
-import CelebritySection5 from "@/components/celebrity-endorsements/Section5";
-import Section8 from "../influencer-marketing-agency-in-india/Section8";
+import FormComponent from "./Form-component";
+
 
 const cards = [
   {
@@ -34,6 +35,8 @@ const cards = [
 
 const rampOffsets = ["lg:mt-[180px]", "lg:mt-[120px]", "lg:mt-[60px]", "lg:mt-[0px]"];
 
+
+
 export default function Section4() {
   return (
     <section className="w-full bg-white py-14 sm:py-16 md:py-20 overflow-x-hidden flex flex-col items-center">
@@ -41,7 +44,7 @@ export default function Section4() {
         className={`w-full mx-auto px-4 sm:px-6 lg:px-0 ${styles.containerWidth}`}
       >
         <h2
-          className="text-center text-black font-[700] text-[24px] sm:text-[44px] md:text-[36px] lg:text-[36px] leading-[1.1]"
+          className="text-center text-black font-[700] text-[24px] sm:text-[44px] md:text-[36px] lg:text-[36px] leading-[48px]"
           style={{ fontFamily: "MontserratBold" }}
         >
           Why Celebrity
@@ -64,7 +67,7 @@ export default function Section4() {
                   ) : (
                     <div className="hidden lg:block absolute left-0 top-0 h-[calc(100%+58px)] w-[0.5px] min-w-[0.5px] bg-[#E3E0E0]" />
                   )}
-                  <div className="mb-4 max-md:mx-auto md:mx-0 max-lg:w-[35px] max-lg:max-w-[35px] max-lg:shrink-0 lg:mb-0 lg:absolute lg:left-0 lg:top-[-33px] lg:-translate-x-1/2">
+                  <div className="hidden lg:block lg:mb-0 lg:absolute lg:left-0 lg:top-[-33px] lg:-translate-x-1/2">
                     <img
                       src={card.icon}
                       alt=""
@@ -138,23 +141,18 @@ export default function Section4() {
         <ClientTestimonials />
       </div>
 
-      <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center px-4 sm:px-6 lg:px-0">
+      <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-10 flex justify-center px-4 sm:px-6 lg:px-0">
         <div className={`w-full mx-auto flex items-center justify-center text-center ${styles.containerWidth}`}>
           <h3
-            className="text-white font-[600] text-[18px] sm:text-[26px] md:text-[20px] leading-tight"
+            className="text-white font-[600] text-[18px] sm:text-[26px] md:text-[20px] lg:text-[28px] leading-tight"
             style={{ fontFamily: "MontserratSemiBold" }}
           >
             Ready to Leverage Star Power into Real Business Results?
           </h3>
         </div>
       </section>
-
-      <div className="w-full">
-        <CelebritySection5 />
-      </div>
-
-      <div className="w-full">
-        <Section8 />
+ <div className=" pt-[35px] lg:pt-[70px]">
+      <FormComponent />
       </div>
     </section>
   );

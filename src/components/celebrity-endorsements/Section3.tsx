@@ -20,42 +20,42 @@ const servicesData: ServiceItem[] = [
   {
     id: "01",
     title: "Celebrity Identification",
-    image:
-      "/varun/celebrity-endorsements/Celebrity%20Identification.jpg",
+    image: "/varunimage/Celebrity-Identification-celebrity.jpg",
     description:
       "Choosing the right celebrity endorsement isn't luck, it's strategy. At Ritz Media World, we identify celebrities for brand endorsement which bears an image, values, and fan following that fully coincides with your brand. We make sure that every recommendation we offer is authentic, credible, conversion focused, turning celebrity fans into lifelong customers of your brand.",
   },
   {
     id: "02",
     title: "Contract Negotiations",
+    image: "/varunimage/Contract-%20Negotiations-celebrity.jpg",
     description:
       "Convincing celebrities to endorse is more precise than it is flair and showmanship. The professionals on our team offer you the best deal possible, managing costs and ensuring that every partnership is one of maximum value and minimum risk.",
   },
   {
     id: "03",
     title: "Campaign Integration",
-    image: "/varun/celebrity-endorsements/Campaign%20Integration.jpg",
+    image: "/varunimage/Campaign-Integration-celebrity.jpg",
     description:
       "Celebrity endorsements are pivotal when they seamlessly integrate. We utilize celebrity endorsements in all marketing channels to enhance effectiveness. We infuse the personality of a celebrity in all your advertising – digital, prints, radio, events and more – to make your investment of a celebrity 100 times effective.",
   },
   {
     id: "04",
     title: "Creative Collaboration",
-    image:
-      "/varun/celebrity-endorsements/Creative%20Collaboration.jpg",
+    image: "/varunimage/Creative-%20Collaboration-celebrity.jpg",
     description:
       "Celebrities can tell great stories that can influence people. Our in-house creative team collaborates with the best to create endorsement campaigns that are authentic, engaging, and build brand trust. Every collaboration is carefully designed to take advantage of the celebrity figure and transform the admiration into action by loyal customers. This effect creates measurable results.",
   },
   {
     id: "05",
     title: "Public Relations",
+    image: "/varunimage/Public-Relations-celebrity.jpg",
     description:
       "Most effective celebrity endorsements are global and integrated across all touch points. We deliver powerful celebrity campaigns that deliver effective ROI across a broad range of platforms from digital and social media to print, events and radio.",
   },
   {
     id: "06",
     title: "Legal Compliance",
-    image: "/varun/celebrity-endorsements/Legal%20Compliance.jpg",
+    image: "/varunimage/Legal-Compliance%20-celebrity.jpg",
     description:
       "Careful attention to detail makes a good celebrity endorsement campaign. At Ritz Media World, we handle the legalities involved in making sure that your brand is legally protected. Every celebrity endorsement campaign will be beneficial for your brand, transparent and risk-free thanks to our attention to detail.",
   },

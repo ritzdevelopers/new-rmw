@@ -40,7 +40,7 @@ export default function Section1() {
               </span>
             </span>
             <p
-              className={`font-[500] mt-2 lg:mt-5 xl:mt-2 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-tight sm:leading-snug md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`}
+              className={`font-[500] mt-2 lg:mt-5 xl:mt-2 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-[25px] sm:leading-snug md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`}
               style={{ fontFamily: "MontserratMedium" }}
             >
               Talent selection to campaign execution, we build brand engagement,

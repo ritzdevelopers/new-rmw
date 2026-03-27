@@ -2,9 +2,9 @@
 import { Download } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from './page.module.css';
-import styles2 from './page.module.css';
-function    Section8() {
+import styles from "@/components/home-v3/services/layer-1/page.module.css";
+import styles2 from "@/components/home-v3/services/layer-1/page.module.css";
+function    FormComponent() {
     const [loader, setLoader] = useState<boolean>(true);
     const [phone, setPhone] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -385,39 +385,40 @@ function    Section8() {
                 </div>
 
                 {/* Row 3  */}
-                <div className={`w-full flex justify-center items-center `}>
-                    {/* Center Align Container  */}
-                    <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
-                        <h2
-                            className="font-[800] text-[19px] md:text-[28px] lg:text-[36px]"
-                            style={{
-                                fontFamily: "MontserratExtraBold",
-                            }}
-                        >
-                            Ready to Elevate Your Brand?
-                        </h2>
-                        <p
-                            className="font-[400] text-[16px] md:text-[24px] lg:text-[30px]"
-                            style={{
-                                fontFamily: "OpenSansRegular",
-                            }}
-                        >
-                            Let's discuss your next brand-elevating campaign
-                        </p>
-                        <button
-                            onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}
-                            className="w-full sm:w-[260px] lg:w-[282px] h-[48px] sm:h-[50px] lg:h-[54px] mt-4 bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] rounded-[5px] hover:bg-[#B8822F] transition-colors  s1-btn-gold"
-                            style={{
-                                fontFamily: "OpenSansBold",
-                            }}
-                        >
-                            <p className="text-white">Schedule Free Consultation</p>
-                        </button>
-                    </div>
-                </div>
+             
+                <section className="w-full bg-[#FFFFFF] flex justify-center">
+      <div className={`w-full max-w-[1300px] mx-auto text-center flex flex-col items-center ${styles.containerWidth}`}>
+        <h2
+          className="text-black font-[700] text-[20px] sm:text-[20px] md:text-[28px] lg:text-[36px] leading-tight"
+          style={{ fontFamily: "MontserratBold" }}
+        >
+          Ready to Elevate Your Brand?
+        </h2>
+        <p
+          className="text-black text-[18px] sm:text-[18px] md:text-[24px] lg:text-[26px] leading-[1.35] mt-2 sm:mt-3"
+          style={{ fontFamily: "PoppinsRegular" }}
+        >
+          Let&apos;s discuss your next brand-elevating campaign
+        </p>
+
+        <Link
+          href="https://ritzmediaworld.com/contact.html"
+          target="_blank"
+          className="mt-7 sm:mt-8 md:mt-10 inline-flex items-center gap-5 border-b border-black pb-2 text-black font-[600] text-[18px] sm:text-[20px] md:text-[26px] lg:text-[16px] leading-none"
+          style={{ fontFamily: "MontserratSemiBold" }}
+        >
+          <span>Schedule Free Consultation</span>
+          <img
+              src="/home-v3/s3/rhgt.png"
+              alt=""
+              className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
+            />
+        </Link>
+      </div>
+    </section>
             </div>
         </section>
     )
 }
 
-export default Section8;
+export default FormComponent;
