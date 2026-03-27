@@ -16,7 +16,7 @@ function Section3() {
             link: "/services-v3/contents-marketing/content-marketing",
         },
         {
-            image: "/service-v3/content-marketing/s3/ctm-s3-i2-new.jpg",
+            image: "/alishba-services-v3/content-marketing/email-newslater.png",
             title: "Email and Newsletter <br /> Marketing",
             activeCardTitle:"Email and Newsletter Marketing",
             desc: "Boost your business to the next level with our email marketing and newsletters solutions. We design customized email marketing campaigns that not only engage your subscribers but also help you generate high conversions. From automated campaigns or a promotional newsletter, our approach ensures that every email gives you a measurable return on investment (ROI).",
@@ -49,7 +49,7 @@ function Section3() {
                 <h2
                     className={`font-[700] text-[22px] text-center sm:text-[36px]  ${styles.fontmontserrat}`}
                 >
-                    What We Provider
+                    What We Provide
                 </h2>
                 <p className={`font-[400] text-[16px] pt-3 ${styles.fontopensans}`}>
                     Is more than what you’ll ever need

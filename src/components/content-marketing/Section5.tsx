@@ -13,7 +13,7 @@ function Section5() {
                     <div className="w-full flex flex-col gap-3 items-center">
                         <h6 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Increase Organic Traffic</h6>
                         <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>SEO is a key factor for your website to get ranked in the search engines and if that happens, more people looking for answers will be able to find your page.</p>
-                        <img src="/service-v3/content-marketing/s5/s5-i1.jpg" alt="Why Content Marketing Matters" className="w-full h-auto object-cover rounded-lg" />
+                        <img src="/alishba-services-v3/content-marketing/lead-generation.png" alt="Why Content Marketing Matters" className="w-full h-auto object-cover rounded-lg" />
                     </div>
                     <div className="w-full flex flex-col gap-2 py-4 items-center">
                         <h6 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Build Trust & Authority</h6>
@@ -62,7 +62,7 @@ function Section5() {
                             </p>
                         </div>
                         <div className={`w-full md:flex-1 xl:h-[252px] min-w-0 ${styles.s5Card}`}>
-                            <img src="/service-v3/content-marketing/s5/s5-i1-new.jpg" alt="Why Content Marketing Matters" className="w-full h-full lg:h-auto xl:h-full object-cover" />
+                            <img src="/alishba-services-v3/content-marketing/lead-generation.png" alt="Why Content Marketing Matters" className="w-full h-full lg:h-auto xl:h-full object-cover" />
                         </div>
                     </div>
 
