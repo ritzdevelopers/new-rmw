@@ -17,7 +17,7 @@ function Layer1Card({ item, idx }: { item: Item, idx: number }) {
     const { title, description, image, link, meta_titles, meta_description, meta_keywords } = item;
     return (
         <article 
-            className="w-full sm:w-[calc(50%-8px)] lg:w-[390px] h-full flex flex-col justify-between gap-4"
+            className="w-full max-w-[390px] h-full flex flex-col justify-between gap-4"
             itemScope 
             itemType="https://schema.org/Service"
             aria-label={meta_titles || title}

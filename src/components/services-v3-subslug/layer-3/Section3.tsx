@@ -76,7 +76,7 @@ export default function Section3() {
             is more than what you&apos;ll ever need
           </p>
         </div>
-
+        w-full flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10
         <div className="h-px w-full bg-[#AAA8A8] mb-8 sm:mb-10 md:mb-12" />
 
         <div className="space-y-4">
@@ -84,10 +84,10 @@ export default function Section3() {
             const isOpen = openItem === item.label;
             const shapeSrc =
               index === 0 ? "/services-v3-slug/yellow-rectangle-accordion.png" :
-              index === 1 ? "/services-v3-slug/accordion-shape-2.png" :
-              index === 2 ? "/services-v3-slug/accordion-shape-3.png" :
-              index === 3 ? "/services-v3-slug/accordion-shape-4.png" :
-              "/services-v3-slug/accordion-shape-5.png";
+                index === 1 ? "/services-v3-slug/accordion-shape-2.png" :
+                  index === 2 ? "/services-v3-slug/accordion-shape-3.png" :
+                    index === 3 ? "/services-v3-slug/accordion-shape-4.png" :
+                      "/services-v3-slug/accordion-shape-5.png";
 
             return (
               <div key={item.label} className="border-b border-[#AAA8A8] pb-4">
