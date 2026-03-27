@@ -24,7 +24,7 @@ function Section4() {
                 </div>
 
                 {/* Row 2 For Cards  */}
-                <div className={`w-full flex justify-center flex-wrap items-stretch gap-3 sm:gap-4 md:gap-6 lg:gap-8 ${styles.cardsContainer}`}>
+                <div className={`w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr justify-items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 ${styles.cardsContainer}`}>
                     {
                         data.map((item: Item, idx: number) => {
                             return (

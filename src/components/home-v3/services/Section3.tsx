@@ -719,7 +719,7 @@ function Section3({ servicesData }: Section3Props) {
                                 Free Resource
                             </p>
                             <h2
-                                className="font-[700] text-[21px] text-[#0F1640] lg:text-[36px]"
+                                className="font-[700] text-[21px] text-[#0F1640] lg:text-[24px] xl:text-[36px]"
                                 style={{
                                     fontFamily: "MontserratBold",
                                 }}
@@ -798,9 +798,9 @@ function Section3({ servicesData }: Section3Props) {
                     </div>
 
                     {/* Right Side Container  */}
-                    <div className="w-full lg:w-[48%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
+                    <div className="w-full lg:w-[48%] xl:w-[603px]  border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
                         <h2
-                            className="font-[700] text-[24px] text-[#0F1640] sm:text-[28px] lg:text-[36px] text-left md:text-left"
+                            className="font-[700] text-[21px] text-[#0F1640] sm:text-[28px] lg:text-[26px] xl:text-[34px] text-left md:text-left"
                             style={{
                                 fontFamily: "MontserratBold",
                             }}

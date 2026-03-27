@@ -790,3 +790,9 @@ h3 {
 .spin-slow {
   animation: spinSlow 20s linear infinite;
 }
+/* @media (min-width: 1024px) {
+  .cardSection {
+    margin-left: 41px!important;
+    margin-right: 41px!important;
+  }
+} */
