@@ -76,7 +76,7 @@ export default function Section3() {
             is more than what you&apos;ll ever need
           </p>
         </div>
-        w-full flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10
+
         <div className="h-px w-full bg-[#AAA8A8] mb-8 sm:mb-10 md:mb-12" />
 
         <div className="space-y-4">
@@ -114,7 +114,7 @@ export default function Section3() {
                   <div className="pt-6 sm:pt-8">
                     <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-14 justify-center">
                       <div className="relative w-full sm:w-auto lg:max-w-[430px] xl:max-w-[480px] flex justify-center lg:justify-start">
-                        <div className="absolute left-[6px] sm:left-[10px] md:left-[4px] lg:left-[5px] top-[6px] w-[92px] sm:w-[105px] md:w-[120px] lg:w-[298px] h-[210px] sm:h-[232px] md:h-[246px] lg:h-[345px] z-0">
+                        <div className="absolute left-[6px] sm:left-[10px] md:left-[0px] lg:left-[0px] top-[18px] w-[92px] sm:w-[105px] md:w-[120px] lg:w-[337px] h-[210px] sm:h-[232px] md:h-[246px] lg:h-[337px] z-0">
                           <Image
                             src={shapeSrc}
                             alt=""
@@ -122,12 +122,13 @@ export default function Section3() {
                             className="object-contain"
                           />
                         </div>
-                        <div className="relative w-[364px] h-[392px] mx-auto lg:mx-9 z-[1]">
+                        <div className="relative w-[391px] h-[349px] mx-auto lg:mx-0 z-[1]">
                           <Image
                             src={item.imageSrc}
                             alt={item.label}
                             fill
-                            className="object-cover"
+                            className="object-contain"
+                            sizes="388px"
                           />
                         </div>
                       </div>

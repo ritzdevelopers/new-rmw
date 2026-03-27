@@ -7,8 +7,8 @@ const EXPLORE_ARROW_IMAGE =
 
 export default function Section2() {
   return (
-    <section className="w-full flex items-center justify-center py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
-      <div className={`w-[92%] sm:w-[85%] md:w-[80%] lg:w-[70%] text-center mx-auto`}>
+    <section className="w-full flex items-center justify-center py-12 sm:py-16 md:py-16 lg:py-20 bg-white">
+      <div className={`w-[92%] sm:w-[85%] md:w-[80%] lg:w-[68%] text-center mx-auto`}>
         <h2
           className="text-black font-[800] text-[22px] sm:text-[26px] md:text-[28px] lg:text-[30px] leading-[1.3] sm:leading-tight"
           style={{ fontFamily: "MontserratBold" }}
@@ -37,9 +37,9 @@ export default function Section2() {
           </p>
         </div>
 
-        <div className="mt-8 sm:mt-10 md:mt-12 flex items-center justify-center gap-4">
+        <div className="mt-8 sm:mt-5 md:mt-7 flex items-center justify-center gap-4">
           <span
-            className="text-black text-[15px] sm:text-[16px] md:text-[17px]"
+            className="text-black text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px]"
             style={{ fontFamily: "MontserratMedium" }}
           >
             Contact us
