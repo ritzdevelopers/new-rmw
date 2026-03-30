@@ -53,7 +53,7 @@ export default function Section5() {
               What Our Clients Say
             </h2>
             <p
-              className="text-[#1C1C1C] text-[16px] sm:text-[17px] lg:text-[16px] leading-[1.45] mt-3 w-full max-lg:max-w-none lg:max-w-[281px] lg:mx-0"
+              className="text-[#00000] text-[16px] sm:text-[17px] lg:text-[16px] leading-[1.45] mt-3 w-full max-lg:max-w-none lg:max-w-[281px] lg:mx-0"
               style={{ fontFamily: "OpenSansRegular" }}
             >
               Don&apos;t just take our word for it, hear from the brands we&apos;ve

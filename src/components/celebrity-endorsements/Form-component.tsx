@@ -253,7 +253,7 @@ function    FormComponent() {
                                 Free Resource
                             </p>
                             <h2
-                                className="font-[700] text-[21px] text-[#0F1640] lg:text-[24px] xl:text-[36px]"
+                                className="font-[700] text-[21px] text-[#00000] lg:text-[24px] xl:text-[36px]"
                                 style={{
                                     fontFamily: "MontserratBold",
                                 }}
@@ -261,12 +261,12 @@ function    FormComponent() {
                                 2026 Brand Impact Report
                             </h2>
                         </div>
-                        <p className="font-[700] text-[16px] lg:text-[24px] text-[#0F1640] text-left md:text-left mb-2 xl:mb-4">
+                        <p className="font-[700] text-[16px] lg:text-[24px] text-[#00000] text-left md:text-left mb-2 xl:mb-4">
                             Download Our
                         </p>
 
                         <p
-                            className="font-[400] text-[13px]  lg:text-[14px] text-[#0F1640] text-left md:text-left mb-4 xl:mb-0"
+                            className="font-[400] text-[13px]  lg:text-[14px] text-[#000000] text-left md:text-left mb-4 xl:mb-0"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -275,7 +275,7 @@ function    FormComponent() {
                         </p>
 
                         <ul
-                            className="font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] list-disc px-4 flex flex-col gap-2 sm:gap-3 text-left md:text-left mb-5 xl:mb-5"
+                            className="font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#000000] list-disc px-4 flex flex-col gap-2 sm:gap-3 text-left md:text-left mb-5 xl:mb-5"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -296,7 +296,7 @@ function    FormComponent() {
                                         onBlur={handlePhoneBlur}
                                         placeholder="Enter your phone (e.g., +91 9220516777)"
                                         required
-                                        className={`w-full xl:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#0F1640] text-[#0F1640] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
+                                        className={`w-full xl:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#0F1640] text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
                                             ? "border-[#EF4444]"
                                             : "border-[#DAD4D4]"
                                             }`}
@@ -343,7 +343,7 @@ function    FormComponent() {
                         </h2>
 
                         <p
-                            className="font-[400] text-[14px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
+                            className="font-[400] text-[14px] md:text-[14px] lg:text-[14px] text-[#00000] text-left md:text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -353,7 +353,7 @@ function    FormComponent() {
                         </p>
 
                         <ul
-                            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
+                            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#00000] text-left md:text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -368,7 +368,7 @@ function    FormComponent() {
                             <Link
                                 href={"https://ritzmediaworld.com/contact.html"}
                                 target="_blank"
-                                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#0F1640]"
+                                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#00000]"
                                 style={{
                                     fontFamily: "MontserratSemiBold",
                                 }}
@@ -378,7 +378,7 @@ function    FormComponent() {
                             <img
                                 src="/home-v3/s3/rhgt.png"
                                 alt="RMW"
-                                className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
+                                className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px] "
                             />
                         </div>
                     </div>
