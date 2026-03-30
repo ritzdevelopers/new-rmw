@@ -39,12 +39,12 @@ const rampOffsets = ["lg:mt-[180px]", "lg:mt-[120px]", "lg:mt-[60px]", "lg:mt-[0
 
 export default function Section4() {
   return (
-    <section className="w-full bg-white py-14 sm:py-16 md:py-20 overflow-x-hidden flex flex-col items-center">
+    <section className="w-full bg-white py-[35px] lg:py-[70px] overflow-x-hidden flex flex-col items-center">
       <div
         className={`w-full mx-auto px-4 sm:px-6 lg:px-0 ${styles.containerWidth}`}
       >
         <h2
-          className="text-center text-black font-[700] text-[24px] sm:text-[44px] md:text-[36px] lg:text-[36px] leading-[48px]"
+          className="text-center text-black font-[700] text-[24px] sm:text-[44px] md:text-[28px] lg:text-[36px] leading-[48px]"
           style={{ fontFamily: "MontserratBold" }}
         >
           Why Celebrity
@@ -52,7 +52,7 @@ export default function Section4() {
           Endorsement Matter
         </h2>
 
-        <div className="mt-12 md:mt-16 lg:mt-25">
+        <div className="mt-12 md:mt-10 lg:mt-25">
           <div className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap items-start">
             {cards.map((card, index) => (
               <div

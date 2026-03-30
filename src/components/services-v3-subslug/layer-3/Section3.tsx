@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import styles from "./Section3.module.css";
+import accordionStyles from "./Section3.module.css";
+import containerStyles from "@/components/celebrity-endorsements/page.module.css";
 
 const EXPLORE_ARROW_IMAGE =
   "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
@@ -54,30 +55,30 @@ export default function Section3() {
   ];
 
   return (
-    <section className="w-full bg-[#F7F7F7] py-10 sm:py-12 md:py-16 lg:py-20 flex justify-center">
-      <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto ${styles.containerWidth}`}>
-        <div className="text-center mb-6 sm:mb-8 md:mb-10">
+    <section className="w-full bg-[#F7F7F7] py-10 sm:py-12 md:py-16 lg:py-20 flex justify-center px-4 sm:px-6 lg:px-0">
+      <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
+        <div className="text-center">
           <p
-            className="uppercase text-[12px] sm:text-[13px] md:text-[14px] tracking-wide text-[#C99237] font-[700]"
-            style={{ fontFamily: "MontserratBold" }}
+            className="font-[600] uppercase text-[11px] sm:text-[12px] tracking-[0.1em] text-[#C99237]"
+            style={{ fontFamily: "MontserratSemiBold" }}
           >
             Services
           </p>
-          <h3
-            className="text-[26px] sm:text-[32px] md:text-[36px] lg:text-[44px] font-[800] text-black"
+          <h2
+            className="text-black text-[28px] lg:text-[36px] font-[700] leading-tight"
             style={{ fontFamily: "MontserratBold" }}
           >
             What We Provide
-          </h3>
+          </h2>
           <p
-            className="text-[14px] sm:text-[15px] md:text-[16px] text-[#6E6E6E]"
-            style={{ fontFamily: "PoppinsRegular" }}
+            className="text-[#00000] text-[12px] sm:text-[13px] md:text-[14px] mt-1"
+            style={{ fontFamily: "OpenSansRegular" }}
           >
-            is more than what you&apos;ll ever need
+            Is more than what you&apos;ll ever need
           </p>
         </div>
 
-        <div className="h-px w-full bg-[#AAA8A8] mb-8 sm:mb-10 md:mb-12" />
+        <div className="h-px w-full bg-[#AAA8A8] mt-8 sm:mt-10" />
 
         <div className="space-y-4">
           {accordionItems.map((item, index) => {
@@ -94,7 +95,7 @@ export default function Section3() {
                 <button
                   type="button"
                   onClick={() => setOpenItem(isOpen ? null : item.label)}
-                  className="w-full flex items-center justify-between text-left"
+                  className="w-full py-4 sm:py-5 flex items-center justify-between gap-3 text-left"
                   aria-expanded={isOpen}
                 >
                   <p
@@ -103,13 +104,23 @@ export default function Section3() {
                   >
                     {item.label}
                   </p>
-                  <span className="text-[#6E6E6E] text-2xl leading-none select-none">
-                    {isOpen ? "−" : "+"}
-                  </span>
+                  {isOpen ? (
+                    <Image
+                      src="/varun.icon/cross-content-marketing.svg"
+                      alt=""
+                      width={43}
+                      height={43}
+                      className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 object-contain select-none"
+                    />
+                  ) : (
+                    <span className="text-[#6E6E6E] text-2xl leading-none select-none">
+                      +
+                    </span>
+                  )}
                 </button>
 
                 <div
-                  className={`${styles.accordionContent} ${isOpen ? styles.accordionContentOpen : styles.accordionContentClosed}`}
+                  className={`${accordionStyles.accordionContent} ${isOpen ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed}`}
                 >
                   <div className="pt-6 sm:pt-8">
                     <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-14 justify-center">

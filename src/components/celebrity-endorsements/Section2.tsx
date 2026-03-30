@@ -8,9 +8,9 @@ const EXPLORE_ARROW_IMAGE =
 
 export default function Section2() {
   return (
-    <section className="w-full bg-white py-[35px] lg:pt-[70px] border-b border-[#E6E3E3] px-5 sm:px-6 lg:px-0">
+    <section className="w-full flex justify-center items-center bg-white py-[35px] lg:pt-[70px] border-b border-[#E6E3E3]">
       <div
-        className={`w-full mx-auto flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10 overflow-hidden ${styles.containerWidth}`}
+        className={`w-full max-w-[1075px] flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10 overflow-hidden px-5 sm:px-6 md:px-8 lg:px-0 ${styles.containerWidth}`}
       >
         <div className="w-full lg:w-[54%] xl:w-[48%] min-w-0 max-lg:text-center lg:text-left">
             <div className="mx-auto w-full max-w-[760px] min-w-0 lg:mx-0">
@@ -126,7 +126,7 @@ export default function Section2() {
                 />
               </div>
 
-              <div className="order-4 flex min-w-0 flex-col md:order-none md:col-start-2 md:row-start-2 md:py-8 max-lg:text-center lg:py-4 lg:text-left xl:py-7">
+              <div className="order-4 md:pb-0 lg:pb-0 flex min-w-0 flex-col md:order-none md:col-start-2 md:row-start-2 md:py-8 max-lg:text-center lg:py-4 lg:text-left xl:py-7">
                 <div className="max-md:order-1 max-md:mt-5 px-6 sm:px-7 lg:px-7 md:order-1 md:text-left">
                   <p
                     className="text-[#000000] text-[20px] leading-[28px] md:leading-[35px] lg:leading-[28px] font-[400] tracking-[0em] lg:max-w-[270px]"
