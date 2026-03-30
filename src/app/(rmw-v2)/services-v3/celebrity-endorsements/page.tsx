@@ -11,6 +11,6 @@ export default function Page() {
             <Section2 />
             <Section3 />
             <Section4 />     
-               </>
+        </>
     )
 }

@@ -26,3 +26,9 @@
 .accordionItem:hover {
   background: linear-gradient(149.48deg, #C1892C -2.74%, #EFBB68 114.55%);
 }
+
+@media (max-width: 356px) {
+  .accordionTitleUnder357 {
+    font-size: 13px !important;
+  }
+}

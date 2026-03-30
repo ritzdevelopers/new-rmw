@@ -9,6 +9,7 @@ import Section8 from "@/components/home-v3/services/layer-1/Section8";
 import type { Metadata } from 'next';
 import { readFileSync } from 'fs';
 import { join } from 'path';  
+import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
 
 type Props = {
     params: {
@@ -84,7 +85,8 @@ async function Page() {
             <Section5 />
             <Section6 />
             <Section7 />
-            <Section8 />
+            {/* <Section8 />  */}
+            <BrandImpactSection2/>
         </>
     )
 }

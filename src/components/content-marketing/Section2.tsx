@@ -5,7 +5,7 @@ function Section2() {
         <section className={`w-full flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px]`}>
             {/* Centered Align Container   */}
             <div className={`w-full text-center flex flex-col gap-3 sm:gap-4 items-center justify-center max-w-[1075px] ${styles.containerWidth}`}>
-                <h2 className={`font-[400] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px] xl:text-[30px] leading-tight sm:leading-snug md:leading-normal px-2 sm:px-0 ${styles.fontmontserrat}`}>
+                <h2 className={`font-[400] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px] xl:text-[30px] leading-tight sm:leading-snug md:leading-[42px] px-2 sm:px-0 ${styles.fontmontserrat}`}>
                     Content without strategy is mere decoration, pleasant but ineffective. At Ritz Media World, one of India’s leading <span className="font-[700]">digital marketing agencies</span>, we develop content marketing strategies that not only inform but also persuade, inspire, and convert.
                 </h2>
                 <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] max-w-full sm:max-w-[896px] leading-relaxed px-2 sm:px-0 ${styles.fontopensans}`}>

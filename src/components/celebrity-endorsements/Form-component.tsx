@@ -2,9 +2,9 @@
 import { Download } from "lucide-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from './page.module.css';
-import styles2 from './page.module.css';
-function    Section8() {
+import styles from "@/components/home-v3/services/layer-1/page.module.css";
+import styles2 from "@/components/home-v3/services/layer-1/page.module.css";
+function    FormComponent() {
     const [loader, setLoader] = useState<boolean>(true);
     const [phone, setPhone] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -253,7 +253,7 @@ function    Section8() {
                                 Free Resource
                             </p>
                             <h2
-                                className="font-[700] text-[21px] text-[#0F1640] lg:text-[24px] xl:text-[36px]"
+                                className="font-[700] text-[21px] text-[#00000] lg:text-[24px] xl:text-[36px]"
                                 style={{
                                     fontFamily: "MontserratBold",
                                 }}
@@ -261,12 +261,12 @@ function    Section8() {
                                 2026 Brand Impact Report
                             </h2>
                         </div>
-                        <p className="font-[700] text-[16px] lg:text-[24px] text-[#0F1640] text-left md:text-left mb-2 xl:mb-4">
+                        <p className="font-[700] text-[16px] lg:text-[24px] text-[#00000] text-left md:text-left mb-2 xl:mb-4">
                             Download Our
                         </p>
 
                         <p
-                            className="font-[400] text-[13px]  lg:text-[14px] text-[#0F1640] text-left md:text-left mb-4 xl:mb-0"
+                            className="font-[400] text-[13px]  lg:text-[14px] text-[#000000] text-left md:text-left mb-4 xl:mb-0"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -275,7 +275,7 @@ function    Section8() {
                         </p>
 
                         <ul
-                            className="font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] list-disc px-4 flex flex-col gap-2 sm:gap-3 text-left md:text-left mb-5 xl:mb-5"
+                            className="font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#000000] list-disc px-4 flex flex-col gap-2 sm:gap-3 text-left md:text-left mb-5 xl:mb-5"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -296,7 +296,7 @@ function    Section8() {
                                         onBlur={handlePhoneBlur}
                                         placeholder="Enter your phone (e.g., +91 9220516777)"
                                         required
-                                        className={`w-full xl:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#0F1640] text-[#0F1640] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
+                                        className={`w-full xl:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#0F1640] text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
                                             ? "border-[#EF4444]"
                                             : "border-[#DAD4D4]"
                                             }`}
@@ -343,7 +343,7 @@ function    Section8() {
                         </h2>
 
                         <p
-                            className="font-[400] text-[14px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
+                            className="font-[400] text-[14px] md:text-[14px] lg:text-[14px] text-[#00000] text-left md:text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -353,7 +353,7 @@ function    Section8() {
                         </p>
 
                         <ul
-                            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
+                            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#00000] text-left md:text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -368,7 +368,7 @@ function    Section8() {
                             <Link
                                 href={"https://ritzmediaworld.com/contact.html"}
                                 target="_blank"
-                                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#0F1640]"
+                                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#00000]"
                                 style={{
                                     fontFamily: "MontserratSemiBold",
                                 }}
@@ -378,46 +378,47 @@ function    Section8() {
                             <img
                                 src="/home-v3/s3/rhgt.png"
                                 alt="RMW"
-                                className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
+                                className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px] "
                             />
                         </div>
                     </div>
                 </div>
 
                 {/* Row 3  */}
-                <div className={`w-full flex justify-center items-center `}>
-                    {/* Center Align Container  */}
-                    <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
-                        <h2
-                            className="font-[800] text-[19px] md:text-[28px] lg:text-[36px]"
-                            style={{
-                                fontFamily: "MontserratExtraBold",
-                            }}
-                        >
-                            Ready to Elevate Your Brand?
-                        </h2>
-                        <p
-                            className="font-[400] text-[16px] md:text-[24px] lg:text-[30px]"
-                            style={{
-                                fontFamily: "OpenSansRegular",
-                            }}
-                        >
-                            Let's discuss your next brand-elevating campaign
-                        </p>
-                        <button
-                            onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}
-                            className="w-full sm:w-[260px] lg:w-[282px] h-[48px] sm:h-[50px] lg:h-[54px] mt-4 bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] rounded-[5px] hover:bg-[#B8822F] transition-colors  s1-btn-gold"
-                            style={{
-                                fontFamily: "OpenSansBold",
-                            }}
-                        >
-                            <p className="text-white">Schedule Free Consultation</p>
-                        </button>
-                    </div>
-                </div>
+             
+                <section className="w-full bg-[#FFFFFF] flex justify-center">
+      <div className={`w-full max-w-[1300px] mx-auto text-center flex flex-col items-center ${styles.containerWidth}`}>
+        <h2
+          className="text-black font-[700] text-[20px] sm:text-[20px] md:text-[28px] lg:text-[36px] leading-tight"
+          style={{ fontFamily: "MontserratBold" }}
+        >
+          Ready to Elevate Your Brand?
+        </h2>
+        <p
+          className="text-black text-[18px] sm:text-[18px] md:text-[24px] lg:text-[26px] leading-[1.35] mt-2 sm:mt-3"
+          style={{ fontFamily: "PoppinsRegular" }}
+        >
+          Let&apos;s discuss your next brand-elevating campaign
+        </p>
+
+        <Link
+          href="https://ritzmediaworld.com/contact.html"
+          target="_blank"
+          className="mt-7 sm:mt-8 md:mt-10 inline-flex items-center gap-5 border-b border-black pb-2 text-black font-[600] text-[18px] sm:text-[20px] md:text-[26px] lg:text-[16px] leading-none"
+          style={{ fontFamily: "MontserratSemiBold" }}
+        >
+          <span>Schedule Free Consultation</span>
+          <img
+              src="/home-v3/s3/rhgt.png"
+              alt=""
+              className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
+            />
+        </Link>
+      </div>
+    </section>
             </div>
         </section>
     )
 }
 
-export default Section8;
+export default FormComponent;
