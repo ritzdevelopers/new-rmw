@@ -12,7 +12,7 @@ function Section1() {
                 <div className="hidden lg:block lg:w-[160px] xl:w-[170px]  lg:h-[30px] xl:h-[37px] relative">
                     <img src="/home-v3/service-imgs/s1/yellow-reactangle.png" alt="" className='w-full h-full' />
                     <p className={`font-[700] uppercase text-[16px] text-white absolute top-[50%] transform translate-y-[-50%] right-8 ${styles.fontmontserrat}`}>Services</p>
-                </div>
+                </div>``
 
                 {/* Row 2  */}
                 <div className='pl-0 sm:pl-4 md:pl-[40px] lg:pl-[45px] xl:pl-[53px]'>
