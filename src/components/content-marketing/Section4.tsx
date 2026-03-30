@@ -47,7 +47,7 @@ function Section4() {
                     <div className="absolute top-[50%] left-[50%] w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] md:w-[280px] md:h-[280px] lg:w-[350px] lg:h-[350px] xl:w-[425px] xl:h-[425px] rounded-full
                      bg-gradient-to-br from-[#C1892C] to-[#EFBB68]
                       -translate-x-1/2 -translate-y-1/2 flex justify-center items-center text-center">
-                        <h4 className={`font-[500] text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#ffffff] ${styles.fontMontserrat}`}>Engage</h4>
+                        <h4 className={`font-[600] text-[24px] sm:text-[32px] md:text-[44px] lg:text-[56px] xl:text-[70px] text-[#ffffff] ${styles.fontMontserrat}`}>Engage</h4>
                     </div>
 
                     {/* Absolute Positioned text container  */}
