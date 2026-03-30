@@ -12,6 +12,7 @@ async function ServiceInner({slug}: {slug: string}) {
 
     const res = await getServiceThirdData(slug as string);
 
+    
     return (
         <>
             <Banner slug={slug}/>
