@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 
 import ClientTestimonials from "@/components/influencer-marketing-agency-in-india/Section5";
 import FormComponent from "./Form-component";
+import BrandImpactSection1 from "../copy/BrandImpactSection1";
 
 
 const cards = [
@@ -151,8 +152,8 @@ export default function Section4() {
           </h3>
         </div>
       </section>
- <div className=" pt-[35px] lg:pt-[70px]">
-      <FormComponent />
+      <div className="pt-[35px] lg:pt-[70px]">
+        <BrandImpactSection1 />
       </div>
     </section>
   );
