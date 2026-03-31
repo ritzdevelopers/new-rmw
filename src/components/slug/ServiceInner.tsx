@@ -7,6 +7,7 @@ import Section6 from "./sections/Section6";
 import Section7 from "@/components/content-marketing/Section7";
 import Section8 from "./sections/Section8";
 import { getServiceThirdData } from "@/lib/getServiceThirdLayerData";
+import BrandImpactSection1 from "../copy/BrandImpactSection1";
 async function ServiceInner({slug}: {slug: string}) {
 
 
@@ -21,7 +22,10 @@ async function ServiceInner({slug}: {slug: string}) {
             <Section5 />
             <Section6 />
             <Section7 text="Ready to Be Found Precisely When It Matters Most?" />
-            <Section8 />
+            {/* <Section8 /> */}
+            <div className="py-[35px] lg:py-[70px]">
+            <BrandImpactSection1 />
+            </div>
         </>
     )
 }

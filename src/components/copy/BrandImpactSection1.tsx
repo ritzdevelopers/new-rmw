@@ -190,12 +190,12 @@ function BrandImpactSection1() {
                                 fontFamily: "MontserratBold",
                             }}
                         >
-                            2026 Brand Impact Report
+                            Brand Impact Report 2026
                         </h2>
                     </div>
-                    <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
+                    {/* <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
                         Download Our
-                    </p>
+                    </p> */}
 
                     <p
                         className="font-[400] text-[13px]  lg:text-[15px] xl:text-[16px] text-center md:text-left mb-2 md:mb-0"

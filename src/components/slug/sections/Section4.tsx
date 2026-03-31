@@ -5,7 +5,7 @@ function Section4() {
     return (
         <section className="flex w-full items-center justify-center pt-10 lg:pt-[70px]">
             {/* Centered Align Container  */}
-            <div className={`flex w-full flex-col-reverse items-center justify-between gap-8 md:gap-12 lg:flex-row lg:items-stretch lg:gap-8 ${styles.containerWidth}`}>
+            <div className={`flex w-full flex-col-reverse items-center justify-between gap-8 md:gap-12 lg:flex-row lg:items-stretch lg:gap-10 ${styles.containerWidth}`}>
                 {/* Left Side Container  */}
                 <div className="relative w-full shrink-0 max-md:h-auto max-md:aspect-[603/566] md:h-[615px] lg:w-[500px] lg:h-[480px] xl:w-[603px] xl:h-[566px]">
                     <Image src={'/slug/s3/seo-s3-img1.jpg'} fill alt="SEO"></Image>
@@ -15,7 +15,7 @@ function Section4() {
                 <div className="flex min-h-0 flex-1 flex-col items-start justify-between self-stretch lg:max-w-[593px] w-full gap-4 lg:gap-5">
                     {/* Row 1  */}
                     <div className="flex flex-col gap-2">
-                        <span className={`font-[700] text-center md:text-left xl:text-[36px] text-[23px] md:text-[28px] ${styles.fontmontserrat}`}>We’re Award-Winning Development Agencies</span>
+                        <h2 className={`mt-[-4px] font-[700] leading-tight text-center md:text-left xl:text-[36px] text-[23px] md:text-[28px] ${styles.fontmontserrat}`}>We’re Award-Winning Development Agencies</h2>
                         <p className={`font-[400] text-center md:text-left xl:text-[16px] text-[14px] lg:text-[13px]  xl:leading-[28px]  ${styles.fontpoppins}`}>
                             We’ve held hands with budding brands that have shattered sealings of convention. With us behind them, they have achieved great feats in their industry and went on to dominate their competition.
                         </p>
