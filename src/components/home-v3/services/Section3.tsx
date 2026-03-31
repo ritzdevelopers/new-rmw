@@ -10,6 +10,7 @@ import ServiceCard from "./cards/ServiceCard";
 
 import styles2 from "./page.module.css";
 import { BsArrowUpRight } from "react-icons/bs";
+import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
 
 interface ServiceSubItem {
     service_id: number;
@@ -197,8 +198,6 @@ function Section3({ servicesData }: Section3Props) {
     }, [modal.open, modal.status]);
 
 
-
-
     return (
         <section className="flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px]">
             {/* Center Align Container  */}
@@ -218,9 +217,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Digital <br /> Marketing",
                                 margin: "mr-[12px] pr-8 md:pr-40 lg:pr-18",
-                                description: "Digital marketing without a strategy is like driving blindfolded. It may be exciting, perhaps, but it also comes with a high probability of disastrous consequences. At <span className='font-[700]'>Ritz Media World</span>, we collectively leverage a calculated sorcery of SEO, PPC, Social Media, and some Reputation alchemy to ensure that your brand doesn’t just survive, but flourishes spectacularly.",
+                                description: "Without a strategy, you're driving blindfolded in the digital world. At Ritz Media World, we specialize in social media marketing, PPC campaigns, and SEO services to make sure your brand not only survives but thrives. With innovative tactics that are effective, we have you covered whether you're searching for the top SEO company in Delhi or the best digital marketing agency in Noida.",
                                 image: "/alishba-services-v3/seo-analytics.png",
-                                link: "/services-v3/brand-strategy",
+                                link: "/services-v3/digital-marketing",
                                 subServices: [
                                     {
                                         title: "SEO (Search Engine Optimization)",
@@ -251,7 +250,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Creative <br /> Services",
                                 margin: "lg:mr-[30px] pr-20 sm:pr-48 lg:pr-20 ",
-                                description: "Creativity isn’t just decoration, it’s the entire point. from Branding, to Graphic Design to captivating logos that leave an impression. <br /> <br /> We produce ideas that other companies contemplate stealing (Although we strongly advise against it). So it's your choice. Do you want your audience to fall in love at first sight? ",
+                                description: "Creativity is not just decor. It is the heart of your brand. From branding to graphic design to memorable logos, we help you create a remarkable brand presence in the market. Are you ready to impress your audience? We make work that people might want to steal – but we hope you won’t and will keep it for yourself.",
                                 image: "/alishba-services-v3/creative-service.png",
                                 link: "/services-v3/creative-services",
                                 subServices: [
@@ -280,7 +279,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Print <br /> Advertisement",
                                 margin: "pr-4 pr-4 md:pr-32 lg:pr-0",
-                                description: "Contrary to popular belief, Print is more prominent than ever! To put it simply, It has upgraded from mainstream to a premium audience. <br /> <br /> Ritz Media World has always been in the business of making print ads breathe life into paper, and BUSINESS IS GOOD! We turn simple pages into captivating conversation.",
+                                description: "Print advertising is more vibrant than ever in spite of the digital boom! We at Ritz Media World give your print advertisements life so they can speak for themselves. Whether you're searching for print advertising services in Delhi or Noida, our ads have an impact and engage the right audience.",
                                 image: "/alishba-services-v3/print-ad.png",
                                 link: "/services-v3/print-advertising",
                                 subServices: [
@@ -313,9 +312,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Radio <br /> Advertising",
                                 margin: "pr-8 md:pr-36 lg:pr-4 xl:pr-20 xl:-mr-20 2xl:-mr-10   ",
-                                description: "You may have noticed that people still have ears. The most wonderful way to effectively market to the masses in this digital age is an ear-catching captivating narrative. <br /> <br /> We add some more magic with Jingles and persuasive soundscapes that resonate with the masses.",
+                                description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Delhi and Noida can help you get your brand on the air.",
                                 image: "/alishba-services-v3/radio.png",
-                                link: "/services-v3/radio-advertising",
+                                link: "/services/radio-advertising",
                                 subServices: [
                                     {
                                         title: "Advertising Concept Development",
@@ -346,9 +345,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Content <br /> Marketing",
                                 margin: "pr-12 md:pr-42 lg:pr-12 xl:pr-16 2xl:pr-16",
-                                description: "Content Isn’t king, Compelling Content is. Anyone can tell stories or put words together, but will that inspire action? We didn’t think so either. <br /> <br /> Be it blogs that educate, videos that entertain, or posts that persuade, our persuasive storytelling ensures that your brand stays relevant, remarkable, and unmistakably real.",
+                                description: "Content isn’t just king, compelling content is. We don’t just create words — we create stories that drive action. From blogs that educate to videos that entertain, our content marketing agency in India crafts content that’s not only engaging but also strategically persuasive.",
                                 image: "/alishba-services-v3/content-marketing.png",
-                                link: "/services-v3/content-marketing",
+                                link: "/services-v3/contents-marketing",
                                 subServices: [
                                     {
                                         title: "Customized Content Strategy",
@@ -371,9 +370,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Web <br /> Development",
                                 margin: "pr-4 md:pr-32 lg:pr-0 xl:pr-8 2xl:pr-10 xl:-mr-10",
-                                description: "Your website is your digital handshake, so let’s make sure that it’s firm and welcoming. We design intuitive and visually delightful digital experiences that charm visitors into becoming loyal patrons. <br /> <br /> Remember, nothing signals credibility like a brilliantly functional website that customers love and don’t leave.",
+                                description: "Let's make your website firm, interesting, and friendly because it is your digital handshake. Our web development team makes useful and friendly websites that attract and win the hearts of visitors. We assure you of an excellent online presence through our web designing services in Noida and Greater Noida.",
                                 image: "/alishba-services-v3/webdev.png",
-                                link: "/services-v3/web-development",
+                                link: "/services/web-designing-and-development  ",
                                 subServices: [
                                     {
                                         title: "UI/UX Design",
@@ -400,7 +399,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Celebrity <br /> Endorsements",
                                 margin: "pr-4  md:pr-30  lg:pr-0 xl:pr-14 xl:-mr-20",
-                                description: "Why scream when a Celebrity’s whisper can say it louder? <br /> <br /> We connect your brand with influential names whose endorsement doesn’t just sell but elevate your products and services. Because familiar faces are more effective in earning trust.",
+                                description: "When a celebrity's whisper has the ability to influence people and speak louder, why shout? We assist your business in establishing connections with celebrities who can increase sales and improve your company's reputation. Are you trying to find the best digital marketing agency in Delhi? For you, we have the greatest celebrity endorsement.",
                                 image: "/alishba-services-v3/celebraty.png",
                                 link: "/services-v3/celebrity-endorsements",
                                 subServices: [
@@ -433,9 +432,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Influencer <br />   Marketing",
                                 margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-8 xl:pr-5 xl:-mr-6    ",
-                                description: "Influencer marketing isn’t about chasing vanity metrics—it’s strategic persuasion by trusted voices. At Ritz Media World, we cleverly match your brand with influential personalities whose authentic engagement transforms casual followers into loyal customers. <br /> <br /> Because genuine influence doesn’t shout—it whispers convincingly, profitably, and irresistibly to the right ears.",
+                                description: "At Ritz Media World, influencer marketing isn’t about numbers. It is about persuading by trusted voices. We help you entrap customers who are leaking out from your influencers’ casual followers. Top social media marketing agencies in India are available with a variety of options.",
                                 image: "/alishba-services-v3/influencer-marketing.png",
-                                link: "/services-v3/influencer-marketing",
+                                link: "/services-v3/influencer-marketing-agency-in-india",
                                 subServices: [
                                     {
                                         title: "Influencer Identification",
@@ -706,8 +705,7 @@ function Section3({ servicesData }: Section3Props) {
                 </div>
                 <S6 padding="px-0" padding2="px-0"></S6>
                 <S7></S7>
-                <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 pt-5 md:pt-16  ${styles2.containerWidth}`}>
-                    {/* Left Side Container  */}
+                {/* <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 pt-5 md:pt-16  ${styles2.containerWidth}`}>
                     <div className="w-full lg:w-[48%] xl:w-[603px]  bg-[#F7F7F7] flex flex-col justify-around px-4 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
                         <div className="text-left md:text-left mb-2 md:mb-0">
                             <p
@@ -721,10 +719,11 @@ function Section3({ servicesData }: Section3Props) {
                             <h2
                                 className="font-[700] text-[21px] text-[#0F1640] lg:text-[24px] xl:text-[36px]"
                                 style={{
-                                    fontFamily: "Montserr   atBold",
+                                    fontFamily: "MontserratBold",
                                 }}
+
                             >
-                                2026 Brand Impact Report
+                               Brand Impact Report 2026
                             </h2>
                         </div>
                         <p className="font-[700] text-[16px] lg:text-[24px] text-[#0F1640] text-left md:text-left mb-2 xl:mb-0">
@@ -797,7 +796,6 @@ function Section3({ servicesData }: Section3Props) {
                         </form>
                     </div>
 
-                    {/* Right Side Container  */}
                     <div className="w-full lg:w-[48%] xl:w-[603px]  border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
                         <h2
                             className="font-[700] text-[21px] text-[#0F1640] sm:text-[28px] lg:text-[26px] xl:text-[34px] text-left md:text-left"
@@ -848,11 +846,13 @@ function Section3({ servicesData }: Section3Props) {
                             />
                         </div>
                     </div>
+                </div> */}
+                <div className="pt-4 xl:pt-16">
+                    <BrandImpactSection2 />
+
                 </div>
 
-                {/* Row 3  */}
-                <div className={`w-full flex justify-center items-center ${styles2.containerWidth}`}>
-                    {/* Center Align Container  */}
+                {/* <div className={`w-full flex justify-center items-center ${styles2.containerWidth}`}>
                     <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
                         <h2
                             className="font-[800] text-[19px] md:text-[28px] text-[#0F1640] lg:text-[36px]"
@@ -880,7 +880,7 @@ function Section3({ servicesData }: Section3Props) {
                             <p className="text-white">Schedule Free Consultation</p>
                         </button>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             {/* Modal */}

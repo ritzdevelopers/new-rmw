@@ -11,20 +11,31 @@ function Section2() {
                 {/* Left Side Container  */}
                 <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 w-full max-w-[547px] text-center md:text-left">
                     <h2 className={`font-[600] text-[18px] lg:text-[20px] xl:text-[30px] text-[#0F1640] leading-tight sm:leading-snug md:leading-normal ${styles2.fontmontserrat}  ${styles2.yofText}`}>
-                        At <span className='text-[#C99237]'>Ritz Media World</span>, we have an obsession with being wizards of quirkiness that morph good ideas into brilliant ones.
+                        At <span className='text-[#C99237]'>Ritz Media World</span>,  We Make Creativity Work For You.
                     </h2>
                     <p className={`font-[400] text-[14px] sm:text-[15px] xl:text-[16px] text-[#0F1640] leading-relaxed ${styles2.fontopensans}`}>
-                        Our services deliver results that drive your competitor's envy. We blend digital magic, classic & modern mediums, and creative ingenuity to ensure that your brand doesn't just speak; it captivates.
-                    </p>
-                    <div className='flex justify-center md:justify-start'>
-                        <button className="flex justify-between items-center gap-3 sm:gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
-                            <p className={`font-[500] text-[16px]  xl:text-[18px] text-[#0F1640] ${styles2.fontopensans}`}>Contact us</p>
+                        We turn ideas into quality content with a magical touch. We deliver the best results so that your audience will be amazed and your competitors will want to do more. We are a strong and efficient voice for your brand. We specialize in digital marketing, creative services, and traditional media; through our expert area of specialization. If you are seeking the best seo company in Noida or creative advertising agency in Delhi, we can develop strategies to make your brand stand out in the competitive market.
 
-                            <div className="bg-[#C99237] h-[36px] w-[36px] sm:h-[38px] sm:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-white">
-                                <BsArrowUpRight className='text-white text-[16px] sm:text-[17px] lg:text-[18px]' />
-                            </div>
-                        </button>
-                    </div>
+                    </p>
+                    <a
+                        href="https://ritzmediaworld.com/contact.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <div className='flex justify-center md:justify-start'>
+                            <button
+                                className="flex justify-between items-center gap-3 sm:gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity"
+                            >
+                                <p className={`font-[500] text-[16px] xl:text-[18px] text-[#0F1640] ${styles2.fontopensans}`}>
+                                    Contact us
+                                </p>
+
+                                <div className="bg-[#C99237] h-[36px] w-[36px] sm:h-[38px] sm:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-white">
+                                    <BsArrowUpRight className='text-white text-[16px] sm:text-[17px] lg:text-[18px]' />
+                                </div>
+                            </button>
+                        </div>
+                    </a>
                 </div>
 
                 {/* Right Side Container  */}
@@ -47,22 +58,22 @@ function Section2() {
                     <div className={`relative w-[280px] xl:w-[403px] h-auto  overflow-hidden  ${styles2.hidenElips}`}>
                         <div className='spin-slow'>
                             <img src="/home-v3/service-imgs/s2/s2-elips2.png"
-                            alt=""
-                            className='w-full h-full object-contain ' />
-                        <span className='
+                                alt=""
+                                className='w-full h-full object-contain ' />
+                            <span className='
                                             absolute 
                                             -top-9 right-48
                                             text-white md:text-[#C99237] 
                                             text-[24px] md:text-[28px] lg:text-[46px]
                                             font-bold
                                             '>
-                            .
-                        </span>
+                                .
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </section>
     )
 }
