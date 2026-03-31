@@ -17,10 +17,15 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
             <div className="w-full lg:w-[55%] xl:w-auto h-[200px] sm:h-[250px] md:h-[300px] lg:h-[377px] relative" >
 
                 <div className={`${styles.absDiv} md:w-[390px] lg:w-[313px] h-[125px] bg-[#F7F7F7] absolute top-[50%] translate-y-[-50%] -left-[100px] z-0`}></div>
-                <img src={image} alt={title} className="w-full z-10 relative h-full object-contain xl:object-cover" />
+                <img
+                    src={image}
+                    alt={title}
+                    className={`z-10 relative h-full object-contain xl:object-cover 
+  ${index === 3 ? "mr-auto max-w-full" : "w-full"}`}
+                />
 
                 {/* Absolute Positioned Container  */}
-                <div className="absolute z-10 top-[50%] translate-y-[-50%] w-full h-full flex flex-col justify-center items-end gap-1 sm:gap-2 pr-2 sm:pr-3 md:pr-4">
+                <div className="absolute z-10 top-[50%] translate-y-[-50%] w-full h-full flex flex-col justify-center items-end gap-1 sm:gap-2 pr-2 sm:pr-3 md:pr-4 ">
                     <div className={`flex flex-col gap-1 sm:gap-2 ${margin || ""}`}>
                         <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] ${styles2.fontopensans} text-[#0F1640]`}>{String(index + 1).padStart(2, '0')}</p>
                         <h2 className={`text-[16px] sm:text-[18px] md:text-[22px] lg:text-[28px] font-medium xl:text-[30px] ${styles2.fontmontserrat} text-[#0F1640]`}>

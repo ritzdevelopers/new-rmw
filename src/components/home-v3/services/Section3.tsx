@@ -311,7 +311,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Radio <br /> Advertising",
-                                margin: "pr-8 md:pr-36 lg:pr-5 xl:pr-0 pt-20 lg:pt-16 xl:pt-20 mr-0",
+                                margin: "pr-8 md:pr-36 lg:pr-5 xl:pr-0 pt-20 lg:pt-16 xl:pt-20",
                                 description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Delhi and Noida can help you get your brand on the air.",
                                 image: "/alishba-services-v3/radio-advertising.png",
                                 link: "/services/radio-advertising",
