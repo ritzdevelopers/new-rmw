@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BsArrowUpRight } from "react-icons/bs";
 import styles from './page.module.css';
+import Link from "next/link";
 function Section3() {
 
     return (
@@ -153,14 +154,16 @@ function Section3() {
                             <p className={`font-[500] text-[15px] sm:text-[16px] lg:text-[18px] text-black ${styles.fontmontserrat}`}>
                                 Get Free Consulting
                             </p>
-                            <div className="bg-[#ffffff] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] md:h-[38px] md:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-[#C99237]">
-                               
-<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M19.4276 2.92431L17.1346 9.08101L12.9493 4.01684L19.4276 2.92431Z" fill="#C99237"/>
-<rect x="2.19678" y="16.7173" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19678 16.7173)" fill="#C99237"/>
-</svg>
+                            <Link href="/contact.html">
+                                <div className="bg-[#ffffff] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] md:h-[38px] md:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-[#C99237] cursor-pointer">
 
-                            </div>
+                                    <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19.4276 2.92431L17.1346 9.08101L12.9493 4.01684L19.4276 2.92431Z" fill="#C99237" />
+                                        <rect x="2.19678" y="16.7173" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19678 16.7173)" fill="#C99237" />
+                                    </svg>
+
+                                </div>
+                            </Link>
                         </button>
                     </div>
 
@@ -226,7 +229,7 @@ function Section3() {
                     </div>
 
                     {/* Row 2 Card   */}
-                        <div className="flex xl:ml-[5rem] flex-col bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] py-3 px-6 sm:px-3 md:px-8 rounded-[15px] sm:rounded-[20px] gap-4 sm:gap-[17px] justify-center items-center w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
+                    <div className="flex xl:ml-[5rem] flex-col bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] py-3 px-6 sm:px-3 md:px-8 rounded-[15px] sm:rounded-[20px] gap-4 sm:gap-[17px] justify-center items-center w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
                             <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black ${styles.fontmontserrat}`}>Content Score</p>
                         </div>

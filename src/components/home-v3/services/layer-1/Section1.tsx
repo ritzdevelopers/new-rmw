@@ -23,13 +23,14 @@ export default function Section1() {
                         digital marketing
                     </p>
                 </div>
-               <div className="pl-5 md:pl-9 lg:pl-10 xl:pl-12 pb-[58px] lg:pb-0">
+                <div className="pl-5 md:pl-9 lg:pl-10 xl:pl-12 pb-[58px] lg:pb-0">
+
+                    <h1 className={`font-[800] text-[26px] sm:text-[36px] md:text-[31px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-18 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
+                        Where Ideas Become <br /> Digital Success
+                    </h1>
                     <p className={`font-[500] text-[14px] sm:text-[16px] not-last-of-type: lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontopensans}`}>
                         High-Impact Digital Marketing Solutions
                     </p>
-                    <h1 className={`font-[800] text-[26px] sm:text-[36px] md:text-[31px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-18 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
-                    Where Ideas Become <br /> Digital Success
-                    </h1>
                 </div>
             </div>
         </section>
