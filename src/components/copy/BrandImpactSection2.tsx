@@ -184,6 +184,7 @@ function BrandImpactSection2() {
                         >
                             Free Resource
                         </p>
+                        
 
                         <div>
                             {/* <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
