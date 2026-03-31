@@ -19,11 +19,11 @@ function Section1() {
 
                 {/* Row 2  */}
                 <div className='pl-1 sm:pl-4 md:pl-8 lg:pl-12 max-w-[320px] sm:max-w-[430px] md:max-w-none mx-auto md:mx-0 '>
-                    <p className="font-[500] text-[13px] sm:text-[15px] md:text-[18px] lg:text-[19px] xl:text-[21px] text-white md:text-[#0F1640] leading-[1.35] sm:leading-snug md:leading-normal">Services Tailored to Transform Your Brand from</p>
-                    <h1 className="font-[800] text-[40px] sm:text-[46px] md:text-[48px] lg:text-[58px] xl:text-[65px] text-white md:text-[#0F1640] leading-[1.05] sm:leading-[1.12] md:leading-[1.2] lg:leading-18 mt-1 sm:mt-2 md:mt-3">
+                    <h1 className="font-[500] text-[13px] sm:text-[15px] md:text-[18px] lg:text-[19px] xl:text-[21px] text-white md:text-[#0F1640] leading-[1.35] sm:leading-snug md:leading-normal">Services Tailored to Transform Your Brand from</h1>
+                    <p className="font-[800] text-[40px] sm:text-[46px] md:text-[48px] lg:text-[58px] xl:text-[65px] text-white md:text-[#0F1640] leading-[1.05] sm:leading-[1.12] md:leading-[1.2] lg:leading-18 mt-1 sm:mt-2 md:mt-3">
                         "Just Another" <br />
                         to "The one<span className='text-white md:text-[#C99237] '>.</span>"
-                    </h1>
+                    </p>
 
                 </div>
             </div>

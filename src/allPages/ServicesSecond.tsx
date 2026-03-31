@@ -19,25 +19,36 @@ const Footer = dynamic(() => import("@/components/footer/Footer"), { ssr: false 
 
 type CardItem = {
   title: string;
-  imgSrc: string;
+  imgSrc?: string;
   description: string;
   link: string;
 };
 
-const ServicesSecondPage = () => {
-  const [card, setCard] = useState<CardItem[]>([]);
-  const [head, setHead] = useState<string | null>(null);
-  const [img1, setImg1] = useState<string | null>(null);
-  const [img2, setImg2] = useState<string | null>(null);
-  const [para, setPara] = useState<string | null>(null);
-  const [endTag, setEndTag] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+type ServicesSecondInitialData = {
+  cards: CardItem[];
+  s2heading: string | null;
+  s2para: string | null;
+  s2endtag: string | null;
+  img1: string | null;
+  img2: string | null;
+};
+
+const ServicesSecondPage = ({ initialData }: { initialData?: ServicesSecondInitialData }) => {
+  const [card, setCard] = useState<CardItem[]>(initialData?.cards ?? []);
+  const [head, setHead] = useState<string | null>(initialData?.s2heading ?? null);
+  const [img1, setImg1] = useState<string | null>(initialData?.img1 ?? null);
+  const [img2, setImg2] = useState<string | null>(initialData?.img2 ?? null);
+  const [para, setPara] = useState<string | null>(initialData?.s2para ?? null);
+  const [endTag, setEndTag] = useState<string | null>(initialData?.s2endtag ?? null);
+  const [loading, setLoading] = useState<boolean>(!initialData);
   const [error, setError] = useState<string | null>(null);
 
   const params = useParams();
   const serviceSecond = params?.secondPage as string;
 
   useEffect(() => {
+    if (initialData) return;
+
     const fetchData = async () => {
       setLoading(true);
       setError(null);
@@ -63,7 +74,7 @@ const ServicesSecondPage = () => {
     };
 
     fetchData();
-  }, [serviceSecond]);
+  }, [serviceSecond, initialData]);
 
   if (loading) return <Loader />;
   if (error) return <div className="text-red-500 text-center mt-4">Error: {error}</div>;
