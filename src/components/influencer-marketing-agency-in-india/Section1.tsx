@@ -2,9 +2,11 @@ import React from 'react';
 import styles from './Section1.module.css';
 function Section1() {
     return (
-        <section className='w-full h-[550px] md:h-[300px] md:min-h-[300px] lg:h-[500px] lg:min-h-[500px] xl:h-[500px] xl:min-h-[500px] min-[1536px]:h-auto min-[1536px]:min-h-[615px] bg-[url("/varun/influencer-marketing/influencer-marketing-banner.png")] md:bg-[url("/service-v3/influencer-marketing-agency-in-india/banner/bg-influencer.jpg")] bg-cover bg-no-repeat bg-center flex md:items-stretch lg:items-end pb-8 sm:pb-12 md:pb-3 lg:pb-10 xl:pb-26 px-4 sm:px-6 md:px-0 overflow-visible
-        justify-center items-center md:justify-start
-        '>
+        <section 
+        className={`w-full h-[550px] md:h-[300px] md:min-h-[300px] lg:h-[500px] lg:min-h-[500px] xl:h-[500px] xl:min-h-[500px] min-[1536px]:h-auto min-[1536px]:min-h-[615px] bg-[url("/varun/influencer-marketing/influencer-marketing-banner.png")] md:bg-[url("/service-v3/influencer-marketing-agency-in-india/banner/bg-influencer.jpg")] bg-cover bg-no-repeat bg-center flex md:items-stretch lg:items-end pb-8 sm:pb-12 md:pb-3 lg:pb-10 xl:pb-26 px-4 sm:px-6 md:px-0 overflow-visible
+        justify-center items-center md:justify-start 
+        ${styles.bannerHeight}
+        `}>
 
             {/* Bottom Center Text Container  */}
             <div className='flex flex-col md:gap-2 lg:gap-3 xl:gap-8 w-full max-lg:max-w-none lg:max-w-none text-center md:text-left md:h-full md:justify-end lg:h-auto lg:justify-start -translate-y-14 sm:-translate-y-16 md:translate-y-0 lg:translate-y-3 xl:translate-y-17'>
