@@ -47,7 +47,7 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image, ac
                     <div className={`${styles.cardImage} ${activeCard === index ? styles.cardImageActive : styles.cardImageInactive} rounded-[4px] overflow-hidden`}>
                         <Image src={image} alt={activeCardTitle} fill className="object-cover" unoptimized />
                     </div>
-                    <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[12px] lg:text-[15px] xl:text-[16px] text-white ${styles.fontMontserrat} ${styles.cardDescription} ${activeCard === index ? styles.cardDescriptionActive : styles.cardDescriptionInactive}`}>{desc}
+                    <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[12px] lg:text-[15px] xl:text-[16px] text-white ${styles.fontOpenSans} ${styles.cardDescription} ${activeCard === index ? styles.cardDescriptionActive : styles.cardDescriptionInactive}`}>{desc}
                     </p>
                 </div>
                 {/* Bottom Side  */}
