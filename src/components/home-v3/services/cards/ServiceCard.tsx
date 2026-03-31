@@ -56,7 +56,9 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
                     {subServices.map((subService: any) => (
                         <div onClick={() => window.open(subService.slug, "_blank")} key={subService.title} className='bg-[#F2F2F2] hover:bg-[#0F1640] lg:pl-2
                           rounded-[2px] px-2  lg:py-2  min-h-[70px] cursor-pointer sm:min-h-[80px]  lg:h-[88px] flex justify-center lg:justify-start items-center text-center lg:text-left  text-[#0F1640] hover:text-white'>
-                            <h4 className={`font-[400] text-[13px]  sm:text-[14px] md:text-[13px] leading-relaxed p-1.5 ${styles2.fontopensans}`}>{subService.title}</h4>
+                            <h4 className={`font-[400] text-[13px]  sm:text-[14px] md:text-[13px] leading-relaxed p-1.5 ${styles2.fontopensans}`}>
+                                <a href={subService.slug} target="_blank" rel="noopener noreferrer">{subService.title}</a>
+                            </h4>
                         </div>
                     ))}
                 </div>

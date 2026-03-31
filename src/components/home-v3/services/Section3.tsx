@@ -11,6 +11,7 @@ import ServiceCard from "./cards/ServiceCard";
 import styles2 from "./page.module.css";
 import { BsArrowUpRight } from "react-icons/bs";
 import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
+import WhiteLayer from "./WhiteLayer";
 
 interface ServiceSubItem {
     service_id: number;
@@ -500,7 +501,7 @@ function Section3({ servicesData }: Section3Props) {
                             {/* Absolute Position Text Container  */}
                             <div className="absolute inset-0 w-full h-full flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 text-center md:text-left">
                                 <p className={`font-[400] text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] text-white ${styles2.fontopensans} max-w-[100%]`}>
-                                    We command growth with millions of <br className="hidden xl:block" /> hours in collective experience. At this point, <br className="hidden xl:block" /> It's not a matter of 'if', it becomes a matter of 'when' you will attain the tipping point that will drive your.
+                                    We command growth with millions of <br className="hidden xl:block" /> hours in collective experience. At this point, <br className="hidden xl:block" /> it's not a matter of 'if', it becomes a matter of 'when' you will attain the tipping point that will drive your.
                                 </p>
                                 <h4 className={`font-[300] text-[28px] sm:text-[36px] md:text-[42px] xl:text-[50px] text-white mt-2 sm:mt-4 leading-[1.1] ${styles2.fontopensans}`}>
                                     PERPETUAL <br />
@@ -537,6 +538,9 @@ function Section3({ servicesData }: Section3Props) {
                             </div>
                         </div>
                     </div>
+
+                    {/* White Layer Row  */}
+                    <WhiteLayer />
 
                     {/* Row 3  */}
                     <div className="w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4">
@@ -707,16 +711,16 @@ function Section3({ servicesData }: Section3Props) {
 
                 <S6 padding="px-0" padding2="px-0"></S6>
                 <S7></S7>
-                <div className="w-full bg-[#0F1640] flex justify-center items-center py-8 ">
+                <div className="flex w-full items-center justify-center bg-[#0F1640] px-4 py-6 sm:px-6 sm:py-7 md:py-8">
                     {/* Centered Align Container  */}
-                    <div className={`w-full ${styles2.containerWidth} flex justify-between items-center`}>
+                    <div className={`flex w-full flex-col items-center gap-4 text-center md:flex-row md:justify-between md:gap-6 md:text-left ${styles2.containerWidth}`}>
                         <p
-                            className={`font-[600] text-[28px] text-white ${styles2.fontmontserrat}`}>Let's Do Something Remarkable Together.</p>
+                            className={`font-[600] text-[20px] leading-tight text-white sm:text-[24px] md:text-[26px] lg:text-[28px] ${styles2.fontmontserrat}`}>Let's Do Something Remarkable Together.</p>
 
-                        <button className={`flex justify-center items-center gap-6 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity ${styles2.fontopensans}`}>
-                            <p className="font-[500] text-[18px] text-white">Contact us</p>
+                        <button className={`flex items-center justify-center gap-4 bg-transparent border-none cursor-pointer transition-opacity hover:opacity-80 sm:gap-5 md:gap-6 ${styles2.fontopensans}`}>
+                            <p className="font-[500] text-[16px] text-white sm:text-[17px] md:text-[18px]">Contact us</p>
 
-                            <div className="w-[36px] h-[36px] bg-[#C99237] hover:bg-[#B8822F] rounded-full flex justify-center items-center">
+                            <div className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#C99237] hover:bg-[#B8822F] sm:h-[36px] sm:w-[36px]">
 
                                 <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19.4274 2.92334L17.1344 9.08003L12.949 4.01587L19.4274 2.92334Z" fill="white" />
@@ -731,8 +735,6 @@ function Section3({ servicesData }: Section3Props) {
                 <div className="pt-4 xl:pt-16">
                     <BrandImpactSection2 />
                 </div>
-
-
             </div>
 
             {/* Modal */}
