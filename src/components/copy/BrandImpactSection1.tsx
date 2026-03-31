@@ -111,7 +111,7 @@ function BrandImpactSection1() {
                 name: "Home Page Visitor",
                 email: "homepage@ritzmediaworld.com",
                 phone: phone.trim(),
-                message: "Enquiry from Home Page - 2025 Brand Impact Report Download Request",
+                message: "Enquiry from Home Page - 2026 Brand Impact Report Download Request",
                 category: "Brand Impact Report Download",
             };
 
@@ -174,8 +174,8 @@ function BrandImpactSection1() {
             {/* Row 2  */}
             <div className={`w-full flex ${styles.containerWidth} flex-col lg:flex-row justify-between gap-6`}>
                 {/* Left Side Container  */}
-                <div className="w-full xl:w-full lg:w-[50%] xl:flex-1 min-h-[500px] xl:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
-                    <div className="text-center md:text-left mb-2 md:mb-0">
+                <div className="w-full xl:w-full lg:w-[50%] xl:flex-1 min-h-[500px] xl:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-4 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
+                    <div className="text-left mb-2 md:mb-0">
                         <p
                             className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-[#C99237]"
                             style={{
@@ -193,33 +193,33 @@ function BrandImpactSection1() {
                             Brand Impact Report 2026
                         </h2>
                     </div>
-                    {/* <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
+                    {/* <p className="font-[700] text-[16px] lg:text-[24px] text-left mb-2 md:mb-0">
                         Download Our
                     </p> */}
 
                     <p
-                        className="font-[400] text-[13px]  lg:text-[15px] xl:text-[16px] text-center md:text-left mb-2 md:mb-0"
+                        className="font-[400] text-[13px]  lg:text-[15px] xl:text-[16px] text-left mb-2 md:mb-0"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
                     >
-                        Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2025.
+                        Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2026.
                     </p>
 
                     <ul
-                        className="font-[400] text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
+                        className="font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-left mb-4 xl:mb-0"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
                     >
                         <li>Industry benchmarks for real estate marketing ROI</li>
                         <li>Proven strategies for UHNI audience targeting</li>
-                        <li> 2025 digital and print advertising trends</li>
+                        <li> 2026 digital and print advertising trends</li>
                         <li>Case studies with measurable results</li>
                     </ul>
 
                     <form onSubmit={handleDownload} className="flex flex-col gap-4">
-                        <div className="flex flex-col xl:flex-row justify-between gap-3 sm:gap-3 md:p-0 p-2">
+                        <div className="flex flex-col xl:flex-row justify-between gap-3 sm:gap-3 p-0 ">
                             <div className="flex-1 relative">
                                 <input
                                     type="tel"
@@ -253,7 +253,7 @@ function BrandImpactSection1() {
                             </button>
                         </div>
                         <p
-                            className="font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E] text-center md:text-left"
+                            className="font-[400] text-[13px] xl:text-[14px] text-[#6E6E6E] text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -266,7 +266,7 @@ function BrandImpactSection1() {
                 {/* Right Side Container  */}
                 <div className="w-full lg:w-[50%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4 md:px-6">
                     <h2
-                        className="font-[700] text-[24px] sm:text-[28px] lg:text-[22px] xl:text-[36px] text-center md:text-left"
+                        className="font-[700] text-[24px] sm:text-[28px] lg:text-[22px] xl:text-[36px] text-left"
                         style={{
                             fontFamily: "MontserratBold",
                         }}
@@ -275,7 +275,7 @@ function BrandImpactSection1() {
                     </h2>
 
                     <p
-                        className="font-[400] text-[14px] md:text-[15px] lg:text-[15px] xl:text-[16px] text-center md:text-left"
+                        className="font-[400] text-[14px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -285,7 +285,7 @@ function BrandImpactSection1() {
                     </p>
 
                     <ul
-                        className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[15px] xl:text-[16px] text-center md:text-left"
+                        className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -296,7 +296,7 @@ function BrandImpactSection1() {
                         <li>Customized strategy roadmap</li>
                     </ul>
 
-                    <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-center md:text-left">
+                    <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-left">
                         <Link
                             href={"https://ritzmediaworld.com/contact.html"}
                             target="_blank"
