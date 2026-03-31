@@ -55,7 +55,7 @@ export default function Section3() {
   ];
 
   return (
-    <section className="w-full bg-[#F7F7F7] py-10 sm:py-12 md:py-16 lg:py-20 flex justify-center px-4 sm:px-6 lg:px-0">
+    <section className="w-full min-w-0 max-md:overflow-x-hidden bg-[#F7F7F7] py-10 sm:py-12 md:py-16 lg:py-20 flex justify-center px-4 sm:px-6 lg:px-0">
       <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
         <div className="text-center">
           <p
@@ -99,8 +99,8 @@ export default function Section3() {
                   aria-expanded={isOpen}
                 >
                   <p
-                    className="text-[16px] sm:text-[18px] text-[#101828]"
-                    style={{ fontFamily: "MontserratMedium" }}
+                    className="text-[22px] leading-[28px] text-[#000000] font-[500]"
+                    style={{ fontFamily: '"Open Sans", sans-serif' }}
                   >
                     {item.label}
                   </p>
@@ -110,10 +110,10 @@ export default function Section3() {
                       alt=""
                       width={43}
                       height={43}
-                      className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 object-contain select-none"
+                      className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 object-contain select-none mt-2"
                     />
                   ) : (
-                    <span className="text-[#6E6E6E] text-2xl leading-none select-none">
+                    <span className="text-[#6E6E6E] text-4xl leading-none select-none">
                       +
                     </span>
                   )}
@@ -123,9 +123,9 @@ export default function Section3() {
                   className={`${accordionStyles.accordionContent} ${isOpen ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed}`}
                 >
                   <div className="pt-6 sm:pt-8">
-                    <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-14 justify-center">
-                      <div className="relative w-full sm:w-auto lg:max-w-[430px] xl:max-w-[480px] flex justify-center lg:justify-start">
-                        <div className="absolute left-[6px] sm:left-[10px] md:left-[0px] lg:left-[0px] top-[18px] w-[92px] sm:w-[105px] md:w-[120px] lg:w-[337px] h-[210px] sm:h-[232px] md:h-[246px] lg:h-[337px] z-0">
+                    <div className="flex min-w-0 flex-col items-start gap-8 lg:flex-row lg:gap-14">
+                      <div className="relative flex w-full min-w-0 justify-center sm:w-auto lg:max-w-[430px] xl:max-w-[480px] lg:justify-start">
+                        <div className="hidden lg:block lg:absolute lg:left-0 lg:top-[18px] lg:z-0 lg:h-[337px] lg:w-[337px]">
                           <Image
                             src={shapeSrc}
                             alt=""
@@ -133,23 +133,23 @@ export default function Section3() {
                             className="object-contain"
                           />
                         </div>
-                        <div className="relative w-[391px] h-[349px] mx-auto lg:mx-0 z-[1]">
+                        <div className="relative z-[1] mx-auto h-[349px] w-[391px] max-w-full translate-x-0 lg:mx-0 lg:h-[380px] lg:w-[430px] lg:translate-x-[20px]">
                           <Image
                             src={item.imageSrc}
                             alt={item.label}
                             fill
                             className="object-contain"
-                            sizes="388px"
+                            sizes="(max-width: 1023px) min(100vw, 391px), 430px"
                           />
                         </div>
                       </div>
 
-                      <div className="flex-1 max-w-[680px] justify-center">
+                      <div className="flex-1 max-w-[680px] justify-center lg:self-center">
                         <div className="space-y-5 justify-center mt-[24px]">
                           {item.paragraphs.map((para, i) => (
                             <p
                               key={i}
-                              className="text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed md:leading-[28px] text-[#2D2D2D]"
+                              className="text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed md:leading-[28px] text-[#00000]"
                               style={{ fontFamily: "PoppinsRegular" }}
                             >
                               {para}

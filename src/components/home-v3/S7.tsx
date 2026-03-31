@@ -56,7 +56,7 @@ function S7() {
                         }}>Achievement Awards</h2>
                         <h3 className='font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-white' style={{
                             fontFamily: "MontserratBold",
-                        }}>Awards & Company Recognitions</h3>
+                        }}>Awards & Company Recognition</h3>
                     </div>
 
                     <div className="flex gap-2 md:flex-shrink-0 justify-center md:justify-end w-full md:w-auto">

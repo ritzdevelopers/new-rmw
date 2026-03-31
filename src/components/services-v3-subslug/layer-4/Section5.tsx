@@ -4,14 +4,14 @@ import styles from "./Section5.module.css";
 
 export default function Section5() {
   return (
-    <section className="w-full bg-[#F7F7F7] py-10 sm:py-16 flex justify-center">
+    <section className="w-full  pt-[35px] lg:pt-[70px] flex justify-center">
       <div className={`w-full mx-auto overflow-hidden ${styles.containerWidth}`}>
         <div
           className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0"
           data-no-gsap-animation
         >
           {/* Left Side Container */}
-          <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0 px-4 sm:px-0">
+          <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0   border-b-[#E6E3E3]  sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-2 sm:pb-0 px-4 sm:px-0">
             <p
               className="font-[700] text-[18px] sm:text-[20px] lg:text-[24px]"
               style={{ fontFamily: "MontserratBold" }}

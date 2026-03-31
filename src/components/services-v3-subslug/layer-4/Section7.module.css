@@ -37,6 +37,7 @@
 }
 
 .swiperContainer :global(.swiper-slide) {
-  height: auto;
   display: flex;
+  width: auto !important;
+  flex-shrink: 0;
 }
