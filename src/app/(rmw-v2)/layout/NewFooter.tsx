@@ -28,7 +28,7 @@ function NewFooter() {
               </ul>
             </div>
           </div>
-          <div className="flex flex-row md:flex-col gap-12 md:gap-4 lg:gap-4">
+          <div className="flex flex-row md:flex-col gap-[27px] md:gap-4 lg:gap-4">
             {/* Row 2  */}
             <div className="flex flex-col gap-2 w-[100px] md:w-[200px] lg:w-auto text-left sm:gap-3 cursor-pointer" onClick={() => window.open("mailto:info@ritzmediaworld.com", "_blank")}>
               <p className="font-[700] text-[14px] sm:text-[16px] text-white ">Email Us</p>

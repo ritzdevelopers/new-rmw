@@ -44,8 +44,8 @@ function Section7() {
 
                     {/* Top Row Content Container   */}
                     <div className="w-full flex flex-col justify-end items-end text-end">
-                        <p className={`font-[600] text-[16px] lg:text-[14px] xl:text-[16px] uppercase text-[#C99237] ${styles.fontopensans}`}>Achievement Awards</p>
-                        <h2 className={`font-[500] text-[30px] lg:text-[19px] xl:text-[30px] text-black max-w-[200px] ${styles.fontmontserrat}`}><span className="font-[700]">Awards</span> &  <span className="font-[700]">Company Recognitions</span></h2>
+                        <p className={`font-[600] text-[14px] xl:text-[16px] uppercase text-[#C99237] ${styles.fontopensans}`}>Achievement Awards</p>
+                        <h2 className={`font-[500] text-[21px] lg:text-[19px] xl:text-[30px] text-black max-w-[200px] ${styles.fontmontserrat}`}><span className="font-[700]">Awards</span> &  <span className="font-[700]">Company Recognitions</span></h2>
                     </div>
                 </div>
 
