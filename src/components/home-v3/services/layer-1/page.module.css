@@ -37,7 +37,7 @@
 }
 
 
-@media (min-width: 768px) and (max-width: 1023px)  {
+@media (min-width: 768px) and (max-width: 1023px) {
   .containerWidth {
     padding-left: 40px !important;
     padding-right: 40px !important;
@@ -55,9 +55,9 @@
 
 @media (min-width: 1370px) {
   .containerWidth {
-     width: 1366px !important;
-     margin: 0 auto !important;
-     align-self: center !important;
+    width: 1366px !important;
+    margin: 0 auto !important;
+    align-self: center !important;
   }
 }
 
@@ -103,7 +103,7 @@
 /* For md to lg: Make cards take 50% width (2 per row) */
 /* Gap is 1rem (16px) at gap-4, so 1 gap = 16px between 2 cards */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .awardsContainer > :global(div) {
+  .awardsContainer> :global(div) {
     width: calc((100% - 1rem) / 2) !important;
     max-width: calc((100% - 1rem) / 2) !important;
     flex: 0 0 calc((100% - 1rem) / 2) !important;
@@ -113,7 +113,7 @@
 /* For lg to 1355px: Make cards take ~33.33% width (3 per row) */
 /* Gap is 1rem (16px) at gap-4, so 2 gaps = 32px between 3 cards */
 @media (min-width: 1024px) and (max-width: 1354px) {
-  .awardsContainer > :global(div) {
+  .awardsContainer> :global(div) {
     width: calc((100% - 2rem) / 3) !important;
     max-width: calc((100% - 2rem) / 3) !important;
     flex: 0 0 calc((100% - 2rem) / 3) !important;
@@ -122,14 +122,30 @@
 
 /* After 1355px: Keep original fixed width styling */
 @media (min-width: 1355px) {
-  .awardsContainer > :global(div:first-child) {
+  .awardsContainer> :global(div:first-child) {
     width: 406px !important;
     max-width: 406px !important;
     flex: 0 0 406px !important;
   }
-  .awardsContainer > :global(div:not(:first-child)) {
+
+  .awardsContainer> :global(div:not(:first-child)) {
     width: 407px !important;
     max-width: 407px !important;
     flex: 0 0 407px !important;
+  }
+}
+@media (min-width: 1240px) {
+  .factNumbers {
+    height: 280px;
+    margin-top: 18px !important;
+    /* adjust as needed */
+  }
+}
+
+@media (min-width: 1366px) {
+  .factNumbers {
+    height: 320px;
+    margin-top: 0 !important;
+    /* adjust as needed */
   }
 }

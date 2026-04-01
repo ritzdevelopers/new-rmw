@@ -63,7 +63,15 @@ function Section5() {
                         </div>
 
                         {/* Facts & Numbers  */}
-                       <div className="flex flex-col justify-between gap-2 sm:gap-3 xl:gap-4 w-full md:w-[35%] lg:w-[397px] xl:w-[430px] h-auto md:h-[240px] lg:h-[252px] xl:h-[280px] 2xl:h-[340px] bg-[#0F1640] py-4 sm:py-5 lg:py-4 xl:py-5 px-4 sm:px-5 lg:px-6 xl:px-7 md:shrink-0 mt-3 md:mt-18 lg:mt-16 xl:mt-5">
+                        <div className={`flex flex-col justify-between 
+                                            gap-2 sm:gap-3 lg:gap-4 xl:gap-5
+                                            w-full md:w-[35%] lg:w-[397px] xl:w-[430px]
+                                            h-auto md:h-[240px] lg:h-[252px] xl:h-[280px] 2xl:h-[340px]
+                                            bg-[#0F1640]
+                                            py-4 sm:py-5 lg:py-5 xl:py-6
+                                            px-4 sm:px-5 lg:px-6 xl:px-8
+                                            md:shrink-0
+                                            mt-3 md:mt-18 lg:mt-14 xl:mt-5 2xl:mt-0 ${styles.factNumbers}`}>
                             {/* Top Row  */}
                             <div>
                                 <p className={`font-[400] uppercase text-[14px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[17px] text-white ${styles.fontopensans}`}>Facts & Numbers</p>
@@ -135,7 +143,7 @@ function Section5() {
                                 {testimonials.map((testimonial, idx) => (
                                     <SwiperSlide key={idx}>
                                         <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 xl:gap-7 max-w-full lg:max-w-[90%] xl:max-w-[92%]">
-                                            <p className="font-[400] text-[15px] sm:text-[18px] md:text-[20px]  xl:text-[22px] leading-relaxed font-opensans ">
+                                            <p className="font-[400] text-[14px] sm:text-[16px] md:text-[18px]  xl:text-[20px] leading-relaxed font-opensans ">
                                                 "{testimonial.quote}"
                                             </p>
 
@@ -150,7 +158,7 @@ function Section5() {
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
         </section>
     )
 }
