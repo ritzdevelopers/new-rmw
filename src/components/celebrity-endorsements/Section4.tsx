@@ -71,7 +71,8 @@ export default function Section4() {
                   <div className="hidden lg:block lg:mb-0 lg:absolute lg:left-0 lg:top-[-33px] lg:-translate-x-1/2">
                     <img
                       src={card.icon}
-                      alt=""
+                      alt={`${card.title} – Ritz Media World`}
+                      title="Ritz Media World"
                       className="w-full h-auto object-contain"
                     />
                   </div>

@@ -10,7 +10,8 @@ export default function Section1() {
         <div className="hidden lg:block lg:w-[250px] xl:w-[260px] lg:h-[30px] xl:h-[37px] relative">
           <img
             src="/home-v3/service-imgs/s1/yellow-reactangle.png"
-            alt=""
+            alt="Ritz Media World – creative services"
+            title="Ritz Media World"
             className="w-full h-full"
           />
           <p

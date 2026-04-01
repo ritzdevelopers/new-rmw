@@ -10,6 +10,12 @@ const convertClassNameToClass = (html: string): string => {
 
 function ServiceCard({ service, index }: { service: any, index: number }) {
     const { title, image, slug, subServices, description, margin, link } = service;
+    const plainTitle = String(title || "Service")
+        .replace(/<br\s*\/?>/gi, " ")
+        .replace(/<[^>]*>/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    const imgLabel = `${plainTitle} – Ritz Media World`;
     return (
         <div className="w-full flex flex-col justify-center lg:flex-row lg:justify-between gap-4 sm:gap-6 lg:gap-4 py-6 sm:py-8 md:py-10 lg:py-[50px] border-b-[1px] border-b-[#D9D9D9]  px-4 sm:px-6 md:px-10 lg:px-10 xl:px-12">
 
@@ -17,7 +23,7 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
             <div onClick={() => window.open(`${link}`, "_blank")} className="w-full  cursor-pointer lg:w-auto h-[200px] sm:h-[250px] md:h-[300px] lg:h-[377px] relative" >
 
                 <div className={`${styles.absDiv} md:w-[390px] lg:w-[313px] h-[125px] bg-[#F7F7F7] absolute top-[50%] translate-y-[-50%] -left-[100px] z-0`}></div>
-                <img src={image} alt={title} className={`z-10 relative h-full object-contain xl:object-cover 
+                <img src={image} alt={imgLabel} title="Ritz Media World" className={`z-10 relative h-full object-contain xl:object-cover 
   ${index === 3 ? "w-full" : "w-full"}`}
                 />
 

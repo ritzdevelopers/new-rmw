@@ -358,7 +358,8 @@ function S4() {
       <div className="w-full sm:w-[95%] lg:w-[90%]  h-[250px] sm:h-[300px] md:h-[350px] lg:h-[426px] flex justify-center items-center relative">
         <Image
           src={"/home-v3/s2/team-bg3.png"}
-          alt=""
+          alt="Ritz Media World – team video"
+          title="Ritz Media World"
           fill
           className="object-cover"
         ></Image>

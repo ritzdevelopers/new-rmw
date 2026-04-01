@@ -129,7 +129,8 @@ export default function Section6() {
 
                   <img
                     src="/home-v3/exl-icn.png"
-                    alt=""
+                    alt="Ritz Media World – excellence"
+                    title="Ritz Media World"
                     className="absolute bottom-4 z-0 right-4"
                   />
                 </div>

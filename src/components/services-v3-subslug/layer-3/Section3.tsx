@@ -112,7 +112,8 @@ export default function Section3() {
                   {isOpen ? (
                     <Image
                       src="/varun.icon/cross-content-marketing.svg"
-                      alt=""
+                      alt="Ritz Media World – close section"
+                      title="Ritz Media World"
                       width={43}
                       height={43}
                       className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 object-contain select-none mt-2"
@@ -133,7 +134,8 @@ export default function Section3() {
                         <div className="relative mx-auto h-[349px] w-[391px] max-w-full lg:mx-0 lg:h-[380px] lg:w-[430px]">
                           <Image
                             src={item.imageSrc}
-                            alt={item.label}
+                            alt={`${item.label} – Ritz Media World`}
+                            title="Ritz Media World"
                             fill
                             className="object-contain"
                             sizes="(max-width: 1023px) min(100vw, 391px), 430px"
@@ -170,7 +172,8 @@ export default function Section3() {
                           <span className="w-10 h-10 rounded-full bg-[#C99237] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#b8822f]">
                             <Image
                               src={EXPLORE_ARROW_IMAGE}
-                              alt=""
+                              alt="Ritz Media World – learn more"
+                              title="Ritz Media World"
                               width={18}
                               height={16}
                             />

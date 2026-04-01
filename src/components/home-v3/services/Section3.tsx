@@ -492,13 +492,13 @@ function Section3({ servicesData }: Section3Props) {
                     {/* Row 2  */}
                     <div className={`w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-0 ${styles2.containerWidth}`}>
                         <div className="w-full lg:w-[456px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[424px] relative">
-                            <Image src={"/home-v3/service-imgs/s3/s3-group.png"} alt="Ritz Media World" fill className="w-full h-full object-cover"></Image>
+                            <Image src={"/home-v3/service-imgs/s3/s3-group.png"} alt="Ritz Media World – team and collective experience" title="Ritz Media World" fill className="w-full h-full object-cover"></Image>
                         </div>
 
 
 
                         <div className="w-full lg:w-[456px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[424px] relative">
-                            <Image src={"/home-v3/service-imgs/s3/s3-increase.png"} alt="Ritz Media World" fill className="w-full h-full object-cover"></Image>
+                            <Image src={"/home-v3/service-imgs/s3/s3-increase.png"} alt="Ritz Media World – perpetual growth" title="Ritz Media World" fill className="w-full h-full object-cover"></Image>
 
                             {/* Absolute Position Text Container  */}
                             <div className="absolute inset-0 w-full h-full flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 text-center md:text-left">
@@ -536,7 +536,7 @@ function Section3({ servicesData }: Section3Props) {
                             </div>
 
                             <div className="google-reviews w-full sm:w-[220px] md:w-[172px] xl:w-[269px] pt-2 border-t border-t-[#AFAFAF]">
-                                <img onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} src="/home-v3/service-imgs/s3/google-reviews2.png" alt="google review" className="w-full cursor-pointer" />
+                                <img onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} src="/home-v3/service-imgs/s3/google-reviews2.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" className="w-full cursor-pointer" />
                             </div>
                         </div>
                     </div>
@@ -547,7 +547,7 @@ function Section3({ servicesData }: Section3Props) {
                     {/* Row 3  */}
                     <div className={`w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4 ${styles2.containerWidth}`}>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product2.png"} alt="" className="w-full h-full object-cover filter brightness-60"></Image>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product2.png"} alt="Ritz Media World – profitable products and brand portfolio" title="Ritz Media World" className="w-full h-full object-cover filter brightness-60"></Image>
 
                             {/* Absolute Positioned Div 2 — centered < xl, left-aligned xl+ */}
                             <div
@@ -575,7 +575,7 @@ function Section3({ servicesData }: Section3Props) {
                             </div>
                         </div>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} title="Brand portfolio" alt="Brand portfolio" className="w-full cursor-pointer h-full object-cover"></Image>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} alt="Ritz Media World – company mission" title="Ritz Media World" className="w-full cursor-pointer h-full object-cover"></Image>
                         </div>
                     </div>
 
@@ -659,7 +659,7 @@ function Section3({ servicesData }: Section3Props) {
                                             key={idx}
                                             className="w-[100px] h-[56px] sm:w-[120px] sm:h-[67px] lg:w-[146px] lg:h-[81px] relative shrink-0"
                                         >
-                                            <Image src={url} fill alt="Ritz Media World clients" title="Ritz Media World clients" className="object-contain" />
+                                            <Image src={url} fill alt="Ritz Media World – client brand logo" title="Ritz Media World" className="object-contain" />
                                         </div>
                                     ))}
                                 </div>

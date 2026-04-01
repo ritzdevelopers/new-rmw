@@ -184,7 +184,7 @@ function Section5() {
                                 className="w-6 h-6 sm:w-7 sm:h-7 xl:w-[28px] xl:h-[28px] cursor-pointer flex justify-center items-center hover:opacity-80 transition-opacity flex-shrink-0"
                                 aria-label="Previous card"
                             >
-                                <img src="/lft-btn.svg" alt="" className="w-full h-full object-contain" />
+                                <img src="/lft-btn.svg" alt="Ritz Media World – previous" title="Ritz Media World" className="w-full h-full object-contain" />
                             </button>
                             <button
                                 type="button"
@@ -192,7 +192,7 @@ function Section5() {
                                 className="w-6 h-6 sm:w-7 sm:h-7 xl:w-[28px] xl:h-[28px] cursor-pointer flex justify-center items-center hover:opacity-80 transition-opacity flex-shrink-0"
                                 aria-label="Next card"
                             >
-                                <img src="/rght-btn.svg" alt="" className="w-full h-full object-contain" />
+                                <img src="/rght-btn.svg" alt="Ritz Media World – next" title="Ritz Media World" className="w-full h-full object-contain" />
                             </button>
                         </div>
                     </div>

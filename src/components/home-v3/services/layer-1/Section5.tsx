@@ -55,7 +55,7 @@ function Section5() {
                     <div className="flex flex-col md:flex-row md:items-stretch w-full justify-between gap-2 sm:gap-3 xl:gap-4">
                         {/* Left Side Container  */}
                         <div className="w-full md:w-[65%] lg:w-[827px] xl:w-[900px] h-[200px] sm:h-[250px] md:h-[319px] lg:h-[319px] relative overflow-hidden">
-                            <Image src="/service-v3/layer1/s5/team-q-img.jpg" alt="Why Leading Brands Choose Our IT Solutions" fill className="object-contain object-center" sizes="(max-width: 1024px) 65vw, 827px" />
+                            <Image src="/service-v3/layer1/s5/team-q-img.jpg" alt="Ritz Media World – skilled team delivering technology solutions" title="Ritz Media World" fill className="object-contain object-center" sizes="(max-width: 1024px) 65vw, 827px" />
 
                             <div className="absolute left-0 bottom-0 border-b border-[#DED6D6] bg-white max-w-full lg:max-w-[427px] py-3 sm:py-4 lg:py-5">
                                 <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] max-w-[95%] lg:max-w-[90%] xl:max-w-[95%] leading-tight sm:leading-normal ${styles.fontmontserrat}`}>A Skilled Team Delivering Reliable Technology Solutions That Drive Business Growth</p>
@@ -105,7 +105,7 @@ function Section5() {
 
                             {/* Row 2  */}
                             <div onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} className="w-full sm:w-[220px] lg:w-[269px] xl:w-[290px] h-[80px] sm:h-[95px] lg:h-[111px] xl:h-[120px] relative mx-auto sm:mx-0">
-                                <Image src="/home-v3/clients/reviews-black.png" alt="Why Leading Brands Choose Our IT Solutions" fill className="object-contain cursor-pointer" />
+                                <Image src="/home-v3/clients/reviews-black.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" fill className="object-contain cursor-pointer" />
                             </div>
                         </div>
 
@@ -119,14 +119,14 @@ function Section5() {
                                         onClick={() => swiperRef.current?.slidePrev()}
                                         aria-label="Previous review"
                                     >
-                                        <img src="/lft.svg" alt="" className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] xl:w-[26px] xl:h-[26px]" />
+                                        <img src="/lft.svg" alt="Ritz Media World – previous testimonial" title="Ritz Media World" className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] xl:w-[26px] xl:h-[26px]" />
                                     </button>
                                     <button
                                         className="cursor-pointer hover:opacity-80 transition-opacity"
                                         onClick={() => swiperRef.current?.slideNext()}
                                         aria-label="Next review"
                                     >
-                                        <img src="/rght.svg" alt="" className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] xl:w-[26px] xl:h-[26px]" />
+                                        <img src="/rght.svg" alt="Ritz Media World – next testimonial" title="Ritz Media World" className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px] xl:w-[26px] xl:h-[26px]" />
                                     </button>
                                 </div>
                             </div>

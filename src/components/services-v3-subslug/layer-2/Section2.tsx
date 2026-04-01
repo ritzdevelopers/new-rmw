@@ -64,7 +64,8 @@ export default function Section2() {
           <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#C99237] transition-colors group-hover:bg-[#b8822f] sm:size-11">
             <Image
               src={EXPLORE_ARROW_IMAGE}
-              alt=""
+              alt="Ritz Media World – contact us"
+              title="Ritz Media World"
               width={20}
               height={18}
             />

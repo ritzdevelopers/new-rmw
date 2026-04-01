@@ -12,7 +12,7 @@ function Section1() {
             <div className='flex flex-col md:gap-2 lg:gap-3 xl:gap-8 w-full max-lg:max-w-none lg:max-w-none text-center md:text-left md:h-full md:justify-end lg:h-auto lg:justify-start -translate-y-14 sm:-translate-y-16 md:translate-y-0 lg:translate-y-3 xl:translate-y-17'>
                 {/* Row 1  Yellow ReactAngle */}
                 <div className="hidden lg:block lg:w-[160px] xl:w-[170px]  lg:h-[30px] xl:h-[37px] relative">
-                    <img src="/home-v3/service-imgs/s1/yellow-reactangle.png" alt="" className='w-full h-full' />
+                    <img src="/home-v3/service-imgs/s1/yellow-reactangle.png" alt="Ritz Media World – influencer marketing" title="Ritz Media World" className='w-full h-full' />
                     <p className={`font-[700] uppercase text-[16px] text-white absolute top-[50%] transform translate-y-[-50%] right-8 ${styles.fontmontserrat}`}>Services</p>
                 </div>
 

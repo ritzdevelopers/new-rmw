@@ -4,7 +4,7 @@ function Banner({ slug }: { slug: string }) {
     return (
         <section className="w-full min-h-[280px] sm:min-h-[320px] md:min-h-[360px] lg:min-h-[409px] relative bg-[#0F1640] flex justify-center items-end pb-6 sm:pb-8 px-4 sm:px-6">
             <div className="absolute left-0 bottom-0 w-full h-full z-0 flex items-end pointer-events-none">
-                <img src="/updated_blogs_img/s1/s1-layer.png" alt="" className="w-full h-auto object-cover object-bottom" />
+                <img src="/updated_blogs_img/s1/s1-layer.png" alt="Ritz Media World – page banner" title="Ritz Media World" className="w-full h-auto object-cover object-bottom" />
             </div>
 
             {/* Page Heading And Info  */}
