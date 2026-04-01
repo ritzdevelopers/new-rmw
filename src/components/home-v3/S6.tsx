@@ -6,8 +6,8 @@ import "swiper/css/pagination";
 import "./S6.css";
 import { Pagination, Autoplay } from "swiper/modules";
 import styles from "./S3.module.css"
-function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}) {
-  const data = [  
+function S6({ padding = "", padding2 = "" }: { padding?: string, padding2?: string }) {
+  const data = [
     {
       client: "FAIRFOX - EON",
       para: "If there is one thing serving as a full service digital agency for more than a decade taught us, it has to be the value of relationships. Therefore, our relationship with our clients is both a priority and a point of pride to us.",
@@ -44,14 +44,14 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
             Client Testimonials
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 items-center md:items-end text-center md:text-left">
-            <h2
-              className="font-[700] text-[24px] text-[#0F1640] sm:text-[28px] lg:text-[36px]"
+            <h3
+              className="font-[700] text-[24px] text-[#0F1640] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[36px]"
               style={{
                 fontFamily: "MontserratBold",
               }}
             >
               What Our Clients Say
-            </h2>
+            </h3>
             <p
               className="font-[400] text-[14px] text-[#0F1640] sm:text-[15px] lg:text-[16px]"
               style={{
@@ -65,7 +65,7 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
           <div className="flex flex-row gap-2">
             <button
               onClick={() =>
-                window.open("https://ritzmediaworld.com/contact.html", "_blank")
+                window.open("/category/case-study", "_blank")
               }
               className="s1-btn-gold w-full sm:w-[146px] h-[37px] rounded-[5px] bg-[#C99237] cursor-pointer text-white font-[600] text-[14px] sm:text-[16px]"
               style={{
@@ -166,7 +166,7 @@ function S6({padding = "", padding2 = ""}: {padding?: string, padding2?: string}
                     {/* Absolute Positioned Image */}
                     <img
                       src="/home-v3/exl-icn.png"
-                      alt=""
+                      alt="Ritz Media World" title="Ritz Media World"
                       className="absolute bottom-4 z-0 right-4"
                     />
                   </div>

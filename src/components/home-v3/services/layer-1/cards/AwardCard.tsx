@@ -6,11 +6,11 @@ function AwardCard({ img, title, description }: { img: string, title: string, de
         <div className="w-[407px]">
             {/* Top Row For Image */}
             <div className="w-full  lg:h-[273px] xl:h-[328px] h-[328px] relative">
-                <Image src={img} alt={title} fill className="object-cover" />
+                <Image src={img} alt={title} title={title} fill className="object-cover" />
 
                 {/* Absolute Positioned Div For Star Image  */}
                 <div className="absolute bottom-6 left-6">
-                    <img src="/service-v3/layer1/s7/excellence-img.png" alt="" className="w-[125px] h-auto" />
+                    <img src="/service-v3/layer1/s7/excellence-img.png" alt="Excellence" title="Excellence" className="w-[125px] h-auto" />
                 </div>
             </div>
 

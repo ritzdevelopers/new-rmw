@@ -2,7 +2,9 @@
 import { useEffect, useState } from "react";
 import { Download } from "lucide-react";
 import Link from "next/link";
+import styles2 from "./page.module.css";
 import styles from "./page.module.css";
+
 
 function Section8() {
     const [loader, setLoader] = useState<boolean>(true);
@@ -169,12 +171,12 @@ function Section8() {
 
 
     return (
-        <section className="w-full bg-white py-[30px] sm:py-[70px] flex flex-col gap-6 xl:gap-20">
+        <section className="w-full bg-white  flex flex-col gap-6 xl:gap-20">
             {/* Row 2  */}
-            <div className={`w-full flex ${styles.containerWidth} flex-col xl:flex-row justify-between gap-10`}>
+            <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 pt-5 md:pt-16  ${styles2.containerWidth}`}>
                 {/* Left Side Container  */}
-                <div className="w-full xl:flex-1 min-h-[500px] xl:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
-                    <div className="text-center md:text-left mb-2 md:mb-0">
+                <div className="w-full lg:w-[48%] xl:w-[603px]  bg-[#F7F7F7] flex flex-col justify-around px-4 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
+                    <div className="text-left md:text-left mb-2 md:mb-0">
                         <p
                             className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237]"
                             style={{
@@ -183,31 +185,30 @@ function Section8() {
                         >
                             Free Resource
                         </p>
-                        <p className="font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0">
-                        Download Our
-                    </p>
                         <h2
-                            className="font-[700] text-[21px]  lg:text-[36px]"
-                            style={{
-                                fontFamily: "MontserratBold",
-                            }}
+                            className="font-[700] text-[21px] text-[#0F1640] lg:text-[24px] xl:text-[36px]"
+                            // style={{
+                            //     fontFamily: "Montserr   atBold",
+                            // }}
                         >
                             2026 Brand Impact Report
                         </h2>
                     </div>
-                   
+                    <p className="font-[700] text-[16px] lg:text-[24px] text-[#0F1640] text-left md:text-left mb-2 xl:mb-0">
+                        Download Our
+                    </p>
 
                     <p
-                        className="font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-2 md:mb-0"
+                        className="font-[400] text-[13px]  lg:text-[14px] text-[#0F1640] text-left md:text-left mb-4 xl:mb-0"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
                     >
-                        Get exclusive insights into real estate and lifestyle brand <br className="hidden xl:block" /> marketing trends, strategies, and ROI benchmarks for 2026.
+                        Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2025.
                     </p>
 
                     <ul
-                        className="font-[400] text-[13px] md:text-[15px] lg:text-[16px] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
+                        className="font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] list-disc px-4 flex flex-col gap-2 sm:gap-3 text-left md:text-left mb-5 xl:mb-0"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -219,7 +220,7 @@ function Section8() {
                     </ul>
 
                     <form onSubmit={handleDownload} className="flex flex-col gap-4">
-                        <div className="flex flex-col sm:flex-row justify-between gap-3">
+                        <div className="flex flex-col  lg:flex-col xl:flex-row justify-between gap-3 sm:gap-3 ">
                             <div className="flex-1 relative">
                                 <input
                                     type="tel"
@@ -228,7 +229,7 @@ function Section8() {
                                     onBlur={handlePhoneBlur}
                                     placeholder="Enter your phone (e.g., +91 9220516777)"
                                     required
-                                    className={`w-full   h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
+                                    className={`w-full xl:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#0F1640] text-[#0F1640] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
                                         ? "border-[#EF4444]"
                                         : "border-[#DAD4D4]"
                                         }`}
@@ -243,7 +244,7 @@ function Section8() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full sm:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full xl:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
                                 style={{
                                     fontFamily: "PoppinsRegular",
                                 }}
@@ -253,7 +254,7 @@ function Section8() {
                             </button>
                         </div>
                         <p
-                            className="font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E] text-center md:text-left"
+                            className="font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E] text-left md:text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -264,9 +265,9 @@ function Section8() {
                 </div>
 
                 {/* Right Side Container  */}
-                <div className="w-full lg:w-[48%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
+                <div className="w-full lg:w-[48%] xl:w-[603px]  border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
                     <h2
-                        className="font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left"
+                        className="font-[700] text-[21px] text-[#0F1640] sm:text-[28px] lg:text-[26px] xl:text-[34px] text-left md:text-left"
                         style={{
                             fontFamily: "MontserratBold",
                         }}
@@ -275,17 +276,17 @@ function Section8() {
                     </h2>
 
                     <p
-                        className="font-[400] text-[14px] md:text-[15px] lg:text-[16px] text-center md:text-left"
+                        className="font-[400] text-[14px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
                     >
-                        Let our experts analyze your current brand positioning and provide
+                         our experts analyze your current brand positioning and provide
                         actionable recommendations.
                     </p>
 
                     <ul
-                        className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[16px] text-center md:text-left"
+                        className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -300,7 +301,7 @@ function Section8() {
                         <Link
                             href={"https://ritzmediaworld.com/contact.html"}
                             target="_blank"
-                            className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black"
+                            className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#0F1640]"
                             style={{
                                 fontFamily: "MontserratSemiBold",
                             }}

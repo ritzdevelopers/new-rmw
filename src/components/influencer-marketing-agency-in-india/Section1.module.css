@@ -50,4 +50,10 @@
       align-self: center !important;
     }
   }
+
+  @media (min-width: 1770px) {
+    .bannerHeight {
+      height: 773px !important;
+    }
+  }
   

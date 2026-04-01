@@ -771,7 +771,7 @@ function NewNavbar() {
             /* For >=xl screens - full size */
             @media (min-width: 1280px) {
               .responsive-staggered-menu .sm-panel-item {
-                font-size: 4rem !important;
+                font-size: 3rem !important;
               }
             }
             

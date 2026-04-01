@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from './page.module.css';
 import styles2 from './page.module.css';
-function Section8() {
+function    Section8() {
     const [loader, setLoader] = useState<boolean>(true);
     const [phone, setPhone] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -235,7 +235,7 @@ function Section8() {
         }
     };
     return (
-        <section className="w-full flex justify-center items-center pb-8 sm:pb-12 md:pb-16 lg:pb-[70px]">
+        <section className="w-full flex justify-center items-center ">
             {/* Centered Align Container  */}
             <div className={`w-full flex flex-col justify-center items-center gap-8 xl:gap-18 ${styles.containerWidth}`}>
                 {/* left Components  */}

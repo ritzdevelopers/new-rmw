@@ -7,7 +7,8 @@ function S2Card({ index, data }: { index: number, data: any }) {
                 <div className="relative h-[470px] w-full max-md:h-auto max-md:aspect-[653/470] lg:h-full lg:w-[653px]">
                     <img
                         src={`/${data.image_url}`}
-                        alt=""
+                        alt={`${data.title} – Ritz Media World`}
+                        title="Ritz Media World"
                         className="h-full w-full object-cover object-center md:[object-position:0_-34px]"
                     />
                </div>

@@ -12,7 +12,8 @@ function Section3() {
                 <div className="w-full max-w-[200px] sm:max-w-[20%] xl:w-[222px] xl:max-w-[222px] xl:flex-shrink-0 flex flex-col justify-end items-center pb-4 sm:pb-6 xl:pb-8">
                     <img
                         src="/alishba-services-v3/radio-advertising/s3-i2.png"
-                        alt=""
+                        alt="Ritz Media World – radio advertising"
+                        title="Ritz Media World"
                         className="w-full h-auto object-cover"
                     />
 
@@ -31,7 +32,8 @@ function Section3() {
                     </div>
                     <img
                         src="/alishba-services-v3/radio-advertising/s3-i1.png"
-                        alt=""
+                        alt="Ritz Media World – FM radio brand placement"
+                        title="Ritz Media World"
                         className="w-full h-auto object-cover"
                     />
                 </div>

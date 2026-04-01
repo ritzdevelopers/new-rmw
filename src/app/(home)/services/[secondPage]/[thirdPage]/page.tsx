@@ -1,52 +1,19 @@
-"use client";
+import ServiceThirdMainPage from "@/allPages/serviceThirdPage/ServiceThirdMainPage";
+import ServiceThirdMainPage2 from "@/allPages/serviceThirdPage/ServiceThirdMainPage2";
+import { getDBPool } from "@/lib/db";
+import { RowDataPacket } from "mysql2";
 
-import React, { Suspense } from "react";
-import dynamic from "next/dynamic";
+type ThirdCardRow = RowDataPacket & {
+  title: string;
+  description: string;
+  image_url: string | null;
+};
 
-// Optimized dynamic imports for better code splitting and LCP
-const ServiceThirdMainPage = dynamic(() => import("@/allPages/serviceThirdPage/ServiceThirdMainPage"), {
-  loading: () => (
-    <div 
-      className="d-flex justify-content-center align-items-center" 
-      style={{ 
-        minHeight: '100vh',
-        background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-        backgroundSize: '200% 100%',
-        animation: 'shimmer 1.5s infinite'
-      }}
-    >
-      <style jsx>{`
-        @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
-        }
-      `}</style>
-    </div>
-  ),
-  ssr: false
-});
-
-const ServiceThirdMainPage2 = dynamic(() => import("@/allPages/serviceThirdPage/ServiceThirdMainPage2"), {
-  loading: () => (
-    <div 
-      className="d-flex justify-content-center align-items-center" 
-      style={{ 
-        minHeight: '100vh',
-        background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-        backgroundSize: '200% 100%',
-        animation: 'shimmer 1.5s infinite'
-      }}
-    >
-      <style jsx>{`
-        @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
-        }
-      `}</style>
-    </div>
-  ),
-  ssr: false
-});
+type InitialCard = {
+  title: string;
+  description: string;
+  image_url?: string;
+};
 
 const Page = async ({
   params,
@@ -54,6 +21,47 @@ const Page = async ({
   params: Promise<{ secondPage: string; thirdPage: string }>;
 }) => {
   const { secondPage, thirdPage } = await params;
+  const pool = await getDBPool();
+
+  const [services] = await pool.query<RowDataPacket[]>(
+    "SELECT id FROM services WHERE link = ? LIMIT 1",
+    [secondPage]
+  );
+
+  let initialData = {
+    s3heading1: null as string | null,
+    s3endtag: null as string | null,
+    cards: [] as InitialCard[],
+  };
+
+  if (services.length > 0) {
+    const serviceId = services[0].id;
+    const [serviceSeconds] = await pool.query<RowDataPacket[]>(
+      `SELECT id, s3heading1, s3endtag
+       FROM service_second
+       WHERE link = ? AND service_id = ?
+       LIMIT 1`,
+      [thirdPage, serviceId]
+    );
+
+    if (serviceSeconds.length > 0) {
+      const serviceSecond = serviceSeconds[0];
+      const [cards] = await pool.query<ThirdCardRow[]>(
+        "SELECT id, title, description, image_url FROM service_third WHERE service2_id = ?",
+        [serviceSecond.id]
+      );
+
+      initialData = {
+        s3heading1: serviceSecond.s3heading1 ?? null,
+        s3endtag: serviceSecond.s3endtag ?? null,
+        cards: cards.map((item) => ({
+          title: item.title,
+          description: item.description,
+          image_url: item.image_url ?? undefined,
+        })),
+      };
+    }
+  }
 
   return (
     <>
@@ -62,47 +70,9 @@ const Page = async ({
       
       <div>
         {thirdPage === "newspaper-ad-rates" ? (
-          <Suspense fallback={
-            <div 
-              className="d-flex justify-content-center align-items-center" 
-              style={{ 
-                minHeight: '100vh',
-                background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-                backgroundSize: '200% 100%',
-                animation: 'shimmer 1.5s infinite'
-              }}
-            >
-              <style jsx>{`
-                @keyframes shimmer {
-                  0% { background-position: -200% 0; }
-                  100% { background-position: 200% 0; }
-                }
-              `}</style>
-            </div>
-          }>
-            <ServiceThirdMainPage2 />
-          </Suspense>
+          <ServiceThirdMainPage2 />
         ) : (
-          <Suspense fallback={
-            <div 
-              className="d-flex justify-content-center align-items-center" 
-              style={{ 
-                minHeight: '100vh',
-                background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-                backgroundSize: '200% 100%',
-                animation: 'shimmer 1.5s infinite'
-              }}
-            >
-              <style jsx>{`
-                @keyframes shimmer {
-                  0% { background-position: -200% 0; }
-                  100% { background-position: 200% 0; }
-                }
-              `}</style>
-            </div>
-          }>
-            <ServiceThirdMainPage />
-          </Suspense>
+          <ServiceThirdMainPage initialData={initialData} />
         )}
       </div>
     </>

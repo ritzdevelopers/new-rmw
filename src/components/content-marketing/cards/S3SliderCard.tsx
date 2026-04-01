@@ -29,7 +29,7 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image, ac
     return (
         <div
             onClick={() => setActiveCard(index)}
-            className={`h-full overflow-hidden cursor-pointer transition-[width] duration-300 ease-in-out ${index === 3 ? "border-r-0" : "border-r border-[#323E84]"} flex justify-between flex-col ${activeCard === index ? `${styles.cardContainerActive} pt-10 min-w-0` : "w-[80px] sm:w-[100px] md:w-[120px] lg:w-[140px] xl:w-[150px] min-[1360px]:w-[140px] flex-shrink-0"} ${styles.cardContainer}`}
+            className={`h-full overflow-hidden cursor-pointer transform-gpu will-change-[flex] ${index === 3 ? "border-r-0" : "border-r border-[#323E84]"} flex justify-between flex-col ${activeCard === index ? `${styles.cardContainerActive} pt-10 min-w-0` : "w-[80px] sm:w-[100px] md:w-[120px] lg:w-[140px] xl:w-[150px] min-[1360px]:w-[140px] flex-shrink-0"} ${styles.cardContainer}`}
         >
             {/* Top Container * Main Card */}
             <div className={`flex h-[calc(100%-50px)] flex-col w-full justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 ${activeCard !== index ? "px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 lg:pl-0" : "px-5"} min-w-0 lg:pl-[50px]`}>
@@ -41,13 +41,13 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image, ac
                             : "-rotate-90 origin-left absolute left-0 top-[100px] sm:top-[120px] md:top-[150px] lg:top-[180px] xl:top-[260px] whitespace-nowrap"
                         }`} style={activeCard !== index ? { width: rotatedTextWidth } : {}}>
                         {
-                        activeCard === index ? activeCardTitle : <span dangerouslySetInnerHTML={{ __html: title }}></span>
+                            activeCard === index ? activeCardTitle : <span dangerouslySetInnerHTML={{ __html: title }}></span>
                         }
                     </h3>
-                    <div className={`${styles.cardImage} ${activeCard === index ? styles.cardImageActive : styles.cardImageInactive} rounded-[4px] overflow-hidden]`}>
+                    <div className={`${styles.cardImage} ${activeCard === index ? styles.cardImageActive : styles.cardImageInactive} rounded-[4px] overflow-hidden`}>
                         <Image src={image} alt={activeCardTitle} fill className="object-cover" unoptimized />
                     </div>
-                    <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[12px] lg:text-[15px] xl:text-[16px] text-white ${styles.fontMontserrat} ${styles.cardDescription} ${activeCard === index ? styles.cardDescriptionActive : styles.cardDescriptionInactive}`}>{desc}
+                    <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[12px] lg:text-[15px] xl:text-[16px] text-white ${styles.fontOpenSans} ${styles.cardDescription} ${activeCard === index ? styles.cardDescriptionActive : styles.cardDescriptionInactive}`}>{desc}
                     </p>
                 </div>
                 {/* Bottom Side  */}
@@ -56,7 +56,7 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image, ac
                         <p className={`font-[500] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] xl:text-[18px] text-white ${styles.fontMontserrat}`}>Learn More</p>
                         <div className="bg-[#C99237] h-[28px] w-[28px] sm:h-[30px] sm:w-[30px] md:h-[32px] md:w-[32px] lg:h-[36px] lg:w-[36px] xl:h-[40px] xl:w-[40px] rounded-[50px] flex justify-center items-center ">
                             <BsArrowUpRight className="text-white text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] xl:text-[18px]" />
-                        </div>
+                        </div>  
                     </a>
                 </div>
             </div>

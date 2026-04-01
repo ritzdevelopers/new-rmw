@@ -10,6 +10,9 @@ import ServiceCard from "./cards/ServiceCard";
 
 import styles2 from "./page.module.css";
 import { BsArrowUpRight } from "react-icons/bs";
+import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
+import WhiteLayer from "./WhiteLayer";
+import BlueLayer from "./BlueLayer";
 
 interface ServiceSubItem {
     service_id: number;
@@ -197,17 +200,15 @@ function Section3({ servicesData }: Section3Props) {
     }, [modal.open, modal.status]);
 
 
-
-
     return (
-        <section className="flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px]">
+        <section className="flex justify-center items-center pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-[70px]">
             {/* Center Align Container  */}
-            <div className={`flex flex-col  gap-6 w-full  `}>
+            <div className={`flex flex-col  w-full  `}>
 
                 {/* Row 1 For Heading  */}
                 <div className={`flex items-end justify-center lg:justify-start mx-0 lg:mx-2 ${styles2.containerWidth}`}>
-                    <p className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we d</p>
-                    <img src="/home-v3/service-imgs/s3/do-txt.png" alt="arrow-right" className="h-[19px] mb-[14px]" />
+                    <h2 className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we do </h2>
+
                 </div>
 
                 {/* Row 2 For Services Cards  */}
@@ -218,9 +219,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Digital <br /> Marketing",
                                 margin: "mr-[12px] pr-8 md:pr-40 lg:pr-18",
-                                description: "Digital marketing without a strategy is like driving blindfolded. It may be exciting, perhaps, but it also comes with a high probability of disastrous consequences. At <span className='font-[700]'>Ritz Media World</span>, we collectively leverage a calculated sorcery of SEO, PPC, Social Media, and some Reputation alchemy to ensure that your brand doesn’t just survive, but flourishes spectacularly.",
+                                description: "Without a strategy, you're driving blindfolded in the digital world. At Ritz Media World, we specialize in social media marketing, PPC campaigns, and SEO services to make sure your brand not only survives but thrives. With innovative tactics that are effective, we have you covered whether you're searching for the top SEO company in Delhi or the best digital marketing agency in India.",
                                 image: "/alishba-services-v3/seo-analytics.png",
-                                link: "/services-v3/brand-strategy",
+                                link: "/services/digital-marketing",
                                 subServices: [
                                     {
                                         title: "SEO (Search Engine Optimization)",
@@ -251,9 +252,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Creative <br /> Services",
                                 margin: "lg:mr-[30px] pr-20 sm:pr-48 lg:pr-20 ",
-                                description: "Creativity isn’t just decoration, it’s the entire point. from Branding, to Graphic Design to captivating logos that leave an impression. <br /> <br /> We produce ideas that other companies contemplate stealing (Although we strongly advise against it). So it's your choice. Do you want your audience to fall in love at first sight? ",
+                                description: "Creativity is not just decor. It is the heart of your brand. From branding to graphic design to memorable logos, we help you create a remarkable brand presence in the market. Are you ready to impress your audience? We make work that people might want to steal – but we hope you won’t and will keep it for yourself.",
                                 image: "/alishba-services-v3/creative-service.png",
-                                link: "/services-v3/creative-services",
+                                link: "/services/creative-services",
                                 subServices: [
                                     {
                                         title: "Branding & Identity Development",
@@ -280,9 +281,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Print <br /> Advertisement",
                                 margin: "pr-4 pr-4 md:pr-32 lg:pr-0",
-                                description: "Contrary to popular belief, Print is more prominent than ever! To put it simply, It has upgraded from mainstream to a premium audience. <br /> <br /> Ritz Media World has always been in the business of making print ads breathe life into paper, and BUSINESS IS GOOD! We turn simple pages into captivating conversation.",
+                                description: "Print advertising is more vibrant than ever in spite of the digital boom! We at Ritz Media World give your print advertisements life so they can speak for themselves. Whether you're searching for print advertising services in Delhi NCR, our ads have an impact and engage the right audience.",
                                 image: "/alishba-services-v3/print-ad.png",
-                                link: "/services-v3/print-advertising",
+                                link: "/services/print-advertising",
                                 subServices: [
                                     {
                                         title: "Advertisement Design",
@@ -312,13 +313,13 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Radio <br /> Advertising",
-                                margin: "pr-8 md:pr-36 lg:pr-4 xl:pr-20 xl:-mr-20 2xl:-mr-10   ",
-                                description: "You may have noticed that people still have ears. The most wonderful way to effectively market to the masses in this digital age is an ear-catching captivating narrative. <br /> <br /> We add some more magic with Jingles and persuasive soundscapes that resonate with the masses.",
-                                image: "/alishba-services-v3/radio.png",
-                                link: "/services-v3/radio-advertising",
+                                margin: "pr-8 md:pr-36 lg:pr-0  xl:pr-0 pt-0 xl:pt-0",
+                                description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Delhi NCR can help you get your brand on the air.",
+                                image: "/alishba-services-v3/nimg3.jpg",
+                                link: "/services/radio-advertising",
                                 subServices: [
                                     {
-                                        title: "Advertising Concept Development",
+                                        title: "Advertisement Concept Development",
                                         slug: "https://ritzmediaworld.com/services/radio-advertising/advertisement-concept-development"
                                     },
                                     {
@@ -338,7 +339,7 @@ function Section3({ servicesData }: Section3Props) {
                                         slug: "https://ritzmediaworld.com/services/radio-advertising/media-planning-and-buying",
                                     },
                                     {
-                                        title: "Cost Negotiation",
+                                        title: "NEGOTIATING AD RATES",
                                         slug: "https://ritzmediaworld.com/services/radio-advertising/radio-cost-negotiation-india",
                                     },
                                 ]
@@ -346,9 +347,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Content <br /> Marketing",
                                 margin: "pr-12 md:pr-42 lg:pr-12 xl:pr-16 2xl:pr-16",
-                                description: "Content Isn’t king, Compelling Content is. Anyone can tell stories or put words together, but will that inspire action? We didn’t think so either. <br /> <br /> Be it blogs that educate, videos that entertain, or posts that persuade, our persuasive storytelling ensures that your brand stays relevant, remarkable, and unmistakably real.",
+                                description: "Content isn’t just king, compelling content is. We don’t just create words we create stories that drive action. From blogs that educate to videos that entertain, our content marketing agency in India crafts content that’s not only engaging but also strategically persuasive.",
                                 image: "/alishba-services-v3/content-marketing.png",
-                                link: "/services-v3/content-marketing",
+                                link: "/services/contents-marketing",
                                 subServices: [
                                     {
                                         title: "Customized Content Strategy",
@@ -371,9 +372,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Web <br /> Development",
                                 margin: "pr-4 md:pr-32 lg:pr-0 xl:pr-8 2xl:pr-10 xl:-mr-10",
-                                description: "Your website is your digital handshake, so let’s make sure that it’s firm and welcoming. We design intuitive and visually delightful digital experiences that charm visitors into becoming loyal patrons. <br /> <br /> Remember, nothing signals credibility like a brilliantly functional website that customers love and don’t leave.",
+                                description: "Let's make your website firm, interesting, and friendly because it is your digital handshake. Our web development services makes useful and friendly websites that attract and win the hearts of visitors. We assure you of an excellent online presence through our web designing services in India.",
                                 image: "/alishba-services-v3/webdev.png",
-                                link: "/services-v3/web-development",
+                                link: "/services/web-designing-and-development  ",
                                 subServices: [
                                     {
                                         title: "UI/UX Design",
@@ -400,9 +401,9 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Celebrity <br /> Endorsements",
                                 margin: "pr-4  md:pr-30  lg:pr-0 xl:pr-14 xl:-mr-20",
-                                description: "Why scream when a Celebrity’s whisper can say it louder? <br /> <br /> We connect your brand with influential names whose endorsement doesn’t just sell but elevate your products and services. Because familiar faces are more effective in earning trust.",
+                                description: "When a celebrity's whisper has the ability to influence people and speak louder, why shout? We assist your business in establishing connections with celebrities who can increase sales and improve your company's reputation. Are you trying to find the best digital marketing agency in Delhi? For you, we have the greatest celebrity endorsement.",
                                 image: "/alishba-services-v3/celebraty.png",
-                                link: "/services-v3/celebrity-endorsements",
+                                link: "/services/celebrity-endorsements",
                                 subServices: [
                                     {
                                         title: "Celebrity Identification",
@@ -432,10 +433,10 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Influencer <br />   Marketing",
-                                margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-8 xl:pr-5 xl:-mr-6    ",
-                                description: "Influencer marketing isn’t about chasing vanity metrics—it’s strategic persuasion by trusted voices. At Ritz Media World, we cleverly match your brand with influential personalities whose authentic engagement transforms casual followers into loyal customers. <br /> <br /> Because genuine influence doesn’t shout—it whispers convincingly, profitably, and irresistibly to the right ears.",
-                                image: "/alishba-services-v3/influencer-marketing.png",
-                                link: "/services-v3/influencer-marketing",
+                                margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-4 xl:pr-5 xl:-mr-6    ",
+                                description: "At Ritz Media World influencer marketing is about persuasion through reliable voices, not just numbers. As a leading influencer marketing agency, we assist you in attracting clients who are eluding the casual followers of your influencers. We offer a range of tactics with top social media marketing companies in India to make sure your brand is noticed and reaches the appropriate audience.",
+                                image: "/alishba-services-v3/nimg4.jpg",
+                                link: "/services/influencer-marketing-agency-in-india",
                                 subServices: [
                                     {
                                         title: "Influencer Identification",
@@ -471,14 +472,15 @@ function Section3({ servicesData }: Section3Props) {
                         })
                     }
                 </div>
+                <BlueLayer />
                 {/* Row 3  */}
-                <div className={`flex flex-col gap-6  ${styles2.containerWidth}`}>
+                <div className={`flex flex-col gap-6 py-[35px] xl:py-[70px] `}>
 
                     {/* Row 1  */}
-                    <div className="flex flex-col text-center md:text-left">
-                        <p className={`font-[600] text-[12px] sm:text-[14px] md:text-[16px] uppercase text-[#C99237] ${styles2.fontopensans}`}>
+                    <div className={`flex flex-col text-center md:text-left ${styles2.containerWidth}`}>
+                        <h2 className={`font-[600] text-[12px] sm:text-[14px] md:text-[16px] uppercase text-[#C99237] ${styles2.fontopensans}`}>
                             Legendary Stories
-                        </p>
+                        </h2>
                         <h3 className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] text-[#0F1640] ${styles2.fontmontserrat}`}>
                             We tell stories that lead to LEGENDS
                         </h3>
@@ -488,20 +490,20 @@ function Section3({ servicesData }: Section3Props) {
                     </div>
 
                     {/* Row 2  */}
-                    <div className="w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-0">
+                    <div className={`w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-0 ${styles2.containerWidth}`}>
                         <div className="w-full lg:w-[456px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[424px] relative">
-                            <Image src={"/home-v3/service-imgs/s3/s3-group.png"} alt="Ritz Media World" fill className="w-full h-full object-cover"></Image>
+                            <Image src={"/home-v3/service-imgs/s3/s3-group.png"} alt="Ritz Media World – team and collective experience" title="Ritz Media World" fill className="w-full h-full object-cover"></Image>
                         </div>
 
 
 
                         <div className="w-full lg:w-[456px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[424px] relative">
-                            <Image src={"/home-v3/service-imgs/s3/s3-increase.png"} alt="Ritz Media World" fill className="w-full h-full object-cover"></Image>
+                            <Image src={"/home-v3/service-imgs/s3/s3-increase.png"} alt="Ritz Media World – perpetual growth" title="Ritz Media World" fill className="w-full h-full object-cover"></Image>
 
                             {/* Absolute Position Text Container  */}
                             <div className="absolute inset-0 w-full h-full flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 text-center md:text-left">
-                                <p className={`font-[400] text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] text-white ${styles2.fontopensans} max-w-[100%]`}>
-                                    We command growth with millions of <br className="hidden xl:block" /> hours in collective experience. At this point, <br className="hidden xl:block" /> It's not a matter of 'if', it becomes a matter of 'when' you will attain the tipping point that will drive your.
+                                <p className={`font-[400] text-[16px] md:text-[16px] lg:text-[18px] text-white ${styles2.fontopensans} max-w-[100%]`}>
+                                    We command growth with millions of <br className="hidden xl:block" /> hours in collective experience. At this point, <br className="hidden xl:block" /> it's not a matter of 'if', it becomes a matter of 'when' you will attain the tipping point that will drive your.
                                 </p>
                                 <h4 className={`font-[300] text-[28px] sm:text-[36px] md:text-[42px] xl:text-[50px] text-white mt-2 sm:mt-4 leading-[1.1] ${styles2.fontopensans}`}>
                                     PERPETUAL <br />
@@ -516,7 +518,7 @@ function Section3({ servicesData }: Section3Props) {
                             <div className="flex flex-row  lg:flex-col gap-6 sm:gap-8 lg:gap-6">
                                 <div>
                                     <p className={`font-[700] text-[40px] sm:text-[50px] md:text-[41px] xl:text-[60px] text-[#0F1640] ${styles2.fontmontserrat}`}>
-                                        1B+
+                                        1M+
                                     </p>
                                     <p className={`font-[600] text-[14px] text-[#0F1640] sm:text-[15px] md:text-[16px] ${styles2.fontopensans}`}>
                                         Creatives Published
@@ -534,38 +536,60 @@ function Section3({ servicesData }: Section3Props) {
                             </div>
 
                             <div className="google-reviews w-full sm:w-[220px] md:w-[172px] xl:w-[269px] pt-2 border-t border-t-[#AFAFAF]">
-                                <img src="/home-v3/service-imgs/s3/google-reviews2.png" alt="google review" className="w-full" />
+                                <img onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} src="/home-v3/service-imgs/s3/google-reviews2.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" className="w-full cursor-pointer" />
                             </div>
                         </div>
                     </div>
 
+                    {/* White Layer Row  */}
+                    <div className="w-full pt-[35px]  overflow-x-hidden"> <WhiteLayer /></div>
+
                     {/* Row 3  */}
-                    <div className="w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4">
+                    <div className={`w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4 ${styles2.containerWidth}`}>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product.png"} alt="" className="w-full h-full object-cover"></Image>
-                            {/* Absolute Positioned Button  */}
-                            <div className="w-full absolute left-0 top-[60%] pl-10 z-10">
-                                <button onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} className={`w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff] ${styles2.fontopensans}`}>
-                                    More About Us
-                                </button>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product2.png"} alt="Ritz Media World – profitable products and brand portfolio" title="Ritz Media World" className="w-full h-full object-cover filter brightness-60"></Image>
+
+                            {/* Absolute Positioned Div 2 — centered < xl, left-aligned xl+ */}
+                            <div
+                                className="absolute top-1/2 z-[8] -translate-y-1/2 rounded-full bg-[#00000095] left-1/2  -translate-x-1/2
+                                 h-[220px] w-[220px] 
+                                md:h-[320px] md:w-[320px]
+                                 lg:h-[400px] lg:w-[400px]
+                                  xl:left-8 xl:h-[350px] xl:w-[350px] xl:translate-x-0"
+                                aria-hidden
+                            />
+
+                            <div className="absolute left-1/2 top-1/2 z-10  max-w-full -translate-x-1/2 -translate-y-1/2 px-3 sm:px-4 w-full xl:left-20 xl:w-auto xl:max-w-[420px] xl:-translate-x-0 xl:translate-y-[-50%] xl:px-0">
+                                <div className="flex w-full flex-col items-center justify-center gap-4 text-center sm:gap-5 md:gap-6 xl:items-start xl:text-left">
+                                    <p className="font-[700] text-[20px] leading-tight text-white  md:text-[28px] lg:text-[40px] xl:text-[46px]">
+                                        We Build <span className="font-[400]">Successful</span> <br />
+                                        Profitable Products
+                                    </p>
+                                    <button
+                                        onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}
+                                        className={`h-[48px] w-full max-w-[157px] md:max-w-[219px] cursor-pointer rounded-[5px] bg-[#ffffff] text-[15px] font-[600] text-black sm:h-[52px] sm:text-[16px] xl:h-[54px] ${styles2.fontopensans}`}
+                                    >
+                                        Get Expert Advice
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} alt="" className="w-full h-full object-cover"></Image>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} alt="Ritz Media World – company mission" title="Ritz Media World" className="w-full cursor-pointer h-full object-cover"></Image>
                         </div>
                     </div>
 
                 </div>
 
                 {/* Copy Components  */}
-                <div className={`flex flex-col ${styles2.containerWidth}`}>
+                <div className={`flex xl:pb-[70px] pb-[35px] flex-col ${styles2.containerWidth}`}>
                     {/* Copy Row 1  */}
                     <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
                         {/* Left Side Container  */}
                         <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0">
-                            <p className="font-[700] text-[20px] sm:text-[22px] lg:text-[24px]" style={{
+                            <h2 className="font-[700] text-[20px] sm:text-[22px] lg:text-[24px]" style={{
                                 fontFamily: 'MontserratBold',
-                            }}>Brands That Trust Us</p>
+                            }}>Brands That Trust Us</h2>
 
                             <p className="absolute top-[50%] transform -translate-y-[50%] -right-3 hidden sm:block">
                                 <svg
@@ -635,7 +659,7 @@ function Section3({ servicesData }: Section3Props) {
                                             key={idx}
                                             className="w-[100px] h-[56px] sm:w-[120px] sm:h-[67px] lg:w-[146px] lg:h-[81px] relative shrink-0"
                                         >
-                                            <Image src={url} fill alt="RMW" className="object-contain" />
+                                            <Image src={url} fill alt="Ritz Media World – client brand logo" title="Ritz Media World" className="object-contain" />
                                         </div>
                                     ))}
                                 </div>
@@ -693,7 +717,7 @@ function Section3({ servicesData }: Section3Props) {
                                                 w-[calc(50vw-2rem)] sm:w-auto
                                                 ${idx < 2 ? "border-b border-b-[#C9C9C9] sm:border-b-0" : ""}
                                                 ${idx % 2 === 0 ? "border-r border-r-[#C9C9C9] sm:border-r-0" : ""}`}>
-                                                <h5 className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#0F1640] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</h5>
+                                                <p className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#0F1640] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</p>
                                                 <p className={`font-[600] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[16px] 2xl:text-[16px] text-[#0F1640] mt-1 sm:mt-1.5 md:mt-2 ${styles2.fontopensans}`}>{ob.desc}</p>
                                             </div>
                                             {idx !== 3 && <div className="hidden sm:block w-[1px] min-h-[80px] md:min-h-[100px] lg:min-h-[120px] xl:min-h-[137px] bg-[#C9C9C9]"></div>}
@@ -704,183 +728,17 @@ function Section3({ servicesData }: Section3Props) {
                         </div>
                     </div>
                 </div>
+
+
                 <S6 padding="px-0" padding2="px-0"></S6>
                 <S7></S7>
-                <div className={`w-full flex flex-col lg:flex-row justify-between gap-6 pt-5 md:pt-16  ${styles2.containerWidth}`}>
-                    {/* Left Side Container  */}
-                    <div className="w-full lg:w-[48%] xl:w-[603px]  bg-[#F7F7F7] flex flex-col justify-around px-4 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
-                        <div className="text-left md:text-left mb-2 md:mb-0">
-                            <p
-                                className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237]"
-                                style={{
-                                    fontFamily: "OpenSansSemiBold",
-                                }}
-                            >
-                                Free Resource
-                            </p>
-                            <h2
-                                className="font-[700] text-[21px] text-[#0F1640] lg:text-[24px] xl:text-[36px]"
-                                style={{
-                                    fontFamily: "MontserratBold",
-                                }}
-                            >
-                                2026 Brand Impact Repor
-                            </h2>
-                        </div>
-                        <p className="font-[700] text-[16px] lg:text-[24px] text-[#0F1640] text-left md:text-left mb-2 xl:mb-0">
-                            Download Our
-                        </p>
 
-                        <p
-                            className="font-[400] text-[13px]  lg:text-[14px] text-[#0F1640] text-left md:text-left mb-4 xl:mb-0"
-                            style={{
-                                fontFamily: "PoppinsRegular",
-                            }}
-                        >
-                            Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2025.
-                        </p>
 
-                        <ul
-                            className="font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] list-disc px-4 flex flex-col gap-2 sm:gap-3 text-left md:text-left mb-5 xl:mb-0"
-                            style={{
-                                fontFamily: "PoppinsRegular",
-                            }}
-                        >
-                            <li>Industry benchmarks for real estate marketing ROI</li>
-                            <li>Proven strategies for UHNI audience targeting</li>
-                            <li> 2025 digital and print advertising trends</li>
-                            <li>Case studies with measurable results</li>
-                        </ul>
-
-                        <form onSubmit={handleDownload} className="flex flex-col gap-4">
-                            <div className="flex flex-col  lg:flex-col xl:flex-row justify-between gap-3 sm:gap-3 ">
-                                <div className="flex-1 relative">
-                                    <input
-                                        type="tel"
-                                        value={phone}
-                                        onChange={handlePhoneChange}
-                                        onBlur={handlePhoneBlur}
-                                        placeholder="Enter your phone (e.g., +91 9220516777)"
-                                        required
-                                        className={`w-full xl:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#0F1640] text-[#0F1640] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
-                                            ? "border-[#EF4444]"
-                                            : "border-[#DAD4D4]"
-                                            }`}
-                                    />
-                                    {phoneError && (
-                                        <p className="absolute top-full left-0 mt-1 text-[12px] text-[#EF4444] font-[400]">
-                                            {phoneError}
-                                        </p>
-                                    )}
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className="w-full xl:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
-                                    style={{
-                                        fontFamily: "PoppinsRegular",
-                                    }}
-                                >
-                                    <p className="text-white">{isSubmitting ? "Submitting..." : "Free Download"}</p>
-                                    <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px]" />
-                                </button>
-                            </div>
-                            <p
-                                className="font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E] text-left md:text-left"
-                                style={{
-                                    fontFamily: "PoppinsRegular",
-                                }}
-                            >
-                                No spam, unsubscribe anytime. We respect your privacy.
-                            </p>
-                        </form>
-                    </div>
-
-                    {/* Right Side Container  */}
-                    <div className="w-full lg:w-[48%] xl:w-[603px]  border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
-                        <h2
-                            className="font-[700] text-[21px] text-[#0F1640] sm:text-[28px] lg:text-[26px] xl:text-[34px] text-left md:text-left"
-                            style={{
-                                fontFamily: "MontserratBold",
-                            }}
-                        >
-                            Or Get a Free <span className="text-[#C99237]">Brand Audit</span>{" "}
-                        </h2>
-
-                        <p
-                            className="font-[400] text-[14px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
-                            style={{
-                                fontFamily: "PoppinsRegular",
-                            }}
-                        >
-                            Let our experts analyze your current brand positioning and provide
-                            actionable recommendations.
-                        </p>
-
-                        <ul
-                            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
-                            style={{
-                                fontFamily: "PoppinsRegular",
-                            }}
-                        >
-                            <li>Comprehensive brand analysis</li>
-                            <li>Competitor positioning review</li>
-                            <li>Growth opportunity identification</li>
-                            <li>Customized strategy roadmap</li>
-                        </ul>
-
-                        <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-center md:text-left">
-                            <Link
-                                href={"https://ritzmediaworld.com/contact.html"}
-                                target="_blank"
-                                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#0F1640]"
-                                style={{
-                                    fontFamily: "MontserratSemiBold",
-                                }}
-                            >
-                                Request A Free Audit
-                            </Link>
-                            <img
-                                src="/home-v3/s3/rhgt.png"
-                                alt="RMW"
-                                className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
-                            />
-                        </div>
-                    </div>
+                <div className="pt-4 xl:pt-16">
+                    <BrandImpactSection2 />
                 </div>
 
-                {/* Row 3  */}
-                <div className={`w-full flex justify-center items-center ${styles2.containerWidth}`}>
-                    {/* Center Align Container  */}
-                    <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
-                        <h2
-                            className="font-[800] text-[19px] md:text-[28px] text-[#0F1640] lg:text-[36px]"
-                            style={{
-                                fontFamily: "MontserratExtraBold",
-                            }}
-                        >
-                            Ready to Elevate Your Brand?
-                        </h2>
-                        <p
-                            className="font-[400] text-[16px] text-[#0F1640] md:text-[24px] lg:text-[30px]"
-                            style={{
-                                fontFamily: "OpenSansRegular",
-                            }}
-                        >
-                            Let's discuss your next brand-elevating campaign
-                        </p>
-                        <button
-                            onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}
-                            className="w-full sm:w-[260px] lg:w-[282px] h-[48px] sm:h-[50px] lg:h-[54px] mt-4 bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] rounded-[5px] hover:bg-[#B8822F] transition-colors  s1-btn-gold"
-                            style={{
-                                fontFamily: "OpenSansBold",
-                            }}
-                        >
-                            <p className="text-white">Schedule Free Consultation</p>
-                        </button>
-                    </div>
-                </div>
+
             </div>
 
             {/* Modal */}

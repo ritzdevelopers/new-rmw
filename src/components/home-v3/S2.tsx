@@ -281,7 +281,7 @@ function S2() {
           {/* Row 2  */}
           <div className="w-full h-[250px] sm:h-[350px] lg:h-[426px] relative">
             {/* <Image src={"/home-v3/s2/team-bg.jpeg"} alt="" fill className="object-cover"></Image> */}
-             <Image src={"/home-v3/s2/team-bg1.png"} alt="" fill className="object-cover"></Image> 
+             <Image src={"/home-v3/s2/team-bg1.png"} alt="Ritz Media World – team" title="Ritz Media World" fill className="object-cover"></Image> 
 
             <div
               onClick={handlePlayClick}

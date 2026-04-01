@@ -29,13 +29,13 @@ function Section4() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 w-full">
                     {COL2_TILES.map((t) => (
                         <div key={t.label} className="w-full aspect-square rounded-[10px] relative overflow-hidden">
-                            <img src={t.img} alt="" className="w-full h-full object-cover" />
+                            <img src={t.img} alt={`Ritz Media World – ${t.label} print advertising`} title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClassMobile} ${t.textCls}`}>{t.label}</p>
                         </div>
                     ))}
                 </div>
                 <div className="w-full min-h-[320px] hidden sm:min-h-[400px] rounded-[10px] relative flex-shrink-0">
-                    <img src="/service-v3/print-advertising/s4/news-paper-frame.jpg" alt="" className="w-full h-full object-cover rounded-[10px] min-h-[320px] sm:min-h-[400px] object-center" />
+                    <img src="/service-v3/print-advertising/s4/news-paper-frame.jpg" alt="Ritz Media World – book newspaper ads online" title="Ritz Media World" className="w-full h-full object-cover rounded-[10px] min-h-[320px] sm:min-h-[400px] object-center" />
                     <div className="absolute inset-0 z-10 flex flex-col justify-center items-center px-3 pt-4 gap-2 sm:gap-3 text-center">
                         <h3 className={`font-[700] text-[18px] sm:text-[22px] md:text-[26px] text-black ${styles.fontmontserrat}`}>Book Newspaper Ads Online at Lowest Rates</h3>
                         <button className="w-[110px] h-[32px] sm:w-[127px] sm:h-[36px] text-white font-[700] text-[13px] sm:text-[15px] bg-[#0F1640] rounded-[5px] cursor-pointer">Start Now</button>
@@ -44,7 +44,7 @@ function Section4() {
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 w-full">
                     {COL4_TILES.map((t) => (
                         <div key={t.label} className="w-full aspect-square rounded-[10px] relative overflow-hidden">
-                            <img src={t.img} alt="" className="w-full h-full object-cover" />
+                            <img src={t.img} alt={`Ritz Media World – ${t.label} print advertising`} title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClassMobile} ${t.textCls}`}>{t.label}</p>
                         </div>
                     ))}
@@ -63,17 +63,17 @@ function Section4() {
                     {/* Left Side Container  */}
                     <div className="flex flex-col gap-2 sm:gap-3  min-w-0 max-w-[189px] lg:max-w-none">
                         <div className="w-full aspect-[189/205] lg:w-[160px] lg:h-[174px] xl:w-[189px] xl:h-[205px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
-                            <img src="/service-v3/print-advertising/s4/Business.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Business.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-black`}>Business</p>
                         </div>
 
                         <div className="w-full aspect-[189/126] lg:w-[160px] lg:h-[107px] xl:w-[189px] xl:h-[126px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
-                            <img src="/service-v3/print-advertising/s4/Recruitment.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Recruitment.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-white`}>Recruitment</p>
                         </div>
 
                         <div className="w-full aspect-[189/126] lg:w-[160px] lg:h-[107px] xl:w-[189px] xl:h-[126px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
-                            <img src="/service-v3/print-advertising/s4/Travel.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Travel.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-black`}>Travel</p>
                         </div>
                     </div>
@@ -81,17 +81,17 @@ function Section4() {
                     {/* Right Side Container  */}
                     <div className="flex flex-col gap-2 sm:gap-3  min-w-0 max-w-[189px] lg:max-w-none">
                         <div className="w-full aspect-[189/127] lg:w-[160px] lg:h-[108px] xl:w-[189px] xl:h-[127px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
-                            <img src="/service-v3/print-advertising/s4/ToRent.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/ToRent.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-white`}>To Rent</p>
                         </div>
 
                         <div className="w-full aspect-[189/205] lg:w-[160px] lg:h-[174px] xl:w-[189px] xl:h-[205px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
-                            <img src="/service-v3/print-advertising/s4/Property.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Property.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-black`}>Property</p>
                         </div>
 
                         <div className="w-full aspect-[109/112] lg:w-[92px] lg:h-[95px] xl:w-[109px] xl:h-[112px] lg:aspect-auto rounded-[10px] relative overflow-hidden max-w-[109px] lg:max-w-none">
-                            <img src="/service-v3/print-advertising/s4/Vehicles.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Vehicles.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-white`}>Vehicles</p>
                         </div>
                     </div>
@@ -99,7 +99,7 @@ function Section4() {
 
                 {/* Col 3  */}
                 <div className="w-full max-w-[317px] lg:w-[269px] lg:h-[429px] xl:w-[317px] xl:h-[505px] h-auto min-h-[320px] sm:min-h-[400px] lg:min-h-0 xl:min-h-0 rounded-[10px] relative flex-shrink-0">
-                    <img src="/service-v3/print-advertising/s4/news-paper-frame.jpg" alt="" className="w-full h-full rounded-[10px]" />
+                    <img src="/service-v3/print-advertising/s4/news-paper-frame.jpg" alt="Ritz Media World – book newspaper ads online" title="Ritz Media World" className="w-full h-full rounded-[10px]" />
 
                     <div className="absolute text-center top-0 left-0 z-10 w-full flex justify-center items-center px-3 pt-4 flex-col gap-2 sm:gap-3">
                         <h3 className={`font-[700] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[27px] xl:text-[30px] text-black ${styles.fontmontserrat}`}>Book Newspaper Ads Online at Lowest Rates</h3>
@@ -112,17 +112,17 @@ function Section4() {
                     {/* Left Side Container  */}
                     <div className="flex flex-col gap-2 sm:gap-3  min-w-0 max-w-[190px] lg:max-w-none">
                         <div className="w-full aspect-[190/205] lg:w-[161px] lg:h-[174px] xl:w-[190px] xl:h-[205px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
-                            <img src="/service-v3/print-advertising/s4/Retail.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Retail.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-white`}>Retail</p>
                         </div>
 
                         <div className="w-full aspect-[190/126] lg:w-[161px] lg:h-[107px] xl:w-[190px] xl:h-[126px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
-                            <img src="/service-v3/print-advertising/s4/Commercial.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Commercial.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-white`}>Commercial</p>
                         </div>
 
                         <div className="w-full aspect-[190/126] lg:w-[161px] lg:h-[107px] xl:w-[190px] xl:h-[126px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
-                            <img src="/service-v3/print-advertising/s4/Personal.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Personal.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-white`}>Personal</p>
                         </div>
                     </div>
@@ -130,17 +130,17 @@ function Section4() {
                     {/* Right Side Container  */}
                     <div className="flex flex-col gap-2 sm:gap-3  min-w-0 max-w-[190px] lg:max-w-none">
                         <div className="w-full aspect-[190/127] lg:w-[161px] lg:h-[108px] xl:w-[190px] xl:h-[127px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
-                            <img src="/service-v3/print-advertising/s4/Services.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Services.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-black`}>Services</p>
                         </div>
 
                         <div className="w-full aspect-[190/205] lg:w-[161px] lg:h-[174px] xl:w-[190px] xl:h-[205px] lg:aspect-auto rounded-[10px] relative overflow-hidden">
-                            <img src="/service-v3/print-advertising/s4/Residential.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Residential.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-white`}>Residential</p>
                         </div>
 
                         <div className="w-full aspect-[109/112] lg:w-[92px] lg:h-[95px] xl:w-[109px] xl:h-[112px] lg:aspect-auto rounded-[10px] relative overflow-hidden max-w-[109px] lg:max-w-none">
-                            <img src="/service-v3/print-advertising/s4/Tenders.jpg" alt="" className="w-full h-full object-cover" />
+                            <img src="/service-v3/print-advertising/s4/Tenders.jpg" alt="Ritz Media World – print advertising" title="Ritz Media World" className="w-full h-full object-cover" />
                             <p className={`${labelClass} text-black`}>Tenders</p>
                         </div>
                     </div>

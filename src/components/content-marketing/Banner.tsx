@@ -23,13 +23,14 @@ export default function Banner() {
                     </p>
                 </div>
                 <div className="pl-4 md:pl-8 lg:pl-16">
-                    <p className={`font-[500] text-[14px] sm:text-[16px] not-last-of-type: lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontopensans}`}>
-                        High-Impact Content Marketing Solutions
-                    </p>
+                  
                     <h1 className={`font-[800] text-[28px] sm:text-[36px] md:text-[31px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-18 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
                         Content Marketing <br />
                         <span className="font-[500]">Services</span>
                     </h1>
+                      <p className={`font-[500] text-[14px] sm:text-[16px] not-last-of-type: lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontopensans}`}>
+                        High-Impact Content Marketing Solutions
+                    </p>
                 </div>
             </div>
         </section>

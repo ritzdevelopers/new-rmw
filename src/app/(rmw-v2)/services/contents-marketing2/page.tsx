@@ -6,6 +6,8 @@ import Section5 from "@/components/content-marketing/Section5";
 import Section6 from "@/components/content-marketing/Section6";
 import Section7 from "@/components/content-marketing/Section7";
 import Section8 from "@/components/content-marketing/Section8";
+import BrandImpactSection1 from "@/components/copy/BrandImpactSection1";
+import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
 import S6 from "@/components/home-v3/S6";
 import S7 from "@/components/home-v3/S7";
 
@@ -21,7 +23,11 @@ function Page() {
             <Section7 text="Ready to Transform Your Website from Ordinary to Unforgettable?"></Section7>
             <S6 padding="lg:px-0 md:px-6" padding2="lg:px-0 md:px-6"></S6>
             <S7></S7>
-            <Section8></Section8>
+            {/* <BrandImpactSection1/> */}
+            <div className="pt-5 lg:pt-20">
+                <BrandImpactSection2></BrandImpactSection2>
+            </div>
+
         </>
     )
 }

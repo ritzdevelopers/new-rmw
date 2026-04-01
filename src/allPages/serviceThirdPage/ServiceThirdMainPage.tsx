@@ -26,21 +26,36 @@ interface CardData {
   image_url?: string;
 }
 
-const ServiceThirdMainPage = () => {
+type ServiceThirdInitialData = {
+  cards: Array<CardData & { image_url?: string | null }>;
+  s3heading1: string | null;
+  s3endtag: string | null;
+};
+
+const ServiceThirdMainPage = ({ initialData }: { initialData?: ServiceThirdInitialData }) => {
   const params = useParams();
   const { secondPage, thirdPage } = params as { secondPage: string; thirdPage: string };
 
-  const [cardData, setCardData] = useState<CardData[]>([]);
-  const [head, setHead] = useState<string | null>(null);
-  const [endTag, setEndTag] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [cardData, setCardData] = useState<CardData[]>(
+    initialData?.cards?.map((item) => ({ ...item, image_url: item.image_url ?? undefined })) ?? []
+  );
+  const [head, setHead] = useState<string | null>(initialData?.s3heading1 ?? null);
+  const [endTag, setEndTag] = useState<string | null>(initialData?.s3endtag ?? null);
+  const [loading, setLoading] = useState(!initialData);
 
   useEffect(() => {
+    if (initialData) return;
+
     const fetchData = async () => {
       setLoading(true);
       try {
         const res = await axios.get(`/api/services/${secondPage}/${thirdPage}`);
-        setCardData(res.data.cards || []);
+        setCardData(
+          (res.data.cards || []).map((item: CardData & { image_url?: string | null }) => ({
+            ...item,
+            image_url: item.image_url ?? undefined,
+          }))
+        );
         setHead(res.data.s3heading1 || null);
         setEndTag(res.data.s3endtag || null);
       } catch (error) {
@@ -53,7 +68,7 @@ const ServiceThirdMainPage = () => {
     if (secondPage && thirdPage) {
       fetchData();
     }
-  }, [secondPage, thirdPage]);
+  }, [secondPage, thirdPage, initialData]);
 
   if (loading) return <Loader />;
 

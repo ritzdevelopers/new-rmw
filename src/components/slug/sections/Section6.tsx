@@ -167,7 +167,8 @@ function Section6() {
                             >
                                 <img
                                     src="/icons/insta-icn.svg"
-                                    alt=""
+                                    alt="Ritz Media World on Instagram"
+                                    title="Ritz Media World"
                                     width={22}
                                     height={22}
                                     className="h-full w-full object-contain"
