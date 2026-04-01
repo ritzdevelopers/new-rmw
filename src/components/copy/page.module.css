@@ -16,8 +16,8 @@
 
  @media (min-width: 1280px) and (max-width: 1379px) {
    .containerWidth {
-     padding-left: 70px !important;
-     padding-right: 70px !important;
+     padding-left: 50px !important;
+     padding-right: 50px !important;
    }
 }
 

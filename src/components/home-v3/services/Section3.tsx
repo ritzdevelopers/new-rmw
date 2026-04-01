@@ -315,7 +315,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Radio <br /> Advertising",
                                 margin: "pr-8 md:pr-36 lg:pr-0 xl:pr-0 pt-20 lg:pt-0 xl:pt-0",
                                 description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Delhi and Noida can help you get your brand on the air.",
-                                image: "/alishba-services-v3/updated_radio_img.png",
+                                image: "/alishba-services-v3/nimg3.jpg",
                                 link: "/services/radio-advertising",
                                 subServices: [
                                     {
@@ -435,7 +435,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Influencer <br />   Marketing",
                                 margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-8 xl:pr-5 xl:-mr-6    ",
                                 description: "At Ritz Media World, influencer marketing isn’t about numbers. It is about persuading by trusted voices. We help you entrap customers who are leaking out from your influencers’ casual followers. Top social media marketing agencies in India are available with a variety of options.",
-                                image: "/alishba-services-v3/influencer-marketing.png",
+                                image: "/alishba-services-v3/nimg4.jpg",
                                 link: "/services/influencer-marketing-agency-in-india",
                                 subServices: [
                                     {
