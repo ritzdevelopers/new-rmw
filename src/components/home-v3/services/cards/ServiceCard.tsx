@@ -18,7 +18,7 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
 
                 <div className={`${styles.absDiv} md:w-[390px] lg:w-[313px] h-[125px] bg-[#F7F7F7] absolute top-[50%] translate-y-[-50%] -left-[100px] z-0`}></div>
                 <img src={image} alt={title} className={`z-10 relative h-full object-contain xl:object-cover 
-  ${index === 3 ? "mr-auto max-w-full" : "w-full"}`}
+  ${index === 3 ? "w-full" : "w-full"}`}
                 />
 
                 {/* Absolute Positioned Container  */}
