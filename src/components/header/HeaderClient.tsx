@@ -388,6 +388,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                                               <Link
                                                 className={styles.subDropLink}
                                                 href={subItem.link}
+                                                target="_blank"
                                                 style={{
                                                   padding: "2px 0",
                                                   fontSize: "15px",
