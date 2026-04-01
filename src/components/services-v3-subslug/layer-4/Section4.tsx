@@ -44,7 +44,7 @@ function Section4() {
                         <div className="w-full flex flex-col gap-3">
                             <div className="w-full min-w-0"><img src="/service-v3/print-advertising/s7/s7-graphics.png" alt="" className="w-full h-auto object-contain" /></div>
 
-                            <div className="flex w-full justify-between">
+                            <div className="flex w-full justify-between mt-0 lg:mt-[-15px]">
                                 <div className="flex flex-col gap-0 ">
                                     <h3 className={`font-[700] text-[37px] sm:text-[32px] xl:text-[37px] ${styles.fontmontserrat}`}>1M+</h3>
                                     <p className={`font-[600] text-[12px] sm:text-[12px] md:text-[14px] ${styles.fontopensans}`}>Creatives Published</p>
@@ -56,7 +56,7 @@ function Section4() {
                             </div>
                         </div>
                         {/* Row 2  */}
-                        <div className="w-full min-w-0 flex justify-center sm:block mt-2 sm:mt-0">
+                        <div className="w-full min-w-0 flex justify-center sm:block mt-2 sm:mt-0 md:mt-4 lg:mt-3">
                             <img src="/varunimage/google-review-back-text.png" alt="Google Reviews" className="w-[200px] max-w-full h-auto object-contain sm:w-[189px] lg:max-w-[271px] xl:w-[271px]" />
                         </div>
                     </div>

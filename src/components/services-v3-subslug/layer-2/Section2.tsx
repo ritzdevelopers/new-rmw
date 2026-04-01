@@ -37,27 +37,28 @@ export default function Section2() {
           </p>
         </div>
 
-        <div className="mt-8 sm:mt-5 md:mt-7 flex items-center justify-center gap-4">
+        <Link
+          href="/contact.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Contact us"
+          className="group mt-8 sm:mt-5 md:mt-7 inline-flex items-center justify-center gap-4"
+        >
           <span
             className="text-black text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px]"
             style={{ fontFamily: "MontserratMedium" }}
           >
             Contact us
           </span>
-          <Link
-            href="/contact.html"
-            target="_blank"
-            aria-label="Contact us"
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
-          >
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#C99237] transition-colors group-hover:bg-[#b8822f] sm:size-11">
             <Image
               src={EXPLORE_ARROW_IMAGE}
-              alt="Arrow"
+              alt=""
               width={20}
               height={18}
             />
-          </Link>
-        </div>
+          </span>
+        </Link>
       </div>
     </section>
   );

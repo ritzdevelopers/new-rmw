@@ -54,7 +54,7 @@ export default function Section6() {
               className="font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]"
               style={{ fontFamily: "OpenSansRegular" }}
             >
-              Don&apos;t just take our word for it – hear from the brands we&apos;ve
+              Don&apos;t just take our word for it, hear from the brands we&apos;ve
               helped transform.
             </p>
           </div>

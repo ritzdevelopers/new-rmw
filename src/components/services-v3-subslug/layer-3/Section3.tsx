@@ -18,7 +18,10 @@ export default function Section3() {
         "Take your brand identity to the next level with our branding and design solutions. We help you in developing a memorable and authentic brand identity that connects with your customers, builds loyalty, and helps you stand out in the cutthroat market.",
         "Our full-service branding solutions include logo design, brand positioning, and visual communication that helps you succeed.",
       ],
-      imageSrc: "/services-v3-slug/images/Mask group (1).png",
+      imageSrc:
+        "/varunimage/Branding%20%26%20Identity%20Development.png",
+      learnMoreHref:
+        "https://ritzmediaworld.com/services/creative-services/branding-and-identity-development",
     },
     {
       label: "Graphic Design",
@@ -26,7 +29,9 @@ export default function Section3() {
         "Tap into the power of visual communication with our professional graphic design solutions. Whether it is digital or offline media, our breathtaking designs engage, impress, and convert your audience.",
         "From infographics to marketing collateral, we design graphics that communicate effectively and deliver results, resulting in higher engagement and ROI.",
       ],
-      imageSrc: "/services-v3-slug/images/Mask group (2).png",
+      imageSrc: "/varunimage/Graphic%20Design.png",
+      learnMoreHref:
+        "https://ritzmediaworld.com/services/creative-services/graphic-designing",
     },
     {
       label: "Logo Design",
@@ -34,7 +39,9 @@ export default function Section3() {
         "Your logo is the face of your brand. We are logo design experts who can help you in designing a unique and memorable logo that builds trust and leaves a lasting impression.",
         "Our logo design solutions ensure that your brand gets noticed, builds customer loyalty, and achieves instant recognition, making it an essential part of brand promotion.",
       ],
-      imageSrc: "/services-v3-slug/images/Mask group (3).png",
+      imageSrc: "/varunimage/Logo%20Design.png",
+      learnMoreHref:
+        "https://ritzmediaworld.com/services/creative-services/logo-design",
     },
     {
       label: "Print Advertising Design",
@@ -42,7 +49,9 @@ export default function Section3() {
         "Leave your mark in the competitive world of print media with our effective print advertising design. Our designs are created in a manner that generates interest and encourages response, whether it is brochure design, flyer design, or poster design.",
         "With our professional print ad design, we turn paper into profit, ensuring that your message is seen, remembered, and acted upon.",
       ],
-      imageSrc: "/services-v3-slug/images/Mask group (4).png",
+      imageSrc: "/varunimage/Print-Advertising-Design.png",
+      learnMoreHref:
+        "https://ritzmediaworld.com/services/creative-services/print-advertisement-design",
     },
     {
       label: "Packaging Design",
@@ -50,7 +59,9 @@ export default function Section3() {
         "Use your product packaging as a marketing tool. Our packaging design services create highly persuasive and effective packaging that influences buying decisions and creates brand identity.",
         "Whether it is retail or e-commerce, our packaging design is created to capture attention, create brand loyalty, and boost sales.",
       ],
-      imageSrc: "/services-v3-slug/images/Mask group (5).png",
+      imageSrc: "/varunimage/Packaging-Design.png",
+      learnMoreHref:
+        "https://ritzmediaworld.com/services/creative-services/packaging-design",
     },
   ];
 
@@ -81,14 +92,8 @@ export default function Section3() {
         <div className="h-px w-full bg-[#AAA8A8] mt-8 sm:mt-10" />
 
         <div className="space-y-4">
-          {accordionItems.map((item, index) => {
+          {accordionItems.map((item) => {
             const isOpen = openItem === item.label;
-            const shapeSrc =
-              index === 0 ? "/services-v3-slug/yellow-rectangle-accordion.png" :
-                index === 1 ? "/services-v3-slug/accordion-shape-2.png" :
-                  index === 2 ? "/services-v3-slug/accordion-shape-3.png" :
-                    index === 3 ? "/services-v3-slug/accordion-shape-4.png" :
-                      "/services-v3-slug/accordion-shape-5.png";
 
             return (
               <div key={item.label} className="border-b border-[#AAA8A8] pb-4">
@@ -125,15 +130,7 @@ export default function Section3() {
                   <div className="pt-6 sm:pt-8">
                     <div className="flex min-w-0 flex-col items-start gap-8 lg:flex-row lg:gap-14">
                       <div className="relative flex w-full min-w-0 justify-center sm:w-auto lg:max-w-[430px] xl:max-w-[480px] lg:justify-start">
-                        <div className="hidden lg:block lg:absolute lg:left-0 lg:top-[18px] lg:z-0 lg:h-[337px] lg:w-[337px]">
-                          <Image
-                            src={shapeSrc}
-                            alt=""
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
-                        <div className="relative z-[1] mx-auto h-[349px] w-[391px] max-w-full translate-x-0 lg:mx-0 lg:h-[380px] lg:w-[430px] lg:translate-x-[20px]">
+                        <div className="relative mx-auto h-[349px] w-[391px] max-w-full lg:mx-0 lg:h-[380px] lg:w-[430px]">
                           <Image
                             src={item.imageSrc}
                             alt={item.label}
@@ -157,27 +154,28 @@ export default function Section3() {
                           ))}
                         </div>
 
-                        <div className="mt-8 flex items-center gap-4 flex-wrap">
+                        <Link
+                          href={item.learnMoreHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Learn more about ${item.label}`}
+                          className="group mt-8 inline-flex items-center gap-4 flex-wrap"
+                        >
                           <span
                             className="text-[#101828] text-[16px]"
                             style={{ fontFamily: "MontserratMedium" }}
                           >
                             Learn more
                           </span>
-                          <Link
-                            href="/contact.html"
-                            target="_blank"
-                            aria-label={`Learn more about ${item.label}`}
-                            className="w-10 h-10 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
-                          >
+                          <span className="w-10 h-10 rounded-full bg-[#C99237] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#b8822f]">
                             <Image
                               src={EXPLORE_ARROW_IMAGE}
-                              alt="Arrow"
+                              alt=""
                               width={18}
                               height={16}
                             />
-                          </Link>
-                        </div>
+                          </span>
+                        </Link>
                       </div>
                     </div>
                   </div>
