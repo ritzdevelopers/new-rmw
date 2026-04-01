@@ -303,6 +303,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                       <Link
                         href="/services"
                         className="nav-links"
+                        target="_blank"
                         style={{
                           fontWeight: "bold",
                           textShadow:
@@ -354,6 +355,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                                         {/* Main Menu Item */}
                                         <Link
                                           href={`${item.link}`}
+                                          target="_blank"
                                           className="nav-link"
                                           style={{ fontSize: "14px"  }}
                                           onMouseEnter={() => handleMouseEnter(index)}
@@ -386,6 +388,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                                               <Link
                                                 className={styles.subDropLink}
                                                 href={subItem.link}
+                                                target="_blank"
                                                 style={{
                                                   padding: "2px 0",
                                                   fontSize: "15px",
@@ -414,7 +417,8 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     <li className="nav-item">
                       <Link
                         href="/work.html"
-                        className="nav-links"
+                        target="_blank"
+                          className="nav-links"
                         style={{
                           fontWeight: "bold",
                           textShadow:
@@ -431,6 +435,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     <li className="nav-item">
                       <Link
                         href="/blogs"
+                        target="_blank"
                         className="nav-links"
                         style={{
                           fontWeight: "bold",
@@ -450,6 +455,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     <li className="nav-item">
                       <Link
                         href="/rdx-digital-marketing-course"
+                        target="_blank"
                         className="nav-links"
                         style={{
                           fontWeight: "bold",
@@ -469,7 +475,8 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     <li className="nav-item">
                       <Link
                         href="/contact.html/"
-                        className="nav-links"
+                        target="_blank"
+                          className="nav-links"
                         style={{
                           fontWeight: "bold",
                           textShadow:
@@ -647,42 +654,42 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     }`}
                   >
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/digital-marketing">
+                      <Link href="/services/digital-marketing" target="_blank">
                         Digital Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/creative-services">
+                      <Link href="/services/creative-services" target="_blank">
                         Creative Services
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/print-advertising">
+                      <Link href="/services/print-advertising" target="_blank">
                         Print Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/radio-advertising">
+                      <Link href="/services/radio-advertising" target="_blank">
                         Radio Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/contents-marketing">
+                      <Link href="/services/contents-marketing" target="_blank">
                         Content Marketing
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/web-designing-and-development">
+                      <Link href="/services/web-designing-and-development" target="_blank">
                         Web Development
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/celebrity-endorsements">
+                      <Link href="/services/celebrity-endorsements" target="_blank">
                         Celebrity Endorsements
                       </Link>
                     </li>
                     <li style={{ paddingLeft: "20px" }}>
-                      <Link href="/services/influencer-marketing-agency-in-india">
+                      <Link href="/services/influencer-marketing-agency-in-india" target="_blank">
                         Influencer Marketing
                       </Link>
                     </li>
@@ -690,16 +697,16 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                 </li>
 
                 <li>
-                  <Link href="/work.html">Our Work</Link>
+                  <Link href="/work.html" target="_blank">Our Work</Link>
                 </li>
                 <li>
-                  <Link href="/blogs">Blog</Link>
+                  <Link href="/blogs" target="_blank">Blog</Link>
                 </li>
                 <li>
-                  <Link href="/rdx-digital-marketing-course">Academy</Link>
+                  <Link href="/rdx-digital-marketing-course" target="_blank">Academy</Link>
                 </li>
                 <li>
-                  <Link href="/contact.html">Contact us</Link>
+                  <Link href="/contact.html" target="_blank"    >Contact us</Link>
                 </li>
 
                 {/* href="/rdx-digital-marketing-course/" */}
@@ -716,27 +723,27 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                 }}
               >
                 <li>
-                  <Link href="https://www.facebook.com/ritzmediaworld/">
+                  <Link href="https://www.facebook.com/ritzmediaworld/" target="_blank">
                     <FaFacebookF />
                   </Link>
                 </li>
                 <li>
-                  <Link href="https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld">
+                  <Link href="https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld" target="_blank">
                     <FaXTwitter />
                   </Link>
                 </li>
                 <li>
-                  <Link href="https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia">
+                  <Link href="https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia" target="_blank">
                     <FaYoutube />
                   </Link>
                 </li>
                 <li>
-                  <Link href="https://www.instagram.com/ritzmediaworld/">
+                  <Link href="https://www.instagram.com/ritzmediaworld/" target="_blank">
                     <FaInstagram />
                   </Link>
                 </li>
                 <li>
-                  <Link href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in">
+                  <Link href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in" target="_blank">
                     <FaLinkedinIn />
                   </Link>
                 </li>
@@ -807,7 +814,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                   Case Studies
                 </p>
                 <div className={styles.caseImgs}>
-                  <Link href="/revving-up-success-advertising-and-car-care-a-surprising-comparison">
+                  <Link href="/revving-up-success-advertising-and-car-care-a-surprising-comparison" target="_blank">
                     {/* <img src="/blogs/2023/09/acr-768x404.jpg" alt="" /> */}
                     <Image
                       src="/blogs/2023/09/acr-768x404.jpg"
@@ -818,7 +825,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     />
                   </Link>
 
-                  <Link href="/sticking-to-success-a-case-study-on-the-fevicol-marketing-campaign">
+                  <Link href="/sticking-to-success-a-case-study-on-the-fevicol-marketing-campaign" target="_blank">
                     {/* <img src="/blogs/2023/09/Slide1-768x432.jpg" alt="" /> */}
                     <Image
                       src="/blogs/2023/09/Slide1-768x432.jpg"
@@ -829,7 +836,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     />
                   </Link>
 
-                  <Link href="/from-reality-to-virtuality-metaverse-technology">
+                  <Link href="/from-reality-to-virtuality-metaverse-technology" target="_blank">
                     {/* <img
                       src="/blogs/db16fa7c-4f82-1f75-04f3-4270575794e8_1100_550.png"
                       alt=""
@@ -843,7 +850,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     />
                   </Link>
 
-                  <Link href="/how-did-cooking-shows-influence-indias-cooking-utensil-sales">
+                  <Link href="/how-did-cooking-shows-influence-indias-cooking-utensil-sales" target="_blank">
                     {/* <img src="/blogs/cook-1024x539.jpg" alt="" /> */}
                     <Image
                       src="/blogs/cook-1024x539.jpg"
@@ -863,13 +870,13 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                   142, Noida
                 </p>
                 <p>
-                  <Link href="/" target="_blank">info@ritzmediaworld.com</Link>
+                  <Link href="https://ritzmediaworld.com/" target="_blank">info@ritzmediaworld.com</Link>
                 </p>
                 <p>
-                  <Link href="/" target="_blank">09220516777</Link>
+                  <Link href="https://ritzmediaworld.com/" target="_blank">09220516777</Link>
                 </p>
                 <p>
-                  <Link href="/" target="_blank">07290002168</Link>
+                  <Link href="https://ritzmediaworld.com/" target="_blank">07290002168</Link>
                 </p>
               </div>
 
@@ -892,27 +899,27 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                   }}
                 >
                   <li>
-                    <Link href="https://www.facebook.com/ritzmediaworld/">
+                    <Link href="https://www.facebook.com/ritzmediaworld/" target="_blank">
                       <FaFacebookF />
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld">
+                    <Link href="https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld" target="_blank">
                       <FaXTwitter />
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia">
+                    <Link href="https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia" target="_blank">
                       <FaYoutube />
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://www.instagram.com/ritzmediaworld/">
+                    <Link href="https://www.instagram.com/ritzmediaworld/" target="_blank">
                       <FaInstagram />
                     </Link>
                   </li>
                   <li>
-                    <Link href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in">
+                    <Link href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in" target="_blank">
                       <FaLinkedinIn />
                     </Link>
                   </li>
