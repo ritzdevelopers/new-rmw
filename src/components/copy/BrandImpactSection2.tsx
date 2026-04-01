@@ -170,7 +170,7 @@ function BrandImpactSection2() {
 
 
     return (
-        <section className="w-full bg-white pb-[70px] flex flex-col gap-12">
+        <section className="w-full bg-white lg:pb-[70px] pb-[35px] flex flex-col gap-12">
             {/* Row 2  */}
             <div className={`w-full flex ${styles.containerWidth} flex-col lg:flex-row justify-between gap-6`}>
                 {/* Left Side Container  */}

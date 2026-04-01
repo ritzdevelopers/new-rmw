@@ -14,21 +14,18 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
         <div className="w-full flex flex-col justify-center lg:flex-row lg:justify-between gap-4 sm:gap-6 lg:gap-4 py-6 sm:py-8 md:py-10 lg:py-[50px] border-b-[1px] border-b-[#D9D9D9]  px-4 sm:px-6 md:px-10 lg:px-10 xl:px-12">
 
             {/* Left Side Container  */}
-            <div className="w-full lg:w-auto h-[200px] sm:h-[250px] md:h-[300px] lg:h-[377px] relative" >
+            <div onClick={() => window.open(`${link}`, "_blank")} className="w-full  cursor-pointer lg:w-auto h-[200px] sm:h-[250px] md:h-[300px] lg:h-[377px] relative" >
 
                 <div className={`${styles.absDiv} md:w-[390px] lg:w-[313px] h-[125px] bg-[#F7F7F7] absolute top-[50%] translate-y-[-50%] -left-[100px] z-0`}></div>
-                <img
-                    src={image}
-                    alt={title}
-                    className={`z-10 relative h-full object-contain xl:object-cover 
-  ${index === 3 ? "mr-auto max-w-full" : "w-full"}`}
+                <img src={image} alt={title} className={`z-10 relative h-full object-contain xl:object-cover 
+  ${index === 3 ? "w-full" : "w-full"}`}
                 />
 
                 {/* Absolute Positioned Container  */}
                 <div className="absolute z-10 top-[50%] translate-y-[-50%] w-full h-full flex flex-col justify-center items-end gap-1 sm:gap-2 pr-2 sm:pr-3 md:pr-4 ">
                     <div className={`flex flex-col gap-1 sm:gap-2 ${margin || ""}`}>
                         <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] ${styles2.fontopensans} text-[#0F1640]`}>{String(index + 1).padStart(2, '0')}</p>
-                        <h3 className={`text-[16px] sm:text-[18px] md:text-[22px] lg:text-[28px] font-medium xl:text-[30px] ${styles2.fontmontserrat} text-[#0F1640]`}>
+                        <h3 onClick={() => window.open(`${link}`, "_blank")} className={`text-[16px]cursor-pointer sm:text-[18px] md:text-[22px] lg:text-[28px] font-medium xl:text-[30px] ${styles2.fontmontserrat} text-[#0F1640]`}>
                             {title?.split(/<br\s*\/?>/i).map((line: string, index: number, array: string[]) => (
                                 <React.Fragment key={index}>
                                     {line}
@@ -56,7 +53,7 @@ function ServiceCard({ service, index }: { service: any, index: number }) {
                     {subServices.map((subService: any) => (
                         <div onClick={() => window.open(subService.slug, "_blank")} key={subService.title} className='bg-[#F2F2F2] hover:bg-[#0F1640] lg:pl-2
                           rounded-[2px] px-2  lg:py-2  min-h-[70px] cursor-pointer sm:min-h-[80px]  lg:h-[88px] flex justify-center lg:justify-start items-center text-center lg:text-left  text-[#0F1640] hover:text-white'>
-                            <h4 className={`font-[400] text-[13px]  sm:text-[14px] md:text-[13px] leading-relaxed p-1.5 ${styles2.fontopensans}`}>
+                            <h4 className={`font-[600] text-[13px]  sm:text-[14px] md:text-[14px] leading-relaxed p-1.5 ${styles2.fontopensans}`}>
                                 <a href={subService.slug} target="_blank" rel="noopener noreferrer">{subService.title}</a>
                             </h4>
                         </div>

@@ -8,9 +8,9 @@ const EXPLORE_ARROW_IMAGE =
 
 export default function Section2() {
   return (
-    <section className="w-full flex justify-center items-center bg-white py-[35px] lg:pt-[70px] border-b border-[#E6E3E3]">
+    <section className="w-full flex justify-center bg-white py-[35px] lg:pt-[70px] border-b border-[#E6E3E3] px-4 sm:px-6 lg:px-0">
       <div
-        className={`w-full max-w-[1075px] flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10 overflow-hidden px-5 sm:px-6 md:px-8 lg:px-0 ${styles.containerWidth}`}
+        className={`w-full mx-auto flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10 overflow-hidden ${styles.containerWidth}`}
       >
         <div className="w-full lg:w-[54%] xl:w-[48%] min-w-0 max-lg:text-center lg:text-left">
             <div className="mx-auto w-full max-w-[760px] min-w-0 lg:mx-0">
@@ -94,7 +94,7 @@ export default function Section2() {
                 />
               </div>
 
-              <div className="order-2 border-l border-[#D9D9D9] pl-[16px] pr-5 pt-6 sm:pt-7 md:order-none md:col-start-1 md:row-start-1 md:py-4 lg:min-h-[189px] lg:pt-2 lg:pl-[16px] lg:pr-5 lg:px-7 xl:py-4 max-lg:border-l-0 max-md:pl-0 max-md:pr-0 max-md:text-center md:px-6 md:text-left lg:text-left">
+              <div className="order-2 border-l border-[#D9D9D9] pl-[16px] pr-5 pt-6 sm:pt-7 md:order-none md:col-start-1 md:row-start-1 md:py-4 lg:min-h-[189px] lg:pt-2 lg:pl-[16px] lg:pr-5 lg:px-7 xl:pt-4 max-lg:border-l-0 max-md:pl-0 max-md:pr-0 max-md:text-center md:px-6 md:text-left lg:text-left">
                 <h3
                   className="text-[#0F1640] text-[52px] sm:text-[56px] md:text-[58px] lg:text-[56px] xl:text-[60px] leading-none font-[700]"
                   style={{ fontFamily: "MontserratSemiBold" }}
@@ -136,9 +136,9 @@ export default function Section2() {
                   </p>
                 </div>
 
-                <div className="relative mx-auto mt-6 max-md:order-2 w-full max-w-full overflow-visible sm:mt-7 md:order-2 lg:mx-0 lg:mt-4 xl:mt-10 h-[108px] sm:h-[128px] md:h-[136px] lg:h-[156px]">
+                <div className="relative mx-auto mt- max-md:order-2 w-full max-w-full overflow-visible sm:mt-7 md:mt-10 lg:mt-0 md:order-2 lg:mx-0 lg:mt-4 xl:mt-10 h-[108px] sm:h-[128px] md:h-[136px] lg:h-[156px]">
                   <div className="absolute inset-y-0 mt-0 max-md:inset-x-0 max-md:px-6 sm:max-md:px-7 md:left-7 md:-right-8 lg:-right-10 xl:-right-12 md:mt-6 lg:mt-8 xl:mt-0">
-                    <div className="relative h-full w-full">
+                    <div className="relative h-full w-full mt-4 md:mt-0">
                       <Image
                         src="/service-v3/content-marketing/s5/17-yow2.png"
                         alt="17 years working experience"
@@ -150,13 +150,13 @@ export default function Section2() {
                   </div>
                 </div>
 
-                <div className="mt-5 max-md:order-3 h-[108px] sm:h-[128px] md:mt-[50px] md:h-auto md:block sm:mt-6 md:order-3 lg:mt-9 xl:mt-8 px-6 sm:px-7 lg:px-7">
-                  <img
-                    src="/service-v3/content-marketing/s5/google-reviews.png"
-                    alt="Google reviews rating"
-                    className="block h-auto w-full max-w-[92%] sm:max-w-[90%] lg:max-w-none lg:w-full xl:max-w-[94%] max-md:h-full max-md:w-full max-md:max-w-none max-md:object-contain max-md:object-center"
-                  />
-                </div>
+                <div className="mt-5 max-md:order-3 h-[108px] sm:h-[128px] md:mt-[70px] md:h-auto md:block sm:mt-6 md:order-3 lg:mt-9 xl:mt-8 px-6 sm:px-7 lg:px-7 flex justify-center">
+  <img
+    src="/service-v3/content-marketing/s5/google-reviews.png"
+    alt="Google reviews rating"
+    className="block h-auto w-full max-w-[80%] sm:max-w-[90%] md:max-w-[60%] lg:max-w-none lg:w-full xl:max-w-[94%] max-md:h-full max-md:w-[200px] max-md:max-w-none max-md:object-contain max-md:object-center"
+  />
+</div>
               </div>
             </div>
           </div>

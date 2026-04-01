@@ -5,8 +5,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./Section6.css";
-import styles from "./Section6.module.css";
 import { Pagination, Autoplay } from "swiper/modules";
+import containerStyles from "@/components/celebrity-endorsements/page.module.css";
 
 const testimonialData = [
   {
@@ -33,8 +33,8 @@ const testimonialData = [
 
 export default function Section6() {
   return (
-    <section className="w-full bg-[#F7F7F7] py-10 sm:py-12 flex justify-center">
-      <div className={`w-[92%] sm:w-[90%] md:w-[86%] lg:w-[80%] mx-auto flex flex-col ${styles.containerWidth}`}>
+    <section className="w-full py-10 sm:py-12 md:py-16 lg:py-20 flex justify-center px-4 sm:px-6 lg:px-0">
+      <div className={`w-full mx-auto overflow-hidden flex flex-col ${containerStyles.containerWidth}`}>
         {/* Top Row */}
         <div className="flex flex-col gap-2 text-center md:text-left">
           <p
@@ -54,11 +54,11 @@ export default function Section6() {
               className="font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]"
               style={{ fontFamily: "OpenSansRegular" }}
             >
-              Don&apos;t just take our word for it – hear from the brands we&apos;ve
+              Don&apos;t just take our word for it, hear from the brands we&apos;ve
               helped transform.
             </p>
           </div>
-          <div className="flex flex-row gap-2 justify-center md:justify-start">
+          <div className="flex flex-row gap-2 justify-center md:justify-start mt-3">
             <button
               onClick={() =>
                 window.open("https://ritzmediaworld.com/contact.html", "_blank")
