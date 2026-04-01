@@ -152,7 +152,7 @@ export default function Section4() {
           </h3>
         </div>
       </section>
-      <div className="pt-[35px] lg:pt-[70px]">
+      <div className="pt-[35px] lg:pt-[70px]">       
         <BrandImpactSection1 />
       </div>
     </section>
