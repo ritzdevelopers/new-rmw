@@ -28,7 +28,7 @@ function NewFooter() {
               </ul>
             </div>
           </div>
-          <div className="flex flex-row md:flex-col gap-[27px] md:gap-4 lg:gap-4">
+          <div className="flex flex-row md:flex-col gap-[27px] md:gap-4 lg:gap-10">
             {/* Row 2  */}
             <div className="flex flex-col gap-2 w-[100px] md:w-[200px] lg:w-auto text-left sm:gap-3 cursor-pointer" onClick={() => window.open("mailto:info@ritzmediaworld.com", "_blank")}>
               <p className="font-[700] text-[14px] sm:text-[16px] text-white ">Email Us</p>
@@ -39,7 +39,7 @@ function NewFooter() {
 
             {/* Row 3  */}
             <div className="flex flex-col gap-2 sm:gap-3">
-              <p className="font-[700] text-left  text-[14px] sm:text-[16px] text-white ">Call Us</p>
+              <p className="font-[700] text-left  text-[14px] sm:text-[16px] text-white">Call Us</p>
               <div className="flex lg:w-auto gap-2 sm:gap-3 justify-start lg:justify-center items-center">
                 {/* Left Side Call Icon  */}
                 <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] border-[1px] border-[#17205E] flex justify-center items-center flex-shrink-0">
