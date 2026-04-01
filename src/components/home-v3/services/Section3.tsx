@@ -472,10 +472,10 @@ function Section3({ servicesData }: Section3Props) {
                     }
                 </div>
                 {/* Row 3  */}
-                <div className={`flex flex-col gap-6 py-[35px] xl:py-[70px]  ${styles2.containerWidth}`}>
+                <div className={`flex flex-col gap-6 py-[35px] xl:py-[70px] `}>
 
                     {/* Row 1  */}
-                    <div className="flex flex-col text-center md:text-left">
+                    <div className={`flex flex-col text-center md:text-left ${styles2.containerWidth}`}>
                         <h2 className={`font-[600] text-[12px] sm:text-[14px] md:text-[16px] uppercase text-[#C99237] ${styles2.fontopensans}`}>
                             Legendary Stories
                         </h2>
@@ -488,7 +488,7 @@ function Section3({ servicesData }: Section3Props) {
                     </div>
 
                     {/* Row 2  */}
-                    <div className="w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-0">
+                    <div className={`w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-0 ${styles2.containerWidth}`}>
                         <div className="w-full lg:w-[456px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[424px] relative">
                             <Image src={"/home-v3/service-imgs/s3/s3-group.png"} alt="Ritz Media World" fill className="w-full h-full object-cover"></Image>
                         </div>
@@ -540,10 +540,10 @@ function Section3({ servicesData }: Section3Props) {
                     </div>
 
                     {/* White Layer Row  */}
-                    <WhiteLayer />
+                   <div className="w-full pt-[35px]  "> <WhiteLayer /></div>
 
                     {/* Row 3  */}
-                    <div className="w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4">
+                    <div className={`w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4 ${styles2.containerWidth}`}>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
                             <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product.png"} alt="" className="w-full h-full object-cover"></Image>
                             {/* Absolute Positioned Button  */}
