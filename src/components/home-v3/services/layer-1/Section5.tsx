@@ -45,8 +45,8 @@ function Section5() {
                 {/* Top Container  */}
                 <div className="w-full flex flex-col text-center justify-center items-center  px-4 sm:px-0">
                     <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] text-[#C99237] uppercase ${styles.fontopensans}`}>Excellence</p>
-                    <h2 className={`font-[700] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] text-[#000000] leading-tight sm:leading-snug px-2 sm:px-0 ${styles.fontmontserrat}`}>Why Leading Brands Choose Our IT Solutions</h2>
-                    <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] text-[#000000] ${styles.fontopensans}`}>Built for Innovation. Chosen for Results.</p>
+                    <h2 className={`font-[700] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] text-[#000000] leading-tight sm:leading-snug px-2 sm:px-0 ${styles.fontmontserrat}`}>Why Businesses Choose the Best Digital Marketing Agency in India</h2>
+                    <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] text-[#000000] ${styles.fontopensans}`}>Trusted by brands for SEO services, Brand Awareness, & Lead Generation.</p>
                 </div>
 
                 {/* Bottom Container   */}
@@ -80,9 +80,9 @@ function Section5() {
                             {/* Bottom Row  */}
                             <div className="min-w-0">
                                 <h3 className={`font-[600] text-[44px] sm:text-[52px] md:text-[50px] lg:text-[64px] xl:text-[70px] text-white leading-none ${styles.fontopensans}`}>90<span className="text-[26px] sm:text-[32px] md:text-[36px] lg:text-[42px] xl:text-[48px]">%</span></h3>
-                                <p className={`font-[400] text-[15px] sm:text-[16px] md:text-[15px] lg:text-[19px] xl:text-[20px] text-white leading-snug sm:leading-normal mt-2 sm:mt-3 xl:mt-4 ${styles.fontopensans}`}>to customers recommend <br />
+                                <p className={`font-[400] text-[15px] sm:text-[16px] md:text-[15px] lg:text-[19px] xl:text-[20px] text-white leading-snug sm:leading-normal mt-2 sm:mt-3 xl:mt-4 ${styles.fontopensans}`}>clients recommend <br />
                                     <span className="font-[800] ">RITZ MEDIA WORLD </span> <br />
-                                    services </p>
+                                    for best digital marketing services. </p>
                             </div>
                         </div>
                     </div>

@@ -37,7 +37,7 @@ function Section3() {
 
                         {/* Row 3  */}
                         <div>
-                            <ul className="flex w-full justify-between gap-4 sm:gap-6 lg:gap-10">
+                            <ul className="flex w-full justify-between gap-4 sm:gap-6 lg:gap-8">
 
                                 <li className="flex">
                                     <span
@@ -52,7 +52,7 @@ function Section3() {
                                     ></span>
                                     <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
                                         <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
-                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>38%</p>
+                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>30%</p>
                                     </div>
                                 </li>
 
@@ -68,8 +68,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
-                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
-                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>38%</p>
+                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>Prospects </p>
+                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>60%</p>
                                     </div>
                                 </li>
 
@@ -86,8 +86,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
-                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
-                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>38%</p>
+                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>Insights </p>
+                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>10%</p>
                                     </div>
                                 </li>
                             </ul>
@@ -98,7 +98,7 @@ function Section3() {
                     <div className="bg-white xl:-ml-[15rem] px-6 sm:px-3 lg:px-8  py-3 sm:py-8 lg:py-4 rounded-[15px] sm:rounded-[20px]
                      flex flex-col justify-center items-center gap-2 sm:gap-3 w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
-                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Team of Experts</p>
+                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Our Expert Team</p>
                         </div>
                         <div className="flex justify-center items-center">
                             <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden ">
@@ -121,8 +121,7 @@ function Section3() {
 
                         {/* Row 1  */}
                         <div className="w-full text-center">
-                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Generated Traffic <br />
-                                & Leads</p>
+                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Qualified Lead Generation</p>
                         </div>
 
                         {/* Row 2  */}
@@ -133,7 +132,7 @@ function Section3() {
                         {/* Row 3  */}
                         <div className="flex flex-col justify-center items-center text-center">
                             <p className={`font-[700] text-[20px] sm:text-[22px] lg:text-[24px] ${styles.fontmontserrat}`}>90%</p>
-                            <p className={`font-[500] text-[11px] sm:text-[12px] text-[#827F7F] ${styles.fontmontserrat}`}>Average annual grow rate</p>
+                            <p className={`font-[500] text-[11px] sm:text-[12px] text-[#827F7F] ${styles.fontmontserrat}`}>Lead Conversion Rate</p>
                         </div>
                     </div>
                 </div>
@@ -203,8 +202,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex justify-center items-center gap-1 sm:gap-2">
-                                        <p className={`font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
-                                        <p className={`font-[600] text-[11px] sm:text-[12px] ${styles.fontmontserrat}`}>38%</p>
+                                        <p className={`font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>Leads </p>
+                                        <p className={`font-[600] text-[11px] sm:text-[12px] ${styles.fontmontserrat}`}>70%</p>
                                     </div>
                                 </li>
 
@@ -220,8 +219,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex justify-center items-center gap-1 sm:gap-2">
-                                        <p className={`font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
-                                        <p className={`font-[600] text-[11px] sm:text-[12px] ${styles.fontmontserrat}`}>38%</p>
+                                        <p className={`font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>Engagement </p>
+                                        <p className={`font-[600] text-[11px] sm:text-[12px] ${styles.fontmontserrat}`}>30%</p>
                                     </div>
                                 </li>
                             </ul>
@@ -239,7 +238,7 @@ function Section3() {
 
                         <div className="flex justify-center items-center gap-2 text-center">
                             <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black ${styles.fontmontserrat}`}>
-                                93
+                                92
                                 <span className={`font-[500] text-[#827F7F] ${styles.fontmontserrat}`}> /100</span>
                             </p>
                         </div>
