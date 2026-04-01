@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BsArrowUpRight } from "react-icons/bs";
 import styles from './page.module.css';
+import Link from "next/link";
 function Section3() {
 
     return (
@@ -36,7 +37,7 @@ function Section3() {
 
                         {/* Row 3  */}
                         <div>
-                            <ul className="flex w-full justify-between gap-4 sm:gap-6 lg:gap-10">
+                            <ul className="flex w-full justify-between gap-4 sm:gap-6 lg:gap-8">
 
                                 <li className="flex">
                                     <span
@@ -51,7 +52,7 @@ function Section3() {
                                     ></span>
                                     <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
                                         <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
-                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>38%</p>
+                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>30%</p>
                                     </div>
                                 </li>
 
@@ -67,8 +68,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
-                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
-                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>38%</p>
+                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>Prospects </p>
+                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>60%</p>
                                     </div>
                                 </li>
 
@@ -85,8 +86,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
-                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
-                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>38%</p>
+                                        <p className={`font-[500] text-[10px] sm:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>Insights </p>
+                                        <p className={`font-[600] text-[16px] sm:text-[17px] lg:text-[18px] ${styles.fontmontserrat}`}>10%</p>
                                     </div>
                                 </li>
                             </ul>
@@ -97,7 +98,7 @@ function Section3() {
                     <div className="bg-white xl:-ml-[15rem] px-6 sm:px-3 lg:px-8  py-3 sm:py-8 lg:py-4 rounded-[15px] sm:rounded-[20px]
                      flex flex-col justify-center items-center gap-2 sm:gap-3 w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
-                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Team of Experts</p>
+                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Our Expert Team</p>
                         </div>
                         <div className="flex justify-center items-center">
                             <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden ">
@@ -120,8 +121,7 @@ function Section3() {
 
                         {/* Row 1  */}
                         <div className="w-full text-center">
-                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Generated Traffic <br />
-                                & Leads</p>
+                            <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] ${styles.fontmontserrat}`}>Qualified Lead Generation</p>
                         </div>
 
                         {/* Row 2  */}
@@ -132,7 +132,7 @@ function Section3() {
                         {/* Row 3  */}
                         <div className="flex flex-col justify-center items-center text-center">
                             <p className={`font-[700] text-[20px] sm:text-[22px] lg:text-[24px] ${styles.fontmontserrat}`}>90%</p>
-                            <p className={`font-[500] text-[11px] sm:text-[12px] text-[#827F7F] ${styles.fontmontserrat}`}>Average annual grow rate</p>
+                            <p className={`font-[500] text-[11px] sm:text-[12px] text-[#827F7F] ${styles.fontmontserrat}`}>Lead Conversion Rate</p>
                         </div>
                     </div>
                 </div>
@@ -153,14 +153,16 @@ function Section3() {
                             <p className={`font-[500] text-[15px] sm:text-[16px] lg:text-[18px] text-black ${styles.fontmontserrat}`}>
                                 Get Free Consulting
                             </p>
-                            <div className="bg-[#ffffff] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] md:h-[38px] md:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-[#C99237]">
-                               
-<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M19.4276 2.92431L17.1346 9.08101L12.9493 4.01684L19.4276 2.92431Z" fill="#C99237"/>
-<rect x="2.19678" y="16.7173" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19678 16.7173)" fill="#C99237"/>
-</svg>
+                            <Link href="/contact.html">
+                                <div className="bg-[#ffffff] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] md:h-[38px] md:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-[#C99237] cursor-pointer">
 
-                            </div>
+                                    <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M19.4276 2.92431L17.1346 9.08101L12.9493 4.01684L19.4276 2.92431Z" fill="#C99237" />
+                                        <rect x="2.19678" y="16.7173" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19678 16.7173)" fill="#C99237" />
+                                    </svg>
+
+                                </div>
+                            </Link>
                         </button>
                     </div>
 
@@ -200,8 +202,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex justify-center items-center gap-1 sm:gap-2">
-                                        <p className={`font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
-                                        <p className={`font-[600] text-[11px] sm:text-[12px] ${styles.fontmontserrat}`}>38%</p>
+                                        <p className={`font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>Leads </p>
+                                        <p className={`font-[600] text-[11px] sm:text-[12px] ${styles.fontmontserrat}`}>70%</p>
                                     </div>
                                 </li>
 
@@ -217,8 +219,8 @@ function Section3() {
                                         }}
                                     ></span>
                                     <div className="flex justify-center items-center gap-1 sm:gap-2">
-                                        <p className={`font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>user</p>
-                                        <p className={`font-[600] text-[11px] sm:text-[12px] ${styles.fontmontserrat}`}>38%</p>
+                                        <p className={`font-[500] text-[11px] sm:text-[12px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>Engagement </p>
+                                        <p className={`font-[600] text-[11px] sm:text-[12px] ${styles.fontmontserrat}`}>30%</p>
                                     </div>
                                 </li>
                             </ul>
@@ -226,7 +228,7 @@ function Section3() {
                     </div>
 
                     {/* Row 2 Card   */}
-                        <div className="flex xl:ml-[5rem] flex-col bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] py-3 px-6 sm:px-3 md:px-8 rounded-[15px] sm:rounded-[20px] gap-4 sm:gap-[17px] justify-center items-center w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
+                    <div className="flex xl:ml-[5rem] flex-col bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] py-3 px-6 sm:px-3 md:px-8 rounded-[15px] sm:rounded-[20px] gap-4 sm:gap-[17px] justify-center items-center w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
                             <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black ${styles.fontmontserrat}`}>Content Score</p>
                         </div>
@@ -236,7 +238,7 @@ function Section3() {
 
                         <div className="flex justify-center items-center gap-2 text-center">
                             <p className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black ${styles.fontmontserrat}`}>
-                                93
+                                92
                                 <span className={`font-[500] text-[#827F7F] ${styles.fontmontserrat}`}> /100</span>
                             </p>
                         </div>

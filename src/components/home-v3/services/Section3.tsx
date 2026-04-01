@@ -12,6 +12,7 @@ import styles2 from "./page.module.css";
 import { BsArrowUpRight } from "react-icons/bs";
 import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
 import WhiteLayer from "./WhiteLayer";
+import BlueLayer from "./BlueLayer";
 
 interface ServiceSubItem {
     service_id: number;
@@ -471,11 +472,12 @@ function Section3({ servicesData }: Section3Props) {
                         })
                     }
                 </div>
+                <BlueLayer />
                 {/* Row 3  */}
-                <div className={`flex flex-col gap-6 py-[35px] xl:py-[70px]  ${styles2.containerWidth}`}>
+                <div className={`flex flex-col gap-6 py-[35px] xl:py-[70px] `}>
 
                     {/* Row 1  */}
-                    <div className="flex flex-col text-center md:text-left">
+                    <div className={`flex flex-col text-center md:text-left ${styles2.containerWidth}`}>
                         <h2 className={`font-[600] text-[12px] sm:text-[14px] md:text-[16px] uppercase text-[#C99237] ${styles2.fontopensans}`}>
                             Legendary Stories
                         </h2>
@@ -488,7 +490,7 @@ function Section3({ servicesData }: Section3Props) {
                     </div>
 
                     {/* Row 2  */}
-                    <div className="w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-0">
+                    <div className={`w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-0 ${styles2.containerWidth}`}>
                         <div className="w-full lg:w-[456px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[424px] relative">
                             <Image src={"/home-v3/service-imgs/s3/s3-group.png"} alt="Ritz Media World" fill className="w-full h-full object-cover"></Image>
                         </div>
@@ -540,21 +542,21 @@ function Section3({ servicesData }: Section3Props) {
                     </div>
 
                     {/* White Layer Row  */}
-                    <WhiteLayer />
+                   <div className="w-full pt-[35px]  overflow-x-hidden"> <WhiteLayer /></div>
 
                     {/* Row 3  */}
-                    <div className="w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4">
+                    <div className={`w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4 ${styles2.containerWidth}`}>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
                             <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product.png"} alt="" className="w-full h-full object-cover"></Image>
                             {/* Absolute Positioned Button  */}
                             <div className="w-full absolute left-0 top-[60%] pl-10 z-10">
                                 <button onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} className={`w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff] ${styles2.fontopensans}`}>
-                                    More About Us
+                                Get Expert Advice
                                 </button>
                             </div>
                         </div>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} alt="" className="w-full h-full object-cover"></Image>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} alt="" className="w-full cursor-pointer h-full object-cover"></Image>
                         </div>
                     </div>
 
@@ -711,30 +713,13 @@ function Section3({ servicesData }: Section3Props) {
 
                 <S6 padding="px-0" padding2="px-0"></S6>
                 <S7></S7>
-                <div className="flex w-full items-center justify-center bg-[#0F1640] px-4 py-6 sm:px-6 sm:py-7 md:py-8">
-                    {/* Centered Align Container  */}
-                    <div className={`flex w-full flex-col items-center gap-4 text-center md:flex-row md:justify-between md:gap-6 md:text-left ${styles2.containerWidth}`}>
-                        <p
-                            className={`font-[600] text-[20px] leading-tight text-white sm:text-[24px] md:text-[26px] lg:text-[28px] ${styles2.fontmontserrat}`}>Let's Do Something Remarkable Together.</p>
-
-                        <button className={`flex items-center justify-center gap-4 bg-transparent border-none cursor-pointer transition-opacity hover:opacity-80 sm:gap-5 md:gap-6 ${styles2.fontopensans}`}>
-                            <p className="font-[500] text-[16px] text-white sm:text-[17px] md:text-[18px]">Contact us</p>
-
-                            <div className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-[#C99237] hover:bg-[#B8822F] sm:h-[36px] sm:w-[36px]">
-
-                                <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19.4274 2.92334L17.1344 9.08003L12.949 4.01587L19.4274 2.92334Z" fill="white" />
-                                    <rect x="2.19653" y="16.7163" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19653 16.7163)" fill="white" />
-                                </svg>
-
-                            </div>
-                        </button>
-                    </div>
-                </div>
+               
 
                 <div className="pt-4 xl:pt-16">
                     <BrandImpactSection2 />
                 </div>
+
+               
             </div>
 
             {/* Modal */}

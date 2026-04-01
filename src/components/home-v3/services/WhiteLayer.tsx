@@ -64,9 +64,9 @@ function WhiteLayer() {
         ));
 
     return (
-        <section className="flex w-full items-center justify-center overflow-x-hidden bg-[#F7F7F7] py-3 md:py-4">
+        <section className="flex w-full min-h-[168px] items-center justify-center overflow-x-hidden bg-[#F7F7F7] py-3 md:py-4">
             {/* Centered Align Container  */}
-            <div className="flex w-full items-center justify-center overflow-hidden">
+            <div className="flex w-full items-center justify-center ">
                 {/* Slides left to right infinitely  */}
                 <div className={`flex w-full items-center justify-center ${styles.s3SlideTrack}`}>
                     <div className="flex items-center justify-center gap-2 md:gap-4">{renderItems()}</div>

@@ -41,7 +41,6 @@ function Section7() {
                     {/* Absolute Image 2  */}
                     <img src="/service-v3/layer1/s7/elips1.png" alt="" className="w-[185px] h-auto object-cover absolute bottom-0 left-[20%] z-0" />
 
-
                     {/* Top Row Content Container   */}
                     <div className="w-full flex flex-col justify-end items-end text-end">
                         <p className={`font-[600] text-[14px] xl:text-[16px] uppercase text-[#C99237] ${styles.fontopensans}`}>Achievement Awards</p>
