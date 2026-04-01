@@ -314,7 +314,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Radio <br /> Advertising",
                                 margin: "pr-8 md:pr-36 lg:pr-0  xl:pr-0 pt-0 xl:pt-0",
-                                description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Noida or India can help you get your brand on the air.",
+                                description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Delhi NCR can help you get your brand on the air.",
                                 image: "/alishba-services-v3/nimg3.jpg",
                                 link: "/services/radio-advertising",
                                 subServices: [
@@ -372,7 +372,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Web <br /> Development",
                                 margin: "pr-4 md:pr-32 lg:pr-0 xl:pr-8 2xl:pr-10 xl:-mr-10",
-                                description: "Let's make your website firm, interesting, and friendly because it is your digital handshake. Our web development team makes useful and friendly websites that attract and win the hearts of visitors. We assure you of an excellent online presence through our web designing services in India.",
+                                description: "Let's make your website firm, interesting, and friendly because it is your digital handshake. Our web development services makes useful and friendly websites that attract and win the hearts of visitors. We assure you of an excellent online presence through our web designing services in India.",
                                 image: "/alishba-services-v3/webdev.png",
                                 link: "/services/web-designing-and-development  ",
                                 subServices: [
@@ -434,7 +434,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Influencer <br />   Marketing",
                                 margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-4 xl:pr-5 xl:-mr-6    ",
-                                description: "At Ritz Media World, influencer marketing isn’t about numbers. It is about persuading by trusted voices. We help you entrap customers who are leaking out from your influencers’ casual followers. Top social media marketing agencies in India are available with a variety of options.",
+                                description: "At Ritz Media World influencer marketing is about persuasion through reliable voices, not just numbers. As a leading influencer marketing agency, we assist you in attracting clients who are eluding the casual followers of your influencers. We offer a range of tactics with top social media marketing companies in India to make sure your brand is noticed and reaches the appropriate audience.",
                                 image: "/alishba-services-v3/nimg4.jpg",
                                 link: "/services/influencer-marketing-agency-in-india",
                                 subServices: [
@@ -536,7 +536,7 @@ function Section3({ servicesData }: Section3Props) {
                             </div>
 
                             <div className="google-reviews w-full sm:w-[220px] md:w-[172px] xl:w-[269px] pt-2 border-t border-t-[#AFAFAF]">
-                                <img src="/home-v3/service-imgs/s3/google-reviews2.png" alt="google review" className="w-full" />
+                                <img onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} src="/home-v3/service-imgs/s3/google-reviews2.png" alt="google review" className="w-full cursor-pointer" />
                             </div>
                         </div>
                     </div>
@@ -698,7 +698,7 @@ function Section3({ servicesData }: Section3Props) {
                                                 w-[calc(50vw-2rem)] sm:w-auto
                                                 ${idx < 2 ? "border-b border-b-[#C9C9C9] sm:border-b-0" : ""}
                                                 ${idx % 2 === 0 ? "border-r border-r-[#C9C9C9] sm:border-r-0" : ""}`}>
-                                                <h5 className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#0F1640] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</h5>
+                                                <p className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#0F1640] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</p>
                                                 <p className={`font-[600] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[16px] 2xl:text-[16px] text-[#0F1640] mt-1 sm:mt-1.5 md:mt-2 ${styles2.fontopensans}`}>{ob.desc}</p>
                                             </div>
                                             {idx !== 3 && <div className="hidden sm:block w-[1px] min-h-[80px] md:min-h-[100px] lg:min-h-[120px] xl:min-h-[137px] bg-[#C9C9C9]"></div>}

@@ -79,7 +79,7 @@ function Section5() {
 
                             {/* Bottom Row  */}
                             <div className="min-w-0">
-                                <h3 className={`font-[600] text-[44px] sm:text-[52px] md:text-[50px] lg:text-[64px] xl:text-[70px] text-white leading-none ${styles.fontopensans}`}>90<span className="text-[26px] sm:text-[32px] md:text-[36px] lg:text-[42px] xl:text-[48px]">%</span></h3>
+                                <p className={`font-[600] text-[44px] sm:text-[52px] md:text-[50px] lg:text-[64px] xl:text-[70px] text-white leading-none ${styles.fontopensans}`}>90<span className="text-[26px] sm:text-[32px] md:text-[36px] lg:text-[42px] xl:text-[48px]">%</span></p>
                                 <p className={`font-[400] text-[15px] sm:text-[16px] md:text-[15px] lg:text-[19px] xl:text-[20px] text-white leading-snug sm:leading-normal mt-2 sm:mt-3 xl:mt-4 ${styles.fontopensans}`}>clients recommend <br />
                                     <span className="font-[800] ">RITZ MEDIA WORLD </span> <br />
                                     for best digital marketing services. </p>
@@ -95,11 +95,11 @@ function Section5() {
                             <div className="flex w-full justify-between gap-2 sm:gap-4 xl:gap-5">
                                 <div className="flex flex-col gap-1 sm:gap-2 xl:gap-3">
                                     <p className={`font-[500] text-[32px] sm:text-[40px] md:text-[45px] lg:text-[50px] xl:text-[55px] leading-none ${styles.fontmontserrat}`}>1M+</p>
-                                    <h4 className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]  ${styles.fontopensans}`}>Creatives Published</h4>
+                                    <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]  ${styles.fontopensans}`}>Creatives Published</p>
                                 </div>
                                 <div className="flex flex-col gap-1 sm:gap-2 xl:gap-3">
                                     <p className={`font-[500] text-[32px] sm:text-[40px] md:text-[45px] lg:text-[50px] xl:text-[55px] leading-none ${styles.fontmontserrat}`}>500+</p>
-                                    <h4 className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]  ${styles.fontopensans}`}>Success Stories</h4>
+                                    <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]  ${styles.fontopensans}`}>Success Stories</p>
                                 </div>
                             </div>
 

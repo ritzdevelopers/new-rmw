@@ -395,21 +395,20 @@
      transform: translateX(-33.333%);
    }
  }
-/* Section3: infinite slide right to left */
-@keyframes slideRightToLeft {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.s3SlideTrack {
-  display: flex;
-  width: max-content;
-  animation: slideRightToLeft 40s linear infinite;
-}
+ @keyframes slideRightToLeft {
+   0% {
+     transform: translateX(10%);
+   }
+   100% {
+     transform: translateX(-40%);
+   }
+ }
+ 
+ .s3SlideTrack {
+   display: flex;
+   width: max-content;
+   animation: slideRightToLeft 40s linear infinite;
+ }
 
 .s3SlideTrack > div {
   flex-shrink: 0;

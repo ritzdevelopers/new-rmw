@@ -44,7 +44,7 @@ function WhiteLayer() {
             <div className="flex w-full items-center justify-center ">
                 {/* Slides left to right infinitely  */}
                 <div className={`flex w-full items-center justify-center ${styles.s3SlideTrack}`}>
-                    <div className="flex items-center justify-center gap-2 md:gap-4">{renderItems()}</div> 
+                    <div className="flex items-center justify-center gap-2 md:gap-4">{renderItems()} {renderItems()}</div> 
                 </div>
             </div>
         </section>

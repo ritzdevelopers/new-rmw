@@ -49,7 +49,7 @@ function Layer1Card({ item, idx }: { item: Item, idx: number }) {
                         {title}
                     </h3>
                     {meta_titles && meta_titles !== title && (
-                        <h3 className="sr-only" itemProp="alternateName">{meta_titles}</h3>
+                        <p className="sr-only" itemProp="alternateName">{meta_titles}</p>
                     )}
                     <p 
                             className={`font-[400] max-w-[90%] text-[13px] sm:text-[16px] text-[#000000] leading-relaxed line-clamp-4 ${styles.fontopensans}`}
