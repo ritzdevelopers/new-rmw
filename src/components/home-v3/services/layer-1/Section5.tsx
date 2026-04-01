@@ -45,7 +45,7 @@ function Section5() {
                 {/* Top Container  */}
                 <div className="w-full flex flex-col text-center justify-center items-center  px-4 sm:px-0">
                     <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] text-[#C99237] uppercase ${styles.fontopensans}`}>Excellence</p>
-                    <h2 className={`font-[700] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] text-[#000000] leading-tight sm:leading-snug px-2 sm:px-0 ${styles.fontmontserrat}`}>Why Businesses Choose <br /> the Best Digital Marketing Agency in India</h2>
+                    <h2 className={`font-[700] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] text-[#000000] leading-tight sm:leading-snug px-2 sm:px-0 ${styles.fontmontserrat}`}>Why Leading Brands Choose Our IT Solutions</h2>
                     <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] text-[#000000] ${styles.fontopensans}`}>Trusted by brands for SEO services, Brand Awareness, & Lead Generation.</p>
                 </div>
 
