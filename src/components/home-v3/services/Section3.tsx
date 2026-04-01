@@ -339,7 +339,7 @@ function Section3({ servicesData }: Section3Props) {
                                         slug: "https://ritzmediaworld.com/services/radio-advertising/media-planning-and-buying",
                                     },
                                     {
-                                        title: "Cost Negotiation",
+                                        title: "NEGOTIATING AD RATES",
                                         slug: "https://ritzmediaworld.com/services/radio-advertising/radio-cost-negotiation-india",
                                     },
                                 ]

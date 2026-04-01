@@ -59,7 +59,7 @@
    font-family: 'Open Sans', sans-serif;
 }
 
-@media (min-width:1527px) {
+@media (min-width:1727px) {
    .bannerSize {
       height: 700px !important;
    }
