@@ -214,11 +214,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // Server Component (default)
-export default function page() {
+export default function page({ params }: Props) {
+  const fallbackHeading = decodeURIComponent(params.slug || "blog")
+    .replace(/\.html$/, "")
+    .split("-")
+    .join(" ")
+    .trim();
+
   return (
     <>
       {" "}
-      <Header /> <DetailPage />
+      <Header /> 
+      <DetailPage ssrHeading={fallbackHeading} />
     </>
   ); // DetailPage can be 'use client' if it needs state/hooks
 }

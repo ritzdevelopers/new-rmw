@@ -1,21 +1,21 @@
-"use client";
+
 
 import dynamic from "next/dynamic";
 import ServiceMainHero from './ServiceMainHero';
 import Footer from '@/components/footer/Footer';
 
 // Lazy load heavy or below-the-fold components
-const ProjectSwiper = dynamic(() => import('../Homepage/ProjectSwiper'), { ssr: false });
-const ServiceMainIdentity = dynamic(() => import('./ServiceMainIdentity'), { ssr: false });
-const ServiceMainOurService = dynamic(() => import('./ServiceMainOurService'), { ssr: false });
-const ServiceMainAbout = dynamic(() => import('./ServiceMainAbout'), { ssr: false });
-const SwiperHome = dynamic(() => import('../Homepage/SwiperHome'), { ssr: false });
-const ProjectMarque = dynamic(() => import('../projectsPage/ProjectMarque'), { ssr: false });
-const ProjectNumbers = dynamic(() => import('../projectsPage/ProjectNumbers'), { ssr: false });
-const Awards = dynamic(() => import('../Homepage/Awards'), { ssr: false });
+const ProjectSwiper = dynamic(() => import('../Homepage/ProjectSwiper'));
+const ServiceMainIdentity = dynamic(() => import('./ServiceMainIdentity'));
+const ServiceMainOurService = dynamic(() => import('./ServiceMainOurService'));
+const ServiceMainAbout = dynamic(() => import('./ServiceMainAbout'));
+const SwiperHome = dynamic(() => import('../Homepage/SwiperHome'));
+const ProjectMarque = dynamic(() => import('../projectsPage/ProjectMarque'));
+const ProjectNumbers = dynamic(() => import('../projectsPage/ProjectNumbers'));
+const Awards = dynamic(() => import('../Homepage/Awards'));
 // const Experts = dynamic(() => import("../aboutPage/Experts"), { ssr: false });
-const ServiceMainTestimonial = dynamic(() => import('./ServiceMainTestimonial'), { ssr: false });
-const ServiceMainTalk = dynamic(() => import('./ServiceMainTalk'), { ssr: false });
+const ServiceMainTestimonial = dynamic(() => import('./ServiceMainTestimonial'));
+const ServiceMainTalk = dynamic(() => import('./ServiceMainTalk'));
 
 const ServiceMainPage = () => {
   return (
