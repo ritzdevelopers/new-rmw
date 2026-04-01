@@ -15,8 +15,8 @@ export default function Section3() {
     {
       label: "Branding & Identity Development",
       paragraphs: [
-        "Take your brand identity to the next level with our branding and design solutions. We help you in developing a memorable and authentic brand identity that connects with your customers, builds loyalty, and helps you stand out in the cutthroat market.",
-        "Our full-service branding solutions include logo design, brand positioning, and visual communication that helps you succeed.",
+        "Take your brand identity to the next level with our branding and design services. We help you in developing a memorable and authentic brand identity that resonates with your customers, fosters brand loyalty, and helps you stand out in the cutthroat competition.",
+        "Our comprehensive branding services include logo development, brand positioning, and visual communication to help you achieve success.",
       ],
       imageSrc:
         "/varunimage/Branding%20%26%20Identity%20Development.png",
@@ -26,8 +26,8 @@ export default function Section3() {
     {
       label: "Graphic Design",
       paragraphs: [
-        "Tap into the power of visual communication with our professional graphic design solutions. Whether it is digital or offline media, our breathtaking designs engage, impress, and convert your audience.",
-        "From infographics to marketing collateral, we design graphics that communicate effectively and deliver results, resulting in higher engagement and ROI.",
+        "Leverage the power of visual communication with our expert services in graphic designing. Through competent execution, we convert audiences whether online or offline into engage, empowering and convincing you. We focus on designing effective graphics for effective communication.",
+        "Our solution in graphic design helps you effectively communicate messages by designing effective graphics.",
       ],
       imageSrc: "/varunimage/Graphic%20Design.png",
       learnMoreHref:
@@ -36,8 +36,8 @@ export default function Section3() {
     {
       label: "Logo Design",
       paragraphs: [
-        "Your logo is the face of your brand. We are logo design experts who can help you in designing a unique and memorable logo that builds trust and leaves a lasting impression.",
-        "Our logo design solutions ensure that your brand gets noticed, builds customer loyalty, and achieves instant recognition, making it an essential part of brand promotion.",
+        "The logo of any brand is their identity. We can help you design a unique and memorable logo that creates trust and makes a lasting impression on your audience. We are professionals in logo design!",
+        "With a logo design of your choice, we can ensure that your brand gets noticed, helps develop brand loyalty and helps create instant recognition. It is thus important for brand advertising",
       ],
       imageSrc: "/varunimage/Logo%20Design.png",
       learnMoreHref:
@@ -46,8 +46,8 @@ export default function Section3() {
     {
       label: "Print Advertising Design",
       paragraphs: [
-        "Leave your mark in the competitive world of print media with our effective print advertising design. Our designs are created in a manner that generates interest and encourages response, whether it is brochure design, flyer design, or poster design.",
-        "With our professional print ad design, we turn paper into profit, ensuring that your message is seen, remembered, and acted upon.",
+        "Leave your mark in the print media industry with effective print advertising design solutions from us. Our designs are made in a way that piques interest and encourages audience response.",
+        "Brochure design or flyer design or poster design; whether any paper you give us, we will turn it into a profit-making print ad design.",
       ],
       imageSrc: "/varunimage/Print-Advertising-Design.png",
       learnMoreHref:
@@ -56,8 +56,8 @@ export default function Section3() {
     {
       label: "Packaging Design",
       paragraphs: [
-        "Use your product packaging as a marketing tool. Our packaging design services create highly persuasive and effective packaging that influences buying decisions and creates brand identity.",
-        "Whether it is retail or e-commerce, our packaging design is created to capture attention, create brand loyalty, and boost sales.",
+        "Use your product packaging as a marketing tool to persuade your customers to buy your product.",
+        " Our packaging design services ensure that you attain instant success through our highly persuasive and effective packaging design that influences customer behavior and creates brand identity.",
       ],
       imageSrc: "/varunimage/Packaging-Design.png",
       learnMoreHref:
@@ -104,7 +104,7 @@ export default function Section3() {
                   aria-expanded={isOpen}
                 >
                   <p
-                    className="text-[22px] leading-[28px] text-[#000000] font-[500]"
+                    className="text-[22px] leading-[28px] text-[#000000] font-[600]"
                     style={{ fontFamily: '"Open Sans", sans-serif' }}
                   >
                     {item.label}
