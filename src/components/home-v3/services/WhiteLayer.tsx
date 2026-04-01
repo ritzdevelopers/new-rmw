@@ -37,6 +37,15 @@ function WhiteLayer() {
                 .
             </h2>
         ));
+        const renderItems2 = () =>
+            data.map((itm, idx) => (
+                <p key={idx} className="m-0 flex shrink-0 gap-2 whitespace-nowrap font-[700] text-[34px] leading-none sm:text-[54px] md:gap-4 md:text-[100px]">
+                    {itm.title.split(" ").map((word, i) => (
+                        <a href={itm.link} target="_blank" key={i} className={i === 0 ? styles.combined : ""}>{word}</a>
+                    ))}
+                    .
+                </p>
+            ));
 
     return (
         <section className="flex w-full min-h-[168px] items-center justify-center overflow-x-hidden bg-[#F7F7F7] py-3 md:py-4">
@@ -44,7 +53,7 @@ function WhiteLayer() {
             <div className="flex w-full items-center justify-center ">
                 {/* Slides left to right infinitely  */}
                 <div className={`flex w-full items-center justify-center ${styles.s3SlideTrack}`}>
-                    <div className="flex items-center justify-center gap-2 md:gap-4">{renderItems()} {renderItems()}</div> 
+                    <div className="flex items-center justify-center gap-2 md:gap-4">{renderItems()} {renderItems2()}</div> 
                 </div>
             </div>
         </section>

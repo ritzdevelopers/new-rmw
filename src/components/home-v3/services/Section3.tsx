@@ -207,7 +207,7 @@ function Section3({ servicesData }: Section3Props) {
 
                 {/* Row 1 For Heading  */}
                 <div className={`flex items-end justify-center lg:justify-start mx-0 lg:mx-2 ${styles2.containerWidth}`}>
-                    <h2 className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we do <span className='text-[#C99237] text-[56px] ml-[-10px]'>.</span></h2>
+                    <h2 className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we do </h2>
                    
                 </div>
 
