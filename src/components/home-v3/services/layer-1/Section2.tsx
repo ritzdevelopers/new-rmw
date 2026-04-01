@@ -6,9 +6,9 @@ function Section2() {
         <section className={`w-full flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px]`}>
             {/* Centered Align Container   */}
             <div className={`w-full text-center flex flex-col gap-3 sm:gap-4 items-center justify-center max-w-[1175px] ${styles.containerWidth}`}>
-                <h2 className={`font-[700] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px] xl:text-[30px] leading-tight sm:leading-snug md:leading-normal px-2 sm:px-0 ${styles.fontmontserrat}`}>
+                <p className={`font-[700] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px] xl:text-[30px] leading-tight sm:leading-snug md:leading-normal px-2 sm:px-0 ${styles.fontmontserrat}`}>
                     The digital world is louder than ever, and traditional marketing alone is no longer enough.
-                </h2>
+                </p>
                 <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] max-w-full sm:max-w-[996px] leading-relaxed px-2 sm:px-0 ${styles.fontopensans}`}>
                     As the best digital marketing agency in India,<b> Ritz Media World</b> helps brands increase visibility, drive qualified lead generation, and build strong brand awareness through data-driven campaigns. From SEO services India and website ranking services to PPC, social media, and brand promotion agency solutions, we focus on each and every aspect.<br /><br />  Whether you’re searching for the best digital marketing agency near me or digital marketing agency in Delhi NCR, our strategies are designed to attract the right audience and deliver customized measurable results.
 

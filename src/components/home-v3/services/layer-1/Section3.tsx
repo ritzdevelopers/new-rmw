@@ -80,7 +80,7 @@ function Section3() {
                                         style={{
                                             width: "12px",
                                             height: "12px",
-                                            backgroundColor: "#FFE3B5",
+                                            backgroundColor: "#F4BE65",
                                             display: "inline-block",
                                             borderRadius: "2px",
                                         }}
@@ -149,11 +149,11 @@ function Section3() {
 
                     {/* Bottom Button  */}
                     <div className="w-full flex justify-center items-center">
-                        <button className="flex justify-between items-center gap-3 sm:gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                        <a href="https://ritzmediaworld.com/contact.html" target="_blank" className="flex justify-between items-center gap-3 sm:gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
                             <p className={`font-[500] text-[15px] sm:text-[16px] md:text-[14px] lg:text-[18px] text-black ${styles.fontmontserrat}`}>
                                 Get Free Consulting
                             </p>
-                            <Link href="/contact.html">
+                            <p >
                                 <div className="bg-[#ffffff] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] md:h-[38px] md:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-[#C99237] cursor-pointer">
 
                                     <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -162,8 +162,8 @@ function Section3() {
                                     </svg>
 
                                 </div>
-                            </Link>
-                        </button>
+                            </p>
+                        </a>
                     </div>
 
                 </div>

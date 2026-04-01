@@ -104,8 +104,8 @@ function Section5() {
                             </div>
 
                             {/* Row 2  */}
-                            <div className="w-full sm:w-[220px] lg:w-[269px] xl:w-[290px] h-[80px] sm:h-[95px] lg:h-[111px] xl:h-[120px] relative mx-auto sm:mx-0">
-                                <Image src="/home-v3/clients/reviews-black.png" alt="Why Leading Brands Choose Our IT Solutions" fill className="object-contain" />
+                            <div onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} className="w-full sm:w-[220px] lg:w-[269px] xl:w-[290px] h-[80px] sm:h-[95px] lg:h-[111px] xl:h-[120px] relative mx-auto sm:mx-0">
+                                <Image src="/home-v3/clients/reviews-black.png" alt="Why Leading Brands Choose Our IT Solutions" fill className="object-contain cursor-pointer" />
                             </div>
                         </div>
 
