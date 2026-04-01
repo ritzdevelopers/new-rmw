@@ -30,7 +30,7 @@ function WhiteLayer() {
     ]
     const renderItems = () =>
         data.map((itm, idx) => (
-            <h2 key={idx} className="m-0 flex shrink-0 gap-2 whitespace-nowrap font-[700] text-[34px] leading-none sm:text-[54px] md:gap-4 md:text-[100px]">
+            <h2 key={idx} className="m-0 flex shrink-0 gap-[10px] whitespace-nowrap font-[700] text-[34px] leading-none sm:gap-3 sm:text-[54px] md:gap-4 md:text-[100px]">
                 {itm.title.split(" ").map((word, i) => (
                     <a href={itm.link} target="_blank" key={i} className={i === 0 ? styles.combined : ""}>{word}</a>
                 ))}
@@ -39,7 +39,7 @@ function WhiteLayer() {
         ));
         const renderItems2 = () =>
             data.map((itm, idx) => (
-                <p key={idx} className="m-0 flex shrink-0 gap-2 whitespace-nowrap font-[700] text-[34px] leading-none sm:text-[54px] md:gap-4 md:text-[100px]">
+                <p key={idx} className="m-0 flex shrink-0 gap-[10px] whitespace-nowrap font-[700] text-[34px] leading-none sm:gap-3 sm:text-[54px] md:gap-4 md:text-[100px]">
                     {itm.title.split(" ").map((word, i) => (
                         <a href={itm.link} target="_blank" key={i} className={i === 0 ? styles.combined : ""}>{word}</a>
                     ))}

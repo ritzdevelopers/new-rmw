@@ -17,7 +17,6 @@ function Section2() {
                     At our core, we are a team of experts in transforming ideas into high-quality content with a unique touch that captures your audience’s attention. Our process is designed to deliver outstanding results, leaving a lasting impression while getting your competitors’ attention too. We are a strong and efficient tool for your brand, delivering expertise in digital marketing, creative services, and modern media. You may be searching for the <i className='font-[600]'>
                     best SEO services in India</i> or a <i className='font-[600]'>top creative advertising agency in Delhi NCR</i> we develop strategies that make your brand stand out in a competitive world.
 
-
                     </p>
                     <a
                         href="https://ritzmediaworld.com/contact.html"
@@ -46,7 +45,8 @@ function Section2() {
                         {/* Row 1  */}
                         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 md:gap-6 lg:gap-6 w-full sm:w-[180px] md:w-[195px] lg:w-[205px]">
                             <div className="w-full sm:w-auto flex justify-center sm:justify-start">
-                                <img src="/home-v3/service-imgs/s2/17+.png" alt="" className='w-[100px] sm:w-[110px] md:w-[120px] lg:w-[130px] h-auto' />
+                                <img src="/home-v3/service-imgs/s2/17+.png" alt="17 years of celebration of Ritz Media World
+" title="17 years of celebration of Ritz Media World" className='w-[100px] sm:w-[110px] md:w-[120px] lg:w-[130px] h-auto' />
                             </div>
 
                             <p className={`font-[600] text-[13px] text-[#0F1640] sm:text-[14px] md:text-[15px] lg:text-[16px] text-center sm:text-left inline ${styles2.fontopensans}`}>Years working experience</p>
@@ -54,13 +54,15 @@ function Section2() {
 
                         {/* Row 2  */}
                         <div className={`w-full lg:w-[205px] ${styles2.yofImage}`}>
-                            <img src="/home-v3/service-imgs/s2/frame-img.png" alt="" className='w-full h-full object-contain' />
+                            <img src="/home-v3/service-imgs/s2/frame-img.png" alt="Best creative agency
+" title="Best creative agency" className='w-full h-full object-contain' />
                         </div>
                     </div>
                     <div className={`relative w-[280px] xl:w-[348px] h-auto  overflow-hidden  ${styles2.hidenElips}`}>
                         <div className='spin-slow'>
                             <img src="/home-v3/service-imgs/s2/ncircle.png"
-                                alt=""
+                                alt="Everything you need under one roof"
+                                title="Everything you need under one roof"
                                 className='w-full h-full  ' />
                             
                         </div>

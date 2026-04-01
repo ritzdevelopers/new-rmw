@@ -208,7 +208,7 @@ function Section3({ servicesData }: Section3Props) {
                 {/* Row 1 For Heading  */}
                 <div className={`flex items-end justify-center lg:justify-start mx-0 lg:mx-2 ${styles2.containerWidth}`}>
                     <h2 className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we do </h2>
-                   
+
                 </div>
 
                 {/* Row 2 For Services Cards  */}
@@ -502,7 +502,7 @@ function Section3({ servicesData }: Section3Props) {
 
                             {/* Absolute Position Text Container  */}
                             <div className="absolute inset-0 w-full h-full flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 text-center md:text-left">
-                                <p className={`font-[400] text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] text-white ${styles2.fontopensans} max-w-[100%]`}>
+                                <p className={`font-[400] text-[16px] md:text-[16px] lg:text-[18px] text-white ${styles2.fontopensans} max-w-[100%]`}>
                                     We command growth with millions of <br className="hidden xl:block" /> hours in collective experience. At this point, <br className="hidden xl:block" /> it's not a matter of 'if', it becomes a matter of 'when' you will attain the tipping point that will drive your.
                                 </p>
                                 <h4 className={`font-[300] text-[28px] sm:text-[36px] md:text-[42px] xl:text-[50px] text-white mt-2 sm:mt-4 leading-[1.1] ${styles2.fontopensans}`}>
@@ -542,21 +542,40 @@ function Section3({ servicesData }: Section3Props) {
                     </div>
 
                     {/* White Layer Row  */}
-                   <div className="w-full pt-[35px]  overflow-x-hidden"> <WhiteLayer /></div>
+                    <div className="w-full pt-[35px]  overflow-x-hidden"> <WhiteLayer /></div>
 
                     {/* Row 3  */}
                     <div className={`w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4 ${styles2.containerWidth}`}>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product.png"} alt="" className="w-full h-full object-cover"></Image>
-                            {/* Absolute Positioned Button  */}
-                            <div className="w-full absolute left-0 top-[60%] pl-10 z-10">
-                                <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className={`w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff] ${styles2.fontopensans}`}>
-                                Get Expert Advice
-                                </button>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product2.png"} alt="" className="w-full h-full object-cover filter brightness-60"></Image>
+
+                            {/* Absolute Positioned Div 2 — centered < xl, left-aligned xl+ */}
+                            <div
+                                className="absolute top-1/2 z-[8] -translate-y-1/2 rounded-full bg-[#00000095] left-1/2  -translate-x-1/2
+                                 h-[220px] w-[220px] 
+                                md:h-[320px] md:w-[320px]
+                                 lg:h-[400px] lg:w-[400px]
+                                  xl:left-8 xl:h-[350px] xl:w-[350px] xl:translate-x-0"
+                                aria-hidden
+                            />
+
+                            <div className="absolute left-1/2 top-1/2 z-10  max-w-full -translate-x-1/2 -translate-y-1/2 px-3 sm:px-4 w-full xl:left-20 xl:w-auto xl:max-w-[420px] xl:-translate-x-0 xl:translate-y-[-50%] xl:px-0">
+                                <div className="flex w-full flex-col items-center justify-center gap-4 text-center sm:gap-5 md:gap-6 xl:items-start xl:text-left">
+                                    <p className="font-[700] text-[20px] leading-tight text-white  md:text-[28px] lg:text-[40px] xl:text-[46px]">
+                                        We Build <span className="font-[400]">Successful</span> <br />
+                                        Profitable Products
+                                    </p>
+                                    <button
+                                        onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}
+                                        className={`h-[48px] w-full max-w-[157px] md:max-w-[219px] cursor-pointer rounded-[5px] bg-[#ffffff] text-[15px] font-[600] text-black sm:h-[52px] sm:text-[16px] xl:h-[54px] ${styles2.fontopensans}`}
+                                    >
+                                        Get Expert Advice
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} alt="" className="w-full cursor-pointer h-full object-cover"></Image>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} title="Brand portfolio" alt="Brand portfolio" className="w-full cursor-pointer h-full object-cover"></Image>
                         </div>
                     </div>
 
@@ -640,7 +659,7 @@ function Section3({ servicesData }: Section3Props) {
                                             key={idx}
                                             className="w-[100px] h-[56px] sm:w-[120px] sm:h-[67px] lg:w-[146px] lg:h-[81px] relative shrink-0"
                                         >
-                                            <Image src={url} fill alt="RMW" className="object-contain" />
+                                            <Image src={url} fill alt="Ritz Media World clients" title="Ritz Media World clients" className="object-contain" />
                                         </div>
                                     ))}
                                 </div>
@@ -713,13 +732,13 @@ function Section3({ servicesData }: Section3Props) {
 
                 <S6 padding="px-0" padding2="px-0"></S6>
                 <S7></S7>
-               
+
 
                 <div className="pt-4 xl:pt-16">
                     <BrandImpactSection2 />
                 </div>
 
-               
+
             </div>
 
             {/* Modal */}

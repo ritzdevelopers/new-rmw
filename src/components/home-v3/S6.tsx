@@ -166,7 +166,7 @@ function S6({ padding = "", padding2 = "" }: { padding?: string, padding2?: stri
                     {/* Absolute Positioned Image */}
                     <img
                       src="/home-v3/exl-icn.png"
-                      alt=""
+                      alt="Ritz Media World" title="Ritz Media World"
                       className="absolute bottom-4 z-0 right-4"
                     />
                   </div>

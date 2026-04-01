@@ -421,3 +421,12 @@
     -webkit-text-stroke: 1px black;
     color: transparent;
 }
+
+/* Thinner stroke + breathing room so outlines don’t collide on small screens */
+@media (max-width: 767px) {
+  .combined {
+    -webkit-text-stroke: 0.45px black;
+    margin-inline-end: 0.2em;
+    padding-inline-end: 0.08em;
+  }
+}

@@ -31,7 +31,7 @@ function Section3() {
 
                         {/* Row 2  */}
                         <div className="w-[100px] sm:w-[120px] lg:w-[134px]">
-                            <img src="/service-v3/layer1/charts/ngraph.png" alt="" className="w-full h-auto object-cover" />
+                            <img src="/service-v3/layer1/charts/ngraph.png" alt="Customer Research" title="Customer Research" className="w-full h-auto object-cover" />
                         </div>
 
 
@@ -102,16 +102,16 @@ function Section3() {
                         </div>
                         <div className="flex justify-center items-center">
                             <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden ">
-                                <img src="/alishba-services-v3/digital-marketing/Mask group-3.png" alt="" className="w-full h-full object-cover" />
+                                <img src="/alishba-services-v3/digital-marketing/Mask group-3.png" alt="Our Expert Team" title="Our Expert Team" className="w-full h-full object-cover" />
                             </div>
                             <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden  -ml-[10px]">
-                                <img src="/alishba-services-v3/digital-marketing/Mask group-2.png" alt="" className="w-full h-full object-cover" />
+                                <img src="/alishba-services-v3/digital-marketing/Mask group-2.png" alt="Our Expert Team" title="Our Expert Team" className="w-full h-full object-cover" />
                             </div>
                             <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden  -ml-[10px]">
-                                <img src="/alishba-services-v3/digital-marketing/Mask group.png" alt="" className="w-full h-full object-cover" />
+                                <img src="/alishba-services-v3/digital-marketing/Mask group.png" alt="Our Expert Team" title="Our Expert Team" className="w-full h-full object-cover" />
                             </div>
                             <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden  -ml-[10px]">
-                                <img src="/alishba-services-v3/digital-marketing/Mask group-1.png" alt="" className="w-full h-full object-cover" />
+                                <img src="/alishba-services-v3/digital-marketing/Mask group-1.png" alt="Our Expert Team" title="Our Expert Team" className="w-full h-full object-cover" />
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,7 @@ function Section3() {
 
                         {/* Row 2  */}
                         <div className="w-[130px] sm:w-[150px] lg:w-[168px]">
-                            <img src="/service-v3/layer1/charts/bar-chart.png" alt="" className="w-full h-auto object-cover" />
+                            <img src="/service-v3/layer1/charts/bar-chart.png" alt="Qualified Lead Generation" title="Qualified Lead Generation" className="w-full h-auto object-cover" />
                         </div>
 
                         {/* Row 3  */}
@@ -142,7 +142,7 @@ function Section3() {
                 <div className="flex flex-col justify-between items-center text-center gap-6 sm:gap-8 col-span-2 lg:col-span-1 w-full md:w-auto md:shrink-0 md:max-w-[min(100%,280px)] lg:max-w-none lg:w-auto order-2 lg:order-none">
                     {/* Top Mobile Frame Video  */}
                     <div className="relative w-[280px] h-[550px] sm:w-[320px] sm:h-[630px] md:w-[265px] md:h-[520px] lg:w-[381px] lg:h-[750px] overflow-hidden rounded-[50px] sm:rounded-[43px] lg:rounded-[70px] mx-auto">
-                        <Image src="/service-v3/layer1/charts/mobile-frame-img.png" alt="" fill className="w-full h-full object-cover z-10" />
+                        <Image src="/service-v3/layer1/charts/mobile-frame-img.png" alt="Digital Marketing" title="Digital Marketing" fill className="w-full h-full object-cover z-10" />
 
                         <video src="/test-images/test-video.mp4" className="absolute z-1 top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[92%] h-[97%] object-cover" autoPlay loop muted playsInline preload="metadata"></video>
                     </div>
@@ -178,7 +178,7 @@ function Section3() {
                         </div>
 
                         <div className="relative w-[110px] sm:w-[120px] lg:w-[132px]">
-                            <img src="/service-v3/layer1/charts/circle-chart2.png" alt="" className="w-full h-auto object-cover" />
+                            <img src="/service-v3/layer1/charts/circle-chart2.png" alt="Facebook Marketing Campaign" title="Facebook Marketing Campaign" className="w-full h-auto object-cover" />
                             <div className="flex justify-center items-center gap-1 sm:gap-2 flex-col text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                                 <p className={`font-[700] text-[20px] sm:text-[22px] md:text-[18px] lg:text-[24px] ${styles.fontmontserrat}`}>690</p>
                                 <p className={`font-[500] text-[11px] sm:text-[12px] md:text-[10px] lg:text-[12px] text-[#827F7F] ${styles.fontmontserrat}`}>Goal : 1000</p>
@@ -234,7 +234,7 @@ function Section3() {
                         </div>
 
                         <div className="w-[120px] sm:w-[135px] lg:w-[144px]"><img
-                            src="/service-v3/layer1/charts/half-circle-graph.png" alt="" className="w-full h-auto object-cover" /></div>
+                            src="/service-v3/layer1/charts/half-circle-graph.png" alt="Content Score" title="Content Score" className="w-full h-auto object-cover" /></div>
 
                         <div className="flex justify-center items-center gap-2 text-center">
                             <p className={`font-[600] text-[14px] sm:text-[15px] md:text-[13px] lg:text-[16px] text-black ${styles.fontmontserrat}`}>
@@ -246,7 +246,7 @@ function Section3() {
 
                     {/* Row 3 Card   */}
                     <div className="w-full min-w-0 max-w-full self-stretch lg:self-auto lg:w-[218px] lg:max-w-[218px] lg:mr-[5rem] relative mx-auto lg:mx-0 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto flex items-center justify-center">
-                        <img src="/service-v3/layer1/charts/s3-g-review.png" alt="" className="w-full max-w-full h-auto object-cover" />
+                        <img src="/service-v3/layer1/charts/s3-g-review.png" alt="Ritz media world review" title="Ritz media world review" className="w-full max-w-full h-auto object-cover" />
                     </div>
                 </div>
             </div>
@@ -255,7 +255,7 @@ function Section3() {
             {/* Centered Absolute Positioned Align Container  */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 hidden lg:block">
                 <div className="w-[400px] md:w-[550px] lg:w-[650px] xl:w-[709px]">
-                    <img src="/service-v3/layer1/s2/service1-center-bg.png" alt="" className="w-full h-auto object-cover" />
+                    <img src="/service-v3/layer1/s2/service1-center-bg.png" alt="Ritz media world" title="Ritz media world" className="w-full h-auto object-cover" />
                 </div>
             </div>
         </section>
