@@ -98,7 +98,7 @@ export default function Section5() {
               <Link
                 href="https://ritzmediaworld.com/about.html"
                 target="_blank"
-                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] cursor-pointer border-b"
+                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] cursor-pointer"
               >
                 Show more
               </Link>
