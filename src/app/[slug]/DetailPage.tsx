@@ -142,7 +142,23 @@ interface RecentBlogs {
 }
 // app/blog/[slug]/page.tsx
 
-const DetailPage: React.FC = () => {
+type DetailPageProps = {
+  ssrHeading?: string;
+};
+
+const srOnlyH1Style: React.CSSProperties = {
+  position: "absolute",
+  width: "1px",
+  height: "1px",
+  padding: 0,
+  margin: "-1px",
+  overflow: "hidden",
+  clip: "rect(0, 0, 0, 0)",
+  whiteSpace: "nowrap",
+  borderWidth: 0,
+};
+
+const DetailPage: React.FC<DetailPageProps> = ({ ssrHeading }) => {
   const [showModal, setShowModal] = useState(false);
   const { slug } = useParams<{ slug: string }>();
   // const newSl = slug;
@@ -426,7 +442,14 @@ const DetailPage: React.FC = () => {
     }
   }, [singleBlog]);
 
-  if (loading) return <Loader />;
+  if (loading) {
+    return (
+      <>
+        <h1 style={srOnlyH1Style}>{ssrHeading || "Blog Details"}</h1>
+        <Loader />
+      </>
+    );
+  }
 
   // ✅ Render Blog if found
   if (singleBlog) {
@@ -890,6 +913,7 @@ const DetailPage: React.FC = () => {
   // ✅ Else render service_third content
   return (
     <>
+      <h1 style={srOnlyH1Style}>{ssrHeading || head || "Service Details"}</h1>
       <Header />
       {head && <ServiceThirdHero heading={head} />}
       <ServiceThirdQuality cardData={cardData} />

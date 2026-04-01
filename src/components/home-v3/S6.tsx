@@ -44,14 +44,14 @@ function S6({ padding = "", padding2 = "" }: { padding?: string, padding2?: stri
             Client Testimonials
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 items-center md:items-end text-center md:text-left">
-            <h2
+            <h3
               className="font-[700] text-[24px] text-[#0F1640] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[36px]"
               style={{
                 fontFamily: "MontserratBold",
               }}
             >
               What Our Clients Say
-            </h2>
+            </h3>
             <p
               className="font-[400] text-[14px] text-[#0F1640] sm:text-[15px] lg:text-[16px]"
               style={{
