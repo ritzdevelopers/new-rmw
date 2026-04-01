@@ -46,7 +46,7 @@ function NewFooter() {
                   <FaPhoneAlt className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-white" />
                 </div>
                 {/* Right Side Call Number  */}
-                <div className="flex flex-col gap-1 sm:gap-1.5 w-auto sm:w-[200px]">
+                <div className="flex flex-col gap-1 sm:gap-1.5 w-auto  lg:w-[200px]">
                   <p className="text-white text-[13px] sm:text-[15px] font-[400] cursor-pointer" onClick={() => window.open("tel:+919220516777", "_blank")}>+91 9220516777</p>
                   <p className="text-white text-[13px] sm:text-[15px] font-[400] cursor-pointer" onClick={() => window.open("tel:+917290002168", "_blank")}>+91 7290002168</p>
 
@@ -173,10 +173,10 @@ function NewFooter() {
             <div className="mb-1 mt-3 sm:mb-2 flex flex-wrap justify-start  items-center gap-4 lg:justify-start lg:items-center sm:gap-6 lg:gap-5 h-auto lg:h-[79px] w-full overflow-x-auto lg:overflow-visible">
 
 
-              <img src="/home-v3/clients/ins-partner.png" alt="parteners and collaborators" className="cursor-not-allowed  h-[30px] lg:h-[45px]  lg:max-h-[60px] w-auto object-contain" />
-              <img src="/home-v3/clients/meta-partner.png" alt="parteners and collaborators" className="cursor-not-allowed  h-[30px] lg:h-[45px] lg:max-h-[60px] w-auto object-contain" />
-              <img src="/home-v3/clients/g-partner.png" alt="parteners and collaborators" className="cursor-not-allowed h-[30px] lg:h-[45px] lg:max-h-[60px] w-auto object-contain" />
-              <img src="/home-v3/clients/msme-parnnter.png" alt="parteners and collaborators" className="cursor-not-allowed h-[30px] lg:h-[45px] lg:max-h-[60px] w-auto object-contain" />
+              <img src="/home-v3/clients/nins.jpg" alt="parteners and collaborators" className="cursor-not-allowed  w-[103px] h-auto object-contain" />
+              <img src="/home-v3/clients/nmeta.png" alt="parteners and collaborators" className="cursor-not-allowed w-[108px] h-auto object-contain" />
+              <img src="/home-v3/clients/ngoogle.png" alt="parteners and collaborators" className="cursor-not-allowed w-[51px] h-auto object-contain" />
+              <img src="/home-v3/clients/nmsme.png" alt="parteners and collaborators" className="cursor-not-allowed w-[115px] h-auto object-contain" />
             </div>
 
             {/* Copy Right Text  */}

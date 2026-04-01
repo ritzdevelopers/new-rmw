@@ -45,7 +45,7 @@ function Section5() {
                 {/* Top Container  */}
                 <div className="w-full flex flex-col text-center justify-center items-center  px-4 sm:px-0">
                     <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] text-[#C99237] uppercase ${styles.fontopensans}`}>Excellence</p>
-                    <h2 className={`font-[700] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] text-[#000000] leading-tight sm:leading-snug px-2 sm:px-0 ${styles.fontmontserrat}`}>Why Businesses Choose the Best Digital Marketing Agency in India</h2>
+                    <h2 className={`font-[700] text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] xl:text-[36px] text-[#000000] leading-tight sm:leading-snug px-2 sm:px-0 ${styles.fontmontserrat}`}>Why Businesses Choose <br /> the Best Digital Marketing Agency in India</h2>
                     <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] text-[#000000] ${styles.fontopensans}`}>Trusted by brands for SEO services, Brand Awareness, & Lead Generation.</p>
                 </div>
 
@@ -90,7 +90,7 @@ function Section5() {
                     {/* Row 2  */}
                     <div className="flex flex-col md:flex-row md:items-stretch w-full justify-between gap-3">
                         {/* rating */}
-                        <div className="w-full md:w-[35%] lg:w-[35%] xl:w-[397px] h-auto min-h-0 md:min-h-[300px] lg:min-h-[319px] xl:min-h-[350px] flex flex-col justify-between gap-3 sm:gap-4 xl:gap-5 bg-[#FFF2DD] py-4 sm:py-5 lg:py-4 xl:py-5 px-4 sm:px-5 lg:px-6 xl:px-7">
+                        <div className="w-full md:w-[35%] lg:w-[35%] xl:w-[397px] h-auto min-h-0 md:min-h-[300px] lg:min-h-[319px] xl:min-h-[335px] flex flex-col justify-between gap-3 sm:gap-4 xl:gap-5 bg-[#FFF2DD] py-4 sm:py-5 lg:py-4 xl:py-5 px-4 sm:px-5 lg:px-6 xl:px-7">
                             {/* Row 1  */}
                             <div className="flex w-full justify-between gap-2 sm:gap-4 xl:gap-5">
                                 <div className="flex flex-col gap-1 sm:gap-2 xl:gap-3">
@@ -109,7 +109,7 @@ function Section5() {
                             </div>
                         </div>
 
-                        <div className="w-full md:w-[63%] lg:w-[63%] xl:w-[calc(100%-427px)] h-auto min-h-0 md:min-h-[300px] lg:min-h-[319px] xl:min-h-[350px] relative bg-[#F7F7F7] flex flex-col justify-between gap-3 sm:gap-4 xl:gap-5 py-4 sm:py-5 lg:py-4 xl:py-5 px-4 sm:px-5 lg:px-6 xl:px-7">
+                        <div className="w-full md:w-[63%] lg:w-[63%] xl:w-[calc(100%-427px)] h-auto min-h-0 md:min-h-[300px] lg:min-h-[319px] xl:min-h-[335px] relative bg-[#F7F7F7] flex flex-col justify-between gap-3 sm:gap-4 xl:gap-7 py-4 sm:py-5 lg:py-4 xl:py-5 px-4 sm:px-5 lg:px-6 xl:px-7">
                             {/* Top Static Row  */}
                             <div className="w-full flex justify-between items-center">
                                 <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] uppercase ${styles.fontopensans}`}>reviews</p>
@@ -143,7 +143,7 @@ function Section5() {
                                 {testimonials.map((testimonial, idx) => (
                                     <SwiperSlide key={idx}>
                                         <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6 xl:gap-7 max-w-full lg:max-w-[90%] xl:max-w-[92%]">
-                                            <p className="font-[400] text-[14px] sm:text-[16px] md:text-[18px]  xl:text-[20px] leading-relaxed font-opensans ">
+                                            <p className={`font-[400] text-[14px] sm:text-[16px] md:text-[18px]  xl:text-[22px] leading-relaxed ${styles.fontopensans} `}>
                                                 "{testimonial.quote}"
                                             </p>
 

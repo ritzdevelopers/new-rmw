@@ -398,7 +398,7 @@
 /* Section3: infinite slide right to left */
 @keyframes slideRightToLeft {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(-50%);
@@ -408,7 +408,7 @@
 .s3SlideTrack {
   display: flex;
   width: max-content;
-  animation: slideRightToLeft 100s linear infinite;
+  animation: slideRightToLeft 40s linear infinite;
 }
 
 .s3SlideTrack > div {

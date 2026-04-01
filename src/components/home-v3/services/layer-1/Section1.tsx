@@ -19,18 +19,18 @@ export default function Section1() {
                         sizes="(min-width:1024px) 165px, (min-width:768px) 155px, (min-width:640px) 140px, 120px"
                         priority
                     />
-                    <p className={`font-[700] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] text-white absolute top-[50%] uppercase -translate-y-1/2 right-4 sm:right-5 md:right-6 lg:right-8 ${styles.fontmontserrat}`}>
+                    <h1 className={`font-[700] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] text-white absolute top-[50%] uppercase -translate-y-1/2 right-4 sm:right-5 md:right-6 lg:right-8 ${styles.fontmontserrat}`}>
                         digital marketing
-                    </p>
-                </div>
-                <div className="pl-5 md:pl-9 lg:pl-10 xl:pl-12 pb-[58px] lg:pb-0">
-
-                    <h1 className={`font-[800] text-[26px] sm:text-[36px] md:text-[31px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-18 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
-                        Where Ideas Become <br /> Digital Success
                     </h1>
-                    <p className={`font-[500] text-[14px] sm:text-[16px] not-last-of-type: lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontopensans}`}>
-                        High-Impact Digital Marketing Solutions
+                </div>
+                <div className="pl-5 flex flex-col gap-2 md:pl-9 lg:pl-10 xl:pl-12 pb-[58px] lg:pb-0">
+
+                    <p className={`font-[800] text-[26px] sm:text-[36px] md:text-[31px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-14 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
+                        Where Ideas Become <br /> Digital Success
                     </p>
+                    <h2 className={`font-[500] text-[14px] sm:text-[16px] not-last-of-type: lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontopensans}`}>
+                        High-Impact Digital Marketing Solutions
+                    </h2>
                 </div>
             </div>
         </section>

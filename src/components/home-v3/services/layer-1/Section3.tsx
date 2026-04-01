@@ -25,19 +25,19 @@ function Section3() {
 
                         {/* Row 1  */}
                         <div className="w-full text-center">
-                            <p className={`font-[600] text-[14px] sm:text-[15px] md:text-[13px] lg:text-[16px] ${styles.fontmontserrat}`}>Customer Research</p>
+                            <h3 className={`font-[600] text-[14px] sm:text-[15px] md:text-[13px] lg:text-[16px] ${styles.fontmontserrat}`}>Customer Research</h3>
                         </div>
 
 
                         {/* Row 2  */}
                         <div className="w-[100px] sm:w-[120px] lg:w-[134px]">
-                            <img src="/service-v3/layer1/charts/histogram.png" alt="" className="w-full h-auto object-cover" />
+                            <img src="/service-v3/layer1/charts/ngraph.png" alt="" className="w-full h-auto object-cover" />
                         </div>
 
 
                         {/* Row 3  */}
                         <div>
-                            <ul className="flex w-full justify-between gap-4 sm:gap-6 lg:gap-8">
+                            <ul className="flex w-full justify-between gap-4 sm:gap-6">
 
                                 <li className="flex">
                                     <span
@@ -62,12 +62,12 @@ function Section3() {
                                         style={{
                                             width: "12px",
                                             height: "12px",
-                                            backgroundColor: "#C99237",
+                                            backgroundColor: "#FFE3B5",
                                             display: "inline-block",
                                             borderRadius: "2px",
                                         }}
                                     ></span>
-                                    <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
+                                    <div className="flex ml-1 flex-col justify-center items-center gap-1 sm:gap-2">
                                         <p className={`font-[500] text-[10px] sm:text-[11px] md:text-[9px] lg:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>Prospects </p>
                                         <p className={`font-[600] text-[16px] sm:text-[17px] md:text-[14px] lg:text-[18px] ${styles.fontmontserrat}`}>60%</p>
                                     </div>
@@ -80,12 +80,12 @@ function Section3() {
                                         style={{
                                             width: "12px",
                                             height: "12px",
-                                            backgroundColor: "#C99237",
+                                            backgroundColor: "#FFE3B5",
                                             display: "inline-block",
                                             borderRadius: "2px",
                                         }}
                                     ></span>
-                                    <div className="flex flex-col justify-center items-center gap-1 sm:gap-2">
+                                    <div className="flex ml-1 flex-col justify-center items-center gap-1 sm:gap-2">
                                         <p className={`font-[500] text-[10px] sm:text-[11px] md:text-[9px] lg:text-[11px] text-[#5E5D5D] uppercase ${styles.fontmontserrat}`}>Insights </p>
                                         <p className={`font-[600] text-[16px] sm:text-[17px] md:text-[14px] lg:text-[18px] ${styles.fontmontserrat}`}>10%</p>
                                     </div>
@@ -98,7 +98,7 @@ function Section3() {
                     <div className="bg-white xl:-ml-[15rem] px-6 sm:px-3 lg:px-8  py-3 sm:py-8 lg:py-4 rounded-[15px] sm:rounded-[20px]
                      flex flex-col justify-center items-center gap-2 sm:gap-3 w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
-                            <p className={`font-[600] text-[14px] sm:text-[15px] md:text-[13px] lg:text-[16px] ${styles.fontmontserrat}`}>Our Expert Team</p>
+                            <h3 className={`font-[600] text-[14px] sm:text-[15px] md:text-[13px] lg:text-[16px] ${styles.fontmontserrat}`}>Our Expert Team</h3>
                         </div>
                         <div className="flex justify-center items-center">
                             <div className="w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] lg:w-[44px] lg:h-[44px] rounded-full overflow-hidden ">
@@ -121,7 +121,7 @@ function Section3() {
 
                         {/* Row 1  */}
                         <div className="w-full text-center">
-                            <p className={`font-[600] text-[14px] sm:text-[15px] md:text-[12px] lg:text-[16px] ${styles.fontmontserrat}`}>Qualified Lead Generation</p>
+                            <h3 className={`font-[600] text-[14px] sm:text-[15px] md:text-[12px] lg:text-[16px] ${styles.fontmontserrat}`}>Qualified Lead Generation</h3>
                         </div>
 
                         {/* Row 2  */}
@@ -173,8 +173,8 @@ function Section3() {
                     {/* Row 1 Card  */}
                     <div className="flex flex-col justify-between gap-4 sm:gap-6 items-center text-center py-5 sm:py-6 px-6 sm:px-3 xl:px-6 rounded-[15px] sm:rounded-[20px] bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
-                            <p className={`font-[600] text-[14px] sm:text-[15px] md:text-[13px] lg:text-[16px] ${styles.fontmontserrat}`}>Facebook Marketing <br />
-                                Campaign</p>
+                            <h3 className={`font-[600] text-[14px] sm:text-[15px] md:text-[13px] lg:text-[16px] ${styles.fontmontserrat}`}>Facebook Marketing <br />
+                                Campaign</h3>
                         </div>
 
                         <div className="relative w-[110px] sm:w-[120px] lg:w-[132px]">
@@ -230,7 +230,7 @@ function Section3() {
                     {/* Row 2 Card   */}
                     <div className="flex xl:ml-[5rem] flex-col bg-white shadow-[0_0_18px_0_rgba(255, 194, 93, 0.8)] py-3 px-6 sm:px-3 md:px-8 rounded-[15px] sm:rounded-[20px] gap-4 sm:gap-[17px] justify-center items-center w-full lg:w-auto flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto">
                         <div className="w-full text-center">
-                            <p className={`font-[600] text-[14px] sm:text-[15px] md:text-[13px] lg:text-[16px] text-black ${styles.fontmontserrat}`}>Content Score</p>
+                            <h3 className={`font-[600] text-[14px] sm:text-[15px] md:text-[13px] lg:text-[16px] text-black ${styles.fontmontserrat}`}>Content Score</h3>
                         </div>
 
                         <div className="w-[120px] sm:w-[135px] lg:w-[144px]"><img

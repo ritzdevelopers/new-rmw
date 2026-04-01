@@ -207,8 +207,8 @@ function Section3({ servicesData }: Section3Props) {
 
                 {/* Row 1 For Heading  */}
                 <div className={`flex items-end justify-center lg:justify-start mx-0 lg:mx-2 ${styles2.containerWidth}`}>
-                    <h2 className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we d</h2>
-                    <img src="/home-v3/service-imgs/s3/do-txt.png" alt="arrow-right" className="h-[19px] mb-[14px]" />
+                    <h2 className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we do <span className='text-[#C99237] text-[56px] ml-[-10px]'>.</span></h2>
+                   
                 </div>
 
                 {/* Row 2 For Services Cards  */}
@@ -219,7 +219,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Digital <br /> Marketing",
                                 margin: "mr-[12px] pr-8 md:pr-40 lg:pr-18",
-                                description: "Without a strategy, you're driving blindfolded in the digital world. At Ritz Media World, we specialize in social media marketing, PPC campaigns, and SEO services to make sure your brand not only survives but thrives. With innovative tactics that are effective, we have you covered whether you're searching for the top SEO company in Delhi or the best digital marketing agency in Noida.",
+                                description: "Without a strategy, you're driving blindfolded in the digital world. At Ritz Media World, we specialize in social media marketing, PPC campaigns, and SEO services to make sure your brand not only survives but thrives. With innovative tactics that are effective, we have you covered whether you're searching for the top SEO company in Delhi or the best digital marketing agency in India.",
                                 image: "/alishba-services-v3/seo-analytics.png",
                                 link: "/services/digital-marketing",
                                 subServices: [
@@ -281,7 +281,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Print <br /> Advertisement",
                                 margin: "pr-4 pr-4 md:pr-32 lg:pr-0",
-                                description: "Print advertising is more vibrant than ever in spite of the digital boom! We at Ritz Media World give your print advertisements life so they can speak for themselves. Whether you're searching for print advertising services in Delhi or Noida, our ads have an impact and engage the right audience.",
+                                description: "Print advertising is more vibrant than ever in spite of the digital boom! We at Ritz Media World give your print advertisements life so they can speak for themselves. Whether you're searching for print advertising services in Delhi NCR, our ads have an impact and engage the right audience.",
                                 image: "/alishba-services-v3/print-ad.png",
                                 link: "/services/print-advertising",
                                 subServices: [
@@ -313,13 +313,13 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Radio <br /> Advertising",
-                                margin: "pr-8 md:pr-36 lg:pr-0 xl:mr-[-20px] xl:pr-0 pt-0 xl:pt-0",
-                                description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Delhi and Noida can help you get your brand on the air.",
-                                image: "/alishba-services-v3/nimg4.jpg",
+                                margin: "pr-8 md:pr-36 lg:pr-0  xl:pr-0 pt-0 xl:pt-0",
+                                description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Noida or India can help you get your brand on the air.",
+                                image: "/alishba-services-v3/nimg3.jpg",
                                 link: "/services/radio-advertising",
                                 subServices: [
                                     {
-                                        title: "Advertising Concept Development",
+                                        title: "Advertisement Concept Development",
                                         slug: "https://ritzmediaworld.com/services/radio-advertising/advertisement-concept-development"
                                     },
                                     {
@@ -372,7 +372,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Web <br /> Development",
                                 margin: "pr-4 md:pr-32 lg:pr-0 xl:pr-8 2xl:pr-10 xl:-mr-10",
-                                description: "Let's make your website firm, interesting, and friendly because it is your digital handshake. Our web development team makes useful and friendly websites that attract and win the hearts of visitors. We assure you of an excellent online presence through our web designing services in Noida and Greater Noida.",
+                                description: "Let's make your website firm, interesting, and friendly because it is your digital handshake. Our web development team makes useful and friendly websites that attract and win the hearts of visitors. We assure you of an excellent online presence through our web designing services in India.",
                                 image: "/alishba-services-v3/webdev.png",
                                 link: "/services/web-designing-and-development  ",
                                 subServices: [
@@ -433,7 +433,7 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Influencer <br />   Marketing",
-                                margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-8 xl:pr-5 xl:-mr-6    ",
+                                margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-4 xl:pr-5 xl:-mr-6    ",
                                 description: "At Ritz Media World, influencer marketing isn’t about numbers. It is about persuading by trusted voices. We help you entrap customers who are leaking out from your influencers’ casual followers. Top social media marketing agencies in India are available with a variety of options.",
                                 image: "/alishba-services-v3/nimg4.jpg",
                                 link: "/services/influencer-marketing-agency-in-india",
@@ -550,7 +550,7 @@ function Section3({ servicesData }: Section3Props) {
                             <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product.png"} alt="" className="w-full h-full object-cover"></Image>
                             {/* Absolute Positioned Button  */}
                             <div className="w-full absolute left-0 top-[60%] pl-10 z-10">
-                                <button onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} className={`w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff] ${styles2.fontopensans}`}>
+                                <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className={`w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff] ${styles2.fontopensans}`}>
                                 Get Expert Advice
                                 </button>
                             </div>

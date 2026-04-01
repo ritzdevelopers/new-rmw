@@ -14,9 +14,9 @@ function Section6() {
                     <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
                         {/* Left Side Container  */}
                         <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0 px-4 sm:px-0">
-                            <p className="font-[700] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] text-center sm:text-left" style={{
+                            <h2 className="font-[700] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] text-center sm:text-left" style={{
                                 fontFamily: 'MontserratBold',
-                            }}>Brands That Trust Us</p>
+                            }}>Brands That Trust Us</h2>
 
                             <p className="absolute top-[50%] transform -translate-y-[50%] -right-3 hidden sm:block">
                                 <svg
