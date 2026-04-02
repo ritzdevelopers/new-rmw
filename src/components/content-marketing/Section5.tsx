@@ -29,6 +29,7 @@ function Section5() {
                     <div className="w-full flex flex-col gap-2  px-4 py-4 items-center border border-[#DFDDDD] rounded-lg">
                         <h3 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Increase Sales & Lead Generation</h3>
                         <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>Content is a major driver behind sales  from signing up to newsletters to purchasing.</p>
+                        
                     </div>
                     <div className="w-full">
                         <img src="/service-v3/content-marketing/s5/s5-i2.jpg" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-full h-auto object-cover rounded-lg" />
