@@ -35,7 +35,7 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image, ac
             <div className={`flex h-[calc(100%-50px)] flex-col w-full justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 ${activeCard !== index ? "px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 lg:pl-0" : "px-5"} min-w-0 lg:pl-[50px]`}>
                 {/* Upper Side  */}
                 <div className={`flex flex-col w-full gap-3 sm:gap-4 md:gap-5 ${activeCard === index ? "" : "relative"}`}>
-                    <h3 className={`font-[600] text-[14px] sm:text-[16px] md:text-[16px] lg:text-[20px] xl:text-[22px] text-white uppercase ${styles.fontMontserrat} ${styles.cardTitle} 
+                    <p className={`font-[600] text-[14px] sm:text-[16px] md:text-[16px] lg:text-[20px] xl:text-[22px] text-white uppercase ${styles.fontMontserrat} ${styles.cardTitle} 
                     ${activeCard === index
                             ? "rotate-0"
                             : "-rotate-90 origin-left absolute left-0 top-[100px] sm:top-[120px] md:top-[150px] lg:top-[180px] xl:top-[260px] whitespace-nowrap"
@@ -43,9 +43,9 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image, ac
                         {
                             activeCard === index ? activeCardTitle : <span dangerouslySetInnerHTML={{ __html: title }}></span>
                         }
-                    </h3>
+                    </p>
                     <div className={`${styles.cardImage} ${activeCard === index ? styles.cardImageActive : styles.cardImageInactive} rounded-[4px] overflow-hidden`}>
-                        <Image src={image} alt={activeCardTitle} fill className="object-cover" unoptimized />
+                        <Image src={image} alt={activeCardTitle} title={activeCardTitle} fill className="object-cover" unoptimized />
                     </div>
                     <p className={`font-[400] text-[12px] sm:text-[13px] md:text-[12px] lg:text-[15px] xl:text-[16px] text-white ${styles.fontOpenSans} ${styles.cardDescription} ${activeCard === index ? styles.cardDescriptionActive : styles.cardDescriptionInactive}`}>{desc}
                     </p>

@@ -399,3 +399,9 @@
       transform: translateX(-33.333%);
    }
 }
+
+@media (min-width:1727px) {
+   .bannerSize {
+      height: 900px !important;
+   }
+}

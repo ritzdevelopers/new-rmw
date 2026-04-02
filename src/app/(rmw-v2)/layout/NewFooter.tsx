@@ -101,7 +101,7 @@ function NewFooter() {
             <div className="w-full flex flex-col gap-4 sm:gap-6 items-start lg:max-w-[220px] lg:min-w-0 xl:w-auto xl:max-w-none xl:min-w-0 xl:shrink-0 xl:items-end min-[1657px]:items-end">
               {/* Google Review Image  */}
               <div className="mb-1 sm:mb-2 w-full max-w-full lg:max-w-[220px] xl:w-full xl:max-w-[250px]">
-                <img src="/home-v3/clients/reviews.png" alt="google review" className="w-full max-w-[200px] md:w-[240px] md:max-w-[250px] lg:max-w-[190px] lg:w-full lg:object-left xl:max-w-[250px] xl:w-[240px] xl:object-center h-auto object-contain" />
+                <img src="/home-v3/clients/reviews.png" alt="google review" title="google review" className="w-full max-w-[200px] md:w-[240px] md:max-w-[250px] lg:max-w-[190px] lg:w-full lg:object-left xl:max-w-[250px] xl:w-[240px] xl:object-center h-auto object-contain" />
               </div>
 
               {/* Social Media Links  */}
@@ -173,10 +173,10 @@ function NewFooter() {
             <div className="mb-1 mt-3 sm:mb-2 flex flex-wrap justify-start  items-center gap-4 lg:justify-start lg:items-center sm:gap-6 lg:gap-5 h-auto lg:h-[79px] w-full overflow-x-auto lg:overflow-visible">
 
 
-              <img src="/home-v3/clients/nins.jpg" alt="parteners and collaborators" className="cursor-not-allowed  w-[103px] h-auto object-contain" />
-              <img src="/home-v3/clients/nmeta.png" alt="parteners and collaborators" className="cursor-not-allowed w-[108px] h-auto object-contain" />
-              <img src="/home-v3/clients/ngoogle.png" alt="parteners and collaborators" className="cursor-not-allowed w-[51px] h-auto object-contain" />
-              <img src="/home-v3/clients/nmsme.png" alt="parteners and collaborators" className="cursor-not-allowed w-[115px] h-auto object-contain" />
+              <img src="/home-v3/clients/nins.jpg" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed  w-[103px] h-auto object-contain" />
+              <img src="/home-v3/clients/nmeta.png" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed w-[108px] h-auto object-contain" />
+              <img src="/home-v3/clients/ngoogle.png" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed w-[51px] h-auto object-contain" />
+              <img src="/home-v3/clients/nmsme.png" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed w-[115px] h-auto object-contain" />
             </div>
 
             {/* Copy Right Text  */}
