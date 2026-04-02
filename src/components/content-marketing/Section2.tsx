@@ -1,5 +1,9 @@
 
 import styles from './page.module.css';
+import Link from 'next/link';
+import Image from 'next/image';
+
+
 function Section2() {
     return (
         <section className={`w-full flex justify-center items-center py-8 sm:py-12 md:py-16 lg:py-20 xl:py-[70px]`}>
@@ -9,9 +13,25 @@ function Section2() {
                 Content Without Strategy is Mere Decoration
                 </p>
                 <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] max-w-full sm:max-w-[896px] leading-relaxed px-2 sm:px-0 ${styles.fontopensans}`}>
-                As a trusted content marketing agency in India, we at Ritz Media World develop content marketing strategies that not only inform but also persuade, inspire, and convert.
-Our strategy includes SEO content, social media content, email marketing, video content, infographics, and promotional activities to capture attention, build credibility, and drive measurable business results. Each piece of content is designed for high engagement, lead generation, and brand building.
+                As a trusted content marketing agency in India, we at <b><a href="/" target="_blank" className="cursor-pointer">Ritz Media World</a></b> develop content marketing strategies that not only inform but also persuade, inspire, and convert.
+Our strategy includes <i>SEO content</i>, <i>social media content</i>, <i>email marketing</i>, <i>video content</i>, <i>infographics</i>, and <i>promotional activities</i> to capture attention, build credibility, and drive measurable business results. Each piece of content is designed for high engagement, lead generation, and brand building.
                 </p>
+                <Link    href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-5 flex items-center justify-center gap-4">
+          <span
+            className="text-black text-[18px]   md:text-[20px] font-[500]"
+            style={{ fontFamily: "MontserratMedium" }}
+          >
+            Let&apos;s Talk Today
+          </span>
+          <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors">
+            
+<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.4276 2.92383L17.1346 9.08052L12.9493 4.01635L19.4276 2.92383Z" fill="white"/>
+<rect x="2.19678" y="16.7171" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19678 16.7171)" fill="white"/>
+</svg>
+
+          </span>
+        </Link>
             </div>
         </section>
     )

@@ -5,11 +5,11 @@ import styles from "./page.module.css";
 export default function Banner() {
     return (
         <section className={`w-full h-[460px] md:h-[326px] lg:h-[412px] xl:min-h-[515px] 
-        bg-[url("/varun/influencer-marketing/contentmarketingmobilebanner.jpg")] 
+        bg-[url("/varun/influencer-marketing/contentmarketingmobilebanner2.jpg")] 
         md:bg-[url("/varun/influencer-marketing/contentmarketingdesktopbanner.jpg")]
         bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-4 lg:pb-22
          xl:pb-20 px-0 ${styles.bannerSize}`}>
-            <div className="flex flex-col  self-center md:self-end gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full md:max-w-[80%] lg:max-w-none  mb-[120px] md:mb-[50px] lg:mb-0">
+            <div className="flex flex-col  self-end md:self-end gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full md:max-w-[80%] lg:max-w-none  mb-[20px] md:mb-[50px] lg:mb-0">
                 <div className="w-[120px] sm:w-[140px] md:w-[155px] lg:w-[179px] h-[28px] sm:h-[32px] md:h-[35px] lg:h-[37px] relative hidden md:block">
                     <Image
                         src="/home-v3/service-imgs/s1/yellow-reactangle.png"
@@ -30,7 +30,7 @@ export default function Banner() {
                         Content Marketing
                     </h1>
                       <h2 className={`font-[500] text-[14px] sm:text-[16px] not-last-of-type: lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontopensans}`}>
-                        High-Impact Content Marketing Solutions
+                      Turning ideas into content that drives engagement and conversions.
                     </h2>
                 </div>
             </div>

@@ -71,6 +71,7 @@ function Section3() {
                         <div
                             key={index}
                             className="w-full flex flex-col rounded-lg overflow-hidden bg-[#0F1640] border border-[#323E84] mb-4"
+                            onClick={()=>window.open(item.link, "_blank")}
                         >
                             <div className="w-full relative aspect-[16/10] shrink-0">
                                 <Image

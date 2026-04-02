@@ -30,15 +30,15 @@ function Section1() {
                           >
                             Influencer Marketing{" "}
                           </span>
-                          <br className="hidden md:block lg:hidden xl:block" />
+                          {/* <br className="hidden md:block lg:hidden xl:block" />
                           <span
                             className={`${styles.bannerHeadlineSm} font-[500] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[65px] xl:font-[500] ${styles.bannerServicesMatchLg}`}
                             style={{ fontFamily: "MontserratMedium" }}
                           >
                             Services
-                          </span>
+                          </span> */}
                         </span></h1>
-                        <p className={`font-[500] mt-2 lg:mt-5 xl:mt-2 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-tight sm:leading-snug md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`} style={{ fontFamily: "MontserratMedium" }}>Maximize Engagement & Conversions With Result-driven Influencer Campaigns</p>
+                        <h2 className={`font-[500] mt-2 lg:mt-5 xl:mt-2 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-tight sm:leading-snug md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`} style={{ fontFamily: "MontserratMedium" }}>Maximize Engagement & Conversions With Result-driven Influencer Campaigns</h2>
                     
                 </div>
             </div>

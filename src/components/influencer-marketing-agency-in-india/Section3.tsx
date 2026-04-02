@@ -117,7 +117,7 @@ export default function Section3() {
           <div
             onClick={() => window.open(servicesData[0].link, "_blank")}
             aria-label="Learn more"
-            className={`${accordionStyles.accordionContent} ${openItem === "01" ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed}`}
+            className={`${accordionStyles.accordionContent} ${openItem === "01" ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed} cursor-pointer`}
           >
             <div className="py-5 sm:py-6">
               <div className="flex flex-col lg:flex-row gap-8 xl:gap-10 items-start">
@@ -268,7 +268,7 @@ export default function Section3() {
                 onClick={() => window.open(item.link, "_blank")}
                 aria-label="Learn more"
 
-                className={`${accordionStyles.accordionContent} ${isOpen ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed}`}
+                className={`${accordionStyles.accordionContent} ${isOpen ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed} cursor-pointer`}
               >
                 <div className="py-5 sm:py-6">
                   <div className="flex flex-col lg:flex-row gap-8 xl:gap-10 items-start">
@@ -401,10 +401,10 @@ export default function Section3() {
           href="https://ritzmediaworld.com/contact.html"
           target="_blank"
           rel="noopener noreferrer"
-          className="block cursor-pointer text-[#FFFFFF] text-[14px] font-[400] leading-[24px] tracking-[0] mt-4 text-center md:text-center lg:text-left hover:opacity-90 outline-none focus-visible:underline"
+          className="block cursor-pointer text-[#FFFFFF] text-[14px] font-[400] leading-[24px] tracking-[0] mt-4 text-left md:text-center lg:text-left hover:opacity-90 outline-none focus-visible:underline"
           style={{ fontFamily: "OpenSansRegular" }}
         >
-          Not sure which path fits your brand?{" "}
+          Not sure which path fits your brand?{" "} <br className="block md:hidden" />
           <span className="underline">
             Let&apos;s discuss your unique needs,
           </span>
