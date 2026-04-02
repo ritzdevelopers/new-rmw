@@ -10,12 +10,15 @@ function Section5() {
                     <div className="w-full flex justify-center items-center py-6 bg-[#F1F1F1] rounded-lg">
                         <h2 className={`font-[700] text-[22px] leading-tight ${styles.fontmontserrat}`}>Why Content <br /> Marketing Matters</h2>
                     </div>
-                    <div className="w-full flex flex-col gap-3 items-center">
-                        <h3 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Increase Organic Traffic</h3>
-                        <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>SEO is a key factor for your website to get ranked in the search engines and if that happens, more people looking for answers will be able to find your page.</p>
-                        <img src="/alishba-services-v3/content-marketing/lead-generation.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-full h-auto object-cover rounded-lg" />
+                    <div className="w-full flex flex-col gap-8 items-center">
+                        <img src="/alishba-services-v3/content-marketing/whycontentmarketingmatters.jpg" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-full h-auto object-cover rounded-lg" />
+                        <div className="w-full flex  px-4 py-4 flex-col gap-3 items-center border border-[#DFDDDD] rounded-lg">
+                            <h3 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Increase Organic Traffic</h3>
+                            <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>SEO is a key factor for your website to get ranked in the search engines and if that happens, more people looking for answers will be able to find your page.</p>
+                        </div>
+
                     </div>
-                    <div className="w-full flex flex-col gap-2 py-4 items-center">
+                    <div className="w-full flex flex-col gap-2  px-4 py-4 items-center border border-[#DFDDDD] rounded-lg">
                         <h3 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Build Trust & Authority</h3>
                         <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>Producing informative content can be a key factor in your company gaining the status of an authority figure in the market.</p>
                     </div>
@@ -23,7 +26,7 @@ function Section5() {
                         <h3 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Encourage Engagement & Conversation</h3>
                         <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>Creating content for your audience that resonates will lead to engagement, sharing, and conversions.</p>
                     </div>
-                    <div className="w-full flex flex-col gap-2 py-4 items-center">
+                    <div className="w-full flex flex-col gap-2  px-4 py-4 items-center border border-[#DFDDDD] rounded-lg">
                         <h3 className={`font-[700] text-[16px] ${styles.fontmontserrat}`}>Increase Sales & Lead Generation</h3>
                         <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>Content is a major driver behind sales  from signing up to newsletters to purchasing.</p>
                     </div>
@@ -62,7 +65,7 @@ function Section5() {
                             </p>
                         </div>
                         <div className={`w-full md:flex-1 xl:h-[252px] min-w-0 ${styles.s5Card}`}>
-                            <img src="/alishba-services-v3/content-marketing/lead-generation.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-full h-full lg:h-auto xl:h-full object-cover" />
+                            <img src="/alishba-services-v3/content-marketing/whycontentmarketingmatters.jpg" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-full h-full lg:h-auto xl:h-full object-cover" />
                         </div>
                     </div>
 
@@ -71,7 +74,7 @@ function Section5() {
                         <div className={`w-full md:flex-1 flex flex-col gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
                             <p className={`font-[700] ${styles.s5CardSubtitle} ${styles.fontMontserrat}`}>Build Trust & Authority</p>
                             <p className={`font-[400] max-w-full xl:max-w-[313px] ${styles.s5CardDesc} ${styles.fontopensans}`}>Producing informative content can be a key factor in your company gaining the status of an authority figure in the market.
-        
+
                             </p>
                         </div>
                         <div className={`w-full md:flex-1 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 border border-[#DFDDDD] flex flex-col gap-2 sm:gap-3 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
@@ -91,7 +94,7 @@ function Section5() {
                     {/* Left Side Container  */}
                     <div className="w-[70%] xl:w-[863px] h-auto xl:h-[430px] relative">
                         <img src="/service-v3/content-marketing/s5/s5-i2.jpg" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="xl:object-cover" />
-                    </div>  
+                    </div>
 
                     {/* Right Side Container  */}
                     <div className="px-8 w-[30%] xl:w-[calc(100%-831px)] h-auto xl:h-[430px] relative flex flex-col justify-end xl:justify-between ">
@@ -102,7 +105,7 @@ function Section5() {
                             <img src="/service-v3/content-marketing/s5/17-yow2.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-[275px] xl:w-full  h-auto object-cover" />
 
                             {/* Google Reviews Image  */}
-                        <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer"><img  src="/service-v3/content-marketing/s5/google-reviews.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-[275px] xl:w-[271px]  h-auto object-cover cursor-pointer" /></a>   
+                            <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer"><img src="/service-v3/content-marketing/s5/google-reviews.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-[275px] xl:w-[271px]  h-auto object-cover cursor-pointer" /></a>
                         </div>
 
                         {/* Bottom Row  */}

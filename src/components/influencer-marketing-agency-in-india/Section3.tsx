@@ -71,12 +71,16 @@ export default function Section3() {
 
       <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
         <div className="text-center">
-          <p
+          <a
+            href="/services"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Services"
             className="uppercase text-[11px] sm:text-[12px] tracking-[0.1em] text-[#C99237]"
             style={{ fontFamily: "MontserratSemiBold" }}
           >
             Services
-          </p>
+          </a>
           <h2
             className="text-white text-[28px] lg:text-[36px] font-[700] leading-tight"
             style={{ fontFamily: "MontserratBold" }}
@@ -98,7 +102,7 @@ export default function Section3() {
           <button
             type="button"
             onClick={() => setOpenItem(openItem === "01" ? null : "01")}
-            className="w-full py-4 sm:py-5 flex items-center justify-between gap-3 text-left cursor-pointer hover:bg-white/5 transition-colors"
+            className="w-full py-4 sm:py-10 flex items-center justify-between gap-3 text-left cursor-pointer hover:bg-white/5 transition-colors"
             aria-expanded={openItem === "01"}
             style={{ display: openItem === "01" ? "none" : "flex" }}
           >
@@ -111,10 +115,12 @@ export default function Section3() {
             <Plus className="text-[#BFC6FF] w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
           </button>
           <div
+            onClick={() => window.open(servicesData[0].link, "_blank")}
+            aria-label="Learn more"
             className={`${accordionStyles.accordionContent} ${openItem === "01" ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed}`}
           >
             <div className="py-5 sm:py-6">
-              <div className="flex flex-col lg:flex-row gap-1 lg:gap-8 xl:gap-10 items-start">
+              <div className="flex flex-col lg:flex-row gap-8 xl:gap-10 items-start">
                 <div className="flex items-start justify-between gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-0">
                   <div className="flex items-center sm:items-center lg:items-start gap-3 sm:gap-4 lg:gap-5 min-w-0">
                     <span
@@ -139,6 +145,7 @@ export default function Section3() {
                     <Image
                       src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
                       alt="Collapse"
+                      title="Collapse"
                       width={20}
                       height={20}
                       className="w-4 h-4 sm:w-5 sm:h-5"
@@ -156,7 +163,7 @@ export default function Section3() {
                       </p>
                     ))}
                   </div>
-                  <div className="mt-2 lg:mt-6 hidden lg:flex items-center gap-2.5">
+                  <div className="mt-2 cursor-pointer lg:mt-6 hidden lg:flex items-center gap-2.5">
                     <span
                       className="text-white text-[14px] sm:text-[15px]"
                       style={{ fontFamily: "MontserratMedium" }}
@@ -172,37 +179,42 @@ export default function Section3() {
                       <Image
                         src={EXPLORE_ARROW_IMAGE}
                         alt="Arrow"
+                        title="Arrow"
                         width={22}
-                        height={7} 
+                        height={7}
                       />
                     </Link>
                   </div>
                 </div>
                 <div className="w-full lg:w-auto flex flex-col items-start gap-3 shrink-0 mt-4 lg:mt-0">
                   <div className="flex items-start gap-3 w-full">
-                  <div
-                    className="relative w-full aspect-[4/3] md:w-[280px] md:h-[198px] md:aspect-auto rounded-[5px] overflow-hidden"
-                  >
-                    <Image
-                      src={servicesData[0].imageSrc}
-                      alt="Influencer identification"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setOpenItem(null)}
-                    aria-label="Collapse"
-                    className="hidden lg:flex shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
-                  >
-                    <Image
-                      src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
-                      alt="Collapse"
-                      width={30}
-                      height={30}
-                    />
-                  </button>
+                    <div
+                      className="relative 
+                     "
+                    >
+                      <img
+                        src={servicesData[0].imageSrc}
+                        alt="Influencer identification"
+                        title="Influencer identification"
+                        className=" md:aspect-auto 
+                      rounded-[5px] overflow-hidden 
+                      xl:w-[357px] xl:h-auto w-full aspect-[4/3] md:w-[280px] md:h-[198px]"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setOpenItem(null)}
+                      aria-label="Collapse"
+                      className="hidden lg:flex shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
+                    >
+                      <Image
+                        src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
+                        alt="Collapse"
+                        title="Collapse"
+                        width={30}
+                        height={30}
+                      />
+                    </button>
                   </div>
                   <div className="flex lg:hidden mt-1 items-center gap-2.5 w-full md:w-[280px]">
                     <span
@@ -220,6 +232,7 @@ export default function Section3() {
                       <Image
                         src={EXPLORE_ARROW_IMAGE}
                         alt="Arrow"
+                        title="Arrow"
                         width={22}
                         height={7}
                       />
@@ -239,23 +252,26 @@ export default function Section3() {
               <button
                 type="button"
                 onClick={() => setOpenItem(isOpen ? null : item.id)}
-                className="w-full py-4 sm:py-5 flex items-center justify-between gap-3 text-left cursor-pointer hover:bg-white/5 transition-colors"
+                className="w-full py-4 sm:py-10 flex items-center justify-between gap-3 text-left cursor-pointer hover:bg-white/5 transition-colors"
                 aria-expanded={isOpen}
                 style={{ display: isOpen ? "none" : "flex" }}
               >
-<p
-                className="text-[#E5E8FF] text-[15px] sm:text-[17px] md:text-[20px] font-[700]"
-                style={{ fontFamily: "MontserratRegular" }}
-              >
-                {item.title}
-              </p>
+                <p
+                  className="text-[#E5E8FF] text-[15px] sm:text-[17px] md:text-[20px] font-[700]"
+                  style={{ fontFamily: "MontserratRegular" }}
+                >
+                  {item.title}
+                </p>
                 <Plus className="text-[#BFC6FF] w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
               </button>
               <div
+                onClick={() => window.open(item.link, "_blank")}
+                aria-label="Learn more"
+
                 className={`${accordionStyles.accordionContent} ${isOpen ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed}`}
               >
                 <div className="py-5 sm:py-6">
-                  <div className="flex flex-col lg:flex-row gap-1 lg:gap-8 xl:gap-10 items-start">
+                  <div className="flex flex-col lg:flex-row gap-8 xl:gap-10 items-start">
                     <div className="flex items-start justify-between gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-0">
                       <div className="flex items-center sm:items-center lg:items-start gap-3 sm:gap-4 lg:gap-5 min-w-0">
                         <span
@@ -280,6 +296,7 @@ export default function Section3() {
                         <Image
                           src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
                           alt="Collapse"
+                          title="Collapse"
                           width={20}
                           height={20}
                           className="w-4 h-4 sm:w-5 sm:h-5"
@@ -297,7 +314,7 @@ export default function Section3() {
                           </p>
                         ))}
                       </div>
-                      <div className="mt-2 lg:mt-6 hidden lg:flex items-center gap-2.5">
+                      <div className="mt-2 cursor-pointer lg:mt-6 hidden lg:flex items-center gap-2.5">
                         <span
                           className="text-white text-[14px] sm:text-[15px]"
                           style={{ fontFamily: "MontserratMedium" }}
@@ -313,6 +330,7 @@ export default function Section3() {
                           <Image
                             src={EXPLORE_ARROW_IMAGE}
                             alt="Arrow"
+                            title="Arrow"
                             width={22}
                             height={7}
                           />
@@ -321,29 +339,33 @@ export default function Section3() {
                     </div>
                     <div className="w-full lg:w-auto flex flex-col items-start gap-3 shrink-0 mt-2 lg:mt-0">
                       <div className="flex items-start gap-3 w-full">
-                      <div
-                        className="relative w-full aspect-[4/3] md:w-[280px] md:h-[198px] md:aspect-auto rounded-[5px] overflow-hidden"
-                      >
-                        <Image
-                          src={item.imageSrc}
-                          alt={item.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setOpenItem(null)}
-                        aria-label="Collapse"
-                        className="hidden lg:flex shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
-                      >
-                        <Image
-                          src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
-                          alt="Collapse"
-                          width={30}
-                          height={30}
-                        />
-                      </button>
+                        <div
+                          className="relative"
+                        >
+                          <img
+                            src={item.imageSrc}
+                            alt={item.title}
+                            title={item.title}
+                          
+                            className=" md:aspect-auto 
+                            rounded-[5px] overflow-hidden 
+                            xl:w-[357px] xl:h-auto w-full aspect-[4/3] md:w-[280px] md:h-[198px]"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setOpenItem(null)}
+                          aria-label="Collapse"
+                          className="hidden lg:flex shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
+                        >
+                          <Image
+                            src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
+                            alt="Collapse"
+                            title="Collapse"
+                            width={30}
+                            height={30}
+                          />
+                        </button>
                       </div>
                       <div className="flex lg:hidden mt-1 items-center gap-2.5 w-full md:w-[280px]">
                         <span
@@ -361,6 +383,7 @@ export default function Section3() {
                           <Image
                             src={EXPLORE_ARROW_IMAGE}
                             alt="Arrow"
+                            title="Arrow"
                             width={22}
                             height={7}
                           />
