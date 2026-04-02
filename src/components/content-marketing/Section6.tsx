@@ -17,6 +17,7 @@ function Section6() {
                             <h2 className="font-[700] text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] text-center sm:text-left" style={{
                                 fontFamily: 'MontserratBold',
                             }}>Brands That Trust Us</h2>
+                            
 
                             <p className="absolute top-[50%] transform -translate-y-[50%] -right-3 hidden sm:block">
                                 <svg
