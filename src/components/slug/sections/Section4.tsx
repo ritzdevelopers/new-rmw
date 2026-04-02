@@ -26,7 +26,7 @@ function Section4() {
                         <div>  <img src="/services-v3-slug/s4/17_plus.png" alt="Ritz Media World – 17+ years of experience" title="Ritz Media World" className="h-auto w-[220px] md:w-[300px] xl:w-[429px]" /></div>
 
                         <div className="flex flex-col   justify-center items-center">
-                            <h4 className={`font-[600] text-[40px] md:text-[50px] ${styles.fontmontserrat}`}>300+</h4>
+                            <p className={`font-[600] text-[40px] md:text-[50px] ${styles.fontmontserrat}`}>300+</p>
                             <p className={`font-[400] text-[14px] ${styles.fontopensans}`}>Successful Projects</p></div>
                     </div>
 
@@ -38,7 +38,7 @@ function Section4() {
                             <li>Increase your sales with high-quality SEO customized services</li>
                         </ul>
                         <div className="flex justify-center md:justify-start">
-                            <button className="flex justify-between items-center gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                            <a href="/about.html" target="_blank" className="flex justify-between items-center gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
                                 <p className={`font-[500] text-[18px] ${styles.fontmontserrat}`}>More about us</p>
                                 <div className="w-[40px] h-[40px] bg-[#C99237] rounded-full flex justify-center items-center">
 
@@ -48,7 +48,7 @@ function Section4() {
                                     </svg>
 
                                 </div>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
