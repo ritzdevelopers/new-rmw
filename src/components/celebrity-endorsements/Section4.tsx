@@ -9,25 +9,25 @@ import BrandImpactSection1 from "../copy/BrandImpactSection1";
 
 const cards = [
   {
-    icon: "/service-v3/celebrity-endorsements/s4/blue_capture.png",
+    icon: "/service-v3/celebrity-endorsements/high_fp/blueelip.png",
     title: "Increase Visibility & Reach",
     description:
       "Celebrity endorsement of your brand captures instant attention and increases your brand reach. This helps your brand get noticed in a crowded marketplace.",
   },
   {
-    icon: "/service-v3/celebrity-endorsements/s4/golden_capture.png",
+    icon: "/service-v3/celebrity-endorsements/high_fp/yellowelip.png",
     title: "Establish Trust & Credibility",
     description:
       "Trust-building celebrities increase brand trust and credibility. Professional celebrity endorsement services increase your brand's credibility and believability.",
   },
   {
-    icon: "/service-v3/celebrity-endorsements/s4/blue_capture.png",
+    icon: "/service-v3/celebrity-endorsements/high_fp/blueelip.png",
     title: "Generate Engagement & Influence",
     description:
       "Celebrity marketing campaigns generate buzz and social media engagement. This builds stronger audience interaction and recall.",
   },
   {
-    icon: "/service-v3/celebrity-endorsements/s4/golden_capture.png",
+    icon: "/service-v3/celebrity-endorsements/high_fp/yellowelip.png",
     title: "Generate Leads & Conversions",
     description:
       "Brands partnering with celebrities for promotion generate stronger persuasion and recall. This results in higher enquiries, sales, and customer interest.",
@@ -73,7 +73,7 @@ export default function Section4() {
                       src={card.icon}
                       alt={`${card.title} – Ritz Media World`}
                       title="Ritz Media World"
-                      className="w-full h-auto object-contain"
+                      className="w-[30px] h-auto object-contain"
                     />
                   </div>
 
