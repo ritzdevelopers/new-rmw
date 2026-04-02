@@ -19,9 +19,10 @@ export default function Section3() {
         "Our comprehensive branding services include logo development, brand positioning, and visual communication to help you achieve success.",
       ],
       imageSrc:
-        "/varunimage/Branding%20%26%20Identity%20Development.png",
+        "/varunimage/Branding&IdentityDevelopment.png",
       learnMoreHref:
         "https://ritzmediaworld.com/services/creative-services/branding-and-identity-development",
+        heightAndWidth:"w-[398px] h-auto"
     },
     {
       label: "Graphic Design",
@@ -29,9 +30,10 @@ export default function Section3() {
         "Leverage the power of visual communication with our expert services in graphic designing. Through competent execution, we convert audiences whether online or offline into engage, empowering and convincing you. We focus on designing effective graphics for effective communication.",
         "Our solution in graphic design helps you effectively communicate messages by designing effective graphics.",
       ],
-      imageSrc: "/varunimage/Graphic%20Design.png",
+      imageSrc: "/varunimage/GraphicDesign.png",
       learnMoreHref:
         "https://ritzmediaworld.com/services/creative-services/graphic-designing",
+          heightAndWidth:"w-[420px] h-auto"
     },
     {
       label: "Logo Design",
@@ -39,9 +41,10 @@ export default function Section3() {
         "The logo of any brand is their identity. We can help you design a unique and memorable logo that creates trust and makes a lasting impression on your audience. We are professionals in logo design!",
         "With a logo design of your choice, we can ensure that your brand gets noticed, helps develop brand loyalty and helps create instant recognition. It is thus important for brand advertising",
       ],
-      imageSrc: "/varunimage/Logo%20Design.png",
+      imageSrc: "/varunimage/LogoDesign.png",
       learnMoreHref:
         "https://ritzmediaworld.com/services/creative-services/logo-design",
+        heightAndWidth:"w-[391px] h-auto"
     },
     {
       label: "Print Advertising Design",
@@ -49,9 +52,10 @@ export default function Section3() {
         "Leave your mark in the print media industry with effective print advertising design solutions from us. Our designs are made in a way that piques interest and encourages audience response.",
         "Brochure design or flyer design or poster design; whether any paper you give us, we will turn it into a profit-making print ad design.",
       ],
-      imageSrc: "/varunimage/Print-Advertising-Design.png",
+      imageSrc: "/varunimage/PrintAdvertisingDesign.png",
       learnMoreHref:
         "https://ritzmediaworld.com/services/creative-services/print-advertisement-design",
+        heightAndWidth:"w-[393px] h-auto"
     },
     {
       label: "Packaging Design",
@@ -59,9 +63,10 @@ export default function Section3() {
         "Use your product packaging as a marketing tool to persuade your customers to buy your product.",
         " Our packaging design services ensure that you attain instant success through our highly persuasive and effective packaging design that influences customer behavior and creates brand identity.",
       ],
-      imageSrc: "/varunimage/Packaging-Design.png",
+      imageSrc: "/varunimage/PackagingDesign.png",
       learnMoreHref:
         "https://ritzmediaworld.com/services/creative-services/packaging-design",
+        heightAndWidth:"w-[403px] h-auto"
     },
   ];
 
@@ -96,7 +101,7 @@ export default function Section3() {
             const isOpen = openItem === item.label;
 
             return (
-              <div key={item.label} className="border-b border-[#AAA8A8] pb-4">
+              <div key={item.label} className="border-b border-[#AAA8A8] pb-6">
                 <button
                   type="button"
                   onClick={() => setOpenItem(isOpen ? null : item.label)}
@@ -110,13 +115,12 @@ export default function Section3() {
                     {item.label}
                   </p>
                   {isOpen ? (
-                    <Image
+                    <img
                       src="/varun.icon/cross-content-marketing.svg"
                       alt="Ritz Media World – close section"
                       title="Ritz Media World"
-                      width={43}
-                      height={43}
-                      className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 object-contain select-none mt-2"
+                     
+                      className="shrink-0 w-7 h-7 sm:w-[40px] sm:h-[40px] select-none mt-2"
                     />
                   ) : (
                     <span className="text-[#6E6E6E] text-4xl leading-none select-none">
@@ -128,17 +132,15 @@ export default function Section3() {
                 <div
                   className={`${accordionStyles.accordionContent} ${isOpen ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed}`}
                 >
-                  <div className="pt-6 sm:pt-8">
-                    <div className="flex min-w-0 flex-col items-start gap-8 lg:flex-row lg:gap-14">
+                  <div className="pt-0">
+                    <div className="flex min-w-0 flex-col items-start gap-8 lg:flex-row lg:gap-14 xl:gap-20">
                       <div className="relative flex w-full min-w-0 justify-center sm:w-auto lg:max-w-[430px] xl:max-w-[480px] lg:justify-start">
-                        <div className="relative mx-auto h-[349px] w-[391px] max-w-full lg:mx-0 lg:h-[380px] lg:w-[430px]">
-                          <Image
+                        <div className={`relative`}>
+                          <img
                             src={item.imageSrc}
                             alt={`${item.label} – Ritz Media World`}
-                            title="Ritz Media World"
-                            fill
-                            className="object-contain"
-                            sizes="(max-width: 1023px) min(100vw, 391px), 430px"
+                            title={item.label}
+                            className={`${item.heightAndWidth}`}
                           />
                         </div>
                       </div>
@@ -164,7 +166,7 @@ export default function Section3() {
                           className="group mt-8 inline-flex items-center gap-4 flex-wrap"
                         >
                           <span
-                            className="text-[#101828] text-[16px]"
+                            className="text-[#101828] text-[18px]"
                             style={{ fontFamily: "MontserratMedium" }}
                           >
                             Learn more

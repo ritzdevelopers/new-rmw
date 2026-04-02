@@ -61,7 +61,7 @@ export default function Section6() {
           <div className="flex flex-row gap-2 justify-center md:justify-start mt-3">
             <button
               onClick={() =>
-                window.open("https://ritzmediaworld.com/contact.html", "_blank")
+                window.open("/category/case-study", "_blank")
               }
               className="s1-btn-gold w-[140px] sm:w-[146px] h-[37px] rounded-[5px] bg-[#C99237] cursor-pointer text-white font-[600] text-[13px] sm:text-[14px] md:text-[16px]"
               style={{ fontFamily: "OpenSansSemiBold" }}
