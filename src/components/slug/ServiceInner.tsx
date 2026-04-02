@@ -8,6 +8,7 @@ import Section7 from "@/components/content-marketing/Section7";
 import Section8 from "./sections/Section8";
 import { getServiceThirdData } from "@/lib/getServiceThirdLayerData";
 import BrandImpactSection1 from "../copy/BrandImpactSection1";
+import WhiteLayer from "../home-v3/services/WhiteLayer";
 async function ServiceInner({slug}: {slug: string}) {
 
 
@@ -17,7 +18,8 @@ async function ServiceInner({slug}: {slug: string}) {
         <>
             <Banner slug={slug}/>
             <Section2 data={res}/>
-            <Section3 />
+            {/* <Section3 /> */}
+            <WhiteLayer/>
             <Section4 />
             <Section5 />
             <Section6 />

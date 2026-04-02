@@ -84,13 +84,11 @@ export default function Section2() {
 
           <div className="w-full lg:w-[46%] xl:w-[48%] min-w-0 max-lg:text-center md:mt-5 lg:mt-0 lg:text-left">
             <div className="flex w-full min-w-0 flex-col md:grid md:grid-cols-[42%_58%]">
-              <div className="relative order-1 h-[200px] w-full overflow-hidden sm:h-[170px] md:order-none md:col-start-2 md:row-start-1 md:h-[190px] lg:h-[190px]">
-                <Image
-                  src="/service-v3/celebrity-endorsements/s2/team.jpg"
+              <div className="relative order-1  overflow-hidden md:order-none md:col-start-2 md:row-start-1">
+                <img
+                  src="/service-v3/celebrity-endorsements/high_fp/teamhighresolutionimg.jpg"
                   alt="Ritz Media World team"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width:1280px) 360px, (min-width:1024px) 310px, 58vw"
+                  className="w-full lg:w-[310px] h-auto"
                 />
               </div>
 

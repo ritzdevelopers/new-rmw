@@ -4,7 +4,7 @@ import styles from "./Section5.module.css";
 
 export default function Section5() {
   return (
-    <section className="w-full  pt-[35px] lg:pt-[70px] flex justify-center">
+    <section className="w-full  pt-[35px] lg:pt-[70px] flex flex-col justify-center">
       <div className={`w-full mx-auto overflow-hidden ${styles.containerWidth}`}>
         <div
           className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0"
@@ -87,7 +87,7 @@ export default function Section5() {
                     key={idx}
                     className="w-[100px] h-[56px] sm:w-[120px] sm:h-[67px] lg:w-[146px] lg:h-[81px] relative shrink-0"
                   >
-                    <Image src={url} fill alt="Brand logo" className="object-contain" />
+                    <Image src={url} fill alt="Ritz Media Clients" title="Ritz Media Clients" className="object-contain" />
                   </div>
                 ))}
               </div>
@@ -105,10 +105,10 @@ export default function Section5() {
             </div>
           </div>
         </div>
-        <div className="w-full mt-12">
+      </div>
+      <div className="w-full mt-[35px] lg:mt-[70px]">
           <div className="h-[1px] w-full bg-[#D9D9D9]" />
         </div>
-      </div>
     </section>
   );
 }

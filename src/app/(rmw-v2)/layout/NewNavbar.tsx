@@ -846,13 +846,14 @@ function NewNavbar() {
             <div className="border-b border-gray-100 pb-2">
               <button
                 onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className="mobile-menu-item w-full text-left font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 flex items-center justify-between group"
+                className="mobile-menu-item w-full text-left font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 flex items-center justify-between group relative z-40"
               >
-                <span className="relative">
+                <span onClick={()=>window.open("/services", "_blank")} className="relative z-50">
                   Services
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
                 </span>
                 <svg
+                   onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
                   className={`w-5 h-5 text-gray-600 transition-all duration-300 ${isMobileServicesOpen ? "rotate-180 text-[#C99237]" : "group-hover:text-[#C99237]"
                     }`}
                   fill="none"

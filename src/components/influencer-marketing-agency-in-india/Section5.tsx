@@ -40,18 +40,18 @@ export default function Section5() {
       <div className={`w-full mx-auto overflow-x-hidden ${styles.containerWidth}`}>
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 xl:gap-10 items-start lg:items-center xl:items-start">
           <div className="flex w-full max-lg:mx-auto flex-col items-center text-center lg:w-[30%] lg:items-start lg:text-left xl:w-[26%] pt-1 mt-0 lg:mt-0 xl:mt-[100px]">
-            <p
+            <h2
               className="uppercase text-[#C99237] text-[16px] tracking-wide font-[600] leading-[28px]"
               style={{ fontFamily: "OpenSansSemiBold" }}
             >
               Clients Testimonials
-            </p>
-            <h2
+            </h2>
+            <h3
               className="text-black text-[24px] md:text-[30px] lg:text-[23px]  xl:text-[34px] leading-[1.02] font-[700] mt-3 xl:whitespace-nowrap"
               style={{ fontFamily: "MontserratBold" }}
             >
               What Our Clients Say
-            </h2>
+            </h3>
             <p
               className="text-[#00000] text-[16px] sm:text-[17px] lg:text-[16px] leading-[1.45] mt-3 w-full max-lg:max-w-none lg:max-w-[281px] lg:mx-0"
               style={{ fontFamily: "OpenSansRegular" }}
@@ -136,12 +136,12 @@ export default function Section5() {
                         {item.para}
                       </p>
                       <div>
-                        <h3
+                        <p
                           className="text-[18px] text-[#000000]"
                           style={{ fontFamily: "OpenSansBold" }}
                         >
                           {item.client}
-                        </h3>
+                        </p>
                         <p
                           className="font-[400] text-[14px] text-[#282828] mt-1"
                           style={{ fontFamily: "OpenSansRegular" }}

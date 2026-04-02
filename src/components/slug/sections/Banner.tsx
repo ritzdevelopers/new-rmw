@@ -12,9 +12,9 @@ function Banner({ slug }: { slug: string }) {
                 <h1 className={`font-[800] text-[32px] sm:text-[40px] lg:text-[44px] text-white leading-tight ${styles.fontmontserrat}`}>
                     {slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
                 </h1>
-                <p className={`font-[500] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[21px] text-white max-w-[650px] leading-snug ${styles.fontmontserrat}`}>
+                <h2 className={`font-[500] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[21px] text-white max-w-[650px] leading-snug ${styles.fontmontserrat}`}>
                     Committed to Delivering Top-Quality Services
-                </p>
+                </h2>
             </div>
         </section>
     )
