@@ -16,7 +16,7 @@ function Section3() {
             link: "/services/contents-marketing/content-marketing",
         },
         {
-            image: "/alishba-services-v3/content-marketing/email-newsletter.jpg",
+            image: "/alishba-services-v3/content-marketing/emailandnewsletter.jpg",
             title: "Email and Newsletter <br /> Marketing",
             activeCardTitle: "Email and Newsletter Marketing",
             desc: "Boost your business to the next level with our email marketing and newsletters solutions. We design customized email marketing campaigns that not only engage your subscribers but also help you generate high conversions. From automated campaigns or a promotional newsletter, our approach ensures that every email gives you a measurable return on investment (ROI).",
