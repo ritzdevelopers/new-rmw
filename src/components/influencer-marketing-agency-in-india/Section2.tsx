@@ -7,7 +7,7 @@ const EXPLORE_ARROW_IMAGE =
 export default function Section2() {
   return (
     <section className="w-full flex items-center justify-center py-[35px] lg:py-[70px] bg-white">
-      <div className="w-[100%] sm:w-[88%] md:w-[82%] lg:w-[70%] xl:w-[74%] text-center mx-auto px-4 lg:px-[50px] min-[1370px]:!w-[1300px] min-[1370px]:!max-w-[1300px] min-[1370px]:mx-auto">
+      <div className="w-[100%] md:w-[100%] lg:w-[100%] xl:w-[74%] text-center mx-auto px-4 lg:px-[50px] min-[1370px]:!w-[1300px] min-[1370px]:!max-w-[1300px] min-[1370px]:mx-auto">
         <p
           className="text-black font-[700] text-[20px] sm:text-[20px] md:text-[20px] lg:text-[24px] leading-[30px]   md:leading-[30px] lg:leading-[30px] xl:leading-[40px] xl:max-w-[1000px]   mx-auto"
           style={{ fontFamily: "MontserratRegular" }}

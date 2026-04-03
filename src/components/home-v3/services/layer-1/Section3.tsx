@@ -141,7 +141,7 @@ function Section3() {
                 {/* Centered Align Container  */}
                 <div className="flex flex-col justify-between items-center text-center gap-6 sm:gap-8 col-span-2 lg:col-span-1 w-full md:w-auto md:shrink-0 md:max-w-[min(100%,280px)] lg:max-w-none lg:w-auto order-2 lg:order-none">
                     {/* Top Mobile Frame Video  */}
-                    <div className="relative w-[280px] h-[550px] sm:w-[320px] sm:h-[630px] md:w-[265px] md:h-[520px] lg:w-[381px] lg:h-[750px] overflow-hidden rounded-[50px] sm:rounded-[43px] lg:rounded-[70px] mx-auto">
+                    <div className="relative w-[280px] h-[550px] sm:w-[320px] sm:h-[630px] md:w-[265px] md:h-[520px] xl:w-[381px] xl:h-[750px] lg:w-[334px] lg:h-[664px] overflow-hidden rounded-[50px] sm:rounded-[43px] xl:rounded-[70px] lg:rounded-[60px] mx-auto">
                         <Image src="/service-v3/layer1/charts/mobile-frame-img.png" alt="Digital Marketing" title="Digital Marketing" fill className="w-full h-full object-cover z-10" />
 
                         <video src="/test-images/test-video.mp4" className="absolute z-1 top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[92%] h-[97%] object-cover" autoPlay loop muted playsInline preload="metadata"></video>
