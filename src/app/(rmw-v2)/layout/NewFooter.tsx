@@ -173,10 +173,10 @@ function NewFooter() {
             <div className="mb-1 mt-3 sm:mb-2 flex flex-wrap justify-start  items-center gap-4 lg:justify-start lg:items-center sm:gap-6 lg:gap-5 h-auto lg:h-[79px] w-full overflow-x-auto lg:overflow-visible">
 
 
-              <img src="/home-v3/clients/nins.jpg" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed  w-[103px] h-auto object-contain" />
-              <img src="/home-v3/clients/nmeta.png" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed w-[108px] h-auto object-contain" />
-              <img src="/home-v3/clients/ngoogle.png" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed w-[51px] h-auto object-contain" />
-              <img src="/home-v3/clients/nmsme.png" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed w-[115px] h-auto object-contain" />
+              <img src="/home-v3/clients/nins.jpg" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed  w-[50px] md:w-[103px] h-auto object-contain" />
+              <img src="/home-v3/clients/nmeta.png" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed w-[50px] md:w-[108px] h-auto object-contain" />
+              <img src="/home-v3/clients/ngoogle.png" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed w-[50px] md:w-[51px] h-auto object-contain" />
+              <img src="/home-v3/clients/nmsme.png" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed w-[50px] md:w-[115px] h-auto object-contain" />
             </div>
 
             {/* Copy Right Text  */}

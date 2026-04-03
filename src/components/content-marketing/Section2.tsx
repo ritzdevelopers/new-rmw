@@ -16,7 +16,7 @@ function Section2() {
                 As a trusted content marketing agency in India, we at <b><a href="/" target="_blank" className="cursor-pointer">Ritz Media World</a></b> develop content marketing strategies that not only inform but also persuade, inspire, and convert.
 Our strategy includes <i>SEO content</i>, <i>social media content</i>, <i>email marketing</i>, <i>video content</i>, <i>infographics</i>, and <i>promotional activities</i> to capture attention, build credibility, and drive measurable business results. Each piece of content is designed for high engagement, lead generation, and brand building.
                 </p>
-                <Link    href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-5 flex items-center justify-center gap-4">
+                <Link    href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-5 flex items-center justify-center gap-4 p-[10px] hover:bg-[#f5f5f5] transition-colors rounded-[5px] ">
           <span
             className="text-black text-[18px]   md:text-[20px] font-[500]"
             style={{ fontFamily: "MontserratMedium" }}

@@ -70,7 +70,7 @@ function Section3() {
                     ) => (
                         <div
                             key={index}
-                            className="w-full flex flex-col rounded-lg overflow-hidden bg-[#0F1640] border border-[#323E84] mb-4"
+                            className="w-full flex flex-col rounded-lg overflow-hidden bg-[#0F1640] mb-4"
                             onClick={()=>window.open(item.link, "_blank")}
                         >
                             <div className="w-full relative aspect-[16/10] shrink-0">
@@ -84,12 +84,12 @@ function Section3() {
                             </div>
                             <div className="flex flex-col gap-2 p-4">
                                 <h3
-                                    className={`font-[600] text-[14px] text-white uppercase leading-tight ${styles.fontMontserrat}`}
+                                    className={`font-[600] text-[16px] text-white uppercase   ${styles.fontMontserrat}`}
                                 >
                                     {item.activeCardTitle}
                                 </h3>
                                 <p
-                                    className={`font-[400] text-[11px] text-white/90 line-clamp-4 ${styles.fontopensans}`}
+                                    className={`font-[400] text-[14px] text-white/90 leading-[20px] line-clamp-4 ${styles.fontopensans}`}
                                 >
                                     {item.desc}
                                 </p>

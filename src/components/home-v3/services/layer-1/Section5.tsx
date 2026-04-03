@@ -40,7 +40,7 @@ function Section5() {
         <section className="w-full flex justify-center items-center  ">
 
             {/* Centered Align Container  */}
-            <div className={`w-full flex flex-col justify-center items-center gap-6 sm:gap-8 ${styles.containerWidth}`}>
+            <div className={`w-full flex flex-col justify-center items-center gap-0 xl:gap-8 ${styles.containerWidth}`}>
 
                 {/* Top Container  */}
                 <div className="w-full flex flex-col text-center justify-center items-center  px-4 sm:px-0">
@@ -57,8 +57,8 @@ function Section5() {
                         <div className="w-full md:w-[65%] lg:w-[827px] xl:w-[900px] h-[200px] sm:h-[250px] md:h-[319px] lg:h-[319px] relative overflow-hidden">
                             <Image src="/service-v3/layer1/s5/team-q-img.jpg" alt="Ritz Media World – skilled team delivering technology solutions" title="Ritz Media World" fill className="object-contain object-center" sizes="(max-width: 1024px) 65vw, 827px" />
 
-                            <div className="absolute left-0 bottom-0 border-b border-[#DED6D6] bg-white max-w-full lg:max-w-[427px] py-3 sm:py-4 lg:py-5">
-                                <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] xl:text-[17px] max-w-[95%] lg:max-w-[90%] xl:max-w-[95%] leading-tight sm:leading-normal ${styles.fontmontserrat}`}>A Skilled Team Delivering Reliable Technology Solutions That Drive Business Growth</p>
+                            <div className="absolute left-0 bottom-0 border-b border-[#DED6D6] bg-white max-w-full lg:max-w-[427px] py-1 lg:py-5">
+                                <p className={`font-[600] text-[13px] sm:text-[14px] text-center md:text-left md:text-[15px] lg:text-[16px] xl:text-[17px] max-w-[95%] lg:max-w-[90%] xl:max-w-[95%] leading-normal ${styles.fontmontserrat}`}>A Skilled Team Delivering Reliable Technology Solutions That Drive Business Growth</p>
                             </div>
                         </div>
 
@@ -73,14 +73,14 @@ function Section5() {
                                             md:shrink-0
                                             mt-3 md:mt-18 lg:mt-14 xl:mt-5 2xl:mt-0 ${styles.factNumbers}`}>
                             {/* Top Row  */}
-                            <div>
+                            <div className="text-center md:text-left">
                                 <p className={`font-[400] uppercase text-[14px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[17px] text-white ${styles.fontopensans}`}>Facts & Numbers</p>
                             </div>
 
                             {/* Bottom Row  */}
-                            <div className="min-w-0">
+                            <div className="min-w-0 text-center md:text-left">
                                 <p className={`font-[600] text-[44px] sm:text-[52px] md:text-[50px] lg:text-[64px] xl:text-[70px] text-white leading-none ${styles.fontopensans}`}>90<span className="text-[26px] sm:text-[32px] md:text-[36px] lg:text-[42px] xl:text-[48px]">%</span></p>
-                                <p className={`font-[400] text-[15px] sm:text-[16px] md:text-[15px] lg:text-[19px] xl:text-[20px] text-white leading-snug sm:leading-normal mt-2 sm:mt-3 xl:mt-4 ${styles.fontopensans}`}>clients recommend <br />
+                                <p className={`font-[400] text-[15px] sm:text-[16px] md:text-[15px] lg:text-[19px] xl:text-[20px] text-white leading-normal mt-2 sm:mt-3 xl:mt-4 ${styles.fontopensans}`}>clients recommend <br />
                                     <span className="font-[800] ">RITZ MEDIA WORLD </span> <br />
                                     for best digital marketing services. </p>
                             </div>
@@ -94,17 +94,17 @@ function Section5() {
                             {/* Row 1  */}
                             <div className="flex w-full justify-between gap-2 sm:gap-4 xl:gap-5">
                                 <div className="flex flex-col gap-1 sm:gap-2 xl:gap-3">
-                                    <p className={`font-[500] text-[32px] sm:text-[40px] md:text-[45px] lg:text-[50px] xl:text-[55px] leading-none ${styles.fontmontserrat}`}>1M+</p>
-                                    <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]  ${styles.fontopensans}`}>Creatives Published</p>
+                                    <p className={`font-[500] text-[32px] sm:text-[40px] md:text-[33px] lg:text-[50px] xl:text-[55px] leading-none ${styles.fontmontserrat}`}>1M+</p>
+                                    <p className={`font-[600] text-[13px] sm:text-[14px]  lg:text-[16px]  ${styles.fontopensans}`}>Creatives Published</p>
                                 </div>
                                 <div className="flex flex-col gap-1 sm:gap-2 xl:gap-3">
-                                    <p className={`font-[500] text-[32px] sm:text-[40px] md:text-[45px] lg:text-[50px] xl:text-[55px] leading-none ${styles.fontmontserrat}`}>500+</p>
-                                    <p className={`font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]  ${styles.fontopensans}`}>Success Stories</p>
+                                    <p className={`font-[500] text-[32px] sm:text-[40px] md:text-[33px] lg:text-[50px] xl:text-[55px] leading-none ${styles.fontmontserrat}`}>500+</p>
+                                    <p className={`font-[600] text-[13px] sm:text-[14px]  lg:text-[16px]  ${styles.fontopensans}`}>Success Stories</p>
                                 </div>
                             </div>
 
                             {/* Row 2  */}
-                            <div onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} className="w-full sm:w-[220px] lg:w-[269px] xl:w-[290px] h-[80px] sm:h-[95px] lg:h-[111px] xl:h-[120px] relative mx-auto sm:mx-0">
+                            <div onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} className="w-full sm:w-[193px] lg:w-[269px] xl:w-[290px] h-[80px] sm:h-[95px] lg:h-[111px] xl:h-[120px] relative mx-auto sm:mx-0">
                                 <Image src="/home-v3/clients/reviews-black.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" fill className="object-contain cursor-pointer" />
                             </div>
                         </div>

@@ -60,9 +60,9 @@ function Section5() {
                         <div className={`w-full md:flex-1 flex justify-center items-center text-center py-6 sm:py-8 md:py-10 bg-[#F1F1F1] min-w-0 ${styles.s5Card}`}>
                             <p className={`font-[700] ${styles.s5CardTitle} ${styles.fontMontserrat}`}>Why Content <br /> Marketing Matters</p>
                         </div>
-                        <div className={`w-full md:flex-1 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 flex flex-col gap-2 sm:gap-3 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
+                        <div className={`w-full md:flex-1 px-4 sm:px-6 text-center md:px-8 lg:px-10 xl:px-12 flex flex-col gap-2 sm:gap-3 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
                             <p className={`font-[700] ${styles.s5CardSubtitle} ${styles.fontMontserrat}`}>Increase Organic Traffic</p>
-                            <p className={`font-[400] max-w-full xl:max-w-[313px] ${styles.s5CardDesc} ${styles.fontopensans}`}>SEO is a key factor for your website to get ranked in the search engines and if that happens, more people looking for answers will be able to find your page.
+                            <p className={`font-[400] max-w-full text-center   ${styles.fontopensans}`}>SEO is a key factor for your website to get ranked in the search engines and if that happens, more people looking for answers will be able to find your page.
                             </p>
                         </div>
                         <div className={`w-full md:flex-1 xl:h-[252px] min-w-0 ${styles.s5Card}`}>
@@ -72,20 +72,20 @@ function Section5() {
 
                     {/* Bottom Row  */}
                     <div className={`w-full flex flex-col md:flex-row md:flex-nowrap xl:h-[202px] gap-0 mt-0 ${styles.s5CardRow}`}>
-                        <div className={`w-full md:flex-1 flex flex-col gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
+                        <div className={`w-full md:flex-1 flex flex-col gap-2 sm:gap-3 px-4 sm:px-6 text-center md:px-8 lg:px-10 xl:px-10 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
                             <p className={`font-[700] ${styles.s5CardSubtitle} ${styles.fontMontserrat}`}>Build Trust & Authority</p>
-                            <p className={`font-[400] max-w-full xl:max-w-[313px] ${styles.s5CardDesc} ${styles.fontopensans}`}>Producing informative content can be a key factor in your company gaining the status of an authority figure in the market.
+                            <p className={`font-[400] max-w-full text-center  ${styles.fontopensans}`}>Producing informative content can be a key factor in your company gaining the status of an authority figure in the market.
 
                             </p>
                         </div>
-                        <div className={`w-full md:flex-1 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 border border-[#DFDDDD] flex flex-col gap-2 sm:gap-3 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
+                        <div className={`w-full md:flex-1 px-4 sm:px-6 text-center md:px-8 lg:px-10 xl:px-10 border border-[#DFDDDD] flex flex-col gap-2 sm:gap-3 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
                             <p className={`font-[700] ${styles.s5CardSubtitle} ${styles.fontMontserrat}`}>Encourage Engagement & <br className="hidden xl:block" /> Conversation</p>
-                            <p className={`font-[400] max-w-full xl:max-w-[313px] ${styles.s5CardDesc} ${styles.fontopensans}`}>Creating content for your audience that resonates will lead to engagement, sharing, and conversions.
+                            <p className={`font-[400] max-w-full text-center  ${styles.fontopensans}`}>Creating content for your audience that resonates will lead to engagement, sharing, and conversions.
                             </p>
                         </div>
-                        <div className={`w-full md:flex-1 flex flex-col gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-10 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
+                        <div className={`w-full md:flex-1 flex flex-col gap-2 sm:gap-3 px-4 sm:px-6 text-center md:px-8 lg:px-10 xl:px-10 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
                             <p className={`font-[700] ${styles.s5CardSubtitle} ${styles.fontMontserrat}`}>Increase Sales & Lead <br className="hidden xl:block" /> Generation</p>
-                            <p className={`font-[400] max-w-full xl:max-w-[303px] ${styles.s5CardDesc} ${styles.fontopensans}`}>Content is a major driver behind sales from signing up to newsletters to purchasing. </p>
+                            <p className={`font-[400] max-w-full text-center  ${styles.fontopensans}`}>Content is a major driver behind sales from signing up to newsletters to purchasing. </p>
                         </div>
                     </div>
                 </div>

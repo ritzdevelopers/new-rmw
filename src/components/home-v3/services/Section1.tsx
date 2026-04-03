@@ -5,7 +5,7 @@ function Section1() {
         <section className={`w-full h-[460px] md:h-[300px] lg:h-[500px] xl:min-h-[515px] 
         md:bg-[url("/alishba-services-v3/services-banner.png")]
         bg-[url("/alishba-services-v3/Services-banner-mob.png")]
-         bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-14 px-4 sm:px-6 md:px-8 lg:px-0
+         bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-12 md:pb-6 lg:pb-10 xl:pb-14 px-4 sm:px-6 md:px-0 lg:px-0
         justify-center md:justify-start
         ${styles.bannerSize}
         `}>
