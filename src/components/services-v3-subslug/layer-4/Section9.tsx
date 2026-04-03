@@ -6,12 +6,12 @@ export default function Section9() {
       <div
         className={`w-full mx-auto overflow-hidden flex items-center justify-center text-center ${containerStyles.containerWidth}`}
       >
-        <h3
+        <p
           className="text-white font-[600] text-[20px] sm:text-[28px] md:text-[28px] leading-tight"
           style={{ fontFamily: "MontserratSemiBold" }}
         >
          Ready to Trade Ordinary for Extraordinary Results?
-        </h3>
+        </p>
       </div>
     </section>
   );

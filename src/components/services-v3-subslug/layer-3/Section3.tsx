@@ -69,12 +69,15 @@ export default function Section3() {
     <section className="w-full min-w-0 max-md:overflow-x-hidden bg-[#F7F7F7] py-10 sm:py-12 md:py-16 lg:py-20 flex justify-center px-4 sm:px-6 lg:px-0">
       <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
         <div className="text-center">
-          <p
+          <Link
+            href="/services-v3"
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-[600] uppercase text-[11px] sm:text-[12px] tracking-[0.1em] text-[#C99237]"
             style={{ fontFamily: "MontserratSemiBold" }}
           >
             Services
-          </p>
+          </Link>
           <h2
             className="text-black text-[28px] lg:text-[36px] font-[700] leading-tight"
             style={{ fontFamily: "MontserratBold" }}
@@ -103,12 +106,12 @@ export default function Section3() {
                   className="w-full py-4 sm:py-5 flex items-center justify-between gap-3 text-left"
                   aria-expanded={isOpen}
                 >
-                  <p
+                  <h3
                     className="text-[22px] leading-[28px] text-[#000000] font-[600]"
                     style={{ fontFamily: '"Open Sans", sans-serif' }}
                   >
                     {item.label}
-                  </p>
+                  </h3>
                   {isOpen ? (
                     <Image
                       src="/varun.icon/cross-content-marketing.svg"

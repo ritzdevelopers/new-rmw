@@ -21,7 +21,7 @@ export default function Section2() {
           className="mx-auto max-w-full break-words text-black font-[800] text-[22px] sm:text-[26px] md:text-[24px] lg:text-[30px] leading-[1.3] sm:leading-[30px] md:leading-[35px] lg:leading-[42px] xl:max-w-[1000px]"
           style={{ fontFamily: "MontserratBold" }}
         >
-  Creativity is not an afterthought but an advantage.
+          Creativity is not an afterthought but an advantage.
 
         </h2>
 
@@ -43,7 +43,7 @@ export default function Section2() {
             stuck in the predictable rut of convention.
           </p> */}
           <p>
-          At Ritz Media World, we know that mediocrity is not an option that any brand can afford. This is why, as a best creative agency, we ensure that not only are our branding strategies creative and innovative, but they are also highly effective. While the beauty of good design lies in the fact that it is beautiful, it must also be noticeable. 
+            We know that mediocrity is not an option that any brand can afford. This is why, as the best creative agency in India, we at Ritz Media World, ensure that not only are our branding strategies creative and innovative, but they are also highly effective. While the beauty of good design lies in the fact that it is beautiful, it must also be noticeable.
           </p>
           <p>We provide end-to-end creative services to your brand, provide the edge that your brand needs, and ensure that the impact and success are nothing short of remarkable.</p>
         </div>
