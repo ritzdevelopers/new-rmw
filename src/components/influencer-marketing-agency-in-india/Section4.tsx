@@ -1,5 +1,6 @@
-import BrandThatTrustUs from "./BrandThatTrustUs";
+// import BrandThatTrustUs from "./BrandThatTrustUs";
 import containerStyles from "@/components/celebrity-endorsements/page.module.css";
+import Clients from "./Clients";
 
 type Card = {
   title: string;
@@ -63,7 +64,7 @@ export default function Section4() {
                   card.title === "Brand Positioning" ? "sm:!border-r-0 sm:!border-b-0" : ""
                 }`}
               >
-                <h3
+                <div
                   className={`${
                     card.highlighted
                       ? "text-white text-[22px] md:text-[25px] leading-normal lg:text-[30px] xl:text-[36px] lg:leading-[50px]"
@@ -77,17 +78,17 @@ export default function Section4() {
                   }}
                 >
                   {card.highlighted ? (
-                    <>
+                    <h2>
                       Why Influencer
                       <br />
                       Marketing
                       <br />
                       Matters
-                    </>
+                    </h2>
                   ) : (
-                    card.title
+                    <h3>{card.title}</h3>
                   )}
-                </h3>
+                </div>
 
                 {!card.highlighted && (
                   <p
@@ -120,17 +121,18 @@ export default function Section4() {
           </div>
         </div>
       </section>
-      <BrandThatTrustUs />
-      <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center px-4 sm:px-6 lg:px-0">
+      {/* <BrandThatTrustUs /> */}
+      <Clients />
+      <a href="/contact.html" target="_blank" className="w-full cursor-pointer bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center px-4 sm:px-6 lg:px-0">
         <div className={`w-full mx-auto overflow-hidden flex items-center justify-center text-center ${containerStyles.containerWidth}`}>
-          <h3
+          <p
             className="text-white font-[600] text-[20px] sm:text-[28px] md:text-[28px] leading-tight"
             style={{ fontFamily: "MontserratSemiBold" }}
           >
             Ready to Turn Followers into Genuine Customers?
-          </h3>
+          </p>
         </div>
-      </section>
+      </a>
     </>
   );
 }

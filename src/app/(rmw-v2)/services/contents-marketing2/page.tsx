@@ -20,7 +20,7 @@ function Page() {
             <Section4></Section4>
             <Section5></Section5>
             <Section6></Section6>
-            <Section7 text="Ready to Transform Your Website from Ordinary to Unforgettable?"></Section7>
+            <Section7 text="Ready to Turn Your Content into Your Most Profitable Asset?"></Section7>
             <S6 padding="lg:px-0 md:px-6" padding2="lg:px-0 md:px-6"></S6>
             <S7></S7>
             {/* <BrandImpactSection1/> */}

@@ -13,12 +13,12 @@ export default function BrandThatTrustUs() {
         >
           {/* Left Side Container */}
           <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0">
-            <p
+            <h2
               className="font-[700] text-[20px] sm:text-[22px] lg:text-[24px]"
               style={{ fontFamily: "MontserratBold" }}
             >
               Brands That Trust Us
-            </p>
+            </h2>
 
             <p className="absolute top-[50%] transform -translate-y-[50%] -right-3 hidden sm:block">
               <svg
@@ -90,7 +90,7 @@ export default function BrandThatTrustUs() {
                     key={idx}
                     className="w-[100px] h-[56px] sm:w-[120px] sm:h-[67px] lg:w-[146px] lg:h-[81px] relative shrink-0"
                   >
-                    <Image src={url} fill alt="Brand logo" className="object-contain" />
+                    <Image src={url} fill alt="Ritz Media World Clients" title="Ritz Media World Clients" className="object-contain" />
                   </div>
                 ))}
               </div>

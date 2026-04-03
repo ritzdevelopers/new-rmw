@@ -357,8 +357,8 @@ function NewNavbar() {
 
   const socialItems = [
     { label: 'X (Twitter)', link: 'https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld' },
-    { label: 'LinkedIn', link: 'https://www.facebook.com/ritzmediaworld/' },
-    { label: 'Facebook', link: 'https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in' },
+    { label: 'LinkedIn', link: 'https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in' },
+    { label: 'Facebook', link: 'https://www.facebook.com/ritzmediaworld/' },
     { label: 'YouTube', link: 'https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia' },
     { label: 'Instagram', link: 'https://www.instagram.com/ritzmediaworld/' }
   ];
@@ -557,7 +557,7 @@ function NewNavbar() {
           {/* Left Side Container  */}
           <div>
 
-            <img src="/rmw-final-logo.png" alt="RMW Logo" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`} />
+            <img src="/rmw-final-logo.png" alt="Ritz Media World" title="Ritz Media World" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`} />
           </div>
           {/* Right Side Container  */}
           <div
@@ -818,7 +818,8 @@ function NewNavbar() {
           <div className="flex items-center">
             <img
               src="/rmw-final-logo.png"
-              alt="RMW Logo"
+              alt="Ritz Media World"
+              title="Ritz Media World"
               className={`w-auto object-contain transition-all duration-300 hover:scale-105 ${isScrolled ? "h-[36px] sm:h-[40px]" : "h-[52px] sm:h-[56px]"}`}
             />
           </div>

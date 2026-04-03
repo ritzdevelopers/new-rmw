@@ -41,7 +41,7 @@ export default function Section3() {
         "The logo of any brand is their identity. We can help you design a unique and memorable logo that creates trust and makes a lasting impression on your audience. We are professionals in logo design!",
         "With a logo design of your choice, we can ensure that your brand gets noticed, helps develop brand loyalty and helps create instant recognition. It is thus important for brand advertising",
       ],
-      imageSrc: "/varunimage/LogoDesign.png",
+      imageSrc: "/varunimage/logoad2.png",
       learnMoreHref:
         "https://ritzmediaworld.com/services/creative-services/logo-design",
         heightAndWidth:"w-[391px] h-auto"
@@ -52,7 +52,7 @@ export default function Section3() {
         "Leave your mark in the print media industry with effective print advertising design solutions from us. Our designs are made in a way that piques interest and encourages audience response.",
         "Brochure design or flyer design or poster design; whether any paper you give us, we will turn it into a profit-making print ad design.",
       ],
-      imageSrc: "/varunimage/PrintAdvertisingDesign.png",
+      imageSrc: "/varunimage/printadv2.png",
       learnMoreHref:
         "https://ritzmediaworld.com/services/creative-services/print-advertisement-design",
         heightAndWidth:"w-[393px] h-auto"
@@ -74,12 +74,15 @@ export default function Section3() {
     <section className="w-full min-w-0 max-md:overflow-x-hidden bg-[#F7F7F7] py-10 sm:py-12 md:py-16 lg:py-20 flex justify-center px-4 sm:px-6 lg:px-0">
       <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
         <div className="text-center">
-          <p
+          <Link
+            href="/services-v3"
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-[600] uppercase text-[11px] sm:text-[12px] tracking-[0.1em] text-[#C99237]"
             style={{ fontFamily: "MontserratSemiBold" }}
           >
             Services
-          </p>
+          </Link>
           <h2
             className="text-black text-[28px] lg:text-[36px] font-[700] leading-tight"
             style={{ fontFamily: "MontserratBold" }}
@@ -108,12 +111,12 @@ export default function Section3() {
                   className="w-full py-4 sm:py-5 flex items-center justify-between gap-3 text-left"
                   aria-expanded={isOpen}
                 >
-                  <p
+                  <h3
                     className="text-[22px] leading-[28px] text-[#000000] font-[600]"
                     style={{ fontFamily: '"Open Sans", sans-serif' }}
                   >
                     {item.label}
-                  </p>
+                  </h3>
                   {isOpen ? (
                     <img
                       src="/varun.icon/cross-content-marketing.svg"

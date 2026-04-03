@@ -37,7 +37,7 @@ function Section3() {
 
                         {/* Row 3  */}
                         <div>
-                            <ul className="flex w-full justify-between gap-4 sm:gap-6">
+                            <ul className="flex w-full justify-between gap-4 md:gap-2 lg:gap-6">
 
                                 <li className="flex">
                                     <span
@@ -141,7 +141,7 @@ function Section3() {
                 {/* Centered Align Container  */}
                 <div className="flex flex-col justify-between items-center text-center gap-6 sm:gap-8 col-span-2 lg:col-span-1 w-full md:w-auto md:shrink-0 md:max-w-[min(100%,280px)] lg:max-w-none lg:w-auto order-2 lg:order-none">
                     {/* Top Mobile Frame Video  */}
-                    <div className="relative w-[280px] h-[550px] sm:w-[320px] sm:h-[630px] md:w-[265px] md:h-[520px] lg:w-[381px] lg:h-[750px] overflow-hidden rounded-[50px] sm:rounded-[43px] lg:rounded-[70px] mx-auto">
+                    <div className="relative w-[280px] h-[550px] sm:w-[320px] sm:h-[630px] md:w-[265px] md:h-[520px] xl:w-[381px] xl:h-[750px] lg:w-[334px] lg:h-[664px] overflow-hidden rounded-[50px] sm:rounded-[43px] xl:rounded-[70px] lg:rounded-[60px] mx-auto">
                         <Image src="/service-v3/layer1/charts/mobile-frame-img.png" alt="Digital Marketing" title="Digital Marketing" fill className="w-full h-full object-cover z-10" />
 
                         <video src="/test-images/test-video.mp4" className="absolute z-1 top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 w-[92%] h-[97%] object-cover" autoPlay loop muted playsInline preload="metadata"></video>
@@ -188,7 +188,7 @@ function Section3() {
 
                         {/* Row 3  */}
                         <div>
-                            <ul className="flex w-full justify-between gap-4 sm:gap-6">
+                            <ul className="flex w-full justify-between gap-4 md:gap-2 lg:gap-6">
 
                                 <li className="flex gap-2 items-center text-center">
                                     <span
@@ -207,7 +207,7 @@ function Section3() {
                                     </div>
                                 </li>
 
-                                <li className="flex gap-2 items-center text-center">
+                                <li className="flex gap-2 mg:gap-1 lg:gap-2 items-center text-center">
                                     <span
                                         className="inline-block"
                                         style={{
@@ -245,8 +245,13 @@ function Section3() {
                     </div>
 
                     {/* Row 3 Card   */}
-                    <div className="w-full min-w-0 max-w-full self-stretch lg:self-auto lg:w-[218px] lg:max-w-[218px] lg:mr-[5rem] relative mx-auto lg:mx-0 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto flex items-center justify-center">
-                        <img src="/service-v3/layer1/charts/s3-g-review.png" alt="Ritz media world review" title="Ritz media world review" className="w-full max-w-full h-auto object-cover" />
+                    <div className="w-full hidden min-w-0 max-w-full self-stretch lg:self-auto lg:w-[218px] lg:max-w-[218px] lg:mr-[5rem] relative mx-auto lg:mx-0 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto md:flex items-center justify-center">
+                        <img src="/google-rating2.png" alt="Ritz media world review" title="Ritz media world review" className="w-full max-w-full h-auto object-cover" />
+                    </div>
+
+                    {/* Mobile Card  */}
+                    <div className="w-full block md:hidden">
+                        <img src="/google-rating.png" alt="Google rating" title="Google rating" className="w-full h-auto" />
                     </div>
                 </div>
             </div>

@@ -25,10 +25,47 @@
   }
 }
 
+/* 🔥 Exact tuning for 1240px–1279px */
+@media (min-width: 1240px) and (max-width: 1279px) {
+  .containerWidth {
+    max-width: 1200px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+    margin: 0 auto !important;
+  }
+
+  .layoutRow {
+    gap: 20px !important;
+  }
+
+  .leftColumn {
+    width: 60% !important;
+  }
+
+  .topLogo {
+    height: 160px !important;
+  }
+}
+
 @media (min-width: 1370px) {
   .containerWidth {
     width: 1300px !important;
     margin: 0 auto !important;
     align-self: center !important;
+  }
+}
+
+
+@media (min-width: 1240px) and (max-width: 1279px) {
+  .layoutRow {
+    min-width: 0;
+  }
+
+  .leftColumn {
+    min-width: 0;
+  }
+
+  .topLogo {
+    min-width: 0;
   }
 }

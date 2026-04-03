@@ -63,7 +63,7 @@ export default function Section5() {
             <div className="mt-6 flex flex-wrap justify-center gap-3 lg:flex-nowrap lg:justify-start">
               <button
                 onClick={() =>
-                  window.open("https://ritzmediaworld.com/contact.html", "_blank")
+                  window.open("/category/case-study", "_blank")
                 }
                 className="h-[40px] px-6 rounded-[6px] bg-[#C99237] text-white text-[15px] sm:text-[16px] font-[600] cursor-pointer whitespace-nowrap"
                 style={{ fontFamily: "OpenSansSemiBold" }}
@@ -88,6 +88,7 @@ export default function Section5() {
                 <Image
                   src="/service-v3/influencer-marketing-agency-in-india/s5/left_right_slider.svg"
                   alt="Testimonial slider controls"
+                  title="Testimonial slider controls"
                   fill
                   className="object-contain pointer-events-none"
                 />
@@ -152,6 +153,7 @@ export default function Section5() {
                       <img
                         src="/home-v3/exl-icn.png"
                         alt="Quote"
+                        title="Quote"
                         className="pointer-events-none absolute top-4 left-4 z-0 hidden h-[28px] w-[32px] object-contain rotate-180 lg:block"
                       />
                     </div>
@@ -165,6 +167,7 @@ export default function Section5() {
                 <Image
                   src="/service-v3/influencer-marketing-agency-in-india/s5/left_right_slider.svg"
                   alt="Testimonial slider controls"
+                  title="Testimonial slider controls"
                   fill
                   className="object-contain pointer-events-none"
                 />
