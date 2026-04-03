@@ -41,7 +41,7 @@ export default function Section3() {
         "The logo of any brand is their identity. We can help you design a unique and memorable logo that creates trust and makes a lasting impression on your audience. We are professionals in logo design!",
         "With a logo design of your choice, we can ensure that your brand gets noticed, helps develop brand loyalty and helps create instant recognition. It is thus important for brand advertising",
       ],
-      imageSrc: "/varunimage/LogoDesign.png",
+      imageSrc: "/varunimage/logoad2.png",
       learnMoreHref:
         "https://ritzmediaworld.com/services/creative-services/logo-design",
         heightAndWidth:"w-[391px] h-auto"
@@ -52,7 +52,7 @@ export default function Section3() {
         "Leave your mark in the print media industry with effective print advertising design solutions from us. Our designs are made in a way that piques interest and encourages audience response.",
         "Brochure design or flyer design or poster design; whether any paper you give us, we will turn it into a profit-making print ad design.",
       ],
-      imageSrc: "/varunimage/PrintAdvertisingDesign.png",
+      imageSrc: "/varunimage/printadv2.png",
       learnMoreHref:
         "https://ritzmediaworld.com/services/creative-services/print-advertisement-design",
         heightAndWidth:"w-[393px] h-auto"
