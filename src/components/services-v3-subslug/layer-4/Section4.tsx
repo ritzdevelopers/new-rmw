@@ -7,19 +7,29 @@ function Section4() {
         <>
         <section className="w-full flex justify-center items-center border-b border-t border-[#E6E3E3] py-6 sm:py-8 md:py-10 lg:py-[35px] xl:py-[70px]">
             {/* Centered Align Container  */}
-            <div className={`w-full flex flex-col items-center sm:items-start sm:h-auto lg:h-auto sm:flex-row  gap-6 sm:gap-4 md:gap-5 lg:gap-4 ${styles.containerWidth}`}>
+            <div className={`w-full flex flex-col items-center sm:items-start sm:h-auto lg:h-auto sm:flex-row gap-6 sm:gap-4 md:gap-5 lg:gap-4 ${styles.containerWidth} ${styles.layoutRow}`}>
                 {/* Left Side Container  */}
-                <div className="w-full sm:w-[56%] lg:w-[475px] xl:w-[594px] flex flex-col gap-4 sm:gap-10 lg:gap-12 xl:gap-6 flex-shrink-0 min-w-0">
+                <div className={`w-full sm:w-[56%] lg:w-[475px] xl:w-[594px] flex flex-col gap-4 sm:gap-10 lg:gap-12 xl:gap-6 flex-shrink-0 min-w-0 ${styles.leftColumn}`}>
                     {/* Top Container  */}
+<<<<<<< HEAD
                     <div className="h-[90px] sm:h-[130px] md:h-[160px] xl:h-[194px] flex items-center">
                         <img src="/service-v3/content-marketing/s5/17-yow2.png" alt="Ritz Media World – 17 years of experience" title="Ritz Media World" className="w-auto h-full object-contain" />
+=======
+                    <div className={`h-[90px] sm:h-[130px] md:h-[160px] xl:h-[194px] flex items-center ${styles.topLogo}`}>
+                        <img src="/service-v3/content-marketing/s5/17-yow2.png" alt="" className="w-auto h-full object-contain" />
+>>>>>>> e9bec56374e283c8d8f4bd0645cf32027c6b7320
                     </div>
                     {/* Bottom Container  */}
                     <div className="w-full flex flex-col gap-4 md:gap-10 sm:gap-5 lg:gap-2">
                         {/* Row 1  */}
                         <div className="w-full flex flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+<<<<<<< HEAD
                             <h3 className={`font-[500] text-[16px] sm:text-[20px] md:text-[24px] xl:text-[28px] leading-tight ${styles.fontmontserrat}`}>A Skill <span className="font-[700]">Creative Team Delivering</span> Solutions That Drive <span className="font-[700]">Brand Growth</span></h3>
                             <img src="/service-v3/print-advertising/s7/rocket-booster2.png" alt="Ritz Media World – brand growth" title="Ritz Media World" className="h-[44px] sm:h-[60px] md:h-[72px] xl:h-[93px] w-auto flex-shrink-0" />
+=======
+                            <p className={`font-[500] text-[16px] sm:text-[20px] md:text-[24px] xl:text-[28px] leading-tight ${styles.fontmontserrat}`}>A Skill <span className="font-[700]">Creative Team Delivering</span> Solutions That Drive <span className="font-[700]">Brand Growth</span></p>
+                            <img src="/service-v3/print-advertising/s7/rocket-booster2.png" alt="" className="h-[44px] sm:h-[60px] md:h-[72px] xl:h-[93px] w-auto flex-shrink-0" />
+>>>>>>> e9bec56374e283c8d8f4bd0645cf32027c6b7320
                         </div>
 
                         {/* Row 2  */}
@@ -46,11 +56,11 @@ function Section4() {
 
                             <div className="flex w-full justify-between mt-0 lg:mt-[-10px]">
                                 <div className="flex flex-col gap-0 ">
-                                    <h3 className={`font-[700] text-[37px] sm:text-[32px] xl:text-[37px] ${styles.fontmontserrat}`}>1M+</h3>
+                                    <p className={`font-[700] text-[37px] sm:text-[32px] xl:text-[37px] ${styles.fontmontserrat}`}>1M+</p>
                                     <p className={`font-[600] text-[12px] sm:text-[12px] md:text-[14px] ${styles.fontopensans}`}>Creatives Published</p>
                                 </div>
                                 <div className="flex flex-col gap-0 ">
-                                    <h3 className={`font-[700] text-[37px] sm:text-[32px] xl:text-[37px] ${styles.fontmontserrat}`}>500+</h3>
+                                    <p className={`font-[700] text-[37px] sm:text-[32px] xl:text-[37px] ${styles.fontmontserrat}`}>500+</p>
                                     <p className={`font-[600] text-[12px] sm:text-[12px] md:text-[14px] ${styles.fontopensans}`}>Success Stories</p>
                                 </div>
                             </div>

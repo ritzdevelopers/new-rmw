@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 
 export default function Banner() {
     return (
-        <section className={`w-full h-[460px] md:h-[326px] lg:h-[412px] xl:min-h-[515px] 
+        <section className={`w-full h-[420px] md:h-[326px] lg:h-[412px] xl:min-h-[515px] 
         bg-[url("/varun/influencer-marketing/contentmarketingmobilebanner2.jpg")] 
         md:bg-[url("/varun/influencer-marketing/contentmarketingdesktopbanner.jpg")]
         bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-4 lg:pb-22

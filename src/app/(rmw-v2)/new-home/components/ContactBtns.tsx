@@ -206,7 +206,8 @@ function ContactBtns() {
       >
         <Image
           src="/AI_Bot_Icon.png"
-          alt="Services Bot"
+          alt="Ritz Media World"
+          title="Ritz Media World"
           width={24}
           height={24}
           className="object-contain"

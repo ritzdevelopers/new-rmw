@@ -1,17 +1,23 @@
-/* Accordion animation - ease-in-out for smooth open/close */
-.accordionContent {
+/* Reduce browser scroll anchoring fighting expansion (mobile jump upward) */
+.accordionRow {
+  overflow-anchor: none;
+}
+
+/* Height is driven inline from scrollHeight; easing for natural expansion */
+.accordionPanel {
   overflow: hidden;
-  transition:
-    max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.35s ease-in-out;
+  transition: height 0.42s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.accordionContentClosed {
-  max-height: 0;
-  opacity: 0;
+.accordionPanelInner {
+  transition: opacity 0.28s ease;
 }
 
-.accordionContentOpen {
-  max-height: 1200px;
+.accordionPanelInnerVisible {
   opacity: 1;
+}
+
+.accordionPanelInnerHidden {
+  opacity: 0;
+  pointer-events: none;
 }

@@ -12,12 +12,12 @@ export default function Section5() {
         >
           {/* Left Side Container */}
           <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0   border-b-[#E6E3E3]  sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-2 sm:pb-0 px-4 sm:px-0">
-            <p
+            <h2
               className="font-[700] text-[18px] sm:text-[20px] lg:text-[24px]"
               style={{ fontFamily: "MontserratBold" }}
             >
               Brands That Trust Us
-            </p>
+            </h2>
 
             <p className="absolute top-[50%] transform -translate-y-[50%] -right-3 hidden sm:block">
               <svg

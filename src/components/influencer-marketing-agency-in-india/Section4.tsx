@@ -1,5 +1,6 @@
-import BrandThatTrustUs from "./BrandThatTrustUs";
+// import BrandThatTrustUs from "./BrandThatTrustUs";
 import containerStyles from "@/components/celebrity-endorsements/page.module.css";
+import Clients from "./Clients";
 
 type Card = {
   title: string;
@@ -120,7 +121,8 @@ export default function Section4() {
           </div>
         </div>
       </section>
-      <BrandThatTrustUs />
+      {/* <BrandThatTrustUs /> */}
+      <Clients />
       <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center px-4 sm:px-6 lg:px-0">
         <div className={`w-full mx-auto overflow-hidden flex items-center justify-center text-center ${containerStyles.containerWidth}`}>
           <p
