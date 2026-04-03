@@ -28,9 +28,9 @@ function NewFooter() {
               </ul>
             </div>
           </div>
-          <div className="flex flex-row md:flex-col gap-[27px] md:gap-4 lg:gap-10">
+          <div className="flex flex-col gap-[27px] md:gap-4 lg:gap-10">
             {/* Row 2  */}
-            <div className="flex flex-col gap-2 w-[100px] md:w-[200px] lg:w-auto text-left sm:gap-3 cursor-pointer" onClick={() => window.open("mailto:info@ritzmediaworld.com", "_blank")}>
+            <div className="flex flex-col gap-2 w-full md:w-[200px] lg:w-auto text-left sm:gap-3 cursor-pointer" onClick={() => window.open("mailto:info@ritzmediaworld.com", "_blank")}>
               <p className="font-[700] text-[14px] sm:text-[16px] text-white ">Email Us</p>
               <p className="text-white text-[13px] sm:text-[15px] font-[400] break-words">
                 info@ritzmediaworld.com

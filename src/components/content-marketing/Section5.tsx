@@ -31,8 +31,8 @@ function Section5() {
                         <p className={`font-[400] text-[14px] text-[#333] ${styles.fontopensans}`}>Content is a major driver behind sales  from signing up to newsletters to purchasing.</p>
                         
                     </div>
-                    <div className="w-full">
-                        <img src="/service-v3/content-marketing/s5/s5-i2.jpg" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-full h-auto object-cover rounded-lg" />
+                    <div className="w-full overflow-hidden">
+                        <img src="/team-banner.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-full h-auto object-cover rounded-lg" />
                     </div>
                     <div className="w-full flex flex-col gap-3 pt-4 items-center">
                         <img src="/service-v3/content-marketing/s5/17-yow2.png" alt="17 Years of Working" title="17 Years of Working" className="w-full max-w-[240px] h-auto object-contain" />
@@ -93,8 +93,8 @@ function Section5() {
                 {/* Row 2  */}
                 <div className="w-full flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-0">
                     {/* Left Side Container  */}
-                    <div className="w-[70%] xl:w-[863px] h-auto xl:h-[430px] relative">
-                        <img src="/service-v3/content-marketing/s5/s5-i2.jpg" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="xl:object-cover" />
+                    <div className="w-[70%] xl:w-[863px] h-auto xl:h-[430px] relative overflow-hidden">
+                        <img src="/team-banner.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="xl:object-cover" />
                     </div>
 
                     {/* Right Side Container  */}

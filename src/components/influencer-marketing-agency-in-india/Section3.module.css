@@ -1,16 +1,24 @@
-/* Reduce browser scroll anchoring fighting expansion (mobile jump upward) */
+/* Stable row: expansion grows downward; reduce browser scroll-anchoring jumps */
 .accordionRow {
   overflow-anchor: none;
+  scroll-margin-top: 0.5rem;
 }
 
-/* Height is driven inline from scrollHeight; easing for natural expansion */
 .accordionPanel {
   overflow: hidden;
-  transition: height 0.42s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: max-height 0.45s linear;
+}
+
+.accordionPanelClosed {
+  max-height: 0;
+}
+
+.accordionPanelOpen {
+  max-height: 2500px;
 }
 
 .accordionPanelInner {
-  transition: opacity 0.28s ease;
+  transition: opacity 0.35s linear;
 }
 
 .accordionPanelInnerVisible {

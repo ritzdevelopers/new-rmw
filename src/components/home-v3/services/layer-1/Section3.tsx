@@ -37,7 +37,7 @@ function Section3() {
 
                         {/* Row 3  */}
                         <div>
-                            <ul className="flex w-full justify-between gap-4 sm:gap-6">
+                            <ul className="flex w-full justify-between gap-4 md:gap-2 lg:gap-6">
 
                                 <li className="flex">
                                     <span
@@ -188,7 +188,7 @@ function Section3() {
 
                         {/* Row 3  */}
                         <div>
-                            <ul className="flex w-full justify-between gap-4 sm:gap-6">
+                            <ul className="flex w-full justify-between gap-4 md:gap-2 lg:gap-6">
 
                                 <li className="flex gap-2 items-center text-center">
                                     <span
@@ -207,7 +207,7 @@ function Section3() {
                                     </div>
                                 </li>
 
-                                <li className="flex gap-2 items-center text-center">
+                                <li className="flex gap-2 mg:gap-1 lg:gap-2 items-center text-center">
                                     <span
                                         className="inline-block"
                                         style={{
@@ -245,8 +245,13 @@ function Section3() {
                     </div>
 
                     {/* Row 3 Card   */}
-                    <div className="w-full min-w-0 max-w-full self-stretch lg:self-auto lg:w-[218px] lg:max-w-[218px] lg:mr-[5rem] relative mx-auto lg:mx-0 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto flex items-center justify-center">
-                        <img src="/service-v3/layer1/charts/s3-g-review.png" alt="Ritz media world review" title="Ritz media world review" className="w-full max-w-full h-auto object-cover" />
+                    <div className="w-full hidden min-w-0 max-w-full self-stretch lg:self-auto lg:w-[218px] lg:max-w-[218px] lg:mr-[5rem] relative mx-auto lg:mx-0 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto md:flex items-center justify-center">
+                        <img src="/google-rating2.png" alt="Ritz media world review" title="Ritz media world review" className="w-full max-w-full h-auto object-cover" />
+                    </div>
+
+                    {/* Mobile Card  */}
+                    <div className="w-full block md:hidden">
+                        <img src="/google-rating.png" alt="Google rating" title="Google rating" className="w-full h-auto" />
                     </div>
                 </div>
             </div>

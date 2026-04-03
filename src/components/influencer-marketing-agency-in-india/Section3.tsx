@@ -76,84 +76,41 @@ function ServiceAccordionRow({
   isOpen,
   onToggle,
   onClose,
+  skipInitialOpenFocus,
 }: {
   item: ServiceItem;
   isOpen: boolean;
   onToggle: () => void;
   onClose: () => void;
+  skipInitialOpenFocus: boolean;
 }) {
-  const panelRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const isOpenRef = useRef(isOpen);
-  const [height, setHeight] = useState(0);
+  const rowRef = useRef<HTMLDivElement>(null);
+  const skipFocusOnceRef = useRef(skipInitialOpenFocus);
 
   const panelId = `section3-panel-${item.id}`;
   const triggerId = `section3-trigger-${item.id}`;
   const headingId = `section3-heading-${item.id}`;
 
-  isOpenRef.current = isOpen;
-
-  /** Measure inner content while the panel is not height-clipped (avoids scrollHeight === 0 inside overflow:hidden + h-0). */
-  const measureExpandedHeight = useCallback(() => {
-    const panel = panelRef.current;
-    const content = contentRef.current;
-    if (!panel || !content) return 0;
-
-    const prevInlineHeight = panel.style.height;
-    panel.style.height = "auto";
-    const next = content.scrollHeight;
-    panel.style.height = prevInlineHeight;
-    return next;
-  }, []);
-
+  /** Opening hides the trigger (focus lost) → mobile often scrolls to top. Move focus to heading without scrolling, then anchor row with "nearest". */
   useLayoutEffect(() => {
-    if (!isOpen) {
-      setHeight(0);
+    if (!isOpen) return;
+    if (skipFocusOnceRef.current) {
+      skipFocusOnceRef.current = false;
       return;
     }
-
-    const panel = panelRef.current;
-    const content = contentRef.current;
-    if (!panel || !content) return;
-
-    panel.style.height = "auto";
-    const measured = content.scrollHeight;
-    panel.style.height = "0px";
-    void panel.offsetHeight;
-    setHeight(measured);
-
-    const raf = requestAnimationFrame(() => {
-      if (!isOpenRef.current || !panelRef.current || !contentRef.current) return;
-      const h = measureExpandedHeight();
-      if (h > 0) setHeight(h);
+    const el = document.getElementById(headingId);
+    if (el instanceof HTMLElement) {
+      el.focus({ preventScroll: true });
+    }
+    requestAnimationFrame(() => {
+      rowRef.current?.scrollIntoView({
+        block: "nearest",
+        inline: "nearest",
+        behavior: "auto",
+      });
     });
-    return () => cancelAnimationFrame(raf);
-  }, [isOpen, item.id, measureExpandedHeight]);
-
-  useEffect(() => {
-    const content = contentRef.current;
-    if (!content) return;
-
-    const ro = new ResizeObserver(() => {
-      if (!isOpenRef.current) return;
-      const h = measureExpandedHeight();
-      if (h > 0) setHeight(h);
-    });
-
-    ro.observe(content);
-    return () => ro.disconnect();
-  }, [item.id, measureExpandedHeight]);
-
-  useEffect(() => {
-    const onResize = () => {
-      if (!isOpenRef.current) return;
-      const h = measureExpandedHeight();
-      if (h > 0) setHeight(h);
-    };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [measureExpandedHeight]);
+  }, [isOpen, headingId]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -186,6 +143,7 @@ function ServiceAccordionRow({
 
   return (
     <div
+      ref={rowRef}
       className={`border-b border-[#2A3378] ${accordionStyles.accordionRow}`}
     >
       <button
@@ -211,16 +169,17 @@ function ServiceAccordionRow({
       </button>
 
       <div
-        ref={panelRef}
         id={panelId}
         role="region"
         aria-labelledby={isOpen ? headingId : triggerId}
-        style={{ height }}
-        className={`${accordionStyles.accordionPanel} cursor-pointer`}
+        className={`${accordionStyles.accordionPanel} cursor-pointer ${
+          isOpen
+            ? accordionStyles.accordionPanelOpen
+            : accordionStyles.accordionPanelClosed
+        }`}
         onClick={openExternal}
       >
         <div
-          ref={contentRef}
           className={`${accordionStyles.accordionPanelInner} ${
             isOpen
               ? accordionStyles.accordionPanelInnerVisible
@@ -239,7 +198,8 @@ function ServiceAccordionRow({
                   </span>
                   <h3
                     id={headingId}
-                    className="text-white text-[24px] lg:text-[28px] leading-[28px] sm:leading-[28px] lg:leading-[44px] font-[500]"
+                    tabIndex={-1}
+                    className="text-white text-[24px] lg:text-[28px] leading-[28px] sm:leading-[28px] lg:leading-[44px] font-[500] outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99237]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1640] rounded-sm"
                     style={{ fontFamily: "OpenSansRegular" }}
                   >
                     {item.title}
@@ -253,7 +213,8 @@ function ServiceAccordionRow({
                 >
                   <Image
                     src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
-                    alt=""
+                    alt="Ritz Media World"
+                    title="Ritz Media World"
                     width={20}
                     height={20}
                     className="w-4 h-4 sm:w-5 sm:h-5"
@@ -282,7 +243,11 @@ function ServiceAccordionRow({
                     </p>
                   ))}
                 </div>
-                <div
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Learn more about ${item.title}`}
                   className="mt-2 cursor-pointer lg:mt-6 hidden lg:flex items-center gap-2.5"
                   onClick={(e) => e.stopPropagation()}
                   onKeyDown={(e) => e.stopPropagation()}
@@ -303,12 +268,13 @@ function ServiceAccordionRow({
                   >
                     <Image
                       src={EXPLORE_ARROW_IMAGE}
-                      alt=""
+                      alt="Ritz Media World"
+                      title="Ritz Media World"
                       width={22}
                       height={7}
                     />
                   </Link>
-                </div>
+                </a>
               </div>
 
               <div
@@ -331,7 +297,8 @@ function ServiceAccordionRow({
                   >
                     <Image
                       src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
-                      alt=""
+                      alt="Ritz Media World"
+                      title="Ritz Media World"
                       width={30}
                       height={30}
                     />
@@ -358,7 +325,8 @@ function ServiceAccordionRow({
                   >
                     <Image
                       src={EXPLORE_ARROW_IMAGE}
-                      alt=""
+                      alt="Ritz Media World"
+                      title="Ritz Media World"
                       width={22}
                       height={7}
                     />
@@ -418,6 +386,7 @@ export default function Section3() {
               setOpenItem((prev) => (prev === item.id ? null : item.id))
             }
             onClose={closePanel}
+            skipInitialOpenFocus={item.id === "01"}
           />
         ))}
 

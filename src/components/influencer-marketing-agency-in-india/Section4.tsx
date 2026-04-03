@@ -123,7 +123,7 @@ export default function Section4() {
       </section>
       {/* <BrandThatTrustUs /> */}
       <Clients />
-      <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center px-4 sm:px-6 lg:px-0">
+      <a href="/contact.html" target="_blank" className="w-full cursor-pointer bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center px-4 sm:px-6 lg:px-0">
         <div className={`w-full mx-auto overflow-hidden flex items-center justify-center text-center ${containerStyles.containerWidth}`}>
           <p
             className="text-white font-[600] text-[20px] sm:text-[28px] md:text-[28px] leading-tight"
@@ -132,7 +132,7 @@ export default function Section4() {
             Ready to Turn Followers into Genuine Customers?
           </p>
         </div>
-      </section>
+      </a>
     </>
   );
 }
