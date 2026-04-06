@@ -93,14 +93,14 @@ function Section3() {
                                 >
                                     {item.desc}
                                 </p>
-                                <a href={item.link} target="_blank" rel="noopener noreferrer" className="mt-1 w-[110px] h-[34px] flex items-center gap-2 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                                <a href={item.link} target="_blank" rel="noopener noreferrer" className="mt-1 w-[110px] h-[34px] flex items-center gap-2 bg-transparent border-none text-white cursor-pointer hover:opacity-80 transition-opacity letsTalkToday">
                                     <p
-                                        className={`font-[500] text-[12px] text-white ${styles.fontMontserrat}`}
+                                        className={`font-[500] text-[12px]  ${styles.fontMontserrat}`}
                                     >
                                         Learn More
                                     </p>
-                                    <div className="bg-[#C99237] h-[24px] w-[24px] rounded-full flex justify-center items-center shrink-0">
-                                        <BsArrowUpRight className="text-white text-[12px]" />
+                                    <div className="bg-[#C99237] h-[24px] w-[24px] rounded-full flex justify-center items-center shrink-0 letsTalkTodayIcon">
+                                        <BsArrowUpRight className=" text-[12px] text-white" />
                                     </div>
                                 </a>
                             </div>

@@ -796,3 +796,23 @@ h3 {
     margin-right: 41px!important;
   }
 } */
+
+
+.letsTalkToday:hover {
+  background-color: #b8822f;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #ffffff !important;
+}
+
+.letsTalkToday:hover .letsTalkTodayIcon { 
+  background-color: #0F1640;
+  transition: background-color 0.3s ease;
+}
+.letsTalkToday2:hover {
+  border-bottom: 2px solid #b8822f;
+  transition: border-bottom 0.3s ease;
+}
+.letsTalkToday2:hover .letsTalkTodayIcon { 
+  background-color: #0F1640;
+  transition: background-color 0.3s ease;
+}

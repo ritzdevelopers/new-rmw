@@ -172,19 +172,17 @@ function ServiceAccordionRow({
         id={panelId}
         role="region"
         aria-labelledby={isOpen ? headingId : triggerId}
-        className={`${accordionStyles.accordionPanel} cursor-pointer ${
-          isOpen
-            ? accordionStyles.accordionPanelOpen
-            : accordionStyles.accordionPanelClosed
-        }`}
+        className={`${accordionStyles.accordionPanel} cursor-pointer ${isOpen
+          ? accordionStyles.accordionPanelOpen
+          : accordionStyles.accordionPanelClosed
+          }`}
         onClick={openExternal}
       >
         <div
-          className={`${accordionStyles.accordionPanelInner} ${
-            isOpen
-              ? accordionStyles.accordionPanelInnerVisible
-              : accordionStyles.accordionPanelInnerHidden
-          }`}
+          className={`${accordionStyles.accordionPanelInner} ${isOpen
+            ? accordionStyles.accordionPanelInnerVisible
+            : accordionStyles.accordionPanelInnerHidden
+            }`}
         >
           <div className="py-5 sm:py-6">
             <div className="flex flex-col lg:flex-row gap-8 xl:gap-10 items-start">
@@ -243,38 +241,40 @@ function ServiceAccordionRow({
                     </p>
                   ))}
                 </div>
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Learn more about ${item.title}`}
-                  className="mt-2 cursor-pointer lg:mt-6 hidden lg:flex items-center gap-2.5"
-                  onClick={(e) => e.stopPropagation()}
-                  onKeyDown={(e) => e.stopPropagation()}
-                >
-                  <span
-                    className="text-white text-[14px] sm:text-[15px]"
-                    style={{ fontFamily: "MontserratMedium" }}
-                  >
-                    Learn more
-                  </span>
-                  <Link
+                <div className="flex justify-start items-start">
+                  <a
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Learn more about ${item.title}`}
-                    className="w-[40px] h-[40px] rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+                    className="mt-2 cursor-pointer lg:mt-6 hidden border-b-[2px] border-[#0F1640] letsTalkToday2 lg:flex items-center gap-2.5 "
                     onClick={(e) => e.stopPropagation()}
+                    onKeyDown={(e) => e.stopPropagation()}
                   >
-                    <Image
-                      src={EXPLORE_ARROW_IMAGE}
-                      alt="Ritz Media World"
-                      title="Ritz Media World"
-                      width={22}
-                      height={7}
-                    />
-                  </Link>
-                </a>
+                    <span
+                      className="text-white text-[14px] sm:text-[15px]"
+                      style={{ fontFamily: "MontserratMedium" }}
+                    >
+                      Learn more
+                    </span>
+                    <Link
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Learn more about ${item.title}`}
+                      className="w-[40px] h-[40px] rounded-full bg-[#C99237] letsTalkTodayIcon flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Image
+                        src={EXPLORE_ARROW_IMAGE}
+                        alt="Ritz Media World"
+                        title="Ritz Media World"
+                        width={22}
+                        height={7}
+                      />
+                    </Link>
+                  </a>
+                </div>
               </div>
 
               <div
@@ -390,19 +390,19 @@ export default function Section3() {
           />
         ))}
 
-        <Link
-          href="https://ritzmediaworld.com/contact.html"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block cursor-pointer text-[#FFFFFF] text-[14px] font-[400] leading-[24px] tracking-[0] mt-4 text-left md:text-center lg:text-left hover:opacity-90 outline-none focus-visible:underline"
+        <p
+
+          className="block  text-[#FFFFFF] text-[14px] font-[400] leading-[24px] tracking-[0] mt-4 text-left md:text-center lg:text-left hover:opacity-90 outline-none focus-visible:underline"
           style={{ fontFamily: "OpenSansRegular" }}
         >
           Not sure which path fits your brand?{" "}
           <br className="block md:hidden" />
-          <span className="underline">
+          <Link href="https://ritzmediaworld.com/contact.html"
+            target="_blank"
+            rel="noopener noreferrer" className="underline cursor-pointer">
             Let&apos;s discuss your unique needs,
-          </span>
-        </Link>
+          </Link >
+        </p>
       </div>
     </section>
   );

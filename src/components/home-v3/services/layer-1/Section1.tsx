@@ -6,7 +6,7 @@ export default function Section1() {
     return (
         <section className={`w-full h-[460px] md:h-[302px] lg:min-h-[515px] 
         md:bg-[url("/alishba-services-v3/digital-marketing/Digital-Marketing-banner.png")] 
-        bg-[url("/alishba-services-v3/digital-marketing/Digital-Marketing-banner-mob.png")]
+        bg-[url("/alishba-services-v3/digital-marketing/dm-banner.png")]
         bg-cover bg-no-repeat bg-center flex items-center md:items-end pb-8 sm:pb-4 lg:pb-22
          xl:pb-14 px-0`}>
             <div className="flex flex-col gap-3 sm:gap-4 md:gap-0 lg:gap-6 w-full max-w-[100%] md:max-w-[80%] lg:max-w-none">

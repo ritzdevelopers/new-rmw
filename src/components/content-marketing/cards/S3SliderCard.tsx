@@ -59,10 +59,10 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image, ac
                 </div>
                 {/* Bottom Side  */}
                 <div className={`${styles.cardButton} ${activeCard === index ? styles.cardButtonActive : styles.cardButtonInactive}`}>
-                    <a href={link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="w-[120px] sm:w-[130px] md:w-[140px] lg:w-[150px] xl:w-[154px] h-[36px] sm:h-[38px] md:h-[40px] lg:h-[44px] xl:h-[46px] flex justify-between items-center gap-2 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                    <a href={link} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="w-[120px]  sm:w-[130px] md:w-[140px] lg:w-[150px] xl:w-[154px] h-[36px] sm:h-[38px] md:h-[40px] lg:h-[44px] xl:h-[46px] flex justify-between items-center gap-2 bg-transparent border-b-[2px] border-[#0F1640] text-white cursor-pointer hover:opacity-80 transition-opacity letsTalkToday2">
                         <p className={`font-[500] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] xl:text-[18px] text-white ${styles.fontMontserrat}`}>Learn More</p>
-                        <div className="bg-[#C99237] h-[28px] w-[28px] sm:h-[30px] sm:w-[30px] md:h-[32px] md:w-[32px] lg:h-[36px] lg:w-[36px] xl:h-[40px] xl:w-[40px] rounded-[50px] flex justify-center items-center ">
-                            <BsArrowUpRight className="text-white text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] xl:text-[18px]" />
+                        <div className="bg-[#C99237] h-[28px] w-[28px] sm:h-[30px] sm:w-[30px] md:h-[32px] md:w-[32px] lg:h-[36px] lg:w-[36px] xl:h-[40px] xl:w-[40px] rounded-[50px] flex justify-center items-center letsTalkTodayIcon">
+                            <BsArrowUpRight className=" text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] xl:text-[18px] text-white" />
                         </div>  
                     </a>
                 </div>
