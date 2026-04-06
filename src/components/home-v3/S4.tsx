@@ -173,9 +173,9 @@ function S4() {
   }, []);
 
   return (
-    <section className="w-full min-h-screen bg-white flex justify-center items-center flex-col gap-10 sm:gap-16 lg:gap-20 py-10 sm:py-16 lg:py-[70px] px-4 sm:px-6 lg:px-0">
+    <section className="w-full min-h-screen bg-white flex justify-center items-center flex-col gap-10 sm:gap-16 lg:gap-10 py-10 sm:py-16 lg:py-[70px] px-4 sm:px-6 lg:px-0">
       {/* Center Align Container 1 */}
-      <div className={`w-full lg:px-20 px-4 h-[95%] flex flex-col gap-4 sm:gap-6 ${styles.container}`}>
+      <div className={`w-full lg:px-10 xl:px-20 px-4 h-[95%] flex flex-col gap-4 sm:gap-6 ${styles.container}`}>
         {/* Top Row  */}
         <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
           {/* Left Side Container  */}
@@ -268,7 +268,7 @@ function S4() {
                   <SwiperSlide key={idx} style={{ height: "auto" }}>
                     <div className="w-full h-full flex flex-col lg:flex-row justify-start gap-6 sm:gap-8 xl:gap-16">
                       {/* Image Card  */}
-                      <div className="h-[250px] sm:h-[300px] md:h-[350px] lg:h-[395px] w-full lg:w-[500px] xl:w-[590px] relative flex-shrink-0">
+                      <div className="h-[250px] sm:h-[300px] md:h-[350px] lg:h-[395px] w-full lg:w-[450px] xl:w-[590px] relative flex-shrink-0">
                         <Image
                           src={story.img}
                           onClick={() => window.open(story.link, "_blank")}
@@ -279,7 +279,7 @@ function S4() {
                       </div>
 
                       {/* Content Card  */}
-                      <div className="w-full lg:w-[500px] xl:w-[604px] flex flex-col gap-4 lg:gap-2 xl:gap-5">
+                      <div className="w-full lg:w-[500px] text-center md:text-left xl:w-[604px] flex flex-col gap-4 lg:gap-2 xl:gap-5">
                         <h3
                           onClick={() => window.open(story.link, "_blank")}
                           className="font-[600] text-[16px] sm:text-[18px] text-[#C99237] cursor-pointer"

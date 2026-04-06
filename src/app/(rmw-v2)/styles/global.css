@@ -798,14 +798,13 @@ h3 {
 } */
 
 
-.letsTalkToday:hover {
-  background-color: #b8822f;
+.letsTalkToday:hover { 
   transition: background-color 0.3s ease, color 0.3s ease;
-  color: #ffffff !important;
+  color: #0F1640 !important;
 }
 
 .letsTalkToday:hover .letsTalkTodayIcon { 
-  background-color: #0F1640;
+  background-color: #0F1640 !important;
   transition: background-color 0.3s ease;
 }
 .letsTalkToday2:hover {
@@ -813,6 +812,9 @@ h3 {
   transition: border-bottom 0.3s ease;
 }
 .letsTalkToday2:hover .letsTalkTodayIcon { 
-  background-color: #0F1640;
+  background-color: #0F1640 !important;
   transition: background-color 0.3s ease;
+}
+.letsTalkToday2:hover .letsTalkTodayIcon svg { 
+ color: #ffffff !important;
 }

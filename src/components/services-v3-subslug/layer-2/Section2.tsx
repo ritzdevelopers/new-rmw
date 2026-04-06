@@ -53,15 +53,15 @@ export default function Section2() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contact us"
-          className="group mt-8 sm:mt-5 md:mt-7 inline-flex items-center justify-center gap-4"
+          className="group mt-8 sm:mt-5 md:mt-7 letsTalkToday inline-flex items-center justify-center gap-4"
         >
           <span
-            className="text-black text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px]"
+            className="text-[#0F1640] text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px]"
             style={{ fontFamily: "MontserratMedium" }}
           >
             Contact us
           </span>
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#C99237] transition-colors group-hover:bg-[#b8822f] sm:size-11">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#C99237] transition-colors group-hover:bg-[#b8822f] letsTalkTodayIcon sm:size-11">
             <Image
               src={EXPLORE_ARROW_IMAGE}
               alt="Ritz Media World – contact us"

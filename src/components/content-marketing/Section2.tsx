@@ -12,11 +12,11 @@ function Section2() {
         <p className={`font-[700] text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px] xl:text-[30px] leading-tight sm:leading-snug md:leading-[42px] px-2 sm:px-0 ${styles.fontmontserrat}`}>
           Content Without Strategy is Mere Decoration
         </p>
-        <p className={`font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] max-w-full sm:max-w-[896px] leading-relaxed px-2 sm:px-0 ${styles.fontopensans}`}>
+        <p className={`font-[400]  text-[15px] lg:text-[16px] max-w-full sm:max-w-[896px] leading-relaxed px-2 sm:px-0 ${styles.fontopensans}`}>
           As a trusted content marketing agency in India, we at <b><a href="/" target="_blank" className="cursor-pointer">Ritz Media World</a></b> develop content marketing strategies that not only inform but also persuade, inspire, and convert.
           Our strategy includes <i>SEO content</i>, <i>social media content</i>, <i>email marketing</i>, <i>video content</i>, <i>infographics</i>, and <i>promotional activities</i> to capture attention, build credibility, and drive measurable business results. Each piece of content is designed for high engagement, lead generation, and brand building.
         </p>
-        <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-5 flex items-center justify-center gap-4 p-[10px] hover:bg-[#f5f5f5] text-black transition-colors rounded-[5px] letsTalkToday">
+        <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-5 flex items-center justify-center gap-4 p-[10px] text-[#0F1640] transition-colors rounded-[5px] letsTalkToday">
           <span
             className=" text-[18px]   md:text-[20px] font-[500]"
             style={{ fontFamily: "MontserratMedium" }}

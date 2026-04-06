@@ -14,7 +14,7 @@ function Section2() {
 
                 </p>
                 <Link href="/contact.html" target="_blank" className="letsTalkToday px-3 py-2   rounded-[5px]">
-                    <button className="w-[140px] sm:w-[150px] lg:w-[154px] h-[42px] sm:h-[44px] lg:h-[46px] flex justify-between items-center gap-2 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                    <button className="w-[140px] sm:w-[150px] lg:w-[154px] h-[42px] sm:h-[44px] lg:h-[46px] flex justify-between items-center gap-2 bg-transparent border-none cursor-pointer text-[#0F1640]">
                         <p className={`font-[500] text-[14px] sm:text-[15px] lg:text-[18px] ${styles.fontmontserrat}`}>
                             Contact us
                         </p>

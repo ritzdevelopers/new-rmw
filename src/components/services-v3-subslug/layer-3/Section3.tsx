@@ -166,7 +166,7 @@ export default function Section3() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`Learn more about ${item.label}`}
-                          className="group mt-8 inline-flex items-center gap-4 flex-wrap"
+                          className="group mt-8 letsTalkToday inline-flex items-center gap-4 flex-wrap"
                         >
                           <span
                             className="text-[#101828] text-[18px]"
@@ -174,7 +174,7 @@ export default function Section3() {
                           >
                             Learn more
                           </span>
-                          <span className="w-10 h-10 rounded-full bg-[#C99237] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#b8822f]">
+                          <span className="w-10 h-10 rounded-full bg-[#C99237] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#b8822f] letsTalkTodayIcon">
                             <Image
                               src={EXPLORE_ARROW_IMAGE}
                               alt="Ritz Media World – learn more"

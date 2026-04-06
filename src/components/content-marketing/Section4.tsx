@@ -98,7 +98,7 @@ function Section4() {
                 </div>
 
                 <div className="w-full flex justify-center items-center">
-                    <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-5 flex items-center text-black justify-center gap-4 cursor-pointer letsTalkToday p-3 rounded-[5px]">
+                    <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-5 flex items-center text-[#0F1640] justify-center gap-4 cursor-pointer letsTalkToday p-3 rounded-[5px]">
                         <span
                             className=" text-[18px]   md:text-[20px] font-[500]"
                             style={{ fontFamily: "MontserratMedium" }}
