@@ -7,12 +7,12 @@ const EXPLORE_ARROW_IMAGE =
 export default function Section2() {
   return (
     <section className="w-full flex items-center justify-center py-[35px] lg:py-[70px] bg-white">
-      <div className="w-[100%] md:w-[100%] lg:w-[100%] xl:w-[74%] text-center mx-auto px-4 lg:px-[50px] min-[1370px]:!w-[1300px] min-[1370px]:!max-w-[1300px] min-[1370px]:mx-auto">
+      <div className="w-[100%] md:w-[100%] lg:w-[100%] xl:w-[74%] text-center mx-auto px-4 md:px-[40px] lg:px-[50px] min-[1370px]:!w-[1300px] min-[1370px]:!max-w-[1300px] min-[1370px]:mx-auto">
         <p
           className="text-black font-[700] text-[20px] sm:text-[20px] md:text-[20px] lg:text-[24px] leading-[30px]   md:leading-[30px] lg:leading-[30px] xl:leading-[40px] xl:max-w-[1000px]   mx-auto"
           style={{ fontFamily: "MontserratRegular" }}
         >
-       Influencer marketing goes beyond hype, it’s all about trust, reach, and results.
+          Influencer marketing goes beyond hype, it’s all about trust, reach, and results.
         </p>
 
         <div
@@ -26,14 +26,14 @@ export default function Section2() {
           </p>
         </div>
 
-        <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-10 flex items-center justify-center gap-4">
+        <div className="w-full flex justify-center items-center"> <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-10 flex text-[#0F1640] items-center justify-center gap-4 letsTalkToday p-3 rounded-[5px] letsTalkToday">
           <span
-            className="text-black text-[18px]   md:text-[20px] font-[500]"
+            className="text-[18px]   md:text-[20px] font-[500]"
             style={{ fontFamily: "MontserratMedium" }}
           >
             Let&apos;s Talk Today
           </span>
-          <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors">
+          <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors letsTalkTodayIcon">
             <Image
               src={EXPLORE_ARROW_IMAGE}
               alt="Arrow"
@@ -42,7 +42,8 @@ export default function Section2() {
               height={20}
             />
           </span>
-        </Link>
+        </Link></div>
+       
       </div>
     </section>
   );

@@ -12,6 +12,7 @@ import styles from "@/app/(rmw-v2)/page.module.css";
 // import PageAnimations from "./components/PageAnimations";
 import { fetchLatestBlogs } from "@/app/(rmw-v2)/lib/fetchData";
 import NewBanner from "@/components/home-v3/NewBanner";
+import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
 
 async function HomePage() {
   // Fetch data server-side
@@ -33,20 +34,23 @@ async function HomePage() {
 
       <S3></S3>
 
-      <div className={styles.container}>
+      <div>
         <S4></S4>
       </div>
 
       <S5></S5>
 
-      <div className={styles.container}>
+      <div className="w-full">
         <S6></S6>
       </div>
 
       <S7></S7>
 
-      <div className={styles.container}>
+      <div className="w-full">
         <S8 blogs={latestBlogs} blogsLoading={blogsLoading}></S8>
+      </div>
+      <div className="w-full ">
+        <BrandImpactSection2></BrandImpactSection2>
       </div>
     </>
   );

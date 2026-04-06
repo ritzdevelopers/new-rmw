@@ -43,9 +43,9 @@ export default function Section2() {
             stuck in the predictable rut of convention.
           </p> */}
           <p>
-            We know that mediocrity is not an option that any brand can afford. This is why, as the best creative agency in India, we at Ritz Media World, ensure that not only are our branding strategies creative and innovative, but they are also highly effective. While the beauty of good design lies in the fact that it is beautiful, it must also be noticeable.
+            We know that mediocrity is not an option that any brand can afford. This is why, as the<i> best creative agency in India</i>, we at <b> <a href="/" target="_blank" className="cursor-pointer">Ritz Media World</a></b>, ensure that not only are our branding strategies creative and innovative, but they are also highly effective. While the beauty of good design lies in the fact that it is beautiful, it must also be noticeable.
           </p>
-          <p>We provide end-to-end creative services to your brand, provide the edge that your brand needs, and ensure that the impact and success are nothing short of remarkable.</p>
+          <p>We provide end-to-end <i>creative services</i> to your brand, provide the edge that your brand needs, and ensure that the impact and success are nothing short of remarkable.</p>
         </div>
 
         <Link
@@ -53,15 +53,15 @@ export default function Section2() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Contact us"
-          className="group mt-8 sm:mt-5 md:mt-7 inline-flex items-center justify-center gap-4"
+          className="group mt-8 sm:mt-5 md:mt-7 letsTalkToday inline-flex items-center justify-center gap-4"
         >
           <span
-            className="text-black text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px]"
+            className="text-[#0F1640] text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px]"
             style={{ fontFamily: "MontserratMedium" }}
           >
             Contact us
           </span>
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#C99237] transition-colors group-hover:bg-[#b8822f] sm:size-11">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#C99237] transition-colors group-hover:bg-[#b8822f] letsTalkTodayIcon sm:size-11">
             <Image
               src={EXPLORE_ARROW_IMAGE}
               alt="Ritz Media World – contact us"

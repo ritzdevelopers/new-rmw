@@ -75,7 +75,7 @@ export default function Section3() {
       <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
         <div className="text-center">
           <Link
-            href="/services-v3"
+            href="/services"
             target="_blank"
             rel="noopener noreferrer"
             className="font-[600] uppercase text-[11px] sm:text-[12px] tracking-[0.1em] text-[#C99237]"
@@ -104,7 +104,7 @@ export default function Section3() {
             const isOpen = openItem === item.label;
 
             return (
-              <div key={item.label} className="border-b border-[#AAA8A8] pb-6">
+              <div  key={item.label} className="border-b border-[#AAA8A8] pb-6">
                 <button
                   type="button"
                   onClick={() => setOpenItem(isOpen ? null : item.label)}
@@ -112,18 +112,24 @@ export default function Section3() {
                   aria-expanded={isOpen}
                 >
                   <h3
-                    className="text-[22px] leading-[28px] text-[#000000] font-[600]"
+                   onClick={()=>{
+                    if(isOpen){ 
+                      window.open(item.learnMoreHref, "_blank");
+                    }
+                  }}
+                    className="text-[22px] cursor-pointer leading-[28px] text-[#000000] font-[600]"
                     style={{ fontFamily: '"Open Sans", sans-serif' }}
                   >
                     {item.label}
                   </h3>
                   {isOpen ? (
                     <img
+                   
                       src="/varun.icon/cross-content-marketing.svg"
                       alt="Ritz Media World – close section"
                       title="Ritz Media World"
                      
-                      className="shrink-0 w-7 h-7 sm:w-[40px] sm:h-[40px] select-none mt-2"
+                      className="shrink-0 w-7 cursor-pointer h-7 sm:w-[40px] sm:h-[40px] select-none mt-2"
                     />
                   ) : (
                     <span className="text-[#6E6E6E] text-4xl leading-none select-none">
@@ -136,10 +142,11 @@ export default function Section3() {
                   className={`${accordionStyles.accordionContent} ${isOpen ? accordionStyles.accordionContentOpen : accordionStyles.accordionContentClosed}`}
                 >
                   <div className="pt-0">
-                    <div className="flex min-w-0 flex-col items-start gap-8 lg:flex-row lg:gap-14 xl:gap-20">
+                    <div className="flex min-w-0 flex-col items-start md:gap-8 lg:flex-row lg:gap-14 xl:gap-20">
                       <div className="relative flex w-full min-w-0 justify-center sm:w-auto lg:max-w-[430px] xl:max-w-[480px] lg:justify-start">
                         <div className={`relative`}>
                           <img
+                          onClick={() => window.open(item.learnMoreHref, "_blank")}
                             src={item.imageSrc}
                             alt={`${item.label} – Ritz Media World`}
                             title={item.label}
@@ -152,6 +159,9 @@ export default function Section3() {
                         <div className="space-y-5 justify-center mt-[24px]">
                           {item.paragraphs.map((para, i) => (
                             <p
+                            onClick={()=>{
+                              window.open(item.learnMoreHref, "_blank");
+                            }}
                               key={i}
                               className="text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed md:leading-[28px] text-[#00000]"
                               style={{ fontFamily: "PoppinsRegular" }}
@@ -166,7 +176,7 @@ export default function Section3() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`Learn more about ${item.label}`}
-                          className="group mt-8 inline-flex items-center gap-4 flex-wrap"
+                          className="group mt-8 letsTalkToday inline-flex items-center gap-4 flex-wrap"
                         >
                           <span
                             className="text-[#101828] text-[18px]"
@@ -174,7 +184,7 @@ export default function Section3() {
                           >
                             Learn more
                           </span>
-                          <span className="w-10 h-10 rounded-full bg-[#C99237] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#b8822f]">
+                          <span className="w-10 h-10 rounded-full bg-[#C99237] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#b8822f] letsTalkTodayIcon">
                             <Image
                               src={EXPLORE_ARROW_IMAGE}
                               alt="Ritz Media World – learn more"

@@ -32,7 +32,7 @@ function S6({ padding = "", padding2 = "" }: { padding?: string, padding2?: stri
   return (
     <section className={`w-full flex justify-center items-center py-10 sm:py-12 lg:py-[70px] ${padding} lg:px-0`}>
       {/* Center Align Container  */}
-      <div className={`w-full lg:px-13 md:px-10 px-4 flex flex-col ${styles.container} ${padding2}`}>
+      <div className={`w-full flex flex-col ${styles.container} ${padding2}`}>
         {/* Top Row  */}
         <div className="flex flex-col gap-2 text-center md:text-left">
           <h2
@@ -45,7 +45,7 @@ function S6({ padding = "", padding2 = "" }: { padding?: string, padding2?: stri
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 items-center md:items-end text-center md:text-left">
             <h3
-              className="font-[700] text-[24px] text-[#0F1640] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[36px]"
+              className="font-[700] text-[24px] text-[#0F1640] sm:text-[20px] md:text-[16px] lg:text-[24px] xl:text-[36px]"
               style={{
                 fontFamily: "MontserratBold",
               }}

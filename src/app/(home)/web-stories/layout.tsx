@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://ritzmediaworld.com/rmw-final-logo.png",
+        url: "https://ritzmediaworld.com/rmw-logo-sm-size.png",
         alt: "Ritz Media World Web Stories",
       },
     ],
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
       "Discover engaging web stories, visual content, and interactive narratives from Ritz Media World.",
     images: [
       {
-        url: "https://ritzmediaworld.com/rmw-final-logo.png",
+        url: "https://ritzmediaworld.com/rmw-logo-sm-size.png",
         alt: "Ritz Media World Web Stories",
       },
     ],

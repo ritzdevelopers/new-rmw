@@ -11,15 +11,15 @@ function Section6() {
                 {/* Copy Components  */}
                 <div className="flex flex-col w-full">
                     {/* Copy Row 1  */}
-                    <div className="w-full flex flex-col sm:flex-row justify-between items-center sm:items-stretch gap-4 sm:gap-0">
+                    <div className="w-full flex flex-col md:flex-row justify-between items-center md:items-stretch gap-4 sm:gap-0">
                         {/* Left Side Container  */}
-                        <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0 px-4 sm:px-0">
+                        <div className="relative w-full md:w-[194px] h-auto md:h-[156px] border-b-[#D9D9D9] border-b-[1px] md:border-b-0 md:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center md:justify-start pb-4 md:pb-0 px-4 md:px-0">
                             <h2 className="font-[700] text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] text-center sm:text-left" style={{
                                 fontFamily: 'MontserratBold',
                             }}>Brands That Trust Us</h2>
                             
 
-                            <p className="absolute top-[50%] transform -translate-y-[50%] -right-3 hidden sm:block">
+                            <p className="absolute top-[50%] transform -translate-y-[50%] -right-3 hidden md:block">
                                 <svg
                                     width="12"
                                     height="13"
@@ -36,7 +36,7 @@ function Section6() {
                         </div>
 
                         {/* Right Side Container  */}
-                        <div className="flex w-full border-0 md:border-t  md:border-b  md:border-[#D9D9D9] min-h-0 sm:w-[calc(100%-194px)] md:pl-6 lg:pl-[47px] overflow-x-hidden sm:items-center">
+                        <div className="flex w-full border-0 md:border-t  md:border-b  md:border-[#D9D9D9] min-h-0 md:w-[calc(100%-194px)] md:pl-6 lg:pl-[47px] overflow-x-hidden sm:items-center flex-col md:flex-row items-center md:items-center gap-4 md:gap-0">
                             {/* Slider Container  */}
                             <div className="w-full overflow-hidden">
                                 <div className={`flex gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}>

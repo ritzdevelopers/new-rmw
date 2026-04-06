@@ -36,7 +36,7 @@ export default function Section5() {
           </div>
 
           {/* Right Side Container */}
-          <div className="flex w-full sm:w-[calc(100%-194px)] md:pl-6 lg:pl-[47px] overflow-x-hidden">
+          <div className="flex w-full flex-col sm:flex-row items-center md:items-start sm:w-[calc(100%-194px)] md:pl-6 lg:pl-[47px] overflow-x-hidden">
             {/* Slider Container */}
             <div className="w-full overflow-hidden">
               <div

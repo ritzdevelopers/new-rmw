@@ -117,7 +117,7 @@ function S3() {
   return (
     <section className="w-full min-h-[895px] bg-[#F7F7F7]  flex justify-center md:justify-end items-center md:pt-0 pt-[70px]">
       {/* Centered Align End Container  */}
-      <div className={`w-full lg:px-20 px-10 h-[90%] ${styles.container}`}>
+      <div className={`w-full  h-[90%] ${styles.container}`}>
         {/* Top Row  */}
         <div className="text-center md:text-left">
           <p className="uppercase font-[600] text-[16px] text-[#C99237]">

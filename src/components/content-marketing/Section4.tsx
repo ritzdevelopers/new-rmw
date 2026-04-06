@@ -98,14 +98,14 @@ function Section4() {
                 </div>
 
                 <div className="w-full flex justify-center items-center">
-                    <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-5 flex items-center justify-center gap-4 cursor-pointer">
+                    <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-5 flex items-center text-[#  ] justify-center gap-4 cursor-pointer letsTalkToday p-3 rounded-[5px]">
                         <span
-                            className="text-black text-[18px]   md:text-[20px] font-[500]"
+                            className=" text-[18px]   md:text-[20px] font-[500]"
                             style={{ fontFamily: "MontserratMedium" }}
                         >
                             Let&apos;s Talk Today
                         </span>
-                        <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors">
+                        <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors letsTalkTodayIcon">
 
                             <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19.4276 2.92383L17.1346 9.08052L12.9493 4.01635L19.4276 2.92383Z" fill="white" />

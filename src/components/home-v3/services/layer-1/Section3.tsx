@@ -149,12 +149,12 @@ function Section3() {
 
                     {/* Bottom Button  */}
                     <div className="w-full flex justify-center items-center">
-                        <a href="https://ritzmediaworld.com/contact.html" target="_blank" className="flex justify-between items-center gap-3 sm:gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                        <a href="https://ritzmediaworld.com/contact.html" target="_blank" className="flex justify-between items-center gap-3 sm:gap-4 bg-transparent border-none cursor-pointer text-[#0F1640] letsTalkToday ">
                             <p className={`font-[500] text-[15px] sm:text-[16px] md:text-[14px] lg:text-[18px] text-black ${styles.fontmontserrat}`}>
                                 Get Free Consulting
                             </p>
                             <p >
-                                <div className="bg-[#ffffff] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] md:h-[38px] md:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-[#C99237] cursor-pointer">
+                                <div className="bg-[#ffffff] h-[34px] w-[34px] sm:h-[36px] sm:w-[36px] md:h-[38px] md:w-[38px] lg:h-[40px] lg:w-[40px] rounded-[50px] flex justify-center items-center text-[#C99237] cursor-pointer letsTalkTodayIcon">
 
                                     <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M19.4276 2.92431L17.1346 9.08101L12.9493 4.01684L19.4276 2.92431Z" fill="#C99237" />
@@ -250,8 +250,8 @@ function Section3() {
                     </div>
 
                     {/* Mobile Card  */}
-                    <div className="w-full block md:hidden">
-                        <img src="/google-rating.png" alt="Google rating" title="Google rating" className="w-full h-auto" />
+                    <div className="w-full block md:hidden bg-white rounded-[15px]">
+                        <img src="/g-rv-sh.png" alt="Google rating" title="Google rating" className="w-full h-auto" />
                     </div>
                 </div>
             </div>
