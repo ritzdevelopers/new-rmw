@@ -32,7 +32,7 @@ function S6({ padding = "", padding2 = "" }: { padding?: string, padding2?: stri
   return (
     <section className={`w-full flex justify-center items-center py-10 sm:py-12 lg:py-[70px] ${padding} lg:px-0`}>
       {/* Center Align Container  */}
-      <div className={`w-full lg:px-13 md:px-10 px-4 flex flex-col ${styles.container} ${padding2}`}>
+      <div className={`w-full xl:px-14 lg:px-10 md:px-6 px-4 flex flex-col ${styles.container} ${padding2}`}>
         {/* Top Row  */}
         <div className="flex flex-col gap-2 text-center md:text-left">
           <h2

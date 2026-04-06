@@ -173,9 +173,9 @@ function S4() {
   }, []);
 
   return (
-    <section className="w-full min-h-screen bg-white flex justify-center items-center flex-col gap-10 sm:gap-16 lg:gap-10 py-10 sm:py-16 lg:py-[70px] px-4 sm:px-6 lg:px-0">
+    <section className="w-full min-h-screen bg-white flex xl:px-14 lg:px-10 md:px-6 px-4 justify-center items-center flex-col md:gap-4 py-10 sm:py-16 lg:py-[70px]">
       {/* Center Align Container 1 */}
-      <div className={`w-full lg:px-10 xl:px-20 px-4 h-[95%] flex flex-col gap-4 sm:gap-6 ${styles.container}`}>
+      <div className={`w-full   h-[95%] flex flex-col gap-4 sm:gap-6 ${styles.container}`}>
         {/* Top Row  */}
         <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
           {/* Left Side Container  */}
@@ -355,7 +355,7 @@ function S4() {
       </div>
 
       {/* Center Align Container 2  */}
-      <div className="w-full sm:w-[95%] lg:w-[90%]  h-[250px] sm:h-[300px] md:h-[350px] lg:h-[426px] flex justify-center items-center relative">
+      <div className={`w-full ${styles.container}  h-[250px] sm:h-[300px] md:h-[350px] lg:h-[426px] flex justify-center items-center relative`}>
         <Image
           src={"/home-v3/s2/team-bg3.png"}
           alt="Ritz Media World – team video"
