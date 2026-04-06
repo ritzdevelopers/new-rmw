@@ -34,22 +34,22 @@ async function HomePage() {
 
       <S3></S3>
 
-      <div className={styles.container}>
+      <div>
         <S4></S4>
       </div>
 
       <S5></S5>
 
-      <div className={styles.container}>
+      <div className="w-full">
         <S6></S6>
       </div>
 
       <S7></S7>
 
-      <div className={styles.container}>
+      <div className="w-full">
         <S8 blogs={latestBlogs} blogsLoading={blogsLoading}></S8>
       </div>
-      <div className="w-full lg:px-6">
+      <div className="w-full ">
         <BrandImpactSection2></BrandImpactSection2>
       </div>
     </>

@@ -155,7 +155,7 @@ function S2() {
   return (
     <section className="bg-white w-full flex flex-col items-center justify-center min-h-screen py-10 sm:py-14 lg:py-[70px]  px-0">
       {/* Centered Align Main Container  */}
-      <div className={`w-full xl:px-14 lg:px-10 md:px-6 px-4 flex flex-col gap-8 sm:gap-9 lg:gap-10 xl:gap-18 ${styles.container}`}>
+      <div className={`w-full  flex flex-col gap-8 sm:gap-9 lg:gap-10 xl:gap-18 ${styles.container}`}>
         {/* Row 1  */}
         <div className="w-full flex flex-col lg:flex-row justify-between gap-8 lg:gap-0 xl:gap-10">
           {/* Col 1  */}

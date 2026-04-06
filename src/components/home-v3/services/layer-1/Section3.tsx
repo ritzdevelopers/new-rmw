@@ -250,8 +250,8 @@ function Section3() {
                     </div>
 
                     {/* Mobile Card  */}
-                    <div className="w-full block md:hidden">
-                        <img src="/google-rating.png" alt="Google rating" title="Google rating" className="w-full h-auto" />
+                    <div className="w-full block md:hidden bg-white rounded-[15px]">
+                        <img src="/g-rv-sh.png" alt="Google rating" title="Google rating" className="w-full h-auto" />
                     </div>
                 </div>
             </div>

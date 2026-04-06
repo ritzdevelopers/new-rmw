@@ -43,10 +43,10 @@ function S7() {
     ];
 
     return (
-        <section className='w-full lg:min-h-[647px] bg-[url(/home-v3/awards-bg/awards-bg-mobile.png)] xl:bg-[url(/home-v3/awards-bg/awards-bg-desktop.png)] bg-cover bg-no-repeat bg-center flex justify-center items-center py-10  lg:py-[70px] px-4 sm:px-6 lg:px-0'>
+        <section className='w-full lg:min-h-[647px] bg-[url(/home-v3/awards-bg/awards-bg-mobile.png)] xl:bg-[url(/home-v3/awards-bg/awards-bg-desktop.png)] bg-cover bg-no-repeat bg-center flex justify-center items-center py-10  lg:py-[70px]'>
 
             {/* Center Align Container  */}
-            <div className={`w-full  xl:px-14 lg:px-10 md:px-6 px-4 flex flex-col gap-6 ${styles.container}`}>
+            <div className={`w-full  flex flex-col gap-6 ${styles.container}`}>
                 {/* Top Row  */}
                 <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
                     {/* Left Side Container  */}

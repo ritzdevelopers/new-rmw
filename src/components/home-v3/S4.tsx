@@ -173,9 +173,11 @@ function S4() {
   }, []);
 
   return (
-    <section className="w-full min-h-screen bg-white flex xl:px-14 lg:px-10 md:px-6 px-4 justify-center items-center flex-col md:gap-4 py-10 sm:py-16 lg:py-[70px]">
-      {/* Center Align Container 1 */}
-      <div className={`w-full   h-[95%] flex flex-col gap-4 sm:gap-6 ${styles.container}`}>
+    <section className="w-full min-w-0 min-h-screen overflow-x-clip bg-white flex justify-center items-center flex-col md:gap-4 py-10 sm:py-16 lg:py-[70px]">
+      {/* Center Align Container 1 (+ video strip shares same width as slider) */}
+      <div
+        className={`w-full min-w-0 max-w-full h-[95%] flex flex-col gap-4 sm:gap-6 ${styles.container}`}
+      >
         {/* Top Row  */}
         <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
           {/* Left Side Container  */}
@@ -352,39 +354,41 @@ function S4() {
             </Swiper>
           </div>
         </div>
-      </div>
 
-      {/* Center Align Container 2  */}
-      <div className={`w-full ${styles.container}  h-[250px] sm:h-[300px] md:h-[350px] lg:h-[426px] flex justify-center items-center relative`}>
-        <Image
-          src={"/home-v3/s2/team-bg3.png"}
-          alt="Ritz Media World – team video"
-          title="Ritz Media World"
-          fill
-          className="object-cover"
-        ></Image>
-
-        <div
-          onClick={handlePlayClick}
-          className="flex absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer w-[44px] h-[44px] sm:w-[50px] sm:h-[50px] lg:w-[54px] lg:h-[54px] rounded-full justify-center items-center bg-[#FFFFFF] z-10 hover:scale-110 transition-transform"
-        >
-          <svg
-            width="10"
-            height="11"
-            viewBox="0 0 10 11"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-[8px] h-[9px] sm:w-[10px] sm:h-[11px]"
-          >
-            <path
-              d="M9 4.46558C9.66667 4.85048 9.66667 5.81273 9 6.19763L1.5 10.5278C0.833332 10.9127 -5.28905e-07 10.4315 -4.95256e-07 9.66173L-1.16704e-07 1.00148C-8.30548e-08 0.231676 0.833333 -0.249449 1.5 0.135451L9 4.46558Z"
-              fill="black"
+        {/* Video strip — same horizontal box as slider (parent already has .container) */}
+        <div className="relative isolate w-full min-w-0 max-w-full overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] lg:h-[426px]">
+          <div className="absolute inset-0 z-0 min-h-0 min-w-0 overflow-hidden">
+            <Image
+              src="/home-v3/s2/team-bg3.png"
+              alt="Ritz Media World – team video"
+              title="Ritz Media World"
+              fill
+              className="object-cover object-center"
+              sizes="(min-width: 1370px) 1300px, 95vw"
             />
-          </svg>
-        </div>
+          </div>
 
-        {/* Overlay  */}
-        <div className="absolute inset-0 bg-[#00000051] w-full h-full z-0"></div>
+          <div
+            onClick={handlePlayClick}
+            className="flex overflow-hidden absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 cursor-pointer w-[44px] h-[44px] sm:w-[50px] sm:h-[50px] lg:w-[54px] lg:h-[54px] rounded-full justify-center items-center bg-[#FFFFFF] hover:scale-110 transition-transform"
+          >
+            <svg
+              width="10"
+              height="11"
+              viewBox="0 0 10 11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-[8px] h-[9px] sm:w-[10px] sm:h-[11px]"
+            >
+              <path
+                d="M9 4.46558C9.66667 4.85048 9.66667 5.81273 9 6.19763L1.5 10.5278C0.833332 10.9127 -5.28905e-07 10.4315 -4.95256e-07 9.66173L-1.16704e-07 1.00148C-8.30548e-08 0.231676 0.833333 -0.249449 1.5 0.135451L9 4.46558Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 z-10 bg-[#00000051]" />
+        </div>
       </div>
 
       {/* Video Modal */}

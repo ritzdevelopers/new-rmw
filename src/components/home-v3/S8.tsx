@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { CiCalendar } from "react-icons/ci"; 
-
+import styles from "./S3.module.css";
 interface BLOGSTRUCTURE {
     blogTitle: string;
     blogBanner: string;
@@ -187,9 +187,9 @@ function S8({
 
 
     return (
-        <section className="w-full min-h-0 bg-[#ffffff] flex justify-center items-center py-10 sm:py-14 lg:py-[70px] px-4 sm:px-6 lg:px-0">
+        <section className="w-full min-h-0 bg-[#ffffff] flex justify-center items-center py-10 sm:py-14 lg:py-[70px] ">
             {/* Centered Align Container  */}
-            <div className="w-full  xl:px-14 lg:px-10 md:px-6 px-4 flex flex-col gap-12 sm:gap-16 lg:gap-20">
+            <div className={`w-full  flex flex-col gap-12 sm:gap-16 lg:gap-20 ${styles.container}`}>
                 {/* Row 1  */}
                 <div className="w-full flex flex-col gap-8 sm:gap-9 lg:gap-10">
                     {/* Header  */}
