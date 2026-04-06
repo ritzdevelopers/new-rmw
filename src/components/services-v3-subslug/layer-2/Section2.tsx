@@ -43,9 +43,9 @@ export default function Section2() {
             stuck in the predictable rut of convention.
           </p> */}
           <p>
-            We know that mediocrity is not an option that any brand can afford. This is why, as the best creative agency in India, we at Ritz Media World, ensure that not only are our branding strategies creative and innovative, but they are also highly effective. While the beauty of good design lies in the fact that it is beautiful, it must also be noticeable.
+            We know that mediocrity is not an option that any brand can afford. This is why, as the<i> best creative agency in India</i>, we at <b> <a href="/" target="_blank" className="cursor-pointer">Ritz Media World</a></b>, ensure that not only are our branding strategies creative and innovative, but they are also highly effective. While the beauty of good design lies in the fact that it is beautiful, it must also be noticeable.
           </p>
-          <p>We provide end-to-end creative services to your brand, provide the edge that your brand needs, and ensure that the impact and success are nothing short of remarkable.</p>
+          <p>We provide end-to-end <i>creative services</i> to your brand, provide the edge that your brand needs, and ensure that the impact and success are nothing short of remarkable.</p>
         </div>
 
         <Link

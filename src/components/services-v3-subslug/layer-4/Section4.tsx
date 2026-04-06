@@ -19,7 +19,7 @@ function Section4() {
                         {/* Row 1  */}
                         <div className="w-full flex flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
                             <p className={`font-[500] text-[16px] sm:text-[20px] md:text-[24px] xl:text-[28px] leading-tight ${styles.fontmontserrat}`}>A Skill <span className="font-[700]">Creative Team Delivering</span> Solutions That Drive <span className="font-[700]">Brand Growth</span></p>
-                            <img src="/service-v3/print-advertising/s7/rocket-booster2.png" alt="" className="h-[44px] sm:h-[60px] md:h-[72px] xl:h-[93px] w-auto flex-shrink-0" />
+                            <img src="/service-v3/print-advertising/s7/rocket-booster2.png" alt="Ritz Media World" title="Ritz Media World" className="h-[44px] sm:h-[60px] md:h-[72px] xl:h-[93px] w-auto flex-shrink-0" />
                         </div>
 
                         {/* Row 2  */}
