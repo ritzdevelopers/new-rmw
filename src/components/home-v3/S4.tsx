@@ -176,7 +176,7 @@ function S4() {
     <section className="w-full min-w-0 min-h-screen overflow-x-clip bg-white flex justify-center items-center flex-col md:gap-4 py-10 sm:py-16 lg:py-[70px]">
       {/* Center Align Container 1 (+ video strip shares same width as slider) */}
       <div
-        className={`w-full min-w-0 max-w-full h-[95%] flex flex-col gap-4 sm:gap-6 ${styles.container}`}
+        className={`w-full min-w-0 max-w-full h-[95%] flex flex-col gap-4 sm:gap-6 lg:gap-[45px] ${styles.container}`}
       >
         {/* Top Row  */}
         <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
