@@ -245,7 +245,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                   style={{ borderRadius: "0px !important", overflow: "hidden" }}
                 >
                   <Image
-                    src="/rmw-final-logo.png"
+                    src="/rmw-logo-sm-size.png"
                     alt="rmw-logo"
                 
                     className={styles.lgImg}
@@ -609,7 +609,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
             <div className={styles.mobileSidebarLogo}>
               <div className={styles.logoImageWrapper}>
                 <Image
-                  src="/rmw-final-logo.png"
+                  src="/rmw-logo-sm-size.png"
                   alt="RMW Logo"
                   width={50}
                   height={70}
@@ -778,7 +778,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
               <div className={styles.MobileSidebarLogo}>
                 <Image
                   // style={{ height: "60px" }}
-                  src="/rmw-final-logo.png"
+                  src="/rmw-logo-sm-size.png"
                   alt="RMW Logo"
                   width={60}
                   height={100}

@@ -334,7 +334,7 @@ function S2() {
           </div>
 
           {/* Right Side Container  */}
-          <div className="flex w-full md:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden">
+          <div className="flex w-full md:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden flex-col md:flex-row items-center md:items-start gap-4 md:gap-0">
             {/* Slider Container  */}
             <div className="w-full overflow-hidden">
               <div className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles2.clientSlider}`}>

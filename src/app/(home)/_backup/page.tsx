@@ -22,7 +22,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://ritzmediaworld.com/rmw-final-logo.png",
+        url: "https://ritzmediaworld.com/rmw-logo-sm-size.png",
         alt: "Ritz Media World Logo",
       },
     ],
@@ -35,7 +35,7 @@ export const metadata = {
       "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
     images: [
       {
-        url: "https://ritzmediaworld.com/rmw-final-logo.png",
+        url: "https://ritzmediaworld.com/rmw-logo-sm-size.png",
         alt: "Ritz Media World Logo",
       },
     ],

@@ -91,14 +91,14 @@ function Section5() {
                 </div>
 
                 {/* Row 2  */}
-                <div className="w-full flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-0">
+                <div className="w-full flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-0 md:justify-between lg:justify-start">
                     {/* Left Side Container  */}
-                    <div className="w-[70%] xl:w-[863px] h-auto xl:h-[430px] relative overflow-hidden">
+                    <div className="w-[62%] lg:w-[70%] xl:w-[863px] h-auto xl:h-[430px] relative overflow-hidden">
                         <img src="/team-banner.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="xl:object-cover" />
                     </div>
 
                     {/* Right Side Container  */}
-                    <div className="px-8 w-[30%] xl:w-[calc(100%-831px)] h-auto xl:h-[430px] relative flex flex-col justify-end xl:justify-between ">
+                    <div className="px-8 w-[38%] lg:w-[30%] xl:w-[calc(100%-831px)] h-auto xl:h-[430px] relative flex flex-col justify-end xl:justify-between ">
                         {/* Top Row  */}
                         <div className="flex flex-col w-full ">
 

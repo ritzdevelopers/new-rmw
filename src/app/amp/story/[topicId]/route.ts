@@ -19,7 +19,7 @@ export async function GET(
 
   // Required Image Paths
   const publisherLogo =
-    "https://ritzmediaworld.com/rmw-final-logo.png"; // Must be 96x96 square
+    "https://ritzmediaworld.com/rmw-logo-sm-size.png"; // Must be 96x96 square
   const posterPortrait =
     `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images/${pages[0].img.split("images")[1]}`; 
 

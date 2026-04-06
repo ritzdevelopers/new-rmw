@@ -5,8 +5,8 @@ import styles from "./page.module.css";
 export default function Banner() {
     return (
         <section className={`w-full h-[420px] md:h-[326px] lg:h-[412px] xl:min-h-[515px] 
-        bg-[url("/varun/influencer-marketing/contentmarketingmobilebanner2.jpg")] 
-        md:bg-[url("/varun/influencer-marketing/ctm-b2.jpg")]
+        bg-[url("/varun/ctm/contentmarketingmobilebanner3.jpg")] 
+        md:bg-[url("/varun/ctm/updated-ctm-banne2.jpg")]
         bg-cover bg-no-repeat bg-center flex items-end pb-0 lg:pb-22
          xl:pb-20 px-0 ${styles.bannerSize}`}>
             <div className="flex flex-col  self-end md:self-end gap-3 sm:gap-4 md:gap-5 lg:gap-0 w-full md:max-w-[80%] lg:max-w-none  mb-[20px] md:mb-[50px] lg:mb-0">
