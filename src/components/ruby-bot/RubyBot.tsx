@@ -251,8 +251,14 @@ function RubyBot() {
         scrollToBottom();
     }, [messages, isTyping]);
 
+    const handleChatting = async (message: { user_message: string, bot_reply: string }) => {
+        const response = await axios.post('/api/chatting', {
+            message: message,
+        });
+        return response.data;
+    };
 
-    const handleSendMessage = (text?: string) => {
+    const handleSendMessage =  (text?: string) => {
         const messageText = text || inputValue.trim();
         if (!messageText) return;
 
@@ -268,7 +274,6 @@ function RubyBot() {
             sender: 'user',
             timestamp: new Date(),
         };
-
         setMessages((prev) => [...prev, newMessage]);
         setInputValue('');
 
@@ -300,6 +305,11 @@ function RubyBot() {
                             sender: 'bot',
                             timestamp: new Date(),
                         };
+                        const user_conversations = {
+                            user_message: messageText,
+                            bot_reply: botResponseText
+                        }
+                        handleChatting(user_conversations);
                         setMessages((prev) => [...prev, botResponse]);
                         setIsTyping(false);
 
