@@ -82,8 +82,8 @@ function BrandImpactSection2() {
 
     const downloadPDF = () => {
         const link = document.createElement("a");
-        link.href = "/RMWCaseStudies_250327_081936.pdf";
-        link.download = "RMWCaseStudies_250327_081936.pdf";
+        link.href = "/Eldeco-Lvb-Overview-Report.pdf";
+        link.download = "Eldeco-Lvb-Overview-Report.pdf";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
