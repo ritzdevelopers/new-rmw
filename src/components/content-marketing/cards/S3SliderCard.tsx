@@ -35,7 +35,7 @@ function S3SliderCard({ index, title, desc, activeCard, setActiveCard, image, ac
                     window.open(link, "_blank");
                 }
             }}
-            className={`h-full overflow-hidden cursor-pointer transform-gpu will-change-[flex] ${index === 3 ? "border-r-0" : "border-r border-[#323E84]"} flex justify-between flex-col ${activeCard === index ? `${styles.cardContainerActive} pt-10 min-w-0` : "w-[80px] sm:w-[100px] md:w-[120px] lg:w-[140px] xl:w-[150px] min-[1360px]:w-[140px] flex-shrink-0"} ${styles.cardContainer}`}
+            className={`h-full overflow-hidden cursor-pointer transform-gpu will-change-[flex] ${index === 3 ? "border-r-0" : "border-r border-[#323E84]"} flex justify-between flex-col ${activeCard === index ? `${styles.cardContainerActive}  min-w-0` : "w-[80px] sm:w-[100px] md:w-[120px] lg:w-[140px] xl:w-[150px] min-[1360px]:w-[140px] flex-shrink-0"} ${styles.cardContainer}`}
         >
             {/* Top Container * Main Card */}
             <div  className={`flex h-[calc(100%-50px)] flex-col w-full justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 ${activeCard !== index ? "px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 lg:pl-0" : "px-5"} min-w-0 lg:pl-[50px]`}>
