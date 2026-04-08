@@ -65,14 +65,14 @@ function S7() {
                             className='cursor-pointer'
                             aria-label="Previous slide"
                         >
-                            <img src="/home-v3/rghtw.png" alt="RMW" className='w-[27px] h-[27px]' />
+                            <img src="/home-v3/rghtw.png" alt="RMW" title="RMW" className='w-[27px] h-[27px]' />
                         </button>
                         <button 
                             onClick={() => swiperRef.current?.slideNext()}
                             className='cursor-pointer'
                             aria-label="Next slide"
                         >
-                            <img src="/home-v3/lftbw.png" alt="RMW" className='w-[27px] h-[27px]' />
+                            <img src="/home-v3/lftbw.png" alt="RMW" title="RMW" className='w-[27px] h-[27px]' />
                         </button>
                     </div>
                 </div>

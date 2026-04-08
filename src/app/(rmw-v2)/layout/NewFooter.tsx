@@ -16,7 +16,7 @@ function NewFooter() {
           <div className="flex flex-row lg:flex-col gap-12 md:gap-16 lg:gap-4">
             {/* Logo Container  */}
             <div className="mb-1 sm:mb-2">
-              <img src="/home-v3/rmw-f-logo.png" alt="ritz media world logo" className="max-w-[80px] h-auto md:max-w-[200px] mx-0 md:mx-auto lg:mx-0" />
+              <img src="/home-v3/rmw-f-logo.png" alt="ritz media world logo" title="ritz media world logo" className="max-w-[80px] h-auto md:max-w-[200px] mx-0 md:mx-auto lg:mx-0" />
             </div>
             {/* Address Container  */}
             <div className="flex flex-col gap-2 sm:gap-3 text-left">

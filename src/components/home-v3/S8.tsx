@@ -261,6 +261,7 @@ function S8({
                                                   src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
                                                 // src="/inner-demo-img.jpg"
                                                   alt="RMW"
+                                                  title="RMW"
                                                   className="w-full h-full md:max-lg:object-cover lg:object-cover"
                                               ></img>
                                           </div>

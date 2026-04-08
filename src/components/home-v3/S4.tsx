@@ -217,6 +217,7 @@ function S4() {
               <img
                 src="/home-v3/s3/lftb.png"
                 alt="RMW"
+                title="RMW"
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -228,6 +229,7 @@ function S4() {
               <img
                 src="/home-v3/s3/rhgt.png"
                 alt="RMW"
+                title="RMW"
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -275,6 +277,7 @@ function S4() {
                           src={story.img}
                           onClick={() => window.open(story.link, "_blank")}
                           alt={story.title}
+                          title={story.title}
                           fill
                           className="object-cover cursor-pointer"
                         ></Image>
@@ -324,6 +327,7 @@ function S4() {
                                 <img
                                   src="/home-v3/s4/arrow.png"
                                   alt="RMW"
+                                  title="RMW"
                                   className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px]"
                                 />
                                 <p
@@ -361,7 +365,7 @@ function S4() {
             <Image
               src="/home-v3/s2/team-bg3.png"
               alt="Ritz Media World – team video"
-              title="Ritz Media World"
+              title="Ritz Media World – team video"
               fill
               className="object-cover object-center"
               sizes="(min-width: 1370px) 1300px, 95vw"

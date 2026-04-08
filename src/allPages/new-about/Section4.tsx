@@ -278,14 +278,14 @@ const router = useRouter();
                     {/* Centered Align Container  */}
                     <div className="w-[90%] z-10">
                       <div className="relative">
-                        <h2
+                        <p
                           style={{
                             fontFamily: "InterSemiBold",
                           }}
                           className="font-[600] text-[28px] sm:text-[32px] md:text-[36px]"
                         >
                           {val.cnt}
-                        </h2>
+                        </p>
                         <p
                           style={{
                             fontFamily: "InterSemiBold",
@@ -335,14 +335,14 @@ const router = useRouter();
                     {/* Centered Align Container  */}
                     <div className="w-[90%] z-10">
                       <div className="relative">
-                        <h2
+                        <p
                           style={{
                             fontFamily: "InterSemiBold",
                           }}
                           className="font-[600] text-[28px] sm:text-[32px] md:text-[36px]"
                         >
                           {val.cnt}
-                        </h2>
+                        </p>
                         <p
                           style={{
                             fontFamily: "InterSemiBold",

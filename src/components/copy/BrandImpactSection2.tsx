@@ -310,6 +310,7 @@ function BrandImpactSection2() {
                         <img
                             src="/home-v3/s3/rhgt.png"
                             alt="RMW"
+                            title="RMW"
                             className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
                         />
                     </div>

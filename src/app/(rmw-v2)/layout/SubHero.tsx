@@ -17,22 +17,22 @@ function SubHero() {
       gap-3 lg:gap-5
        z-5 px-4 sm:px-6 md:px-8 lg:px-0"
       >
-        <p
+        <h1
           style={{
             fontFamily: "InterRegular",
           }}
           className="font-[400] text-[16px] sm:text-[18px] md:text-[19px] lg:text-[20px] text-white"
         >
           About Us
-        </p>
-        <h1
+        </h1>
+        <h2
           style={{
             fontFamily: "InterSemiBold",
           }}
           className="font-[600] text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] text-white leading-tight lg:leading-normal"
         >
          Our Reputation is the success we deliver
-        </h1>
+        </h2>
 
         {/* Page Tracker  */}
         <div className="flex justify-between items-center w-[140px] sm:w-[150px] md:w-[155px] gap-1 sm:gap-2">

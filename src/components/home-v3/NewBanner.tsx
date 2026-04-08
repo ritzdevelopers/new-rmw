@@ -237,11 +237,13 @@ function NewBanner() {
                             <img
                                 src={slide.desktop}
                                 alt="Ritz Media World banner"
+                                title="Ritz Media World banner"
                                 className="hidden md:block w-full h-auto object-cover"
                             />
                             <img
                                 src={slide.mobile}
                                 alt="Ritz Media World banner"
+                                title="Ritz Media World banner"
                                 className="block md:hidden w-full h-auto object-cover"
                             />
 
