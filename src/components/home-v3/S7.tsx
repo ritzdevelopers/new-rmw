@@ -133,7 +133,7 @@ function S7() {
                                         </div>
 
                                         <div className='w-full min-h-[51px] bg-[#C992372E] text-white py-3 px-4 sm:p-3.5 lg:p-4 text-center sm:text-left'>
-                                            <p className='font-[400] text-[13px] sm:text-[14px] lg:text-[15px]' style={{
+                                            <p className='font-[400] text-[13px] leading-[25px] sm:text-[14px] lg:text-[15px]' style={{
                                                 fontFamily: "OpenSansRegular",
                                             }}>
                                                 {ob.para}

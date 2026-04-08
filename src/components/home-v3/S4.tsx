@@ -310,14 +310,14 @@ function S4() {
                           {story.description}
                         </p>
 
-                        <div className="w-full flex flex-row justify-between items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-2">
+                        <div className="w-full flex flex-row justify-between items-stretch gap-4 sm:gap-2 lg:gap-4 xl:gap-2">
                           {story.stats.map((stat, statIdx) => {
                             return (
                               <div
                                 key={statIdx}
                                 onClick={() => window.open(story.link, "_blank")}
-                                className={`flex flex-col justify-center items-center gap-1 w-full sm:w-auto ${statIdx === 1
-                                  ? "sm:px-4 lg:px-8 xl:px-4 py-4 sm:border-l-[1px] sm:border-r-[1px] sm:border-l-[#D8D8D8] sm:border-r-[#D8D8D8]"
+                                className={`flex flex-1 min-h-[130px] sm:min-h-[140px] lg:min-h-[152px] py-4 flex-col justify-center items-center gap-1 w-full ${statIdx === 1
+                                  ? "sm:px-4 lg:px-8 xl:px-4 sm:border-l-[1px] sm:border-r-[1px] sm:border-l-[#D8D8D8] sm:border-r-[#D8D8D8]"
                                   : ""
                                   }`}
                               >

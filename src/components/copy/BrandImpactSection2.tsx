@@ -174,8 +174,8 @@ function BrandImpactSection2() {
             {/* Row 2  */}
             <div className={`w-full flex ${styles.containerWidth} flex-col lg:flex-row justify-between gap-6`}>
                 {/* Left Side Container  */}
-                <div className="w-full xl:w-full lg:w-[50%] xl:flex-1 min-h-[500px] xl:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-4 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
-                    <div className="text-left mb-2 md:mb-0 flex flex-col gap-2">
+                <div className="w-full xl:w-full lg:w-[50%] xl:flex-1 min-h-[500px] xl:h-[526px] bg-[#F7F7F7] flex flex-col justify-start gap-3 sm:gap-4 px-4 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
+                    <div className="text-left flex flex-col gap-2">
                         <p
                             className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-[#C99237]"
                             style={{
@@ -203,7 +203,7 @@ function BrandImpactSection2() {
                     </div>
 
                     <p
-                        className="font-[400] text-[13px]  lg:text-[13px] xl:text-[16px] text-left mb-4 xl:mb-0"
+                        className="font-[400] text-[13px]  lg:text-[13px] xl:text-[16px] text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -212,7 +212,7 @@ function BrandImpactSection2() {
                     </p>
 
                     <ul
-                        className="font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] list-disc pl-4 flex  flex-col md:marker:text-2xl gap-2 sm:gap-3 text-left mb-4 xl:mb-0"
+                        className="font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] list-disc pl-4 flex  flex-col md:marker:text-2xl gap-2 sm:gap-3 text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -238,11 +238,6 @@ function BrandImpactSection2() {
                                         : "border-[#DAD4D4]"
                                         }`}
                                 />
-                                {phoneError && (
-                                    <p className="absolute top-full left-0 mt-1 text-[12px] text-[#EF4444] font-[400]">
-                                        {phoneError}
-                                    </p>
-                                )}
                             </div>
 
                             <button

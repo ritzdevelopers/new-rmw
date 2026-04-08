@@ -286,7 +286,7 @@ function S8({
                                                       "_blank",
                                                   )
                                               }
-                                              className="font-[600] text-[15px] xl:text-[18px] text-black"
+                                              className="font-[600] text-[15px] xl:text-[18px] text-black sm:max-lg:line-clamp-2"
                                               style={{
                                                   fontFamily:
                                                       "OpenSansSemiBold",
