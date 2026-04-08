@@ -594,7 +594,8 @@ function S2() {
             <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-center md:text-left" style={{
               fontFamily: 'OpenSansRegular',
             }}>
-              Not sure which path fits your brand? <br className="md:hidden block" /> <span className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] underline cursor-pointer" style={{
+              Not sure which path fits your brand? <br className="md:hidden block" /> 
+              <span className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] underline cursor-pointer hover:text-[#C99237] transition-colors duration-200" style={{
                 fontFamily: 'OpenSansSemiBold',
               }} onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}>
                 Let's discuss your unique needs

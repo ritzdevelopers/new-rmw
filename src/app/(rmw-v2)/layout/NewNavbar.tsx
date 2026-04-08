@@ -349,7 +349,7 @@ function NewNavbar() {
 
   const menuItems = [
     { label: 'Blogs', ariaLabel: 'View our services', link: 'https://ritzmediaworld.com/blogs' },
-    { label: 'Academy', ariaLabel: 'View our work', link: 'https://ritzmediaworld.com/rdx-digital-marketing-course' },
+
     { label: 'Career', ariaLabel: 'Learn about our company', link: 'https://ritzmediaworld.com/career' },
     { label: 'Gallery', ariaLabel: 'Visit our gallery', link: 'https://ritzmediaworld.com/gallery' },
     { label: 'Web Stories', ariaLabel: 'Visit our web stories', link: 'https://ritzmediaworld.com/web-stories' }
@@ -686,6 +686,8 @@ function NewNavbar() {
                     }}
                     className="xl:w-[280px] w-[230px] h-[260px] rounded-[8px] flex flex-col  p-5 shadow-lg"
                   >
+
+                    
                     {/* Main Service Name  */}
                     <div>
                       <Link
@@ -930,17 +932,7 @@ function NewNavbar() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </Link>
-              <Link
-                href="https://ritzmediaworld.com/rdx-digital-marketing-course"
-                target="_blank"
-                className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <span className="relative">
-                  Academy
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
-                </span>
-              </Link>
+           
               <Link
                 href="https://ritzmediaworld.com/work.html"
                 target="_blank"

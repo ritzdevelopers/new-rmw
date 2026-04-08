@@ -62,7 +62,7 @@ function S6({ padding = "", padding2 = "" }: { padding?: string, padding2?: stri
               helped transform.
             </p>
           </div>
-          <div className="flex flex-row gap-2">
+          <div className="hidden flex-row gap-2">
             <button
               onClick={() =>
                 window.open("/category/case-study", "_blank")
