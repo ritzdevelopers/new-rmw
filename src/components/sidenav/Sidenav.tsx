@@ -11,7 +11,8 @@ import {
   House,
   MonitorCog,
   ChartNoAxesCombined,
-  Newspaper
+  Newspaper,
+  MessageCircle,
 } from "lucide-react";
 import { cn } from "../../lib/utils";
 // import axios from "axios";
@@ -39,6 +40,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const [homePagesLinks, setHomePagesLinks] = useState(false);
   const [systemSettings, setSystemSettings] = useState(false);
   const [newspaperOpen, setNewspaperOpen] = useState(false);
+  const [chatsOpen, setChatsOpen] = useState(false);
 
   const [dbActive, setDBActive] = useState(false);
   const [blogActive, setBlogActive] = useState(false);
@@ -49,6 +51,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const [webStoriesActive, setWebStoriesActive] = useState(false);
   const [analyticsActive, setAnalyticsIsActive] = useState(false);
   const [newspaperActive, setNewspaperActive] = useState(false);
+  const [chatsActive, setChatsActive] = useState(false);
 
   const [subMenuActive, setActiveSubMenu] = useState("");
   function handleActiveTabBG(e: React.MouseEvent<HTMLElement, MouseEvent>) {
@@ -65,6 +68,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(true);
+      setChatsActive(false);
       setNewspaperActive(false);
     } else if (blogText === "System Settings") {
       setAnalyticsIsActive(false);
@@ -76,6 +80,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(true);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+      setChatsActive(false);
       setNewspaperActive(false);
     } else if (blogText === "Home") {
       setAnalyticsIsActive(false);
@@ -87,6 +92,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+      setChatsActive(false);
       setNewspaperActive(false);
     } else if (blogText === "Web Pages") {
       setAnalyticsIsActive(false);
@@ -98,6 +104,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+      setChatsActive(false);
       setNewspaperActive(false);
     } else if (blogText === "Blog") {
       setAnalyticsIsActive(false);
@@ -109,6 +116,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+      setChatsActive(false);
       setNewspaperActive(false);
     } else if (blogText === "Dashboard") {
       setAnalyticsIsActive(false);
@@ -120,6 +128,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setSystemPageActive(false);
       setActiveSubMenu("");
       setCreateUserPageActive(false);
+      setChatsActive(false);
       setNewspaperActive(false);
     } else if (blogText === "Web Stories") {
       setAnalyticsIsActive(false);
@@ -131,6 +140,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setActiveSubMenu("");
       setCreateUserPageActive(false);
       setWebStoriesActive(true);
+      setChatsActive(false);
       setNewspaperActive(false);
     } else if (blogText === "Analytics") {
       setBlogActive(false);
@@ -142,6 +152,19 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setCreateUserPageActive(false);
       setWebStoriesActive(false);
       setAnalyticsIsActive(true);
+      setChatsActive(false);
+      setNewspaperActive(false);
+    } else if (blogText === "Chats") {
+      setBlogActive(false);
+      setDBActive(false);
+      setWebPageActive(false);
+      setHomePageActive(false);
+      setSystemPageActive(false);
+      setActiveSubMenu("");
+      setCreateUserPageActive(false);
+      setWebStoriesActive(false);
+      setAnalyticsIsActive(false);
+      setChatsActive(true);
       setNewspaperActive(false);
     } else if (blogText === "Newspaper") {
       setBlogActive(false);
@@ -153,6 +176,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
       setCreateUserPageActive(false);
       setWebStoriesActive(false);
       setAnalyticsIsActive(false);
+      setChatsActive(false);
       setNewspaperActive(true);
     }
   }
@@ -246,6 +270,96 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               {expanded && <span>Analytics</span>}
             </div>
           </Link>
+
+          {/* Chats with submenu */}
+          <div
+            style={{
+              ...(!expanded
+                ? { borderWidth: "none" }
+                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
+              ...(chatsActive && { backgroundColor: "#2E3B46" }),
+            }}
+            onClick={(e) => {
+              setChatsOpen(!chatsOpen);
+              handleActiveTabBG(e);
+            }}
+            className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] cursor-pointer transition justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <MessageCircle className="w-5 h-5" />
+              {expanded && <span>Chats</span>}
+            </div>
+            {expanded && (
+              <ChevronDown
+                className={cn(
+                  "w-4 h-4 transition",
+                  chatsOpen ? "rotate-180" : ""
+                )}
+              />
+            )}
+          </div>
+
+          {expanded && chatsOpen && (
+            <div className="space-y-2">
+              <Link href="/admin/chats/overview">
+                <div
+                  onClick={() => setActiveSubMenu("Chats Overview")}
+                  style={{
+                    ...(!chatsOpen
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Chats Overview" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  Overview
+                </div>
+              </Link>
+              <Link href="/admin/chats/history">
+                <div
+                  onClick={() => setActiveSubMenu("Chats History")}
+                  style={{
+                    ...(!chatsOpen
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Chats History" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  History
+                </div>
+              </Link>
+              <Link href="/admin/chats/export">
+                <div
+                  onClick={() => setActiveSubMenu("Chats Export")}
+                  style={{
+                    ...(!chatsOpen
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Chats Export" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  Export
+                </div>
+              </Link>
+            </div>
+          )}
 
           {/* Blog with submenu */}
           <div

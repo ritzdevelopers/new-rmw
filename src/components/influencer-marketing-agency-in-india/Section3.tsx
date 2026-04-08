@@ -2,13 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Plus } from "lucide-react";
 import accordionStyles from "./Section3.module.css";
 import containerStyles from "@/components/celebrity-endorsements/page.module.css";
@@ -76,41 +70,17 @@ function ServiceAccordionRow({
   isOpen,
   onToggle,
   onClose,
-  skipInitialOpenFocus,
 }: {
   item: ServiceItem;
   isOpen: boolean;
   onToggle: () => void;
   onClose: () => void;
-  skipInitialOpenFocus: boolean;
 }) {
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const rowRef = useRef<HTMLDivElement>(null);
-  const skipFocusOnceRef = useRef(skipInitialOpenFocus);
 
   const panelId = `section3-panel-${item.id}`;
   const triggerId = `section3-trigger-${item.id}`;
   const headingId = `section3-heading-${item.id}`;
-
-  /** Opening hides the trigger (focus lost) → mobile often scrolls to top. Move focus to heading without scrolling, then anchor row with "nearest". */
-  useLayoutEffect(() => {
-    if (!isOpen) return;
-    if (skipFocusOnceRef.current) {
-      skipFocusOnceRef.current = false;
-      return;
-    }
-    const el = document.getElementById(headingId);
-    if (el instanceof HTMLElement) {
-      el.focus({ preventScroll: true });
-    }
-    requestAnimationFrame(() => {
-      rowRef.current?.scrollIntoView({
-        block: "nearest",
-        inline: "nearest",
-        behavior: "auto",
-      });
-    });
-  }, [isOpen, headingId]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -143,7 +113,6 @@ function ServiceAccordionRow({
 
   return (
     <div
-      ref={rowRef}
       className={`border-b border-[#2A3378] ${accordionStyles.accordionRow}`}
     >
       <button
@@ -172,18 +141,14 @@ function ServiceAccordionRow({
         id={panelId}
         role="region"
         aria-labelledby={isOpen ? headingId : triggerId}
-        className={`${accordionStyles.accordionPanel} cursor-pointer ${isOpen
-          ? accordionStyles.accordionPanelOpen
-          : accordionStyles.accordionPanelClosed
-          }`}
+        className={`${accordionStyles.accordionPanel} cursor-pointer ${
+          isOpen
+            ? accordionStyles.accordionPanelOpen
+            : accordionStyles.accordionPanelClosed
+        }`}
         onClick={openExternal}
       >
-        <div
-          className={`${accordionStyles.accordionPanelInner} ${isOpen
-            ? accordionStyles.accordionPanelInnerVisible
-            : accordionStyles.accordionPanelInnerHidden
-            }`}
-        >
+        <div className={accordionStyles.accordionPanelInner}>
           <div className="py-5 sm:py-6">
             <div className="flex flex-col lg:flex-row gap-8 xl:gap-10 items-start">
               <div className="flex items-start justify-between gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-0">
@@ -386,7 +351,6 @@ export default function Section3() {
               setOpenItem((prev) => (prev === item.id ? null : item.id))
             }
             onClose={closePanel}
-            skipInitialOpenFocus={item.id === "01"}
           />
         ))}
 
