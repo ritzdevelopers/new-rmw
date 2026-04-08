@@ -60,7 +60,7 @@ export default function Section5() {
               helped transform.
             </p>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-3 lg:flex-nowrap lg:justify-start">
+            {/* <div className="mt-6 flex flex-wrap justify-center gap-3 lg:flex-nowrap lg:justify-start">
               <button
                 onClick={() =>
                   window.open("/category/case-study", "_blank")
@@ -79,7 +79,7 @@ export default function Section5() {
               >
                 Video Tutorial
               </button>
-            </div>
+            </div> */}
           </div>
 
           <div className="w-full lg:w-[78%] relative overflow-x-hidden">

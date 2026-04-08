@@ -16,7 +16,7 @@ export default function Section3() {
       label: "Branding & Identity Development",
       paragraphs: [
         "Take your brand identity to the next level with our branding and design services. We help you in developing a memorable and authentic brand identity that resonates with your customers, fosters brand loyalty, and helps you stand out in the cutthroat competition.",
-        "Our comprehensive branding services include logo development, brand positioning, and visual communication to help you achieve success.",
+        "Our comprehensive branding services include logo development, brand positioning, and visual communication to help you achieve success.", 
       ],
       imageSrc:
         "/varunimage/Branding&IdentityDevelopment.png",
