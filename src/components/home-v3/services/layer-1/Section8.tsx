@@ -275,7 +275,7 @@ function    Section8() {
                         </p>
 
                         <ul
-                            className="font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] list-disc px-4 flex flex-col gap-2 sm:gap-3 text-left md:text-left mb-5 xl:mb-5"
+                            className="font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] text-[#0F1640] list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-left mb-5 xl:mb-5"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}
@@ -353,7 +353,7 @@ function    Section8() {
                         </p>
 
                         <ul
-                            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[14px] lg:text-[14px] text-[#0F1640] text-left md:text-left"
+                            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-[#0F1640] text-left"
                             style={{
                                 fontFamily: "PoppinsRegular",
                             }}

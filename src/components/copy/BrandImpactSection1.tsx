@@ -276,7 +276,7 @@ function BrandImpactSection1() {
                         }}
                     >
                         Let our experts analyze your current brand positioning and provide
-                        actionable recommendations.
+                        actionable recommendation.
                     </p>
 
                     <ul

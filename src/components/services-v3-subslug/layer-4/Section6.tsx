@@ -58,7 +58,7 @@ export default function Section6() {
               helped transform.
             </p>
           </div>
-          <div className="flex flex-row gap-2 justify-center md:justify-start mt-3">
+          {/* <div className="flex flex-row gap-2 justify-center md:justify-start mt-3">
             <button
               onClick={() =>
                 window.open("/category/case-study", "_blank")
@@ -77,7 +77,7 @@ export default function Section6() {
             >
               <p>Video Tutorial</p>
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Testimonial Slider Container */}
