@@ -198,7 +198,7 @@ function RubyBotBootstrap() {
                 // Reset to start and play
                 audioRef.current.currentTime = 0;
                 const playPromise = audioRef.current.play();
-                
+
                 if (playPromise !== undefined) {
                     playPromise
                         .then(() => {
@@ -236,7 +236,12 @@ function RubyBotBootstrap() {
         scrollToBottom();
     }, [messages, isTyping]);
 
-
+    const handleChatting = async (message: { user_message: string, bot_reply: string }) => {
+        const response = await axios.post('/api/chatting', {
+            message: message,
+        });
+        return response.data;
+    };
     const handleSendMessage = (text?: string) => {
         const messageText = text || inputValue.trim();
         if (!messageText) return;
@@ -279,14 +284,19 @@ function RubyBotBootstrap() {
                             sender: 'bot',
                             timestamp: new Date(),
                         };
+                        const user_conversations = {
+                            user_message: messageText,
+                            bot_reply: botResponseText
+                        }
+                        handleChatting(user_conversations);
                         setMessages((prev) => [...prev, botResponse]);
                         setIsTyping(false);
-                        
+
                         // Check for keywords in bot response
                         if (detectKeywords(botResponseText)) {
                             setShowEnquiryButton(true);
                         }
-                        
+
                         // Play notification sound when bot replies (with small delay to ensure message is rendered)
                         setTimeout(() => {
                             playNotificationSound();
@@ -400,7 +410,7 @@ function RubyBotBootstrap() {
                     timestamp: new Date(),
                 };
                 setMessages((prev) => [...prev, successMessage]);
-                
+
                 // Reset form and close
                 setEnquiryForm({ name: '', phone: '', email: '', message: '' });
                 setShowEnquiryForm(false);
@@ -457,8 +467,8 @@ function RubyBotBootstrap() {
                             </div>
                         </div>
                         <div className={styles.headerRight}>
-                            <button 
-                                onClick={() => setIsRubyOpen(false)} 
+                            <button
+                                onClick={() => setIsRubyOpen(false)}
                                 className={styles.closeButton}
                                 aria-label="Close chat"
                             >
@@ -554,7 +564,7 @@ function RubyBotBootstrap() {
                                         <IoMdClose className={styles.enquiryFormCloseIcon} />
                                     </button>
                                 </div>
-                                
+
                                 <input
                                     type="text"
                                     placeholder="Your Name *"
@@ -562,7 +572,7 @@ function RubyBotBootstrap() {
                                     onChange={(e) => handleEnquiryFormChange('name', e.target.value)}
                                     className={styles.formInput}
                                 />
-                                
+
                                 <input
                                     type="tel"
                                     placeholder="Phone Number *"
@@ -570,7 +580,7 @@ function RubyBotBootstrap() {
                                     onChange={(e) => handleEnquiryFormChange('phone', e.target.value)}
                                     className={styles.formInput}
                                 />
-                                
+
                                 <input
                                     type="email"
                                     placeholder="Email Address *"
@@ -578,7 +588,7 @@ function RubyBotBootstrap() {
                                     onChange={(e) => handleEnquiryFormChange('email', e.target.value)}
                                     className={styles.formInput}
                                 />
-                                
+
                                 <textarea
                                     placeholder="Your Message (Optional)"
                                     value={enquiryForm.message}
@@ -586,7 +596,7 @@ function RubyBotBootstrap() {
                                     rows={3}
                                     className={styles.formTextarea}
                                 />
-                                
+
                                 <div className={styles.formButtons}>
                                     <button
                                         onClick={handleSubmitEnquiry}

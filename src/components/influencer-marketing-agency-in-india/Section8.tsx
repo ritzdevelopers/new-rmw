@@ -27,7 +27,8 @@ export default function Section8() {
           <span>Schedule Free Consultation</span>
           <img
               src="/home-v3/s3/rhgt.png"
-              alt=""
+              alt="Ritz Media World – schedule consultation"
+              title="Ritz Media World"
               className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
             />
         </Link>

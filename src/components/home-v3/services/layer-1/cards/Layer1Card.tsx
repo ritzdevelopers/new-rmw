@@ -18,10 +18,11 @@ function Layer1Card({ item, idx }: { item: Item, idx: number }) {
     const { title, description, image, link, meta_titles, meta_description, meta_keywords } = item;
     return (
         <article 
-            className="w-full h-full flex flex-col justify-between gap-4"
+            className="w-full cursor-pointer h-full flex flex-col justify-between gap-2"
             itemScope 
             itemType="https://schema.org/Service"
             aria-label={meta_titles || title}
+            onClick={() => window.open(`${link}`, "_blank")}
         >
             {/* Row 1 - Header with Meta Info */}
             <header className="flex w-full justify-start pb-2">

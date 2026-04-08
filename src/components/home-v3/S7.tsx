@@ -43,10 +43,10 @@ function S7() {
     ];
 
     return (
-        <section className='w-full lg:min-h-[647px] bg-[url(/home-v3/awards-bg/awards-bg-mobile.png)] md:bg-[url(/home-v3/awards-bg/awards-bg-desktop.png)] bg-cover bg-no-repeat bg-center flex justify-center items-center py-10  lg:py-[70px] px-4 sm:px-6 lg:px-0'>
+        <section className='w-full lg:min-h-[647px] bg-[url(/home-v3/awards-bg/awards-bg-mobile.png)] xl:bg-[url(/home-v3/awards-bg/awards-bg-desktop.png)] bg-cover bg-no-repeat bg-center flex justify-center items-center py-10  lg:py-[70px]'>
 
             {/* Center Align Container  */}
-            <div className={`w-full lg:px-12 md:px-4 px-2 sm:px-10 flex flex-col gap-6 ${styles.container}`}>
+            <div className={`w-full  flex flex-col gap-6 ${styles.container}`}>
                 {/* Top Row  */}
                 <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
                     {/* Left Side Container  */}
@@ -120,12 +120,12 @@ function S7() {
                                     <div className='w-full max-w-[401px] mx-auto xl:pl-[10px]'>
                                         <div className="w-full h-[250px] sm:h-[280px] lg:h-[326px] border-1 border-[#C9923780] relative flex justify-center items-center">
                                             <div className="w-[90%] h-[95%] flex justify-center items-center relative">
-                                                <Image src={ob.img} alt={ob.highlite} fill className='object-contain'></Image>
+                                                <Image src={ob.img} alt={ob.para} title={ob.para} fill className='object-contain'></Image>
                                             </div>
 
                                             {/* Absolute Position BTN  */}
                                             <div className='w-[110px] sm:w-[120px] lg:w-[125px] h-[32px] sm:h-[34px] lg:h-[36px] rounded-[50px] bg-[#ffffff] text-[#F59612] flex justify-center items-center gap-1 absolute top-2 -left-3 sm:-left-2.5 lg:-left-3 z-10'>
-                                                <img src="/home-v3/s7/star2.png" alt="RMW" className='w-[20px] sm:w-[22px] lg:w-[24px] h-[20px] sm:h-[22px] lg:h-[24px]' />
+                                                <img src="/home-v3/s7/star2.png" alt="Excellence" title="Excellence" className='w-[20px] sm:w-[22px] lg:w-[24px] h-[20px] sm:h-[22px] lg:h-[24px]' />
                                                 <p className='font-[600] text-[12px] sm:text-[13px] lg:text-[14px]' style={{
                                                     fontFamily: "OpenSansSemiBold",
                                                 }}>{ob.highlite}</p>

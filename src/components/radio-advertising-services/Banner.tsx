@@ -26,7 +26,7 @@ export default function Banner() {
                     : "/alishba-services-v3/radio-advertising/radio-advertising.jpg"
                     })`,
             }}
-            className={`w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[490px] 
+            className={`w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[490px] xl:h-[516px]
         bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-12 md:pb-16 lg:pb-20
          xl:pb-26 px-4 sm:px-6 md:px-8 lg:px-0`}>
             <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-none">

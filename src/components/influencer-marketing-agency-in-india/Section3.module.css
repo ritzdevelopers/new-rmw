@@ -1,17 +1,41 @@
-/* Accordion animation - ease-in-out for smooth open/close */
-.accordionContent {
+/* Accordion row */
+.accordionRow {
+  scroll-margin-top: 0.5rem;
+}
+
+/* Height: grid row 0fr → 1fr (smooth, no huge max-height) */
+.accordionPanel {
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-  transition:
-    max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.35s ease-in-out;
+  transition: grid-template-rows 0.35s ease;
 }
 
-.accordionContentClosed {
-  max-height: 0;
-  opacity: 0;
+.accordionPanelOpen {
+  grid-template-rows: 1fr;
 }
 
-.accordionContentOpen {
-  max-height: 1200px;
-  opacity: 1;
+.accordionPanelClosed {
+  grid-template-rows: 0fr;
+}
+
+.accordionPanelInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Content entrance — simple keyframe only */
+.accordionPanelOpen .accordionPanelInner {
+  animation: accordionContentIn 0.38s ease forwards;
+}
+
+@keyframes accordionContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

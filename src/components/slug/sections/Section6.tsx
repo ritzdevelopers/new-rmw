@@ -48,17 +48,145 @@ function ServiceSelectChevron() {
 function Section6() {
     const captchaRef = useRef<HCaptcha>(null);
     const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formData, setFormData] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        service: "",
+        query: "",
+    });
+    const [popupMessage, setPopupMessage] = useState<string | null>(null);
+    const [popupType, setPopupType] = useState<"success" | "error">("error");
 
     const handleCaptchaVerify = (token: string) => {
         setCaptchaToken(token);
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const showPopup = (type: "success" | "error", message: string) => {
+        setPopupType(type);
+        setPopupMessage(message);
+        if (type === "success") {
+            toast.success(message);
+            return;
+        }
+        toast.error(message);
+    };
+
+    const validateForm = () => {
+        const trimmedName = formData.name.trim();
+        const trimmedPhone = formData.phone.trim();
+        const phoneDigits = trimmedPhone.replace(/\D/g, "");
+        const trimmedEmail = formData.email.trim();
+        const trimmedService = formData.service.trim();
+        const trimmedQuery = formData.query.trim();
+
+        if (!trimmedName || trimmedName.length < 2) {
+            showPopup("error", "Please enter a valid name");
+            return false;
+        }
+
+        if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+            showPopup("error", "Please enter a valid phone number");
+            return false;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+            showPopup("error", "Please enter a valid email address");
+            return false;
+        }
+
+        if (!trimmedService) {
+            showPopup("error", "Please select a service");
+            return false;
+        }
+
+        if (!trimmedQuery || trimmedQuery.length < 10) {
+            showPopup("error", "Please enter a message of at least 10 characters");
+            return false;
+        }
 
         if (!captchaToken) {
-            toast.error("Please complete the captcha");
+            showPopup("error", "Please complete the captcha");
+            return false;
+        }
+
+        return true;
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (isSubmitting) {
             return;
+        }
+
+        if (!validateForm()) return;
+
+        try {
+            setIsSubmitting(true);
+
+            const captchaRes = await fetch("/api/verify-captcha", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ token: captchaToken }),
+            });
+
+            const captchaData: { success?: boolean } = await captchaRes.json();
+
+            if (!captchaRes.ok || !captchaData.success) {
+                showPopup("error", "Captcha verification failed. Please try again.");
+                captchaRef.current?.resetCaptcha();
+                setCaptchaToken(null);
+                return;
+            }
+
+            const payload = {
+                name: formData.name.trim(),
+                phone: formData.phone.trim().replace(/\D/g, ""),
+                email: formData.email.trim(),
+                service: formData.service.trim(),
+                query: formData.query.trim(),
+            };
+
+            const response = await fetch("/api/save-contact-query", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
+            const result: { message?: string } = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.message || "Unable to submit form");
+            }
+
+            showPopup("success", "Thank you! Your query has been submitted.");
+            setFormData({
+                name: "",
+                phone: "",
+                email: "",
+                service: "",
+                query: "",
+            });
+            captchaRef.current?.resetCaptcha();
+            setCaptchaToken(null);
+        } catch (error) {
+            const message =
+                error instanceof Error ? error.message : "Something went wrong. Please try again.";
+            showPopup("error", message);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -72,11 +200,11 @@ function Section6() {
 
                     {/* Row 1  */}
                     <div className="w-full text-center px-2">
-                        <h3
+                        <p
                             className={`font-[700] text-[14px] leading-snug text-white sm:text-[20px] lg:text-[24px] xl:text-[30px] ${styles.fontmontserrat}`}
                         >
                             Let’s Connect & Bring <br /> Your Vision to Life.
-                        </h3>
+                        </p>
                     </div>
 
                     {/* Row 2  */}
@@ -94,7 +222,7 @@ function Section6() {
                                     className={`font-[600] text-[11px] leading-snug text-white sm:text-[13px] lg:text-[14px] xl:text-[16px] ${styles.fontmontserrat}`}
                                 >
                                     <span
-                                    className="leading-[20px] sm:leading-[28px]"
+                                    className="leading-[20px] sm:leading-[28px] cursor-pointer"
                                         onClick={() =>
                                             window.open("https://maps.app.goo.gl/tjeEjr4GgaLjGLCA7", "_blank")
                                         }
@@ -115,14 +243,14 @@ function Section6() {
                                 <p
                                     className={`font-[600] text-[13px] text-white sm:text-[15px] xl:text-[18px] ${styles.fontmontserrat}`}
                                 >
-                                    <span onClick={() => window.open("tel:09220516777", "_blank")}>09220516777</span>
+                                    <span className="cursor-pointer" onClick={() => window.open("tel:09220516777", "_blank")}>09220516777</span>
                                     
                                 </p>
                                 <p
                                     className={`font-[600] text-[13px] text-white sm:text-[15px] xl:text-[18px] ${styles.fontmontserrat}`}
                                 >
                                    
-                                    <span onClick={() => window.open("tel:07290002168", "_blank")}>07290002168</span>
+                                    <span className="cursor-pointer" onClick={() => window.open("tel:07290002168", "_blank")}>07290002168</span>
                                 </p>
                             </div>
                         </div>
@@ -137,7 +265,7 @@ function Section6() {
                                 </p>
                                 <p className={`font-[600] text-[13px] text-white sm:text-[15px] xl:text-[20px] ${styles.fontmontserrat}`}>
                                     <span
-                                        className="break-all"
+                                        className="break-all cursor-pointer"
                                         onClick={() => window.open("mailto:info@ritzmediaworld.com", "_blank")}
                                     >
                                         info@ritzmediaworld.com
@@ -153,32 +281,33 @@ function Section6() {
                      lg:h-[230px] lg:w-[230px] xl:bottom-[-40px] xl:right-[30px] xl:h-[265px] xl:w-[265px] xl:gap-4">
                         <p className={`font-[600] text-[11px] sm:text-[14px] xl:text-[18px] ${styles.fontmontserrat}`}>Follow Us</p>
                         <div className="flex justify-center items-center gap-[6px] sm:gap-3 xl:gap-4">
-                            <a href="https://www.facebook.com/ritzmediaworld" target="_blank" className="md:w-[22px] w-[15px] h-[15px] md:h-[22px] flex justify-center items-center">
+                            <a href="https://www.facebook.com/ritzmediaworld" target="_blank" className="md:w-[22px] w-[15px] h-[15px] cursor-pointer md:h-[22px] flex justify-center items-center">
                                 <MdFacebook className="w-full h-full text-[#1877F2]" />
                             </a>
-                            <a href="https://x.com/ritzmediaworld" target="_blank" className="md:w-[22px] w-[15px] h-[15px] md:h-[22px] flex justify-center items-center">
+                            <a href="https://x.com/ritzmediaworld" target="_blank" className="md:w-[22px] w-[15px] h-[15px] cursor-pointer md:h-[22px] flex justify-center items-center">
                                 <BsTwitterX className="w-full h-full text-[#000000]" />
                             </a>
                             <a
                                 href="https://www.instagram.com/ritzmediaworld"
                                 target="_blank"
                                 aria-label="Instagram"
-                                className="md:w-[22px] w-[15px] h-[15px] md:h-[22px] flex justify-center items-center"
+                                className="md:w-[22px] w-[15px] h-[15px] cursor-pointer md:h-[22px] flex justify-center items-center"
                             >
                                 <img
                                     src="/icons/insta-icn.svg"
-                                    alt=""
+                                    alt="Ritz Media World on Instagram"
+                                    title="Ritz Media World"
                                     width={22}
                                     height={22}
-                                    className="h-full w-full object-contain"
+                                    className="h-full w-full object-contain cursor-pointer"
                                 />
                             </a>
 
-                            <a href="https://www.linkedin.com/company/ritzmediaworld" target="_blank" className="md:w-[22px] w-[15px] h-[15px] md:h-[22px] rounded-full bg-[#007AB9] flex justify-center items-center">
-                                <TiSocialLinkedin className="w-full h-full text-white" />
+                            <a href="https://www.linkedin.com/company/ritzmediaworld" target="_blank" className="md:w-[22px] w-[15px] h-[15px] md:h-[22px] cursor-pointer rounded-full bg-[#007AB9] flex justify-center items-center">
+                                <TiSocialLinkedin className="w-full h-full text-white cursor-pointer" />
                             </a>
-                            <a href="https://www.youtube.com/@ritzmediaworld" target="_blank" className="md:w-[22px] w-[15px] h-[15px] md:h-[22px]  flex justify-center items-center">
-                                <BsYoutube className="w-full h-full text-[#FF0000]" />
+                            <a href="https://www.youtube.com/@ritzmediaworld" target="_blank" className="md:w-[22px] w-[15px] h-[15px] md:h-[22px] cursor-pointer flex justify-center items-center">
+                                <BsYoutube className="w-full h-full text-[#FF0000] cursor-pointer" />
                             </a>
                         </div>
                     </div>
@@ -188,11 +317,11 @@ function Section6() {
                 <div className="flex w-full flex-col gap-4 lg:flex-1 lg:max-w-[min(100%,384px)] xl:max-w-[538px] xl:flex-none justify-between">
                     {/* Row 1  */}
                     <div>
-                        <h5
+                        <p
                             className={`font-[600] text-center md:text-left text-[26px] leading-tight sm:text-[30px] lg:text-[34px] xl:text-[40px] ${styles.fontmontserrat}`}
                         >
                             Your Big Idea Starts Here
-                        </h5>
+                        </p>
                         <p className={`mt-2 font-[400] text-center md:text-left text-[14px] leading-relaxed sm:text-[15px] ${styles.fontpoppins}`}>
                             Got a project you&apos;re thinking about? Fill out the form below, & our team will reach out
                             to you soon to make your ideas happen!
@@ -201,28 +330,34 @@ function Section6() {
                     {/* Row 2  */}
                     <div>
                         <form className="flex flex-col gap-6 xl:gap-8" onSubmit={handleSubmit}>
-                            <input type="text" className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500] ${styles.fontmontserrat}`} placeholder="Your Name" />
-                            <input type="tel" className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500]  ${styles.fontmontserrat}`} placeholder="Phone Number" />
-                            <input type="email" className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500] ${styles.fontmontserrat}`} placeholder="Email Address" />
+                            <input type="text" name="name" value={formData.name} onChange={handleInputChange} className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500] ${styles.fontmontserrat}`} placeholder="Your Name" />
+                            <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500]  ${styles.fontmontserrat}`} placeholder="Phone Number" />
+                            <input type="email" name="email" value={formData.email} onChange={handleInputChange} className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500] ${styles.fontmontserrat}`} placeholder="Email Address" />
                             <div className="relative w-full">
                                 <select
+                                    name="service"
+                                    value={formData.service}
+                                    onChange={handleInputChange}
                                     className={`w-full cursor-pointer appearance-none bg-transparent pb-4 pr-8 text-[#5C5C5C] font-[500] text-[14px] border-b-[1px] border-[#0F1640] outline-none ${styles.fontmontserrat}`}
                                 >
-                                    <option value="1" className="text-[#5C5C5C] font-[500] text-[14px]">Select Service</option>
-                                    <option value="2" className="text-[#5C5C5C] font-[500] text-[14px]">Digital Marketing</option>
-                                    <option value="3" className="text-[#5C5C5C] font-[500] text-[14px]">Creative Services</option>
-                                    <option value="4" className="text-[#5C5C5C] font-[500] text-[14px]">Print Advertising</option>
-                                    <option value="5" className="text-[#5C5C5C] font-[500] text-[14px]">Radio Advertising</option>
-                                    <option value="6" className="text-[#5C5C5C] font-[500] text-[14px]">Content Marketing</option>
-                                    <option value="7" className="text-[#5C5C5C] font-[500] text-[14px]">Web Development</option>
-                                    <option value="8" className="text-[#5C5C5C] font-[500] text-[14px]">Celebrity Endorsements</option>
-                                    <option value="9" className="text-[#5C5C5C] font-[500] text-[14px]">Influencer Marketing</option>
+                                    <option value="" className="text-[#5C5C5C] font-[500] text-[14px]">Select Service</option>
+                                    <option value="Digital Marketing" className="text-[#5C5C5C] font-[500] text-[14px]">Digital Marketing</option>
+                                    <option value="Creative Services" className="text-[#5C5C5C] font-[500] text-[14px]">Creative Services</option>
+                                    <option value="Print Advertising" className="text-[#5C5C5C] font-[500] text-[14px]">Print Advertising</option>
+                                    <option value="Radio Advertising" className="text-[#5C5C5C] font-[500] text-[14px]">Radio Advertising</option>
+                                    <option value="Content Marketing" className="text-[#5C5C5C] font-[500] text-[14px]">Content Marketing</option>
+                                    <option value="Web Development" className="text-[#5C5C5C] font-[500] text-[14px]">Web Development</option>
+                                    <option value="Celebrity Endorsements" className="text-[#5C5C5C] font-[500] text-[14px]">Celebrity Endorsements</option>
+                                    <option value="Influencer Marketing" className="text-[#5C5C5C] font-[500] text-[14px]">Influencer Marketing</option>
                                 </select>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-end pb-4">
                                     <ServiceSelectChevron />
                                 </span>
                             </div>
                             <input type="text"
+                                name="query"
+                                value={formData.query}
+                                onChange={handleInputChange}
                                 className={`w-full mt-4 pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500] ${styles.fontmontserrat}`}
                                 placeholder="Write Message"
                             />
@@ -236,8 +371,8 @@ function Section6() {
                                 />
                             </div>
                             <div className="flex justify-center md:justify-start">
-                                <button className="flex justify-between items-center gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
-                                    <p className={`font-[500] text-[16px] xl:text-[18px] ${styles.fontmontserrat}`}>Submit</p>
+                                <button type="submit" disabled={isSubmitting} className="flex justify-between items-center gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity disabled:cursor-not-allowed disabled:opacity-60">
+                                    <p className={`font-[500] text-[16px] xl:text-[18px] ${styles.fontmontserrat}`}>{isSubmitting ? "Submitting..." : "Submit"}</p>
                                     <div className="w-[40px] h-[40px] bg-[#C99237] rounded-full flex justify-center items-center">
 
                                         <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -252,6 +387,25 @@ function Section6() {
                     </div>
                 </div>
             </div>
+            {popupMessage && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 px-4">
+                    <div className="w-full max-w-sm rounded-lg bg-white p-5 shadow-xl">
+                        <p className={`text-base font-[600] ${popupType === "success" ? "text-green-700" : "text-red-700"} ${styles.fontmontserrat}`}>
+                            {popupType === "success" ? "Success" : "Error"}
+                        </p>
+                        <p className={`mt-2 text-sm text-[#222] ${styles.fontpoppins}`}>{popupMessage}</p>
+                        <div className="mt-4 flex justify-end">
+                            <button
+                                type="button"
+                                onClick={() => setPopupMessage(null)}
+                                className="rounded-md bg-[#0F1640] px-4 py-2 text-sm text-white"
+                            >
+                                OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     )
 }

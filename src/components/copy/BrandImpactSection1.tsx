@@ -82,8 +82,8 @@ function BrandImpactSection1() {
 
     const downloadPDF = () => {
         const link = document.createElement("a");
-        link.href = "/RMWCaseStudies_250327_081936.pdf";
-        link.download = "RMWCaseStudies_250327_081936.pdf";
+        link.href = "/Eldeco-Lvb-Overview-Report.pdf";
+        link.download = "Eldeco-Lvb-Overview-Report.pdf";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -198,7 +198,7 @@ function BrandImpactSection1() {
                     </p> */}
 
                     <p
-                        className="font-[400] text-[13px]  lg:text-[15px] xl:text-[16px] text-left mb-2 md:mb-0"
+                        className="font-[400] text-[13px] leading-[25px] md:text-[15px] xl:text-[16px] text-left mb-2 md:mb-0"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -275,7 +275,7 @@ function BrandImpactSection1() {
                     </h2>
 
                     <p
-                        className="font-[400] text-[14px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left"
+                        className="font-[400] text-[14px] leading-[25px] md:text-[15px]  xl:text-[16px] text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -310,6 +310,7 @@ function BrandImpactSection1() {
                         <img
                             src="/home-v3/s3/rhgt.png"
                             alt="RMW"
+                            title="RMW"
                             className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
                         />
                     </div>

@@ -1,5 +1,6 @@
-import BrandThatTrustUs from "./BrandThatTrustUs";
+// import BrandThatTrustUs from "./BrandThatTrustUs";
 import containerStyles from "@/components/celebrity-endorsements/page.module.css";
+import Clients from "./Clients";
 
 type Card = {
   title: string;
@@ -45,25 +46,26 @@ export default function Section4() {
     <>
       <section className="w-full bg-white pt-10 sm:pt-12 md:pt-16 flex justify-center px-4 sm:px-6 lg:px-0">
         <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
-          <div className="flex flex-wrap">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:flex lg:flex-wrap lg:gap-0">
             {cards.map((card, index) => (
               <div
                 key={card.title}
-                className={`w-full sm:w-1/2 lg:w-1/3 min-h-[180px] sm:min-h-[210px] px-6 sm:px-8 lg:px-6 xl:px-8 py-8 sm:py-10 flex flex-col items-center justify-center text-center border border-[#DFDDDD] border-r-0 sm:border-r -ml-px ${
+                style={{ borderColor: "#DFDDDD" }}
+                className={`w-full lg:w-1/3 min-h-[180px] sm:min-h-[210px] px-6 sm:px-8 lg:px-6 xl:px-8 py-8 sm:py-10 flex flex-col items-center justify-center text-center max-lg:border lg:border lg:border-r lg:-ml-px ${
                   card.title === "Visibility & Reach" || card.title === "Long-Term Impact"
-                    ? "-mt-0 !border-t !border-t-[#DFDDDD]"
-                    : "-mt-px"
+                    ? "lg:-mt-0 lg:!border-t lg:border-l-[1px]"
+                    : "lg:-mt-px"
                 } ${
                   card.highlighted ? "order-first lg:order-none" : (["order-2", "order-3", "order-4", "order-5", "order-6"][index === 0 ? 0 : index - 1] + " lg:order-none")
                 } ${
                   card.highlighted
                     ? "bg-[linear-gradient(149.48deg,#C1892C_-2.74%,#EFBB68_114.55%)]"
                     : "bg-white"
-                } ${card.title === "Engagement & Social Influence" ? "sm:!border-l-0 sm:!border-b-0" : ""} ${
-                  card.title === "Brand Positioning" ? "sm:!border-r-0 sm:!border-b-0" : ""
+                } ${card.title === "Engagement & Social Influence" ? "lg:!border-l-0 lg:!border-b-0" : ""} ${
+                  card.title === "Brand Positioning" ? "lg:!border-r-0 lg:!border-b-0" : ""
                 }`}
               >
-                <h3
+                <div
                   className={`${
                     card.highlighted
                       ? "text-white text-[22px] md:text-[25px] leading-normal lg:text-[30px] xl:text-[36px] lg:leading-[50px]"
@@ -77,17 +79,17 @@ export default function Section4() {
                   }}
                 >
                   {card.highlighted ? (
-                    <>
+                    <h2>
                       Why Influencer
                       <br />
                       Marketing
                       <br />
                       Matters
-                    </>
+                    </h2>
                   ) : (
-                    card.title
+                    <h3>{card.title}</h3>
                   )}
-                </h3>
+                </div>
 
                 {!card.highlighted && (
                   <p
@@ -120,17 +122,18 @@ export default function Section4() {
           </div>
         </div>
       </section>
-      <BrandThatTrustUs />
-      <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center px-4 sm:px-6 lg:px-0">
+      {/* <BrandThatTrustUs /> */}
+      <Clients />
+      <a href="/contact.html" target="_blank" className="w-full cursor-pointer bg-[#0F1640] py-7 sm:py-8 md:py-9 flex justify-center px-4 sm:px-6 lg:px-0">
         <div className={`w-full mx-auto overflow-hidden flex items-center justify-center text-center ${containerStyles.containerWidth}`}>
-          <h3
-            className="text-white font-[600] text-[20px] sm:text-[28px] md:text-[28px] leading-tight"
+          <p
+            className="text-white font-[600] text-[20px] sm:text-[28px] md:text-[28px] leading-[32px]"
             style={{ fontFamily: "MontserratSemiBold" }}
           >
             Ready to Turn Followers into Genuine Customers?
-          </h3>
+          </p>
         </div>
-      </section>
+      </a>
     </>
   );
 }

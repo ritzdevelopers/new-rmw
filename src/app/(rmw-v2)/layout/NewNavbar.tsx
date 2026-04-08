@@ -357,8 +357,8 @@ function NewNavbar() {
 
   const socialItems = [
     { label: 'X (Twitter)', link: 'https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld' },
-    { label: 'LinkedIn', link: 'https://www.facebook.com/ritzmediaworld/' },
-    { label: 'Facebook', link: 'https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in' },
+    { label: 'LinkedIn', link: 'https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in' },
+    { label: 'Facebook', link: 'https://www.facebook.com/ritzmediaworld/' },
     { label: 'YouTube', link: 'https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia' },
     { label: 'Instagram', link: 'https://www.instagram.com/ritzmediaworld/' }
   ];
@@ -557,7 +557,7 @@ function NewNavbar() {
           {/* Left Side Container  */}
           <div>
 
-            <img src="/rmw-final-logo.png" alt="RMW Logo" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`} />
+            <img src="/rmw-logo-sm-size.png" alt="Ritz Media World" title="Ritz Media World" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`} />
           </div>
           {/* Right Side Container  */}
           <div
@@ -736,7 +736,7 @@ function NewNavbar() {
                   openMenuButtonColor="#000"
                   changeMenuColorOnOpen={true}
                   colors={['#1a1a1a', '#2a2a2a']}
-                  logoUrl="/rmw-final-logo.png"
+                  logoUrl="/rmw-logo-sm-size.png"
                   accentColor="#C99237"
                   isFixed={true}
                   closeOnClickAway={true}
@@ -771,7 +771,7 @@ function NewNavbar() {
             /* For >=xl screens - full size */
             @media (min-width: 1280px) {
               .responsive-staggered-menu .sm-panel-item {
-                font-size: 4rem !important;
+                font-size: 3rem !important;
               }
             }
             
@@ -817,8 +817,9 @@ function NewNavbar() {
           {/* Logo */}
           <div className="flex items-center">
             <img
-              src="/rmw-final-logo.png"
-              alt="RMW Logo"
+              src="/rmw-logo-sm-size.png"
+              alt="Ritz Media World"
+              title="Ritz Media World"
               className={`w-auto object-contain transition-all duration-300 hover:scale-105 ${isScrolled ? "h-[36px] sm:h-[40px]" : "h-[52px] sm:h-[56px]"}`}
             />
           </div>
@@ -846,13 +847,14 @@ function NewNavbar() {
             <div className="border-b border-gray-100 pb-2">
               <button
                 onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className="mobile-menu-item w-full text-left font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 flex items-center justify-between group"
+                className="mobile-menu-item w-full text-left font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 flex items-center justify-between group relative z-40"
               >
-                <span className="relative">
+                <span onClick={()=>window.open("/services", "_blank")} className="relative z-50">
                   Services
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
                 </span>
                 <svg
+                   onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
                   className={`w-5 h-5 text-gray-600 transition-all duration-300 ${isMobileServicesOpen ? "rotate-180 text-[#C99237]" : "group-hover:text-[#C99237]"
                     }`}
                   fill="none"

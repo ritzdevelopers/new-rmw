@@ -8,7 +8,7 @@ function Section4() {
             <div className={`flex w-full flex-col-reverse items-center justify-between gap-8 md:gap-12 lg:flex-row lg:items-stretch lg:gap-10 ${styles.containerWidth}`}>
                 {/* Left Side Container  */}
                 <div className="relative w-full shrink-0 max-md:h-auto max-md:aspect-[603/566] md:h-[615px] lg:w-[500px] lg:h-[480px] xl:w-[603px] xl:h-[566px]">
-                    <Image src={'/slug/s3/seo-s3-img1.jpg'} fill alt="SEO"></Image>
+                    <Image src={'/slug/s3/seo-s3-img1.jpg'} fill alt="Ritz Media World – SEO services" title="Ritz Media World"></Image>
                 </div>
 
                 {/* Right Side Container — stretches to row height (matches tallest sibling) */}
@@ -23,10 +23,10 @@ function Section4() {
 
                     {/* Row 2  */}
                     <div className="flex items-center gap-5 flex-row md:justify-between md:gap-8 lg:gap-2 xl:gap-12">
-                        <div>  <img src="/services-v3-slug/s4/17_plus.png" alt="" className="h-auto w-[220px] md:w-[300px] xl:w-[429px]" /></div>
+                        <div>  <img src="/services-v3-slug/s4/17_plus.png" alt="Ritz Media World – 17+ years of experience" title="Ritz Media World" className="h-auto w-[220px] md:w-[300px] xl:w-[429px]" /></div>
 
                         <div className="flex flex-col   justify-center items-center">
-                            <h4 className={`font-[600] text-[40px] md:text-[50px] ${styles.fontmontserrat}`}>300+</h4>
+                            <p className={`font-[600] text-[40px] md:text-[50px] ${styles.fontmontserrat}`}>300+</p>
                             <p className={`font-[400] text-[14px] ${styles.fontopensans}`}>Successful Projects</p></div>
                     </div>
 
@@ -38,7 +38,7 @@ function Section4() {
                             <li>Increase your sales with high-quality SEO customized services</li>
                         </ul>
                         <div className="flex justify-center md:justify-start">
-                            <button className="flex justify-between items-center gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
+                            <a href="/about.html" target="_blank" className="flex justify-between items-center gap-4 bg-transparent border-none cursor-pointer hover:opacity-80 transition-opacity">
                                 <p className={`font-[500] text-[18px] ${styles.fontmontserrat}`}>More about us</p>
                                 <div className="w-[40px] h-[40px] bg-[#C99237] rounded-full flex justify-center items-center">
 
@@ -48,7 +48,7 @@ function Section4() {
                                     </svg>
 
                                 </div>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

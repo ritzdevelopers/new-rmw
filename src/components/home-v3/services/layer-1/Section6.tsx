@@ -13,10 +13,10 @@ function Section6() {
                     {/* Copy Row 1  */}
                     <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
                         {/* Left Side Container  */}
-                        <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0 px-4 sm:px-0">
-                            <p className="font-[700] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] text-center sm:text-left" style={{
+                        <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] border-b-[#cccc] md:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0 px-4 sm:px-0">
+                            <h2 className="font-[700] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] text-center sm:text-left" style={{
                                 fontFamily: 'MontserratBold',
-                            }}>Brands That Trust Us</p>
+                            }}>Brands That Trust Us</h2>
 
                             <p className="absolute top-[50%] transform -translate-y-[50%] -right-3 hidden sm:block">
                                 <svg
@@ -35,7 +35,7 @@ function Section6() {
                         </div>
 
                         {/* Right Side Container  */}
-                        <div className="flex w-full md:pl-6 lg:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden">
+                        <div className="flex md:flex-row items-center md:items-start flex-col w-full md:pl-6 lg:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden">
                             {/* Slider Container  */}
                             <div className="w-full overflow-hidden">
                                 <div className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}>
@@ -86,7 +86,7 @@ function Section6() {
                                             key={idx}
                                             className="w-[100px] h-[56px] sm:w-[120px] sm:h-[67px] lg:w-[146px] lg:h-[81px] relative shrink-0"
                                         >
-                                            <Image src={url} fill alt="RMW" className="object-contain" />
+                                            <Image src={url} fill alt="Ritz Media World – client brand logo" title="Ritz Media World" className="object-contain" />
                                         </div>
                                     ))}
                                 </div>

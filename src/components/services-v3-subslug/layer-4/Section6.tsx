@@ -37,19 +37,19 @@ export default function Section6() {
       <div className={`w-full mx-auto overflow-hidden flex flex-col ${containerStyles.containerWidth}`}>
         {/* Top Row */}
         <div className="flex flex-col gap-2 text-center md:text-left">
-          <p
+          <h2
             className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] uppercase text-[#C99237]"
             style={{ fontFamily: "OpenSansSemiBold" }}
           >
             Clients Testimonials
-          </p>
+          </h2>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 lg:gap-8 items-center md:items-end text-center md:text-left">
-            <h2
+            <h3
               className="font-[700] text-[22px] sm:text-[26px] md:text-[28px] lg:text-[36px]"
               style={{ fontFamily: "MontserratBold" }}
             >
               What Our Clients Say
-            </h2>
+            </h3>
             <p
               className="font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px]"
               style={{ fontFamily: "OpenSansRegular" }}
@@ -61,7 +61,7 @@ export default function Section6() {
           <div className="flex flex-row gap-2 justify-center md:justify-start mt-3">
             <button
               onClick={() =>
-                window.open("https://ritzmediaworld.com/contact.html", "_blank")
+                window.open("/category/case-study", "_blank")
               }
               className="s1-btn-gold w-[140px] sm:w-[146px] h-[37px] rounded-[5px] bg-[#C99237] cursor-pointer text-white font-[600] text-[13px] sm:text-[14px] md:text-[16px]"
               style={{ fontFamily: "OpenSansSemiBold" }}
@@ -129,7 +129,8 @@ export default function Section6() {
 
                   <img
                     src="/home-v3/exl-icn.png"
-                    alt=""
+                    alt="Ritz Media World – excellence"
+                    title="Ritz Media World"
                     className="absolute bottom-4 z-0 right-4"
                   />
                 </div>

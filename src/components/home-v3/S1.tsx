@@ -37,7 +37,8 @@ function S1() {
             <div className="">
               <img
                 src="/home-v3/s1/v2-s1-i2.png"
-                alt=""
+                alt="Ritz Media World – award-winning agency"
+                title="Ritz Media World"
                 className="h-[65px] md:h-[100px] lg:h-[118px]"
               />
             </div>
@@ -53,7 +54,8 @@ function S1() {
               <div className="flex items-end gap-0 ml-3 md:ml-0 ">
                 <img
                   src="/home-v3/star.png"
-                  alt=""
+                  alt="Ritz Media World – excellence"
+                  title="Ritz Media World"
                   className="w-[40px] h-[36px] sm:w-[48px] sm:h-[43px] lg:w-[55px] lg:h-[49px]"
                 />
 

@@ -207,8 +207,8 @@ function Section3({ servicesData }: Section3Props) {
 
                 {/* Row 1 For Heading  */}
                 <div className={`flex items-end justify-center lg:justify-start mx-0 lg:mx-2 ${styles2.containerWidth}`}>
-                    <h2 className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we d</h2>
-                    <img src="/home-v3/service-imgs/s3/do-txt.png" alt="arrow-right" className="h-[19px] mb-[14px]" />
+                    <h2 className={`font-[700] text-[#0F1640] text-[36px] ${styles2.fontmontserrat}`}>What we do </h2>
+
                 </div>
 
                 {/* Row 2 For Services Cards  */}
@@ -219,7 +219,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Digital <br /> Marketing",
                                 margin: "mr-[12px] pr-8 md:pr-40 lg:pr-18",
-                                description: "Without a strategy, you're driving blindfolded in the digital world. At Ritz Media World, we specialize in social media marketing, PPC campaigns, and SEO services to make sure your brand not only survives but thrives. With innovative tactics that are effective, we have you covered whether you're searching for the top SEO company in Delhi or the best digital marketing agency in Noida.",
+                                description: "Without a strategy, you're driving blindfolded in the digital world. At Ritz Media World, we specialize in social media marketing, PPC campaigns, and SEO services to make sure your brand not only survives but thrives. With innovative tactics that are effective, we have you covered whether you're searching for the top SEO company in Delhi or the best digital marketing agency in India.",
                                 image: "/alishba-services-v3/seo-analytics.png",
                                 link: "/services/digital-marketing",
                                 subServices: [
@@ -281,7 +281,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Print <br /> Advertisement",
                                 margin: "pr-4 pr-4 md:pr-32 lg:pr-0",
-                                description: "Print advertising is more vibrant than ever in spite of the digital boom! We at Ritz Media World give your print advertisements life so they can speak for themselves. Whether you're searching for print advertising services in Delhi or Noida, our ads have an impact and engage the right audience.",
+                                description: "Print advertising is more vibrant than ever in spite of the digital boom! We at Ritz Media World give your print advertisements life so they can speak for themselves. Whether you're searching for print advertising services in Delhi NCR, our ads have an impact and engage the right audience.",
                                 image: "/alishba-services-v3/print-ad.png",
                                 link: "/services/print-advertising",
                                 subServices: [
@@ -313,13 +313,13 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Radio <br /> Advertising",
-                                margin: "pr-8 md:pr-36 lg:pr-0 xl:pr-0 pt-20 lg:pt-0 xl:pt-0",
-                                description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Delhi and Noida can help you get your brand on the air.",
-                                image: "/alishba-services-v3/updated_radio_img.png",
+                                margin: "pr-8 md:pr-36 lg:pr-0  xl:pr-0 pt-0 xl:pt-0",
+                                description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Delhi NCR can help you get your brand on the air.",
+                                image: "/alishba-services-v3/nimg3.jpg",
                                 link: "/services/radio-advertising",
                                 subServices: [
                                     {
-                                        title: "Advertising Concept Development",
+                                        title: "Advertisement Concept Development",
                                         slug: "https://ritzmediaworld.com/services/radio-advertising/advertisement-concept-development"
                                     },
                                     {
@@ -339,7 +339,7 @@ function Section3({ servicesData }: Section3Props) {
                                         slug: "https://ritzmediaworld.com/services/radio-advertising/media-planning-and-buying",
                                     },
                                     {
-                                        title: "Cost Negotiation",
+                                        title: "NEGOTIATING AD RATES",
                                         slug: "https://ritzmediaworld.com/services/radio-advertising/radio-cost-negotiation-india",
                                     },
                                 ]
@@ -372,7 +372,7 @@ function Section3({ servicesData }: Section3Props) {
                             {
                                 title: "Web <br /> Development",
                                 margin: "pr-4 md:pr-32 lg:pr-0 xl:pr-8 2xl:pr-10 xl:-mr-10",
-                                description: "Let's make your website firm, interesting, and friendly because it is your digital handshake. Our web development team makes useful and friendly websites that attract and win the hearts of visitors. We assure you of an excellent online presence through our web designing services in Noida and Greater Noida.",
+                                description: "Let's make your website firm, interesting, and friendly because it is your digital handshake. Our web development services makes useful and friendly websites that attract and win the hearts of visitors. We assure you of an excellent online presence through our web designing services in India.",
                                 image: "/alishba-services-v3/webdev.png",
                                 link: "/services/web-designing-and-development  ",
                                 subServices: [
@@ -433,9 +433,9 @@ function Section3({ servicesData }: Section3Props) {
                             },
                             {
                                 title: "Influencer <br />   Marketing",
-                                margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-8 xl:pr-5 xl:-mr-6    ",
-                                description: "At Ritz Media World, influencer marketing isn’t about numbers. It is about persuading by trusted voices. We help you entrap customers who are leaking out from your influencers’ casual followers. Top social media marketing agencies in India are available with a variety of options.",
-                                image: "/alishba-services-v3/influencer-marketing.png",
+                                margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-4 xl:pr-5 xl:-mr-6    ",
+                                description: "At Ritz Media World influencer marketing is about persuasion through reliable voices, not just numbers. As a leading influencer marketing agency, we assist you in attracting clients who are eluding the casual followers of your influencers. We offer a range of tactics with top social media marketing companies in India to make sure your brand is noticed and reaches the appropriate audience.",
+                                image: "/alishba-services-v3/nimg4.jpg",
                                 link: "/services/influencer-marketing-agency-in-india",
                                 subServices: [
                                     {
@@ -492,17 +492,17 @@ function Section3({ servicesData }: Section3Props) {
                     {/* Row 2  */}
                     <div className={`w-full flex flex-col md:flex-row gap-4 sm:gap-6 lg:gap-0 ${styles2.containerWidth}`}>
                         <div className="w-full lg:w-[456px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[424px] relative">
-                            <Image src={"/home-v3/service-imgs/s3/s3-group.png"} alt="Ritz Media World" fill className="w-full h-full object-cover"></Image>
+                            <Image src={"/home-v3/service-imgs/s3/s3-group.png"} alt="Ritz Media World – team and collective experience" title="Ritz Media World" fill className="w-full h-full object-cover"></Image>
                         </div>
 
 
 
                         <div className="w-full lg:w-[456px] h-[280px] sm:h-[320px] md:h-[380px] lg:h-[424px] relative">
-                            <Image src={"/home-v3/service-imgs/s3/s3-increase.png"} alt="Ritz Media World" fill className="w-full h-full object-cover"></Image>
+                            <Image src={"/home-v3/service-imgs/s3/s3-increase.png"} alt="Ritz Media World – perpetual growth" title="Ritz Media World" fill className="w-full h-full object-cover"></Image>
 
                             {/* Absolute Position Text Container  */}
                             <div className="absolute inset-0 w-full h-full flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 text-center md:text-left">
-                                <p className={`font-[400] text-[12px] sm:text-[14px] md:text-[16px] lg:text-[18px] text-white ${styles2.fontopensans} max-w-[100%]`}>
+                                <p className={`font-[400] text-[16px] md:text-[16px] lg:text-[18px] text-white ${styles2.fontopensans} max-w-[100%]`}>
                                     We command growth with millions of <br className="hidden xl:block" /> hours in collective experience. At this point, <br className="hidden xl:block" /> it's not a matter of 'if', it becomes a matter of 'when' you will attain the tipping point that will drive your.
                                 </p>
                                 <h4 className={`font-[300] text-[28px] sm:text-[36px] md:text-[42px] xl:text-[50px] text-white mt-2 sm:mt-4 leading-[1.1] ${styles2.fontopensans}`}>
@@ -536,27 +536,46 @@ function Section3({ servicesData }: Section3Props) {
                             </div>
 
                             <div className="google-reviews w-full sm:w-[220px] md:w-[172px] xl:w-[269px] pt-2 border-t border-t-[#AFAFAF]">
-                                <img src="/home-v3/service-imgs/s3/google-reviews2.png" alt="google review" className="w-full" />
+                                <img onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} src="/home-v3/service-imgs/s3/google-reviews2.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" className="w-full cursor-pointer" />
                             </div>
                         </div>
                     </div>
 
                     {/* White Layer Row  */}
-                   <div className="w-full pt-[35px]  overflow-x-hidden"> <WhiteLayer /></div>
+                    <div className="w-full pt-[35px]  overflow-x-hidden"> <WhiteLayer /></div>
 
                     {/* Row 3  */}
                     <div className={`w-full flex flex-col md:flex-row justify-between pt-8 sm:pt-12 md:pt-16 lg:pt-[30px] gap-4 sm:gap-6 lg:gap-4 ${styles2.containerWidth}`}>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product.png"} alt="" className="w-full h-full object-cover"></Image>
-                            {/* Absolute Positioned Button  */}
-                            <div className="w-full absolute left-0 top-[60%] pl-10 z-10">
-                                <button onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} className={`w-[219px] cursor-pointer h-[54px] rounded-[5px] text-black font-[600] bg-[#ffffff] ${styles2.fontopensans}`}>
-                                Get Expert Advice
-                                </button>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/profitable-product2.png"} alt="Ritz Media World – profitable products and brand portfolio" title="Ritz Media World" className="w-full h-full object-cover filter brightness-60"></Image>
+
+                            {/* Absolute Positioned Div 2 — centered < xl, left-aligned xl+ */}
+                            <div
+                                className="absolute top-1/2 z-[8] -translate-y-1/2 rounded-full bg-[#00000095] left-1/2  -translate-x-1/2
+                                 h-[220px] w-[220px] 
+                                md:h-[320px] md:w-[320px]
+                                 lg:h-[400px] lg:w-[400px]
+                                  xl:left-8 xl:h-[350px] xl:w-[350px] xl:translate-x-0"
+                                aria-hidden
+                            />
+
+                            <div className="absolute left-1/2 top-1/2 z-10  max-w-full -translate-x-1/2 -translate-y-1/2 px-3 sm:px-4 w-full xl:left-20 xl:w-auto xl:max-w-[420px] xl:-translate-x-0 xl:translate-y-[-50%] xl:px-0">
+                                <div className="flex w-full flex-col items-center justify-center gap-4 text-center sm:gap-5 md:gap-6 xl:items-start xl:text-left">
+                                    <p className="font-[700] text-[20px] leading-tight text-white  md:text-[28px] lg:text-[40px] xl:text-[46px]">
+                                        We Build <span className="font-[400]">Successful</span> <br />
+                                        Profitable Products
+                                    </p>
+                                    <button
+                                        onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}
+                                        className={`h-[48px] w-full max-w-[157px] md:max-w-[219px] cursor-pointer rounded-[5px] bg-[#ffffff] text-[15px] font-[600] text-black sm:h-[52px] sm:text-[16px] xl:h-[54px] ${styles2.fontopensans}`}
+                                    >
+                                        Get Expert Advice
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div className="w-full md:w-[48%] lg:w-[615px] h-[250px] sm:h-[300px] md:h-[400px] lg:h-[505px] relative">
-                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} alt="" className="w-full cursor-pointer h-full object-cover"></Image>
+                            <Image onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")} fill src={"/home-v3/service-imgs/s3/company-mission.png"} alt="Ritz Media World – company mission" title="Ritz Media World" className="w-full cursor-pointer h-full object-cover"></Image>
                         </div>
                     </div>
 
@@ -589,7 +608,7 @@ function Section3({ servicesData }: Section3Props) {
                         </div>
 
                         {/* Right Side Container  */}
-                        <div className="flex w-full md:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden">
+                        <div className="flex flex-col md:flex-row items-center md:items-start w-full md:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden">
                             {/* Slider Container  */}
                             <div className="w-full overflow-hidden">
                                 <div className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}>
@@ -640,7 +659,7 @@ function Section3({ servicesData }: Section3Props) {
                                             key={idx}
                                             className="w-[100px] h-[56px] sm:w-[120px] sm:h-[67px] lg:w-[146px] lg:h-[81px] relative shrink-0"
                                         >
-                                            <Image src={url} fill alt="RMW" className="object-contain" />
+                                            <Image src={url} fill alt="Ritz Media World – client brand logo" title="Ritz Media World" className="object-contain" />
                                         </div>
                                     ))}
                                 </div>
@@ -698,7 +717,7 @@ function Section3({ servicesData }: Section3Props) {
                                                 w-[calc(50vw-2rem)] sm:w-auto
                                                 ${idx < 2 ? "border-b border-b-[#C9C9C9] sm:border-b-0" : ""}
                                                 ${idx % 2 === 0 ? "border-r border-r-[#C9C9C9] sm:border-r-0" : ""}`}>
-                                                <h5 className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#0F1640] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</h5>
+                                                <p className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[40px] xl:text-[60px] 2xl:text-[60px] text-[#0F1640] leading-tight ${styles2.fontmontserrat}`}>{ob.ttl}</p>
                                                 <p className={`font-[600] text-[10px] sm:text-[11px] md:text-[12px] lg:text-[13px] xl:text-[16px] 2xl:text-[16px] text-[#0F1640] mt-1 sm:mt-1.5 md:mt-2 ${styles2.fontopensans}`}>{ob.desc}</p>
                                             </div>
                                             {idx !== 3 && <div className="hidden sm:block w-[1px] min-h-[80px] md:min-h-[100px] lg:min-h-[120px] xl:min-h-[137px] bg-[#C9C9C9]"></div>}
@@ -713,13 +732,13 @@ function Section3({ servicesData }: Section3Props) {
 
                 <S6 padding="px-0" padding2="px-0"></S6>
                 <S7></S7>
-               
+
 
                 <div className="pt-4 xl:pt-16">
                     <BrandImpactSection2 />
                 </div>
 
-               
+
             </div>
 
             {/* Modal */}

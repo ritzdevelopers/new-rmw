@@ -114,7 +114,7 @@
    }
 
    .s5CardSubtitle {
-      font-size: 16px;
+      font-size: 18px;
    }
 
    .s5CardDesc {
@@ -122,13 +122,13 @@
    }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
    .s5CardTitle {
       font-size: 20px;
    }
 
    .s5CardSubtitle {
-      font-size: 15px;
+      font-size: 16px;
    }
 
    .s5CardDesc {
@@ -397,5 +397,11 @@
 
    to {
       transform: translateX(-33.333%);
+   }
+}
+
+@media (min-width:1727px) {
+   .bannerSize {
+      height: 750px !important;
    }
 }

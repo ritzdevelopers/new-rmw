@@ -4,7 +4,7 @@ import styles from "./Section1.module.css";
 export default function Section1() {
   return (
     <section
-      className='w-full h-[550px] md:h-[300px] md:min-h-[300px] lg:h-[500px] lg:min-h-[500px] xl:h-[500px] xl:min-h-[500px] min-[1536px]:h-auto min-[1536px]:min-h-[615px] bg-[url("/service-v3/celebrity-endorsements/banners/celebrity_mobile.png")] md:bg-[url("/service-v3/celebrity-endorsements/banners/celebrity_endorsement_banner.jpeg")] bg-cover bg-no-repeat bg-center flex md:items-stretch lg:items-end pb-8 sm:pb-12 md:pb-3 lg:pb-10 xl:pb-26 px-4 sm:px-6 md:px-0 overflow-visible
+      className='w-full h-[550px] md:h-[300px] md:min-h-[300px] lg:h-[500px] lg:min-h-[500px] xl:h-[500px] xl:min-h-[500px] min-[1536px]:h-auto min-[1536px]:min-h-[615px] bg-[url("/service-v3/celebrity-endorsements/banners/celebrity_mobile.png")] md:bg-[url("/service-v3/celebrity-endorsements/high_fp/celebrityendorsements.jpg")] bg-cover bg-no-repeat bg-center flex md:items-stretch lg:items-end pb-8 sm:pb-12 md:pb-3 lg:pb-10 xl:pb-26 px-4 sm:px-6 md:px-0 overflow-visible
         justify-center items-center md:justify-start
         '
     >
@@ -12,7 +12,8 @@ export default function Section1() {
         <div className="hidden lg:block lg:w-[160px] xl:w-[170px] lg:h-[30px] xl:h-[37px] relative">
           <img
             src="/home-v3/service-imgs/s1/yellow-reactangle.png"
-            alt=""
+            alt="Ritz Media World – celebrity endorsements"
+            title="Ritz Media World"
             className="w-full h-full"
           />
           <p
