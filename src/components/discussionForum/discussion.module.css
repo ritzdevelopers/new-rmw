@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@100;200;300;400;500;600;700;800&display=swap');
+
+.montserrat {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.montserratMedium {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.montserratBold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+.montserratExtraBold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+.fontopensans {
+   font-family: 'Open Sans', sans-serif;
+}
