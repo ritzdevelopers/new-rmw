@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import { HiOutlineChevronRight, HiOutlineMenuAlt1 } from "react-icons/hi";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { gsap } from "gsap";
 import CardNav from "./ServiceHCards";
 import StaggeredMenu from "./StaggeredMenu";
@@ -372,6 +373,28 @@ function NewNavbar() {
   const mobileMenuTimelineRef = useRef<gsap.core.Timeline | null>(null);
   const mobileServicesTimelineRef = useRef<gsap.core.Timeline | null>(null);
   const mobileItemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const consultCaptchaRef = useRef<HCaptcha>(null);
+  const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const [isConsultModalOpen, setIsConsultModalOpen] = useState(false);
+  const [isConsultModalClosing, setIsConsultModalClosing] = useState(false);
+  const [isSubmittingConsult, setIsSubmittingConsult] = useState(false);
+  const [consultModalScale, setConsultModalScale] = useState(1);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [consultForm, setConsultForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+  const [consultErrors, setConsultErrors] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+    captcha: "",
+    form: "",
+  });
 
   // GSAP Animation for mobile menu
   useEffect(() => {
@@ -545,6 +568,152 @@ function NewNavbar() {
     };
   }, [isMobileMenuOpen, isMobileServicesOpen]);
 
+  const openConsultModal = () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    setConsultErrors({
+      name: "",
+      phone: "",
+      email: "",
+      message: "",
+      captcha: "",
+      form: "",
+    });
+    setConsultForm({
+      name: "",
+      phone: "",
+      email: "",
+      message: "",
+    });
+    setCaptchaToken(null);
+    setIsConsultModalClosing(false);
+    setIsConsultModalOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeConsultModal = () => {
+    setIsConsultModalClosing(true);
+    setCaptchaToken(null);
+    consultCaptchaRef.current?.resetCaptcha();
+    closeTimerRef.current = setTimeout(() => {
+      setIsConsultModalOpen(false);
+      setIsConsultModalClosing(false);
+      document.body.style.overflow = "";
+    }, 180);
+  };
+
+  useEffect(() => {
+    const onEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isConsultModalOpen) {
+        closeConsultModal();
+      }
+    };
+    window.addEventListener("keydown", onEsc);
+    return () => window.removeEventListener("keydown", onEsc);
+  }, [isConsultModalOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    const updateScale = () => {
+      const h = window.innerHeight;
+      if (h <= 620) setConsultModalScale(0.72);
+      else if (h <= 700) setConsultModalScale(0.78);
+      else if (h <= 780) setConsultModalScale(0.86);
+      else if (h <= 860) setConsultModalScale(0.93);
+      else setConsultModalScale(1);
+    };
+
+    if (isConsultModalOpen) {
+      updateScale();
+      window.addEventListener("resize", updateScale);
+    }
+
+    return () => window.removeEventListener("resize", updateScale);
+  }, [isConsultModalOpen]);
+
+  const validateConsultForm = () => {
+    const next = {
+      name: "",
+      phone: "",
+      email: "",
+      message: "",
+      captcha: "",
+      form: "",
+    };
+
+    if (!consultForm.name.trim()) {
+      next.name = "Please enter your name.";
+    }
+
+    const phoneDigits = consultForm.phone.replace(/\D/g, "");
+    if (!phoneDigits) {
+      next.phone = "Please enter your phone number.";
+    } else if (!/^[6-9]\d{9}$/.test(phoneDigits)) {
+      next.phone = "Please enter a valid Indian mobile number.";
+    }
+
+    if (!consultForm.email.trim()) {
+      next.email = "Please enter your email address.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(consultForm.email.trim())) {
+      next.email = "Please enter a valid email address.";
+    }
+
+    if (!consultForm.message.trim()) {
+      next.message = "Please write your message.";
+    } else if (consultForm.message.trim().length < 8) {
+      next.message = "Message should be at least 8 characters.";
+    }
+
+    if (!captchaToken) {
+      next.captcha = "Please complete captcha.";
+    }
+
+    setConsultErrors(next);
+    return Object.values(next).every((v) => !v);
+  };
+
+  const handleConsultSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validateConsultForm()) return;
+
+    setIsSubmittingConsult(true);
+    try {
+      const response = await fetch("/api/system-settings/contact-enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          etype: "NavbarConsulting",
+          name: consultForm.name.trim(),
+          phone: consultForm.phone.replace(/\D/g, ""),
+          email: consultForm.email.trim(),
+          message: consultForm.message.trim(),
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        closeConsultModal();
+      } else {
+        setConsultErrors((prev) => ({
+          ...prev,
+          form: result?.message || result?.error || "Submission failed. Try again.",
+        }));
+      }
+    } catch (error) {
+      setConsultErrors((prev) => ({
+        ...prev,
+        form: "Server error. Please try again later.",
+      }));
+    } finally {
+      setIsSubmittingConsult(false);
+    }
+  };
+
   return (
     <>
       {/* Desktop Navbar - Only visible on lg and above */}
@@ -633,7 +802,7 @@ function NewNavbar() {
               </li>
               <li>
                 <div className="flex gap-4 justify-center items-center">
-                  <button onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")} className="w-[168px] h-[44px] font-[700] text-[15px] rounded-[5px] bg-[#C99237] cursor-pointer text-white hover:bg-[#B8822F] transition-colors duration-300 s1-btn-gold">
+                  <button onClick={openConsultModal} className="w-[168px] h-[44px] font-[700] text-[15px] rounded-[5px] bg-[#C99237] cursor-pointer text-white hover:bg-[#B8822F] transition-colors duration-300 s1-btn-gold">
                     <p className="text-white">Free Consulting</p>
                   </button>
                   <button
@@ -972,7 +1141,10 @@ function NewNavbar() {
             <div className="pt-4 border-t border-gray-100">
               <button
                 className="mobile-menu-item w-full font-[700] text-[16px] sm:text-[17px] py-4 px-6 rounded-xl bg-gradient-to-r from-[#C99237] to-[#B8822F] text-white hover:from-[#B8822F] hover:to-[#A67227] active:from-[#A67227] active:to-[#956217] transition-all duration-300 shadow-lg shadow-[#C99237]/20 hover:shadow-xl hover:shadow-[#C99237]/30 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
-                onClick={() => { setIsMobileMenuOpen(false), window.open("https://ritzmediaworld.com/contact.html", "_blank") }}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openConsultModal();
+                }}
               >
                 <span>Free Consulting</span>
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -993,6 +1165,141 @@ function NewNavbar() {
           />
         )}
       </nav>
+      {isConsultModalOpen && (
+        <div
+          className={`fixed inset-0 z-[10000] flex items-start sm:items-center justify-center bg-black/50 px-3 sm:px-4 py-3 sm:py-4 transition-opacity duration-200 ${isConsultModalClosing ? "opacity-0" : "opacity-100"
+            }`}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeConsultModal();
+          }}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="consult-modal-title"
+        >
+          <div
+            className={`w-full max-w-[600px] rounded-2xl bg-white p-4 sm:p-5 shadow-2xl transition-all duration-200 ${isConsultModalClosing
+                ? "translate-y-2 opacity-0"
+                : "translate-y-0 opacity-100"
+              }`}
+            style={{
+              transform: `scale(${isConsultModalClosing ? consultModalScale * 0.95 : consultModalScale})`,
+              transformOrigin: "center center",
+            }}
+          >
+            <div className="mb-3 sm:mb-4 flex items-start justify-between border-b border-[#d4d4d4] pb-3">
+              <div>
+                <h2
+                  id="consult-modal-title"
+                  className="text-[22px] sm:text-[26px] font-[700] text-[#0F1640]"
+                >
+                  Free Consulting
+                </h2>
+                <p className="mt-1 text-[13px] text-[#636B7F]">
+                  Fill the form and our team will contact you.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={closeConsultModal}
+                className="h-9 w-9 rounded-full border cursor-pointer border-[#E3E7EF] text-[#3E465C] hover:bg-[#F6F8FC]"
+                aria-label="Close popup"
+              >
+                ✕
+              </button>
+            </div>
+
+            <form onSubmit={handleConsultSubmit} className="flex flex-col gap-4 sm:gap-5">
+              <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
+                <label className="block flex-1">
+                  <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Your Name</span>
+                  <input
+                    type="text"
+                    placeholder="Enter your full name"
+                    value={consultForm.name}
+                    onChange={(e) => setConsultForm((prev) => ({ ...prev, name: e.target.value }))}
+                    className={`h-[44px] w-full border-b bg-transparent px-0 text-[14px] text-[#111827] placeholder:text-[#9CA3AF] outline-none transition ${consultErrors.name ? "border-[#EF4444]" : "border-[#DADDE5] focus:border-[#C99237]"
+                      }`}
+                  />
+                  {consultErrors.name && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.name}</p>}
+                </label>
+
+                <label className="block flex-1">
+                  <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Phone Number</span>
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    placeholder="Enter 10-digit mobile number"
+                    value={consultForm.phone}
+                    onChange={(e) => setConsultForm((prev) => ({ ...prev, phone: e.target.value }))}
+                    className={`h-[44px] w-full border-b bg-transparent px-0 text-[14px] text-[#111827] placeholder:text-[#9CA3AF] outline-none transition ${consultErrors.phone ? "border-[#EF4444]" : "border-[#DADDE5] focus:border-[#C99237]"
+                      }`}
+                  />
+                  {consultErrors.phone && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.phone}</p>}
+                </label>
+              </div>
+
+              <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
+                <label className="block flex-1">
+                  <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Email Address</span>
+                  <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    value={consultForm.email}
+                    onChange={(e) => setConsultForm((prev) => ({ ...prev, email: e.target.value }))}
+                    className={`h-[44px] w-full border-b bg-transparent px-0 text-[14px] text-[#111827] placeholder:text-[#9CA3AF] outline-none transition ${consultErrors.email ? "border-[#EF4444]" : "border-[#DADDE5] focus:border-[#C99237]"
+                      }`}
+                  />
+                  {consultErrors.email && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.email}</p>}
+                </label>
+
+              </div>
+
+              <label className="block">
+                <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Write Message</span>
+                <textarea
+                  rows={4}
+                  placeholder="Tell us about your goals..."
+                  value={consultForm.message}
+                  onChange={(e) => setConsultForm((prev) => ({ ...prev, message: e.target.value }))}
+                  className={`w-full min-h-[84px] sm:min-h-[92px] border-b bg-transparent px-0 py-1 text-[14px] text-[#111827] placeholder:text-[#9CA3AF] outline-none transition ${consultErrors.message ? "border-[#EF4444]" : "border-[#DADDE5] focus:border-[#C99237]"
+                    }`}
+                />
+                {consultErrors.message && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.message}</p>}
+              </label>
+              <label className="block flex-1">
+                  <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Captcha</span>
+                  <div className={`border-b pb-2 overflow-x-auto ${consultErrors.captcha ? "border-[#EF4444]" : "border-[#DADDE5]"}`}>
+                    <HCaptcha
+                      sitekey="e4a44c7a-13c4-4534-b210-d41242d2d262"
+                      onVerify={(token) => {
+                        setCaptchaToken(token);
+                        setConsultErrors((prev) => ({ ...prev, captcha: "" }));
+                      }}
+                      onExpire={() => setCaptchaToken(null)}
+                      onError={() => setCaptchaToken(null)}
+                      ref={consultCaptchaRef}
+                    />
+                  </div>
+                  {consultErrors.captcha && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.captcha}</p>}
+                </label>
+              <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
+                {consultErrors.form ? (
+                  <p className="text-[13px] text-[#EF4444]">{consultErrors.form}</p>
+                ) : (
+                  <p className="text-[12px] text-[#6A7286]">We respect your privacy. No spam.</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={isSubmittingConsult}
+                  className="h-[48px] w-full sm:w-auto min-w-[180px] rounded-xl bg-[#C99237] px-6 text-white font-[700] hover:bg-[#B8822F] disabled:opacity-60"
+                >
+                  {isSubmittingConsult ? "Submitting..." : "Submit"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 }
