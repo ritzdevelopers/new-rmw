@@ -30,9 +30,11 @@ interface ServiceThirdRow extends RowDataPacket {
 }
 
 // ✅ Get metadata by slug or name
+// For serviceThird, pass parentServiceLink (services.link / URL second segment) so meta is resolved via service_second.service_id.
 export async function getMetaOrThrow(
   slug: string,
-  type: "blog" | "category" | "serviceSecond" | "serviceThird"
+  type: "blog" | "category" | "serviceSecond" | "serviceThird",
+  parentServiceLink?: string
 ): Promise<{
   meta_title: string;
   meta_description: string;
@@ -40,6 +42,7 @@ export async function getMetaOrThrow(
 }> {
   const pool = await getDBPool();
   let query = "";
+  let queryParams: string[] = [slug];
 
   if (type === "blog") {
     query =
@@ -51,13 +54,24 @@ export async function getMetaOrThrow(
     query =
       "SELECT meta_title, meta_description, meta_keywords FROM services WHERE link = ? LIMIT 1";
   } else if (type === "serviceThird") {
-    query =
-      "SELECT meta_title, meta_description, meta_keywords FROM service_second WHERE link = ? LIMIT 1";
+    if (!parentServiceLink) {
+      throw new Error(
+        "getMetaOrThrow(serviceThird): parentServiceLink (secondPage) is required"
+      );
+    }
+    query = `
+      SELECT ss.meta_title, ss.meta_description, ss.meta_keywords
+      FROM service_second ss
+      WHERE ss.service_id = (SELECT id FROM services WHERE link = ? LIMIT 1)
+        AND ss.link = ?
+      LIMIT 1`;
+    queryParams = [parentServiceLink, slug];
   }
 
-  const [rows]: [MetaDataRow[], FieldPacket[]] = await pool.query(query, [
-    slug,
-  ]);
+  const [rows]: [MetaDataRow[], FieldPacket[]] = await pool.query(
+    query,
+    queryParams
+  );
   const data = rows[0];
   if (!data) throw new Error("NOT_FOUND");
   return data;
