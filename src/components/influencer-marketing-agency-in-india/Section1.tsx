@@ -38,7 +38,7 @@ function Section1() {
                             Services
                           </span> */}
                         </span></h1>
-                        <h2 className={`font-[500] mt-2 lg:mt-5 xl:mt-2 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-[24px] md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`} style={{ fontFamily: "MontserratMedium" }}>Maximize Engagement & Conversions With Result-driven Influencer Campaigns</h2>
+                        <h2 className={`font-[500]  text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-[25px]  w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`} style={{ fontFamily: "MontserratMedium" }}>Maximize Engagement & Conversions With Result-driven Influencer Campaigns</h2>
                     
                 </div>
             </div>

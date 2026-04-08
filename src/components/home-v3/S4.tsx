@@ -217,6 +217,7 @@ function S4() {
               <img
                 src="/home-v3/s3/lftb.png"
                 alt="RMW"
+                title="RMW"
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -228,6 +229,7 @@ function S4() {
               <img
                 src="/home-v3/s3/rhgt.png"
                 alt="RMW"
+                title="RMW"
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -275,6 +277,7 @@ function S4() {
                           src={story.img}
                           onClick={() => window.open(story.link, "_blank")}
                           alt={story.title}
+                          title={story.title}
                           fill
                           className="object-cover cursor-pointer"
                         ></Image>
@@ -310,20 +313,21 @@ function S4() {
                           {story.description}
                         </p>
 
-                        <div className="w-full flex flex-row justify-between items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-2">
+                        <div className="w-full flex flex-row justify-between items-stretch gap-4 sm:gap-2 lg:gap-4 xl:gap-2">
                           {story.stats.map((stat, statIdx) => {
                             return (
                               <div
                                 key={statIdx}
                                 onClick={() => window.open(story.link, "_blank")}
-                                className={`flex flex-col justify-center items-center gap-1 w-full sm:w-auto ${statIdx === 1
-                                  ? "sm:px-4 lg:px-8 xl:px-4 py-4 sm:border-l-[1px] sm:border-r-[1px] sm:border-l-[#D8D8D8] sm:border-r-[#D8D8D8]"
+                                className={`flex flex-1 min-h-[130px] sm:min-h-[140px] lg:min-h-[152px] py-4 flex-col justify-center items-center gap-1 w-full ${statIdx === 1
+                                  ? "sm:px-4 lg:px-8 xl:px-4 sm:border-l-[1px] sm:border-r-[1px] sm:border-l-[#D8D8D8] sm:border-r-[#D8D8D8]"
                                   : ""
                                   }`}
                               >
                                 <img
                                   src="/home-v3/s4/arrow.png"
                                   alt="RMW"
+                                  title="RMW"
                                   className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px]"
                                 />
                                 <p
@@ -361,7 +365,7 @@ function S4() {
             <Image
               src="/home-v3/s2/team-bg3.png"
               alt="Ritz Media World – team video"
-              title="Ritz Media World"
+              title="Ritz Media World – team video"
               fill
               className="object-cover object-center"
               sizes="(min-width: 1370px) 1300px, 95vw"

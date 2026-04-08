@@ -261,6 +261,7 @@ function S8({
                                                   src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
                                                 // src="/inner-demo-img.jpg"
                                                   alt="RMW"
+                                                  title="RMW"
                                                   className="w-full h-full md:max-lg:object-cover lg:object-cover"
                                               ></img>
                                           </div>
@@ -286,7 +287,7 @@ function S8({
                                                       "_blank",
                                                   )
                                               }
-                                              className="font-[600] text-[15px] xl:text-[18px] text-black"
+                                              className="font-[600] text-[15px] xl:text-[18px] text-black sm:max-lg:line-clamp-2"
                                               style={{
                                                   fontFamily:
                                                       "OpenSansSemiBold",

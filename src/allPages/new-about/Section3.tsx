@@ -66,7 +66,7 @@ function Section3() {
                     fontFamily: "InterRegular",
                   }}
                 >
-                  {idx.service}
+                 <h3> {idx.service}</h3>
                 </button>
               </div>
             );
@@ -100,7 +100,7 @@ function Section3() {
                     fontFamily: "InterRegular",
                   }}
                 >
-                  {idx.service}
+                 <h3> {idx.service}</h3>
                 </button>
 
                 {/* Absolute Positioned Overlay Container  */}

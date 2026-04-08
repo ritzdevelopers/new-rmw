@@ -364,7 +364,7 @@ export default function Section3() {
           <Link href="https://ritzmediaworld.com/contact.html"
             target="_blank"
             rel="noopener noreferrer" className="underline cursor-pointer">
-            Let&apos;s discuss your unique needs,
+            Let&apos;s discuss your unique needs.
           </Link >
         </p>
       </div>

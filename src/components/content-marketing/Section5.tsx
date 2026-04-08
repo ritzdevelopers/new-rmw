@@ -60,13 +60,13 @@ function Section5() {
                         <div className={`w-full md:flex-1 flex justify-center items-center text-center py-6 sm:py-8 md:py-10 bg-[#F1F1F1] min-w-0 ${styles.s5Card}`}>
                             <p className={`font-[700] ${styles.s5CardTitle} ${styles.fontMontserrat}`}>Why Content <br /> Marketing Matters</p>
                         </div>
-                        <div className={`w-full md:flex-1 px-4 sm:px-6 text-center md:px-8 lg:px-10 xl:px-12 flex flex-col gap-2 sm:gap-3 pt-4 sm:pt-5 md:py-6 xl:pt-6 min-w-0 ${styles.s5Card}`}>
+                        <div className={`w-full md:flex-1 px-4 sm:px-6 text-center md:px-0 lg:px-0  flex flex-col gap-2 sm:gap-3 pt-4 sm:pt-5 md:py-6  min-w-0 ${styles.s5Card}`}>
                             <p className={`font-[700] ${styles.s5CardSubtitle} text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[26px] ${styles.fontMontserrat}`}>Increase Organic Traffic</p>
-                            <p className={`font-[400] max-w-full text-center text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] ${styles.fontopensans}`}>SEO is a key factor for your website to get ranked in the search engines and if that happens, more people looking for answers will be able to find your page.
+                            <p className={`font-[400] max-w-[80%] self-center text-center text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] ${styles.fontopensans}`}>SEO is a key factor for your website to get ranked in the search engines and if that happens, more people looking for answers will be able to find your page.
                             </p>
                         </div>
                         <div className={`w-full md:flex-1 xl:h-[252px] min-w-0 ${styles.s5Card}`}>
-                            <img src="/alishba-services-v3/content-marketing/whycontentmarketingmatters.jpg" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-full h-full lg:h-auto xl:h-full object-cover" />
+                            <img src="/alishba-services-v3/content-marketing/whycontentmarketingmatters.jpg" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-full h-full lg:h-full xl:h-full object-cover" />
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@ function Section5() {
                         <div className="flex flex-col w-full ">
 
                             {/* Years Of Working Image  */}
-                            <img src="/service-v3/content-marketing/s5/17-yow2.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-[275px] xl:w-full  h-auto object-cover" />
+                            <img src="/varun/content-marketing/workingexperienec.jpg" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-[275px] xl:w-full  h-auto object-cover" />
 
                             {/* Google Reviews Image  */}
                             <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer"><img src="/service-v3/content-marketing/s5/google-reviews.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-[275px] xl:w-[271px]  h-auto object-cover cursor-pointer" /></a>

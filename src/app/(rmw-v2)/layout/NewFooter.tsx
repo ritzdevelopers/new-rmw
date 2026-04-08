@@ -16,7 +16,7 @@ function NewFooter() {
           <div className="flex flex-row lg:flex-col gap-12 md:gap-16 lg:gap-4">
             {/* Logo Container  */}
             <div className="mb-1 sm:mb-2">
-              <img src="/home-v3/rmw-f-logo.png" alt="ritz media world logo" className="max-w-[80px] h-auto md:max-w-[200px] mx-0 md:mx-auto lg:mx-0" />
+              <img src="/home-v3/rmw-f-logo.png" alt="ritz media world logo" title="ritz media world logo" className="max-w-[80px] h-auto md:max-w-[200px] mx-0 md:mx-auto lg:mx-0" />
             </div>
             {/* Address Container  */}
             <div className="flex flex-col gap-2 sm:gap-3 text-left">
@@ -170,7 +170,7 @@ function NewFooter() {
           {/* Row 3  */}
           <div className="flex flex-col lg:justify-start lg:items-start xl:justify-normal xl:items-stretch">
             {/* Parteners And Collaborators Image  */}
-            <div className="mb-1 mt-3 sm:mb-2 flex flex-wrap justify-start  items-center gap-4 lg:justify-start lg:items-center sm:gap-6 lg:gap-5 h-auto lg:h-[79px] w-full overflow-x-auto lg:overflow-visible">
+            <div className="mb-1 mt-3 sm:mb-2 flex flex-wrap justify-between md:justify-start  items-center gap-4 lg:justify-start lg:items-center sm:gap-6 lg:gap-5 h-auto lg:h-[79px] w-full overflow-x-auto lg:overflow-visible">
 
 
               <img src="/home-v3/clients/nins.jpg" alt="parteners and collaborators" title="parteners and collaborators" className="cursor-not-allowed  w-[50px] md:w-[103px] h-auto object-contain" />

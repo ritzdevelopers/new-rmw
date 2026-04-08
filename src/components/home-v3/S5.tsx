@@ -139,14 +139,14 @@ function S5() {
                             className='cursor-pointer'
                             aria-label="Previous slide"
                         >
-                            <img src="/home-v3/s3/lftb.png" alt="RMW" className='w-[27px] h-[27px]' />
+                            <img src="/home-v3/s3/lftb.png" alt="RMW" title="RMW" className='w-[27px] h-[27px]' />
                         </button>
                         <button 
                             onClick={handleNext}
                             className='cursor-pointer'
                             aria-label="Next slide"
                         >
-                            <img src="/home-v3/s3/rhgt.png" alt="RMW" className='w-[27px] h-[27px]' />
+                            <img src="/home-v3/s3/rhgt.png" alt="RMW" title="RMW" className='w-[27px] h-[27px]' />
                         </button>
                     </div>
                 </div>
@@ -285,7 +285,7 @@ function S5() {
                                                 className='w-full max-w-[276px] mx-auto flex flex-col gap-3 text-center justify-center items-center'
                                             >
                                                 <div className='w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] lg:w-[165px] lg:h-[165px] border-1 border-[#E2DEDE] rounded-full flex justify-center items-center'>
-                                                    <img src={ob.img} alt={ob.ttl} className='w-[95%] h-[95%] rounded-full object-cover' />
+                                                    <img src={ob.img} alt={ob.ttl} title={ob.ttl} className='w-[95%] h-[95%] rounded-full object-cover' />
                                                 </div>
                                                 <p className='font-[600] text-[18px] sm:text-[20px]' style={{
                                                     fontFamily: "OpenSansSemiBold",

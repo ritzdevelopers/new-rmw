@@ -58,9 +58,9 @@ function Section8() {
             className="glassDiv w-[280px] sm:w-[320px] md:w-[352px] h-[140px] sm:h-[160px] md:h-[194px] flex justify-center items-center text-center glassCard z-10 p-4"
             style={{ position: "absolute", bottom: "10px", right: "10px" }}
           >
-            <h2 className="font-[600] text-[16px] sm:text-[20px] md:text-[24px] text-white">
+            <p className="font-[600] text-[16px] sm:text-[20px] md:text-[24px] text-white">
               Years of Storytelling, Turning Ideas Into Stories That Matter
-            </h2>
+            </p>
           </div>
         </div>
 

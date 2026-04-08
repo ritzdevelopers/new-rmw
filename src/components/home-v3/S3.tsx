@@ -152,6 +152,7 @@ function S3() {
               <img
                 src="/home-v3/s3/lftb.png"
                 alt="RMW"
+                title="RMW"
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -163,6 +164,7 @@ function S3() {
               <img
                 src="/home-v3/s3/rhgt.png"
                 alt="RMW"
+                title="RMW"
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -225,6 +227,7 @@ function S3() {
                           src={ob.img}
                           onClick={()=>window.open(ob.link, "_blank")}
                           alt={ob.ttl}
+                          title={ob.ttl}
                           fill
                           className="object-cover"
                         ></Image>
