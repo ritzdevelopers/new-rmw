@@ -4,7 +4,7 @@ import styles from './discussion.module.css';
 function Section1() {
     return (
         <section
-            className={`w-full h-[425px] md:h-[300px] md:min-h-[300px] lg:h-[500px] lg:min-h-[500px] xl:h-[500px] xl:min-h-[500px] min-[1536px]:h-auto min-[1536px]:min-h-[615px] 
+            className={`w-full h-[425px] md:h-[300px] md:min-h-[300px] lg:h-[500px] lg:min-h-[500px] xl:h-[500px] xl:min-h-[500px] xxl:h-auto xxl:min-h-[615px] 
             bg-[#0F1640] md:bg-[#0F1640] bg-cover bg-no-repeat bg-center flex md:items-stretch lg:items-end pb-8 sm:pb-12 md:pb-3 lg:pb-10 xl:pb-26 px-4 sm:px-6 md:px-0 overflow-visible justify-center items-center md:justify-start  `}>
 
             {/* Bottom Center Text Container  */}
@@ -20,8 +20,7 @@ function Section1() {
                     <h1 className={`text-white leading-[45px] sm:leading-[1.15] md:leading-tight lg:leading-[45px] xl:leading-[45px] mt-1 sm:mt-2 md:mt-0  xl:mt-3 lg:py-0 xl:py-0 ${styles.montserratBold}`}>
                         <span className="max-md:inline-block max-md:whitespace-nowrap md:contents lg:inline-block lg:whitespace-nowrap lg:translate-y-2 xl:translate-y-0 xl:contents">
                             <span
-                                className={` md:text-[26px] lg:text-[30px] xl:text-[55px]  lg:leading-[10px]`}
-                                
+                                className={`text-[28px] sm:text-[30px] md:text-[28px] lg:text-[35px] xl:text-[60px] leading-tight lg:leading-[10px]`}
                             >
                                 Discussion Forum{" "}
                             </span>
@@ -33,7 +32,7 @@ function Section1() {
                             Services
                           </span> */}
                         </span></h1>
-                    <h2 className={`font-[500] mt-2 lg:mt-5 xl:mt-2 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-[24px] md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]${styles.fontopensans}`} >Let’s Talk Marketing, Growth & Ideas</h2>
+                    <h2 className={`font-[500] mt-2 lg:mt-5 xl:mt-2 text-[20px] sm:text-[18px] md:text-[15px] lg:text-[17px] xl:text-[23px] xxl:text-[23px] xl:font-[500] text-white leading-[24px] md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] xxl:max-w-[750px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]${styles.fontopensans}`} >Let’s Talk Marketing, Growth & Ideas</h2>
 
                 </div>
             </div>

@@ -7,59 +7,112 @@ export default function WhyJoin() {
 
     const EXPLORE_ARROW_IMAGE =
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
+
     return (
-        <section className="w-full  py-3 px-4 md:px-4 lg:px-12">
-            <div className=" mx-auto grid grid-cols-1 lg:grid-cols-3 ">
+        <section className="w-full py-6 sm:py-8 md:py-10 lg:py-3 px-4 sm:px-6 md:px-6 lg:px-12">
+            
+            {/* MAIN GRID */}
+            <div className="
+                mx-auto 
+                grid 
+                grid-cols-1 
+                md:grid-cols-2
+                lg:grid-cols-3
+                xl:grid-cols-3 
+                
+            ">
 
                 {/* LEFT SECTION */}
-                <div className="flex flex-col gap-6 justify-end h-full">
-
+                <div className="col-span-1
+                    md:col-span-1 lg:col-span-1 xl:col-span-1
+                    flex flex-col gap-5 sm:gap-6 justify-start xl:justify-end h-full
+                ">
                     {/* Circle + Heading */}
-                    <div className="relative w-[249px] h-[270px]">
-
-                        {/* Circle Image */}
+                    <div className="
+                        relative 
+                        w-[200px] h-[220px]
+                        sm:w-[220px] sm:h-[240px]
+                        md:w-[240px] md:h-[260px]
+                        xl:w-[249px] xl:h-[270px]
+                    ">
                         <img
                             src="/discussion-forum/circle.png"
                             alt="Why Join"
                             className="w-full h-full object-contain"
                         />
 
-                        {/* Text on top of image */}
-                        <h2 className={`absolute inset-0 flex items-center  text-left px-8 text-[24px] font-bold leading-snug text-black ${styles.montserratBold}`}>
+                        <h2 className={`
+                            absolute inset-0 flex items-center text-left 
+                            px-5 sm:px-6 xl:px-8
+                            text-[16px] sm:text-[18px] md:text-[20px] xl:text-[21px]
+                            font-bold leading-snug text-black
+                            ${styles.montserratBold}
+                        `}>
                             Why Join Our <br /> Discussion <br />Forum?
                         </h2>
-
                     </div>
 
                     {/* Paragraph */}
-                    <p className={`text-gray-700 leading-relaxed max-w-md ${styles.fontopensans}`}>
+                    <p className={`
+                        text-gray-700 leading-relaxed 
+                        text-[14px] sm:text-[15px] md:text-[16px]
+                        max-w-full sm:max-w-md
+                        ${styles.fontopensans}
+                    `}>
                         At <span className="font-semibold">Ritz Media World</span>, we believe that the best ideas come from collaboration and conversation. With 17+ years of experience as a top marketing agency in India and a top ad agency in Noida, we bring real-world insights into every discussion.
                     </p>
 
                     {/* CTA */}
-                    <div className={`flex items-center gap-4 ${styles.montserrat}`}>
-                        <span className="text-lg font-medium">Let’s Talk Today</span>
-                        <div className="cursor-pointer w-12 h-12 bg-[#C99237] rounded-full flex items-center justify-center">
-                            <img src={EXPLORE_ARROW_IMAGE} alt="Explore Arrow" className="text-white text-[16px]" />
+                    <div className={`flex items-center gap-3 sm:gap-4 ${styles.montserrat}`}>
+                        <span className="text-[15px] sm:text-[16px] xl:text-lg font-medium">
+                            Let’s Talk Today
+                        </span>
+
+                        <div className="
+                            cursor-pointer 
+                            w-[40px] h-[40px]
+                            sm:w-[44px] sm:h-[44px]
+                            xl:w-12 xl:h-12
+                            bg-[#C99237] rounded-full 
+                            flex items-center justify-center
+                        ">
+                            <img src={EXPLORE_ARROW_IMAGE} alt="Explore Arrow" />
                         </div>
                     </div>
                 </div>
 
                 {/* MIDDLE IMAGE */}
-                <div className="w-full flex justify-center pl-6 items-end h-full">
-                    <div className="relative w-[300px] md:w-[350px] lg:w-[400px] h-[400px]">
+                <div className="
+                    w-full flex justify-center 
+                    md:col-span-1 
+                    xl:col-span-1
+                    xl:pl-6 
+                    items-center xl:items-end
+                ">
+                    <div className="
+                        relative 
+                        w-[260px] h-[300px]
+                        sm:w-[300px] sm:h-[340px]
+                        md:w-[320px] md:h-[360px]
+                        xl:w-[400px] xl:h-[400px]
+                    ">
                         <Image
-                            src="/discussion-forum/whyjoin.png" // 👈 replace with your image
+                            src="/discussion-forum/whyjoin.png"
                             alt="discussion"
                             fill
-                            className="object-cover "
+                            className="object-cover"
                         />
                     </div>
                 </div>
 
                 {/* RIGHT LIST */}
-                <div className="bg-[#F7F7F7] p-6 ">
-                    <div className={`flex flex-col gap-6 justify-end h-full ${styles.fontopensans}`}>
+                <div className="
+                    bg-[#F7F7F7] 
+                    p-4 sm:p-5 md:p-6
+                    md:col-span-2 
+                    xl:col-span-1   lg:col-span-1
+                ">
+                    <div className={`flex flex-col gap-4 sm:gap-5 md:gap-6 justify-end h-full ${styles.fontopensans}`}>
                         {[
                             "Ask questions about digital marketing agencies and strategies",
                             "Discuss trends with a social media marketing agency in India",
@@ -67,17 +120,19 @@ export default function WhyJoin() {
                             "Connect with professionals looking for the best marketing agency in India",
                             "Learn strategies used by the top digital marketing company in Noida"
                         ].map((item, index) => (
-                            <div key={index} className="flex items-start gap-4">
+                            <div key={index} className="flex items-start gap-3 sm:gap-4 ">
 
-                                {/* Icon */}
                                 <img
-                                    src="/discussion-forum/check.png" // 👈 your existing image
-                                    alt="Why Join"
-                                    className="w-[17px] h-[17px] mt-2"
+                                    src="/discussion-forum/check.png"
+                                    alt="check"
+                                    className="w-[14px] h-[14px] sm:w-[16px] sm:h-[16px] mt-1.5 sm:mt-2"
                                 />
 
-                                {/* Text */}
-                                <p className="text-gray-800 text-[16px] leading-relaxed">
+                                <p className="
+                                    text-gray-800 
+                                    text-[14px] sm:text-[15px] md:text-[16px]
+                                    leading-relaxed 
+                                ">
                                     {item}
                                 </p>
                             </div>

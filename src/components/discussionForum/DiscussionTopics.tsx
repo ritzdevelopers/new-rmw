@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import styles from './discussion.module.css';
 
 export default function DiscussionTopics() {
     const cardBackgrounds = [
@@ -10,36 +11,27 @@ export default function DiscussionTopics() {
     ];
 
     return (
-        <section className="w-full py-16 px-5">
+        <section className="w-full py-16 px-4 md:px-4 lg:px-5xl:px-5">
             <div className="mx-auto">
 
-                {/* Title */}
                 <h2 className="text-center text-3xl md:text-4xl font-bold mb-12">
                     Discussion Topics
                 </h2>
 
-                {/* EXACT GRID */}
-                <div className="px-8
-  grid gap-4
-
-  grid-cols-1                          /* mobile */
-
-  md:grid-cols-2                       /* 768px */
-
-  lg:grid-cols-3                       /* 1024px */
-
-  xl:grid-cols-[512px_repeat(4,146px)] /* 1240px → 3 cols (1 big + 4 small) */
-
-  2xl:grid-cols-[537px_repeat(4,178px)] /* 1366px+ → full layout */
-">
-
+                <div className={`px-1 md:px-6 lg:px-8 xl:px-8 grid gap-4
+                    grid-cols-1
+                    md:grid-cols-2
+                    lg:grid-cols-[310px_repeat(4,146px)]
+                    xl:grid-cols-[512px_repeat(4,146px)]
+                    2xl:grid-cols-[537px_repeat(4,178px)]
+                    items-start ${styles.container}`}>
+                
                     {/* LEFT BIG CARD */}
-                    <div className="bg-white border border-[#E6E6E6] h-[512px] p-6 flex flex-col">
+                    <div className="bg-white border border-[#E6E6E6] h-[512px] p-6 flex flex-col  md:col-span-2 lg:col-span-1">
                         <h3 className="text-2xl font-bold mb-6">
                             Digital Marketing & SEO
                         </h3>
 
-                        {/* Image */}
                         <div className="relative w-full h-[200px] mb-6">
                             <Image
                                 src="/discussion-forum/discussiontopic.png"
@@ -49,8 +41,7 @@ export default function DiscussionTopics() {
                             />
                         </div>
 
-                        {/* Bullet List */}
-                        <ul className="space-y-4 text-gray-800 text-[14px]">
+                        <ul className="space-y-4 text-gray-800 text-[16px]">
                             {[
                                 "How to choose the right SEO company in Noida?",
                                 "SEO vs Paid Ads – what works better for your business?",
@@ -83,22 +74,38 @@ export default function DiscussionTopics() {
                             title: "Industry-Specific Marketing (Schools & Real Estate)",
                             text: "Best digital marketing services for school in Delhi"
                         }
+
                     ].map((card, i) => (
                         <div
                             key={i}
                             style={{ backgroundColor: cardBackgrounds[i] }}
-                            className="
-                h-[512px] p-4
-                flex flex-col 
-                justify-between
-               
-              "
+                            className={`
+        flex flex-col justify-between
+
+        min-h-[140px] sm:min-h-[160px] md:min-h-[200px]
+        lg:h-[512px]
+
+        p-4 sm:p-5 md:p-6
+        ${i === 3 ? 'lg:py-6' : ''}
+    `}
                         >
-                            <h4 className="font-semibold text-[15px] leading-snug">
+                            <h4 className="
+        font-semibold 
+        text-[14px] leading-snug
+        sm:text-[14px]
+        md:text-[14px]
+         lg:text-[14px]
+        min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[3.5rem]
+    ">
                                 {card.title}
                             </h4>
 
-                            <p className="text-gray-700 text-[14px] leading-relaxed mt-auto">
+                            <p className={`
+                                        text-gray-700 
+                                        text-[13px] leading-relaxed
+                                        sm:text-[14px]
+                                        ${i === 3 ? 'px-2 md:px-3 lg:px-4 xl:px-4' : ''}
+                                    `}>
                                 {card.text}
                             </p>
                         </div>
