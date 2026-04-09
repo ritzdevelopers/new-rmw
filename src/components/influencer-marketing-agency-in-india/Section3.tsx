@@ -65,6 +65,29 @@ const servicesData = [
 
 type ServiceItem = (typeof servicesData)[number];
 
+/** Tailwind md–lg: 768px ≤ width < 1024px */
+const MD_TO_LG_MEDIA = "(min-width: 768px) and (max-width: 1023px)";
+
+function useIsMdToLg() {
+  const [matches, setMatches] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(MD_TO_LG_MEDIA);
+    const update = () => setMatches(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return matches;
+}
+
+function truncateToMaxWords(text: string, maxWords: number): string {
+  const normalized = text.trim().replace(/\s+/g, " ");
+  if (!normalized) return "";
+  const words = normalized.split(" ");
+  if (words.length <= maxWords) return normalized;
+  return `${words.slice(0, maxWords).join(" ")}...`;
+}
+
 function ServiceAccordionRow({
   item,
   isOpen,
@@ -110,6 +133,11 @@ function ServiceAccordionRow({
   };
 
   const isFirst = item.id === "01";
+  const isMdToLg = useIsMdToLg();
+  const descriptionParagraphs = item.description
+    .split("|||")
+    .map((p) => p.trim());
+  const descriptionJoined = descriptionParagraphs.join(" ");
 
   return (
     <div
@@ -150,11 +178,11 @@ function ServiceAccordionRow({
       >
         <div className={accordionStyles.accordionPanelInner}>
           <div className="py-5 sm:py-6">
-            <div className="flex flex-col lg:flex-row gap-8 xl:gap-10 items-start">
-              <div className="flex items-start justify-between gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-0">
-                <div className="flex items-center sm:items-center lg:items-start gap-3 sm:gap-4 lg:gap-5 min-w-0">
+            <div className="flex flex-col md:flex-row gap-8 xl:gap-10 items-start">
+              <div className="flex items-start justify-between gap-3 sm:gap-4 md:gap-5 w-full md:w-[24%] xl:w-[22%] shrink-0 ml-0">
+                <div className="flex items-center sm:items-center md:items-start gap-3 sm:gap-4 md:gap-5 min-w-0">
                   <span
-                    className={`text-[#FFFFFF] text-[13px] sm:text-[15px] ${isFirst ? "lg:pt-2 lg:mt-2" : "lg:pt-1 lg:mt-2"}`}
+                    className={`text-[#FFFFFF] text-[13px] sm:text-[15px] ${isFirst ? "md:pt-2 md:mt-2" : "md:pt-1 md:mt-2"}`}
                     style={{ fontFamily: "MontserratMedium" }}
                   >
                     {item.id}
@@ -162,7 +190,7 @@ function ServiceAccordionRow({
                   <h3
                     id={headingId}
                     tabIndex={-1}
-                    className="text-white text-[24px] lg:text-[28px] leading-[28px] sm:leading-[28px] lg:leading-[44px] font-[500] outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99237]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1640] rounded-sm"
+                    className="text-white text-[24px] md:text-[22px] lg:text-[28px] leading-[28px] sm:leading-[28px] md:leading-[44px] font-[500] outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99237]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1640] rounded-sm"
                     style={{ fontFamily: "OpenSansRegular" }}
                   >
                     {item.title}
@@ -172,7 +200,7 @@ function ServiceAccordionRow({
                   type="button"
                   onClick={handleCollapse}
                   aria-label={`Collapse ${item.title}`}
-                  className="flex lg:hidden shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
+                  className="flex md:hidden shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
                 >
                   <Image
                     src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
@@ -187,24 +215,28 @@ function ServiceAccordionRow({
 
               <div
                 id={`section3-desc-${item.id}`}
-                className="w-full lg:flex-1 mt-1 lg:mt-0 scroll-mt-4"
+                className="w-full md:flex-1 mt-1 md:mt-0 scroll-mt-4"
               >
                 <div
                   className={
                     isFirst
-                      ? "text-[#FFFFFF] text-[16px] font-[400] leading-[30px] sm:leading-[24px] md:leading-[26px] lg:leading-[30px] tracking-[0] lg:text-[14px] xl:text-[16px]"
-                      : "text-[#FFFFFF] text-[16px] font-[400] leading-[30px] sm:leading-[24px] md:leading-[26px] lg:leading-[28px] tracking-[0] lg:text-[16px]"
+                      ? "text-[#FFFFFF] text-[16px] font-[400] leading-[30px] sm:leading-[24px] md:leading-[30px] tracking-[0] md:text-[14px] xl:text-[16px]"
+                      : "text-[#FFFFFF] text-[16px] font-[400] leading-[30px] sm:leading-[24px] md:leading-[28px] tracking-[0] md:text-[14px]"
                   }
                   style={{ fontFamily: "OpenSansRegular" }}
                 >
-                  {item.description.split("|||").map((para, i) => (
-                    <p
-                      key={i}
-                      className={i > 0 ? "mt-3 sm:mt-4 md:mt-4 lg:mt-5" : ""}
-                    >
-                      {para.trim()}
-                    </p>
-                  ))}
+                  {isMdToLg ? (
+                    <p>{truncateToMaxWords(descriptionJoined, 20)}</p>
+                  ) : (
+                    descriptionParagraphs.map((para, i) => (
+                      <p
+                        key={i}
+                        className={i > 0 ? "mt-3 sm:mt-4 md:mt-5" : ""}
+                      >
+                        {para}
+                      </p>
+                    ))
+                  )}
                 </div>
                 <div className="flex justify-start items-start">
                   <a
@@ -212,7 +244,7 @@ function ServiceAccordionRow({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Learn more about ${item.title}`}
-                    className="mt-2 cursor-pointer lg:mt-6 hidden border-b-[2px] border-[#0F1640] letsTalkToday2 lg:flex items-center gap-2.5 "
+                    className="mt-2 cursor-pointer md:mt-6 hidden border-b-[2px] border-[#0F1640] letsTalkToday2 md:flex items-center gap-2.5 "
                     onClick={(e) => e.stopPropagation()}
                     onKeyDown={(e) => e.stopPropagation()}
                   >
@@ -243,7 +275,7 @@ function ServiceAccordionRow({
               </div>
 
               <div
-                className={`w-full lg:w-auto flex flex-col items-start gap-3 shrink-0 ${isFirst ? "mt-4 lg:mt-0" : "mt-2 lg:mt-0"}`}
+                className={`w-full md:w-auto flex flex-col items-start gap-3 shrink-0 ${isFirst ? "mt-4 md:mt-0" : "mt-2 md:mt-0"}`}
               >
                 <div className="flex items-start gap-3 w-full">
                   <div className="relative">
@@ -258,7 +290,7 @@ function ServiceAccordionRow({
                     type="button"
                     onClick={handleCollapse}
                     aria-label={`Collapse ${item.title}`}
-                    className="hidden lg:flex shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
+                    className="hidden md:flex shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
                   >
                     <Image
                       src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
@@ -270,7 +302,7 @@ function ServiceAccordionRow({
                   </button>
                 </div>
                 <div
-                  className="flex lg:hidden mt-1 items-center gap-2.5 w-full md:w-[280px]"
+                  className="flex md:hidden mt-1 items-center gap-2.5 w-full md:w-[280px]"
                   onClick={(e) => e.stopPropagation()}
                   onKeyDown={(e) => e.stopPropagation()}
                 >
