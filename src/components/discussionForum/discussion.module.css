@@ -32,6 +32,7 @@
 
 @media (min-width: 1366px) {
     .container {
-        grid-template-columns: 521px repeat(4, 191px);
+        grid-template-columns: 521px repeat(4, 169px);
+        /* font-size: 16px; */
     }
 }

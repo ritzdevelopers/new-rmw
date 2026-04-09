@@ -11,7 +11,7 @@ export default function DiscussionTopics() {
     ];
 
     return (
-        <section className="w-full py-16 px-4 md:px-4 lg:px-5xl:px-5">
+        <section className="w-full py-16 px-4 md:px-4 lg:px-5 xl:px-5">
             <div className="mx-auto">
 
                 <h2 className="text-center text-3xl md:text-4xl font-bold mb-12">
@@ -94,7 +94,7 @@ export default function DiscussionTopics() {
         text-[14px] leading-snug
         sm:text-[14px]
         md:text-[14px]
-         lg:text-[14px]
+         lg:text-[16px]
         min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[3.5rem]
     ">
                                 {card.title}

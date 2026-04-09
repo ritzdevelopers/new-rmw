@@ -9,7 +9,7 @@ export default function WhyJoin() {
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
 
     return (
-        <section className="w-full py-6 sm:py-8 md:py-10 lg:py-3 px-4 sm:px-6 md:px-6 lg:px-12">
+        <section className="w-full py-6 sm:py-8 md:py-10 lg:py-3 pl-4 sm:pl-6 md:pl-6 lg:pl-12">
             
             {/* MAIN GRID */}
             <div className="
@@ -83,7 +83,7 @@ export default function WhyJoin() {
 
                 {/* MIDDLE IMAGE */}
                 <div className="
-                    w-full flex justify-center 
+                    w-full flex justify-end 
                     md:col-span-1 
                     xl:col-span-1
                     xl:pl-6 
@@ -108,7 +108,7 @@ export default function WhyJoin() {
                 {/* RIGHT LIST */}
                 <div className="
                     bg-[#F7F7F7] 
-                    p-4 sm:p-5 md:p-6
+                    p-4 sm:p-5 md:p-8
                     md:col-span-2 
                     xl:col-span-1   lg:col-span-1
                 ">
