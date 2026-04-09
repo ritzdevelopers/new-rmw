@@ -208,7 +208,7 @@ function Section3() {
                     </p>
 
                     <ul
-                        className="font-[400] text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-center md:text-left mb-4 md:mb-0"
+                        className="font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-left mb-4 md:mb-0"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
@@ -286,7 +286,7 @@ function Section3() {
                     </p>
 
                     <ul
-                        className="list-none md:list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[15px] xl:text-[16px] text-center md:text-left"
+                        className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}

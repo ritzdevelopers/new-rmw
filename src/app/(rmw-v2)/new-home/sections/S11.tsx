@@ -269,23 +269,16 @@ const router = useRouter();
 
           {/* Middle Section - List */}
           <div>
-            <ul className="flex flex-col gap-3 sm:gap-4">
-              <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#F3830E] w-[24px] h-[24px] rounded-full"></div>
-                <span>Industry benchmarks for real estate marketing ROI</span>
-              </li>
-              <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#F3830E] w-[24px] h-[24px] rounded-full"></div>
-                <span>Proven strategies for UHNI audience targeting</span>
-              </li>
-              <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#F3830E] w-[24px] h-[24px] rounded-full"></div>
-                <span>2026 digital and print advertising trends</span>
-              </li>
-              <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#F3830E] w-[24px] h-[24px] rounded-full"></div>
-                <span>Case studies with measurable results</span>
-              </li>
+            <ul
+              className="font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-left text-[#D1D5DC]"
+              style={{
+                fontFamily: "PoppinsRegular",
+              }}
+            >
+              <li className="list-item-animate">Industry benchmarks for real estate marketing ROI</li>
+              <li className="list-item-animate">Proven strategies for UHNI audience targeting</li>
+              <li className="list-item-animate"> 2026 digital and print advertising trends</li>
+              <li className="list-item-animate">Case studies with measurable results</li>
             </ul>
           </div>
 
@@ -354,23 +347,16 @@ const router = useRouter();
 
           {/* Middle Section - List */}
           <div className="w-full max-w-[500px]">
-            <ul className="flex flex-col gap-3 sm:gap-4">
-              <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#F3830E] w-[6px] h-[6px] rounded-full mt-2"></div>
-                <span>Comprehensive brand analysis</span>
-              </li>
-              <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#F3830E] w-[6px] h-[6px] rounded-full mt-2"></div>
-                <span>Competitor positioning review</span>
-              </li>
-              <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#F3830E] w-[6px] h-[6px] rounded-full mt-2"></div>
-                <span>Growth opportunity identification</span>
-              </li>
-              <li className="list-item-animate font-[400] text-[14px] sm:text-[15px] md:text-[16px] text-[#D1D5DC] flex items-start gap-3">
-                <div className="bg-[#F3830E] w-[6px] h-[6px] rounded-full mt-2"></div>
-                <span>Customized strategy roadmap</span>
-              </li>
+            <ul
+              className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left text-[#D1D5DC]"
+              style={{
+                fontFamily: "PoppinsRegular",
+              }}
+            >
+              <li className="list-item-animate">Comprehensive brand analysis</li>
+              <li className="list-item-animate">Competitor positioning review</li>
+              <li className="list-item-animate">Growth opportunity identification</li>
+              <li className="list-item-animate">Customized strategy roadmap</li>
             </ul>
           </div>
 

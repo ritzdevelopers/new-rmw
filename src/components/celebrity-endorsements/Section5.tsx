@@ -157,7 +157,7 @@ export default function Section5() {
             trends, strategies, and ROI benchmarks for 2026.
           </p>
           <ul
-            className="font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] list-none md:list-disc pl-0 md:pl-4 flex flex-col gap-1.5 sm:gap-2 md:gap-3 text-center md:text-left"
+            className="font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-left"
             style={{ fontFamily: "PoppinsRegular" }}
           >
             <li>Industry benchmarks for real estate marketing ROI</li>
@@ -222,7 +222,7 @@ export default function Section5() {
             actionable recommendations.
           </p>
           <ul
-            className="list-none md:list-disc pl-0 md:pl-4 flex flex-col gap-1.5 sm:gap-2 md:gap-3 font-[400] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] text-center md:text-left"
+            className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left"
             style={{ fontFamily: "PoppinsRegular" }}
           >
             <li>Comprehensive brand analysis</li>

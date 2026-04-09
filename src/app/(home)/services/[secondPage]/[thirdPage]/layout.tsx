@@ -15,7 +15,7 @@ export async function generateMetadata({
   const alternates = { canonical: canonicalUrl };
 
   try {
-    const data = await getMetaOrThrow(thirdPage, "serviceThird");
+    const data = await getMetaOrThrow(thirdPage, "serviceThird", secondPage);
     return {
       title: data.meta_title,
       description: data.meta_description,
@@ -56,7 +56,7 @@ export default async function Layout({
 
   try {
     // Try fetching meta for existing slugs
-    await getMetaOrThrow(thirdPage, "serviceThird");
+    await getMetaOrThrow(thirdPage, "serviceThird", secondPage);
   } catch (err) {
     console.warn(
       `Meta not found for slug: ${thirdPage}. Using default meta.`,

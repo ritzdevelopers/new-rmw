@@ -536,7 +536,7 @@ function page() {
       <Section5></Section5>
       {/* <GSAPService /> */}
       <S51></S51>
-      <NewMasterMinds></NewMasterMinds>
+      {/* <NewMasterMinds></NewMasterMinds> */}
       <Section7></Section7>
       <Section8></Section8>
       <NewBlogSection></NewBlogSection>

@@ -76,14 +76,14 @@ function Section2() {
             />
           </div>
           <div className="w-full sm:w-[90%] md:w-[95%] lg:w-[826px] z-10">
-            <h2
+            <p
               style={{
                 fontFamily: "InterMedium",
               }}
               className="font-[500] text-[20px] sm:text-[24px] md:text-[26px] lg:text-[36px] leading-tight sm:leading-normal xl:text-start text-center"
             >
               We believe in staying ahead, with <span className="text-[#F79024]">CREATIVE STORYTELLING</span> and <span className="text-[#F79024]">LEVERAGING A.I.</span> to deliver <span className="text-[#F79024]">STUNNING VISUALS</span> in <span className="text-[#F79024]">RECORD TIME</span>.
-            </h2>
+            </p>
           </div>
           <div
             className="w-full
@@ -116,14 +116,14 @@ function Section2() {
             >
               <div className="flex flex-col justify-center items-center text-center w-[90px] sm:w-[110px] md:w-[135px] lg:w-[162px] h-[90px] sm:h-[110px] md:h-[135px] lg:h-[162px]">
                 <div className="relative mb-[-12px] sm:mb-[-16px] md:mb-[-20px] lg:mb-[-26px]">
-                  <h2
+                  <p
                     style={{
                       fontFamily: "InterBold",
                     }}
                     className="font-[700] text-[48px] sm:text-[60px] md:text-[75px] lg:text-[96px] text-[#FFFFFF]"
                   >
                     17
-                  </h2>
+                  </p>
                   <p className="font-[400] text-[24px] sm:text-[30px] md:text-[38px] lg:text-[46px] text-[#FFFFFF] absolute -top-1 -right-3 sm:-right-4 md:-right-5 lg:-right-7">
                     +
                   </p>
@@ -195,14 +195,14 @@ function Section2() {
           {/* Centered Align Div  */}
           <div className="flex flex-col justify-center items-center text-center w-[90px] sm:w-[110px] md:w-[135px] lg:w-[162px] h-[90px] sm:h-[110px] md:h-[135px] lg:h-[162px]">
             <div className="relative mb-[-12px] sm:mb-[-16px] md:mb-[-20px] lg:mb-[-26px]">
-              <h2
+              <p
                 style={{
                   fontFamily: "InterBold",
                 }}
                 className="font-[700] text-[36px] md:text-[75px] lg:text-[76px] text-[#FFFFFF]"
               >
                 17
-              </h2>
+              </p>
               <p className="font-[400] text-[24px] sm:text-[30px] md:text-[38px] lg:text-[46px] text-[#FFFFFF] absolute -top-1 -right-3 sm:-right-4 md:-right-5 lg:-right-7">
                 +
               </p>

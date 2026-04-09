@@ -152,6 +152,7 @@ function S3() {
               <img
                 src="/home-v3/s3/lftb.png"
                 alt="RMW"
+                title="RMW"
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -163,6 +164,7 @@ function S3() {
               <img
                 src="/home-v3/s3/rhgt.png"
                 alt="RMW"
+                title="RMW"
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -225,11 +227,12 @@ function S3() {
                           src={ob.img}
                           onClick={()=>window.open(ob.link, "_blank")}
                           alt={ob.ttl}
+                          title={ob.ttl}
                           fill
                           className="object-cover"
                         ></Image>
                       </div>
-                      <div className="w-full max-w-[442px] sm:w-[442px] z-10 h-[calc(100%-336px)] bg-[#F7F7F7] absolute bottom-8 right-0 pl-4 sm:pl-8 py-6 sm:py-8 flex flex-col gap-3 xl:p-5">
+                      <div className="w-full max-w-[442px] sm:w-[442px] z-10 h-[calc(100%-336px)] bg-[#F7F7F7] absolute bottom-8 right-0 pl-4 xl:w-full sm:pl-8 py-6 sm:py-8 flex flex-col gap-3 xl:p-5 ">
                         <h3
                           className="font-[600] text-[16px] sm:text-[18px] text-[#C99237] cursor-pointer"
                           onClick={()=>window.open(ob.link, "_blank")}
@@ -271,7 +274,7 @@ function S3() {
                               fontFamily: "OpenSansSemiBold",
                             }}
                           >
-                            Read More
+                            Know More
                           </Link>
                         </div>
                       </div>

@@ -184,7 +184,7 @@ function S2() {
           </div>
           {/* Col 2 */}
           <div className="w-full lg:w-[355px] block md:hidden lg:block h-[250px] sm:h-[300px] lg:h-[370px] relative mx-auto lg:mx-0">
-            <Image src={"/home-v3/s2/800-x-800.jpg"} alt="rmw" fill className="object-contain"></Image>
+            <Image src={"/home-v3/s2/800-x-800.jpg"} alt="rmw" title="rmw" fill className="object-contain"></Image>
           </div>
 
           {/* Col 3  */}
@@ -233,7 +233,7 @@ function S2() {
 
         <div className="w-full hidden md:flex lg:hidden justify-between">  {/* Col 2 */}
           <div className="w-full lg:w-[355px] h-[250px] sm:h-[300px] lg:h-[370px] relative mx-auto lg:mx-0">
-            <Image src={"/home-v3/s2/800-x-800.jpg"} alt="rmw" fill className="object-contain"></Image>
+            <Image src={"/home-v3/s2/800-x-800.jpg"} alt="rmw" title="rmw" fill className="object-contain"></Image>
           </div>
 
           {/* Col 3  */}
@@ -283,7 +283,7 @@ function S2() {
           {/* Row 1  */}
           <div className="w-full flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-12 lg:gap-20 xl:gap-30 border-[1px] border-[#E2E2E2] py-6 sm:py-7 lg:py-8 px-4 sm:px-6 lg:px-0">
             <div className="w-full sm:w-[280px] flex flex-col justify-center items-center gap-2 text-center">
-              <img src="/home-v3/s2/clock.png" alt="RMW" className="w-[39px] h-auto" />
+              <img src="/home-v3/s2/clock.png" alt="RMW" title="RMW" className="w-[39px] h-auto" />
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
@@ -297,7 +297,7 @@ function S2() {
             </div>
 
             <div className="w-full sm:w-[280px] flex flex-col justify-center items-center gap-2 text-center">
-              <img src="/home-v3/s2/board.png" alt="RMW" className="w-[49px] h-auto" />
+              <img src="/home-v3/s2/board.png" alt="RMW" title="RMW" className="w-[49px] h-auto" />
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
@@ -311,7 +311,7 @@ function S2() {
             </div>
 
             <div className="w-full sm:w-[280px] flex flex-col justify-center items-center gap-2 text-center">
-              <img src="/home-v3/s2/wave.png" alt="RMW" className="w-[37px] h-auto" />
+              <img src="/home-v3/s2/wave.png" alt="RMW" title="RMW" className="w-[37px] h-auto" />
               <h3 className="font-[600] text-[18px] sm:text-[19px] lg:text-[20px]" style={{
                 fontFamily: 'MontserratSemiBold',
               }}>
@@ -328,7 +328,7 @@ function S2() {
           {/* Row 2  */}
           <div className="w-full h-[250px] sm:h-[350px] lg:h-[426px] relative">
             {/* <Image src={"/home-v3/s2/team-bg.jpeg"} alt="" fill className="object-cover"></Image> */}
-            <Image src={"/home-v3/s2/team-bg1.png"} alt="Ritz Media World – team" title="Ritz Media World" fill className="object-cover"></Image>
+            <Image src={"/home-v3/s2/team-bg1.png"} alt="Ritz Media World – team" title="Ritz Media World – team" fill className="object-cover"></Image>
 
             <div
               onClick={handlePlayClick}
@@ -432,7 +432,7 @@ function S2() {
                     key={idx}
                     className="w-[100px] h-[56px] sm:w-[120px] sm:h-[67px] lg:w-[146px] lg:h-[81px] relative shrink-0"
                   >
-                    <Image src={url} fill alt="RMW" className="object-contain" />
+                    <Image src={url} fill alt="RMW" title="RMW" className="object-contain" />
                   </div>
                 ))}
               </div>
@@ -563,6 +563,7 @@ function S2() {
                   src={displayImage}
                   onClick={() => window.open(activeCard.link, "_blank")}
                   alt="RMW"
+                  title="RMW"
                   fill
                   priority
                   style={{ transition: 'opacity 0.1s' }}
@@ -594,7 +595,8 @@ function S2() {
             <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-center md:text-left" style={{
               fontFamily: 'OpenSansRegular',
             }}>
-              Not sure which path fits your brand? <br className="md:hidden block" /> <span className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] underline cursor-pointer" style={{
+              Not sure which path fits your brand? <br className="md:hidden block" /> 
+              <span className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] underline cursor-pointer hover:text-[#C99237] transition-colors duration-200" style={{
                 fontFamily: 'OpenSansSemiBold',
               }} onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}>
                 Let's discuss your unique needs
