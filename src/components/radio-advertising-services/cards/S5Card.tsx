@@ -19,12 +19,12 @@ function S5Card({ isOpen, title, content, image, link, index }: S5CardProps) {
 
                 {/* Bottom Image Row  */}
                 <div className="w-full flex justify-center">
-                    <img src={image} alt={`${title} – Ritz Media World`} title="Ritz Media World" className="w-[264px] h-auto object-cover" />
+                    <img src={image} alt={`${title} – Ritz Media World`} title="Ritz Media World" className="w-[332px] h-auto object-cover" />
                 </div>
 
                 {/* Absolute Positioned Div  */}
                 <div className="absolute top-4 right-4">
-                    <p className={`font-[500] text-[16px] ${styles.fontmontserrat}`}> {badge}</p>
+                    <p className={`font-[500] text-[16px] text-[#C99237] ${styles.fontmontserrat}`}> {badge}</p>
                 </div>
             </div>
 

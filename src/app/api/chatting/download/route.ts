@@ -22,10 +22,10 @@ export async function GET(request: Request) {
         const [userRows] = await db.query<RowDataPacket[]>("SELECT * FROM chatbot_users WHERE created_at BETWEEN ? AND ? ORDER BY created_at DESC", [startDate, endDate]);
 
         if (rows.length > 0) {
-            await redisClient.set(`cached_filter_chatting_history_${startDate}_${endDate}`, JSON.stringify(rows), { EX: 60 * 60 * 24 });
+            await redisClient.set(`cached_filter_chatting_history_${startDate}_${endDate}`, JSON.stringify(rows), { EX: 60 * 10 });
         }
         if (userRows.length > 0) {
-            await redisClient.set(`cached_filter_chatbot_users_${startDate}_${endDate}`, JSON.stringify(userRows), { EX: 60 * 60 * 24 });
+            await redisClient.set(`cached_filter_chatbot_users_${startDate}_${endDate}`, JSON.stringify(userRows), { EX: 60 * 10 });
         }
         if (rows.length === 0) {
             return NextResponse.json({ message: "No data found" }, { status: 404 });

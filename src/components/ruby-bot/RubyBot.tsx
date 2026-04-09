@@ -1,5 +1,11 @@
 "use client";
 import React, { useState, useRef, useEffect, useContext } from 'react';
+import {
+    DEFAULT_CONTACT_COUNTRY,
+    SORTED_CONTACT_COUNTRIES,
+    validateContactPhone,
+    type CountryEntry,
+} from '@/lib/contactPhoneValidation';
 import { HiDotsVertical } from 'react-icons/hi';
 import { IoMdClose } from 'react-icons/io';
 import { FiMic, FiMicOff, FiSend } from 'react-icons/fi';
@@ -46,6 +52,8 @@ function RubyBot() {
         email: '',
         message: '',
     });
+    const [enquiryPhoneCountry, setEnquiryPhoneCountry] =
+        useState<CountryEntry>(() => DEFAULT_CONTACT_COUNTRY);
     const [quickReplies] = useState<QuickReply[]>([
         { id: '1', text: 'Get Started' },
         { id: '2', text: 'Learn More' },
@@ -372,22 +380,20 @@ function RubyBot() {
             return;
         }
 
-        // Validate repetitive digits
-        if (enquiryForm.phone) {
-            const digitsOnly = enquiryForm.phone.replace(/\D/g, "");
-            if (digitsOnly.length >= 10) {
-                const firstDigit = digitsOnly[0];
-                if (digitsOnly.split('').every(digit => digit === firstDigit)) {
-                    const errorMessage: Message = {
-                        id: Date.now().toString(),
-                        text: "Please enter a valid phone number",
-                        sender: 'bot',
-                        timestamp: new Date(),
-                    };
-                    setMessages((prev) => [...prev, errorMessage]);
-                    return;
-                }
-            }
+        const nationalDigits = enquiryForm.phone.replace(/\D/g, "");
+        const phoneResult = validateContactPhone(
+            nationalDigits,
+            enquiryPhoneCountry,
+        );
+        if (!phoneResult.ok) {
+            const errorMessage: Message = {
+                id: Date.now().toString(),
+                text: phoneResult.error,
+                sender: 'bot',
+                timestamp: new Date(),
+            };
+            setMessages((prev) => [...prev, errorMessage]);
+            return;
         }
 
         // Email validation
@@ -416,7 +422,7 @@ function RubyBot() {
         const enquiryData = {
             etype: "ContactUs",
             name: enquiryForm.name.trim(),
-            phone: enquiryForm.phone.trim(),
+            phone: phoneResult.e164,
             email: enquiryForm.email.trim(),
             message: enquiryMessage,
         };
@@ -440,6 +446,7 @@ function RubyBot() {
 
                 // Reset form and close
                 setEnquiryForm({ name: '', phone: '', email: '', message: '' });
+                setEnquiryPhoneCountry(DEFAULT_CONTACT_COUNTRY);
                 setShowEnquiryForm(false);
                 setShowEnquiryButton(false);
             } else {
@@ -471,6 +478,7 @@ function RubyBot() {
     const handleCloseEnquiryForm = () => {
         setShowEnquiryForm(false);
         setEnquiryForm({ name: '', phone: '', email: '', message: '' });
+        setEnquiryPhoneCountry(DEFAULT_CONTACT_COUNTRY);
     };
 
     return (
@@ -600,13 +608,43 @@ function RubyBot() {
                                     className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
                                 />
 
-                                <input
-                                    type="tel"
-                                    placeholder="Phone Number *"
-                                    value={enquiryForm.phone}
-                                    onChange={(e) => handleEnquiryFormChange('phone', e.target.value)}
-                                    className="w-full px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
-                                />
+                                <div className="flex flex-col gap-2 sm:flex-row sm:gap-2">
+                                    <select
+                                        aria-label="Country calling code"
+                                        value={enquiryPhoneCountry.code}
+                                        onChange={(e) => {
+                                            const next = SORTED_CONTACT_COUNTRIES.find(
+                                                (c) => c.code === e.target.value,
+                                            );
+                                            if (next) setEnquiryPhoneCountry(next);
+                                        }}
+                                        className="w-full sm:w-[min(42%,9.5rem)] sm:flex-shrink-0 px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white cursor-pointer"
+                                    >
+                                        {SORTED_CONTACT_COUNTRIES.map((c) => (
+                                            <option key={c.code} value={c.code}>
+                                                {c.flag} {c.dial_code} {c.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <input
+                                        type="tel"
+                                        placeholder="Mobile (no country code) *"
+                                        value={enquiryForm.phone}
+                                        inputMode="numeric"
+                                        autoComplete="tel-national"
+                                        maxLength={15}
+                                        onChange={(e) =>
+                                            handleEnquiryFormChange(
+                                                'phone',
+                                                e.target.value.replace(
+                                                    /[^0-9]/g,
+                                                    '',
+                                                ),
+                                            )
+                                        }
+                                        className="w-full min-w-0 flex-1 px-3 py-2 text-xs sm:text-sm border border-gray-300 rounded-lg outline-none focus:border-[#001697] focus:ring-1 focus:ring-[#001697] bg-white"
+                                    />
+                                </div>
 
                                 <input
                                     type="email"
