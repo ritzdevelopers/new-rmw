@@ -534,9 +534,35 @@
   height: 1rem;
 }
 
+.phoneRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .phoneRow {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .phoneRow .formSelect {
+    flex: 0 0 auto;
+    width: min(42%, 9.5rem);
+    min-width: 7rem;
+  }
+
+  .phoneRow .formInput {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 /* Form Inputs */
 .formInput,
-.formTextarea {
+.formTextarea,
+.formSelect {
   width: 100%;
   height: 41px !important;
   padding: 0;
@@ -552,7 +578,8 @@
 }
 
 .formInput:focus,
-.formTextarea:focus {
+.formTextarea:focus,
+.formSelect:focus {
   border-color: #001697;
   box-shadow: 0 0 0 1px #001697;
   outline: none;
@@ -565,8 +592,14 @@
   padding-top: 10px !important;
 }
 
+.formSelect {
+  cursor: pointer;
+  appearance: auto;
+}
+
 @media (min-width: 640px) {
-  .formInput {
+  .formInput,
+  .formSelect {
     font-size: 0.875rem;
     height: 2.25rem;
   }

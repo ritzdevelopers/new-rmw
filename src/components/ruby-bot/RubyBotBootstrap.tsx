@@ -1,5 +1,11 @@
 "use client";
 import React, { useState, useRef, useEffect, useContext } from 'react';
+import {
+    DEFAULT_CONTACT_COUNTRY,
+    SORTED_CONTACT_COUNTRIES,
+    validateContactPhone,
+    type CountryEntry,
+} from '@/lib/contactPhoneValidation';
 import { IoMdClose } from 'react-icons/io';
 import { FiMic, FiMicOff, FiSend } from 'react-icons/fi';
 import axios from 'axios';
@@ -45,6 +51,8 @@ function RubyBotBootstrap() {
         email: '',
         message: '',
     });
+    const [enquiryPhoneCountry, setEnquiryPhoneCountry] =
+        useState<CountryEntry>(() => DEFAULT_CONTACT_COUNTRY);
     const [quickReplies] = useState<QuickReply[]>([
         { id: '1', text: 'Get Started' },
         { id: '2', text: 'Learn More' },
@@ -351,22 +359,20 @@ function RubyBotBootstrap() {
             return;
         }
 
-        // Validate repetitive digits
-        if (enquiryForm.phone) {
-            const digitsOnly = enquiryForm.phone.replace(/\D/g, "");
-            if (digitsOnly.length >= 10) {
-                const firstDigit = digitsOnly[0];
-                if (digitsOnly.split('').every(digit => digit === firstDigit)) {
-                    const errorMessage: Message = {
-                        id: Date.now().toString(),
-                        text: "Please enter a valid phone number",
-                        sender: 'bot',
-                        timestamp: new Date(),
-                    };
-                    setMessages((prev) => [...prev, errorMessage]);
-                    return;
-                }
-            }
+        const nationalDigits = enquiryForm.phone.replace(/\D/g, "");
+        const phoneResult = validateContactPhone(
+            nationalDigits,
+            enquiryPhoneCountry,
+        );
+        if (!phoneResult.ok) {
+            const errorMessage: Message = {
+                id: Date.now().toString(),
+                text: phoneResult.error,
+                sender: 'bot',
+                timestamp: new Date(),
+            };
+            setMessages((prev) => [...prev, errorMessage]);
+            return;
         }
 
         // Email validation
@@ -389,7 +395,7 @@ function RubyBotBootstrap() {
         const enquiryData = {
             etype: "ContactUs",
             name: enquiryForm.name.trim(),
-            phone: enquiryForm.phone.trim(),
+            phone: phoneResult.e164,
             email: enquiryForm.email.trim(),
             message: enquiryForm.message.trim() || "Enquiry from Ruby Chatbot",
         };
@@ -413,6 +419,7 @@ function RubyBotBootstrap() {
 
                 // Reset form and close
                 setEnquiryForm({ name: '', phone: '', email: '', message: '' });
+                setEnquiryPhoneCountry(DEFAULT_CONTACT_COUNTRY);
                 setShowEnquiryForm(false);
                 setShowEnquiryButton(false);
             } else {
@@ -444,6 +451,7 @@ function RubyBotBootstrap() {
     const handleCloseEnquiryForm = () => {
         setShowEnquiryForm(false);
         setEnquiryForm({ name: '', phone: '', email: '', message: '' });
+        setEnquiryPhoneCountry(DEFAULT_CONTACT_COUNTRY);
     };
 
     return (
@@ -573,13 +581,43 @@ function RubyBotBootstrap() {
                                     className={styles.formInput}
                                 />
 
-                                <input
-                                    type="tel"
-                                    placeholder="Phone Number *"
-                                    value={enquiryForm.phone}
-                                    onChange={(e) => handleEnquiryFormChange('phone', e.target.value)}
-                                    className={styles.formInput}
-                                />
+                                <div className={styles.phoneRow}>
+                                    <select
+                                        aria-label="Country calling code"
+                                        value={enquiryPhoneCountry.code}
+                                        onChange={(e) => {
+                                            const next = SORTED_CONTACT_COUNTRIES.find(
+                                                (c) => c.code === e.target.value,
+                                            );
+                                            if (next) setEnquiryPhoneCountry(next);
+                                        }}
+                                        className={styles.formSelect}
+                                    >
+                                        {SORTED_CONTACT_COUNTRIES.map((c) => (
+                                            <option key={c.code} value={c.code}>
+                                                {c.flag} {c.dial_code} {c.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <input
+                                        type="tel"
+                                        placeholder="Mobile (no country code) *"
+                                        value={enquiryForm.phone}
+                                        inputMode="numeric"
+                                        autoComplete="tel-national"
+                                        maxLength={15}
+                                        onChange={(e) =>
+                                            handleEnquiryFormChange(
+                                                'phone',
+                                                e.target.value.replace(
+                                                    /[^0-9]/g,
+                                                    '',
+                                                ),
+                                            )
+                                        }
+                                        className={styles.formInput}
+                                    />
+                                </div>
 
                                 <input
                                     type="email"

@@ -8,8 +8,14 @@ import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import toast from "react-hot-toast";
-import { useRef } from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import {
+    CONTACT_COUNTRIES,
+    DEFAULT_CONTACT_COUNTRY,
+    SORTED_CONTACT_COUNTRIES,
+    validateContactPhone,
+    type CountryEntry,
+} from "@/lib/contactPhoneValidation";
 
 import { useSplitText } from "@/hooks/useSplitText"; //changed
 
@@ -17,6 +23,18 @@ const Form = () => {
     const textRefs = useSplitText(); //changed
     const captchaRef = useRef<HCaptcha>(null);
     const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+    const [selectedCountry, setSelectedCountry] =
+        useState<CountryEntry>(() => DEFAULT_CONTACT_COUNTRY);
+    const phoneInputRef = useRef<HTMLInputElement>(null);
+
+    const rejectInvalidPhone = (message: string) => {
+        toast.error(message, {
+            id: "contact-phone-invalid",
+            duration: 5000,
+        });
+        phoneInputRef.current?.focus();
+    };
 
     const handleCaptchaVerify = (token: string) => {
         setCaptchaToken(token);
@@ -32,20 +50,19 @@ const Form = () => {
 
         const form = e.currentTarget;
         const formData = new FormData(form);
-        const phone = formData.get("phone") as string;
-        
-        // Validate repetitive digits
-        if (phone) {
-            const digitsOnly = phone.replace(/\D/g, "");
-            if (digitsOnly.length >= 10) {
-                const firstDigit = digitsOnly[0];
-                if (digitsOnly.split('').every(digit => digit === firstDigit)) {
-                    toast.error("Please enter a valid phone number");
-                    return;
-                }
-            }
+        const nationalRaw = (formData.get("phone") as string) ?? "";
+        const nationalDigits = nationalRaw.replace(/\D/g, "");
+        const phoneResult = validateContactPhone(
+            nationalDigits,
+            selectedCountry,
+        );
+        if (!phoneResult.ok) {
+            rejectInvalidPhone(phoneResult.error);
+            return;
         }
-        
+
+        const phoneE164 = phoneResult.e164;
+
         const service = formData.get("service") as string;
         const query = formData.get("query") as string;
         const message = `Service: ${service}\n\nQuery: ${query}`;
@@ -53,7 +70,7 @@ const Form = () => {
         const data = {
             etype: "ContactUs",
             name: formData.get("name"),
-            phone: phone,
+            phone: phoneE164,
             email: formData.get("email"),
             message,
         };
@@ -78,6 +95,7 @@ const Form = () => {
                 );
 
                 form.reset();
+                setSelectedCountry(DEFAULT_CONTACT_COUNTRY);
                 captchaRef.current?.resetCaptcha();
                 setCaptchaToken(null);
             } else {
@@ -805,13 +823,85 @@ const Form = () => {
                                                                     background:
                                                                         "white",
                                                                 }}
-                                                                placeholder="Phone Number"
+                                                                placeholder="Email Address"
+                                                                type="email"
+                                                                name="email"
+                                                                required
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="col-xxl-4 col-xl-4 col-lg-4">
+                                                        <div className="postbox__comment-input mb-35">
+                                                            <select
+                                                                aria-label="Country calling code"
+                                                                className="inputText"
+                                                                style={{
+                                                                    background:
+                                                                        "white",
+                                                                }}
+                                                                value={
+                                                                    selectedCountry.code
+                                                                }
+                                                                onChange={(e) => {
+                                                                    const next =
+                                                                        CONTACT_COUNTRIES.find(
+                                                                            (c) =>
+                                                                                c.code ===
+                                                                                e.target
+                                                                                    .value,
+                                                                        );
+                                                                    if (next) {
+                                                                        setSelectedCountry(
+                                                                            next,
+                                                                        );
+                                                                    }
+                                                                }}
+                                                            >
+                                                                {SORTED_CONTACT_COUNTRIES.map(
+                                                                    (c) => (
+                                                                        <option
+                                                                            key={
+                                                                                c.code
+                                                                            }
+                                                                            value={
+                                                                                c.code
+                                                                            }
+                                                                        >
+                                                                            {
+                                                                                c.flag
+                                                                            }{" "}
+                                                                            {
+                                                                                c.dial_code
+                                                                            }{" "}
+                                                                            {
+                                                                                c.name
+                                                                            }
+                                                                        </option>
+                                                                    ),
+                                                                )}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="col-xxl-8 col-xl-8 col-lg-8">
+                                                        <div className="postbox__comment-input mb-35">
+                                                            <input
+                                                                ref={
+                                                                    phoneInputRef
+                                                                }
+                                                                className="inputText"
+                                                                style={{
+                                                                    background:
+                                                                        "white",
+                                                                }}
+                                                                placeholder="Mobile number (without country code)"
                                                                 type="tel"
                                                                 name="phone"
                                                                 required
                                                                 inputMode="numeric"
-                                                                pattern="[0-9]{10}"
-                                                                maxLength={10}
+                                                                autoComplete="tel-national"
+                                                                maxLength={15}
                                                                 onInput={(
                                                                     e,
                                                                 ) => {
@@ -821,22 +911,6 @@ const Form = () => {
                                                                             "",
                                                                         );
                                                                 }}
-                                                            />
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="col-xxl-12">
-                                                        <div className="postbox__comment-input mb-35">
-                                                            <input
-                                                                className="inputText"
-                                                                style={{
-                                                                    background:
-                                                                        "white",
-                                                                }}
-                                                                placeholder="Email Address"
-                                                                type="email"
-                                                                name="email"
-                                                                required
                                                             />
                                                         </div>
                                                     </div>
