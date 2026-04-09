@@ -17,10 +17,10 @@ export async function GET(request: Request) {
         const [userRows] = await db.query<RowDataPacket[]>("SELECT * FROM chatbot_users");
 
         if (rows.length > 0) {
-            await redisClient.set("cached_bot_chats", JSON.stringify(rows), { EX: 60 * 60 * 24 });
+            await redisClient.set("cached_bot_chats", JSON.stringify(rows), { EX: 60 * 10 }); 
         }
         if (userRows.length > 0) {
-            await redisClient.set("cached_chats_users", JSON.stringify(userRows), { EX: 60 * 60 * 24 });
+            await redisClient.set("cached_chats_users", JSON.stringify(userRows), { EX: 60 * 10 }); 
         }
         return NextResponse.json({ bot_chats: rows, chats_users: userRows }, { status: 200 });
     } catch (error) {

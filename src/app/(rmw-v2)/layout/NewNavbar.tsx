@@ -6,6 +6,12 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { gsap } from "gsap";
 import CardNav from "./ServiceHCards";
 import StaggeredMenu from "./StaggeredMenu";
+import {
+  DEFAULT_CONTACT_COUNTRY,
+  SORTED_CONTACT_COUNTRIES,
+  validateContactPhone,
+  type CountryEntry,
+} from "@/lib/contactPhoneValidation";
 
 function NewNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -387,6 +393,8 @@ function NewNavbar() {
     email: "",
     message: "",
   });
+  const [consultPhoneCountry, setConsultPhoneCountry] =
+    useState<CountryEntry>(() => DEFAULT_CONTACT_COUNTRY);
   const [consultErrors, setConsultErrors] = useState({
     name: "",
     phone: "",
@@ -584,6 +592,7 @@ function NewNavbar() {
       email: "",
       message: "",
     });
+    setConsultPhoneCountry(DEFAULT_CONTACT_COUNTRY);
     setCaptchaToken(null);
     setIsConsultModalClosing(false);
     setIsConsultModalOpen(true);
@@ -650,10 +659,9 @@ function NewNavbar() {
     }
 
     const phoneDigits = consultForm.phone.replace(/\D/g, "");
-    if (!phoneDigits) {
-      next.phone = "Please enter your phone number.";
-    } else if (!/^[6-9]\d{9}$/.test(phoneDigits)) {
-      next.phone = "Please enter a valid Indian mobile number.";
+    const phoneResult = validateContactPhone(phoneDigits, consultPhoneCountry);
+    if (!phoneResult.ok) {
+      next.phone = phoneResult.error;
     }
 
     if (!consultForm.email.trim()) {
@@ -662,11 +670,7 @@ function NewNavbar() {
       next.email = "Please enter a valid email address.";
     }
 
-    if (!consultForm.message.trim()) {
-      next.message = "Please write your message.";
-    } else if (consultForm.message.trim().length < 8) {
-      next.message = "Message should be at least 8 characters.";
-    }
+   
 
     if (!captchaToken) {
       next.captcha = "Please complete captcha.";
@@ -680,6 +684,16 @@ function NewNavbar() {
     e.preventDefault();
     if (!validateConsultForm()) return;
 
+    const nationalDigits = consultForm.phone.replace(/\D/g, "");
+    const phoneValidated = validateContactPhone(
+      nationalDigits,
+      consultPhoneCountry,
+    );
+    if (!phoneValidated.ok) {
+      setConsultErrors((prev) => ({ ...prev, phone: phoneValidated.error }));
+      return;
+    }
+
     setIsSubmittingConsult(true);
     try {
       const response = await fetch("/api/system-settings/contact-enquiry", {
@@ -688,7 +702,7 @@ function NewNavbar() {
         body: JSON.stringify({
           etype: "NavbarConsulting",
           name: consultForm.name.trim(),
-          phone: consultForm.phone.replace(/\D/g, ""),
+          phone: phoneValidated.e164,
           email: consultForm.email.trim(),
           message: consultForm.message.trim(),
         }),
@@ -1224,22 +1238,6 @@ function NewNavbar() {
                 </label>
 
                 <label className="block flex-1">
-                  <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Phone Number</span>
-                  <input
-                    type="tel"
-                    inputMode="numeric"
-                    placeholder="Enter 10-digit mobile number"
-                    value={consultForm.phone}
-                    onChange={(e) => setConsultForm((prev) => ({ ...prev, phone: e.target.value }))}
-                    className={`h-[44px] w-full border-b bg-transparent px-0 text-[14px] text-[#111827] placeholder:text-[#9CA3AF] outline-none transition ${consultErrors.phone ? "border-[#EF4444]" : "border-[#DADDE5] focus:border-[#C99237]"
-                      }`}
-                  />
-                  {consultErrors.phone && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.phone}</p>}
-                </label>
-              </div>
-
-              <div className="flex flex-col gap-4 sm:flex-row sm:gap-6">
-                <label className="block flex-1">
                   <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Email Address</span>
                   <input
                     type="email"
@@ -1251,8 +1249,48 @@ function NewNavbar() {
                   />
                   {consultErrors.email && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.email}</p>}
                 </label>
-
               </div>
+
+              <label className="block w-full">
+                <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Phone Number</span>
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-stretch sm:gap-3">
+                  <select
+                    aria-label="Country calling code"
+                    value={consultPhoneCountry.code}
+                    onChange={(e) => {
+                      const next = SORTED_CONTACT_COUNTRIES.find(
+                        (c) => c.code === e.target.value,
+                      );
+                      if (next) setConsultPhoneCountry(next);
+                    }}
+                    className={`h-[44px] w-full sm:w-[min(11rem,33%)] sm:max-w-[13rem] sm:flex-shrink-0 border-b bg-transparent px-0 text-[14px] text-[#111827] outline-none transition cursor-pointer ${consultErrors.phone ? "border-[#EF4444]" : "border-[#DADDE5] focus:border-[#C99237]"
+                      }`}
+                  >
+                    {SORTED_CONTACT_COUNTRIES.map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {c.flag} {c.dial_code} {c.name}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="tel"
+                    inputMode="numeric"
+                    autoComplete="tel-national"
+                    maxLength={15}
+                    placeholder="Mobile without country code"
+                    value={consultForm.phone}
+                    onChange={(e) =>
+                      setConsultForm((prev) => ({
+                        ...prev,
+                        phone: e.target.value.replace(/[^0-9]/g, ""),
+                      }))
+                    }
+                    className={`h-[44px] min-w-0 w-full flex-1 border-b bg-transparent px-0 text-[14px] text-[#111827] placeholder:text-[#9CA3AF] outline-none transition ${consultErrors.phone ? "border-[#EF4444]" : "border-[#DADDE5] focus:border-[#C99237]"
+                      }`}
+                  />
+                </div>
+                {consultErrors.phone && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.phone}</p>}
+              </label>
 
               <label className="block">
                 <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Write Message</span>
