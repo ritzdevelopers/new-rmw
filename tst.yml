@@ -1,0 +1,15 @@
+name: Test
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubantu-latest
+    steps:
+      - name: Deploy Via SSH
+        uses: appleboyssh-action@v0.1.6
+        with:
+          host: ${{ secrets.HOST }}

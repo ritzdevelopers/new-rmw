@@ -226,3 +226,9 @@
     padding-right: 41px!important;
   }
 }
+
+@media (min-width: 1722px) {
+    .bannerHeight{
+        height: 716px !important;
+    }
+ }
