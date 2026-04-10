@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     alternates: {
         canonical: "https://ritzmediaworld.com/services-v3/creative-services",
     },
+    
 
     openGraph: {
         title: "Leading Creative Agency in India | Branding & Design Experts",
