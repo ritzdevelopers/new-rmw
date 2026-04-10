@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://ritzmediaworld.com"),
     title: "Content Marketing Company in India | SEO Blogs & Strategy Experts",
     description:
         "Top content marketing company in India for SEO blogs, content strategy & traffic growth. Drive leads with expert storytelling & keyword-rich content.",
