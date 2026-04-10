@@ -23,7 +23,7 @@ function S5CardMobile({ title, image, content, index }: S5CardMobileProps) {
                 <h3 className={`font-[500] text-[18px] leading-tight text-[#1a1a1a] ${styles.fontmontserrat}`}>
                     {title}
                 </h3>
-                <p className={`font-[400] text-[14px] leading-relaxed text-justify text-[#444] line-clamp-4 ${styles.fontopensans}`}>
+                <p className={`font-[400] text-[14px] leading-relaxed text-left text-[#444] line-clamp-4 ${styles.fontopensans}`}>
                     {content}
                 </p>
                 <button type="button" className="flex items-center gap-2 w-fit mt-1">
