@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     description:
         "Leading creative agency specializing in branding, logo design, packaging, and visual identity to elevate your brand’s presence across all platforms.",
 
+    authors: [{ name: "Ritz Media World" }],
+    publisher: "Ritz Media World",
+
     keywords: [
         "Best creative digital marketing agency",
         "creative digital marketing agency",

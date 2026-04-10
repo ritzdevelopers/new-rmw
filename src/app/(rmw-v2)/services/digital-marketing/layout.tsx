@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description:
     "Get results with the best digital marketing agency. Expert in SEO, content, branding, influencer marketing, and custom web solutions tailored for growth.",
 
+  authors: [{ name: "Ritz Media World" }],
+  publisher: "Ritz Media World",
+
   alternates: {
     canonical: "https://ritzmediaworld.com/services/digital-marketing",
   },

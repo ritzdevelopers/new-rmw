@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description:
     "Discover Ritz Media World’s full-service solutions in digital, print, radio and creative advertising designed to grow your brand and drive real results.",
 
+  authors: [{ name: "Ritz Media World" }],
+  publisher: "Ritz Media World",
+
   alternates: {
     canonical: "https://ritzmediaworld.com/services",
   },
