@@ -54,7 +54,7 @@ const SLIDE_PERCENT = 100 / TOTAL_CARDS;
 function useIsXl() {
     const [isXl, setIsXl] = useState(false);
     useEffect(() => {
-        const mq = window.matchMedia("(min-width: 1024px)");
+        const mq = window.matchMedia("(min-width: 1280px)");
         const set = () => setIsXl(mq.matches);
         set();
         mq.addEventListener("change", set);
@@ -63,21 +63,62 @@ function useIsXl() {
     return isXl;
 }
 
+/** Cards visible in the xl:hidden slider: 1 mobile, 2 sm–lg, 3 lg–xl (Tailwind breakpoints). */
+function useMobileVisibleCount() {
+    const [count, setCount] = useState(1);
+    useEffect(() => {
+        const update = () => {
+            const w = window.innerWidth;
+            if (w >= 1280) setCount(1);
+            else if (w >= 1024) setCount(3);
+            else if (w >= 640) setCount(2);
+            else setCount(1);
+        };
+        update();
+        window.addEventListener("resize", update);
+        return () => window.removeEventListener("resize", update);
+    }, []);
+    return count;
+}
+
 function Section5() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const isXl = useIsXl();
+    const mobileVisibleCount = useMobileVisibleCount();
 
-    const goNext = () => setCurrentIndex((prev) => (prev + 1) % TOTAL_CARDS);
-    const goPrev = () => setCurrentIndex((prev) => (prev - 1 + TOTAL_CARDS) % TOTAL_CARDS);
+    const maxIndexBelowXl = Math.max(0, TOTAL_CARDS - mobileVisibleCount);
+    const maxIndexXl = TOTAL_CARDS - 1;
+    const maxIndex = isXl ? maxIndexXl : maxIndexBelowXl;
 
-    const progressPercent = ((currentIndex + 1) / TOTAL_CARDS) * 100;
+    const totalStepsBelowXl = Math.max(1, TOTAL_CARDS - mobileVisibleCount + 1);
+    const totalSteps = isXl ? TOTAL_CARDS : totalStepsBelowXl;
+
+    useEffect(() => {
+        const capBelow = Math.max(0, TOTAL_CARDS - mobileVisibleCount);
+        const cap = isXl ? TOTAL_CARDS - 1 : capBelow;
+        setCurrentIndex((i) => Math.min(i, cap));
+    }, [isXl, mobileVisibleCount]);
+
+    const goNext = () =>
+        setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    const goPrev = () =>
+        setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+
+    const progressPercent = ((currentIndex + 1) / totalSteps) * 100;
     const currentPage = (currentIndex + 1).toString().padStart(2, "0");
+    const totalPageLabel = totalSteps.toString().padStart(2, "0");
 
     const trackTransform = isXl
         ? `translateX(-${currentIndex * SLIDE_STEP}px)`
         : `translateX(-${currentIndex * SLIDE_PERCENT}%)`;
 
     const cardWidthPercent = 100 / TOTAL_CARDS;
+    const mobileTrackWidthPercent = (TOTAL_CARDS * 100) / mobileVisibleCount;
+
+    const mobileCardInnerClass =
+        mobileVisibleCount === 1
+            ? "w-full h-full min-h-0 max-w-[min(100%,320px)] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[440px] mx-auto"
+            : "w-full h-full min-h-0 mx-auto";
 
     return (
         <section className="w-full py-8 sm:py-12 md:py-16 xl:py-[70px] flex justify-center items-center">
@@ -98,27 +139,29 @@ function Section5() {
 
                 <div className="w-full flex flex-col gap-6 sm:gap-8 justify-between">
                     {/* Mobile only: slider with image-on-top cards */}
-                    <div className="w-full flex justify-center overflow-hidden sm:hidden">
+                    <div className="w-full flex justify-center overflow-hidden xl:hidden">
                         <div className="w-full overflow-hidden">
                             <div
-                                className={`${styles.s5SliderTrack} flex`}
+                                className={`${styles.s5SliderTrack} flex items-stretch`}
                                 style={{
-                                    width: `${TOTAL_CARDS * 100}%`,
+                                    width: `${mobileTrackWidthPercent}%`,
                                     transform: `translateX(-${currentIndex * SLIDE_PERCENT}%)`,
                                 }}
                             >
                                 {cardContent.map((card, index) => (
                                     <div
                                         key={index}
-                                        className="flex justify-center items-stretch flex-shrink-0 min-w-0 px-1"
+                                        className="flex justify-center items-stretch flex-shrink-0 min-w-0 px-1.5 sm:px-2 md:px-2.5"
                                         style={{ width: `${cardWidthPercent}%`, flexBasis: `${cardWidthPercent}%` }}
                                     >
-                                        <S5CardMobile
-                                            title={card.title}
-                                            image={card.image}
-                                            content={card.content}
-                                            index={index}
-                                        />
+                                        <div className={mobileCardInnerClass}>
+                                            <S5CardMobile
+                                                title={card.title}
+                                                image={card.image}
+                                                content={card.content}
+                                                index={index}
+                                            />
+                                        </div>
                                     </div>
                                 ))}
                             </div>
@@ -126,7 +169,7 @@ function Section5() {
                     </div>
 
                     {/* Sm and up: existing book-style slider (unchanged) */}
-                    <div className="hidden sm:flex w-full justify-center overflow-hidden">
+                    <div className="hidden xl:flex w-full justify-center overflow-hidden">
                         <div className="w-full overflow-hidden">
                             <div
                                 className={`${styles.s5SliderTrack} flex ${isXl ? "gap-4" : ""}`}
@@ -166,7 +209,7 @@ function Section5() {
                             </p>
                             <span className="font-[500] text-[14px] sm:text-[18px] xl:text-[20px] text-[#808080]">/</span>
                             <p className="font-[500] text-[14px] sm:text-[18px] xl:text-[20px] text-[#808080]">
-                                {TOTAL_CARDS.toString().padStart(2, "0")}
+                                {totalPageLabel}
                             </p>
                         </div>
 
