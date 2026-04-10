@@ -243,10 +243,7 @@ function BrandImpactSection2() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full xl:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
-                                style={{
-                                    fontFamily: "PoppinsRegular",
-                                }}
+                                className={`${styles.freeDownloadButton} w-full xl:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed`}
                             >
                                 <p className="text-white">{isSubmitting ? "Submitting..." : "Free Download"}</p>
                                 <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px]" />

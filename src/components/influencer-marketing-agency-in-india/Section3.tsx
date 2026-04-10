@@ -65,6 +65,21 @@ const servicesData = [
 
 type ServiceItem = (typeof servicesData)[number];
 
+/** Tailwind md–xl: 768px ≤ width < 1280px (mid layout only) */
+const MD_TO_XL_MEDIA = "(min-width: 768px) and (max-width: 1279px)";
+
+function useIsMdToXl() {
+  const [matches, setMatches] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(MD_TO_XL_MEDIA);
+    const update = () => setMatches(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return matches;
+}
+
 function ServiceAccordionRow({
   item,
   isOpen,
@@ -81,6 +96,7 @@ function ServiceAccordionRow({
   const panelId = `section3-panel-${item.id}`;
   const triggerId = `section3-trigger-${item.id}`;
   const headingId = `section3-heading-${item.id}`;
+  const headingIdMid = `section3-heading-mid-${item.id}`;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -110,6 +126,10 @@ function ServiceAccordionRow({
   };
 
   const isFirst = item.id === "01";
+  const isMdToXl = useIsMdToXl();
+  const descriptionParagraphs = item.description
+    .split("|||")
+    .map((p) => p.trim());
 
   return (
     <div
@@ -140,7 +160,9 @@ function ServiceAccordionRow({
       <div
         id={panelId}
         role="region"
-        aria-labelledby={isOpen ? headingId : triggerId}
+        aria-labelledby={
+          isOpen ? (isMdToXl ? headingIdMid : headingId) : triggerId
+        }
         className={`${accordionStyles.accordionPanel} cursor-pointer ${
           isOpen
             ? accordionStyles.accordionPanelOpen
@@ -149,12 +171,13 @@ function ServiceAccordionRow({
         onClick={openExternal}
       >
         <div className={accordionStyles.accordionPanelInner}>
-          <div className="py-5 sm:py-6">
-            <div className="flex flex-col lg:flex-row gap-8 xl:gap-10 items-start">
-              <div className="flex items-start justify-between gap-3 sm:gap-4 lg:gap-5 w-full lg:w-[24%] xl:w-[22%] shrink-0 ml-0">
-                <div className="flex items-center sm:items-center lg:items-start gap-3 sm:gap-4 lg:gap-5 min-w-0">
+          {/* Original 3-column layout: &lt; md and xl+ */}
+          <div className="py-5 sm:py-6 block md:hidden xl:block">
+            <div className="flex flex-col xl:flex-row gap-8 xl:gap-10 items-start">
+              <div className="flex items-start justify-between gap-3 sm:gap-4 xl:gap-5 w-full xl:w-[22%] shrink-0 ml-0">
+                <div className="flex items-center sm:items-center xl:items-start gap-3 sm:gap-4 xl:gap-5 min-w-0">
                   <span
-                    className={`text-[#FFFFFF] text-[13px] sm:text-[15px] ${isFirst ? "lg:pt-2 lg:mt-2" : "lg:pt-1 lg:mt-2"}`}
+                    className={`text-[#FFFFFF] text-[13px] sm:text-[15px] ${isFirst ? "xl:pt-2 xl:mt-2" : "xl:pt-1 xl:mt-2"}`}
                     style={{ fontFamily: "MontserratMedium" }}
                   >
                     {item.id}
@@ -162,7 +185,7 @@ function ServiceAccordionRow({
                   <h3
                     id={headingId}
                     tabIndex={-1}
-                    className="text-white text-[24px] lg:text-[28px] leading-[28px] sm:leading-[28px] lg:leading-[44px] font-[500] outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99237]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1640] rounded-sm"
+                    className="text-white text-[24px] xl:text-[28px] leading-[28px] sm:leading-[28px] xl:leading-[44px] font-[500] outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99237]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1640] rounded-sm"
                     style={{ fontFamily: "OpenSansRegular" }}
                   >
                     {item.title}
@@ -172,7 +195,7 @@ function ServiceAccordionRow({
                   type="button"
                   onClick={handleCollapse}
                   aria-label={`Collapse ${item.title}`}
-                  className="flex lg:hidden shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
+                  className="flex xl:hidden shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
                 >
                   <Image
                     src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
@@ -187,22 +210,22 @@ function ServiceAccordionRow({
 
               <div
                 id={`section3-desc-${item.id}`}
-                className="w-full lg:flex-1 mt-1 lg:mt-0 scroll-mt-4"
+                className="w-full xl:flex-1 mt-1 xl:mt-0 scroll-mt-4"
               >
                 <div
                   className={
                     isFirst
-                      ? "text-[#FFFFFF] text-[16px] font-[400] leading-[30px] sm:leading-[24px] md:leading-[26px] lg:leading-[30px] tracking-[0] lg:text-[14px] xl:text-[16px]"
-                      : "text-[#FFFFFF] text-[16px] font-[400] leading-[30px] sm:leading-[24px] md:leading-[26px] lg:leading-[28px] tracking-[0] lg:text-[16px]"
+                      ? "text-[#FFFFFF] text-[16px] font-[400] leading-[30px] sm:leading-[24px] xl:leading-[30px] tracking-[0] xl:text-[16px]"
+                      : "text-[#FFFFFF] text-[16px] font-[400] leading-[30px] sm:leading-[24px] xl:leading-[28px] tracking-[0] xl:text-[14px]"
                   }
                   style={{ fontFamily: "OpenSansRegular" }}
                 >
-                  {item.description.split("|||").map((para, i) => (
+                  {descriptionParagraphs.map((para, i) => (
                     <p
                       key={i}
-                      className={i > 0 ? "mt-3 sm:mt-4 md:mt-4 lg:mt-5" : ""}
+                      className={i > 0 ? "mt-3 sm:mt-4 xl:mt-5" : ""}
                     >
-                      {para.trim()}
+                      {para}
                     </p>
                   ))}
                 </div>
@@ -212,7 +235,7 @@ function ServiceAccordionRow({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Learn more about ${item.title}`}
-                    className="mt-2 cursor-pointer lg:mt-6 hidden border-b-[2px] border-[#0F1640] letsTalkToday2 lg:flex items-center gap-2.5 "
+                    className="mt-2 cursor-pointer xl:mt-6 hidden border-b-[2px] border-[#0F1640] letsTalkToday2 xl:flex items-center gap-2.5 "
                     onClick={(e) => e.stopPropagation()}
                     onKeyDown={(e) => e.stopPropagation()}
                   >
@@ -243,7 +266,7 @@ function ServiceAccordionRow({
               </div>
 
               <div
-                className={`w-full lg:w-auto flex flex-col items-start gap-3 shrink-0 ${isFirst ? "mt-4 lg:mt-0" : "mt-2 lg:mt-0"}`}
+                className={`w-full xl:w-auto flex flex-col items-start gap-3 shrink-0 ${isFirst ? "mt-4 xl:mt-0" : "mt-2 xl:mt-0"}`}
               >
                 <div className="flex items-start gap-3 w-full">
                   <div className="relative">
@@ -251,14 +274,14 @@ function ServiceAccordionRow({
                       src={item.imageSrc}
                       alt={item.title}
                       title={item.title}
-                      className="md:aspect-auto rounded-[5px] overflow-hidden xl:w-[357px] xl:h-auto w-full aspect-[4/3] md:w-[280px] md:h-[198px]"
+                      className="xl:aspect-auto rounded-[5px] overflow-hidden w-full aspect-[4/3] xl:w-[357px] xl:h-auto"
                     />
                   </div>
                   <button
                     type="button"
                     onClick={handleCollapse}
                     aria-label={`Collapse ${item.title}`}
-                    className="hidden lg:flex shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
+                    className="hidden xl:flex shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
                   >
                     <Image
                       src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
@@ -270,7 +293,7 @@ function ServiceAccordionRow({
                   </button>
                 </div>
                 <div
-                  className="flex lg:hidden mt-1 items-center gap-2.5 w-full md:w-[280px]"
+                  className="flex xl:hidden mt-1 items-center gap-2.5 w-full"
                   onClick={(e) => e.stopPropagation()}
                   onKeyDown={(e) => e.stopPropagation()}
                 >
@@ -296,6 +319,116 @@ function ServiceAccordionRow({
                       height={7}
                     />
                   </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* md–xl only: row 1 title + cross, row 2 copy | image */}
+          <div className="py-5 sm:py-6 hidden md:block xl:hidden">
+            <div className="flex flex-col gap-6 md:gap-8">
+              <div className="flex items-start justify-between gap-3 sm:gap-4 md:gap-5 w-full">
+                <div className="flex items-start gap-3 sm:gap-4 md:gap-5 min-w-0">
+                  <span
+                    className={`text-[#FFFFFF] text-[13px] sm:text-[15px] ${isFirst ? "md:pt-2 md:mt-2" : "md:pt-1 md:mt-2"}`}
+                    style={{ fontFamily: "MontserratMedium" }}
+                  >
+                    {item.id}
+                  </span>
+                  <p
+                    id={headingIdMid}
+                    tabIndex={-1}
+                    className="text-white text-[24px] md:text-[22px] lg:text-[28px] leading-[28px] sm:leading-[28px] md:leading-[44px] font-[500] outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99237]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1640] rounded-sm"
+                    style={{ fontFamily: "OpenSansRegular" }}
+                  >
+                    {item.title}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleCollapse}
+                  aria-label={`Collapse ${item.title}`}
+                  className="shrink-0 mt-1 hover:opacity-80 transition-opacity cursor-pointer"
+                >
+                  <Image
+                    src="/service-v3/influencer-marketing-agency-in-india/s2/cross.svg"
+                    alt="Ritz Media World"
+                    title="Ritz Media World"
+                    width={30}
+                    height={30}
+                  />
+                </button>
+              </div>
+
+              <div className="flex lex-row gap-6 lg:gap-8 items-start w-full">
+                <div
+                  id={`section3-desc-mid-${item.id}`}
+                  className="w-full lg:flex-1 min-w-0 mt-0 scroll-mt-4"
+                >
+                  <div
+                    className={
+                      isFirst
+                        ? "text-[#FFFFFF] text-[16px] font-[400] leading-[30px] sm:leading-[24px] md:leading-[30px] tracking-[0] md:text-[14px] lg:text-[16px]"
+                        : "text-[#FFFFFF] text-[16px] font-[400] leading-[30px] sm:leading-[24px] md:leading-[28px] tracking-[0] md:text-[14px]"
+                    }
+                    style={{ fontFamily: "OpenSansRegular" }}
+                  >
+                    {descriptionParagraphs.map((para, i) => (
+                      <p
+                        key={i}
+                        className={i > 0 ? "mt-3 sm:mt-4 md:mt-5" : ""}
+                      >
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                  <div className="flex justify-start items-start">
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Learn more about ${item.title}`}
+                      className="mt-2 cursor-pointer md:mt-6 flex border-b-[2px] border-[#0F1640] letsTalkToday2 items-center gap-2.5"
+                      onClick={(e) => e.stopPropagation()}
+                      onKeyDown={(e) => e.stopPropagation()}
+                    >
+                      <span
+                        className="text-white text-[14px] sm:text-[15px]"
+                        style={{ fontFamily: "MontserratMedium" }}
+                      >
+                        Learn more
+                      </span>
+                      <Link
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Learn more about ${item.title}`}
+                        className="w-[40px] h-[40px] rounded-full bg-[#C99237] letsTalkTodayIcon flex items-center justify-center hover:bg-[#b8822f] transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Image
+                          src={EXPLORE_ARROW_IMAGE}
+                          alt="Ritz Media World"
+                          title="Ritz Media World"
+                          width={22}
+                          height={7}
+                        />
+                      </Link>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  className={`w-auto shrink-0 flex flex-col items-start ${isFirst ? "mt-0" : "mt-0"}`}
+                >
+                  <div className="relative w-[280px]">
+                    <img
+                      src={item.imageSrc}
+                      alt={item.title}
+                      title={item.title}
+                      className="rounded-[5px] overflow-hidden w-full aspect-[4/3] lg:aspect-auto lg:w-[280px] lg:h-[198px]"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

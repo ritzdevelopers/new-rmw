@@ -20,7 +20,7 @@ export default function Section2() {
           style={{ fontFamily: "OpenSansRegular" }}
         >
           <p>
-            We specialize as a performance-driven <i>influencer marketing agency</i>, connecting brands with the right influencers through effective influencer brand partnerships that engage the desired audience. At <b><a href="/" target="_blank" className="cursor-pointer">Ritz Media World</a></b>, we ensure every campaign delivers measurable impact. <br />
+            We specialize as a performance-driven <i>influencer marketing agency</i>, connecting brands with the right influencers through effective influencer brand partnerships that engage the desired audience. At <b><a href="/" target="_blank" className="cursor-pointer">Ritz Media World</a></b>, we ensure every campaign delivers measurable impact. <br /> <br className=""/>
 
             From influencer research and planning to full influencer campaign management, we create effective <i>influencer marketing campaigns</i> that boost awareness, engagement, and conversions. Whether you are looking to partner with influencers for <i> brand marketing</i> or looking for effective <i>influencer marketing services,</i> our solutions will ensure that every partnership results in measurable visibility and business growth.
           </p>

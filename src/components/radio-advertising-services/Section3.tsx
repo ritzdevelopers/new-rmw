@@ -20,11 +20,11 @@ function Section3() {
                 </div>
 
                 {/* Col 2 – main image + floating text box */}
-                <div className="w-[80%] xl:w-[798px] xl:flex-shrink-0 relative px-0">
+                <div className="w-full mt-6 md:mt-0 md:w-[80%] xl:w-[798px] xl:flex-shrink-0 relative px-0">
                     {/* Floating box: full-width on small screens, max 450px at xl */}
                     <div className="absolute left-1/2 -translate-x-1/2 w-full md:w-[calc(100%-2rem)] min-w-0 md:max-w-[450px]  -top-10 py-3 px-3 sm:py-4 sm:px-8 bg-[#F7F7F7] rounded-[4px]">
                         <div className="w-full min-h-0 shrink-0">
-                            <p className={`font-[500] text-[11px] md:text-[16px] xl:text-[18px] text-center ${styles.fontmontserrat
+                            <p className={`font-[500] text-[13px] md:text-[16px] xl:text-[18px] text-center ${styles.fontmontserrat
                                 }`}>
                                 We strategically <span className="font-[700]">place your brand</span> across leading{" "}
                                 <span className="font-[700]">FM stations</span> to build maximum audience engagement and visibility.

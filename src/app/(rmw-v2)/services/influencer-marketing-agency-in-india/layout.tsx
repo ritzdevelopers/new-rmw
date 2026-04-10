@@ -2,8 +2,14 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ritzmediaworld.com"),
+  alternates: {
+    canonical:
+      "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
+  },
   title: "Influencer Marketing Agency in India | Engage Top Social Influencers",
   description: "Delhi NCR’s leading influencer marketing agency. Partner with top Instagram, YouTube & LinkedIn influencers to grow your brand visibility.",
+  authors: [{ name: "Ritz Media World" }],
+  publisher: "Ritz Media World",
   keywords: [
     "Influencer Marketing Services",
     "Boost Brand Engagement",

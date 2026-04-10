@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Section7() {
     return (
-        <section className="w-full flex justify-center items-center py-[40px] md:pb-0 md:pt-16 lg:pt-[70px] ">
+        <section className="w-full flex justify-center items-center pt-[40px] md:pb-0 md:pt-16 lg:pt-[70px] ">
         {/* Centered Align Container  */}
         <div className={`w-full  mx-auto flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10 overflow-hidden ${styles.containerWidth}`}>
             {/* Top Row  */}
@@ -13,7 +13,7 @@ function Section7() {
                 {/* Copy Row 1  */}
                 <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
                     {/* Left Side Container  */}
-                    <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0 px-4 sm:px-0">
+                    <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0 sm:border-r-[1px] border-b-[#D9D9D9] sm:border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-4 sm:pb-0 px-4 sm:px-0">
                         <p className="font-[700] text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] text-center sm:text-left" style={{
                             fontFamily: 'MontserratBold',
                         }}>Brands That Trust Us</p>
@@ -35,7 +35,7 @@ function Section7() {
                     </div>
 
                     {/* Right Side Container  */}
-                    <div className="flex w-full md:pl-6 lg:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden">
+                    <div className="flex w-full flex-col md:flex-row items-center md:items-start md:pl-6 lg:pl-[47px] sm:w-[calc(100%-194px)] overflow-x-hidden">
                         {/* Slider Container  */}
                         <div className="w-full overflow-hidden">
                             <div className={`flex gap-4 sm:gap-6 lg:gap-8 w-max ${styles.clientSlider}`}>

@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     description:
         "Leading creative agency specializing in branding, logo design, packaging, and visual identity to elevate your brand’s presence across all platforms.",
 
+    authors: [{ name: "Ritz Media World" }],
+    publisher: "Ritz Media World",
+
     keywords: [
         "Best creative digital marketing agency",
         "creative digital marketing agency",
@@ -30,6 +33,7 @@ export const metadata: Metadata = {
     alternates: {
         canonical: "https://ritzmediaworld.com/services-v3/creative-services",
     },
+    
 
     openGraph: {
         title: "Leading Creative Agency in India | Branding & Design Experts",
