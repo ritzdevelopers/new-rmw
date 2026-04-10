@@ -28,7 +28,7 @@ export default function Banner() {
             }}
             className={`w-full min-h-[520px]  md:min-h-[363px] lg:min-h-[490px] xl:h-[516px]
         bg-cover bg-no-repeat bg-center flex items-center justify-center md:justify-start text-center md:text-left md:items-end pb-8 sm:pb-12 md:pb-8 lg:pb-10
-         px-4 sm:px-6 md:px-0 lg:px-0 ${styles.bannerHeight}`}>
+         px-4 sm:px-6 md:px-0 lg:px-0`}>
             <div className="flex flex-col gap-3 md:gap-0 xl:gap-4  w-full max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-none">
                 <div className="w-[120px] hidden md:block sm:w-[140px] md:w-[155px] lg:w-[179px] h-[28px] sm:h-[32px] md:h-[35px] lg:h-[37px] relative">
                     <Image
