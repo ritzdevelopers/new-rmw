@@ -32,7 +32,7 @@ function S5Card({ isOpen, title, content, image, link, index }: S5CardProps) {
             <div
                 className={`${styles.bookRightPage} ${isOpen ? styles.bookOpenRight : styles.bookCloseright} h-full flex flex-col items-start gap-6 p-10 bg-white border-[0.94px] border-[#F2F2F2]`}
             >
-                <p className={`font-[400] text-[16px] justify-center text-justify ${styles.fontopensans}`}>{content}
+                <p className={`font-[400] text-[16px] justify-center text-left ${styles.fontopensans}`}>{content}
                 </p>
 
                 <button type="button" className="flex justify-center items-center gap-2" onClick={() => window.open(link, "_blank")}    >
