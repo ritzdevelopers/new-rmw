@@ -23,7 +23,7 @@ export default function Banner() {
             style={{
                 backgroundImage: `url(${isMobile
                     ? "/alishba-services-v3/radio-advertising/Radio-banner-mobile.png"
-                    : "/alishba-services-v3/radio-advertising/radio-advertising.jpg"
+                    : "/alishba-services-v3/radio-advertising/Radio-banner2.jpg"
                     })`,
             }}
             className={`w-full min-h-[520px]  md:min-h-[363px] lg:min-h-[490px] xl:h-[516px]

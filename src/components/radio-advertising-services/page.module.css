@@ -216,7 +216,7 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .bookOpenRight {
-        transform: rotateY(-1deg) !important;
+        transform: rotateY(-3deg) !important;
     }
 }
 
@@ -226,3 +226,9 @@
     padding-right: 41px!important;
   }
 }
+
+@media (min-width: 1722px) {
+    .bannerHeight{
+        height: 716px !important;
+    }
+ }

@@ -1,17 +1,48 @@
 import { NextResponse } from "next/server";
+import { isIPv4, isIPv6 } from "node:net";
 import { getDBPool } from "@/lib/db";
 import { RowDataPacket, ResultSetHeader } from "mysql2";
+
+/** Prefer a native IPv6 from the chain; otherwise map the first IPv4 to IPv4-mapped IPv6 (::ffff:a.b.c.d). */
+function resolveForwardedClientIpAsIpv6(forwarded: string): string | null {
+    const parts = forwarded
+        .split(",")
+        .map((p) => p.trim())
+        .filter(Boolean);
+    for (const part of parts) {
+        if (isIPv6(part)) {
+            const lower = part.toLowerCase();
+            if (!lower.startsWith("::ffff:")) {
+                return part;
+            }
+        }
+    }
+    for (const part of parts) {
+        if (isIPv4(part)) {
+            return `::ffff:${part}`;
+        }
+    }
+    for (const part of parts) {
+        if (isIPv6(part)) {
+            return part;
+        }
+    }
+    return null;
+}
 
 export async function POST(request: Request) {
     try {
         const { message } = await request.json();
 
-        let ip = request.headers.get('x-forwarded-for');
+        const forwarded = request.headers.get("x-forwarded-for");
+        if (!forwarded) {
+            return NextResponse.json({ message: "Invalid Host Request" }, { status: 400 });
+        }
+
+        const ip = resolveForwardedClientIpAsIpv6(forwarded);
         if (!ip) {
             return NextResponse.json({ message: "Invalid Host Request" }, { status: 400 });
         }
- 
-        ip = ip.split(',')[0].trim();
 
         const { user_message, bot_reply } = message;
 
