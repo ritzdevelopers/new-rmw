@@ -20,9 +20,9 @@ function S5CardMobile({ title, image, content, index }: S5CardMobileProps) {
                 </span> */}
             </div>
             <div className="flex flex-col gap-3 p-4">
-                <h3 className={`font-[500] text-[18px] leading-tight text-[#1a1a1a] ${styles.fontmontserrat}`}>
+                <p className={`font-[500] text-[18px] leading-tight text-[#1a1a1a] ${styles.fontmontserrat}`}>
                     {title}
-                </h3>
+                </p>
                 <p className={`font-[400] text-[14px] leading-relaxed text-left text-[#444] line-clamp-4 ${styles.fontopensans}`}>
                     {content}
                 </p>

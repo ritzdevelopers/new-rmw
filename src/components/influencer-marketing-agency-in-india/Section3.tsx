@@ -335,14 +335,14 @@ function ServiceAccordionRow({
                   >
                     {item.id}
                   </span>
-                  <h3
+                  <p
                     id={headingIdMid}
                     tabIndex={-1}
                     className="text-white text-[24px] md:text-[22px] lg:text-[28px] leading-[28px] sm:leading-[28px] md:leading-[44px] font-[500] outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C99237]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F1640] rounded-sm"
                     style={{ fontFamily: "OpenSansRegular" }}
                   >
                     {item.title}
-                  </h3>
+                  </p>
                 </div>
                 <button
                   type="button"
