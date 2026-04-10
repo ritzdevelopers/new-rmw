@@ -18,14 +18,14 @@ export default function DiscussionTopics() {
                     Discussion Topics
                 </h2>
 
-                <div className={`px-1 md:px-6 lg:px-8 xl:px-8 grid gap-4
-                    grid-cols-1
+                <div className={`px-1 md:px-6 lg:px-8 xl:px-8 grid
+                    grid-cols-1 gap-3 md:gap-3 lg:gap-0 xl:gap-0 2xl:gap-0
                     md:grid-cols-2
-                    lg:grid-cols-[310px_repeat(4,146px)]
-                    xl:grid-cols-[512px_repeat(4,146px)]
+                    lg:grid-cols-[437px_repeat(4,129px)]
+                    xl:grid-cols-[512px_repeat(4,171px)]
                     2xl:grid-cols-[537px_repeat(4,178px)]
                     items-start ${styles.container}`}>
-                
+
                     {/* LEFT BIG CARD */}
                     <div className="bg-white border border-[#E6E6E6] h-[512px] p-6 flex flex-col  md:col-span-2 lg:col-span-1">
                         <h3 className="text-2xl font-bold mb-6">
@@ -37,7 +37,7 @@ export default function DiscussionTopics() {
                                 src="/discussion-forum/discussiontopic.png"
                                 alt="seo"
                                 fill
-                                className="object-cover rounded-3xl"
+                                className="object-fit rounded-3xl"
                             />
                         </div>
 
@@ -81,30 +81,28 @@ export default function DiscussionTopics() {
                             style={{ backgroundColor: cardBackgrounds[i] }}
                             className={`
         flex flex-col justify-between
-
         min-h-[140px] sm:min-h-[160px] md:min-h-[200px]
         lg:h-[512px]
-
-        p-4 sm:p-5 md:p-6
-        ${i === 3 ? 'lg:py-6' : ''}
+        p-4 sm:p-2.5 md:p-3.5 gap-2
+        ${i === 3 ? 'lg:py-' : ''}
     `}
                         >
-                            <h4 className="
-        font-semibold 
+                            <h4 className={`
         text-[14px] leading-snug
         sm:text-[14px]
         md:text-[14px]
-         lg:text-[16px]
-        min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[3.5rem]
-    ">
+         lg:text-[13px]
+         xl:text-[16px]
+        min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[3.5rem] ${i !== 3 ? 'px-2 md:px-3 lg:px-2 xl:px-2.5' : ''} ${styles.montserratMedium}
+    `}>
                                 {card.title}
                             </h4>
 
                             <p className={`
                                         text-gray-700 
                                         text-[13px] leading-relaxed
-                                        sm:text-[14px]
-                                        ${i === 3 ? 'px-2 md:px-3 lg:px-4 xl:px-4' : ''}
+                                        sm:text-[14px] ${i !== 1 ? 'lg:px-2' : ''}${styles.fontopensans}
+                                        
                                     `}>
                                 {card.text}
                             </p>

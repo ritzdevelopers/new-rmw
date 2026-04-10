@@ -13,12 +13,12 @@ export default function StartDiscussion() {
                     Start Your Discussion Today
                 </h2>
 
-                <p className="mx-auto mt-5 max-w-3xl text-[12px] leading-8  sm:text-[14px] md:text-[16px]">
+                <p className={`mx-auto mt-5 max-w-3xl text-[14px] leading-8  sm:text-[16px] md:text-[18px] ${styles.poppins}`}>
                     Drop your question, share your views & ideas, or explore ongoing discussions and be part of a growing community driven by creativity, strategy, and results.
                 </p>
 
                 <div className="flex items-center gap-[10px] mt-5">
-                    <span className="text-[16px] font-[500]">
+                    <span className={`text-[18px] font-[500] ${styles.monserrat}`}>
                         Start Discussion
                     </span>
 

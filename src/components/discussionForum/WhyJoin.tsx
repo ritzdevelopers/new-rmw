@@ -7,10 +7,9 @@ export default function WhyJoin() {
 
     const EXPLORE_ARROW_IMAGE =
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
-
     return (
         <section className="w-full py-6 sm:py-8 md:py-10 lg:py-3 pl-4 sm:pl-6 md:pl-6 lg:pl-12">
-            
+
             {/* MAIN GRID */}
             <div className="
                 mx-auto 
@@ -19,7 +18,8 @@ export default function WhyJoin() {
                 md:grid-cols-2
                 lg:grid-cols-3
                 xl:grid-cols-3 
-                
+               gap-2 lg:gap-0
+border-t border-[#F7F7F7] 
             ">
 
                 {/* LEFT SECTION */}
@@ -33,7 +33,7 @@ export default function WhyJoin() {
                         w-[200px] h-[220px]
                         sm:w-[220px] sm:h-[240px]
                         md:w-[240px] md:h-[260px]
-                        xl:w-[249px] xl:h-[270px]
+                        xl:w-[250px] xl:h-[272px]
                     ">
                         <img
                             src="/discussion-forum/circle.png"
@@ -43,8 +43,8 @@ export default function WhyJoin() {
 
                         <h2 className={`
                             absolute inset-0 flex items-center text-left 
-                            px-5 sm:px-6 xl:px-8
-                            text-[16px] sm:text-[18px] md:text-[20px] xl:text-[21px]
+                            px-5 sm:px-6 xl:px-6
+                            text-[16px] sm:text-[18px] md:text-[20px] xl:text-[22px]
                             font-bold leading-snug text-black
                             ${styles.montserratBold}
                         `}>
@@ -54,12 +54,12 @@ export default function WhyJoin() {
 
                     {/* Paragraph */}
                     <p className={`
-                        text-gray-700 leading-relaxed 
+                         leading-relaxed 
                         text-[14px] sm:text-[15px] md:text-[16px]
-                        max-w-full sm:max-w-md
+                        max-w-full sm:max-w-sm
                         ${styles.fontopensans}
                     `}>
-                        At <span className="font-semibold">Ritz Media World</span>, we believe that the best ideas come from collaboration and conversation. With 17+ years of experience as a top marketing agency in India and a top ad agency in Noida, we bring real-world insights into every discussion.
+                        At <span className="font-bold">Ritz Media World</span>, we believe that the best ideas come from collaboration and conversation. With 17+ years of experience as a top marketing agency in India and a top ad agency in Noida, we bring real-world insights into every discussion.
                     </p>
 
                     {/* CTA */}
@@ -83,19 +83,20 @@ export default function WhyJoin() {
 
                 {/* MIDDLE IMAGE */}
                 <div className="
-                    w-full flex justify-end 
+                    w-full flex justify-center lg:justify-end 
                     md:col-span-1 
                     xl:col-span-1
                     xl:pl-6 
                     items-center xl:items-end
                 ">
-                    <div className="
+                    <div className={`
                         relative 
                         w-[260px] h-[300px]
                         sm:w-[300px] sm:h-[340px]
                         md:w-[320px] md:h-[360px]
-                        xl:w-[400px] xl:h-[400px]
-                    ">
+                        lg:w-[344px] lg:h-[469px]
+                        xl:w-[344px] xl:h-[469px]
+                    `}>
                         <Image
                             src="/discussion-forum/whyjoin.png"
                             alt="discussion"
@@ -106,13 +107,14 @@ export default function WhyJoin() {
                 </div>
 
                 {/* RIGHT LIST */}
-                <div className="
+                <div className={`
                     bg-[#F7F7F7] 
                     p-4 sm:p-5 md:p-8
                     md:col-span-2 
-                    xl:col-span-1   lg:col-span-1
-                ">
-                    <div className={`flex flex-col gap-4 sm:gap-5 md:gap-6 justify-end h-full ${styles.fontopensans}`}>
+                    xl:col-span-1 lg:col-span-1 
+                    h-auto lg:h-[488px] xl:h-[639px] ${styles.textWrapper}
+                `}>
+                    <div className={`flex flex-col gap-4 sm:gap-5 md:gap-2 lg:gap-8 xl:gap-10 justify-center lg:justify-end h-full ${styles.fontopensans}`}>
                         {[
                             "Ask questions about digital marketing agencies and strategies",
                             "Discuss trends with a social media marketing agency in India",
@@ -130,7 +132,7 @@ export default function WhyJoin() {
 
                                 <p className="
                                     text-gray-800 
-                                    text-[14px] sm:text-[15px] md:text-[16px]
+                                    text-[14px] sm:text-[14px] md:text-[15px] lg:text-[14px] xl:text-[16px]
                                     leading-relaxed 
                                 ">
                                     {item}
@@ -139,7 +141,6 @@ export default function WhyJoin() {
                         ))}
                     </div>
                 </div>
-
             </div>
         </section>
     );

@@ -60,31 +60,33 @@ export default function AskDiscussGrow() {
                 </div>
 
                 {/* TEXT */}
-                <p className="
+                <p className={`
                     mx-auto mt-6 sm:mt-8 md:mt-10
-                    text-[13px] sm:text-[14px] md:text-[16px] lg:text-[18px]
+                    text-[16px] sm:text-[14px] md:text-[16px] lg:text-[18px]
                     leading-6 sm:leading-7
                     text-[#e8ebf4]
-                    max-w-[90%] sm:max-w-[600px]
-                ">
-                    Start a discussion and get insights from industry experts and the creative minds at{" "}
+                    max-w-[90%] sm:max-w-[600px] ${styles.fontopensans}
+                `}>
+                    Start a discussion and get insights from industry experts and the creative minds at{" "}<br />
                     <span className={`font-semibold text-white ${styles.montserratBold}`}>
                         RITZ MEDIA WORLD
                     </span>.
                 </p>
 
-                <p className="
+                <p className={`
                     mx-auto mt-2 
-                    text-[12px] sm:text-[14px] md:text-[15px]
+                    text-[16px] sm:text-[16px] md:text-[16px]
                     leading-6 sm:leading-7
-                    max-w-[90%] sm:max-w-[600px]
-                ">
+                    max-w-[90%] sm:max-w-[600px] ${styles.fontopensans}
+                `}>
                     Because great brands are not built alone, they are built through ideas, conversations, and strategy.
                 </p>
 
                 {/* CTA */}
                 <div className="flex items-center gap-2 sm:gap-[10px] mt-5 sm:mt-6">
-                    <span className="text-[14px] sm:text-[15px] md:text-[16px] font-[500]">
+                    <span className={`
+                        text-[16px] sm:text-[18px] md:text-[18px] font-[500] ${styles.montserrat}
+                    `}>
                         Let’s Talk
                     </span>
 
