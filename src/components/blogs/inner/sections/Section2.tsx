@@ -248,7 +248,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                 {
                                     relatedBlogs && relatedBlogs.length > 0 && relatedBlogs.map((blog: RelatedBlog, idx: number) => {
                                         return (
-                                            <div key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
+                                            <div onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
                                                 {/* Left Side Image Container  */}
                                                 <div className="w-[80px] h-[52px] sm:w-[92px] sm:h-[60px] xl:w-[108px] xl:h-[69px] relative rounded-[2px] overflow-hidden shrink-0 group-hover:opacity-95 transition-opacity">
                                                     <Image priority={false} loading="lazy"
