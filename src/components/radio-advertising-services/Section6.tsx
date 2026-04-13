@@ -59,7 +59,7 @@ function Section6({imgPath = "/service-v3/print-advertising/s7/s7-graphics.png"}
 
                         {/* Row 2  */}
                         <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" className="w-full min-w-0">
-                            <img src="/service-v3/content-marketing/s5/google-reviews.png" alt="Google Reviews" title="Google Reviews" className="w-full sm:w-[189px] lg:max-w-[271px] xl:w-[271px] h-auto object-contain cursor-pointer" />
+                            <img src="/g-5-star2.png" alt="Google Reviews" title="Google Reviews" className="w-full sm:w-[189px] lg:max-w-[271px] xl:w-[271px] h-auto object-contain cursor-pointer" />
                         </a>
                     </div>
                 </div>

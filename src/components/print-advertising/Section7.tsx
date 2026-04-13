@@ -56,7 +56,7 @@ function Section7() {
                         </div>
                         {/* Row 2  */}
                         <div className="w-full min-w-0">
-                            <img src="/service-v3/content-marketing/s5/google-reviews.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" className="w-full sm:w-[189px] lg:max-w-[271px] xl:w-[271px] h-auto object-contain" />
+                            <img src="/g-5-star2.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" className="w-full sm:w-[189px] lg:max-w-[271px] xl:w-[271px] h-auto object-contain" />
                         </div>
                     </div>
                 </div>

@@ -36,7 +36,7 @@ function Section5() {
                     </div>
                     <div className="w-full flex flex-col gap-3 pt-4 items-center">
                         <img src="/service-v3/content-marketing/s5/17-yow2.png" alt="17 Years of Working" title="17 Years of Working" className="w-full max-w-[240px] h-auto object-contain" />
-                      <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer">  <img src="/service-v3/content-marketing/s5/google-reviews.png" alt="Google Reviews" title="Google Reviews" className="w-full max-w-[271px] h-auto object-contain" /></a>
+                      <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer">  <img src="/g-5-star2.png" alt="Google Reviews" title="Google Reviews" className="w-full max-w-[271px] h-auto object-contain" /></a>
                         <div className="w-full border-t border-[#D9D9D9] pt-4 flex justify-between max-w-[280px] mx-auto">
                             <div className="flex flex-col gap-0 items-center">
                                 <p className={`font-[700] text-[28px] text-[#0F1640] ${styles.fontmontserrat}`}>1M+</p>
@@ -106,7 +106,7 @@ function Section5() {
                             <img src="/varun/content-marketing/workingexperienec.jpg" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-[275px] xl:w-full  h-auto object-cover" />
 
                             {/* Google Reviews Image  */}
-                            <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer"><img src="/service-v3/content-marketing/s5/google-reviews.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-[275px] xl:w-[271px]  h-auto object-cover cursor-pointer" /></a>
+                            <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer"><img src="/g-5-star2.png" alt="Why Content Marketing Matters" title="Why Content Marketing Matters" className="w-[275px] xl:w-[271px]  h-auto object-cover cursor-pointer" /></a>
                         </div>
 
                         {/* Bottom Row  */}
