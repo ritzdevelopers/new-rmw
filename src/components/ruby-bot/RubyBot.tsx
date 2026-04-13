@@ -6,11 +6,11 @@ import {
     validateContactPhone,
     type CountryEntry,
 } from '@/lib/contactPhoneValidation';
-import { HiDotsVertical } from 'react-icons/hi';
 import { IoMdClose } from 'react-icons/io';
 import { FiMic, FiMicOff, FiSend } from 'react-icons/fi';
 import axios from 'axios';
 import { RubyContext } from '@/ruby-context/ruby.context';
+import uniqueIdGenerator from '@/helper/unique_id_generator';
 
 interface Message {
     id: string;
@@ -46,6 +46,19 @@ function RubyBot() {
     const [showEnquiryButton, setShowEnquiryButton] = useState(false);
     const [showEnquiryForm, setShowEnquiryForm] = useState(false);
     const [isSubmittingEnquiry, setIsSubmittingEnquiry] = useState(false);
+    const [uniqueId, setUniqueId] = useState<string | null>(null);
+
+    useEffect(() => {
+        const saved_id: string | null = localStorage.getItem('RMW_RUBY_BOT_ID');
+        if (!saved_id) {
+            const new_id = uniqueIdGenerator();
+            localStorage.setItem('RMW_RUBY_BOT_ID', new_id);
+            setUniqueId(new_id);
+        } else {
+            setUniqueId(saved_id);
+        }
+    }, []);
+    console.log(uniqueId);
     const [enquiryForm, setEnquiryForm] = useState({
         name: '',
         phone: '',
@@ -266,7 +279,7 @@ function RubyBot() {
         return response.data;
     };
 
-    const handleSendMessage =  (text?: string) => {
+    const handleSendMessage = (text?: string) => {
         const messageText = text || inputValue.trim();
         if (!messageText) return;
 
@@ -315,7 +328,8 @@ function RubyBot() {
                         };
                         const user_conversations = {
                             user_message: messageText,
-                            bot_reply: botResponseText
+                            bot_reply: botResponseText,
+                            user_id: uniqueId
                         }
                         handleChatting(user_conversations);
                         setMessages((prev) => [...prev, botResponse]);

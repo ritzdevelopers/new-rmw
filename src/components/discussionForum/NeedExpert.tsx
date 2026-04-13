@@ -18,9 +18,9 @@ export default function NeedExpert() {
           Need Expert Help?
         </h2>
 
-        <p className={`mt-4 max-w-lg text-sm leading-7 sm:text-[16px] md:text-[16px] ${styles.poppins}`}>
+        <p className={`mt-4 max-w-xl text-sm leading-7 sm:text-[16px] md:text-[16px] ${styles.poppins}`}>
           If you’re looking for professional marketing solutions, connect with Ritz Media World a trusted{' '}
-          <span className={`font-[400] ${styles.fontopensans}`}>digital marketing agency in India</span> offering :
+          <span className={`font-[700] ${styles.fontopensans}`}>digital marketing agency in India</span> offering :
         </p>
 
         <div className="mt-10 grid w-full gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
@@ -29,12 +29,12 @@ export default function NeedExpert() {
               key={index}
               className=" border border-[#E6E6E6] bg-white p-10 text-center transition "
             >
-              <p className={`text-[16px] font-[400] text-[#111111] md:text-[16px] ${styles.fontopensans}`}>{service}</p>
+              <p className={`text-[16px] font-[400] text-black md:text-[16px] ${styles.fontopensans}`}>{service}</p>
             </div>
           ))}
         </div>
 
-        <p className={`mt-10 max-w-lg text-sm leading-7 text-[#333333] sm:text-[16px] md:text-[16px] ${styles.poppins}`}>
+        <p className={`mt-10 max-w-xl text-sm leading-7 text-black sm:text-[16px] md:text-[16px] ${styles.poppins}`}>
           We are recognized as the best digital marketing company in Delhi NCR providing 360° brand growth solutions.
         </p>
       </div>

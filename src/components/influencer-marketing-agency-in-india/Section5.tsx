@@ -35,7 +35,7 @@ export default function Section5() {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <section className="relative w-full bg-[#FFFFFF] py-10 py-[35px] lg:py-[70px] flex justify-center px-4 sm:px-6 lg:px-0">
+    <section className="relative w-full bg-[#FFFFFF] py-5 py-[35px] lg:py-[70px] flex justify-center px-4 sm:px-6 lg:px-0">
       <div className="hidden lg:block absolute right-0 top-10 bottom-0 sm:top-12 sm:bottom-0 md:top-14 md:bottom-0 lg:top-16 lg:bottom-0 left-[45%] bg-[#F7F7F7] z-0" />
       <div className={`w-full mx-auto overflow-x-hidden ${styles.containerWidth}`}>
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 xl:gap-10 items-start lg:items-center xl:items-start">

@@ -151,7 +151,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                     </div>
 
                     {/* Right Side Container  */}
-                    <div className="w-full lg:max-w-[291px] xl:max-w-[391px] xl:w-full lg:sticky lg:top-28 flex flex-col gap-8 sm:gap-10 lg:gap-12 xl:gap-14 shrink-0">
+                    <div className="w-full lg:max-w-[291px] xl:max-w-[391px] xl:w-full  flex flex-col gap-8 sm:gap-10 lg:gap-12 xl:gap-14 shrink-0">
                         {/* Row 1 */}
                         <div className="w-full bg-[#F5F5F5] rounded-[8px] xl:rounded-[10px] flex flex-col justify-center items-center text-center gap-3 sm:gap-4 py-5 sm:py-6 xl:py-8 px-3 sm:px-4">
                             <p className={`font-[600] text-[16px] sm:text-[18px] xl:text-[20px] ${styles.fontmontserrat}`}>Search</p>
