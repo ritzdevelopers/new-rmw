@@ -150,7 +150,7 @@ export default function Section2() {
 
                 <div className="mt-5 max-md:order-3 h-[108px] sm:h-[128px] md:mt-[70px] md:h-auto md:block sm:mt-6 md:order-3 lg:mt-9 xl:mt-8 px-6 sm:px-7 lg:px-7 flex justify-center">
   <img
-    src="/service-v3/content-marketing/s5/google-reviews.png"
+    src="/g-5-star2.png"
     alt="Google reviews rating"
     className="block h-auto w-full max-w-[80%] sm:max-w-[90%] md:max-w-[60%] lg:max-w-none lg:w-full xl:max-w-[94%] max-md:h-full max-md:w-[200px] max-md:max-w-none max-md:object-contain max-md:object-center"
   />
