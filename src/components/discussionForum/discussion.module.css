@@ -57,8 +57,13 @@
     }
 }
 
-@media (min-width: 1240px) {
+/* @media (min-width: 1240px) {
     .textWrapper {
         height: 477px;
     }
 }
+@media (min-width: 1366px) {
+    .textWrapper {
+        height: 477px;
+    }
+} */

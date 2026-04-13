@@ -112,7 +112,7 @@ border-t border-[#F7F7F7]
                     p-4 sm:p-5 md:p-8
                     md:col-span-2 
                     xl:col-span-1 lg:col-span-1 
-                    h-auto lg:h-[488px] xl:h-[639px] ${styles.textWrapper}
+                    h-auto lg:h-[488px] xl:h-[639px] 
                 `}>
                     <div className={`flex flex-col gap-4 sm:gap-5 md:gap-2 lg:gap-8 xl:gap-10 justify-center lg:justify-end h-full ${styles.fontopensans}`}>
                         {[
