@@ -187,12 +187,6 @@
 
 /* Rich HTML body — mirrors src/app/[slug]/page.module.css (.contentBody + .tableWrapper) for DetailPage parity */
 
-.contentBody h2 {
-   font-size: 1.5rem;
-   margin: 1rem 0 0.5rem;
-   line-height: normal;
-}
-
 .contentBody strong {
    line-height: normal;
 }
@@ -214,6 +208,37 @@
    color: inherit;
    overflow-x: visible;
    overflow-y: visible;
+}
+
+/* Blog inner (Section2): fixed heading scale from design */
+.contentBody h1 {
+   font-size: 40px !important;
+   font-weight: 500 !important;
+}
+
+.contentBody h2 {
+   font-size: 32px !important;
+   font-weight: 500 !important;
+}
+
+.contentBody h3 {
+   font-size: 28px !important;
+   font-weight: 500 !important;
+}
+
+.contentBody h4 {
+   font-size: 24px !important;
+   font-weight: 500 !important;
+}
+
+.contentBody h5 {
+   font-size: 20px !important;
+   font-weight: 500 !important;
+}
+
+.contentBody h6 {
+   font-size: 16px !important;
+   font-weight: 500 !important;
 }
 
 .contentBody h1,
