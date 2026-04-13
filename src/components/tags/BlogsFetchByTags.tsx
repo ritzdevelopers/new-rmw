@@ -1,6 +1,6 @@
+import BrandImpactSection1 from "../copy/BrandImpactSection1";
 import Banner from "./sections/Banner";
 import Section2 from "./sections/Section2";
-import Section3 from "./sections/Section3";
 
 interface NormalizedBlog {
     title: string;
@@ -23,7 +23,10 @@ function BlogsFetchByTags({ title, blogs }: { title: string, blogs: any[] }) {
         <>
             <Banner title={title} />
             <Section2 all_blogs={normalizedBlogs} />
-            <Section3 />
+            {/* <Section3 /> */}
+            <div className="w-full pb-[35px] lg:pb-[70px]"> 
+                <BrandImpactSection1 />
+            </div>
         </>
     )
 }
