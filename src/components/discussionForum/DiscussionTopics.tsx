@@ -14,7 +14,7 @@ export default function DiscussionTopics() {
         <section className="w-full py-16 px-4 md:px-4 lg:px-5 xl:px-5">
             <div className="mx-auto">
 
-                <h2 className="text-center text-3xl md:text-4xl font-bold mb-8">
+                <h2 className="text-center text-3xl md:text-4xl md:leading-none font-bold mb-8">
                     Discussion Topics
                 </h2>
 

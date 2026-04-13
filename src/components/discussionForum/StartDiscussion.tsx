@@ -18,7 +18,7 @@ export default function StartDiscussion() {
                 </p>
 
                 <div className="flex items-center gap-6 mt-5">
-                    <span className={`text-[18px] font-[500] ${styles.monserrat}`}>
+                    <span className={`text-[18px] font-[500] ${styles.montserrat}`}>
                         Start Discussion
                     </span>
 

@@ -83,7 +83,7 @@ export default function AskDiscussGrow() {
                 </p>
 
                 {/* CTA */}
-                <div className="flex items-center gap-4 sm:gap-6 mt-5 sm:mt-6">
+                <div className="flex items-center gap-4 sm:gap-6 mt-5 sm:mt-10">
                     <span className={`
                         text-[16px] sm:text-[18px] md:text-[18px] font-[500] ${styles.montserrat}
                     `}>
