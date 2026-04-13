@@ -16,8 +16,8 @@ export default function WhyJoin() {
                 grid 
                 grid-cols-1 
                 md:grid-cols-2
-                lg:grid-cols-3
-                xl:grid-cols-3 
+                lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.45fr)]
+                xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.45fr)]
                gap-2 lg:gap-0
 border-t border-[#F7F7F7] 
             ">
@@ -29,7 +29,7 @@ border-t border-[#F7F7F7]
                 ">
                     {/* Circle + Heading */}
                     <div className="
-                        relative 
+                        relative self-center md:self-start
                         w-[200px] h-[220px]
                         sm:w-[220px] sm:h-[240px]
                         md:w-[240px] md:h-[260px]
@@ -57,6 +57,7 @@ border-t border-[#F7F7F7]
                          leading-relaxed 
                         text-[14px] sm:text-[15px] md:text-[16px]
                         max-w-full sm:max-w-sm
+                        lg:pr-4 xl:pr-6
                         ${styles.fontopensans}
                     `}>
                         At <span className="font-bold">Ritz Media World</span>, we believe that the best ideas come from collaboration and conversation. With 17+ years of experience as a top marketing agency in India and a top ad agency in Noida, we bring real-world insights into every discussion.
@@ -114,7 +115,7 @@ border-t border-[#F7F7F7]
                     xl:col-span-1 lg:col-span-1 
                     h-auto lg:h-[488px] xl:h-[639px] 
                 `}>
-                    <div className={`flex flex-col gap-4 sm:gap-5 md:gap-2 lg:gap-8 xl:gap-10 justify-center lg:justify-end h-full ${styles.fontopensans}`}>
+                    <div className={`flex flex-col gap-4 sm:gap-5 md:gap-2 lg:gap-8 xl:gap-13 justify-center lg:justify-end h-full ${styles.fontopensans}`}>
                         {[
                             "Ask questions about digital marketing agencies and strategies",
                             "Discuss trends with a social media marketing agency in India",
@@ -131,7 +132,7 @@ border-t border-[#F7F7F7]
                                 />
 
                                 <p className="
-                                    text-gray-800 
+                                    text-black
                                     text-[14px] sm:text-[14px] md:text-[15px] lg:text-[14px] xl:text-[16px]
                                     leading-relaxed 
                                 ">

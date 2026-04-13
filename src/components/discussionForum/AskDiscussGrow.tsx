@@ -62,13 +62,13 @@ export default function AskDiscussGrow() {
                 {/* TEXT */}
                 <p className={`
                     mx-auto mt-6 sm:mt-8 md:mt-10
-                    text-[16px] sm:text-[14px] md:text-[16px] lg:text-[18px]
-                    leading-6 sm:leading-7
+                    text-[16px] sm:text-[14px] md:text-[16px] lg:text-[16px]
+                    leading-6 sm:leading-[35px]
                     text-[#e8ebf4]
-                    max-w-[90%] sm:max-w-[600px] ${styles.fontopensans}
+                   ${styles.fontopensans}
                 `}>
                     Start a discussion and get insights from industry experts and the creative minds at{" "}<br />
-                    <span className={`font-semibold text-white ${styles.montserratBold}`}>
+                    <span className={`font-semibold text-white  text-[16px] xl:text-[26px] ${styles.montserratBold}`}>
                         RITZ MEDIA WORLD
                     </span>.
                 </p>
@@ -76,14 +76,14 @@ export default function AskDiscussGrow() {
                 <p className={`
                     mx-auto mt-2 
                     text-[16px] sm:text-[16px] md:text-[16px]
-                    leading-6 sm:leading-7
-                    max-w-[90%] sm:max-w-[600px] ${styles.fontopensans}
+                    leading-6 sm:leading-7 
+                   ${styles.fontopensans}
                 `}>
                     Because great brands are not built alone, they are built through ideas, conversations, and strategy.
                 </p>
 
                 {/* CTA */}
-                <div className="flex items-center gap-2 sm:gap-[10px] mt-5 sm:mt-6">
+                <div className="flex items-center gap-4 sm:gap-6 mt-5 sm:mt-6">
                     <span className={`
                         text-[16px] sm:text-[18px] md:text-[18px] font-[500] ${styles.montserrat}
                     `}>
