@@ -212,6 +212,8 @@
    font-size: 1rem;
    line-height: 1.7;
    color: inherit;
+   overflow-x: visible;
+   overflow-y: visible;
 }
 
 .contentBody h1,
@@ -277,10 +279,15 @@
    min-width: 0;
    max-width: 100%;
    overflow-x: auto;
+   overflow-y: visible;
+   -webkit-overflow-scrolling: touch;
 }
 
+/* Let tables grow past the column when needed; width:100% alone clips wide tables */
 .tableWrapper table {
-   width: 100%;
+   width: max-content;
+   min-width: 100%;
+   max-width: none;
    border-collapse: collapse;
 }
 
