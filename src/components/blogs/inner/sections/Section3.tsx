@@ -5,6 +5,7 @@ import { CiCalendar } from "react-icons/ci";
 import { Download } from "lucide-react";
 import Link from "next/link";
 import styles from "../../sections/page.module.css";
+import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
 
 interface BLOGSTRUCTURE {
     blogTitle: string;
@@ -189,15 +190,15 @@ function Section3({
 
 
     return (
-        <section className="w-full min-h-screen bg-[#ffffff] flex justify-center items-center py-10 sm:py-14 lg:py-[70px] px-4 sm:px-6 lg:px-0">
+        <section className="w-full min-h-screen bg-[#ffffff] flex justify-center items-center pt-[35px] lg:pt-[70px]">
             {/* Centered Align Container  */}
-            <div className={`w-full flex flex-col gap-12 sm:gap-16 lg:gap-20 ${styles.containerWidth}`}>
+            <div className={`w-full flex flex-col gap-12 sm:gap-16 lg:gap-20`}>
                 {/* Row 1  */}
-                <div className="w-full flex flex-col gap-8 sm:gap-9 lg:gap-10">
+                <div className={`w-full flex flex-col gap-8 sm:gap-9 lg:gap-10 ${styles.containerWidth}`}>
                     {/* Header  */}
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-6">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-6 ${styles.containerWidth}">
                         {/* Left Side Container  */}
-                        <div className="flex flex-col gap-2 sm:gap-3 text-center md:text-left">
+                        <div className="flex flex-col  text-center md:text-left ${styles.containerWidth}">
                             <p
                                 className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237] uppercase"
                                 style={{
@@ -220,7 +221,7 @@ function Section3({
                                     fontFamily: "OpenSansRegular",
                                 }}
                             >
-                               Explore industry insights, expert tips, and creative inspiration from the Ritz team. Our blog is where we share knowledge, ideas, and what's next in digital.
+                                Explore industry insights, expert tips, and creative inspiration from the Ritz team. Our blog is where we share knowledge, ideas, and what's next in digital.
                             </p>
                         </div>
 
@@ -245,385 +246,91 @@ function Section3({
                     <div className="w-full flex flex-col sm:flex-row justify-between gap-6 sm:gap-4 ">
                         {safeBlogs.length > 0
                             ? safeBlogs.map((ob, idx) => {
-                                  return (
-                                      <div
-                                          key={idx}
-                                          className="w-full sm:w-[calc(33.333%-10px)] lg:w-[405px] h-auto lg:h-[311px] flex flex-col gap-2"
-                                      >
-                                          {/* Image Container  */}
-                                          <div className="w-full relative h-auto lg:h-[212px]">
-                                              <img
-                                                  onClick={() =>
-                                                      window.open(
-                                                          `https://ritzmediaworld.com/${ob.blogSlug}`,
-                                                          "_blank",
-                                                      )
-                                                  }
-                                                  src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
+                                return (
+                                    <div
+                                        key={idx}
+                                        className="w-full sm:w-[calc(33.333%-10px)] lg:w-[405px] h-auto lg:h-[311px] flex flex-col gap-2"
+                                    >
+                                        {/* Image Container  */}
+                                        <div className="w-full relative h-auto lg:h-[212px]">
+                                            <img
+                                                onClick={() =>
+                                                    window.open(
+                                                        `https://ritzmediaworld.com/${ob.blogSlug}`,
+                                                        "_blank",
+                                                    )
+                                                }
+                                                src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
                                                 // src="/inner-demo-img.jpg"
-                                                  alt="RMW"
-                                                  className="w-full h-full"
-                                                  // className="object-cover"
-                                              ></img>
-                                          </div>
-                                          <p className={`font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center ${styles.fontopensans}`}>
-                                              <CiCalendar className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px]" />{" "}
-                                              {(() => {
-                                                  const date =
-                                                      ob.createdAt instanceof
-                                                      Date
-                                                          ? ob.createdAt
-                                                          : new Date(
-                                                                ob.createdAt,
-                                                            );
-                                                  return isNaN(date.getTime())
-                                                      ? ""
-                                                      : date.toLocaleDateString();
-                                              })()}
-                                          </p>
-                                          <h3
-                                              onClick={() =>
-                                                  window.open(
-                                                      `https://ritzmediaworld.com/${ob.blogSlug}`,
-                                                      "_blank",
-                                                  )
-                                              }
-                                              className={`font-[600] text-[15px] xl:text-[18px] text-black ${styles.fontopensans}`}
-                                              style={{
-                                                  fontFamily:
-                                                      "OpenSansSemiBold",
-                                              }}
-                                          >
-                                              {ob.blogTitle}
-                                          </h3>
-                                      </div>
-                                  );
-                              })
+                                                alt="RMW"
+                                                className="w-full h-full"
+                                            // className="object-cover"
+                                            ></img>
+                                        </div>
+                                        <p className={`font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center ${styles.fontopensans}`}>
+                                            <CiCalendar className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px]" />{" "}
+                                            {(() => {
+                                                const date =
+                                                    ob.createdAt instanceof
+                                                        Date
+                                                        ? ob.createdAt
+                                                        : new Date(
+                                                            ob.createdAt,
+                                                        );
+                                                return isNaN(date.getTime())
+                                                    ? ""
+                                                    : date.toLocaleDateString();
+                                            })()}
+                                        </p>
+                                        <h3
+                                            onClick={() =>
+                                                window.open(
+                                                    `https://ritzmediaworld.com/${ob.blogSlug}`,
+                                                    "_blank",
+                                                )
+                                            }
+                                            className={`font-[600] text-[15px] xl:text-[18px] text-black ${styles.fontopensans}`}
+                                            style={{
+                                                fontFamily:
+                                                    "OpenSansSemiBold",
+                                            }}
+                                        >
+                                            {ob.blogTitle}
+                                        </h3>
+                                    </div>
+                                );
+                            })
                             : [1, 2, 3].map((idx) => {
-                                  return (
-                                      <div
-                                          key={idx}
-                                          className="w-full sm:w-[calc(33.333%-10px)] lg:w-[405px] h-auto lg:h-[311px] flex flex-col gap-2"
-                                      >
-                                          {/* Image Skeleton */}
-                                          <div className="w-full relative h-[250px] lg:h-[212px] bg-gray-200 rounded animate-pulse"></div>
-                                          {/* Date Skeleton */}
-                                          <div className="flex gap-2 items-center">
-                                              <div className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px] bg-gray-200 rounded animate-pulse"></div>
-                                              <div className="w-[100px] h-[15px] sm:h-[16px] lg:h-[17px] bg-gray-200 rounded animate-pulse"></div>
-                                          </div>
-                                          {/* Title Skeleton */}
-                                          <div className="flex flex-col gap-2">
-                                              <div className="w-full h-[18px] sm:h-[19px] lg:h-[20px] bg-gray-200 rounded animate-pulse"></div>
-                                              <div className="w-[80%] h-[18px] sm:h-[19px] lg:h-[20px] bg-gray-200 rounded animate-pulse"></div>
-                                          </div>
-                                      </div>
-                                  );
-                              })}
+                                return (
+                                    <div
+                                        key={idx}
+                                        className="w-full sm:w-[calc(33.333%-10px)] lg:w-[405px] h-auto lg:h-[311px] flex flex-col gap-2"
+                                    >
+                                        {/* Image Skeleton */}
+                                        <div className="w-full relative h-[250px] lg:h-[212px] bg-gray-200 rounded animate-pulse"></div>
+                                        {/* Date Skeleton */}
+                                        <div className="flex gap-2 items-center">
+                                            <div className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px] bg-gray-200 rounded animate-pulse"></div>
+                                            <div className="w-[100px] h-[15px] sm:h-[16px] lg:h-[17px] bg-gray-200 rounded animate-pulse"></div>
+                                        </div>
+                                        {/* Title Skeleton */}
+                                        <div className="flex flex-col gap-2">
+                                            <div className="w-full h-[18px] sm:h-[19px] lg:h-[20px] bg-gray-200 rounded animate-pulse"></div>
+                                            <div className="w-[80%] h-[18px] sm:h-[19px] lg:h-[20px] bg-gray-200 rounded animate-pulse"></div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                     </div>
                 </div>
 
                 {/* Row 2  */}
-                <div className="w-full flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10">
-                    {/* Left Side Container  */}
-                    <div className="w-full lg:w-[48%] xl:w-[603px] min-h-[500px] lg:h-[526px] bg-[#F7F7F7] flex flex-col justify-around px-1 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
-                        <div className="text-center md:text-left mb-2 md:mb-0">
-                            <p
-                                className={`uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-[#C99237] ${styles.fontopensans}`}
-                                style={{
-                                    fontFamily: "OpenSansSemiBold",
-                                }}
-                            >
-                                Free Resource
-                            </p>
-                            <h2
-                                className={`font-[700] text-[21px]  lg:text-[36px] ${styles.fontmontserrat}`}
-                                style={{
-                                    fontFamily: "MontserratBold",
-                                }}
-                            >
-                                2026 Brand Impact Report
-                            </h2>
-                        </div>
-                        <p className={`font-[700] text-[16px] lg:text-[24px] text-center md:text-left mb-2 md:mb-0 ${styles.fontmontserrat}`}>
-                            Download Our
-                        </p>
-
-                        <p
-                            className={`font-[400] text-[13px]  lg:text-[16px] text-center md:text-left mb-2 md:mb-0 ${styles.fontopensans}`}
-                            style={{
-                                fontFamily: "PoppinsRegular",
-                            }}
-                        >
-                            Get exclusive insights into real estate and
-                            lifestyle brand marketing trends, strategies, and
-                            ROI benchmarks for 2025.
-                        </p>
-
-                        <ul
-                            className={`font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-left mb-4 md:mb-0 ${styles.fontopensans}`}
-                            style={{
-                                fontFamily: "PoppinsRegular",
-                            }}
-                        >
-                            <li>
-                                Industry benchmarks for real estate marketing
-                                ROI
-                            </li>
-                            <li>
-                                Proven strategies for UHNI audience targeting
-                            </li>
-                            <li> 2025 digital and print advertising trends</li>
-                            <li>Case studies with measurable results</li>
-                        </ul>
-
-                        <form
-                            onSubmit={handleDownload}
-                            className="flex flex-col gap-4"
-                        >
-                            <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-3">
-                                <div className="flex-1 relative">
-                                    <input
-                                        type="tel"
-                                        value={phone}
-                                        onChange={handlePhoneChange}
-                                        onBlur={handlePhoneBlur}
-                                        placeholder="Enter your phone (e.g., +91 9220516777)"
-                                        required
-                                        className={`w-full sm:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${styles.fontopensans} ${
-                                            phoneError
-                                                ? "border-[#EF4444]"
-                                                : "border-[#DAD4D4]"
-                                        }`}
-                                    />
-                                    {phoneError && (
-                                        <p className={`absolute top-full left-0 mt-1 text-[12px] text-[#EF4444] font-[400] ${styles.fontopensans}`}>
-                                            {phoneError}
-                                        </p>
-                                    )}
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className={`w-full sm:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed ${styles.fontopensans}`}
-                                    style={{
-                                        fontFamily: "PoppinsRegular",
-                                    }}
-                                >
-                                    <p className={`text-white ${styles.fontopensans}`}>
-                                        {isSubmitting
-                                            ? "Submitting..."
-                                            : "Free Download"}
-                                    </p>
-                                    <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px]" />
-                                </button>
-                            </div>
-                            <p
-                                className={`font-[400] text-[13px] sm:text-[14px] text-[#6E6E6E] text-center md:text-left ${styles.fontopensans}`}
-                                style={{
-                                    fontFamily: "PoppinsRegular",
-                                }}
-                            >
-                                No spam, unsubscribe anytime. We respect your
-                                privacy.
-                            </p>
-                        </form>
-                    </div>
-
-                    {/* Right Side Container  */}
-                    <div className="w-full lg:w-[48%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4">
-                        <h2
-                            className={`font-[700] text-[24px] sm:text-[28px] lg:text-[36px] text-center md:text-left ${styles.fontmontserrat}`}
-                            style={{
-                                fontFamily: "MontserratBold",
-                            }}
-                        >
-                            Or Get a Free{" "}
-                            <span className="text-[#C99237]">
-                                Brand Audit
-                            </span>{" "}
-                        </h2>
-
-                        <p
-                            className={`font-[400] text-[14px] md:text-[15px] lg:text-[16px] text-center md:text-left ${styles.fontopensans}`}
-                            style={{
-                                fontFamily: "PoppinsRegular",
-                            }}
-                        >
-                            Let our experts analyze your current brand
-                            positioning and provide actionable recommendations.
-                        </p>
-
-                        <ul
-                            className={`list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left ${styles.fontopensans}`}
-                            style={{
-                                fontFamily: "PoppinsRegular",
-                            }}
-                        >
-                            <li>Comprehensive brand analysis</li>
-                            <li>Competitor positioning review</li>
-                            <li>Growth opportunity identification</li>
-                            <li>Customized strategy roadmap</li>
-                        </ul>
-
-                        <div className={`flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-center md:text-left ${styles.fontopensans}`}>
-                            <Link
-                                href={"https://ritzmediaworld.com/contact.html"}
-                                target="_blank"
-                                className={`font-[600] text-[14px] sm:text-[15px] lg:text-[16px] text-black ${styles.fontopensans}`}
-                                style={{
-                                    fontFamily: "MontserratSemiBold",
-                                }}
-                            >
-                                Request A Free Audit
-                            </Link>
-                            <img
-                                src="/home-v3/s3/rhgt.png"
-                                alt="RMW"
-                                className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                {/* Row 3  */}
-                <div className="w-full flex justify-center items-center">
-                    {/* Center Align Container  */}
-                    <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
-                        <h2
-                            className={`font-[800] text-[19px] md:text-[28px] lg:text-[36px] ${styles.fontmontserrat}`}
-                            style={{
-                                fontFamily: "MontserratExtraBold",
-                            }}
-                        >
-                            Ready to Elevate Your Brand?
-                        </h2>
-                        <p
-                            className={`font-[400] text-[16px] md:text-[24px] lg:text-[30px] ${styles.fontopensans}`}
-                            style={{
-                                fontFamily: "OpenSansRegular",
-                            }}
-                        >
-                            Let's discuss your next brand-elevating campaign
-                        </p>
-                        <button
-                            onClick={() =>
-                                window.open(
-                                    "https://ritzmediaworld.com/contact.html",
-                                    "_blank",
-                                )
-                            }
-                            className={`w-full sm:w-[260px] lg:w-[282px] h-[48px] sm:h-[50px] lg:h-[54px] mt-4 bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] rounded-[5px] hover:bg-[#B8822F] transition-colors  s1-btn-gold ${styles.fontopensans}`}
-                            style={{
-                                fontFamily: "OpenSansBold",
-                            }}
-                        >
-                            <p className={`text-white ${styles.fontopensans}`}>
-                                Schedule Free Consultation
-                            </p>
-                        </button>
-                    </div>
+                <div className="w-full">
+                    <BrandImpactSection2 />
                 </div>
             </div>
 
-            {/* Modal */}
-            {modal.open && (
-                <div className={`fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm ${styles.fontopensans}`}>
-                    <div className="bg-white rounded-[16px] shadow-2xl max-w-[400px] w-[90%] mx-4 overflow-hidden">
-                        {/* Modal Header */}
-                        <div
-                            className={`px-6 py-4 ${styles.fontopensans} ${
-                                modal.status === "success"
-                                    ? "bg-[#10B981]"
-                                    : "bg-[#EF4444]"
-                            }`}
-                        >
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    {modal.status === "success" ? (
-                                        <svg
-                                            className={`w-6 h-6 text-white ${styles.fontopensans}`}
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M5 13l4 4L19 7"
-                                            />
-                                        </svg>
-                                    ) : (
-                                        <svg
-                                            className={`w-6 h-6 text-white ${styles.fontopensans}`}
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M6 18L18 6M6 6l12 12"
-                                            />
-                                        </svg>
-                                    )}
-                                    <h3 className={`text-lg font-semibold text-white ${styles.fontopensans}`}>
-                                        {modal.status === "success"
-                                            ? "Success"
-                                            : "Error"}
-                                    </h3>
-                                </div>
-                                <button
-                                    onClick={() =>
-                                        setModal({ ...modal, open: false })
-                                    }
-                                    className={`text-white hover:text-gray-200 transition-colors ${styles.fontopensans}`}
-                                >
-                                    <svg
-                                        className={`w-5 h-5 ${styles.fontopensans}`}
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M6 18L18 6M6 6l12 12"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
 
-                        {/* Modal Body */}
-                        <div className="px-6 py-4">
-                            <p className={`text-[#374151] text-sm leading-relaxed ${styles.fontopensans}`}>
-                                {modal.message}
-                            </p>
-                        </div>
-
-                        {/* Modal Footer */}
-                        <div className={`px-6 py-4 border-t border-gray-200 flex justify-end ${styles.fontopensans}`}>
-                            <button
-                                onClick={() =>
-                                    setModal({ ...modal, open: false })
-                                }
-                                className={`px-4 py-2 rounded-[8px] font-[500] text-sm transition-colors ${
-                                    modal.status === "success"
-                                        ? "bg-[#10B981] text-white hover:bg-[#059669]"
-                                        : "bg-[#EF4444] text-white hover:bg-[#DC2626]"
-                                }`}
-                            >
-                                OK
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </section>
     );
 }

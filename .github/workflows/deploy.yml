@@ -1,0 +1,30 @@
+name: Deploy RMW
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Droplet
+        uses: appleboy/ssh-action@v1.0.3
+
+        with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.DROPLET_USERNAME }}
+          key: ${{ secrets.DROPLET_SSH_KEY }}
+
+          script: |
+            cd /
+            cd /var/www/new-rmw
+
+            echo "Pulling latest code from main branch"
+            git pull origin main
+            
+            echo "Creating Build"
+            npm run build
+            pm2 reload new-rmw || pm2 start ecosystem.config.js
