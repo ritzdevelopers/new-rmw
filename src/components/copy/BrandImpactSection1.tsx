@@ -228,7 +228,7 @@ function BrandImpactSection1() {
                                     onBlur={handlePhoneBlur}
                                     placeholder="Enter your phone (e.g., +91 9220516777)"
                                     required
-                                    className={`w-full xl:w-[319px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
+                                    className={`w-full xl:w-[355px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
                                         ? "border-[#EF4444]"
                                         : "border-[#DAD4D4]"
                                         }`}

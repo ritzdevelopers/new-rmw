@@ -50,7 +50,7 @@ function Section2({ all_blogs }: { all_blogs: any[] }) {
         setFilteredBlogs(filtered.slice(0, 10));
     }, [searchValue, all_blogs]);
     return (
-        <section className="w-full flex justify-center items-center   py-16 md:py-[70px]">
+        <section className="w-full flex justify-center items-center   py-[35px] lg:py-[70px]">
 
             {/* Centered Align Container  */}
             <div className={`w-full flex ${styles.containerWidth} flex-col items-center justify-center gap-10 md:gap-12`}>

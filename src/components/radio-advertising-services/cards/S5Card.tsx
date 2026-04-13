@@ -14,12 +14,12 @@ function S5Card({ isOpen, title, content, image, link, index }: S5CardProps) {
             <div className="w-[378px] h-full relative bg-[#F2F2F2] flex flex-col gap-4 p-8 flex-shrink-0">
                 {/* Top Heading Row  */}
                 <div className="w-full">
-                    <h3 className={`font-[500] text-[24px] ${styles.fontmontserrat}`}>{title}</h3>
+                    <h3 className={`font-[500] text-[24px] ml-[20px] lg:ml-0 ${styles.fontmontserrat}`}>{title}</h3>
                 </div>
 
                 {/* Bottom Image Row  */}
                 <div className="w-full flex justify-center">
-                    <img src={image} alt={`${title} – Ritz Media World`} title="Ritz Media World" className="w-[332px] h-auto object-cover" />
+                    <img src={image} alt={`${title} – Ritz Media World`} title="Ritz Media World" className="w-[279px] lg:w-[332px] h-auto object-cover" />
                 </div>
 
                 {/* Absolute Positioned Div  */}
@@ -32,7 +32,7 @@ function S5Card({ isOpen, title, content, image, link, index }: S5CardProps) {
             <div
                 className={`${styles.bookRightPage} ${isOpen ? styles.bookOpenRight : styles.bookCloseright} h-full flex flex-col items-start gap-6 p-10 bg-white border-[0.94px] border-[#F2F2F2]`}
             >
-                <p className={`font-[400] text-[16px] justify-center text-justify ${styles.fontopensans}`}>{content}
+                <p className={`font-[400] text-[16px] justify-center text-left ${styles.fontopensans}`}>{content}
                 </p>
 
                 <button type="button" className="flex justify-center items-center gap-2" onClick={() => window.open(link, "_blank")}    >

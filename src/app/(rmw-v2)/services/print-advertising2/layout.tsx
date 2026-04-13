@@ -3,6 +3,8 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Maximize Conversions With Ritz Media World's Print Advertising Services",
     description: "Boost brand recall and conversions with Ritz Media World's customized print advertising. Engaging designs, strategic placement, and compelling copy to engage your audience.",
+    authors: [{ name: "Ritz Media World" }],
+    publisher: "Ritz Media World",
     keywords: [
         "Print Media Advertising",
         "Print Advertising Services",

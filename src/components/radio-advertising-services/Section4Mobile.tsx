@@ -9,7 +9,7 @@ const ADVANTAGES_CARDS = [
 
 function Section4Mobile() {
     return (
-        <section className="block md:hidden w-full bg-[#0F1640] py-10">
+        <section className="block lg:hidden w-full bg-[#0F1640] py-10">
             <div className={`w-full flex flex-col items-center text-center ${styles.containerWidth}`}>
                 <h2
                     className={`font-[400] text-[28px] leading-tight capitalize text-white mb-8 ${styles.fontmontserrat}`}
@@ -20,7 +20,7 @@ function Section4Mobile() {
                     <span className="font-[700] text-[#C99237]">    radio
                        </span> advertising
                 </h2>
-                <div className="w-full flex flex-col items-center max-w-[400px]">
+                <div className="w-full flex flex-col items-center max-w-[400px] md:max-w-full w-full">
                     {ADVANTAGES_CARDS.map((text, index) => (
                         <div
                             key={index}

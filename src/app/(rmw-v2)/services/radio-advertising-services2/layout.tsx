@@ -3,6 +3,8 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
     title: "FM Radio Advertising for Brand Recall & Engagement",
     description: "Maximize Brand Reach & Recognition with FM Radio Advertising Services. Reach millions of people & leave a lasting impression with our planned radio campaigns.",
+    authors: [{ name: "Ritz Media World" }],
+    publisher: "Ritz Media World",
     keywords: [
         "Radio Advertising",
         "Radio Campaigns",

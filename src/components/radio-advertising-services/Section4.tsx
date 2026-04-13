@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 
 function Section4() {
     return (
-        <section className="hidden md:block w-full h-[320px] sm:h-[400px] md:h-[383px] lg:h-[580px] xl:h-[640px] relative overflow-hidden">
+        <section className="hidden lg:block w-full h-[320px] sm:h-[400px] md:h-[383px] lg:h-[523px] xl:h-[640px] relative overflow-hidden">
             {/* Top row – two text blocks */}
             <div className="w-full absolute top-0 left-0 z-10 px-3 sm:px-4 xl:px-0">
                 <p
