@@ -17,7 +17,7 @@ function Section6({imgPath = "/service-v3/print-advertising/s7/s7-graphics.png"}
                     <div className="w-full flex flex-col gap-5 lg:gap-2">
                         {/* Row 1  */}
                         <div className="w-full flex flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
-                            <h3 className={`font-[500] text-[18px] sm:text-[22px] md:text-[26px] xl:text-[28px] leading-tight ${styles.fontmontserrat}`}>A Skilled <span className="font-[700]">Creative Team Delivering</span> Solutions That Drive <span className="font-[700]">Brand Growth</span></h3>
+                            <p className={`font-[500] text-[18px] sm:text-[22px] md:text-[26px] xl:text-[28px] leading-tight ${styles.fontmontserrat}`}>A Skilled <span className="font-[700]">Creative Team Delivering</span> Solutions That Drive <span className="font-[700]">Brand Growth</span></p>
                             <img src="/service-v3/print-advertising/s7/rocket-booster2.png" alt="Ritz Media World – brand growth" title="Ritz Media World – brand growth" className="h-[56px] sm:h-[72px] xl:h-[93px] w-auto flex-shrink-0" />
                         </div>
 
@@ -47,20 +47,20 @@ function Section6({imgPath = "/service-v3/print-advertising/s7/s7-graphics.png"}
 
                             <div className="flex w-full justify-between gap-4">
                                 <div className="flex flex-col gap-0 lg:gap-2">
-                                    <h3 className={`font-[700] text-[37px] sm:text-[32px] xl:text-[37px] ${styles.fontmontserrat}`}>1B+</h3>
+                                    <p className={`font-[700] text-[37px] sm:text-[32px] xl:text-[37px] ${styles.fontmontserrat}`}>1B+</p>
                                     <p className={`font-[600] text-[12px] sm:text-[14px] ${styles.fontopensans}`}>Creatives Published</p>
                                 </div>
                                 <div className="flex flex-col gap-0 lg:gap-2">
-                                    <h3 className={`font-[700] text-[37px] sm:text-[32px] xl:text-[37px] ${styles.fontmontserrat}`}>500+</h3>
+                                    <p className={`font-[700] text-[37px] sm:text-[32px] xl:text-[37px] ${styles.fontmontserrat}`}>500+</p>
                                     <p className={`font-[600] text-[12px] sm:text-[14px] ${styles.fontopensans}`}>Success Stories</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Row 2  */}
-                        <div className="w-full min-w-0">
-                            <img src="/service-v3/content-marketing/s5/google-reviews.png" alt="Google Reviews" title="Google Reviews" className="w-full sm:w-[189px] lg:max-w-[271px] xl:w-[271px] h-auto object-contain" />
-                        </div>
+                        <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" className="w-full min-w-0">
+                            <img src="/service-v3/content-marketing/s5/google-reviews.png" alt="Google Reviews" title="Google Reviews" className="w-full sm:w-[189px] lg:max-w-[271px] xl:w-[271px] h-auto object-contain cursor-pointer" />
+                        </a>
                     </div>
                 </div>
             </div>

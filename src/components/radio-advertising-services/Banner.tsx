@@ -49,9 +49,9 @@ export default function Banner() {
                     <h1 className={`font-[800] text-[28px] sm:text-[36px] md:text-[24px] lg:text-[30px] xl:text-[55px] text-white leading-[30px] md:leading-normal mb-2 md:mb-0 xl:leading-14 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
                         Radio Advertising
                     </h1>
-                    <p className={`font-[500] text-[14px] sm:text-[16px] md:text-[16px] lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontmontserrat}`}>
+                    <h2 className={`font-[500] text-[14px] sm:text-[16px] md:text-[16px] lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontmontserrat}`}>
                         Broadcast your brand message louder, <br className="hidden md:block xl:hidden" /> clearer, <br className="hidden  xl:block" /> more effectively.
-                    </p>
+                    </h2>
                 </div>
             </div>
         </section>
