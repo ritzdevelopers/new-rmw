@@ -13,7 +13,7 @@ function Section3() {
                     <img
                         src="/alishba-services-v3/radio-advertising/s3-i2.png"
                         alt="Ritz Media World – radio advertising"
-                        title="Ritz Media World"
+                        title="Ritz Media World – radio advertising"
                         className="w-full h-auto object-cover"
                     />
 
@@ -34,15 +34,16 @@ function Section3() {
                     <img
                         src="/alishba-services-v3/radio-advertising/s3-i1.png"
                         alt="Ritz Media World – FM radio brand placement"
-                        title="Ritz Media World"
+                        title="Ritz Media World – FM radio brand placement"
                         className="w-full h-auto object-cover"
                     />
                 </div>
 
                 {/* Col 3 – CTA button */}
                 <div className="flex justify-center   lg:justify-center items-end w-[10%] lg:w-auto pb-4 sm:pb-6 xl:pb-8">
-                    <button
-                        type="button"
+                    <a
+                    href='/contact.html' target='_blank'
+                        type="a"
                         className="flex justify-center items-center gap-2 text-black px-4 py-2 rounded-[5px] cursor-pointer hover:opacity-90 transition-opacity min-w-[200px] "
                     >
                         <p className={`font-[500] text-[16px] sm:text-[18px] whitespace-nowrap ${styles.fontmontserrat}`}>Let's Talk Today</p>
@@ -52,7 +53,7 @@ function Section3() {
                                 <rect x="2.19678" y="16.7172" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19678 16.7172)" fill="white" />
                             </svg>
                         </div>
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>

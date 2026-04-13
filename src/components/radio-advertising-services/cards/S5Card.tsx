@@ -8,7 +8,8 @@ function S5Card({ isOpen, title, content, image, link, index }: S5CardProps) {
     const badge = (index + 1).toString().padStart(2, "0");
     return (
         <div
-            className={`${styles.bookCardContainer} ${isOpen ? styles.bookCardContainerOpen : ""} h-[464px] flex flex-shrink-0`}
+        onClick={() => window.open(link, "_blank")}
+            className={`${styles.bookCardContainer} ${isOpen ? styles.bookCardContainerOpen : ""} h-[464px] flex flex-shrink-0 cursor-pointer`}
         >
             {/* Left Side Card Cover  */}
             <div className="w-[378px] h-full relative bg-[#F2F2F2] flex flex-col gap-4 p-8 flex-shrink-0">
@@ -19,7 +20,7 @@ function S5Card({ isOpen, title, content, image, link, index }: S5CardProps) {
 
                 {/* Bottom Image Row  */}
                 <div className="w-full flex justify-center">
-                    <img src={image} alt={`${title} – Ritz Media World`} title="Ritz Media World" className="w-[279px] lg:w-[332px] h-auto object-cover" />
+                    <img src={image} alt={`${title} – Ritz Media World`} title={`${title} – Ritz Media World`} className="w-[279px] lg:w-[332px] h-auto object-cover" />
                 </div>
 
                 {/* Absolute Positioned Div  */}
