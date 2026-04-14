@@ -146,50 +146,23 @@ export default function Section3() {
                     onClick={() => toggleExplore(item.id)}
                     role="presentation"
                   >
-                    {isOpen ? (
-                      <Link
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className={`flex min-w-0 flex-1 cursor-pointer items-center gap-3 no-underline sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]`}
+                    <div className="flex min-w-0 flex-1 items-center gap-3 sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]">
+                      <p
+                        className="shrink-0 text-white text-[18px] leading-[36px] font-[500] sm:leading-[40px] md:leading-[50px] lg:mt-2"
+                        style={{ fontFamily: "MontserratMedium" }}
                       >
-                        <p
-                          className="shrink-0 text-white text-[18px] leading-[36px] font-[500] sm:leading-[40px] md:leading-[50px] lg:mt-2"
-                          style={{ fontFamily: "MontserratMedium" }}
-                        >
-                          {item.id}.
-                        </p>
-                        <h3
-                          className={`min-w-0 flex-1 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[28px] md:leading-[50px] tracking-[0em] ${accordionStyles.accordionTitleUnder357}`}
-                          style={{ fontFamily: "MontserratSemiBold" }}
-                        >
-                          {item.title}
-                        </h3>
-                      </Link>
-                    ) : (
-                      <div className="flex min-w-0 flex-1 items-center gap-3 sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]">
-                        <p
-                          className="shrink-0 text-white text-[18px] leading-[36px] font-[500] sm:leading-[40px] md:leading-[50px] lg:mt-2"
-                          style={{ fontFamily: "MontserratMedium" }}
-                        >
-                          {item.id}.
-                        </p>
-                        <h3
-                          className={`min-w-0 flex-1 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[28px] md:leading-[50px] tracking-[0em] ${accordionStyles.accordionTitleUnder357}`}
-                          style={{ fontFamily: "MontserratSemiBold" }}
-                        >
-                          {item.title}
-                        </h3>
-                      </div>
-                    )}
-
-                    <div className="hidden shrink-0 self-center md:flex">
-                      {exploreMoreLink}
+                        {item.id}.
+                      </p>
+                      <h3
+                        className={`min-w-0 flex-1 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[25px] lg:text-[25px] xl:text-[28px] md:leading-[50px] tracking-[0em] ${accordionStyles.accordionTitleUnder357}`}
+                        style={{ fontFamily: "MontserratSemiBold" }}
+                      >
+                        {item.title}
+                      </h3>
                     </div>
 
                     <span
-                      className="flex shrink-0 self-center cursor-pointer items-center text-[22px] leading-none text-white sm:text-[24px] md:hidden"
+                      className="flex shrink-0 self-center cursor-pointer items-center text-[22px] leading-none text-white sm:text-[24px]"
                       aria-hidden
                       onClick={(e) => {
                         e.stopPropagation();
@@ -208,57 +181,26 @@ export default function Section3() {
                   >
                     <div className="px-4 sm:px-5 md:px-6 lg:px-6 pb-5 sm:pb-6 md:pb-7">
                       <div className="pl-0 sm:pl-[80px] lg:pl-[180px]">
-                        {isOpen ? (
-                          <Link
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="mt-0 block max-w-[796px] cursor-pointer pt-0 text-[16px] font-[400] leading-[28px] tracking-[0em] text-white no-underline"
-                            style={{ fontFamily: "OpenSansRegular" }}
-                          >
-                            {item.description}
-                          </Link>
-                        ) : (
-                          <p
-                            className="mt-0 max-w-[796px] pt-0 text-[16px] font-[400] leading-[28px] tracking-[0em] text-white"
-                            style={{ fontFamily: "OpenSansRegular" }}
-                          >
-                            {item.description}
-                          </p>
-                        )}
+                        <p
+                          className="mt-0 max-w-[796px] pt-0 text-[16px] font-[400] leading-[28px] tracking-[0em] text-white"
+                          style={{ fontFamily: "OpenSansRegular" }}
+                        >
+                          {item.description}
+                        </p>
 
-                        {isOpen ? (
-                          <Link
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="relative mt-6 block h-[190px] w-full max-w-[796px] cursor-pointer overflow-hidden rounded-[8px] no-underline sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:h-[258px]"
-                          >
-                            <Image
-                              src={item.image ?? CELEBRITY_IMAGE}
-                              alt={item.title}
-                              fill
-                              className="object-cover"
-                              sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
-                            />
-                          </Link>
-                        ) : (
-                          <div className="relative mt-6 h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:h-[258px]">
-                            <Image
-                              src={item.image ?? CELEBRITY_IMAGE}
-                              alt={item.title}
-                              fill
-                              className="object-cover"
-                              sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
-                            />
-                          </div>
-                        )}
-
-                        <div className="mt-4 sm:mt-5 md:hidden">
-                          {exploreMoreLink}
+                        <div className="relative mt-6 h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:h-[258px]">
+                          <Image
+                            src={item.image ?? CELEBRITY_IMAGE}
+                            alt={item.title}
+                            fill
+                            className="object-cover"
+                            sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
+                          />
                         </div>
+
+                        {isOpen ? (
+                          <div className="mt-4 sm:mt-5">{exploreMoreLink}</div>
+                        ) : null}
                       </div>
                     </div>
                   </div>

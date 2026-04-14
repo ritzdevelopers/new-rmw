@@ -9,7 +9,7 @@ export default function Section1() {
         '
     >
       <div className='flex flex-col md:gap-2 lg:gap-3 xl:gap-8 w-full max-lg:max-w-none lg:max-w-none text-center md:text-left md:h-full md:justify-end lg:h-auto lg:justify-start -translate-y-14 sm:-translate-y-16 md:translate-y-0 lg:translate-y-3 xl:translate-y-17'>
-        <div className="hidden lg:block lg:w-[160px] xl:w-[170px] lg:h-[30px] xl:h-[37px] relative">
+        <div className="hidden md:block md:w-[160px] xl:w-[170px] md:h-[30px] xl:h-[37px] relative mb-0 md:mb-1 lg:mb-0">
           <img
             src="/home-v3/service-imgs/s1/yellow-reactangle.png"
             alt="Ritz Media World – celebrity endorsements"
@@ -19,7 +19,7 @@ export default function Section1() {
           <p
             className={`font-[700] uppercase text-[16px] text-white absolute top-[50%] transform translate-y-[-50%] right-8 ${styles.fontmontserrat}`}
           >
-            Services
+            SERVICES
           </p>
         </div>
 
@@ -27,21 +27,21 @@ export default function Section1() {
           <h1 className="text-white leading-[45px] sm:leading-[1.15] md:leading-tight lg:leading-[45px] xl:leading-[45px] mt-1 sm:mt-2 md:mt-0 xl:mt-3 lg:py-0 xl:py-0">
             <span className="max-md:inline-block max-md:whitespace-nowrap md:contents lg:inline-block lg:whitespace-nowrap lg:translate-y-2 xl:translate-y-0 xl:contents">
               <span
-                className={`${styles.bannerHeadlineSm} font-[800] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[55px] xl:font-[800] lg:leading-[10px]`}
+                className={`${styles.bannerHeadlineSm} font-[800] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[55px] xl:font-[800] lg:leading-[10px]   `}
                 style={{ fontFamily: "MontserratExtraBold" }}
               >
                 Celebrity Endorsements{" "}
               </span>
               <br className="hidden md:block lg:hidden xl:block" />
               <span
-                className={`${styles.bannerHeadlineSm} font-[500] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[65px] xl:font-[500] ${styles.bannerServicesMatchLg}`}
+                className={`hidden md:hidden lg:inline ${styles.bannerHeadlineSm} font-[500] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[65px] xl:font-[500] ${styles.bannerServicesMatchLg}`}
                 style={{ fontFamily: "MontserratMedium" }}
               >
                 Services
               </span>
             </span>
             <p
-              className={`font-[500] mt-2 lg:mt-5 xl:mt-2 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-[25px] sm:leading-snug md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`}
+              className={`font-[500] mt-0 lg:mt-2 md:mt-1 xl:mt-2 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-[25px] sm:leading-snug md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`}
               style={{ fontFamily: "MontserratMedium" }}
             >
               Talent selection to campaign execution, we build brand engagement,
