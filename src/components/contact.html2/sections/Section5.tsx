@@ -38,20 +38,20 @@ const STATS = [
 
 function Section5() {
     return (
-        <section className="w-full bg-white py-[35px]  lg:py-[70px]">
+        <section className="w-full bg-white pb-[35px]  lg:pt-[70px]">
             <div
-                className={`w-[92%] sm:w-[90%] ${pageStyles.containerWidth} max-w-[1300px] mx-auto`}
+                className={`w-full ${pageStyles.containerWidth} max-w-[1300px] mx-auto`}
             >
                 <div className="flex flex-wrap justify-center items-center gap-5 sm:gap-6 lg:gap-7 xl:flex-nowrap xl:justify-center xl:gap-0">
                     {STATS.map((item, idx) => (
                         <div
                             key={item.title}
                             className={`
-                w-[260px] h-[260px] min-w-[260px] min-h-[260px] max-w-[260px] max-h-[260px]
+                w-[270px] h-[270px] min-w-[270px] min-h-[270px] max-w-[270px] max-h-[270px]
                 mx-auto sm:mx-0
                 rounded-full flex flex-col items-center justify-center
                 text-center px-5 py-6
-                border-2 shrink-0
+                ${idx === 1 ? "border border-[#C99237]" : idx === 4 ? "border border-[#0F1640]" : "border-0"} shrink-0
                 ${idx === 0 ? "xl:ml-0" : "xl:-ml-8"}
                 ${idx === 0 || idx === 2 ? "xl:z-30" : idx === 3 ? "xl:z-20" : "xl:z-10"}
                 ${
@@ -66,13 +66,21 @@ function Section5() {
                               : "bg-white border-gray-200 text-black"
                 }
               `}
+                            style={
+                                item.isGoogle
+                                    ? {
+                                          boxShadow:
+                                              "0px 0px 8px 0px #B5B5B540",
+                                      }
+                                    : undefined
+                            }
                         >
                             {item.isGoogle ? (
                                 <>
                                     <img
-                                        src="/varunimage/googlereview.png"
+                                        src="/varunimage/google-review-contact.png"
                                         alt="Google review"
-                                        className="w-[200px] h-auto object-contain"
+                                        className="w-[250px] h-auto object-contain"
                                     />
                                 </>
                             ) : (
@@ -83,7 +91,7 @@ function Section5() {
                                             idx === 1 ||
                                             idx === 3 ||
                                             idx === 4
-                                                ? "text-[50px] leading-[100%] font-semibold text-current"
+                                                ? "text-[50px] leading-[100%] font-semibold text-current inline-flex flex-wrap items-baseline justify-center gap-1"
                                                 : "text-4xl font-bold"
                                         } mb-3 text-center ${pageStyles.fontMontserrat}`}
                                     >
@@ -93,10 +101,22 @@ function Section5() {
                                         idx === 4 ? (
                                             <>
                                                 {item.number.replace("+", "")}
-                                                <span
-                                                    className={`relative -top-[10px] inline-block text-[40px] leading-[100%] font-medium text-current ${pageStyles.fontMontserrat}`}
-                                                >
-                                                    +
+                                                <span className="relative -top-[20px] inline-flex shrink-0 items-center justify-center">
+                                                    <img
+                                                        src={
+                                                            item.variant ===
+                                                                "gold-fill" ||
+                                                            item.variant ===
+                                                                "navy-fill"
+                                                                ? "/varunimage/white-plus.png"
+                                                                : "/varunimage/black-plus-contact.png"
+                                                        }
+                                                        alt=""
+                                                        width={20}
+                                                        height={20}
+                                                        className="h-[20px] w-[20px] max-h-[20px] max-w-[20px] object-contain"
+                                                        aria-hidden
+                                                    />
                                                 </span>
                                             </>
                                         ) : (
@@ -130,7 +150,7 @@ function Section5() {
                                                           ? "text-white/90"
                                                           : "text-gray-600"
                                                   }`
-                                        } text-center ${pageStyles.fontopensans}`}
+                                        } mt-2 text-center ${pageStyles.fontopensans}`}
                                     >
                                         {item.desc}
                                     </p>

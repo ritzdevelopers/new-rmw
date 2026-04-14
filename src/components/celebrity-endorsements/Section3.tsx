@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import styles from "./page.module.css";
 import accordionStyles from "./Section3.module.css";
@@ -13,6 +14,7 @@ type ServiceItem = {
   id: string;
   title: string;
   description: string;
+  href: string;
   image?: string;
 };
 
@@ -20,6 +22,7 @@ const servicesData: ServiceItem[] = [
   {
     id: "01",
     title: "Celebrity Identification",
+    href: "/services/celebrity-endorsements/celebrity-identification-services",
     image: "/varunimage/Celebrity-Identification-celebrity.jpg",
     description:
       "Choosing the right celebrity endorsement isn't luck, it's strategy. At Ritz Media World, we identify celebrities for brand endorsement which bears an image, values, and fan following that fully coincides with your brand. We make sure that every recommendation we offer is authentic, credible, conversion focused, turning celebrity fans into lifelong customers of your brand.",
@@ -27,6 +30,7 @@ const servicesData: ServiceItem[] = [
   {
     id: "02",
     title: "Contract Negotiations",
+    href: "/services/celebrity-endorsements/negotiating-contracts",
     image: "/varunimage/Contract-%20Negotiations-celebrity.jpg",
     description:
       "Convincing celebrities to endorse is more precise than it is flair and showmanship. The professionals on our team offer you the best deal possible, managing costs and ensuring that every partnership is one of maximum value and minimum risk.",
@@ -34,6 +38,7 @@ const servicesData: ServiceItem[] = [
   {
     id: "03",
     title: "Campaign Integration",
+    href: "/services/celebrity-endorsements/campaign-integration",
     image: "/varunimage/Campaign-Integration-celebrity.jpg",
     description:
       "Celebrity endorsements are pivotal when they seamlessly integrate. We utilize celebrity endorsements in all marketing channels to enhance effectiveness. We infuse the personality of a celebrity in all your advertising – digital, prints, radio, events and more – to make your investment of a celebrity 100 times effective.",
@@ -41,6 +46,7 @@ const servicesData: ServiceItem[] = [
   {
     id: "04",
     title: "Creative Collaboration",
+    href: "/services/celebrity-endorsements/creative-collaboration",
     image: "/varunimage/Creative-%20Collaboration-celebrity.jpg",
     description:
       "Celebrities can tell great stories that can influence people. Our in-house creative team collaborates with the best to create endorsement campaigns that are authentic, engaging, and build brand trust. Every collaboration is carefully designed to take advantage of the celebrity figure and transform the admiration into action by loyal customers. This effect creates measurable results.",
@@ -48,6 +54,7 @@ const servicesData: ServiceItem[] = [
   {
     id: "05",
     title: "Public Relations",
+    href: "/services/celebrity-endorsements/public-relations",
     image: "/varunimage/Public-Relations-celebrity.jpg",
     description:
       "Most effective celebrity endorsements are global and integrated across all touch points. We deliver powerful celebrity campaigns that deliver effective ROI across a broad range of platforms from digital and social media to print, events and radio.",
@@ -55,6 +62,7 @@ const servicesData: ServiceItem[] = [
   {
     id: "06",
     title: "Legal Compliance",
+    href: "/services/celebrity-endorsements/legal-compliance",
     image: "/varunimage/Legal-Compliance%20-celebrity.jpg",
     description:
       "Careful attention to detail makes a good celebrity endorsement campaign. At Ritz Media World, we handle the legalities involved in making sure that your brand is legally protected. Every celebrity endorsement campaign will be beneficial for your brand, transparent and risk-free thanks to our attention to detail.",
@@ -97,15 +105,13 @@ export default function Section3() {
             {servicesData.map((item) => {
               const isOpen = openItem === item.id;
 
-              const exploreMoreButton = (
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleExplore(item.id);
-                  }}
-                  className="flex items-center gap-5"
-                  aria-expanded={isOpen}
+              const exploreMoreLink = (
+                <Link
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex cursor-pointer items-center gap-5 no-underline"
                 >
                   <span
                     className="text-white text-[16px] sm:text-[18px]"
@@ -116,61 +122,79 @@ export default function Section3() {
                   <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ease-in-out">
                     <Image
                       src={EXPLORE_ARROW_IMAGE}
-                      alt="Explore more arrow"
+                      alt=""
                       width={22}
                       height={20}
                       className="transition-transform duration-500 ease-in-out"
                     />
                   </span>
-                </button>
+                </Link>
               );
 
               return (
                 <div
                   key={item.id}
-                  onMouseEnter={() => setOpenItem(item.id)}
-                  onMouseLeave={() =>
-                    setOpenItem((prev) => (prev === item.id ? null : prev))
-                  }
                   className={`rounded-[10px] ${accordionStyles.accordionItem} ${
-                    isOpen ? "overflow-visible lg:min-h-[506px]" : "overflow-hidden"
+                    isOpen
+                      ? `${accordionStyles.accordionItemOpen} overflow-visible lg:min-h-[506px]`
+                      : "overflow-hidden"
                   }`}
                 
                 >
                   <div
-                    className="flex items-start justify-between gap-6 sm:gap-8 px-4 sm:px-5 md:px-6 lg:px-6 py-5 sm:py-4 max-md:cursor-pointer md:cursor-default"
-                    onClick={() => {
-                      if (
-                        typeof window !== "undefined" &&
-                        window.matchMedia("(max-width: 767px)").matches
-                      ) {
-                        toggleExplore(item.id);
-                      }
-                    }}
+                    className="flex items-start justify-between gap-6 sm:gap-8 px-4 sm:px-5 md:px-6 lg:px-6 py-5 sm:py-4 cursor-pointer"
+                    onClick={() => toggleExplore(item.id)}
                     role="presentation"
                   >
-                    <div className="flex min-w-0 flex-1 items-center gap-3 sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]">
-                      <p
-                        className="shrink-0 text-white text-[18px] leading-[36px] font-[500] sm:leading-[40px] md:leading-[50px] lg:mt-2"
-                        style={{ fontFamily: "MontserratMedium" }}
+                    {isOpen ? (
+                      <Link
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className={`flex min-w-0 flex-1 cursor-pointer items-center gap-3 no-underline sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]`}
                       >
-                        {item.id}.
-                      </p>
-                      <h3
-                        className={`min-w-0 flex-1 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[28px] md:leading-[50px] tracking-[0em] ${accordionStyles.accordionTitleUnder357}`}
-                        style={{ fontFamily: "MontserratSemiBold" }}
-                      >
-                        {item.title}
-                      </h3>
-                    </div>
+                        <p
+                          className="shrink-0 text-white text-[18px] leading-[36px] font-[500] sm:leading-[40px] md:leading-[50px] lg:mt-2"
+                          style={{ fontFamily: "MontserratMedium" }}
+                        >
+                          {item.id}.
+                        </p>
+                        <h3
+                          className={`min-w-0 flex-1 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[28px] md:leading-[50px] tracking-[0em] ${accordionStyles.accordionTitleUnder357}`}
+                          style={{ fontFamily: "MontserratSemiBold" }}
+                        >
+                          {item.title}
+                        </h3>
+                      </Link>
+                    ) : (
+                      <div className="flex min-w-0 flex-1 items-center gap-3 sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]">
+                        <p
+                          className="shrink-0 text-white text-[18px] leading-[36px] font-[500] sm:leading-[40px] md:leading-[50px] lg:mt-2"
+                          style={{ fontFamily: "MontserratMedium" }}
+                        >
+                          {item.id}.
+                        </p>
+                        <h3
+                          className={`min-w-0 flex-1 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[28px] md:leading-[50px] tracking-[0em] ${accordionStyles.accordionTitleUnder357}`}
+                          style={{ fontFamily: "MontserratSemiBold" }}
+                        >
+                          {item.title}
+                        </h3>
+                      </div>
+                    )}
 
                     <div className="hidden shrink-0 self-center md:flex">
-                      {exploreMoreButton}
+                      {exploreMoreLink}
                     </div>
 
                     <span
-                      className="flex shrink-0 self-center items-center text-[22px] leading-none text-white sm:text-[24px] md:hidden"
+                      className="flex shrink-0 self-center cursor-pointer items-center text-[22px] leading-none text-white sm:text-[24px] md:hidden"
                       aria-hidden
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleExplore(item.id);
+                      }}
                     >
                       <i
                         className={isOpen ? "ri-subtract-line" : "ri-add-line"}
@@ -184,25 +208,56 @@ export default function Section3() {
                   >
                     <div className="px-4 sm:px-5 md:px-6 lg:px-6 pb-5 sm:pb-6 md:pb-7">
                       <div className="pl-0 sm:pl-[80px] lg:pl-[180px]">
-                        <p
-                          className="mt-0 pt-0 text-white font-[400] text-[16px] leading-[28px] tracking-[0em] max-w-[796px]"
-                          style={{ fontFamily: "OpenSansRegular" }}
-                        >
-                          {item.description}
-                        </p>
+                        {isOpen ? (
+                          <Link
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="mt-0 block max-w-[796px] cursor-pointer pt-0 text-[16px] font-[400] leading-[28px] tracking-[0em] text-white no-underline"
+                            style={{ fontFamily: "OpenSansRegular" }}
+                          >
+                            {item.description}
+                          </Link>
+                        ) : (
+                          <p
+                            className="mt-0 max-w-[796px] pt-0 text-[16px] font-[400] leading-[28px] tracking-[0em] text-white"
+                            style={{ fontFamily: "OpenSansRegular" }}
+                          >
+                            {item.description}
+                          </p>
+                        )}
 
-                        <div className="mt-6 sm:mt-7 md:mt-8 relative w-full max-w-[796px] h-[190px] sm:h-[225px] md:h-[250px] lg:h-[258px] rounded-[8px] overflow-hidden">
-                          <Image
-                            src={item.image ?? CELEBRITY_IMAGE}
-                            alt={item.title}
-                            fill
-                            className="object-cover"
-                            sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
-                          />
-                        </div>
+                        {isOpen ? (
+                          <Link
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="relative mt-6 block h-[190px] w-full max-w-[796px] cursor-pointer overflow-hidden rounded-[8px] no-underline sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:h-[258px]"
+                          >
+                            <Image
+                              src={item.image ?? CELEBRITY_IMAGE}
+                              alt={item.title}
+                              fill
+                              className="object-cover"
+                              sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
+                            />
+                          </Link>
+                        ) : (
+                          <div className="relative mt-6 h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:h-[258px]">
+                            <Image
+                              src={item.image ?? CELEBRITY_IMAGE}
+                              alt={item.title}
+                              fill
+                              className="object-cover"
+                              sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
+                            />
+                          </div>
+                        )}
 
                         <div className="mt-4 sm:mt-5 md:hidden">
-                          {exploreMoreButton}
+                          {exploreMoreLink}
                         </div>
                       </div>
                     </div>
