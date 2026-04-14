@@ -1,10 +1,9 @@
 import Image from "next/image";
-import BrandThatTrustUs from "@/components/influencer-marketing-agency-in-india/BrandThatTrustUs";
 import styles from "./page.module.css";
 
 import ClientTestimonials from "@/components/influencer-marketing-agency-in-india/Section5";
-import FormComponent from "./Form-component";
 import BrandImpactSection1 from "../copy/BrandImpactSection1";
+import ServicesV3SubslugLayer4Section5 from "@/components/services-v3-subslug/layer-4/Section5";
 
 
 const cards = [
@@ -45,7 +44,7 @@ export default function Section4() {
         className={`w-full mx-auto px-4 sm:px-6 lg:px-0 ${styles.containerWidth}`}
       >
         <h2
-          className="text-center text-black font-[700] text-[24px] sm:text-[44px] md:text-[28px] lg:text-[36px] leading-[48px]"
+          className="text-center text-black font-[700] leading-[30px] text-[24px] sm:text-[44px] md:text-[28px] lg:text-[36px] md:leading-[48px]"
           style={{ fontFamily: "MontserratBold" }}
         >
           Why Celebrity
@@ -53,22 +52,22 @@ export default function Section4() {
           Endorsement Matter
         </h2>
 
-        <div className="mt-12 md:mt-10 lg:mt-25">
+        <div className="mt-5 md:mt-10 lg:mt-25">
           <div className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap items-start">
             {cards.map((card, index) => (
               <div
                 key={card.title}
-                className={`w-full min-w-0 sm:w-1/2 lg:w-1/4 pb-10 sm:pb-12 lg:pb-0 ${rampOffsets[index]}`}
+                className={`w-full min-w-0 sm:w-1/2 lg:w-1/4 pb-5 sm:pb-12 lg:pb-0 ${rampOffsets[index]}`}
               >
                 <div
                   className="relative lg:pl-7 xl:pl-8 lg:pr-4 xl:pr-5 lg:pt-0"
                 >
                   {index === 0 ? (
-                    <div className="hidden lg:block absolute left-0 top-[2px] h-[310px] w-[0.5px] min-w-[0.5px] bg-[#E3E0E0]" />
+                    <div className="absolute left-0 top-[38px] z-[1] hidden h-[274px] w-[0.5px] min-w-[0.5px] bg-[#E3E0E0] lg:block" />
                   ) : (
-                    <div className="hidden lg:block absolute left-0 top-0 h-[calc(100%+58px)] w-[0.5px] min-w-[0.5px] bg-[#E3E0E0]" />
+                    <div className="absolute left-0 top-[36px] z-[1] hidden h-[calc(100%+22px)] w-[0.5px] min-w-[0.5px] bg-[#E3E0E0] lg:block" />
                   )}
-                  <div className="hidden lg:block lg:mb-0 lg:absolute lg:left-0 lg:top-[-33px] lg:-translate-x-1/2">
+                  <div className="absolute left-0 top-[6px] z-0 hidden -translate-x-1/2 lg:mb-0 lg:block lg:-translate-x-1/2">
                     <img
                       src={card.icon}
                       alt={`${card.title} – Ritz Media World`}
@@ -85,7 +84,7 @@ export default function Section4() {
                     }
                   >
                     <h3
-                      className="text-center md:text-left mx-auto md:mx-0 text-black font-[700] text-[20px] leading-[30px] tracking-[0em] max-w-[288px]"
+                      className="text-center md:text-left mx-auto md:mx-0 text-black font-[700] text-[20px] leading-[30px] tracking-[0em] max-w-[288px] lg:leading-[25px] xl:leading-[30px]"
                       style={{ fontFamily: "MontserratBold" }}
                     >
                       {card.title === "Generate Engagement & Influence" ? (
@@ -100,18 +99,18 @@ export default function Section4() {
                     </h3>
 
                     {card.title === "Generate Leads & Conversions" ? (
-                      <div className="mt-3 w-full min-w-0 max-w-[268px] lg:max-w-[230px] text-center md:text-left mx-auto md:mx-0">
+                      <div className="mt-1 md:mt-3 w-full min-w-0 max-w-[224px] text-center md:text-left mx-auto md:mx-0">
                         <p
-                          className="text-black font-[400] text-[16px] leading-[28px] tracking-[0em]"
-                          style={{ fontFamily: "OpenSansRegular", lineHeight: "28px" }}
+                          className="text-black font-[400] text-[16px] leading-[18px]  md:leading-[28px] tracking-[0em] lg:text-[17px] lg:leading-[25px] xl:text-[16px] xl:leading-[28px]"
+                          style={{ fontFamily: "OpenSansRegular" }}
                         >
                           {card.description}
                         </p>
                       </div>
                     ) : (
                       <p
-                        className="mt-3 max-w-[268px] text-center md:text-left mx-auto md:mx-0 text-black font-[400] text-[16px] leading-[28px] tracking-[0em]"
-                        style={{ fontFamily: "OpenSansRegular", lineHeight: "28px" }}
+                        className="mt-1 md:mt-3 max-w-[234px] text-center md:text-left mx-auto md:mx-0 text-black font-[400] text-[16px] leading-[28px] tracking-[0em] lg:text-[17px] lg:leading-[25px] xl:text-[16px] xl:leading-[28px]"
+                        style={{ fontFamily: "OpenSansRegular" }}
                       >
                         {card.description}
                       </p>
@@ -135,8 +134,8 @@ export default function Section4() {
         </div>
       </div>
 
-      <div className="w-full -mt-8 sm:-mt-12 lg:-mt-[20px] xl:-mt-[100px]">
-        <BrandThatTrustUs />
+      <div className="w-full -mt-8 sm:-mt-12 lg:mt-[30px] xl:-mt-[100px] lg:pb-[70px]">
+        <ServicesV3SubslugLayer4Section5 />
       </div>
 
       <div className="w-full -mt-4 sm:-mt-6 md:-mt-[30px] lg:-mt-[50px] xl:-mt-[60px]">

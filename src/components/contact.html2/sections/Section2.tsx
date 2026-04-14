@@ -116,25 +116,28 @@ function Section2() {
     };
 
     return (
-        <section className="w-full bg-white py-[35px] lg:py-[70px]">
+        <section className="w-full bg-white py-[35px] lg:pt-[70px]">
             {/* Centered Align Container  */}
             <div
-                className={`w-full ${pageStyles.containerWidth} flex flex-col md:w-full md:items-center lg:flex-row lg:items-stretch justify-center gap-8 lg:gap-6 xl:gap-15`}
+                className={`w-full ${pageStyles.containerWidth} flex flex-col md:w-full md:items-center lg:flex-row lg:items-stretch justify-center gap-8 lg:gap-[40px] xl:gap-[80px]`}
             >
                 {/* Left: circular image + Follow Us */}
                 <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="relative w-full max-w-[630px] max-h-[630px] aspect-square">
-                        <div className="absolute inset-0 rounded-full overflow-hidden  bg-gray-100  min-[1024px]:max-[1211px]:h-[480px]">
+                    <div className="relative w-full aspect-square min-h-0">
+                        <div
+                            className="absolute inset-0 rounded-full overflow-hidden lg:h-[450px] xl:h-[590px]"
+                            style={{ borderRadius: "50%" }}
+                        >
                             <Image
                                 src="/varunimage/contactemployee.jpg"
                                 alt="Office team at work"
                                 fill
                                 unoptimized
                                 sizes="(max-width: 1023px) 100vw, 480px"
-                                className="object-cover"
-                            />
+                                className="object-cover rounded-full"
+                            /> 
                         </div>
-                        <div className="absolute right-[30px] bottom-[-56px] lg:bottom-[-20px] xl:bottom-[-56px] w-[170px] h-[170px] sm:w-[42%] sm:min-w-[140px] sm:min-h-[140px] sm:aspect-square sm:h-auto bg-white rounded-full  flex flex-col items-center justify-center gap-3 p-4 border-[1px] border-[#0F1640]">
+                        <div className="absolute right-[26px] bottom-[-56px] lg:bottom-[10px] xl:bottom-[-20px] w-[170px] h-[170px] sm:w-[42%] sm:min-w-[140px] sm:min-h-[140px] sm:aspect-square sm:h-auto bg-white rounded-full  flex flex-col items-center justify-center gap-3 p-4 border-[1px] border-[#0F1640]">
                             <h3
                                 className={`font-semibold text-[18px] leading-[26px] text-center text-black m-0 ${pageStyles.fontMontserrat}`}
                             >
@@ -167,7 +170,7 @@ function Section2() {
                 {/* Right: contact form */}
                 <div className="w-full max-w-[560px] md:max-w-full md:w-full lg:w-1/2 lg:max-w-none">
                     <h2
-                        className={`font-semibold text-[20px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[40px] text-[#000000] mt-[20px] lg:mt-0 mb-2 lg:mb-0 xl:mb-2 leading-[50px] text-center lg:text-left ${pageStyles.fontMontserrat}`}
+                        className={`font-semibold text-[20px] sm:text-[22px] md:text-[26px] lg:text-[30px] xl:text-[40px] text-[#000000] mt-[20px]  lg:mt-0 mb-2 lg:mb-0 xl:mb-2 leading-[50px] text-center lg:text-left ${pageStyles.fontMontserrat}`}
                     >
                         Your Big Idea Starts Here
                     </h2>
