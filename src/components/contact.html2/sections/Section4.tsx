@@ -73,21 +73,21 @@ function Section4() {
                                     <img
                                         src="/varunimage/contact-office-image.jpg"
                                         alt="Corporate Park Tower A1"
-                                        className={`w-full md:h-[320px] h-[312px] lg:h-[338px] xl:h-[360px] ${pageStyles.section4BuildingImg} ${pageStyles.section4BuildingImgFull}`}
+                                        className={`w-full md:h-[320px] h-[370px] lg:h-[338px] xl:h-[360px] ${pageStyles.section4BuildingImg} ${pageStyles.section4BuildingImgFull}`}
                                     />
                                 </div>
                                 {/* Right: Dark blue block - same background */}
                                 <div
                                     className={`relative flex flex-col gap-[0px] sm:w-[55%] md:w-full lg:w-[60%] ${pageStyles.section4AddressBlockFull} bg-[#151F3D] px-5 py-3 text-white sm:pl-8 sm:pr-6 sm:py-6`}
                                 >
-                                    <div className="relative mx-auto mb-2 h-[180px] w-auto flex-shrink-0 md:mb-0 md:ml-auto md:mr-0 md:h-[150px] lg:h-[130px] xl:h-[180px]">
+                                    <div className="relative mx-auto mb-2 h-[180px] w-auto flex-shrink-0 md:mb-0 md:ml-auto md:mr-0 md:h-[130px] lg:h-[130px] xl:h-[180px]">
                                         <img
                                             src="/varunimage/RMW-logo-contact.png"
                                             alt="Ritz Media World Logo"
                                             className="h-full w-auto object-contain"
                                         />
                                     </div>
-                                    <div className=" xl:mt-1 lg:mt-2">
+                                    <div className=" xl:mt-1 lg:mt-8 md:mt-4">
                                         <p
                                             className={`mb-2 text-center md:text-left ${pageStyles.fontopensans}`}
                                             style={{
@@ -104,21 +104,19 @@ function Section4() {
                                             Address
                                         </p>
                                         {ADDRESS_LINES.map((line) => (
-                                            <p
-                                                key={line}
-                                                className={`${pageStyles.fontMontserrat} leading-[28px] lg:leading-[23px] xl:leading-[30px] text-center md:text-left `}
-                                                style={{
-                                                    fontFamily:
-                                                        "Montserrat, sans-serif",
-                                                    fontWeight: 600,
-                                                    fontStyle: "normal",
-                                                    fontSize: "16px",
-                                                    letterSpacing: "0%",
-                                                    color: "#FFFFFF",
-                                                }}
-                                            >
-                                                {line}
-                                            </p>
+                                           <p
+                                           key={line}
+                                           className={`${pageStyles.fontMontserrat} text-[16px] lg:text-[15px] leading-[28px] lg:leading-[23px] xl:leading-[30px] text-center md:text-left`}
+                                           style={{
+                                               fontFamily: "Montserrat, sans-serif",
+                                               fontWeight: 600,
+                                               fontStyle: "normal",
+                                               letterSpacing: "0%",
+                                               color: "#FFFFFF",
+                                           }}
+                                       >
+                                           {line}
+                                       </p>
                                         ))}
                                     </div>
                                 </div>

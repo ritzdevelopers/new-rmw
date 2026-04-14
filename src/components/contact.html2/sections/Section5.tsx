@@ -78,7 +78,7 @@ function Section5() {
                             {item.isGoogle ? (
                                 <>
                                     <img
-                                        src="/varunimage/google-review-contact.png"
+                                        src="/varunimage/contact-page-google-review.png"
                                         alt="Google review"
                                         className="w-[250px] h-auto object-contain"
                                     />

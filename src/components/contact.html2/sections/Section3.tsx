@@ -1,8 +1,7 @@
 "use client";
 
-// Same map as https://ritzmediaworld.com/contact.html (Ritz Media World – Noida)
 const MAP_EMBED_URL =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28052.52086266602!2d77.4128188!3d28.49264095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce530165cc6c1%3A0x9ea28df462e9945e!2sRitz%20Media%20World-Digital%20Marketing%20Agency%20in%20Noida%20%7C%20Social%20Media%20Agency%20in%20Noida%20%7C%20Newspaper%20%26%20Radio%20Ad%20Agency%20in%20Noida!5e0!3m2!1sen!2sin!4v1742542850888!5m2!1sen!2sin";
+    "https://www.google.com/maps?q=Ritz+Media+World,+Unit+no,+Tower+A1,+Corporate+Park,+4th+floor,+402-404,+Sector+142,+Noida,+Uttar+Pradesh+201305&output=embed";
 
 function Section3() {
     return (
