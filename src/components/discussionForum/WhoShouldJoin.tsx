@@ -24,8 +24,8 @@ export default function WhoShouldJoin() {
                     grid-cols-1 
                     md:grid-cols-1 
                     lg:grid-cols-[1fr_280px] 
-                    xl:grid-cols-[1fr_320px] 
-                    gap-6
+                    xl:grid-cols-[1fr_360px] 
+                    gap-3
                 ">
                     {/* LEFT SIDE */}
                     <div className="
@@ -34,19 +34,19 @@ export default function WhoShouldJoin() {
                         sm:grid-cols-2 
                         md:grid-cols-2 
                         lg:grid-cols-3 
-                        gap-4
+                        gap-3
                     ">
 
                         {/* TITLE */}
-                        <div className="flex items-start sm:col-span-2 lg:col-span-1">
-                            <h2 className="
+                        <div className="flex items-start sm:col-span-1 lg:col-span-1">
+                            <h2 className={`
                                 text-[26px] leading-[32px]
                                 sm:text-[32px] sm:leading-[38px]
                                 md:text-[36px] md:leading-[42px]
                                 lg:text-[32px] lg:leading-[32px]
                                  xl:text-[42px] xl:leading-[48px]
-                                font-[700] text-black
-                            ">
+                                 text-black
+                            ${styles.montserratBold} `}>
                                 Who Should Join?
                             </h2>
                         </div>

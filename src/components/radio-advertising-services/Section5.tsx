@@ -13,37 +13,37 @@ const cardContent = [
         title: "Advertising Concept Development",
         content: "As a leading radio advertising agency, we craft compelling, audio-centric campaign ideas, specifically designed to resonate with FM radio audiences.               Our approach is designed to guarantee that your radio advertisement breaks through, delivers brand awareness, and generates measurable results in the target market.",
         image: "/alishba-services-v3/radio-advertising/Adv-Con-Dev.png",
-        link: "https://ritzmediaworld.com/services/radio-advertising",
+        link: "https://ritzmediaworld.com/services/radio-advertising/advertisement-concept-development",
     },
     {
         title: "Scriptwriting ",
         content: "For successful FM ad campaigns, storytelling is a great beginning. Our skilled scriptwriters write attention-grabbing, conversion-oriented scripts for radio ads and commercials. Every message is crafted with the goal of communicating value and inspiring people to take action.",
         image: "/alishba-services-v3/radio-advertising/Scriptwriting.png",
-        link: "https://ritzmediaworld.com/services/radio-advertising",
+        link: "https://ritzmediaworld.com/services/radio-advertising/scriptwriting",
     },
     {
         title: "Professional Voiceover Casting",
         content: "The key to any successful radio ad campaign really comes down to finding the right voice. We offer voiceover casting that fits with your brand personality and target audience. We help you build credibility and keep listeners engaged with our voice talent.",
         image: "/alishba-services-v3/radio-advertising/professional-voice-cov.png",
-        link: "https://ritzmediaworld.com/services/radio-advertising",
+        link: "https://ritzmediaworld.com/services/radio-advertising/voiceover-casting",
     },
     {
         title: "Radio Recording & Production",
         content: "With our radio commercial production services, we provide quality audio, precise editing, and effective sound designs, ensuring that your advertisements reach the wider audience of popular FM channels through professional studio recordings and efficient production techniques.",
         image: "/alishba-services-v3/radio-advertising/recording-production.png",
-        link: "https://ritzmediaworld.com/services/radio-advertising",
+        link: "https://ritzmediaworld.com/services/radio-advertising/recording-and-production",
     },
     {
         title: "Media Planning & Buying",
         content: "For effective campaigns, strategic media planning is essential for successful radio advertising. As an experienced radio advertising agency, we recognize that the media planning and buying service is crucial for selecting the most appropriate FM stations, time slots, and programs that are more likely to reach out to your target audience.",
         image: "/alishba-services-v3/radio-advertising/media-planning.png",
-        link: "https://ritzmediaworld.com/services/radio-advertising",
+        link: "https://ritzmediaworld.com/services/radio-advertising/media-planning-and-buying",
     },
     {
         title: "Cost Negotiation & Slot Optimization",
         content: "Unlike other forms of smart radio media buying, where placement is not enough and relationships are crucial, smart radio media buying includes superior relationships and negotiation skills. With our smart radio media buying strategy, you get prime time and cost-effective FM radio advertising.",
         image: "/alishba-services-v3/radio-advertising/cost-nagotiation.png",
-        link: "https://ritzmediaworld.com/services/radio-advertising",
+        link: "https://ritzmediaworld.com/services/radio-advertising/radio-cost-negotiation-india",
     },
 ];
 
@@ -126,9 +126,9 @@ function Section5() {
             {/* Centered Align Container  */}
             <div className={`w-full flex flex-col justify-center items-center gap-6 sm:gap-8 xl:gap-10 ${styles.containerWidth}`}>
                 <div className="w-full flex flex-col justify-center items-center text-center px-2 sm:px-0">
-                    <p className={`font-[600] text-[12px] sm:text-[14px] xl:text-[16px] uppercase text-[#C99237] ${styles.fontpoppins}`}>
+                    <a href='/services' target='_blank' className={`font-[600] text-[12px] sm:text-[14px] xl:text-[16px] uppercase text-[#C99237] ${styles.fontpoppins}`}>
                         Services
-                    </p>
+                    </a>
                     <h2 className={`font-[700] text-[24px] sm:text-[28px] md:text-[32px] xl:text-[36px] ${styles.fontmontserrat}`}>
                         What We Provide
                     </h2>
@@ -156,6 +156,7 @@ function Section5() {
                                     >
                                         <div className={mobileCardInnerClass}>
                                             <S5CardMobile
+                                                link={card.link}
                                                 title={card.title}
                                                 image={card.image}
                                                 content={card.content}
@@ -227,7 +228,7 @@ function Section5() {
                                 className="w-6 h-6 sm:w-7 sm:h-7 xl:w-[28px] xl:h-[28px] cursor-pointer flex justify-center items-center hover:opacity-80 transition-opacity flex-shrink-0"
                                 aria-label="Previous card"
                             >
-                                <img src="/lft-btn.svg" alt="Ritz Media World – previous" title="Ritz Media World" className="w-full h-full object-contain" />
+                                <img src="/lft-btn.svg" alt="Ritz Media World – previous" title="Ritz Media World – previous" className="w-full h-full object-contain" />
                             </button>
                             <button
                                 type="button"
@@ -235,7 +236,7 @@ function Section5() {
                                 className="w-6 h-6 sm:w-7 sm:h-7 xl:w-[28px] xl:h-[28px] cursor-pointer flex justify-center items-center hover:opacity-80 transition-opacity flex-shrink-0"
                                 aria-label="Next card"
                             >
-                                <img src="/rght-btn.svg" alt="Ritz Media World – next" title="Ritz Media World" className="w-full h-full object-contain" />
+                                <img src="/rght-btn.svg" alt="Ritz Media World – next" title="Ritz Media World – next" className="w-full h-full object-contain" />
                             </button>
                         </div>
                     </div>

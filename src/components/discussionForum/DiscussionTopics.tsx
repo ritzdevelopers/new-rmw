@@ -14,7 +14,7 @@ export default function DiscussionTopics() {
         <section className="w-full py-16 px-4 md:px-4 lg:px-5 xl:px-5">
             <div className="mx-auto">
 
-                <h2 className="text-center text-3xl md:text-4xl font-bold mb-12">
+                <h2 className="text-center text-3xl md:text-4xl font-bold mb-8">
                     Discussion Topics
                 </h2>
 
@@ -41,14 +41,14 @@ export default function DiscussionTopics() {
                             />
                         </div>
 
-                        <ul className="space-y-4 text-gray-800 text-[16px]">
+                        <ul className={`space-y-4 text-black text-[16px] ${styles.fontopensans}`}>
                             {[
                                 "How to choose the right SEO company in Noida?",
                                 "SEO vs Paid Ads – what works better for your business?",
                                 "How do top SEO companies in Noida rank websites?",
                                 "AI in digital marketing: Opportunity or threat?"
                             ].map((item, i) => (
-                                <li key={i} className="flex items-start gap-3">
+                                <li key={i} className="flex items-start gap-3 font-[400]">
                                     <span className="w-2 h-2 bg-black rounded-full mt-2"></span>
                                     <span>{item}</span>
                                 </li>
@@ -99,9 +99,9 @@ export default function DiscussionTopics() {
                             </h4>
 
                             <p className={`
-                                        text-gray-700 
-                                        text-[13px] leading-relaxed
-                                        sm:text-[14px] ${i !== 1 ? 'lg:px-2' : ''}${styles.fontopensans}
+                                        text-black font-[400]
+                                        text-[13px]  sm:text-[13px] md:text-[13px] lg:text-[13px] xl:text-[14px] 2xl:text-[15px] leading-relaxed
+                                       ${i !== 1 ? 'lg:px-2' : ''}${styles.fontopensans}
                                         
                                     `}>
                                 {card.text}

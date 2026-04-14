@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { CiSearch } from "react-icons/ci";
 import { FiFileText } from "react-icons/fi";
@@ -79,12 +79,23 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
         setFilteredBlogs(filtered.slice(0, 5));
     }, [searchValue, all_blogs]);
 
-    console.log("related_blogs", related_blogs);
-
+    const sortedCategories = useMemo(() => {
+        if (!all_categories?.length) return [];
+        const flat = all_categories.flatMap((category: any) => [
+            ...(category?.mongo_categories ?? []),
+            ...(category?.mysql_categories ?? []),
+        ]);
+        return [...flat].sort((a: any, b: any) => {
+            const na = Number(a?.total_blogs ?? 0);
+            const nb = Number(b?.total_blogs ?? 0);
+            if (nb !== na) return nb - na;
+            return String(a?.name ?? "").localeCompare(String(b?.name ?? ""));
+        });
+    }, [all_categories]);
 
     if (!blog) {
         return (
-            <section className="w-full pt-8 sm:pt-10 md:pt-12 lg:pt-14 xl:pt-[70px] flex justify-center items-center">
+            <section className="w-full pt-[35px] lg:pt-[70px] flex justify-center items-center">
                 <div className={`w-full flex flex-col items-center justify-center min-h-[280px] py-16 px-6 text-center ${styles.containerWidth}`}>
                     <div className="w-16 h-16 rounded-2xl bg-[#E8EBFF] flex items-center justify-center mb-5">
                         <FiFileText className="w-8 h-8 text-[#0F1640]/60" aria-hidden />
@@ -101,7 +112,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
     }
 
     return (
-        <section className="w-full pt-8 sm:pt-10 md:pt-12 lg:pt-14 xl:pt-[70px] flex justify-center items-center ">
+        <section className="w-full pt-[35px] lg:pt-[70px] flex justify-center items-center ">
             {/* Centered Align Container  */}
             {loading ? (
                 <div className="w-full flex justify-center items-center min-h-[280px] py-16 px-6 text-center">
@@ -128,12 +139,19 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                             </div>
                         </div>
 
-                        {/* Bottom Row  */}
-                        <div className="[&_table]:w-full [&_th]:border [&_th]:border-[#ccc] [&_th]:p-2.5 [&_td]:border [&_td]:border-[#ccc] [&_td]:p-2.5 [&_ul]:list-disc [&_ol]:list-decimal [&_ul]:pl-5 [&_ol]:pl-5 [&_h1]:text-2xl sm:[&_h1]:text-3xl [&_h2]:text-xl sm:[&_h2]:text-2xl overflow-x-auto" dangerouslySetInnerHTML={{ __html: formattedBlog?.description || "" }} />
+                        {/* Bottom Row — same structure + typography as DetailPage (tableWrapper + contentBody) */}
+                        <div className={`${styles.tableWrapper} w-full min-w-0`}>
+                            <div
+                                className={`${styles.contentBody} ${styles.fontopensans}`}
+                                dangerouslySetInnerHTML={{
+                                    __html: formattedBlog?.description || "",
+                                }}
+                            />
+                        </div>
                     </div>
 
                     {/* Right Side Container  */}
-                    <div className="w-full lg:max-w-[291px] xl:max-w-[391px] xl:w-full lg:sticky lg:top-28 flex flex-col gap-8 sm:gap-10 lg:gap-12 xl:gap-14 shrink-0">
+                    <div className="w-full lg:max-w-[291px] xl:max-w-[391px] xl:w-full  flex flex-col gap-8 sm:gap-10 lg:gap-12 xl:gap-14 shrink-0">
                         {/* Row 1 */}
                         <div className="w-full bg-[#F5F5F5] rounded-[8px] xl:rounded-[10px] flex flex-col justify-center items-center text-center gap-3 sm:gap-4 py-5 sm:py-6 xl:py-8 px-3 sm:px-4">
                             <p className={`font-[600] text-[16px] sm:text-[18px] xl:text-[20px] ${styles.fontmontserrat}`}>Search</p>
@@ -178,27 +196,21 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                             </div>
 
                             <div className="w-full flex flex-col gap-3 sm:gap-4 p-5 sm:p-7 xl:p-10">
-                                {/* Card 1  */}
-                                {
-                                    all_categories && all_categories.length > 0 && all_categories.map((category: any, idx: number) => {
-                                        return [...(category?.mongo_categories ?? []), ...(category?.mysql_categories ?? [])].map((cat: any, idx: number) => {
-                                            return (
-                                                <div onClick={() => window.open(`/category2/${cat.link}`, "_blank")} key={idx} className="w-full flex justify-between pb-4 border-b border-[#F0F0F0] cursor-pointer rounded px-2 py-1 -mx-2 -my-1 hover:bg-gray-50/80 transition-colors duration-200">
-                                                    {/* Left Side div  */}
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="w-[7px] h-[7px] rounded-full border border-[#5E5E5E]"></div>
-                                                        <h3 className="font-[400] text-[12px] sm:text-[13px] xl:text-[14px] text-[#484848]">{cat.name}</h3>
-                                                    </div>
-
-                                                    {/* Right  Side Div  */}
-                                                    <div>
-                                                        <p className="font-[400] text-[12px] sm:text-[13px] xl:text-[14px] text-[#969696]">({cat.total_blogs})</p>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    })
-                                }
+                                {sortedCategories.map((cat: any, idx: number) => (
+                                    <div
+                                        key={String(cat?.link ?? cat?._id ?? cat?.id ?? idx)}
+                                        onClick={() => window.open(`/category2/${cat.link}`, "_blank")}
+                                        className="w-full flex justify-between pb-4 border-b border-[#F0F0F0] cursor-pointer rounded px-2 py-1 -mx-2 -my-1 hover:bg-gray-50/80 transition-colors duration-200"
+                                    >
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-[7px] h-[7px] rounded-full border border-[#5E5E5E]" />
+                                            <h3 className="font-[400] text-[12px] sm:text-[13px] xl:text-[14px] text-[#484848]">{cat.name}</h3>
+                                        </div>
+                                        <div>
+                                            <p className="font-[400] text-[12px] sm:text-[13px] xl:text-[14px] text-[#969696]">({cat.total_blogs})</p>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 
@@ -236,7 +248,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                 {
                                     relatedBlogs && relatedBlogs.length > 0 && relatedBlogs.map((blog: RelatedBlog, idx: number) => {
                                         return (
-                                            <div key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
+                                            <div onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
                                                 {/* Left Side Image Container  */}
                                                 <div className="w-[80px] h-[52px] sm:w-[92px] sm:h-[60px] xl:w-[108px] xl:h-[69px] relative rounded-[2px] overflow-hidden shrink-0 group-hover:opacity-95 transition-opacity">
                                                     <Image priority={false} loading="lazy"
