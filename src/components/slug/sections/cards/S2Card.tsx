@@ -1,5 +1,5 @@
 import styles from "../page.module.css";
-function S2Card({ index, data }: { index: number, data: any }) {
+function S2Card({ index, data }: { index: number, data: any }) { 
     return (
         <div className="flex h-auto w-full lg:h-[470px]">
             <div className={`flex h-full w-full flex-col-reverse gap-4 lg:gap-14 ${index % 2 === 0 ? "lg:flex-row" : "lg:justify-start lg:flex-row-reverse"}`}>
