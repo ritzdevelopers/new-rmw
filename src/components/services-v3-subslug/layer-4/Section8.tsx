@@ -4,7 +4,7 @@ import BrandImpactSection1 from "@/components/copy/BrandImpactSection2";
 export default function Section8() {
   return(
     <>
-    <div className=" pt-[35px] lg:pt-[70px]">
+    <div className="">
 
 
     <BrandImpactSection2 />;
