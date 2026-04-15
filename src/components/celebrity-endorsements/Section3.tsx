@@ -70,7 +70,7 @@ const servicesData: ServiceItem[] = [
 ];
 
 export default function Section3() {
-  const [openItem, setOpenItem] = useState<string | null>(null);
+  const [openItem, setOpenItem] = useState<string | null>(servicesData[0]?.id ?? null);
 
   const toggleExplore = (id: string) => {
     setOpenItem((prev) => (prev === id ? null : id));
@@ -81,7 +81,7 @@ export default function Section3() {
       <div className={`w-full mx-auto ${styles.containerWidth}`}>
         <div className="flex flex-col gap-5 sm:gap-6">
           <div className="flex flex-col gap-1 sm:gap-2 text-center md:text-left">
-          <a href="/services">
+          <a href="/services" target="_blank" rel="noopener noreferrer">
   <p
     className="text-[#C99237] uppercase text-[12px] lg:text-[16px] font-[600]"
     style={{ fontFamily: "MontserratSemiBold" }}
