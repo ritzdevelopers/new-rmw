@@ -50,7 +50,7 @@ export default function Section2() {
                   <span className="font-[700] " style={{ fontFamily: "OpenSansBold" }}>
                     celebrity endorsement services for brand promotion
                   </span>
-                  , celebrity marketing campaigns, or high-performing brand ambassador partnerships. Our celebrity endorsement campaigns enhance credibility, reach, and engagement.
+                  , <i>celebrity marketing campaigns</i>, or high-performing brand ambassador partnerships. Our celebrity endorsement campaigns enhance credibility, reach, and engagement.
                 </p>
                 <p className="mt-3 md:mt-4">
                   From scouting the best talent and setting up collaboration agreements
@@ -101,13 +101,13 @@ export default function Section2() {
               </div>
 
               <div className="order-2 border-l border-[#D9D9D9] pl-[16px] pr-5 pt-6 sm:pt-7 md:order-none md:col-start-1 md:row-start-1 md:py-4 lg:min-h-[189px] lg:pt-2 lg:pl-[16px] lg:pr-5 lg:px-7 xl:pt-4 max-lg:border-l-0 max-md:pl-0 max-md:pr-0 max-md:text-center md:px-6 md:text-left lg:text-left">
-                <h3
+                <p
                   className="text-[#0F1640] text-[52px] sm:text-[56px] md:text-[58px] lg:text-[56px] xl:text-[60px] leading-none font-[700]"
                   style={{ fontFamily: "MontserratSemiBold" }}
                 >
                   35
                   <sup className="text-[30px] sm:text-[32px] md:text-[34px] top-[-1.7rem]">+</sup>
-                </h3>
+                </p>
                 <p
                   className="mt-3 lg:mt-0 xl:mt-3 text-[#000000] text-[30px] sm:text-[34px] md:text-[18px] lg:text-[20px] font-[700] leading-none"
                   style={{ fontFamily: "MontserratSemiBold" }}
