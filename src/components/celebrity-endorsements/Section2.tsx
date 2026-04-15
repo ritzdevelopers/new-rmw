@@ -15,7 +15,7 @@ export default function Section2() {
         <div className="w-full lg:w-[54%] xl:w-[48%] min-w-0 max-lg:text-center lg:text-left">
             <div className="mx-auto w-full max-w-[760px] min-w-0 lg:mx-0">
               <div className="mx-auto w-full max-w-[616px] min-w-0 lg:mx-0">
-                <h2
+                <p
                   className="text-[#1C1C1C] text-[18px]  leading-[30px] lg:text-[16px] lg:leading-[27px] xl:text-[16px] xl:leading-[29px]  "
                   style={{
                     fontFamily: "MontserratRegular",
@@ -27,7 +27,7 @@ export default function Section2() {
                   <span className="font-[700]" style={{ fontFamily: "MontserratBold" }}>
                     Celebrity endorsement services
                   </span>{" "}
-                  services help brands earn customers’ trust, achieve brand recognition, and mold consumer behavior beyond glitz and glamour. At{" "}
+                   help brands earn customers’ trust, achieve brand recognition, and mold consumer behavior beyond glitz and glamour. At{" "}
                   <Link href="/">
   <span
     className="font-[700] text-[#C99237] cursor-pointer"
@@ -38,7 +38,7 @@ export default function Section2() {
 </Link>
                   , we develop brands and promote them with celebrities to attract and catch the impact.
 
-                </h2>
+                </p>
               </div>
 
               <div

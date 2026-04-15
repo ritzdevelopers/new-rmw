@@ -10,25 +10,25 @@ import Link from "next/link";
 const cards = [
   {
     icon: "/service-v3/celebrity-endorsements/high_fp/blueelip.png",
-    title: "Increase Visibility & Reach",
+    h3: "Increase Visibility & Reach",
     description:
       "Celebrity endorsement of your brand captures instant attention and increases your brand reach. This helps your brand get noticed in a crowded marketplace.",
   },
   {
     icon: "/service-v3/celebrity-endorsements/high_fp/yellowelip.png",
-    title: "Establish Trust & Credibility",
+    h3: "Establish Trust & Credibility",
     description:
       "Trust-building celebrities increase brand trust and credibility. Professional celebrity endorsement services increase your brand's credibility and believability.",
   },
   {
     icon: "/service-v3/celebrity-endorsements/high_fp/blueelip.png",
-    title: "Generate Engagement & Influence",
+    h3: "Generate Engagement & Influence",
     description:
       "Celebrity marketing campaigns generate buzz and social media engagement. This builds stronger audience interaction and recall.",
   },
   {
     icon: "/service-v3/celebrity-endorsements/high_fp/yellowelip.png",
-    title: "Generate Leads & Conversions",
+    h3: "Generate Leads & Conversions",
     description:
       "Brands partnering with celebrities for promotion generate stronger persuasion and recall. This results in higher enquiries, sales, and customer interest.",
   },
@@ -57,7 +57,7 @@ export default function Section4() {
           <div className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap items-start">
             {cards.map((card, index) => (
               <div
-                key={card.title}
+                key={card.h3}
                 className={`w-full min-w-0 sm:w-1/2 lg:w-1/4 pb-5 sm:pb-12 lg:pb-0 ${rampOffsets[index]}`}
               >
                 <div
@@ -71,7 +71,7 @@ export default function Section4() {
                   <div className="absolute left-0 top-[6px] z-0 hidden -translate-x-1/2 lg:mb-0 lg:block lg:-translate-x-1/2">
                     <img
                       src={card.icon}
-                      alt={`${card.title} – Ritz Media World`}
+                      alt={`${card.h3} – Ritz Media World`}
                       title="Ritz Media World"
                       className="w-[30px] h-auto object-contain"
                     />
@@ -79,7 +79,7 @@ export default function Section4() {
 
                   <div
                     className={
-                      card.title === "Generate Engagement & Influence"
+                      card.h3 === "Generate Engagement & Influence"
                         ? "lg:-mt-11"
                         : "lg:-mt-8"
                     }
@@ -88,18 +88,18 @@ export default function Section4() {
                       className="text-center md:text-left mx-auto md:mx-0 text-black font-[700] text-[20px] leading-[30px] tracking-[0em] max-w-[288px] lg:leading-[25px] xl:leading-[30px]"
                       style={{ fontFamily: "MontserratBold" }}
                     >
-                      {card.title === "Generate Engagement & Influence" ? (
+                      {card.h3 === "Generate Engagement & Influence" ? (
                         <>
                           Generate Engagement
                           <br />
                           & Influence
                         </>
                       ) : (
-                        card.title
+                        card.h3
                       )}
                     </h3>
 
-                    {card.title === "Generate Leads & Conversions" ? (
+                    {card.h3 === "Generate Leads & Conversions" ? (
                       <div className="mt-1 md:mt-3 w-full min-w-0 max-w-[224px] text-center md:text-left mx-auto md:mx-0">
                         <p
                           className="text-black font-[400] text-[16px] leading-[18px]  md:leading-[28px] tracking-[0em] lg:text-[17px] lg:leading-[25px] xl:text-[16px] xl:leading-[28px]"
@@ -148,12 +148,12 @@ export default function Section4() {
        
 <Link href="/contact.html" target="_blank">
   <div className={`w-full mx-auto flex items-center justify-center text-center ${styles.containerWidth} cursor-pointer`}>
-    <h3
+    <p
       className="text-white font-[600] text-[18px] sm:text-[26px] md:text-[20px] lg:text-[28px] leading-tight"
       style={{ fontFamily: "MontserratSemiBold" }}
     >
       Ready to Leverage Star Power into Real Business Results?
-    </h3>
+    </p>
   </div>
 </Link>
       </section>
