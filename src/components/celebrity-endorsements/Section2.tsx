@@ -93,7 +93,7 @@ export default function Section2() {
             <div className="flex w-full min-w-0 flex-col md:grid md:grid-cols-[42%_58%]">
               <div className="relative order-1 overflow-hidden md:order-none md:col-start-2 md:row-start-1 lg:h-full">
                 <img
-                  src="/service-v3/celebrity-endorsements/high_fp/teamhighresolutionimg.jpg"
+                  src="/varunimage/celebrity-page-image.png"
                   alt="Ritz Media World team"
                   title="Ritz Media World team"
                   className="w-full lg:h-full lg:w-full lg:object-cover h-auto"
