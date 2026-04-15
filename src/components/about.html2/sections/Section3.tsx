@@ -1,4 +1,6 @@
 import styles from "./page.module.css";
+import s3 from "./Section3.module.css";
+
 function Section3() {
     const data = [
         {
@@ -27,32 +29,35 @@ function Section3() {
         },
     ]
     return (
-        <section className="w-full py-[40px] xl:py-[70px] flex justify-center items-center">
+        <section className={`w-full py-[40px] xl:py-[70px] flex justify-center items-center ${s3.root}`}>
             {/* Centered Align Container  */}
-            <div className={`w-full flex flex-col gap-22 ${styles.containerWidth}`}>
+            <div className={`w-full flex flex-col gap-22 ${styles.containerWidth} ${s3.container}`}>
                 {
                     data.map((item, idx) => {
                         return (
-                            <div className={`w-full flex justify-between ${idx % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}>
+                            <div
+                                key={item.title}
+                                className={`w-full flex justify-between ${idx % 2 === 0 ? "flex-row" : "flex-row-reverse"} ${s3.row}`}
+                            >
                                 {/* Left Side Div  */}
-                                <div className={`flex flex-col mt-4 gap-2 relative w-[calc(100%-477px)]`}>
+                                <div className={`flex flex-col mt-4 gap-2 relative w-[calc(100%-477px)] ${s3.leftCol}`}>
 
                                     {/* Abs Div  */}
-                                    <div className="w-full absolute inset-0 h-[40px] border-b border-[#0F1640]"></div>
+                                    <div className={`w-full absolute inset-0 h-[40px] border-b border-[#0F1640] ${s3.absLine}`}></div>
 
 
                                     {/* Row 1  */}
-                                    <div className={`w-full flex gap-4 items-end pl-1 ${idx % 2 === 0 ? "justify-start" : "justify-end"}`}>
-                                        <p className={`font-[700] text-[36px] text-[#0F1640] ${styles.fontmontserrat}`}>
-                                            <span className={"font-[500] text-[16px] mr-4"}>0{idx + 1}.</span>
+                                    <div className={`w-full flex gap-4 items-end pl-1 ${idx % 2 === 0 ? "justify-start" : "justify-end"} ${s3.titleRow}`}>
+                                        <p className={`font-[700] text-[36px] text-[#0F1640] ${styles.fontmontserrat} ${s3.title}`}>
+                                            <span className={`font-[500] text-[16px] mr-4 ${s3.idx}`}>0{idx + 1}.</span>
                                             {item.title}</p>
                                     </div>
                                     {/* Row 2  */}
-                                    <div className={` flex gap-4 ml-9 flex-col ${idx % 2 === 0 ? "items-start text-start" : "items-end text-end"}`}>
-                                        <p className={`font-[400] text-[16px] max-w-[640px] ${styles.fontpoppins}`}>
+                                    <div className={` flex gap-4 ml-9 flex-col ${idx % 2 === 0 ? "items-start text-start" : "items-end text-end"} ${s3.bodyRow}`}>
+                                        <p className={`font-[400] text-[16px] max-w-[640px] ${styles.fontpoppins} ${s3.desc}`}>
                                             {item.description}
                                         </p>
-                                        <a href={item.link} target="_blank" className="w-[40px] cursor-pointer h-[40px] rounded-full bg-[#C99237] flex justify-center items-center">
+                                        <a href={item.link} target="_blank" className={`w-[40px] cursor-pointer h-[40px] rounded-full bg-[#C99237] flex justify-center items-center ${s3.cta}`}>
                                             <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M19.4276 2.92383L17.1346 9.08052L12.9492 4.01635L19.4276 2.92383Z" fill="white" />
                                                 <rect x="2.19672" y="16.7171" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19672 16.7171)" fill="white" />
@@ -62,7 +67,7 @@ function Section3() {
                                 </div>
 
                                 {/* Right Side Div  */}
-                                <div className="w-[477px] h-auto">
+                                <div className={`w-[477px] h-auto ${s3.imgCol}`}>
                                     <img src={`${item.image}`} alt="about" className="w-full h-auto" />
                                 </div>
                             </div>

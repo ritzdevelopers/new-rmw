@@ -1,11 +1,38 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { CiSearch } from "react-icons/ci";
 import { FiFileText } from "react-icons/fi";
 import styles from "../../sections/page.module.css";
 import LoadingLinesAndDots from "@/components/ui/LoadingLinesAndDots";
+import { normalizeBlogBodyHtml } from "@/lib/normalizeBlogBodyHtml";
+
+/** Match DetailPage: Mongo blogs store full HTML in `blogBody[].metaDescription`, not only `blogDescription`. */
+function escapeHtmlText(s: string): string {
+    return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+}
+
+function getRichDescription(blog: any): string {
+    if (Array.isArray(blog?.blogBody) && blog.blogBody.length > 0) {
+        return blog.blogBody
+            .map((page: any) => {
+                const metaTitle = page?.metaTitle ?? "";
+                const hideTitle =
+                    typeof blog?.blogTitle === "string" &&
+                    Boolean(metaTitle) &&
+                    blog.blogTitle.includes(metaTitle);
+                const heading = hideTitle ? "" : `<h2>${escapeHtmlText(metaTitle)}</h2>`;
+                return heading + (page?.metaDescription ?? "");
+            })
+            .join("");
+    }
+    return blog?.description || blog?.blogDescription || "";
+}
 
 interface Blog {
     title: string;
@@ -36,7 +63,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
             meta_keywords: blog.meta_keywords || blog.metaKeywords,
             created_at: blog.created_at || blog.createdAt,
             banner: blog.banner || blog.blogBanner || blog.blog_image,
-            description: blog.description || blog.blogDescription,
+            description: getRichDescription(blog),
         }
     }
 
@@ -70,6 +97,36 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
             setLoading(false);
         }
     }, [blog]);
+
+    const blogBodyRef = useRef<HTMLDivElement>(null);
+
+    const bodyHtml = useMemo(
+        () => normalizeBlogBodyHtml(formattedBlog?.description ?? ""),
+        [formattedBlog?.description]
+    );
+
+    /** Same as DetailPage `handleLinksNavigation` (anchor targets + `/blog/` href rewrite + empty nbsp `<p>`). */
+    useLayoutEffect(() => {
+        if (loading || !bodyHtml) return;
+        const ctBody = blogBodyRef.current;
+        if (!ctBody) return;
+
+        ctBody.querySelectorAll("a").forEach((aLink) => {
+            const gtHref = aLink.getAttribute("href");
+            aLink.setAttribute("target", "_blank");
+            if (gtHref?.includes("/blog/")) {
+                const newHRef = gtHref.split("/blog").join("");
+                aLink.setAttribute("href", newHRef);
+            }
+        });
+
+        if (/<p>\s*(?:&nbsp;|\u00A0)\s*<\/p>/i.test(ctBody.innerHTML)) {
+            ctBody.innerHTML = ctBody.innerHTML.replace(
+                /<p>\s*(?:&nbsp;|\u00A0)\s*<\/p>/gi,
+                ""
+            );
+        }
+    }, [loading, bodyHtml]);
 
     const [filteredBlogs, setFilteredBlogs] = useState<any[]>([]);
     const [searchValue, setSearchValue] = useState<string>("");
@@ -142,9 +199,11 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                         {/* Bottom Row — same structure + typography as DetailPage (tableWrapper + contentBody) */}
                         <div className={`${styles.tableWrapper} w-full min-w-0`}>
                             <div
+                                ref={blogBodyRef}
+                                id="blog-inner-ct"
                                 className={`${styles.contentBody} ${styles.fontopensans}`}
                                 dangerouslySetInnerHTML={{
-                                    __html: formattedBlog?.description || "",
+                                    __html: bodyHtml,
                                 }}
                             />
                         </div>
