@@ -96,11 +96,11 @@ function S2Card({ blog }: { blog: Blog }) {
                         alt="Blog Image" fill className="" />
                 </div>
 
-                <h2 onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} className={`font-[700] hover:underline cursor-pointer text-[18px] sm:text-[17px] lg:text-[22px] leading-[1.3] text-[#0F1640] max-w-[500px] ${styles.fontmontserrat}`}>
+                <h2 onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} className={`font-[700] hover:underline cursor-pointer text-[18px] sm:text-[17px] lg:text-[22px]  text-[#0F1640] max-w-[500px] ${styles.fontmontserrat}`}>
                     {blog.title}
                 </h2>
 
-                <p onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} className={`font-[400] hover:underline cursor-pointer text-[14px] sm:text-[14px] lg:text-[16px] leading-[1.6] text-[#000000] max-w-[540px] ${styles.fontopensans}`}>
+                <p onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} className={`font-[400] hover:underline cursor-pointer text-[14px] sm:text-[14px] lg:text-[16px] text-[#000000] max-w-[540px] ${styles.fontopensans}`}>
                     {preview}
                 </p>
             </div>

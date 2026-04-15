@@ -895,6 +895,63 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Manage Services
                 </div>
               </Link>
+              <Link href="/admin/manage-services/service-main">
+                <div
+                  onClick={() => setActiveSubMenu("Service Main")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Service Main" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  Service Main
+                </div>
+              </Link>
+              <Link href="/admin/manage-services/service-second">
+                <div
+                  onClick={() => setActiveSubMenu("Service Second")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Service Second" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  Service Second
+                </div>
+              </Link>
+              <Link href="/admin/manage-services/service-third">
+                <div
+                  onClick={() => setActiveSubMenu("Service Third")}
+                  style={{
+                    ...(!homePagesLinks
+                      ? { borderWidth: "none" }
+                      : {
+                          borderBottomWidth: "1px",
+                          borderBlockColor: "#EEEEEE",
+                        }),
+                    ...(subMenuActive === "Service Third" && {
+                      backgroundColor: "#2E3B46",
+                    }),
+                  }}
+                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                >
+                  Service Third
+                </div>
+              </Link>
 
               <Link href="/admin/home/customers">
                 <div
