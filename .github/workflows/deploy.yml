@@ -56,6 +56,8 @@ jobs:
           key: ${{ secrets.SSH_KEY_STAGING }}
           debug: true
           script: |
+            export NVM_DIR="$HOME/.nvm"
+            source $NVM_DIR/nvm.sh
             cd new-rmw
 
             echo "Pulling latest code from staging branch"
