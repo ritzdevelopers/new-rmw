@@ -246,12 +246,12 @@ function Section3() {
 
                     {/* Row 3 Card   */}
                     <div className="w-full hidden min-w-0 max-w-full self-stretch lg:self-auto lg:w-[218px] lg:max-w-[218px] lg:mr-[5rem] relative mx-auto lg:mx-0 flex-1 lg:flex-none h-auto sm:h-[280px] lg:h-auto md:flex items-center justify-center">
-                        <img src="/google-rating2.png" alt="Ritz media world review" title="Ritz media world review" className="w-full max-w-full h-auto object-cover" />
+                        <img src="/rating-desktop.png" alt="Ritz media world review" title="Ritz media world review" className="w-full max-w-full h-auto object-cover" />
                     </div>
 
                     {/* Mobile Card  */}
                     <div className="w-full block md:hidden bg-white rounded-[15px]">
-                        <img src="/g-rv-sh.png" alt="Google rating" title="Google rating" className="w-full h-auto" />
+                        <img src="/rating.png" alt="Google rating" title="Google rating" className="w-full h-auto" />
                     </div>
                 </div>
             </div>

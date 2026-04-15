@@ -105,10 +105,10 @@ function Section5() {
 
                             {/* Row 2  */}
                             <div onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} className="w-full sm:w-[193px] lg:w-[269px] xl:w-[290px] h-[80px] sm:h-[95px] lg:h-[111px] xl:h-[120px] relative mx-auto sm:mx-0">
-                                <Image src="/home-v3/clients/reviews-black.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" fill className="object-contain cursor-pointer" />
+                                <Image src="/g-5-star2.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" fill className="object-contain cursor-pointer" />
                             </div>
-                        </div>
-
+                        </div> 
+            
                         <div className="w-full md:w-[63%] lg:w-[63%] xl:w-[calc(100%-427px)] h-auto min-h-0 md:min-h-[300px] lg:min-h-[319px] xl:min-h-[335px] relative bg-[#F7F7F7] flex flex-col justify-between gap-3 sm:gap-4 xl:gap-7 py-4 sm:py-5 lg:py-4 xl:py-5 px-4 sm:px-5 lg:px-6 xl:px-7">
                             {/* Top Static Row  */}
                             <div className="w-full flex justify-between items-center">

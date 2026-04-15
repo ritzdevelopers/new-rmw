@@ -536,7 +536,7 @@ function Section3({ servicesData }: Section3Props) {
                             </div>
 
                             <div className="google-reviews w-full sm:w-[220px] md:w-[172px] xl:w-[269px] pt-2 border-t border-t-[#AFAFAF]">
-                                <img onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} src="/home-v3/service-imgs/s3/google-reviews2.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" className="w-full cursor-pointer" />
+                                <img onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} src="/g-5-star2.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" className="w-full cursor-pointer" />
                             </div>
                         </div>
                     </div>
