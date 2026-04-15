@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Clients.module.css";
 
-function Section6() {
+function Section6({ pd = "py-[35px] lg:py-[70px]" }: { pd?: string }) {
     return (
-        <section className="w-full flex justify-center items-center py-[35px] lg:py-[70px] ">
+        <section className={`w-full flex justify-center items-center ${pd}`}>
             {/* Centered Align Container  */}
             <div className={`w-full mx-auto flex flex-col justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 overflow-hidden ${styles.containerWidth}`}>
                 {/* Top Row  */}

@@ -208,7 +208,7 @@ async function get_all_blogs_categories() {
 }
 
 
-async function get_latest_3_blogs() {
+export async function get_latest_3_blogs() {
     try {
         await connectMongoDB();
         const cached_latest_3_blogs = await redisClient.get(`cached_latest_3_blogs`);

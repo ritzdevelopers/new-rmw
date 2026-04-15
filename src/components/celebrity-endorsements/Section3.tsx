@@ -89,18 +89,20 @@ export default function Section3() {
     Services
   </p>
 </a>
-            <h2
-              className="text-white text-[30px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.25] lg:leading-[50px] font-[700]"
-              style={{ fontFamily: "MontserratBold" }}
-            >
-              What We Provide{" "}
+            <div className="flex flex-col items-center gap-0 text-center md:flex-row md:items-baseline md:justify-start md:text-left">
+              <h2
+                className="text-white text-[30px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.25] lg:leading-[50px] font-[700]"
+                style={{ fontFamily: "MontserratBold" }}
+              >
+                What We Provide{" "}
+              </h2>
               <span
-                className="block text-center text-[#FFFFFF] text-[16px] leading-[28px] font-[400] md:inline md:text-left"
+                className="block text-[#FFFFFF] text-[16px] leading-[28px] font-[400] md:ml-2 md:inline"
                 style={{ fontFamily: "OpenSansRegular" }}
               >
                 Is more than what you&apos;ll ever need
               </span>
-            </h2>
+            </div>
           </div>
 
           <div className="w-full flex flex-col gap-[10px]">
