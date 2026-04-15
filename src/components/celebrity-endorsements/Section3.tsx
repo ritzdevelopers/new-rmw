@@ -81,12 +81,14 @@ export default function Section3() {
       <div className={`w-full mx-auto ${styles.containerWidth}`}>
         <div className="flex flex-col gap-5 sm:gap-6">
           <div className="flex flex-col gap-1 sm:gap-2 text-center md:text-left">
-            <p
-              className="text-[#C99237] uppercase text-[12px] lg:text-[16px] font-[600]"
-              style={{ fontFamily: "MontserratSemiBold" }}
-            >
-              Services
-            </p>
+          <a href="/services">
+  <p
+    className="text-[#C99237] uppercase text-[12px] lg:text-[16px] font-[600]"
+    style={{ fontFamily: "MontserratSemiBold" }}
+  >
+    Services
+  </p>
+</a>
             <h2
               className="text-white text-[30px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.25] lg:leading-[50px] font-[700]"
               style={{ fontFamily: "MontserratBold" }}
@@ -122,7 +124,8 @@ export default function Section3() {
                   <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ease-in-out">
                     <Image
                       src={EXPLORE_ARROW_IMAGE}
-                      alt=""
+                      alt="Arrow"
+                      title="Arrow"
                       width={22}
                       height={20}
                       className="transition-transform duration-500 ease-in-out"
@@ -146,50 +149,33 @@ export default function Section3() {
                     onClick={() => toggleExplore(item.id)}
                     role="presentation"
                   >
-                    {isOpen ? (
-                      <Link
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className={`flex min-w-0 flex-1 cursor-pointer items-center gap-3 no-underline sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]`}
+                    <div className="flex min-w-0 flex-1 items-center gap-3 sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]">
+                      <p
+                        className="shrink-0 text-white text-[18px] leading-[36px] font-[500] sm:leading-[40px] md:leading-[50px] lg:mt-2"
+                        style={{ fontFamily: "MontserratMedium" }}
                       >
-                        <p
-                          className="shrink-0 text-white text-[18px] leading-[36px] font-[500] sm:leading-[40px] md:leading-[50px] lg:mt-2"
-                          style={{ fontFamily: "MontserratMedium" }}
+                        {item.id}.
+                      </p>
+                      <div className="min-w-0 flex-1">
+                        <Link
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-block max-w-full no-underline"
                         >
-                          {item.id}.
-                        </p>
-                        <h3
-                          className={`min-w-0 flex-1 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[28px] md:leading-[50px] tracking-[0em] ${accordionStyles.accordionTitleUnder357}`}
-                          style={{ fontFamily: "MontserratSemiBold" }}
-                        >
-                          {item.title}
-                        </h3>
-                      </Link>
-                    ) : (
-                      <div className="flex min-w-0 flex-1 items-center gap-3 sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]">
-                        <p
-                          className="shrink-0 text-white text-[18px] leading-[36px] font-[500] sm:leading-[40px] md:leading-[50px] lg:mt-2"
-                          style={{ fontFamily: "MontserratMedium" }}
-                        >
-                          {item.id}.
-                        </p>
-                        <h3
-                          className={`min-w-0 flex-1 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[28px] md:leading-[50px] tracking-[0em] ${accordionStyles.accordionTitleUnder357}`}
-                          style={{ fontFamily: "MontserratSemiBold" }}
-                        >
-                          {item.title}
-                        </h3>
+                          <h3
+                            className={`${accordionStyles.accordionTitleUnder357} text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[25px] lg:text-[25px] xl:text-[28px] md:leading-[50px] tracking-[0em]`}
+                            style={{ fontFamily: "MontserratSemiBold" }}
+                          >
+                            {item.title}
+                          </h3>
+                        </Link>
                       </div>
-                    )}
-
-                    <div className="hidden shrink-0 self-center md:flex">
-                      {exploreMoreLink}
                     </div>
 
                     <span
-                      className="flex shrink-0 self-center cursor-pointer items-center text-[22px] leading-none text-white sm:text-[24px] md:hidden"
+                      className="flex shrink-0 self-center cursor-pointer items-center text-[22px] leading-none text-white sm:text-[24px]"
                       aria-hidden
                       onClick={(e) => {
                         e.stopPropagation();
@@ -208,57 +194,33 @@ export default function Section3() {
                   >
                     <div className="px-4 sm:px-5 md:px-6 lg:px-6 pb-5 sm:pb-6 md:pb-7">
                       <div className="pl-0 sm:pl-[80px] lg:pl-[180px]">
-                        {isOpen ? (
-                          <Link
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="mt-0 block max-w-[796px] cursor-pointer pt-0 text-[16px] font-[400] leading-[28px] tracking-[0em] text-white no-underline"
-                            style={{ fontFamily: "OpenSansRegular" }}
-                          >
-                            {item.description}
-                          </Link>
-                        ) : (
-                          <p
-                            className="mt-0 max-w-[796px] pt-0 text-[16px] font-[400] leading-[28px] tracking-[0em] text-white"
-                            style={{ fontFamily: "OpenSansRegular" }}
-                          >
-                            {item.description}
-                          </p>
-                        )}
+                        <p
+                          className="mt-0 max-w-[796px] pt-0 text-[16px] font-[400] leading-[28px] tracking-[0em] text-white"
+                          style={{ fontFamily: "OpenSansRegular" }}
+                        >
+                          {item.description}
+                        </p>
+
+                        <Link
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="relative mt-6 block h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:h-[258px]"
+                        >
+                          <Image
+                            src={item.image ?? CELEBRITY_IMAGE}
+                            alt={item.title}
+                            title={item.title}
+                            fill
+                            className="object-cover"
+                            sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
+                          />
+                        </Link>
 
                         {isOpen ? (
-                          <Link
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            className="relative mt-6 block h-[190px] w-full max-w-[796px] cursor-pointer overflow-hidden rounded-[8px] no-underline sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:h-[258px]"
-                          >
-                            <Image
-                              src={item.image ?? CELEBRITY_IMAGE}
-                              alt={item.title}
-                              fill
-                              className="object-cover"
-                              sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
-                            />
-                          </Link>
-                        ) : (
-                          <div className="relative mt-6 h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:h-[258px]">
-                            <Image
-                              src={item.image ?? CELEBRITY_IMAGE}
-                              alt={item.title}
-                              fill
-                              className="object-cover"
-                              sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
-                            />
-                          </div>
-                        )}
-
-                        <div className="mt-4 sm:mt-5 md:hidden">
-                          {exploreMoreLink}
-                        </div>
+                          <div className="mt-4 sm:mt-5">{exploreMoreLink}</div>
+                        ) : null}
                       </div>
                     </div>
                   </div>

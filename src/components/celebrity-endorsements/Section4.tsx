@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import ClientTestimonials from "@/components/influencer-marketing-agency-in-india/Section5";
 import BrandImpactSection1 from "../copy/BrandImpactSection1";
 import ServicesV3SubslugLayer4Section5 from "@/components/services-v3-subslug/layer-4/Section5";
+import Link from "next/link";
 
 
 const cards = [
@@ -126,6 +127,7 @@ export default function Section4() {
           <Image
             src="/service-v3/celebrity-endorsements/s4/new_wave2.jpg"
             alt="Decorative wave"
+            title="Decorative wave"
             width={1014}
             height={282}
             className="w-full h-auto object-contain"
@@ -143,14 +145,17 @@ export default function Section4() {
       </div>
 
       <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-10 flex justify-center px-4 sm:px-6 lg:px-0">
-        <div className={`w-full mx-auto flex items-center justify-center text-center ${styles.containerWidth}`}>
-          <h3
-            className="text-white font-[600] text-[18px] sm:text-[26px] md:text-[20px] lg:text-[28px] leading-tight"
-            style={{ fontFamily: "MontserratSemiBold" }}
-          >
-            Ready to Leverage Star Power into Real Business Results?
-          </h3>
-        </div>
+       
+<Link href="/contact.html" target="_blank">
+  <div className={`w-full mx-auto flex items-center justify-center text-center ${styles.containerWidth} cursor-pointer`}>
+    <h3
+      className="text-white font-[600] text-[18px] sm:text-[26px] md:text-[20px] lg:text-[28px] leading-tight"
+      style={{ fontFamily: "MontserratSemiBold" }}
+    >
+      Ready to Leverage Star Power into Real Business Results?
+    </h3>
+  </div>
+</Link>
       </section>
       <div className="pt-[35px] lg:pt-[70px]">       
         <BrandImpactSection1 />
