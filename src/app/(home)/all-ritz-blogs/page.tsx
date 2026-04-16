@@ -3,6 +3,7 @@
 import React, { useEffect, useState, Suspense } from "react";
 import axios from "axios";
 import dynamic from "next/dynamic";
+import { setSessionStorageSafe } from "@/lib/safeWebStorage";
 
 // Optimized dynamic imports for better code splitting and LCP
 const BlogCard1 = dynamic(() => import("@/components/new-blog/nb-card1/BlogCard1"), {
@@ -53,9 +54,13 @@ const BlogPage: React.FC = () => {
         "/api/ritz_blogs/get-all-blogs"
       );
       setAllBlogs(data.allBlogs);
-      
-      // Cache the data
-      sessionStorage.setItem("ritz-blogs", JSON.stringify(data.allBlogs));
+
+      const listForCache = (data.allBlogs as BlogType[]).map((b) => ({
+        _id: b._id,
+        blogTitle: b.blogTitle,
+        blogBanner: b.blogBanner,
+      }));
+      setSessionStorageSafe("ritz-blogs", JSON.stringify(listForCache));
       setError(null);
     } catch (err) {
       console.error("Failed to fetch blogs:", err);

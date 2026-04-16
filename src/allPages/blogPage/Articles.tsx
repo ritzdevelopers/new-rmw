@@ -6,6 +6,7 @@ import React, { useEffect, useState, useMemo, useCallback, memo } from "react";
 import { CalendarDays, Share2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useBlogContext } from "@/context/AllBlogContext";
+import { setSessionStorageSafe } from "@/lib/safeWebStorage";
 
 // Define MergedBlogs2 type here to ensure it includes 'slug'
 export type MergedBlogs2 = {
@@ -60,6 +61,29 @@ const normalizeArticle2 = (blog: Article2): MergedBlogs2 => ({
   slug: blog.slug,
 });
 
+/** Card UI only needs a short snippet; full Mongo HTML must not go into sessionStorage (iOS quota). */
+function writeBlogListSessionCache(merged: MergedBlogs2[]): void {
+  const metaLimits = [640, 400, 240, 0];
+  for (const max of metaLimits) {
+    const slim =
+      max === 0
+        ? merged.map((b) => ({ ...b, meta_description: "" }))
+        : merged.map((b) => ({
+              ...b,
+              meta_description:
+                  typeof b.meta_description === "string"
+                      ? b.meta_description.slice(0, max)
+                      : (b.meta_description ?? ""),
+          }));
+    try {
+      sessionStorage.removeItem("all-blogs");
+    } catch {
+      /* ignore */
+    }
+    if (setSessionStorageSafe("all-blogs", JSON.stringify(slim))) return;
+  }
+}
+
 // ---------------- Component ----------------
 const Articles: React.FC = memo(() => {
   const { blogs, setBlogs } = useBlogContext();
@@ -80,9 +104,8 @@ const Articles: React.FC = memo(() => {
 
   // 🔹 Animate cards on blog change (optimized for performance)
   useEffect(() => {
-    if (blogs?.length && typeof window !== 'undefined' && blogs.length > 0) {
-      // Skip animation entirely for better performance - reduce TBT
-      sessionStorage.setItem('blog-animated', 'true');
+    if (blogs?.length && typeof window !== "undefined" && blogs.length > 0) {
+      setSessionStorageSafe("blog-animated", "true");
     }
   }, [blogs?.length]);
 
@@ -113,8 +136,7 @@ const Articles: React.FC = memo(() => {
 
         setBlogs(merged);
 
-        // ✅ Save to cache
-        sessionStorage.setItem("all-blogs", JSON.stringify(merged));
+        writeBlogListSessionCache(merged);
       } catch (err: unknown) {
         if (axios.isAxiosError(err)) {
           setError(err.response?.data?.message || err.message);
@@ -157,7 +179,7 @@ const Articles: React.FC = memo(() => {
     if (currentPage < totalPages) {
       const newPage = currentPage + 1;
       setCurrentPage(newPage);
-      sessionStorage.setItem("page-no", String(newPage));
+      setSessionStorageSafe("page-no", String(newPage));
     }
   }, [currentPage, totalPages]);
 
@@ -165,7 +187,7 @@ const Articles: React.FC = memo(() => {
     if (currentPage > 1) {
       const newPage = currentPage - 1;
       setCurrentPage(newPage);
-      sessionStorage.setItem("page-no", String(newPage));
+      setSessionStorageSafe("page-no", String(newPage));
     }
   }, [currentPage]);
 

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState, Suspense, memo } from "react";
 import { useParams } from "next/navigation";
 import axios from "axios";
 import dynamic from "next/dynamic";
+import { setSessionStorageSafe } from "@/lib/safeWebStorage";
 
 // Optimized dynamic imports for better code splitting and LCP
 const CalendarDays = dynamic(() => import("lucide-react").then(mod => ({ default: mod.CalendarDays })), {
@@ -104,9 +105,8 @@ const BlogPage: React.FC = () => {
         `/api/ritz_blogs/get-single-blog/${id}`
       );
       setSingleBlog(res.data.blog);
-      
-      // Cache the data
-      sessionStorage.setItem(`blog-${id}`, JSON.stringify(res.data.blog));
+
+      setSessionStorageSafe(`blog-${id}`, JSON.stringify(res.data.blog));
       setError(null);
     } catch (error) {
       console.error("Error fetching single blog:", error);
