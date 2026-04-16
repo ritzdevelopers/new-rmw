@@ -31,30 +31,36 @@ function Section3() {
     return (
         <section className={`w-full py-[40px] xl:py-[70px] flex justify-center items-center ${s3.root}`}>
             {/* Centered Align Container  */}
-            <div className={`w-full flex flex-col gap-22 ${styles.containerWidth} ${s3.container}`}>
+            <div className={`w-full flex flex-col gap-10 md:gap-22 ${styles.containerWidth} ${s3.container}`}>
                 {
                     data.map((item, idx) => {
                         return (
                             <div
                                 key={item.title}
-                                className={`w-full flex justify-between ${idx % 2 === 0 ? "flex-row" : "flex-row-reverse"} ${s3.row}`}
+                                className={`flex w-full flex-col-reverse justify-between  gap-0 ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} ${s3.row}`}
                             >
-                                {/* Left Side Div  */}
-                                <div className={`flex flex-col mt-4 gap-2 relative w-[calc(100%-477px)] ${s3.leftCol}`}>
+                                {/* Text column (first in DOM; stacks under image below md via flex-col-reverse) */}
+                                <div className={`relative mt-4 flex w-full flex-col gap-2 md:mt-4 md:w-[calc(100%-477px)] ${s3.leftCol}`}>
 
-                                    {/* Abs Div  */}
-                                    <div className={`w-full absolute inset-0 h-[40px] border-b border-[#0F1640] ${s3.absLine}`}></div>
-
+                                    {/* Top rule — desktop / tablet only */}
+                                    <div
+                                        className={`hidden h-[40px] w-full border-b border-[#0F1640] md:absolute md:inset-0 md:block ${s3.absLine}`}
+                                        aria-hidden
+                                    />
 
                                     {/* Row 1  */}
-                                    <div className={`w-full flex gap-4 items-end pl-1 ${idx % 2 === 0 ? "justify-start" : "justify-end"} ${s3.titleRow}`}>
-                                        <p className={`font-[700] text-[36px] text-[#0F1640] ${styles.fontmontserrat} ${s3.title}`}>
-                                            <span className={`font-[500] text-[16px] mr-4 ${s3.idx}`}>0{idx + 1}.</span>
+                                    <div
+                                        className={`w-full flex gap-4 pl-1 items-start justify-start md:items-end ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"} ${s3.titleRow}`}
+                                    >
+                                        <p className={`font-[700] md:text-[36px] text-[24px] text-[#0F1640] ${styles.fontmontserrat} ${s3.title}`}>
+                                            <span className={`font-[500] md:text-[16px] text-[13px] mr-4 ${s3.idx}`}>0{idx + 1}.</span>
                                             {item.title}</p>
                                     </div>
                                     {/* Row 2  */}
-                                    <div className={` flex gap-4 ml-9 flex-col ${idx % 2 === 0 ? "items-start text-start" : "items-end text-end"} ${s3.bodyRow}`}>
-                                        <p className={`font-[400] text-[16px] max-w-[640px] ${styles.fontpoppins} ${s3.desc}`}>
+                                    <div
+                                        className={`ml-0 flex flex-col gap-4 md:ml-9 ${idx % 2 === 0 ? "items-start text-start" : "items-start text-start md:items-end md:text-end"} ${s3.bodyRow}`}
+                                    >
+                                        <p className={`font-[400] md:text-[16px] text-[14px] max-w-[640px] ${styles.fontpoppins} ${s3.desc}`}>
                                             {item.description}
                                         </p>
                                         <a href={item.link} target="_blank" className={`w-[40px] cursor-pointer h-[40px] rounded-full bg-[#C99237] flex justify-center items-center ${s3.cta}`}>
@@ -66,9 +72,9 @@ function Section3() {
                                     </div>
                                 </div>
 
-                                {/* Right Side Div  */}
-                                <div className={`w-[477px] h-auto ${s3.imgCol}`}>
-                                    <img src={`${item.image}`} alt="about" className="w-full h-auto" />
+                                {/* Image column (second in DOM; appears first below md via flex-col-reverse) */}
+                                <div className={`h-auto w-full shrink-0 md:w-[477px] ${s3.imgCol}`}>
+                                    <img src={`${item.image}`} alt={item.title} className="h-auto w-full" />
                                 </div>
                             </div>
                         )

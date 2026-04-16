@@ -158,3 +158,102 @@
     font-size: calc(21px * var(--s7md)) !important;
   }
 }
+
+/**
+ * Below md (max-width 767px): hero on top, cards stacked (column), centered copy and icons.
+ */
+@media (max-width: 767px) {
+  .root .container {
+    padding-left: max(1rem, env(safe-area-inset-left, 0px)) !important;
+    padding-right: max(1rem, env(safe-area-inset-right, 0px)) !important;
+  }
+
+  .root .stack {
+    gap: 1.75rem !important;
+    align-items: center !important;
+  }
+
+  .root .hero {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .root .eyebrow {
+    font-size: 12px !important;
+  }
+
+  .root .title {
+    font-size: clamp(1.25rem, 4.5vw, 1.625rem) !important;
+    line-height: 1.35 !important;
+    max-width: 100% !important;
+  }
+
+  .root .row {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 1rem !important;
+  }
+
+  .root .card {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: auto !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .root .cardPad {
+    padding: 1rem !important;
+  }
+
+  .root .cardMedia {
+    min-height: auto !important;
+    padding: 0 !important;
+  }
+
+  .root .body {
+    font-size: clamp(0.6875rem, 2.5vw, 0.8125rem) !important;
+    line-height: 1.45 !important;
+    text-align: center !important;
+  }
+
+  .root .bodyNarrow {
+    max-width: 100% !important;
+  }
+
+  .root .iconStack {
+    align-items: center !important;
+    width: 100%;
+  }
+
+  .root .bulb {
+    width: clamp(40px, 18vw, 56px) !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .root .visionTitle {
+    font-size: clamp(0.875rem, 3.5vw, 1.125rem) !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+  }
+
+  .root .arrow {
+    width: clamp(44px, 20vw, 64px) !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .root .mission {
+    font-size: clamp(0.6875rem, 2.3vw, 0.8125rem) !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+  }
+}

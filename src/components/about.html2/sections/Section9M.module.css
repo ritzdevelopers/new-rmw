@@ -1,0 +1,86 @@
+/**
+ * Section9M — layout for viewports where this component is shown: headings → image → metrics, centered.
+ */
+
+.mRoot {
+  width: 100%;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.mediaBlock {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heroImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Override desktop absolute badge: sit under image, centered */
+.badgeBelow {
+  position: relative !important;
+  inset: auto !important;
+  bottom: auto !important;
+  right: auto !important;
+  margin-top: 0.75rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: min(100%, 320px) !important;
+  max-height: none !important;
+  text-align: center !important;
+}
+
+.metrics {
+  border-radius: 5px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.headingTight {
+  font-size: clamp(1.375rem, 5.2vw, 2.125rem) !important;
+  line-height: 1.2 !important;
+}
+
+.subTight {
+  font-size: clamp(1rem, 3.4vw, 1.375rem) !important;
+  line-height: 1.35 !important;
+}
+
+.descTight {
+  font-size: clamp(0.875rem, 2.8vw, 1rem) !important;
+  line-height: 1.55 !important;
+  max-width: 100% !important;
+}
+
+.metricNumM {
+  font-size: clamp(1.5rem, 5vw, 2rem) !important;
+}
+
+.metricTextM {
+  font-size: clamp(0.8125rem, 2.6vw, 1rem) !important;
+  line-height: 1.45 !important;
+}
+
+.badgeTight {
+  font-size: clamp(0.8125rem, 2.8vw, 1.125rem) !important;
+  line-height: 1.4 !important;
+}
+
+@media (max-width: 380px) {
+  .stack {
+    gap: 1rem;
+  }
+}
