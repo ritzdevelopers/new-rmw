@@ -57,7 +57,7 @@ function Section4() {
                         </div>
                         {/* Row 2  */}
                         <div className="w-full min-w-0 flex justify-center sm:block mt-2 sm:mt-0 md:mt-4 lg:mt-[20px]">
-                            <img onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} src="/google_review_high_resolution.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" className="w-[200px] cursor-pointer max-w-full h-auto object-contain sm:w-[189px] lg:max-w-[271px] xl:w-[250px]" />
+                            <img onClick={() => window.open("https://share.google/KiTNs3mJMr5qUOkjK", "_blank")} src="/g-5-star2.png" alt="Google reviews – Ritz Media World" title="Ritz Media World" className="w-[200px] cursor-pointer max-w-full h-auto object-contain sm:w-[189px] lg:max-w-[271px] xl:w-[250px]" />
                         </div>
                     </div>
                 </div>

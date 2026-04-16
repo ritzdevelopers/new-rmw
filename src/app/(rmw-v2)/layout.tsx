@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://ritzmediaworld.com",
   },
+  authors: [{ name: "Ritz Media World" }],
+  publisher: "Ritz Media World",
   title:
     "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
   description:
