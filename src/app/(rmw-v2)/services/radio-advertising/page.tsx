@@ -10,6 +10,7 @@ import Section7 from "@/components/radio-advertising-services/Section7";
 import S7 from "@/components/home-v3/S7";
 // import Section9 from "@/components/print-advertising/Section9" ;
 import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
+import Section9 from "@/components/services-v3-subslug/layer-4/Section9";
 function Page() {
     return (
         <>
@@ -27,6 +28,7 @@ function Page() {
             <div className="pt-[40px] lg:pt-[70px]">
                 <BrandImpactSection2 />
             </div>
+            <Section9 />
         </>
     )
 }

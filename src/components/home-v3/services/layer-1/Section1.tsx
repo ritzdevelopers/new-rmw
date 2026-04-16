@@ -13,6 +13,7 @@ export default function Section1() {
                     <Image
                         src="/home-v3/service-imgs/s1/yellow-reactangle.png"
                         alt="RMW"
+                        title="Ritz Media World"
                         fill
                         // className="object-contain" 
                         sizes="(min-width:1024px) 165px, (min-width:768px) 155px, (min-width:640px) 140px, 120px"

@@ -1,50 +1,52 @@
-import Image from "next/image";
 import React from "react";
 import styles from "./page.module.css";
+import sectionStyles from "@/components/services-v3-subslug/layer-1/Section1.module.css";
 
 function Banner() {
     return (
-        <div>
-            <section
-                className={`w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[515px] 
-                bg-[url("/service-v3/content-marketing/s1/ContentMarketingBanner.jpg")] 
-                bg-cover bg-no-repeat bg-center flex items-end pb-8 sm:pb-12 md:pb-16 lg:pb-22
-                 xl:pb-20 px-4 sm:px-6 md:px-8 lg:px-0`}
-            >
-                <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 w-full max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-none">
-                    <div className="w-[120px] sm:w-[140px] md:w-[155px] lg:w-[179px] h-[28px] sm:h-[32px] md:h-[35px] lg:h-[37px] relative">
-                        <Image
-                            src="/home-v3/service-imgs/s1/yellow-reactangle.png"
-                            alt="RMW"
-                            fill
-                            className="object-contain"
-                            sizes="(min-width:1024px) 165px, (min-width:768px) 155px, (min-width:640px) 140px, 120px"
-                            priority
-                        />
-                        <p
-                            className={`font-[700]  text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] text-white absolute top-[50%] uppercase -translate-y-1/2 right-4 sm:right-5 md:right-6 lg:right-8 ${styles.fontmontserrat}`}
-                        >
-                            get in touch
-                        </p>
-                    </div>
-                    <div className="pl-0 sm:pl-4 md:pl-8 lg:pl-12 xl:pl-16">
-                        <h1
-                            className={`font-[800] text-[28px] sm:text-[36px] md:text-[48px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-18 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}
-                        >
-                            Contact
-                            <span className="font-[500]"> us</span>
-                        </h1>
-                        <p
-                            className={`font-[500] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal md:max-w-[430px] lg:max-w-[530px] xl:max-w-[630px] ${styles.fontopensans}`}
-                        >
-                            Get started with Ritz Media World For Digital
-                            Marketing Strategies, best SEO services, and
-                            Creative Branding.
-                        </p>
-                    </div>
+        <section
+            className="w-full min-w-0 max-md:overflow-x-hidden h-[550px] md:h-[300px] md:min-h-[300px] lg:h-[500px] lg:min-h-[500px] xl:h-[500px] xl:min-h-[500px] min-[1536px]:h-auto min-[1536px]:min-h-[615px] bg-cover bg-no-repeat bg-center bg-[url('/varunimage/contact-mobile-banner.png')] md:bg-[url('/varunimage/contact-deskstop-banner.png')] flex md:items-stretch lg:items-end pb-8 sm:pb-12 md:pb-3 lg:pb-10 xl:pb-26 px-4 sm:px-6 md:px-0 overflow-visible justify-center items-center md:justify-start"
+        >
+            <div className="flex min-w-0 flex-col md:gap-2 lg:gap-0 xl:gap-5 w-full max-lg:max-w-none lg:max-w-none text-center md:text-left md:h-full md:justify-end lg:h-auto lg:justify-start -translate-y-14 sm:-translate-y-16 md:translate-y-0 lg:translate-y-3 xl:translate-y-17">
+                <div className="hidden md:block md:w-[200px] xl:w-[210px] md:h-[30px] xl:h-[37px] relative">
+                    <img
+                        src="/home-v3/service-imgs/s1/yellow-reactangle.png"
+                        alt="Ritz Media World – contact"
+                        title="Ritz Media World"
+                        className="w-full h-full"
+                    />
+                    <p
+                        className={`font-[700] uppercase text-[16px] text-white absolute top-[50%] transform translate-y-[-50%] right-8 ${styles.fontmontserrat}`}
+                    >
+                        GET IN TOUCH
+                    </p>
                 </div>
-            </section>
-        </div>
+
+                <div className="min-w-0 pl-0 sm:pl-4 md:pl-[40px] lg:pl-[45px] xl:pl-[53px]">
+                    <h1 className="min-w-0 text-white leading-[45px] sm:leading-[1.15] md:leading-tight lg:leading-[45px] xl:leading-[45px] mt-1 sm:mt-2 md:mt-0 xl:mt-3 lg:py-0 xl:py-0">
+                        <span className="max-md:block max-md:w-full max-md:min-w-0 md:contents lg:inline-block lg:whitespace-nowrap lg:translate-y-2 xl:translate-y-0 xl:contents leading-normal">
+                            <span
+                                className={`${sectionStyles.bannerHeadlineSm} font-[800] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[55px] xl:font-[500] lg:leading-[10px]`}
+                                style={{ fontFamily: "MontserratExtraBold" }}
+                            >
+                                Contact
+                                <span className="font-[500] lg:font-[600] xl:font-[500]">
+                                    {" "}
+                                    us
+                                </span>
+                            </span>
+                        </span>
+                    </h1>
+                    <p
+                        className={`font-[500]   text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white  w-full max-md:max-w-none md:max-w-[420px] lg:max-w-[450px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px] lg:mt-1 mt-2`}
+                        style={{ fontFamily: "MontserratMedium" }}
+                    >
+                        Get started with Ritz Media World For Digital Marketing
+                        Strategies, best SEO services, and Creative Branding.
+                    </p>
+                </div>
+            </div>
+        </section>
     );
 }
 

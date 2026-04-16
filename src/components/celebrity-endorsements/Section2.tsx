@@ -15,8 +15,8 @@ export default function Section2() {
         <div className="w-full lg:w-[54%] xl:w-[48%] min-w-0 max-lg:text-center lg:text-left">
             <div className="mx-auto w-full max-w-[760px] min-w-0 lg:mx-0">
               <div className="mx-auto w-full max-w-[616px] min-w-0 lg:mx-0">
-                <h2
-                  className="text-[#1C1C1C] text-[18px]  leading-[30px] lg:text-[23px] lg:leading-[38px] xl:text-[26px] xl:leading-[42px]"
+                <p
+                  className="text-[#1C1C1C] text-[18px]  leading-[30px] lg:text-[16px] lg:leading-[27px] xl:text-[16px] xl:leading-[29px]  "
                   style={{
                     fontFamily: "MontserratRegular",
                     fontWeight: 400,
@@ -27,79 +27,87 @@ export default function Section2() {
                   <span className="font-[700]" style={{ fontFamily: "MontserratBold" }}>
                     Celebrity endorsement services
                   </span>{" "}
-                  are more than just glamour, they help brands build trust, achieve
-                  brand recognition, and shape consumer behavior. At{" "}
-                  <span className="font-[700] text-[#C99237]" style={{ fontFamily: "MontserratBold" }}>
-                    Ritz Media World
-                  </span>
-                  , we connect brands with celebrities to retain attention and impact,
-                  through effective endorsement campaigns.
-                </h2>
+                   help brands earn customers’ trust, achieve brand recognition, and mold consumer behavior beyond glitz and glamour. At{" "}
+                  <Link href="/">
+  <span
+    className="font-[700] text-[#C99237] cursor-pointer"
+    style={{ fontFamily: "MontserratBold" }}
+  >
+    Ritz Media World
+  </span>
+</Link>
+                  , we develop brands and promote them with celebrities to attract and catch the impact.
+
+                </p>
               </div>
 
               <div
-                className="mt-3 sm:mt-4 text-[#000000] text-[16px] leading-[1.7] lg:max-w-[604px] lg:w-full"
+                className="mt-3 sm:mt-4 text-[#000000]  lg:max-w-[604px] lg:w-full  text-[18px]  leading-[30px] lg:text-[16px] lg:leading-[27px] xl:text-[16px] xl:leading-[29px]"
                 style={{ fontFamily: "OpenSansRegular" }}
               >
                 <p>
-                  Whether you are searching for{" "}
+                Our team takes care of the entire process if you are looking for{" "}
                   <span className="font-[700] " style={{ fontFamily: "OpenSansBold" }}>
                     celebrity endorsement services for brand promotion
                   </span>
-                  , planning celebrity marketing campaigns, or seeking high-performing
-                  brand ambassador partnerships, our team takes care of the entire
-                  process with utmost care.
+                  , <i>celebrity marketing campaigns</i>, or high-performing brand ambassador partnerships. Our celebrity endorsement campaigns enhance credibility, reach, and engagement.
                 </p>
                 <p className="mt-3 md:mt-4">
                   From scouting the best talent and setting up collaboration agreements
-                  to executing flawless celebrity influencer marketing campaigns, we
+                  to executing flawless celebrity marketing campaigns, we
                   ensure that every celebrity endorsement campaign enhances
                   credibility, reach, and engagement.
                 </p>
+                <p className="mt-3 md:mt-4 italic">By leveraging expertise in celebrity endorsements, we elevate your brand value as well as create a buzz for your audience, building trust by connecting you with the masses.</p>
               </div>
 
               <div className="mt-7 sm:mt-2 md:mt-6 lg:mt-7 flex items-center justify-center gap-4 lg:justify-start">
-                <span
-                  className="text-black text-[19px] sm:text-[20px] md:text-[30px] lg:text-[18px] font-[500]"
-                  style={{ fontFamily: "MontserratMedium" }}
-                >
-                  Let&apos;s Talk Today
-                </span>
-                <Link
-                  href="/contact.html"
-                  target="_blank"
-                  aria-label="Let's Talk Today"
-                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#f5f5f5] transition-colors"
-                >
-                  <Image
-                    src={EXPLORE_ARROW_IMAGE}
-                    alt="Arrow"
-                    width={22}
-                    height={20}
-                  />
-                </Link>
+              <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today">
+  <span
+    className="text-black text-[19px] sm:text-[20px] md:text-[30px] lg:text-[18px] font-[500] cursor-pointer"
+    style={{ fontFamily: "MontserratMedium" }}
+  >
+    Let&apos;s Talk Today
+  </span>
+</Link>
+
+<Link
+  href="/contact.html"
+  target="_blank"
+  aria-label="Let's Talk Today"
+  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#f5f5f5] transition-colors"
+>
+  <Image
+    src={EXPLORE_ARROW_IMAGE}
+    alt="Arrow"
+    title="Arrow"
+    width={22}
+    height={20}
+  />
+</Link>
               </div>
             </div>
           </div>
 
           <div className="w-full lg:w-[46%] xl:w-[48%] min-w-0 max-lg:text-center md:mt-5 lg:mt-0 lg:text-left">
             <div className="flex w-full min-w-0 flex-col md:grid md:grid-cols-[42%_58%]">
-              <div className="relative order-1  overflow-hidden md:order-none md:col-start-2 md:row-start-1">
+              <div className="relative order-1 overflow-hidden md:order-none md:col-start-2 md:row-start-1 lg:h-full">
                 <img
-                  src="/service-v3/celebrity-endorsements/high_fp/teamhighresolutionimg.jpg"
+                  src="/varunimage/celebrity-page-image.png"
                   alt="Ritz Media World team"
-                  className="w-full lg:w-[310px] h-auto"
+                  title="Ritz Media World team"
+                  className="w-full lg:h-full lg:w-full lg:object-cover h-auto"
                 />
               </div>
 
               <div className="order-2 border-l border-[#D9D9D9] pl-[16px] pr-5 pt-6 sm:pt-7 md:order-none md:col-start-1 md:row-start-1 md:py-4 lg:min-h-[189px] lg:pt-2 lg:pl-[16px] lg:pr-5 lg:px-7 xl:pt-4 max-lg:border-l-0 max-md:pl-0 max-md:pr-0 max-md:text-center md:px-6 md:text-left lg:text-left">
-                <h3
+                <p
                   className="text-[#0F1640] text-[52px] sm:text-[56px] md:text-[58px] lg:text-[56px] xl:text-[60px] leading-none font-[700]"
                   style={{ fontFamily: "MontserratSemiBold" }}
                 >
                   35
                   <sup className="text-[30px] sm:text-[32px] md:text-[34px] top-[-1.7rem]">+</sup>
-                </h3>
+                </p>
                 <p
                   className="mt-3 lg:mt-0 xl:mt-3 text-[#000000] text-[30px] sm:text-[34px] md:text-[18px] lg:text-[20px] font-[700] leading-none"
                   style={{ fontFamily: "MontserratSemiBold" }}
@@ -107,7 +115,7 @@ export default function Section2() {
                   Awards
                 </p>
                 <p
-                  className="mt-3 lg:mt-1 xl:mt-3 lg:leading-[21px] xl:leading-[25px] text-[#000000] text-[16px] leading-[28px] font-[400] tracking-[0em]"
+                  className="mt-3 lg:mt-1 xl:mt-3 lg:leading-[19px] lg:text-[16px] xl:leading-[27px] text-[#000000] text-[16px] leading-[28px] font-[400] tracking-[0em] xl:text-[17px]"
                   style={{ fontFamily: "OpenSansRegular" }}
                 >
                   Passion, Obsession, and Persistence always pay off.
@@ -118,6 +126,7 @@ export default function Section2() {
                 <Image
                   src="/service-v3/layer1/s7/aw2.png"
                   alt="Studio setup"
+                  title="Studio setup"
                   fill
                   className="object-cover"
                   sizes="(min-width:1280px) 260px, (min-width:1024px) 220px, 42vw"
@@ -140,6 +149,7 @@ export default function Section2() {
                       <Image
                         src="/service-v3/content-marketing/s5/17-yow2.png"
                         alt="17 years working experience"
+                        title="17 years working experience"
                         fill
                         className="object-contain object-center md:object-left"
                         sizes="(min-width:1280px) 480px, (min-width:1024px) 400px, 65vw"
@@ -149,11 +159,14 @@ export default function Section2() {
                 </div>
 
                 <div className="mt-5 max-md:order-3 h-[108px] sm:h-[128px] md:mt-[70px] md:h-auto md:block sm:mt-6 md:order-3 lg:mt-9 xl:mt-8 px-6 sm:px-7 lg:px-7 flex justify-center">
+                <a href="https://share.google/k0IbsAXQuNfr9nX8m" target="_blank" rel="noopener noreferrer">
   <img
-    src="/service-v3/content-marketing/s5/google-reviews.png"
+    src="/g-5-star2.png"
     alt="Google reviews rating"
-    className="block h-auto w-full max-w-[80%] sm:max-w-[90%] md:max-w-[60%] lg:max-w-none lg:w-full xl:max-w-[94%] max-md:h-full max-md:w-[200px] max-md:max-w-none max-md:object-contain max-md:object-center"
+    title="Google reviews rating"
+    className="block h-auto w-full max-w-[80%] sm:max-w-[90%] md:max-w-[60%] lg:max-w-none lg:w-full xl:max-w-[94%] max-md:h-full max-md:w-[200px] max-md:max-w-none max-md:object-contain max-md:object-center cursor-pointer"
   />
+</a>
 </div>
               </div>
             </div>

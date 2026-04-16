@@ -7,9 +7,9 @@ function Blog({ all_blogs }: { all_blogs: any[] }) {
         <>
             <Banner />
             <Section2 all_blogs={all_blogs} />
-           <div className="w-full pb-[35px] lg:pb-[70px]">
-            <BrandImpactSection1 />
-           </div>
+            <div className="w-full pb-[35px] lg:pb-[70px]">
+                <BrandImpactSection1 />
+            </div>
         </>
     );
 }

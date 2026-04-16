@@ -465,6 +465,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ ssrHeading }) => {
           {/* Left Side Blog Content */}
           <div className={styles.leftSide}>
             <div>
+              
               <div className={styles.bannerImage}>
                 <Image
                   src={

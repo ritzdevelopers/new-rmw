@@ -40,9 +40,9 @@ export async function POST(request: Request) {
             return NextResponse.json({ message: "Invalid Host Request" }, { status: 400 });
         }
 
-        const { user_message, bot_reply } = message;
+        const { user_message, bot_reply, user_id } = message;
 
-        if (!user_message || !bot_reply) {
+        if (!user_message || !bot_reply || !user_id) {
             return NextResponse.json({ message: "Invalid Message Request" }, { status: 400 });
         }
 
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
         // Check user
         const [rows] = await db.query<RowDataPacket[]>(
             "SELECT * FROM chatbot_users WHERE user_id = ?",
-            [ip]
+            [user_id]
         );
 
         let userId: number;
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
             // Create user
             const [result] = await db.query<ResultSetHeader>(
                 "INSERT INTO chatbot_users (user_id) VALUES (?)",
-                [ip]
+                [user_id]
             );
             userId = result.insertId;
         } else {

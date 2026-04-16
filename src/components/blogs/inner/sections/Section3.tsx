@@ -5,7 +5,7 @@ import { CiCalendar } from "react-icons/ci";
 import { Download } from "lucide-react";
 import Link from "next/link";
 import styles from "../../sections/page.module.css";
-import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
+import BrandImpactSection1 from "@/components/copy/BrandImpactSection1";
 
 interface BLOGSTRUCTURE {
     blogTitle: string;
@@ -16,8 +16,10 @@ interface BLOGSTRUCTURE {
 
 function Section3({
     blogs,
+    pd = "pt-[35px] lg:pt-[70px]"
 }: {
     blogs: BLOGSTRUCTURE[] | null | undefined;
+    pd?: string;
 }) {
     const safeBlogs = blogs ?? [];
     const [phone, setPhone] = useState("");
@@ -59,7 +61,7 @@ function Section3({
             const firstDigit = digitsOnly[0];
             if (digitsOnly.split('').every(digit => digit === firstDigit)) {
                 return "Please enter a valid phone number";
-            }
+            }   
         }
 
         if (digitsOnly.length === 10) {
@@ -190,7 +192,7 @@ function Section3({
 
 
     return (
-        <section className="w-full min-h-screen bg-[#ffffff] flex justify-center items-center pt-[35px] lg:pt-[70px]">
+        <section className={`w-full min-h-screen bg-[#ffffff] flex justify-center items-center ${pd}`}>
             {/* Centered Align Container  */}
             <div className={`w-full flex flex-col gap-12 sm:gap-16 lg:gap-20`}>
                 {/* Row 1  */}
@@ -325,8 +327,8 @@ function Section3({
                 </div>
 
                 {/* Row 2  */}
-                <div className="w-full">
-                    <BrandImpactSection2 />
+                <div className="w-full pb-[35px] lg:pb-[70px]">
+                    <BrandImpactSection1 />
                 </div>
             </div>
 

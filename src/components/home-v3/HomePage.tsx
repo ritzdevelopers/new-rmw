@@ -13,6 +13,7 @@ import styles from "@/app/(rmw-v2)/page.module.css";
 import { fetchLatestBlogs } from "@/app/(rmw-v2)/lib/fetchData";
 import NewBanner from "@/components/home-v3/NewBanner";
 import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
+import HomePageLinkTitles from "@/components/home-v3/HomePageLinkTitles";
 
 async function HomePage() {
   // Fetch data server-side
@@ -21,6 +22,7 @@ async function HomePage() {
 
   return (
     <>
+      <HomePageLinkTitles />
       {/* Client-side animations component */}
       {/* <PageAnimations /> */}
       {/* Hero Section - Full Width */}
