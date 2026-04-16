@@ -8,7 +8,8 @@ export default function WhyJoin() {
     const EXPLORE_ARROW_IMAGE =
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
     return (
-        <section className="w-full py-6 sm:py-8 md:py-10 lg:py-3 pl-4 sm:pl-6 md:pl-6 lg:pl-12">
+        <section className="w-full flex justify-center items-center py-5  md:py-8 lg:py-5">
+        <div className="w-full flex justify-center items-center  pl-4 sm:pl-6 md:pl-6 lg:pl-12">
 
             {/* MAIN GRID */}
             <div className="
@@ -143,6 +144,7 @@ border-t border-[#F7F7F7]
                     </div>
                 </div>
             </div>
+        </div>
         </section>
     );
 }
