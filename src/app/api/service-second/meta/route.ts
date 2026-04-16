@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
             "SELECT * FROM service_second WHERE link = ? LIMIT 1",
             [link],
         );
-
+        // console.log("rows", rows);  
         if (!rows.length) {
             return NextResponse.json({ error: "Not found" }, { status: 404 });
         }
