@@ -18,6 +18,7 @@ type Card = {
 };
 
 function ProjectCardItem({ card, idx }: { card: Card; idx: number }) {
+  console.log("card", card);
   return (
     <div className="col-lg-4 col-md-6 mb-4">
       <div

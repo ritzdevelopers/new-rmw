@@ -22,30 +22,30 @@ export default function Section1() {
         </div>
 
         <div className="min-w-0 pl-0 sm:pl-4 md:pl-[40px] lg:pl-[45px] xl:pl-[53px]">
-          <h1 className="min-w-0 text-white leading-[45px] sm:leading-[1.15] md:leading-tight lg:leading-[45px] xl:leading-[45px] mt-1 sm:mt-2 md:mt-0 xl:mt-3 lg:py-0 xl:py-0">
+          <p className="min-w-0 text-white leading-[45px] sm:leading-[1.15] md:leading-tight lg:leading-[45px] xl:leading-[20px] mt-1 sm:mt-2 md:mt-0 xl:mt-3 lg:py-0 xl:py-0">
             <span className="max-md:inline-block max-md:whitespace-nowrap md:contents lg:inline-block lg:whitespace-nowrap lg:translate-y-2 xl:translate-y-0 xl:contents">
-              <span
-                className={`${styles.bannerHeadlineSm} font-[800] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[55px] xl:font-[800] lg:leading-[10px]`}
+              <h1
+                className={`${styles.bannerHeadlineSm} font-[800] text-[#fff] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[55px] xl:font-[800] lg:leading-[10px]`}
                 style={{ fontFamily: "MontserratExtraBold" }}
               >
                 Celebrity Endorsements{" "}
-              </span>
-              <br className="hidden md:block lg:hidden xl:block" />
-              <span
+              </h1>
+              <br className="hidden md:hidden lg:hidden xl:block" />
+              {/* <span
                 className={`hidden md:hidden lg:inline ${styles.bannerHeadlineSm} font-[500] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[65px] xl:font-[500] ${styles.bannerServicesMatchLg}`}
                 style={{ fontFamily: "MontserratMedium" }}
               >
                 Services
-              </span>
+              </span> */}
             </span>
             <h2
-              className={`font-[500] mt-0 lg:mt-2 md:mt-1 xl:mt-2 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-[25px] sm:leading-snug md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`}
+              className={`font-[500] mt-0 lg:mt-2 md:mt-0 xl:mt-2 text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-[25px] sm:leading-snug md:leading-snug w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`}
               style={{ fontFamily: "MontserratMedium" }}
             >
               Talent selection to campaign execution, we build brand engagement,
               visibility, & trust.
             </h2>
-          </h1>
+          </p>
         </div>
       </div>
     </section>

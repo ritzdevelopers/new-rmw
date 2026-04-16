@@ -8,7 +8,8 @@ export default function WhyJoin() {
     const EXPLORE_ARROW_IMAGE =
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
     return (
-        <section className="w-full py-6 sm:py-8 md:py-10 lg:py-3 pl-4 sm:pl-6 md:pl-6 lg:pl-12">
+        <section className="w-full flex justify-center items-center py-5  md:py-8 lg:py-5">
+        <div className={`w-full flex justify-center items-center  pl-4 sm:pl-6 md:pl-6 lg:pl-12 ${styles.page_containerWidth}`}>
 
             {/* MAIN GRID */}
             <div className="
@@ -33,7 +34,7 @@ border-t border-[#F7F7F7]
                         w-[200px] h-[220px]
                         sm:w-[220px] sm:h-[240px]
                         md:w-[240px] md:h-[260px]
-                        xl:w-[250px] xl:h-[272px]
+                        xl:w-[250px] xl:h-[285px]
                     ">
                         <img
                             src="/discussion-forum/circle.png"
@@ -113,9 +114,9 @@ border-t border-[#F7F7F7]
                     p-4 sm:p-5 md:p-8
                     md:col-span-2 
                     xl:col-span-1 lg:col-span-1 
-                    h-auto lg:h-[488px] xl:h-[639px] 
+                    h-auto min-[1024px]:max-[1239px]:h-[514px] min-[1240px]:max-[1365px]:h-[488px] xxl:h-[639px] 
                 `}>
-                    <div className={`flex flex-col gap-4 sm:gap-5 md:gap-2 lg:gap-8 xl:gap-13 justify-center lg:justify-end h-full ${styles.fontopensans}`}>
+                    <div className={`flex flex-col gap-4 sm:gap-5 md:gap-8 lg:gap-12 xl:gap-13 justify-center lg:justify-end h-full ${styles.fontopensans}`}>
                         {[
                             "Ask questions about digital marketing agencies and strategies",
                             "Discuss trends with a social media marketing agency in India",
@@ -143,6 +144,7 @@ border-t border-[#F7F7F7]
                     </div>
                 </div>
             </div>
+        </div>
         </section>
     );
 }

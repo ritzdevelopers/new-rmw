@@ -54,11 +54,11 @@ export default function Section4() {
         </h2>
 
         <div className="mt-5 md:mt-10 lg:mt-25">
-          <div className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap items-start">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center lg:flex-nowrap lg:justify-start items-start">
             {cards.map((card, index) => (
               <div
                 key={card.h3}
-                className={`w-full min-w-0 sm:w-1/2 lg:w-1/4 pb-5 sm:pb-12 lg:pb-0 ${rampOffsets[index]}`}
+                className={`w-full min-w-0 sm:w-1/2 sm:max-w-[360px] lg:max-w-none lg:w-1/4 pb-5 sm:pb-12 lg:pb-0 ${rampOffsets[index]}`}
               >
                 <div
                   className="relative lg:pl-7 xl:pl-8 lg:pr-4 xl:pr-5 lg:pt-0"
@@ -85,7 +85,7 @@ export default function Section4() {
                     }
                   >
                     <h3
-                      className="text-center md:text-left mx-auto md:mx-0 text-black font-[700] text-[20px] leading-[30px] tracking-[0em] max-w-[288px] lg:leading-[25px] xl:leading-[30px]"
+                      className="text-center lg:text-left mx-auto lg:mx-0 text-black font-[700] text-[20px] leading-[30px] tracking-[0em] max-w-[288px] lg:leading-[25px] xl:leading-[30px]"
                       style={{ fontFamily: "MontserratBold" }}
                     >
                       {card.h3 === "Generate Engagement & Influence" ? (
@@ -100,7 +100,7 @@ export default function Section4() {
                     </h3>
 
                     {card.h3 === "Generate Leads & Conversions" ? (
-                      <div className="mt-1 md:mt-3 w-full min-w-0 max-w-[224px] text-center md:text-left mx-auto md:mx-0">
+                      <div className="mt-1 md:mt-3 w-full min-w-0 max-w-[224px] text-center lg:text-left mx-auto lg:mx-0">
                         <p
                           className="text-black font-[400] text-[16px] leading-[18px]  md:leading-[28px] tracking-[0em] lg:text-[17px] lg:leading-[25px] xl:text-[16px] xl:leading-[28px]"
                           style={{ fontFamily: "OpenSansRegular" }}
@@ -110,7 +110,7 @@ export default function Section4() {
                       </div>
                     ) : (
                       <p
-                        className="mt-1 md:mt-3 max-w-[234px] text-center md:text-left mx-auto md:mx-0 text-black font-[400] text-[16px] leading-[28px] tracking-[0em] lg:text-[17px] lg:leading-[25px] xl:text-[16px] xl:leading-[28px]"
+                        className="mt-1 md:mt-3 max-w-[234px] text-center lg:text-left mx-auto lg:mx-0 text-black font-[400] text-[16px] leading-[28px] tracking-[0em] lg:text-[17px] lg:leading-[25px] xl:text-[16px] xl:leading-[28px]"
                         style={{ fontFamily: "OpenSansRegular" }}
                       >
                         {card.description}
@@ -123,15 +123,15 @@ export default function Section4() {
           </div>
         </div>
 
-        <div className="hidden xl:block lg:-mt-[180px] xl:-mt-[230px]">
+        <div className="hidden xl:block lg:-mt-[180px] xl:-mt-[120px]">
           <Image
-            src="/service-v3/celebrity-endorsements/s4/new_wave2.jpg"
+            src="/varunimage/celebrity-bg.jpg"
             alt="Decorative wave"
             title="Decorative wave"
-            width={1014}
-            height={282}
-            className="w-full h-auto object-contain"
-            sizes="(min-width:1280px) 1014px, (min-width:1024px) 88vw, 94vw"
+            width={1000}
+            height={278}
+            className="mx-auto block w-full max-w-[1000px] h-auto object-contain"
+            sizes="(min-width:1280px) 1000px, (min-width:1024px) 88vw, 94vw"
           />
         </div>
       </div>
@@ -140,7 +140,7 @@ export default function Section4() {
         <ServicesV3SubslugLayer4Section5 />
       </div>
 
-      <div className="w-full -mt-4 sm:-mt-6 md:-mt-[30px] lg:-mt-[50px] xl:-mt-[60px]">
+      <div className="w-full -mt-4 sm:-mt-6 md:-mt-[30px] lg:-mt-[50px] xl:mt-[100px]">
         <ClientTestimonials />
       </div>
 

@@ -8,7 +8,7 @@ const EXPLORE_ARROW_IMAGE =
 
 export default function Section2() {
   return (
-    <section className="w-full flex justify-center bg-white py-[35px] lg:pt-[70px] border-b border-[#E6E3E3] px-4 sm:px-6 lg:px-0">
+    <section className="w-full flex justify-center bg-white py-[35px] lg:py-[70px]  border-b border-[#E6E3E3] px-4 sm:px-6 lg:px-0">
       <div
         className={`w-full mx-auto flex flex-col lg:flex-row justify-between gap-6 lg:gap-6 xl:gap-10 overflow-hidden ${styles.containerWidth}`}
       >
@@ -28,7 +28,7 @@ export default function Section2() {
                     Celebrity endorsement services
                   </span>{" "}
                    help brands earn customers’ trust, achieve brand recognition, and mold consumer behavior beyond glitz and glamour. At{" "}
-                  <Link href="/">
+                  <Link href="/" target="_blank" rel="noopener noreferrer">
   <span
     className="font-[700] text-[#C99237] cursor-pointer"
     style={{ fontFamily: "MontserratBold" }}
@@ -50,7 +50,7 @@ export default function Section2() {
                   <span className="font-[700] " style={{ fontFamily: "OpenSansBold" }}>
                     celebrity endorsement services for brand promotion
                   </span>
-                  , celebrity marketing campaigns, or high-performing brand ambassador partnerships. Our celebrity endorsement campaigns enhance credibility, reach, and engagement.
+                  , <i>celebrity marketing campaigns</i>, or high-performing brand ambassador partnerships. Our celebrity endorsement campaigns enhance credibility, reach, and engagement.
                 </p>
                 <p className="mt-3 md:mt-4">
                   From scouting the best talent and setting up collaboration agreements
@@ -64,7 +64,7 @@ export default function Section2() {
               <div className="mt-7 sm:mt-2 md:mt-6 lg:mt-7 flex items-center justify-center gap-4 lg:justify-start">
               <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today">
   <span
-    className="text-black text-[19px] sm:text-[20px] md:text-[30px] lg:text-[18px] font-[500] cursor-pointer"
+    className="text-[#0F1640] text-[19px] sm:text-[20px] md:text-[20px] lg:text-[18px] font-[500] cursor-pointer"
     style={{ fontFamily: "MontserratMedium" }}
   >
     Let&apos;s Talk Today
@@ -75,7 +75,7 @@ export default function Section2() {
   href="/contact.html"
   target="_blank"
   aria-label="Let's Talk Today"
-  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#f5f5f5] transition-colors"
+  className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] hover:bg-[#0F1640] flex items-center justify-center transition-colors"
 >
   <Image
     src={EXPLORE_ARROW_IMAGE}
@@ -101,13 +101,13 @@ export default function Section2() {
               </div>
 
               <div className="order-2 border-l border-[#D9D9D9] pl-[16px] pr-5 pt-6 sm:pt-7 md:order-none md:col-start-1 md:row-start-1 md:py-4 lg:min-h-[189px] lg:pt-2 lg:pl-[16px] lg:pr-5 lg:px-7 xl:pt-4 max-lg:border-l-0 max-md:pl-0 max-md:pr-0 max-md:text-center md:px-6 md:text-left lg:text-left">
-                <h3
+                <p
                   className="text-[#0F1640] text-[52px] sm:text-[56px] md:text-[58px] lg:text-[56px] xl:text-[60px] leading-none font-[700]"
                   style={{ fontFamily: "MontserratSemiBold" }}
                 >
                   35
                   <sup className="text-[30px] sm:text-[32px] md:text-[34px] top-[-1.7rem]">+</sup>
-                </h3>
+                </p>
                 <p
                   className="mt-3 lg:mt-0 xl:mt-3 text-[#000000] text-[30px] sm:text-[34px] md:text-[18px] lg:text-[20px] font-[700] leading-none"
                   style={{ fontFamily: "MontserratSemiBold" }}
@@ -115,7 +115,7 @@ export default function Section2() {
                   Awards
                 </p>
                 <p
-                  className="mt-3 lg:mt-1 xl:mt-3 lg:leading-[19px] lg:text-[16px] xl:leading-[27px] text-[#000000] text-[16px] leading-[28px] font-[400] tracking-[0em] xl:text-[17px]"
+                  className="mt-3 lg:mt-1 xl:mt-3 lg:leading-[22px] lg:text-[15px] xl:text-[4px] xl:leading-[27px] text-[#000000] text-[16px] leading-[28px] font-[400] tracking-[0em] xl:text-[17px]"
                   style={{ fontFamily: "OpenSansRegular" }}
                 >
                   Passion, Obsession, and Persistence always pay off.
@@ -147,7 +147,7 @@ export default function Section2() {
                   <div className="absolute inset-y-0 mt-0 max-md:inset-x-0 max-md:px-6 sm:max-md:px-7 md:left-7 md:-right-8 lg:-right-10 xl:-right-12 md:mt-6 lg:mt-8 xl:mt-0">
                     <div className="relative h-full w-full mt-4 md:mt-0">
                       <Image
-                        src="/service-v3/content-marketing/s5/17-yow2.png"
+                        src="/varunimage/17-working.png"
                         alt="17 years working experience"
                         title="17 years working experience"
                         fill
