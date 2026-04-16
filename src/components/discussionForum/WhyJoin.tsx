@@ -9,7 +9,7 @@ export default function WhyJoin() {
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
     return (
         <section className="w-full flex justify-center items-center py-5  md:py-8 lg:py-5">
-        <div className="w-full flex justify-center items-center  pl-4 sm:pl-6 md:pl-6 lg:pl-12">
+        <div className={`w-full flex justify-center items-center  pl-4 sm:pl-6 md:pl-6 lg:pl-12 ${styles.page_containerWidth}`}>
 
             {/* MAIN GRID */}
             <div className="

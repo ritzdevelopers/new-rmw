@@ -16,7 +16,7 @@ export default function WhoShouldJoin() {
 
     return (
         <section className="w-full flex justify-center items-center py-5  md:py-8 lg:py-5">    
-        <div className="w-full  px-4 md:px-12 flex justify-center items-center">
+        <div className={`w-full  px-4 md:px-12 flex justify-center items-center ${styles.page_containerWidth}`}>
             <div className="max-w-[1320px] mx-auto">
 
                 {/* MAIN GRID */}
