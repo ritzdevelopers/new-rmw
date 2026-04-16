@@ -11,10 +11,11 @@ export default function DiscussionTopics() {
     ];
 
     return (
-        <section className="w-full py-16 px-4 md:px-4 lg:px-5 xl:px-5">
+        <section className="w-full flex justify-center items-center py-5  md:py-8 lg:py-12">    
+        <div className="w-full px-4 md:px-4 lg:px-5 xl:px-5 flex justify-center items-center  ">
             <div className="mx-auto">
 
-                <h2 className="text-center text-3xl md:text-4xl font-bold mb-8">
+                <h2 className="text-center text-3xl md:text-4xl md:leading-none font-bold mb-8">
                     Discussion Topics
                 </h2>
 
@@ -111,6 +112,7 @@ export default function DiscussionTopics() {
 
                 </div>
             </div>
+        </div>
         </section>
     );
 }

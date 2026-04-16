@@ -7,7 +7,8 @@ export default function StartDiscussion() {
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
 
     return (
-        <section className="w-full bg-white px-4 py-8 sm:px-6 md:px-10 lg:px-14 xl:px-13">
+        <section className="w-full flex justify-center items-center py-5  md:py-8 lg:py-10">
+        <div className="w-full bg-white px-4  sm:px-6 md:px-10 lg:px-14 xl:px-13">
             <div className="mx-auto flex w-full flex-col items-center rounded-[5px] bg-[#F7F7F7] px-6 py-12 text-center  sm:px-10 sm:py-16 md:px-14 lg:px-20">
                 <h2 className={`text-[20px] sm:text-[30px] md:text-[36px] ${styles.montserratBold}`}>
                     Start Your Discussion Today
@@ -18,7 +19,7 @@ export default function StartDiscussion() {
                 </p>
 
                 <div className="flex items-center gap-6 mt-5">
-                    <span className={`text-[18px] font-[500] ${styles.monserrat}`}>
+                    <span className={`text-[18px] font-[500] ${styles.montserrat}`}>
                         Start Discussion
                     </span>
 
@@ -27,6 +28,7 @@ export default function StartDiscussion() {
                     </div>
                 </div>
             </div>
+        </div>
         </section>
     )
 }
