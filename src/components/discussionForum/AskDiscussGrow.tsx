@@ -10,12 +10,12 @@ export default function AskDiscussGrow() {
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
 
     return (
-        <section className="flex justify-center items-center
+        <section className={`flex justify-center items-center
             w-full bg-[#08143f] text-white 
             px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 
             py-8 sm:py-10 md:py-12 lg:py-14
-            my-5 md:my-12
-        ">
+            my-5 md:my-12 
+        `}>
             <div className="mx-auto flex flex-col items-center text-center">
 
                 {/* HEADING */}

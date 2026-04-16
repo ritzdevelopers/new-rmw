@@ -71,6 +71,14 @@
     }
 }
 
+@media (min-width: 1370px) {
+    .page_containerWidth {
+        width: 1366px !important;
+        margin: 0 auto !important;
+        align-self: center !important;
+    }
+}
+
 /* @media (min-width: 1240px) {
     .textWrapper {
         height: 477px;
