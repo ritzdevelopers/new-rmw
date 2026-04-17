@@ -5,7 +5,6 @@ import axios from "axios";
 // import Link from "next/link";
 import styles from "./page.module.css";
 import { CalendarDays, Share2 } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 interface Blog {
   blog_image: string;
@@ -43,8 +42,6 @@ const SearchUsingKey: React.FC<Props> = ({ keyword }) => {
     fetchBlogs();
   }, [keyword]);
 
-  const router = useRouter();
-
   return (
     <div className={styles.container}>
       {loading ? (
@@ -55,7 +52,7 @@ const SearchUsingKey: React.FC<Props> = ({ keyword }) => {
         <div className={styles.gridOuter}>
           <div className={styles.grid}>
             {blogs.map((blog, index) => (
-              <div onClick={()=>router.push(`/${blog.slug}`)} key={index} className={styles.card}>
+              <div onClick={()=>window.open(`/${blog.slug}`, "_blank")} key={index} className={styles.card}>
                 {/* Image */}
                 <div className={styles.cardImageWrap}>
                   <img
