@@ -15,6 +15,11 @@ function getCanonicalUrl(link: string | undefined, fallbackPath: string) {
             : `/${link}`
         : fallbackPath;
 
+    // Enforce nested service canonical URL format.
+    if (!path.startsWith("/services/")) {
+        return `https://ritzmediaworld.com${fallbackPath}`;
+    }
+
     return `https://ritzmediaworld.com${path}`;
 }
 
