@@ -37,10 +37,10 @@ function Section3() {
                         return (
                             <div
                                 key={item.title}
-                                className={`flex w-full flex-col-reverse justify-between  gap-0 ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} ${s3.row}`}
+                                className={`flex w-full flex-col-reverse items-center justify-between gap-0 md:items-stretch ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} ${s3.row}`}
                             >
                                 {/* Text column (first in DOM; stacks under image below md via flex-col-reverse) */}
-                                <div className={`relative mt-4 flex w-full flex-col gap-2 md:mt-4 md:w-[calc(100%-477px)] ${s3.leftCol}`}>
+                                <div className={`relative mt-4 flex w-full flex-col gap-2 items-center text-center md:mt-4 md:w-[calc(100%-477px)] ${idx % 2 === 0 ? "md:items-start md:text-start" : "md:items-end md:text-end"} ${s3.leftCol}`}>
 
                                     {/* Top rule — desktop / tablet only */}
                                     <div
@@ -50,7 +50,7 @@ function Section3() {
 
                                     {/* Row 1  */}
                                     <div
-                                        className={`w-full flex gap-4 pl-1 items-start justify-start md:items-end ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"} ${s3.titleRow}`}
+                                        className={`w-full flex gap-4 items-center justify-center pl-0 md:items-end md:pl-1 ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"} ${s3.titleRow}`}
                                     >
                                         <p className={`font-[700] md:text-[36px] text-[24px] text-[#0F1640] ${styles.fontmontserrat} ${s3.title}`}>
                                             <span className={`font-[500] md:text-[16px] text-[13px] mr-4 ${s3.idx}`}>0{idx + 1}.</span>
@@ -58,9 +58,9 @@ function Section3() {
                                     </div>
                                     {/* Row 2  */}
                                     <div
-                                        className={`ml-0 flex flex-col gap-4 md:ml-9 ${idx % 2 === 0 ? "items-start text-start" : "items-start text-start md:items-end md:text-end"} ${s3.bodyRow}`}
+                                        className={`ml-0 flex flex-col gap-4 items-center text-center md:ml-9 ${idx % 2 === 0 ? "md:items-start md:text-start" : "md:items-end md:text-end"} ${s3.bodyRow}`}
                                     >
-                                        <p className={`font-[400] md:text-[16px] text-[14px] max-w-[640px] ${styles.fontpoppins} ${s3.desc}`}>
+                                        <p className={`mx-auto font-[400] text-[14px] max-w-[640px] md:mx-0 md:text-[16px] ${styles.fontpoppins} ${s3.desc}`}>
                                             {item.description}
                                         </p>
                                         <a href={item.link} target="_blank" className={`w-[40px] cursor-pointer h-[40px] rounded-full bg-[#C99237] flex justify-center items-center ${s3.cta}`}>
