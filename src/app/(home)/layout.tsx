@@ -1,6 +1,7 @@
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/header/Header";
 import Script from "next/script";
+import type { Metadata } from "next";
 // import ClientOnlyComponents from "@/components/ClientOnlyComponents";
 import ContactButtonBootstrap from "@/components/ruby-bot/ContactButtonBootstrap";
 import RubyBotBootstrap from "@/components/ruby-bot/RubyBotBootstrap";
@@ -10,6 +11,11 @@ import RubyProvider from "@/ruby-context/ruby.context";
 import "./bootstrap.css";
 import "../styles/main.css";
 import "swiper/css";
+
+export const metadata: Metadata = {
+  authors: [{ name: "Ritz Media World" }],
+  publisher: "Ritz Media World",
+};
 
 export default function HomeLayout({
   children,

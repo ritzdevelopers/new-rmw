@@ -19,7 +19,7 @@ const servicesData = [
       "When developing a partnership with an influencer, it is critical to find someone who not only has a voice, but also has the ability to create trust and influence purchasing behaviour amongst their audience, becoming lifelong customers for your business!|||Ritz Digital Media provides results-driven influencer partnerships through identifying and qualifying each influencer that shares similar values with the brand delivering authentic engagement, authentic influence, and measurable conversions.",
     hasImage: true,
     imageSrc: "/varun/influencer-marketing/Influencer%20Identification.jpg",
-    link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/identification-influence-marketing-agency",
+    link: "/services/influencer-marketing-agency-in-india/identification-influence-marketing-agency",
   },
   {
     id: "02",
@@ -27,7 +27,7 @@ const servicesData = [
     imageSrc: "/varun/influencer-marketing/Cost-Benefit%20Analysis.jpg",
     description:
       "Successful influencer marketing campaigns require balancing your budget with the return when investing in developing the relationship with each influencer you decide to partner with.|||Additionally, our team will work collaboratively with you to provide a complete cost benefit analysis and develop an influencer marketing strategy to ensure you receive maximum ROI on your budget, targeted investments, and authentic partnerships that will result in true business success, not just exposure.",
-    link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/cost-benefit-analysis",
+    link: "/services/influencer-marketing-agency-in-india/cost-benefit-analysis",
   },
   {
     id: "03",
@@ -35,7 +35,7 @@ const servicesData = [
     imageSrc: "/varun/influencer-marketing/Terms%20Negotiations.jpg",
     description:
       "Bargaining with an influencer is an art. Our team will advocate for you to negotiate mutually beneficial terms, a well-defined strategic deliverable, and competitive pricing with each of your influencer partnerships, ensuring each partnership is risk-free, profitable and long-lasting.|||With our expertise we handle all influencer agreements professionally, protecting your interests to maximise the success of each of your influencer marketing campaigns.",
-    link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/terms-negotiations",
+    link: "/services/influencer-marketing-agency-in-india/terms-negotiations",
   },
   {
     id: "04",
@@ -43,7 +43,7 @@ const servicesData = [
     imageSrc: "/varun/influencer-marketing/Creative%20Collaboration.jpg",
     description:
       "Influencers succeed with authentic engagement, not scripted messaging. We work closely with the influencers to leverage their authentic voice through effective brand messaging to create copy that is credible, compelling and drives action.|||Each campaign will allow the influencer to use their creativity to gain trust with audiences, resulting in measurable engagement of audiences.",
-    link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/creative-collaboration",
+    link: "/services/influencer-marketing-agency-in-india/creative-collaboration",
   },
   {
     id: "05",
@@ -51,7 +51,7 @@ const servicesData = [
     imageSrc: "/varun/influencer-marketing/Campaign%20Integration.jpg",
     description:
       "Combined with influencer content, the reach is best served if it is completely merged within the overall marketing campaign across all available media (digital, social, & traditional).|||Our goal is to reach more people through the best, most consistent messaging possible & persuade them to do business with the company's product in order to provide a greater level of marketing effectiveness.",
-    link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/campaign-integration",
+    link: "/services/influencer-marketing-agency-in-india/campaign-integration",
   },
   {
     id: "06",
@@ -59,7 +59,7 @@ const servicesData = [
     imageSrc: "/varun/influencer-marketing/Messaging%20Optimization.jpg",
     description:
       "Influencers can tell a great story, however, the great influence campaign must motivate customers to take action and participate in the brand and the product, whether that means making a purchase or joining the loyalty program (customer). With Ritz Media World, every influencer program provides results which are quantified!",
-    link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/messaging-optimization",
+    link: "/services/influencer-marketing-agency-in-india/messaging-optimization",
   },
 ] as const;
 
