@@ -13,7 +13,7 @@ export default function Section2() {
                     className={`text-black  text-[20px] sm:text-[20px] md:text-[20px] lg:text-[24px] leading-[30px]   md:leading-[30px] lg:leading-[30px] xl:leading-[40px] xl:max-w-[1000px] mx-auto ${styles.montserrat}  `}
 
                 >
-                    <span className="font-bold">Discussion Forum by</span> <span className="text-[#000000] font-bold">Ritz Media World </span><span className="font-normal">
+                    <span className="font-bold">Discussion Forum by</span> <span className="text-[#C99237] font-bold">Ritz Media World </span><span className="font-normal">
                         a space where ideas meet <br/> strategy and conversations turn into growth.
                     </span>
                 </p>

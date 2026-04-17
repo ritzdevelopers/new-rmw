@@ -12,31 +12,34 @@ export default function NeedExpert() {
   ]
 
   return (
-    <section className="w-full bg-white px-4 py-5 sm:px-6 md:px-10 lg:px-12 xl:px-13">
-      <div className="mx-auto flex flex-col items-center text-center">
-        <h2 className={`text-[20px]  leading-tight text-black sm:text-[24px] md:text-[36px] ${styles.montserratBold}`}>
-          Need Expert Help?
-        </h2>
+   <section className="w-full flex justify-center items-center py-5  md:py-8 lg:py-10">
+  <div className={`container mx-auto bg-white px-5 md:px-10 lg:px-12 xl:px-0 ${styles.needExpertContainer} ${styles.page_containerWidth}`}>
+        <div className="mx-auto flex flex-col items-center text-center">
+          <h2 className={`text-[20px]  leading-tight text-black sm:text-[24px] md:text-[36px] ${styles.montserratBold}`}>
+            Need Expert Help?
+          </h2>
 
-        <p className={`mt-4 max-w-xl text-sm leading-7 sm:text-[16px] md:text-[16px] ${styles.poppins}`}>
-          If you’re looking for professional marketing solutions, connect with Ritz Media World a trusted{' '}
-          <span className={`font-[700] ${styles.fontopensans}`}>digital marketing agency in India</span> offering :
-        </p>
 
-        <div className="mt-10 grid w-full gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className=" border border-[#E6E6E6] bg-white p-10 text-center transition "
-            >
-              <p className={`text-[16px] font-[400] text-black md:text-[16px] ${styles.fontopensans}`}>{service}</p>
-            </div>
-          ))}
+          <p className={`mt-4 max-w-xl text-sm leading-7 sm:text-[16px] md:text-[16px] ${styles.poppins}`}>
+            If you’re looking for professional marketing solutions, connect with Ritz Media World a trusted{' '}
+            <span className={`font-[700] ${styles.fontopensans}`}>digital marketing agency in India</span> offering :
+          </p>
+
+          <div className="mt-10 grid w-full gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className=" border border-[#E6E6E6] bg-white p-10 text-center transition "
+              >
+                <p className={`text-[16px] font-[400] text-black md:text-[16px] ${styles.fontopensans}`}>{service}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className={`mt-10 max-w-xl text-sm leading-7 text-black sm:text-[16px] md:text-[16px] ${styles.poppins}`}>
+            We are recognized as the best digital marketing company in Delhi NCR providing 360° brand growth solutions.
+          </p>
         </div>
-
-        <p className={`mt-10 max-w-xl text-sm leading-7 text-black sm:text-[16px] md:text-[16px] ${styles.poppins}`}>
-          We are recognized as the best digital marketing company in Delhi NCR providing 360° brand growth solutions.
-        </p>
       </div>
     </section>
   )

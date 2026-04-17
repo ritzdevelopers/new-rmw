@@ -435,7 +435,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ ssrHeading }) => {
   //   // Run again after a short delay in case other scripts modify the content
   //   setTimeout(cleanWordPressComments, 500);
   // });
-
+ 
   useEffect(() => {
     if (singleBlog) {
       handleLinksNavigation();
@@ -456,7 +456,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ ssrHeading }) => {
     const isMongo = !!singleBlog.blogTitle;
 
     // const [isClick, setIsClick] = useState<boolean>();
-
+  
     return (
       <>
         {/* <Header /> */}
@@ -465,6 +465,7 @@ const DetailPage: React.FC<DetailPageProps> = ({ ssrHeading }) => {
           {/* Left Side Blog Content */}
           <div className={styles.leftSide}>
             <div>
+              
               <div className={styles.bannerImage}>
                 <Image
                   src={

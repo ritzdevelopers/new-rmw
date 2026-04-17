@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
-import data from "../../../../../../servive-layer-2.json";
+import { fetchMeta } from "@/lib/fetch_meta";
 
 type LayoutProps = {
     children: React.ReactNode;
     params: Promise<{ slug: string }>;
 };
-
-function getServiceDataBySlug(slug: string) {
-    return data.find((item: any) => item.link?.split("/").pop() === slug);
-}
 
 function getCanonicalUrl(link: string | undefined, fallbackPath: string) {
     if (link?.startsWith("http")) return link;
@@ -24,8 +20,8 @@ function getCanonicalUrl(link: string | undefined, fallbackPath: string) {
 
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
     const { slug } = await params;
-    const serviceData = getServiceDataBySlug(slug);
-
+    const serviceData = await fetchMeta(slug);
+    console.log("serviceData", serviceData);
     if (!serviceData) {
         return {
             alternates: {
@@ -35,11 +31,14 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     }
 
     return {
-        title: serviceData.meta_titles,
+        title: serviceData.meta_title,
         description: serviceData.meta_description,
         keywords: serviceData.meta_keywords,
         alternates: {
-            canonical: getCanonicalUrl(serviceData.link, `/services/influencer-marketing-agency-in-india/${slug}`),
+            canonical: getCanonicalUrl(
+                serviceData.link ?? undefined,
+                `/services/influencer-marketing-agency-in-india/${slug}`,
+            ),
         },
     };
 }

@@ -19,30 +19,26 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           debug: true
           script: |
-            cd /var/www/new-rmw-build
+            cd /var/www/new-rmw
 
-            echo "Resetting the repository to the main branch"
-            git reset --hard origin/main
+            
 
             echo "Pulling latest code from main branch"
             git pull origin main
 
-            echo "Installing Dependencies"
-            npm install
+           
 
             echo "Creating Build"
-            NODE_OPTIONS=--max-old-space-size=3072 npm run build
+            npm run build
 
             cd ..
 
-            echo "Create Backup of the old build"
-            cp -r /var/www/new-rmw /var/www/new-rmw-backup
+            
 
-            echo "Replace New Build With Old Build"
-            rsync -av --delete /var/www/new-rmw-build/ /var/www/new-rmw/
+            
 
             echo "Restarting PM2"
-            pm2 reload new-rmw || pm2 start ecosystem.config.js
+            pm2 restart new-rmw 
 
   deploy-staging:
     if: github.ref == 'refs/heads/staging'
@@ -56,6 +52,8 @@ jobs:
           key: ${{ secrets.SSH_KEY_STAGING }}
           debug: true
           script: |
+            export NVM_DIR="$HOME/.nvm"
+            source $NVM_DIR/nvm.sh
             cd new-rmw
 
             echo "Pulling latest code from staging branch"
