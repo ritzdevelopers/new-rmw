@@ -26,11 +26,12 @@ function getCanonicalUrl(link: string | undefined, fallbackPath: string) {
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
     const { slug } = await params;
     const serviceData = await fetchMeta(slug);
-
+    // console.log("serviceData", serviceData); 
     if (!serviceData) {
+        console.log(`Service data not found for slug: ${slug}`);
         return {
             alternates: {
-                canonical: `https://ritzmediaworld.com/services/digital-marketing/${slug}`,
+                canonical: `https://ritzmediaworld.com/services/celebrity-endorsements/${slug}`,
             },
         };
     }
@@ -42,16 +43,12 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
         alternates: {
             canonical: getCanonicalUrl(
                 serviceData.link ?? undefined,
-                `/services/digital-marketing/${slug}`,
+                `/services/celebrity-endorsements/${slug}`,
             ),
         },
     };
 }
 
 export default function Layout({ children }: LayoutProps) {
-    return (
-        <>
-            {children}
-        </>
-    )
+    return <>{children}</>;
 }

@@ -21,7 +21,7 @@ export default function Section3() {
       imageSrc:
         "/varunimage/Branding&IdentityDevelopment.png",
       learnMoreHref:
-        "https://ritzmediaworld.com/services/creative-services/branding-and-identity-development",
+        "/services/creative-services/branding-and-identity-development",
         heightAndWidth:"w-[398px] h-auto"
     },
     {
@@ -32,7 +32,7 @@ export default function Section3() {
       ],
       imageSrc: "/varunimage/GraphicDesign.png",
       learnMoreHref:
-        "https://ritzmediaworld.com/services/creative-services/graphic-designing",
+        "/services/creative-services/graphic-designing",
           heightAndWidth:"w-[420px] h-auto"
     },
     {
@@ -43,7 +43,7 @@ export default function Section3() {
       ],
       imageSrc: "/varunimage/logoad2.png",
       learnMoreHref:
-        "https://ritzmediaworld.com/services/creative-services/logo-design",
+        "/services/creative-services/logo-design",
         heightAndWidth:"w-[391px] h-auto"
     },
     {
@@ -54,7 +54,7 @@ export default function Section3() {
       ],
       imageSrc: "/varunimage/printadv2.png",
       learnMoreHref:
-        "https://ritzmediaworld.com/services/creative-services/print-advertisement-design",
+        "/services/creative-services/print-advertisement-design",
         heightAndWidth:"w-[393px] h-auto"
     },
     {
@@ -65,7 +65,7 @@ export default function Section3() {
       ],
       imageSrc: "/varunimage/PackagingDesign.png",
       learnMoreHref:
-        "https://ritzmediaworld.com/services/creative-services/packaging-design",
+        "/services/creative-services/packaging-design",
         heightAndWidth:"w-[403px] h-auto"
     },
   ];

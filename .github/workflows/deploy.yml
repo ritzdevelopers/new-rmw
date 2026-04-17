@@ -1,66 +1,71 @@
-name: RMW Deployment Pipelines
+# name: RMW Deployment Pipelines
 
-on:
-  push:
-    branches:
-      - main
-      - staging
+# on:
+#   push:
+#     branches:
+#       - main
+#       - staging
 
-jobs:
-  deploy-production:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to Production
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.DROPLET_IP }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          debug: true
-          script: |
-            cd /var/www/new-rmw
+# jobs:
+#   deploy-production:
+#     if: github.ref == 'refs/heads/main'
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy to Production
+#         uses: appleboy/ssh-action@v1.0.3
+#         with:
 
-            
+#           host: ${{ secrets.DROPLET_IP }}
+#           username: ${{ secrets.USERNAME }}
+#           key: ${{ secrets.SSH_KEY }}
+#           debug: true
+#           script: |
+#             cd /var/www/new-rmw-build
 
-            echo "Pulling latest code from main branch"
-            git pull origin main
+#             echo "Resetting the repository to the main branch"
+#             git reset --hard origin/main
 
-           
+#             echo "Pulling latest code from main branch"
+#             git pull origin main
 
-            echo "Creating Build"
-            npm run build
+#             echo "Installing Dependencies"
+#             npm install
 
-            cd ..
+#             echo "Creating Build"
+#             NODE_OPTIONS=--max-old-space-size=3072 npm run build
 
-            
+#             cd ..
 
-            
+#             echo "Create Backup of the old build"
+#             cp -r /var/www/new-rmw /var/www/new-rmw-backup
 
-            echo "Restarting PM2"
-            pm2 restart new-rmw 
+#             echo "Replace New Build With Old Build"
+#             rsync -av --delete /var/www/new-rmw-build/ /var/www/new-rmw/
 
-  deploy-staging:
-    if: github.ref == 'refs/heads/staging'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to Staging
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.DROPLET_IP_STAGING }}
-          username: ${{ secrets.USERNAME_STAGING }}
-          key: ${{ secrets.SSH_KEY_STAGING }}
-          debug: true
-          script: |
-            export NVM_DIR="$HOME/.nvm"
-            source $NVM_DIR/nvm.sh
-            cd new-rmw
+#             echo "Restarting PM2"
+#             pm2 reload new-rmw || pm2 start ecosystem.config.js
 
-            echo "Pulling latest code from staging branch"
-            git pull origin staging
+#   deploy-staging:
+#     if: github.ref == 'refs/heads/staging'
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Deploy to Staging
+#         uses: appleboy/ssh-action@v1.0.3
+#         with:
+#           host: ${{ secrets.DROPLET_IP_STAGING }}
+#           username: ${{ secrets.USERNAME_STAGING }}
+#           key: ${{ secrets.SSH_KEY_STAGING }}
+#           debug: true
+#           script: |
+#             export NVM_DIR="$HOME/.nvm"
+#             source $NVM_DIR/nvm.sh
+#             cd new-rmw
 
-            echo "Creating Build"
-            npm run build
+#             echo "Pulling latest code from staging branch"
+#             git pull origin staging
 
-            echo "Restarting PM2"
-            pm2 reload new-rmw || pm2 start ecosystem.config.js
+#             echo "Creating Build"
+#             npm run build
+
+#             echo "Restarting PM2"
+#             pm2 reload new-rmw || pm2 start ecosystem.config.js
