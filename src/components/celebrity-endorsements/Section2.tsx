@@ -58,7 +58,7 @@ export default function Section2() {
                   ensure that every celebrity endorsement campaign enhances
                   credibility, reach, and engagement.
                 </p>
-                <p className="mt-3 md:mt-4 italic">By leveraging expertise in celebrity endorsements, we elevate your brand value as well as create a buzz for your audience, building trust by connecting you with the masses.</p>
+                <p className="mt-3 md:mt-4 ">By leveraging expertise in celebrity endorsements, we elevate your brand value as well as create a buzz for your audience, building trust by connecting you with the masses.</p>
               </div>
 
               <div className="mt-7 sm:mt-2 md:mt-6 lg:mt-7 flex items-center justify-center gap-4 lg:justify-start">

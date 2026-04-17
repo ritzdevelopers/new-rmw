@@ -5,6 +5,7 @@ import ClientTestimonials from "@/components/influencer-marketing-agency-in-indi
 import BrandImpactSection1 from "../copy/BrandImpactSection1";
 import ServicesV3SubslugLayer4Section5 from "@/components/services-v3-subslug/layer-4/Section5";
 import Link from "next/link";
+import Clients from "../influencer-marketing-agency-in-india/Clients"; 
 
 
 const cards = [
@@ -53,7 +54,7 @@ export default function Section4() {
           Endorsement Matter
         </h2>
 
-        <div className="mt-5 md:mt-10 lg:mt-25">
+        <div className="mt-5 md:mt-10 lg:mt-10 xl:mt-20">
           <div className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center lg:flex-nowrap lg:justify-start items-start">
             {cards.map((card, index) => (
               <div
@@ -61,7 +62,7 @@ export default function Section4() {
                 className={`w-full min-w-0 sm:w-1/2 sm:max-w-[360px] lg:max-w-none lg:w-1/4 pb-5 sm:pb-12 lg:pb-0 ${rampOffsets[index]}`}
               >
                 <div
-                  className="relative lg:pl-7 xl:pl-8 lg:pr-4 xl:pr-5 lg:pt-0"
+                  className="relative lg:pl-9 xl:pl-8 lg:pr-6 xl:pr-5 lg:pt-0"
                 >
                   {index === 0 ? (
                     <div className="absolute left-0 top-[38px] z-[1] hidden h-[274px] w-[0.5px] min-w-[0.5px] bg-[#E3E0E0] lg:block" />
@@ -85,7 +86,7 @@ export default function Section4() {
                     }
                   >
                     <h3
-                      className="text-center lg:text-left mx-auto lg:mx-0 text-black font-[700] text-[20px] leading-[30px] tracking-[0em] max-w-[288px] lg:leading-[25px] xl:leading-[30px]"
+                      className="text-center lg:text-left mx-auto lg:mx-0 text-black font-[700] text-[20px] leading-[30px] tracking-[0em] max-w-[288px] lg:leading-[25px] xl:leading-[30px] md:mt-0 mt-2"
                       style={{ fontFamily: "MontserratBold" }}
                     >
                       {card.h3 === "Generate Engagement & Influence" ? (
@@ -102,7 +103,7 @@ export default function Section4() {
                     {card.h3 === "Generate Leads & Conversions" ? (
                       <div className="mt-1 md:mt-3 w-full min-w-0 max-w-[224px] text-center lg:text-left mx-auto lg:mx-0">
                         <p
-                          className="text-black font-[400] text-[16px] leading-[18px]  md:leading-[28px] tracking-[0em] lg:text-[17px] lg:leading-[25px] xl:text-[16px] xl:leading-[28px]"
+                          className="relative z-10 text-black font-[400] text-[16px] leading-[25px]  md:leading-[28px] tracking-[0em] lg:text-[14px] lg:leading-[25px] xl:text-[16px] xl:leading-[28px]"
                           style={{ fontFamily: "OpenSansRegular" }}
                         >
                           {card.description}
@@ -110,7 +111,7 @@ export default function Section4() {
                       </div>
                     ) : (
                       <p
-                        className="mt-1 md:mt-3 max-w-[234px] text-center lg:text-left mx-auto lg:mx-0 text-black font-[400] text-[16px] leading-[28px] tracking-[0em] lg:text-[17px] lg:leading-[25px] xl:text-[16px] xl:leading-[28px]"
+                        className="relative z-10 mt-1 md:mt-3 max-w-[234px] text-center lg:text-left mx-auto lg:mx-0 text-black font-[400] text-[16px] leading-[25px] tracking-[0em] lg:text-[15px] lg:leading-[25px] xl:text-[16px] xl:leading-[28px]"
                         style={{ fontFamily: "OpenSansRegular" }}
                       >
                         {card.description}
@@ -123,24 +124,39 @@ export default function Section4() {
           </div>
         </div>
 
-        <div className="hidden xl:block lg:-mt-[180px] xl:-mt-[120px]">
-          <Image
-            src="/varunimage/celebrity-bg.jpg"
-            alt="Decorative wave"
-            title="Decorative wave"
-            width={1000}
-            height={278}
-            className="mx-auto block w-full max-w-[1000px] h-auto object-contain"
-            sizes="(min-width:1280px) 1000px, (min-width:1024px) 88vw, 94vw"
-          />
-        </div>
+        <div className="hidden lg:block lg:-mt-[180px] xl:-mt-[120px]">
+  
+  {/* XL → full width */}
+  <div className="hidden xl:block relative w-full h-[278px]">
+    <Image
+      src="/varunimage/celebrity-bg.jpg"
+      alt="Decorative wave"
+      fill
+      className="object-cover"
+      sizes="100vw"
+    />
+  </div>
+
+  {/* LG → 700px width */}
+  <div className="hidden lg:block xl:hidden lg:m-[80px]">
+    <Image
+      src="/varunimage/celebrity-bg.jpg"
+      alt="Decorative wave"
+      width={900}
+      height={278}
+      className="mx-auto w-[900px] h-auto object-contain"
+    />
+  </div>
+
+</div>
       </div>
 
-      <div className="w-full -mt-8 sm:-mt-12 lg:mt-[30px] xl:-mt-[100px] lg:pb-[70px]">
-        <ServicesV3SubslugLayer4Section5 />
+      <div className="w-full -mt-8 sm:-mt-12 lg:-mt-[100px] xl:-mt-[0px] lg:pb-[20px]">
+        {/* <ServicesV3SubslugLayer4Section5 /> */}
+        <Clients pd="pt-[35px] lg:pt-[70px]" />
       </div>
 
-      <div className="w-full -mt-4 sm:-mt-6 md:-mt-[30px] lg:-mt-[50px] xl:mt-[100px]">
+      <div className="w-full -mt-4 sm:-mt-6 md:-mt-[0px] lg:-mt-[0px] xl:mt-[0px]">
         <ClientTestimonials />
       </div>
 
