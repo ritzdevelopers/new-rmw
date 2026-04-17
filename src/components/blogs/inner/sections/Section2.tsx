@@ -238,7 +238,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                             {
                                 searchValue && filteredBlogs && filteredBlogs.length > 0 && filteredBlogs.map((blog: Blog, idx: number) => {
                                     return (
-                                        <div onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
+                                        <div onClick={() => window.open(`/${blog.slug}`, "_blank")} key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
                                             {/* Left Side Image Container  */}
                                             <div className="w-[80px] h-[52px] sm:w-[92px] sm:h-[60px] xl:w-[108px] xl:h-[69px] relative rounded-[2px] overflow-hidden shrink-0 group-hover:opacity-95 transition-opacity">
                                                 <Image src={(blog?.banner ?? "").includes("/images")
@@ -269,7 +269,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                 {sortedCategories.map((cat: any, idx: number) => (
                                     <div
                                         key={String(cat?.link ?? cat?._id ?? cat?.id ?? idx)}
-                                        onClick={() => window.open(`/category2/${cat.link}`, "_blank")}
+                                        onClick={() => window.open(`/category/${cat.link}`, "_blank")}
                                         className="w-full flex justify-between pb-4 border-b border-[#F0F0F0] cursor-pointer rounded px-2 py-1 -mx-2 -my-1 hover:bg-gray-50/80 transition-colors duration-200"
                                     >
                                         <div className="flex items-center gap-2">
@@ -297,7 +297,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                         return keyword && keyword.trim() !== "" && <div
                                             onClick={() => {
                                                 let keywordSlug = keyword.toLowerCase().trim().replace(/ /g, "-");
-                                                window.open(`/tags2/${keywordSlug}`, "_blank");
+                                                window.open(`/tags/${keywordSlug}`, "_blank");
                                             }}
                                             key={idx} className="px-4 sm:px-5 xl:px-5 py-1.5 sm:py-2 rounded-[50px] flex justify-center items-center text-center border-[1px] border-[#F0F0F0] cursor-pointer hover:border-[#0F1640]/40 hover:bg-[#0F1640]/5 transition-colors duration-200">
                                             <p className="font-[400] text-[12px] sm:text-[13px] xl:text-[14px] text-[#484848]">{keyword}</p>
@@ -318,7 +318,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                 {
                                     relatedBlogs && relatedBlogs.length > 0 && relatedBlogs.map((blog: RelatedBlog, idx: number) => {
                                         return (
-                                            <div onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
+                                            <div onClick={() => window.open(`/${blog.slug}`, "_blank")} key={idx} className="w-full flex gap-3 sm:gap-4 justify-start items-start cursor-pointer rounded-lg p-2 -m-2 hover:bg-gray-50/80 transition-colors duration-200 group">
                                                 {/* Left Side Image Container  */}
                                                 <div className="w-[80px] h-[52px] sm:w-[92px] sm:h-[60px] xl:w-[108px] xl:h-[69px] relative rounded-[2px] overflow-hidden shrink-0 group-hover:opacity-95 transition-opacity">
                                                     <Image priority={false} loading="lazy"
