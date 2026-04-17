@@ -25,7 +25,7 @@ export default function Section1() {
           <p className="min-w-0 text-white leading-[45px] sm:leading-[1.15] md:leading-tight lg:leading-[45px] xl:leading-[20px] mt-1 sm:mt-2 md:mt-0 xl:mt-3 lg:py-0 xl:py-0">
             <span className="max-md:inline-block max-md:whitespace-nowrap md:contents lg:inline-block lg:whitespace-nowrap lg:translate-y-2 xl:translate-y-0 xl:contents">
               <h1
-                className={`${styles.bannerHeadlineSm} font-[800] text-[#fff] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[55px] xl:font-[800] lg:leading-[10px]`}
+                className={`${styles.bannerHeadlineSm} font-[800] text-[#fff] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[55px] xl:font-[800] lg:leading-[10px] mt-0 lg:mt-5 xl:mt-0`}
                 style={{ fontFamily: "MontserratExtraBold" }}
               >
                 Celebrity Endorsements{" "}

@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Clients.module.css";
 
-function Section6({ pd = "py-[35px] lg:py-[70px]" }: { pd?: string }) {
+function Section6({ pd = "py-[35px] lg:py-[70px] " }: { pd?: string }) {
     return (
-        <section className={`w-full flex justify-center items-center ${pd}`}>
+        <section className={`w-full flex justify-center items-center md:mt-0 mt-2 ${pd}`}>
             {/* Centered Align Container  */}
             <div className={`w-full mx-auto flex flex-col justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 overflow-hidden ${styles.containerWidth}`}>
                 {/* Top Row  */}
@@ -13,8 +13,8 @@ function Section6({ pd = "py-[35px] lg:py-[70px]" }: { pd?: string }) {
                     {/* Copy Row 1  */}
                     <div className="w-full flex flex-col md:flex-row justify-between items-center md:items-stretch gap-4 sm:gap-0">
                         {/* Left Side Container  */}
-                        <div className="relative w-full md:w-[194px] h-auto md:h-[156px] border-b-[#D9D9D9] border-b-[1px] md:border-b-0 md:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center md:justify-start pb-4 md:pb-0 px-4 md:px-0">
-                            <h2 className="font-[700] text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] text-center sm:text-left" style={{
+                        <div className="relative w-full md:w-[150px] h-auto md:h-[156px] border-b-[#D9D9D9] border-b-[1px] md:border-b-0 md:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center md:justify-start pb-4 md:pb-0 px-4 md:px-0">
+                            <h2 className="font-[700] text-[24px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] text-center sm:text-left" style={{
                                 fontFamily: 'MontserratBold',
                             }}>Brands That Trust Us</h2>
                             
