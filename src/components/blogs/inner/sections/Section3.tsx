@@ -264,7 +264,8 @@ function Section3({
                                                 }
                                                 src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
                                                 // src="/inner-demo-img.jpg"
-                                                alt="RMW"
+                                                alt={ob.blogTitle || ""}
+                                                title={ob.blogTitle || ""}
                                                 className="w-full h-full"
                                             // className="object-cover"
                                             ></img>

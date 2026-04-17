@@ -770,6 +770,7 @@ function NewNavbar() {
                   }}
                   href="https://ritzmediaworld.com/services"
                   target="_blank"
+                  title="Services"
                   className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
                       ? "text-black hover:text-[#C99237]"
                       : "text-white hover:text-[#C99237]"
@@ -782,6 +783,7 @@ function NewNavbar() {
                 <Link
                   href="https://ritzmediaworld.com/work.html"
                   target="_blank"
+                  title="Our Work"
                   className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
                       ? "text-black hover:text-[#C99237]"
                       : "text-white hover:text-[#C99237]"
@@ -794,6 +796,7 @@ function NewNavbar() {
                 <Link
                   href="https://ritzmediaworld.com/about.html"
                   target="_blank"
+                  title="About Us"
                   className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
                       ? "text-black hover:text-[#C99237]"
                       : "text-white hover:text-[#C99237]"
@@ -806,6 +809,7 @@ function NewNavbar() {
                 <Link
                   href="https://ritzmediaworld.com/contact.html"
                   target="_blank"
+                  title="Contact"
                   className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
                       ? "text-black hover:text-[#C99237]"
                       : "text-white hover:text-[#C99237]"
@@ -876,6 +880,7 @@ function NewNavbar() {
                       <Link
                         href={item.link}
                         target="_blank"
+                        title={item.name}
                         className="font-[700] text-[18px] transition-colors duration-300 text-white hover:text-[#C99237] cursor-pointer block mb-3"
                       >
                         {item.name}
@@ -891,6 +896,7 @@ function NewNavbar() {
                             <Link
                               href={subItem.link}
                               target="_blank"
+                              title={subItem.name}
                               className="font-[400] text-[14px] transition-colors duration-300 text-white hover:text-[#C99237] cursor-pointer"
                             >
                               {subItem.name}
@@ -1071,6 +1077,7 @@ function NewNavbar() {
                       <Link
                         href={item.link}
                         target="_blank"
+                        title={item.name}
                         className="font-[700] text-[17px] sm:text-[18px] text-white block mb-3 hover:text-[#C99237] transition-colors duration-300"
                         onClick={() => {
                           setIsMobileServicesOpen(false);
@@ -1085,6 +1092,7 @@ function NewNavbar() {
                             key={subIndex}
                             href={subItem.link}
                             target="_blank"
+                            title={subItem.name}
                             className="font-[400] text-[14px] sm:text-[15px] text-white/90 hover:text-[#C99237] flex items-center gap-2.5 py-1.5 px-2 rounded-lg hover:bg-white/10 transition-all duration-300 group"
                             onClick={() => {
                               setIsMobileServicesOpen(false);
@@ -1107,6 +1115,7 @@ function NewNavbar() {
               <Link
                 href="https://ritzmediaworld.com/blogs"
                 target="_blank"
+                title="Blogs"
                 className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -1119,6 +1128,7 @@ function NewNavbar() {
               <Link
                 href="https://ritzmediaworld.com/work.html"
                 target="_blank"
+                title="Our Work"
                 className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -1130,6 +1140,7 @@ function NewNavbar() {
               <Link
                 href="https://ritzmediaworld.com/about.html"
                 target="_blank"
+                title="About Us"
                 className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -1141,6 +1152,7 @@ function NewNavbar() {
               <Link
                 href="https://ritzmediaworld.com/contact.html"
                 target="_blank"
+                title="Contact"
                 className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

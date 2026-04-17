@@ -186,7 +186,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                 <Image src={formattedBlog?.banner?.includes("/images")
                                     ? `https://ritzmediaworld.com/api/images${formattedBlog.banner.split("/images")[1]}`
                                     : `https://ritzmediaworld.com/blogs/${formattedBlog?.banner}`
-                                } alt="Blog Image" fill className="w-full h-full" />
+                                } alt={formattedBlog?.title || ""} title={formattedBlog?.title || ""} fill className="w-full h-full" />
                             </div>
 
                             <div className="flex gap-3 sm:gap-4 w-full items-center flex-wrap">
@@ -233,12 +233,12 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                                 <Image src={(blog?.banner ?? "").includes("/images")
                                                     ? `https://ritzmediaworld.com/api/images${(blog?.banner ?? "").split("/images")[1]}`
                                                     : blog?.banner ? `https://ritzmediaworld.com/blogs/${blog.banner}` : "/inner-demo-img.jpg"
-                                                } alt="Blog Image" fill className="object-cover w-full h-full" />
+                                                } alt={blog.title || ""} title={blog.title || ""} fill className="object-cover w-full h-full" />
                                             </div>
 
                                             {/* Right Side Image Container  */}
                                             <div className="flex flex-col gap-1 sm:gap-2 justify-center text-left items-start min-w-0 flex-1">
-                                                <h3 className={`font-[600] text-[13px] sm:text-[14px] xl:text-[16px] text-[#000000] ${styles.fontopensans} line-clamp-2 hover:underline cursor-pointer group-hover:text-[#0F1640] transition-colors`}>{blog.title}</h3>
+                                                <p className={`font-[600] text-[13px] sm:text-[14px] xl:text-[16px] text-[#000000] ${styles.fontopensans} line-clamp-2 hover:underline cursor-pointer group-hover:text-[#0F1640] transition-colors`}>{blog.title}</p>
                                                 <p className={`font-[400] text-[11px] sm:text-[12px] text-[#535353] ${styles.fontopensans}`}>{new Date(blog.created_at || "").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
                                             </div>
                                         </div>
@@ -263,7 +263,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                     >
                                         <div className="flex items-center gap-2">
                                             <div className="w-[7px] h-[7px] rounded-full border border-[#5E5E5E]" />
-                                            <h3 className="font-[400] text-[12px] sm:text-[13px] xl:text-[14px] text-[#484848]">{cat.name}</h3>
+                                            <p className="font-[400] text-[12px] sm:text-[13px] xl:text-[14px] text-[#484848]">{cat.name}</p>
                                         </div>
                                         <div>
                                             <p className="font-[400] text-[12px] sm:text-[13px] xl:text-[14px] text-[#969696]">({cat.total_blogs})</p>
@@ -315,12 +315,12 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                                             src={blog?.banner?.includes("/images")
                                                             ? `https://ritzmediaworld.com/api/images${blog?.banner?.split("/images")[1]}`
                                                             : `https://ritzmediaworld.com/blogs/${blog?.banner}`
-                                                        } alt="Blog Image" fill className="object-cover w-full h-full" />
+                                                        } alt={blog.title || ""} title={blog.title || ""} fill className="object-cover w-full h-full" />
                                                 </div>
 
                                                 {/* Right Side Image Container  */}
                                                 <div className="flex flex-col gap-1 sm:gap-2 justify-center items-start min-w-0 flex-1">
-                                                    <h3 className={`font-[600] text-[13px] sm:text-[14px] xl:text-[16px] text-[#000000] ${styles.fontopensans} line-clamp-2 group-hover:text-[#0F1640] transition-colors`}>{blog.title}</h3>
+                                                    <p className={`font-[600] text-[13px] sm:text-[14px] xl:text-[16px] text-[#000000] ${styles.fontopensans} line-clamp-2 group-hover:text-[#0F1640] transition-colors`}>{blog.title}</p>
                                                     <p className={`font-[400] text-[11px] sm:text-[12px] text-[#535353] ${styles.fontopensans}`}>{new Date(blog.created_at || "").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
                                                 </div>
                                             </div>

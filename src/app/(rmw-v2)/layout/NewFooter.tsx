@@ -30,7 +30,7 @@ function NewFooter() {
           </div>
           <div className="flex flex-col gap-[27px] md:gap-4 lg:gap-10">
             {/* Row 2  */}
-            <div className="flex flex-col gap-2 w-full md:w-[200px] lg:w-auto text-left sm:gap-3 cursor-pointer" onClick={() => window.open("mailto:info@ritzmediaworld.com", "_blank")}>
+            <div className="flex flex-col gap-2 w-full md:w-[200px] lg:w-auto text-left sm:gap-3 cursor-pointer" title="info@ritzmediaworld.com" onClick={() => window.open("mailto:info@ritzmediaworld.com", "_blank")}>
               <p className="font-[700] text-[14px] sm:text-[16px] text-white ">Email Us</p>
               <p className="text-white text-[13px] sm:text-[15px] font-[400] break-words">
                 info@ritzmediaworld.com
@@ -47,8 +47,8 @@ function NewFooter() {
                 </div>
                 {/* Right Side Call Number  */}
                 <div className="flex flex-col gap-1 sm:gap-1.5 w-auto  lg:w-[200px]">
-                  <p className="text-white text-[13px] sm:text-[15px] font-[400] cursor-pointer" onClick={() => window.open("tel:+919220516777", "_blank")}>+91 9220516777</p>
-                  <p className="text-white text-[13px] sm:text-[15px] font-[400] cursor-pointer" onClick={() => window.open("tel:+917290002168", "_blank")}>+91 7290002168</p>
+                  <p className="text-white text-[13px] sm:text-[15px] font-[400] cursor-pointer" title="+91 9220516777" onClick={() => window.open("tel:+919220516777", "_blank")}>+91 9220516777</p>
+                  <p className="text-white text-[13px] sm:text-[15px] font-[400] cursor-pointer" title="+91 7290002168" onClick={() => window.open("tel:+917290002168", "_blank")}>+91 7290002168</p>
 
                 </div>
               </div>
@@ -73,27 +73,27 @@ function NewFooter() {
             <div className="flex flex-col gap-3 sm:gap-4 text-left lg:min-w-0 xl:min-w-0 xl:shrink-0">
               <p className="font-[700] text-[14px] sm:text-[16px] text-white mb-0.5 sm:mb-1">Quick Links</p>
               <ul className="text-white text-[13px] sm:text-[14px] lg:text-[15px] font-[400] flex flex-col gap-2.5 sm:gap-3 lg:gap-4 list-disc cursor-pointer list-inside lg:list-outside lg:ml-4 md:w-[209px] lg:w-[178px] xl:w-[209px]">
-                <li onClick={() => window.open("https://ritzmediaworld.com/", "_blank")}>Home</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")}>About</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/work.html", "_blank")}>Our Work</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/blogs", "_blank")}>Blogs</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/web-stories", "_blank")}>Web Stories</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}>Contact</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/career", "_blank")}>Careers</li>
+                <li title="Home" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")}>Home</li>
+                <li title="About" onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")}>About</li>
+                <li title="Our Work" onClick={() => window.open("https://ritzmediaworld.com/work.html", "_blank")}>Our Work</li>
+                <li title="Blogs" onClick={() => window.open("https://ritzmediaworld.com/blogs", "_blank")}>Blogs</li>
+                <li title="Web Stories" onClick={() => window.open("https://ritzmediaworld.com/web-stories", "_blank")}>Web Stories</li>
+                <li title="Contact" onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}>Contact</li>
+                <li title="Careers" onClick={() => window.open("https://ritzmediaworld.com/career", "_blank")}>Careers</li>
               </ul>
             </div>
             {/* Col 2  */}
             <div className="flex flex-col gap-3 sm:gap-4 pl-0 text-left lg:-ml-5 lg:pl-0 xl:ml-0 xl:pl-0 xl:shrink-0">
               <p className="font-[700] text-[14px] sm:text-[16px] text-white mb-0.5 sm:mb-1">Services</p>
               <ul className="text-white text-[13px] sm:text-[14px] lg:text-[15px] font-[400] flex flex-col gap-2.5 sm:gap-3 lg:gap-4 list-disc cursor-pointer list-inside lg:list-outside lg:ml-4 md:w-[260px] lg:w-[212px] xl:w-[260px]">
-                <li onClick={() => window.open("https://ritzmediaworld.com/services/digital-marketing", "_blank")}>Digital Marketing</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/services/print-advertising", "_blank")}>Print Advertising</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/services/radio-advertising", "_blank")}>Radio Advertising</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/services/creative-services", "_blank")}>Creative Services</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/services/contents-marketing", "_blank")}>Content Marketing</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/services/web-designing-and-development", "_blank")}>Web Development</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/services/celebrity-endorsements", "_blank")}>Celebrity Endorsements</li>
-                <li onClick={() => window.open("https://ritzmediaworld.com/services/influencer-marketing-agency-in-india", "_blank")}>Influencer Marketing</li>
+                <li title="Digital Marketing" onClick={() => window.open("https://ritzmediaworld.com/services/digital-marketing", "_blank")}>Digital Marketing</li>
+                <li title="Print Advertising" onClick={() => window.open("https://ritzmediaworld.com/services/print-advertising", "_blank")}>Print Advertising</li>
+                <li title="Radio Advertising" onClick={() => window.open("https://ritzmediaworld.com/services/radio-advertising", "_blank")}>Radio Advertising</li>
+                <li title="Creative Services" onClick={() => window.open("https://ritzmediaworld.com/services/creative-services", "_blank")}>Creative Services</li>
+                <li title="Content Marketing" onClick={() => window.open("https://ritzmediaworld.com/services/contents-marketing", "_blank")}>Content Marketing</li>
+                <li title="Web Development" onClick={() => window.open("https://ritzmediaworld.com/services/web-designing-and-development", "_blank")}>Web Development</li>
+                <li title="Celebrity Endorsements" onClick={() => window.open("https://ritzmediaworld.com/services/celebrity-endorsements", "_blank")}>Celebrity Endorsements</li>
+                <li title="Influencer Marketing" onClick={() => window.open("https://ritzmediaworld.com/services/influencer-marketing-agency-in-india", "_blank")}>Influencer Marketing</li>
               </ul>
             </div>
 
@@ -106,19 +106,19 @@ function NewFooter() {
 
               {/* Social Media Links  */}
               <div className="flex gap-2 sm:gap-3 flex-wrap justify-start lg:flex-nowrap lg:gap-1.5 xl:flex-wrap xl:gap-3 xl:justify-end min-[1657px]:justify-end lg:[&>div]:!h-8 lg:[&>div]:!w-8 lg:[&>div]:!min-h-0 lg:[&>div]:!min-w-0 xl:[&>div]:!h-[40px] xl:[&>div]:!w-[40px] xl:[&>div]:!min-h-0 xl:[&>div]:!min-w-0">
-                <div onClick={() => window.open("https://www.facebook.com/ritzmediaworld", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
+                <div title="Facebook" onClick={() => window.open("https://www.facebook.com/ritzmediaworld", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
                   <FaFacebookF className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-white" />
                 </div>
-                <div onClick={() => window.open("https://www.instagram.com/ritzmediaworld", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
+                <div title="Instagram" onClick={() => window.open("https://www.instagram.com/ritzmediaworld", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
                   <FaInstagram className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-white" />
                 </div>
-                <div onClick={() => window.open("https://www.linkedin.com/company/ritzmediaworld/", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
+                <div title="LinkedIn" onClick={() => window.open("https://www.linkedin.com/company/ritzmediaworld/", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
                   <FaLinkedinIn className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-white" />
                 </div>
-                <div onClick={() => window.open("https://x.com/ritzmediaworld", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
+                <div title="X (Twitter)" onClick={() => window.open("https://x.com/ritzmediaworld", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
                   <FaXTwitter className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-white" />
                 </div>
-                <div onClick={() => window.open("https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
+                <div title="YouTube" onClick={() => window.open("https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia", "_blank")} className="flex w-[36px] h-[36px] sm:w-[40px] sm:h-[40px] rounded-[10px] justify-center items-center text-white bg-[#1E2939] hover:bg-[#C99237] active:bg-[#C99237] transition-colors duration-300 cursor-pointer">
                   <FaYoutube className="w-[15px] h-[15px] sm:w-[17px] sm:h-[17px] text-white" />
                 </div>
               </div>

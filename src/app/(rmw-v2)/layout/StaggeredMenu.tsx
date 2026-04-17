@@ -619,6 +619,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={it.ariaLabel}
+                      title={it.label}
                       data-index={idx + 1}
                     >
                       <span className="sm-panel-itemLabel inline-block  [transform-origin:50%_100%] will-change-transform">
@@ -651,6 +652,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         href={s.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        title={s.label}
                         className="sm-socials-link text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-[2px] transition-[color,opacity] duration-300 ease-linear"
                       >
                         {s.label}

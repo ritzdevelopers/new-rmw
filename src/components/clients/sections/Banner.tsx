@@ -1,49 +1,59 @@
-import React from 'react';
-import styles from './Section1.module.css';
-function Banner() {
+"use client"
+
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import styles from "./page.module.css";
+
+export default function Banner() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkScreen = () => {
+            setIsMobile(window.innerWidth < 768); // md breakpoint
+        };
+
+        checkScreen();
+        window.addEventListener("resize", checkScreen);
+
+        return () => window.removeEventListener("resize", checkScreen);
+    }, []);
+
     return (
-        <section 
-        className={`w-full h-[425px] md:h-[300px] md:min-h-[300px] lg:h-[500px] lg:min-h-[500px] xl:h-[500px] xl:min-h-[500px] min-[1536px]:h-auto min-[1536px]:min-h-[615px] 
-            bg-[url("/varun/influencer-marketing/inf-mark-mob-banner.png")] 
-            md:bg-[url("/service-v3/influencer-marketing-agency-in-india/banner/inf-banner.jpg")]
-            
-            bg-cover bg-no-repeat bg-center flex md:items-stretch lg:items-end pb-8 sm:pb-12 md:pb-3 lg:pb-10 xl:pb-26 px-4 sm:px-6 md:px-0 overflow-visible
-        justify-center items-center md:justify-start 
-        ${styles.bannerHeight}
-        `}>
-
-            {/* Bottom Center Text Container  */}
-            <div className='flex flex-col md:gap-2 lg:gap-3 xl:gap-8 w-full max-lg:max-w-none lg:max-w-none text-center md:text-left md:h-full md:justify-end lg:h-auto lg:justify-start -translate-y-14 sm:-translate-y-16 md:translate-y-0 lg:translate-y-3 xl:translate-y-17'>
-                {/* Row 1  Yellow ReactAngle */}
-                <div className="hidden md:block md:w-[160px] xl:w-[170px]  md:h-[30px] xl:h-[37px] relative">
-                    <img src="/home-v3/service-imgs/s1/yellow-reactangle.png" alt="Ritz Media World – influencer marketing" title="Ritz Media World – influencer marketing" className='w-full h-full' />
-                    <p className={`font-[700] uppercase text-[16px] text-white absolute top-[50%] transform translate-y-[-50%] right-8 ${styles.fontmontserrat}`}>Services</p>
+        <section
+            style={{
+                backgroundImage: `url(${isMobile
+                    ? "/alishba-services-v3/radio-advertising/Radio-banner-mobile.png"
+                    : "/alishba-services-v3/radio-advertising/Radio-banner2.jpg"
+                    })`,
+            }}
+            className={`w-full min-h-[520px]  md:min-h-[363px] lg:min-h-[490px] xl:h-[516px]
+        bg-cover bg-no-repeat bg-center flex items-center justify-center md:justify-start text-center md:text-left md:items-end pb-8 sm:pb-12 md:pb-8 lg:pb-10
+         px-4 sm:px-6 md:px-0 lg:px-0`}>
+            <div className="flex flex-col gap-3 md:gap-0 xl:gap-4  w-full max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-none">
+                <div className="w-[120px] hidden md:block sm:w-[140px] md:w-[155px] lg:w-[179px] h-[28px] sm:h-[32px] md:h-[35px] lg:h-[37px] relative">
+                    <Image
+                        src="/home-v3/service-imgs/s1/yellow-reactangle.png"
+                        alt="RMW"
+                        title="RMW"
+                        fill
+                        className="object-contain"
+                        sizes="(min-width:1024px) 165px, (min-width:768px) 155px, (min-width:640px) 140px, 120px"
+                        priority
+                    />
+                    <p className={`font-[700]  text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] text-white absolute top-[50%] uppercase -translate-y-1/2 right-4 sm:right-5 md:right-10 lg:right-8 ${styles.fontmontserrat}`}>
+                        Services
+                    </p>
                 </div>
+                <div className="pl-0 sm:pl-4 md:pl-8 lg:pl-16 pb-[177px] md:pb-0">
 
-                {/* Row 2  */}
-                <div className='pl-0 sm:pl-4 md:pl-[40px] lg:pl-[45px] xl:pl-[53px]'>
-                    <h1 className="text-white leading-[45px] sm:leading-[1.15] md:leading-tight lg:leading-[45px] xl:leading-[45px] mt-1 sm:mt-2 md:mt-0  xl:mt-3 lg:py-0 xl:py-0">
-                        <span className="max-md:inline-block max-md:whitespace-nowrap md:contents lg:inline-block lg:whitespace-nowrap lg:translate-y-2 xl:translate-y-0 xl:contents">
-                          <span
-                            className={`${styles.bannerHeadlineSm} font-[800] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[55px] xl:font-[800] lg:leading-[10px]`}
-                            style={{ fontFamily: "MontserratExtraBold" }}
-                          >
-                            Influencer Marketing{" "}
-                          </span>
-                          {/* <br className="hidden md:block lg:hidden xl:block" />
-                          <span
-                            className={`${styles.bannerHeadlineSm} font-[500] md:text-[26px] lg:text-[30px] lg:font-[600] xl:text-[65px] xl:font-[500] ${styles.bannerServicesMatchLg}`}
-                            style={{ fontFamily: "MontserratMedium" }}
-                          >
-                            Services
-                          </span> */}
-                        </span></h1>
-                        <h2 className={`font-[500]  text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white leading-[25px]  w-full max-md:max-w-none md:max-w-[320px] lg:max-w-[350px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px]`} style={{ fontFamily: "MontserratMedium" }}>Maximize Engagement & Conversions With Result-driven Influencer Campaigns</h2>
-                    
+                    <h1 className={`font-[800] text-[28px] sm:text-[36px] md:text-[24px] lg:text-[30px] xl:text-[55px] text-white leading-[30px] md:leading-normal mb-2 md:mb-0 xl:leading-14 mt-1 sm:mt-2 md:mt-3 ${styles.fontmontserrat}`}>
+                        Radio Advertising
+                    </h1>
+                    <h2 className={`font-[500] text-[14px] sm:text-[16px] md:text-[16px] lg:text-[19px] xl:text-[21px] text-white leading-tight sm:leading-snug md:leading-normal ${styles.fontmontserrat}`}>
+                        Broadcast your brand message louder, <br className="hidden md:block xl:hidden" /> clearer, <br className="hidden  xl:block" /> more effectively.
+                    </h2>
                 </div>
             </div>
         </section>
-    )
+    );
 }
-
-export default Banner;

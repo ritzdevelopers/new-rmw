@@ -6,8 +6,11 @@ import { GET_ALL_BLOGS } from "@/app/api/get_all_blogs/route";
 
 type BlogLayoutData = { blog: any; categoryName: string; all_categories: any; latest_3_blogs: any; related_blogs: any };
 
+const SITE_ORIGIN = "https://ritzmediaworld.com";
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
+    const canonicalUrl = `${SITE_ORIGIN}/blogs2/${slug}`;
     const result = await get_single_blog(slug);
     const data: BlogLayoutData | null = Array.isArray(result) && (result[1] as { status?: number })?.status === 200
         ? (result[0] as BlogLayoutData)
@@ -22,6 +25,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         title,
         description: meta_description || undefined,
         keywords: keywords.length > 0 ? keywords : undefined,
+        alternates: {
+            canonical: canonicalUrl,
+        },
         openGraph: {
             title,
             description: meta_description || undefined,

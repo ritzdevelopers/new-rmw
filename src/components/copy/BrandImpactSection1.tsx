@@ -295,6 +295,7 @@ function BrandImpactSection1() {
                         <Link
                             href={"https://ritzmediaworld.com/contact.html"}
                             target="_blank"
+                            title="Request A Free Audit"
                             className="font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-black"
                             style={{
                                 fontFamily: "MontserratSemiBold",
