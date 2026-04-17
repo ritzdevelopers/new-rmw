@@ -126,6 +126,17 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                 ""
             );
         }
+
+        ctBody.querySelectorAll("table").forEach((table) => {
+            if (table.closest("[data-blog-inner-table-scroll]")) return;
+            const parent = table.parentNode;
+            if (!parent) return;
+            const wrap = document.createElement("div");
+            wrap.setAttribute("data-blog-inner-table-scroll", "");
+            wrap.className = styles.blogInnerTableScroll;
+            parent.insertBefore(wrap, table);
+            wrap.appendChild(table);
+        });
     }, [loading, bodyHtml]);
 
     const [filteredBlogs, setFilteredBlogs] = useState<any[]>([]);
