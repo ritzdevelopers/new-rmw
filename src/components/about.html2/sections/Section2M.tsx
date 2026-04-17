@@ -5,7 +5,7 @@ import m from "./Section2M.module.css";
 import { GoStarFill } from "react-icons/go";
 
 function Section2M() {
-    const reviewers = ["/new-about-imgs/s2/rv1.jpg", "/new-about-imgs/s2/rv2.jpg", "/new-about-imgs/s2/rv3.jpg"];
+    const reviewers = ["/new-about-imgs/s2/rrv1.png", "/new-about-imgs/s2/rrv2.png", "/new-about-imgs/s2/rrv3.png"];
 
     return (
         <section className={`w-full py-[40px] xl:py-[70px] border-b border-[#D9D9D9] ${s2.root}`}>
