@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import s2 from "./Section2.module.css";
 import { GoStarFill } from "react-icons/go";
 function Section2() {
-    const reviewers = ["/new-about-imgs/s2/rv1.jpg", "/new-about-imgs/s2/rv2.jpg", "/new-about-imgs/s2/rv3.jpg"];
+    const reviewers = ["/new-about-imgs/s2/rrv1.png", "/new-about-imgs/s2/rrv2.png", "/new-about-imgs/s2/rrv3.png"];
     return (
         <section className={`w-full py-[40px] xl:py-[70px] border-b border-[#D9D9D9] ${s2.root}`}>
             {/* Centered Align Container  */}

@@ -52,7 +52,7 @@ function Section3() {
                                     <div
                                         className={`w-full flex gap-4 items-center justify-center pl-0 md:items-end md:pl-1 ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"} ${s3.titleRow}`}
                                     >
-                                        <p className={`font-[700] md:text-[36px] text-[24px] text-[#0F1640] ${styles.fontmontserrat} ${s3.title}`}>
+                                        <p className={`flex flex-col md:flex-row font-[700] md:text-[36px] text-[24px] text-[#0F1640] ${styles.fontmontserrat} ${s3.title}`}>
                                             <span className={`font-[500] md:text-[16px] text-[13px] mr-4 ${s3.idx}`}>0{idx + 1}.</span>
                                             {item.title}</p>
                                     </div>

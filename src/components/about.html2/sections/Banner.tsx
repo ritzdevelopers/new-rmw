@@ -6,7 +6,7 @@ export default function Section1() {
     return (
         <section className={`w-full h-[460px] md:h-[302px] lg:min-h-[515px] 
         md:bg-[url("/new-about-imgs/s1/about-banner2.jpg")] 
-        bg-[url("/alishba-services-v3/digital-marketing/Digital-Marketing-banner-mob.png")]
+        bg-[url("/new-about-imgs/s1/About-Us-page-mob.png")]
         bg-cover bg-no-repeat bg-center flex items-center md:items-end pb-8 sm:pb-4 lg:pb-14 px-0`}>
             <div className="flex flex-col gap-3 sm:gap-4 md:gap-0 lg:gap-3 xl:gap-6 w-full max-w-[100%] md:max-w-[80%] lg:max-w-none">
                 <div className="w-[200px]  h-[28px] sm:h-[32px] md:h-[30px] lg:h-[37px] relative hidden md:block">
@@ -22,7 +22,7 @@ export default function Section1() {
                     About
                     </p>
                 </div>
-                <div className="pl-0 flex flex-col gap-2 md:pl-9 lg:pl-10 xl:pl-12 pb-[58px] md:pb-[15px] lg:pb-0">
+                <div className="pl-0 flex flex-col gap-2 md:pl-9 lg:pl-10 xl:pl-12 pb-[176px] md:pb-[15px] lg:pb-0">
 
                     <h1 className={`font-[800]  text-center md:text-left text-[26px] sm:text-[36px] md:text-[31px] lg:text-[55px] text-white leading-[1.1] sm:leading-[1.15] md:leading-[1.2] lg:leading-14 mt-1 sm:mt-2 lg:mt-0 ${styles.fontmontserrat}`}>
                     About Us

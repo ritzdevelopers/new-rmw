@@ -91,9 +91,11 @@ function S2Card({ blog }: { blog: Blog }) {
                         : `https://ritzmediaworld.com/blogs/${blog.banner}`
                     }
                         quality={75}
+                        title={blog.title}
                         priority={false}
                         loading="lazy"
-                        alt="Blog Image" fill className="" />
+                        alt={blog.title}
+                        fill className="" />
                 </div>
 
                 <h2 onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} className={`font-[700] hover:underline cursor-pointer text-[18px] sm:text-[17px] lg:text-[22px]  text-[#0F1640] max-w-[500px] ${styles.fontmontserrat}`}>
@@ -148,7 +150,7 @@ function S2Card({ blog }: { blog: Blog }) {
                         </div>
                         <p className="text-[14px] text-gray-600 mb-4 line-clamp-2">{shareTitle}</p>
                         <div className="flex flex-wrap gap-3 justify-center">
-                            <a href={shareLinks.whatsapp} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.preventDefault(); openShare(shareLinks.whatsapp); }} className="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+                            <a href={shareLinks.whatsapp}  target="_blank" rel="noopener noreferrer" onClick={(e) => { e.preventDefault(); openShare(shareLinks.whatsapp); }} className="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Share on WhatsApp" title="Share on WhatsApp">
                                 <FaWhatsapp className="w-6 h-6" />
                             </a>
                             <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer" onClick={(e) => { e.preventDefault(); openShare(shareLinks.facebook); }} className="w-12 h-12 rounded-full bg-[#1877F2] flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Share on Facebook" title="Share on Facebook">
