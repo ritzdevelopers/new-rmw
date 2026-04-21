@@ -17,7 +17,6 @@ export default function AskDiscussGrow() {
             my-5 md:my-12 
         `}>
             <div className="mx-auto flex flex-col items-center text-center">
-
                 {/* HEADING */}
                 <h1 className={`
                     text-[28px] leading-tight tracking-[-0.02em]
