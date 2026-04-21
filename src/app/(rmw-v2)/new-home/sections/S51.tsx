@@ -70,11 +70,11 @@ function S51() {
     const checkScreenSize = () => {
       const width = window.innerWidth;
       if (width < 768) {
-        setVideoSource("/new-page/mobile-vd.mp4");
+        setVideoSource("/nuv-video.mp4");
       } else if (width >= 768 && width < 1024) {
-        setVideoSource("/new-page/tab-vd.mp4");
+        setVideoSource("/nuv-video.mp4");
       } else {
-        setVideoSource("/new-page/dekstop-vd.mp4");
+        setVideoSource("/nuv-video.mp4");
       }
       
       // Reload video when source changes
@@ -158,7 +158,7 @@ function S51() {
         {/* Poster Image Overlay - Shows when video is not playing */}
         {!isPlaying && posterImage && (
           <img
-            src={posterImage}
+            src={'/nuv-banner.jpg'}
             alt="Video poster"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ zIndex: 1 }}
@@ -173,7 +173,7 @@ function S51() {
           muted
           playsInline
           preload="metadata"
-          poster={posterImage || undefined}
+          poster={'/nuv-banner.jpg'}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
           style={{ zIndex: isPlaying ? 2 : 0, pointerEvents: isPlaying ? 'auto' : 'none' }}
@@ -187,7 +187,7 @@ function S51() {
         {/* Content - Hide when video is playing */}
         {!isPlaying && (
           <div className="absolute top-1/2 transform -translate-y-1/2 inset-0 flex flex-col items-center px-4 py-6 z-10 transition-opacity duration-300 overflow-x-hidden overflow-y-hidden max-w-full max-h-full">
-            <div className="flex flex-col items-center justify-center w-full h-full max-w-full max-h-full overflow-x-hidden overflow-y-hidden pb-8">       
+            <div className="flex flex-col items-center justify-center w-full h-full max-w-full max-h-full">       
               {/* Custom Play Button */}
               <button
                 ref={playButtonRef}
