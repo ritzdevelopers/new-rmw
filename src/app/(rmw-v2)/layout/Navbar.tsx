@@ -258,6 +258,7 @@ function Navbar() {
       setServicesOpen(false);
     }
   }, [mobileMenuOpen]);
+  
 
   // Close mobile menu services when mobile menu closes
   useEffect(() => {
