@@ -404,7 +404,7 @@ function NewNavbar() {
       next.email = "Please enter a valid email address.";
     }
 
-   
+
 
     if (!captchaToken) {
       next.captcha = "Please complete captcha.";
@@ -466,7 +466,7 @@ function NewNavbar() {
     <>
       {/* Desktop Navbar - Only visible on lg and above */}
       <nav
-        className={`hidden lg:flex w-full justify-center items-center py-2 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"
+        className={`hidden lg:flex w-full justify-center items-center py-2 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"
           }`}
       >
         {/* Centered Align Div  */}
@@ -515,9 +515,9 @@ function NewNavbar() {
                       hoverTimeoutRef.current = null;
                     }, 500);
                   }}
-                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
-                      ? "text-black hover:text-[#C99237]"
-                      : "text-white hover:text-[#C99237]"
+                  className={`font-[700] text-[15px] xl:text-[16px] transition-colors duration-300 ${isScrolled
+                    ? "text-black hover:text-[#C99237]"
+                    : "text-white hover:text-[#C99237]"
                     }`}
                 >
                   Services
@@ -528,9 +528,9 @@ function NewNavbar() {
                   href="https://ritzmediaworld.com/work.html"
                   target="_blan k"
                   title="Our Work"
-                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
-                      ? "text-black hover:text-[#C99237]"
-                      : "text-white hover:text-[#C99237]"
+                  className={`font-[700] text-[15px] xl:text-[16px] transition-colors duration-300 ${isScrolled
+                    ? "text-black hover:text-[#C99237]"
+                    : "text-white hover:text-[#C99237]"
                     }`}
                 >
                   Our Work
@@ -541,9 +541,9 @@ function NewNavbar() {
                   href="https://ritzmediaworld.com/about.html"
                   target="_blank"
                   title="About Us"
-                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
-                      ? "text-black hover:text-[#C99237]"
-                      : "text-white hover:text-[#C99237]"
+                  className={`font-[700] text-[15px] xl:text-[16px] transition-colors duration-300 ${isScrolled
+                    ? "text-black hover:text-[#C99237]"
+                    : "text-white hover:text-[#C99237]"
                     }`}
                 >
                   About Us
@@ -554,9 +554,9 @@ function NewNavbar() {
                   href="https://ritzmediaworld.com/contact.html"
                   target="_blank"
                   title="Contact"
-                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
-                      ? "text-black hover:text-[#C99237]"
-                      : "text-white hover:text-[#C99237]"
+                  className={`font-[700] text-[15px] xl:text-[16px] transition-colors duration-300 ${isScrolled
+                    ? "text-black hover:text-[#C99237]"
+                    : "text-white hover:text-[#C99237]"
                     }`}
                 >
                   Contact
@@ -584,8 +584,8 @@ function NewNavbar() {
         {isHovered && (
           <div
             ref={containerRef}
-            className="fixed inset-x-0 z-[100] flex justify-center   shadow-lg shadow-black "
-            style={{ top: isScrolled ? "64px" : "92px" }}
+            className="fixed inset-x-0 z-[100] flex justify-center "
+            style={{ top: isScrolled ? "63px" : "92px" }}
             onMouseEnter={() => {
               if (hoverTimeoutRef.current) {
                 clearTimeout(hoverTimeoutRef.current);
@@ -652,10 +652,10 @@ function NewNavbar() {
               font-size: 3rem !important;
             }
             
-            /* For >=lg screens - default size */
-            @media (min-width: 1024px) {
+            /* For lg screens only (1024-1279px) */
+            @media (min-width: 1024px) and (max-width: 1279px) {
               .responsive-staggered-menu .sm-panel-item {
-                font-size: 3.5rem !important;
+                font-size: 2.8rem !important;
               }
             }
             
@@ -745,7 +745,7 @@ function NewNavbar() {
           <div className="w-[95%] max-w-[1200px] mx-auto py-6 sm:py-8 space-y-2">
             {/* Services Link with Dropdown */}
             <div className="border-b border-gray-100 pb-2">
-              <div className="mobile-menu-item flex w-full items-center gap-2 rounded-xl py-3 pl-5 pr-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 sm:py-4">
+              <div className="mobile-menu-item flex w-full items-center gap-2 rounded-xl py-3 pl-5 pr-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 sm:py-2">
                 <Link
                   href="/services"
                   className="group relative flex-1 py-1 text-left font-[700] text-[17px] text-gray-900 sm:text-[18px]"
@@ -824,7 +824,7 @@ function NewNavbar() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </Link>
-           
+
               <Link
                 href="https://ritzmediaworld.com/work.html"
                 target="_blank"
@@ -908,8 +908,8 @@ function NewNavbar() {
         >
           <div
             className={`w-full max-w-[600px] rounded-2xl bg-white p-4 sm:p-5 shadow-2xl transition-all duration-200 ${isConsultModalClosing
-                ? "translate-y-2 opacity-0"
-                : "translate-y-0 opacity-100"
+              ? "translate-y-2 opacity-0"
+              : "translate-y-0 opacity-100"
               }`}
             style={{
               transform: `scale(${isConsultModalClosing ? consultModalScale * 0.95 : consultModalScale})`,
@@ -1021,21 +1021,21 @@ function NewNavbar() {
                 {consultErrors.message && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.message}</p>}
               </label>
               <label className="block flex-1">
-                  <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Captcha</span>
-                  <div className={`border-b pb-2 overflow-x-auto ${consultErrors.captcha ? "border-[#EF4444]" : "border-[#DADDE5]"}`}>
-                    <HCaptcha
-                      sitekey="e4a44c7a-13c4-4534-b210-d41242d2d262"
-                      onVerify={(token) => {
-                        setCaptchaToken(token);
-                        setConsultErrors((prev) => ({ ...prev, captcha: "" }));
-                      }}
-                      onExpire={() => setCaptchaToken(null)}
-                      onError={() => setCaptchaToken(null)}
-                      ref={consultCaptchaRef}
-                    />
-                  </div>
-                  {consultErrors.captcha && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.captcha}</p>}
-                </label>
+                <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Captcha</span>
+                <div className={`border-b pb-2 overflow-x-auto ${consultErrors.captcha ? "border-[#EF4444]" : "border-[#DADDE5]"}`}>
+                  <HCaptcha
+                    sitekey="e4a44c7a-13c4-4534-b210-d41242d2d262"
+                    onVerify={(token) => {
+                      setCaptchaToken(token);
+                      setConsultErrors((prev) => ({ ...prev, captcha: "" }));
+                    }}
+                    onExpire={() => setCaptchaToken(null)}
+                    onError={() => setCaptchaToken(null)}
+                    ref={consultCaptchaRef}
+                  />
+                </div>
+                {consultErrors.captcha && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.captcha}</p>}
+              </label>
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
                 {consultErrors.form ? (
                   <p className="text-[13px] text-[#EF4444]">{consultErrors.form}</p>

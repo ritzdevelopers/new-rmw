@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import styles from '../../../components/WebDevelopment/webDevelopment.module.css';
 import {
   HiChevronRight,
   HiCodeBracket,
@@ -21,16 +22,16 @@ import {
 
 const GOLD = "#C59D4F";
 const CATEGORY_IMAGE_MAP: Record<string, string> = {
-  "creative-services": "/navbar/creativeServices.png",
-  "print-advertising": "/navbar/print-advertising.png",
-  "radio-advertising": "/navbar/radio_advertising'.png",
-  "content-marketing": "/navbar/content-marketing.png",
+  "creative-services": "/navbar/creative.png",
+  "print-advertising": "/navbar/print.png",
+  "radio-advertising": "/navbar/radioAdvertising.png",
+  "content-marketing": "/navbar/content.png",
   "web-development": "/navbar/web-dev.png",
-  "celebrity-endorsements": "/navbar/celibrity.png",
-  "influencer-marketing": "/navbar/influencer-marketing (2).png",
-  "real-estate-walkthrough": "/navbar/real-state-marketing.png",
-  "3D-rendering-services": "/navbar/3D-rendering-services.png",
-  "digital-marketing": "/navbar/digitalMarketing.png",
+  "celebrity-endorsements": "/navbar/celibrity-.png",
+  "influencer-marketing": "/navbar/influencerMarketing.png",
+  "real-estate-walkthrough": "/navbar/realstate (2).png",
+  "3D-rendering-services": "/navbar/3drenderinf=g.png",
+  "digital-marketing": "/navbar/digital.png",
 };
 
 function RadioServiceIcon({ className }: { className: string }) {
@@ -157,18 +158,18 @@ function ServiceThumb({
 
 function FooterInsights() {
   return (
-    <div className="mt-10 grid grid-cols-1 gap-4  bg-[#F7F7FE] px-4 py-4 sm:grid-cols-3 sm:px-5 sm:py-4">
+    <div className="mt-4 grid grid-cols-1 gap-4  bg-[#F7F7FE] px-4 py-4 sm:grid-cols-3 sm:px-5 sm:py-4 rounded-sm">
       <div>
-        <p className="text-[20px] font-semibold text-black sm:text-[15px]">
-          Your Partner in Digital <br/> Growth
+        <p className={`${styles.montserrat} text-[20px] font-semibold text-black sm:text-[15px]`}>
+          Your Partner in Digital <br /> Growth
         </p>
-        <p className="mt-1 text-[14px] leading-snug text-[#373737] sm:text-[13px]">
+        <p className={`mt-1 text-[14px] leading-snug text-[#373737] sm:text-[13px] ${styles.fontopensans}`}>
           Where brands grow faster online
         </p>
       </div>
       <div className="flex gap-3 sm:items-start">
         <svg
-          className="mt-0.5 h-6 w-6 shrink-0 sm:h-7 sm:w-7"
+          className="mt-0.5 h-6 w-6 shrink-0 sm:h-7 sm:w-7 p-1 rounded-lg bg-white"
           viewBox="0 0 32 32"
           fill="none"
           aria-hidden
@@ -189,34 +190,27 @@ function FooterInsights() {
           />
         </svg>
         <div>
-          <p className="text-[14px] md:text-[15px] font-semibold text-neutral-900 ">
+          <p className={`text-[14px] md:text-[15px] font-semibold text-neutral-900 ${styles.montserrat} `}>
             High ROI Marketing
           </p>
-          <p className="mt-1 text-[12px] leading-snug text-[#373737] sm:text-[13px]">
+          <p className={`mt-1 text-[12px] leading-snug text-[#373737] sm:text-[13px] ${styles.fontopensans}`}>
             Maximize leads and conversions efficiently
           </p>
         </div>
       </div>
       <div className="flex gap-3 sm:items-start">
-        <svg
-          className="mt-0.5 h-6 w-6 shrink-0 sm:h-7 sm:w-7"
-          viewBox="0 0 32 32"
-          fill="none"
-          aria-hidden
-        >
-          <circle cx="14" cy="14" r="7" stroke={GOLD} strokeWidth="2" />
-          <path
-            d="M19 19l8 8"
-            stroke={GOLD}
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </svg>
+        <Image
+          src="/navbar/data-driven.png"
+          alt=""
+          width={32}
+          height={32}
+          className="mt-0.5 shrink-0 sm:h-7 sm:w-7 p-1 rounded-lg bg-white"
+        />
         <div>
-          <p className="text-[14px] font-semibold text-neutral-900 sm:text-[15px]">
+          <p className={`text-[14px] font-semibold text-neutral-900 sm:text-[15px] ${styles.montserrat} `}>
             Data Driven Strategy
           </p>
-          <p className="mt-1 text-[12px] leading-snug text-[#373737] sm:text-[13px]">
+          <p className={`mt-1 text-[12px] leading-snug text-[#373737] sm:text-[13px] ${styles.fontopensans}`}>
             Decisions powered by real insights
           </p>
         </div>
@@ -240,13 +234,13 @@ export function ServicesMegaMenuPanel({
   if (!cat) return null;
 
   return (
-    <div className="flex max-h-[min(78vh,720px)] flex-col overflow-hidden  bg-white">
-      <div className="shrink-0 px-5 pb-3 pt-4 sm:px-8 sm:pb-4 sm:pt-5 lg:px-10">
+    <div className="flex max-h-[min(78vh,720px)] flex-col overflow-hidden  bg-white  shadow-[0_2px_10px_rgba(136,136,136,0.25)] ">
+      <div className="shrink-0 px-5 pb-3 pt-4 sm:px-8 sm:pb-0 sm:pt-5 lg:px-10">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:gap-4">
-          <h2 className="font-[600] text-2xl tracking-tight text-neutral-900 sm:text-[28px]">
+          <h2 className={`${styles.montserrat} text-2xl tracking-tight font-[600]  sm:text-[24px]`}>
             Services
           </h2>
-          <p className="text-sm  sm:pb-0.5 sm:text-[15px]">
+          <p className={`text-sm  sm:pb-0.5 sm:text-[14px] ${styles.fontopensans}`}>
             {SERVICES_MEGA_TAGLINE}
           </p>
         </div>
@@ -256,10 +250,10 @@ export function ServicesMegaMenuPanel({
         />
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
-        <div className="grid grid-cols-1 gap-6 px-5 py-5 sm:px-8 sm:py-6 lg:grid-cols-[minmax(200px,26%)_1fr] lg:gap-8 lg:px-10">
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain lg:flex lg:flex-col">
+        <div className="grid flex-1 grid-cols-1 gap-6 px-5 py-5 sm:px-8 sm:py-1 lg:min-h-full lg:grid-cols-[minmax(200px,23%)_1fr] lg:gap-0 lg:px-10 lg:overflow-visible">
           <nav
-            className="flex min-w-0 flex-col gap-1.5"
+            className="relative z-10 flex min-w-0 flex-col gap-0.5 overflow-visible lg:self-start pt-5 lg:pt-3"
             aria-label="Service categories"
           >
             {SERVICES_MEGA_MENU_CATEGORIES.map((c, i) => {
@@ -271,9 +265,9 @@ export function ServicesMegaMenuPanel({
                   onClick={onNavigate}
                   onMouseEnter={() => onCategoryChange(i)}
                   onFocus={() => onCategoryChange(i)}
-                  className={`group flex items-center gap-3 rounded-full px-3 py-2.5 text-left transition-all duration-200 lg:px-4 lg:py-3 ${active
-                    ? "text-white shadow-md"
-                    : "text-neutral-900 hover:bg-neutral-100"
+                  className={`group flex items-center gap-3 rounded-full px-3 py-2.5 text-left lg:px-4 lg:py-2.5 ${active
+                    ? "text-white shadow-md lg:relative lg:z-20 lg:-mr-3 "
+                    : "text-black hover:bg-neutral-100 "
                     }`}
                   style={
                     active
@@ -287,50 +281,53 @@ export function ServicesMegaMenuPanel({
                     active={active}
                     size="lg"
                   />
-                  <span className="min-w-0 flex-1 text-[14px] font-[600] leading-snug lg:text-[15px]">
+                  <span className={`${styles.montserrat}  ${active ? 'font-[700]' : 'font-[500]'} min-w-0 flex-1 text-[14px] font-[500] leading-snug lg:text-[13px] xl:text-[15px]`}>
                     {c.name}
                   </span>
-                  {active ? (
-                    <HiChevronRight
-                      className="h-5 w-5 shrink-0 text-white"
+                  <div className="relative h-[29px] w-[29px]">
+                    <Image
+                      src="/navbar/arrow.png"
+                      alt=""
+                      fill
                       aria-hidden
+                      className={`object-contain transition-opacity ${active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                        }`}
                     />
-                  ) : (
-                    <HiChevronRight
-                      className="h-5 w-5 shrink-0 text-neutral-300 opacity-0 transition-opacity group-hover:opacity-100"
-                      aria-hidden
-                    />
-                  )}
+                  </div>
                 </Link>
               );
             })}
           </nav>
 
-          <div className="min-w-0 border-t border-neutral-100 pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-            <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 sm:gap-y-5">
-              {cat.services.map((svc) => (
-                <Link
-                  key={svc.href + svc.title}
-                  href={svc.href}
-                  onClick={onNavigate}
-                  className="flex gap-3 rounded-lg transition-colors duration-200 hover:bg-neutral-50"
-                >
-                  <ServiceThumb
-                    src={svc.image ?? CATEGORY_IMAGE_MAP[cat.id]}
-                    title={svc.title}
-                  />
-                  <div className="min-w-0 flex-1">
-                    <p className="font-[700] text-[14px] leading-snug text-neutral-900 sm:text-[15px]">
-                      {svc.title}
-                    </p>
-                    <p className="mt-0.5 text-[13px] leading-snug text-neutral-500 sm:text-sm">
-                      {svc.description}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+          <div className="flex min-w-0 flex-col border-t border-[#D9D9D9] pt-5 lg:relative lg:z-0 lg:-ml-2 lg:h-full lg:min-h-0 lg:border-l lg:border-[#D9D9D9] lg:border-t-0 lg:pl-8 lg:pt-8">
+            <div className="min-w-0 lg:flex-1 lg:min-h-0">
+              <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 sm:gap-y-5">
+                {cat.services.map((svc) => (
+                  <Link
+                    key={svc.href + svc.title}
+                    href={svc.href}
+                    onClick={onNavigate}
+                    className="flex gap-3 rounded-lg transition-colors duration-200 hover:bg-neutral-50"
+                  >
+                    <ServiceThumb
+                      src={svc.image ?? CATEGORY_IMAGE_MAP[cat.id]}
+                      title={svc.title}
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className={`lg:text-[13px] xl:text-[15px] font-[600] leading-snug  ${styles.montserrat}`}>
+                        {svc.title}
+                      </p>
+                      <p className={` ${styles.fontopensans} mt-0.5 lg:text-[13px] xl:text-[14px] leading-snug text-[#585757] line-clamp-2`}>
+                        {svc.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
-            <FooterInsights />
+            <div className="mt-4 shrink-0 lg:mt-auto py-4">
+              <FooterInsights />
+            </div>
           </div>
         </div>
       </div>
@@ -358,11 +355,9 @@ export function ServicesMegaMenuMobileAccordion({
             key={c.id}
             className="overflow-hidden rounded-xl border border-neutral-100 bg-white shadow-sm"
           >
-            <button
-              type="button"
-              onClick={() => onToggleCategory(i)}
+            <Link
+              href={c.href}
               className="flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-neutral-50"
-              aria-expanded={open}
             >
               <CategoryAvatar
                 categoryId={c.id}
@@ -373,36 +368,37 @@ export function ServicesMegaMenuMobileAccordion({
                 {c.name}
               </span>
               <HiChevronRight
-                className={`h-5 w-5 shrink-0 text-neutral-400 transition-transform duration-200 ${open ? "rotate-90 text-[#C59D4F]" : ""
+                onClick={() => onToggleCategory(i)}
+                className={`h-5 w-5 shrink-0 transition-transform duration-200 ${open ? "rotate-90 text-[#C59D4F]" : "text-neutral-400"
                   }`}
               />
-            </button>
+            </Link>
             {open && (
               <div className="border-t border-neutral-100 bg-neutral-50/50 px-3 py-3 sm:px-4">
-                <Link
+                {/* <Link
                   href={c.href}
                   onClick={onNavigate}
                   className="mb-3 block text-center text-sm font-[600] text-[#C59D4F] underline-offset-2 hover:underline"
                 >
                   View all {c.name}
-                </Link>
+                </Link> */}
                 <div className="grid grid-cols-1 gap-2 xs:grid-cols-2">
                   {c.services.map((svc) => (
                     <Link
                       key={svc.href + svc.title}
                       href={svc.href}
                       onClick={onNavigate}
-                      className="flex gap-2.5 rounded-lg border border-transparent bg-white p-2.5 shadow-sm transition-colors hover:border-[#C59D4F]/30"
+                      className="flex gap-2.5 rounded-lg border border-transparent bg-white p-2.5  transition-colors hover:border-[#C59D4F]/30"
                     >
                       <ServiceThumb
                         src={svc.image ?? CATEGORY_IMAGE_MAP[c.id]}
                         title={svc.title}
                       />
                       <div className="min-w-0 flex-1">
-                        <p className="text-[13px] font-[700] leading-snug text-neutral-900">
+                        <p className={`text-[15px] font-[600] leading-snug  ${styles.montserrat}`}>
                           {svc.title}
-                        </p>
-                        <p className="mt-0.5 text-[11px] leading-snug text-neutral-500 line-clamp-2">
+                        </p>``
+                        <p className={` ${styles.fontopensans} mt-0.5 text-[14px] leading-snug text-[#585757] line-clamp-2`}>
                           {svc.description}
                         </p>
                       </div>
