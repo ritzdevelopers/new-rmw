@@ -26,7 +26,7 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "print-advertising": "/navbar/print.png",
   "radio-advertising": "/navbar/radioAdvertising.png",
   "content-marketing": "/navbar/content.png",
-  "web-development": "/navbar/web-dev.png",
+  "web-development": "/navbar/webdev.png",
   "celebrity-endorsements": "/navbar/celibrity-.png",
   "influencer-marketing": "/navbar/influencerMarketing.png",
   "real-estate-walkthrough": "/navbar/realstate (2).png",
@@ -169,7 +169,7 @@ function FooterInsights() {
       </div>
       <div className="flex gap-3 sm:items-start">
         <svg
-          className="mt-0.5 h-6 w-6 shrink-0 sm:h-7 sm:w-7 p-1 rounded-lg bg-white"
+          className="mt-0.5 h-6 w-6 shrink-0 sm:h-10 sm:w-10 p-1 rounded-lg bg-white"
           viewBox="0 0 32 32"
           fill="none"
           aria-hidden
@@ -204,7 +204,7 @@ function FooterInsights() {
           alt=""
           width={32}
           height={32}
-          className="mt-0.5 shrink-0 sm:h-7 sm:w-7 p-1 rounded-lg bg-white"
+          className="mt-0.5 shrink-0 sm:h-10 sm:w-10 p-1 rounded-lg bg-white"
         />
         <div>
           <p className={`text-[14px] font-semibold text-neutral-900 sm:text-[15px] ${styles.montserrat} `}>
@@ -245,7 +245,7 @@ export function ServicesMegaMenuPanel({
           </p>
         </div>
         <div
-          className="mt-3 h-px w-full sm:mt-4"
+          className="mt-3 h-[2px] w-full sm:mt-4"
           style={{ backgroundColor: "#C99237" }}
         />
       </div>
@@ -397,7 +397,7 @@ export function ServicesMegaMenuMobileAccordion({
                       <div className="min-w-0 flex-1">
                         <p className={`text-[15px] font-[600] leading-snug  ${styles.montserrat}`}>
                           {svc.title}
-                        </p>``
+                        </p>
                         <p className={` ${styles.fontopensans} mt-0.5 text-[14px] leading-snug text-[#585757] line-clamp-2`}>
                           {svc.description}
                         </p>
