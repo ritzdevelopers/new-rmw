@@ -68,7 +68,7 @@ export default function WhoShouldJoin() {
                                     alt="icon"
                                     width={45}
                                     height={45}
-                                    className="sm:w-[40px] sm:h-[40px] md:w-[40px] md:h-[40px] lg:w-[40px] lg:h-[40px] xl:w-[42px] xl:h-[42px]"
+                                    className="w-[35px] h-[35px] sm:w-[40px] sm:h-[40px] md:w-[40px] md:h-[40px] lg:w-[40px] lg:h-[40px] xl:w-[42px] xl:h-[42px]"
                                 />
 
                                 <p

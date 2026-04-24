@@ -1,11 +1,14 @@
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
-import { HiOutlineChevronRight, HiOutlineMenuAlt1 } from "react-icons/hi";
+import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { gsap } from "gsap";
-import CardNav from "./ServiceHCards";
 import StaggeredMenu from "./StaggeredMenu";
+import {
+  ServicesMegaMenuMobileAccordion,
+  ServicesMegaMenuPanel,
+} from "./ServicesMegaMenu";
 import {
   DEFAULT_CONTACT_COUNTRY,
   SORTED_CONTACT_COUNTRIES,
@@ -19,7 +22,7 @@ function NewNavbar() {
   const [isMenuClosing, setIsMenuClosing] = useState(false);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const desktopServicesRef = useRef<HTMLLIElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
@@ -35,297 +38,41 @@ function NewNavbar() {
     };
   }, []);
 
-  const items = [
-    {
-      name: "Digital Marketing",
-      link: "https://ritzmediaworld.com/services/digital-marketing",
-      sub: [
-        {
-          name: "SEO (Search Engine Optimization)",
-          link: "https://ritzmediaworld.com/services/digital-marketing/search-engine-optimization-seo"
-        },
-        {
-          name: "PPC (Google Ads) Services",
-          link: "https://ritzmediaworld.com/services/digital-marketing/ppc-google-ads-agency"
-        },
-        {
-          name: "Social Media Management",
-          link: "https://ritzmediaworld.com/services/digital-marketing/social-media-management"
-        },
-        {
-          name: "ORM (Online Reputation Management)",
-          link: "https://ritzmediaworld.com/services/digital-marketing/orm-in-digital-marketing"
-        },
-        {
-          name: "Lead Generation",
-          link: "https://ritzmediaworld.com/services/digital-marketing/lead-generation"
-        },
-        {
-          name: "Brand Awareness",
-          link: "https://ritzmediaworld.com/services/digital-marketing/brand-awareness"
-        }
-      ]
-    },
-    {
-      name: "Creative Services",
-      link: "https://ritzmediaworld.com/services/creative-services",
-      sub: [
-        {
-          name: "Branding & Identity Development",
-          link: "https://ritzmediaworld.com/services/creative-services/branding-and-identity-development"
-        },
-        {
-          name: "Graphic Design",
-          link: "https://ritzmediaworld.com/services/creative-services/graphic-designing"
-        },
-        {
-          name: "Logo Design",
-          link: "https://ritzmediaworld.com/services/creative-services/logo-design"
-        },
-        {
-          name: "Print Advertising Design",
-          link: "https://ritzmediaworld.com/services/creative-services/print-advertisement-design"
-        },
-        {
-          name: "Packaging Design",
-          link: "https://ritzmediaworld.com/services/creative-services/packaging-design"
-        }
-      ]
-    },
-    {
-      name: "Print Advertising",
-      link: "https://ritzmediaworld.com/services/print-advertising",
-      sub: [
-        {
-          name: "Advertisement Design",
-          link: "https://ritzmediaworld.com/services/print-advertising/advertisement-designing"
-        },
-        {
-          name: "Ad Placement",
-          link: "https://ritzmediaworld.com/services/print-advertising/ad-placements"
-        },
-        {
-          name: "Copywriting",
-          link: "https://ritzmediaworld.com/services/print-advertising/copywriting"
-        },
-        {
-          name: "Cost Negotiation",
-          link: "https://ritzmediaworld.com/services/print-advertising/negotiating-rates"
-        },
-        {
-          name: "Ad Size Optimization",
-          link: "https://ritzmediaworld.com/services/print-advertising/ad-size-optimization"
-        },
-        {
-          name: "Ad Scheduling",
-          link: "https://ritzmediaworld.com/services/print-advertising/advertisement-scheduling"
-        }
-      ]
-    },
-    {
-      name: "Radio Advertising",
-      link: "https://ritzmediaworld.com/services/radio-advertising",
-      sub: [
-        {
-          name: "Advertising Concept Development",
-          link: "https://ritzmediaworld.com/services/radio-advertising/advertisement-concept-development"
-        },
-        {
-          name: "Scriptwriting",
-          link: "https://ritzmediaworld.com/services/radio-advertising/scriptwriting"
-        },
-        {
-          name: "Voiceover Casting",
-          link: "https://ritzmediaworld.com/services/radio-advertising/voiceover-casting"
-        },
-        {
-          name: "Recording & Production",
-          link: "https://ritzmediaworld.com/services/radio-advertising/recording-and-production"
-        },
-        {
-          name: "Media Planning And Buying",
-          link: "https://ritzmediaworld.com/services/radio-advertising/media-planning-and-buying"
-        },
-        {
-          name: "Cost Negotiations",
-          link: "https://ritzmediaworld.com/services/radio-advertising/radio-cost-negotiation-india"
-        }
-      ]
-    },
-    {
-      name: "Content Marketing",
-      link: "https://ritzmediaworld.com/services/contents-marketing",
-      sub: [
-        {
-          name: "Customized Content Strategy",
-          link: "https://ritzmediaworld.com/services/contents-marketing/content-marketing"
-        },
-        {
-          name: "Email and Newsletters Marketing",
-          link: "https://ritzmediaworld.com/services/contents-marketing/email-and-newsletters-marketing"
-        },
-        {
-          name: "Asset Creation and Infographics",
-          link: "https://ritzmediaworld.com/services/contents-marketing/asset-creation-and-infographics"
-        },
-        {
-          name: "Content Promotion and Optimization",
-          link: "https://ritzmediaworld.com/services/contents-marketing/content-promotion-and-optimization"
-        }
-      ]
-    },
-    {
-      name: "Web Development",
-      link: "https://ritzmediaworld.com/services/web-designing-and-development",
-      sub: [
-        {
-          name: "UI/UX Design",
-          link: "https://ritzmediaworld.com/services/web-designing-and-development/ui-ux-design"
-        },
-        {
-          name: "Custom Design & Development",
-          link: "https://ritzmediaworld.com/services/web-designing-and-development/custom-design-development"
-        },
-        {
-          name: "E-Commerce Website Development",
-          link: "https://ritzmediaworld.com/services/web-designing-and-development/e-commerce-web-designing"
-        },
-        {
-          name: "Landing Page Development",
-          link: "https://ritzmediaworld.com/services/web-designing-and-development/landing-page-development-services"
-        },
-        {
-          name: "WordPress Web Design",
-          link: "https://ritzmediaworld.com/services/web-designing-and-development/wordpress-web-designing"
-        }
-      ]
-    },
-    {
-      name: "Celebrity Endorsements",
-      link: "https://ritzmediaworld.com/services/celebrity-endorsements",
-      sub: [
-        {
-          name: "Celebrity Identification",
-          link: "https://ritzmediaworld.com/services/celebrity-endorsements/celebrity-identification-services"
-        },
-        {
-          name: "Contract Negotiations",
-          link: "https://ritzmediaworld.com/services/celebrity-endorsements/negotiating-contracts"
-        },
-        {
-          name: "Creative Collaboration",
-          link: "https://ritzmediaworld.com/services/celebrity-endorsements/creative-collaboration"
-        },
-        {
-          name: "Campaign Integration",
-          link: "https://ritzmediaworld.com/services/celebrity-endorsements/campaign-integration"
-        },
-        {
-          name: "Public Relations",
-          link: "https://ritzmediaworld.com/services/celebrity-endorsements/public-relations"
-        },
-        {
-          name: "Legal Compliance",
-          link: "https://ritzmediaworld.com/services/celebrity-endorsements/legal-compliance"
-        }
-      ]
-    },
-    {
-      name: "Influencer Marketing",
-      link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
-      sub: [
-        {
-          name: "Influencer Identification",
-          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/identification-influence-marketing-agency"
-        },
-        {
-          name: "Cost-Benefit Analysis",
-          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/cost-benefit-analysis"
-        },
-        {
-          name: "Terms Negotiations",
-          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/terms-negotiations"
-        },
-        {
-          name: "Creative Collaboration",
-          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/creative-collaboration"
-        },
-        {
-          name: "Campaign Integration",
-          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/campaign-integration"
-        },
-        {
-          name: "Messaging Optimization",
-          link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india/messaging-optimization"
-        }
-      ]
-    }
-  ];
-
-  // Background colors for each service card
-  const bgColors = [
-    "#0D0716", // Digital Marketing
-    "#170D27", // Creative Services
-    "#271E37", // Print Advertising
-    "#1a0f2e", // Radio Advertising
-    "#0f1a2e", // Content Marketing
-    "#1e2a3e", // Web Development
-    "#2a1e3e", // Celebrity Endorsements
-    "#2a1e2e", // Influencer Marketing
-  ];
-
   const [isHovered, setIsHovered] = useState(false);
+  const [activeServiceCategory, setActiveServiceCategory] = useState(0);
+  const [mobileOpenServiceCategory, setMobileOpenServiceCategory] = useState<
+    number | null
+  >(null);
 
-  // GSAP Animation for container and items
+  // GSAP: mega menu panel entrance
   useEffect(() => {
     if (isHovered && containerRef.current) {
-      // Kill existing timeline if any
       if (timelineRef.current) {
         timelineRef.current.kill();
       }
-
-      // Create new timeline
       const tl = gsap.timeline();
-
-      // Animate container
-      gsap.set(containerRef.current, { opacity: 0, y: -20 });
+      gsap.set(containerRef.current, { opacity: 0, y: -14 });
       tl.to(containerRef.current, {
         opacity: 1,
         y: 0,
-        duration: 0.7,
-        ease: "power3.out"
+        duration: 0.38,
+        ease: "power3.out",
       });
-
-      // Animate items with stagger
-      itemsRef.current.forEach((item, index) => {
-        if (item) {
-          gsap.set(item, { opacity: 0, x: -30, scale: 0.9 });
-          tl.to(
-            item,
-            {
-              opacity: 1,
-              x: 0,
-              scale: 1,
-              duration: 0.6,
-              ease: "back.out(1.7)"
-            },
-            index * 0.1 // Stagger delay
-          );
-        }
-      });
-
       timelineRef.current = tl;
     } else if (!isHovered && timelineRef.current) {
-      // Reverse animation when hiding
       timelineRef.current.reverse();
     }
-
-    // Cleanup
     return () => {
       if (timelineRef.current) {
         timelineRef.current.kill();
       }
     };
+  }, [isHovered]);
+
+  useEffect(() => {
+    if (!isHovered) {
+      setActiveServiceCategory(0);
+    }
   }, [isHovered]);
 
   // Cleanup timeout on unmount
@@ -336,6 +83,25 @@ function NewNavbar() {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      const target = event.target as Node;
+      const clickedTrigger = desktopServicesRef.current?.contains(target);
+      const clickedPanel = containerRef.current?.contains(target);
+      if (!clickedTrigger && !clickedPanel) {
+        setIsHovered(false);
+      }
+    };
+
+    if (isHovered) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isHovered]);
 
   // Auto-open menu when isMenuOpen becomes true
   useEffect(() => {
@@ -378,7 +144,6 @@ function NewNavbar() {
   const mobileServicesRef = useRef<HTMLDivElement>(null);
   const mobileMenuTimelineRef = useRef<gsap.core.Timeline | null>(null);
   const mobileServicesTimelineRef = useRef<gsap.core.Timeline | null>(null);
-  const mobileItemsRef = useRef<(HTMLDivElement | null)[]>([]);
   const consultCaptchaRef = useRef<HCaptcha>(null);
   const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -445,6 +210,7 @@ function NewNavbar() {
         if (isMobileServicesOpen) {
           setIsMobileServicesOpen(false);
         }
+        setMobileOpenServiceCategory(null);
         if (mobileMenuTimelineRef.current) {
           const menuItems = mobileMenuRef.current.querySelectorAll('.mobile-menu-item');
           const tl = gsap.timeline();
@@ -498,60 +264,28 @@ function NewNavbar() {
         gsap.set(mobileServicesRef.current, { height: 0, opacity: 0 });
 
         const tl = gsap.timeline();
-        gsap.set(mobileItemsRef.current.filter(Boolean), { opacity: 0, x: -30, scale: 0.9 });
-
         tl.to(mobileServicesRef.current, {
           height: height,
           opacity: 1,
           duration: 0.5,
           ease: "power3.out"
         });
-
-        mobileItemsRef.current.forEach((item, index) => {
-          if (item) {
-            tl.to(
-              item,
-              {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                duration: 0.4,
-                ease: "back.out(1.4)"
-              },
-              index * 0.08
-            );
-          }
-        });
-
         mobileServicesTimelineRef.current = tl;
       } else if (!isMobileServicesOpen && mobileServicesRef.current) {
         // Close animation
         if (mobileServicesTimelineRef.current) {
           const tl = gsap.timeline();
-          const items = mobileItemsRef.current.filter(Boolean);
-
-          tl.to(items, {
-            opacity: 0,
-            x: -20,
-            scale: 0.95,
-            duration: 0.2,
-            stagger: 0.05,
-            ease: "power2.in"
-          });
-
           tl.to(mobileServicesRef.current, {
             height: 0,
             opacity: 0,
             duration: 0.3,
             ease: "power3.in",
             onComplete: () => {
-              // Add hidden class after animation completes
               if (mobileServicesRef.current && !isMobileServicesOpen) {
                 mobileServicesRef.current.classList.add('hidden');
               }
             }
-          }, "-=0.1");
-
+          });
           mobileServicesTimelineRef.current = tl;
         }
       }
@@ -670,7 +404,7 @@ function NewNavbar() {
       next.email = "Please enter a valid email address.";
     }
 
-   
+
 
     if (!captchaToken) {
       next.captcha = "Please complete captcha.";
@@ -732,7 +466,7 @@ function NewNavbar() {
     <>
       {/* Desktop Navbar - Only visible on lg and above */}
       <nav
-        className={`hidden lg:flex w-full justify-center items-center py-2 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"
+        className={`hidden lg:flex w-full justify-center items-center py-2 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"
           }`}
       >
         {/* Centered Align Div  */}
@@ -748,32 +482,42 @@ function NewNavbar() {
               }`}
           >
             <ul className="flex justify-end items-center gap-6 xl:gap-12">
-              <li>
+              <li ref={desktopServicesRef} className="relative">
                 <Link
-                  onMouseEnter={() => {
-                    // Clear any existing timeout
+                  href="/services"
+                  title="Services"
+                  onClick={(e) => {
+                    e.preventDefault();
                     if (hoverTimeoutRef.current) {
                       clearTimeout(hoverTimeoutRef.current);
                       hoverTimeoutRef.current = null;
                     }
+                    setIsHovered((prev) => {
+                      const next = !prev;
+                      if (next) setActiveServiceCategory(0);
+                      return next;
+                    });
+                  }}
+                  onMouseEnter={() => {
+                    if (hoverTimeoutRef.current) {
+                      clearTimeout(hoverTimeoutRef.current);
+                      hoverTimeoutRef.current = null;
+                    }
+                    setActiveServiceCategory(0);
                     setIsHovered(true);
                   }}
                   onMouseLeave={() => {
-                    // Set timeout to hide after 2 seconds, but only if mouse doesn't enter the container
                     if (hoverTimeoutRef.current) {
                       clearTimeout(hoverTimeoutRef.current);
                     }
                     hoverTimeoutRef.current = setTimeout(() => {
                       setIsHovered(false);
                       hoverTimeoutRef.current = null;
-                    }, 800);
+                    }, 500);
                   }}
-                  href="https://ritzmediaworld.com/services"
-                  target="_blank"
-                  title="Services"
-                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
-                      ? "text-black hover:text-[#C99237]"
-                      : "text-white hover:text-[#C99237]"
+                  className={`font-[700] text-[15px] xl:text-[16px] transition-colors duration-300 ${isScrolled
+                    ? "text-black hover:text-[#C99237]"
+                    : "text-white hover:text-[#C99237]"
                     }`}
                 >
                   Services
@@ -782,11 +526,11 @@ function NewNavbar() {
               <li>
                 <Link
                   href="https://ritzmediaworld.com/work.html"
-                  target="_blank"
+                  target="_blan k"
                   title="Our Work"
-                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
-                      ? "text-black hover:text-[#C99237]"
-                      : "text-white hover:text-[#C99237]"
+                  className={`font-[700] text-[15px] xl:text-[16px] transition-colors duration-300 ${isScrolled
+                    ? "text-black hover:text-[#C99237]"
+                    : "text-white hover:text-[#C99237]"
                     }`}
                 >
                   Our Work
@@ -797,9 +541,9 @@ function NewNavbar() {
                   href="https://ritzmediaworld.com/about.html"
                   target="_blank"
                   title="About Us"
-                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
-                      ? "text-black hover:text-[#C99237]"
-                      : "text-white hover:text-[#C99237]"
+                  className={`font-[700] text-[15px] xl:text-[16px] transition-colors duration-300 ${isScrolled
+                    ? "text-black hover:text-[#C99237]"
+                    : "text-white hover:text-[#C99237]"
                     }`}
                 >
                   About Us
@@ -810,9 +554,9 @@ function NewNavbar() {
                   href="https://ritzmediaworld.com/contact.html"
                   target="_blank"
                   title="Contact"
-                  className={`font-[700] text-[16px] transition-colors duration-300 ${isScrolled
-                      ? "text-black hover:text-[#C99237]"
-                      : "text-white hover:text-[#C99237]"
+                  className={`font-[700] text-[15px] xl:text-[16px] transition-colors duration-300 ${isScrolled
+                    ? "text-black hover:text-[#C99237]"
+                    : "text-white hover:text-[#C99237]"
                     }`}
                 >
                   Contact
@@ -837,77 +581,33 @@ function NewNavbar() {
           </div>
         </div>
 
-        {/* Fixed Position Container  */}
         {isHovered && (
           <div
             ref={containerRef}
-            className="w-[95%] xl:max-w-[1195px] fixed top-20 left-1/2 py-2 px-2 bg-white rounded-lg shadow-2xl transform -translate-x-1/2 z-[100]"
+            className="fixed inset-x-0 z-[100] flex justify-center "
+            style={{ top: isScrolled ? "63px" : "92px" }}
             onMouseEnter={() => {
-              // Clear timeout when mouse enters the container - keep it visible
               if (hoverTimeoutRef.current) {
                 clearTimeout(hoverTimeoutRef.current);
                 hoverTimeoutRef.current = null;
               }
               setIsHovered(true);
             }}
-            onMouseLeave={() => {
-              // Hide immediately when mouse leaves the container
-              setIsHovered(false);
-              if (hoverTimeoutRef.current) {
-                clearTimeout(hoverTimeoutRef.current);
-                hoverTimeoutRef.current = null;
-              }
-            }}
+          //   onMouseLeave={() => {
+          //     setIsHovered(false);
+          //     if (hoverTimeoutRef.current) {
+          //       clearTimeout(hoverTimeoutRef.current);
+          //       hoverTimeoutRef.current = null;
+          //     }
+          //   }
+          // }
           >
-            <div className="flex flex-wrap justify-center items-start gap-[18px]">
-              {items.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    ref={(el) => {
-                      itemsRef.current[index] = el;
-                    }}
-                    style={{
-                      backgroundColor: bgColors[index] || "#0D0716",
-                      color: "#fff",
-                    }}
-                    className="xl:w-[280px] w-[230px] h-[260px] rounded-[8px] flex flex-col  p-5 shadow-lg"
-                  >
-
-                    
-                    {/* Main Service Name  */}
-                    <div>
-                      <Link
-                        href={item.link}
-                        target="_blank"
-                        title={item.name}
-                        className="font-[700] text-[18px] transition-colors duration-300 text-white hover:text-[#C99237] cursor-pointer block mb-3"
-                      >
-                        {item.name}
-                      </Link>
-                    </div>
-
-                    {/* Sub Services  */}
-                    <div className="flex flex-col gap-1">
-                      {item.sub.map((subItem, subIndex) => {
-                        return (
-                          <div key={subIndex} className="flex items-center gap-2">
-                            <HiOutlineChevronRight className="w-[16px] h-[16px] text-white flex-shrink-0" />
-                            <Link
-                              href={subItem.link}
-                              target="_blank"
-                              title={subItem.name}
-                              className="font-[400] text-[14px] transition-colors duration-300 text-white hover:text-[#C99237] cursor-pointer"
-                            >
-                              {subItem.name}
-                            </Link>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
+            <div className="w-full ">
+              <ServicesMegaMenuPanel
+                activeCategoryIndex={activeServiceCategory}
+                onCategoryChange={setActiveServiceCategory}
+                onNavigate={() => setIsHovered(false)}
+              />
             </div>
           </div>
         )}
@@ -952,10 +652,10 @@ function NewNavbar() {
               font-size: 3rem !important;
             }
             
-            /* For >=lg screens - default size */
-            @media (min-width: 1024px) {
+            /* For lg screens only (1024-1279px) */
+            @media (min-width: 1024px) and (max-width: 1279px) {
               .responsive-staggered-menu .sm-panel-item {
-                font-size: 3.5rem !important;
+                font-size: 2.8rem !important;
               }
             }
             
@@ -1017,7 +717,16 @@ function NewNavbar() {
 
           {/* Menu Toggle Button */}
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            type="button"
+            onClick={() => {
+              setIsMobileMenuOpen((open) => {
+                if (open) {
+                  setIsMobileServicesOpen(false);
+                  setMobileOpenServiceCategory(null);
+                }
+                return !open;
+              });
+            }}
             className={`${isScrolled ? "text-black" : "text-white"
               } h-[38px] w-[38px] sm:h-[40px] sm:w-[40px] cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 flex items-center justify-center relative z-10 rounded-full hover:bg-black/5 active:bg-black/10`}
             aria-label="Toggle menu"
@@ -1036,76 +745,67 @@ function NewNavbar() {
           <div className="w-[95%] max-w-[1200px] mx-auto py-6 sm:py-8 space-y-2">
             {/* Services Link with Dropdown */}
             <div className="border-b border-gray-100 pb-2">
-              <button
-                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className="mobile-menu-item w-full text-left font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 flex items-center justify-between group relative z-40"
-              >
-                <span onClick={()=>window.open("/services", "_blank")} className="relative z-50">
-                  Services
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
-                </span>
-                <svg
-                   onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                  className={`w-5 h-5 text-gray-600 transition-all duration-300 ${isMobileServicesOpen ? "rotate-180 text-[#C99237]" : "group-hover:text-[#C99237]"
-                    }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <div className="mobile-menu-item flex w-full items-center gap-2 rounded-xl py-3 pl-5 pr-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 sm:py-2">
+                <Link
+                  href="/services"
+                  className="group relative flex-1 py-1 text-left font-[700] text-[17px] text-gray-900 sm:text-[18px]"
+                  onClick={() => {
+                    setIsMobileServicesOpen(false);
+                    setIsMobileMenuOpen(false);
+                    setMobileOpenServiceCategory(null);
+                  }}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+                  Services
+                  <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#C59D4F] transition-all duration-300 group-hover:w-full" />
+                </Link>
+                <button
+                  type="button"
+                  aria-expanded={isMobileServicesOpen}
+                  aria-label={isMobileServicesOpen ? "Collapse services" : "Expand services"}
+                  onClick={() => {
+                    setIsMobileServicesOpen((open) => {
+                      const next = !open;
+                      if (next) {
+                        setMobileOpenServiceCategory(0);
+                      } else {
+                        setMobileOpenServiceCategory(null);
+                      }
+                      return next;
+                    });
+                  }}
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-gray-600 transition-colors hover:bg-gray-100 hover:text-[#C59D4F]"
+                >
+                  <svg
+                    className={`h-5 w-5 transition-transform duration-300 ${isMobileServicesOpen ? "rotate-180 text-[#C59D4F]" : ""
+                      }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </div>
 
-              {/* Services Dropdown */}
               <div
                 ref={mobileServicesRef}
-                className={`overflow-hidden mt-3 overflow-y-auto ${isMobileServicesOpen ? 'block' : 'hidden'}`}
+                className={`overflow-hidden mt-3 overflow-y-auto ${isMobileServicesOpen ? "block" : "hidden"}`}
               >
-                <div className="px-2 pb-4 space-y-3">
-                  {items.map((item, index) => (
-                    <div
-                      key={index}
-                      ref={(el) => {
-                        mobileItemsRef.current[index] = el;
-                      }}
-                      style={{
-                        backgroundColor: bgColors[index] || "#0D0716",
-                        color: "#fff",
-                      }}
-                      className="rounded-xl p-5 shadow-lg shadow-black/10 hover:shadow-xl hover:shadow-black/15 transition-all duration-300 hover:scale-[1.02] border border-white/10"
-                    >
-                      <Link
-                        href={item.link}
-                        target="_blank"
-                        title={item.name}
-                        className="font-[700] text-[17px] sm:text-[18px] text-white block mb-3 hover:text-[#C99237] transition-colors duration-300"
-                        onClick={() => {
-                          setIsMobileServicesOpen(false);
-                          setIsMobileMenuOpen(false);
-                        }}
-                      >
-                        {item.name}
-                      </Link>
-                      <div className="flex flex-col gap-2.5">
-                        {item.sub.map((subItem, subIndex) => (
-                          <Link
-                            key={subIndex}
-                            href={subItem.link}
-                            target="_blank"
-                            title={subItem.name}
-                            className="font-[400] text-[14px] sm:text-[15px] text-white/90 hover:text-[#C99237] flex items-center gap-2.5 py-1.5 px-2 rounded-lg hover:bg-white/10 transition-all duration-300 group"
-                            onClick={() => {
-                              setIsMobileServicesOpen(false);
-                              setIsMobileMenuOpen(false);
-                            }}
-                          >
-                            <HiOutlineChevronRight className="w-[16px] h-[16px] flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
-                            <span className="flex-1">{subItem.name}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                <div className="px-1 pb-4 sm:px-2">
+                  <ServicesMegaMenuMobileAccordion
+                    openCategoryIndex={mobileOpenServiceCategory}
+                    onToggleCategory={(idx) => {
+                      setMobileOpenServiceCategory((prev) =>
+                        prev === idx ? null : idx,
+                      );
+                    }}
+                    onNavigate={() => {
+                      setIsMobileServicesOpen(false);
+                      setIsMobileMenuOpen(false);
+                      setMobileOpenServiceCategory(null);
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -1124,7 +824,7 @@ function NewNavbar() {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </Link>
-           
+
               <Link
                 href="https://ritzmediaworld.com/work.html"
                 target="_blank"
@@ -1186,7 +886,11 @@ function NewNavbar() {
           <div
             className="fixed inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60 backdrop-blur-sm transition-opacity duration-300"
             style={{ top: '64px', zIndex: 40 }}
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              setIsMobileServicesOpen(false);
+              setMobileOpenServiceCategory(null);
+            }}
             aria-hidden="true"
           />
         )}
@@ -1204,8 +908,8 @@ function NewNavbar() {
         >
           <div
             className={`w-full max-w-[600px] rounded-2xl bg-white p-4 sm:p-5 shadow-2xl transition-all duration-200 ${isConsultModalClosing
-                ? "translate-y-2 opacity-0"
-                : "translate-y-0 opacity-100"
+              ? "translate-y-2 opacity-0"
+              : "translate-y-0 opacity-100"
               }`}
             style={{
               transform: `scale(${isConsultModalClosing ? consultModalScale * 0.95 : consultModalScale})`,
@@ -1317,21 +1021,21 @@ function NewNavbar() {
                 {consultErrors.message && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.message}</p>}
               </label>
               <label className="block flex-1">
-                  <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Captcha</span>
-                  <div className={`border-b pb-2 overflow-x-auto ${consultErrors.captcha ? "border-[#EF4444]" : "border-[#DADDE5]"}`}>
-                    <HCaptcha
-                      sitekey="e4a44c7a-13c4-4534-b210-d41242d2d262"
-                      onVerify={(token) => {
-                        setCaptchaToken(token);
-                        setConsultErrors((prev) => ({ ...prev, captcha: "" }));
-                      }}
-                      onExpire={() => setCaptchaToken(null)}
-                      onError={() => setCaptchaToken(null)}
-                      ref={consultCaptchaRef}
-                    />
-                  </div>
-                  {consultErrors.captcha && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.captcha}</p>}
-                </label>
+                <span className="mb-1.5 block text-[18px] font-[600] text-[#1C2438]">Captcha</span>
+                <div className={`border-b pb-2 overflow-x-auto ${consultErrors.captcha ? "border-[#EF4444]" : "border-[#DADDE5]"}`}>
+                  <HCaptcha
+                    sitekey="e4a44c7a-13c4-4534-b210-d41242d2d262"
+                    onVerify={(token) => {
+                      setCaptchaToken(token);
+                      setConsultErrors((prev) => ({ ...prev, captcha: "" }));
+                    }}
+                    onExpire={() => setCaptchaToken(null)}
+                    onError={() => setCaptchaToken(null)}
+                    ref={consultCaptchaRef}
+                  />
+                </div>
+                {consultErrors.captcha && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.captcha}</p>}
+              </label>
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
                 {consultErrors.form ? (
                   <p className="text-[13px] text-[#EF4444]">{consultErrors.form}</p>
