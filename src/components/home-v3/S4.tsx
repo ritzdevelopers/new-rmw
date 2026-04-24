@@ -156,13 +156,13 @@ function S4() {
   const getVideoSource = () => {
     switch (videoType) {
       case 'desktop':
-        return '/new-page/dekstop-vd.mp4';
+        return '/nuv-video.mp4'; //nuv-video.mp4
       case 'tablet':
-        return '/new-page/tab-vd.mp4';
+        return '/nuv-video.mp4';
       case 'mobile':
-        return '/new-page/mobile-vd.mp4';
+        return '/nuv-video.mp4';
       default:
-        return '/new-page/dekstop-vd.mp4';
+        return '/nuv-video.mp4';
     }
   };
 
@@ -360,10 +360,10 @@ function S4() {
         </div>
 
         {/* Video strip — same horizontal box as slider (parent already has .container) */}
-        <div className="relative isolate w-full min-w-0 max-w-full overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] lg:h-[426px]">
+        <div className="relative isolate w-full min-w-0 max-w-full overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] lg:h-[426px] xl:h-[590px] cursor-pointer" onClick={handlePlayClick}>
           <div className="absolute inset-0 z-0 min-h-0 min-w-0 overflow-hidden">
             <Image
-              src="/home-v3/s2/team-bg3.png"
+              src="/nuv-banner.jpg"
               alt="Ritz Media World – team video"
               title="Ritz Media World – team video"
               fill

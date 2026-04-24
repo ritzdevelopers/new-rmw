@@ -34,7 +34,7 @@ function S2Card({ blog }: { blog: Blog }) {
     const [shareModalOpen, setShareModalOpen] = useState(false);
     const [copied, setCopied] = useState(false);
 
-    const shareUrl = typeof window !== "undefined" ? `${window.location.origin}/blogs2/${blog.slug}` : "";
+    const shareUrl = typeof window !== "undefined" ? `${window.location.origin}/${blog.slug}` : "";
     const shareTitle = blog.title || "Check out this blog";
 
     const shareLinks = {
@@ -84,7 +84,7 @@ function S2Card({ blog }: { blog: Blog }) {
             {/* Top Row  */}
             <div className="w-full flex flex-col gap-3 sm:gap-4 lg:gap-5">
                 {/* Image Here  */}
-                <div onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} className="w-full cursor-pointer relative h-[220px] sm:h-[200px] lg:h-[250px] xl:h-[345px] overflow-hidden">
+                <div onClick={() => window.open(`/${blog.slug}`, "_blank")} className="w-full cursor-pointer relative h-[220px] sm:h-[200px] lg:h-[250px] xl:h-[345px] overflow-hidden">
                     <Image
                        src={blog.banner.includes("/images")
                         ? `https://ritzmediaworld.com/api/images${blog.banner.split("/images")[1]}`
@@ -98,11 +98,11 @@ function S2Card({ blog }: { blog: Blog }) {
                         fill className="" />
                 </div>
 
-                <h2 onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} className={`font-[700] hover:underline cursor-pointer text-[18px] sm:text-[17px] lg:text-[22px]  text-[#0F1640] max-w-[500px] ${styles.fontmontserrat}`}>
+                <h2 onClick={() => window.open(`/${blog.slug}`, "_blank")} className={`font-[700] hover:underline cursor-pointer text-[18px] sm:text-[17px] lg:text-[22px]  text-[#0F1640] max-w-[500px] ${styles.fontmontserrat}`}>
                     {blog.title}
                 </h2>
 
-                <p onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} className={`font-[400] hover:underline cursor-pointer text-[14px] sm:text-[14px] lg:text-[16px] text-[#000000] max-w-[540px] ${styles.fontopensans}`}>
+                <p onClick={() => window.open(`/${blog.slug}`, "_blank")} className={`font-[400] hover:underline cursor-pointer text-[14px] sm:text-[14px] lg:text-[16px] text-[#000000] max-w-[540px] ${styles.fontopensans}`}>
                     {preview}
                 </p>
             </div>
@@ -115,7 +115,7 @@ function S2Card({ blog }: { blog: Blog }) {
 
                 {/* Div 2  */}
                 <div className="pl-4 sm:pl-5 lg:pl-6 pr-4 sm:pr-5 lg:pr-6 border-l border-r border-[#B4B4B4]">
-                    <button onClick={() => window.open(`/blogs2/${blog.slug}`, "_blank")} className="flex justify-center items-center gap-2 sm:gap-3 cursor-pointer hover:opacity-90 transition-opacity">
+                    <button onClick={() => window.open(`/${blog.slug}`, "_blank")} className="flex justify-center items-center gap-2 sm:gap-3 cursor-pointer hover:opacity-90 transition-opacity">
                         <p className={`font-[500] text-[16px] sm:text-[14px] lg:text-[18px] text-[#0F1640] ${styles.fontmontserrat}`}>Read more</p>
                         <div className="w-[36px] h-[36px] sm:w-[38px] sm:h-[38px] lg:w-[40px] lg:h-[40px] bg-[#C99237] flex justify-center items-center rounded-full shrink-0">
                             <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[18px] h-[16px] sm:w-[20px] sm:h-[18px] lg:w-[22px] lg:h-[20px]">
