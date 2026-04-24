@@ -173,7 +173,7 @@ function FooterInsights() {
           viewBox="0 0 32 32"
           fill="none"
           aria-hidden
-        >
+        > 
           <path
             d="M4 24 L10 16 L16 20 L28 8"
             stroke={GOLD}
