@@ -47,7 +47,7 @@ export default function AskDiscussGrow() {
                         <div className={`
                             absolute inset-0 flex flex-col items-center justify-center 
                             px-3 sm:px-4 md:px-6 
-                            text-[19px] sm:text-[14px] md:text-[18px] lg:text-[30px]
+                            text-[19px] sm:text-[14px] md:text-[25px] lg:text-[30px]
                             font-semibold leading-tight text-center
                             ${styles.montserratMedium}
                         `}>
