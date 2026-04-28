@@ -43,22 +43,24 @@ function toIsoOrNull(value) {
 
 async function fetchBlogRecords() {
   const apiRecords = await fetchBlogRecordsFromApi();
-  if (Array.isArray(apiRecords) && apiRecords.length > 0) {
-    return apiRecords;
-  }
-
   const mysqlRecords = await fetchBlogRecordsFromMySQL();
-  if (Array.isArray(mysqlRecords) && mysqlRecords.length > 0) {
-    return mysqlRecords;
-  }
-
   const mongoRecords = await fetchBlogRecordsFromMongo();
-  if (Array.isArray(mongoRecords) && mongoRecords.length > 0) {
-    return mongoRecords;
+
+  const merged = [
+    ...(Array.isArray(apiRecords) ? apiRecords : []),
+    ...(Array.isArray(mysqlRecords) ? mysqlRecords : []),
+    ...(Array.isArray(mongoRecords) ? mongoRecords : []),
+  ];
+
+  if (merged.length === 0) {
+    console.warn("[next-sitemap] No blog records found from API/MySQL/Mongo.");
+  } else {
+    console.log(
+      `[next-sitemap] Source counts -> API: ${Array.isArray(apiRecords) ? apiRecords.length : 0}, MySQL: ${Array.isArray(mysqlRecords) ? mysqlRecords.length : 0}, Mongo: ${Array.isArray(mongoRecords) ? mongoRecords.length : 0}, Merged: ${merged.length}`
+    );
   }
 
-  console.warn("[next-sitemap] No blog records found from API/MySQL/Mongo.");
-  return [];
+  return merged;
 }
 
 async function fetchBlogRecordsFromApi() {
