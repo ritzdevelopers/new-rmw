@@ -284,6 +284,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
             priority={true}
             src="/RITZ DIGITAL XPERTS ACADEMY.png"
             alt="Ritz Digital Xperts Academy"
+            title="Ritz Digital Xperts Academy"
           />
           {/* <div className={styles.heading}>
             <h1>
@@ -297,7 +298,8 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
           </div> */}
           <div className={styles.heading}>
             <h1>
-              <span className={styles.highlight}> AI-Powered Digital Marketing Course</span>{" "}
+              <span className={styles.highlight}> AI-Powered Digital Marketing Course</span>
+              <br />
               Build Job-Ready Skills That Get You Hired.
             </h1>
             {/* <h2>
@@ -365,6 +367,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               width={132} // 100 in mobile screens
               src="/rdx/rdxi2.png"
               alt="Decoration 1"
+              title="Decorative graphic 1"
               sizes="(max-width: 640px) 100px, (max-width: 1024px) 150px, 210px"
               className="h-auto w-auto"
             />
@@ -375,6 +378,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
             <Image
               src="/rdx/rdxi3.png"
               alt="Decoration 2"
+              title="Decorative graphic 2"
               width={210}
               height={210}
               sizes="(max-width: 640px) 100px, (max-width: 1024px) 150px, 210px"
@@ -387,6 +391,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
             src="/rdx/s2/rdx-s2-img1.png"
             className={styles.mainImages2}
             alt="Main Image"
+            title="Digital marketing overview visual"
           />
         </div>
       </section>
@@ -398,12 +403,14 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
           src="/rdx/s2/esxe1.png"
           className={styles.absoluteImg1}
           alt="Background decoration 1"
+          title="Background decoration 1"
         />
 
         <img
           src="/rdx/s2/rdxe2.png"
           className={styles.absoluteImg2}
           alt="Background decoration 2"
+          title="Background decoration 2"
         />
 
         {/* Centered Align Div  */}
@@ -433,12 +440,13 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                   quality={70}
                   src="/rdx/s2/rdxicn1.png"
                   alt="India growth market icon"
+                  title="India growth market icon"
                 />
               </div>
-              <h2 className={styles.cardHeading}>
-               India is the world’s fastest-growing online market
+              <h3 className={styles.cardHeading}>
+               India is the world's fastest-growing online market
 
-              </h2>
+              </h3>
               <p className={styles.cardText}>
                 Exploding mobile usage, vernacular adoption, and video-first behaviour mean brands need skilled marketers more than ever.
 
@@ -453,9 +461,10 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                   quality={70}
                   src="/rdx/s2/rdxicn2.png"
                   alt="India growth market icon"
+                  title="Performance drives budgets icon"
                 />
               </div>
-              <h2 className={styles.cardHeading}>Performance drives budgets</h2>
+              <h3 className={styles.cardHeading}>Performance drives budgets</h3>
               <p className={styles.cardText}>
                Budgets follow outcomes. If you can plan, run, and scale campaigns, you will never be on the bench.
 
@@ -471,12 +480,13 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                   quality={70}
                   src="/rdx/s2/rdxicn3.png"
                   alt="India growth market icon"
+                  title="AI copilot icon"
                 />
               </div>
-              <h2 className={styles.cardHeading}>
+              <h3 className={styles.cardHeading}>
                  AI is a copilot, not a replacement.
 
-              </h2>
+              </h3>
               <p className={styles.cardText}>
                 The pros who pair human insight with AI tools outpace everyone else.
 
@@ -492,9 +502,10 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                   quality={70}
                   src="/rdx/s2/rdxicn4.png"
                   alt="India growth market icon"
+                  title="Data privacy icon"
                 />
               </div>
-              <h2 className={styles.cardHeading}>First-party data & privacy</h2>
+              <h3 className={styles.cardHeading}>First-party data & privacy</h3>
               <p className={styles.cardText}>
                  Smart tagging, consent, and CRM fluency are now core skills, not nice-to-haves.
 
@@ -510,11 +521,12 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                   quality={70}
                   src="/rdx/s2/rdxicn5.png"
                   alt="India growth market icon"
+                  title="Creator economy icon"
                 />
               </div>
-              <h2 className={styles.cardHeading}>Creator economy meets commerce
+              <h3 className={styles.cardHeading}>Creator economy meets commerce
  Creator economy meets commerce
-              </h2>
+              </h3>
               <p className={styles.cardText}>
                 Social + search + influencers + landing pages = measurable revenue.
               </p>
@@ -529,11 +541,10 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                   quality={70}
                   src="/rdx/s2/rdxicn6.png"
                   alt="India growth market icon"
+                  title="Real skills icon"
                 />
               </div>
-              <h2 className={styles.cardHeading}>
-               Real skills beat certificates
-              </h2>
+              <h3 className={styles.cardHeading}>Real skills beat certificate</h3>
               <p className={styles.cardText}>
                 Portfolios with live results move resumes to the top of the pile.
 
@@ -555,6 +566,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                 fill
                 src="/rdx/s4/rdxs4.png"
                 alt="Career pathways illustration"
+                title="Career pathways illustration"
               />
             </div>
           </div>
@@ -573,7 +585,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <li>
                 <div className={styles.careerItem}>
                   <div className={styles.verifyIcon}>
-                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" title="Verified career pathway" />
                   </div>
                   <p className={styles.careerText}>
                     Performance Marketing Specialist (Meta/Google)
@@ -583,7 +595,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <li>
                 <div className={styles.careerItem}>
                   <div className={styles.verifyIcon}>
-                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" title="Verified career pathway" />
                   </div>
                   <p className={styles.careerText}>
                     SEO Strategist / Technical SEO
@@ -594,7 +606,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <li>
                 <div className={styles.careerItem}>
                   <div className={styles.verifyIcon}>
-                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" title="Verified career pathway" />
                   </div>
                   <p className={styles.careerText}>
                     Social Media & Content Strategist (IG/YouTube/LinkedIn)
@@ -605,7 +617,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <li>
                 <div className={styles.careerItem}>
                   <div className={styles.verifyIcon}>
-                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" title="Verified career pathway" />
                   </div>
                   <p className={styles.careerText}>
                     Marketing Analyst (GA4, Looker/Data Studio)
@@ -616,7 +628,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <li>
                 <div className={styles.careerItem}>
                   <div className={styles.verifyIcon}>
-                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" title="Verified career pathway" />
                   </div>
                   <p className={styles.careerText}>
                     Marketing Automation & CRM (HubSpot/Zoho/WhatsApp)
@@ -627,7 +639,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <li>
                 <div className={styles.careerItem}>
                   <div className={styles.verifyIcon}>
-                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" title="Verified career pathway" />
                   </div>
                   <p className={styles.careerText}>
                     Conversion Rate Optimization (CRO) & Landing Page Specialist
@@ -638,7 +650,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <li>
                 <div className={styles.careerItem}>
                   <div className={styles.verifyIcon}>
-                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" title="Verified career pathway" />
                   </div>
                   <p className={styles.careerText}>
                     E-commerce Performance Marketer (D2C & Marketplaces)
@@ -649,7 +661,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <li>
                 <div className={styles.careerItem}>
                   <div className={styles.verifyIcon}>
-                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" title="Verified career pathway" />
                   </div>
                   <p className={styles.careerText}>
                     Media Planner / Digital Strategist
@@ -660,7 +672,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <li>
                 <div className={styles.careerItem}>
                   <div className={styles.verifyIcon}>
-                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" title="Verified career pathway" />
                   </div>
                   <p className={styles.careerText}>
                     Influencer & Partnerships Manager
@@ -671,7 +683,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <li>
                 <div className={styles.careerItem}>
                   <div className={styles.verifyIcon}>
-                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" />
+                    <Image fill src="/rdx/s4/rdxveriify.png" alt="Verified" title="Verified career pathway" />
                   </div>
                   <p className={styles.careerText}>
                     AI-for-Marketing Specialist (creative ops, testing, prompts)
@@ -690,6 +702,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
           <img
             src="/rdx/s5/grlImgPng.png"
             alt="RDX"
+            title="Digital marketing course visual"
             className={styles.girlImage}
           />
         </div>
@@ -773,7 +786,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
             <div className={styles.leftSide6}>
               {/* Cards  */}
               <div className={styles.s6card}>
-                <h2 className={styles.cardTitle}>Agency DNA</h2>
+                <h3 className={styles.cardTitle}>Agency DNA</h3>
                 <p className={styles.cardDescription}>
                   Agency DNA: Built by Ritz Media World; we practice what we
                   teach.
@@ -781,19 +794,19 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               </div>
 
               <div className={styles.s6card}>
-                <h2 className={styles.cardTitle}>Tool-first, fluff-free</h2>
+                <h3 className={styles.cardTitle}>Tool-first, fluff-free</h3>
                 <p className={styles.cardDescription}>
                   You will touch the dashboards every week.
                 </p>
               </div>
 
               <div className={styles.s6card}>
-                <h2 className={styles.cardTitle}>Portfolio over PowerPoint</h2>
+                <h3 className={styles.cardTitle}>Portfolio over PowerPoint</h3>
                 <p className={styles.cardDescription}>Proof beats theory.</p>
               </div>
 
               <div className={styles.s6card}>
-                <h2 className={styles.cardTitle}>Career support</h2>
+                <h3 className={styles.cardTitle}>Career support</h3>
                 <p className={styles.cardDescription}>
                   Mock interviews, referrals when relevant, and access to the
                   RDX Talent Pool.
@@ -801,7 +814,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               </div>
 
               <div className={styles.s6card}>
-                <h2 className={styles.cardTitle}>Approachable mentors</h2>
+                <h3 className={styles.cardTitle}>Approachable mentors</h3>
                 <p className={styles.cardDescription}>
                   Clear feedback, office hours, real talk.
                 </p>
@@ -816,7 +829,8 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                   <img
                     src="/rdx/s6/rdxs6.png"
                     className={styles.mainImage}
-                    alt=""
+                    alt="Why RDX works team visual"
+                    title="Why RDX works team visual"
                   />
                 </div>
                 <div style={{ marginTop: "40px" }}>
@@ -832,7 +846,8 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                 <img
                   src="/rdx/s6/rdxs62.png"
                   className={styles.absoluteImage}
-                  alt=""
+                  alt="Decorative overlay"
+                  title="Decorative overlay"
                 />
 
                 {/* Second Elips  */}
@@ -846,7 +861,8 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                     bottom: "0",
                     zIndex: "-1",
                   }}
-                  alt=""
+                  alt="Decorative ellipse"
+                  title="Decorative ellipse"
                 />
               </div>
             </div>
@@ -918,6 +934,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                     <img
                       src="/rdx/s8/tabler_quote.png"
                       alt="quote"
+                      title="Quote icon"
                       className={styles.s8Quote}
                     />
                     <p className={styles.s8CardText}>{slide.text}</p>
@@ -980,6 +997,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
         <img
           src="/rdx/s10/s10_elips.png"
           alt="rmw"
+          title="Section background ellipse"
           className={styles.s10Elips}
         />
 
@@ -987,7 +1005,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
         <div className={styles.s10Centered}>
           {/* Top Header Div  */}
           <div className={styles.s10Header}>
-            <h2 className={styles.s10Title}>Frequently Asked Question</h2>
+            <h2 className={styles.s10Title}>Frequently Asked Questions</h2>
             <p className={styles.s10Subtitle}>
               Real success stories from professionals who transformed their
               careers with our performance marketing program.
@@ -1005,7 +1023,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                   onClick={() => toggleAccordion(index)}
                   style={{ cursor: "pointer" }}
                 >
-                  <p className={styles.s10CardText}>{faq.question}</p>
+                  <h3 className={styles.s10CardText}>{faq.question}</h3>
                   <img
                     src={
                       openIndex === index
@@ -1013,6 +1031,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
                         : "/rdx/s10/icons8_plus.png"
                     }
                     alt="toggle"
+                    title={openIndex === index ? "Collapse answer" : "Expand answer"}
                     className={styles.s10CardIcon}
                   />
                 </div>
@@ -1057,11 +1076,13 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <img
                 src="/rdx/s10/s-11-elps.png"
                 alt="elips"
+                title="Top decorative ellipse"
                 className={styles.s10ElipsSmallTop}
               />
               <img
                 src="/rdx/s10/s-12-elps.png"
                 alt="elips"
+                title="Bottom decorative ellipse"
                 className={styles.s10ElipsSmallBottom}
               />
               <div className={styles.s10LeftContent}>
@@ -1087,6 +1108,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
               <img
                 src="/rdx/s10/s10Img.png"
                 alt="RDX"
+                title="Fees and EMI illustration"
                 className={styles.s10RightImage}
               />
             </div>

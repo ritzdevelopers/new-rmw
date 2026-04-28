@@ -31,7 +31,7 @@ async function HomePage() {
       {/* <S1></S1>  */}
       <NewBanner />
       <div>
-        <S2></S2>
+        {/* <S2></S2> */}
       </div>
 
       <S3></S3>

@@ -1,10 +1,9 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import React, { useState, useEffect, useRef } from "react";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
-import HCaptcha from "@hcaptcha/react-hcaptcha";
-import { gsap } from "gsap";
-import StaggeredMenu from "./StaggeredMenu";
 import {
   ServicesMegaMenuMobileAccordion,
   ServicesMegaMenuPanel,
@@ -16,6 +15,13 @@ import {
   type CountryEntry,
 } from "@/lib/contactPhoneValidation";
 
+const HCaptcha = dynamic(() => import("@hcaptcha/react-hcaptcha"), {
+  ssr: false,
+});
+const StaggeredMenu = dynamic(() => import("./StaggeredMenu"), {
+  ssr: false,
+});
+
 function NewNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,17 +29,32 @@ function NewNavbar() {
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const desktopServicesRef = useRef<HTMLLIElement>(null);
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const timelineRef = useRef<{ kill: () => void; reverse: () => void } | null>(
+    null,
+  );
+  const gsapRef = useRef<(typeof import("gsap"))["gsap"] | null>(null);
+  const isScrolledRef = useRef(false);
+  const scrollRafRef = useRef<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 0);
+      if (scrollRafRef.current !== null) return;
+      scrollRafRef.current = window.requestAnimationFrame(() => {
+        const nextScrolled = window.scrollY > 0;
+        if (nextScrolled !== isScrolledRef.current) {
+          isScrolledRef.current = nextScrolled;
+          setIsScrolled(nextScrolled);
+        }
+        scrollRafRef.current = null;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => {
+      if (scrollRafRef.current !== null) {
+        window.cancelAnimationFrame(scrollRafRef.current);
+      }
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -46,7 +67,16 @@ function NewNavbar() {
 
   // GSAP: mega menu panel entrance
   useEffect(() => {
-    if (isHovered && containerRef.current) {
+    if (!isHovered && timelineRef.current) {
+      timelineRef.current.reverse();
+    }
+
+    if (!isHovered || !containerRef.current) return;
+    let isActive = true;
+
+    const runAnimation = async () => {
+      const gsap = await loadGsap();
+      if (!isActive || !containerRef.current) return;
       if (timelineRef.current) {
         timelineRef.current.kill();
       }
@@ -59,10 +89,12 @@ function NewNavbar() {
         ease: "power3.out",
       });
       timelineRef.current = tl;
-    } else if (!isHovered && timelineRef.current) {
-      timelineRef.current.reverse();
-    }
+    };
+
+    runAnimation();
+
     return () => {
+      isActive = false;
       if (timelineRef.current) {
         timelineRef.current.kill();
       }
@@ -142,9 +174,8 @@ function NewNavbar() {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileServicesRef = useRef<HTMLDivElement>(null);
-  const mobileMenuTimelineRef = useRef<gsap.core.Timeline | null>(null);
-  const mobileServicesTimelineRef = useRef<gsap.core.Timeline | null>(null);
-  const consultCaptchaRef = useRef<HCaptcha>(null);
+  const mobileMenuTimelineRef = useRef<{ kill: () => void } | null>(null);
+  const mobileServicesTimelineRef = useRef<{ kill: () => void } | null>(null);
   const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const [isConsultModalOpen, setIsConsultModalOpen] = useState(false);
@@ -169,24 +200,33 @@ function NewNavbar() {
     form: "",
   });
 
+  const loadGsap = async () => {
+    if (gsapRef.current) return gsapRef.current;
+    const mod = await import("gsap");
+    gsapRef.current = mod.gsap;
+    return mod.gsap;
+  };
+
   // GSAP Animation for mobile menu
   useEffect(() => {
-    if (mobileMenuRef.current) {
+    if (!mobileMenuRef.current) return;
+    let isActive = true;
+
+    const runAnimation = async () => {
+      const gsap = await loadGsap();
+      if (!isActive || !mobileMenuRef.current) return;
+
       if (isMobileMenuOpen) {
-        // Open animation
         if (mobileMenuTimelineRef.current) {
           mobileMenuTimelineRef.current.kill();
         }
-        // Remove hidden class to allow GSAP to animate
         mobileMenuRef.current?.classList.remove('hidden');
         const menuItems = mobileMenuRef.current.querySelectorAll('.mobile-menu-item');
         const tl = gsap.timeline();
 
-        // Get actual height
-        gsap.set(mobileMenuRef.current, { height: 'auto' });
-        const height = mobileMenuRef.current.scrollHeight;
-        gsap.set(mobileMenuRef.current, { height: 0, opacity: 0 });
-
+        const el = mobileMenuRef.current;
+        el.style.height = 'auto';
+        gsap.set(el, { height: 0, opacity: 0 });
         gsap.set(menuItems, { opacity: 0, y: -20 });
 
         tl.to(mobileMenuRef.current, {
@@ -206,7 +246,6 @@ function NewNavbar() {
 
         mobileMenuTimelineRef.current = tl;
       } else {
-        // Close animation - also close services if open
         if (isMobileServicesOpen) {
           setIsMobileServicesOpen(false);
         }
@@ -229,7 +268,6 @@ function NewNavbar() {
             duration: 0.3,
             ease: "power3.in",
             onComplete: () => {
-              // Add hidden class after animation completes
               if (mobileMenuRef.current && !isMobileMenuOpen) {
                 mobileMenuRef.current.classList.add('hidden');
               }
@@ -239,9 +277,12 @@ function NewNavbar() {
           mobileMenuTimelineRef.current = tl;
         }
       }
-    }
+    };
+
+    runAnimation();
 
     return () => {
+      isActive = false;
       if (mobileMenuTimelineRef.current) {
         mobileMenuTimelineRef.current.kill();
       }
@@ -250,18 +291,22 @@ function NewNavbar() {
 
   // GSAP Animation for mobile services dropdown
   useEffect(() => {
-    if (mobileServicesRef.current) {
+    if (!mobileServicesRef.current) return;
+    let isActive = true;
+
+    const runAnimation = async () => {
+      const gsap = await loadGsap();
+      if (!isActive || !mobileServicesRef.current) return;
+
       if (isMobileServicesOpen) {
         if (mobileServicesTimelineRef.current) {
           mobileServicesTimelineRef.current.kill();
         }
-        // Remove hidden class to allow GSAP to animate
         mobileServicesRef.current?.classList.remove('hidden');
-
-        // Get actual height
-        gsap.set(mobileServicesRef.current, { height: 'auto' });
-        const height = mobileServicesRef.current.scrollHeight;
-        gsap.set(mobileServicesRef.current, { height: 0, opacity: 0 });
+        const el = mobileServicesRef.current;
+        el.style.height = 'auto';
+        const height = el.scrollHeight;
+        gsap.set(el, { height: 0, opacity: 0 });
 
         const tl = gsap.timeline();
         tl.to(mobileServicesRef.current, {
@@ -272,7 +317,6 @@ function NewNavbar() {
         });
         mobileServicesTimelineRef.current = tl;
       } else if (!isMobileServicesOpen && mobileServicesRef.current) {
-        // Close animation
         if (mobileServicesTimelineRef.current) {
           const tl = gsap.timeline();
           tl.to(mobileServicesRef.current, {
@@ -289,9 +333,12 @@ function NewNavbar() {
           mobileServicesTimelineRef.current = tl;
         }
       }
-    }
+    };
+
+    runAnimation();
 
     return () => {
+      isActive = false;
       if (mobileServicesTimelineRef.current) {
         mobileServicesTimelineRef.current.kill();
       }
@@ -336,7 +383,6 @@ function NewNavbar() {
   const closeConsultModal = () => {
     setIsConsultModalClosing(true);
     setCaptchaToken(null);
-    consultCaptchaRef.current?.resetCaptcha();
     closeTimerRef.current = setTimeout(() => {
       setIsConsultModalOpen(false);
       setIsConsultModalClosing(false);
@@ -362,12 +408,14 @@ function NewNavbar() {
 
   useEffect(() => {
     const updateScale = () => {
-      const h = window.innerHeight;
-      if (h <= 620) setConsultModalScale(0.72);
-      else if (h <= 700) setConsultModalScale(0.78);
-      else if (h <= 780) setConsultModalScale(0.86);
-      else if (h <= 860) setConsultModalScale(0.93);
-      else setConsultModalScale(1);
+      requestAnimationFrame(() => {
+        const h = window.innerHeight;
+        if (h <= 620) setConsultModalScale(0.72);
+        else if (h <= 700) setConsultModalScale(0.78);
+        else if (h <= 780) setConsultModalScale(0.86);
+        else if (h <= 860) setConsultModalScale(0.93);
+        else setConsultModalScale(1);
+      });
     };
 
     if (isConsultModalOpen) {
@@ -474,7 +522,16 @@ function NewNavbar() {
           {/* Left Side Container  */}
           <div>
 
-            <img src="/rmw-logo-sm-size.png" alt="Ritz Media World" title="Ritz Media World" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")} className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`} />
+            <Image
+              src="/rmw-logo-sm-size.png"
+              alt="Ritz Media World"
+              title="Ritz Media World"
+              width={220}
+              height={80}
+              quality={70}
+              onClick={() => window.open("https://ritzmediaworld.com/", "_blank")}
+              className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`}
+            />
           </div>
           {/* Right Side Container  */}
           <div
@@ -707,10 +764,13 @@ function NewNavbar() {
         <div className="w-[90%] max-w-[1200px] flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <img
+            <Image
               src="/rmw-logo-sm-size.png"
               alt="Ritz Media World"
               title="Ritz Media World"
+              width={170}
+              height={56}
+              quality={70}
               className={`w-auto object-contain transition-all duration-300 hover:scale-105 ${isScrolled ? "h-[36px] sm:h-[40px]" : "h-[52px] sm:h-[56px]"}`}
             />
           </div>
@@ -1031,7 +1091,6 @@ function NewNavbar() {
                     }}
                     onExpire={() => setCaptchaToken(null)}
                     onError={() => setCaptchaToken(null)}
-                    ref={consultCaptchaRef}
                   />
                 </div>
                 {consultErrors.captcha && <p className="mt-1 text-[12px] text-[#EF4444]">{consultErrors.captcha}</p>}
