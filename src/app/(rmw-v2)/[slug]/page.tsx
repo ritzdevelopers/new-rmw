@@ -10,7 +10,7 @@ const SITE_ORIGIN = "https://ritzmediaworld.com";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
-    const canonicalUrl = `${SITE_ORIGIN}/blogs2/${slug}`;
+    const canonicalUrl = `${SITE_ORIGIN}/${slug}`;
     const result = await get_single_blog(slug);
     const data: BlogLayoutData | null = Array.isArray(result) && (result[1] as { status?: number })?.status === 200
         ? (result[0] as BlogLayoutData)
