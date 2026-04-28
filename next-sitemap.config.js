@@ -57,7 +57,7 @@ async function fetchBlogRecords() {
     return mongoRecords;
   }
 
-  console.warn("[next-sitemap] No blog records found from API/MySQL/Mongo. Continuing with static routes only.");
+  console.warn("[next-sitemap] No blog records found from API/MySQL/Mongo.");
   return [];
 }
 
@@ -71,27 +71,16 @@ async function fetchBlogRecordsFromApi() {
         cache: "no-store",
       });
 
-      if (!response.ok) {
-        console.warn(`[next-sitemap] Blog API responded with status ${response.status}: ${endpoint}`);
-        continue;
-      }
+      if (!response.ok) continue;
 
       const payload = await response.json();
       const records = Array.isArray(payload) ? payload : payload?.blogs || payload?.data || [];
 
-      if (!Array.isArray(records)) {
-        console.warn(`[next-sitemap] Unexpected blog payload shape from ${endpoint}`);
-        continue;
-      }
-
-      console.log(`[next-sitemap] Blog API success from ${endpoint}. Records: ${records.length}`);
-      return records;
+      if (Array.isArray(records)) return records;
     } catch (error) {
-      console.error(`[next-sitemap] Failed blog fetch from ${endpoint}`, error);
+      console.error(`[next-sitemap] API fetch failed`, error);
     }
   }
-
-  console.warn("[next-sitemap] Could not fetch blogs from API candidates.");
   return [];
 }
 
@@ -102,40 +91,26 @@ async function fetchBlogRecordsFromMySQL() {
   const database = process.env.DATABASE_NAME;
   const port = Number(process.env.DATABASE_PORT || 3306);
 
-  if (!host || !user || !database) {
-    console.warn("[next-sitemap] MySQL fallback skipped: missing DATABASE_* env values.");
-    return [];
-  }
+  if (!host || !user || !database) return [];
 
   let connection;
   try {
     connection = await mysql.createConnection({ host, user, password, database, port });
     const [rows] = await connection.execute(
-      "SELECT slug, created_at FROM blogs WHERE category_id != 1 AND status = 1 ORDER BY id DESC, created_at DESC"
+      "SELECT slug, created_at FROM blogs WHERE category_id != 1 AND status = 1 ORDER BY id DESC"
     );
-    const records = Array.isArray(rows) ? rows : [];
-    console.log(`[next-sitemap] MySQL fallback success. Records: ${records.length}`);
-    return records;
+    return Array.isArray(rows) ? rows : [];
   } catch (error) {
-    console.error("[next-sitemap] MySQL fallback failed", error);
+    console.error("[next-sitemap] MySQL failed", error);
     return [];
   } finally {
-    if (connection) {
-      try {
-        await connection.end();
-      } catch (_error) {
-        // ignore close errors
-      }
-    }
+    if (connection) await connection.end();
   }
 }
 
 async function fetchBlogRecordsFromMongo() {
   const mongoUrl = process.env.MONGO_URL;
-  if (!mongoUrl) {
-    console.warn("[next-sitemap] Mongo fallback skipped: missing MONGO_URL env value.");
-    return [];
-  }
+  if (!mongoUrl) return [];
 
   let conn;
   try {
@@ -144,20 +119,13 @@ async function fetchBlogRecordsFromMongo() {
       { blogStatus: true },
       { projection: { blogSlug: 1, createdAt: 1, updatedAt: 1 } }
     ).toArray();
-    const records = Array.isArray(docs) ? docs : [];
-    console.log(`[next-sitemap] Mongo fallback success. Records: ${records.length}`);
-    return records;
+
+    return Array.isArray(docs) ? docs : [];
   } catch (error) {
-    console.error("[next-sitemap] Mongo fallback failed", error);
+    console.error("[next-sitemap] Mongo failed", error);
     return [];
   } finally {
-    if (conn) {
-      try {
-        await conn.close();
-      } catch (_error) {
-        // ignore close errors
-      }
-    }
+    if (conn) await conn.close();
   }
 }
 
@@ -166,56 +134,45 @@ module.exports = {
   siteUrl,
   generateRobotsTxt: true,
   outDir: "./public",
-  alternateRefs: [
-    {
-      href: siteUrl,
-      hreflang: "en",
-    },
-  ],
-  transform: async (config, path) => {
-    return {
-      loc: path,
-      lastmod: new Date().toISOString(),
-      changefreq: "weekly",
-      priority: 0.7,
-      alternateRefs: config.alternateRefs ?? [],
-    };
-  },
+
+  transform: async (config, path) => ({
+    loc: `${siteUrl}${path}`,
+    lastmod: new Date().toISOString(),
+    changefreq: "weekly",
+    priority: 0.7,
+  }),
+
   additionalPaths: async (config) => {
     const records = await fetchBlogRecords();
     const uniquePaths = new Map();
-    let missingSlugCount = 0;
 
     for (const blog of records) {
       const rawSlug = pickBlogSlug(blog);
       const blogPath = safeToPath(rawSlug);
 
-      if (!blogPath) {
-        missingSlugCount += 1;
-        continue;
-      }
+      if (!blogPath) continue;
 
-      const normalizedSlug = blogPath.replace(/^\/+/, "");
-      if (STATIC_PAGE_SLUGS.has(normalizedSlug)) continue;
+      const normalized = blogPath.replace(/^\/+/, "");
+      if (STATIC_PAGE_SLUGS.has(normalized)) continue;
+
       uniquePaths.set(blogPath, pickBlogLastmod(blog));
     }
 
     const items = [];
+
     for (const [path, lastmod] of uniquePaths.entries()) {
       const transformed = await config.transform(config, path);
+
       items.push({
         ...transformed,
-        loc: path,
-        lastmod: toIsoOrNull(lastmod) || transformed?.lastmod,
+        loc: `${siteUrl}${path}`,
+        lastmod: toIsoOrNull(lastmod) || transformed.lastmod,
         changefreq: "weekly",
         priority: 0.8,
       });
     }
 
-    console.log(
-      `[next-sitemap] Dynamic blog sitemap paths generated: ${items.length}. Missing slug rows skipped: ${missingSlugCount}.`
-    );
-
+    console.log(`[next-sitemap] Blogs added: ${items.length}`);
     return items;
   },
 };
