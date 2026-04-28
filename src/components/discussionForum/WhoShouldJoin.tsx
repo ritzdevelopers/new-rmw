@@ -15,10 +15,9 @@ export default function WhoShouldJoin() {
     ];
 
     return (
-        <section className="w-full flex justify-center items-center py-5  md:py-8 lg:py-5">    
+        <section className="w-full flex justify-center items-center py-5  md:py-5 lg:py-5">    
         <div className={`w-full  px-4 md:px-12 flex justify-center items-center ${styles.page_containerWidth}`}>
             <div className="max-w-[1320px] mx-auto">
-
                 {/* MAIN GRID */}
                 <div className="
                     grid 
@@ -45,7 +44,7 @@ export default function WhoShouldJoin() {
                                 sm:text-[32px] sm:leading-[38px]
                                 md:text-[36px] md:leading-[42px]
                                 lg:text-[32px] lg:leading-[32px]
-                                 xl:text-[42px] xl:leading-[48px]
+                                xl:text-[42px] xl:leading-[48px]
                                  text-black
                             ${styles.montserratBold} `}>
                                 Who Should Join?
