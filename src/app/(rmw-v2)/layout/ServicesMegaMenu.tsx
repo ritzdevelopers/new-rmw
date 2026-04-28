@@ -22,16 +22,16 @@ import {
 
 const GOLD = "#C59D4F";
 const CATEGORY_IMAGE_MAP: Record<string, string> = {
-  "creative-services": "/navbar/creative.png",
-  "print-advertising": "/navbar/print.png",
-  "radio-advertising": "/navbar/radioAdvertising.png",
-  "content-marketing": "/navbar/content.png",
-  "web-development": "/navbar/webdev.png",
-  "celebrity-endorsements": "/navbar/celibrity-.png",
-  "influencer-marketing": "/navbar/influencerMarketing.png",
-  "real-estate-walkthrough": "/navbar/realstate (2).png",
-  "3D-rendering-services": "/navbar/3drenderinf=g.png",
-  "digital-marketing": "/navbar/digital.png",
+  "creative-services": "/varun.icon/creative-service.svg",
+  "print-advertising": "/varun.icon/print.svg",
+  "radio-advertising": "/varun.icon/radio.svg",
+  "content-marketing": "/varun.icon/content-marketing.svg",
+  "web-development": "/varun.icon/webdevelopment.svg",
+  "celebrity-endorsements": "/varun.icon/celebrity.svg",
+  "influencer-marketing": "/varun.icon/influenecer.svg",
+  "real-estate-walkthrough": "/varun.icon/real.svg",
+  "3D-rendering-services": "/varun.icon/rendering-service.svg",
+  "digital-marketing": "/varun.icon/digital.svg", 
 };
 
 function RadioServiceIcon({ className }: { className: string }) {
@@ -110,7 +110,8 @@ function CategoryAvatar({
           alt={categoryName}
           width={imageSize}
           height={imageSize}
-          className="h-full w-full object-contain"
+          className={`h-full w-full object-contain transition-[filter] duration-200 ${active ? "brightness-0 invert" : "brightness-0"
+            }`}
         />
       </span>
     );
@@ -135,12 +136,12 @@ function ServiceThumb({
 }) {
   if (src) {
     return (
-      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-l">
+      <div className="relative h-17 w-17 shrink-0 overflow-hidden rounded-l">
         <Image
           src={src}
           alt=""
-          width={56}
-          height={56}
+          width={65}
+          height={65}
           className="h-full w-full object-contain"
         />
       </div>
@@ -299,27 +300,29 @@ export function ServicesMegaMenuPanel({
             })}
           </nav>
 
-          <div className="flex min-w-0 flex-col border-t border-[#D9D9D9] pt-5 lg:relative lg:z-0 lg:-ml-2 lg:h-full lg:min-h-0 lg:border-l lg:border-[#D9D9D9] lg:border-t-0 lg:pl-8 lg:pt-8">
+          <div className="flex min-w-0 flex-col border-t border-[#D9D9D9] pt-5 lg:relative lg:z-0 lg:-ml-2 lg:h-full lg:min-h-0 lg:border-l lg:border-[#D9D9D9] lg:border-t-0 lg:pl-14 lg:pt-10">
             <div className="min-w-0 lg:flex-1 lg:min-h-0">
-              <div className="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2 sm:gap-y-5">
+              <div className="grid grid-cols-1 gap-x-0 gap-y-4 sm:grid-cols-2 sm:gap-y-5">
                 {cat.services.map((svc) => (
                   <Link
                     key={svc.href + svc.title}
                     href={svc.href}
                     onClick={onNavigate}
-                    className="flex gap-3 rounded-lg transition-colors duration-200 hover:bg-neutral-50"
+                    className="flex gap-5 rounded-lg transition-colors duration-200 hover:bg-neutral-50"
                   >
                     <ServiceThumb
                       src={svc.image ?? CATEGORY_IMAGE_MAP[cat.id]}
                       title={svc.title}
                     />
+                    <div className="flex items-center">
                     <div className="min-w-0 flex-1">
-                      <p className={`lg:text-[13px] xl:text-[15px] font-[600] leading-snug  ${styles.montserrat}`}>
+                      <p className={`lg:text-[13px] xl:text-[15px] font-[600] leading-[27px]  ${styles.montserrat}`}>
                         {svc.title}
                       </p>
                       <p className={` ${styles.fontopensans} mt-0.5 lg:text-[13px] xl:text-[14px] leading-snug text-[#585757] line-clamp-2`}>
                         {svc.description}
                       </p>
+                    </div>
                     </div>
                   </Link>
                 ))}
