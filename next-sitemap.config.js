@@ -1,4 +1,6 @@
 const siteUrl = "https://ritzmediaworld.com";
+const mysql = require("mysql2/promise");
+const mongoose = require("mongoose");
 
 const BLOG_API_CANDIDATES = [
   process.env.SITEMAP_BLOGS_API_URL,
@@ -40,6 +42,26 @@ function toIsoOrNull(value) {
 }
 
 async function fetchBlogRecords() {
+  const apiRecords = await fetchBlogRecordsFromApi();
+  if (Array.isArray(apiRecords) && apiRecords.length > 0) {
+    return apiRecords;
+  }
+
+  const mysqlRecords = await fetchBlogRecordsFromMySQL();
+  if (Array.isArray(mysqlRecords) && mysqlRecords.length > 0) {
+    return mysqlRecords;
+  }
+
+  const mongoRecords = await fetchBlogRecordsFromMongo();
+  if (Array.isArray(mongoRecords) && mongoRecords.length > 0) {
+    return mongoRecords;
+  }
+
+  console.warn("[next-sitemap] No blog records found from API/MySQL/Mongo. Continuing with static routes only.");
+  return [];
+}
+
+async function fetchBlogRecordsFromApi() {
   for (const endpoint of BLOG_API_CANDIDATES) {
     try {
       console.log(`[next-sitemap] Fetching blogs from: ${endpoint}`);
@@ -69,8 +91,74 @@ async function fetchBlogRecords() {
     }
   }
 
-  console.warn("[next-sitemap] Could not fetch blogs from any API candidate. Continuing with static routes only.");
+  console.warn("[next-sitemap] Could not fetch blogs from API candidates.");
   return [];
+}
+
+async function fetchBlogRecordsFromMySQL() {
+  const host = process.env.DATABASE_HOST;
+  const user = process.env.DATABASE_USER;
+  const password = process.env.DATABASE_PASSWORD;
+  const database = process.env.DATABASE_NAME;
+  const port = Number(process.env.DATABASE_PORT || 3306);
+
+  if (!host || !user || !database) {
+    console.warn("[next-sitemap] MySQL fallback skipped: missing DATABASE_* env values.");
+    return [];
+  }
+
+  let connection;
+  try {
+    connection = await mysql.createConnection({ host, user, password, database, port });
+    const [rows] = await connection.execute(
+      "SELECT slug, created_at FROM blogs WHERE category_id != 1 AND status = 1 ORDER BY id DESC, created_at DESC"
+    );
+    const records = Array.isArray(rows) ? rows : [];
+    console.log(`[next-sitemap] MySQL fallback success. Records: ${records.length}`);
+    return records;
+  } catch (error) {
+    console.error("[next-sitemap] MySQL fallback failed", error);
+    return [];
+  } finally {
+    if (connection) {
+      try {
+        await connection.end();
+      } catch (_error) {
+        // ignore close errors
+      }
+    }
+  }
+}
+
+async function fetchBlogRecordsFromMongo() {
+  const mongoUrl = process.env.MONGO_URL;
+  if (!mongoUrl) {
+    console.warn("[next-sitemap] Mongo fallback skipped: missing MONGO_URL env value.");
+    return [];
+  }
+
+  let conn;
+  try {
+    conn = await mongoose.createConnection(mongoUrl).asPromise();
+    const docs = await conn.collection("ritzblogmodels").find(
+      { blogStatus: true },
+      { projection: { blogSlug: 1, createdAt: 1, updatedAt: 1 } }
+    ).toArray();
+    const records = Array.isArray(docs) ? docs : [];
+    console.log(`[next-sitemap] Mongo fallback success. Records: ${records.length}`);
+    return records;
+  } catch (error) {
+    console.error("[next-sitemap] Mongo fallback failed", error);
+    return [];
+  } finally {
+    if (conn) {
+      try {
+        await conn.close();
+      } catch (_error) {
+        // ignore close errors
+      }
+    }
+  }
 }
 
 /** @type {import('next-sitemap').IConfig} */
