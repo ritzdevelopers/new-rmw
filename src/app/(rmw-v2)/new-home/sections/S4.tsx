@@ -140,7 +140,7 @@ function S4() {
             Need a custom solution combining multiple services?
           </p>
           <Link
-            href="/contact"
+            href="/contact.html"
             className="text-base font-[400] text-[#D4A574] underline-offset-4 transition-colors duration-200 hover:underline flex justify-center items-center gap-2 text-center sm:text-[18px]"
           >
             Let's create your integrated strategy <FaArrowRight className="mt-2"/>

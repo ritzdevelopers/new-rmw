@@ -14,7 +14,7 @@ import BrandImpactSection1 from '@/components/copy/BrandImpactSection1'
 
 export default function page() {
     return (
-        <div className='pb-10'>
+        <div className='pb-22'>
             <Banner />
             <About />
             <WhyJoin />

@@ -4,7 +4,7 @@ import styles from './discussion.module.css';
 function Section1() {
     return (
         <section
-            className={`w-full h-[425px] md:h-[300px] md:min-h-[300px] lg:h-[500px] lg:min-h-[500px] xl:h-[500px] xl:min-h-[500px] xxl:h-auto xxl:min-h-[615px] 
+            className={`w-full h-[425px] md:h-[300px] md:min-h-[300px] lg:h-[440px] lg:min-h-[440px] xl:h-[500px] xl:min-h-[500px] xxl:h-auto xxl:min-h-[615px] 
             bg-[#0F1640] md:bg-[#0F1640] bg-cover bg-no-repeat bg-center flex md:items-stretch lg:items-end pb-8 sm:pb-12 md:pb-3 lg:pb-10 xl:pb-26 px-4 sm:px-6 md:px-0 overflow-visible justify-center items-center md:justify-start  `}>
 
             {/* Bottom Center Text Container  */}

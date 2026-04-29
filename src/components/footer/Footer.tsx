@@ -39,6 +39,7 @@ const Footer = memo(() => {
                             height={100}
                             src="/logo-brown.png"
                             alt="logo"
+                            title="Ritz Media World logo"
                             loading="lazy"
                             quality={60}
                             priority={false}
@@ -114,12 +115,12 @@ const Footer = memo(() => {
                   className="tp-footer__widget footer-col-1-2 mb-40 widget_nav_menu"
                 >
                   <div className="tp-footer-widget-content">
-                    <h3
+                    <div
                       className="tp-footer__widget-title"
                       style={{ color: "#ffffff", fontSize: "20px" }}
                     >
                       Quick Links
-                    </h3>
+                    </div>
                     <div className="menu-our-location-container">
                       <ul id="menu-our-location" className="menu">
                         <li
@@ -203,12 +204,12 @@ const Footer = memo(() => {
                   className="tp-footer__widget footer-col-1-4 mb-40 widget_nav_menu"
                 >
                   <div className="tp-footer-widget-content">
-                    <h3
+                    <div
                       className="tp-footer__widget-title"
                       style={{ color: "#ffffff", fontSize: "20px" }}
                     >
                       our services
-                    </h3>
+                    </div>
                     <div className="menu-footer-service-nav-container">
                       <ul id="menu-footer-service-nav" className="menu">
                         <li
@@ -310,12 +311,12 @@ const Footer = memo(() => {
                   className="widget_text tp-footer__widget footer-col-1-3 mb-40 widget_custom_html w-full min-h-[206px]"
                 >
                   <div className="widget_text tp-footer-widget-content w-full min-h-[206px] flex flex-col">
-                    <h3
+                    <div
                       className="tp-footer__widget-title"
                       style={{ color: "#ffffff", fontSize: "20px" }}
                     >
                       Contact info
-                    </h3>
+                    </div>
                     <div className="textwidget custom-html-widget">
                       <div className="tp-footer__contact-info">
                         <div className="tp-footer__list">
@@ -386,6 +387,7 @@ info@ritzmediaworld.com"
                   <Image
                     src="/rmwPartners.png"
                     alt="Ritz Media World Partners"
+                    title="Ritz Media World partners"
                     width={398}
                     height={100}
                     loading="lazy"

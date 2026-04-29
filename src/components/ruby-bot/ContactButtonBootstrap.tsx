@@ -199,6 +199,7 @@ function ContactButtonBootstrap() {
         <Image
           src="/AI_Bot_Icon.png"
           alt="Services Bot"
+          title="Services Bot"
           width={24}
           height={24}
           className={styles.botIcon}

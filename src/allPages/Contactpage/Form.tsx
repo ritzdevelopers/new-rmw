@@ -115,7 +115,7 @@ const Form = () => {
                         <div className="col-xl-6 col-lg-6">
                             <div className="tp-contact__left pr-20 pl-20">
                                 <div className="tp-contact__title-box mb-75 ">
-                                    <h3
+                                    <h2
                                         ref={(el) => {
                                             if (el) textRefs.current.push(el);
                                         }}
@@ -628,7 +628,7 @@ const Form = () => {
                                                 </div>
                                             </span>
                                         </div>
-                                    </h3>
+                                    </h2>
                                     <p
                                         className="wow tpfadeUp animated text-black"
                                         data-wow-duration=".9s"

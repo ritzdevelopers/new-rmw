@@ -8,7 +8,7 @@ export default function WhyJoin() {
     const EXPLORE_ARROW_IMAGE =
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
     return (
-        <section className="w-full flex justify-center items-center py-5  md:py-8 lg:py-5">
+        <section className="w-full flex justify-center items-center py-5  md:py-5 lg:py-5">
         <div className={`w-full flex justify-center items-center  pl-4 sm:pl-6 md:pl-6 lg:pl-12 ${styles.page_containerWidth}`}>
 
             {/* MAIN GRID */}
@@ -20,7 +20,7 @@ export default function WhyJoin() {
                 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.45fr)]
                 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1.45fr)]
                gap-2 lg:gap-0
-border-t border-[#F7F7F7] 
+               border-t border-[#F7F7F7] 
             ">
 
                 {/* LEFT SECTION */}

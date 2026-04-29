@@ -247,6 +247,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                   <Image
                     src="/rmw-logo-sm-size.png"
                     alt="rmw-logo"
+                    title="Ritz Media World logo"
                 
                     className={styles.lgImg}
                     ref={imgT}
@@ -611,6 +612,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                 <Image
                   src="/rmw-logo-sm-size.png"
                   alt="RMW Logo"
+                  title="Ritz Media World logo"
                   width={50}
                   height={70}
                   priority
@@ -780,6 +782,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                   // style={{ height: "60px" }}
                   src="/rmw-logo-sm-size.png"
                   alt="RMW Logo"
+                  title="Ritz Media World logo"
                   width={60}
                   height={100}
                   priority
@@ -819,6 +822,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     <Image
                       src="/blogs/2023/09/acr-768x404.jpg"
                       alt="hI1"
+                      title="Case study thumbnail 1"
                       width={200}
                       height={100}
                       priority
@@ -830,6 +834,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     <Image
                       src="/blogs/2023/09/Slide1-768x432.jpg"
                       alt="hI2"
+                      title="Case study thumbnail 2"
                       width={200}
                       height={100}
                       priority
@@ -844,6 +849,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     <Image
                       src="/blogs/db16fa7c-4f82-1f75-04f3-4270575794e8_1100_550.png"
                       alt="hI3"
+                      title="Case study thumbnail 3"
                       width={200}
                       height={100}
                       priority
@@ -855,6 +861,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                     <Image
                       src="/blogs/cook-1024x539.jpg"
                       alt="hI4"
+                      title="Case study thumbnail 4"
                       width={200}
                       height={100}
                       priority

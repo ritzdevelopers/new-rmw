@@ -15,6 +15,15 @@ function getBlogCategoryId(b: unknown): string {
     return id != null ? String(id) : "";
 }
 
+function normalizeSlug(input: string): string {
+    return input
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/[\s_-]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+}
+
 export async function get_single_blog(slug: string) {
     try {
         if (!slug) {
@@ -55,13 +64,17 @@ async function getBlogBySlug(slug: string) {
         let blog;
         let id;
         let categoryName = "Not Found";
-        blog = await RitzBlogModel.findOne({ blogSlug: slug }).lean();
+        const decodedSlug = decodeURIComponent(slug);
+        const normalizedSlug = normalizeSlug(decodedSlug);
+        const slugCandidates = Array.from(new Set([decodedSlug, normalizedSlug].filter(Boolean)));
+
+        blog = await RitzBlogModel.findOne({ blogSlug: { $in: slugCandidates } }).lean();
 
         if (!blog) {
             const db = getDBPool();
             const [rows] = await db.execute<RowDataPacket[]>(
-                "SELECT * FROM blogs WHERE slug = ?",
-                [slug]
+                "SELECT * FROM blogs WHERE slug IN (?, ?) LIMIT 1",
+                [decodedSlug, normalizedSlug]
             );
             blog = rows[0];
             id = getBlogCategoryId(blog);

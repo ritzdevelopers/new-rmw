@@ -1,12 +1,10 @@
 import "./styles/tailwind.css";
 import "./styles/global.css";
-import ContactBtns from "./new-home/components/ContactBtns";
 import { Metadata } from "next";
 import NewNavbar from "./layout/NewNavbar";
 import NewFooter from "./layout/NewFooter";
-import RubyBot from "@/components/ruby-bot/RubyBot";
 import RubyProvider from "@/ruby-context/ruby.context";
-import EnquiryForm from "@/components/auto/EnquiryForm";
+import ClientWidgets from "./layout/ClientWidgets";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ritzmediaworld.com"),
@@ -108,8 +106,7 @@ export default function NewRMWW({ children }: { children: React.ReactNode }) {
       <NewNavbar></NewNavbar>
       <RubyProvider>
         {children}
-        <ContactBtns />
-        <RubyBot />
+        <ClientWidgets />
         {/* <EnquiryForm /> */}
       </RubyProvider>
       {/* <Footer></Footer> */}
