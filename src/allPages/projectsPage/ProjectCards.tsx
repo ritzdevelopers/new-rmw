@@ -26,7 +26,7 @@ function ProjectCardItem({ card, idx }: { card: Card; idx: number }) {
       >
         <div className={styles.imageContainer}>
           <Image
-            src={`/blogs/${card.blog_image}`}
+            src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/blogs/${card.blog_image}`}
             className={styles.image}
             alt={card.title}
             fill

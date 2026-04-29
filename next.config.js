@@ -23,7 +23,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   eslint: {
-    // ⚠️ This disables ESLint during builds (optional)
+    // This disables ESLint during builds (optional)
     ignoreDuringBuilds: true,
   },
   // Compress responses
