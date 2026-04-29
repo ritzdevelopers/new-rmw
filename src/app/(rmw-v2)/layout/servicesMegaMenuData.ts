@@ -223,36 +223,36 @@ export const SERVICES_MEGA_MENU_CATEGORIES: MegaMenuCategory[] = [
   {
     id: "web-development",
     name: "Web Development",
-    href: "/web-development",
+    href: "/services/web-designing-and-development",
     services: [
       {
         title: "UI/UX Design",
         description: "Interfaces focused on clarity and conversion.",
-        href: "/web-development",
+        href: "/services/web-designing-and-development/ui-ux-design",
         image: "/navbar/seo.png",
       },
       {
         title: "Custom Design & Development",
         description: "Tailored builds for speed and scalability.",
-        href: "/web-development",
+        href: "/services/web-designing-and-development/custom-design-development",
         image: "/navbar/orm.png",
       },
       {
         title: "E-Commerce Website Development",
         description: "Stores engineered for trust and checkout.",
-        href: "/web-development",
+        href: "/services/web-designing-and-development/e-commerce-web-designing",
         image: "/navbar/ppc.png",
       },
       {
         title: "Landing Page Development",
         description: "Focused pages for campaigns and lead capture.",
-        href: "/web-development",
+        href: "/services/web-designing-and-development/landing-page-development-services",
         image: "/navbar/leadgeneration.png",
       },
       {
         title: "WordPress Web Design",
         description: "Flexible CMS sites with clean, maintainable code.",
-        href: "/web-development",
+        href: "/services/web-designing-and-development/wordpress-web-designing",
         image: "/navbar/brand-awareness.png",
       },
     ],
@@ -346,30 +346,30 @@ export const SERVICES_MEGA_MENU_CATEGORIES: MegaMenuCategory[] = [
   {
     id: "real-estate-walkthrough",
     name: "Real Estate Walkthrough",
-    href: "/web-development",
+    href: "/services/web-designing-and-development",
     services: [
       {
         title: "3D & Virtual Property Experiences",
         description: "Immersive tours that shorten the decision path.",
-        href: "/web-development",
+        href: "/services/web-designing-and-development",
         image: "/navbar/seo.png",
       },
       {
         title: "Project & Microsite Development",
         description: "Dedicated sites for launches and inventory.",
-        href: "/web-development",
+        href: "/services/web-designing-and-development",
         image: "/navbar/orm.png",
       },
       {
         title: "Visual Storytelling for Listings",
         description: "Premium presentation for high-ticket inventory.",
-        href: "/web-development",
+        href: "/services/web-designing-and-development",
         image: "/navbar/leadgeneration.png",
       },
       {
         title: "Performance & Lead Capture",
         description: "Fast pages with forms tuned for qualified leads.",
-        href: "/web-development",
+        href: "/services/web-designing-and-development",
         image: "/navbar/brand-awareness.png",
       },
     ],
