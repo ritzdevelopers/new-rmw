@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -164,9 +165,11 @@ function S6({ padding = "", padding2 = "" }: { padding?: string, padding2?: stri
                     </div>
 
                     {/* Absolute Positioned Image */}
-                    <img
+                    <Image
                       src="/home-v3/exl-icn.png"
                       alt="Ritz Media World" title="Ritz Media World"
+                      width={38}
+                      height={38}
                       className="absolute bottom-4 z-0 right-4"
                     />
                   </div>

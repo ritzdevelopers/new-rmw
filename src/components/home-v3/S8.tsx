@@ -251,7 +251,7 @@ function S8({
                                       >
                                           {/* Image Container  */}
                                           <div className="w-full relative h-auto md:max-lg:h-[212px] lg:h-[212px] min-h-0 shrink-0 overflow-hidden">
-                                              <img
+                                              <Image
                                                   onClick={() =>
                                                       window.open(
                                                           `https://ritzmediaworld.com/${ob.blogSlug}`,
@@ -259,11 +259,13 @@ function S8({
                                                       )
                                                   }
                                                   src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}${ob.blogBanner}`}
-                                                // src="/inner-demo-img.jpg"
                                                   alt="RMW"
                                                   title="RMW"
-                                                  className="w-full h-full md:max-lg:object-cover lg:object-cover"
-                                              ></img>
+                                                  fill
+                                                  unoptimized
+                                                  sizes="(min-width: 1024px) 405px, (min-width: 640px) 33vw, 100vw"
+                                                  className="w-full h-full md:max-lg:object-cover lg:object-cover cursor-pointer"
+                                              />
                                           </div>
                                           <p className="font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center">
                                               <CiCalendar className="w-[16px] h-[16px] sm:w-[17px] sm:h-[17px] lg:w-[18px] lg:h-[18px]" />{" "}

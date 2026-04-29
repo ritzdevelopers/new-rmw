@@ -65,14 +65,14 @@ function S7() {
                             className='cursor-pointer'
                             aria-label="Previous slide"
                         >
-                            <img src="/home-v3/rghtw.png" alt="RMW" title="RMW" className='w-[27px] h-[27px]' />
+                            <Image src="/home-v3/rghtw.png" alt="RMW" title="RMW" width={27} height={27} className='w-[27px] h-[27px]' />
                         </button>
                         <button 
                             onClick={() => swiperRef.current?.slideNext()}
                             className='cursor-pointer'
                             aria-label="Next slide"
                         >
-                            <img src="/home-v3/lftbw.png" alt="RMW" title="RMW" className='w-[27px] h-[27px]' />
+                            <Image src="/home-v3/lftbw.png" alt="RMW" title="RMW" width={27} height={27} className='w-[27px] h-[27px]' />
                         </button>
                     </div>
                 </div>
@@ -125,7 +125,7 @@ function S7() {
 
                                             {/* Absolute Position BTN  */}
                                             <div className='w-[110px] sm:w-[120px] lg:w-[125px] h-[32px] sm:h-[34px] lg:h-[36px] rounded-[50px] bg-[#ffffff] text-[#F59612] flex justify-center items-center gap-1 absolute top-2 -left-3 sm:-left-2.5 lg:-left-3 z-10'>
-                                                <img src="/home-v3/s7/star2.png" alt="Excellence" title="Excellence" className='w-[20px] sm:w-[22px] lg:w-[24px] h-[20px] sm:h-[22px] lg:h-[24px]' />
+                                                <Image src="/home-v3/s7/star2.png" alt="Excellence" title="Excellence" width={24} height={24} className='w-[20px] sm:w-[22px] lg:w-[24px] h-[20px] sm:h-[22px] lg:h-[24px]' />
                                                 <p className='font-[600] text-[12px] sm:text-[13px] lg:text-[14px]' style={{
                                                     fontFamily: "OpenSansSemiBold",
                                                 }}>{ob.highlite}</p>

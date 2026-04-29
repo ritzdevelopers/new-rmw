@@ -31,7 +31,7 @@ const page = () => {
     <>
       {/* Preload critical resources for better LCP */}
       <link rel="preload" href="/contact-images/contact-banner.jpg" as="image" />
-      
+
       <Suspense fallback={
         <div 
           className="d-flex justify-content-center align-items-center" 

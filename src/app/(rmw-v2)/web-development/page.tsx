@@ -14,7 +14,7 @@ import Stats from '@/components/WebDevelopment/Stats'
 
 export default function page() {
     return (
-        <div>
+        <div className='pb-8'>
             <Banner />
             <About />
             <WhatWeProvide />

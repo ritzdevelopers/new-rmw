@@ -149,10 +149,12 @@ function S3() {
               className="cursor-pointer"
               aria-label="Previous slide"
             >
-              <img
+              <Image
                 src="/home-v3/s3/lftb.png"
                 alt="RMW"
                 title="RMW"
+                width={27}
+                height={27}
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -161,10 +163,12 @@ function S3() {
               className="cursor-pointer"
               aria-label="Next slide"
             >
-              <img
+              <Image
                 src="/home-v3/s3/rhgt.png"
                 alt="RMW"
                 title="RMW"
+                width={27}
+                height={27}
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -229,6 +233,8 @@ function S3() {
                           alt={ob.ttl}
                           title={ob.ttl}
                           fill
+                          quality={68}
+                          sizes="(min-width: 1440px) 503px, (min-width: 1024px) 38vw, (min-width: 640px) 60vw, 100vw"
                           className="object-cover"
                         ></Image>
                       </div>

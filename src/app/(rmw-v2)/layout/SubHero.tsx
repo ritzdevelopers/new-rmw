@@ -1,13 +1,21 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { LuArrowUpRight } from "react-icons/lu";
-import { FaArrowRightLong } from "react-icons/fa6";
 import AnimatedBtn from "../new-home/components/AnimatedBtn";
 
 function SubHero() {
   return (
-    <section className="min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[576px] w-full overflow-x-hidden bg-[url(/new-about/ab-s1.png)] bg-center bg-no-repeat bg-cover relative flex justify-center items-center py-8 sm:py-10 md:py-12 lg:py-0">
+    <section className="min-h-[400px] sm:min-h-[450px] md:min-h-[500px] lg:min-h-[576px] w-full overflow-x-hidden relative flex justify-center items-center py-8 sm:py-10 md:py-12 lg:py-0">
+      <Image
+        src="/new-about/ab-s1.png"
+        alt="About Us hero background"
+        fill
+        priority
+        quality={60}
+        sizes="100vw"
+        className="object-cover object-center"
+      />
       {/* Absolut Positioned Overlay Container  */}
       <div className="w-full h-full absolute inset-0 bg-gradient-to-l from-[#3D29097D] to-[#61360A] z-0"></div>
 
