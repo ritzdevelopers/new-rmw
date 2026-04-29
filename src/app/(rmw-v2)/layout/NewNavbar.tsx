@@ -543,17 +543,13 @@ function NewNavbar() {
                 <Link
                   href="/services"
                   title="Services"
-                  onClick={(e) => {
-                    e.preventDefault();
+                  target="_blank"
+                  onClick={() => {
                     if (hoverTimeoutRef.current) {
                       clearTimeout(hoverTimeoutRef.current);
                       hoverTimeoutRef.current = null;
                     }
-                    setIsHovered((prev) => {
-                      const next = !prev;
-                      if (next) setActiveServiceCategory(0);
-                      return next;
-                    });
+                    setIsHovered(false);
                   }}
                   onMouseEnter={() => {
                     if (hoverTimeoutRef.current) {
@@ -583,7 +579,7 @@ function NewNavbar() {
               <li>
                 <Link
                   href="https://ritzmediaworld.com/work.html"
-                  target="_blan k"
+                    target="_blank"
                   title="Our Work"
                   className={`font-[700] text-[15px] xl:text-[16px] transition-colors duration-300 ${isScrolled
                     ? "text-black hover:text-[#C99237]"
