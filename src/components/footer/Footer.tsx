@@ -9,7 +9,7 @@ import { memo } from "react";
 const Footer = memo(() => {
 
   return (
-    <footer>
+    <footer className="footer-no-underline">
       {/* <!-- tp footer area start  --> */}
 
       <section
@@ -401,6 +401,17 @@ info@ritzmediaworld.com"
           {/* <!-- tp copyright area end --> */}
         </div>
       </section>
+      <style jsx global>{`
+        .footer-no-underline a,
+        .footer-no-underline a:link,
+        .footer-no-underline a:visited,
+        .footer-no-underline a:hover,
+        .footer-no-underline a:active,
+        .footer-no-underline a:focus,
+        .footer-no-underline a:focus-visible {
+          text-decoration: none !important;
+        }
+      `}</style>
     </footer>
   );
 });
