@@ -135,23 +135,6 @@ function NewNavbar() {
     };
   }, [isHovered]);
 
-  // Auto-open menu when isMenuOpen becomes true
-  useEffect(() => {
-    if (isMenuOpen) {
-      // Small delay to ensure the menu is rendered, then find and click the toggle button
-      setTimeout(() => {
-        const toggleButton = document.querySelector('.sm-toggle') as HTMLButtonElement;
-        if (toggleButton) {
-          const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
-          if (!isExpanded) {
-            toggleButton.click();
-          }
-        }
-      }, 200);
-    }
-  }, [isMenuOpen]);
-
-
   const menuItems = [
     { label: 'Blogs', ariaLabel: 'View our services', link: 'https://ritzmediaworld.com/blogs' },
 
@@ -621,7 +604,7 @@ function NewNavbar() {
                     <p className="text-white">Free Consulting</p>
                   </button>
                   <button
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    onClick={() => setIsMenuOpen(true)}
                     className={`${isScrolled ? "text-black" : "text-white"
                       } h-[34px] w-[34px] cursor-pointer transition-colors duration-300 hover:text-[#C99237] flex items-center justify-center`}
                     aria-label="Toggle menu"
@@ -671,6 +654,7 @@ function NewNavbar() {
             <div className="fixed inset-0 z-[9999] responsive-staggered-menu" style={{ height: '100vh', background: 'transparent' }}>
               <div className="relative w-full h-full">
                 <StaggeredMenu
+                  isOpen={isMenuOpen}
                   position="right"
                   items={menuItems}
                   socialItems={socialItems}

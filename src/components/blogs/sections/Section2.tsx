@@ -9,7 +9,7 @@ import { FiFileText } from "react-icons/fi";
 
 function Section2({ all_blogs }: { all_blogs: any[] }) {
     const [page, setPage] = useState<number>(0);
-    const [loadingState, setLoadingState] = useState<boolean>(false);
+    const [loadingState, setLoadingState] = useState<boolean>(true);
     const [blogs, setBlogs] = useState<any[]>([]);
 
     function normalizeMongoMsqlBlogs(blogs: any[]): any[] {
@@ -49,6 +49,7 @@ function Section2({ all_blogs }: { all_blogs: any[] }) {
         const filtered = list.filter((blog: any) => (blog?.title ?? "").toLowerCase().includes((searchValue ?? "").toLowerCase()));
         setFilteredBlogs(filtered.slice(0, 10));
     }, [searchValue, all_blogs]);
+    
     return (
         <section className="w-full flex justify-center items-center   py-[35px] lg:py-[70px]">
 
