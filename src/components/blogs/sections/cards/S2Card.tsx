@@ -66,6 +66,10 @@ function S2Card({ blog }: { blog: Blog }) {
 
     const shareUrl = typeof window !== "undefined" ? `${window.location.origin}/${blog.slug}` : "";
     const shareTitle = blog.title || "Check out this blog";
+    const bannerPath = typeof blog?.banner === "string" ? blog.banner : "";
+    const imageSrc = bannerPath.includes("/images")
+        ? `https://ritzmediaworld.com/api/images${bannerPath.split("/images")[1]}`
+        : `https://ritzmediaworld.com/blogs/${bannerPath}`;
 
     const shareLinks = {
         whatsapp: `https://wa.me/?text=${encodeURIComponent(shareTitle + " " + shareUrl)}`,
@@ -120,10 +124,7 @@ function S2Card({ blog }: { blog: Blog }) {
                 {/* Image Here  */}
                 <div onClick={() => window.open(`/${blog.slug}`, "_blank")} className="w-full cursor-pointer relative h-[220px] sm:h-[200px] lg:h-[250px] xl:h-[345px] overflow-hidden">
                     <Image
-                       src={blog.banner.includes("/images")
-                        ? `https://ritzmediaworld.com/api/images${blog.banner.split("/images")[1]}`
-                        : `https://ritzmediaworld.com/blogs/${blog.banner}`
-                    }
+                       src={imageSrc}
                         quality={75}
                         title={blog.title}
                         priority={false}
