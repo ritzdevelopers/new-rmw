@@ -5,7 +5,7 @@ async function Page() {
     const all_blogs = await GET_ALL_BLOGS();
     return (
         <>
-            <Blog all_blogs={all_blogs?.data ?? null} />
+            <Blog all_blogs={all_blogs?.data ?? []} />
         </>
     )
 }
