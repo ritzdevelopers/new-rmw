@@ -18,15 +18,15 @@ function S2() {
     act: true,
     id: "01",
     ttl: "Digital Marketing",
-    img: "/home-v3/new/602-banner1.jpg",
+    img: "/varunimage/digital-marketing-brand.jpg",
     para: "We design digital strategies that balance reach and relevance, combining performance marketing, data insights, and platform intelligence to drive sustained visibility, intent, and measurable business growth.",
     link: "https://ritzmediaworld.com/services/digital-marketing",
   });
 
-  const [prevImage, setPrevImage] = useState<string>("/home-v3/new/602-banner1.jpg");
-  const [nextImage, setNextImage] = useState<string>("/home-v3/new/602-banner1.jpg");
+  const [prevImage, setPrevImage] = useState<string>("/varunimage/digital-marketing-brand.jpg");
+  const [nextImage, setNextImage] = useState<string>("/varunimage/digital-marketing-brand.jpg");
   const [showTransition, setShowTransition] = useState(false);
-  const [displayImage, setDisplayImage] = useState<string>("/home-v3/new/602-banner1.jpg");
+  const [displayImage, setDisplayImage] = useState<string>("/varunimage/digital-marketing-brand.jpg");
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [videoType, setVideoType] = useState<'mobile' | 'tablet' | 'desktop'>('desktop');
   const pendingCardRef = useRef<CardItem | null>(null);
@@ -477,7 +477,7 @@ function S2() {
                   act: true,
                   id: "01",
                   ttl: "Digital Marketing",
-                  img: "/home-v3/new/602-banner1.jpg",
+                  img: "/varunimage/digital-marketing-brand.jpg",
                   para: "We design digital strategies that balance reach and relevance, combining performance marketing, data insights, and platform intelligence to drive sustained visibility, intent, and measurable business growth.",
                   link: "https://ritzmediaworld.com/services/digital-marketing",
                 },
@@ -485,7 +485,7 @@ function S2() {
                   act: false,
                   id: "02",
                   ttl: "Creative Service",
-                  img: "/home-v3/new/602-banner2.png",
+                  img: "/varunimage/creative-brand.jpg",
                   para: "We craft brand identities and visual systems that feel consistent, contemporary, and meaningful, helping brands communicate clearly while standing out across digital, print, and physical environments.",
                   link: "https://ritzmediaworld.com/services/creative-services",
                 },
@@ -493,7 +493,7 @@ function S2() {
                   act: false,
                   id: "03",
                   ttl: "Print Advertisement",
-                  img: "/home-v3/new/rmw-news-paper3.png",
+                  img: "/varunimage/print-brand.jpg",
                   para: "We create high-impact print campaigns that deliver credibility and recall, blending strong creative thinking with strategic placements across newspapers, magazines, outdoor formats, and on-ground brand touchpoints.",
                   link: "https://ritzmediaworld.com/services/print-advertising",
                 },
@@ -501,7 +501,7 @@ function S2() {
                   act: false,
                   id: "04",
                   ttl: "Radio Advertisement",
-                  img: "/home-v3/new/602-banner-3.png",
+                  img: "/varunimage/radio-brand.jpg",
                   para: "We develop audio-led brand stories that connect emotionally with listeners, using strategic scripting, voice, and media planning to deliver reach, frequency, and regional relevance.",
                   link: "https://ritzmediaworld.com/services/radio-advertising",
                 },
@@ -509,7 +509,7 @@ function S2() {
                   act: false,
                   id: "05",
                   ttl: "Content Marketing",
-                  img: "/home-v3/new/content-marketing.png",
+                  img: "/varunimage/content-brand.jpg",
                   para: "We plan and create content that attracts, educates, and nurtures your audience, building brand authority, engagement, and long-term trust through consistent, platform-native storytelling.",
                   link: "https://ritzmediaworld.com/services/contents-marketing",
                 },
@@ -517,7 +517,7 @@ function S2() {
                   act: false,
                   id: "06",
                   ttl: "Web Development",
-                  img: "/home-v3/new/602-banner4.png",
+                  img: "/varunimage/webdevelopment.jpg",
                   para: "We build digital platforms that are intuitive, scalable, and performance-ready, aligning design, user experience, and technology to support brand credibility, discovery, and conversion.",
                   link: "https://ritzmediaworld.com/services/web-designing-and-development",
                 },
@@ -525,7 +525,7 @@ function S2() {
                   act: false,
                   id: "07",
                   ttl: "Influencer Marketing",
-                  img: "/home-v3/new/influence_marketing.jpg",
+                  img: "/varunimage/influencer-brand.jpg",
                   para: "We enable authentic influencer collaborations that align with brand values, helping businesses reach niche communities through credible voices, contextual storytelling, and measurable campaign performance.",
                   link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
                 },
@@ -533,7 +533,7 @@ function S2() {
                   act: false,
                   id: "08",
                   ttl: "Celebrity Endorsement",
-                  img: "/home-v3/new/immages-602.png",
+                  img: "/varunimage/celebraity-brand.jpg",
                   para: "We manage strategic celebrity associations that enhance brand perception, handling selection, negotiation, and execution to ensure relevance, credibility, and long-term brand equity.",
                   link: "https://ritzmediaworld.com/services/celebrity-endorsements",
                 },
