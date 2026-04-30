@@ -94,7 +94,7 @@ function Page() {
       formData.append("blog_image", newImage);
     }
     try {
-      const { status, data } = await axios.put(`/api/blog/${id}`, formData);
+      const { status, data } = await axios.patch(`/api/blog/${id}`, formData);
       setPopupData({ message: data.message, status });
       setRMWLoader(false);
       setShowPopup(true);

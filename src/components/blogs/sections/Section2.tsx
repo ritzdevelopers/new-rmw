@@ -12,6 +12,16 @@ function Section2({ all_blogs }: { all_blogs: any[] }) {
     const [loadingState, setLoadingState] = useState<boolean>(true);
     const [blogs, setBlogs] = useState<any[]>([]);
 
+    const getBlogTime = (blog: any) => {
+        const rawDate = blog?.created_at || blog?.createdAt;
+        const parsed = new Date(rawDate).getTime();
+        return Number.isNaN(parsed) ? 0 : parsed;
+    };
+
+    const sortBlogsByDateDesc = (list: any[]) => {
+        return [...list].sort((a, b) => getBlogTime(b) - getBlogTime(a));
+    };
+
     function normalizeMongoMsqlBlogs(blogs: any[]): any[] {
         return blogs.map((blog) => ({
             title: blog.title || blog.blogTitle,
@@ -30,7 +40,8 @@ function Section2({ all_blogs }: { all_blogs: any[] }) {
             const nextPage = page + 1;
             const response = await axios.get(`/api/get_all_blogs?page=${nextPage}`);
             setPage(nextPage);
-            setBlogs([...blogs, ...normalizeMongoMsqlBlogs(response.data.blogs)]);
+            const normalizedBlogs = normalizeMongoMsqlBlogs(response.data.blogs);
+            setBlogs((prevBlogs) => sortBlogsByDateDesc([...prevBlogs, ...normalizedBlogs]));
         } catch (error) {
             console.error("Error in fetching blogs", error);
         } finally {
@@ -47,7 +58,7 @@ function Section2({ all_blogs }: { all_blogs: any[] }) {
     useEffect(() => {
         const list = all_blogs ?? [];
         const filtered = list.filter((blog: any) => (blog?.title ?? "").toLowerCase().includes((searchValue ?? "").toLowerCase()));
-        setFilteredBlogs(filtered.slice(0, 10));
+        setFilteredBlogs(sortBlogsByDateDesc(filtered).slice(0, 10));
     }, [searchValue, all_blogs]);
     
     return (

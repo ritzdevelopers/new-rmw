@@ -72,7 +72,7 @@ async function saveFileToUploads(
 }
 
 // PUT (Update blog by slug)
-export async function PUT(
+export async function PATCH(
   req: NextRequest,
   context: { params: { blog_slug: string } }
 ) {
