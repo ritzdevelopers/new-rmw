@@ -263,6 +263,8 @@ export function ServicesMegaMenuPanel({
                 <Link
                   key={c.id}
                   href={c.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={onNavigate}
                   onMouseEnter={() => onCategoryChange(i)}
                   onFocus={() => onCategoryChange(i)}
@@ -307,6 +309,8 @@ export function ServicesMegaMenuPanel({
                   <Link
                     key={svc.href + svc.title}
                     href={svc.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={onNavigate}
                     className="flex gap-5 rounded-lg transition-colors duration-200 hover:bg-neutral-50"
                   >
@@ -360,6 +364,8 @@ export function ServicesMegaMenuMobileAccordion({
           >
             <Link
               href={c.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-neutral-50"
             >
               <CategoryAvatar
@@ -390,6 +396,8 @@ export function ServicesMegaMenuMobileAccordion({
                     <Link
                       key={svc.href + svc.title}
                       href={svc.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       onClick={onNavigate}
                       className="flex gap-2.5 rounded-lg border border-transparent bg-white p-2.5  transition-colors hover:border-[#C59D4F]/30"
                     >

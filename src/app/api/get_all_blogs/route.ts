@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
 
         if (!mongoTotal || mongoTotal === 0) {
             mongoTotal = await RitzBlogModel.countDocuments({ blogStatus: true });
-            await redisClient.set("rest_blogs_length", mongoTotal.toString(), { EX: 60 * 60 * 24 });
+            await redisClient.set("rest_blogs_length", mongoTotal.toString(), { EX: 60 * 15 });
         }
         const skip = (page - 1) * limit;
         const cached_blogs = await redisClient.get(`cached_blogs_page_${page}_limit_${limit}`);
@@ -44,7 +44,7 @@ export async function GET(req: NextRequest) {
             }).sort({ createdAt: -1 }).skip(skip).limit(limit).lean();
         }
 
-        await redisClient.set(`cached_blogs_page_${page}_limit_${limit}`, JSON.stringify(blogs), { EX: 60 * 60 * 24 });
+        await redisClient.set(`cached_blogs_page_${page}_limit_${limit}`, JSON.stringify(blogs), { EX: 60 * 15 });
         return NextResponse.json({ blogs }, { status: 200 });
 
     } catch (error) {
@@ -74,7 +74,7 @@ export async function GET_ALL_BLOGS() {
         const [mysql_blogs] = await getDBPool().query<any[]>("SELECT blog_image, title, slug, description, created_at FROM blogs WHERE category_id != 1 ORDER BY id DESC, created_at DESC");
         const blogs = [...mongo_blogs, ...mysql_blogs];
         const normalized_blogs = normalizeMongoMsqlBlogs(blogs);
-        await redisClient.set('all_cached_blogs', JSON.stringify(normalized_blogs), { EX: 60 * 60 * 24 });
+        await redisClient.set('all_cached_blogs', JSON.stringify(normalized_blogs), { EX: 60 * 15 });
         return {
             status: 200,
             message: "All blogs fetched successfully",
@@ -165,8 +165,8 @@ export async function FIND_BLOGS_BY_CATEGORY(categorySlug: string) {
                 metaKeywords: 1,
                 mtDesc: 1,
             }).sort({ createdAt: -1 }).lean();
-            await redisClient.set(`cached_blogs_by_category_${categorySlug}`, JSON.stringify(blogs), { EX: 60 * 60 * 24 });
-            await redisClient.set(`cached_category_meta_details_${categorySlug}`, JSON.stringify(meta_details), { EX: 60 * 60 * 24 });
+            await redisClient.set(`cached_blogs_by_category_${categorySlug}`, JSON.stringify(blogs), { EX: 60 * 15 });
+            await redisClient.set(`cached_category_meta_details_${categorySlug}`, JSON.stringify(meta_details), { EX: 60 * 15 });
             return {
                 status: 200,
                 message: "Blogs fetched successfully",
@@ -175,8 +175,8 @@ export async function FIND_BLOGS_BY_CATEGORY(categorySlug: string) {
             }
         }
         const [mysql_blogs] = await getDBPool().query<any[]>("SELECT blog_image, title, slug, description, created_at FROM blogs WHERE category_id = ? ORDER BY id DESC, created_at DESC", [categoryId]);
-        await redisClient.set(`cached_blogs_by_category_${categorySlug}`, JSON.stringify(mysql_blogs), { EX: 60 * 60 * 24 });
-        await redisClient.set(`cached_category_meta_details_${categorySlug}`, JSON.stringify(meta_details), { EX: 60 * 60 * 24 });
+        await redisClient.set(`cached_blogs_by_category_${categorySlug}`, JSON.stringify(mysql_blogs), { EX: 60 * 15 });
+        await redisClient.set(`cached_category_meta_details_${categorySlug}`, JSON.stringify(meta_details), { EX: 60 * 15 });
         return {
             status: 200,
             message: "Blogs fetched successfully",

@@ -69,10 +69,13 @@ function Section2() {
         gap-6 sm:gap-4 xl:gap-10 relative flex flex-col items-center  xl:items-end z-10"
         >
           <div className="w-[280px] h-[260px] sm:w-[380px] sm:h-[350px] md:w-[450px] md:h-[415px] lg:w-[535px] lg:h-[494px] absolute inset-0 opacity-50 sm:opacity-70 md:opacity-90 lg:opacity-100 hidden xl:block">
-            <img
+            <Image
               src="/new-about/s2/ab-s2-i1.png"
               alt="RMW"
-              className="w-full h-full object-contain"
+              fill
+              quality={65}
+              sizes="535px"
+              className="object-contain"
             />
           </div>
           <div className="w-full sm:w-[90%] md:w-[95%] lg:w-[826px] z-10">
@@ -95,8 +98,9 @@ function Section2() {
              src={"/gallery/New Team Image (18-Nov-2025).jpg"}
               alt="RMW"
               fill
+              quality={68}
               style={{ objectFit: "cover" }}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1079px"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, (max-width: 1536px) 1079px, 1200px"
             />
 
             <div

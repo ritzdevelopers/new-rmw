@@ -1,51 +1,59 @@
-/* Google Fonts Import - OpenSans & Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* Google Fonts removed to avoid render-blocking CSS on critical pages. */
 
 /* Inter Fonts */
 @font-face {
   font-family: "InterBold";
   src: url("../static/Inter_18pt-Bold.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "InterRegular";
   src: url("../static/Inter_18pt-Regular.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "InterSemiBold";
   src: url("../static/Inter_18pt-SemiBold.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "InterMedium";
   src: url("../static/Inter_18pt-Medium.ttf");
+  font-display: swap;
 }
 
 /* Montserrat Fonts */
 @font-face {
   font-family: "MontserratRegular";
   src: url("../static/static/Montserrat-Regular.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "MontserratMedium";
   src: url("../static/static/Montserrat-Medium.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "MontserratSemiBold";
   src: url("../static/static/Montserrat-SemiBold.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "MontserratBold";
   src: url("../static/static/Montserrat-Bold.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "MontserratExtraBold";
   src: url("../static/static/Montserrat-ExtraBold.ttf");
+  font-display: swap;
 }
 
 /* Poppins Fonts */
@@ -53,24 +61,21 @@
   font-family: "PoppinsRegular";
   font-style: normal;
   font-display: swap;
-  src: local("Poppins Regular"), local("Poppins-Regular"),
-    url("https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2") format("woff2");
+  src: local("Poppins Regular"), local("Poppins-Regular");
 }
 
 @font-face {
   font-family: "PoppinsSemiBold";
   font-style: normal;
   font-display: swap;
-  src: local("Poppins SemiBold"), local("Poppins-SemiBold"),
-    url("https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2") format("woff2");
+  src: local("Poppins SemiBold"), local("Poppins-SemiBold");
 }
 
 @font-face {
   font-family: "PoppinsBold";
   font-style: normal;
   font-display: swap;
-  src: local("Poppins Bold"), local("Poppins-Bold"),
-    url("https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2") format("woff2");
+  src: local("Poppins Bold"), local("Poppins-Bold");
 }
 
 /* Open Sans Font  */
@@ -78,21 +83,25 @@
 @font-face {
   font-family: "OpenSansRegular";
   src: url("../static/static2/OpenSans-Regular.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "OpenSansSemiBold";
   src: url("../static/static2/OpenSans-SemiBold.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "OpenSansBold";
   src: url("../static/static2/OpenSans-Bold.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "OpenSansExtraBold";
   src: url("../static/static2/OpenSans-ExtraBold.ttf");
+  font-display: swap;
 }
 
 /* p,

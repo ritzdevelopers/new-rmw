@@ -97,8 +97,8 @@ export default function SwiperSlider2({ dataArray }: Props) {
   {dataArray.map((slide, index) => (
     <SwiperSlide key={index} virtualIndex={index}>
       <div style={styles.s9Card}>
-        <img src={slide.img} alt={slide.alt} style={styles.s9CardImage} />
-        <h2 style={styles.s9CardTitle}>{slide.title}</h2>
+        <img src={slide.img} alt={slide.alt} title={slide.title} style={styles.s9CardImage} />
+        <h3 style={styles.s9CardTitle}>{slide.title}</h3>
       </div>
     </SwiperSlide>
   ))}

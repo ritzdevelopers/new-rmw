@@ -16,7 +16,7 @@ export default function page() {
         <div>
 
             <Banner />
-            <ServiceCategory />
+            {/* <ServiceCategory /> */}
             <Dreams />
             <LetsConnect />
             <TogetherTowardOneGoal />

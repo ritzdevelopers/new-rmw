@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -234,16 +235,29 @@ function NewBanner() {
                 {bannerSlides.map((slide, index) => (
                     <SwiperSlide key={index}>
                         <div className="relative w-full">
-                            <img
+                            <Image
                                 src={slide.desktop}
                                 alt="Ritz Media World banner"
                                 title="Ritz Media World banner"
+                                width={1920}
+                                height={760}
+                                priority={index === 0}
+                                loading={index === 0 ? "eager" : "lazy"}
+                                fetchPriority={index === 0 ? "high" : "auto"}
+                                quality={index === 0 ? 72 : 65}
+                                sizes="(min-width: 768px) 100vw, 0px"
                                 className="hidden md:block w-full h-auto object-cover"
                             />
-                            <img
+                            <Image
                                 src={slide.mobile}
                                 alt="Ritz Media World banner"
                                 title="Ritz Media World banner"
+                                width={768}
+                                height={1024}
+                                loading={index === 0 ? "eager" : "lazy"}
+                                fetchPriority="auto"
+                                quality={60}
+                                sizes="(max-width: 767px) 100vw, 0px"
                                 className="block md:hidden w-full h-auto object-cover"
                             />
 
