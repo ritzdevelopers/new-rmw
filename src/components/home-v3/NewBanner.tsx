@@ -234,31 +234,29 @@ function NewBanner() {
             >
                 {bannerSlides.map((slide, index) => (
                     <SwiperSlide key={index}>
-                        <div className="relative w-full">
+                        <div className="relative w-full aspect-[3/4] md:aspect-[1920/760]">
                             <Image
                                 src={slide.desktop}
                                 alt="Ritz Media World banner"
                                 title="Ritz Media World banner"
-                                width={1920}
-                                height={760}
+                                fill
                                 priority={index === 0}
                                 loading={index === 0 ? "eager" : "lazy"}
                                 fetchPriority={index === 0 ? "high" : "auto"}
                                 quality={index === 0 ? 72 : 65}
                                 sizes="(min-width: 768px) 100vw, 0px"
-                                className="hidden md:block w-full h-auto object-cover"
+                                className="hidden md:block object-cover"
                             />
                             <Image
                                 src={slide.mobile}
                                 alt="Ritz Media World banner"
                                 title="Ritz Media World banner"
-                                width={768}
-                                height={1024}
+                                fill
                                 loading={index === 0 ? "eager" : "lazy"}
                                 fetchPriority="auto"
                                 quality={60}
                                 sizes="(max-width: 767px) 100vw, 0px"
-                                className="block md:hidden w-full h-auto object-cover"
+                                className="block md:hidden object-cover"
                             />
 
                             <AnimatedBannerText

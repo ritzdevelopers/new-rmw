@@ -5,7 +5,11 @@
 
 /* Pagination container: 21px from bottom, 4px gap between dots */
 .bannerSwiper :global(.swiper-pagination) {
-  bottom: 21px;
+  position: absolute !important;
+  bottom: 20px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 20 !important;
 }
 
 /* Inactive pagination dots: 25px width, 10px height, white bg */
