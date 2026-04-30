@@ -10,12 +10,11 @@ import WhyJoin from '@/components/discussionForum/WhyJoin'
 import Section5 from '@/components/influencer-marketing-agency-in-india/Section5'
 import React from 'react'
 import Section7 from '@/components/home-v3/services/layer-1/Section7'
-import BrandImpactSection2 from '@/components/copy/BrandImpactSection2'
 import BrandImpactSection1 from '@/components/copy/BrandImpactSection1'
 
 export default function page() {
     return (
-        <div className='pb-10'>
+        <div className='pb-22'>
             <Banner />
             <About />
             <WhyJoin />

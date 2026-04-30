@@ -3,7 +3,7 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true,
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: "https",
@@ -23,7 +23,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   eslint: {
-    // ⚠️ This disables ESLint during builds (optional)
+    // This disables ESLint during builds (optional)
     ignoreDuringBuilds: true,
   },
   // Compress responses
@@ -63,6 +63,40 @@ const nextConfig = {
         ],
       },
     ];
+  },
+  // async redirects() {
+  //   return [
+  //     { source: "/campaign-integration.html", destination: "/services/influencer-marketing-agency-in-india/campaign-integration", permanent: true },
+  //     { source: "/radio-advertising.html", destination: "/services/radio-advertising", permanent: true },
+  //     { source: "/creative-services.html", destination: "/services/creative-services", permanent: true },
+  //     { source: "/celebrity-selection.html", destination: "/services/celebrity-endorsements", permanent: true },
+  //     { source: "/graphic-designing.html", destination: "/services/creative-services/graphic-designing", permanent: true },
+  //     { source: "/web-designing-development.html", destination: "/services/web-designing-and-development", permanent: true },
+  //     { source: "/real-estate-companies-dubai", destination: "/top-real-estate-companies-dubai-property-investment", permanent: true },
+  //     { source: "/contents-marketing.html", destination: "/services/contents-marketing", permanent: true },
+  //     { source: "/realestate-industry.html", destination: "/digital-marketing-strategies-for-real-estate-businesses", permanent: true },
+  //     { source: "/orm-in-digital-marketing.html", destination: "/services/digital-marketing/orm-in-digital-marketing", permanent: true },
+  //     { source: "/advertisement-designing.html", destination: "/services/print-advertising/advertisement-designing", permanent: true },
+  //     { source: "/what-is-fm-radio-advertising-agency", destination: "/fm-radio-advertising-benefits-costs-strategies", permanent: true },
+  //     { source: "/about-2", destination: "/about.html", permanent: true },
+  //     { source: "/custom-design-development.html", destination: "/services/web-designing-and-development/custom-design-development", permanent: true },
+  //     { source: "/influencer-marketing-agency-in-india", destination: "/services/influencer-marketing-agency-in-india", permanent: true },
+  //     { source: "/celebrity-endorsements", destination: "/services/celebrity-endorsements", permanent: true },
+  //     { source: "/web-designing-and-development", destination: "/services/web-designing-and-development", permanent: true },
+  //     { source: "/contents-marketing", destination: "/services/contents-marketing", permanent: true },
+  //     { source: "/digital-marketing", destination: "/services/digital-marketing", permanent: true },
+  //     { source: "/print-advertising", destination: "/services/print-advertising", permanent: true },
+  //     { source: "/creative-services", destination: "/services/creative-services", permanent: true },
+  //     { source: "/radio-advertising", destination: "/services/radio-advertising", permanent: true },
+  //   ];
+  // },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: "/about", destination: "/about.html" },
+        { source: "/contact", destination: "/contact.html" },
+      ],
+    };
   },
   webpack: (config) => {
     config.resolve = {

@@ -15,6 +15,15 @@ function getBlogCategoryId(b: unknown): string {
     return id != null ? String(id) : "";
 }
 
+function normalizeSlug(input: string): string {
+    return input
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/[\s_-]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+}
+
 export async function get_single_blog(slug: string) {
     try {
         if (!slug) {
@@ -31,8 +40,8 @@ export async function get_single_blog(slug: string) {
         }
         const blog = await getBlogBySlug(slug);
         if (blog.status === 200) {
-            await redisClient.set(`cached_blog_${slug}`, JSON.stringify(blog.data), { EX: 60 * 60 * 24 });
-            await redisClient.set(`cached_blog_category_${slug}`, JSON.stringify(blog.categoryName), { EX: 60 * 60 * 24 });
+            await redisClient.set(`cached_blog_${slug}`, JSON.stringify(blog.data), { EX: 60 * 15 });
+            await redisClient.set(`cached_blog_category_${slug}`, JSON.stringify(blog.categoryName), { EX: 60 * 15 });
             const related_blogs = await GET_4_RELATED_BLOGS(getBlogCategoryId(blog.data));
             return [{
                 blog: blog.data,
@@ -55,13 +64,17 @@ async function getBlogBySlug(slug: string) {
         let blog;
         let id;
         let categoryName = "Not Found";
-        blog = await RitzBlogModel.findOne({ blogSlug: slug }).lean();
+        const decodedSlug = decodeURIComponent(slug);
+        const normalizedSlug = normalizeSlug(decodedSlug);
+        const slugCandidates = Array.from(new Set([decodedSlug, normalizedSlug].filter(Boolean)));
+
+        blog = await RitzBlogModel.findOne({ blogSlug: { $in: slugCandidates } }).lean();
 
         if (!blog) {
             const db = getDBPool();
             const [rows] = await db.execute<RowDataPacket[]>(
-                "SELECT * FROM blogs WHERE slug = ?",
-                [slug]
+                "SELECT * FROM blogs WHERE slug IN (?, ?) LIMIT 1",
+                [decodedSlug, normalizedSlug]
             );
             blog = rows[0];
             id = getBlogCategoryId(blog);
@@ -167,7 +180,7 @@ async function get_all_blogs_categories() {
             const mongo_blogs = await RitzBlogModel.find({}).lean();
             const [mysql_blogs] = await getDBPool().query<RowDataPacket[]>("SELECT * FROM blogs");
             mongo_msql_cached_blogs = [...mongo_blogs, ...mysql_blogs];
-            await redisClient.set(`mongo_msql_cached_blogs`, JSON.stringify(mongo_msql_cached_blogs), { EX: 60 * 60 * 24 });
+            await redisClient.set(`mongo_msql_cached_blogs`, JSON.stringify(mongo_msql_cached_blogs), { EX: 60 * 15 });
         }
 
         const categories = [{
@@ -185,7 +198,7 @@ async function get_all_blogs_categories() {
             }))
         }]
         if (categories.length > 0) {
-            await redisClient.set(`cached_categories`, JSON.stringify(categories), { EX: 60 * 60 * 24 });
+            await redisClient.set(`cached_categories`, JSON.stringify(categories), { EX: 60 * 15 });
             return {
                 status: 200,
                 message: "Categories fetched successfully",
@@ -228,7 +241,7 @@ export async function get_latest_3_blogs() {
             metaKeywords: 1,
             mtDesc: 1,
         }).sort({ createdAt: -1 }).limit(3).lean();
-        await redisClient.set(`cached_latest_3_blogs`, JSON.stringify(latest_3_blogs), { EX: 60 * 60 * 24 });
+        await redisClient.set(`cached_latest_3_blogs`, JSON.stringify(latest_3_blogs), { EX: 60 * 15 });
         return {
             status: 200,
             message: "Latest 3 blogs fetched successfully",
@@ -272,7 +285,7 @@ async function GET_4_RELATED_BLOGS(category_id: string) {
             }).sort({ createdAt: -1 }).limit(4).lean();
         }
         if (related_blogs.length > 0) {
-            await redisClient.set(`cached_4_related_blogs_${category_id}`, JSON.stringify(related_blogs), { EX: 60 * 60 * 24 });
+            await redisClient.set(`cached_4_related_blogs_${category_id}`, JSON.stringify(related_blogs), { EX: 60 * 15 });
             return {
                 status: 200,
                 message: "4 related blogs fetched successfully",

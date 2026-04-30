@@ -158,7 +158,7 @@ const ServiceMainHero = () => {
                             </span>
                           </Link>
                         </span>
-                        <Link href="/contact.html" rel="nofollow" target="_self">
+                        <Link href="/contact.html" target="_self">
                           CONTACT US
                         </Link>
                       </div>
@@ -183,7 +183,7 @@ const ServiceMainHero = () => {
                             animationDelay: "0.3s",
                           }}
                         >
-                          <Link href="/contact.html/" rel="nofollow" target="_self">
+                          <Link href="/contact.html/" target="_self">
                             <span>
                               <svg
                                 width="93"

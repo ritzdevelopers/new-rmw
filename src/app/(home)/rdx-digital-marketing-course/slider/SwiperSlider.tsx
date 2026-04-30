@@ -109,6 +109,7 @@ const SwiperSlider: React.FC<SwiperSliderProps> = ({ dt }) => {
               <img
                 src={item.img}
                 alt={item.title}
+                title={item.title}
                 style={{
                   width: "100%",
                   height: "50%",

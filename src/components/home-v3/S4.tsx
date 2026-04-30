@@ -156,13 +156,13 @@ function S4() {
   const getVideoSource = () => {
     switch (videoType) {
       case 'desktop':
-        return '/new-page/dekstop-vd.mp4';
+        return '/nuv-video.mp4'; //nuv-video.mp4
       case 'tablet':
-        return '/new-page/tab-vd.mp4';
+        return '/nuv-video.mp4';
       case 'mobile':
-        return '/new-page/mobile-vd.mp4';
+        return '/nuv-video.mp4';
       default:
-        return '/new-page/dekstop-vd.mp4';
+        return '/nuv-video.mp4';
     }
   };
 
@@ -214,10 +214,12 @@ function S4() {
               className="cursor-pointer"
               aria-label="Previous slide"
             >
-              <img
+              <Image
                 src="/home-v3/s3/lftb.png"
                 alt="RMW"
                 title="RMW"
+                width={27}
+                height={27}
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -226,10 +228,12 @@ function S4() {
               className="cursor-pointer"
               aria-label="Next slide"
             >
-              <img
+              <Image
                 src="/home-v3/s3/rhgt.png"
                 alt="RMW"
                 title="RMW"
+                width={27}
+                height={27}
                 className="w-[27px] h-[27px]"
               />
             </button>
@@ -279,6 +283,8 @@ function S4() {
                           alt={story.title}
                           title={story.title}
                           fill
+                          quality={68}
+                          sizes="(min-width: 1280px) 590px, (min-width: 1024px) 450px, 100vw"
                           className="object-cover cursor-pointer"
                         ></Image>
                       </div>
@@ -324,10 +330,12 @@ function S4() {
                                   : ""
                                   }`}
                               >
-                                <img
+                                <Image
                                   src="/home-v3/s4/arrow.png"
                                   alt="RMW"
                                   title="RMW"
+                                  width={28}
+                                  height={28}
                                   className="w-[24px] h-[24px] sm:w-[28px] sm:h-[28px]"
                                 />
                                 <p
@@ -360,13 +368,14 @@ function S4() {
         </div>
 
         {/* Video strip — same horizontal box as slider (parent already has .container) */}
-        <div className="relative isolate w-full min-w-0 max-w-full overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] lg:h-[426px]">
+        <div className="relative isolate w-full min-w-0 max-w-full overflow-hidden h-[250px] sm:h-[300px] md:h-[350px] lg:h-[426px] xl:h-[590px] cursor-pointer" onClick={handlePlayClick}>
           <div className="absolute inset-0 z-0 min-h-0 min-w-0 overflow-hidden">
             <Image
-              src="/home-v3/s2/team-bg3.png"
+              src="/nuv-banner.jpg"
               alt="Ritz Media World – team video"
               title="Ritz Media World – team video"
               fill
+              quality={65}
               className="object-cover object-center"
               sizes="(min-width: 1370px) 1300px, 95vw"
             />

@@ -12,13 +12,12 @@ export default function NeedExpert() {
   ]
 
   return (
-   <section className="w-full flex justify-center items-center py-5  md:py-8 lg:py-10">
-  <div className={`container mx-auto bg-white px-5 md:px-10 lg:px-12 xl:px-0 ${styles.needExpertContainer} ${styles.page_containerWidth}`}>
+    <section className="w-full flex justify-center items-center py-8 sm:py-12 md:py-0 lg:py-[30px] xl:py-[20px]">
+      <div className={`container mx-auto bg-white px-6 md:px-10 lg:px-12 xl:px-3 ${styles.needExpertContainer}`}>
         <div className="mx-auto flex flex-col items-center text-center">
           <h2 className={`text-[20px]  leading-tight text-black sm:text-[24px] md:text-[36px] ${styles.montserratBold}`}>
             Need Expert Help?
           </h2>
-
 
           <p className={`mt-4 max-w-xl text-sm leading-7 sm:text-[16px] md:text-[16px] ${styles.poppins}`}>
             If you’re looking for professional marketing solutions, connect with Ritz Media World a trusted{' '}

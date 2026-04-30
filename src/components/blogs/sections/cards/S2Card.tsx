@@ -14,6 +14,36 @@ function stripHtml(html: string): string {
     return tmp;
 }
 
+function decodeHtmlEntities(text: string): string {
+    if (typeof text !== "string" || text.length === 0) return "";
+    let decoded = text;
+
+    // Run a few passes to handle double-encoded values like "&amp;#39;".
+    for (let i = 0; i < 3; i += 1) {
+        const next = decoded
+            .replace(/&#(\d+);?/g, (_, dec) => String.fromCharCode(Number(dec)))
+            .replace(/&#x([0-9a-fA-F]+);?/g, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+            .replace(/&amp;/g, "&")
+            .replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&quot;/g, '"')
+            .replace(/&apos;/g, "'")
+            .replace(/&#39;?/g, "'")
+            .replace(/&nbsp;/g, " ");
+
+        if (next === decoded) break;
+        decoded = next;
+    }
+
+    if (typeof document !== "undefined") {
+        const el = document.createElement("textarea");
+        el.innerHTML = decoded;
+        decoded = el.value;
+    }
+
+    return decoded;
+}
+
 interface Blog {
     title: string;
     slug: string;
@@ -76,8 +106,12 @@ function S2Card({ blog }: { blog: Blog }) {
 
     const openShare = (url: string) => window.open(url, "_blank", "noopener,noreferrer,width=600,height=500");
 
-    const plainDescription = stripHtml(blog.description || "");
-    const preview = plainDescription.length > 100 ? `${plainDescription.slice(0, 100)}...` : plainDescription;
+    const plainDescription = decodeHtmlEntities(stripHtml(blog.description || ""));
+    const descriptionWithoutTitle = plainDescription
+        .replace(new RegExp(`^${blog.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*`, "i"), "")
+        .trim();
+    const previewSource = descriptionWithoutTitle || plainDescription;
+    const preview = previewSource.length > 100 ? `${previewSource.slice(0, 100)}...` : previewSource;
 
     return (
         <div  className="w-full max-w-[613px] mx-auto flex flex-col gap-4 sm:gap-5 lg:gap-6 mb-12">

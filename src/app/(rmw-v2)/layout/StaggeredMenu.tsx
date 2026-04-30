@@ -26,6 +26,7 @@ export interface StaggeredMenuProps {
   isFixed: boolean;
   changeMenuColorOnOpen?: boolean;
   closeOnClickAway?: boolean;
+  isOpen?: boolean;
   onMenuOpen?: () => void;
   onMenuClose?: () => void;
 }
@@ -45,6 +46,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   accentColor = '#5227FF',
   isFixed = false,
   closeOnClickAway = true,
+  isOpen,
   onMenuOpen,
   onMenuClose
 }: StaggeredMenuProps) => {
@@ -400,27 +402,46 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     }
   }, [playClose, animateIcon, animateColor, animateText, onMenuClose]);
 
+  React.useEffect(() => {
+    if (typeof isOpen !== 'boolean') return;
+    if (isOpen === openRef.current) return;
+
+    openRef.current = isOpen;
+    setOpen(isOpen);
+
+    if (isOpen) {
+      onMenuOpen?.();
+      animateIcon(true);
+      animateColor(true);
+      setTimeout(() => {
+        animateText(true);
+      }, 200);
+      playOpen();
+    } else {
+      onMenuClose?.();
+      animateIcon(false);
+      animateColor(false);
+      animateText(false);
+      playClose();
+    }
+  }, [isOpen, onMenuOpen, onMenuClose, animateIcon, animateColor, animateText, playOpen, playClose]);
+
   // Body scroll lock when menu is open
   React.useEffect(() => {
     if (open) {
-      // Prevent body scroll
       const originalOverflow = document.body.style.overflow;
-      const originalPosition = document.body.style.position;
-      const originalTop = document.body.style.top;
-      const scrollY = window.scrollY;
-      
+      const originalPaddingRight = document.body.style.paddingRight;
+      const scrollbarCompensation = window.innerWidth - document.documentElement.clientWidth;
+
+      // Smooth lock without pinning body position (avoids visual jump/vibration).
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
+      if (scrollbarCompensation > 0) {
+        document.body.style.paddingRight = `${scrollbarCompensation}px`;
+      }
 
       return () => {
-        // Restore body scroll
         document.body.style.overflow = originalOverflow;
-        document.body.style.position = originalPosition;
-        document.body.style.top = originalTop;
-        document.body.style.width = '';
-        window.scrollTo(0, scrollY);
+        document.body.style.paddingRight = originalPaddingRight;
       };
     }
   }, [open]);

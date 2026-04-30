@@ -18,7 +18,6 @@ type Card = {
 };
 
 function ProjectCardItem({ card, idx }: { card: Card; idx: number }) {
-  console.log("card", card);
   return (
     <div className="col-lg-4 col-md-6 mb-4">
       <div
@@ -27,7 +26,7 @@ function ProjectCardItem({ card, idx }: { card: Card; idx: number }) {
       >
         <div className={styles.imageContainer}>
           <Image
-            src={`/blogs/${card.blog_image}`}
+            src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/blogs/${card.blog_image}`}
             className={styles.image}
             alt={card.title}
             fill
@@ -60,7 +59,8 @@ const ProjectCards = () => {
       setError(null);
       try {
         const response = await axios.get("/api/case_studies");
-        setCardData(response.data);
+        const cards = Array.isArray(response.data) ? response.data : [];
+        setCardData(cards);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("Failed to load data. Please try again later.");
@@ -101,6 +101,14 @@ const ProjectCards = () => {
         <p>{error}</p>
       </div>
     );
+
+  if (cardData.length === 0) {
+    return (
+      <div className="text-center my-5">
+        <p>No case studies available right now.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="container my-5">
