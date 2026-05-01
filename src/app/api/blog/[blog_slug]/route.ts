@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDBPool } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
-import { writeFile, unlink } from "fs/promises";
 import path from "path";
 import fs from "fs";
-// saveFileToUploads(file: File, filename: string): Promise<string> {
+
+function isNewBlogImageUpload(file: unknown): file is File {
+  return (
+    typeof File !== "undefined" &&
+    file instanceof File &&
+    file.size > 0
+  );
+}
+
 // GET blog by slug
 export async function GET(
   req: NextRequest,
@@ -77,7 +84,7 @@ export async function PATCH(
   context: { params: { blog_slug: string } }
 ) {
   try {
-    const { blog_slug } = context.params;
+    const { blog_slug } = await context.params;
 
     if (!blog_slug) {
       return NextResponse.json(
@@ -100,7 +107,10 @@ export async function PATCH(
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }
 
-    const existingImage = existingRows[0].blog_image;
+    const existingImage =
+      existingRows[0].blog_image != null
+        ? String(existingRows[0].blog_image)
+        : "";
 
     const formData = await req.formData();
 
@@ -110,21 +120,17 @@ export async function PATCH(
     const meta_description = formData.get("meta_description") as string;
     const meta_keywords = formData.get("meta_keywords") as string;
     const description = formData.get("description") as string;
-    const blogImage = formData.get("blog_image") as File | null;
+    const blogImageField = formData.get("blog_image");
 
-    let imagePath = "";
-    if (blogImage) {
-      imagePath = await saveFileToUploads(
-        blogImage,
-        `${Date.now()}_${blogImage.name}`
-      );
-    }
+    let blogImagePath = existingImage;
 
-    if (existingImage) {
-      deleteFileFromUploads(existingImage);
+    if (isNewBlogImageUpload(blogImageField)) {
+      const filename = `${Date.now()}_${path.basename(blogImageField.name)}`;
+      blogImagePath = await saveFileToUploads(blogImageField, filename);
+      if (existingImage) {
+        deleteFileFromUploads(existingImage);
+      }
     }
-    console.log("imagePath", imagePath);
-    console.log("existingImage", existingImage);
 
     await db.execute(
       `UPDATE blogs 
@@ -138,7 +144,7 @@ export async function PATCH(
         meta_title,
         meta_description,
         meta_keywords,
-        imagePath,
+        blogImagePath,
         description,
         normalizedSlug,
       ]
