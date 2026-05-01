@@ -145,7 +145,7 @@ const UpdateBlog = () => {
     }
 
     try {
-      await axios.put(`/api/blog/${blog_slug}`, formDataToSend, {
+      await axios.patch(`/api/blog/${blog_slug}`, formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

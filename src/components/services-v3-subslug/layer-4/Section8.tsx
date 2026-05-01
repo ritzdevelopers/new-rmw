@@ -4,10 +4,10 @@ import BrandImpactSection1 from "@/components/copy/BrandImpactSection2";
 export default function Section8() {
   return(
     <>
-    <div className="">
+    <div className="pt-[35px] md:pt-[70px] ">
 
 
-    <BrandImpactSection2 />;
+    <BrandImpactSection2 />
     </div>
     </>
   ) 
