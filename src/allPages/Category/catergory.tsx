@@ -82,6 +82,7 @@ const Category = () => {
       </div>
     );
 
+  console.log(cardData);
   return (
     <div className="container my-5">
       {cardData.length === 0 ? (
@@ -101,16 +102,21 @@ const Category = () => {
                       <Image
                         src={
                           isMongo
-                            ? `/api/images${
+                            ? `https://ritzmediaworld.com/api/images${
                                 card.blogBanner?.split("/images")[1] || ""
                               }`
-                            : `/blogs/${card.blog_image}`
+                            : (
+                              card.blog_image?.includes("/images")
+                                ? `https://ritzmediaworld.com/api/images${card.blog_image.split("/images")[1]}`
+                                : `https://ritzmediaworld.com/blogs/${card.blog_image}`
+                            )
                         }
                         alt={card.title || card.blogTitle || "Blog image"}
                         fill
                         className={styles.image}
                         style={{ objectFit: "fill" }}
                         priority={false}
+                        unoptimized
                       />
                     ) : (
                       <div

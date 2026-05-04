@@ -1,13 +1,31 @@
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import WebStoryModel from "@/models/WebStory.Schema";
 import { NextRequest, NextResponse } from "next/server";
-
+import jwt from "jsonwebtoken";
+import ManagementModel from "@/models/Management";
+import ManagementActivitiesModel from "@/models/ManagementActivities";
 export async function DELETE(
   req: NextRequest,
   { params }: { params: { pageId: string } }
 ) {
   try {
     await connectMongoDB();
+    // Only super_admin and editor Can Delete A Web Story Page 
+    const token = req.headers.get("Authorization")?.split(" ")[1];
+    if (!token) {
+      return NextResponse.json({ message: "Token is required" }, { status: 400 });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string, role: string | undefined };
+    if (!decoded) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    if (decoded.role !== "super_admin" && decoded.role !== "editor" && decoded.role !== undefined) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    const actor = await ManagementModel.findById(decoded.id as string);
+    if (!actor || !actor.isActive) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
     const pageId = await params.pageId;
     if (!pageId) {
       return NextResponse.json(
@@ -16,6 +34,10 @@ export async function DELETE(
       );
     }
     const deletedStoryPage = await WebStoryModel.findByIdAndDelete(pageId);
+    // Create A New Management Activity
+    const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) deleted a web story page: ${pageId}`, activityTime: new Date() });
+    await newManagementActivity.save();
+
     if (!deletedStoryPage) {
       return NextResponse.json(
         {

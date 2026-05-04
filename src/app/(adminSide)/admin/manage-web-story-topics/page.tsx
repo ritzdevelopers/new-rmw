@@ -93,8 +93,18 @@ const Page = () => {
   const deleteTopic = async (id: string) => {
    
     try {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
       const { data, status } = await axios.delete(
         `/api/ritz_webStoryTopics/delete-webStory-topic/${id}`
+      ,
+        {
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        }
       );
       setAllWebStories((prev) => prev.filter((topic) => topic._doc._id !== id));
       setPopupData({ message: data.message, status });

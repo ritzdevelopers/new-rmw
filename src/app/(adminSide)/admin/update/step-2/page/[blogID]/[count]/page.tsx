@@ -188,9 +188,18 @@ const Page = () => {
         formData.append(`innerImg-${index}`, file);
       });
 
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
       const { data, status } = await axios.put(
         `/api/ritz_blogs/update-prev-blog/${blogID}`,
-        formData
+        formData,
+        {
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        }
       );
       setRMWLoader(false);
       setPopupData({ message: data.message, status });

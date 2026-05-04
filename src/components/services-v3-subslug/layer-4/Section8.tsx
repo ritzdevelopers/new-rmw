@@ -6,7 +6,6 @@ export default function Section8() {
     <>
     <div className="pt-[35px] md:pt-[70px] ">
 
-
     <BrandImpactSection2 />
     </div>
     </>

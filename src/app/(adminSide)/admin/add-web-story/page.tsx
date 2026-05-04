@@ -67,9 +67,18 @@ function Page() {
       formData.append("img", imgFile);
     }
     try {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
       const { status, data } = await axios.post(
         "/api/rizt_webStories/addWebStory",
-        formData
+        formData,
+        {
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        }
       );
       if (status === 201) {
         setForm({

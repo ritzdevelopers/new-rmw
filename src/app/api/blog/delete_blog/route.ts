@@ -30,6 +30,9 @@
 import { NextResponse } from "next/server";
 import { getDBPool } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
+import ManagementModel from "@/models/Management";
+import jwt from "jsonwebtoken";
+import ManagementActivitiesModel from "@/models/ManagementActivities";
 
 type Blog = {
   id: string;
@@ -45,6 +48,22 @@ type BlogRow = Blog & RowDataPacket;
 
 export async function DELETE(req: Request) {
   try {
+    // Only super_admin and editor Can Delete A Blog 
+    const token = req.headers.get("Authorization")?.split(" ")[1];
+    if (!token) {
+      return NextResponse.json({ message: "Token is required" }, { status: 400 });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string, role: string | undefined };
+    if (!decoded) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    if (decoded.role !== "super_admin" && decoded.role !== "editor" && decoded.role !== undefined) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    const actor = await ManagementModel.findById(decoded.id as string);
+    if (!actor || !actor.isActive) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
     const { blog_slug } = await req.json();
 
     if (!blog_slug) {
@@ -61,6 +80,10 @@ export async function DELETE(req: Request) {
     }
 
     await pool.query("DELETE FROM blogs WHERE slug = ?", [blog_slug]);
+
+    // Create A New Management Activity
+    const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) deleted a blog: ${blog_slug}`, activityTime: new Date() });
+    await newManagementActivity.save();
 
     return NextResponse.json({ message: "Blog deleted successfully" }, { status: 200 });
   } catch (error) {
