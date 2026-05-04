@@ -54,11 +54,6 @@ interface Blog {
     description: string;
 }
 
-// src={
-//     blog.banner.includes("/images")
-//         ? `/api/images${blog.banner.split("/images")[1]}`
-//         : `/blogs/${blog.banner}`
-// }
 
 function S2Card({ blog }: { blog: Blog }) {
     const [shareModalOpen, setShareModalOpen] = useState(false);
