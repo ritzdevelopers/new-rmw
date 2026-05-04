@@ -7,6 +7,7 @@ import {
   ChevronDown,
   Menu,
   User,
+  Users,
   Monitor,
   House,
   MonitorCog,
@@ -48,6 +49,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const [homePageActive, setHomePageActive] = useState(false);
   const [systemPageActive, setSystemPageActive] = useState(false);
   const [createUserPageActive, setCreateUserPageActive] = useState(false);
+  const [webStoriesOpen, setWebStoriesOpen] = useState(false);
   const [webStoriesActive, setWebStoriesActive] = useState(false);
   const [analyticsActive, setAnalyticsIsActive] = useState(false);
   const [newspaperActive, setNewspaperActive] = useState(false);
@@ -194,8 +196,6 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
   const handleClick = () => {
     router.push(`/admin/dashboard?isExtended=${expanded}`);
   };
-
-  if (pathname === "/admin/sign-in") return null;
 
   return (
     <div className="flex">
@@ -442,7 +442,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               ...(webStoriesActive && { backgroundColor: "#2E3B46" }),
             }}
             onClick={(e) => {
-              setWebStoriesActive(!webStoriesActive);
+              setWebStoriesOpen((open) => !open);
               handleActiveTabBG(e);
             }}
             className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] cursor-pointer transition justify-between"
@@ -455,20 +455,20 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
               <ChevronDown
                 className={cn(
                   "w-4 h-4 transition",
-                  webStoriesActive ? "rotate-180" : ""
+                  webStoriesOpen ? "rotate-180" : ""
                 )}
               />
             )}
           </div>
 
-          {/* Blog Submenu */}
-          {expanded && webStoriesActive && (
+          {/* Web Stories submenu */}
+          {expanded && webStoriesOpen && (
             <div className="space-y-2">
               <Link href="/admin/add-web-story-topics">
                 <div
                   onClick={() => setActiveSubMenu("Add Web Story Topics")}
                   style={{
-                    ...(!webStoriesActive
+                    ...(!webStoriesOpen
                       ? { borderWidth: "none" }
                       : {
                           borderBottomWidth: "1px",
@@ -478,7 +478,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                       backgroundColor: "#2E3B46",
                     }),
                   }}
-                  className="p-2 pl-8 text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Add Web Story Topics
                 </div>
@@ -487,7 +487,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                 <div
                   onClick={() => setActiveSubMenu("Manage Web Story Topics")}
                   style={{
-                    ...(!webStoriesActive
+                    ...(!webStoriesOpen
                       ? { borderWidth: "none" }
                       : {
                           borderBottomWidth: "1px",
@@ -497,7 +497,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                       backgroundColor: "#2E3B46",
                     }),
                   }}
-                  className="p-2 pl-8 text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Web Story Topics
                 </div>
@@ -506,7 +506,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                 <div
                   onClick={() => setActiveSubMenu("Add Web Story")}
                   style={{
-                    ...(!webStoriesActive
+                    ...(!webStoriesOpen
                       ? { borderWidth: "none" }
                       : {
                           borderBottomWidth: "1px",
@@ -516,26 +516,26 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                       backgroundColor: "#2E3B46",
                     }),
                   }}
-                  className="p-2 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer text-sm  pl-8 text-gray-200"
+                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Add Web Story
                 </div>
               </Link>
               <Link href="/admin/manage-web-stories">
                 <div
-                  onClick={() => setActiveSubMenu("Manage Blogs")}
+                  onClick={() => setActiveSubMenu("Manage Web Story")}
                   style={{
-                    ...(!webStoriesActive
+                    ...(!webStoriesOpen
                       ? { borderWidth: "none" }
                       : {
                           borderBottomWidth: "1px",
                           borderBlockColor: "#EEEEEE",
                         }),
-                    ...(subMenuActive === "Manage Blogs" && {
+                    ...(subMenuActive === "Manage Web Story" && {
                       backgroundColor: "#2E3B46",
                     }),
                   }}
-                  className="p-2 pl-8 text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
+                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Web Story
                 </div>
@@ -666,45 +666,6 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
           {expanded && webpagesLinks && (
             <div className=" space-y-2">
-                <Link href="/admin/home/manage-banners">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Banners")}
-                  style={{  
-                    ...(!webpagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Banners" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                 Manage Banners
-                </div>
-              </Link>
-
-              <Link href="/admin/home/add-banners">
-                <div
-                  onClick={() => setActiveSubMenu("Add Banners")}
-                  style={{  
-                    ...(!webpagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Add Banners" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                 Add Banners
-                </div>
-              </Link>
               <Link href="/admin/content">
                 <div
                   onClick={() => setActiveSubMenu("Manage Page")}
@@ -722,25 +683,6 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Manage Pages Cards
-                </div>
-              </Link>
-              <Link href="/admin/menu">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Menu")}
-                  style={{
-                    ...(!webpagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Menu" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Menu
                 </div>
               </Link>
 
@@ -798,141 +740,6 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
           {expanded && homePagesLinks && (
             <div className=" space-y-2">
-              <Link href="/admin/why_choose_us">
-                <div
-                  onClick={() => setActiveSubMenu("Why Choose Us")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Why Choose Us" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Why Choose Us
-                </div>
-              </Link>
-              <Link href="/admin/why_ritz_best">
-                <div
-                  onClick={() => setActiveSubMenu("Why Ritz Best")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Why Ritz Best" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Why Ritz Best
-                </div>
-              </Link>
-
-              <Link href="/admin/our_vision">
-                <div
-                  onClick={() => setActiveSubMenu("Our Vision")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Our Vision" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Our Vision
-                </div>
-              </Link>
-
-              <Link href="/admin/how_we_work">
-                <div
-                  onClick={() => setActiveSubMenu("How We Work")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "How We Work" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  How We Work
-                </div>
-              </Link>
-              <Link href="/admin/services">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Services")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Services" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Services
-                </div>
-              </Link>
-              <Link href="/admin/manage-services/service-main">
-                <div
-                  onClick={() => setActiveSubMenu("Service Main")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Service Main" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Service Main
-                </div>
-              </Link>
-              <Link href="/admin/manage-services/service-second">
-                <div
-                  onClick={() => setActiveSubMenu("Service Second")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Service Second" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Service Second
-                </div>
-              </Link>
               <Link href="/admin/manage-services/service-third">
                 <div
                   onClick={() => setActiveSubMenu("Service Third")}
@@ -950,105 +757,6 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
                 >
                   Service Third
-                </div>
-              </Link>
-
-              <Link href="/admin/home/customers">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Customers")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Customers" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Customers
-                </div>
-              </Link>
-
-              <Link href="/admin/home/testimonials">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Testimonial")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Testimonial" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Testimonial
-                </div>
-              </Link>
-
-              <Link href="/admin/home/networthy_assets">
-                <div
-                  onClick={() => setActiveSubMenu("Networthy Assets")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Networthy Assets" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Networthy Assets
-                </div>
-              </Link>
-              <Link href="/admin/home/kaam_hai_mera">
-                <div
-                  onClick={() => setActiveSubMenu("Kaam Hai Mera")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Kaam Hai Mera" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Kaam Hai Mera
-                </div>
-              </Link>
-
-              <Link href="/admin/update_titles">
-                <div
-                  onClick={() => setActiveSubMenu("Update Title Descriptions")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Update Title Descriptions" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Update Title Descriptions
                 </div>
               </Link>
             </div>
@@ -1086,65 +794,6 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
           {expanded && systemSettings && (
             <div className=" space-y-2">
-              <Link href="/admin/listing/newsletter">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Newsletter")}
-                  style={{
-                    ...(!systemSettings
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Newsletter" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Newsletter
-                </div>
-              </Link>
-              <Link href="/admin/mediabanner">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Home Slider")}
-                  style={{
-                    ...(!systemSettings
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Home Slider" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Home Slider
-                </div>
-              </Link>
-
-              <Link href="/admin/howitworks">
-                <div
-                  onClick={() => setActiveSubMenu("Manage FAQs")}
-                  style={{
-                    ...(!systemSettings
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage FAQs" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage FAQs
-                </div>
-              </Link>
-
               <Link href="/admin/enquiry">
                 <div
                   onClick={() => setActiveSubMenu("Contact Enquiry")}
@@ -1203,67 +852,25 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Manage Career
                 </div>
               </Link>
-
-              <Link href="/admin/ourteam">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Our Team")}
-                  style={{
-                    ...(!systemSettings
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Our Team" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Our Team
-                </div>
-              </Link>
-
-              <Link href="/admin/system-setting">
-                <div
-                  onClick={() => setActiveSubMenu("Global Setting")}
-                  style={{
-                    ...(!systemSettings
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Global Setting" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Global Setting
-                </div>
-              </Link>
-              <Link href="/admin/web-story">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Web Story")}
-                  style={{
-                    ...(!systemSettings
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Web Story" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Web Story
-                </div>
-              </Link>
             </div>
           )}
+
+          <Link
+            style={{
+              ...(!expanded
+                ? { borderWidth: "none" }
+                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
+              ...(pathname.startsWith("/admin/management") && {
+                backgroundColor: "#2E3B46",
+              }),
+            }}
+            href="/admin/management"
+          >
+            <div className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition">
+              <Users className="w-5 h-5" />
+              {expanded && <span>Management</span>}
+            </div>
+          </Link>
 
           <Link
             style={{

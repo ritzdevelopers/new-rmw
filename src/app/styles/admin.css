@@ -229,6 +229,36 @@ body {
   margin-bottom: 30px;
 }
 
+.dashboard-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 960px;
+}
+
+@media (min-width: 768px) {
+  .dashboard-stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dashboard-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 35px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dashboard-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
 .visitors-card {
   display: flex;
   flex-direction: column;
@@ -268,6 +298,28 @@ body {
   color: #1f1f1f;
   margin-top: 8px;
   font-weight: 700;
+}
+
+.user-session-meta {
+  font-size: 14px;
+  color: #495057;
+  margin: 8px 0 0;
+  text-align: center;
+  word-break: break-word;
+  line-height: 1.45;
+}
+
+.user-session-role-badge {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #394a59;
+  background: rgba(57, 74, 89, 0.12);
+  padding: 6px 14px;
+  border-radius: 999px;
 }
 
 /* Footer */

@@ -126,6 +126,7 @@ function S2Card({ blog }: { blog: Blog }) {
                     <Image
                        src={imageSrc}
                         quality={75}
+                        unoptimized
                         title={blog.title}
                         priority={false}
                         loading="lazy"

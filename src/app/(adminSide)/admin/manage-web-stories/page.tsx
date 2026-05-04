@@ -102,8 +102,17 @@ function WebStoryManagerPage() {
 
   const deleteStoryPage = async (id: string) => {
     try {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
       const { status, data } = await axios.delete(
-        `/api/rizt_webStories/delete-webStory-page/${id}`
+        `/api/rizt_webStories/delete-webStory-page/${id}`,
+        {
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        }
       );
       setPopupData({ message: data.message, status });
       setShowPopup(true);
