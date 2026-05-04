@@ -14,6 +14,10 @@ export async function POST(req: NextRequest) {
         if (role !== "super_admin" && role !== "editor") {
             return NextResponse.json({ message: "Invalid role" }, { status: 400 });
         }
+        const existingUser = await ManagementModel.findOne({ email });
+        if (existingUser) {
+            return NextResponse.json({ message: "Email already exists" }, { status: 400 });
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
         const isActive = true;
         const newManagement = new ManagementModel({ name, email, password: hashedPassword, role, isActive });
