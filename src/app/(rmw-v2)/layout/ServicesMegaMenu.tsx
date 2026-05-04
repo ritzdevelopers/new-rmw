@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import styles from '../../../components/WebDevelopment/webDevelopment.module.css';
+import styles from "../../../components/WebDevelopment/webDevelopment.module.css";
 import {
   HiChevronRight,
   HiCodeBracket,
@@ -31,7 +31,7 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "influencer-marketing": "/varun.icon/influenecer.svg",
   "real-estate-walkthrough": "/varun.icon/real.svg",
   "3D-rendering-services": "/varun.icon/rendering-service.svg",
-  "digital-marketing": "/varun.icon/digital.svg", 
+  "digital-marketing": "/varun.icon/digital.svg",
 };
 
 function RadioServiceIcon({ className }: { className: string }) {
@@ -102,16 +102,18 @@ function CategoryAvatar({
   if (imageSrc) {
     return (
       <span
-        className={`relative flex ${wrapperSize} shrink-0 items-center justify-center overflow-hidden transition-colors duration-200 ${active ? "" : ""
-          }`}
+        className={`relative flex ${wrapperSize} shrink-0 items-center justify-center overflow-hidden transition-colors duration-200 ${
+          active ? "" : ""
+        }`}
       >
         <Image
           src={imageSrc}
           alt={categoryName}
           width={imageSize}
           height={imageSize}
-          className={`h-full w-full object-contain transition-[filter] duration-200 ${active ? "brightness-0 invert" : "brightness-0"
-            }`}
+          className={`h-full w-full object-contain transition-[filter] duration-200 ${
+            active ? "brightness-0 invert" : "brightness-0"
+          }`}
         />
       </span>
     );
@@ -119,30 +121,25 @@ function CategoryAvatar({
 
   return (
     <span
-      className={`flex ${wrapperSize} shrink-0 items-center justify-center transition-colors duration-200 ${active ? "" : ""
-        }`}
+      className={`flex ${wrapperSize} shrink-0 items-center justify-center transition-colors duration-200 ${
+        active ? "" : ""
+      }`}
     >
       <CategoryIcon categoryId={categoryId} active={active} />
     </span>
   );
 }
 
-function ServiceThumb({
-  src,
-  title,
-}: {
-  src?: string;
-  title: string;
-}) {
+function ServiceThumb({ src, title }: { src?: string; title: string }) {
   if (src) {
     return (
-      <div className="relative h-17 w-17 shrink-0 overflow-hidden rounded-l">
+      <div className="relative h-17 w-17 shrink-0 overflow-hidden rounded-[12px]">
         <Image
           src={src}
           alt=""
           width={65}
           height={65}
-          className="h-full w-full object-contain"
+          className="h-full w-full object-cover"
         />
       </div>
     );
@@ -161,10 +158,14 @@ function FooterInsights() {
   return (
     <div className="mt-4 grid grid-cols-1 gap-4  bg-[#F7F7FE] px-4 py-4 sm:grid-cols-3 sm:px-5 sm:py-4 rounded-sm">
       <div>
-        <p className={`${styles.montserrat} text-[20px] font-semibold text-black sm:text-[15px]`}>
+        <p
+          className={`${styles.montserrat} text-[20px] font-semibold text-black sm:text-[15px]`}
+        >
           Your Partner in Digital <br /> Growth
         </p>
-        <p className={`mt-1 text-[14px] leading-snug text-[#373737] sm:text-[13px] ${styles.fontopensans}`}>
+        <p
+          className={`mt-1 text-[14px] leading-snug text-[#373737] sm:text-[13px] ${styles.fontopensans}`}
+        >
           Where brands grow faster online
         </p>
       </div>
@@ -174,7 +175,7 @@ function FooterInsights() {
           viewBox="0 0 32 32"
           fill="none"
           aria-hidden
-        > 
+        >
           <path
             d="M4 24 L10 16 L16 20 L28 8"
             stroke={GOLD}
@@ -191,10 +192,14 @@ function FooterInsights() {
           />
         </svg>
         <div>
-          <p className={`text-[14px] md:text-[15px] font-semibold text-neutral-900 ${styles.montserrat} `}>
+          <p
+            className={`text-[14px] md:text-[15px] font-semibold text-neutral-900 ${styles.montserrat} `}
+          >
             High ROI Marketing
           </p>
-          <p className={`mt-1 text-[12px] leading-snug text-[#373737] sm:text-[13px] ${styles.fontopensans}`}>
+          <p
+            className={`mt-1 text-[12px] leading-snug text-[#373737] sm:text-[13px] ${styles.fontopensans}`}
+          >
             Maximize leads and conversions efficiently
           </p>
         </div>
@@ -208,10 +213,14 @@ function FooterInsights() {
           className="mt-0.5 shrink-0 sm:h-10 sm:w-10 p-1 rounded-lg bg-white"
         />
         <div>
-          <p className={`text-[14px] font-semibold text-neutral-900 sm:text-[15px] ${styles.montserrat} `}>
+          <p
+            className={`text-[14px] font-semibold text-neutral-900 sm:text-[15px] ${styles.montserrat} `}
+          >
             Data Driven Strategy
           </p>
-          <p className={`mt-1 text-[12px] leading-snug text-[#373737] sm:text-[13px] ${styles.fontopensans}`}>
+          <p
+            className={`mt-1 text-[12px] leading-snug text-[#373737] sm:text-[13px] ${styles.fontopensans}`}
+          >
             Decisions powered by real insights
           </p>
         </div>
@@ -238,10 +247,14 @@ export function ServicesMegaMenuPanel({
     <div className="flex max-h-[min(78vh,720px)] flex-col overflow-hidden  bg-white  shadow-[0_2px_10px_rgba(136,136,136,0.25)] ">
       <div className="shrink-0 px-5 pb-3 pt-4 sm:px-8 sm:pb-0 sm:pt-5 lg:px-10">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:gap-4">
-          <h2 className={`${styles.montserrat} text-2xl tracking-tight font-[600]  sm:text-[24px]`}>
+          <h2
+            className={`${styles.montserrat} text-2xl tracking-tight font-[600]  sm:text-[24px]`}
+          >
             Services
           </h2>
-          <p className={`text-sm  sm:pb-0.5 sm:text-[14px] ${styles.fontopensans}`}>
+          <p
+            className={`text-sm  sm:pb-0.5 sm:text-[14px] ${styles.fontopensans}`}
+          >
             {SERVICES_MEGA_TAGLINE}
           </p>
         </div>
@@ -268,10 +281,11 @@ export function ServicesMegaMenuPanel({
                   onClick={onNavigate}
                   onMouseEnter={() => onCategoryChange(i)}
                   onFocus={() => onCategoryChange(i)}
-                  className={`group flex items-center gap-3 rounded-full px-3 py-2.5 text-left lg:px-4 lg:py-2.5 ${active
-                    ? "text-white shadow-md lg:relative lg:z-20 lg:-mr-3 "
-                    : "text-black hover:bg-neutral-100 "
-                    }`}
+                  className={`group flex items-center gap-3 rounded-full px-3 py-2.5 text-left lg:px-4 lg:py-2.5 ${
+                    active
+                      ? "text-white shadow-md lg:relative lg:z-20 lg:-mr-3 "
+                      : "text-black hover:bg-neutral-100 "
+                  }`}
                   style={
                     active
                       ? { backgroundColor: "#C99237" }
@@ -284,7 +298,9 @@ export function ServicesMegaMenuPanel({
                     active={active}
                     size="lg"
                   />
-                  <span className={`${styles.montserrat}  ${active ? 'font-[700]' : 'font-[500]'} min-w-0 flex-1 text-[14px] font-[500] leading-snug lg:text-[13px] xl:text-[15px]`}>
+                  <span
+                    className={`${styles.montserrat}  ${active ? "font-[700]" : "font-[500]"} min-w-0 flex-1 text-[14px] font-[500] leading-snug lg:text-[13px] xl:text-[15px]`}
+                  >
                     {c.name}
                   </span>
                   <div className="relative h-[29px] w-[29px]">
@@ -293,8 +309,11 @@ export function ServicesMegaMenuPanel({
                       alt=""
                       fill
                       aria-hidden
-                      className={`object-contain transition-opacity ${active ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                        }`}
+                      className={`object-contain transition-opacity ${
+                        active
+                          ? "opacity-100"
+                          : "opacity-0 group-hover:opacity-100"
+                      }`}
                     />
                   </div>
                 </Link>
@@ -319,14 +338,18 @@ export function ServicesMegaMenuPanel({
                       title={svc.title}
                     />
                     <div className="flex items-center">
-                    <div className="min-w-0 flex-1">
-                      <p className={`lg:text-[13px] xl:text-[15px] font-[600] leading-[27px]  ${styles.montserrat}`}>
-                        {svc.title}
-                      </p>
-                      <p className={` ${styles.fontopensans} mt-0.5 lg:text-[13px] xl:text-[14px] leading-snug text-[#585757] line-clamp-2`}>
-                        {svc.description}
-                      </p>
-                    </div>
+                      <div className="min-w-0 flex-1">
+                        <p
+                          className={`lg:text-[13px] xl:text-[15px] font-[600] leading-[27px]  ${styles.montserrat}`}
+                        >
+                          {svc.title}
+                        </p>
+                        <p
+                          className={` ${styles.fontopensans} mt-0.5 lg:text-[13px] xl:text-[14px] leading-snug text-[#585757] line-clamp-2`}
+                        >
+                          {svc.description}
+                        </p>
+                      </div>
                     </div>
                   </Link>
                 ))}
@@ -362,26 +385,34 @@ export function ServicesMegaMenuMobileAccordion({
             key={c.id}
             className="overflow-hidden rounded-xl border border-neutral-100 bg-white shadow-sm"
           >
-            <Link
-              href={c.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-neutral-50"
-            >
-              <CategoryAvatar
-                categoryId={c.id}
-                categoryName={c.name}
-                active={false}
-              />
-              <span className="flex-1 font-[700] text-[15px] text-neutral-900">
+            <div className="flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-neutral-50">
+              <button
+                type="button"
+                onClick={() => window.open(c.href, "_blank")}
+                className="shrink-0 border-0 bg-transparent p-0 text-left"
+                aria-label={`Open ${c.name} (new tab)`}
+              >
+                <CategoryAvatar
+                  categoryId={c.id}
+                  categoryName={c.name}
+                  active={false}
+                />
+              </button>
+              <Link
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 font-[700] text-[15px] text-neutral-900"
+              >
                 {c.name}
-              </span>
+              </Link>
               <HiChevronRight
                 onClick={() => onToggleCategory(i)}
-                className={`h-5 w-5 shrink-0 transition-transform duration-200 ${open ? "rotate-90 text-[#C59D4F]" : "text-neutral-400"
-                  }`}
+                className={`h-5 w-5 shrink-0 transition-transform duration-200 ${
+                  open ? "rotate-90 text-[#C59D4F]" : "text-neutral-400"
+                }`}
               />
-            </Link>
+            </div>
             {open && (
               <div className="border-t border-neutral-100 bg-neutral-50/50 px-3 py-3 sm:px-4">
                 {/* <Link
@@ -406,10 +437,14 @@ export function ServicesMegaMenuMobileAccordion({
                         title={svc.title}
                       />
                       <div className="min-w-0 flex-1">
-                        <p className={`text-[15px] font-[600] leading-snug  ${styles.montserrat}`}>
+                        <p
+                          className={`text-[15px] font-[600] leading-snug  ${styles.montserrat}`}
+                        >
                           {svc.title}
                         </p>
-                        <p className={` ${styles.fontopensans} mt-0.5 text-[14px] leading-snug text-[#585757] line-clamp-2`}>
+                        <p
+                          className={` ${styles.fontopensans} mt-0.5 text-[14px] leading-snug text-[#585757] line-clamp-2`}
+                        >
                           {svc.description}
                         </p>
                       </div>
