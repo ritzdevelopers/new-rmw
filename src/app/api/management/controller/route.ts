@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import ManagementModel from "@/models/Management";
 import jwt from "jsonwebtoken";
+
 import ManagementActivitiesModel from "@/models/ManagementActivities";
 export async function POST(req: NextRequest) {
     try {
@@ -14,6 +15,27 @@ export async function POST(req: NextRequest) {
         if (role !== "super_admin" && role !== "editor") {
             return NextResponse.json({ message: "Invalid role" }, { status: 400 });
         }
+
+
+        // Extract Token from headers
+        const token = req.headers.get("Authorization")?.split(" ")[1];
+        if (!token) {
+            return NextResponse.json({ message: "Token is required" }, { status: 400 });
+        }
+        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string, role: string };
+        if (!decoded) {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
+        if (decoded.role !== "super_admin") {
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
+
+        const management = await ManagementModel.findById(decoded.id);
+        if (!management) {
+            return NextResponse.json({ message: "Management not found" }, { status: 404 });
+        }
+        const managementName = management.name;
+        const managementEmail = management.email;
         const existingUser = await ManagementModel.findOne({ email });
         if (existingUser) {
             return NextResponse.json({ message: "Email already exists" }, { status: 400 });
@@ -22,8 +44,12 @@ export async function POST(req: NextRequest) {
         const isActive = true;
         const newManagement = new ManagementModel({ name, email, password: hashedPassword, role, isActive });
         await newManagement.save();
-        // Create A New Management Activity
-        const newManagementActivity = new ManagementActivitiesModel({ managementId: newManagement._id, activity: `User ${newManagement.name} (${newManagement.email}) registered`, activityTime: new Date() });
+
+        const newManagementActivity = new ManagementActivitiesModel({
+            managementId: decoded.id,
+            activity: `${managementName} (${managementEmail}) registered ${name} (${email}) as ${role}`,
+            activityTime: new Date(),
+        });
         await newManagementActivity.save();
         return NextResponse.json({ message: "Management registered successfully" }, { status: 201 });
     } catch (error) {
