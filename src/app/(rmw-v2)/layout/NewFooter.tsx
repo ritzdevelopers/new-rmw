@@ -1,10 +1,56 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { FaFacebookF, FaPhoneAlt, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
+const RMW_VISITOR_SESSION_KEY = "rmw_visitor_session_id";
+
 function NewFooter() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const recordTraffic = async () => {
+      try {
+        const payload: Record<string, string> = {
+          url:
+            typeof window !== "undefined" ? window.location.href : "",
+          referrer:
+            typeof document !== "undefined" ? document.referrer || "" : "",
+        };
+        try {
+          const existing = sessionStorage.getItem(RMW_VISITOR_SESSION_KEY);
+          if (existing) {
+            payload.sessionId = existing;
+          }
+        } catch {
+          /* sessionStorage unavailable */
+        }
+
+        const res = await fetch("/api/tracker", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = (await res.json().catch(() => ({}))) as {
+          sessionId?: string;
+        };
+        if (res.ok && typeof data.sessionId === "string" && data.sessionId) {
+          try {
+            sessionStorage.setItem(RMW_VISITOR_SESSION_KEY, data.sessionId);
+          } catch {
+            /* ignore */
+          }
+        }
+      } catch {
+        /* ignore tracker failures */
+      }
+    };
+
+    void recordTraffic();
+  }, [pathname]);
+
   return (
     <footer className="w-full bg-[#0F1640] flex justify-center">
       <div className="w-full min-[1657px]:max-w-[1300px] min-[1657px]:mx-auto flex flex-col lg:flex-row lg:items-stretch min-[1657px]:px-10">

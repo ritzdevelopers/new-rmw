@@ -19,7 +19,7 @@ function S4() {
   // Data array for success stories
   const successStories = [
     {
-      img: "/home-v3/new/website-images-590.png",
+      img: "/new-theme/home/digital-advertising.jpg",
       category: "Digital Advertising",
       title: "Digital Advertising",
       description:
@@ -32,7 +32,7 @@ function S4() {
       link: "https://ritzmediaworld.com/services/digital-marketing",
     },
     {
-      img: "/home-v3/s4/seo595.jpg",
+      img: "/new-theme/home/SEO-and-CONTENT-marketing.jpg",
       category: "Content Marketing",
       title: "SEO & Content Marketing",
       description:
@@ -45,7 +45,7 @@ function S4() {
       link: "https://ritzmediaworld.com/services/digital-marketing/search-engine-optimization-seo",
     },
     {
-      img: "/home-v3/s4/590-digtal.png",
+      img: "/new-theme/home/high-performance-digital-platform.jpg",
       category: "Web Development",
       title: "High-Performance Digital Platforms",
       description:
@@ -71,7 +71,7 @@ function S4() {
     //   link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
     // },
     {
-      img: "/home-v3/new/rmw-news-paper2.jpg",
+      img: "/new-theme/home/print-advertising2.jpg",
       category: "Print Advertising",
       title: "Print Advertising",
       description:
@@ -84,7 +84,7 @@ function S4() {
       link: "https://ritzmediaworld.com/services/print-advertising",
     },
     {
-      img: "/home-v3/s4/590-radio.png",
+      img: "/new-theme/home/audio-led-brand-storytelling.jpg",
       category: "Radio Advertisement",
       title: "Audio-Led Brand Storytelling",
       description:
@@ -98,7 +98,7 @@ function S4() {
     },
 
     {
-      img: "/home-v3/s4/590-influncer.png",
+      img: "/new-theme/home/social-media-marketing.jpg",
       category: "Social Media Marketing",
       title: "Social Media Marketing",
       description:
