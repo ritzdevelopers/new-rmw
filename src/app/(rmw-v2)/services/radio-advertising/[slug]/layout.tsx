@@ -25,7 +25,7 @@ function getCanonicalUrl(link: string | undefined, fallbackPath: string) {
 
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
     const { slug } = await params;
-    const serviceData = await fetchMeta(slug);
+    const serviceData = await fetchMeta(slug, "radio-advertising");
 
     if (!serviceData) {
         return {

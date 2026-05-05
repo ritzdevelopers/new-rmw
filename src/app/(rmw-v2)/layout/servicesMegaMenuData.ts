@@ -1,7 +1,3 @@
-/**
- * Services mega menu: copy, routes, and optional thumbnails (public paths).
- * Routes align with `src/app/(rmw-v2)` and middleware-friendly `/services/*` paths.
- */
 
 export type MegaMenuServiceLink = {
   title: string;

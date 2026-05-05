@@ -2,10 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getDBPool } from "@/lib/db";
 import { RowDataPacket } from "mysql2";
 
-/**
- * GET /api/service-second/meta?link=cost-benefit-analysis
- * Returns SEO fields from `service_second` for the given `link` (matches DB column).
- */
+
 export async function GET(req: NextRequest) {
     const link = req.nextUrl.searchParams.get("link")?.trim();
     if (!link) {
@@ -14,7 +11,7 @@ export async function GET(req: NextRequest) {
             { status: 400 },
         );
     }
-
+    
     try {
         const db = getDBPool();
         const [rows] = await db.query<RowDataPacket[]>(
