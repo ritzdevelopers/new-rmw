@@ -24,6 +24,8 @@ function normalizeSlug(input: string): string {
         .replace(/^-+|-+$/g, "");
 }
 
+
+
 export async function get_single_blog(slug: string) {
     try {
         if (!slug) {
@@ -40,9 +42,10 @@ export async function get_single_blog(slug: string) {
         }
         const blog = await getBlogBySlug(slug);
         if (blog.status === 200) {
-            await redisClient.set(`cached_blog_${slug}`, JSON.stringify(blog.data), { EX: 60 * 15 });
-            await redisClient.set(`cached_blog_category_${slug}`, JSON.stringify(blog.categoryName), { EX: 60 * 15 });
+            await redisClient.set(`cached_blog_${slug}`, JSON.stringify(blog.data), { EX: 60 * 1 });
+            await redisClient.set(`cached_blog_category_${slug}`, JSON.stringify(blog.categoryName), { EX: 60 * 1 });
             const related_blogs = await GET_4_RELATED_BLOGS(getBlogCategoryId(blog.data));
+
             return [{
                 blog: blog.data,
                 categoryName: blog.categoryName,
@@ -180,7 +183,7 @@ async function get_all_blogs_categories() {
             const mongo_blogs = await RitzBlogModel.find({}).lean();
             const [mysql_blogs] = await getDBPool().query<RowDataPacket[]>("SELECT * FROM blogs");
             mongo_msql_cached_blogs = [...mongo_blogs, ...mysql_blogs];
-            await redisClient.set(`mongo_msql_cached_blogs`, JSON.stringify(mongo_msql_cached_blogs), { EX: 60 * 15 });
+            await redisClient.set(`mongo_msql_cached_blogs`, JSON.stringify(mongo_msql_cached_blogs), { EX: 60 * 1 });
         }
 
         const categories = [{
@@ -198,7 +201,7 @@ async function get_all_blogs_categories() {
             }))
         }]
         if (categories.length > 0) {
-            await redisClient.set(`cached_categories`, JSON.stringify(categories), { EX: 60 * 15 });
+            await redisClient.set(`cached_categories`, JSON.stringify(categories), { EX: 60 * 1 });
             return {
                 status: 200,
                 message: "Categories fetched successfully",
@@ -241,7 +244,7 @@ export async function get_latest_3_blogs() {
             metaKeywords: 1,
             mtDesc: 1,
         }).sort({ createdAt: -1 }).limit(3).lean();
-        await redisClient.set(`cached_latest_3_blogs`, JSON.stringify(latest_3_blogs), { EX: 60 * 15 });
+        await redisClient.set(`cached_latest_3_blogs`, JSON.stringify(latest_3_blogs), { EX: 60 * 1 });
         return {
             status: 200,
             message: "Latest 3 blogs fetched successfully",
@@ -285,7 +288,7 @@ async function GET_4_RELATED_BLOGS(category_id: string) {
             }).sort({ createdAt: -1 }).limit(4).lean();
         }
         if (related_blogs.length > 0) {
-            await redisClient.set(`cached_4_related_blogs_${category_id}`, JSON.stringify(related_blogs), { EX: 60 * 15 });
+            await redisClient.set(`cached_4_related_blogs_${category_id}`, JSON.stringify(related_blogs), { EX: 60 * 1 });
             return {
                 status: 200,
                 message: "4 related blogs fetched successfully",

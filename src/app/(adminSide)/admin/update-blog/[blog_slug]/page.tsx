@@ -145,8 +145,15 @@ const UpdateBlog = () => {
     }
 
     try {
-      await axios.put(`/api/blog/${blog_slug}`, formDataToSend, {
-        headers: { "Content-Type": "multipart/form-data" },
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
+      await axios.patch(`/api/blog/${blog_slug}`, formDataToSend, {
+        headers: {
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          "Content-Type": "multipart/form-data",
+        },
       });
 
       toast.success("✅ Blog updated successfully!");

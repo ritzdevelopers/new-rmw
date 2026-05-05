@@ -54,9 +54,18 @@ const Page = () => {
       formData.append("topicImg", selectedImage);
     }
     try {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
       const { status, data } = await axios.post(
         "/api/ritz_webStoryTopics/add-story-topic",
-        formData
+        formData,
+        {
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        }
       );
       setPopupData({ message: data.message, status });
       setShowPopup(true);

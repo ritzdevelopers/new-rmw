@@ -5,6 +5,9 @@ import fs from "fs";
 import path from "path";
 import RitzCats from "@/models/RitzCats.Schema";
 import RitzBlogModel from "@/models/Blog.Schema";
+import ManagementActivitiesModel from "@/models/ManagementActivities";
+import jwt from "jsonwebtoken";
+import ManagementModel from "@/models/Management";
 
 // export function generateSlug(name) {
 //   return name
@@ -39,7 +42,23 @@ async function saveFileToUploads(file, filename) {
 export async function POST(request) {
   try {
     await connectMongoDB();
-
+    // Only super_admin and editor Can Add A New Blog 
+    const token = request.headers.get("Authorization")?.split(" ")[1];
+    console.log("Token:", request.headers);
+    if (!token) {
+      return NextResponse.json({ message: "Token is required" }, { status: 400 });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    if (decoded.role !== "super_admin" && decoded.role !== "editor") {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    const actor = await ManagementModel.findById(decoded.id);
+    if (!actor || !actor.isActive) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
     const formData = await request.formData();
     const blogTitle = formData.get("blogTitle");
     const metaKeywords = formData.get("metaKeywords");
@@ -98,6 +117,9 @@ export async function POST(request) {
       blogDescription,
       mtDesc,
     });
+    // Create A New Management Activity
+    const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) added a new blog: ${blogTitle}`, activityTime: new Date() });
+    await newManagementActivity.save();
 
     return NextResponse.json(
       { message: "Blog Created", blog: newBlog },
@@ -108,6 +130,6 @@ export async function POST(request) {
     return NextResponse.json(
       { message: "Internal Server Error", error: error.message },
       { status: 500 }
-    );
+    ); 
   }
 }

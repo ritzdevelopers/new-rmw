@@ -12,6 +12,12 @@ import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 import * as XLSX from "xlsx";
 
+function managementAuthHeaders(): Record<string, string> {
+  if (typeof window === "undefined") return {};
+  const token = localStorage.getItem("rm_token");
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
 interface Blog {
   _id: string;
   blogBanner: string;
@@ -196,6 +202,7 @@ export default function ManageBlogs() {
     try {
       const { data, status } = await axios.delete("/api/blog/delete_blog", {
         data: { blog__id: deleteBlog._id },
+        headers: managementAuthHeaders(),
       });
       // After deletion, refetch current page (or adjust page if last blog deleted)
       const newTotal = totalBlogs - 1;
@@ -232,7 +239,8 @@ export default function ManageBlogs() {
         return;
       } else {
         const { data, status } = await axios.delete(
-          `/api/ritz_blogs/delete-blog/${deleteKey}`
+          `/api/ritz_blogs/delete-blog/${deleteKey}`,
+          { headers: managementAuthHeaders() }
         );
         setPopupData({ message: data.message, status });
         setShowPopup(true);
@@ -247,7 +255,9 @@ export default function ManageBlogs() {
           alert("Internal Key Error Please Try Again!");
           return;
         } else {
-          const res = await axios.delete(`/api/delete_blog/${deleteKey}`);
+          const res = await axios.delete(`/api/delete_blog/${deleteKey}`, {
+            headers: managementAuthHeaders(),
+          });
           if (res.status === 200) {
             alert("Your Blog Has Been Deleted Successfully!");
             window.location.reload();

@@ -220,7 +220,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Digital <br /> Marketing",
                                 margin: "mr-[12px] pr-8 md:pr-40 lg:pr-18",
                                 description: "Without a strategy, you're driving blindfolded in the digital world. At Ritz Media World, we specialize in social media marketing, PPC campaigns, and SEO services to make sure your brand not only survives but thrives. With innovative tactics that are effective, we have you covered whether you're searching for the top SEO company in Delhi or the best digital marketing agency in India.",
-                                image: "/alishba-services-v3/seo-analytics.png",
+                                image: "/new-theme/digital-marketing.jpg",
                                 link: "/services/digital-marketing",
                                 subServices: [
                                     {
@@ -253,7 +253,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Creative <br /> Services",
                                 margin: "lg:mr-[30px] pr-20 sm:pr-48 lg:pr-20 ",
                                 description: "Creativity is not just decor. It is the heart of your brand. From branding to graphic design to memorable logos, we help you create a remarkable brand presence in the market. Are you ready to impress your audience? We make work that people might want to steal – but we hope you won’t and will keep it for yourself.",
-                                image: "/alishba-services-v3/creative-service.png",
+                                image: "/new-theme/creative-services.jpg",
                                 link: "/services/creative-services",
                                 subServices: [
                                     {
@@ -282,7 +282,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Print <br /> Advertisement",
                                 margin: "pr-4 pr-4 md:pr-32 lg:pr-0",
                                 description: "Print advertising is more vibrant than ever in spite of the digital boom! We at Ritz Media World give your print advertisements life so they can speak for themselves. Whether you're searching for print advertising services in Delhi NCR, our ads have an impact and engage the right audience.",
-                                image: "/alishba-services-v3/print-ad.png",
+                                image: "/new-theme/print-advertising.jpg",
                                 link: "/services/print-advertising",
                                 subServices: [
                                     {
@@ -315,7 +315,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Radio <br /> Advertising",
                                 margin: "pr-8 md:pr-36 lg:pr-0  xl:pr-0 pt-0 xl:pt-0",
                                 description: "People are listening, and they still have ears! We at Ritz Media World produce memorable radio ads. To make sure your message sticks, we combine persuasive soundscapes with catchy jingles. Radio advertising agencies in Delhi NCR can help you get your brand on the air.",
-                                image: "/alishba-services-v3/nimg3.jpg",
+                                image: "/new-theme/radio-advertising.jpg",
                                 link: "/services/radio-advertising",
                                 subServices: [
                                     {
@@ -348,7 +348,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Content <br /> Marketing",
                                 margin: "pr-12 md:pr-42 lg:pr-12 xl:pr-16 2xl:pr-16",
                                 description: "Content isn’t just king, compelling content is. We don’t just create words we create stories that drive action. From blogs that educate to videos that entertain, our content marketing agency in India crafts content that’s not only engaging but also strategically persuasive.",
-                                image: "/alishba-services-v3/content-marketing.png",
+                                image: "/new-theme/content.jpg",
                                 link: "/services/contents-marketing",
                                 subServices: [
                                     {
@@ -373,7 +373,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Web <br /> Development",
                                 margin: "pr-4 md:pr-32 lg:pr-0 xl:pr-8 2xl:pr-10 xl:-mr-10",
                                 description: "Let's make your website firm, interesting, and friendly because it is your digital handshake. Our web development services makes useful and friendly websites that attract and win the hearts of visitors. We assure you of an excellent online presence through our web designing services in India.",
-                                image: "/alishba-services-v3/webdev.png",
+                                image: "/new-theme/web-devlopment.jpg",
                                 link: "/services/web-designing-and-development  ",
                                 subServices: [
                                     {
@@ -402,7 +402,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Celebrity <br /> Endorsements",
                                 margin: "pr-4  md:pr-30  lg:pr-0 xl:pr-14 xl:-mr-20",
                                 description: "When a celebrity's whisper has the ability to influence people and speak louder, why shout? We assist your business in establishing connections with celebrities who can increase sales and improve your company's reputation. Are you trying to find the best digital marketing agency in Delhi? For you, we have the greatest celebrity endorsement.",
-                                image: "/alishba-services-v3/celebraty.png",
+                                image: "/new-theme/celebrity-endorsment.jpg",
                                 link: "/services/celebrity-endorsements",
                                 subServices: [
                                     {
@@ -435,7 +435,7 @@ function Section3({ servicesData }: Section3Props) {
                                 title: "Influencer <br />   Marketing",
                                 margin: "lg:-mr-[10px] pr-8 md:pr-36 lg:pr-4 xl:pr-5 xl:-mr-6    ",
                                 description: "At Ritz Media World influencer marketing is about persuasion through reliable voices, not just numbers. As a leading influencer marketing agency, we assist you in attracting clients who are eluding the casual followers of your influencers. We offer a range of tactics with top social media marketing companies in India to make sure your brand is noticed and reaches the appropriate audience.",
-                                image: "/alishba-services-v3/nimg4.jpg",
+                                image: "/new-theme/influencer-marketing.jpg",
                                 link: "/services/influencer-marketing-agency-in-india",
                                 subServices: [
                                     {

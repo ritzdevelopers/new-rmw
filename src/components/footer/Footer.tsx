@@ -2,11 +2,56 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
-import { memo } from "react";
+import { memo, useEffect } from "react";
+
+const RMW_VISITOR_SESSION_KEY = "rmw_visitor_session_id";
 
 const Footer = memo(() => {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const recordTraffic = async () => {
+      try {
+        const payload: Record<string, string> = {
+          url:
+            typeof window !== "undefined" ? window.location.href : "",
+          referrer:
+            typeof document !== "undefined" ? document.referrer || "" : "",
+        };
+        try {
+          const existing = sessionStorage.getItem(RMW_VISITOR_SESSION_KEY);
+          if (existing) {
+            payload.sessionId = existing;
+          }
+        } catch {
+          /* sessionStorage unavailable */
+        }
+
+        const res = await fetch("/api/tracker", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = (await res.json().catch(() => ({}))) as {
+          sessionId?: string;
+        };
+        if (res.ok && typeof data.sessionId === "string" && data.sessionId) {
+          try {
+            sessionStorage.setItem(RMW_VISITOR_SESSION_KEY, data.sessionId);
+          } catch {
+            /* ignore */
+          }
+        }
+      } catch {
+        /* ignore tracker failures */
+      }
+    };
+
+    void recordTraffic();
+  }, [pathname]);
 
   return (
     <footer className="footer-no-underline">

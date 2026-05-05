@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const token = req.cookies.get("auth_token")?.value;
   const { pathname } = req.nextUrl;
   const url = req.nextUrl;
 
@@ -62,24 +61,9 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(newURL, 301);
   }
 
-  // ✅ Redirect /admin to /admin/dashboard
+  // Redirect /admin to /admin/dashboard (management auth is client-side via rm_token)
   if (pathname === "/admin") {
     return NextResponse.redirect(new URL("/admin/dashboard", req.url));
-  }
-
-  // ✅ If authenticated user visits `/admin/sign-in`, redirect them to `/admin`
-  if (pathname === "/admin/sign-in" && token) {
-    return NextResponse.redirect(new URL("/admin/dashboard", req.url));
-  }
-
-  // ✅ Allow access to `/admin/sign-in` if not authenticated
-  if (pathname === "/admin/sign-in") {
-    return NextResponse.next();
-  }
-
-  // ✅ Protect all "/admin" routes (except "/admin/sign-in") if no token
-  if (pathname.startsWith("/admin") && !token) {
-    return NextResponse.redirect(new URL("/admin/sign-in", req.url));
   }
 
   return NextResponse.next();

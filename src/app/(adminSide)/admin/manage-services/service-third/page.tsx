@@ -177,9 +177,18 @@ export default function ServiceThirdPage() {
 
     try {
       setIsUpdating(true);
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
       const { data, status } = await axios.patch(
         `/api/service-third-images-update/${editState.id}`,
-        formData
+        formData,
+        {
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        } 
       );
       setPopupData({
         message: data?.message || "Service Third updated successfully",
