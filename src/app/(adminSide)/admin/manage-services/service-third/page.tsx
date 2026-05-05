@@ -157,10 +157,33 @@ export default function ServiceThirdPage() {
 
   const updateServiceThird = async () => {
     if (!editState || !originalState) return;
+
+    const trimmedTitle = editState.title.trim();
+    const descriptionPlain = stripHtml(editState.description || "").trim();
+    const hasImage =
+      Boolean(selectedFile) ||
+      Boolean(editState.image_url && editState.image_url.trim());
+
+    if (!trimmedTitle) {
+      setPopupData({ message: "Title is required.", status: 400 });
+      setShowPopup(true);
+      return;
+    }
+    if (!descriptionPlain) {
+      setPopupData({ message: "Description is required.", status: 400 });
+      setShowPopup(true);
+      return;
+    }
+    if (!hasImage) {
+      setPopupData({ message: "An image is required.", status: 400 });
+      setShowPopup(true);
+      return;
+    }
+
     const formData = new FormData();
 
     if (editState.title !== originalState.title) {
-      formData.append("title", editState.title);
+      formData.append("title", trimmedTitle);
     }
     if (editState.description !== originalState.description) {
       formData.append("description", editState.description);

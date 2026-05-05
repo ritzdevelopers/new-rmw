@@ -131,9 +131,18 @@ const Page = () => {
         formData.append("img", imgFile);
       }
 
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
       const { status, data } = await axios.patch(
         `/api/rizt_webStories/update-webStoryPage/${slug}`,
-        formData
+        formData,
+        {
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        }
       );
       setPopupData({ message: data.message, status });
       setShowPopup(true);

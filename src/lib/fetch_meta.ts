@@ -14,32 +14,34 @@ function getPublicOrigin(): string {
     return raw.replace(/\/$/, "");
 }
 
-/**
- * Fetches SEO metadata for a `service_second` row where `link` matches (e.g. slug segment).
- * Calls GET /api/service-second/meta?link=...
- */
-export async function fetchMeta(link: string): Promise<ServiceSecondMeta | null> {
+export async function fetchMeta(link: string, slug: string): Promise<ServiceSecondMeta | null> {
     const trimmed = link.trim();
     if (!trimmed) return null;
 
     const origin = getPublicOrigin();
-    const url = `${origin}/api/service-second/meta?link=${encodeURIComponent(trimmed)}`;
-
+    const url2 = `${origin}/api/get_meta_info/${encodeURIComponent(trimmed)}/${slug}`;
+    // console.log("url2", url2);
     try {
-        const res = await fetch(url, {
+        const res2 = await fetch(url2, {
             method: "GET",
             headers: { Accept: "application/json" },
             next: { revalidate: 3600 },
         });
+        const data2 = await res2.json();
 
-        if (res.status === 404) return null;
-        if (!res.ok) {
-            console.error("fetchMeta failed:", res.status, await res.text());
+        // console.log("data2", data2);
+
+        const meta_data = data2.data || null;
+        if (meta_data) {
+            return {
+                meta_title: meta_data.meta_title,
+                meta_description: meta_data.meta_description,
+                meta_keywords: meta_data.meta_keywords,
+                link: meta_data.link,
+            };
+        } else {
             return null;
         }
-
-        const data = (await res.json()) as ServiceSecondMeta;
-        return data;
     } catch (e) {
         console.error("fetchMeta error:", e);
         return null;

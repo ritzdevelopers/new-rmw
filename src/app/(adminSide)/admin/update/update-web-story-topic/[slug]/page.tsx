@@ -95,12 +95,17 @@ function Page() {
     }
 
     try {
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
       const { status, data } = await axios.patch(
         `/api/ritz_webStoryTopics/update-story-topic/${topic._id}`,
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
           },
         }
       );

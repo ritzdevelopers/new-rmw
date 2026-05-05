@@ -34,7 +34,7 @@ export async function PATCH(
       );
     }
 
-    const pool = getDBPool();
+    const pool =  getDBPool();
     const [existingRows] = await pool.query<RowDataPacket[]>(
       "SELECT title, description, image_url FROM service_third WHERE id = ?",
       [id]

@@ -34,6 +34,7 @@ const Category = () => {
       setError(null);
       try {
         const response = await axios.get(`/api/category/${category_slug}`);
+        console.log("response", response.data);
         setCardData(response.data);
         setIsMongo(false);
         setCurrentPage(1);
@@ -43,8 +44,10 @@ const Category = () => {
           const res = await axios.get(
             `/api/ritz_blogs/get-categorized-blogs/${category_slug}`
           );
+          console.log("res", res.data.blogs);
           setCardData(res.data.blogs);
           setIsMongo(true);
+          setCurrentPage(1);
         } catch (error) {
           console.log(error);
         }
@@ -56,17 +59,17 @@ const Category = () => {
     fetchData();
   }, [category_slug]);
 
-  // const totalPages = Math.ceil(cardData.length / itemsPerPage);
+  const totalPages = Math.ceil(cardData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const selectedCards = cardData.slice(startIndex, startIndex + itemsPerPage);
 
-  // const handleNext = () => {
-  //   if (currentPage < totalPages) setCurrentPage(currentPage + 1);
-  // };
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage((p) => p - 1);
+  };
 
-  // const handlePrev = () => {
-  //   if (currentPage > 1) setCurrentPage(currentPage - 1);
-  // };
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage((p) => p + 1);
+  };
 
   // ✅ Use early return for loading and error
   if (loading)
@@ -82,7 +85,6 @@ const Category = () => {
       </div>
     );
 
-  console.log(cardData);
   return (
     <div className="container my-5">
       {cardData.length === 0 ? (
@@ -90,8 +92,11 @@ const Category = () => {
       ) : (
         <>
           <div className="row">
-            {selectedCards.map((card, index) => (
-              <div key={index} className="col-lg-4 col-md-6 mb-4">
+            {selectedCards.map((card) => (
+              <div
+                key={card._id || card.slug || card.blogSlug || card.id}
+                className="col-lg-4 col-md-6 mb-4"
+              >
                 <div
                   style={{ height: "100%" }}
                   className={`card bg-white text-black ${styles.card}`}
@@ -125,7 +130,9 @@ const Category = () => {
                     )}
                   </div>
                   <div className="card-body text-center">
-                    <h5 className="card-title">{card.title}</h5>
+                    <h5 className="card-title">
+                      {card.title || card.blogTitle}
+                    </h5>
                     <Link
                     target="_blank"
                       href={`/${isMongo ? card.blogSlug : card.slug}`}
@@ -138,6 +145,32 @@ const Category = () => {
               </div>
             ))}
           </div>
+          {totalPages > 1 && (
+            <nav
+              className="d-flex flex-wrap align-items-center justify-content-center gap-3 mt-4"
+              aria-label="Category pages"
+            >
+              <button
+                type="button"
+                className="btn btn-outline-secondary btn-sm"
+                onClick={handlePrev}
+                disabled={currentPage <= 1}
+              >
+                Previous
+              </button>
+              <span className="text-muted small">
+                Page {currentPage} of {totalPages}
+              </span>
+              <button
+                type="button"
+                className="btn btn-outline-secondary btn-sm"
+                onClick={handleNext}
+                disabled={currentPage >= totalPages}
+              >
+                Next
+              </button>
+            </nav>
+          )}
         </>
       )}
     </div>
