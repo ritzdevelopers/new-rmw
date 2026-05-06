@@ -35,7 +35,7 @@ function ProjectCardItem({ card, idx }: { card: Card; idx: number }) {
         </div>
         <div className="card-body text-center">
           <h5 className="card-title">{card.title}</h5>
-          <Link href={card.slug} className={`bg-[#6ea2ee] ${styles.button}`}>
+          <Link href={card.slug} target="_blank" className={`bg-[#6ea2ee] ${styles.button}`}>
             Case Studies <span className={styles.arrow}>&rarr;</span>
           </Link>
         </div>
