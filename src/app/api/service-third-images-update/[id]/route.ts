@@ -3,7 +3,9 @@ import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import { NextRequest, NextResponse } from "next/server";
 import type { RowDataPacket } from "mysql2";
-
+import jwt from "jsonwebtoken";
+import ManagementModel from "@/models/Management";
+import ManagementActivitiesModel from "@/models/ManagementActivities";
 const UPLOAD_RELATIVE_URL_PREFIX = "service-third-images/updated-images";
 
 async function saveServiceThirdImage(file: File): Promise<string> {
@@ -26,6 +28,34 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
+     // Get Token And Verify Management And Save Acitivity
+     const token = request.headers.get("Authorization")?.split(" ")[1];
+     if (!token) {
+       return NextResponse.json({ message: "Token is required" }, { status: 400 });
+     }
+     const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string, role: string | undefined };
+     if (!decoded) {
+       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+     }
+     if (decoded.role !== "super_admin" && decoded.role !== "editor" && decoded.role !== undefined) {
+       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+     }
+     const actor = await ManagementModel.findById(decoded.id as string);
+     if (!actor) {
+      return NextResponse.json(
+        { message: "Unauthorized", success: false },
+        { status: 401 }
+      );
+     }
+     if (!actor.isActive) {
+      return NextResponse.json(
+        { message: "Unauthorized", success: false },
+        { status: 401 }
+      );
+     }
+     
+
+
     const { id } = await context.params;
     if (!id) {
       return NextResponse.json(
@@ -85,6 +115,11 @@ export async function PATCH(
       "SELECT id, title, description, image_url FROM service_third WHERE id = ?",
       [id]
     );
+    await ManagementActivitiesModel.create({
+      managementId: actor.id,
+      activity: `Service Third Images Updated for ${updated[0].title} And Update By ${actor.name}`,
+      activityTime: new Date(),
+    });
 
     return NextResponse.json(
       {

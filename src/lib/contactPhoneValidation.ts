@@ -37,6 +37,21 @@ export function validateContactPhone(
 
     const countryCode = selectedCountry.code as CountryCode;
 
+    if (countryCode === "IN") {
+        if (nationalDigits.length !== 10) {
+            return {
+                ok: false,
+                error: "Indian mobile numbers must be exactly 10 digits (without +91).",
+            };
+        }
+        if (!/^[6-9]\d{9}$/.test(nationalDigits)) {
+            return {
+                ok: false,
+                error: "Enter a valid Indian mobile number (10 digits, starting with 6, 7, 8, or 9).",
+            };
+        }
+    }
+
     if (!isValidPhoneNumber(nationalDigits, countryCode)) {
         return {
             ok: false,
