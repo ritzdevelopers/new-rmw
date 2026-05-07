@@ -1,6 +1,5 @@
 "use client";
 
-import Editor from "@/components/Editor/Editor";
 import RMWLoader from "@/components/rmw_loader/RMWLoader";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
 import axios from "axios";
@@ -446,16 +445,17 @@ export default function ServiceThirdPage() {
                 <label className="mb-1 block text-sm font-medium text-slate-700">
                   Description
                 </label>
-                <div className="rounded-lg border border-slate-200 p-1">
-                  <Editor
-                    value={editState.description}
-                    onChange={(value) =>
-                      setEditState((prev) =>
-                        prev ? { ...prev, description: value } : prev
-                      )
-                    }
-                  />
-                </div>
+                <textarea
+                  value={editState.description}
+                  onChange={(e) =>
+                    setEditState((prev) =>
+                      prev ? { ...prev, description: e.target.value } : prev
+                    )
+                  }
+                  rows={8}
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 outline-none ring-indigo-500 transition focus:ring-2"
+                  placeholder="Enter description"
+                />
               </div>
             </div>
 

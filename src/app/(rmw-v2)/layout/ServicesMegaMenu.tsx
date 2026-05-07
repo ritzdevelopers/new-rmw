@@ -247,11 +247,11 @@ export function ServicesMegaMenuPanel({
     <div className="flex max-h-[min(78vh,720px)] flex-col overflow-hidden  bg-white  shadow-[0_2px_10px_rgba(136,136,136,0.25)] ">
       <div className="shrink-0 px-5 pb-3 pt-4 sm:px-8 sm:pb-0 sm:pt-5 lg:px-10">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:gap-4">
-          <h2
+          <p
             className={`${styles.montserrat} text-2xl tracking-tight font-[600]  sm:text-[24px]`}
           >
             Services
-          </h2>
+          </p>
           <p
             className={`text-sm  sm:pb-0.5 sm:text-[14px] ${styles.fontopensans}`}
           >
