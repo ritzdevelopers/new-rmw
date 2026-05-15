@@ -154,7 +154,9 @@ function Section2() {
     };
 
     return (
-        <section className="w-full bg-white py-[35px] lg:pt-[70px]">
+    <>
+     
+        <section className="w-full bg-white py-[35px] lg:py-[70px]">
             {/* Centered Align Container  */}
             <div
                 className={`w-full ${pageStyles.containerWidth} flex flex-col md:w-full md:items-center lg:flex-row lg:items-stretch justify-center gap-8 lg:gap-[40px] xl:gap-[80px]`}
@@ -429,6 +431,7 @@ function Section2() {
                 </div>
             )}
         </section>
+        </>
     );
 }
 

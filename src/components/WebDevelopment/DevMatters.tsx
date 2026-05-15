@@ -185,7 +185,7 @@ export default function DevMatters() {
                         >
                             <Image
                                 alt=""
-                                src="/webDevelopment/whiteArrL.png"
+                                src="/varun.icon/left-arrow.svg"
                                 width={30}
                                 height={30}
                                 className="h-[27px] w-[27px]"
@@ -199,7 +199,7 @@ export default function DevMatters() {
                         >
                             <Image
                                 alt=""
-                                src="/webDevelopment/whiteArrR.png"
+                                src="/varun.icon/right-arrow.svg"
                                 width={30}
                                 height={30}
                                 className="h-[27px] w-[27px]"

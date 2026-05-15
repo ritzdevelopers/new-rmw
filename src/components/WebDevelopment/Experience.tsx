@@ -32,7 +32,7 @@ export default function Experience() {
    "
                     >
                         <Image
-                            src="/webDevelopment/experience.png"
+                            src="/varunimage/experience.png"
                             alt="experience"
                             width={761}
                             height={403}

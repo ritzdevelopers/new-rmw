@@ -47,7 +47,7 @@ function Section2M() {
                                         {reviewers.map((reviewer, idx) => (
                                             <div
                                                 key={reviewer}
-                                                className={`relative w-[47px] h-[47px] shrink-0 rounded-full overflow-hidden border-3 border-[#ECECEC] bg-white ${s2.avatar} ${
+                                                className={`relative w-[47px] h-[47px] shrink-0 rounded-full overflow-hidden border-3 border-[#ffffff] bg-white ${s2.avatar} ${
                                                     idx > 0 ? `-ml-[10px] ${s2.avatarOverlap}` : ""
                                                 }`}
                                                 style={{ zIndex: idx + 1 }}
