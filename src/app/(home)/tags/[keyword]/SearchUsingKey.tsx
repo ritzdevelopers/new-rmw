@@ -56,7 +56,11 @@ const SearchUsingKey: React.FC<Props> = ({ keyword }) => {
                 {/* Image */}
                 <div className={styles.cardImageWrap}>
                   <img
-                    src={`/blogs/${blog.blog_image}`}
+                    src={
+                      blog.blog_image?.includes("/images")
+                        ? `https://ritzmediaworld.com/api/images${blog.blog_image.split("/images")[1]}`
+                        : `https://ritzmediaworld.com/blogs/${blog.blog_image}`
+                    }
                     alt={blog.title}
                     className={styles.cardImage}
                   />

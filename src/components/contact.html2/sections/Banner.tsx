@@ -41,7 +41,7 @@ function Banner() {
                         className={`font-[500]   text-[14px] sm:text-[16px] md:text-[13px] lg:text-[15px] lg:font-[400] xl:text-[21px] xl:font-[500] text-white  w-full max-md:max-w-none md:max-w-[420px] lg:max-w-[450px] xl:max-w-[690px] md:mb-2 lg:mb-0 xl:mb-[0] mb-[20px] lg:mt-1 mt-2`}
                         style={{ fontFamily: "MontserratMedium" }}
                     >
-                        Get started with Ritz Media World For Digital Marketing
+                        Get started with Ritz Media World For Digital Marketin
                         Strategies, best SEO services, and Creative Branding.
                     </p>
                 </div>

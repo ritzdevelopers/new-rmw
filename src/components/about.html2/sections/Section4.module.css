@@ -178,7 +178,7 @@
 
   .root .intro,
   .root .footerText {
-    font-size: 13px !important;
+    font-size: 14px !important;
     line-height: 1.55 !important;
     max-width: 100% !important;
   }
@@ -237,7 +237,7 @@
   }
 
   .root .statSub {
-    font-size: 13px !important;
+    font-size: 14px !important;
     max-width: 100% !important;
     padding-left: 0;
     padding-right: 0;
