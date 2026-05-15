@@ -50,32 +50,32 @@
 }
 
 .headingTight {
-  font-size: clamp(1.375rem, 5.2vw, 2.125rem) !important;
+  font-size: 14px !important;
   line-height: 1.2 !important;
 }
 
 .subTight {
-  font-size: clamp(1rem, 3.4vw, 1.375rem) !important;
+  font-size: 14px !important;
   line-height: 1.35 !important;
 }
 
 .descTight {
-  font-size: clamp(0.875rem, 2.8vw, 1rem) !important;
+  font-size: 14px !important;
   line-height: 1.55 !important;
   max-width: 100% !important;
 }
 
 .metricNumM {
-  font-size: clamp(1.5rem, 5vw, 2rem) !important;
+  font-size: 14px !important;
 }
 
 .metricTextM {
-  font-size: clamp(0.8125rem, 2.6vw, 1rem) !important;
+  font-size: 14px !important;
   line-height: 1.45 !important;
 }
 
 .badgeTight {
-  font-size: clamp(0.8125rem, 2.8vw, 1.125rem) !important;
+  font-size: 14px !important;
   line-height: 1.4 !important;
 }
 

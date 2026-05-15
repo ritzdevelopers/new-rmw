@@ -10,7 +10,7 @@ export default function Section2() {
         <section className="w-full flex items-center justify-center py-[35px] lg:py-[50px] bg-white">
             <div className="w-[100%] md:w-[100%] lg:w-[100%] xl:w-[80%] text-center mx-auto px-4 md:px-[40px] lg:px-[50px] min-[1370px]:!w-[1300px] min-[1370px]:!max-w-[1300px] min-[1370px]:mx-auto">
                 <p
-                    className={`text-black  text-[20px] sm:text-[20px] md:text-[20px] lg:text-[24px]xl:text-[30px]  leading-[30px]   md:leading-[28px] lg:leading-[28px] xl:leading-[34px] mx-auto ${styles.montserrat}  `}
+                    className={`text-black  text-[20px] sm:text-[20px] md:text-[20px] lg:text-[24px]xl:text-[30px]  leading-[30px]   md:leading-[28px] lg:leading-[28px] xl:leading-[30px] mx-auto ${styles.montserrat}  `}
 
                 >
                     <span className="font-normal">In digital marketing, your website isn’t merely a collection of pages, it’s your brand’s</span><br className="hidden lg:block" /><span className="font-normal">most persuasive spokesperson.</span> <span className="text-black font-bold">Ritz Media World, </span><span className="font-normal">

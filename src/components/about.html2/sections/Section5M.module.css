@@ -30,7 +30,7 @@
 }
 
 .subTight {
-  font-size: clamp(0.8125rem, 2.6vw, 1rem) !important;
+  font-size:14px !important;
   line-height: 1.55 !important;
   max-width: 100%;
 }

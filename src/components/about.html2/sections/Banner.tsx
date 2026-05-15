@@ -9,7 +9,7 @@ export default function Section1() {
         bg-[url("/new-about-imgs/s1/About-Us-page-mob.png")]
         bg-cover bg-no-repeat bg-center flex items-center md:items-end pb-8 sm:pb-4 lg:pb-14 px-0`}>
             <div className="flex flex-col gap-3 sm:gap-4 md:gap-0 lg:gap-3 xl:gap-6 w-full max-w-[100%] md:max-w-[80%] lg:max-w-none">
-                <div className="w-[200px]  h-[28px] sm:h-[32px] md:h-[30px] lg:h-[37px] relative hidden md:block">
+                <div className="md:w-[120px] lg:w-[150px] xl:w-[150px]  h-[28px] sm:h-[32px] md:h-[30px] lg:h-[37px] relative hidden md:block">
                     <Image
                         src="/home-v3/service-imgs/s1/yellow-reactangle.png"
                         alt="RMW"
@@ -18,7 +18,7 @@ export default function Section1() {
                         sizes="(min-width:1024px) 165px, (min-width:768px) 155px, (min-width:640px) 140px, 120px"
                         priority
                     />
-                    <p className={`font-[700] text-center md:text-left text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] text-white absolute top-[50%] uppercase -translate-y-1/2 right-4 sm:right-5 md:right-26 lg:right-22 xl:right-20 ${styles.fontmontserrat}`}>
+                    <p className={`font-[700] text-center md:text-left text-[12px] sm:text-[13px] md:text-[14px] lg:text-[16px] text-white absolute top-[50%] uppercase -translate-y-1/2 right-4 sm:right-5 md:right-7 lg:right-10 xl:right-10 ${styles.fontmontserrat}`}>
                     About
                     </p>
                 </div>

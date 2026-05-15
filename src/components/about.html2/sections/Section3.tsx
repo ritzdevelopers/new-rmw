@@ -63,7 +63,7 @@ function Section3() {
                                         <p className={`mx-auto font-[400] text-[14px] max-w-[640px] md:mx-0 md:text-[16px] ${styles.fontpoppins} ${s3.desc}`}>
                                             {item.description}
                                         </p>
-                                        <a href={item.link} target="_blank" className={`w-[40px] cursor-pointer h-[40px] rounded-full bg-[#C99237] flex justify-center items-center ${s3.cta}`}>
+                                        <a href={item.link} target="_blank" className={`w-[40px] cursor-pointer h-[40px] rounded-full bg-[#C99237] hover:bg-[#0F1640] flex justify-center items-center ${s3.cta}`}>
                                             <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M19.4276 2.92383L17.1346 9.08052L12.9492 4.01635L19.4276 2.92383Z" fill="white" />
                                                 <rect x="2.19672" y="16.7171" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19672 16.7171)" fill="white" />
