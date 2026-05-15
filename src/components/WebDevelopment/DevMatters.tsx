@@ -84,14 +84,14 @@ export default function DevMatters() {
                     </h2>
 
                     {/* Desktop / large tablet arrows (lg+) */}
-                    <div className="mt-6 hidden items-center gap-6 text-white/85 lg:flex">
+                    <div className="mt-6 hidden items-center gap-3 text-white/85 lg:flex">
                         <button
                             onClick={handlePrev}
                             className=" hover:opacity-70 cursor-pointer"
                         >
                             <Image
                                 alt="prev"
-                                src="/webDevelopment/whitearrL.png"
+                                src="/varun.icon/left-arrow.svg"
                                 width={30}
                                 height={30}
                                 className="w-[27px] h-[27px] "
@@ -103,10 +103,10 @@ export default function DevMatters() {
                         >
                             <Image
                                 alt="next"
-                                src="/webDevelopment/whitearrR.png"
+                                src="/varun.icon/right-arrow.svg"
                                 width={30}
                                 height={30}
-                                className="w-[27px] h-[27px]"
+                                className="w-[27px] h-[27px] "
                             />
                         </button>
                     </div>
