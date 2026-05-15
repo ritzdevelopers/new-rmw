@@ -185,12 +185,16 @@ const Page = () => {
         }
       });
 
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
       const { data, status } = await axios.post(
         "/api/ritz_blogs/add-new-blog",
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
           },
         }
       );

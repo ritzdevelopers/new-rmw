@@ -1,8 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { clearManagementSessionUser } from "@/lib/managementSession";
 import { cn } from "../../lib/utils";
 import { LogOut } from "lucide-react";
 
@@ -11,27 +11,14 @@ interface LogoutButtonProps {
 }
 
 const LogoutButton: React.FC<LogoutButtonProps> = ({ expanded = false }) => {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const handleLogout = async () => {
     setLoading(true);
-    try {
-      const res = await fetch("/api/logout", {
-        method: "POST",
-        credentials: "include",
-      });
 
-      if (res.ok) {
-        router.push("/admin/sign-in"); // Redirect after logout
-      } else {
-        console.error("Logout failed");
-      }
-    } catch (error) {
-      console.error("Error logging out:", error);
-    } finally {
-      setLoading(false);
-    }
+    localStorage.removeItem("rm_token");
+    clearManagementSessionUser();
+    window.location.assign("/admin/dashboard");
   };
 
   return (

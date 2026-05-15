@@ -187,10 +187,7 @@ function BrandImpactSection2() {
                         
 
                         <div>
-                            {/* <p className="font-[700] text-[16px] lg:text-[24px] text-left mb-2 md:mb-0">
-                                Download Our
-                            </p> */}
-
+                         
                             <h2
                                 className="font-[700] text-[21px]  lg:text-[22px] xl:text-[36px]"
                                 style={{

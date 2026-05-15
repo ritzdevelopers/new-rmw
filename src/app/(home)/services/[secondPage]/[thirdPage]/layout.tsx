@@ -50,9 +50,9 @@ export default async function Layout({
   params,
 }: {
   children: React.ReactNode;
-  params: { secondPage: string; thirdPage: string };
+  params: Promise<{ secondPage: string; thirdPage: string }>;
 }) {
-  const { secondPage, thirdPage } = params;
+  const { secondPage, thirdPage } = await params;
 
   try {
     // Try fetching meta for existing slugs

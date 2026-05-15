@@ -22,7 +22,7 @@ function About() {
             </div>
             <div className="hidden md:block">
                 <Section2 />
-            </div>
+            </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
             <Section3 />
             <Section4 />
             <div className="block md:hidden">

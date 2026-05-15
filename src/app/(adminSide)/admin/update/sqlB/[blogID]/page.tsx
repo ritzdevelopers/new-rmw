@@ -94,7 +94,15 @@ function Page() {
       formData.append("blog_image", newImage);
     }
     try {
-      const { status, data } = await axios.patch(`/api/blog/${id}`, formData);
+      const token =
+        typeof window !== "undefined"
+          ? localStorage.getItem("rm_token")
+          : null;
+      const { status, data } = await axios.patch(`/api/blog/${id}`, formData, {
+        headers: {
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+      });
       setPopupData({ message: data.message, status });
       setRMWLoader(false);
       setShowPopup(true);

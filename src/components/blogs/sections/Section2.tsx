@@ -55,9 +55,16 @@ function Section2({ all_blogs }: { all_blogs: any[] }) {
 
     const [searchValue, setSearchValue] = useState<string>("");
     const [filteredBlogs, setFilteredBlogs] = useState<any[]>([]);
+
+    const normalizeSearchText = (value: unknown) => String(value ?? "").toLowerCase();
+
     useEffect(() => {
         const list = all_blogs ?? [];
-        const filtered = list.filter((blog: any) => (blog?.title ?? "").toLowerCase().includes((searchValue ?? "").toLowerCase()));
+        const normalizedSearch = normalizeSearchText(searchValue).trim();
+        const filtered = list.filter((blog: any) => {
+            const blogTitle = normalizeSearchText(blog?.title ?? blog?.blogTitle);
+            return blogTitle.includes(normalizedSearch);
+        });
         setFilteredBlogs(sortBlogsByDateDesc(filtered).slice(0, 10));
     }, [searchValue, all_blogs]);
     

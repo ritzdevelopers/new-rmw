@@ -1,10 +1,56 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { FaFacebookF, FaPhoneAlt, FaInstagram, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
+const RMW_VISITOR_SESSION_KEY = "rmw_visitor_session_id";
+
 function NewFooter() {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const recordTraffic = async () => {
+      try {
+        const payload: Record<string, string> = {
+          url:
+            typeof window !== "undefined" ? window.location.href : "",
+          referrer:
+            typeof document !== "undefined" ? document.referrer || "" : "",
+        };
+        try {
+          const existing = sessionStorage.getItem(RMW_VISITOR_SESSION_KEY);
+          if (existing) {
+            payload.sessionId = existing;
+          }
+        } catch {
+          /* sessionStorage unavailable */
+        }
+
+        const res = await fetch("/api/tracker", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = (await res.json().catch(() => ({}))) as {
+          sessionId?: string;
+        };
+        if (res.ok && typeof data.sessionId === "string" && data.sessionId) {
+          try {
+            sessionStorage.setItem(RMW_VISITOR_SESSION_KEY, data.sessionId);
+          } catch {
+            /* ignore */
+          }
+        }
+      } catch {
+        /* ignore tracker failures */
+      }
+    };
+
+    void recordTraffic();
+  }, [pathname]);
+
   return (
     <footer className="w-full bg-[#0F1640] flex justify-center">
       <div className="w-full min-[1657px]:max-w-[1300px] min-[1657px]:mx-auto flex flex-col lg:flex-row lg:items-stretch min-[1657px]:px-10">
@@ -100,9 +146,9 @@ function NewFooter() {
             {/* Col 3  */}
             <div className="w-full flex flex-col gap-4 sm:gap-6 items-start lg:max-w-[220px] lg:min-w-0 xl:w-auto xl:max-w-none xl:min-w-0 xl:shrink-0 xl:items-end min-[1657px]:items-end">
               {/* Google Review Image  */}
-              <div className="mb-1 sm:mb-2 w-full max-w-full lg:max-w-[220px] xl:w-full xl:max-w-[250px]">
+              <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer" className="mb-1 sm:mb-2 w-full max-w-full lg:max-w-[220px] xl:w-full xl:max-w-[250px] cursor-pointer">
                 <img src="/g-5-star2-white.png" alt="google review" title="google review" className="w-full max-w-[200px] md:w-[240px] md:max-w-[250px] lg:max-w-[190px] lg:w-full lg:object-left xl:max-w-[250px] xl:w-[240px] xl:object-center h-auto object-contain" />
-              </div>
+              </a>
 
               {/* Social Media Links  */}
               <div className="flex gap-2 sm:gap-3 flex-wrap justify-start lg:flex-nowrap lg:gap-1.5 xl:flex-wrap xl:gap-3 xl:justify-end min-[1657px]:justify-end lg:[&>div]:!h-8 lg:[&>div]:!w-8 lg:[&>div]:!min-h-0 lg:[&>div]:!min-w-0 xl:[&>div]:!h-[40px] xl:[&>div]:!w-[40px] xl:[&>div]:!min-h-0 xl:[&>div]:!min-w-0">

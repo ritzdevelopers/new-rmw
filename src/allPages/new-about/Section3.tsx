@@ -5,24 +5,24 @@ import React from "react";
 function Section3() {
   const d1 = [
     {
-      img: "/new-about/rmw-02.jpg",
+      img: "/new-about/branding.jpg",
       service: "Brand Identity",
       link: "https://ritzmediaworld.com/services/creative-services/branding-and-identity-development",
     },
     {
-      img: "/new-about/rmw-06.jpg",
+      img: "/new-about/content.jpg",
       service: "Content Marketing",
       link: "https://ritzmediaworld.com/services/contents-marketing",
     },
   ];
   const d2 = [
     {
-      img: "/new-about/rmw-03.jpg",
+      img: "/new-about/advertising_design.jpg",
       service: "Advertising Design",
       link: "https://ritzmediaworld.com/services/print-advertising/advertisement-designing",
     },
     {
-      img: "/new-about/rmw-05.jpg",
+      img: "/new-about/digital-marketing.jpg",
       service: "Digital Marketing",
       link: "https://ritzmediaworld.com/services/digital-marketing",
     },

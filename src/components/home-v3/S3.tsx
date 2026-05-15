@@ -17,7 +17,7 @@ function S3() {
   // Data array for slides
   const slidesData = [
     {
-      img: "/home-v3/s3/450-digital.png",
+      img: "/varunimage/digital-what-we-do.jpg",
       category: "Digital Marketing",
       ttl: "Digital marketing strategies that drive growth",
       list: [
@@ -29,7 +29,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/digital-marketing",
     },
     {
-      img: "/home-v3/s3/450content.png",
+      img: "/varunimage/creative-what-we-do.jpg",
       category: "Creative Services",
       ttl: "Creative design solutions that elevate brands",
       list: [
@@ -41,7 +41,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/creative-services",
     },
     {
-      img: "/home-v3/new/13 february webstories-11.jpg",
+      img: "/varunimage/print-what-we-do.jpg",
       category: "Print Advertising",
       ttl: "Print advertising campaigns that maximize impact",
       list: [
@@ -53,7 +53,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/print-advertising",
     },
     {
-      img: "/home-v3/s3/rmw influncer.jpg",
+      img: "/varunimage/influencer-what-we-to.jpg",
       category: "Influencer Marketing",
       ttl: "Authentic collaborations that build trust and reach",
       list: [
@@ -65,7 +65,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
     },
     {
-      img: "/home-v3/s3/450radio4.png",
+      img: "/varunimage/radio-what-we-do.jpg",
       category: "Radio Advertising",
       ttl: "Audio narratives that connect brands with listeners",
       list: [
@@ -77,7 +77,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/radio-advertising",
     },
     {
-      img: "/home-v3/s3/450web.png",
+      img: "/varunimage/development-what-we-do.jpg",
       category: "Web Development",
       ttl: "Digital platforms designed for performance and scale",
       list: [
@@ -89,7 +89,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/web-designing-and-development",
     },
     {
-      img: "/home-v3/s3/450-content.png",
+      img: "/varunimage/content-what-we-do.jpg",
       category: "Content Marketing",
       ttl: "Strategic content that informs, engages, and converts",
       list: [
@@ -101,7 +101,7 @@ function S3() {
       link: "https://ritzmediaworld.com/services/contents-marketing",
     },
     {
-      img: "/home-v3/s3/450celebratecopy.png",
+      img: "/varunimage/celebrity-what-we-do.jpg",
       category: "Celebrity Endorsements",
       ttl: "Celebrity Endorsements campaigns that maximize impact",
       list: [

@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import RitzBlogModel from "@/models/Blog.Schema";
+import jwt from "jsonwebtoken";
+import ManagementModel from "@/models/Management";
+import ManagementActivitiesModel from "@/models/ManagementActivities";
 
 export async function DELETE(
   request: NextRequest,
@@ -8,7 +11,22 @@ export async function DELETE(
 ) {
   try {
     await connectMongoDB();
-
+    // Only super_admin and editor Can Delete A Blog 
+    const token = request.headers.get("Authorization")?.split(" ")[1];
+    if (!token) {
+      return NextResponse.json({ message: "Token is required" }, { status: 400 });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string, role: string | undefined };
+    if (!decoded) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    if (decoded.role !== "super_admin" && decoded.role !== "editor" && decoded.role !== undefined) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    const actor = await ManagementModel.findById(decoded.id as string);
+    if (!actor || !actor.isActive) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
     const blogId = params.blogID;
 
     if (!blogId) {
@@ -32,6 +50,10 @@ export async function DELETE(
         { status: 404 }
       );
     }
+
+    // Create A New Management Activity
+    const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) deleted a blog: ${find_blog.blogTitle}`, activityTime: new Date() });
+    await newManagementActivity.save();
 
     return NextResponse.json(
       { message: "Blog deleted successfully", success: true },

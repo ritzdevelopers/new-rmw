@@ -85,14 +85,20 @@ function Section8() {
         </div>
 
         <div className="w-full flex justify-center items-center">
-          <button
-            onClick={() => window.open("https://ritzmediaworld.com/gallery", "_blank")}
-            className={`w-[141px] h-[50px] text-[15px] font-[700] text-white rounded-[8px]
-            bg-[#C99237] cursor-pointer ${s8.btn}`}
-          >
-            View More
-          </button>
-        </div>
+  <button
+    onClick={() => window.open("https://ritzmediaworld.com/gallery", "_blank")}
+    className={`group relative overflow-hidden w-[141px] h-[50px] text-[15px] font-[700] text-white rounded-[8px]
+    bg-[#C99237] cursor-pointer border border-[#C99237] ${s8.btn}`}
+  >
+    {/* Sliding Background */}
+    <span className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out"></span>
+
+    {/* Text */}
+    <span className="relative z-10 transition-colors duration-500 group-hover:text-[#C99237]">
+      View More
+    </span>
+  </button>
+</div>
       </div>
     </section>
   );

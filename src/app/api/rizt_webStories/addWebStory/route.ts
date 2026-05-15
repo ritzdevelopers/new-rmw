@@ -3,10 +3,28 @@ import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import TopicModel from "@/models/Story.Topic";
 import WebStoryModel from "@/models/WebStory.Schema";
 import { NextRequest, NextResponse } from "next/server";
-
+import jwt from "jsonwebtoken";
+import ManagementModel from "@/models/Management";
+import ManagementActivitiesModel from "@/models/ManagementActivities";
 export async function POST(req: NextRequest) {
   try {
     await connectMongoDB();
+    // Only super_admin and editor Can Add A Web Story 
+    const token = req.headers.get("Authorization")?.split(" ")[1];
+    if (!token) {
+      return NextResponse.json({ message: "Token is required" }, { status: 400 });
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string, role: string | undefined };
+    if (!decoded) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    if (decoded.role !== "super_admin" && decoded.role !== "editor" && decoded.role !== undefined) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+    const actor = await ManagementModel.findById(decoded.id as string);
+    if (!actor || !actor.isActive) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
     const formData = await req.formData();
 
     const title = formData.get("title");
@@ -66,6 +84,10 @@ export async function POST(req: NextRequest) {
     await TopicModel.findByIdAndUpdate(topicID, {
       $inc: { pages: +1 },
     });
+    // Create A New Management Activity
+    const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) added a new web story: ${title}`, activityTime: new Date() });
+    await newManagementActivity.save();
+
     return NextResponse.json(
       { message: "Story Page Addedd Successfully.", success: true },
       { status: 201 }

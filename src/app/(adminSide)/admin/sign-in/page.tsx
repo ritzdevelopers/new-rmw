@@ -1,9 +1,5 @@
-import SignInForm from '../../../../components/signIn-component/SignComponent'
-import React from 'react'
-const page = () => {
-  return (
-    <SignInForm />
-  )
-}
+import { redirect } from "next/navigation";
 
-export default page
+export default function AdminSignInPage() {
+  redirect("/admin/dashboard");
+}
