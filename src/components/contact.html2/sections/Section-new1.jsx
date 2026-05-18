@@ -20,104 +20,77 @@ const HASHTAG_BLOCKS = [
     },
     {
         tag: "#VISIONTOREALITY",
-        text: "We turn strategy into tangible outcomes your audience can feel.",
+        text: "Strategic thinking turned into real-world brand growth.",
     },
     {
         tag: "#RESULTSOVERNOISE",
-        text: "Clarity and impact matter more than volume alone.",
+        text: "Focus on what moves the brand forward, not what just looks good.",
     },
     {
         tag: "#GROWCONNECTED",
-        text: "Growth happens when brands and communities move together.",
+        text: "Reach audiences seamlessly across digital ecosystems and real-world touchpoints.",
     },
 ];
 
 function SectionNew1() {
     return (
-        <section className="w-full bg-white py-[35px] lg:py-[70px]">
-            <div
-                className={`w-full mx-auto overflow-x-visible overflow-y-visible `}
-            >
-                <div className="flex flex-col lg:flex-row lg:items-end lg:gap-0">
-                    {/* Left — copy + service tags */}
-                    <div className="w-full shrink-0 px-5 py-8 sm:px-8 lg:w-[34%] lg:border-r-0 lg:border-[#E8E8E8] lg:py-10 xl:pl-10">
-                        <h2
-                            className={`${pageStyles.fontMontserrat} text-[28px] leading-[34px] sm:text-[36px] sm:leading-[42px] lg:text-[40px] lg:leading-[46px]`}
-                            style={{
-                                fontFamily: "Montserrat, sans-serif",
-                                fontWeight: 600,
-                                color: "#111111",
-                                letterSpacing: "0%",
-                            }}
-                        >
-                            Together{" "} <br />
-                            <span style={{ color: "#C99237" }}>Toward</span>{" "}   <br/>
-                            One Goal
-                        </h2>
-                        <p
-                            className={`${pageStyles.fontopensans} mt-5 max-w-xl`}
-                            style={{
-                                fontFamily: "Open Sans, sans-serif",
-                                fontWeight: 400,
-                                fontSize: "16px",
-                                lineHeight: "28px",
-                                letterSpacing: "0%",
-                                color: "#111111",
-                            }}
-                        >
-                            We at Ritz Media World help brands grow at every
-                            stage! With integrated expertise in PR, digital
-                            marketing, performance, influencer marketing, and
-                            reputation management, we build visibility locally
-                            and credibility globally across India.
-                        </p>
-                        <div className="mt-8 flex flex-wrap gap-3">
-                            {SERVICE_TAGS.map((label) => (
-                                <span
-                                    key={label}
-                                    className={`${pageStyles.fontMontserrat} inline-flex items-center rounded-md border border-[#C99237] px-3 py-2`}
-                                    style={{
-                                        fontFamily: "Montserrat, sans-serif",
-                                        fontWeight: 600,
-                                        fontSize: "12px",
-                                        lineHeight: "16px",
-                                        letterSpacing: "0%",
-                                        color: "#C99237",
-                                    }}
-                                >
-                                    {label}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Middle — navy + hashtags */}
-                    <div
-                        className="mx-[25px] flex w-[calc(100%-50px)] max-w-full flex-col justify-center gap-8 self-center px-6 py-10 sm:px-8 lg:mx-0 lg:w-[calc(33.333%-50px)] lg:max-w-none lg:flex-shrink-0 lg:self-stretch lg:gap-10 lg:px-8 xl:px-10"
-                        style={{ backgroundColor: "#151F3D" }}
+        <section className="w-full overflow-x-hidden  pt-[35px] md:pt-[70px]">
+            <div className="flex w-full flex-col lg:flex-row lg:items-stretch">
+                {/* Left — heading, copy, service pills */}
+                <div className="flex w-full flex-col justify-center pl-5 py-8 sm:pl-8 lg:w-1/2 lg:py-10 xl:pl-10">
+                    <h2
+                        className={`${pageStyles.fontMontserrat} text-[40px] font-semibold leading-[46px] tracking-normal`}
                     >
+                        <span className="text-[#111111]">Together</span>
+                        <br />
+                        <span className="text-[#C99237]">Toward</span>
+                        <br />
+                        <span className="text-[#111111]">One Goal</span>
+                    </h2>
+
+                    <p
+                        className={`${pageStyles.fontopensans} mt-5 max-w-[600px] text-[16px] font-normal leading-[28px] tracking-normal text-[#111111]`}
+                    >
+                        We at Ritz Media World help brands grow at every stage!
+                        With integrated expertise in PR, digital marketing,
+                        performance, influencer marketing, and reputation
+                        management, we build visibility locally and credibility
+                        globally across India.
+                    </p>
+
+                    <div className="mt-8 flex flex-wrap gap-3">
+                        {SERVICE_TAGS.map((label) => (
+                            <span
+                                key={label}
+                                className={`${pageStyles.fontMontserrat} inline-flex items-center rounded-full border border-[#C99237] bg-white px-3 py-2 text-xs font-semibold text-[#C99237]`}
+                            >
+                                {label}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Right — navy + image; group shifted 50px left, image stays flush to screen right */}
+                <div className="flex w-full flex-col  sm:flex-row lg:min-h-[520px] xl:-translate-x-[-105px] lg:translate-x-[-55px]">
+                    {/* Navy panel — 50% of right column */}
+                    <div className="flex w-full shrink-0 flex-col justify-center gap-8 bg-[#060B4F] pl-6 py-10 sm:w-[500px] sm:gap-9 sm:pl-7 sm:py-12 lg:pl-8 lg:py-14">
                         {HASHTAG_BLOCKS.map(({ tag, text }) => (
-                            <div key={tag} className="text-left">
+                            <div key={tag}>
                                 <p
-                                    className={pageStyles.fontMontserrat}
+                                    className={`${pageStyles.fontMontserrat} text-[20px] font-semibold leading-[50px] text-white`}
                                     style={{
                                         fontFamily: "Montserrat, sans-serif",
                                         fontWeight: 600,
-                                        fontSize: "20px",
-                                        lineHeight: "50px",
-                                        letterSpacing: "0%",
-                                        color: "#ffffff",
                                     }}
                                 >
                                     {tag}
                                 </p>
                                 <p
-                                    className={`${pageStyles.fontopensans} mt-1 max-w-md text-white/90`}
+                                    className={`${pageStyles.fontopensans} max-w-[300px] text-[14px] font-normal leading-6 text-white`}
                                     style={{
                                         fontFamily: "Open Sans, sans-serif",
                                         fontWeight: 400,
-                                        fontSize: "14px",
-                                        lineHeight: "22px",
+                                        letterSpacing: "0%",
                                     }}
                                 >
                                     {text}
@@ -126,14 +99,14 @@ function SectionNew1() {
                         ))}
                     </div>
 
-                    {/* Right — hero image (min-height required for next/image fill) */}
-                    <div className="relative isolate mx-[25px] w-[calc(100%-50px)] max-w-full shrink-0 self-center min-h-[380px] sm:min-h-[440px] lg:mx-0 lg:w-[calc(33.333%-50px)] lg:max-w-none lg:min-h-[520px] lg:h-full lg:self-stretch lg:flex-shrink-0">
+                    {/* Image — flush to viewport right (compensates parent -50px shift) */}
+                    <div className="relative min-h-[360px] w-full shrink-0 overflow-hidden sm:min-h-0 sm:w-[390px] sm:self-stretch lg:translate-x-[0px] lg:mr-[calc(50%-50vw)]">
                         <Image
                             src="/varunimage/contect-newsection-left-immage.jpg"
                             alt="Hand reaching toward a glowing digital sphere, Ritz Media World"
                             fill
                             className="object-cover object-center"
-                            sizes="(max-width: 1023px) 100vw, 34vw"
+                            sizes="390px"
                         />
                     </div>
                 </div>
