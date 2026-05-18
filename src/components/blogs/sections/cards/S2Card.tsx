@@ -105,7 +105,7 @@ function S2Card({ blog }: { blog: Blog }) {
 
     const openShare = (url: string) => window.open(url, "_blank", "noopener,noreferrer,width=600,height=500");
 
-    const plainDescription = decodeHtmlEntities(stripHtml(blog.description || ""));
+    const plainDescription = decodeHtmlEntities(stripHtml(blog.meta_description || ""));
     const descriptionWithoutTitle = plainDescription
         .replace(new RegExp(`^${blog.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*`, "i"), "")
         .trim();
