@@ -160,6 +160,7 @@ export async function GET(
           ${pages
             .map((page, index) => {
               const fullImgPath = `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images/${page.img.split("images")[1]}`;
+              const titleTag = index === 0 ? "h1" : "h2";
               return `
                 <amp-story-page id="page-${index}" auto-advance-after="5s">
                   <amp-story-grid-layer template="fill">
@@ -168,7 +169,7 @@ export async function GET(
                   <amp-story-grid-layer template="fill">
                     <div class="content-bottom">
                       <div class="text-wrapper">
-                        <h1 class="story-title">${page.title}</h1>
+                        <${titleTag} class="story-title">${page.title}</${titleTag}>
                         <p class="story-desc">${page.description}</p>
                         ${
                           page.buttonCTA?.btnTxt

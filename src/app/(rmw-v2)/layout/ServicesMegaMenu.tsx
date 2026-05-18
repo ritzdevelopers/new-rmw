@@ -109,6 +109,7 @@ function CategoryAvatar({
         <Image
           src={imageSrc}
           alt={categoryName}
+          title={categoryName}
           width={imageSize}
           height={imageSize}
           className={`h-full w-full object-contain transition-[filter] duration-200 ${
