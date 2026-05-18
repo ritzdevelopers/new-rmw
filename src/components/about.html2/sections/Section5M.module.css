@@ -30,7 +30,7 @@
 }
 
 .subTight {
-  font-size: clamp(0.8125rem, 2.6vw, 1rem) !important;
+  font-size:14px !important;
   line-height: 1.55 !important;
   max-width: 100%;
 }
@@ -77,6 +77,11 @@
   transform: translateY(0);
 }
 
+/* Less rail run-out below the final (2026) thumb */
+.item:last-child {
+  padding-bottom: 0.75rem;
+}
+
 .node {
   width: 14px;
   height: 14px;
@@ -86,6 +91,17 @@
   box-shadow: 0 0 0 1px rgba(15, 22, 64, 0.12);
   margin-bottom: 0.75rem;
   flex-shrink: 0;
+}
+
+.yearLabelWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fff;
+  padding: 0.75rem 1.25rem; /* py-3 px-5 */
+  box-sizing: border-box;
+  margin-bottom: 0.75rem;
 }
 
 .year {
@@ -101,7 +117,7 @@
   font-size: clamp(0.875rem, 3vw, 1.0625rem);
   line-height: 1.35;
   color: #3c3c3c;
-  margin: 0 0 0.75rem;
+  margin: 0;
   max-width: 16rem;
 }
 

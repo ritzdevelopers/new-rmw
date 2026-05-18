@@ -1,30 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# 🏆 RITZ MEDIA WORLD
+### *360° Creative Advertising & Digital Agency*
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+| 🌐 [Official Website](https://ritzmediaworld.com/) | 📞 +91 72900 02168 | 📍 Delhi NCR, India |
+| :--- | :---: | ---: |
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+</div>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Agency Excellence
+> **Established in 2008**, Ritz Media World is an award-winning agency specializing in bridging the gap between traditional media and the digital future.
 
-## Learn More
+### 🛠️ Core Services
 
-To learn more about Next.js, take a look at the following resources:
+<table>
+  <tr>
+    <td width="50%">
+      <h4>🌐 Digital Growth</h4>
+      <ul>
+        <li><b>SEO & SEM:</b> Data-driven search dominance.</li>
+        <li><b>Social Media:</b> Community building & management.</li>
+        <li><b>PPC:</b> High-ROI performance marketing.</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h4>🎨 Creative Studio</h4>
+      <ul>
+        <li><b>Branding:</b> Logo design & brand identity.</li>
+        <li><b>Web Dev:</b> High-speed responsive websites.</li>
+        <li><b>Content:</b> Professional video & copywriting.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h4>📢 Traditional Media</h4>
+      <ul>
+        <li><b>Print:</b> HT & Times of India placements.</li>
+        <li><b>Radio:</b> Strategic audio ad campaigns.</li>
+        <li><b>Outdoor:</b> Airport & Transit advertising.</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h4>🏢 Corporate Solutions</h4>
+      <ul>
+        <li><b>Events:</b> Product launches & exhibitions.</li>
+        <li><b>ORM:</b> Reputation management.</li>
+        <li><b>PR:</b> Strategic public relations.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📈 Why Choose Us?
+
+* **16+ Years** of industry leadership.
+* **Award-Winning** strategies recognized in 2025.
+* **Trusted** by brands like Madhusudan Ghee & Escorts Tractors.
+* **ROI-Focused** approach to every marketing penny spent.
+
+---
+
+<div align="center">
+
+### Let's build your brand's legacy.
+[**Visit Ritz Media World**](https://ritzmediaworld.com/)
+
+---
+*© 2026 Ritz Media World - All Rights Reserved*
+</div>

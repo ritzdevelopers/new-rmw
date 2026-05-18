@@ -29,12 +29,13 @@ function ProjectCardItem({ card, idx }: { card: Card; idx: number }) {
             src={`${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/blogs/${card.blog_image}`}
             className={styles.image}
             alt={card.title}
+            title={card.title}
             fill
             quality={idx < 2 ? 80 : 60}
           />
         </div>
         <div className="card-body text-center">
-          <h5 className="card-title">{card.title}</h5>
+          <h2 className="card-title">{card.title}</h2>
           <Link href={card.slug} target="_blank" className={`bg-[#6ea2ee] ${styles.button}`}>
             Case Studies <span className={styles.arrow}>&rarr;</span>
           </Link>

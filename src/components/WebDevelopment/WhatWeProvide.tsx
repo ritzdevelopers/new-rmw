@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { GoArrowLeft, GoArrowRight, GoArrowUpRight } from "react-icons/go";
 import styles from "./webDevelopment.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 type ProvideSlide = {
     id: string;
@@ -216,7 +217,12 @@ export default function WhatWeProvide() {
                         </div>
 
                         <div className=" mt-0 sm:mt-10 md:mt-12   flex flex-col sm:flex-row    items-center md:items-start sm:items-center  justify-between gap-4  border-0 md:border-t border-[#D8D8D8]   pt-4">
-                            <div className="flex items-center justify-center md:justify-start gap-4 md:gap-4 lg:gap-4 xl:gap-6 ">
+                            <Link
+                                href="/contact.html"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center md:justify-start gap-4 md:gap-4 lg:gap-4 xl:gap-6 outline-none focus-visible:ring-2 focus-visible:ring-[#C99237] focus-visible:ring-offset-2 rounded-sm"
+                            >
                                 <span className={`
                         text-[16px] md:text-[16px] lg:text-[15px] xl:text-[18px] font-[500]  ${styles.montserrat}
                     `}>
@@ -232,7 +238,7 @@ export default function WhatWeProvide() {
                                 ">
                                     <img src={EXPLORE_ARROW_IMAGE} alt="Explore Arrow" />
                                 </div>
-                            </div>
+                            </Link>
 
                             <div className="hidden md:flex items-center justify-between w-full sm:w-auto gap-6 lg:gap-4 xl:gap-6">
                                 <div className="relative ">

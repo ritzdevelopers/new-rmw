@@ -47,7 +47,7 @@ function Section2M() {
                                         {reviewers.map((reviewer, idx) => (
                                             <div
                                                 key={reviewer}
-                                                className={`relative w-[47px] h-[47px] shrink-0 rounded-full overflow-hidden border-3 border-[#ECECEC] bg-white ${s2.avatar} ${
+                                                className={`relative w-[47px] h-[47px] shrink-0 rounded-full overflow-hidden border-3 border-[#ffffff] bg-white ${s2.avatar} ${
                                                     idx > 0 ? `-ml-[10px] ${s2.avatarOverlap}` : ""
                                                 }`}
                                                 style={{ zIndex: idx + 1 }}
@@ -80,19 +80,33 @@ function Section2M() {
                                         5.0
                                     </p>
                                 </div>
-                                <div className={`flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#C99237] ${s2.gBadge}`}>
-                                    <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                                        <path d="M19.4276 2.92383L17.1346 9.08052L12.9492 4.01635L19.4276 2.92383Z" fill="white" />
-                                        <rect
-                                            x="2.19672"
-                                            y="16.7171"
-                                            width="16.5517"
-                                            height="0.689655"
-                                            transform="rotate(-39.5724 2.19672 16.7171)"
-                                            fill="white"
-                                        />
-                                    </svg>
-                                </div>
+                                <a
+  href="https://share.google/KiTNs3mJMr5qUOkjK"
+  target="_blank"
+  rel="noopener noreferrer"
+  className={`w-[40px] h-[40px] rounded-full bg-[#C99237] flex justify-center hover:bg-[#0F1640] cursor-pointer items-center ${s2.gBadge}`}
+>
+  <svg
+    width="22"
+    height="20"
+    viewBox="0 0 22 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M19.4276 2.92383L17.1346 9.08052L12.9492 4.01635L19.4276 2.92383Z"
+      fill="white"
+    />
+    <rect
+      x="2.19672"
+      y="16.7171"
+      width="16.5517"
+      height="0.689655"
+      transform="rotate(-39.5724 2.19672 16.7171)"
+      fill="white"
+    />
+  </svg>
+</a>
                             </div>
                         </div>
                     </div>
