@@ -14,6 +14,12 @@ import {
   validateContactPhone,
   type CountryEntry,
 } from "@/lib/contactPhoneValidation";
+import {
+  CONTACT_EMAIL_PATTERN,
+  CONTACT_EMAIL_TITLE,
+  isValidContactEmail,
+  CONTACT_EMAIL_ERROR_EN,
+} from "@/lib/contactEmailValidation";
 
 const HCaptcha = dynamic(() => import("@hcaptcha/react-hcaptcha"), {
   ssr: false,
@@ -431,8 +437,8 @@ function NewNavbar() {
 
     if (!consultForm.email.trim()) {
       next.email = "Please enter your email address.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(consultForm.email.trim())) {
-      next.email = "Please enter a valid email address.";
+    } else if (!isValidContactEmail(consultForm.email)) {
+      next.email = CONTACT_EMAIL_ERROR_EN;
     }
 
 
@@ -1000,6 +1006,8 @@ function NewNavbar() {
                     placeholder="Enter your email address"
                     value={consultForm.email}
                     onChange={(e) => setConsultForm((prev) => ({ ...prev, email: e.target.value }))}
+                    pattern={CONTACT_EMAIL_PATTERN.source}
+                    title={CONTACT_EMAIL_TITLE}
                     className={`h-[44px] w-full border-b bg-transparent px-0 text-[14px] text-[#111827] placeholder:text-[#9CA3AF] outline-none transition ${consultErrors.email ? "border-[#EF4444]" : "border-[#DADDE5] focus:border-[#C99237]"
                       }`}
                   />

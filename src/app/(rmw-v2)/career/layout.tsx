@@ -1,4 +1,6 @@
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Careers at Ritz Media World – Join Delhi-NCR’s Top Creative Agency",
   description:
     "Explore career opportunities at Ritz Media World in Delhi-NCR. Apply now to work in digital advertising, creative services and brand strategy with industry-leading experts.",
@@ -7,6 +9,7 @@ export const metadata = {
     canonical: "https://ritzmediaworld.com/career",
   },
 };
+
 export default function CareerLayout({
   children,
 }: {

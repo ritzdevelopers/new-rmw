@@ -196,6 +196,20 @@ function Footer() {
             >
               Career
             </Link>
+            <Link
+              href="/discussion-forum"
+              target="_blank"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
+            >
+              Discussion Forum
+            </Link>
+            <Link
+              href="/career"
+              target="_blank"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
+            >
+              Career
+            </Link>
           </div>
 
           {/* Box 3 - Services */}
@@ -258,6 +272,13 @@ function Footer() {
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Influencer Marketing
+            </Link>
+            <Link
+              href="/services/3d-rendering-services"
+              target="_blank"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
+            >
+              3D Rendering Services
             </Link>
           </div>
 
