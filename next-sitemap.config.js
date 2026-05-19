@@ -8,19 +8,27 @@ const {
   fetchBlogRecords,
 } = require("./next-sitemap.blog-sources");
 const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
+const {
+  NEXT_SITEMAP_EXCLUDE_PATTERNS,
+  shouldExcludeFromSitemap,
+} = require("./next-sitemap.exclude-paths");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,
   outDir: "./public",
+  exclude: NEXT_SITEMAP_EXCLUDE_PATTERNS,
 
-  transform: async (config, path) => ({
-    loc: `${siteUrl}${path}`,
-    lastmod: new Date().toISOString(),
-    changefreq: "weekly",
-    priority: 0.7,
-  }),
+  transform: async (config, path) => {
+    if (shouldExcludeFromSitemap(path)) return null;
+    return {
+      loc: `${siteUrl}${path}`,
+      lastmod: new Date().toISOString(),
+      changefreq: "weekly",
+      priority: 0.7,
+    };
+  },
 
   additionalPaths: async (config) => {
     const records = await fetchBlogRecords();
@@ -31,6 +39,7 @@ module.exports = {
       const blogPath = safeToPath(rawSlug);
 
       if (!blogPath) continue;
+      if (shouldExcludeFromSitemap(blogPath)) continue;
 
       const normalized = blogPath.replace(/^\/+/, "");
       if (STATIC_PAGE_SLUGS.has(normalized)) continue;
@@ -41,6 +50,7 @@ module.exports = {
     const blogPathCount = uniquePaths.size;
 
     for (const { path: servicePath, lastmod: serviceLastmod } of await fetchServiceSitemapEntries()) {
+      if (shouldExcludeFromSitemap(servicePath)) continue;
       if (!uniquePaths.has(servicePath)) {
         uniquePaths.set(servicePath, serviceLastmod);
       }

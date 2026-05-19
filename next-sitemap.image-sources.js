@@ -7,6 +7,7 @@ const {
   pickBlogSlug,
   pickBlogLastmod,
 } = require("./next-sitemap.blog-sources");
+const { shouldExcludeFromSitemap } = require("./next-sitemap.exclude-paths");
 
 /**
  * MySQL card.blog_image vs Mongo card.blogBanner — same rules as
@@ -86,6 +87,7 @@ async function fetchImageSitemapEntries() {
       return;
     }
     if (isBlockedBlogPath(relPath)) return;
+    if (shouldExcludeFromSitemap(relPath)) return;
     const row = touch(relPath, lastmod);
     if (!row.images.has(imageAbsUrl)) {
       row.images.set(imageAbsUrl, title || undefined);

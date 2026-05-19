@@ -69,7 +69,7 @@ const ProjectCards = () => {
         setLoading(false);
       }
     };
-
+    
     fetchData();
   }, []);
 

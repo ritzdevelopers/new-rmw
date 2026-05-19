@@ -1,6 +1,10 @@
 const { siteUrl, toIsoOrNull } = require("./next-sitemap.blog-sources");
 const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
 const { getStaticPagePaths } = require("./next-sitemap.static-page-paths");
+const {
+  NEXT_SITEMAP_EXCLUDE_PATTERNS,
+  shouldExcludeFromSitemap,
+} = require("./next-sitemap.exclude-paths");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -9,6 +13,7 @@ module.exports = {
   sitemapBaseFileName: "page-sitemap",
   generateIndexSitemap: false,
   generateRobotsTxt: false,
+  exclude: NEXT_SITEMAP_EXCLUDE_PATTERNS,
 
   /** Static list + DB services; no other Next-discovered routes. */
   transform: async () => null,
@@ -19,10 +24,12 @@ module.exports = {
 
     const staticPaths = getStaticPagePaths();
     for (const path of staticPaths) {
+      if (shouldExcludeFromSitemap(path)) continue;
       uniquePaths.set(path, null);
     }
 
     for (const { path, lastmod } of await fetchServiceSitemapEntries()) {
+      if (shouldExcludeFromSitemap(path)) continue;
       if (!uniquePaths.has(path)) {
         uniquePaths.set(path, lastmod);
       } else if (lastmod) {

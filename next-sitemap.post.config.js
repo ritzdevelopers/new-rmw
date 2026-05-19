@@ -7,6 +7,7 @@ const {
   toIsoOrNull,
   fetchBlogRecords,
 } = require("./next-sitemap.blog-sources");
+const { NEXT_SITEMAP_EXCLUDE_PATTERNS, shouldExcludeFromSitemap } = require("./next-sitemap.exclude-paths");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -15,6 +16,7 @@ module.exports = {
   sitemapBaseFileName: "post-sitemap",
   generateIndexSitemap: false,
   generateRobotsTxt: false,
+  exclude: NEXT_SITEMAP_EXCLUDE_PATTERNS,
 
   /** Drop every Next-discovered route; blogs come only from `additionalPaths`. */
   transform: async () => null,
@@ -28,6 +30,7 @@ module.exports = {
       const blogPath = safeToPath(rawSlug);
 
       if (!blogPath) continue;
+      if (shouldExcludeFromSitemap(blogPath)) continue;
 
       const normalized = blogPath.replace(/^\/+/, "");
       if (STATIC_PAGE_SLUGS.has(normalized)) continue;
