@@ -14,8 +14,6 @@ const STATIC_PAGE_SLUGS = new Set([
   "contact-us",
   "about.html",
   "new-home",
-  "tags2",
-  "category2",
 ]);
 
 function safeToPath(slugOrPath) {

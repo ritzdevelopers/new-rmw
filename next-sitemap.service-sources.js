@@ -1,10 +1,5 @@
 const mysql = require("mysql2/promise");
 
-/**
- * Mirrors routing + DB shape used by app routes:
- * - /services/[secondPage] → services.link (@/lib/meta getMetaOrThrow serviceSecond)
- * - /services/[secondPage]/[thirdPage] → getAllSlugs("serviceThird") join
- */
 function safeSegment(slugOrPath) {
   if (typeof slugOrPath !== "string") return null;
   const cleaned = slugOrPath.trim().replace(/^\/+|\/+$/g, "");

@@ -11,7 +11,7 @@ const STATIC_PAGE_PATHS = [
   "/contact.html",
   "/gallery",
   "/rdx-digital-marketing-course",
-  "/services", 
+  "/services",
   "/services/digital-marketing",
   "/services/influencer-marketing-agency-in-india",
   "/services/celebrity-endorsements",
