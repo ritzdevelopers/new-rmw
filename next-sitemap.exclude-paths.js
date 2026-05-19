@@ -1,9 +1,4 @@
-/**
- * Public URL paths excluded from every sitemap variant.
- * Route groups ((adminSide), (home)/_backup, (rmw-v2), …) are omitted — these are pathname prefixes as crawlers see them.
- */
-
-/** Passed to next-sitemap `exclude` — only `*` is special (wildcard segment). See next-sitemap matcher docs. */
+ 
 const NEXT_SITEMAP_EXCLUDE_PATTERNS = [
   "/admin",
   "/admin/*",
@@ -20,6 +15,7 @@ const NEXT_SITEMAP_EXCLUDE_PATTERNS = [
   "/backup-page",
   "/backup-page/*",
   "/tst",
+  "/test",
   "/tst/*",
   "/tags2",
   "/tags2/*",

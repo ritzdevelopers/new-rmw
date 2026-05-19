@@ -1,9 +1,14 @@
-export default function layout({
-  children,
-}: {    children: React.ReactNode }) {
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <>
       {children}
-    </div>
+    </>
   )
-}
+} 

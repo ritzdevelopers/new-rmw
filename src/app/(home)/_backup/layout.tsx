@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-
 export const metadata: Metadata = {
   robots: {
     index: false,
@@ -8,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-    return (
-        <>
-            {children}
-        </>
-    )
+  return <>{children}</>;
 }
