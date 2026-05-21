@@ -238,6 +238,22 @@ const Footer = memo(() => {
                             Career
                           </Link>
                         </li>
+                        <li
+                          id="menu-item-144"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
+                        >
+                          <Link href="/discussion-forum" style={{ color: "#ffffff" }}>
+                            Discussion Forum
+                          </Link>
+                        </li>
+                        <li
+                          id="menu-item-144"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
+                        >
+                          <Link href="/clients" style={{ color: "#ffffff" }}>
+                            Clients
+                          </Link>
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -343,6 +359,28 @@ const Footer = memo(() => {
                             style={{ color: "#ffffff" }}
                           >
                             Influencer Marketing
+                          </Link>
+                        </li>
+                        <li
+                          id="menu-item-139"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
+                        >
+                          <Link
+                            href="/services/3d-rendering-services"
+                            style={{ color: "#ffffff" }}
+                          >
+                            3D Rendering Services
+                          </Link>
+                        </li>
+                        <li
+                          id="menu-item-139"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
+                        >
+                          <Link
+                            href="/services/real-estate-walkthrough"
+                            style={{ color: "#ffffff" }}
+                          >
+                            Real Estate Walkthrough
                           </Link>
                         </li>
                       </ul>

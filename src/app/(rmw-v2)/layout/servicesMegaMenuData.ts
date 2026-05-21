@@ -339,5 +339,81 @@ export const SERVICES_MEGA_MENU_CATEGORIES: MegaMenuCategory[] = [
       },
     ],
   },
+  {
+    id: "3d-rendering-services",
+    name: "3D Rendering Services",
+    href: "/services/3d-rendering-services",
+    services: [],
+    //  services: [
+    //    {
+    //     title: "3D Exterior Rendering",
+    //     description: "Photorealistic building exteriors, landscaping, and surroundings.",
+    //     href: "/services/3d-rendering-services",
+    //     image: "/services/3drendring/3d1.png",
+    //    },
+    //   {
+    //     title: "3D Interior Rendering",
+    //     description: "Luxury interiors with lighting, materials, and furnished layouts.",
+    //     href: "/services/3d-rendering-services",
+    //     image: "/services/3drendring/3d2.png",
+    //    },
+    //   {
+    //     title: "Aerial & Township",
+    //     description: "Master plans and bird's-eye views for large-scale developments.",
+    //     href: "/services/3d-rendering-services",
+    //     image: "/services/3drendring/3d3.png",
+    //    },
+    //   {
+    //     title: "3D Floor Plan Rendering",
+    //     description: "Clear furnished layouts that simplify unit planning.",
+    //     href: "/services/3d-rendering-services",
+    //     image: "/services/3drendring/3d4.png",
+    //    },
+    //   {
+    //     title: "Amenity & Landscape Rendering",
+    //     description: "Clubhouses, pools, gardens, and lifestyle amenities visualized.",
+    //     href: "/services/3d-rendering-services",
+    //     image: "/services/3drendring/3d5.png",
+    //   },
+    // ],
+  },
+  {
+    id: "real-estate-walkthrough",
+    name: "Real Estate Walkthrough",
+    href: "/services/real-estate-walkthrough",
+    services: [],
+    // services: [
+    //   {
+    //     title: "3D Architectural Walkthrough Animation",
+    //     description: "Cinematic tours from exterior through lobbies and units.",
+    //     href: "/services/real-estate-walkthrough",
+    //     image: "/varun.icon/real.svg",
+    //   },
+    //   {
+    //     title: "360° Virtual Property Tour",
+    //     description: "Interactive tours buyers can explore at their own pace.",
+    //     href: "/services/real-estate-walkthrough",
+    //     image: "/varun.icon/real.svg",
+    //   },
+    //   {
+    //     title: "3D Aerial Flythrough Animation",
+    //     description: "Bird's-eye flyovers that showcase scale and surroundings.",
+    //     href: "/services/real-estate-walkthrough",
+    //     image: "/varun.icon/real.svg",
+    //   },
+    //   {
+    //     title: "Interior Walkthrough Animation",
+    //     description: "Room-by-room interior tours with photoreal detail.",
+    //     href: "/services/real-estate-walkthrough",
+    //     image: "/varun.icon/real.svg",
+    //   },
+    //   {
+    //     title: "VR Walkthrough Experience",
+    //     description: "Immersive VR property experiences for remote buyers.",
+    //     href: "/services/real-estate-walkthrough",
+    //     image: "/varun.icon/real.svg",
+    //   },
+    // ],
+  },
 
 ];

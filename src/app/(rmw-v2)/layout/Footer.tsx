@@ -194,7 +194,22 @@ function Footer() {
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
-              Career
+              Careers
+            </Link>
+            <Link
+              href="/discussion-forum"
+              target="_blank"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
+            >
+              Discussion Forum
+            </Link>
+           
+            <Link
+              href="/clients"
+              target="_blank"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
+            >
+              Clients
             </Link>
           </div>
 
@@ -258,6 +273,20 @@ function Footer() {
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Influencer Marketing
+            </Link>
+            <Link
+              href="/services/3d-rendering-services"
+              target="_blank"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
+            >
+              3D Rendering Services
+            </Link>
+            <Link
+              href="/services/real-estate-walkthrough"
+              target="_blank"
+              className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
+            >
+              Real Estate Walkthrough
             </Link>
           </div>
 
