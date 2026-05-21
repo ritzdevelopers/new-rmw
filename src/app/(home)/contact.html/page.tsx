@@ -23,7 +23,6 @@ const Contact = dynamic(() => import("@/allPages/Contact"), {
       `}</style>
     </div>
   ),
-  ssr: false
 });
 
 const page = () => {

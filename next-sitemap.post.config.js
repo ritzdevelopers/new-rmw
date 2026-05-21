@@ -7,20 +7,17 @@ const {
   toIsoOrNull,
   fetchBlogRecords,
 } = require("./next-sitemap.blog-sources");
-const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl,
-  generateRobotsTxt: true,
   outDir: "./public",
+  sitemapBaseFileName: "post-sitemap",
+  generateIndexSitemap: false,
+  generateRobotsTxt: false,
 
-  transform: async (config, path) => ({
-    loc: `${siteUrl}${path}`,
-    lastmod: new Date().toISOString(),
-    changefreq: "weekly",
-    priority: 0.7,
-  }),
+  /** Drop every Next-discovered route; blogs come only from `additionalPaths`. */
+  transform: async () => null,
 
   additionalPaths: async (config) => {
     const records = await fetchBlogRecords();
@@ -38,15 +35,8 @@ module.exports = {
       uniquePaths.set(blogPath, pickBlogLastmod(blog));
     }
 
-    const blogPathCount = uniquePaths.size;
-
-    for (const { path: servicePath, lastmod: serviceLastmod } of await fetchServiceSitemapEntries()) {
-      if (!uniquePaths.has(servicePath)) {
-        uniquePaths.set(servicePath, serviceLastmod);
-      }
-    }
-
     const items = [];
+    const fallbackLastmod = new Date().toISOString();
 
     for (const [path, lastmod] of uniquePaths.entries()) {
       const transformed = await config.transform(config, path);
@@ -54,15 +44,13 @@ module.exports = {
       items.push({
         ...transformed,
         loc: `${siteUrl}${path}`,
-        lastmod: toIsoOrNull(lastmod) || transformed.lastmod,
+        lastmod: toIsoOrNull(lastmod) || fallbackLastmod,
         changefreq: "weekly",
         priority: 0.8,
       });
     }
 
-    console.log(
-      `[next-sitemap] Blogs added: ${blogPathCount}, total additional paths (blogs + services): ${items.length}`
-    );
+    console.log(`[next-sitemap:post-sitemap] Blog URLs: ${items.length}`);
     return items;
   },
 };

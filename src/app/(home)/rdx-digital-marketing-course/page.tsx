@@ -69,8 +69,7 @@ const RDXCourseContent = dynamic(() => import("./RDXCourseContent"), {
         }
       `}</style>
     </div>
-  ),
-  ssr: false
+  ), 
 });
 
 function Page() {

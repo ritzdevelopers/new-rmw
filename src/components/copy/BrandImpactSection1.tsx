@@ -82,8 +82,8 @@ function BrandImpactSection1() {
 
     const downloadPDF = () => {
         const link = document.createElement("a");
-        link.href = "/Eldeco-Lvb-Overview-Report.pdf";
-        link.download = "Eldeco-Lvb-Overview-Report.pdf";
+        link.href = "/Gold-in-the-Abyss.pptx";
+        link.download = "Gold-in-the-Abyss.pptx";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
