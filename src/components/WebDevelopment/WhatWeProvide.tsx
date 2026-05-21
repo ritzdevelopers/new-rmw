@@ -234,7 +234,7 @@ export default function WhatWeProvide() {
                                     sm:w-[34px] sm:h-[34px]
                                     md:w-[36px] md:h-[36px]
                                     bg-[#C99237] rounded-full 
-                                    flex items-center justify-center cursor-pointer
+                                    flex items-center justify-center cursor-pointer hover:bg-[#0F1640]
                                 ">
                                     <img src={EXPLORE_ARROW_IMAGE} alt="Explore Arrow" />
                                 </div>
