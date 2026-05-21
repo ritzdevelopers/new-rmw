@@ -1,31 +1,32 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "3D Rendering Services Company in India | 3D Rendering Services Experts",
-    description: "Boost brand recall and conversions with Ritz Media World's customized print advertising. Engaging designs, strategic placement, and compelling copy to engage your audience.",
+    title: "3D Rendering Services for Real Estate & Architecture | Ritz Media World",
+    description: "Professional 3D rendering services in India for architecture, interiors, products, and real estate. High-quality 3D exterior rendering services & CGI visuals.",
     authors: [{ name: "Ritz Media World" }],
     publisher: "Ritz Media World",
     keywords: [
-        "3D Rendering Services",
-        "3D Rendering Services Company",
-        "3D Rendering Services Experts",
-        "3D Rendering Services Agency",
-        "3D Rendering Services Agency in India",
-        "3D Rendering Services Agency in Delhi",
-        "3D Rendering Services Agency in Noida",
-        "3D Rendering Services Agency in Greater Noida",
-        "3D Rendering Services Agency in Delhi NCR",
+        "3D rendering services", 
+        "3D visualization services", 
+        "3D walkthrough", 
+        "3D architectural walkthrough", 
+        "3D architectural walkthrough company", 
+        "3D architectural walkthrough studio", 
+        "3D architectural walkthrough firm", 
+        "3D architectural rendering studio", 
+        "3D architectural Visualization studio", 
+        "Best VFX companies in India"
       
     ],
     openGraph: {
-        title: "3D Rendering Services Company in India | 3D Rendering Services Experts",
-        description: "Experience photo-realistic 3D exterior renderings that bring your building designs to life.",
+        title: "3D Rendering Services for Real Estate & Architecture | Ritz Media World",
+        description: "Professional 3D rendering services in India for architecture, interiors, products, and real estate. High-quality 3D exterior rendering services & CGI visuals.",
         type: "website",
     },
     twitter: {
         card: "summary_large_image",
-        title: "3D Rendering Services Company in India | 3D Rendering Services Experts",
-        description: "Experience photo-realistic 3D exterior renderings that bring your building designs to life.",
+        title: "3D Rendering Services for Real Estate & Architecture | Ritz Media World",
+        description: "Professional 3D rendering services in India for architecture, interiors, products, and real estate. High-quality 3D exterior rendering services & CGI visuals.",
     },
 };
 

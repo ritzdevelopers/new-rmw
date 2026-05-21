@@ -48,6 +48,6 @@
     "src/allPages/blogPage/blog-card/BlogCCard.jsx",
     "src/models/RitzCats.Schema.ts",
     "src/helper/convertPostalData.js"
-, "src/app/api/eImgs/[imageName]/route.js", "src/components/Editor/Editor.tsx", "src/app/RitzBOT/RitzBoatUi.jsx", "src/components/Lenis/SmoothScroller.jsx", "src/app/api/get-services-backup/route.js", "src/ruby-context/ruby.context.jsx"  ],
+, "src/app/api/eImgs/[imageName]/route.js", "src/components/Editor/Editor.tsx", "src/app/RitzBOT/RitzBoatUi.jsx", "src/components/Lenis/SmoothScroller.jsx", "src/app/api/get-services-backup/route.js", "src/ruby-context/ruby.context.jsx", "src/app/(rmw-v2)/services/Real-Estate-Walkthrough/sections/our-process.jsx"  ],
   "exclude": ["node_modules", ".next"]
 }

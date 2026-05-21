@@ -127,7 +127,7 @@ function NewFooter() {
                 <li title="Contact" onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}>Contact</li>
                 <li title="Careers" onClick={() => window.open("https://ritzmediaworld.com/career", "_blank")}>Careers</li>
                 <li title="Discussion Forum" onClick={() => window.open("https://ritzmediaworld.com/discussion-forum", "_blank")}>Discussion Forum</li>
-                <li title="Career" onClick={() => window.open("https://ritzmediaworld.com/career", "_blank")}>Career</li>
+                <li title="Clients" onClick={() => window.open("https://ritzmediaworld.com/clients", "_blank")}>Clients</li>
               </ul>
             </div>
             {/* Col 2  */}
@@ -143,6 +143,7 @@ function NewFooter() {
                 <li title="Celebrity Endorsements" onClick={() => window.open("https://ritzmediaworld.com/services/celebrity-endorsements", "_blank")}>Celebrity Endorsements</li>
                 <li title="Influencer Marketing" onClick={() => window.open("https://ritzmediaworld.com/services/influencer-marketing-agency-in-india", "_blank")}>Influencer Marketing</li>
                 <li title="3D Rendering Services" onClick={() => window.open("https://ritzmediaworld.com/services/3d-rendering-services", "_blank")}>3D Rendering Services</li>
+                <li title="real estate walkthrough" onClick={() => window.open("https://ritzmediaworld.com/services/real-estate-walkthrough", "_blank")}>Real Estate Walkthrough</li>
               </ul>
             </div>
 

@@ -30,7 +30,7 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "celebrity-endorsements": "/varun.icon/celebrity.svg",
   "influencer-marketing": "/varun.icon/influenecer.svg",
   "real-estate-walkthrough": "/varun.icon/real.svg",
-  "3D-rendering-services": "/varun.icon/rendering-service.svg",
+  "3d-rendering-services": "/varun.icon/rendering-service.svg",
   "digital-marketing": "/varun.icon/digital.svg",
 };
 
@@ -79,7 +79,9 @@ function CategoryIcon({
     case "influencer-marketing":
       return <HiFaceSmile className={cls} aria-hidden />;
     case "real-estate-walkthrough":
-      return <HiHomeModern className={cls} aria-hidden />;
+      return <HiDocumentText className={cls} aria-hidden />;
+    case "3d-rendering-services":
+      return <HiLightBulb className={cls} aria-hidden />;
     default:
       return <HiDocumentText className={cls} aria-hidden />;
   }

@@ -250,8 +250,8 @@ const Footer = memo(() => {
                           id="menu-item-144"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
                         >
-                          <Link href="/career" style={{ color: "#ffffff" }}>
-                            Career
+                          <Link href="/clients" style={{ color: "#ffffff" }}>
+                            Clients
                           </Link>
                         </li>
                       </ul>
@@ -370,6 +370,17 @@ const Footer = memo(() => {
                             style={{ color: "#ffffff" }}
                           >
                             3D Rendering Services
+                          </Link>
+                        </li>
+                        <li
+                          id="menu-item-139"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
+                        >
+                          <Link
+                            href="/services/real-estate-walkthrough"
+                            style={{ color: "#ffffff" }}
+                          >
+                            Real Estate Walkthrough
                           </Link>
                         </li>
                       </ul>

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const LOGO_FILE_PATTERN = /^lg\d+\.png$/i;
+const LOGO_FILE_PATTERN = /^lg\d+\.(png|jpe?g)$/i;
 
 export function getClientLogos(): string[] {
     const logosDir = path.join(process.cwd(), "public", "newLogos");

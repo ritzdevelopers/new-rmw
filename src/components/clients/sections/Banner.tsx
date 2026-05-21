@@ -2,33 +2,37 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useState, useEffect } from "react";
 
 export default function Banner() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkScreen = () => {
+            setIsMobile(window.innerWidth < 768); // md breakpoint
+        };
+
+        checkScreen();
+        window.addEventListener("resize", checkScreen);
+
+        return () => window.removeEventListener("resize", checkScreen);
+    }, []);
+
     return (
         <section
+        style={{
+          backgroundImage: `url(${isMobile
+            ? "/clients-page/bannermobile.jpg"
+            : "/clients-page/bannerdesktop.jpg"
+            })`,
+        }}
             className={`relative w-full overflow-hidden bg-[#0F1640] flex items-end justify-center md:justify-start
                 min-h-[300px] sm:min-h-[340px] md:min-h-[363px] lg:min-h-[490px] xl:min-h-[516px]
                 ${styles.bannerHeight}
                 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16
                 pb-8 sm:pb-10 md:pb-10 lg:pb-12`}
         >
-            {/* Decorative ellipse – left, partially off-screen */}
-            <div
-                aria-hidden
-                className="pointer-events-none absolute left-0 top-1/2 z-0 -translate-y-1/2
-                    w-[min(85vw,420px)] sm:w-[min(70vw,480px)] md:w-[min(55vw,520px)] lg:w-[min(48vw,580px)] xl:w-[620px]
-                    -translate-x-[38%] sm:-translate-x-[32%] md:-translate-x-[28%] lg:-translate-x-[22%]"
-            >
-                <Image
-                    src="/clients-page/Ellipse.png"
-                    alt=""
-                    width={620}
-                    height={620}
-                    className="h-auto w-full object-contain"
-                    priority
-                    sizes="(max-width: 640px) 85vw, (max-width: 1024px) 55vw, 620px"
-                />
-            </div>
+     
 
             <div className="relative z-10 flex w-full max-w-[1280px] flex-col text-center md:text-left">
                 <div className="flex flex-col gap-2 sm:gap-2.5 md:gap-3 lg:gap-4">

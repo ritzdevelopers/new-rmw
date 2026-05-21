@@ -40,10 +40,10 @@ const services: ServiceTab[] = [
         image: "/services/3drendring/3d2.png",
         imageAlt: "Luxury interior 3D visualization",
         features: [
-            { label: "Living & Dining Spaces", icon: "/services/3drendring/processicon/service1/service1.png" },
-            { label: "Master Bedrooms", icon: "/services/3drendring/processicon/service1/service2.png" },
-            { label: "Kitchens & Bathrooms", icon: "/services/3drendring/processicon/service1/service3.png" },
-            { label: "Office Interiors", icon: "/services/3drendring/processicon/service1/service4.png" },
+            { label: "Living & Dining Spaces", icon: "/services/3drendring/processicon/service2/service1.png" },
+            { label: "Master Bedrooms", icon: "/services/3drendring/processicon/service2/service2.png" },
+            { label: "Kitchens & Bathrooms", icon: "/services/3drendring/processicon/service2/service3.png" },
+            { label: "Office Interiors", icon: "/services/3drendring/processicon/service2/service4.png" },
         ],
     },
     {
@@ -54,10 +54,10 @@ const services: ServiceTab[] = [
         image: "/services/3drendring/3d3.png",
         imageAlt: "Aerial view of urban township development",
         features: [
-            { label: "Master Plan Views", icon: "/services/3drendring/processicon/service1/service1.png" },
-            { label: "Aerial Perspectives", icon: "/services/3drendring/processicon/service1/service2.png" },
-            { label: "Site Layout Renders", icon: "/services/3drendring/processicon/service1/service3.png" },
-            { label: "Township Visualization", icon: "/services/3drendring/processicon/service1/service4.png" },
+            { label: "Master Plan Views", icon: "/services/3drendring/processicon/service3/service1.png" },
+            { label: "Aerial Perspectives", icon: "/services/3drendring/processicon/service3/service2.png" },
+            { label: "Site Layout Renders", icon: "/services/3drendring/processicon/service3/service3.png" },
+            { label: "Township Visualization", icon: "/services/3drendring/processicon/service3/service4.png" },
         ],
     },
     {
@@ -68,10 +68,10 @@ const services: ServiceTab[] = [
         image: "/services/3drendring/3d4.png",
         imageAlt: "3D floor plan visualization",
         features: [
-            { label: "Unit Floor Plans", icon: "/services/3drendring/processicon/service1/service1.png" },
-            { label: "3D Cut-Away Views", icon: "/services/3drendring/processicon/service1/service2.png" },
-            { label: "Furnished Layouts", icon: "/services/3drendring/processicon/service1/service3.png" },
-            { label: "Commercial Space Plans", icon: "/services/3drendring/processicon/service1/service4.png" },
+            { label: "Unit Floor Plans", icon: "/services/3drendring/processicon/service4/service1.png" },
+            { label: "3D Cut-Away Views", icon: "/services/3drendring/processicon/service4/service2.png" },
+            { label: "Furnished Layouts", icon: "/services/3drendring/processicon/service4/service3.png" },
+            { label: "Commercial Space Plans", icon: "/services/3drendring/processicon/service4/service4.png" },
         ],
     },
     {
@@ -82,10 +82,10 @@ const services: ServiceTab[] = [
         image: "/services/3drendring/3d5.png",
         imageAlt: "Amenity and landscape 3D rendering",
         features: [
-            { label: "Clubhouse Renders", icon: "/services/3drendring/processicon/service1/service1.png" },
-            { label: "Pool & Landscape", icon: "/services/3drendring/processicon/service1/service2.png" },
-            { label: "Gym & Co-working", icon: "/services/3drendring/processicon/service1/service3.png" },
-            { label: "Rooftop & Terrace", icon: "/services/3drendring/processicon/service1/service4.png" },
+            { label: "Clubhouse Renders", icon: "/services/3drendring/processicon/service5/service1.png" },
+            { label: "Pool & Landscape", icon: "/services/3drendring/processicon/service5/service2.png" },
+            { label: "Gym & Co-working", icon: "/services/3drendring/processicon/service5/service3.png" },
+            { label: "Rooftop & Terrace", icon: "/services/3drendring/processicon/service5/service4.png" },
         ],
     },
 ];

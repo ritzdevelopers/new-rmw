@@ -5,7 +5,7 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 import toast from "react-hot-toast";
 
 const inputClass =
-  "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-800 outline-none transition focus:border-[#C99237] focus:ring-1 focus:ring-[#C99237]";
+  "w-full rounded-lg border border-gray-300 bg-[#F5F5F5] px-4 py-3 text-sm text-gray-800 outline-none transition focus:border-[#C99237] focus:ring-1 focus:ring-[#C99237]";
 
 const CareerForm = () => {
   const captchaRef = useRef<HCaptcha>(null);
@@ -83,7 +83,7 @@ const CareerForm = () => {
   };
 
   return (
-    <div className="w-full rounded-2xl border border-gray-200 bg-[#F7F7F7] p-5 shadow-sm sm:p-6 md:p-8">
+    <div className="w-full rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6 md:p-8">
       <h3
         className="mb-6 text-center text-xl font-bold text-[#0F1640] sm:text-2xl"
         style={{ fontFamily: "MontserratBold" }}
@@ -122,7 +122,7 @@ const CareerForm = () => {
             defaultValue=""
             required
           >
-            <option value="" disabled>
+            <option value="" disabled className="text-[#5C5C5C]">
               Applying For...
             </option>
             <option value="uiux">UI/UX Designer</option>

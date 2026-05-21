@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import CareerForm from "@/allPages/careerPage/careerForm";
 import styles from "@/components/home-v3/services/page.module.css";
 
@@ -28,18 +27,15 @@ const perks = [
 
 export default function LeftSectionForm() {
   return (
-    <section className="w-full bg-white py-12 sm:py-16 md:py-20 lg:py-24">
-      <div
-        className={`mx-auto grid w-full grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16 ${styles.containerWidth}`}
-      >
+    <section id="career-form" className="w-full scroll-mt-24 bg-[#f7f7f7] py-12 sm:py-16 md:py-20 lg:py-24">
+    <div className={`mx-auto grid w-full grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16 ${styles.containerWidth}`}>
         <div className="flex flex-col gap-6">
           <div>
-            <h2
+            <div
               className="mt-2 text-2xl font-bold text-black sm:text-3xl md:text-4xl"
-              style={{ fontFamily: "MontserratBold" }}
-            >
+              style={{ fontFamily: "MontserratBold" }} >
               Why Join Us?
-            </h2>
+            </div>
           </div>
 
           <ul className="flex flex-col gap-5">
@@ -61,15 +57,7 @@ export default function LeftSectionForm() {
             ))}
           </ul>
 
-          <div className="relative mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl lg:mx-0 lg:max-w-none">
-            <Image
-              src="/career/career-img.png"
-              alt="Career at Ritz Media World"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 90vw, 45vw"
-            />
-          </div>
+          <img src="/career/career.png" alt="Employee" width={500} height={500} />
         </div>
 
         <div className="w-full min-w-0">
