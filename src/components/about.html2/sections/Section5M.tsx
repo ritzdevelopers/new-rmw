@@ -52,7 +52,7 @@ function MilestoneItem({ item, index }: { item: Milestone; index: number }) {
                 <p className={`${styles.fontopensans} ${m.label}`}>{item.label}</p>
             </div>
             <div className={m.thumb}>
-                <img src={item.image} alt={item.alt} loading="lazy" />
+                <img src={item.image} alt={item.alt} title={item.alt} loading="lazy" />
             </div>
         </div>
     );
@@ -66,7 +66,7 @@ function Section5M() {
                     <header className={m.hero}>
                         <p className={`font-[600] text-[16px] uppercase text-[#C99237] ${styles.fontpoppins} ${s5.eyebrow}`}>Our Journey</p>
                         <h2 className={`mb-1 font-[700] text-[36px] ${styles.fontmontserrat} ${s5.heading} ${m.headingTight}`}>
-                            17 Years of Brand Excellenc
+                            17 Years of Brand Excellence
                         </h2>
                         <p className={`font-[400] text-[16px] ${styles.fontpoppins} ${s5.copy} ${m.subTight}`}>
                             From pioneering print innovations to 360° digital mastery, our journey reflects our commitment to excellence.

@@ -4,6 +4,43 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import s8 from "./Section8.module.css";
 
+const CULTURE_ROW_1 = [
+  {
+    src: "/new-about/s7/s7-r1-i1.png",
+    alt: "Ritz Media World office culture — creative team collaboration",
+    title: "Office culture – Ritz Media World",
+  },
+  {
+    src: "/new-about/s7/awd.jpg",
+    alt: "Awards and achievements at Ritz Media World",
+    title: "Awards – Ritz Media World",
+  },
+  {
+    src: "/new-about/s7/s7-r1-i2.png",
+    alt: "Team celebration at Ritz Media World",
+    title: "Team celebration – Ritz Media World",
+  },
+] as const;
+
+const CULTURE_ROW_2_SIDE = [
+  {
+    src: "/new-about/s7/s7-r2-i1.png",
+    alt: "Creative workspace at Ritz Media World",
+    title: "Creative workspace – Ritz Media World",
+  },
+  {
+    src: "/new-about/s7/s7-r2-i3.png",
+    alt: "Collaborative culture at Ritz Media World",
+    title: "Collaborative culture – Ritz Media World",
+  },
+] as const;
+
+const CULTURE_ROW_2_CENTER = {
+  src: "/new-about/s7/s7-r2-i2.png",
+  alt: "Ritz Media World team — our culture of creativity and innovation",
+  title: "Our culture – Ritz Media World",
+} as const;
+
 function Section8() {
   return (
     <section className={`flex w-full items-center justify-center pt-[40px] xl:pt-[70px] ${s8.root}`}>
@@ -21,60 +58,53 @@ function Section8() {
 
         <div className={`w-full flex flex-col gap-4 md:gap-6 ${s8.gapRows}`}>
           <div className={`w-full flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6 ${s8.gapRows}`}>
-            {[
-              "/new-about/s7/s7-r1-i1.png",
-              "/new-about/s7/awd.jpg",
-              "/new-about/s7/s7-r1-i2.png",
-            ].map((img, idx) => {
-              return (
+            {CULTURE_ROW_1.map((img) => (
                 <div
                   className={`w-full sm:w-[calc(33.333%-0.67rem)] md:w-[calc(33.333%-1rem)] lg:w-[400px] h-[200px] sm:h-[250px] md:h-[280px] lg:h-[303px] relative overflow-hidden group cursor-pointer ${s8.tileR1}`}
-                  key={idx}
+                  key={img.src}
                 >
                   <Image
-                    src={img}
-                    alt="RMW"
+                    src={img.src}
+                    alt={img.alt}
+                    title={img.title}
                     fill
                     style={{ objectFit: "cover" }}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 400px"
                     className="transition-transform duration-700 ease-in-out group-hover:scale-110"
                   />
                 </div>
-              );
-            })}
+            ))}
           </div>
 
           <div className={`flex flex-col justify-center gap-4 md:gap-6 lg:flex-row lg:items-stretch ${s8.gapRows} ${s8.bottomRow}`}>
             <div className={`flex w-full shrink-0 flex-col gap-4 md:gap-6 lg:w-[400px] ${s8.gapRows} ${s8.sideCol}`}>
-              {["/new-about/s7/s7-r2-i1.png", "/new-about/s7/s7-r2-i3.png"].map(
-                (img, idx) => {
-                  return (
+              {CULTURE_ROW_2_SIDE.map((img, idx) => (
                     <div
                       className={`w-full ${
                         idx === 0
                           ? `h-[200px] sm:h-[250px] md:h-[280px] lg:h-[303px] ${s8.h303}`
                           : `h-[300px] sm:h-[350px] md:h-[400px] lg:h-[449px] ${s8.h449}`
                       } relative overflow-hidden group cursor-pointer`}
-                      key={idx}
+                      key={img.src}
                     >
                       <Image
-                        src={img}
-                        alt="RMW"
+                        src={img.src}
+                        alt={img.alt}
+                        title={img.title}
                         fill
                         style={{ objectFit: "cover" }}
                         sizes="(max-width: 1024px) 100vw, 400px"
                         className="transition-transform duration-700 ease-in-out group-hover:scale-110"
                       />
                     </div>
-                  );
-                }
-              )}
+              ))}
             </div>
 
             <div className={`group relative h-[400px] w-full min-h-[280px] overflow-hidden sm:h-[500px] md:h-[600px] lg:h-auto lg:min-h-0 lg:w-[820px] lg:shrink-0 lg:self-stretch ${s8.center}`}>
               <Image
-                src={"/new-about/s7/s7-r2-i2.png"}
-                alt="RMW"
+                src={CULTURE_ROW_2_CENTER.src}
+                alt={CULTURE_ROW_2_CENTER.alt}
+                title={CULTURE_ROW_2_CENTER.title}
                 fill
                 style={{ objectFit: "cover" }}
                 sizes="(max-width: 1024px) 100vw, 820px"
