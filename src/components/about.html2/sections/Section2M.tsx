@@ -25,7 +25,12 @@ function Section2M() {
                         campaigns that don&apos;t just speak at them, but we build campaigns that speak to them.
                     </p>
                     <div className={`h-auto w-full max-w-[564px] shrink-0 ${s2.teamWrap}`}>
-                        <img src="/new-about-imgs/s2/team.jpg" alt="RITZ MEDIA WORLD team" className="h-auto w-full" />
+                        <img
+                            src="/new-about-imgs/s2/team.jpg"
+                            alt="Ritz Media World creative team"
+                            title="Ritz Media World team"
+                            className="h-auto w-full"
+                        />
                     </div>
                 </div>
 
@@ -34,7 +39,8 @@ function Section2M() {
                     <div className={`flex flex-col justify-between gap-0 ${m.splitLeft}`}>
                         <Image
                             src="/new-about-imgs/s2/17years.png"
-                            alt="17 years of experience"
+                            alt="17+ years of advertising and branding experience at Ritz Media World"
+                            title="17+ years of experience – Ritz Media World"
                             width={320}
                             height={190}
                             className={`w-[320px] h-auto max-w-full object-contain ${s2.img17}`}
@@ -54,7 +60,8 @@ function Section2M() {
                                             >
                                                 <Image
                                                     src={reviewer}
-                                                    alt={`Reviewer ${idx + 1}`}
+                                                    alt={`Google reviewer ${idx + 1} – Ritz Media World`}
+                                                    title={`Google reviewer ${idx + 1}`}
                                                     width={47}
                                                     height={47}
                                                     className="h-full w-full object-cover"
@@ -66,7 +73,7 @@ function Section2M() {
                                         <p
                                             className={`font-[600] text-[13px] uppercase text-[#3C3C3C] ${styles.fontmontserrat} ${s2.reviewsLabel}`}
                                         >
-                                            more then <br /> 141 google reviews
+                                            more than <br /> 141 google reviews
                                         </p>
                                     </div>
                                 </div>
@@ -128,7 +135,12 @@ function Section2M() {
                             </div>
                         </div>
                         <div className={`h-auto w-full max-w-[388px] ${s2.awardWrap}`}>
-                            <img src="/new-about-imgs/s2/abt-s2-awarrd.jpg" alt="Awards and recognition" className="h-auto w-full" />
+                            <img
+                                src="/new-about-imgs/s2/abt-s2-awarrd.jpg"
+                                alt="Awards and recognition earned by Ritz Media World"
+                                title="Ritz Media World awards and recognition"
+                                className="h-auto w-full"
+                            />
                         </div>
                     </div>
                 </div>

@@ -44,27 +44,52 @@ function Section3() {
 
                                     {/* Top rule — desktop / tablet only */}
                                     <div
-                                        className={`hidden h-[40px] w-full border-b border-[#0F1640] md:absolute md:inset-0 md:block ${s3.absLine}`}
+                                        className={`pointer-events-none hidden h-[40px] w-full md:absolute md:inset-0 md:block ${s3.absLine}`}
                                         aria-hidden
                                     />
 
                                     {/* Row 1  */}
                                     <div
-                                        className={`w-full flex gap-4 items-center justify-center pl-0 md:items-end md:pl-1 ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"} ${s3.titleRow}`}
+                                        className={`relative z-[1] w-full flex gap-4 items-center justify-center pl-0 md:items-center md:pl-1 ${idx % 2 === 0 ? "md:justify-start" : "md:justify-end"} ${s3.titleRow}`}
                                     >
-                                        <p className={`flex flex-col md:flex-row font-[700] md:text-[36px] text-[24px] text-[#0F1640] ${styles.fontmontserrat} ${s3.title}`}>
-                                            <span className={`font-[500] md:text-[16px] text-[13px] mr-4 ${s3.idx}`}>0{idx + 1}.</span>
-                                            {item.title}</p>
+                                        <div className={`flex flex-row items-baseline gap-2 md:gap-4 ${styles.fontmontserrat}`}>
+
+<span
+    className={`shrink-0 font-[500] md:text-[16px] text-[13px] text-[#0F1640] ${s3.idx}`}
+>
+    0{idx + 1}.
+</span>
+
+<a
+    href={item.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={`cursor-pointer no-underline ${styles.fontmontserrat}`}
+>
+    <h3
+        className={`font-[700] text-[24px] leading-tight text-[#0F1640] md:text-[36px] ${s3.title}`}
+    >
+        {item.title}
+    </h3>
+</a>
+
+</div>
                                     </div>
                                     {/* Row 2  */}
                                     <div
-                                        className={`ml-0 flex flex-col gap-4 items-center text-center md:ml-9 ${idx % 2 === 0 ? "md:items-start md:text-start" : "md:items-end md:text-end"} ${s3.bodyRow}`}
+                                        className={`relative z-[1] ml-0 flex flex-col gap-4 items-center text-center md:ml-9 ${idx % 2 === 0 ? "md:items-start md:text-start" : "md:items-end md:text-end"} ${s3.bodyRow}`}
                                     >
                                         <p className={`mx-auto font-[400] text-[14px] max-w-[640px] md:mx-0 md:text-[16px] ${styles.fontpoppins} ${s3.desc}`}>
                                             {item.description}
                                         </p>
-                                        <a href={item.link} target="_blank" className={`w-[40px] cursor-pointer h-[40px] rounded-full bg-[#C99237] hover:bg-[#0F1640] flex justify-center items-center ${s3.cta}`}>
-                                            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-[#C99237] hover:bg-[#0F1640] no-underline ${s3.cta}`}
+                                            aria-label={`Learn more about ${item.title}`}
+                                        >
+                                            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                                                 <path d="M19.4276 2.92383L17.1346 9.08052L12.9492 4.01635L19.4276 2.92383Z" fill="white" />
                                                 <rect x="2.19672" y="16.7171" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19672 16.7171)" fill="white" />
                                             </svg>
@@ -74,7 +99,12 @@ function Section3() {
 
                                 {/* Image column (second in DOM; appears first below md via flex-col-reverse) */}
                                 <div className={`h-auto w-full shrink-0 md:w-[477px] ${s3.imgCol}`}>
-                                    <img src={`${item.image}`} alt={item.title} className="h-auto w-full" />
+                                    <img
+                                        src={item.image}
+                                        alt={`${item.title} – Ritz Media World advertising services`}
+                                        title={`${item.title} – Ritz Media World`}
+                                        className="h-auto w-full"
+                                    />
                                 </div>
                             </div>
                         )
