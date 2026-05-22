@@ -35,8 +35,7 @@ const faqItems = [
       "Yes - in fact they have proven themselves to work wonders. We provide images in all formats optimized forFacebook Ads, Google Display, Instagram, website banners and print brochures ensuring you are making your advertisements as effective as possible, at all times.",
   },
 ];
-
-export default function FAQ() {
+ const FAQ = () => {
   const [activeId, setActiveId] = useState(faqItems[0].id);
   const answerRefs = useRef({});
 
@@ -125,3 +124,5 @@ export default function FAQ() {
     </section>
   );
 }
+
+export default FAQ;
