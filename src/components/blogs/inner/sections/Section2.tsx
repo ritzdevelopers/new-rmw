@@ -7,6 +7,7 @@ import { FiFileText } from "react-icons/fi";
 import styles from "../../sections/page.module.css";
 import LoadingLinesAndDots from "@/components/ui/LoadingLinesAndDots";
 import { normalizeBlogBodyHtml } from "@/lib/normalizeBlogBodyHtml";
+import { rewriteLegacyBlogPostHref } from "@/lib/blogUrl";
 
 /** Match DetailPage: Mongo blogs store full HTML in `blogBody[].metaDescription`, not only `blogDescription`. */
 function escapeHtmlText(s: string): string {
@@ -105,7 +106,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
         [formattedBlog?.description]
     );
 
-    /** Same as DetailPage `handleLinksNavigation` (anchor targets + `/blog/` href rewrite + empty nbsp `<p>`). */
+    /** Same as DetailPage `handleLinksNavigation` (anchor targets + legacy `/blogs/` `/blog/` href rewrite + empty nbsp `<p>`). */
     useLayoutEffect(() => {
         if (loading || !bodyHtml) return;
         const ctBody = blogBodyRef.current;
@@ -114,9 +115,9 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
         ctBody.querySelectorAll("a").forEach((aLink) => {
             const gtHref = aLink.getAttribute("href");
             aLink.setAttribute("target", "_blank");
-            if (gtHref?.includes("/blog/")) {
-                const newHRef = gtHref.split("/blog").join("");
-                aLink.setAttribute("href", newHRef);
+            if (gtHref) {
+                const rewritten = rewriteLegacyBlogPostHref(gtHref);
+                if (rewritten) aLink.setAttribute("href", rewritten);
             }
         });
 

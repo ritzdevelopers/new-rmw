@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
+import { getLegacyBlogRedirectPath } from "@/lib/blogUrl";
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -55,10 +56,12 @@ export function middleware(req: NextRequest) {
     );
   }
 
-  if (url.pathname.startsWith("/blog")) {
-    const changeURL = url.pathname.replace("/blog/", "");
-    const newURL = new URL(`/${changeURL}`, url.origin);
-    return NextResponse.redirect(newURL, 301);
+  // Legacy blog URLs: /blogs/<slug>, /blogs/blogs/40, /blogs/60, /blog/<slug>
+  const legacyBlogDest = getLegacyBlogRedirectPath(pathname);
+  if (legacyBlogDest) {
+    const dest = new URL(legacyBlogDest, url.origin);
+    dest.search = url.search;
+    return NextResponse.redirect(dest, 301);
   }
 
   // Redirect /admin to /admin/dashboard (management auth is client-side via rm_token)
@@ -76,6 +79,7 @@ export const config = {
     "/:year/:day/:month/:slug*",
     // ✅ Previous matchers (keep as they are)
     "/admin/:path*",
+    "/blogs/:path*",
     "/blog/:path*",
     "/fr/:path*",
     "/refund-policy.html",

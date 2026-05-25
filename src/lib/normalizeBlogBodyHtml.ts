@@ -1,6 +1,8 @@
+import { rewriteLegacyBlogPostHref } from "@/lib/blogUrl";
+
 /**
  * Normalizes CMS/blog HTML so links work with dangerouslySetInnerHTML.
- * SSR-safe (no DOM). Complements client-side `/blog/` rewrites in Section2.
+ * SSR-safe (no DOM). Complements client-side legacy blog URL rewrites in Section2.
  */
 
 function escapeAttr(s: string): string {
@@ -29,6 +31,14 @@ function fixAnchorOpeningTags(html: string): string {
     return html.replace(/<a(?:\s+([^>]*?))?>/gi, (match, attrs: string = "") => {
         const hrefVal = readHrefFromAttrs(attrs) ?? "";
         if (hrefVal && !/^javascript:/i.test(hrefVal)) {
+            const legacyRewrite = rewriteLegacyBlogPostHref(hrefVal);
+            if (legacyRewrite) {
+                const newAttrs = attrs.replace(
+                    /\bhref\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/i,
+                    `href="${escapeAttr(legacyRewrite)}"`
+                );
+                return `<a ${newAttrs}>`;
+            }
             let nextAttrs = attrs;
             if (
                 !/^https?:/i.test(hrefVal) &&

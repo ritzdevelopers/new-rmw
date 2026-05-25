@@ -794,6 +794,7 @@ function NewNavbar() {
               <div className="mobile-menu-item flex w-full items-center gap-2 rounded-xl py-3 pl-5 pr-3 transition-all duration-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 sm:py-2">
                 <Link
                   href="/services"
+                  title="Services"
                   className="group relative flex-1 py-1 text-left font-[700] text-[17px] text-gray-900 sm:text-[18px]"
                   onClick={() => {
                     setIsMobileServicesOpen(false);

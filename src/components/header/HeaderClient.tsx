@@ -419,6 +419,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                       <Link
                         href="/work.html"
                         target="_blank"
+                        title="Our Work"
                           className="nav-links"
                         style={{
                           fontWeight: "bold",
@@ -699,7 +700,7 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
                 </li>
 
                 <li>
-                  <Link href="/work.html" target="_blank">Our Work</Link>
+                  <Link href="/work.html" target="_blank" title="Our Work">Our Work</Link>
                 </li>
                 <li>
                   <Link href="/blogs" target="_blank">Blog</Link>

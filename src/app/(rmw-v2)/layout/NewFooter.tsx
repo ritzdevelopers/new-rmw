@@ -150,7 +150,7 @@ function NewFooter() {
             {/* Col 3  */}
             <div className="w-full flex flex-col gap-4 sm:gap-6 items-start lg:max-w-[220px] lg:min-w-0 xl:w-auto xl:max-w-none xl:min-w-0 xl:shrink-0 xl:items-end min-[1657px]:items-end">
               {/* Google Review Image  */}
-              <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer" className="mb-1 sm:mb-2 w-full max-w-full lg:max-w-[220px] xl:w-full xl:max-w-[250px] cursor-pointer">
+              <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer" title="Google Reviews" className="mb-1 sm:mb-2 w-full max-w-full lg:max-w-[220px] xl:w-full xl:max-w-[250px] cursor-pointer">
                 <img src="/g-5-star2-white.png" alt="google review" title="google review" className="w-full max-w-[200px] md:w-[240px] md:max-w-[250px] lg:max-w-[190px] lg:w-full lg:object-left xl:max-w-[250px] xl:w-[240px] xl:object-center h-auto object-contain" />
               </a>
 

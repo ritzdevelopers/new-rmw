@@ -196,7 +196,7 @@ const Footer = memo(() => {
                           id="menu-item-143"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-143"
                         >
-                          <Link href="/work.html" style={{ color: "#ffffff" }}>
+                          <Link href="/work.html" title="Our Work" style={{ color: "#ffffff" }}>
                             Our Work
                           </Link>
                         </li>

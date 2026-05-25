@@ -17,7 +17,7 @@ export default function Section2() {
   className="text-black font-bold "
 >
   Ritz Media World,
-</a><span className="font-normal">
+</a> <span className="font-normal">
                         websites with a purpose, through<br className="hidden lg:block" />our unique combination of custom web development, responsive design and <i>website <br className="hidden lg:block" /> performance optimization </i> we create websites that deliver real results for your business.
                     </span>
                 </p>
