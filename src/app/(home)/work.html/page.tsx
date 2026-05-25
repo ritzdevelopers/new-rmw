@@ -55,6 +55,7 @@ const Page = () => {
       <link rel="preload" href="/videos/bg_pattern.mp4" as="video" type="video/mp4" />
       <link rel="preload" href="/work-images/work-banner.jpg" as="image" />
       
+      
       <section className="flex flex-col items-center w-full">
         <Suspense fallback={
           <div 
