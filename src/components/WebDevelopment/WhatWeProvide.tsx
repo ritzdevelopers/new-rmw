@@ -27,6 +27,7 @@ export default function WhatWeProvide() {
             description:
                 "Good UX isn't just usability. It's about a data-driven UX strategy and conversion-driven UI design. We can deliver the best mobile first responsive designs, intuitive UIs and user-centric digital experience designs, increasing engagement, accessibility and streamlining customer journey with: Wireframing, Prototyping, Usability Testing and Interaction design. We deliver not just traffic, but enhance user retention rates, increase conversion rates and generate tangible ROI.",
             image: "/webDevelopment/ui-ux.jpg",
+            serviceUrlLink: "/services/web-designing-and-development/ui-ux-design",
         },
         {
             id: "02",
@@ -34,6 +35,7 @@ export default function WhatWeProvide() {
             description:
                 "Your business deserves better than a website template. Your business deserves custom website design and full-stack web development designed for performance. Your custom designed websites are responsive and scalable and designed based on your business, customer, and business conversion goals. Our landing pages were created with clean code architecture with the use of a fast loading framework to offer high performance and optimized design for optimal user engagement, search presence, and conversion with the use of each pixel and design element for the benefit of generating leads from clicks.",
             image: "/webDevelopment/Custom-Design-Development.jpg",
+            serviceUrlLink: "/services/web-designing-and-development/custom-design-development",
         },
         {
             id: "03",
@@ -41,6 +43,7 @@ export default function WhatWeProvide() {
             description:
                 "E-commerce is about delivering a high-performance online shopping experience. Our e-commerce solutions cover custom e-commerce development, secure payment gateway integration, shopping cart optimization, mobile commerce readiness, SEO optimization, speed optimization, product UX design, and conversion funnels. We develop conversion-driven e-commerce sites that increase online sales, customer retention, and lifetime value to build your trustworthy and scalable digital store.",
             image: "/webDevelopment/E-Com-Web-Dev.jpg",
+            serviceUrlLink: "/services/web-designing-and-development/e-commerce-web-designing",
         },
         {
             id: "04",
@@ -48,6 +51,7 @@ export default function WhatWeProvide() {
             description:
                 "Our landing pages are designed for you by using conversion rate optimization (CRO), A/B testing, performance marketing, and SEO friendly designs. We engineer your landing pages to have high click-through rates, high quality leads, and excellent campaign ROI through mobile responsiveness and optimizing the conversion of your landing page to acquire quality leads.",
             image: "/webDevelopment/LandingPageDev.jpg",
+            serviceUrlLink: "/services/web-designing-and-development/landing-page-development-services",
             // image: "/webDevelopment/WordPress-Web-Design.jpg",
         },
         {
@@ -55,6 +59,7 @@ export default function WhatWeProvide() {
             title: "WordPress Web Design",
             description: "A robust, flexible and SEO optimized custom WordPress design and development for smart online businesses. We specialize in custom WordPress designs that are fully responsive, easy to use and manage (CMS based), search engine friendly with clean coded and plugin integrated, to get a performant, conversion focused, smart WordPress website to drive leads and sales through content marketing.",
             image: "/webDevelopment/WordPress-Web-Design.jpg",
+            serviceUrlLink: "/services/web-designing-and-development/wordpress-web-designing",
         },
 
     ];
@@ -107,7 +112,7 @@ export default function WhatWeProvide() {
                             <p className={`mt-1 text-[16px] font-[400] text-[#101010] ${styles.fontopensans}`}>
                                 {SUBHEADING}
                             </p>
-                            <div className="mt-4 space-y-1 text-center md:text-left">
+                            {/* <div className="mt-4 space-y-1 text-center md:text-left">
                                 {slides.map((slide) => (
                                     <h3
                                         key={slide.id}
@@ -116,7 +121,7 @@ export default function WhatWeProvide() {
                                         {slide.title.trim()}
                                     </h3>
                                 ))}
-                            </div>
+                            </div> */}
                         </div>
                         <div className="mt-4 flex w-full shrink-0 items-center justify-center gap-6 md:hidden">
                             <div className="relative ">
@@ -174,9 +179,11 @@ export default function WhatWeProvide() {
                         </div>
 
                         <div className="hidden min-h-0 flex-1 lg:block" aria-hidden />
-
+                        
                         <div className="mt-5 shrink-0 border-t border-[#D9D9D9] pt-5">
                             <div className="relative h-[72px] overflow-hidden sm:h-[80px] md:h-[84px] lg:h-[88px] xl:h-[96px]">
+                               
+                                <Link href={activeSlide?.serviceUrlLink} target="_blank" title={activeSlide?.title.trim()} rel="noopener noreferrer">
                                 <AnimatePresence mode="wait" initial={false} custom={direction}>
                                     <motion.div
                                         key={activeIndex}
@@ -194,18 +201,21 @@ export default function WhatWeProvide() {
                                             <span className="shrink-0 pt-[0.15em] text-[16px] font-[500] leading-none">
                                                 {activeSlide.id}
                                             </span>
-                                            <p className="min-w-0 text-[14px] font-[600] leading-[1.2] md:text-[20px] lg:text-[15px] xl:text-[26px]">
+                                            <h3 className="min-w-0 text-[14px] font-[600] leading-[1.2] md:text-[20px] lg:text-[15px] xl:text-[26px]">
                                                 {activeSlide.title.trim()}
-                                            </p>
+                                            </h3>
                                         </div>
                                     </motion.div>
                                 </AnimatePresence>
+                                </Link>
                             </div>
                         </div>
+                       
+
                     </div>
 
-                    <div className="relative mx-auto w-full  h-[368px] sm:h-[360px] md:h-[420px] lg:h-[450px] xl:h-[480px] max-w-[280px] sm:max-w-[320px] md:max-w-[340px] overflow-hidden rounded-[80px] sm:rounded-[100px] md:rounded-[120px] xl:rounded-[140px]
-">
+                <div className="relative mx-auto w-full  h-[368px] sm:h-[360px] md:h-[420px] lg:h-[450px] xl:h-[480px] max-w-[280px] sm:max-w-[320px] md:max-w-[340px] overflow-hidden rounded-[80px] sm:rounded-[100px] md:rounded-[120px] xl:rounded-[140px]">
+                       <Link href={activeSlide?.serviceUrlLink} target="_blank" title={activeSlide?.title.trim()} rel="noopener noreferrer">
                         <AnimatePresence mode="wait" initial={false} custom={direction}>
                             <motion.img
                                 key={activeIndex}
@@ -221,6 +231,7 @@ export default function WhatWeProvide() {
                                 className="absolute inset-0 h-full w-full object-cover will-change-transform"
                             />
                         </AnimatePresence>
+                        </Link>
                     </div>
 
                     <div className="flex min-h-[368px] flex-col text-center sm:min-h-[360px] md:min-h-[420px] md:text-left lg:min-h-[450px] xl:min-h-[480px]">
@@ -247,7 +258,7 @@ export default function WhatWeProvide() {
 
                         <div className="mt-5 flex shrink-0 flex-col items-center justify-between gap-4 border-0 pt-4 sm:flex-row sm:items-center md:items-start md:border-t md:border-[#D8D8D8] md:pt-4">
                             <Link
-                                href="/services"
+                                href={activeSlide?.serviceUrlLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-center md:justify-start gap-4 md:gap-4 lg:gap-4 xl:gap-6 outline-none focus-visible:ring-2 focus-visible:ring-[#C99237] focus-visible:ring-offset-2 rounded-sm"

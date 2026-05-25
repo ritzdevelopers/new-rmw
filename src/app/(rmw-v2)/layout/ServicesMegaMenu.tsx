@@ -279,6 +279,7 @@ export function ServicesMegaMenuPanel({
                 <Link
                   key={c.id}
                   href={c.href}
+                  title={c.name}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={onNavigate}
@@ -331,6 +332,7 @@ export function ServicesMegaMenuPanel({
                   <Link
                     key={svc.href + svc.title}
                     href={svc.href}
+                    title={svc.title}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={onNavigate}
@@ -403,6 +405,7 @@ export function ServicesMegaMenuMobileAccordion({
               </button>
               <Link
                 href={c.href}
+                title={c.name}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 font-[700] text-[15px] text-neutral-900"
@@ -430,6 +433,7 @@ export function ServicesMegaMenuMobileAccordion({
                     <Link
                       key={svc.href + svc.title}
                       href={svc.href}
+                      title={svc.title}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={onNavigate}

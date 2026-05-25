@@ -15,7 +15,7 @@ const BlogCard1: React.FC<BlogCardProps> = ({ data }) => {
   const { _id, blogTitle, blogBanner } = data;
 
   const handleReadMore = () => {
-    window.location.href = `/blogs/${_id}`;
+    window.location.href = `/${_id}`;
   };
 
   const handleShare = async () => {
