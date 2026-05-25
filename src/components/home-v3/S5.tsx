@@ -130,7 +130,7 @@ function S5() {
                         }}>17 Years of Brand Excellence</h3>
                         <p className='font-[400] text-[14px] sm:text-[16px]' style={{
                             fontFamily: "OpenSansRegular",
-                        }}>From pioneering print innovations to 360° digital mastery, our journey reflects our commitment to excellence.</p>
+                        }}>From pioneering print innovations to 360° Digital Marketing, our journey reflects our commitment to excellence.</p>
                     </div>
 
                     <div className="flex gap-2 w-full md:w-auto md:flex-shrink-0 justify-center md:justify-end">

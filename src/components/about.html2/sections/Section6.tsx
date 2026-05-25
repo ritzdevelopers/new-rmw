@@ -96,7 +96,16 @@ function Section6() {
   </div>
 
   <div
+    role="button"
+    tabIndex={0}
     onClick={handlePlayClick}
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handlePlayClick();
+      }
+    }}
+    aria-label="Play Ritz Media World agency overview video"
     className={`absolute left-1/2 top-1/2 z-20 flex h-[44px] w-[44px] -translate-x-1/2 -translate-y-1/2 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-[#FFFFFF] transition-transform hover:scale-110 sm:h-[50px] sm:w-[50px] lg:h-[54px] lg:w-[54px] ${s6.playBtn}`}
   >
     <svg
@@ -156,6 +165,8 @@ function Section6() {
               ref={videoRef}
               src={getVideoSource()}
               className="h-full w-full object-contain"
+              title="Ritz Media World – agency overview video"
+              aria-label="Ritz Media World agency overview video"
               autoPlay
               controls
               playsInline

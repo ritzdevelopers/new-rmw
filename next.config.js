@@ -95,6 +95,14 @@ const nextConfig = {
       beforeFiles: [
         { source: "/about", destination: "/about.html" },
         { source: "/contact", destination: "/contact.html" },
+        {
+          source: "/services/real-estate-walkthrough",
+          destination: "/services/Real-Estate-Walkthrough",
+        },
+        {
+          source: "/services/real-estate-walkthrough/:path*",
+          destination: "/services/Real-Estate-Walkthrough/:path*",
+        },
       ],
     };
   },

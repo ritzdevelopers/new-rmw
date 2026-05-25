@@ -324,7 +324,8 @@ function Navbar() {
         <div className="xl:w-[90%] w-full flex justify-between items-center py-3 sm:py-4 px-4 sm:px-6 lg:px-8">
           {/* Logo div - Responsive */}
           <Link
-            href="/" target="_blank"
+            href="/"
+            title="Ritz Media World"
             className="relative h-[32px] w-[180px] sm:h-[38px] sm:w-[210px] md:h-[42px] md:w-[245px]"
           >
             <Image

@@ -196,7 +196,7 @@ const Footer = memo(() => {
                           id="menu-item-143"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-143"
                         >
-                          <Link href="/work.html" style={{ color: "#ffffff" }}>
+                          <Link href="/work.html" title="Our Work" style={{ color: "#ffffff" }}>
                             Our Work
                           </Link>
                         </li>
@@ -238,6 +238,23 @@ const Footer = memo(() => {
                             Career
                           </Link>
                         </li>
+                        {/* 
+                        <li
+                          id="menu-item-144"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
+                        >
+                          <Link href="/discussion-forum" style={{ color: "#ffffff" }}>
+                            Discussion Forum
+                          </Link>
+                        </li>
+                        <li
+                          id="menu-item-144"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
+                        >
+                          <Link href="/clients" style={{ color: "#ffffff" }}>
+                            Clients
+                          </Link>
+                        </li> */}
                       </ul>
                     </div>
                   </div>
@@ -345,6 +362,28 @@ const Footer = memo(() => {
                             Influencer Marketing
                           </Link>
                         </li>
+                        {/* <li
+                          id="menu-item-139"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
+                        >
+                          <Link
+                            href="/services/3d-rendering-services"
+                            style={{ color: "#ffffff" }}
+                          >
+                            3D Rendering Services
+                          </Link>
+                        </li>
+                        <li
+                          id="menu-item-139"
+                          className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
+                        >
+                          <Link
+                            href="/services/real-estate-walkthrough"
+                            style={{ color: "#ffffff" }}
+                          >
+                            Real Estate Walkthrough
+                          </Link>
+                        </li> */}
                       </ul>
                     </div>
                   </div>

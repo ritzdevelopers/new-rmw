@@ -21,15 +21,15 @@ const cards = [
         icon: '/webDevelopment/userExp.png',
     },
     {
-        title: "Strong First Impression",
+        title: "SEO Friendly Structure",
         description:
-            "Professional web development services \n provide a credible and aesthetically \npleasing website that makes a great first \n impression right away. Companies \n searching for web developers appreciate \n websites designed to engage and convert \nvisitors.",
+            "We are a team of professional web developers providing high-performance, SEO optimized websites that improve search-engine ranking, drive organic traffic to your business, and enhance your visibility",
         icon: '/webDevelopment/dev2.png',
     },
     {
-        title: "Seamless User Experience",
+        title: "Fast Reliable Websites",
         description:
-            "Responsive web development services \n ensure your website works flawlessly\n on mobile, tablet, and computer\n  platforms. A seamless user experience\n keeps visitors interested and decreases\n bounce rates.",
+            "With our professional web development services, you can expect your website to be fast-loading, highly secure, and high-performing, helping to build user trust and enhance the overall user experience.",
         icon: '/webDevelopment/userExp.png',
     },
     // 👉 Add more cards here (it will auto create slides)

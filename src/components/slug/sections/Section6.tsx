@@ -399,6 +399,8 @@ function Section6() {
                                     <option value="Web Development" className="text-[#5C5C5C] font-[500] text-[14px]">Web Development</option>
                                     <option value="Celebrity Endorsements" className="text-[#5C5C5C] font-[500] text-[14px]">Celebrity Endorsements</option>
                                     <option value="Influencer Marketing" className="text-[#5C5C5C] font-[500] text-[14px]">Influencer Marketing</option>
+                                    <option value="Real Estate Walkthrough" className="text-[#5C5C5C] font-[500] text-[14px]">Real Estate Walkthrough</option>
+                                    <option value="3D Rendering Services" className="text-[#5C5C5C] font-[500] text-[14px]">3D Rendering Services</option>
                                 </select>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-end pb-4">
                                     <ServiceSelectChevron />

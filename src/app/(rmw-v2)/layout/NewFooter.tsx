@@ -126,6 +126,10 @@ function NewFooter() {
                 <li title="Web Stories" onClick={() => window.open("https://ritzmediaworld.com/web-stories", "_blank")}>Web Stories</li>
                 <li title="Contact" onClick={() => window.open("https://ritzmediaworld.com/contact.html", "_blank")}>Contact</li>
                 <li title="Careers" onClick={() => window.open("https://ritzmediaworld.com/career", "_blank")}>Careers</li>
+                {/*
+                <li title="Discussion Forum" onClick={() => window.open("https://ritzmediaworld.com/discussion-forum", "_blank")}>Discussion Forum</li>
+                <li title="Clients" onClick={() => window.open("https://ritzmediaworld.com/clients", "_blank")}>Clients</li>
+               */}
               </ul>
             </div>
             {/* Col 2  */}
@@ -140,13 +144,16 @@ function NewFooter() {
                 <li title="Web Development" onClick={() => window.open("https://ritzmediaworld.com/services/web-designing-and-development", "_blank")}>Web Development</li>
                 <li title="Celebrity Endorsements" onClick={() => window.open("https://ritzmediaworld.com/services/celebrity-endorsements", "_blank")}>Celebrity Endorsements</li>
                 <li title="Influencer Marketing" onClick={() => window.open("https://ritzmediaworld.com/services/influencer-marketing-agency-in-india", "_blank")}>Influencer Marketing</li>
+                {/* <li title="3D Rendering Services" onClick={() => window.open("https://ritzmediaworld.com/services/3d-rendering-services", "_blank")}>3D Rendering Services</li>
+                <li title="real estate walkthrough" onClick={() => window.open("https://ritzmediaworld.com/services/real-estate-walkthrough", "_blank")}>Real Estate Walkthrough</li>
+              */}
               </ul>
             </div>
 
             {/* Col 3  */}
             <div className="w-full flex flex-col gap-4 sm:gap-6 items-start lg:max-w-[220px] lg:min-w-0 xl:w-auto xl:max-w-none xl:min-w-0 xl:shrink-0 xl:items-end min-[1657px]:items-end">
               {/* Google Review Image  */}
-              <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer" className="mb-1 sm:mb-2 w-full max-w-full lg:max-w-[220px] xl:w-full xl:max-w-[250px] cursor-pointer">
+              <a href="https://share.google/KiTNs3mJMr5qUOkjK" target="_blank" rel="noopener noreferrer" title="Google Reviews" className="mb-1 sm:mb-2 w-full max-w-full lg:max-w-[220px] xl:w-full xl:max-w-[250px] cursor-pointer">
                 <img src="/g-5-star2-white.png" alt="google review" title="google review" className="w-full max-w-[200px] md:w-[240px] md:max-w-[250px] lg:max-w-[190px] lg:w-full lg:object-left xl:max-w-[250px] xl:w-[240px] xl:object-center h-auto object-contain" />
               </a>
 

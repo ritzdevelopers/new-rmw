@@ -1,0 +1,137 @@
+export const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Ritz Media World",
+  url: "https://ritzmediaworld.com/",
+  logo: "https://ritzmediaworld.com/assets/images/logo.png",
+  image: "https://ritzmediaworld.com/assets/images/logo.png",
+  description:
+    "Ritz Media World is a full-service advertising and digital marketing agency based in Noida, India, offering digital marketing, branding, web development, influencer marketing, radio advertising, print advertising, and creative services.",
+  foundingDate: "2008",
+  founders: [
+    { "@type": "Person", name: "Ritesh Malik" },
+    { "@type": "Person", name: "Satvinder Kaur" },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "402-404, 4th Floor, Corporate Park, Tower A1, Sector 142",
+    addressLocality: "Noida",
+    addressRegion: "Uttar Pradesh",
+    postalCode: "201305",
+    addressCountry: "IN",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+91-9220516777",
+    contactType: "customer service",
+    areaServed: "IN",
+    availableLanguage: ["English", "Hindi"],
+  },
+  sameAs: [
+    "https://www.linkedin.com/company/ritzmediaworld",
+    "https://www.instagram.com/ritzmediaworld.rmw/",
+    "https://www.facebook.com/ritzmediaworld.rmw",
+    "https://twitter.com/ritzmediaworld",
+    "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
+  ],
+  email: "info@ritzmediaworld.com",
+  telephone: "+91-9220516777",
+  keywords: [
+    "Advertising Agency",
+    "Digital Marketing Agency",
+    "SEO Services",
+    "Branding",
+    "Web Development",
+    "Influencer Marketing",
+    "Creative Agency",
+    "Radio Advertising",
+    "Print Advertising",
+  ],
+  areaServed: {
+    "@type": "Country",
+    name: "India",
+  },
+  serviceType: [
+    "Digital Marketing",
+    "SEO",
+    "PPC Advertising",
+    "Social Media Marketing",
+    "Web Development",
+    "Branding",
+    "Content Marketing",
+    "Influencer Marketing",
+    "Creative Services",
+    "Radio Advertising",
+    "Print Advertising",
+  ],
+};
+
+export const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AdvertisingAgency",
+  "@id": "https://ritzmediaworld.com/#localbusiness",
+  name: "Ritz Media World",
+  url: "https://ritzmediaworld.com/",
+  image: "https://ritzmediaworld.com/assets/images/logo.png",
+  logo: "https://ritzmediaworld.com/assets/images/logo.png",
+  description:
+    "Ritz Media World is a full-service advertising and digital marketing agency in Noida offering branding, SEO, social media marketing, web development, influencer marketing, print advertising, and radio advertising services.",
+  telephone: "+91-9220516777",
+  email: "info@ritzmediaworld.com",
+  priceRange: "₹₹₹",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "402-404, 4th Floor, Corporate Park, Tower A1, Sector 142",
+    addressLocality: "Noida",
+    addressRegion: "Uttar Pradesh",
+    postalCode: "201305",
+    addressCountry: "IN",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "28.5046",
+    longitude: "77.4145",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+      ],
+      opens: "9:30",
+      closes: "18:30",
+    },
+  ],
+  sameAs: [
+    "https://www.facebook.com/ritzmediaworld.rmw",
+    "https://www.instagram.com/ritzmediaworld.rmw/",
+    "https://www.linkedin.com/company/ritzmediaworld",
+    "https://twitter.com/ritzmediaworld",
+    "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
+  ],
+  areaServed: {
+    "@type": "Country",
+    name: "India",
+  },
+  hasMap: "https://maps.google.com/?q=Ritz+Media+World+Noida",
+  serviceArea: {
+    "@type": "Place",
+    name: "India",
+  },
+};
+
+export const websiteJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "WebSite",
+  name: "Ritz Media World",
+  url: "https://ritzmediaworld.com/",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://ritzmediaworld.com/services{search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};

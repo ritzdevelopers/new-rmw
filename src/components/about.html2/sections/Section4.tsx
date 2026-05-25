@@ -6,8 +6,8 @@ function Section4() {
         <section className={`w-full py-[40px] xl:py-[70px] border-t border-b border-[#D9D9D9] ${s4.root}`}>
             <div className={`w-full flex flex-col gap-8 justify-center items-center ${styles.containerWidth} ${s4.container}`}>
                 <div className="flex w-full flex-col items-center justify-center text-center">
-                    <p className={`font-[600] text-[16px] uppercase text-[#C99237] ${styles.fontpoppins} ${s4.eyebrow}`}>Proven Results</p>
-                    <p className={`font-[700] mb-4 text-[36px] ${styles.fontmontserrat} ${s4.headline}`}>Our Work is Our <span className="text-[#C99237]">Reward</span></p>
+                    <h2 className={`font-[600] text-[16px] uppercase text-[#C99237] ${styles.fontpoppins} ${s4.eyebrow}`}>Proven Results</h2>
+                    <h3 className={`font-[700] mb-4 text-[36px] ${styles.fontmontserrat} ${s4.headline}`}>Our Work is Our <span className="text-[#C99237]">Reward</span></h3>
                     <p className={`mx-auto max-w-[769px] text-center font-[400] text-[16px] ${styles.fontpoppins} ${s4.intro}`}>We take pride in challenges that agencies tend to avoid. It is what drives us to do things never done before. That is what brings us our recognition and some awards along the way.</p>
                 </div>
 

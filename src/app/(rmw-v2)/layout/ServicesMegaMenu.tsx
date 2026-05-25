@@ -29,8 +29,8 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "web-development": "/varun.icon/webdevelopment.svg",
   "celebrity-endorsements": "/varun.icon/celebrity.svg",
   "influencer-marketing": "/varun.icon/influenecer.svg",
-  "real-estate-walkthrough": "/varun.icon/real.svg",
-  "3D-rendering-services": "/varun.icon/rendering-service.svg",
+  // "real-estate-walkthrough": "/varun.icon/real.svg",
+  // "3d-rendering-services": "/varun.icon/rendering-service.svg",
   "digital-marketing": "/varun.icon/digital.svg",
 };
 
@@ -79,7 +79,9 @@ function CategoryIcon({
     case "influencer-marketing":
       return <HiFaceSmile className={cls} aria-hidden />;
     case "real-estate-walkthrough":
-      return <HiHomeModern className={cls} aria-hidden />;
+      return <HiDocumentText className={cls} aria-hidden />;
+    case "3d-rendering-services":
+      return <HiLightBulb className={cls} aria-hidden />;
     default:
       return <HiDocumentText className={cls} aria-hidden />;
   }
@@ -277,6 +279,7 @@ export function ServicesMegaMenuPanel({
                 <Link
                   key={c.id}
                   href={c.href}
+                  title={c.name}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={onNavigate}
@@ -329,6 +332,7 @@ export function ServicesMegaMenuPanel({
                   <Link
                     key={svc.href + svc.title}
                     href={svc.href}
+                    title={svc.title}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={onNavigate}
@@ -401,6 +405,7 @@ export function ServicesMegaMenuMobileAccordion({
               </button>
               <Link
                 href={c.href}
+                title={c.name}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 font-[700] text-[15px] text-neutral-900"
@@ -428,6 +433,7 @@ export function ServicesMegaMenuMobileAccordion({
                     <Link
                       key={svc.href + svc.title}
                       href={svc.href}
+                      title={svc.title}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={onNavigate}

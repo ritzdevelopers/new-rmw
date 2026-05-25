@@ -23,6 +23,7 @@ import ServiceThirdSlowMarque from "@/allPages/serviceThirdPage/ServiceThirdSlow
 import ServiceEndTag from "@/components/endTag/serviceEndTag";
 import Footer from "@/components/footer/Footer";
 import Loader from "@/components/loader/Loader";
+import { rewriteLegacyBlogPostHref } from "@/lib/blogUrl";
 import Form from "@/allPages/Contactpage/Form";
 import Header from "@/components/header/Header";
 import {
@@ -354,9 +355,9 @@ const DetailPage: React.FC<DetailPageProps> = ({ ssrHeading }) => {
     links.forEach((aLink) => {
       const gtHref = aLink.getAttribute("href");
       aLink.setAttribute("target", "_blank");
-      if (gtHref?.includes("/blog/")) {
-        const newHRef = gtHref.split("/blog").join("");
-        aLink.setAttribute("href", newHRef);
+      if (gtHref) {
+        const rewritten = rewriteLegacyBlogPostHref(gtHref);
+        if (rewritten) aLink.setAttribute("href", rewritten);
       }
     });
     const ctBody = document.querySelector("#ctBody");

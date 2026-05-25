@@ -12,6 +12,7 @@ type ProvideSlide = {
     title: string;
     description: string;
     image: string;
+    serviceUrlLink: string;
 };
 
 
@@ -27,6 +28,7 @@ export default function WhatWeProvide() {
             description:
                 "Good UX isn't just usability. It's about a data-driven UX strategy and conversion-driven UI design. We can deliver the best mobile first responsive designs, intuitive UIs and user-centric digital experience designs, increasing engagement, accessibility and streamlining customer journey with: Wireframing, Prototyping, Usability Testing and Interaction design. We deliver not just traffic, but enhance user retention rates, increase conversion rates and generate tangible ROI.",
             image: "/webDevelopment/ui-ux.jpg",
+            serviceUrlLink: "/services/web-designing-and-development/ui-ux-design",
         },
         {
             id: "02",
@@ -34,20 +36,23 @@ export default function WhatWeProvide() {
             description:
                 "Your business deserves better than a website template. Your business deserves custom website design and full-stack web development designed for performance. Your custom designed websites are responsive and scalable and designed based on your business, customer, and business conversion goals. Our landing pages were created with clean code architecture with the use of a fast loading framework to offer high performance and optimized design for optimal user engagement, search presence, and conversion with the use of each pixel and design element for the benefit of generating leads from clicks.",
             image: "/webDevelopment/Custom-Design-Development.jpg",
+            serviceUrlLink: "/services/web-designing-and-development/custom-design-development",
         },
         {
             id: "03",
-            title: "E-Commerce website development",
+            title: "E-commerce Website Development",
             description:
                 "E-commerce is about delivering a high-performance online shopping experience. Our e-commerce solutions cover custom e-commerce development, secure payment gateway integration, shopping cart optimization, mobile commerce readiness, SEO optimization, speed optimization, product UX design, and conversion funnels. We develop conversion-driven e-commerce sites that increase online sales, customer retention, and lifetime value to build your trustworthy and scalable digital store.",
             image: "/webDevelopment/E-Com-Web-Dev.jpg",
+            serviceUrlLink: "/services/web-designing-and-development/e-commerce-web-designing",
         },
         {
             id: "04",
-            title: "Landing page development ",
+            title: "Landing Page Development",
             description:
                 "Our landing pages are designed for you by using conversion rate optimization (CRO), A/B testing, performance marketing, and SEO friendly designs. We engineer your landing pages to have high click-through rates, high quality leads, and excellent campaign ROI through mobile responsiveness and optimizing the conversion of your landing page to acquire quality leads.",
             image: "/webDevelopment/LandingPageDev.jpg",
+            serviceUrlLink: "/services/web-designing-and-development/landing-page-development-services",
             // image: "/webDevelopment/WordPress-Web-Design.jpg",
         },
         {
@@ -55,6 +60,7 @@ export default function WhatWeProvide() {
             title: "WordPress Web Design",
             description: "A robust, flexible and SEO optimized custom WordPress design and development for smart online businesses. We specialize in custom WordPress designs that are fully responsive, easy to use and manage (CMS based), search engine friendly with clean coded and plugin integrated, to get a performant, conversion focused, smart WordPress website to drive leads and sales through content marketing.",
             image: "/webDevelopment/WordPress-Web-Design.jpg",
+            serviceUrlLink: "/services/web-designing-and-development/wordpress-web-designing",
         },
 
     ];
@@ -95,15 +101,30 @@ export default function WhatWeProvide() {
     return (
         <section className={`w-full  py-6 md:py-10  lg:py-14 border-t border-[#D9D9D9] ${styles.page_containerWidth} `}>
             <div className={`${styles.page_containerWidth} mx-auto px-4 md:px-10 lg:px-10 xl:px-13`}>
-                <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3 xl:grid-cols-[1.1fr_1fr_1.1fr] xl:gap-6">
-                    <div className="md:col-span-2 lg:col-span-1 text-center md:text-left">
-                        <p className={`text-[16px] text-[#C99237] ${styles.poppinsMedium}`}>SERVICES</p>
-                        <h2 className={`mt-1  text-[26px]  md:text-[30px] lg:text-[30px] xl:text-[36px]    leading-[1.1] text-[#0A0A0A]   ${styles.montserratBold}
-`}>
-                            {HEADING}
-                        </h2>
-                        <p className={`mt-1 text-[16px] font-[400] text-[#101010] ${styles.fontopensans}`}>{SUBHEADING}</p>
-                        <div className="mt-4 flex w-full items-center justify-center md:justify-end gap-6 md:hidden">
+                <div className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3 xl:grid-cols-[1.1fr_1fr_1.1fr] xl:gap-6">
+                    <div className="flex min-h-[368px] flex-col text-center sm:min-h-[360px] md:col-span-2 md:min-h-[420px] md:text-left lg:col-span-1 lg:min-h-[450px] xl:min-h-[480px]">
+                        <div className="shrink-0">
+                            <p className={`text-[16px] text-[#C99237] ${styles.poppinsMedium}`}>SERVICES</p>
+                            <h2
+                                className={`mt-1 text-[26px] leading-[1.1] text-[#0A0A0A] md:text-[30px] lg:text-[30px] xl:text-[36px] ${styles.montserratBold}`}
+                            >
+                                {HEADING}
+                            </h2>
+                            <p className={`mt-1 text-[16px] font-[400] text-[#101010] ${styles.fontopensans}`}>
+                                {SUBHEADING}
+                            </p>
+                            {/* <div className="mt-4 space-y-1 text-center md:text-left">
+                                {slides.map((slide) => (
+                                    <h3
+                                        key={slide.id}
+                                        className={`text-[14px] font-[600] leading-[1.3] text-[#111111] md:text-[15px] lg:text-[14px] xl:text-[16px] ${styles.montserrat}`}
+                                    >
+                                        {slide.title.trim()}
+                                    </h3>
+                                ))}
+                            </div> */}
+                        </div>
+                        <div className="mt-4 flex w-full shrink-0 items-center justify-center gap-6 md:hidden">
                             <div className="relative ">
                                 <AnimatePresence mode="wait" initial={false} custom={direction}>
                                     <motion.p
@@ -134,10 +155,11 @@ export default function WhatWeProvide() {
                             >
                                 <Image
                                     src="/webDevelopment/arrow-left.png"
-                                    alt="Previous"
+                                    alt="Previous slide"
+                                    title="Previous slide"
                                     width={27}
                                     height={27}
-                                    className="w-[20px] md:w-[27px] h-[20px] md:h-[27px]"
+                                    className="h-[20px] w-[20px] md:h-[27px] md:w-[27px]"
                                 />
                             </button>
                             <button
@@ -148,37 +170,53 @@ export default function WhatWeProvide() {
                             >
                                 <Image
                                     src="/webDevelopment/arrow-right.png"
-                                    alt="Next"
+                                    alt="Next slide"
+                                    title="Next slide"
                                     width={27}
                                     height={27}
-                                    className="w-[20px] md:w-[27px] h-[20px] md:h-[27px]"
+                                    className="h-[20px] w-[20px] md:h-[27px] md:w-[27px]"
                                 />
                             </button>
                         </div>
 
-                        <div className="relative mt-5 md:mt-6 lg:mt-55 xl:mt-44 border-t-0 lg:border-t border-[#D9D9D9] pt-5">
-                            <AnimatePresence mode="wait" initial={false} custom={direction}>
-                                <motion.div
-                                    key={activeIndex}
-                                    custom={direction}
-                                    variants={slideVariants}
-                                    initial="enter"
-                                    animate="center"
-                                    exit="exit"
-                                    transition={slideTransition}
-                                    className="will-change-transform"
-                                >
-                                    <p className={`text-[20px] text-[#111111] ${styles.montserrat}`}>
-                                        <span className="mb-1 block text-[16px] font-[500] md:mr-4 md:mb-0 md:inline">{activeSlide.id}</span>
-                                        <span className="text-14px md:text-[20px] lg:text-[15px] xl:text-[26px] font-[600]">{activeSlide.title}</span>
-                                    </p>
-                                </motion.div>
-                            </AnimatePresence>
+                        <div className="hidden min-h-0 flex-1 lg:block" aria-hidden />
+                        
+                        <div className="mt-5 shrink-0 border-t border-[#D9D9D9] pt-5">
+                            <div className="relative h-[72px] overflow-hidden sm:h-[80px] md:h-[84px] lg:h-[88px] xl:h-[96px]">
+                               
+                                <Link href={activeSlide?.serviceUrlLink} target="_blank" title={activeSlide?.title.trim()} rel="noopener noreferrer">
+                                <AnimatePresence mode="wait" initial={false} custom={direction}>
+                                    <motion.div
+                                        key={activeIndex}
+                                        custom={direction}
+                                        variants={slideVariants}
+                                        initial="enter"
+                                        animate="center"
+                                        exit="exit"
+                                        transition={slideTransition}
+                                        className="absolute inset-0 will-change-transform"
+                                    >
+                                        <div
+                                            className={`grid grid-cols-[auto_1fr] items-start gap-x-2 gap-y-0 text-[#111111] ${styles.montserrat}`}
+                                        >
+                                            <span className="shrink-0 pt-[0.15em] text-[16px] font-[500] leading-none">
+                                                {activeSlide.id}
+                                            </span>
+                                            <h3 className="min-w-0 text-[14px] font-[600] leading-[1.2] md:text-[20px] lg:text-[15px] xl:text-[26px]">
+                                                {activeSlide.title.trim()}
+                                            </h3>
+                                        </div>
+                                    </motion.div>
+                                </AnimatePresence>
+                                </Link>
+                            </div>
                         </div>
+                       
+
                     </div>
 
-                    <div className="relative mx-auto w-full  h-[368px] sm:h-[360px] md:h-[420px] lg:h-[450px] xl:h-[480px] max-w-[280px] sm:max-w-[320px] md:max-w-[340px] overflow-hidden rounded-[80px] sm:rounded-[100px] md:rounded-[120px] xl:rounded-[140px]
-">
+                <div className="relative mx-auto w-full  h-[368px] sm:h-[360px] md:h-[420px] lg:h-[450px] xl:h-[480px] max-w-[280px] sm:max-w-[320px] md:max-w-[340px] overflow-hidden rounded-[80px] sm:rounded-[100px] md:rounded-[120px] xl:rounded-[140px]">
+                       <Link href={activeSlide?.serviceUrlLink} target="_blank" title={activeSlide?.title.trim()} rel="noopener noreferrer">
                         <AnimatePresence mode="wait" initial={false} custom={direction}>
                             <motion.img
                                 key={activeIndex}
@@ -189,14 +227,16 @@ export default function WhatWeProvide() {
                                 exit="exit"
                                 transition={slideTransition}
                                 src={activeSlide.image}
-                                alt={activeSlide.title}
+                                alt={`${activeSlide.title.trim()} – web development service`}
+                                title={activeSlide.title.trim()}
                                 className="absolute inset-0 h-full w-full object-cover will-change-transform"
                             />
                         </AnimatePresence>
+                        </Link>
                     </div>
 
-                    <div className="flex min-h-0 flex-col text-center md:text-left">
-                        <div className="relative min-h-[160px] sm:min-h-[180px] md:min-h-[200px]">
+                    <div className="flex min-h-[368px] flex-col text-center sm:min-h-[360px] md:min-h-[420px] md:text-left lg:min-h-[450px] xl:min-h-[480px]">
+                        <div className="relative h-[220px] shrink-0 overflow-hidden sm:h-[240px] md:h-[260px] lg:h-[300px] xl:h-[340px]">
                             <AnimatePresence mode="wait" initial={false} custom={direction}>
                                 <motion.div
                                     key={activeIndex}
@@ -206,19 +246,20 @@ export default function WhatWeProvide() {
                                     animate="center"
                                     exit="exit"
                                     transition={slideTransition}
-                                    className="will-change-transform"
+                                    className="absolute inset-0 will-change-transform"
                                 >
-                                    <p className={` text-[14px] sm:text-[15px] md:text-[15px] lg:text-[15px]  xl:text-[16px] leading-[1.6] sm:leading-[1.7]   text-[#111111] ${styles.fontopensans}
-`}>
+                                    <p
+                                        className={`text-[14px] leading-[1.6] text-[#111111] sm:text-[15px] sm:leading-[1.7] md:text-[15px] lg:text-[15px] xl:text-[16px] ${styles.fontopensans}`}
+                                    >
                                         {activeSlide.description}
                                     </p>
                                 </motion.div>
                             </AnimatePresence>
                         </div>
 
-                        <div className=" mt-0 sm:mt-10 md:mt-12   flex flex-col sm:flex-row    items-center md:items-start sm:items-center  justify-between gap-4  border-0 md:border-t border-[#D8D8D8]   pt-4">
+                        <div className="mt-5 flex shrink-0 flex-col items-center justify-between gap-4 border-0 pt-4 sm:flex-row sm:items-center md:items-start md:border-t md:border-[#D8D8D8] md:pt-4">
                             <Link
-                                href="/contact.html"
+                                href={activeSlide?.serviceUrlLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-center md:justify-start gap-4 md:gap-4 lg:gap-4 xl:gap-6 outline-none focus-visible:ring-2 focus-visible:ring-[#C99237] focus-visible:ring-offset-2 rounded-sm"
@@ -234,9 +275,13 @@ export default function WhatWeProvide() {
                                     sm:w-[34px] sm:h-[34px]
                                     md:w-[36px] md:h-[36px]
                                     bg-[#C99237] rounded-full 
-                                    flex items-center justify-center cursor-pointer
+                                    flex items-center justify-center cursor-pointer hover:bg-[#0F1640]
                                 ">
-                                    <img src={EXPLORE_ARROW_IMAGE} alt="Explore Arrow" />
+                                    <img
+                                        src={EXPLORE_ARROW_IMAGE}
+                                        alt="Learn more – explore services arrow"
+                                        title="Learn more – explore services"
+                                    />
                                 </div>
                             </Link>
 
@@ -275,10 +320,11 @@ export default function WhatWeProvide() {
                                 >
                                     <Image
                                         src="/webDevelopment/arrow-left.png"
-                                        alt="Previous"
+                                        alt="Previous slide"
+                                        title="Previous slide"
                                         width={27}
                                         height={27}
-                                        className="w-[20px] xl:w-[27px] h-[20px] xl:h-[27px]"
+                                        className="h-[20px] w-[20px] xl:h-[27px] xl:w-[27px]"
                                     />
                                 </button>
 
@@ -290,10 +336,11 @@ export default function WhatWeProvide() {
                                 >
                                     <Image
                                         src="/webDevelopment/arrow-right.png"
-                                        alt="Next"
+                                        alt="Next slide"
+                                        title="Next slide"
                                         width={27}
                                         height={27}
-                                        className="w-[20px] xl:w-[27px] h-[20px] xl:h-[27px]"
+                                        className="h-[20px] w-[20px] xl:h-[27px] xl:w-[27px]"
                                     />
                                 </button>
                             </div>
