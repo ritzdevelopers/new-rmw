@@ -12,6 +12,7 @@ type ProvideSlide = {
     title: string;
     description: string;
     image: string;
+    serviceUrlLink: string;
 };
 
 
