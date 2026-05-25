@@ -238,6 +238,7 @@ const Footer = memo(() => {
                             Career
                           </Link>
                         </li>
+                        {/* 
                         <li
                           id="menu-item-144"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-144"
@@ -253,7 +254,7 @@ const Footer = memo(() => {
                           <Link href="/clients" style={{ color: "#ffffff" }}>
                             Clients
                           </Link>
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </div>
@@ -361,7 +362,7 @@ const Footer = memo(() => {
                             Influencer Marketing
                           </Link>
                         </li>
-                        <li
+                        {/* <li
                           id="menu-item-139"
                           className="menu-item menu-item-type-post_type menu-item-object-page menu-item-139"
                         >
@@ -382,7 +383,7 @@ const Footer = memo(() => {
                           >
                             Real Estate Walkthrough
                           </Link>
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </div>

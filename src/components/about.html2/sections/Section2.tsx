@@ -122,12 +122,12 @@ function Section2() {
                     {/* Right Side Container  */}
                     <div className={`flex min-h-0  border-t border-[#D9D9D9] min-w-0 flex-1 flex-col justify-between self-stretch pt-10 pl-16 max-w-[604px] ${s2.rightPane}`}>
                         <p className={`font-[400] text-[24px] ${styles.fontmontserrat} ${s2.rightLead}`}>
-                            We believe in staying ahead by combinin <span className="font-[700]">creative storytelling</span> and <span className="font-[700]">leveraging AI</span> to deliver <span className="font-[700]">stunning visuals</span> in <span className="font-[700]">record time</span>.
+                            We believe in staying ahead by combining <span className="font-[700]">creative storytelling</span> and <span className="font-[700]">leveraging AI</span> to deliver <span className="font-[700]">stunning visuals</span> in <span className="font-[700]">record time</span>.
                         </p>
                         <p className={`font-[400] text-[16px] ${styles.fontopensans} ${s2.rightBody}`}>For the better part of the last two decades, RITZ MEDIA WORLD has been building narratives that drive competitive movements. They don't just influence behaviors but develop lasting habits. <br /><br />
                             We pride ourselves in going out of our way to understand the consumer mindset in every walk of life. This enables us to build campaigns that don't just speak at them, but we build campaigns that speak to them.</p>
 
-                        <div className={`h-auto w-full max-w-[564px] shrink-0 ${s2.teamWrap}`}>
+                        <div className={`h-auto w-full max-w-[564px] mt-[20px] shrink-0 ${s2.teamWrap}`}>
                             <img
                                 src="/varunimage/team-bg.avif"
                                 alt="Ritz Media World creative team at work"

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     "Explore career opportunities at Ritz Media World in Delhi-NCR. Apply now to work in digital advertising, creative services and brand strategy with industry-leading experts.",
   keywords: "Join Our Team",
   alternates: {
-    canonical: "https://ritzmediaworld.com/career",
+    canonical: "https://ritzmediaworld.com/career2",
   },
 };
 

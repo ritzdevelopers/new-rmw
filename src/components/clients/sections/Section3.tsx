@@ -52,7 +52,7 @@ function Section3({ logos }: Section3Props) {
                         onClick={handleLoadMore}
                         className="bg-[#0F1640] rounded-[700] font-[500] w-[179px] h-[50px] flex justify-center items-center gap-2"
                     >
-                        <p className="font-[400] text-[16px] text-white">Load More</p>
+                        <p className="font-[400] text-[16px] cursor-pointer text-white">Load More</p>
                         <ChevronDown className="w-5 h-5 text-white" />
                     </button>
                 </div>

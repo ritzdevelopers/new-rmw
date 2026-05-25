@@ -74,8 +74,7 @@ export default function Process3D() {
             Our 3D Rendering Process
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-gray-300 md:text-base">
-            A transparent, collaborative workflow from brief to final delivery,
-            so you always know exactly where your project stands.
+          A transparent, collaborative workflow from brief to final delivery , so you always know exactly where your project stands
           </p>
         </div>
 

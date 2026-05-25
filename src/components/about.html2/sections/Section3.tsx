@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import s3 from "./Section3.module.css";
+import Link from "next/link";
 
 function Section3() {
     const data = [
@@ -17,13 +18,13 @@ function Section3() {
         },
         {
             title: "Content Marketing",
-            description: "As a creative digital marketing agency and one of Delhi NCR’s best advertising agencies, we provide strategic content marketing designed for enhanced visibility and better search ranking. The SEO optimized content, creatives focused on performance, and brand storytelling help businesses generate high intent audiences. ",
+            description: "As a creative digital marketing agency and one of Delhi NCR’s leading advertising agencies, we deliver strategic content marketing solutions designed to enhance visibility and improve search rankings. Our SEO-optimized content, performance-driven creatives, and compelling brand storytelling help businesses attract high-intent audiences and drive measurable growth ",
             image: "/new-about-imgs/s3/abt-s3-img3.jpg",
             link: "https://ritzmediaworld.com/services/contents-marketing"
         },
         {
             title: "Digital Marketing",
-            description: "We offer a range of digital marketing services with always maximum ROI. From paid advertising and performance marketing to social media marketing and search engine marketing, our digital marketing solutions are geared for a competitive marketplace.",
+            description: "We deliver result-driven digital marketing services designed to maximize ROI. From paid advertising and performance marketing to social media and search engine marketing, our tailored strategies help your brand thrive in today’s competitive digital landscape.",
             image: "/new-about-imgs/s3/abt-s3-4.jpg",
             link: "https://ritzmediaworld.com/services/digital-marketing"
         },
@@ -54,26 +55,26 @@ function Section3() {
                                     >
                                         <div className={`flex flex-row items-baseline gap-2 md:gap-4 ${styles.fontmontserrat}`}>
 
-<span
-    className={`shrink-0 font-[500] md:text-[16px] text-[13px] text-[#0F1640] ${s3.idx}`}
->
-    0{idx + 1}.
-</span>
+                                            <span
+                                                className={`shrink-0 font-[500] md:text-[16px] text-[13px] text-[#0F1640] ${s3.idx}`}
+                                            >
+                                                0{idx + 1}.
+                                            </span>
 
-<a
-    href={item.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={`cursor-pointer no-underline ${styles.fontmontserrat}`}
->
-    <h3
-        className={`font-[700] text-[24px] leading-tight text-[#0F1640] md:text-[36px] ${s3.title}`}
-    >
-        {item.title}
-    </h3>
-</a>
+                                            <a
+                                                href={item.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={`cursor-pointer no-underline ${styles.fontmontserrat}`}
+                                            >
+                                                <h3
+                                                    className={`font-[700] text-[24px] leading-tight text-[#0F1640] md:text-[36px] ${s3.title}`}
+                                                >
+                                                    {item.title}
+                                                </h3>
+                                            </a>
 
-</div>
+                                        </div>
                                     </div>
                                     {/* Row 2  */}
                                     <div
@@ -99,12 +100,14 @@ function Section3() {
 
                                 {/* Image column (second in DOM; appears first below md via flex-col-reverse) */}
                                 <div className={`h-auto w-full shrink-0 md:w-[477px] ${s3.imgCol}`}>
-                                    <img
-                                        src={item.image}
-                                        alt={`${item.title} – Ritz Media World advertising services`}
-                                        title={`${item.title} – Ritz Media World`}
-                                        className="h-auto w-full"
-                                    />
+                                    <Link href={item.link} target="_blank" title={item.title} rel="noopener noreferrer">
+                                        <img
+                                            src={item.image}
+                                            alt={`${item.title} – Ritz Media World advertising services`}
+                                            title={`${item.title} – Ritz Media World`}
+                                            className="h-auto w-full"
+                                        />
+                                    </Link>
                                 </div>
                             </div>
                         )

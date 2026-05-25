@@ -69,8 +69,8 @@ function Page() {
                     : "/services/3drendring/bannerdesktop.jpg"
                     })`,
             }}
-                className="flex w-full min-w-0 min-h-[460px] items-start justify-center overflow-visible bg-[#0a1128] bg-[url('/varunimage/banner-of-render-%20services-mobile.jpg')] bg-cover bg-center bg-no-repeat px-6 pt-18 pb-10 sm:min-h-[400px] sm:px-10 sm:pb-12 md:min-h-[300px] md:items-end md:justify-start md:bg-[url('/varunimage/banner-of-render-%20services.jpg')] md:px-0 md:pt-40 md:pb-14 lg:min-h-[500px] xl:min-h-[570px] lg:px-0 lg:pt-44 lg:pb-16 xl:px-0 xl:pt-48 xl:pb-20 ">
-                <div className="flex w-full max-w-4xl flex-col items-center gap-1 text-center md:translate-y-[50px] md:items-start md:gap-2 md:text-left lg:gap-3 xl:gap-5">
+                className="flex w-full  min-w-0 min-h-[460px] items-start justify-center overflow-visible bg-[#0a1128] bg-[url('/varunimage/banner-of-render-%20services-mobile.jpg')] bg-cover bg-center bg-no-repeat px-6 pt-18 pb-10 sm:min-h-[400px] sm:px-10 sm:pb-12 md:min-h-[300px] md:items-end md:justify-start md:bg-[url('/varunimage/banner-of-render-%20services.jpg')] md:px-0 md:pt-40 md:pb-14 lg:min-h-[500px] xl:min-h-[570px] lg:px-0 lg:pt-44 lg:pb-16 xl:px-0 xl:pt-48 xl:pb-20 ">
+                <div className="flex w-full pt-[50%] sm:pt-0 max-w-4xl flex-col items-center gap-1 text-center md:translate-y-[50px] md:items-start md:gap-2 md:text-left lg:gap-3 xl:gap-5">
                     <div className="relative hidden h-[32px] w-[140px] md:block md:h-[37px] md:w-[170px]">
                         <img
                             src="/home-v3/service-imgs/s1/yellow-reactangle.png"
@@ -93,18 +93,12 @@ function Page() {
 
                     </h1>
 
-                    <p
-                        className=" text-[14px] font-normal leading-[1.5] text-white sm:text-[16px] md:text-[13px] lg:text-[15px] lg:leading-[1.45] xl:whitespace-nowrap xl:px-14 lg:px-13 md:px-12 xl:text-[22px]"
-                        style={{ fontFamily: "MontserratMedium, Montserrat, sans-serif" }}
-                    >
-                        Experience photo-realistic 3D exterior renderings that bring your building designs to life.
+                    <p className=" text-[14px] font-normal leading-[1.5] text-white sm:text-[16px] md:text-[13px] lg:text-[15px] lg:leading-[1.45] xl:whitespace-nowrap xl:px-14 lg:px-13 md:px-12 xl:text-[22px]"
+                        style={{ fontFamily: "MontserratMedium, Montserrat, sans-serif" }}>
+                        Experience photo-realistic 3D exterior renderings that bring <br/> your building designs to life.
                     </p>
-
-
                 </div>
             </section>
-
-
 
             <section className="flex w-full justify-center bg-white px-4 py-[35px] sm:px-6 md:py-[70px]">
                 <div className="mx-auto flex w-full  flex-col items-center text-center">
@@ -153,7 +147,7 @@ function Page() {
                         Experience cutting-edge 3D + AI walkthroughs at 5X speed and 5X lower cost, now available at Ritz Media World - bringing your projects to life faster and more affordably than ever.
                     </p>
 
-                    <div className="md:mt-4 lg:mt-6 xl:mt-8 flex items-center justify-center gap-4 sm:mt-10">
+                    <div className="md:mt-4  mt-4 lg:mt-6 xl:mt-8 flex items-center justify-center gap-4 sm:mt-10">
                         <Link
                             href="/contact.html"
                             target="_blank"
@@ -179,15 +173,15 @@ function Page() {
                 </div>
             </section>
             <div>
-                <section className="w-full bg-white px-0 pb-[35px] sm:px-0 lg:pb-[70px]">
+                <section className="w-full bg-white px-0 pb-[50px] sm:px-0 lg:pb-[70px]">
                     <div className={`mx-auto w-full ${styles.containerWidth}`}>
                         <h2
-                            className="mb-8 text-center md:text-[45px] text-[45px] 
-          font-semibold leading-[36px] font-weight-600 text-[#000000] sm:mb-10 sm:text-[28px] md:mb-10
-     md:leading-[42px] lg:mb-12"
+                            className="mb-8  text-[30px] text-center md:text-[45px]  
+          font-semibold leading-[36px] font-weight-600 text-[#000000] sm:mb-10 sm:text-[45px]  md:mb-10
+     md:leading-[42px] lg:mb-12 mt-[50px] sm:mt-0" 
                             style={{
                                 fontFamily: "MontserratRegular, Montserrat, sans-serif",
-                                fontWeight: 400,
+                                fontWeight: 600,
                             }}
                         >
                             3D Rendering Showcase

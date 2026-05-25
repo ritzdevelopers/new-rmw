@@ -23,7 +23,7 @@ const services: ServiceTab[] = [
         num: "01",
         title: "3D Exterior Rendering",
         description:
-            "High-quality 3D exterior rendering showcases your building's architecture, landscaping, and surroundings with photorealistic lighting and materials—helping buyers visualize the complete development before construction begins.",
+            "Get to experience the architecture, facade materials, landscaping, and site of the building through photo-realistic exterior renderings that provide unmatched clarity. The right option for pre-launch marketing, investor portfolio and collateral.",
         image: "/services/3drendring/3d1.png",
         imageAlt: "Modern residential complex 3D exterior visualization",
         features: [
@@ -41,9 +41,9 @@ const services: ServiceTab[] = [
         image: "/services/3drendring/3d2.png",
         imageAlt: "Luxury interior 3D visualization",
         features: [
-            { label: "Living & Dining Spaces", icon: "/services/3drendring/processicon/service2/service1.png" },
+            { label: "Living Dining Spaces", icon: "/services/3drendring/processicon/service2/service1.png" },
             { label: "Master Bedrooms", icon: "/services/3drendring/processicon/service2/service2.png" },
-            { label: "Kitchens & Bathrooms", icon: "/services/3drendring/processicon/service2/service3.png" },
+            { label: "Kitchens Bathrooms", icon: "/services/3drendring/processicon/service2/service3.png" },
             { label: "Office Interiors", icon: "/services/3drendring/processicon/service2/service4.png" },
         ],
     },
@@ -51,7 +51,7 @@ const services: ServiceTab[] = [
         num: "03",
         title: "Aerial & Township",
         description:
-            "3D master plans and bird's-eye view renderings effectively and realistically depict the overall planning, grandeur and scale of plots, mixed-use development projects and entire townships—an excellent tool for government submissions, investor pitches and RERA filing.",
+            "3D Master plans and bird's-eye view renderings will effectively and realistically depict the overall planning, grandeur and scale of plots, mixed use development projects and entire townships. An excellent tool for the government submissions, investor pitch and RERA filing.",
         image: "/services/3drendring/3d3.png",
         imageAlt: "Aerial view of urban township development",
         features: [
@@ -65,7 +65,7 @@ const services: ServiceTab[] = [
         num: "04",
         title: "3D Floor Plan Rendering",
         description:
-            "The most simplified and easily understandable form of floor plan design is the 3D floor plan, which helps avoid ambiguity during site visits by depicting layout, furnishing and texture. Suitable for unit floor plans, 3D cut-away views, furnished layouts, and commercial space plans.",
+            "The most simplified and easily understandable form of floor plan design is the 3D floor plan which helps avoid ambiguity on the site during a site visit by depicting the layout, furnishing and texture. Suitable for unit floor plans, 3D cut-away views, furnished layouts, and commercial space plans.",
         image: "/services/3drendring/3d4.png",
         imageAlt: "3D floor plan visualization",
         features: [
@@ -79,22 +79,40 @@ const services: ServiceTab[] = [
         num: "05",
         title: "Amenity & Landscape Rendering",
         description:
-            "The best selling tool for any residential project—exclusive renderings of clubhouses, swimming pools, manicured gardens, play zones, gyms and rooftops that are a major draw for buyers and investors.",
+            "The best selling tool for any residential project, be it the exclusive renderings of club houses, swimming pools, manicured gardens, play zones, gyms and rooftops which are a major draw.",
         image: "/services/3drendring/3d5.png",
         imageAlt: "Amenity and landscape 3D rendering",
         features: [
             { label: "Clubhouse Renders", icon: "/services/3drendring/processicon/service5/service1.png" },
-            { label: "Pool  Landscape", icon: "/services/3drendring/processicon/service5/service2.png" },
-            { label: "Gym  Co-working", icon: "/services/3drendring/processicon/service5/service3.png" },
+            { label: "Pool Landscape", icon: "/services/3drendring/processicon/service5/service2.png" },
+            { label: "Gym Co-working", icon: "/services/3drendring/processicon/service5/service3.png" },
             { label: "Rooftop Terrace", icon: "/services/3drendring/processicon/service5/service4.png" },
         ],
     },
 ];
 
 
+function scrollTabIntoContainer(
+    container: HTMLElement | null,
+    tab: HTMLButtonElement | null,
+    smooth: boolean
+) {
+    if (!container || !tab) return;
+    const tabLeft = tab.offsetLeft;
+    const tabWidth = tab.offsetWidth;
+    const containerWidth = container.clientWidth;
+    const targetLeft = tabLeft - (containerWidth - tabWidth) / 2;
+    container.scrollTo({
+        left: Math.max(0, targetLeft),
+        behavior: smooth ? "smooth" : "auto",
+    });
+}
+
 export default function Services3D() {
     const [active, setActive] = useState(0);
     const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+    const tabListRef = useRef<HTMLDivElement | null>(null);
+    const isFirstTabScroll = useRef(true);
 
     const current = services[active];
 
@@ -118,16 +136,20 @@ export default function Services3D() {
     );
 
     useEffect(() => {
-        tabRefs.current[active]?.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: "center",
-        });
+        if (isFirstTabScroll.current) {
+            isFirstTabScroll.current = false;
+            return;
+        }
+        scrollTabIntoContainer(
+            tabListRef.current,
+            tabRefs.current[active] ?? null,
+            true
+        );
     }, [active]);
 
     return (
 
-        <section className=" bg-white pb-[70px]">
+        <section className="bg-white px-4 pb-[35px] sm:px-6 md:pb-[70px]">
             <div className="mx-auto w-full max-w-6xl xl:max-w-7xl">
                 <header className="mx-auto max-w-3xl text-center">
                     <p className="text-xs font-semibold uppercase tracking-[0.12em] sm:text-sm"
@@ -135,18 +157,17 @@ export default function Services3D() {
                         Services
                     </p>
 
-                    <h2
-                        className=" text-center md:text-[45px] text-[45px] 
-          font-semibold leading-[36px] font-weight-600 text-[#000000] sm:text-[28px] 
+                    <h2 className=" text-center text-[30px] pt-1 sm:text-[45px] md:text-[45px]  
+          font-semibold leading-[36px] font-weight-600 text-[#111111]
      md:leading-[42px] "
                         style={{
                             fontFamily: "MontserratRegular, Montserrat, sans-serif",
-                            fontWeight: 400,
+                            fontWeight: 600,
                         }}
                     >
                         Our 3D Rendering Services
                     </h2>
-                    <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#444444] sm:text-base md:text-lg md:leading-8">
+                    <p className="mx-auto mt-4 max-w-2xl font-regular font-weight-400 text-sm leading-7 text-[#111111] sm:text-base md:text-lg md:leading-8">
                         We create your ideas into 3D visualizations &amp; make your projects valuable, attract
                         buyers and drive faster sales.
                     </p>
@@ -158,7 +179,7 @@ export default function Services3D() {
                             role="tablist"
                             aria-label="3D rendering service types"
                             className="services-tabs-scroll 
-                            flex w-full flex-nowrap gap-[150px] overflow-x-auto
+                            flex w-full flex-nowrap  md:gap-[150px]  overflow-x-auto
                              overflow-y-hidden border-b border-[#e5e5e5]
                               [-ms-overflow-style:none] [scrollbar-width:none]
                                [&::-webkit-scrollbar]:hidden"
@@ -212,13 +233,13 @@ export default function Services3D() {
                         <img
                             src={current.image}
                             alt={current.imageAlt}
-                            className=" w-full h-[407px] object-cover"
+                            className="h-auto min-h-[220px] w-full object-cover sm:min-h-[280px] md:min-h-[340px] lg:h-[407px] lg:min-h-0"
                         // priority={active === 0}
                         />
                     </div>
 
                     <div className="flex flex-col max-w-[500px] justify-center items-center">
-                        <p className="text-left  text-sm leading-relaxed text-[#444444] sm:text-base md:text-[17px] md:leading-8">
+                        <p className="text-left font-regular font-weight-400 text-sm leading-relaxed text-[#111111] sm:text-base md:text-[18px] md:leading-8">
                             {current.description}
                         </p>
 
@@ -226,9 +247,9 @@ export default function Services3D() {
                             {current.features.map((f) => (
                                 <li
                                     key={f.label}
-                                    className="flex min-w-[5.5rem] shrink-0 flex-col items-start text-left sm:min-w-[6.5rem]"
+                                    className="flex md:min-w-[4.5rem] min-w-[4.5rem] shrink-0 flex-col items-start text-left sm:min-w-[6.5rem]"
                                 >
-                                    <img src={f.icon} alt={f.label} className="w-10 h-10 object-cover" />
+                                    <img src={f.icon} alt={f.label} className="w-10 h-10 object-contain" />
                                     <span
                                         className="mt-3 text-[10px] font-semibold uppercase leading-snug tracking-wide sm:text-[11px]"
                                         style={{ color: accent }}
