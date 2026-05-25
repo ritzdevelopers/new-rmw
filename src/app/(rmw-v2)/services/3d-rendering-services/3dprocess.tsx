@@ -29,7 +29,8 @@ const steps: ProcessStep[] = [
     title: "Draft Review",
     description:
       "You review draft renders and share feedback, unlimited revisions until you're satisfied.",
-      
+    icon: "/services/3drendring/processicon/step4.png",
+
   },
   {
     title: "Final Delivery",
@@ -55,9 +56,9 @@ function StepText({
   description: string;
 }) {
   return (
-    <div>
-      <h3 className="text-base font-semibold text-white sm:text-lg">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-gray-300 sm:text-[15px] sm:leading-7">
+    <div className="px-[30px] text-center">
+      <h3 className="text-base  font-semibold text-white sm:text-lg">{title}</h3>
+      <p className="mt-2 text-sm  leading-relaxed text-gray-300 sm:text-[15px] sm:leading-7">
         {description}
       </p>
     </div>
@@ -84,13 +85,12 @@ export default function Process3D() {
             className="pointer-events-none absolute inset-x-0  z-0"
             aria-hidden
           >
-            <Image
+            <img
               src="/services/3drendring/processicon/backgournd.png"
               alt=""
-              width={1200}
-              height={200}
-              className="h-auto w-full object-contain"
-              priority
+
+              className="h-[330px] w-full object-fill"
+
             />
             <span className="absolute -left-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-white" />
             <span className="absolute -right-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-white" />
@@ -106,14 +106,13 @@ export default function Process3D() {
               return (
                 <div
                   key={step.title}
-                  className={`flex flex-col items-center px-3 text-center ${
-                    isValley ? valleyLayout : "pt-10"
-                  }`}
+                  className={`flex flex-col items-center px-3 text-center ${isValley ? valleyLayout : "pt-10"
+                    }`}
                 >
                   {!isValley && step.icon && (
                     <StepIcon src={step.icon} alt={step.title} />
                   )}
-                  <div className={isValley ? (step.icon ? "mb-4 mt-8" : "") : "mt-5"}>
+                  <div className={isValley ? (step.icon ? "mb-6 mt-4" : "") : "mt-5"}>
                     <StepText title={step.title} description={step.description} />
                   </div>
                   {isValley && step.icon && (
@@ -128,34 +127,34 @@ export default function Process3D() {
         {/* Mobile — vertical timeline */}
         <div className="relative lg:hidden">
 
-<div className="relative ">
+          <div className="relative ">
 
-  {steps.map((step, index) => (
-    <div key={step.title} className="relative flex flex-col items-center">
+            {steps.map((step, index) => (
+              <div key={step.title} className="relative flex flex-col items-center">
 
-      {/* Dot (only between items) */}
-      <span className="absolute left-1/2 -top-3 h-3 w-3 -translate-x-1/2 rounded-full bg-white z-20" />
+                {/* Dot (only between items) */}
+                <span className="absolute left-1/2 -top-3 h-3 w-3 -translate-x-1/2 rounded-full bg-white z-20" />
 
-      {/* Card (NO background change) */}
-      <div className="relative z-10 w-full rounded-2xl border border-white/20 px-5 py-8 text-center">
-        {step.icon && (
-          <div className="mb-5 flex justify-center">
-            <StepIcon src={step.icon} alt={step.title} />
+                {/* Card (NO background change) */}
+                <div className="relative z-10 w-full rounded-2xl border border-white/20 px-5 py-8 text-center">
+                  {step.icon && (
+                    <div className="mb-5 flex justify-center">
+                      <StepIcon src={step.icon} alt={step.title} />
+                    </div>
+                  )}
+                  <StepText title={step.title} description={step.description} />
+                </div>
+
+                {/* Connector line ONLY between boxes */}
+                {index !== steps.length - 1 && (
+                  <div className="h-12 w-px bg-white/20" />
+                )}
+
+              </div>
+            ))}
+
           </div>
-        )}
-        <StepText title={step.title} description={step.description} />
-      </div>
-
-      {/* Connector line ONLY between boxes */}
-      {index !== steps.length - 1 && (
-        <div className="h-12 w-px bg-white/20" />
-      )}
-
-    </div>
-  ))}
-
-</div>
-</div>
+        </div>
       </div>
     </section>
   );

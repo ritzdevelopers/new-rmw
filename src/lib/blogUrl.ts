@@ -15,7 +15,9 @@ function collapseDuplicateBlogSegments(pathname: string): string {
     p = p
       .replace(/\/blogs\/blogs\//gi, "/blogs/")
       .replace(/\/blog\/blogs\//gi, "/blogs/")
-      .replace(/\/blogs\/blog\//gi, "/blogs/");
+      .replace(/\/blogs\/blog\//gi, "/blogs/")
+      .replace(/\/blogs2\/blogs2\//gi, "/blogs2/")
+      .replace(/\/blog2\/blog2\//gi, "/blog2/");
   }
   return p;
 }
@@ -23,13 +25,17 @@ function collapseDuplicateBlogSegments(pathname: string): string {
 /**
  * Returns redirect target for legacy blog URL paths, or null to keep as-is.
  * - /blogs/blogs/40, /blogs/60 -> /blogs (pagination)
- * - /blogs/my-post -> /my-post
- * - /blogs/image.jpg -> null (static asset)
+ * - /blogs/my-post, /blogs2/my-post, /blog2/my-post -> /my-post
+ * - /blogs/image.jpg, /blogs2/image.jpg -> null (static asset)
  */
 export function getLegacyBlogRedirectPath(pathname: string): string | null {
   const normalized = collapseDuplicateBlogSegments(pathname);
 
   if (normalized === "/blogs") return null;
+
+  if (normalized === "/blogs2" || normalized === "/blog2") {
+    return "/blogs";
+  }
 
   // Legacy pagination: /blogs/blogs/40, /blogs/40
   if (/^\/blogs\/blogs\/\d+$/i.test(normalized)) {
@@ -52,6 +58,20 @@ export function getLegacyBlogRedirectPath(pathname: string): string | null {
     if (/^\d+$/.test(rest.split("/")[0]) && !rest.includes("/")) {
       return "/blogs";
     }
+    if (isBlogStaticAssetPath(rest)) return null;
+    return `/${rest}`;
+  }
+
+  if (normalized.startsWith("/blogs2/")) {
+    const rest = normalized.slice("/blogs2/".length);
+    if (!rest) return "/blogs";
+    if (isBlogStaticAssetPath(rest)) return null;
+    return `/${rest}`;
+  }
+
+  if (normalized.startsWith("/blog2/")) {
+    const rest = normalized.slice("/blog2/".length);
+    if (!rest) return "/blogs";
     if (isBlogStaticAssetPath(rest)) return null;
     return `/${rest}`;
   }
