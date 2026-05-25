@@ -29,8 +29,8 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "web-development": "/varun.icon/webdevelopment.svg",
   "celebrity-endorsements": "/varun.icon/celebrity.svg",
   "influencer-marketing": "/varun.icon/influenecer.svg",
-  "real-estate-walkthrough": "/varun.icon/real.svg",
-  "3d-rendering-services": "/varun.icon/rendering-service.svg",
+  // "real-estate-walkthrough": "/varun.icon/real.svg",
+  // "3d-rendering-services": "/varun.icon/rendering-service.svg",
   "digital-marketing": "/varun.icon/digital.svg",
 };
 

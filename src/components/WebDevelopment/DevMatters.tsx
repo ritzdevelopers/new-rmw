@@ -29,7 +29,7 @@ const cards = [
     {
         title: "Fast Reliable Websites",
         description:
-            "With the professional web development services, we bring you, you can expect all of your websites will be faster loading, extremely secure and high performing to win over user trust and enhance their user experience.",
+            "With our professional web development services, you can expect your website to be fast-loading, highly secure, and high-performing, helping to build user trust and enhance the overall user experience.",
         icon: '/webDevelopment/userExp.png',
     },
     // 👉 Add more cards here (it will auto create slides)

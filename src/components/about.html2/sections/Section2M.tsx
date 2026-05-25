@@ -29,7 +29,7 @@ function Section2M() {
                             src="/new-about-imgs/s2/team.jpg"
                             alt="Ritz Media World creative team"
                             title="Ritz Media World team"
-                            className="h-auto w-full"
+                            className="h-auto w-full mt-4"
                         />
                     </div>
                 </div>

@@ -126,7 +126,7 @@ export default function Section3() {
     <section className="w-full bg-white px-0 pb-[35px] sm:px-0 lg:pb-[70px]">
       <div className={`mx-auto w-full ${styles.containerWidth}`}>
         <h2
-          className="mb-8 text-center md:text-[26px] text-[20px] font-normal leading-[36px] text-[#000000] sm:mb-10 sm:text-[28px] md:mb-10 md:text-[30px] md:leading-[42px] lg:mb-12"
+          className="mb-8 text-center text-[20px] font-normal leading-[36px] text-[#000000] sm:mb-10 sm:text-[28px] md:mb-10 md:text-[30px] md:leading-[42px] lg:mb-12"
           style={{
             fontFamily: "MontserratRegular, Montserrat, sans-serif",
             fontWeight: 400,

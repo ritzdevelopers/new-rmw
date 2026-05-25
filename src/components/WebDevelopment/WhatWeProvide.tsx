@@ -40,7 +40,7 @@ export default function WhatWeProvide() {
         },
         {
             id: "03",
-            title: "E-Commerce website development",
+            title: "E-commerce Website Development",
             description:
                 "E-commerce is about delivering a high-performance online shopping experience. Our e-commerce solutions cover custom e-commerce development, secure payment gateway integration, shopping cart optimization, mobile commerce readiness, SEO optimization, speed optimization, product UX design, and conversion funnels. We develop conversion-driven e-commerce sites that increase online sales, customer retention, and lifetime value to build your trustworthy and scalable digital store.",
             image: "/webDevelopment/E-Com-Web-Dev.jpg",
@@ -48,7 +48,7 @@ export default function WhatWeProvide() {
         },
         {
             id: "04",
-            title: "Landing page development",
+            title: "Landing Page Development",
             description:
                 "Our landing pages are designed for you by using conversion rate optimization (CRO), A/B testing, performance marketing, and SEO friendly designs. We engineer your landing pages to have high click-through rates, high quality leads, and excellent campaign ROI through mobile responsiveness and optimizing the conversion of your landing page to acquire quality leads.",
             image: "/webDevelopment/LandingPageDev.jpg",

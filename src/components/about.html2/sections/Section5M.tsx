@@ -17,7 +17,7 @@ const MILESTONES: Milestone[] = [
     { year: "2012", label: "Innovation Leadership", image: "/new-about-imgs/s4/abt-s4-img2.jpg", alt: "2012 — Innovation Leadership" },
     { year: "2016", label: "Digital Expansion", image: "/new-about-imgs/s4/abt-s4-img3.jpg", alt: "2016 — Digital Expansion" },
     { year: "2020", label: "Premium Positioning", image: "/new-about-imgs/s4/abt-s4-img4.jpg", alt: "2020 — Premium Positioning" },
-    { year: "2026", label: "Today", image: "/new-about-imgs/s4/abt-s4-img5.jpg", alt: "2026 — Today" },
+    { year: "2026", label: "AI-Powered 3D Rendering at 5X", image: "/new-about-imgs/s4/abt-s4-img5.jpg", alt: "2026 — AI-Powered 3D Rendering at 5X" },
 ];
 
 function MilestoneItem({ item, index }: { item: Milestone; index: number }) {
@@ -69,7 +69,7 @@ function Section5M() {
                             17 Years of Brand Excellence
                         </h2>
                         <p className={`font-[400] text-[16px] ${styles.fontpoppins} ${s5.copy} ${m.subTight}`}>
-                            From pioneering print innovations to 360° digital mastery, our journey reflects our commitment to excellence.
+                            From pioneering print innovations to 360° Digital Marketing , our journey reflects our commitment to excellence.
                         </p>
                     </header>
 

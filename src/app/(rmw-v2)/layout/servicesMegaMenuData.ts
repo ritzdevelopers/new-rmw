@@ -339,11 +339,11 @@ export const SERVICES_MEGA_MENU_CATEGORIES: MegaMenuCategory[] = [
       },
     ],
   },
-  {
-    id: "3d-rendering-services",
-    name: "3D Rendering Services",
-    href: "/services/3d-rendering-services",
-    services: [],
+  // {
+  //   id: "3d-rendering-services",
+  //   name: "3D Rendering Services",
+  //   href: "/services/3d-rendering-services",
+  //   services: [],
     //  services: [
     //    {
     //     title: "3D Exterior Rendering",
@@ -376,12 +376,12 @@ export const SERVICES_MEGA_MENU_CATEGORIES: MegaMenuCategory[] = [
     //     image: "/services/3drendring/3d5.png",
     //   },
     // ],
-  },
-  {
-    id: "real-estate-walkthrough",
-    name: "Real Estate Walkthrough",
-    href: "/services/real-estate-walkthrough",
-    services: [],
+  // },
+  // {
+  //   id: "real-estate-walkthrough",
+  //   name: "Real Estate Walkthrough",
+  //   href: "/services/real-estate-walkthrough",
+  //   services: [],
     // services: [
     //   {
     //     title: "3D Architectural Walkthrough Animation",
@@ -414,6 +414,6 @@ export const SERVICES_MEGA_MENU_CATEGORIES: MegaMenuCategory[] = [
     //     image: "/varun.icon/real.svg",
     //   },
     // ],
-  },
+  // },
 
 ];
