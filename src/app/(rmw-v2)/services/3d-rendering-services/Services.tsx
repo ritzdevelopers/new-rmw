@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import "./3dservice.css";
+import React from "react";
 
 const accent = "#C99237";
 
@@ -27,7 +28,7 @@ const services: ServiceTab[] = [
         imageAlt: "Modern residential complex 3D exterior visualization",
         features: [
             { label: "Residential Apartments", icon: "/services/3drendring/processicon/service1/service1.png" },
-            { label: "Villas & Bungalows", icon: "/services/3drendring/processicon/service1/service2.png" },
+            { label: "Villas Bungalows", icon: "/services/3drendring/processicon/service1/service2.png" },
             { label: "Commercial Towers", icon: "/services/3drendring/processicon/service1/service3.png" },
             { label: "Townships", icon: "/services/3drendring/processicon/service1/service4.png" },
         ],
@@ -83,9 +84,9 @@ const services: ServiceTab[] = [
         imageAlt: "Amenity and landscape 3D rendering",
         features: [
             { label: "Clubhouse Renders", icon: "/services/3drendring/processicon/service5/service1.png" },
-            { label: "Pool & Landscape", icon: "/services/3drendring/processicon/service5/service2.png" },
-            { label: "Gym & Co-working", icon: "/services/3drendring/processicon/service5/service3.png" },
-            { label: "Rooftop & Terrace", icon: "/services/3drendring/processicon/service5/service4.png" },
+            { label: "Pool  Landscape", icon: "/services/3drendring/processicon/service5/service2.png" },
+            { label: "Gym  Co-working", icon: "/services/3drendring/processicon/service5/service3.png" },
+            { label: "Rooftop Terrace", icon: "/services/3drendring/processicon/service5/service4.png" },
         ],
     },
 ];
@@ -125,15 +126,24 @@ export default function Services3D() {
     }, [active]);
 
     return (
-        
-        <section className=" bg-white px-4 py-14 sm:px-6 sm:py-16 md:py-20 lg:py-24">
+
+        <section className=" bg-white pb-[70px]">
             <div className="mx-auto w-full max-w-6xl xl:max-w-7xl">
                 <header className="mx-auto max-w-3xl text-center">
                     <p className="text-xs font-semibold uppercase tracking-[0.12em] sm:text-sm"
                         style={{ color: accent }}>
                         Services
                     </p>
-                    <h2 className="mt-3 text-[28px] font-semibold leading-tight text-black sm:text-[36px] md:text-[45px] lg:text-[55px] lg:leading-[1.15]">
+
+                    <h2
+                        className=" text-center md:text-[45px] text-[45px] 
+          font-semibold leading-[36px] font-weight-600 text-[#000000] sm:text-[28px] 
+     md:leading-[42px] "
+                        style={{
+                            fontFamily: "MontserratRegular, Montserrat, sans-serif",
+                            fontWeight: 400,
+                        }}
+                    >
                         Our 3D Rendering Services
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#444444] sm:text-base md:text-lg md:leading-8">
@@ -142,12 +152,16 @@ export default function Services3D() {
                     </p>
                 </header>
 
-                <div className="mt-10 md:mt-12 lg:mt-14">
+                <div className="mt-5">
                     <div className="-mx-4 sm:mx-0">
                         <div
                             role="tablist"
                             aria-label="3D rendering service types"
-                            className="services-tabs-scroll flex w-full flex-nowrap overflow-x-auto overflow-y-hidden border-b border-[#e5e5e5] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                            className="services-tabs-scroll 
+                            flex w-full flex-nowrap gap-[150px] overflow-x-auto
+                             overflow-y-hidden border-b border-[#e5e5e5]
+                              [-ms-overflow-style:none] [scrollbar-width:none]
+                               [&::-webkit-scrollbar]:hidden"
                         >
                             {services.map((tab, i) => {
                                 const isActive = i === active;
@@ -165,14 +179,18 @@ export default function Services3D() {
                                         tabIndex={isActive ? 0 : -1}
                                         onClick={() => selectTab(i)}
                                         onKeyDown={(e) => onKeyDown(e, i)}
-                                        className={`relative min-w-[min(78vw,280px)] shrink-0 cursor-pointer px-4 py-4 text-left transition-colors sm:min-w-[220px] sm:px-5 xl:min-w-max xl:px-6 xl:py-5 xl:text-center ${
-                                            isActive ? "services-tab-active" : "hover:text-neutral-700"
-                                        }`}
+                                        className={`relative min-w-[min(90vw,280px)]
+                                             shrink-0 cursor-pointer px-4 py-4 text-left 
+                                             transition-colors sm:min-w-[220px]
+                                             
+                                              sm:px-5 xl:min-w-max xl:px-6 xl:py-5 xl:text-center ${isActive ? "services-tab-active" : "hover:text-neutral-700"
+                                            }`}
                                     >
                                         <span className="block text-xs text-left font-normal text-[#9ca3af] sm:text-sm">
                                             {tab.num}
                                         </span>
-                                        <span className="mt-1 block whitespace-nowrap text-[15px] font-bold leading-snug text-[#111111] sm:text-base md:text-lg lg:text-xl xl:text-2xl">
+                                        <span className=" block whitespace-nowrap text-[15px]
+                                         font-bold font-weight-700 leading-snug text-[#111111] sm:text-base md:text-[32px] md:leading-[42px] lg:text-[32px] lg:leading-[42px] xl:text-[32px] xl:leading-[42px]">
                                             {tab.title}
                                         </span>
                                     </button>
@@ -187,19 +205,20 @@ export default function Services3D() {
                     role="tabpanel"
                     id={`service-panel-${active}`}
                     aria-labelledby={`service-tab-${active}`}
-                    className="services-panel-enter mt-8 grid grid-cols-1 gap-8 lg:mt-10 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-14"
+                    className="services-panel-enter mt-8 grid grid-cols-1 
+                    gap-8 lg:mt-10 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-14"
                 >
                     <div className="relative w-full overflow-hidden bg-[#f5f5f5]">
                         <img
                             src={current.image}
-                            alt={current.imageAlt}       
+                            alt={current.imageAlt}
                             className=" w-full h-[407px] object-cover"
-                            // priority={active === 0}
+                        // priority={active === 0}
                         />
                     </div>
 
-                    <div className="flex flex-col">
-                        <p className="text-left text-sm leading-relaxed text-[#444444] sm:text-base md:text-[17px] md:leading-8">
+                    <div className="flex flex-col max-w-[500px] justify-center items-center">
+                        <p className="text-left  text-sm leading-relaxed text-[#444444] sm:text-base md:text-[17px] md:leading-8">
                             {current.description}
                         </p>
 
@@ -214,7 +233,14 @@ export default function Services3D() {
                                         className="mt-3 text-[10px] font-semibold uppercase leading-snug tracking-wide sm:text-[11px]"
                                         style={{ color: accent }}
                                     >
-                                        {f.label}
+                                        {
+                                            f.label.split(' ').map((word, index) => (
+                                                <React.Fragment key={index}>
+                                                    {word}
+                                                    <br />
+                                                </React.Fragment>
+                                            ))
+                                        }
                                     </span>
                                 </li>
                             ))}

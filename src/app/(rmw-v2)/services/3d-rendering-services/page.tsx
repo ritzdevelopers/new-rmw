@@ -2,15 +2,19 @@
 import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
 import S7 from "@/components/home-v3/S7";
 import Section5 from "@/components/services-v3-subslug/layer-4/Section5";
-import { BsArrowUpRight } from "react-icons/bs";
+
+import Link from "next/link";
+import Image from "next/image";
 import styles from "@/components/home-v3/services/page.module.css";
 import Textimonials from "@/components/influencer-marketing-agency-in-india/Section5";
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Process3D from "./3dprocess";
 import Services3D from "./Services";
 import Faq3D from "./faq";
 
 function Page() {
+    const EXPLORE_ARROW_IMAGE =
+        "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -59,120 +63,173 @@ function Page() {
 
     return (
         <>
-            <section      style={{
+            <section style={{
                 backgroundImage: `url(${isMobile
                     ? "/services/3drendring/bannermobile.jpg"
                     : "/services/3drendring/bannerdesktop.jpg"
                     })`,
             }}
-                className={`flex w-full min-h-[380px] items-end justify-center 
-                    bg-[#0F1640] 
-                    bg-cover bg-center bg-no-repeat px-4 pb-10 pt-16 sm:min-h-[420px] sm:px-6 sm:pb-12 md:h-[300px] md:min-h-[300px] md:justify-start md:px-8 md:pb-6 md:pt-0 lg:h-[500px] lg:min-h-[500px] lg:px-12 lg:pb-10 xl:min-h-[515px] xl:pb-14 ${styles.bannerSize}`}
-            >
-                <div className="flex w-full max-w-[90%] flex-col text-center sm:max-w-[85%] md:max-w-[80%] md:gap-5 md:text-left lg:max-w-none lg:gap-6">
-                    <div className="relative mx-auto hidden h-[35px] w-[155px] md:mx-0 md:block lg:h-[37px] lg:w-[165px]">
+                className="flex w-full min-w-0 min-h-[460px] items-start justify-center overflow-visible bg-[#0a1128] bg-[url('/varunimage/banner-of-render-%20services-mobile.jpg')] bg-cover bg-center bg-no-repeat px-6 pt-18 pb-10 sm:min-h-[400px] sm:px-10 sm:pb-12 md:min-h-[300px] md:items-end md:justify-start md:bg-[url('/varunimage/banner-of-render-%20services.jpg')] md:px-0 md:pt-40 md:pb-14 lg:min-h-[500px] xl:min-h-[570px] lg:px-0 lg:pt-44 lg:pb-16 xl:px-0 xl:pt-48 xl:pb-20 ">
+                <div className="flex w-full max-w-4xl flex-col items-center gap-1 text-center md:translate-y-[50px] md:items-start md:gap-2 md:text-left lg:gap-3 xl:gap-5">
+                    <div className="relative hidden h-[32px] w-[140px] md:block md:h-[37px] md:w-[170px]">
                         <img
                             src="/home-v3/service-imgs/s1/yellow-reactangle.png"
-                            alt="Ritz Media World"
-                            title="Ritz Media World"
+                            alt=""
                             className="h-full w-full object-contain"
                         />
-                        <p className="absolute right-6 top-1/2 -translate-y-1/2 text-[12px] font-[700] uppercase text-white sm:text-[13px] md:text-[14px] lg:right-8 lg:text-[16px]">
-                            Services
+                        <p
+                            className={`absolute top-1/2 right-6 -translate-y-1/2 text-[12px] font-bold uppercase tracking-wide text-white sm:right-7 sm:text-[14px] md:right-8 md:text-[16px] ${styles.fontmontserrat}`}
+                        >
+                            SERVICES
                         </p>
                     </div>
 
-                    <div className="mx-auto max-w-[320px] sm:max-w-[430px] md:mx-0 md:max-w-none md:pl-8 lg:pl-12">
-                        <h1 className="mt-0 font-[700] text-[28px] leading-[1.1] text-white sm:text-3xl md:text-[45px] md:leading-[1.2] lg:mt-3 lg:text-[55px] xl:text-[65px]">
-                            3D Rendering Services
-                        </h1>
-                        <p className="mt-3 font-[500] text-[13px] leading-6 text-white sm:text-[14px] sm:leading-7 md:text-[16px] md:leading-8 lg:text-[18px] xl:text-[22px]">
-                            Experience photo-realistic 3D exterior renderings that bring your building designs to life.
-                        </p>
-                    </div>
-                </div>
-            </section>
 
-            <section className="mx-auto w-full max-w-[90%] px-4 py-10 sm:max-w-[85%] sm:px-6 md:max-w-[80%] md:py-14 lg:max-w-7xl">
-                <div className="flex w-full flex-col text-center">
-                    <p className={`font-[400] text-[#000000] text-lg leading-snug sm:text-xl sm:leading-normal md:text-[18px] md:leading-10 lg:text-[20px] xl:text-[30px] ${styles.fontmontserrat} ${styles.yofText}`}>
-                        See It Before It Exists. Sell It Before It’s Built.
-                    </p>
-                    <p className={`mt-5 font-[400] text-[14px] leading-7 text-[#000000] sm:text-[15px] xl:text-[16px] ${styles.fontopensans}`}>
-                        All innovations start as an idea- but they sell when viewed. At Ritz Media World, the vision is crystal clear; to produce imagery which enhances value and influence choice. Our 3D architecture rendering and real estate visualization approach goes above and beyond – seamlessly merging together photorealistic 3D renders, walkthroughs and interior and exterior design visuals, coupled with high-quality CGI, to produce visuals that inspire decision-making and deliver tangible results.
-                    </p>
-                    <p className={`mt-8 font-[400] text-[14px] leading-7 text-[#000000] sm:text-[15px] xl:text-[16px] ${styles.fontopensans}`}>
-                        At Ritz Media World, technology and architecture collide. The outcome is far beyond an image; instead, these high-impact visuals have been developed to improve presentation, attract attention and ensure conversions quicker.
-                    </p>
-                    <p className={`mt-8 font-[600] text-[16px] leading-7 text-[#000000] sm:text-[15px] xl:text-[16px] ${styles.fontopensans}`}>
-                    Experience cutting-edge 3D + AI walkthroughs at 5X speed and 5X lower cost, now available at Ritz Media World - bringing your projects to life faster and more affordably than ever.
-
-                    </p>
-                    <a
-                        href="https://ritzmediaworld.com/contact.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <h1
+                        className={`text-[32px] font-extrabold leading-[1.1] text-white sm:text-[40px] md:text-[26px] lg:text-[30px] xl:text-[55px] lg:leading-[1.08] xl:px-14 lg:px-13 md:px-12 ${styles.bannerHeadlineSm}`}
+                        style={{ fontFamily: "MontserratExtraBold, Montserrat, sans-serif" }}
                     >
-                        <div className="mt-10 flex justify-center">
-                            <button
-                                type="button"
-                                className="flex cursor-pointer items-center justify-between gap-3 border-none bg-transparent transition-opacity hover:opacity-80 sm:gap-4"
-                            >
-                                <p className={`font-[500] text-[16px] text-[#0F1640] xl:text-[18px] ${styles.fontopensans}`}>
-                                    Let’s Talk Today
-                                </p>
-                                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-[50px] bg-[#C99237] text-white sm:h-[38px] sm:w-[38px] lg:h-[40px] lg:w-[40px]">
-                                    <BsArrowUpRight className="text-[16px] text-white sm:text-[17px] lg:text-[18px]" />
-                                </div>
-                            </button>
-                        </div>
-                    </a>
+                        <span className="block">3D Rendering Services</span>
+
+                    </h1>
+
+                    <p
+                        className=" text-[14px] font-normal leading-[1.5] text-white sm:text-[16px] md:text-[13px] lg:text-[15px] lg:leading-[1.45] xl:whitespace-nowrap xl:px-14 lg:px-13 md:px-12 xl:text-[22px]"
+                        style={{ fontFamily: "MontserratMedium, Montserrat, sans-serif" }}
+                    >
+                        Experience photo-realistic 3D exterior renderings that bring your building designs to life.
+                    </p>
+
+
                 </div>
             </section>
 
-            <div>
-                <section className="mx-auto w-full max-w-[90%] px-4 py-10 sm:max-w-[85%] sm:px-6 md:max-w-[80%] md:py-14 lg:max-w-7xl">
-                    <h2 className="mb-8 text-center text-2xl font-semibold leading-tight text-[#111111] sm:mb-10 sm:text-3xl md:text-[45px] md:leading-tight lg:mb-10 lg:text-[55px]">
-                        3D Rendering Showcase
+
+
+            <section className="flex w-full justify-center bg-white px-4 py-[35px] sm:px-6 md:py-[70px]">
+                <div className="mx-auto flex w-full  flex-col items-center text-center">
+                    <h2
+                        className="text-[18px] leading-[25px] text-[#000000] sm:text-[28px] sm:leading-[40px] lg:text-[30px] md:leading-[42px] md:text-[25px]"
+                        style={{
+                            fontFamily: "MontserratRegular, Montserrat, sans-serif",
+                            fontWeight: 400,
+                            letterSpacing: 0,
+                        }}
+                    >
+                        See It Before It Exists. Sell It Before It’s Built.
                     </h2>
 
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
-                        {images.slice(0, 9).map((item, index) => {
-                            return (
-                                <button
-                                    key={item.id}
-                                    type="button"
-                                    onClick={() => openViewer(index)}
-                                    className="group cursor-pointer overflow-hidden rounded-sm border-0 bg-transparent p-0 text-left"
-                                    aria-label={`View 3D render ${index + 1}`}
-                                >
-                                    <img
-                                        src={item.image}
-                                        alt={`3D rendering showcase ${index + 1}`}
-                                        className=" w-full object-cover transition duration-500 group-hover:scale-105 "
-                                    />
-                                </button>
-                            );
-                        })}
+                    <p
+                        className=" mt-2 lg:mt-4 xl:mt-6 text-[14px] leading-[26px] text-[#000000] sm:mt-7 sm:text-[16px] sm:leading-[28px] md:mt-4 max-w-[1050px]"
+                        style={{
+                            fontFamily: "OpenSansRegular, Open Sans, sans-serif",
+                            fontWeight: 400,
+                            letterSpacing: 0,
+                        }}
+                    >
+                        All innovations start as an idea- but they sell when viewed. At Ritz Media World, the vision is crystal clear; to produce imagery which enhances value and influence choice. Our 3D architecture rendering and real estate visualization approach goes above and beyond – seamlessly merging together photorealistic 3D renders, walkthroughs and interior and exterior design visuals, coupled with high-quality CGI, to produce visuals that inspire decision-making and deliver tangible results.
+                    </p>
+
+                    <p
+                        className="mt-5 lg:mt-4 xl:mt-5 text-[14px] max-w-[1050px] leading-[26px] text-[#000000] md:mt-4 sm:text-[16px] sm:leading-[28px]"
+                        style={{
+                            fontFamily: "OpenSansRegular, Open Sans, sans-serif",
+                            fontWeight: 400,
+                            letterSpacing: 0,
+                        }}
+                    >
+                        At Ritz Media World, technology and architecture collide. The outcome is far beyond an image; instead, these high-impact visuals have been developed to improve presentation, attract attention and ensure conversions quicker.
+
+                    </p>
+
+                    <p
+                        className="mt-6 lg:mt-4 xl:mt-6 max-w-[850px] text-[14px] leading-[26px] text-[#000000]  sm:text-[16px] sm:leading-[28px] md:mt-5"
+                        style={{
+                            fontFamily: "OpenSansSemiBold, Open Sans, sans-serif",
+                            fontWeight: 600,
+                            letterSpacing: 0,
+                        }}
+                    >
+                        Experience cutting-edge 3D + AI walkthroughs at 5X speed and 5X lower cost, now available at Ritz Media World - bringing your projects to life faster and more affordably than ever.
+                    </p>
+
+                    <div className="md:mt-4 lg:mt-6 xl:mt-8 flex items-center justify-center gap-4 sm:mt-10">
+                        <Link
+                            href="/contact.html"
+                            target="_blank"
+                            aria-label="Let's Talk Today"
+                            className="text-[18px] font-medium text-[#0F1640] transition-colors  md:text-[20px]"
+                            style={{ fontFamily: "MontserratMedium, Montserrat, sans-serif" }}
+                        >
+                            Let&apos;s Talk Today
+                        </Link>
+                        <Link
+                            href="/contact.html"
+                            target="_blank"
+                            aria-label="Let's Talk Today"
+                            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#C99237] transition-colors hover:bg-[#0F1640] sm:h-11 sm:w-11"
+                        >
+                            <Image src={EXPLORE_ARROW_IMAGE}
+                                alt=""
+                                width={22}
+                                height={20}
+                            />
+                        </Link>
                     </div>
-                    <div className="mt-4 grid grid-cols-1 gap-4 sm:mt-5 sm:grid-cols-3 sm:gap-5">
-                        {images.slice(9, 12).map((item, index) => {
-                            return (
-                                <button
-                                    key={item.id}
-                                    type="button"
-                                    onClick={() => openViewer(index + 9)}
-                                    className="group cursor-pointer overflow-hidden rounded-sm border-0 bg-transparent p-0 text-left"
-                                    aria-label={`View 3D render ${index + 10}`}
-                                >
-                                    <img
-                                        src={item.image}
-                                        alt={`3D rendering showcase ${index + 10}`}
-                                        className="w-full object-cover transition duration-500 group-hover:scale-105"
-                                    />
-                                </button>
-                            );
-                        })}
+                </div>
+            </section>
+            <div>
+                <section className="w-full bg-white px-0 pb-[35px] sm:px-0 lg:pb-[70px]">
+                    <div className={`mx-auto w-full ${styles.containerWidth}`}>
+                        <h2
+                            className="mb-8 text-center md:text-[45px] text-[45px] 
+          font-semibold leading-[36px] font-weight-600 text-[#000000] sm:mb-10 sm:text-[28px] md:mb-10
+     md:leading-[42px] lg:mb-12"
+                            style={{
+                                fontFamily: "MontserratRegular, Montserrat, sans-serif",
+                                fontWeight: 400,
+                            }}
+                        >
+                            3D Rendering Showcase
+                        </h2>
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+                            {images.slice(0, 8).map((item, index) => {
+                                return (
+                                    <button
+                                        key={item.id}
+                                        type="button"
+                                        onClick={() => openViewer(index)}
+                                        className="group cursor-pointer overflow-hidden rounded-sm border-0 bg-transparent p-0 text-left"
+                                        aria-label={`View 3D render ${index + 1}`}
+                                    >
+                                        <img
+                                            src={item.image}
+                                            alt={`3D rendering showcase ${index + 1}`}
+                                            className=" w-full object-cover transition duration-500 group-hover:scale-105 "
+                                        />
+                                    </button>
+                                );
+                            })}
+                        </div>
+                        <div className="mt-4 grid grid-cols-1 gap-4 sm:mt-5 sm:grid-cols-3 sm:gap-5">
+                            {images.slice(9, 12).map((item, index) => {
+                                return (
+                                    <button
+                                        key={item.id}
+                                        type="button"
+                                        onClick={() => openViewer(index + 9)}
+                                        className="group cursor-pointer overflow-hidden rounded-sm border-0 bg-transparent p-0 text-left"
+                                        aria-label={`View 3D render ${index + 10}`}
+                                    >
+                                        <img
+                                            src={item.image}
+                                            alt={`3D rendering showcase ${index + 10}`}
+                                            className="w-full object-cover transition duration-500 group-hover:scale-105"
+                                        />
+                                    </button>
+                                );
+                            })}
+                        </div>
                     </div>
                 </section>
 

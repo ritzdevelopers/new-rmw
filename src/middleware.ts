@@ -56,7 +56,7 @@ export function middleware(req: NextRequest) {
     );
   }
 
-  // Legacy blog URLs: /blogs/<slug>, /blogs/blogs/40, /blogs/60, /blog/<slug>
+  // Legacy blog URLs: /blogs/<slug>, /blogs2/<slug>, /blog2/<slug>, /blog/<slug>, pagination
   const legacyBlogDest = getLegacyBlogRedirectPath(pathname);
   if (legacyBlogDest) {
     const dest = new URL(legacyBlogDest, url.origin);
@@ -80,7 +80,11 @@ export const config = {
     // ✅ Previous matchers (keep as they are)
     "/admin/:path*",
     "/blogs/:path*",
+    "/blogs2",
+    "/blogs2/:path*",
     "/blog/:path*",
+    "/blog2",
+    "/blog2/:path*",
     "/fr/:path*",
     "/refund-policy.html",
     "/iizuka.city.official/:path*",
