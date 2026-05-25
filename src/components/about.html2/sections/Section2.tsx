@@ -82,6 +82,7 @@ function Section2() {
   href="https://share.google/KiTNs3mJMr5qUOkjK"
   target="_blank"
   rel="noopener noreferrer"
+  title="Google Reviews"
   className={`w-[40px] h-[40px] rounded-full bg-[#C99237] flex justify-center hover:bg-[#0F1640] cursor-pointer items-center ${s2.gBadge}`}
 >
   <svg
@@ -124,7 +125,11 @@ function Section2() {
                         <p className={`font-[400] text-[24px] ${styles.fontmontserrat} ${s2.rightLead}`}>
                             We believe in staying ahead by combining <span className="font-[700]">creative storytelling</span> and <span className="font-[700]">leveraging AI</span> to deliver <span className="font-[700]">stunning visuals</span> in <span className="font-[700]">record time</span>.
                         </p>
-                        <p className={`font-[400] text-[16px] ${styles.fontopensans} ${s2.rightBody}`}>For the better part of the last two decades, RITZ MEDIA WORLD has been building narratives that drive competitive movements. They don't just influence behaviors but develop lasting habits. <br /><br />
+                        <p className={`font-[400] text-[16px] ${styles.fontopensans} ${s2.rightBody}`}>For the better part
+                             of the last two decades,
+                             <a href="/" target="_blank" rel="noopener noreferrer" title="Ritz Media World"
+                              className="font-semibold cursor-pointer"> RITZ MEDIA WORLD </a> 
+                          has been building narratives that drive competitive movements. They don't just influence behaviors but develop lasting habits. <br /><br />
                             We pride ourselves in going out of our way to understand the consumer mindset in every walk of life. This enables us to build campaigns that don't just speak at them, but we build campaigns that speak to them.</p>
 
                         <div className={`h-auto w-full max-w-[564px] mt-[20px] shrink-0 ${s2.teamWrap}`}>

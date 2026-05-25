@@ -18,7 +18,9 @@ function Section2M() {
                         <span className="font-[700]">record time</span>.
                     </p>
                         <p className={`font-[400] text-[14px] text-center ${styles.fontopensans} ${s2.rightBody}`}>
-                        For the better part of the last two decades, RITZ MEDIA WORLD has been building narratives that drive competitive movements. They
+                        For the better part of the last two decades, <a href="/" target="_blank" 
+                        rel="noopener noreferrer"   title="Ritz Media World"
+                        className="font-semibold cursor-pointer"> RITZ MEDIA WORLD </a> has been building narratives that drive competitive movements. They
                         don&apos;t just influence behaviors but develop lasting habits. <br />
                         <br />
                         We pride ourselves in going out of our way to understand the consumer mindset in every walk of life. This enables us to build
@@ -91,6 +93,7 @@ function Section2M() {
   href="https://share.google/KiTNs3mJMr5qUOkjK"
   target="_blank"
   rel="noopener noreferrer"
+  title="Google Reviews"
   className={`w-[40px] h-[40px] rounded-full bg-[#C99237] flex justify-center hover:bg-[#0F1640] cursor-pointer items-center ${s2.gBadge}`}
 >
   <svg

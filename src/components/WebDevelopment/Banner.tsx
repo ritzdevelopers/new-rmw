@@ -11,7 +11,8 @@ function Section1() {
             <div className='flex flex-col md:gap-2 lg:gap-3 xl:gap-4 w-full max-lg:max-w-none lg:max-w-none text-left md:text-left md:h-full justify-start md:justify-end lg:h-auto lg:justify-end -translate-y-13 md:translate-y-0 lg:translate-y-3 xl:translate-y-17'>
                 {/* Row 1  Yellow ReactAngle */}
                 <div className="hidden md:block md:w-[160px] xl:w-[170px]  md:h-[30px] xl:h-[37px] relative">
-                    <img src="/home-v3/service-imgs/s1/yellow-reactangle.png" alt="Ritz Media World – influencer marketing" title="Ritz Media World – influencer marketing" className='w-full h-full' />
+                    <img src="/home-v3/service-imgs/s1/yellow-reactangle.png" 
+                    alt="Ritz Media World – influencer marketing" title="Ritz Media World – influencer marketing" className='w-full h-full' />
                     <p className={`font-[700] uppercase text-[16px] text-white absolute top-[50%] transform translate-y-[-50%] right-8 leading-tight ${styles.montserrat} `}>Services</p>
                 </div>
 

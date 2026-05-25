@@ -239,9 +239,9 @@ const HeaderClient: React.FC<HeaderClientProps> = ({ headerData }) => {
               >
                 <Link
                   className="main-logo"
-                  href="/" target="_blank"  
-             
+                  href="/"
                   prefetch={false}
+                  title="Ritz Media World"
                   style={{ borderRadius: "0px !important", overflow: "hidden" }}
                 >
                   <Image

@@ -17,6 +17,7 @@ export default function Stats() {
                         href="https://share.google/KiTNs3mJMr5qUOkjK"
                         target="_blank"
                         rel="noreferrer"
+                        title="Google Reviews"
                         className="mx-auto w-fit md:mx-0 md:shrink-0 md:pr-8 lg:pr-10"
                         aria-label="Open Google reviews"
                     >

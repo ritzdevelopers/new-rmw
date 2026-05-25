@@ -21,7 +21,7 @@ const cards = [
         icon: '/webDevelopment/userExp.png',
     },
     {
-        title: "SEO friendly structure",
+        title: "SEO Friendly Structure",
         description:
             "We are a team of professional web developers providing high-performance, SEO optimized websites that improve search-engine ranking, drive organic traffic to your business, and enhance your visibility",
         icon: '/webDevelopment/dev2.png',

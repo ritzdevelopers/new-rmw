@@ -15,6 +15,7 @@ export default function Section2() {
                     <span className="font-normal">In digital marketing, your website isn’t merely a collection of pages, it’s your brand’s</span><br className="hidden lg:block" /><span className="font-normal">most persuasive spokesperson.</span> <a
   href="/"
   className="text-black font-bold "
+  title="Ritz Media World"
 >
   Ritz Media World,
 </a> <span className="font-normal">
@@ -26,7 +27,7 @@ export default function Section2() {
                     className={`${styles.fontopensans} mt-2 md:mt-3 lg:mt-4 xl:mt-5 text-black text-[14px]  md:text-[15px] leading-[23px] md:leading-[25px] lg:text-[16px] w-full  mx-auto text-center space-y-3 md:space-y-4`}
                 >
                     <p>
-                        Recognised as a trustworthy <i>web development company in India</i>, a go-to option for any  business looking for a web   <br className="hidden lg:block" /> development company near me, we provide web development and <i>web designing services in Delhi NCR</i> as well.  <br className="hidden lg:block" />We provide excellent <i>web designing services in Noida</i>, Greater Noida and Delhi, creating all websites to have <br className="hidden lg:block" /> a high ranking, faster loading speeds, and better conversion rates.
+                        Recognised as a trustworthy <i className="font-semibold">web development company in India</i>, a go-to option for any  business looking for a web   <br className="hidden lg:block" /> development company near me, we provide web development and <i className="font-semibold">web designing services in Delhi NCR</i> as well.  <br className="hidden lg:block" />We provide excellent <i className="font-semibold">web designing services in Noida</i>, Greater Noida and Delhi, creating all websites to have <br className="hidden lg:block" /> a high ranking, faster loading speeds, and better conversion rates.
 
                     </p>
                     <p>Be it a custom made website, a CMS powered platform such as WordPress, or an e-commerce solution built to convert  <br className="hidden lg:block" /> visitors into customers with secure payment gateways, API integrations and detailed tracking, we build all the  elements  <br className="hidden lg:block" />  to perform better. Our landing pages are developed with A/B testing, CRO (Conversion Rate Optimization),  lead generation  <br className="hidden lg:block" /> funnels, turning traffic into concrete results.</p>
