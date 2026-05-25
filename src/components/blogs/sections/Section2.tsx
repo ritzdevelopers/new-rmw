@@ -15,7 +15,7 @@ function normalizeMongoMsqlBlogs(blogs: any[]): any[] {
         meta_description: blog.meta_description || blog.mtDesc,
         meta_keywords: blog.meta_keywords || blog.metaKeywords,
         created_at: blog.created_at || blog.createdAt,
-        banner: blog.blog_image || blog.blogBanner,
+        banner: blog.banner || blog.blog_image || blog.blogBanner,
         description: blog.description || blog.blogDescription,
     }));
 }
