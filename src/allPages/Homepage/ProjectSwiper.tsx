@@ -69,7 +69,7 @@ const ProjectSwiper = () => (
                   <SwiperSlide key={index}>
                     <div className="tp-text__2-wrap">
                       <h2 className="tp-text__2-text">
-                        <Link href={href}>{text}</Link>
+                        <Link href={href} title={text}>{text}</Link>
                         <span>
                           <HexagonSVG />
                         </span>

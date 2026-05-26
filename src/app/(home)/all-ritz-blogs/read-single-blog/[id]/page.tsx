@@ -149,7 +149,7 @@ const BlogPage: React.FC = () => {
   return (
     <>
       {/* Preload critical resources for better LCP */}
-      <link rel="preload" href={`/api/ritz_blogs/get-single-blog/${id}`} as="fetch" crossOrigin="anonymous" />
+      <link rel="preload" title="Single Blog" href={`/api/ritz_blogs/get-single-blog/${id}`} as="fetch" crossOrigin="anonymous" />
       
       <div className={styles.container}>
         {!blogInfo ? (

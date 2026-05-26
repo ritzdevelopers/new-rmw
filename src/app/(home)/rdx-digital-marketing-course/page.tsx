@@ -82,8 +82,8 @@ function Page() {
   return (
     <>
       {/* Preload critical resources for better LCP */}
-      <link rel="preload" href="/RITZ DIGITAL XPERTS ACADEMY.png" as="image" />
-      <link rel="preload" href="/rdx/s2/rdx-s2-img1.png" as="image" />
+      <link rel="preload" title="Ritz Digital Xperts Academy" href="/RITZ DIGITAL XPERTS ACADEMY.png" as="image" />
+      <link rel="preload" title="Ritz Digital Xperts Academy Image" href="/rdx/s2/rdx-s2-img1.png" as="image" />
       
     <main>
         <Suspense fallback={<div style={{ height: '200px', background: '#f8f9fa' }} />}>

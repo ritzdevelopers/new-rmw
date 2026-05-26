@@ -57,7 +57,7 @@ const ServiceThirdSlowMarque = () => {
                     >
                       <div className="tp-text__6-wrap">
                         <h3 className="tp-text__6-text">
-                          <Link href="/services/digital-marketing">
+                          <Link href="/services/digital-marketing" title="Digital Marketing">
                             {" "}
                             DIGITAL _ MARKETING
                           </Link>
@@ -87,7 +87,7 @@ const ServiceThirdSlowMarque = () => {
                     >
                       <div className="tp-text__6-wrap">
                         <h3 className="tp-text__6-text">
-                          <Link href="/services/print-advertising">
+                          <Link href="/services/print-advertising" title="Print Advertising">
                             {" "}
                             PRINT_ADVERTISING
                           </Link>
@@ -117,7 +117,7 @@ const ServiceThirdSlowMarque = () => {
                     >
                       <div className="tp-text__6-wrap">
                         <h3 className="tp-text__6-text">
-                          <Link href="/services/radio-advertising">
+                          <Link href="/services/radio-advertising" title="Radio Advertising">
                             RADIO_ADVERTISING
                           </Link>
                           <span>
@@ -146,7 +146,7 @@ const ServiceThirdSlowMarque = () => {
                     >
                       <div className="tp-text__6-wrap">
                         <h3 className="tp-text__6-text">
-                          <Link href="/services/creative-services">
+                          <Link href="/services/creative-services" title="Creative Services">
                             {" "}
                             CREATIVE_SERVICES
                           </Link>
@@ -176,7 +176,7 @@ const ServiceThirdSlowMarque = () => {
                     >
                       <div className="tp-text__6-wrap">
                         <h3 className="tp-text__6-text">
-                          <Link href="/services/contents-marketing">
+                          <Link href="/services/contents-marketing" title="Content Marketing">
                             {" "}
                             CONTENT_MARKETING
                           </Link>
@@ -206,7 +206,7 @@ const ServiceThirdSlowMarque = () => {
                     >
                       <div className="tp-text__6-wrap">
                         <h3 className="tp-text__6-text">
-                          <Link href="/services/web-designing-and-development">
+                          <Link href="/services/web-designing-and-development" title="Web Development">
                             {" "}
                             WEB_DEVELOPMENT
                           </Link>
@@ -236,7 +236,7 @@ const ServiceThirdSlowMarque = () => {
                     >
                       <div className="tp-text__6-wrap">
                         <h3 className="tp-text__6-text">
-                          <Link href="/services/celebrity-endorsements">
+                          <Link href="/services/celebrity-endorsements" title="Celebrity Endorsements">
                             {" "}
                             CELEBRITY_ENDORSEMENTS
                           </Link>
@@ -266,7 +266,7 @@ const ServiceThirdSlowMarque = () => {
                     >
                       <div className="tp-text__6-wrap">
                         <h3 className="tp-text__6-text">
-                          <Link href="/services/influencer-marketing-agency-in-india">
+                          <Link href="/services/influencer-marketing-agency-in-india" title="Influencer Marketing">
                             {" "}
                             INFLUENCER_MARKETING
                           </Link>

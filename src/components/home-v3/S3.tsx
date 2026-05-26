@@ -266,7 +266,7 @@ function S3() {
                                   fontFamily: "OpenSansRegular",
                                 }}
                               >
-                                <Link href={item.link} target="_blank"><h5 className="inline font-[400] text-[14px] sm:text-[16px]">{item.subService}</h5></Link>
+                                <Link href={item.link} target="_blank" title={item.subService}><h5 className="inline font-[400] text-[14px] sm:text-[16px]">{item.subService}</h5></Link>
                               </li>
                             );
                           })}
@@ -274,6 +274,7 @@ function S3() {
                         <div>
                           <Link
                             href={ob.link}
+                            title="Know More"
                             target="_blank"
                             className="font-[600] text-[14px] sm:text-[16px] underline"
                             style={{

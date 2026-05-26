@@ -304,7 +304,7 @@ const AddAdvertisementPage: React.FC = () => {
 
       <div className={styles.header}>
         <div className={styles.headerTop}>
-          <Link href="/admin/newspaper/ads/manage" className={styles.backLink}>
+          <Link href="/admin/newspaper/ads/manage" title="Back to Manage" className={styles.backLink}>
             ← Manage Advertisements
           </Link>
         </div>

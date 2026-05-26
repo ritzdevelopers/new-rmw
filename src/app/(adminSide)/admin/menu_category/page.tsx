@@ -353,6 +353,7 @@ const Page: React.FC = () => {
       {/* Breadcrumb */}
       <div className="flex flex-wrap items-center gap-2 sm:gap-4 bg-white p-3 rounded-md shadow-sm">
         <Link
+          title="Home"
           href="/admin"
           className="text-[#2955B3] flex items-center gap-2 hover:underline"
         >

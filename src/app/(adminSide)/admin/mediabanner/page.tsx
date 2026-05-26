@@ -88,6 +88,7 @@ const MediaBannerPage = () => {
       <div className="flex flex-col gap-6 p-4">
         <div className="flex justify-end">
           <Link
+            title="Add Content"
             href={"/admin/content/add"}
             className="px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] transition duration-200"
           >
@@ -156,6 +157,7 @@ const MediaBannerPage = () => {
                 <p className="w-1/4 text-[#688A7E] truncate">{banner.title}</p>
                 <div className="w-full md:w-1/6 flex gap-2 mt-2 md:mt-0">
                   <Link
+                    title="Edit Content"
                     href={`/admin/content/edit/${banner.id}`}
                     className="p-2 bg-green-600 hover:bg-green-700 text-white rounded-md"
                   >

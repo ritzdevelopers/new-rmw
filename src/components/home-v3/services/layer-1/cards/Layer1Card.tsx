@@ -66,6 +66,7 @@ function Layer1Card({ item, idx }: { item: Item, idx: number }) {
                 {/* Button Container  */}
                 <div className="w-full flex flex-col gap-3 sm:gap-4">
                     <Link 
+                        title="Learn more"
                         href={`${link}`} 
                         target="_blank" 
                         className="w-fit"

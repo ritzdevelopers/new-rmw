@@ -23,12 +23,13 @@ const Header = () => {
                   background: "blue",
                 }}
               >
-                <Link className="main-logo" href="/" target="_blank">
-                  <Image
+                <Link className="main-logo" href="/" target="_blank" title="Ritz Media World">
+                  <Image  
                     width={50}
                     height={50}
                     src="/logo_blue.png"
-                    alt="logo"
+                    alt="Ritz Media World logo"
+                    title="Ritz Media World logo"
                     priority
                   />
                 </Link>
@@ -100,6 +101,7 @@ const Header = () => {
                                       <div className="homemenu-content text-center">
                                         <h4 className="homemenu-title">
                                           <Link
+                                            title="Digital Marketing"
                                             href="/digital-marketing/#"
 
                                             rel="nofollow"
@@ -129,6 +131,7 @@ const Header = () => {
                                       <div className="homemenu-content text-center">
                                         <h4 className="homemenu-title">
                                           <Link
+                                            title="Branding"
                                             href="/" target="_blank"
 
                                             rel="nofollow"
@@ -159,7 +162,7 @@ const Header = () => {
                                         <h4 className="homemenu-title">
                                           <Link
                                             href="/" target="_blank"
-
+                                            title="Design Studio"
                                             rel="nofollow"
                                           >
                                             Design Studio
@@ -187,6 +190,7 @@ const Header = () => {
                                       <div className="homemenu-content text-center">
                                         <h4 className="homemenu-title">
                                           <Link
+                                            title="Freelancer"
                                             href="/" target="_blank"
 
                                             rel="nofollow"
@@ -216,6 +220,7 @@ const Header = () => {
                                       <div className="homemenu-content text-center">
                                         <h4 className="homemenu-title">
                                           <Link
+                                            title="Creative Agency"
                                             href="/" target="_blank"
 
                                             rel="nofollow"
@@ -246,7 +251,7 @@ const Header = () => {
                                         <h4 className="homemenu-title">
                                           <Link
                                             href="/" target="_blank"
-
+                                            title="Portfolio Showcase"
                                             rel="nofollow"
                                           >
                                             Portfolio Showcase

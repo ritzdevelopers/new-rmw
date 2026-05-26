@@ -149,6 +149,7 @@ function Page() {
 
                     <div className="md:mt-4  mt-4 lg:mt-6 xl:mt-8 flex items-center justify-center gap-4 sm:mt-10">
                         <Link
+                            title="Let's Talk Today"
                             href="/contact.html"
                             target="_blank"
                             aria-label="Let's Talk Today"
@@ -158,6 +159,7 @@ function Page() {
                             Let&apos;s Talk Today
                         </Link>
                         <Link
+                            title="3D Rendering Showcase"
                             href="/contact.html"
                             target="_blank"
                             aria-label="Let's Talk Today"

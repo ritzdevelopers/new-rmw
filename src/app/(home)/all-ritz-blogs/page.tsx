@@ -77,7 +77,7 @@ const BlogPage: React.FC = () => {
   return (
     <>
       {/* Preload critical resources for better LCP */}
-      <link rel="preload" href="/api/ritz_blogs/get-all-blogs" as="fetch" crossOrigin="anonymous" />
+      <link rel="preload" title="All Blogs" href="/api/ritz_blogs/get-all-blogs" as="fetch" crossOrigin="anonymous" />
       
       <main className="px-4 md:px-8 py-10 bg-red-500 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
         {/* Header */}

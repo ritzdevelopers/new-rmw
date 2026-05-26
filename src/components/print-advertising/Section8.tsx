@@ -94,7 +94,8 @@ function Section8() {
 
                             {/* View More Container  */}
                             <div className="w-[100px] sm:w-[120px] lg:w-[146px] h-[56px] sm:h-[67px] lg:h-[81px] flex justify-center items-center flex-shrink-0 ml-2 sm:ml-4">
-                                <Link
+                                <Link   
+                                title="Show more"
                                     href={"https://ritzmediaworld.com/about.html"}
                                     target="_blank"
                                     className="font-[600] text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] cursor-pointer border-b hover:opacity-80 transition-opacity"

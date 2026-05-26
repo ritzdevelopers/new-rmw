@@ -335,7 +335,7 @@ function EditAdvertisementContent() {
         <div className={styles.errorContainer}>
           <h2 className={styles.errorTitle}>Invalid Request</h2>
           <p className={styles.errorMessage}>No advertisement ID provided</p>
-          <Link
+          <Link title="Back to Manage"
             href="/admin/newspaper/ads/manage"
             className={styles.backButton}
           >
@@ -355,7 +355,7 @@ function EditAdvertisementContent() {
 
       <div className={styles.header}>
         <div className={styles.headerTop}>
-          <Link href="/admin/newspaper/ads/manage" className={styles.backLink}>
+          <Link href="/admin/newspaper/ads/manage" title="Back to Manage" className={styles.backLink}>
             ← Back to Manage
           </Link>
         </div>
@@ -594,7 +594,7 @@ function EditAdvertisementContent() {
 
         {/* Form Actions */}
         <div className={styles.actions}>
-          <Link
+          <Link title="Back to Manage"
             href="/admin/newspaper/ads/manage"
             className={styles.cancelButton}
           >

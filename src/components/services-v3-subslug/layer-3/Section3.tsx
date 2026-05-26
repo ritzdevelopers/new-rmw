@@ -75,6 +75,7 @@ export default function Section3() {
       <div className={`w-full mx-auto overflow-hidden ${containerStyles.containerWidth}`}>
         <div className="text-center">
           <Link
+            title="Services"
             href="/services"
             target="_blank"
             rel="noopener noreferrer"
@@ -172,6 +173,7 @@ export default function Section3() {
                         </div>
 
                         <Link
+                          title="Learn more"
                           href={item.learnMoreHref}
                           target="_blank"
                           rel="noopener noreferrer"

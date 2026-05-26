@@ -71,7 +71,7 @@ export default function Blogs() {
                         </p>
                     </div>
                     <div className="hidden md:flex shrink-0 self-center md:self-auto">
-                        <Link href="/blogs" className={readMoreBtnClass}>
+                        <Link href="/blogs" title="Read more blogs" className={readMoreBtnClass}>
                             Read more blogs
                         </Link>
                     </div>
@@ -97,6 +97,7 @@ export default function Blogs() {
                     ) : (
                         blogs.map((blog: any) => (
                             <Link
+                                title={blog.title || "Blog Image"}
                                 key={blog.slug}
                                 href={`/${blog.slug}`}
                                 className="group flex h-full w-full flex-col hover:underline"
@@ -135,7 +136,7 @@ export default function Blogs() {
                 </div>
 
                 <div className="w-full flex justify-center px-1 md:hidden">
-                    <Link href="/blogs" className={readMoreBtnClass}>
+                    <Link href="/blogs" title="Read more blogs" className={readMoreBtnClass}>
                         Read more blogs
                     </Link>
                 </div>

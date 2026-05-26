@@ -158,6 +158,7 @@ const Page = () => {
             }}
           />
           <Link
+            title="Add FAQ"
             href="/admin/howitworks/add"
             className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded transition"
           >
@@ -179,6 +180,7 @@ const Page = () => {
         <div className="flex flex-col gap-6 p-4">
           <div className="flex justify-end">
             <Link
+              title="Add Content"
               href={"/admin/content/add"}
               className="px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] cursor-pointer transition duration-200"
             >

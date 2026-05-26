@@ -26,7 +26,9 @@ export default function Section2() {
           </p>
         </div>
 
-        <div className="w-full flex justify-center items-center"> <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today" className="mt-4 lg:mt-10 flex text-[#0F1640] items-center justify-center gap-4 letsTalkToday p-3 rounded-[5px] letsTalkToday">
+        <div className="w-full flex justify-center items-center"> 
+          <Link href="/contact.html" target="_blank" title="Let's Talk Today"
+           aria-label="Let's Talk Today" className="mt-4 lg:mt-10 flex text-[#0F1640] items-center justify-center gap-4 letsTalkToday p-3 rounded-[5px] letsTalkToday">
           <span
             className="text-[18px]   md:text-[20px] font-[500]"
             style={{ fontFamily: "MontserratMedium" }}

@@ -81,6 +81,7 @@ function S10() {
               <Link
                 key={`blog-${idx}`}
                 href={blog.link}
+                title={blog.title}
                 className="blog-card w-full h-[380px] sm:h-[400px] md:h-[430px] lg:h-[456px] flex flex-col justify-between rounded-t-[20px] sm:rounded-t-[22px] md:rounded-t-[24px] overflow-hidden bg-white border border-[#E5E7EB] hover:shadow-xl transition-all duration-300 group cursor-pointer hover:-translate-y-2"
               >
                 {/* Image Container */}
