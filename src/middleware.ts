@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import { getLegacyBlogRedirectPath } from "@/lib/blogUrl";
+import {
+  getLegacyBlogRedirectPath,
+  isBlogImageFetchAccept,
+} from "@/lib/blogUrl";
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -56,9 +59,14 @@ export function middleware(req: NextRequest) {
     );
   }
 
-  // Legacy blog URLs: /blogs/<slug>, /blogs2/<slug>, /blog2/<slug>, /blog/<slug>, pagination
+  // Legacy blog URLs: /blogs/<slug> -> /<slug> (images under /blogs/ stay as-is)
   const legacyBlogDest = getLegacyBlogRedirectPath(pathname);
   if (legacyBlogDest) {
+    const isLegacyBlogPath =
+      /^\/blogs2?(\/|$)/i.test(pathname) || /^\/blog2?(\/|$)/i.test(pathname);
+    if (isLegacyBlogPath && isBlogImageFetchAccept(req.headers.get("accept"))) {
+      return NextResponse.next();
+    }
     const dest = new URL(legacyBlogDest, url.origin);
     dest.search = url.search;
     return NextResponse.redirect(dest, 301);

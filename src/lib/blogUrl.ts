@@ -26,10 +26,48 @@ export function resolveBlogBannerUrl(
 }
 
 /** True when path under /blogs/ is a static file (image, font, etc.), not a post slug. */
-export function isBlogStaticAssetPath(path: string): boolean {  const segment = path.replace(/^\/+/, "").split(/[?#]/)[0];
-  return /\.(jpe?g|png|gif|webp|svg|avif|ico|mp4|webm|pdf|woff2?|ttf|css|js)$/i.test(
-    segment
-  );
+export function isBlogStaticAssetPath(path: string): boolean {
+  const segment = path.replace(/^\/+/, "").split(/[?#]/)[0];
+  if (!segment) return false;
+
+  const parts = segment.split("/").filter(Boolean);
+  const last = parts[parts.length - 1] ?? "";
+
+  if (
+    /\.(jpe?g|png|gif|webp|svg|avif|ico|mp4|webm|pdf|woff2?|ttf|css|js)$/i.test(
+      last
+    )
+  ) {
+    return true;
+  }
+
+  // Legacy dated uploads: /blogs/2023/09/acr-768x404.jpg
+  if (/^\d{4}$/.test(parts[0] ?? "") && /^\d{1,2}$/.test(parts[1] ?? "")) {
+    return true;
+  }
+
+  // Resized filenames: cook-1024x539.jpg, db16fa7c-..._1100_550.png
+  if (/-\d+x\d+(\.[a-z0-9]+)?$/i.test(last) || /_\d+_\d+(\.[a-z0-9]+)?$/i.test(last)) {
+    return true;
+  }
+
+  // UUID-prefixed image names
+  if (
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(
+      last
+    )
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+/** Browser image requests (img/srcset) — do not redirect /blogs/ asset URLs. */
+export function isBlogImageFetchAccept(acceptHeader: string | null): boolean {
+  const accept = acceptHeader ?? "";
+  if (!accept.includes("image/")) return false;
+  return !accept.includes("text/html");
 }
 
 /** Collapse repeated legacy segments: /blogs/blogs/... -> /blogs/... */
