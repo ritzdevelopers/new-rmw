@@ -111,7 +111,7 @@ function S2Card({ blog }: { blog: Blog }) {
     const preview = previewSource.length > 100 ? `${previewSource.slice(0, 100)}...` : previewSource;
 
     return (
-        <div  className="w-full max-w-[613px] mx-auto flex flex-col gap-4 sm:gap-5 lg:gap-6 mb-12">
+        <div  className="w-full max-w-[613px] mx-auto flex flex-col gap-4 sm:gap-5 lg:gap-6 mb-8">
             {/* Top Row  */}
             <div className="w-full flex flex-col gap-3 sm:gap-4 lg:gap-5">
                 {/* Image Here  */}
@@ -126,7 +126,7 @@ function S2Card({ blog }: { blog: Blog }) {
                         loading="lazy"
                         alt={blog.title}
                         fill
-                        className="object-cover"
+                        className="object-fill"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 613px" />
                     ) : null}
                 </div>
@@ -140,7 +140,7 @@ function S2Card({ blog }: { blog: Blog }) {
                 </p>
             </div>
 
-            <div className="flex  items-center gap-2 lg:gap-6 pt-1">
+            <div className="flex  items-center gap-1 lg:gap-6">
                 {/* Div 1  */}
                 <div>
                     <p className={`font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-[#000000] ${styles.fontopensans}`}>{new Date(blog.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
