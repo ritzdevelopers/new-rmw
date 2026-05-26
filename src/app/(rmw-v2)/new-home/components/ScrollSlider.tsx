@@ -144,6 +144,7 @@ function ScrollSlider({ cards, sectionRef }: ScrollSliderProps) {
            
 
               <Link
+                title={card.linkText}
                 href={card.link} target="_blank"
                 className={`group inline-flex md:h-[40px] w-full items-center justify-center gap-2 rounded-[8px] px-6 py-3 text-[14px] lg:text-[16px] font-[500] transition-colors duration-200 ${
                   card.buttonBg || "bg-[#FFFFFF]"

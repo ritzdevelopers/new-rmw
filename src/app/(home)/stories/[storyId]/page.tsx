@@ -378,8 +378,8 @@ export default function StoryPage({ params }: { params: { storyId: string } }) {
   return (
     <>
       {/* Preload critical resources for better LCP */}
-      <link rel="preload" href="/storytestimg.jpg" as="image" />
-      <link rel="preload" href="/storytestvid.mp4" as="video" type="video/mp4" />
+      <link rel="preload" title="Story Image" href="/storytestimg.jpg" as="image" />
+      <link rel="preload" title="Story Video" href="/storytestvid.mp4" as="video" type="video/mp4" />
       
       <Suspense fallback={
         <div 

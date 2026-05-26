@@ -22,6 +22,7 @@ const Testimonials = () => {
               <div className="col-xl-4 col-lg-4 col-md-4">
                 <div className="tp-testi__3-action text-md-end">
                   <Link
+                    title="More about us"
                     className="tp-btn-primary theme-btn"
                     href="/about/"
                     rel="nofollow"

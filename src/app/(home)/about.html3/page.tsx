@@ -30,8 +30,8 @@ const page = () => {
   return (
     <>
       {/* Preload critical resources for better LCP */}
-      <link rel="preload" href="/about-images/First_Banner.jpg" as="image" />
-      <link rel="preload" href="/videos/bg_pattern2.mp4" as="video" type="video/mp4" />
+      <link rel="preload" title="First Banner" href="/about-images/First_Banner.jpg" as="image" />
+      <link rel="preload" title="Background Pattern" href="/videos/bg_pattern2.mp4" as="video" type="video/mp4" />
       
       <Suspense fallback={
         <div 

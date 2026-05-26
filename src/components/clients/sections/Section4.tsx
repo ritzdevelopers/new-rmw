@@ -34,6 +34,7 @@ function Section4() {
                 {/* CTA */}
                 <div className="relative z-10 w-full lg:w-auto shrink-0">
                     <Link
+                        title="Start Your Project"
                         href="/contact.html"
                         target="_blank"
                         rel="noopener noreferrer"

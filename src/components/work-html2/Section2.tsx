@@ -106,6 +106,7 @@ export default function Section2() {
           {visibleCards.map((item, index) => (
             <Link
               key={`${item.slug}-${index}`}
+              title={item.title}
               href={item.slug || "#"}
               className="block border border-[#E7E7E7] bg-white overflow-hidden transition-shadow duration-300 hover:shadow-md"
             >

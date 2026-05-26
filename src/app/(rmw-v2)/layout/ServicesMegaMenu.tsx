@@ -405,6 +405,7 @@ export function ServicesMegaMenuMobileAccordion({
               </button>
               <Link
                 href={c.href}
+                
                 title={c.name}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -433,7 +434,7 @@ export function ServicesMegaMenuMobileAccordion({
                     <Link
                       key={svc.href + svc.title}
                       href={svc.href}
-                      title={svc.title}
+                      title={`View all ${c.name}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={onNavigate}

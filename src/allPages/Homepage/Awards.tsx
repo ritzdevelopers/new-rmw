@@ -72,6 +72,7 @@ const Awards = () => {
                           <div className="tp-awards__name d-flex align-items-center">
                             <h4 className="tp-awards__title">
                               <Link
+                                title="Excellence in Digital Media by Dainik Jagran"
                                 href="/about.html"
                                 rel="nofollow"
                                 target="_blank"
@@ -84,6 +85,7 @@ const Awards = () => {
                         <div className="tp-awards__right">
                           <div className="tp-awards__icon">
                             <Link
+                              title="Excellence in Digital Media by Dainik Jagran"
                               href="/about.html"
                               rel="nofollow"
                               target="_blank"
@@ -117,7 +119,7 @@ const Awards = () => {
                           </div>
                           <div className="tp-awards__name d-flex align-items-center">
                             <h4 className="tp-awards__title">
-                              <Link href="/about.html" rel="nofollow" target="_blank">
+                              <Link href="/about.html" title="Trusted Digital Advertising Agency in NCR-Awarded by The Economic Times" rel="nofollow" target="_blank">
                                 Trusted Digital Advertising Agency in
                                 NCR-Awarded by The Economic Times
                               </Link>
@@ -127,6 +129,7 @@ const Awards = () => {
                         <div className="tp-awards__right">
                           <div className="tp-awards__icon">
                             <Link
+                              title="Trusted Digital Advertising Agency in NCR-Awarded by The Economic Times"
                               href="/about.html"
                               rel="nofollow"
                               target="_blank"
@@ -163,6 +166,7 @@ const Awards = () => {
                             <h4 className="tp-awards__title mr-40">
                               <Link
                                 href="/about.html"
+                                title="Icons by The Times of India"
                                 rel="nofollow"
                                 target="_blank"
                               >
@@ -175,6 +179,7 @@ const Awards = () => {
                           <div className="tp-awards__icon">
                             <Link
                               href=" /about.html"
+                              title="Icons by The Times of India"
                               rel="nofollow"
                               target="_blank"
                               className="awards-icon"
@@ -209,6 +214,7 @@ const Awards = () => {
                             <h4 className="tp-awards__title">
                               <Link
                                 href="/about.html"
+                                title="Special Achievement Award in Retail Category"
                                 rel="nofollow"
                                 target="_blank"
                               >
@@ -221,6 +227,7 @@ const Awards = () => {
                           <div className="tp-awards__icon">
                             <Link
                               href="/about.html"
+                              title="Special Achievement Award in Retail Category"
                               rel="nofollow"
                               target="_blank"
                               className="awards-icon"

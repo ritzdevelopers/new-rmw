@@ -58,7 +58,7 @@ function Footer() {
           <div className="flex flex-col w-full min-h-[206px] justify-between gap-6 sm:gap-8">
             {/* Logo Container */}
             <div className="w-[140px] sm:w-[160px] md:w-[180px] h-auto">
-              <Link href="/" target="_blank" className="block">
+              <Link href="/" target="_blank" title="Home" className="block">
                 <Image
                   src="/new-page/new-design-logo.png"
                   alt="RITZ Media World Logo"
@@ -149,12 +149,14 @@ function Footer() {
               Quick Links
             </h2>
             <Link
+              title="Home"
               href="/" target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
             >
               Home
             </Link>
             <Link
+              title="About"
               href="/about.html"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -162,6 +164,7 @@ function Footer() {
               About
             </Link>
             <Link
+              title="Our Work"
               href="/work.html"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -169,6 +172,7 @@ function Footer() {
               Our Work
             </Link>
             <Link
+              title="Blogs"
               href="/blogs"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -176,6 +180,7 @@ function Footer() {
               Blogs
             </Link>
             <Link
+              title="Web Stories"
               href="/web-stories"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -183,6 +188,7 @@ function Footer() {
               Web Stories
             </Link>
             <Link
+              title="Contact"
               href="/contact.html"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -190,6 +196,7 @@ function Footer() {
               Contact
             </Link>
             <Link
+              title="Careers"
               href="/career"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -198,6 +205,7 @@ function Footer() {
             </Link>
             {/* 
             <Link
+              title="Discussion Forum"
               href="/discussion-forum"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -206,6 +214,7 @@ function Footer() {
             </Link>
            
             <Link
+              title="Clients"
               href="/clients"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -220,6 +229,7 @@ function Footer() {
               Services
             </h2>
             <Link
+              title="Digital Marketing"
               href="/services/digital-marketing"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -227,6 +237,7 @@ function Footer() {
               Digital Marketing
             </Link>
             <Link
+              title="Print Advertising"
               href="/services/print-advertising"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -234,6 +245,7 @@ function Footer() {
               Print Advertising
             </Link>
             <Link
+              title="Radio Advertising"
               href="/services/radio-advertising"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -241,6 +253,7 @@ function Footer() {
               Radio Advertising
             </Link>
             <Link
+              title="Creative Services"
               href="/services/creative-services"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -248,6 +261,7 @@ function Footer() {
               Creative Services
             </Link>
             <Link
+              title="Content Marketing"
               href="/services/contents-marketing"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -255,6 +269,7 @@ function Footer() {
               Content Marketing
             </Link>
             <Link
+              title="Web Development"
               href="/services/web-designing-and-development"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -262,6 +277,7 @@ function Footer() {
               Web Development
             </Link>
             <Link
+              title="Celebrity Endorsements"
               href="/services/celebrity-endorsements"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -269,6 +285,7 @@ function Footer() {
               Celebrity Endorsements
             </Link>
             <Link
+              title="Influencer Marketing"
               href="/services/influencer-marketing-agency-in-india"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -276,6 +293,7 @@ function Footer() {
               Influencer Marketing
             </Link>
             {/* <Link
+              title="3D Rendering Services"
               href="/services/3d-rendering-services"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -283,6 +301,7 @@ function Footer() {
               3D Rendering Services
             </Link>
             <Link
+              title="Real Estate Walkthrough"
               href="/services/real-estate-walkthrough"
               target="_blank"
               className="font-[400] text-[14px]  text-[#D1D5DC] hover:text-[#F3830E] transition-colors duration-300 cursor-pointer"
@@ -297,6 +316,7 @@ function Footer() {
               Contact Us
             </h2>
             <Link
+              title="Contact Us"
               href="/contact.html"
               target="_blank"
               className="flex gap-3 sm:gap-4 items-start hover:text-[#F3830E] transition-colors duration-300 cursor-pointer group"

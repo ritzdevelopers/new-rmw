@@ -344,10 +344,10 @@ function Navbar() {
               className="flex justify-center items-center gap-4 xl:gap-6 2xl:gap-8 font-[500] text-white text-sm xl:text-base 2xl:text-lg transition-colors duration-300"
             >
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-                <Link href={"/"}>Home</Link>
+                <Link href={"/"} title="Home">Home</Link>
               </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-                <Link href={"/about.html"} target="_blank">
+                <Link href={"/about.html"} target="_blank" title="About">
                   About
                 </Link>
               </li>
@@ -360,27 +360,28 @@ function Navbar() {
                   href={"/services"}
                   target="_blank"
                   data-services-link
+                  title="Services"
                 >
                   Services
                 </Link>
               </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-                <Link href={"/work.html"} target="_blank">
+                <Link href={"/work.html"} target="_blank" title="Our Work">
                   Our Work
                 </Link>
               </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-                <Link href={"/blogs"} target="_blank">
+                <Link href={"/blogs"} target="_blank" title="Blog">
                   Blog
                 </Link>
               </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-                <Link href={"/rdx-digital-marketing-course"} target="_blank">
+                <Link href={"/rdx-digital-marketing-course"} target="_blank" title="Academy">
                   Academy
                 </Link>
               </li>
               <li className="cursor-pointer hover:opacity-80 transition-opacity">
-                <Link href={"/contact.html"} target="_blank">
+                <Link href={"/contact.html"} target="_blank" title="Contact Us">
                   Contact Us
                 </Link>
               </li>
@@ -468,6 +469,7 @@ function Navbar() {
                                 service.sub.map((subItem, subIdx) => (
                                   <li key={subIdx}>
                                     <Link
+                                      title={subItem.name}
                                       href={subItem.link}
                                       target="_blank"
                                       className="hover:text-[#F3830E] transition-colors"
@@ -498,6 +500,7 @@ function Navbar() {
                                 service.sub.map((subItem, subIdx) => (
                                   <li key={subIdx}>
                                     <Link
+                                      title={subItem.name}
                                       href={subItem.link}
                                       target="_blank"
                                       className="hover:text-[#F3830E] transition-colors"
@@ -528,6 +531,7 @@ function Navbar() {
                                 service.sub.map((subItem, subIdx) => (
                                   <li key={subIdx}>
                                     <Link
+                                      title={subItem.name}
                                       href={subItem.link}
                                       target="_blank"
                                       className="hover:text-[#F3830E] transition-colors"
@@ -631,6 +635,7 @@ function Navbar() {
               <li>
                 <Link
                   href="/" target="_blank"
+                  title="Home"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -641,6 +646,7 @@ function Navbar() {
                 <Link
                   href="/about.html"
                   target="_blank"
+                  title="About"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
                 >
@@ -673,6 +679,7 @@ function Navbar() {
                           {service.sub.map((subItem, subIdx) => (
                             <li key={subIdx}>
                               <Link
+                                title={subItem.name}
                                 href={subItem.link}
                                 onClick={toggleMobileMenu}
                                 className="hover:text-[#F3830E] transition-colors"
@@ -690,6 +697,7 @@ function Navbar() {
               <li>
                 <Link
                   href="/blogs"
+                  title="Our Work"
                   target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
@@ -699,6 +707,7 @@ function Navbar() {
               </li>
               <li>
                 <Link
+                  title="Blog"
                   href="/" target="_blank"
                   onClick={toggleMobileMenu}
                   className="block px-4 py-3 text-black font-[500] text-base hover:bg-gray-100 rounded-lg transition-colors"
@@ -708,6 +717,7 @@ function Navbar() {
               </li>
               <li>
                 <Link
+                  title="Academy"
                   href="/rdx-digital-marketing-course"
                   target="_blank"
                   onClick={toggleMobileMenu}
@@ -718,6 +728,7 @@ function Navbar() {
               </li>
               <li>
                 <Link
+                  title="Contact Us"
                   href="/contact.html"
                   target="_blank"
                   onClick={toggleMobileMenu}

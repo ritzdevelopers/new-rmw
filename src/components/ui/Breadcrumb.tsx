@@ -41,7 +41,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
           <li key={index} className="flex items-center space-x-2">
             {index > 0 && <span className="mx-2">/</span>}
             {crumb.href && index !== breadcrumbs.length - 1 ? (
-              <Link href={crumb.href} className="text-blue-600 hover:underline">
+              <Link href={crumb.href} title={crumb.name} className="text-blue-600 hover:underline">
                 {crumb.name}
               </Link>
             ) : (

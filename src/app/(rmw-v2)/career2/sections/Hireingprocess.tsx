@@ -139,6 +139,7 @@ export default function Hireingprocess() {
                 </p>
 
                 <Link
+                  title={item.buttonLabel}
                   href={item.buttonHref}
                   className="mt-8 inline-block rounded-md bg-[#12163b] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#1b2259]"
                 >

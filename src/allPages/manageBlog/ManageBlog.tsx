@@ -692,6 +692,7 @@ export default function ManageBlogs() {
         <div className="flex flex-col gap-6 p-4">
           <div className="flex justify-end">
             <Link
+              title="Add New Blog"
               href={"/admin/add-blog"}
               className="px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] cursor-pointer transition duration-200"
             >
@@ -804,12 +805,13 @@ export default function ManageBlogs() {
                         </span>
                       </td>
                       <td>
-                        <Link href={`/${blog.blogID}`}>
+                        <Link href={`/${blog.blogID}`} title="View Blog">
                           <button className="text-blue-600 hover:text-blue-800 pl-1 cursor-pointer">
                             <FaEye />
                           </button>
                         </Link>
                         <Link
+                          title="Edit Blog"
                           href={
                             blog.mongoID
                               ? `/admin/update/step-1/${blog.mongoID}`
@@ -863,12 +865,13 @@ export default function ManageBlogs() {
                     {blog.blogStatus}
                   </span>
                   <div className="flex gap-2">
-                    <Link href={`/${blog.blogID}`}>
+                    <Link href={`/${blog.blogID}`} title="View Blog">
                       <button className="text-blue-600 hover:text-blue-800">
                         <FaEye size={18} />
                       </button>
                     </Link>
                     <Link
+                      title="Edit Blog"
                       href={
                         blog.mongoID
                           ? `/admin/update/step-1/${blog.mongoID}`

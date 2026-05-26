@@ -35,7 +35,7 @@ const page = () => {
   return (
     <>
       {/* Preload critical resources for better LCP */}
-      <link rel="preload" href="/stories/stories-banner.jpg" as="image" />
+      <link rel="preload" title="Stories Banner" href="/stories/stories-banner.jpg" as="image" />
       
       <div>
         <Suspense fallback={

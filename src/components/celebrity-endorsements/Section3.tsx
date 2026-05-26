@@ -111,6 +111,7 @@ export default function Section3() {
 
               const exploreMoreLink = (
                 <Link
+                  title="Explore More"
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -160,6 +161,7 @@ export default function Section3() {
                       </p>
                       <div className="min-w-0 flex-1">
                         <Link
+                          title={item.title}
                           href={item.href}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -205,6 +207,7 @@ export default function Section3() {
 
                         <Link
                           href={item.href}
+                          title={item.title}
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}

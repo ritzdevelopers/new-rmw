@@ -179,6 +179,7 @@ function NewBlogSection() {
             return (
               <Link
                 key={idx}
+                title={cd.blogTitle}
                 href={`/${cd.blogSlug}`}
                 target="_blank"
                 rel="noopener noreferrer"

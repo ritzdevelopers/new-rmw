@@ -124,6 +124,7 @@ function S4() {
               </ul>
 
               <Link
+                title="Learn more"
                 href={service.link}
                 className="group inline-flex items-center gap-2 text-sm font-medium text-[#D4A574] transition-transform duration-200 hover:translate-x-1 sm:text-base"
               >
@@ -140,6 +141,7 @@ function S4() {
             Need a custom solution combining multiple services?
           </p>
           <Link
+            title="Let's create your integrated strategy"
             href="/contact.html"
             className="text-base font-[400] text-[#D4A574] underline-offset-4 transition-colors duration-200 hover:underline flex justify-center items-center gap-2 text-center sm:text-[18px]"
           >

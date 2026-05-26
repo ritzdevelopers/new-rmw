@@ -37,6 +37,7 @@ export default function NotFound() {
               </p>
               
               <Link 
+                title="Go to Home"
                 href="/" target="_blank" 
                 className="inline-block text-white px-5 py-2.5 bg-[#39ac31] rounded hover:bg-[#2d8a26] transition-colors duration-200 mt-5 no-underline"
               >
