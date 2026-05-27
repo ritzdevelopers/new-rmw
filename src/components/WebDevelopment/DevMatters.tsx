@@ -86,11 +86,14 @@ export default function DevMatters() {
                     {/* Desktop / large tablet arrows (lg+) */}
                     <div className="mt-6 hidden items-center gap-3 text-white/85 lg:flex">
                         <button
+                            type="button"
                             onClick={handlePrev}
                             className=" hover:opacity-70 cursor-pointer"
+                            aria-label="Previous slide"
                         >
                             <Image
-                                alt="prev"
+                                alt="Previous slide"
+                                title="Previous slide"
                                 src="/varun.icon/left-arrow.svg"
                                 width={30}
                                 height={30}
@@ -98,11 +101,14 @@ export default function DevMatters() {
                             />
                         </button>
                         <button
+                            type="button"
                             onClick={handleNext}
                             className=" hover:opacity-70  cursor-pointer"
+                            aria-label="Next slide"
                         >
                             <Image
-                                alt="next"
+                                alt="Next slide"
+                                title="Next slide"
                                 src="/varun.icon/right-arrow.svg"
                                 width={30}
                                 height={30}
@@ -119,6 +125,7 @@ export default function DevMatters() {
                         <img
                             src="/webDevelopment/devmatter.png"
                             alt="AI web development"
+                            title="AI web development"
                             className="h-auto w-full object-contain"
                         />
                     </div>
@@ -152,6 +159,7 @@ export default function DevMatters() {
                                                 <img
                                                     src={icon}
                                                     alt={title}
+                                                    title={title}
                                                     className={`mx-auto mb-3 object-contain lg:mb-4 ${globalCardIndex % 2 === 0
                                                         ? "w-[79px] h-[55px]"
                                                         : "w-[53px] h-[60px]"
@@ -184,7 +192,8 @@ export default function DevMatters() {
                             aria-label="Previous slide"
                         >
                             <Image
-                                alt=""
+                                alt="Previous slide"
+                                title="Previous slide"
                                 src="/varun.icon/left-arrow.svg"
                                 width={30}
                                 height={30}
@@ -198,7 +207,8 @@ export default function DevMatters() {
                             aria-label="Next slide"
                         >
                             <Image
-                                alt=""
+                                alt="Next slide"
+                                title="Next slide"
                                 src="/varun.icon/right-arrow.svg"
                                 width={30}
                                 height={30}
