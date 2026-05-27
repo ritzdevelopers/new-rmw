@@ -19,7 +19,7 @@ function Section2M() {
                         <span className="font-[700]">leveraging AI</span> to deliver <span className="font-[700]">stunning visuals</span> in{" "}
                         <span className="font-[700]">record time</span>.
                     </p>
-                    <p className={`font-[400] text-[14px] text-center ${styles.fontopensans} ${s2.rightBody}`}>
+                    <p className={`font-[400] text-[14px] text-center !mt-0 ${styles.fontopensans} ${s2.rightBody}`}>
                         For the better part of the last two decades,                         <a href="/" target="_blank"
                             rel="noopener noreferrer" title="Ritz Media World"
                             className="font-semibold cursor-pointer text-[#C99237] hover:underline"> RITZ MEDIA WORLD </a> has been building narratives that drive competitive movements. They
@@ -33,7 +33,7 @@ function Section2M() {
                             src="/new-about-imgs/s2/team.jpg"
                             alt="Ritz Media World creative team"
                             title="Ritz Media World team"
-                            className="h-auto w-full mt-4"
+                            className="h-auto w-full mt-1"
                         />
                     </div>
                 </div>
