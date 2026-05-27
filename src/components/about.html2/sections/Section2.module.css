@@ -263,3 +263,13 @@
     max-width: calc(564px * var(--s2md)) !important;
   }
 }
+
+.root .rightBody {
+  margin-top: 20px;
+}
+
+@media (min-width: 1024px) {
+  .root .rightBody {
+    margin-top: 28px;
+  }
+}

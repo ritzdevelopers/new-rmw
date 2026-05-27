@@ -14,7 +14,9 @@ export default function Section2() {
                 >
                     <span className="font-normal">In digital marketing, your website isn’t merely a collection of pages, it’s your brand’s</span><br className="hidden lg:block" /><span className="font-normal">most persuasive spokesperson.</span> <a
   href="/"
-  className="text-black font-bold "
+  target="_blank"
+  rel="noopener noreferrer"
+  className="font-semibold cursor-pointer text-[#C99237] hover:underline"
   title="Ritz Media World"
 >
   Ritz Media World,

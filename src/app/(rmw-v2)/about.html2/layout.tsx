@@ -1,5 +1,5 @@
 export const metadata = {
-    title: "About Ritz Media World – Award-Winning Delhi NCR Advertising Agency",
+    title: "About Ritz Media World | Award-Winning Delhi NCR Advertising Agency",
     description:
         "Learn how Ritz Media World crafts data-driven brand stories and digital campaigns. Over 17 years of experience turning brands into household names in Delhi NCR.",
     keywords:
@@ -10,7 +10,7 @@ export const metadata = {
         type: "website",
         locale: "en_US",
         title:
-            "About Ritz Media World – Award-Winning Delhi NCR Advertising Agency",
+            "About Ritz Media World | Award-Winning Delhi NCR Advertising Agency",
         description:
             "Learn how Ritz Media World crafts data-driven brand stories and digital campaigns.",
         siteName: "Ritz Media World",

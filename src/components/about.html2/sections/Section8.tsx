@@ -24,7 +24,7 @@ const CULTURE_ROW_1 = [
 
 const CULTURE_ROW_2_SIDE = [
   {
-    src: "/new-about/s7/s7-r2-i1.png",
+    src: "/new-about/s7/team_s7_r1.jpg",
     alt: "Creative workspace at Ritz Media World",
     title: "Creative workspace – Ritz Media World",
   },
