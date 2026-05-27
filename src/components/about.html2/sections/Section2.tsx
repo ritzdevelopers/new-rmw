@@ -14,7 +14,7 @@ function Section2() {
                         {/* Left Side Col  */}
                         <div className={`flex flex-col justify-between gap-4 ${s2.leftCol}`}>
                             <div className={`w-full pt-3 ${s2.whoRow}`}>
-                                <p className={`font-[600] text-[14px] uppercase ${styles.fontmontserrat} ${s2.whoLabel}`}>who are we ?</p>
+                                <h2 className={`font-[600] text-[14px] uppercase ${styles.fontmontserrat} ${s2.whoLabel}`}>who are we ?</h2>
                             </div>
 
                             <div className="w-full flex flex-col justify-end items-end text-end">
@@ -63,7 +63,7 @@ function Section2() {
                                         </div>
                                         <div>
                                             <p className={`font-[600] text-[16px] uppercase text-[#3C3C3C] ${styles.fontmontserrat} ${s2.reviewsLabel}`}>
-                                                more than <br /> 141 google reviews
+                                                more than <br /> 143 google reviews
 
                                             </p>
                                         </div>
@@ -128,7 +128,7 @@ function Section2() {
                         <p className={`font-[400] text-[16px] ${styles.fontopensans} ${s2.rightBody}`}>For the better part
                              of the last two decades,
                              <a href="/" target="_blank" rel="noopener noreferrer" title="Ritz Media World"
-                              className="font-semibold cursor-pointer"> RITZ MEDIA WORLD </a> 
+                              className="font-semibold cursor-pointer text-[#C99237] hover:underline"> RITZ MEDIA WORLD </a> 
                           has been building narratives that drive competitive movements. They don't just influence behaviors but develop lasting habits. <br /><br />
                             We pride ourselves in going out of our way to understand the consumer mindset in every walk of life. This enables us to build campaigns that don't just speak at them, but we build campaigns that speak to them.</p>
 
