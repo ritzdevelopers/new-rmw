@@ -1,10 +1,5 @@
-import About from "@/components/about.html2/About";
-function AboutPage() {
-    return (
-        <>
-            <About />
-        </>
-    )
-}
+import { redirect } from "next/navigation";
 
-export default AboutPage;
+export default function AboutHtml2Page() {
+  redirect("/about.html");
+}
