@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./page.module.css";
 import s2 from "./Section2.module.css";
@@ -17,10 +19,10 @@ function Section2M() {
                         <span className="font-[700]">leveraging AI</span> to deliver <span className="font-[700]">stunning visuals</span> in{" "}
                         <span className="font-[700]">record time</span>.
                     </p>
-                        <p className={`font-[400] text-[14px] text-center ${styles.fontopensans} ${s2.rightBody}`}>
-                        For the better part of the last two decades, <a href="/" target="_blank" 
-                        rel="noopener noreferrer"   title="Ritz Media World"
-                        className="font-semibold cursor-pointer"> RITZ MEDIA WORLD </a> has been building narratives that drive competitive movements. They
+                    <p className={`font-[400] text-[14px] text-center !mt-0 ${styles.fontopensans} ${s2.rightBody}`}>
+                        For the better part of the last two decades,                         <a href="/" target="_blank"
+                            rel="noopener noreferrer" title="Ritz Media World"
+                            className="font-semibold cursor-pointer text-[#C99237] hover:underline"> RITZ MEDIA WORLD </a> has been building narratives that drive competitive movements. They
                         don&apos;t just influence behaviors but develop lasting habits. <br />
                         <br />
                         We pride ourselves in going out of our way to understand the consumer mindset in every walk of life. This enables us to build
@@ -31,7 +33,7 @@ function Section2M() {
                             src="/new-about-imgs/s2/team.jpg"
                             alt="Ritz Media World creative team"
                             title="Ritz Media World team"
-                            className="h-auto w-full mt-4"
+                            className="h-auto w-full mt-1"
                         />
                     </div>
                 </div>
@@ -55,9 +57,8 @@ function Section2M() {
                                         {reviewers.map((reviewer, idx) => (
                                             <div
                                                 key={reviewer}
-                                                className={`relative w-[47px] h-[47px] shrink-0 rounded-full overflow-hidden border-3 border-[#ffffff] bg-white ${s2.avatar} ${
-                                                    idx > 0 ? `-ml-[10px] ${s2.avatarOverlap}` : ""
-                                                }`}
+                                                className={`relative w-[47px] h-[47px] shrink-0 rounded-full overflow-hidden border-3 border-[#ffffff] bg-white ${s2.avatar} ${idx > 0 ? `-ml-[10px] ${s2.avatarOverlap}` : ""
+                                                    }`}
                                                 style={{ zIndex: idx + 1 }}
                                             >
                                                 <Image
@@ -75,7 +76,7 @@ function Section2M() {
                                         <p
                                             className={`font-[600] text-[13px] uppercase text-[#3C3C3C] ${styles.fontmontserrat} ${s2.reviewsLabel}`}
                                         >
-                                            more than <br /> 141 google reviews
+                                            more than <br /> 143 google reviews
                                         </p>
                                     </div>
                                 </div>
@@ -89,34 +90,40 @@ function Section2M() {
                                         5.0
                                     </p>
                                 </div>
-                                <a
-  href="https://share.google/KiTNs3mJMr5qUOkjK"
-  target="_blank"
-  rel="noopener noreferrer"
-  title="Google Reviews"
-  className={`w-[40px] h-[40px] rounded-full bg-[#C99237] flex justify-center hover:bg-[#0F1640] cursor-pointer items-center ${s2.gBadge}`}
->
-  <svg
-    width="22"
-    height="20"
-    viewBox="0 0 22 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M19.4276 2.92383L17.1346 9.08052L12.9492 4.01635L19.4276 2.92383Z"
-      fill="white"
-    />
-    <rect
-      x="2.19672"
-      y="16.7171"
-      width="16.5517"
-      height="0.689655"
-      transform="rotate(-39.5724 2.19672 16.7171)"
-      fill="white"
-    />
-  </svg>
-</a>
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        window.open(
+                                            "https://share.google/KiTNs3mJMr5qUOkjK",
+                                            "_blank",
+                                            "noopener,noreferrer"
+                                        )
+                                    }
+                                    title="Google Reviews"
+                                    aria-label="Google Reviews"
+                                    className={`w-[40px] h-[40px] rounded-full bg-[#C99237] flex justify-center hover:bg-[#0F1640] cursor-pointer items-center border-0 p-0 ${s2.gBadge}`}
+                                >
+                                    <svg
+                                        width="22"
+                                        height="20"
+                                        viewBox="0 0 22 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            d="M19.4276 2.92383L17.1346 9.08052L12.9492 4.01635L19.4276 2.92383Z"
+                                            fill="white"
+                                        />
+                                        <rect
+                                            x="2.19672"
+                                            y="16.7171"
+                                            width="16.5517"
+                                            height="0.689655"
+                                            transform="rotate(-39.5724 2.19672 16.7171)"
+                                            fill="white"
+                                        />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
