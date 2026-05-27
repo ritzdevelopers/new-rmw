@@ -239,7 +239,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
         {/* Menu Items */}
         <nav className="flex flex-col mt-4 overflow-y-auto hide-scrollbar">
-          <Link onClick={handleClick} href="/admin/dashboard">
+          <Link title="Dashboard" onClick={handleClick} href="/admin/dashboard">
             <div
               onClick={(e) => handleActiveTabBG(e)}
               style={{
@@ -255,7 +255,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
             </div>
           </Link>
 
-          <Link onClick={handleClick} href="/admin/analytics">
+          <Link title="Analytics" onClick={handleClick} href="/admin/analytics">
             <div
               onClick={(e) => handleActiveTabBG(e)}
               style={{
@@ -301,7 +301,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
           {expanded && chatsOpen && (
             <div className="space-y-2">
-              <Link href="/admin/chats/overview">
+              <Link title="Chats Overview" href="/admin/chats/overview">
                 <div
                   onClick={() => setActiveSubMenu("Chats Overview")}
                   style={{
@@ -320,7 +320,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Overview
                 </div>
               </Link>
-              <Link href="/admin/chats/history">
+              <Link title="Chats History" href="/admin/chats/history">
                 <div
                   onClick={() => setActiveSubMenu("Chats History")}
                   style={{
@@ -339,7 +339,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   History
                 </div>
               </Link>
-              <Link href="/admin/chats/export">
+              <Link title="Chats Export" href="/admin/chats/export">
                 <div
                   onClick={() => setActiveSubMenu("Chats Export")}
                   style={{
@@ -392,7 +392,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
           {/* Blog Submenu */}
           {expanded && blogOpen && (
             <div className="space-y-2">
-              <Link href="/admin/add-blog">
+              <Link title="Add Blog" href="/admin/add-blog">
                 <div
                   onClick={() => setActiveSubMenu("Add Blog")}
                   style={{
@@ -411,7 +411,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Add Blog
                 </div>
               </Link>
-              <Link href="/admin/manage-blogs">
+              <Link title="Manage Blogs" href="/admin/manage-blogs">
                 <div
                   onClick={() => setActiveSubMenu("Manage Blogs")}
                   style={{
@@ -464,7 +464,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
           {/* Web Stories submenu */}
           {expanded && webStoriesOpen && (
             <div className="space-y-2">
-              <Link href="/admin/add-web-story-topics">
+              <Link title="Add Web Story Topics" href="/admin/add-web-story-topics">
                 <div
                   onClick={() => setActiveSubMenu("Add Web Story Topics")}
                   style={{
@@ -483,7 +483,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Add Web Story Topics
                 </div>
               </Link>
-              <Link href="/admin/manage-web-story-topics">
+              <Link title="Manage Web Story Topics" href="/admin/manage-web-story-topics">
                 <div
                   onClick={() => setActiveSubMenu("Manage Web Story Topics")}
                   style={{
@@ -502,7 +502,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Manage Web Story Topics
                 </div>
               </Link>
-              <Link href="/admin/add-web-story">
+              <Link title="Add Web Story" href="/admin/add-web-story">
                 <div
                   onClick={() => setActiveSubMenu("Add Web Story")}
                   style={{
@@ -521,7 +521,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Add Web Story
                 </div>
               </Link>
-              <Link href="/admin/manage-web-stories">
+              <Link title="Manage Web Stories" href="/admin/manage-web-stories">
                 <div
                   onClick={() => setActiveSubMenu("Manage Web Story")}
                   style={{
@@ -574,7 +574,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
           {/* Newspaper Submenu */}
           {expanded && newspaperOpen && (
             <div className="space-y-2">
-              <Link href="/admin/newspaper/manage">
+              <Link title="Manage Newspapers" href="/admin/newspaper/manage">
                 <div
                   onClick={() => setActiveSubMenu("Manage Newspapers")}
                   style={{
@@ -593,7 +593,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Manage Newspapers
                 </div>
               </Link>
-              <Link href="/admin/newspaper">
+              <Link title="Add Newspaper" href="/admin/newspaper">
                 <div
                   onClick={() => setActiveSubMenu("Add Newspaper")}
                   style={{
@@ -612,7 +612,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Add Newspaper
                 </div>
               </Link>
-              <Link href="/admin/newspaper/ads/manage">
+              <Link title="Manage Ads" href="/admin/newspaper/ads/manage">
                 <div
                   onClick={() => setActiveSubMenu("Manage Ads")}
                   style={{
@@ -666,7 +666,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
           {expanded && webpagesLinks && (
             <div className=" space-y-2">
-              <Link href="/admin/content">
+              <Link title="Manage Pages Cards" href="/admin/content">
                 <div
                   onClick={() => setActiveSubMenu("Manage Page")}
                   style={{
@@ -686,7 +686,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                 </div>
               </Link>
 
-              <Link href="/admin/menu_category">
+              <Link title="Manage Category" href="/admin/menu_category">
                 <div
                   onClick={() => setActiveSubMenu("Manage  Category")}
                   style={{
@@ -740,7 +740,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
           {expanded && homePagesLinks && (
             <div className=" space-y-2">
-              <Link href="/admin/manage-services/service-third">
+              <Link title="Service Third" href="/admin/manage-services/service-third">
                 <div
                   onClick={() => setActiveSubMenu("Service Third")}
                   style={{
@@ -794,7 +794,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
 
           {expanded && systemSettings && (
             <div className=" space-y-2">
-              <Link href="/admin/enquiry">
+              <Link title="Contact Enquiry" href="/admin/enquiry">
                 <div
                   onClick={() => setActiveSubMenu("Contact Enquiry")}
                   style={{
@@ -813,7 +813,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                   Contact Enquiry
                 </div>
               </Link>
-              <Link href="/admin/enquiry/enquiries">
+              <Link title="Enquiries" href="/admin/enquiry/enquiries">
                 <div
                   onClick={() => setActiveSubMenu("Enquiries")}
                   style={{
@@ -833,7 +833,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
                 </div>
               </Link>
 
-              <Link href="/admin/enquiry/career">
+              <Link title="Manage Career" href="/admin/enquiry/career">
                 <div
                   onClick={() => setActiveSubMenu("Manage Career")}
                   style={{
@@ -856,6 +856,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
           )}
 
           <Link
+            title="Management"
             style={{
               ...(!expanded
                 ? { borderWidth: "none" }
@@ -873,6 +874,7 @@ const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
           </Link>
 
           <Link
+            title="Create user"
             style={{
               ...(!expanded
                 ? { borderWidth: "none" }

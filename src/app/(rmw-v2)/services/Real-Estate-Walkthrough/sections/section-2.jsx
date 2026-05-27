@@ -63,6 +63,7 @@ export default function Section2() {
         <div className="md:mt-4 lg:mt-6 xl:mt-8 flex items-center justify-center gap-4 sm:mt-10">
           <Link
             href="/contact.html"
+            title="Let's Talk Today"
             target="_blank"
             aria-label="Let's Talk Today"
             className="text-[18px] font-medium text-[#0F1640] transition-colors  md:text-[20px]"
@@ -73,6 +74,7 @@ export default function Section2() {
           <Link
             href="/contact.html"
             target="_blank"
+            title="Let's Talk Today"
             aria-label="Let's Talk Today"
             className="flex h-10 w-10 items-center justify-center rounded-full bg-[#C99237] transition-colors hover:bg-[#0F1640] sm:h-11 sm:w-11"
           >

@@ -134,6 +134,7 @@ const Category = () => {
                       {card.title || card.blogTitle}
                     </h5>
                     <Link
+                      title="Read more"
                     target="_blank"
                       href={`/${isMongo ? card.blogSlug : card.slug}`}
                       className={styles.button}

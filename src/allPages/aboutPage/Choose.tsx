@@ -19,6 +19,7 @@ const Choose = () => {
           <Link
             href="/service-details/"
             rel="nofollow"
+            title="Why choose us"
             target="_self"
           >
             <span>

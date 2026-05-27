@@ -18,6 +18,7 @@ export default function Section4() {
         </p>
 
         <Link
+          title="Schedule Free Consultation"
           href="https://ritzmediaworld.com/contact.html"
           target="_blank"
           className="mt-7 sm:mt-8 md:mt-10 inline-flex items-center gap-5 border-b border-black pb-2 text-black font-[600] text-[18px] sm:text-[20px] md:text-[26px] lg:text-[16px] leading-none"

@@ -49,6 +49,7 @@ export default function Section2() {
         </div>
 
         <Link
+          title="Contact us"
           href="/contact.html"
           target="_blank"
           rel="noopener noreferrer"

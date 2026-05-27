@@ -45,6 +45,7 @@ const ServiceMainAbout = () => {
                             Profitable Products
                           </p>
                           <Link
+                            title="More about us"
                             className="tp-btn-secondary hover:text-white"
                             href="/about.html"
                             target="_blank"
@@ -81,6 +82,7 @@ const ServiceMainAbout = () => {
                             MISSION
                           </p>
                           <Link
+                            title="More about us"
                             className="tp-cta_2-mission-arrow"
                             href="https://ritzmediaworld.com/about.html" target="_blank"
                             rel="nofollow"

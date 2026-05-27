@@ -216,7 +216,8 @@ export default function WhatWeProvide() {
                     </div>
 
                 <div className="relative mx-auto w-full  h-[368px] sm:h-[360px] md:h-[420px] lg:h-[450px] xl:h-[480px] max-w-[280px] sm:max-w-[320px] md:max-w-[340px] overflow-hidden rounded-[80px] sm:rounded-[100px] md:rounded-[120px] xl:rounded-[140px]">
-                       <Link href={activeSlide?.serviceUrlLink} target="_blank" title={activeSlide?.title.trim()} rel="noopener noreferrer">
+                       <Link href={activeSlide?.serviceUrlLink} 
+                       target="_blank" title={activeSlide?.title.trim()} rel="noopener noreferrer">
                         <AnimatePresence mode="wait" initial={false} custom={direction}>
                             <motion.img
                                 key={activeIndex}
@@ -261,6 +262,7 @@ export default function WhatWeProvide() {
                             <Link
                                 href={activeSlide?.serviceUrlLink}
                                 target="_blank"
+                                title="Learn more"
                                 rel="noopener noreferrer"
                                 className="flex items-center justify-center md:justify-start gap-4 md:gap-4 lg:gap-4 xl:gap-6 outline-none focus-visible:ring-2 focus-visible:ring-[#C99237] focus-visible:ring-offset-2 rounded-sm"
                             >

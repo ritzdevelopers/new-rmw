@@ -401,7 +401,7 @@ function EditNewspaperContent() {
 
       <div className={styles.header}>
         <div className={styles.headerTop}>
-          <Link href="/admin/newspaper/manage" className={styles.backLink}>
+          <Link href="/admin/newspaper/manage" title="Back to Manage" className={styles.backLink}>
             ← Back to Manage
           </Link>
         </div>
@@ -666,6 +666,7 @@ function EditNewspaperContent() {
         <div className={styles.actions}>
           <Link
             href="/admin/newspaper/manage"
+            title="Back to Manage"
             className={styles.cancelButton}
           >
             Cancel

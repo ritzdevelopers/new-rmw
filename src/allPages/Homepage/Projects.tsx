@@ -63,7 +63,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
             />
           </div>
           <div className="tp-project__icon">
-            <Link href={project.link} target="_self">
+            <Link href={project.link} title={project.title} target="_self">
               <span>
                 <svg
                   width="100"
@@ -90,7 +90,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
         style={{ borderBottomRightRadius: "0px" }}
       >
         <h3 className="tp-project__title">
-          <Link href={project.link} target="_self">
+          <Link href={project.link} title={project.title} target="_self">
             {project.title}
           </Link>
         </h3>

@@ -83,7 +83,7 @@ const ServiceMainOurService = () => {
         <div className="tp-services__widget mb-85">
           {services.map((list, index) => (
             <div key={index} className="tp-services__item tp-hover__reveal-item">
-              <Link href={`/services/${list.link}`} target="_self">
+              <Link href={`/services/${list.link}`} title={list.title} target="_self">
                 <div className="row align-items-center">
                   <div className="col-xl-2 col-lg-2">
                     <div className="tp-services__number">

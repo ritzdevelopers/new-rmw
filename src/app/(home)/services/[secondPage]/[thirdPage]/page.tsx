@@ -66,7 +66,7 @@ const Page = async ({
   return (
     <>
       {/* Preload critical resources for better LCP */}
-      <link rel="preload" href="/service-images/services-third-banner.jpg" as="image" />
+      <link rel="preload" title="Services Third Banner" href="/service-images/services-third-banner.jpg" as="image" />
       
       <div>
         {thirdPage === "newspaper-ad-rates" ? (

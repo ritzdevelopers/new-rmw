@@ -43,6 +43,7 @@ export default function CelebrityEndorsementsLayout({
   return (
     <>
       <link
+        title="Remixicon"
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
       />

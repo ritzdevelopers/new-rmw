@@ -65,6 +65,7 @@ function Section3() {
                                                 href={item.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
+                                                title={item.title}
                                                 className={`cursor-pointer no-underline ${styles.fontmontserrat}`}
                                             >
                                                 <h3
@@ -87,6 +88,7 @@ function Section3() {
                                             href={item.link}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            title={`Learn more about ${item.title}`}
                                             className={`flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full bg-[#C99237] hover:bg-[#0F1640] no-underline ${s3.cta}`}
                                             aria-label={`Learn more about ${item.title}`}
                                         >

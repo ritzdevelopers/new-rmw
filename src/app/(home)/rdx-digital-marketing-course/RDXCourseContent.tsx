@@ -315,6 +315,7 @@ const RDXCourseContent = memo(({ modalFormHandler }: RDXCourseContentProps) => {
           <div className={styles.leftSide}>
             <span className={styles.highlight}>
               <Link
+                title="Contact RMW"
                 href="/contact.html"
                 className="tp-hero__action-btn"
                 aria-label="Contact RMW"

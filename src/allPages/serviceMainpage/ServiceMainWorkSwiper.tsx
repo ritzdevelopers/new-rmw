@@ -75,6 +75,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
+                              title="Digital Marketing"
                               href="/" target="_blank"
                              
                               rel=""
@@ -100,7 +101,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__content">
                             <h3 className="tp-work__title">
-                              <Link href="/services/digital-marketing/">
+                              <Link href="/services/digital-marketing/" title="Digital Marketing">
                                 Digital Marketing
                               </Link>
                             </h3>
@@ -127,6 +128,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
+                              title="Digital Marketing"
                               href="/" target="_blank"
                              
                               rel=""
@@ -152,7 +154,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__content">
                             <h3 className="tp-work__title">
-                              <Link href="/services/digital-marketing/">
+                              <Link href="/services/digital-marketing/" title="Digital Marketing">
                                 Digital Marketing
                               </Link>
                             </h3>
@@ -179,6 +181,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
+                              title="Digital Marketing"
                               href="/services/digital-marketing/"
                              
                               rel=""
@@ -204,7 +207,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__content">
                             <h3 className="tp-work__title">
-                              <Link href="/services/digital-marketing/">
+                              <Link href="/services/digital-marketing/" title="Digital Marketing">
                                 Digital Marketing
                               </Link>
                             </h3>
@@ -231,6 +234,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
+                              title="Digital Marketing"
                               href="/services/digital-marketing/"
                              
                               rel=""
@@ -256,7 +260,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__content">
                             <h3 className="tp-work__title">
-                              <Link href="/services/digital-marketing/">
+                              <Link href="/services/digital-marketing/" title="Digital Marketing">
                                 Digital Marketing
                               </Link>
                             </h3>
@@ -283,6 +287,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
+                              title="Digital Marketing"
                               href="/" target="_blank"
                              
                               rel=""
@@ -308,7 +313,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__content">
                             <h3 className="tp-work__title">
-                              <Link href="/" target="_blank">
+                              <Link href="/" title="Digital Marketing" target="_blank">
                                 Digital Marketing
                               </Link>
                             </h3>
@@ -335,6 +340,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__icon d-none d-md-block">
                             <Link
+                              title="Digital Marketing"
                               href="/" target="_blank"
                              
                               rel=""
@@ -360,7 +366,7 @@ const ServiceMainWorkSwiper = () => {
                           </div>
                           <div className="tp-work__content">
                             <h3 className="tp-work__title">
-                              <Link href="/" target="_blank">
+                              <Link href="/" title="Digital Marketing" target="_blank">
                                 Digital Marketing
                               </Link>
                             </h3>

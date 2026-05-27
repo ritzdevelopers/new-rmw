@@ -55,7 +55,7 @@ const page = async ({ params }: PageProps) => {
   return (
     <>
       {/* Preload critical resources for better LCP */}
-      <link rel="preload" href="/service-images/services-second-banner.jpg" as="image" />
+      <link rel="preload" title="Services Second Banner" href="/service-images/services-second-banner.jpg" as="image" />
       <ServicesSecondPage initialData={initialData} />
     </>
   );

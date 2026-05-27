@@ -510,17 +510,17 @@ function NewNavbar() {
         <div className="w-[92%]  flex justify-between items-center">
           {/* Left Side Container  */}
           <div>
-
-            <Image
-              src="/rmw-logo-sm-size.png"
-              alt="Ritz Media World"
-              title="Ritz Media World"
-              width={220}
-              height={80}
-              quality={70}
-              onClick={() => window.open("https://ritzmediaworld.com/", "_blank")}
-              className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`}
-            />
+            <Link href="/" title="Home">
+              <Image
+                src="/rmw-logo-sm-size.png"
+                alt="Ritz Media World"
+                title="Ritz Media World"
+                width={220}
+                height={80}
+                quality={70}
+                className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`}
+              />
+            </Link>
           </div>
           {/* Right Side Container  */}
           <div
@@ -750,15 +750,17 @@ function NewNavbar() {
         <div className="w-[90%] max-w-[1200px] flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center">
-            <Image
-              src="/rmw-logo-sm-size.png"
-              alt="Ritz Media World"
-              title="Ritz Media World"
-              width={170}
-              height={56}
-              quality={70}
-              className={`w-auto object-contain transition-all duration-300 hover:scale-105 ${isScrolled ? "h-[36px] sm:h-[40px]" : "h-[52px] sm:h-[56px]"}`}
-            />
+            <Link href="/" title="Home">
+              <Image
+                src="/rmw-logo-sm-size.png"
+                alt="Ritz Media World"
+                title="Ritz Media World"
+                width={170}
+                height={56}
+                quality={70}
+                className={`w-auto object-contain transition-all duration-300 hover:scale-105 ${isScrolled ? "h-[36px] sm:h-[40px]" : "h-[52px] sm:h-[56px]"}`}
+              />
+            </Link>
           </div>
 
           {/* Menu Toggle Button */}

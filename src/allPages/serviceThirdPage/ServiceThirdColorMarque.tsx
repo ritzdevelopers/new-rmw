@@ -64,7 +64,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/digital-marketing">
+                          <Link href="/services/digital-marketing" title="Digital Marketing">
                             {" "}
                             DIGITAL _ MARKETING
                           </Link>
@@ -87,7 +87,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/print-advertising">
+                          <Link href="/services/print-advertising" title="Print Advertising">
                             {" "}
                             PRINT_ADVERTISING
                           </Link>
@@ -110,7 +110,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/radio-advertising">
+                          <Link href="/services/radio-advertising" title="Radio Advertising">
                             RADIO_ADVERTISING
                           </Link>
                         </h3>
@@ -132,7 +132,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/creative-services">
+                          <Link href="/services/creative-services" title="Creative Services">
                             {" "}
                             CREATIVE_SERVICES
                           </Link>
@@ -155,7 +155,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/contents-marketing">
+                          <Link href="/services/contents-marketing" title="Content Marketing">
                             {" "}
                             CONTENT_MARKETING
                           </Link>
@@ -178,7 +178,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/web-designing-and-development">
+                          <Link href="/services/web-designing-and-development" title="Web Development">
                             {" "}
                             WEB_DEVELOPMENT
                           </Link>
@@ -201,7 +201,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/celebrity-endorsements">
+                          <Link href="/services/celebrity-endorsements" title="Celebrity Endorsements">
                             {" "}
                             CELEBRITY_ENDORSEMENTS
                           </Link>
@@ -224,7 +224,7 @@ const ServiceThirdColorMarque = () => {
                               "url(https://etorisoft.com/wp/avtrix/wp-content/themes/avtrix/assets/img/text-slider/fire.jpg)",
                           }}
                         >
-                          <Link href="/services/influencer-marketing-agency-in-india">
+                          <Link href="/services/influencer-marketing-agency-in-india" title="Influencer Marketing">
                             {" "}
                             INFLUENCER_MARKETING
                           </Link>

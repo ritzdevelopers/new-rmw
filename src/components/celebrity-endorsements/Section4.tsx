@@ -162,7 +162,7 @@ export default function Section4() {
 
       <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-10 flex justify-center px-4 sm:px-6 lg:px-0">
        
-<Link href="/contact.html" target="_blank">
+<Link href="/contact.html" target="_blank" title="Ready to Leverage Star Power into Real Business Results?">
   <div className={`w-full mx-auto flex items-center justify-center text-center ${styles.containerWidth} cursor-pointer`}>
     <p
       className="text-white font-[600] text-[18px] sm:text-[26px] md:text-[20px] lg:text-[28px] leading-tight"

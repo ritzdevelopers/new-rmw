@@ -162,6 +162,7 @@ const Page = () => {
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm">
           <Link
+            title="Home"
             href="/admin"
             className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors"
           >

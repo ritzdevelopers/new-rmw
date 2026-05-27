@@ -299,6 +299,7 @@ function Section3() {
 
                     <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-center md:text-left">
                         <Link
+                            title="Request A Free Audit"
                             href={"https://ritzmediaworld.com/contact.html"}
                             target="_blank"
                             className="font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-black"

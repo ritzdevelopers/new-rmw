@@ -556,6 +556,7 @@ function S5() {
                 </div>
 
                 <Link
+                  title="View Full Case Study"
                   href={story.link} target="_blank"
                   className="group inline-flex items-center hover:bg-black hover:text-white gap-3 text-[14px] font-[500] w-[198px] h-[36px] border-[0.8px] border-[#3D28171A] rounded-[8px] pl-3 text-[#3D2817] transition-transform duration-200 hover:translate-x-1 "
                 >
