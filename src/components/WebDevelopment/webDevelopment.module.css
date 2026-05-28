@@ -43,6 +43,19 @@
     font-weight: 800;
 }
 
+/* !-----------------about intro-------------------- */
+
+.aboutIntro {
+    text-wrap: pretty;
+}
+
+@media (min-width: 1024px) {
+    .aboutIntro p {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
 /* !-----------------container-------------------- */
 
 @media (min-width: 1370px) {
