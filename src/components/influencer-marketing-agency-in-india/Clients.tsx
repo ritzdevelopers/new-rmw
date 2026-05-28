@@ -98,6 +98,8 @@ function Section6({ pd = "py-[35px] lg:py-[70px] " }: { pd?: string }) {
                                 <Link
                                     title="Show more"
                                     href="/clients"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="font-[600] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] cursor-pointer border-b hover:opacity-80 transition-opacity"
                                 >
                                     Show more
