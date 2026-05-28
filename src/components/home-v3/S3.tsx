@@ -93,7 +93,7 @@ function S3() {
       category: "Content Marketing",
       ttl: "Strategic content that informs, engages, and converts",
       list: [
-        {subService:"Customized Content Strategy", link: "https://ritzmediaworld.com/services/contents-marketing/content-marketing"},
+        {subService:"Customized Content Strategy", link: "https://ritzmediaworld.com/services/contents-marketing/customized-content-strategy"},
         {subService:"Email and Newsletters Marketing", link: "https://ritzmediaworld.com/services/contents-marketing/email-and-newsletters-marketing"},
         {subService:"Asset Creation and Infographics", link: "https://ritzmediaworld.com/services/contents-marketing/asset-creation-and-infographics"},
         {subService:"Content Promotion and Optimization", link: "https://ritzmediaworld.com/services/contents-marketing/content-promotion-and-optimization"},
