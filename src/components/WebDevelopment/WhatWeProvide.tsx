@@ -100,6 +100,13 @@ export default function WhatWeProvide() {
 
     return (
         <section className={`w-full  py-6 md:py-10  lg:py-14 border-t border-[#D9D9D9] ${styles.page_containerWidth} `}>
+            <div className="sr-only">
+                {slides.map((slide) => (
+                    <h3 key={`service-heading-${slide.id}`}>
+                       {slide.title}
+                    </h3>
+                ))}
+            </div>
             <div className={`${styles.page_containerWidth} mx-auto px-4 md:px-10 lg:px-10 xl:px-13`}>
                 <div className="grid grid-cols-1 items-start gap-5 sm:gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:items-stretch xl:grid-cols-[1.1fr_1fr_1.1fr] xl:gap-6">
                     <div className="flex flex-col text-center md:col-span-2 md:text-left lg:col-span-1 lg:min-h-[450px] xl:min-h-[480px]">
