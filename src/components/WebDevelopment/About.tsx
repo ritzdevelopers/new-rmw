@@ -1,63 +1,91 @@
 import Link from "next/link";
-import styles from './webDevelopment.module.css';
+import styles from "./webDevelopment.module.css";
 
 const EXPLORE_ARROW_IMAGE =
-    "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
+  "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
 
 export default function Section2() {
-    return (
-        <section className="w-full flex items-center justify-center py-[35px] lg:py-[50px] bg-white">
-            <div className="w-[100%] md:w-[100%] lg:w-[100%] xl:w-[80%] text-center mx-auto px-4 md:px-[40px] lg:px-[50px] min-[1370px]:!w-[1300px] min-[1370px]:!max-w-[1300px] min-[1370px]:mx-auto">
-                <p
-                    className={`text-black  text-[20px] sm:text-[20px] md:text-[20px] lg:text-[24px]xl:text-[30px]  leading-[30px]   md:leading-[28px] lg:leading-[28px] xl:leading-[30px] mx-auto ${styles.montserrat}  `}
+  return (
+    <section className="flex w-full items-center justify-center bg-white py-[35px] lg:py-[50px]">
+      <div
+        className={`${styles.page_containerWidth} mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-12 xl:px-14`}
+      >
+        <div
+          className={`mx-auto flex w-full max-w-[1300px] flex-col gap-5 text-center md:gap-6 lg:gap-7 ${styles.montserrat} ${styles.aboutIntro}`}
+        >
+          <p className="text-[14px] font-normal leading-[1.65] text-black sm:text-[15px] md:text-[16px] lg:text-[18px] lg:leading-[1.6] xl:text-[20px] xl:leading-[1.55]">
+            In today's era, your website isn&apos;t merely a collection of
+            pages, it&apos;s your brand&apos;s most persuasive spokesperson.{" "}
+            <a
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whitespace-nowrap font-semibold text-[#C99237] hover:underline"
+              title="Ritz Media World"
+            >
+              Ritz Media World,
+            </a>{" "}
+            websites with a purpose, through our unique combination of custom web
+            development, responsive design and{" "}
+            <em className="not-italic">website performance optimization</em> we create websites that
+            deliver real results for your business.
+          </p>
 
-                >
-                    <span className="font-normal">In digital marketing, your website isn’t merely a collection of pages, it’s your brand’s</span><br className="hidden lg:block" /><span className="font-normal">most persuasive spokesperson.</span> <a
-  href="/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="font-semibold cursor-pointer text-[#C99237] hover:underline"
-  title="Ritz Media World"
->
-  Ritz Media World,
-</a> <span className="font-normal">
-                        websites with a purpose, through<br className="hidden lg:block" />our unique combination of custom web development, responsive design and <i>website <br className="hidden lg:block" /> performance optimization </i> we create websites that deliver real results for your business.
-                    </span>
-                </p>
+          <p
+            className={`${styles.fontopensans} text-[14px] font-normal leading-[1.65] text-black sm:text-[10px] md:text-[12px] lg:text-[12px] lg:leading-[1.6] xl:text-[16px] xl:leading-[1.55]`}
+          >
+            Recognised as a trustworthy{" "}
+            <em className="font-semibold italic">
+              web development company in India
+            </em>
+            , a go-to option for any business looking for a web development
+            company near me, we provide web development and{" "}
+            <em className="font-semibold italic">
+              web designing services in Delhi NCR
+            </em>{" "}
+            as well. We provide excellent{" "}
+            <em className="font-semibold italic">
+              web designing services in Noida
+            </em>
+            , Greater Noida and Delhi, creating all websites to have a high
+            ranking, faster loading speeds, and better conversion rates.
+          </p>
 
-                <div
-                    className={`${styles.fontopensans} mt-2 md:mt-3 lg:mt-4 xl:mt-5 text-black text-[14px]  md:text-[15px] leading-[23px] md:leading-[25px] lg:text-[16px] w-full  mx-auto text-center space-y-3 md:space-y-4`}
-                >
-                    <p>
-                        Recognised as a trustworthy <i className="font-semibold">web development company in India</i>, a go-to option for any  business looking for a web   <br className="hidden lg:block" /> development company near me, we provide web development and <i className="font-semibold">web designing services in Delhi NCR</i> as well.  <br className="hidden lg:block" />We provide excellent <i className="font-semibold">web designing services in Noida</i>, Greater Noida and Delhi, creating all websites to have <br className="hidden lg:block" /> a high ranking, faster loading speeds, and better conversion rates.
+          <p
+            className={`${styles.fontopensans} text-[14px] font-normal leading-[1.65] text-black sm:text-[10px] md:text-[12px] lg:text-[12px] lg:leading-[1.6] xl:text-[16px] xl:leading-[1.55]`}
+          >
+            Be it a custom made website, a CMS powered platform such as
+            WordPress, or an e-commerce solution built to convert visitors into
+            customers with secure payment gateways, API integrations and detailed
+            tracking, we build all the elements to perform better. Our landing
+            pages are developed with A/B testing, CRO (Conversion Rate
+            Optimization), lead generation funnels, turning traffic into
+            concrete results.
+          </p>
 
-                    </p>
-                    <p>Be it a custom made website, a CMS powered platform such as WordPress, or an e-commerce solution built to convert  <br className="hidden lg:block" /> visitors into customers with secure payment gateways, API integrations and detailed tracking, we build all the  elements  <br className="hidden lg:block" />  to perform better. Our landing pages are developed with A/B testing, CRO (Conversion Rate Optimization),  lead generation  <br className="hidden lg:block" /> funnels, turning traffic into concrete results.</p>
-                </div>
-
-                <div className={`w-full flex justify-center items-center ${styles.montserrat}`}>
-                    <Link href="/contact.html"
-                    title="Let's Talk Today"
-                     target="_blank" aria-label="Let's Talk Today"
-                      className="mt-4 lg:mt-5 flex
-                        items-center justify-center gap-4 letsTalkToday p-0 xl:p-3 rounded-[5px] letsTalkToday">
-                        <span
-                            className="text-[18px]   md:text-[20px] font-[500]"
-
-                        >
-                            Let&apos;s Talk Today
-                        </span>
-                        <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] flex items-center justify-center hover:bg-[#b8822f] transition-colors letsTalkTodayIcon">
-                            <img
-                                src={EXPLORE_ARROW_IMAGE}
-                                alt="Let's Talk Today – explore link arrow"
-                                title="Let's Talk Today"
-                                className="text-[16px] text-white"
-                            />
-                        </span>
-                    </Link></div>
-
-            </div>
-        </section>
-    );
+          <div className="flex w-full items-center justify-center pt-1 md:pt-2">
+            <Link
+              href="/contact.html"
+              title="Let's Talk Today"
+              target="_blank"
+              aria-label="Let's Talk Today"
+              className="letsTalkToday flex items-center justify-center gap-4 rounded-[5px] p-0 xl:p-3"
+            >
+              <span className="text-[18px] font-[500] md:text-[20px]">
+                Let&apos;s Talk Today
+              </span>
+              <span className="letsTalkTodayIcon flex h-10 w-10 items-center justify-center rounded-full bg-[#C99237] transition-colors hover:bg-[#b8822f] sm:h-11 sm:w-11">
+                <img
+                  src={EXPLORE_ARROW_IMAGE}
+                  alt="Let's Talk Today – explore link arrow"
+                  title="Let's Talk Today"
+                  className="text-[16px] text-white"
+                />
+              </span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

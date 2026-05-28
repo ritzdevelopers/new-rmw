@@ -9,7 +9,7 @@ function Banner() {
 
             {/* Page Heading And Info  */}
             <div className="w-full flex flex-col justify-center items-center text-center z-10 gap-3 sm:gap-4 max-w-[1280px]">
-                <h1 className="hidden">Insights & Marketing Trends | Ritz Media World Blog Delhi NCR</h1>
+                <h1 className="hidden">Blogs</h1>
                 <p className={`font-[800] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[55px] text-white  ${styles.fontmontserrat}`}>
                     Blogs
                 </p>

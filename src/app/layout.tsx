@@ -8,6 +8,70 @@ import {
 } from "@/lib/structuredData";
 import type { Metadata } from "next";
 
+const advertisingAgencyJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AdvertisingAgency",
+  "@id": "https://ritzmediaworld.com/#localbusiness",
+  name: "Ritz Media World",
+  url: "https://ritzmediaworld.com/",
+  image: "https://ritzmediaworld.com/assets/images/logo.png",
+  logo: "https://ritzmediaworld.com/assets/images/logo.png",
+  description:
+    "Ritz Media World is a full-service advertising and digital marketing agency in Noida offering branding, SEO, social media marketing, web development, influencer marketing, print advertising, and radio advertising services.",
+  telephone: "+91-9220516777",
+  email: "info@ritzmediaworld.com",
+  priceRange: "₹₹₹",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "402-404, 4th Floor, Corporate Park, Tower A1, Sector 142",
+    addressLocality: "Noida",
+    addressRegion: "Uttar Pradesh",
+    postalCode: "201305",
+    addressCountry: "IN",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "28.5046",
+    longitude: "77.4145",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:30",
+      closes: "18:30",
+    },
+  ],
+  sameAs: [
+    "https://www.facebook.com/ritzmediaworld.rmw",
+    "https://www.instagram.com/ritzmediaworld.rmw/",
+    "https://www.linkedin.com/company/ritzmediaworld",
+    "https://twitter.com/ritzmediaworld",
+    "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
+  ],
+  areaServed: {
+    "@type": "Country",
+    name: "India",
+  },
+  hasMap: "https://maps.google.com/?q=Ritz+Media+World+Noida",
+  serviceArea: {
+    "@type": "Place",
+    name: "India",
+  },
+};
+
+const websiteSearchJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "WebSite",
+  name: "Ritz Media World",
+  url: "https://ritzmediaworld.com/",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://ritzmediaworld.com/services{search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://ritzmediaworld.com"),
   title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
@@ -93,7 +157,17 @@ export default function RootLayout({children}: { children: React.ReactNode}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <JsonLd data={[organizationJsonLd, localBusinessJsonLd]} />
+        <JsonLd
+          data={[
+            organizationJsonLd,
+            localBusinessJsonLd,
+            advertisingAgencyJsonLd,
+          ]}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSearchJsonLd) }}
+        />
       </head>
       <body suppressHydrationWarning>
         {/* <WebsiteGateway /> */}

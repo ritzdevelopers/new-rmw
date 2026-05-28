@@ -13,7 +13,7 @@ function Section3() {
             title: "Customized<br /> content  strategy",
             activeCardTitle: "Customized content strategy",
             desc: "Generic content yields generic results. At Ritz Media World, we develop personalized content marketing campaigns that suit your brand, audience, and goals. Our content marketing strategy is a result of expert insights, search engine optimization, and creative storytelling that ensures every word counts and every word drives readers to act and convert.",
-            link: "/services/contents-marketing/content-marketing",
+            link: "/services/contents-marketing/customized-content-strategy",
         },
         {
             image: "/alishba-services-v3/content-marketing/emailandnewsletter.jpg",

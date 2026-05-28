@@ -100,9 +100,16 @@ export default function WhatWeProvide() {
 
     return (
         <section className={`w-full  py-6 md:py-10  lg:py-14 border-t border-[#D9D9D9] ${styles.page_containerWidth} `}>
+            <div className="sr-only">
+                {slides.map((slide) => (
+                    <h3 key={`service-heading-${slide.id}`}>
+                       {slide.title}
+                    </h3>
+                ))}
+            </div>
             <div className={`${styles.page_containerWidth} mx-auto px-4 md:px-10 lg:px-10 xl:px-13`}>
-                <div className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3 xl:grid-cols-[1.1fr_1fr_1.1fr] xl:gap-6">
-                    <div className="flex min-h-[368px] flex-col text-center sm:min-h-[360px] md:col-span-2 md:min-h-[420px] md:text-left lg:col-span-1 lg:min-h-[450px] xl:min-h-[480px]">
+                <div className="grid grid-cols-1 items-start gap-5 sm:gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:items-stretch xl:grid-cols-[1.1fr_1fr_1.1fr] xl:gap-6">
+                    <div className="flex flex-col text-center md:col-span-2 md:text-left lg:col-span-1 lg:min-h-[450px] xl:min-h-[480px]">
                         <div className="shrink-0">
                             <p className={`text-[16px] text-[#C99237] ${styles.poppinsMedium}`}>SERVICES</p>
                             <h2
@@ -113,77 +120,12 @@ export default function WhatWeProvide() {
                             <p className={`mt-1 text-[16px] font-[400] text-[#101010] ${styles.fontopensans}`}>
                                 {SUBHEADING}
                             </p>
-                            {/* <div className="mt-4 space-y-1 text-center md:text-left">
-                                {slides.map((slide) => (
-                                    <h3
-                                        key={slide.id}
-                                        className={`text-[14px] font-[600] leading-[1.3] text-[#111111] md:text-[15px] lg:text-[14px] xl:text-[16px] ${styles.montserrat}`}
-                                    >
-                                        {slide.title.trim()}
-                                    </h3>
-                                ))}
-                            </div> */}
-                        </div>
-                        <div className="mt-4 flex w-full shrink-0 items-center justify-center gap-6 md:hidden">
-                            <div className="relative ">
-                                <AnimatePresence mode="wait" initial={false} custom={direction}>
-                                    <motion.p
-                                        key={activeIndex}
-                                        custom={direction}
-                                        variants={slideVariants}
-                                        initial="enter"
-                                        animate="center"
-                                        exit="exit"
-                                        transition={slideTransition}
-                                        className={`text-[16px] font-[500] ${styles.fontopensans} will-change-transform`}
-                                    >
-                                        <span className="text-black">
-                                            {String(activeIndex + 1).padStart(2, "0")}
-                                        </span>
-                                        <span className="text-[#888888]">  {" / "}</span>
-                                        <span className="text-[#888888]">
-                                            {String(slides.length).padStart(2, "0")}
-                                        </span>
-                                    </motion.p>
-                                </AnimatePresence>
-                            </div>
-                            <button
-                                onClick={goPrev}
-                                type="button"
-                                aria-label="Previous slide"
-                                className="transition-opacity hover:opacity-70 cursor-pointer"
-                            >
-                                <Image
-                                    src="/webDevelopment/arrow-left.png"
-                                    alt="Previous slide"
-                                    title="Previous slide"
-                                    width={27}
-                                    height={27}
-                                    className="h-[20px] w-[20px] md:h-[27px] md:w-[27px]"
-                                />
-                            </button>
-                            <button
-                                onClick={goNext}
-                                type="button"
-                                aria-label="Next slide"
-                                className="transition-opacity hover:opacity-70 cursor-pointer"
-                            >
-                                <Image
-                                    src="/webDevelopment/arrow-right.png"
-                                    alt="Next slide"
-                                    title="Next slide"
-                                    width={27}
-                                    height={27}
-                                    className="h-[20px] w-[20px] md:h-[27px] md:w-[27px]"
-                                />
-                            </button>
                         </div>
 
                         <div className="hidden min-h-0 flex-1 lg:block" aria-hidden />
-                        
-                        <div className="mt-5 shrink-0 border-t border-[#D9D9D9] pt-5">
-                            <div className="relative h-[72px] overflow-hidden sm:h-[80px] md:h-[84px] lg:h-[88px] xl:h-[96px]">
-                               
+
+                        <div className="mt-4 shrink-0 border-t border-[#D9D9D9] pt-4 lg:mt-0 lg:pt-5">
+                            <div className="relative min-h-[3.5rem] overflow-hidden sm:min-h-[4rem] lg:h-[88px] xl:h-[96px]">
                                 <Link href={activeSlide?.serviceUrlLink} target="_blank" title={activeSlide?.title.trim()} rel="noopener noreferrer">
                                 <AnimatePresence mode="wait" initial={false} custom={direction}>
                                     <motion.div
@@ -194,7 +136,7 @@ export default function WhatWeProvide() {
                                         animate="center"
                                         exit="exit"
                                         transition={slideTransition}
-                                        className="absolute inset-0 will-change-transform"
+                                        className="will-change-transform lg:absolute lg:inset-0"
                                     >
                                         <div
                                             className={`grid grid-cols-[auto_1fr] items-start gap-x-2 gap-y-0 text-[#111111] ${styles.montserrat}`}
@@ -202,7 +144,7 @@ export default function WhatWeProvide() {
                                             <span className="shrink-0 pt-[0.15em] text-[16px] font-[500] leading-none">
                                                 {activeSlide.id}
                                             </span>
-                                            <h3 className="min-w-0 text-[14px] font-[600] leading-[1.2] md:text-[20px] lg:text-[15px] xl:text-[26px]">
+                                            <h3 className="min-w-0 text-left text-[18px] font-[600] leading-[1.2] sm:text-[20px] md:text-[22px] lg:text-[15px] xl:text-[26px]">
                                                 {activeSlide.title.trim()}
                                             </h3>
                                         </div>
@@ -211,11 +153,9 @@ export default function WhatWeProvide() {
                                 </Link>
                             </div>
                         </div>
-                       
-
                     </div>
 
-                <div className="relative mx-auto w-full  h-[368px] sm:h-[360px] md:h-[420px] lg:h-[450px] xl:h-[480px] max-w-[280px] sm:max-w-[320px] md:max-w-[340px] overflow-hidden rounded-[80px] sm:rounded-[100px] md:rounded-[120px] xl:rounded-[140px]">
+                <div className="relative mx-auto w-full h-[260px] max-w-[280px] overflow-hidden rounded-[80px] sm:h-[300px] sm:max-w-[320px] sm:rounded-[100px] md:col-span-2 md:h-[300px] md:max-w-[360px] md:rounded-[120px] lg:col-span-1 lg:h-[450px] lg:max-w-[340px] xl:h-[480px] xl:rounded-[140px]">
                        <Link href={activeSlide?.serviceUrlLink} 
                        target="_blank" title={activeSlide?.title.trim()} rel="noopener noreferrer">
                         <AnimatePresence mode="wait" initial={false} custom={direction}>
@@ -236,8 +176,8 @@ export default function WhatWeProvide() {
                         </Link>
                     </div>
 
-                    <div className="flex min-h-[368px] flex-col text-center sm:min-h-[360px] md:min-h-[420px] md:text-left lg:min-h-[450px] xl:min-h-[480px]">
-                        <div className="relative h-[220px] shrink-0 overflow-hidden sm:h-[240px] md:h-[260px] lg:h-[300px] xl:h-[340px]">
+                    <div className="flex min-w-0 flex-col text-center md:col-span-2 md:text-left lg:col-span-1 lg:min-h-[450px] xl:min-h-[480px]">
+                        <div className="relative shrink-0 lg:h-[300px] lg:overflow-hidden xl:h-[340px]">
                             <AnimatePresence mode="wait" initial={false} custom={direction}>
                                 <motion.div
                                     key={activeIndex}
@@ -247,10 +187,10 @@ export default function WhatWeProvide() {
                                     animate="center"
                                     exit="exit"
                                     transition={slideTransition}
-                                    className="absolute inset-0 will-change-transform"
+                                    className="will-change-transform lg:absolute lg:inset-0"
                                 >
                                     <p
-                                        className={`text-[14px] leading-[1.6] text-[#111111] sm:text-[15px] sm:leading-[1.7] md:text-[15px] lg:text-[15px] xl:text-[16px] ${styles.fontopensans}`}
+                                        className={`text-[14px] leading-[1.65] text-[#111111] sm:text-[15px] sm:leading-[1.7] md:text-[15px] md:leading-[1.75] lg:text-[15px] xl:text-[16px] ${styles.fontopensans}`}
                                     >
                                         {activeSlide.description}
                                     </p>
@@ -258,7 +198,7 @@ export default function WhatWeProvide() {
                             </AnimatePresence>
                         </div>
 
-                        <div className="mt-5 flex shrink-0 flex-col items-center justify-between gap-4 border-0 pt-4 sm:flex-row sm:items-center md:items-start md:border-t md:border-[#D8D8D8] md:pt-4">
+                        <div className="mt-4 flex shrink-0 flex-col items-center justify-between gap-4 border-t border-[#D8D8D8] pt-4 pb-2 sm:flex-row sm:items-center md:mt-6 md:pb-4 md:items-start lg:mt-5 lg:pb-0">
                             <Link
                                 href={activeSlide?.serviceUrlLink}
                                 target="_blank"
@@ -287,7 +227,7 @@ export default function WhatWeProvide() {
                                 </div>
                             </Link>
 
-                            <div className="hidden md:flex items-center justify-between w-full sm:w-auto gap-6 lg:gap-4 xl:gap-6">
+                            <div className="flex w-full items-center justify-center gap-6 sm:w-auto md:justify-between lg:gap-4 xl:gap-6">
                                 <div className="relative ">
                                     <AnimatePresence mode="wait" initial={false} custom={direction}>
                                         <motion.p

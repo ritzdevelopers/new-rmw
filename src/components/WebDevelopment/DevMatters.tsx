@@ -12,7 +12,7 @@ const cards = [
         title: "Strong First Impression",
         description:
             "Professional web development services \n provide a credible and aesthetically \npleasing website that makes a great first \n impression right away. Companies \n searching for web developers appreciate \n websites designed to engage and convert \nvisitors.",
-        icon: '/webDevelopment/dev2.png',
+        icon: "/webDevelopment/dev2.png",
     },
     {
         title: "Seamless User Experience",
@@ -24,13 +24,13 @@ const cards = [
         title: "SEO Friendly Structure",
         description:
             "We are a team of professional web developers providing high-performance, SEO optimized websites that improve search-engine ranking, drive organic traffic to your business, and enhance your visibility",
-        icon: '/webDevelopment/dev2.png',
+        icon: '/webDevelopment/seo.jpg',
     },
     {
         title: "Fast Reliable Websites",
         description:
             "With our professional web development services, you can expect your website to be fast-loading, highly secure, and high-performing, helping to build user trust and enhance the overall user experience.",
-        icon: '/webDevelopment/userExp.png',
+        icon: '/webDevelopment/www (2).jpg',
     },
     // 👉 Add more cards here (it will auto create slides)
 ];
@@ -156,14 +156,17 @@ export default function DevMatters() {
                                                 key={`${slideIndex}-${index}-${title}`}
                                                 className="px-5 pt-5 lg:pt-0 md:py-6 text-center lg:px-6 xl:px-8"
                                             >
-                                                <img
-                                                    src={icon}
-                                                    alt={title}
-                                                    title={title}
-                                                    className={`mx-auto mb-3 object-contain lg:mb-4 ${globalCardIndex % 2 === 0
-                                                        ? "w-[79px] h-[55px]"
-                                                        : "w-[53px] h-[60px]"
-                                                        }`} />
+                                                <div className="mb-3 flex h-[90px] items-center justify-center lg:mb-4">
+                                                    <img
+                                                        src={icon}
+                                                        alt={title}
+                                                        title={title}
+                                                        className={`mx-auto object-contain ${globalCardIndex % 2 === 0
+                                                            ? "w-[106px] h-[74px]"
+                                                            : "w-[72px] h-[82px]"
+                                                            }`}
+                                                    />
+                                                </div>
 
                                                 <h3
                                                     className={`text-[18px] leading-[1.2] text-white lg:text-[20px] ${styles.montserratBold}`}
