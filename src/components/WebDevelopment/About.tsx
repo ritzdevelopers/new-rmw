@@ -13,14 +13,14 @@ export default function Section2() {
         <div
           className={`mx-auto flex w-full max-w-[1300px] flex-col gap-5 text-center md:gap-6 lg:gap-7 ${styles.montserrat} ${styles.aboutIntro}`}
         >
-          <p className="text-[16px] font-normal leading-[1.65] text-black sm:text-[17px] md:text-[18px] lg:text-[22px] lg:leading-[1.6] xl:text-[26px] xl:leading-[1.55]">
+          <p className="text-[14px] font-normal leading-[1.65] text-black sm:text-[15px] md:text-[16px] lg:text-[18px] lg:leading-[1.6] xl:text-[20px] xl:leading-[1.55]">
             In digital marketing, your website isn&apos;t merely a collection of
             pages, it&apos;s your brand&apos;s most persuasive spokesperson.{" "}
             <a
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-[#C99237] hover:underline"
+              className="whitespace-nowrap font-semibold text-[#C99237] hover:underline"
               title="Ritz Media World"
             >
               Ritz Media World,
@@ -31,7 +31,7 @@ export default function Section2() {
             deliver real results for your business.
           </p>
 
-          <p className="text-[16px] font-normal leading-[1.65] text-black sm:text-[17px] md:text-[18px] lg:text-[22px] lg:leading-[1.6] xl:text-[26px] xl:leading-[1.55]">
+          <p className="text-[14px] font-normal leading-[1.65] text-black sm:text-[15px] md:text-[16px] lg:text-[18px] lg:leading-[1.6] xl:text-[20px] xl:leading-[1.55]">
             Recognised as a trustworthy{" "}
             <em className="font-semibold not-italic">
               web development company in India
@@ -49,7 +49,7 @@ export default function Section2() {
             ranking, faster loading speeds, and better conversion rates.
           </p>
 
-          <p className="text-[16px] font-normal leading-[1.65] text-black sm:text-[17px] md:text-[18px] lg:text-[22px] lg:leading-[1.6] xl:text-[26px] xl:leading-[1.55]">
+          <p className="text-[14px] font-normal leading-[1.65] text-black sm:text-[15px] md:text-[16px] lg:text-[18px] lg:leading-[1.6] xl:text-[20px] xl:leading-[1.55]">
             Be it a custom made website, a CMS powered platform such as
             WordPress, or an e-commerce solution built to convert visitors into
             customers with secure payment gateways, API integrations and detailed
