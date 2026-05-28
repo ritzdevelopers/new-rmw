@@ -27,29 +27,29 @@ export default function Section2() {
             </a>{" "}
             websites with a purpose, through our unique combination of custom web
             development, responsive design and{" "}
-            <em>website performance optimization</em> we create websites that
+            <em className="not-italic">website performance optimization</em> we create websites that
             deliver real results for your business.
           </p>
 
-          <p className="text-[14px] font-normal leading-[1.65] text-black sm:text-[15px] md:text-[16px] lg:text-[18px] lg:leading-[1.6] xl:text-[20px] xl:leading-[1.55]">
+          <p className="text-[14px] font-normal leading-[1.65] text-black sm:text-[10px] md:text-[12px] lg:text-[14px] lg:leading-[1.6] xl:text-[18px] xl:leading-[1.55]">
             Recognised as a trustworthy{" "}
-            <em className="font-semibold not-italic">
+            <em className="font-semibold italic">
               web development company in India
             </em>
             , a go-to option for any business looking for a web development
             company near me, we provide web development and{" "}
-            <em className="font-semibold not-italic">
+            <em className="font-semibold italic">
               web designing services in Delhi NCR
             </em>{" "}
             as well. We provide excellent{" "}
-            <em className="font-semibold not-italic">
+            <em className="font-semibold italic">
               web designing services in Noida
             </em>
             , Greater Noida and Delhi, creating all websites to have a high
             ranking, faster loading speeds, and better conversion rates.
           </p>
 
-          <p className="text-[14px] font-normal leading-[1.65] text-black sm:text-[15px] md:text-[16px] lg:text-[18px] lg:leading-[1.6] xl:text-[20px] xl:leading-[1.55]">
+          <p className="text-[14px] font-normal leading-[1.65] text-black sm:text-[10px] md:text-[12px] lg:text-[14px] lg:leading-[1.6] xl:text-[18px] xl:leading-[1.55]">
             Be it a custom made website, a CMS powered platform such as
             WordPress, or an e-commerce solution built to convert visitors into
             customers with secure payment gateways, API integrations and detailed
