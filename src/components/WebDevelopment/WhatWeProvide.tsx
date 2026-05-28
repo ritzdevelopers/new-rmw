@@ -100,13 +100,6 @@ export default function WhatWeProvide() {
 
     return (
         <section className={`w-full  py-6 md:py-10  lg:py-14 border-t border-[#D9D9D9] ${styles.page_containerWidth} `}>
-            <div className="sr-only">
-                {slides.map((slide) => (
-                    <h3 key={`service-heading-${slide.id}`}>
-                       {slide.title}
-                    </h3>
-                ))}
-            </div>
             <div className={`${styles.page_containerWidth} mx-auto px-4 md:px-10 lg:px-10 xl:px-13`}>
                 <div className="grid grid-cols-1 items-start gap-5 sm:gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:items-stretch xl:grid-cols-[1.1fr_1fr_1.1fr] xl:gap-6">
                     <div className="flex flex-col text-center md:col-span-2 md:text-left lg:col-span-1 lg:min-h-[450px] xl:min-h-[480px]">
@@ -120,6 +113,13 @@ export default function WhatWeProvide() {
                             <p className={`mt-1 text-[16px] font-[400] text-[#101010] ${styles.fontopensans}`}>
                                 {SUBHEADING}
                             </p>
+                            <div className="sr-only">
+                                {slides.map((slide) => (
+                                    <h3 key={`service-heading-${slide.id}`}>
+                                        {slide.title}
+                                    </h3>
+                                ))}
+                            </div>
                         </div>
 
                         <div className="hidden min-h-0 flex-1 lg:block" aria-hidden />
@@ -144,9 +144,9 @@ export default function WhatWeProvide() {
                                             <span className="shrink-0 pt-[0.15em] text-[16px] font-[500] leading-none">
                                                 {activeSlide.id}
                                             </span>
-                                            <h3 className="min-w-0 text-left text-[18px] font-[600] leading-[1.2] sm:text-[20px] md:text-[22px] lg:text-[15px] xl:text-[26px]">
+                                            <p className="min-w-0 text-left text-[18px] font-[600] leading-[1.2] sm:text-[20px] md:text-[22px] lg:text-[15px] xl:text-[26px]">
                                                 {activeSlide.title.trim()}
-                                            </h3>
+                                            </p>
                                         </div>
                                     </motion.div>
                                 </AnimatePresence>

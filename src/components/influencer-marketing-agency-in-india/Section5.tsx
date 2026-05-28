@@ -44,7 +44,7 @@ export default function Section5() {
               className="uppercase text-[#C99237] text-[16px] tracking-wide font-[600] leading-[28px]"
               style={{ fontFamily: "OpenSansSemiBold" }}
             >
-              Clients Testimonials
+              Client Testimonials
             </h2>
             <h3
               className="text-black text-[24px] md:text-[30px] lg:text-[23px]  xl:text-[34px] leading-[1.02] font-[700] mt-3 xl:whitespace-nowrap"
