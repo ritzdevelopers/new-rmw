@@ -156,14 +156,17 @@ export default function DevMatters() {
                                                 key={`${slideIndex}-${index}-${title}`}
                                                 className="px-5 pt-5 lg:pt-0 md:py-6 text-center lg:px-6 xl:px-8"
                                             >
-                                                <img
-                                                    src={icon}
-                                                    alt={title}
-                                                    title={title}
-                                                    className={`mx-auto mb-3 object-contain lg:mb-4 ${globalCardIndex % 2 === 0
-                                                        ? "w-[90px] h-[62px]"
-                                                        : "w-[60px] h-[68px]"
-                                                        }`} />
+                                                <div className="mb-3 flex h-[90px] items-center justify-center lg:mb-4">
+                                                    <img
+                                                        src={icon}
+                                                        alt={title}
+                                                        title={title}
+                                                        className={`mx-auto object-contain ${globalCardIndex % 2 === 0
+                                                            ? "w-[106px] h-[74px]"
+                                                            : "w-[72px] h-[82px]"
+                                                            }`}
+                                                    />
+                                                </div>
 
                                                 <h3
                                                     className={`text-[18px] leading-[1.2] text-white lg:text-[20px] ${styles.montserratBold}`}
