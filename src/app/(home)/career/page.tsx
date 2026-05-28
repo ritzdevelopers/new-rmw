@@ -4,26 +4,30 @@ import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 
 // Optimized dynamic imports for better code splitting and LCP
-const CareerForm = dynamic(() => import('@/allPages/careerPage/careerForm'), {
+const CareerForm = dynamic(() => import("@/allPages/careerPage/careerForm"), {
   loading: () => (
-    <div 
-      className="d-flex justify-content-center align-items-center" 
-      style={{ 
-        minHeight: '100vh',
-        background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
-        backgroundSize: '200% 100%',
-        animation: 'shimmer 1.5s infinite'
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)",
+        backgroundSize: "200% 100%",
+        animation: "shimmer 1.5s infinite",
       }}
     >
       <style jsx>{`
         @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
+          0% {
+            background-position: -200% 0;
+          }
+          100% {
+            background-position: 200% 0;
+          }
         }
       `}</style>
     </div>
   ),
-  ssr: false
 });
 
 const Footer = dynamic(() => import("@/components/footer/Footer"), { 
@@ -35,7 +39,7 @@ const page = () => {
   return (
     <>
       {/* Preload critical resources for better LCP */}
-      <link rel="preload" href="/career-images/career-banner.jpg" as="image" />
+      <link rel="preload" title="Career Banner" href="/career-images/career-banner.jpg" as="image" />
       
       <div>
         <Suspense fallback={

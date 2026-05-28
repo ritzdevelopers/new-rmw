@@ -52,6 +52,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(
         <div className="flex-1 min-h-[350px] sm:min-h-[380px] md:min-h-[400px] lg:h-[532px] flex items-center p-6 lg:p-12">
           <div className="w-full max-w-[600px] flex flex-col gap-5">
             <Link
+              title={linkTxt}
               href={link} target="_blank"
               className={`inline-flex w-fit h-[36px] lg:h-[42px] px-5 justify-center items-center cursor-pointer ${btnBg} rounded-[8px] font-[600] text-[18px] ${linkTxtColor} transition-transform hover:scale-105`}
             >
@@ -70,6 +71,7 @@ const S4Card = forwardRef<HTMLDivElement, S4CardProps>(
                 >
                   <span className="mt-[6px] h-[6px] w-[6px] rounded-full bg-[#21EAB5]" />
                   <Link
+                    title={item.text}
                     href={item.link}
                     target="_blank"
                     className="hover:text-[#D4A574] transition-colors cursor-pointer"

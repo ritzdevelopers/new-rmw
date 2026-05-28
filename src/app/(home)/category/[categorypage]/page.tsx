@@ -67,8 +67,8 @@ const Page = () => {
   return (
     <>
       {/* Preload critical resources for better LCP */}
-      <link rel="preload" href="/videos/bg_pattern.mp4" as="video" type="video/mp4" />
-      <link rel="preload" href={`/category-images/${categorySlug}-banner.jpg`} as="image" />
+      <link rel="preload" title="Background Pattern" href="/videos/bg_pattern.mp4" as="video" type="video/mp4" />
+      <link rel="preload" title="Category Banner" href={`/category-images/${categorySlug}-banner.jpg`} as="image" />
       
       <section style={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:'column'}}>
         <Suspense fallback={

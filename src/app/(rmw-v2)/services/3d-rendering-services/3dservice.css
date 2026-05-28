@@ -1,0 +1,46 @@
+/* Services section — tab scroll (hidden scrollbar, scroll still works) */
+.services-tabs-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: hidden;
+}
+
+.services-tabs-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+.services-tabs-scroll::-webkit-scrollbar-thumb,
+.services-tabs-scroll::-webkit-scrollbar-track {
+  display: none;
+  background: transparent;
+}
+
+.services-panel-enter {
+  animation: services-panel-fade 0.35s ease-out;
+}
+
+@keyframes services-panel-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-tab-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background-color: #1a1a1a;
+  border-radius: 1px;
+}

@@ -25,8 +25,8 @@ function getCanonicalUrl(link: string | undefined, fallbackPath: string) {
 
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
     const { slug } = await params;
-    const serviceData = await fetchMeta(slug);
-    console.log("serviceData", serviceData);
+    const serviceData = await fetchMeta(slug, "influencer-marketing-agency-in-india");
+    // console.log("serviceData", serviceData);
     if (!serviceData) {
         return {
             alternates: {

@@ -299,6 +299,7 @@ const NewspaperDetailPage = () => {
       <div className={styles.errorContainer}>
         <p>Error: {error || "Newspaper not found"}</p>
         <Link
+          title="Back to Newspapers"
           href="/services/print-advertising/newspaper-ad-rates"
           className={styles.backButton}
         >
@@ -325,6 +326,7 @@ const NewspaperDetailPage = () => {
         {/* Header */}
         <div className={styles.header}>
           <Link
+            title="Back to Newspapers"
             href="/services/print-advertising/newspaper-ad-rates"
             className={styles.backButton}
           >

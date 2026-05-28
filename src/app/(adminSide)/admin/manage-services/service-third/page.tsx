@@ -1,6 +1,5 @@
 "use client";
 
-import Editor from "@/components/Editor/Editor";
 import RMWLoader from "@/components/rmw_loader/RMWLoader";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
 import axios from "axios";
@@ -157,10 +156,33 @@ export default function ServiceThirdPage() {
 
   const updateServiceThird = async () => {
     if (!editState || !originalState) return;
+
+    const trimmedTitle = editState.title.trim();
+    const descriptionPlain = stripHtml(editState.description || "").trim();
+    const hasImage =
+      Boolean(selectedFile) ||
+      Boolean(editState.image_url && editState.image_url.trim());
+
+    if (!trimmedTitle) {
+      setPopupData({ message: "Title is required.", status: 400 });
+      setShowPopup(true);
+      return;
+    }
+    if (!descriptionPlain) {
+      setPopupData({ message: "Description is required.", status: 400 });
+      setShowPopup(true);
+      return;
+    }
+    if (!hasImage) {
+      setPopupData({ message: "An image is required.", status: 400 });
+      setShowPopup(true);
+      return;
+    }
+
     const formData = new FormData();
 
     if (editState.title !== originalState.title) {
-      formData.append("title", editState.title);
+      formData.append("title", trimmedTitle);
     }
     if (editState.description !== originalState.description) {
       formData.append("description", editState.description);
@@ -423,16 +445,17 @@ export default function ServiceThirdPage() {
                 <label className="mb-1 block text-sm font-medium text-slate-700">
                   Description
                 </label>
-                <div className="rounded-lg border border-slate-200 p-1">
-                  <Editor
-                    value={editState.description}
-                    onChange={(value) =>
-                      setEditState((prev) =>
-                        prev ? { ...prev, description: value } : prev
-                      )
-                    }
-                  />
-                </div>
+                <textarea
+                  value={editState.description}
+                  onChange={(e) =>
+                    setEditState((prev) =>
+                      prev ? { ...prev, description: e.target.value } : prev
+                    )
+                  }
+                  rows={8}
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 outline-none ring-indigo-500 transition focus:ring-2"
+                  placeholder="Enter description"
+                />
               </div>
             </div>
 

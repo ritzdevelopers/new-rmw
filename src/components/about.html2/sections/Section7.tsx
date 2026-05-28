@@ -1,3 +1,4 @@
+import { Http2ServerRequest } from "node:http2";
 import styles from "./page.module.css";
 import s7 from "./Section7.module.css";
 
@@ -9,13 +10,13 @@ function Section7() {
                 <div className={`flex w-full flex-col items-center justify-center gap-8 ${s7.stack}`}>
                     {/* Hero — top on all breakpoints */}
                     <div className={`flex w-full max-w-full flex-col items-center gap-2 text-center ${s7.hero}`}>
-                        <p className={`font-[600] text-[16px] uppercase text-[#C99237] ${styles.fontpoppins} ${s7.eyebrow}`}>
+                        <h2 className={`font-[600] text-[16px] uppercase text-[#C99237] ${styles.fontpoppins} ${s7.eyebrow}`}>
                             Our Commitment
-                        </p>
-                        <h2 className={`max-w-[725px] font-[400] text-[36px] ${styles.fontmontserrat} ${s7.title}`}>
+                        </h2>
+                        <h3 className={`max-w-[725px] font-[400] text-[36px] ${styles.fontmontserrat} ${s7.title}`}>
                             <span className="font-[700]">Innovating</span> for Tomorrow with
                             <span className="font-[700]"> Creativity</span> and <span className="font-[700]">Technology</span>
-                        </h2>
+                        </h3>
                     </div>
 
                     {/* Cards — column below md; row from md up */}
@@ -33,7 +34,8 @@ function Section7() {
                             <div className={`flex w-full flex-col items-center gap-3 md:items-start ${s7.iconStack}`}>
                                 <img
                                     src="/new-about-imgs/s7/bulb.png"
-                                    alt="Vision — lightbulb"
+                                    alt="Our vision — innovation and creative thinking at Ritz Media World"
+                                    title="Our Vision – Ritz Media World"
                                     className={`h-auto w-[82px] max-w-full ${s7.bulb}`}
                                 />
                                 <p className={`font-[500] text-[36px] ${styles.fontmontserrat} ${s7.visionTitle}`}>Our Vision</p>
@@ -45,8 +47,8 @@ function Section7() {
                         >
                             <img
                                 src="/new-about-imgs/s7/brain.jpg"
-                                alt="Ritz Media World — creative thinking"
-                                title="Ritz Media World"
+                                alt="Ritz Media World team — creativity and technology in advertising"
+                                title="Innovating with creativity and technology – Ritz Media World"
                                 className="aspect-[392/456] min-h-[180px] w-full object-cover object-center md:aspect-auto md:h-full md:min-h-0"
                             />
                         </div>
@@ -64,7 +66,8 @@ function Section7() {
                             <div className={`flex w-full flex-col items-center gap-3 md:items-start ${s7.iconStack}`}>
                                 <img
                                     src="/new-about-imgs/s7/arrow.png"
-                                    alt="Strategy — forward arrow"
+                                    alt="Crafting strategies that shape the future — Ritz Media World"
+                                    title="Crafting Strategies – Ritz Media World"
                                     className={`h-auto w-[98px] max-w-full ${s7.arrow}`}
                                 />
                                 <p className={`font-[500] text-[21px] text-white ${styles.fontmontserrat} ${s7.mission}`}>

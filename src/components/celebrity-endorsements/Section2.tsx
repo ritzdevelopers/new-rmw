@@ -28,7 +28,7 @@ export default function Section2() {
                     Celebrity endorsement services
                   </span>{" "}
                    help brands earn customers’ trust, achieve brand recognition, and mold consumer behavior beyond glitz and glamour. At{" "}
-                  <Link href="/" target="_blank" rel="noopener noreferrer">
+                  <Link href="/" target="_blank" title="Ritz Media World" rel="noopener noreferrer">
   <span
     className="font-[700] text-[#C99237] cursor-pointer"
     style={{ fontFamily: "MontserratBold" }}
@@ -62,7 +62,7 @@ export default function Section2() {
               </div>
 
               <div className="mt-7 sm:mt-2 md:mt-6 lg:mt-7 flex items-center justify-center gap-4 lg:justify-start">
-              <Link href="/contact.html" target="_blank" aria-label="Let's Talk Today">
+              <Link href="/contact.html" target="_blank" title="Let's Talk Today" aria-label="Let's Talk Today">
   <span
     className="text-[#0F1640] text-[19px] sm:text-[20px] md:text-[20px] lg:text-[18px] font-[500] cursor-pointer"
     style={{ fontFamily: "MontserratMedium" }}
@@ -74,6 +74,7 @@ export default function Section2() {
 <Link
   href="/contact.html"
   target="_blank"
+  title="Let's Talk Today"
   aria-label="Let's Talk Today"
   className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#C99237] hover:bg-[#0F1640] flex items-center justify-center transition-colors"
 >

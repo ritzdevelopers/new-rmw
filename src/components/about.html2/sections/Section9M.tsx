@@ -25,8 +25,8 @@ function Section9M() {
                     <div className={m.mediaBlock}>
                         <img
                             src="/new-about-imgs/s9/team2.jpg"
-                            alt="Ritz Media World team"
-                            title="Ritz Media World"
+                            alt="Ritz Media World team — 17+ years of brand storytelling"
+                            title="Why choose Ritz Media World"
                             className={m.heroImg}
                         />
                         <div className={`bg-white px-5 py-6 text-center shadow-sm ${s9.badge} ${m.badgeBelow}`}>
@@ -48,7 +48,7 @@ function Section9M() {
                         <div className={`flex max-w-[236px] flex-col items-center justify-center gap-2 text-center ${s9.metric236}`}>
                             <p className={`font-[700] text-[32px] text-white ${styles.fontmontserrat} ${s9.metricNum} ${m.metricNumM}`}>200+</p>
                             <p className={`font-[400] text-[16px] text-white ${styles.fontopensans} ${s9.metricText} ${m.metricTextM}`}>
-                                Good award winning digital media agency.
+                                 award winning digital media agency.
                             </p>
                         </div>
 

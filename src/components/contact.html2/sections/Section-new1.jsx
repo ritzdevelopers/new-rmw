@@ -1,0 +1,118 @@
+import React from "react";
+import Image from "next/image";
+import pageStyles from "./page.module.css";
+
+const SERVICE_TAGS = [
+    "Digital Marketing",
+    "Creative Services",
+    "Print Advertising",
+    "Radio Advertising",
+    "Content Marketing",
+    "Web Development",
+    "Celebrity Endorsements",
+    "Influencer Marketing",
+];
+
+const HASHTAG_BLOCKS = [
+    {
+        tag: "#BRANDSFIRST",
+        text: "Every decision starts with building stronger brand authority.",
+    },
+    {
+        tag: "#VISIONTOREALITY",
+        text: "Strategic thinking turned into real-world brand growth.",
+    },
+    {
+        tag: "#RESULTSOVERNOISE",
+        text: "Focus on what moves the brand forward, not what just looks good.",
+    },
+    {
+        tag: "#GROWCONNECTED",
+        text: "Reach audiences seamlessly across digital ecosystems and real-world touchpoints.",
+    },
+];
+
+function SectionNew1() {
+    return (
+        <section className="w-full overflow-x-hidden  pt-[35px] md:pt-[70px]">
+            <div className="flex w-full flex-col lg:flex-row lg:items-stretch">
+                {/* Left — heading, copy, service pills */}
+                <div className="flex w-full flex-col justify-center pl-5 py-8 sm:pl-8 lg:w-1/2 lg:py-10 xl:pl-10">
+                    <h2
+                        className={`${pageStyles.fontMontserrat} text-[40px] font-semibold leading-[46px] tracking-normal`}
+                    >
+                        <span className="text-[#111111]">Together</span>
+                        <br />
+                        <span className="text-[#C99237]">Toward</span>
+                        <br />
+                        <span className="text-[#111111]">One Goal</span>
+                    </h2>
+
+                    <p
+                        className={`${pageStyles.fontopensans} mt-5 max-w-[600px] text-[16px] font-normal leading-[28px] tracking-normal text-[#111111]`}
+                    >
+                        We at Ritz Media World help brands grow at every stage!
+                        With integrated expertise in PR, digital marketing,
+                        performance, influencer marketing, and reputation
+                        management, we build visibility locally and credibility
+                        globally across India.
+                    </p>
+
+                    <div className="mt-8 flex flex-wrap gap-3">
+                        {SERVICE_TAGS.map((label) => (
+                            <span
+                                key={label}
+                                className={`${pageStyles.fontMontserrat} inline-flex items-center rounded-full border border-[#C99237] bg-white px-3 py-2 text-xs font-semibold text-[#C99237]`}
+                            >
+                                {label}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Right — navy + image; group shifted 50px left, image stays flush to screen right */}
+                <div className="flex w-full flex-col  sm:flex-row lg:min-h-[520px] xl:-translate-x-[-105px] lg:translate-x-[-55px]">
+                    {/* Navy panel — 50% of right column */}
+                    <div className="flex w-full shrink-0 flex-col justify-center gap-8 bg-[#060B4F] pl-6 py-10 sm:w-[500px] sm:gap-9 sm:pl-7 sm:py-12 lg:pl-8 lg:py-14">
+                        {HASHTAG_BLOCKS.map(({ tag, text }) => (
+                            <div key={tag}>
+                                <p
+                                    className={`${pageStyles.fontMontserrat} text-[20px] font-semibold leading-[50px] text-white`}
+                                    style={{
+                                        fontFamily: "Montserrat, sans-serif",
+                                        fontWeight: 600,
+                                    }}
+                                >
+                                    {tag}
+                                </p>
+                                <p
+                                    className={`${pageStyles.fontopensans} max-w-[300px] text-[14px] font-normal leading-6 text-white`}
+                                    style={{
+                                        fontFamily: "Open Sans, sans-serif",
+                                        fontWeight: 400,
+                                        letterSpacing: "0%",
+                                    }}
+                                >
+                                    {text}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Image — flush to viewport right (compensates parent -50px shift) */}
+                    <div className="relative min-h-[360px] w-full shrink-0 overflow-hidden sm:min-h-0 sm:w-[390px] sm:self-stretch lg:translate-x-[0px] lg:mr-[calc(50%-50vw)]">
+                        <Image
+                            src="/varunimage/contect-newsection-left-immage.jpg"
+                            alt="Hand reaching toward a glowing digital sphere, Ritz Media World"
+                            fill
+                            className="object-cover object-center"
+                            sizes="390px"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default SectionNew1;

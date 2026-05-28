@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
+import {
+  getLegacyBlogRedirectPath,
+  isBlogImageFetchAccept,
+} from "@/lib/blogUrl";
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -55,10 +59,17 @@ export function middleware(req: NextRequest) {
     );
   }
 
-  if (url.pathname.startsWith("/blog")) {
-    const changeURL = url.pathname.replace("/blog/", "");
-    const newURL = new URL(`/${changeURL}`, url.origin);
-    return NextResponse.redirect(newURL, 301);
+  // Legacy blog URLs: /blogs/<slug> -> /<slug> (images under /blogs/ stay as-is)
+  const legacyBlogDest = getLegacyBlogRedirectPath(pathname);
+  if (legacyBlogDest) {
+    const isLegacyBlogPath =
+      /^\/blogs2?(\/|$)/i.test(pathname) || /^\/blog2?(\/|$)/i.test(pathname);
+    if (isLegacyBlogPath && isBlogImageFetchAccept(req.headers.get("accept"))) {
+      return NextResponse.next();
+    }
+    const dest = new URL(legacyBlogDest, url.origin);
+    dest.search = url.search;
+    return NextResponse.redirect(dest, 301);
   }
 
   // Redirect /admin to /admin/dashboard (management auth is client-side via rm_token)
@@ -76,7 +87,12 @@ export const config = {
     "/:year/:day/:month/:slug*",
     // ✅ Previous matchers (keep as they are)
     "/admin/:path*",
+    "/blogs/:path*",
+    "/blogs2",
+    "/blogs2/:path*",
     "/blog/:path*",
+    "/blog2",
+    "/blog2/:path*",
     "/fr/:path*",
     "/refund-policy.html",
     "/iizuka.city.official/:path*",

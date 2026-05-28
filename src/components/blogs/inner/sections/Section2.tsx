@@ -7,6 +7,7 @@ import { FiFileText } from "react-icons/fi";
 import styles from "../../sections/page.module.css";
 import LoadingLinesAndDots from "@/components/ui/LoadingLinesAndDots";
 import { normalizeBlogBodyHtml } from "@/lib/normalizeBlogBodyHtml";
+import { rewriteLegacyBlogPostHref } from "@/lib/blogUrl";
 
 /** Match DetailPage: Mongo blogs store full HTML in `blogBody[].metaDescription`, not only `blogDescription`. */
 function escapeHtmlText(s: string): string {
@@ -55,6 +56,18 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
     const [formattedBlog, setFormattedBlog] = useState<Blog | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [keywords, setKeywords] = useState<string[]>([]);
+    const [keywordsExpanded, setKeywordsExpanded] = useState(false);
+    const [categoriesExpanded, setCategoriesExpanded] = useState(false);
+    /** Shared default visible count for Tags + Categories sidebars */
+    const PREVIEW_COUNT = 6;
+
+    const validKeywords = useMemo(
+        () =>
+            keywords
+                .map((k) => (typeof k === "string" ? k.trim() : ""))
+                .filter((k) => k !== ""),
+        [keywords]
+    );
     function formatBlog(blog: any): Blog {
         return {
             title: blog.title || blog.blogTitle,
@@ -85,6 +98,8 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
         }
     }, [related_blogs]);
     useEffect(() => {
+        setKeywordsExpanded(false);
+        setCategoriesExpanded(false);
         if (blog) {
             setLoading(true);
             setFormattedBlog(formatBlog(blog));
@@ -105,7 +120,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
         [formattedBlog?.description]
     );
 
-    /** Same as DetailPage `handleLinksNavigation` (anchor targets + `/blog/` href rewrite + empty nbsp `<p>`). */
+    /** Same as DetailPage `handleLinksNavigation` (anchor targets + legacy `/blogs/` `/blog/` href rewrite + empty nbsp `<p>`). */
     useLayoutEffect(() => {
         if (loading || !bodyHtml) return;
         const ctBody = blogBodyRef.current;
@@ -114,9 +129,9 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
         ctBody.querySelectorAll("a").forEach((aLink) => {
             const gtHref = aLink.getAttribute("href");
             aLink.setAttribute("target", "_blank");
-            if (gtHref?.includes("/blog/")) {
-                const newHRef = gtHref.split("/blog").join("");
-                aLink.setAttribute("href", newHRef);
+            if (gtHref) {
+                const rewritten = rewriteLegacyBlogPostHref(gtHref);
+                if (rewritten) aLink.setAttribute("href", rewritten);
             }
         });
 
@@ -150,7 +165,7 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
     const sortedCategories = useMemo(() => {
         if (!all_categories?.length) return [];
         const flat = all_categories.flatMap((category: any) => [
-            ...(category?.mongo_categories ?? []),
+            // ...(category?.mongo_categories ?? []),
             ...(category?.mysql_categories ?? []),
         ]);
         return [...flat].sort((a: any, b: any) => {
@@ -266,7 +281,10 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                             </div>
 
                             <div className="w-full flex flex-col gap-3 sm:gap-4 p-5 sm:p-7 xl:p-10">
-                                {sortedCategories.map((cat: any, idx: number) => (
+                                {(categoriesExpanded
+                                    ? sortedCategories
+                                    : sortedCategories.slice(0, PREVIEW_COUNT)
+                                ).map((cat: any, idx: number) => (
                                     <div
                                         key={String(cat?.link ?? cat?._id ?? cat?.id ?? idx)}
                                         onClick={() => window.open(`/category/${cat.link}`, "_blank")}
@@ -281,6 +299,15 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                         </div>
                                     </div>
                                 ))}
+                                {sortedCategories.length > PREVIEW_COUNT && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setCategoriesExpanded((prev) => !prev)}
+                                        className={`self-start font-[600] text-[12px] sm:text-[13px] xl:text-[14px] text-[#0F1640] hover:underline ${styles.fontopensans}`}
+                                    >
+                                        {categoriesExpanded ? "Show less" : "Show more"}
+                                    </button>
+                                )}
                             </div>
                         </div>
 
@@ -291,19 +318,41 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                                 <p className={`font-[600] text-[16px] sm:text-[18px] xl:text-[20px] ${styles.fontmontserrat}`}>Tags</p>
                             </div>
 
-                            <div className="w-full flex flex-wrap gap-2 sm:gap-3 xl:gap-4 p-4 sm:p-5 xl:p-7">
-                                {
-                                    keywords && keywords.length > 0 && keywords.map((keyword: string, idx: number) => {
-                                        return keyword && keyword.trim() !== "" && <div
-                                            onClick={() => {
-                                                let keywordSlug = keyword.toLowerCase().trim().replace(/ /g, "-");
-                                                window.open(`/tags/${keywordSlug}`, "_blank");
-                                            }}
-                                            key={idx} className="px-4 sm:px-5 xl:px-5 py-1.5 sm:py-2 rounded-[50px] flex justify-center items-center text-center border-[1px] border-[#F0F0F0] cursor-pointer hover:border-[#0F1640]/40 hover:bg-[#0F1640]/5 transition-colors duration-200">
-                                            <p className="font-[400] text-[12px] sm:text-[13px] xl:text-[14px] text-[#484848]">{keyword}</p>
-                                        </div>
-                                    })
-                                }
+                            <div className="w-full flex flex-col gap-3 p-4 sm:p-5 xl:p-7">
+                                <div className="w-full flex flex-wrap gap-2 sm:gap-3 xl:gap-4">
+                                    {validKeywords.length > 0 &&
+                                        (keywordsExpanded
+                                            ? validKeywords
+                                            : validKeywords.slice(0, PREVIEW_COUNT)
+                                        ).map((keyword: string, idx: number) => (
+                                            <div
+                                                onClick={() => {
+                                                    const keywordSlug = keyword
+                                                        .toLowerCase()
+                                                        .trim()
+                                                        .replace(/ /g, "-");
+                                                    window.open(`/tags/${keywordSlug}`, "_blank");
+                                                }}
+                                                key={`${keyword}-${idx}`}
+                                                className="px-4 sm:px-5 xl:px-5 py-1.5 sm:py-2 rounded-[50px] flex justify-center items-center text-center border-[1px] border-[#F0F0F0] cursor-pointer hover:border-[#0F1640]/40 hover:bg-[#0F1640]/5 transition-colors duration-200"
+                                            >
+                                                <p
+                                                    className={`font-[400] text-[12px] sm:text-[13px] xl:text-[14px] text-[#484848] ${styles.fontopensans}`}
+                                                >
+                                                    {keyword}
+                                                </p>
+                                            </div>
+                                        ))}
+                                </div>
+                                {validKeywords.length > PREVIEW_COUNT && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setKeywordsExpanded((prev) => !prev)}
+                                        className={`self-start font-[600] text-[12px] sm:text-[13px] xl:text-[14px] text-[#0F1640] hover:underline ${styles.fontopensans}`}
+                                    >
+                                        {keywordsExpanded ? "Show less" : "Show more"}
+                                    </button>
+                                )}
                             </div>
                         </div>
 

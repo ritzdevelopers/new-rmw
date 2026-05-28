@@ -246,6 +246,7 @@ function ServiceAccordionRow({
                       Learn more
                     </span>
                     <Link
+                      title="Learn more"
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -304,6 +305,7 @@ function ServiceAccordionRow({
                     Learn more
                   </span>
                   <Link
+                    title="Learn more"
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -401,6 +403,7 @@ function ServiceAccordionRow({
                       <Link
                         href={item.link}
                         target="_blank"
+                        title="Learn more"
                         rel="noopener noreferrer"
                         aria-label={`Learn more about ${item.title}`}
                         className="w-[40px] h-[40px] rounded-full bg-[#C99237] letsTalkTodayIcon flex items-center justify-center hover:bg-[#b8822f] transition-colors"
@@ -496,6 +499,7 @@ export default function Section3() {
           <br className="block md:hidden" />
           <Link href="https://ritzmediaworld.com/contact.html"
             target="_blank"
+            title="Let's discuss your unique needs."
             rel="noopener noreferrer" className="underline cursor-pointer">
             Let&apos;s discuss your unique needs.
           </Link >

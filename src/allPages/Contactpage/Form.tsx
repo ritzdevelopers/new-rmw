@@ -715,6 +715,7 @@ const Form = () => {
                                         </h3>
                                         <div className="tp-contact__social-link">
                                             <Link
+                                                title="Facebook"
                                                 className="fbI"
                                                 href="https://www.facebook.com/ritzmediaworld/"
                                             >
@@ -723,6 +724,7 @@ const Form = () => {
                                                 </i>
                                             </Link>
                                             <Link
+                                                title="Instagram"
                                                 className="inst"
                                                 href="https://www.instagram.com/ritzmediaworld/"
                                             >
@@ -731,6 +733,7 @@ const Form = () => {
                                                 </i>
                                             </Link>
                                             <Link
+                                                title="Twitter"
                                                 className="twt"
                                                 href="https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld"
                                                 target="http://1"
@@ -741,6 +744,7 @@ const Form = () => {
                                                 </i>
                                             </Link>
                                             <Link
+                                                title="LinkedIn"
                                                 className="linked"
                                                 href="https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in"
                                             >
@@ -749,6 +753,7 @@ const Form = () => {
                                                 </i>
                                             </Link>
                                             <Link
+                                                title="YouTube"
                                                 className="ytb"
                                                 href="https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia"
                                                 target="http://1"

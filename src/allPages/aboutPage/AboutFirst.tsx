@@ -34,6 +34,7 @@ const AboutFirst = () => {
                     className="tp-hover__btn tp-hover__btn-item"
                     href="/contact.html"
                     target="_self"
+                    title="Let's Talk Today"
                     rel="nofollow"
                   >
                     <span className="tp-btn__circle-text">

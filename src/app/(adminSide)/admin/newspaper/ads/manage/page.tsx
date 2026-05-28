@@ -171,7 +171,7 @@ const ManageAdvertisementsPage: React.FC = () => {
           <h1 className={styles.title}>Manage Advertisements</h1>
           <p className={styles.subtitle}>View, edit, and manage all advertisement listings</p>
         </div>
-        <Link href="/admin/newspaper/ads/add" className={styles.addButton}>
+        <Link href="/admin/newspaper/ads/add" title="Add New Advertisement" className={styles.addButton}>
           + Add New Advertisement
         </Link>
       </div>
@@ -243,7 +243,7 @@ const ManageAdvertisementsPage: React.FC = () => {
                     <td>{ad.adLabel}</td>
                     <td>
                       <div className={styles.actions}>
-                        <Link href={`/admin/newspaper/ads/edit?id=${ad._id}`} className={styles.editBtn}>✏️</Link>
+                        <Link href={`/admin/newspaper/ads/edit?id=${ad._id}`} title="Edit Advertisement" className={styles.editBtn}>✏️</Link>
                         <button onClick={() => handleDeleteClick(ad)} className={styles.delBtn}>🗑️</button>
                       </div>
                     </td>

@@ -362,7 +362,7 @@ const Page = () => {
       </div>
 
       <div className="flex items-center text-sm gap-2 text-gray-500">
-        <Link href="/" target="_blank" className="text-blue-600 flex items-center gap-1">
+        <Link href="/" title="Home" target="_blank" className="text-blue-600 flex items-center gap-1">
           <Home className="w-4 h-4" /> Home
         </Link>
         <span>/</span> <span>Step 2</span> <span>/</span>{" "}

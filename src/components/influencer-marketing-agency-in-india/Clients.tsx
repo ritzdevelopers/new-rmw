@@ -96,8 +96,8 @@ function Section6({ pd = "py-[35px] lg:py-[70px] " }: { pd?: string }) {
                             {/* View More Container  */}
                             <div className="w-[90px] h-[50px] sm:w-[120px] sm:h-[67px] md:w-[130px] md:h-[72px] lg:w-[146px] lg:h-[81px] flex justify-center items-center flex-shrink-0 ml-2 sm:ml-3 md:ml-4">
                                 <Link
-                                    href={"https://ritzmediaworld.com/about.html"}
-                                    target="_blank"
+                                    title="Show more"
+                                    href="/clients"
                                     className="font-[600] text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] cursor-pointer border-b hover:opacity-80 transition-opacity"
                                 >
                                     Show more

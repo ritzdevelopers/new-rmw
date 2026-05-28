@@ -29,8 +29,8 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "web-development": "/varun.icon/webdevelopment.svg",
   "celebrity-endorsements": "/varun.icon/celebrity.svg",
   "influencer-marketing": "/varun.icon/influenecer.svg",
-  "real-estate-walkthrough": "/varun.icon/real.svg",
-  "3D-rendering-services": "/varun.icon/rendering-service.svg",
+  // "real-estate-walkthrough": "/varun.icon/real.svg",
+  // "3d-rendering-services": "/varun.icon/rendering-service.svg",
   "digital-marketing": "/varun.icon/digital.svg",
 };
 
@@ -79,7 +79,9 @@ function CategoryIcon({
     case "influencer-marketing":
       return <HiFaceSmile className={cls} aria-hidden />;
     case "real-estate-walkthrough":
-      return <HiHomeModern className={cls} aria-hidden />;
+      return <HiDocumentText className={cls} aria-hidden />;
+    case "3d-rendering-services":
+      return <HiLightBulb className={cls} aria-hidden />;
     default:
       return <HiDocumentText className={cls} aria-hidden />;
   }
@@ -109,6 +111,7 @@ function CategoryAvatar({
         <Image
           src={imageSrc}
           alt={categoryName}
+          title={categoryName}
           width={imageSize}
           height={imageSize}
           className={`h-full w-full object-contain transition-[filter] duration-200 ${
@@ -247,11 +250,11 @@ export function ServicesMegaMenuPanel({
     <div className="flex max-h-[min(78vh,720px)] flex-col overflow-hidden  bg-white  shadow-[0_2px_10px_rgba(136,136,136,0.25)] ">
       <div className="shrink-0 px-5 pb-3 pt-4 sm:px-8 sm:pb-0 sm:pt-5 lg:px-10">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:gap-4">
-          <h2
+          <p
             className={`${styles.montserrat} text-2xl tracking-tight font-[600]  sm:text-[24px]`}
           >
             Services
-          </h2>
+          </p>
           <p
             className={`text-sm  sm:pb-0.5 sm:text-[14px] ${styles.fontopensans}`}
           >
@@ -276,6 +279,7 @@ export function ServicesMegaMenuPanel({
                 <Link
                   key={c.id}
                   href={c.href}
+                  title={c.name}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={onNavigate}
@@ -328,6 +332,7 @@ export function ServicesMegaMenuPanel({
                   <Link
                     key={svc.href + svc.title}
                     href={svc.href}
+                    title={svc.title}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={onNavigate}
@@ -400,6 +405,8 @@ export function ServicesMegaMenuMobileAccordion({
               </button>
               <Link
                 href={c.href}
+                
+                title={c.name}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 font-[700] text-[15px] text-neutral-900"
@@ -427,6 +434,7 @@ export function ServicesMegaMenuMobileAccordion({
                     <Link
                       key={svc.href + svc.title}
                       href={svc.href}
+                      title={`View all ${c.name}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={onNavigate}

@@ -82,8 +82,8 @@ function BrandImpactSection1() {
 
     const downloadPDF = () => {
         const link = document.createElement("a");
-        link.href = "/Eldeco-Lvb-Overview-Report.pdf";
-        link.download = "Eldeco-Lvb-Overview-Report.pdf";
+        link.href = "/Gold-in-the-Abyss.pptx";
+        link.download = "Gold-in-the-Abyss.pptx";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -236,16 +236,22 @@ function BrandImpactSection1() {
                             </div>
 
                             <button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="w-full xl:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
-                                style={{
-                                    fontFamily: "PoppinsRegular",
-                                }}
-                            >
-                                <p className="text-white">{isSubmitting ? "Submitting..." : "Free Download"}</p>
-                                <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px]" />
-                            </button>
+  type="submit"
+  disabled={isSubmitting}
+  className="w-full xl:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
+  style={{
+    fontFamily: "PoppinsRegular",
+  }}
+>
+  <span className="text-white leading-none">
+    {isSubmitting ? "Submitting..." : "Free Download"}
+  </span>
+
+  <Download
+    className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px] shrink-0 text-white"
+    strokeWidth={2.2}
+  />
+</button>
                         </div>
                         <p
                             className="font-[400] text-[13px] xl:text-[14px] text-[#6E6E6E] text-left"
@@ -314,7 +320,7 @@ function BrandImpactSection1() {
             </div>
 
             {/* Row 3  */}
-            <div className={`w-full flex ${styles.containerWidth} justify-center items-center`}>
+            <div className={`w-full pb-6 flex ${styles.containerWidth} justify-center items-center`}>
                 {/* Center Align Container  */}
                 <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center ">
                     <h2

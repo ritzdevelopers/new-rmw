@@ -31,7 +31,7 @@ export async function GET(
       <head>
         <meta charset="utf-8">
         <title>${pages[0].title}</title>
-        <link rel="canonical" href="${canonicalUrl}">
+        <link rel="canonical" title="Canonical URL" href="${canonicalUrl}">
         <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
         <meta name="description" content="${pages[0].metaDescription}">
         <meta name="keywords" content="${pages[0].metaKeyWords}">
@@ -115,7 +115,7 @@ export async function GET(
         </style>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+        <link title="Playfair Display and Roboto" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
         <!-- ✅ Structured Data for Web Story -->
         <script type="application/ld+json">
@@ -160,6 +160,7 @@ export async function GET(
           ${pages
             .map((page, index) => {
               const fullImgPath = `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH}/api/images/${page.img.split("images")[1]}`;
+              const titleTag = index === 0 ? "h1" : "h2";
               return `
                 <amp-story-page id="page-${index}" auto-advance-after="5s">
                   <amp-story-grid-layer template="fill">
@@ -168,7 +169,7 @@ export async function GET(
                   <amp-story-grid-layer template="fill">
                     <div class="content-bottom">
                       <div class="text-wrapper">
-                        <h1 class="story-title">${page.title}</h1>
+                        <${titleTag} class="story-title">${page.title}</${titleTag}>
                         <p class="story-desc">${page.description}</p>
                         ${
                           page.buttonCTA?.btnTxt

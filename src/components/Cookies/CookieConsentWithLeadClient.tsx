@@ -67,7 +67,7 @@ const CookieConsentWithLeadClient = () => {
               This website uses cookies to improve user experience on our
               website and help us understand how its used. By using our website,
               you consent to all cookies in accordance with our Cookie Policy.{" "}
-              <Link href="/privacy-policy" className={styles.privacyLink}>
+              <Link href="/privacy-policy" title="Learn more" className={styles.privacyLink}>
                 Learn more
               </Link>
             </p>

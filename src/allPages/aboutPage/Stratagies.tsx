@@ -26,6 +26,7 @@ const Stratagies = () => {
                       href="/contact.html"
                       rel="nofollow"
                       target="_self"
+                      title="Learn More"
                     >
                       <span>
                         <svg
@@ -46,7 +47,7 @@ const Stratagies = () => {
                       </span>
                     </Link>
                   </span>
-                  <Link href="/contact.html" rel="nofollow" target="_self">
+                  <Link title="Learn More" href="/contact.html" rel="nofollow" target="_self">
                     LEARN MORE
                   </Link>
                 </div>
@@ -73,7 +74,10 @@ const Stratagies = () => {
                   <div className="row">
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/services/creative-services/branding-and-identity-development">
+                        <Link 
+                        title="Brand Identity"
+                        target="_self"
+                        href="/services/creative-services/branding-and-identity-development">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
@@ -84,7 +88,7 @@ const Stratagies = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/services/print-advertising/advertisement-designing">
+                        <Link title="Advertising Design" href="/services/print-advertising/advertisement-designing">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
@@ -95,7 +99,7 @@ const Stratagies = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/services/contents-marketing">
+                        <Link title="Content Marketing" href="/services/contents-marketing">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"
@@ -106,7 +110,7 @@ const Stratagies = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6">
                       <div className="tp-cate__list">
-                        <Link href="/services/digital-marketing">
+                        <Link title="Digital Marketing" href="/services/digital-marketing">
                           <i
                             aria-hidden="true"
                             className="fas fa-check-circle"

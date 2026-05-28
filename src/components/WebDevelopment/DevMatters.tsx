@@ -21,15 +21,15 @@ const cards = [
         icon: '/webDevelopment/userExp.png',
     },
     {
-        title: "Strong First Impression",
+        title: "SEO Friendly Structure",
         description:
-            "Professional web development services \n provide a credible and aesthetically \npleasing website that makes a great first \n impression right away. Companies \n searching for web developers appreciate \n websites designed to engage and convert \nvisitors.",
+            "We are a team of professional web developers providing high-performance, SEO optimized websites that improve search-engine ranking, drive organic traffic to your business, and enhance your visibility",
         icon: '/webDevelopment/dev2.png',
     },
     {
-        title: "Seamless User Experience",
+        title: "Fast Reliable Websites",
         description:
-            "Responsive web development services \n ensure your website works flawlessly\n on mobile, tablet, and computer\n  platforms. A seamless user experience\n keeps visitors interested and decreases\n bounce rates.",
+            "With our professional web development services, you can expect your website to be fast-loading, highly secure, and high-performing, helping to build user trust and enhance the overall user experience.",
         icon: '/webDevelopment/userExp.png',
     },
     // 👉 Add more cards here (it will auto create slides)
@@ -84,29 +84,35 @@ export default function DevMatters() {
                     </h2>
 
                     {/* Desktop / large tablet arrows (lg+) */}
-                    <div className="mt-6 hidden items-center gap-6 text-white/85 lg:flex">
+                    <div className="mt-6 hidden items-center gap-3 text-white/85 lg:flex">
                         <button
+                            type="button"
                             onClick={handlePrev}
                             className=" hover:opacity-70 cursor-pointer"
+                            aria-label="Previous slide"
                         >
                             <Image
-                                alt="prev"
-                                src="/webDevelopment/whitearrL.png"
+                                alt="Previous slide"
+                                title="Previous slide"
+                                src="/varun.icon/left-arrow.svg"
                                 width={30}
                                 height={30}
                                 className="w-[27px] h-[27px] "
                             />
                         </button>
                         <button
+                            type="button"
                             onClick={handleNext}
                             className=" hover:opacity-70  cursor-pointer"
+                            aria-label="Next slide"
                         >
                             <Image
-                                alt="next"
-                                src="/webDevelopment/whitearrR.png"
+                                alt="Next slide"
+                                title="Next slide"
+                                src="/varun.icon/right-arrow.svg"
                                 width={30}
                                 height={30}
-                                className="w-[27px] h-[27px]"
+                                className="w-[27px] h-[27px] "
                             />
                         </button>
                     </div>
@@ -119,6 +125,7 @@ export default function DevMatters() {
                         <img
                             src="/webDevelopment/devmatter.png"
                             alt="AI web development"
+                            title="AI web development"
                             className="h-auto w-full object-contain"
                         />
                     </div>
@@ -152,6 +159,7 @@ export default function DevMatters() {
                                                 <img
                                                     src={icon}
                                                     alt={title}
+                                                    title={title}
                                                     className={`mx-auto mb-3 object-contain lg:mb-4 ${globalCardIndex % 2 === 0
                                                         ? "w-[79px] h-[55px]"
                                                         : "w-[53px] h-[60px]"
@@ -184,8 +192,9 @@ export default function DevMatters() {
                             aria-label="Previous slide"
                         >
                             <Image
-                                alt=""
-                                src="/webDevelopment/whiteArrL.png"
+                                alt="Previous slide"
+                                title="Previous slide"
+                                src="/varun.icon/left-arrow.svg"
                                 width={30}
                                 height={30}
                                 className="h-[27px] w-[27px]"
@@ -198,8 +207,9 @@ export default function DevMatters() {
                             aria-label="Next slide"
                         >
                             <Image
-                                alt=""
-                                src="/webDevelopment/whiteArrR.png"
+                                alt="Next slide"
+                                title="Next slide"
+                                src="/varun.icon/right-arrow.svg"
                                 width={30}
                                 height={30}
                                 className="h-[27px] w-[27px]"

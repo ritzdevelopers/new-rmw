@@ -367,6 +367,7 @@ const contentData = [
         <div className="flex flex-col gap-6 p-4">
           <div className="flex justify-end">
             <Link
+              title="Add Content"
               href={"/admin/content/add"}
               className="px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] cursor-pointer transition duration-200"
             >
@@ -440,6 +441,7 @@ const contentData = [
                 </p>
                 <div className="w-full md:w-1/6 flex justify-start md:justify-center gap-2 mt-2 md:mt-0">
                   <Link
+                    title="Edit Content"
                     href={`/admin/content/edit/${idx}`}
                     className="p-2 cursor-pointer bg-green-600 hover:bg-green-700 transition text-white rounded-md"
                   >

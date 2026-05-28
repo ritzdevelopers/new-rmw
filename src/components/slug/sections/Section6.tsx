@@ -1,6 +1,13 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
+import {
+    CONTACT_COUNTRIES,
+    DEFAULT_CONTACT_COUNTRY,
+    SORTED_CONTACT_COUNTRIES,
+    validateContactPhone,
+    type CountryEntry,
+} from "@/lib/contactPhoneValidation";
 import { MdFacebook } from "react-icons/md";
 import { BsTwitterX } from "react-icons/bs";
 import { TiSocialLinkedin } from "react-icons/ti";
@@ -47,8 +54,10 @@ function ServiceSelectChevron() {
 
 function Section6() {
     const captchaRef = useRef<HCaptcha>(null);
+    const phoneInputRef = useRef<HTMLInputElement>(null);
     const [captchaToken, setCaptchaToken] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [selectedCountry, setSelectedCountry] = useState<CountryEntry>(() => DEFAULT_CONTACT_COUNTRY);
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -67,6 +76,11 @@ function Section6() {
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => {
         const { name, value } = e.target;
+        if (name === "phone") {
+            const digits = value.replace(/\D/g, "").slice(0, 15);
+            setFormData((prev) => ({ ...prev, phone: digits }));
+            return;
+        }
         setFormData((prev) => ({
             ...prev,
             [name]: value,
@@ -83,45 +97,46 @@ function Section6() {
         toast.error(message);
     };
 
-    const validateForm = () => {
+    const validateForm = (): { ok: true; phoneE164: string } | { ok: false } => {
         const trimmedName = formData.name.trim();
-        const trimmedPhone = formData.phone.trim();
-        const phoneDigits = trimmedPhone.replace(/\D/g, "");
+        const phoneDigits = formData.phone.replace(/\D/g, "");
         const trimmedEmail = formData.email.trim();
         const trimmedService = formData.service.trim();
         const trimmedQuery = formData.query.trim();
 
         if (!trimmedName || trimmedName.length < 2) {
             showPopup("error", "Please enter a valid name");
-            return false;
+            return { ok: false };
         }
 
-        if (phoneDigits.length < 10 || phoneDigits.length > 15) {
-            showPopup("error", "Please enter a valid phone number");
-            return false;
+        const phoneResult = validateContactPhone(phoneDigits, selectedCountry);
+        if (!phoneResult.ok) {
+            showPopup("error", phoneResult.error);
+            phoneInputRef.current?.focus();
+            return { ok: false };
         }
 
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
             showPopup("error", "Please enter a valid email address");
-            return false;
+            return { ok: false };
         }
 
         if (!trimmedService) {
             showPopup("error", "Please select a service");
-            return false;
+            return { ok: false };
         }
 
         if (!trimmedQuery || trimmedQuery.length < 10) {
             showPopup("error", "Please enter a message of at least 10 characters");
-            return false;
+            return { ok: false };
         }
 
         if (!captchaToken) {
             showPopup("error", "Please complete the captcha");
-            return false;
+            return { ok: false };
         }
 
-        return true;
+        return { ok: true, phoneE164: phoneResult.e164 };
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -131,7 +146,8 @@ function Section6() {
             return;
         }
 
-        if (!validateForm()) return;
+        const validation = validateForm();
+        if (!validation.ok) return;
 
         try {
             setIsSubmitting(true);
@@ -153,7 +169,7 @@ function Section6() {
 
             const payload = {
                 name: formData.name.trim(),
-                phone: formData.phone.trim().replace(/\D/g, ""),
+                phone: validation.phoneE164,
                 email: formData.email.trim(),
                 service: formData.service.trim(),
                 query: formData.query.trim(),
@@ -172,6 +188,7 @@ function Section6() {
             }
 
             showPopup("success", "Thank you! Your query has been submitted.");
+            setSelectedCountry(DEFAULT_CONTACT_COUNTRY);
             setFormData({
                 name: "",
                 phone: "",
@@ -331,7 +348,40 @@ function Section6() {
                     <div>
                         <form className="flex flex-col gap-6 xl:gap-8" onSubmit={handleSubmit}>
                             <input type="text" name="name" value={formData.name} onChange={handleInputChange} className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500] ${styles.fontmontserrat}`} placeholder="Your Name" />
-                            <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500]  ${styles.fontmontserrat}`} placeholder="Phone Number" />
+                            <div className="flex w-full flex-col gap-4 sm:flex-row sm:items-end sm:gap-3">
+                                <div className="relative w-full shrink-0 sm:max-w-[min(100%,200px)]">
+                                    <select
+                                        aria-label="Country calling code"
+                                        value={selectedCountry.code}
+                                        onChange={(e) => {
+                                            const next = CONTACT_COUNTRIES.find((c) => c.code === e.target.value);
+                                            if (next) setSelectedCountry(next);
+                                        }}
+                                        className={`w-full cursor-pointer appearance-none bg-transparent pb-4 pr-8 text-[#5C5C5C] font-[500] text-[14px] border-b-[1px] border-[#0F1640] outline-none ${styles.fontmontserrat}`}
+                                    >
+                                        {SORTED_CONTACT_COUNTRIES.map((c) => (
+                                            <option key={c.code} value={c.code} className="text-[#5C5C5C] font-[500] text-[14px]">
+                                                {c.flag} {c.dial_code} {c.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <span className="pointer-events-none absolute inset-y-0 right-0 flex items-end pb-4">
+                                        <ServiceSelectChevron />
+                                    </span>
+                                </div>
+                                <input
+                                    ref={phoneInputRef}
+                                    type="tel"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleInputChange}
+                                    inputMode="numeric"
+                                    autoComplete="tel-national"
+                                    maxLength={15}
+                                    className={`min-w-0 flex-1 pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500] ${styles.fontmontserrat}`}
+                                    placeholder="Mobile number (without country code)"
+                                />
+                            </div>
                             <input type="email" name="email" value={formData.email} onChange={handleInputChange} className={`w-full pb-4 border-b-[1px] border-[#0F1640] outline-none placeholder:text-[#5C5C5C] placeholder:text-[14px] placeholder:font-[500] ${styles.fontmontserrat}`} placeholder="Email Address" />
                             <div className="relative w-full">
                                 <select
@@ -349,6 +399,8 @@ function Section6() {
                                     <option value="Web Development" className="text-[#5C5C5C] font-[500] text-[14px]">Web Development</option>
                                     <option value="Celebrity Endorsements" className="text-[#5C5C5C] font-[500] text-[14px]">Celebrity Endorsements</option>
                                     <option value="Influencer Marketing" className="text-[#5C5C5C] font-[500] text-[14px]">Influencer Marketing</option>
+                                    <option value="Real Estate Walkthrough" className="text-[#5C5C5C] font-[500] text-[14px]">Real Estate Walkthrough</option>
+                                    <option value="3D Rendering Services" className="text-[#5C5C5C] font-[500] text-[14px]">3D Rendering Services</option>
                                 </select>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-end pb-4">
                                     <ServiceSelectChevron />

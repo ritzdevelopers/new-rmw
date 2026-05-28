@@ -64,6 +64,17 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      { source: "/blogs2", destination: "/blogs", permanent: true },
+      { source: "/blog2", destination: "/blogs", permanent: true },
+      { source: "/blogs/blogs/:page(\\d+)", destination: "/blogs", permanent: true },
+      { source: "/blogs/:page(\\d+)", destination: "/blogs", permanent: true },
+      // Slug without "." so /blogs/image.jpg stays on disk (nginx) or middleware
+      { source: "/blogs/:slug([^./]+)", destination: "/:slug", permanent: true },
+    ];
+  },
+  // Legacy service redirects (uncomment to enable):
   // async redirects() {
   //   return [
   //     { source: "/campaign-integration.html", destination: "/services/influencer-marketing-agency-in-india/campaign-integration", permanent: true },
@@ -95,6 +106,14 @@ const nextConfig = {
       beforeFiles: [
         { source: "/about", destination: "/about.html" },
         { source: "/contact", destination: "/contact.html" },
+        {
+          source: "/services/real-estate-walkthrough",
+          destination: "/services/Real-Estate-Walkthrough",
+        },
+        {
+          source: "/services/real-estate-walkthrough/:path*",
+          destination: "/services/Real-Estate-Walkthrough/:path*",
+        },
       ],
     };
   },

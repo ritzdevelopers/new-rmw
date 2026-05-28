@@ -223,7 +223,7 @@ const ManageNewspapersPage: React.FC = () => {
           </p>
         </div>
         <div className={styles.headerRight}>
-          <Link href="/admin/newspaper" className={styles.addButton}>
+          <Link href="/admin/newspaper" title="Add New Newspaper" className={styles.addButton}>
             + Add New Newspaper
           </Link>
         </div>

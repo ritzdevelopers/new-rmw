@@ -141,6 +141,7 @@ const Home = () => {
                       <div className="tp-hero__action d-flex align-items-center mt-4">
                         <span>
                           <Link
+                            title="Contact RMW"
                             href="/contact.html"
                             className="tp-hero__action-btn"
                             aria-label="Contact RMW"
@@ -165,6 +166,7 @@ const Home = () => {
                           </Link>
                         </span>
                         <Link
+                          title="Learn more about RMW"
                           href="/contact.html"
                           rel="nofollow"
                           target="_self"

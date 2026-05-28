@@ -11,6 +11,7 @@ export default function Experience() {
                         src="/webDevelopment/curve.png"
                         alt="decorative curve"
                         fill
+                        title="decorative curve"
                         className="object-fit"
                     />
                 </div>
@@ -32,10 +33,11 @@ export default function Experience() {
    "
                     >
                         <Image
-                            src="/webDevelopment/experience.png"
+                            src="/varunimage/experience.png"
                             alt="experience"
                             width={761}
                             height={403}
+                            title="experience"
                             priority
                             className="w-full h-full object-contain"
                         />

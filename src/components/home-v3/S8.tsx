@@ -92,8 +92,8 @@ function S8({
 
     const downloadPDF = () => {
         const link = document.createElement("a");
-        link.href = "/Eldeco-Lvb-Overview-Report.pdf";
-        link.download = "Eldeco-Lvb-Overview-Report.pdf";
+        link.href = "/Gold-in-the-Abyss.pptx";
+        link.download = "Gold-in-the-Abyss.pptx";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -250,7 +250,7 @@ function S8({
                                           className="w-full sm:w-[calc(33.333%-10px)] lg:w-[405px] h-auto md:max-lg:h-[311px] lg:h-[311px] flex flex-col gap-2 min-h-0"
                                       >
                                           {/* Image Container  */}
-                                          <div className="w-full relative h-auto md:max-lg:h-[212px] lg:h-[212px] min-h-0 shrink-0 overflow-hidden">
+                                          <div className="w-full relative h-[250px] sm:h-[220px] md:max-lg:h-[212px] lg:h-[212px] min-h-0 shrink-0 overflow-hidden">
                                               <Image
                                                   onClick={() =>
                                                       window.open(
@@ -264,7 +264,7 @@ function S8({
                                                   fill
                                                   unoptimized
                                                   sizes="(min-width: 1024px) 405px, (min-width: 640px) 33vw, 100vw"
-                                                  className="w-full h-full md:max-lg:object-cover lg:object-cover cursor-pointer"
+                                                  className="object-cover cursor-pointer"
                                               />
                                           </div>
                                           <p className="font-[400] text-[13px] sm:text-[14px] lg:text-[15px] text-[#575757] flex gap-2 items-center">

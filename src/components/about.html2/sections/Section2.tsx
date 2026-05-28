@@ -14,7 +14,7 @@ function Section2() {
                         {/* Left Side Col  */}
                         <div className={`flex flex-col justify-between gap-4 ${s2.leftCol}`}>
                             <div className={`w-full pt-3 ${s2.whoRow}`}>
-                                <p className={`font-[600] text-[14px] uppercase ${styles.fontmontserrat} ${s2.whoLabel}`}>who are we ?</p>
+                                <h2 className={`font-[600] text-[14px] uppercase ${styles.fontmontserrat} ${s2.whoLabel}`}>who are we ?</h2>
                             </div>
 
                             <div className="w-full flex flex-col justify-end items-end text-end">
@@ -31,7 +31,8 @@ function Section2() {
                         <div className="flex flex-col justify-between gap-0">
                             <Image
                                 src="/new-about-imgs/s2/17years.png"
-                                alt="17 years of experience"
+                                alt="17+ years of advertising and branding experience at Ritz Media World"
+                                title="17+ years of experience – Ritz Media World"
                                 width={320}
                                 height={190}
                                 className={`w-[320px] h-auto object-contain ${s2.img17}`}
@@ -45,13 +46,14 @@ function Section2() {
                                             {reviewers.map((reviewer, idx) => (
                                                 <div
                                                     key={reviewer}
-                                                    className={`relative w-[47px] h-[47px] shrink-0 rounded-full overflow-hidden border-3 border-[#ECECEC] bg-white ${s2.avatar} ${idx > 0 ? `-ml-[10px] ${s2.avatarOverlap}` : ""
+                                                    className={`relative w-[47px] h-[47px] shrink-0 rounded-full overflow-hidden border-4 border-[#ffffff] bg-white ${s2.avatar} ${idx > 0 ? `-ml-[10px] ${s2.avatarOverlap}` : ""
                                                         }`}
                                                     style={{ zIndex: idx + 1 }}
                                                 >
                                                     <Image
                                                         src={reviewer}
-                                                        alt={`Reviewer ${idx + 1}`}
+                                                        alt={`Google reviewer ${idx + 1} – Ritz Media World`}
+                                                        title={`Google reviewer ${idx + 1}`}
                                                         width={47}
                                                         height={47}
                                                         className="w-full h-full object-cover"
@@ -61,7 +63,7 @@ function Section2() {
                                         </div>
                                         <div>
                                             <p className={`font-[600] text-[16px] uppercase text-[#3C3C3C] ${styles.fontmontserrat} ${s2.reviewsLabel}`}>
-                                                more then <br /> 141 google reviews
+                                                more than <br /> 143 google reviews
 
                                             </p>
                                         </div>
@@ -76,17 +78,44 @@ function Section2() {
                                         <p className={`font-[600] text-[13px] text-white absolute top-[50%] right-[50%] translate-x-[50%] -translate-y-[50%] z-10 ${styles.fontmontserrat} ${s2.starScore}`}>5.0</p>
                                     </div>
 
-                                    <div className={`w-[40px] h-[40px] rounded-full bg-[#C99237] flex justify-center items-center ${s2.gBadge}`}>
-                                        <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M19.4276 2.92383L17.1346 9.08052L12.9492 4.01635L19.4276 2.92383Z" fill="white" />
-                                            <rect x="2.19672" y="16.7171" width="16.5517" height="0.689655" transform="rotate(-39.5724 2.19672 16.7171)" fill="white" />
-                                        </svg>
-                                    </div>
+                                    <a
+  href="https://share.google/KiTNs3mJMr5qUOkjK"
+  target="_blank"
+  rel="noopener noreferrer"
+  title="Google Reviews"
+  className={`w-[40px] h-[40px] rounded-full bg-[#C99237] flex justify-center hover:bg-[#0F1640] cursor-pointer items-center ${s2.gBadge}`}
+>
+  <svg
+    width="22"
+    height="20"
+    viewBox="0 0 22 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M19.4276 2.92383L17.1346 9.08052L12.9492 4.01635L19.4276 2.92383Z"
+      fill="white"
+    />
+    <rect
+      x="2.19672"
+      y="16.7171"
+      width="16.5517"
+      height="0.689655"
+      transform="rotate(-39.5724 2.19672 16.7171)"
+      fill="white"
+    />
+  </svg>
+</a>
                                 </div>
                             </div>
 
                             <div className={`w-[388px] h-auto ${s2.awardWrap}`}>
-                                <img src="/new-about-imgs/s2/abt-s2-awarrd.jpg" alt="reviews" className="w-full h-auto" />
+                                <img
+                                    src="/new-about-imgs/s2/abt-s2-awarrd.jpg"
+                                    alt="Awards and recognition earned by Ritz Media World"
+                                    title="Ritz Media World awards and recognition"
+                                    className="w-full h-auto"
+                                />
                             </div>
                         </div>
                     </div>
@@ -96,11 +125,20 @@ function Section2() {
                         <p className={`font-[400] text-[24px] ${styles.fontmontserrat} ${s2.rightLead}`}>
                             We believe in staying ahead by combining <span className="font-[700]">creative storytelling</span> and <span className="font-[700]">leveraging AI</span> to deliver <span className="font-[700]">stunning visuals</span> in <span className="font-[700]">record time</span>.
                         </p>
-                        <p className={`font-[400] text-[16px] ${styles.fontopensans} ${s2.rightBody}`}>For the better part of the last two decades, RITZ MEDIA WORLD has been building narratives that drive competitive movements. They don't just influence behaviors but develop lasting habits. <br /><br />
+                        <p className={`font-[400] text-[16px] ${styles.fontopensans} ${s2.rightBody}`}>For the better part
+                             of the last two decades,
+                             <a href="/" target="_blank" rel="noopener noreferrer" title="Ritz Media World"
+                              className="font-semibold cursor-pointer text-[#C99237] hover:underline"> RITZ MEDIA WORLD </a> 
+                          has been building narratives that drive competitive movements. They don't just influence behaviors but develop lasting habits. <br /><br />
                             We pride ourselves in going out of our way to understand the consumer mindset in every walk of life. This enables us to build campaigns that don't just speak at them, but we build campaigns that speak to them.</p>
 
-                        <div className={`h-auto w-full max-w-[564px] shrink-0 ${s2.teamWrap}`}>
-                            <img src="/new-about-imgs/s2/team.jpg" alt="about" className="h-auto w-full" />
+                        <div className={`h-auto w-full max-w-[564px] mt-[20px] shrink-0 ${s2.teamWrap}`}>
+                            <img
+                                src="/varunimage/team-bg.avif"
+                                alt="Ritz Media World creative team at work"
+                                title="Ritz Media World team"
+                                className="h-auto w-full"
+                            />
                         </div>
                     </div>
                 </div>

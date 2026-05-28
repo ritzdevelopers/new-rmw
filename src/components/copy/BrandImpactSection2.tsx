@@ -82,8 +82,8 @@ function BrandImpactSection2() {
 
     const downloadPDF = () => {
         const link = document.createElement("a");
-        link.href = "/Eldeco-Lvb-Overview-Report.pdf";
-        link.download = "Eldeco-Lvb-Overview-Report.pdf";
+        link.href = "/Gold-in-the-Abyss.pptx";
+        link.download = "Gold-in-the-Abyss.pptx";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -292,6 +292,7 @@ function BrandImpactSection2() {
 
                     <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-left">
                         <Link
+                            title="Request A Free Audit"
                             href={"https://ritzmediaworld.com/contact.html"}
                             target="_blank"
                             className="font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-black"

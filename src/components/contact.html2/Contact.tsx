@@ -8,6 +8,8 @@ import Section7 from "./sections/Section7";
 import Section8 from "./sections/Section8";
 import Section9 from "./sections/Section9";
 import Section10 from "./sections/Section10";
+import SectionNew1 from "./sections/Section-new1";
+import Faq from "./sections/Faq";
 
 
 function Contact() {
@@ -16,8 +18,10 @@ function Contact() {
        <main className="w-full overflow-x-hidden">
             <Banner></Banner>
             <Section2></Section2>
-            <Section3></Section3>
             <Section4></Section4>
+            <SectionNew1></SectionNew1>
+            <Section3></Section3>
+            <Faq></Faq>
             <Section5></Section5>
             <Section6></Section6>
             <Section7></Section7>

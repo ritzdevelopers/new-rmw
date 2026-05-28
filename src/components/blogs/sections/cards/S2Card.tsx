@@ -7,6 +7,7 @@ import { IoMdClose } from "react-icons/io";
 import { LuLink } from "react-icons/lu";
 import { useState } from "react";
 import styles from "../page.module.css";
+import { resolveBlogBannerUrl } from "@/lib/blogUrl";
 
 function stripHtml(html: string): string {
     if (typeof html !== "string") return "";
@@ -61,10 +62,7 @@ function S2Card({ blog }: { blog: Blog }) {
 
     const shareUrl = typeof window !== "undefined" ? `${window.location.origin}/${blog.slug}` : "";
     const shareTitle = blog.title || "Check out this blog";
-    const bannerPath = typeof blog?.banner === "string" ? blog.banner : "";
-    const imageSrc = bannerPath.includes("/images")
-        ? `https://ritzmediaworld.com/api/images${bannerPath.split("/images")[1]}`
-        : `https://ritzmediaworld.com/blogs/${bannerPath}`;
+    const imageSrc = resolveBlogBannerUrl(blog?.banner);
 
     const shareLinks = {
         whatsapp: `https://wa.me/?text=${encodeURIComponent(shareTitle + " " + shareUrl)}`,
@@ -105,7 +103,7 @@ function S2Card({ blog }: { blog: Blog }) {
 
     const openShare = (url: string) => window.open(url, "_blank", "noopener,noreferrer,width=600,height=500");
 
-    const plainDescription = decodeHtmlEntities(stripHtml(blog.description || ""));
+    const plainDescription = decodeHtmlEntities(stripHtml(blog.meta_description || ""));
     const descriptionWithoutTitle = plainDescription
         .replace(new RegExp(`^${blog.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*`, "i"), "")
         .trim();
@@ -117,7 +115,8 @@ function S2Card({ blog }: { blog: Blog }) {
             {/* Top Row  */}
             <div className="w-full flex flex-col gap-3 sm:gap-4 lg:gap-5">
                 {/* Image Here  */}
-                <div onClick={() => window.open(`/${blog.slug}`, "_blank")} className="w-full cursor-pointer relative h-[220px] sm:h-[200px] lg:h-[250px] xl:h-[345px] overflow-hidden">
+                <div onClick={() => window.open(`/${blog.slug}`, "_blank")} className="w-full cursor-pointer relative h-[220px] sm:h-[200px] lg:h-[250px] xl:h-[345px] overflow-hidden bg-[#E8EBFF]">
+                    {imageSrc ? (
                     <Image
                        src={imageSrc}
                         quality={75}
@@ -126,7 +125,10 @@ function S2Card({ blog }: { blog: Blog }) {
                         priority={false}
                         loading="lazy"
                         alt={blog.title}
-                        fill className="" />
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 613px" />
+                    ) : null}
                 </div>
 
                 <h2 onClick={() => window.open(`/${blog.slug}`, "_blank")} className={`font-[700] hover:underline cursor-pointer text-[18px] sm:text-[17px] lg:text-[22px]  text-[#0F1640] max-w-[500px] ${styles.fontmontserrat}`}>
@@ -212,9 +214,3 @@ function S2Card({ blog }: { blog: Blog }) {
 }
 
 export default S2Card;
-
-
-
-
-
-// https://ritzmediaworld.com/blogs/undefined 

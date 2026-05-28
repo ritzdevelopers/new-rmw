@@ -1,6 +1,8 @@
 import "./styles/tailwind.css";
 import "./styles/global.css";
 import { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { websiteJsonLd } from "@/lib/structuredData";
 import NewNavbar from "./layout/NewNavbar";
 import NewFooter from "./layout/NewFooter";
 import RubyProvider from "@/ruby-context/ruby.context";
@@ -83,25 +85,10 @@ export const metadata: Metadata = {
   },
 };
 
-const websiteJsonLd = {
-  "@context": "https://schema.org/",
-  "@type": "WebSite",
-  name: "Ritz Media World",
-  url: "https://ritzmediaworld.com/",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://ritzmediaworld.com/services{search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
-};
-
 export default function NewRMWW({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-      />
+      <JsonLd data={websiteJsonLd} />
       {/* <Navbar></Navbar> */}
       <NewNavbar></NewNavbar>
       <RubyProvider>

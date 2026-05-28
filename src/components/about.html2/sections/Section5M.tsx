@@ -17,7 +17,7 @@ const MILESTONES: Milestone[] = [
     { year: "2012", label: "Innovation Leadership", image: "/new-about-imgs/s4/abt-s4-img2.jpg", alt: "2012 — Innovation Leadership" },
     { year: "2016", label: "Digital Expansion", image: "/new-about-imgs/s4/abt-s4-img3.jpg", alt: "2016 — Digital Expansion" },
     { year: "2020", label: "Premium Positioning", image: "/new-about-imgs/s4/abt-s4-img4.jpg", alt: "2020 — Premium Positioning" },
-    { year: "2026", label: "Today", image: "/new-about-imgs/s4/abt-s4-img5.jpg", alt: "2026 — Today" },
+    { year: "2026", label: "AI-Powered 3D Rendering at 5X", image: "/new-about-imgs/s4/abt-s4-img5.jpg", alt: "2026 — AI-Powered 3D Rendering at 5X" },
 ];
 
 function MilestoneItem({ item, index }: { item: Milestone; index: number }) {
@@ -47,10 +47,12 @@ function MilestoneItem({ item, index }: { item: Milestone; index: number }) {
             style={{ transitionDelay: visible ? `${Math.min(index, 5) * 45}ms` : "0ms" }}
         >
             <span className={m.node} aria-hidden />
-            <p className={`${styles.fontmontserrat} ${m.year}`}>{item.year}</p>
-            <p className={`${styles.fontopensans} ${m.label}`}>{item.label}</p>
+            <div className={m.yearLabelWrap}>
+                <p className={`${styles.fontmontserrat} ${m.year}`}>{item.year}</p>
+                <p className={`${styles.fontopensans} ${m.label}`}>{item.label}</p>
+            </div>
             <div className={m.thumb}>
-                <img src={item.image} alt={item.alt} loading="lazy" />
+                <img src={item.image} alt={item.alt} title={item.alt} loading="lazy" />
             </div>
         </div>
     );
@@ -63,11 +65,11 @@ function Section5M() {
                 <div className={m.inner}>
                     <header className={m.hero}>
                         <p className={`font-[600] text-[16px] uppercase text-[#C99237] ${styles.fontpoppins} ${s5.eyebrow}`}>Our Journey</p>
-                        <h2 className={`mb-1 font-[700] text-[36px] ${styles.fontmontserrat} ${s5.heading} ${m.headingTight}`}>
+                        <p className={`mb-1 font-[700] text-[36px] ${styles.fontmontserrat} ${s5.heading} ${m.headingTight}`}>
                             17 Years of Brand Excellence
-                        </h2>
+                        </p>
                         <p className={`font-[400] text-[16px] ${styles.fontpoppins} ${s5.copy} ${m.subTight}`}>
-                            From pioneering print innovations to 360° digital mastery, our journey reflects our commitment to excellence.
+                            From pioneering print innovations to 360° Digital Marketing , our journey reflects our commitment to excellence.
                         </p>
                     </header>
 
