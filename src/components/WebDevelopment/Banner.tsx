@@ -44,8 +44,10 @@ function Section1() {
                     <h1 className={`mt-1 text-center text-[26px] font-[800] leading-[1.1] text-white sm:mt-2 sm:text-[36px] sm:leading-[1.15] md:mt-0 md:text-left md:text-[31px] md:leading-[1.2] lg:text-[55px] lg:leading-14 ${styles.montserratExtraBold}`}>
                         Web Development
                     </h1>
-                    <h2 className={`text-center text-[14px] font-[500] leading-tight text-white sm:text-[16px] md:text-left lg:text-[19px] xl:text-[21px] ${styles.montserratMedium}`}>
-                        Custom, responsive and conversion focused website development for your brand
+                    <h2 className={`text-center text-[14px] font-[500]  text-white sm:text-[16px] md:text-left lg:text-[19px] xl:text-[21px] ${styles.montserratMedium}`}>
+                        Custom, responsive and conversion focused website
+                        <br />
+                         development for your brand
                     </h2>
                 </div>
             </div>
