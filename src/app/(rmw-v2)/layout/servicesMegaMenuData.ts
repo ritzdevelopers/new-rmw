@@ -1,4 +1,3 @@
-
 export type MegaMenuServiceLink = {
   title: string;
   description: string;
@@ -193,7 +192,7 @@ export const SERVICES_MEGA_MENU_CATEGORIES: MegaMenuCategory[] = [
       {
         title: "Customized Content Strategy",
         description: "Editorial plans mapped to funnel goals.",
-        href: "/services/contents-marketing/content-marketing",
+        href: "/services/contents-marketing/customized-content-strategy",
         image: "/navbar/content-marketing/customized-content-strategy.jpg",
       },
       {

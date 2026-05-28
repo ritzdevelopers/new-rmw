@@ -353,7 +353,7 @@ function Section3({ servicesData }: Section3Props) {
                                 subServices: [
                                     {
                                         title: "Customized Content Strategy",
-                                        slug: "https://ritzmediaworld.com/services/contents-marketing/content-marketing",
+                                        slug: "https://ritzmediaworld.com/services/contents-marketing/customized-content-strategy",
                                     },
                                     {
                                         title: "Email and Newsletters Marketing",

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import styles from './webDevelopment.module.css'
 
@@ -27,7 +28,13 @@ export default function Experience() {
                         </p>
                     </div>
 
-                    <div className="relative flex w-full max-w-[761px] items-center justify-center 
+                    <Link
+                        href="/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Go to Ritz Media World homepage"
+                        title="Ritz Media World"
+                        className="relative flex w-full max-w-[761px] items-center justify-center 
     lg:w-[540px] lg:h-[300px] lg:flex-none  xl:w-[761px] xl:h-[403px] xl:flex-none
     min-[1240px]:w-[650px] min-[1240px]:h-[350px] 
    "
@@ -41,7 +48,7 @@ export default function Experience() {
                             priority
                             className="w-full h-full object-contain"
                         />
-                    </div>
+                    </Link>
 
                     <div className="w-full text-center text-white lg:w-auto lg:text-center">
                         <p className={`text-[14px] leading-[24px] sm:text-[15px] sm:leading-[28px] md:text-[16px] md:leading-[30px] lg:text-[16px] lg:leading-[30px] min-[1240px]:text-[17px] min-[1240px]:leading-[31px] min-[1366px]:text-[17px] min-[1366px]:leading-[30px] ${styles.fontopensans} `}>

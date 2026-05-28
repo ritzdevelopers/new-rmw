@@ -100,8 +100,9 @@ export default function BrandThatTrustUs() {
             <div className="w-[100px] sm:w-[120px] lg:w-[146px] h-[56px] sm:h-[67px] lg:h-[81px] flex justify-center items-center flex-shrink-0">
               <Link
                 title="Show more"
-                href="https://ritzmediaworld.com/about.html"
+                href="/clients"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] cursor-pointer border-b"
               >
                 Show more
