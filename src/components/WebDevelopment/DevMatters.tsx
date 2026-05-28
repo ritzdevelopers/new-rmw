@@ -12,7 +12,7 @@ const cards = [
         title: "Strong First Impression",
         description:
             "Professional web development services \n provide a credible and aesthetically \npleasing website that makes a great first \n impression right away. Companies \n searching for web developers appreciate \n websites designed to engage and convert \nvisitors.",
-        icon: '/webDevelopment/dev2.png',
+        icon: "/webDevelopment/dev2.png",
     },
     {
         title: "Seamless User Experience",
@@ -24,13 +24,13 @@ const cards = [
         title: "SEO Friendly Structure",
         description:
             "We are a team of professional web developers providing high-performance, SEO optimized websites that improve search-engine ranking, drive organic traffic to your business, and enhance your visibility",
-        icon: '/webDevelopment/dev2.png',
+        icon: '/webDevelopment/seo.jpg',
     },
     {
         title: "Fast Reliable Websites",
         description:
             "With our professional web development services, you can expect your website to be fast-loading, highly secure, and high-performing, helping to build user trust and enhance the overall user experience.",
-        icon: '/webDevelopment/userExp.png',
+        icon: '/webDevelopment/www (2).jpg',
     },
     // 👉 Add more cards here (it will auto create slides)
 ];
@@ -161,8 +161,8 @@ export default function DevMatters() {
                                                     alt={title}
                                                     title={title}
                                                     className={`mx-auto mb-3 object-contain lg:mb-4 ${globalCardIndex % 2 === 0
-                                                        ? "w-[79px] h-[55px]"
-                                                        : "w-[53px] h-[60px]"
+                                                        ? "w-[90px] h-[62px]"
+                                                        : "w-[60px] h-[68px]"
                                                         }`} />
 
                                                 <h3
