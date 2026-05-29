@@ -127,8 +127,8 @@ export default function Section3() {
                   <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ease-in-out">
                     <Image
                       src={EXPLORE_ARROW_IMAGE}
-                      alt="Arrow"
-                      title="Arrow"
+                      alt="Explore more – link arrow"
+                      title="Explore more"
                       width={22}
                       height={20}
                       className="transition-transform duration-500 ease-in-out"
@@ -160,21 +160,21 @@ export default function Section3() {
                         {item.id}.
                       </p>
                       <div className="min-w-0 flex-1">
-                        <Link
-                          title={item.title}
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-block max-w-full no-underline"
+                        <h3
+                          className={`${accordionStyles.accordionTitleUnder357} m-0 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[25px] md:leading-[50px] lg:text-[25px] lg:leading-[50px] xl:text-[28px] tracking-[0em]`}
+                          style={{ fontFamily: "MontserratSemiBold" }}
                         >
-                          <h3
-                            className={`${accordionStyles.accordionTitleUnder357} text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[25px] lg:text-[25px] xl:text-[28px] md:leading-[50px] tracking-[0em]`}
-                            style={{ fontFamily: "MontserratSemiBold" }}
+                          <Link
+                            title={item.title}
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-inherit no-underline hover:text-inherit"
                           >
                             {item.title}
-                          </h3>
-                        </Link>
+                          </Link>
+                        </h3>
                       </div>
                     </div>
 
@@ -205,13 +205,23 @@ export default function Section3() {
                           {item.description}
                         </p>
 
+                        <div className="relative mt-6 block h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:hidden">
+                          <Image
+                            src={item.image ?? CELEBRITY_IMAGE}
+                            alt={item.title}
+                            title={item.title}
+                            fill
+                            className="object-cover"
+                            sizes="90vw"
+                          />
+                        </div>
                         <Link
                           href={item.href}
                           title={item.title}
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="relative mt-6 block h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:h-[258px]"
+                          className="relative mt-6 hidden h-[258px] w-full max-w-[796px] overflow-hidden rounded-[8px] lg:mt-8 lg:block"
                         >
                           <Image
                             src={item.image ?? CELEBRITY_IMAGE}
@@ -219,12 +229,14 @@ export default function Section3() {
                             title={item.title}
                             fill
                             className="object-cover"
-                            sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
+                            sizes="(min-width: 1280px) 796px, 60vw"
                           />
                         </Link>
 
                         {isOpen ? (
-                          <div className="mt-4 sm:mt-5">{exploreMoreLink}</div>
+                          <div className="mt-4 sm:mt-5 max-lg:block lg:hidden">
+                            {exploreMoreLink}
+                          </div>
                         ) : null}
                       </div>
                     </div>
