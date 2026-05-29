@@ -1,5 +1,5 @@
 User-agent: *
-Allow: /
+Disallow: /admin/
 
 # Allow OpenAI and AI crawlers
 User-agent: ChatGPT-User
@@ -20,4 +20,4 @@ User-agent: Bingbot
 Allow: /
 
 # Sitemap
-Sitemap: https://ritzmediaworld.com/sitemap.xml
+Sitemap: https://ritzmediaworld.com/sitemap.xml"
