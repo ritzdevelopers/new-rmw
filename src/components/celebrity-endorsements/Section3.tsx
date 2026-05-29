@@ -81,14 +81,19 @@ export default function Section3() {
       <div className={`w-full mx-auto ${styles.containerWidth}`}>
         <div className="flex flex-col gap-5 sm:gap-6">
           <div className="flex flex-col gap-1 sm:gap-2 text-center md:text-left">
-          <a href="/services" target="_blank" rel="noopener noreferrer">
-  <p
-    className="text-[#C99237] uppercase text-[12px] lg:text-[16px] font-[600]"
-    style={{ fontFamily: "MontserratSemiBold" }}
-  >
-    Services
-  </p>
-</a>
+          <a
+            href="/services"
+            title="Services"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p
+              className="text-[#C99237] uppercase text-[12px] lg:text-[16px] font-[600]"
+              style={{ fontFamily: "MontserratSemiBold" }}
+            >
+              Services
+            </p>
+          </a>
             <div className="flex flex-col items-center gap-0 text-center md:flex-row md:items-baseline md:justify-start md:text-left">
               <h2
                 className="text-white text-[30px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.25] lg:leading-[50px] font-[700]"
@@ -127,8 +132,8 @@ export default function Section3() {
                   <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white flex items-center justify-center transition-transform duration-500 ease-in-out">
                     <Image
                       src={EXPLORE_ARROW_IMAGE}
-                      alt="Arrow"
-                      title="Arrow"
+                      alt="Explore more – link arrow"
+                      title="Explore more"
                       width={22}
                       height={20}
                       className="transition-transform duration-500 ease-in-out"
@@ -150,7 +155,15 @@ export default function Section3() {
                   <div
                     className="flex items-start justify-between gap-6 sm:gap-8 px-4 sm:px-5 md:px-6 lg:px-6 py-5 sm:py-4 cursor-pointer"
                     onClick={() => toggleExplore(item.id)}
-                    role="presentation"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        toggleExplore(item.id);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={isOpen}
                   >
                     <div className="flex min-w-0 flex-1 items-center gap-3 sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]">
                       <p
@@ -160,21 +173,30 @@ export default function Section3() {
                         {item.id}.
                       </p>
                       <div className="min-w-0 flex-1">
-                        <Link
-                          title={item.title}
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="inline-block max-w-full no-underline"
+                        <h3
+                          className={`${accordionStyles.accordionTitleUnder357} m-0 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[25px] md:leading-[50px] lg:text-[25px] lg:leading-[50px] xl:text-[28px] tracking-[0em]`}
+                          style={{ fontFamily: "MontserratSemiBold" }}
                         >
-                          <h3
-                            className={`${accordionStyles.accordionTitleUnder357} text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[25px] lg:text-[25px] xl:text-[28px] md:leading-[50px] tracking-[0em]`}
-                            style={{ fontFamily: "MontserratSemiBold" }}
+                          <Link
+                            title={item.title}
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => {
+                              const isDesktop = window.matchMedia(
+                                "(min-width: 1024px)",
+                              ).matches;
+                              if (isDesktop) {
+                                e.stopPropagation();
+                              } else {
+                                e.preventDefault();
+                              }
+                            }}
+                            className="text-inherit no-underline hover:text-inherit"
                           >
                             {item.title}
-                          </h3>
-                        </Link>
+                          </Link>
+                        </h3>
                       </div>
                     </div>
 
@@ -207,11 +229,11 @@ export default function Section3() {
 
                         <Link
                           href={item.href}
-                          title={item.title}
+                          title="Explore More"
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="relative mt-6 block h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:h-[258px]"
+                          className="relative mt-6 block h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:mt-8 lg:h-[258px]"
                         >
                           <Image
                             src={item.image ?? CELEBRITY_IMAGE}
@@ -224,7 +246,9 @@ export default function Section3() {
                         </Link>
 
                         {isOpen ? (
-                          <div className="mt-4 sm:mt-5">{exploreMoreLink}</div>
+                          <div className="mt-4 sm:mt-5 lg:mt-8">
+                            {exploreMoreLink}
+                          </div>
                         ) : null}
                       </div>
                     </div>

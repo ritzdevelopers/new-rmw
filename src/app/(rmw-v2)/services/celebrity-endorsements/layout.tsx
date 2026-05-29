@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "Trusted PR Network",
   ],
   alternates: {
-    canonical: "https://ritzmediaworld.com/services/celebrity-endorsements2",
+    canonical: "https://ritzmediaworld.com/services/celebrity-endorsements",
   },
 };
 

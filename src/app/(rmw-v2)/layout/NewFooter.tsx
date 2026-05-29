@@ -62,15 +62,19 @@ function NewFooter() {
           <div className="flex flex-row lg:flex-col gap-12 md:gap-16 lg:gap-4">
             {/* Logo Container  */}
             <div className="mb-1 sm:mb-2">
-              <img src="/home-v3/rmw-f-logo.png" alt="ritz media world logo" title="ritz media world logo" className="max-w-[80px] h-auto md:max-w-[200px] mx-0 md:mx-auto lg:mx-0" />
+              <img
+                src="/home-v3/rmw-f-logo.png"
+                alt="Ritz Media World footer logo"
+                title="Ritz Media World footer logo"
+                className="max-w-[80px] h-auto md:max-w-[200px] mx-0 md:mx-auto lg:mx-0"
+              />
             </div>
             {/* Address Container  */}
             <div className="flex flex-col gap-2 sm:gap-3 text-left">
               <p className="text-white text-[14px] sm:text-[16px] font-[700] mb-0.5 sm:mb-1">Address</p>
-              <ul className="text-white text-[13px] sm:text-[15px] font-[400] flex flex-col gap-1 sm:gap-1.5 cursor-pointer">
-                <li>402 - 404,</li>
-                <li>4th floor, Corporate Park,</li>
-                <li>Tower A1, Sector 142, Noida</li>
+              <ul className="text-white text-[13px] sm:text-[15px] font-[400] flex flex-col gap-1 sm:gap-1.5">
+                <li>402 - 404, 4th floor, Corporate Park , Tower A1, Sector 142, </li>
+                <li> Noida 201305</li>
               </ul>
             </div>
           </div>
@@ -119,7 +123,6 @@ function NewFooter() {
             <div className="flex flex-col gap-3 sm:gap-4 text-left lg:min-w-0 xl:min-w-0 xl:shrink-0">
               <p className="font-[700] text-[14px] sm:text-[16px] text-white mb-0.5 sm:mb-1">Quick Links</p>
               <ul className="text-white text-[13px] sm:text-[14px] lg:text-[15px] font-[400] flex flex-col gap-2.5 sm:gap-3 lg:gap-4 list-disc cursor-pointer list-inside lg:list-outside lg:ml-4 md:w-[209px] lg:w-[178px] xl:w-[209px]">
-                <li title="Home" onClick={() => window.open("https://ritzmediaworld.com/", "_blank")}>Home</li>
                 <li title="About" onClick={() => window.open("https://ritzmediaworld.com/about.html", "_blank")}>About</li>
                 <li title="Our Work" onClick={() => window.open("https://ritzmediaworld.com/work.html", "_blank")}>Our Work</li>
                 <li title="Blogs" onClick={() => window.open("https://ritzmediaworld.com/blogs", "_blank")}>Blogs</li>
