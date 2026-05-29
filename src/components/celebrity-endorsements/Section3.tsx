@@ -177,13 +177,14 @@ export default function Section3() {
                           className={`${accordionStyles.accordionTitleUnder357} m-0 text-white font-[600] text-[18px] leading-[36px] sm:text-[24px] sm:leading-[40px] md:text-[25px] md:leading-[50px] lg:text-[25px] lg:leading-[50px] xl:text-[28px] tracking-[0em]`}
                           style={{ fontFamily: "MontserratSemiBold" }}
                         >
+                          <span className="lg:hidden">{item.title}</span>
                           <Link
                             title={item.title}
                             href={item.href}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="text-inherit no-underline hover:text-inherit"
+                            className="hidden text-inherit no-underline hover:text-inherit lg:inline"
                           >
                             {item.title}
                           </Link>

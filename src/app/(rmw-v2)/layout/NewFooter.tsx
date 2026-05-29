@@ -72,11 +72,9 @@ function NewFooter() {
             {/* Address Container  */}
             <div className="flex flex-col gap-2 sm:gap-3 text-left">
               <p className="text-white text-[14px] sm:text-[16px] font-[700] mb-0.5 sm:mb-1">Address</p>
-              <ul className="text-white text-[13px] sm:text-[15px] font-[400] flex flex-col gap-1 sm:gap-1.5 cursor-pointer">
-                <li>402 - 404,</li>
-                <li>4th floor, Corporate Park,</li>
-                <li>Tower A1, Sector 142, Noida</li>
-                <li>201305</li>
+              <ul className="text-white text-[13px] sm:text-[15px] font-[400] flex flex-col gap-1 sm:gap-1.5">
+                <li>402 - 404, 4th floor, Corporate Park , Tower A1, Sector 142, </li>
+                <li> Noida 201305</li>
               </ul>
             </div>
           </div>
