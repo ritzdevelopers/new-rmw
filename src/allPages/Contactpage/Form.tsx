@@ -662,19 +662,60 @@ const Form = () => {
                                         <h3 className="tp-contact__title text-black">
                                             Contact
                                         </h3>
-                                        <a
-                                            href="tel:09220516777"
-                                            className="tp-contact__title-sm text-black"
+                                        <div
+                                            className="d-flex align-items-center mb-1"
+                                            style={{ gap: "10px" }}
                                         >
-                                            09220516777
-                                        </a>
-                                        <br />
-                                        <a
-                                            href="tel:07290002168"
-                                            className="tp-contact__title-sm text-black"
+                                            <a
+                                                href="tel:+919220516777"
+                                                title="Call Ritz Media World"
+                                                aria-label="Call Ritz Media World"
+                                                className="d-inline-flex flex-shrink-0"
+                                            >
+                                                <img
+                                                    src="/contact/phone.svg"
+                                                    alt="Phone"
+                                                    title="Call Ritz Media World"
+                                                    width={22}
+                                                    height={22}
+                                                />
+                                            </a>
+                                            <a
+                                                href="tel:+919220516777"
+                                                className="tp-contact__title-sm text-black mb-0"
+                                            >
+                                                +91 9220516777
+                                            </a>
+                                        </div>
+                                        <div
+                                            className="d-flex align-items-center"
+                                            style={{ gap: "10px" }}
                                         >
-                                            07290002168
-                                        </a>
+                                            <a
+                                                href="https://wa.me/917290002168"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                title="WhatsApp Ritz Media World"
+                                                aria-label="WhatsApp Ritz Media World"
+                                                className="d-inline-flex flex-shrink-0"
+                                            >
+                                                <img
+                                                    src="/contact/whatsapp.png"
+                                                    alt="WhatsApp"
+                                                    title="WhatsApp Ritz Media World"
+                                                    width={22}
+                                                    height={22}
+                                                />
+                                            </a>
+                                            <a
+                                                href="https://wa.me/917290002168"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="tp-contact__title-sm text-black mb-0"
+                                            >
+                                                +91 7290002168
+                                            </a>
+                                        </div>
                                     </div>
                                     <div className="tp-contact__email">
                                         <h3 className="tp-contact__title text-black">
