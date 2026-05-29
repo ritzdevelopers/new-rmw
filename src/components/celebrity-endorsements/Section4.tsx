@@ -88,9 +88,9 @@ export default function Section4() {
                     >
                       {card.h3 === "Generate Engagement & Influence" ? (
                         <>
-                          Generate Engagement
-                          <br />
-                          & Influence
+                          Generate Engagement &amp;
+                 
+                          Influence
                         </>
                       ) : (
                         card.h3

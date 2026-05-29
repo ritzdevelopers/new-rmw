@@ -182,16 +182,7 @@ export default function Section3() {
                             href={item.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            onClick={(e) => {
-                              const isDesktop = window.matchMedia(
-                                "(min-width: 1024px)",
-                              ).matches;
-                              if (isDesktop) {
-                                e.stopPropagation();
-                              } else {
-                                e.preventDefault();
-                              }
-                            }}
+                            onClick={(e) => e.stopPropagation()}
                             className="text-inherit no-underline hover:text-inherit"
                           >
                             {item.title}
@@ -227,23 +218,13 @@ export default function Section3() {
                           {item.description}
                         </p>
 
-                        <div className="relative mt-6 block h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:hidden">
-                          <Image
-                            src={item.image ?? CELEBRITY_IMAGE}
-                            alt={item.title}
-                            title={item.title}
-                            fill
-                            className="object-cover"
-                            sizes="90vw"
-                          />
-                        </div>
                         <Link
                           href={item.href}
-                          title={item.title}
+                          title="Explore More"
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="relative mt-6 hidden h-[258px] w-full max-w-[796px] overflow-hidden rounded-[8px] lg:mt-8 lg:block"
+                          className="relative mt-6 block h-[190px] w-full max-w-[796px] overflow-hidden rounded-[8px] sm:mt-7 sm:h-[225px] md:mt-8 md:h-[250px] lg:mt-8 lg:h-[258px]"
                         >
                           <Image
                             src={item.image ?? CELEBRITY_IMAGE}
@@ -251,7 +232,7 @@ export default function Section3() {
                             title={item.title}
                             fill
                             className="object-cover"
-                            sizes="(min-width: 1280px) 796px, 60vw"
+                            sizes="(min-width: 1280px) 796px, (min-width: 1024px) 60vw, 90vw"
                           />
                         </Link>
 

@@ -32,7 +32,15 @@ export default function Section2() {
                     className="font-[700] text-[#C99237]"
                     style={{ fontFamily: "MontserratBold" }}
                   >
-                    Ritz Media World
+                    <a
+                      href="https://ritzmediaworld.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Ritz Media World official website"
+                      className="text-inherit no-underline hover:text-inherit"
+                    >
+                      Ritz Media World
+                    </a>
                   </span>
                   , we develop brands and promote them with celebrities to attract and catch the impact.
 
