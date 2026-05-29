@@ -256,7 +256,7 @@ export default function Section3() {
                         </Link>
 
                         {isOpen ? (
-                          <div className="mt-4 sm:mt-5 max-lg:block lg:hidden">
+                          <div className="mt-4 sm:mt-5 lg:mt-8">
                             {exploreMoreLink}
                           </div>
                         ) : null}
