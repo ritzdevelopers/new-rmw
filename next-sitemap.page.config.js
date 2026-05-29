@@ -1,6 +1,7 @@
 const { siteUrl, toIsoOrNull } = require("./next-sitemap.blog-sources");
 const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
 const { getStaticPagePaths } = require("./next-sitemap.static-page-paths");
+const { isExcludedSitemapPath, filterSitemapItems } = require("./next-sitemap.exclusions");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -19,10 +20,14 @@ module.exports = {
 
     const staticPaths = getStaticPagePaths();
     for (const path of staticPaths) {
-      uniquePaths.set(path, null);
+      if (!isExcludedSitemapPath(path)) {
+        uniquePaths.set(path, null);
+      }
     }
 
     for (const { path, lastmod } of await fetchServiceSitemapEntries()) {
+      if (isExcludedSitemapPath(path)) continue;
+
       if (!uniquePaths.has(path)) {
         uniquePaths.set(path, lastmod);
       } else if (lastmod) {
@@ -48,9 +53,10 @@ module.exports = {
       });
     }
 
+    const filtered = filterSitemapItems(items);
     console.log(
-      `[next-sitemap:page-sitemap] URLs: ${items.length} (${staticPaths.length} static + DB services, deduped)`
+      `[next-sitemap:page-sitemap] URLs: ${filtered.length} (${staticPaths.length} static + DB services, deduped)`
     );
-    return items;
+    return filtered;
   },
 };

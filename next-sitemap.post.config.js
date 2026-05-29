@@ -7,6 +7,11 @@ const {
   toIsoOrNull,
   fetchBlogRecords,
 } = require("./next-sitemap.blog-sources");
+const {
+  isExcludedSitemapPath,
+  isBlockedSlug,
+  filterSitemapItems,
+} = require("./next-sitemap.exclusions");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -27,9 +32,10 @@ module.exports = {
       const rawSlug = pickBlogSlug(blog);
       const blogPath = safeToPath(rawSlug);
 
-      if (!blogPath) continue;
+      if (!blogPath || isExcludedSitemapPath(blogPath)) continue;
 
       const normalized = blogPath.replace(/^\/+/, "");
+      if (isBlockedSlug(normalized)) continue;
       if (STATIC_PAGE_SLUGS.has(normalized)) continue;
 
       uniquePaths.set(blogPath, pickBlogLastmod(blog));
@@ -50,7 +56,8 @@ module.exports = {
       });
     }
 
-    console.log(`[next-sitemap:post-sitemap] Blog URLs: ${items.length}`);
-    return items;
+    const filtered = filterSitemapItems(items);
+    console.log(`[next-sitemap:post-sitemap] Blog URLs: ${filtered.length}`);
+    return filtered;
   },
 };

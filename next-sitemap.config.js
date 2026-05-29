@@ -8,19 +8,26 @@ const {
   fetchBlogRecords,
 } = require("./next-sitemap.blog-sources");
 const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
+const {
+  getExcludeList,
+  getRobotsPolicies,
+  isExcludedSitemapPath,
+  isBlockedSlug,
+  filterSitemapItems,
+} = require("./next-sitemap.exclusions");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,
   outDir: "./public",
+  exclude: getExcludeList(),
 
-  transform: async (config, path) => ({
-    loc: `${siteUrl}${path}`,
-    lastmod: new Date().toISOString(),
-    changefreq: "weekly",
-    priority: 0.7,
-  }),
+  robotsTxtOptions: {
+    policies: getRobotsPolicies(),
+  },
+
+  transform: async () => null,
 
   additionalPaths: async (config) => {
     const records = await fetchBlogRecords();
@@ -30,10 +37,11 @@ module.exports = {
       const rawSlug = pickBlogSlug(blog);
       const blogPath = safeToPath(rawSlug);
 
-      if (!blogPath) continue;
+      if (!blogPath || isExcludedSitemapPath(blogPath)) continue;
 
       const normalized = blogPath.replace(/^\/+/, "");
       if (STATIC_PAGE_SLUGS.has(normalized)) continue;
+      if (isBlockedSlug(normalized)) continue;
 
       uniquePaths.set(blogPath, pickBlogLastmod(blog));
     }
@@ -41,6 +49,8 @@ module.exports = {
     const blogPathCount = uniquePaths.size;
 
     for (const { path: servicePath, lastmod: serviceLastmod } of await fetchServiceSitemapEntries()) {
+      if (isExcludedSitemapPath(servicePath)) continue;
+
       if (!uniquePaths.has(servicePath)) {
         uniquePaths.set(servicePath, serviceLastmod);
       }
@@ -50,6 +60,7 @@ module.exports = {
 
     for (const [path, lastmod] of uniquePaths.entries()) {
       const transformed = await config.transform(config, path);
+      if (!transformed) continue;
 
       items.push({
         ...transformed,
@@ -60,9 +71,11 @@ module.exports = {
       });
     }
 
+    const filtered = filterSitemapItems(items);
+
     console.log(
-      `[next-sitemap] Blogs added: ${blogPathCount}, total additional paths (blogs + services): ${items.length}`
+      `[next-sitemap] Blogs added: ${blogPathCount}, total additional paths (blogs + services): ${filtered.length}`
     );
-    return items;
+    return filtered;
   },
 };

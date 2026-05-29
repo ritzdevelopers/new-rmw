@@ -1,7 +1,30 @@
 User-agent: *
 Disallow: /admin/
+Disallow: /work.html2/
+Disallow: /about.html2/
+Disallow: /about.html3/
+Disallow: /web-development2/
+Disallow: /contact.html2/
+Disallow: /career2/
+Disallow: /tags2/
+Disallow: /category2/
+Disallow: /blogs_old/
+Disallow: /blogs2/
+Disallow: /blog2/
+Disallow: /celebrity-endorsements2/
+Disallow: /print-advertising2/
+Disallow: /test/
+Disallow: /backup-page/
+Disallow: /_backup/
+Disallow: /slug_img/
+Disallow: /contactUs-page/
+Disallow: /blogTst/
+Disallow: /not-found/
+Disallow: /all-ritz-blogs/
+Disallow: /contact-us/
+Disallow: /new-home/
+Disallow: /404/
 
-# Allow OpenAI and AI crawlers
 User-agent: ChatGPT-User
 Allow: /
 
@@ -11,13 +34,10 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
-# Allow Google AI systems
 User-agent: Google-Extended
 Allow: /
 
-# Optional: Allow Bing crawler
 User-agent: Bingbot
 Allow: /
 
-# Sitemap
-Sitemap: https://ritzmediaworld.com/sitemap.xml"
+Sitemap: https://ritzmediaworld.com/sitemap.xml

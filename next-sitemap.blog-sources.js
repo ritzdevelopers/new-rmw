@@ -115,17 +115,38 @@ async function fetchBlogRecords() {
   const mysqlRecords = await fetchBlogRecordsFromMySQL();
   const mongoRecords = await fetchBlogRecordsFromMongo();
 
-  const merged = [
-    ...(Array.isArray(apiRecords) ? apiRecords : []),
-    ...(Array.isArray(mysqlRecords) ? mysqlRecords : []),
-    ...(Array.isArray(mongoRecords) ? mongoRecords : []),
-  ];
+  /** Dedupe by slug; MySQL (published) wins over API/Mongo duplicates */
+  const bySlug = new Map();
+
+  const addRecord = (blog, source) => {
+    const slug = pickBlogSlug(blog);
+    const path = safeToPath(slug);
+    if (!path) return;
+
+    const key = path.replace(/^\/+/, "").toLowerCase();
+    const existing = bySlug.get(key);
+    if (!existing || source === "mysql") {
+      bySlug.set(key, blog);
+    }
+  };
+
+  for (const blog of Array.isArray(apiRecords) ? apiRecords : []) {
+    addRecord(blog, "api");
+  }
+  for (const blog of Array.isArray(mongoRecords) ? mongoRecords : []) {
+    addRecord(blog, "mongo");
+  }
+  for (const blog of Array.isArray(mysqlRecords) ? mysqlRecords : []) {
+    addRecord(blog, "mysql");
+  }
+
+  const merged = Array.from(bySlug.values());
 
   if (merged.length === 0) {
     console.warn("[next-sitemap] No blog records found from API/MySQL/Mongo.");
   } else {
     console.log(
-      `[next-sitemap] Source counts -> API: ${Array.isArray(apiRecords) ? apiRecords.length : 0}, MySQL: ${Array.isArray(mysqlRecords) ? mysqlRecords.length : 0}, Mongo: ${Array.isArray(mongoRecords) ? mongoRecords.length : 0}, Merged: ${merged.length}`
+      `[next-sitemap] Source counts -> API: ${Array.isArray(apiRecords) ? apiRecords.length : 0}, MySQL: ${Array.isArray(mysqlRecords) ? mysqlRecords.length : 0}, Mongo: ${Array.isArray(mongoRecords) ? mongoRecords.length : 0}, Deduped: ${merged.length}`
     );
   }
 

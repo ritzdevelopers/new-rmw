@@ -1,5 +1,6 @@
 const { siteUrl, toIsoOrNull } = require("./next-sitemap.blog-sources");
 const { fetchImageSitemapEntries } = require("./next-sitemap.image-sources");
+const { isExcludedSitemapPath, filterSitemapItems } = require("./next-sitemap.exclusions");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -17,7 +18,7 @@ module.exports = {
     const fallbackLastmod = new Date().toISOString();
 
     for (const entry of entries) {
-      if (!entry.images?.length) continue;
+      if (!entry.images?.length || isExcludedSitemapPath(entry.path)) continue;
 
       const imageObjects = entry.images
         .map(({ url, title }) => {
@@ -43,7 +44,8 @@ module.exports = {
       });
     }
 
-    console.log(`[next-sitemap:images-sitemap] Page URLs with image entries: ${items.length}`);
-    return items;
+    const filtered = filterSitemapItems(items);
+    console.log(`[next-sitemap:images-sitemap] Page URLs with image entries: ${filtered.length}`);
+    return filtered;
   },
 };
