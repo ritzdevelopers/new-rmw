@@ -81,14 +81,19 @@ export default function Section3() {
       <div className={`w-full mx-auto ${styles.containerWidth}`}>
         <div className="flex flex-col gap-5 sm:gap-6">
           <div className="flex flex-col gap-1 sm:gap-2 text-center md:text-left">
-          <a href="/services" target="_blank" rel="noopener noreferrer">
-  <p
-    className="text-[#C99237] uppercase text-[12px] lg:text-[16px] font-[600]"
-    style={{ fontFamily: "MontserratSemiBold" }}
-  >
-    Services
-  </p>
-</a>
+          <a
+            href="/services"
+            title="Services"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p
+              className="text-[#C99237] uppercase text-[12px] lg:text-[16px] font-[600]"
+              style={{ fontFamily: "MontserratSemiBold" }}
+            >
+              Services
+            </p>
+          </a>
             <div className="flex flex-col items-center gap-0 text-center md:flex-row md:items-baseline md:justify-start md:text-left">
               <h2
                 className="text-white text-[30px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.25] lg:leading-[50px] font-[700]"
@@ -150,7 +155,15 @@ export default function Section3() {
                   <div
                     className="flex items-start justify-between gap-6 sm:gap-8 px-4 sm:px-5 md:px-6 lg:px-6 py-5 sm:py-4 cursor-pointer"
                     onClick={() => toggleExplore(item.id)}
-                    role="presentation"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        toggleExplore(item.id);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={isOpen}
                   >
                     <div className="flex min-w-0 flex-1 items-center gap-3 sm:items-baseline sm:gap-8 md:gap-12 lg:gap-[155px]">
                       <p
@@ -169,7 +182,16 @@ export default function Section3() {
                             href={item.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                              const isDesktop = window.matchMedia(
+                                "(min-width: 1024px)",
+                              ).matches;
+                              if (isDesktop) {
+                                e.stopPropagation();
+                              } else {
+                                e.preventDefault();
+                              }
+                            }}
                             className="text-inherit no-underline hover:text-inherit"
                           >
                             {item.title}

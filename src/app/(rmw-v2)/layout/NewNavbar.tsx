@@ -499,29 +499,47 @@ function NewNavbar() {
     }
   };
 
+  const homepageLogoLink = (
+    <a
+      href="/"
+      title="Ritz Media World homepage"
+      aria-label="Ritz Media World homepage"
+      className="inline-flex shrink-0"
+    >
+      <Image
+        src="/rmw-logo-sm-size.png"
+        alt="Ritz Media World logo"
+        title="Ritz Media World logo"
+        width={220}
+        height={80}
+        quality={70}
+        priority
+        className={`w-auto object-contain transition-all duration-300 ease-in-out hover:scale-105 ${
+          isScrolled
+            ? "h-[36px] sm:h-[40px] lg:h-[48px]"
+            : "h-[52px] sm:h-[56px] lg:h-[80px]"
+        }`}
+      />
+    </a>
+  );
+
   return (
     <>
+      <div
+        className={`fixed top-0 left-0 right-0 z-[51] flex justify-center pointer-events-none transition-all duration-300 ${isScrolled ? "lg:bg-white lg:shadow-lg" : ""}`}
+      >
+        <div className="pointer-events-auto flex w-[90%] max-w-[1200px] items-center py-3.5 sm:py-4 lg:w-[92%] lg:max-w-none lg:py-2">
+          {homepageLogoLink}
+        </div>
+      </div>
+
       {/* Desktop Navbar - Only visible on lg and above */}
       <nav
         className={`hidden lg:flex w-full justify-center items-center py-2 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-lg" : "bg-transparent"
           }`}
       >
         {/* Centered Align Div  */}
-        <div className="w-[92%]  flex justify-between items-center">
-          {/* Left Side Container  */}
-          <div>
-            <Link href="/" title="Home">
-              <Image
-                src="/rmw-logo-sm-size.png"
-                alt="Ritz Media World"
-                title="Ritz Media World"
-                width={220}
-                height={80}
-                quality={70}
-                className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`}
-              />
-            </Link>
-          </div>
+        <div className="w-[92%] flex justify-end items-center lg:pl-[240px]">
           {/* Right Side Container  */}
           <div
             className={`flex justify-end items-center gap-4 transition-colors duration-300 ${isScrolled ? "text-black" : "text-white"
@@ -747,22 +765,7 @@ function NewNavbar() {
         className={`lg:hidden w-full flex justify-center items-center py-3.5 sm:py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg shadow-black/5" : "bg-transparent"
           }`}
       >
-        <div className="w-[90%] max-w-[1200px] flex justify-between items-center">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" title="Home">
-              <Image
-                src="/rmw-logo-sm-size.png"
-                alt="Ritz Media World"
-                title="Ritz Media World"
-                width={170}
-                height={56}
-                quality={70}
-                className={`w-auto object-contain transition-all duration-300 hover:scale-105 ${isScrolled ? "h-[36px] sm:h-[40px]" : "h-[52px] sm:h-[56px]"}`}
-              />
-            </Link>
-          </div>
-
+        <div className="w-[90%] max-w-[1200px] flex justify-end items-center pl-[190px] sm:pl-[200px]">
           {/* Menu Toggle Button */}
           <button
             type="button"

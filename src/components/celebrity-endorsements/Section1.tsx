@@ -10,8 +10,8 @@ export default function Section1() {
         <div className="hidden md:block md:w-[160px] xl:w-[170px] md:h-[30px] xl:h-[37px] relative">
           <img
             src="/home-v3/service-imgs/s1/yellow-reactangle.png"
-            alt="Ritz Media World – celebrity endorsements"
-            title="Ritz Media World"
+            alt="Ritz Media World – celebrity endorsements services badge"
+            title="Ritz Media World – celebrity endorsements services badge"
             className="w-full h-full"
           />
           <p

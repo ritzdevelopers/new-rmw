@@ -16,7 +16,7 @@ export default function Section2() {
             <div className="mx-auto w-full max-w-[760px] min-w-0 lg:mx-0">
               <div className="mx-auto w-full max-w-[616px] min-w-0 lg:mx-0">
                 <p
-                  className="text-[#1C1C1C] text-[18px]  leading-[30px] lg:text-[16px] lg:leading-[27px] xl:text-[16px] xl:leading-[29px]  "
+                  className="text-[#1C1C1C] text-[18px] leading-[30px]"
                   style={{
                     fontFamily: "MontserratRegular",
                     fontWeight: 400,
@@ -28,21 +28,19 @@ export default function Section2() {
                     Celebrity endorsement services
                   </span>{" "}
                    help brands earn customers’ trust, achieve brand recognition, and mold consumer behavior beyond glitz and glamour. At{" "}
-                  <Link href="/" target="_blank" title="Ritz Media World" rel="noopener noreferrer">
-  <span
-    className="font-[700] text-[#C99237] cursor-pointer"
-    style={{ fontFamily: "MontserratBold" }}
-  >
-    Ritz Media World
-  </span>
-</Link>
+                  <span
+                    className="font-[700] text-[#C99237]"
+                    style={{ fontFamily: "MontserratBold" }}
+                  >
+                    Ritz Media World
+                  </span>
                   , we develop brands and promote them with celebrities to attract and catch the impact.
 
                 </p>
               </div>
 
               <div
-                className="mt-3 sm:mt-4 text-[#000000]  lg:max-w-[604px] lg:w-full  text-[18px]  leading-[30px] lg:text-[16px] lg:leading-[27px] xl:text-[16px] xl:leading-[29px]"
+                className="mt-3 sm:mt-4 text-[#000000] lg:max-w-[604px] lg:w-full text-[16px] leading-[27px]"
                 style={{ fontFamily: "OpenSansRegular" }}
               >
                 <p>
@@ -160,14 +158,20 @@ export default function Section2() {
                 </div>
 
                 <div className="mt-5 max-md:order-3 h-[108px] sm:h-[128px] md:mt-[70px] md:h-auto md:block sm:mt-6 md:order-3 lg:mt-9 xl:mt-8 px-6 sm:px-7 lg:px-7 flex justify-center">
-                <a href="https://share.google/k0IbsAXQuNfr9nX8m" target="_blank" rel="noopener noreferrer">
-  <img
-    src="/g-5-star2.png"
-    alt="Google reviews rating"
-    title="Google reviews rating"
-    className="block h-auto w-full max-w-[80%] sm:max-w-[90%] md:max-w-[60%] lg:max-w-none lg:w-full xl:max-w-[94%] max-md:h-full max-md:w-[200px] max-md:max-w-none max-md:object-contain max-md:object-center cursor-pointer"
-  />
-</a>
+                <a
+                  href="https://share.google/k0IbsAXQuNfr9nX8m"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="View Ritz Media World Google reviews"
+                  aria-label="View Ritz Media World Google reviews"
+                >
+                  <img
+                    src="/g-5-star2.png"
+                    alt="Ritz Media World Google reviews rating"
+                    title="Ritz Media World Google reviews rating"
+                    className="block h-auto w-full max-w-[80%] sm:max-w-[90%] md:max-w-[60%] lg:max-w-none lg:w-full xl:max-w-[94%] max-md:h-full max-md:w-[200px] max-md:max-w-none max-md:object-contain max-md:object-center cursor-pointer"
+                  />
+                </a>
 </div>
               </div>
             </div>
