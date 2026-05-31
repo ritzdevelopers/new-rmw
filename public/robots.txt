@@ -1,23 +1,29 @@
+# *
 User-agent: *
-Allow: /
+Disallow: /admin/
 
-# Allow OpenAI and AI crawlers
+# ChatGPT-User
 User-agent: ChatGPT-User
 Allow: /
 
+# OAI-SearchBot
 User-agent: OAI-SearchBot
 Allow: /
 
+# GPTBot
 User-agent: GPTBot
 Allow: /
 
-# Allow Google AI systems
+# Google-Extended
 User-agent: Google-Extended
 Allow: /
 
-# Optional: Allow Bing crawler
+# Bingbot
 User-agent: Bingbot
 Allow: /
 
-# Sitemap
+# Host
+Host: https://ritzmediaworld.com
+
+# Sitemaps
 Sitemap: https://ritzmediaworld.com/sitemap.xml
