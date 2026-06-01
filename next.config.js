@@ -72,6 +72,8 @@ const nextConfig = {
       { source: "/blogs/:page(\\d+)", destination: "/blogs", permanent: true },
       // Slug without "." so /blogs/image.jpg stays on disk (nginx) or middleware
       { source: "/blogs/:slug([^./]+)", destination: "/:slug", permanent: true },
+      { source: "/contact.html2", destination: "/contact.html", permanent: true },
+      { source: "/contact.html2/:path*", destination: "/contact.html", permanent: true },
     ];
   },
   // Legacy service redirects (uncomment to enable):
