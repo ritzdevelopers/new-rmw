@@ -271,7 +271,7 @@ function Section3() {
                             fontFamily: "MontserratBold",
                         }}
                     >
-                        Or Get a Free <span className="text-[#C99237]">Brand Audit</span>{" "}
+                        Get a Free <span className="text-[#C99237]">Brand Audit</span>{" "}
                     </h2>
 
                     <p

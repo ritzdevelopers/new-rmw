@@ -62,19 +62,27 @@ function SectionNew1() {
         <section className="w-full overflow-x-hidden  pt-[35px] md:pt-[70px]">
             <div className="flex w-full flex-col lg:flex-row lg:items-stretch">
                 {/* Left — heading, copy, service pills */}
-                <div className="flex w-full flex-col justify-center pl-5 py-8 sm:pl-8 lg:w-1/2 lg:py-10 xl:pl-10">
+                <div className="flex w-full flex-col items-center justify-center px-5 py-8 text-center sm:px-8 lg:w-1/2 lg:items-start lg:py-10 lg:text-left xl:pl-10 xl:pr-0">
                     <h2
                         className={`${pageStyles.fontMontserrat} text-[40px] font-semibold leading-[46px] tracking-normal`}
                     >
-                        <span className="text-[#111111]">Together</span>
-                        <br />
-                        <span className="text-[#C99237]">Toward</span>
-                        <br />
-                        <span className="text-[#111111]">One Goal</span>
+                        <span className="lg:hidden">
+                            <span className="text-[#111111]">Together</span>{" "}
+                            <span className="text-[#C99237]">Toward</span>
+                            <br />
+                            <span className="text-[#111111]">One Goal</span>
+                        </span>
+                        <span className="hidden lg:block">
+                            <span className="text-[#111111]">Together</span>
+                            <br />
+                            <span className="text-[#C99237]">Toward</span>
+                            <br />
+                            <span className="text-[#111111]">One Goal</span>
+                        </span>
                     </h2>
 
                     <p
-                        className={`${pageStyles.fontopensans} mt-5 max-w-[600px] text-[16px] font-normal leading-[28px] tracking-normal text-[#111111]`}
+                        className={`${pageStyles.fontopensans} mt-5 max-w-[600px] text-[16px] font-normal leading-[28px] tracking-normal text-[#111111] mx-auto lg:mx-0`}
                     >
                         We at Ritz Media World help brands grow at every stage!
                         With integrated expertise in PR, digital marketing,
@@ -83,7 +91,7 @@ function SectionNew1() {
                         globally across India.
                     </p>
 
-                    <ul className="mt-8 flex flex-wrap gap-3 list-none p-0 m-0">
+                    <ul className="mt-8 flex flex-wrap justify-center gap-3 list-none p-0 m-0 lg:justify-start">
                         {SERVICE_LINKS.map(({ label, href }) => (
                             <li key={href}>
                                 <Link
@@ -105,9 +113,9 @@ function SectionNew1() {
                 {/* Right — navy + image; group shifted 50px left, image stays flush to screen right */}
                 <div className="flex w-full flex-col  sm:flex-row lg:min-h-[520px] xl:-translate-x-[-105px] lg:translate-x-[-55px]">
                     {/* Navy panel — 50% of right column */}
-                    <div className="flex w-full shrink-0 flex-col justify-center gap-8 bg-[#060B4F] pl-6 py-10 sm:w-[500px] sm:gap-9 sm:pl-7 sm:py-12 lg:pl-8 lg:py-14">
+                    <div className="flex w-full shrink-0 flex-col items-center justify-center gap-8 bg-[#060B4F] px-6 py-10 text-center sm:w-[500px] sm:items-start sm:gap-9 sm:px-7 sm:py-12 sm:text-left lg:pl-8 lg:pr-6 lg:py-14">
                         {HASHTAG_BLOCKS.map(({ tag, text }) => (
-                            <div key={tag}>
+                            <div key={tag} className="w-full max-w-[320px] sm:max-w-none">
                                 <h4
                                     className={`${pageStyles.fontMontserrat} text-[20px] font-semibold leading-[50px] text-white m-0`}
                                     style={{
@@ -118,7 +126,7 @@ function SectionNew1() {
                                     {tag}
                                 </h4>
                                 <p
-                                    className={`${pageStyles.fontopensans} max-w-[300px] text-[14px] font-normal leading-6 text-white`}
+                                    className={`${pageStyles.fontopensans} mx-auto max-w-[300px] text-[14px] font-normal leading-6 text-white sm:mx-0`}
                                     style={{
                                         fontFamily: "Open Sans, sans-serif",
                                         fontWeight: 400,

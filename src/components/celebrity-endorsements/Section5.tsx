@@ -212,7 +212,7 @@ export default function Section5() {
             className="font-[700] text-[22px] sm:text-[26px] md:text-[28px] lg:text-[36px] text-center md:text-left"
             style={{ fontFamily: "MontserratBold" }}
           >
-            Or Get a Free <span className="text-[#C99237]">Brand Audit</span>
+            Get a Free <span className="text-[#C99237]">Brand Audit</span>
           </h2>
           <p
             className="font-[400] text-[14px] md:text-[15px] lg:text-[16px] text-center md:text-left"
