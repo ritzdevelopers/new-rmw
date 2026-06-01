@@ -136,6 +136,7 @@ function SectionNew1() {
                         <Image
                             src="/varunimage/contect-newsection-left-immage.jpg"
                             alt="Hand reaching toward a glowing digital sphere, Ritz Media World"
+                            title="Hand reaching toward a glowing digital sphere, Ritz Media World"
                             fill
                             className="object-cover object-center"
                             sizes="390px"

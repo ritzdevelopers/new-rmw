@@ -92,6 +92,7 @@ function Section4() {
                                     <Image
                                         src="/varunimage/R.jpg"
                                         alt="Ritz team forming the letter R"
+                                        title="Ritz team forming the letter R"
                                         fill
                                         className="object-cover object-center"
                                         sizes="(max-width: 639px) 100vw, 22vw"
@@ -99,6 +100,8 @@ function Section4() {
                                 </div>
                                 <a
                                     href="mailto:info@ritzmediaworld.com"
+                                    title="Email info@ritzmediaworld.com"
+                                    aria-label="Email info@ritzmediaworld.com"
                                     className="flex min-h-[140px] w-full flex-col justify-center gap-1 overflow-hidden bg-[#C99337] px-3 py-6 text-center sm:min-h-0 sm:w-[40%] sm:flex-shrink-0 sm:px-4 sm:text-left sm:py-5"
                                 >
                                     <p
@@ -170,6 +173,7 @@ function Section4() {
                                                     <img
                                                         src={icon}
                                                         alt={iconAlt}
+                                                        title={iconAlt}
                                                         width={18}
                                                         height={18}
                                                         className="h-[16px] w-[16px] shrink-0 sm:h-[18px] sm:w-[18px]"
@@ -193,6 +197,7 @@ function Section4() {
                                     <img
                                         src="/varunimage/contact-office-image.jpg"
                                         alt="Corporate Park Tower A1"
+                                        title="Corporate Park Tower A1"
                                         className={`w-full md:h-[320px] h-[370px] lg:h-[338px] xl:h-[360px] ${pageStyles.section4BuildingImg} ${pageStyles.section4BuildingImgFull}`}
                                     />
                                 </div>
@@ -204,6 +209,7 @@ function Section4() {
                                         <img
                                             src="/varunimage/RMW-logo-contact.png"
                                             alt="Ritz Media World Logo"
+                                            title="Ritz Media World Logo"
                                             className="h-full w-auto object-contain"
                                         />
                                     </div>

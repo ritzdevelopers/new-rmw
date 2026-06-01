@@ -31,30 +31,35 @@ const SOCIAL_LINKS = [
         src: "/varun.icon/facebook.svg",
         href: "https://www.facebook.com/ritzmediaworld/",
         label: "Facebook",
+        linkTitle: "Ritz Media World on Facebook",
         color: "#1877f2",
     },
     {
         src: "/varun.icon/twitter.svg",
         href: "https://x.com/ritzmediaworld",
         label: "X",
+        linkTitle: "Ritz Media World on X",
         color: "#000",
     },
     {
         src: "/varun.icon/instagram.svg",
         href: "https://www.instagram.com/ritzmediaworld/",
         label: "Instagram",
+        linkTitle: "Ritz Media World on Instagram",
         color: "#e4405f",
     },
     {
         src: "/varun.icon/linkedin.svg",
         href: "https://www.linkedin.com/company/ritzmediaworld/",
         label: "LinkedIn",
+        linkTitle: "Ritz Media World on LinkedIn",
         color: "#0a66c2",
     },
     {
         src: "/varun.icon/youtube.svg",
         href: "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
         label: "YouTube",
+        linkTitle: "Ritz Media World on YouTube",
         color: "#ff0000",
     },
 ];
@@ -176,6 +181,7 @@ function Section2() {
                             <Image
                                 src="/varunimage/contactemployee.jpg"
                                 alt="Office team at work"
+                                title="Office team at work"
                                 fill
                                 unoptimized
                                 sizes="(max-width: 1023px) 100vw, 480px"
@@ -189,18 +195,20 @@ function Section2() {
                                 Follow Us
                             </p>
                             <div className="flex items-center justify-center gap-1 flex-wrap">
-                                {SOCIAL_LINKS.map(({ src, href, label }) => (
+                                {SOCIAL_LINKS.map(({ src, href, label, linkTitle }) => (
                                     <a
                                         key={label}
                                         href={href}
                                         className="w-9 h-9 rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform"
-                                        aria-label={label}
+                                        aria-label={linkTitle}
+                                        title={linkTitle}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
                                         <Image
                                             src={src}
                                             alt={label}
+                                            title={label}
                                             width={23}
                                             height={23}
                                             className="object-contain w-[23px] h-[23px]"
@@ -370,6 +378,7 @@ function Section2() {
                                 <Image
                                     src="/varun.icon/submitbuttonarrow.svg"
                                     alt="Submit arrow"
+                                    title="Submit arrow"
                                     width={22.07}
                                     height={7.59}
                                 />

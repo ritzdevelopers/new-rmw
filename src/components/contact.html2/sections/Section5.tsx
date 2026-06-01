@@ -89,6 +89,7 @@ function Section5() {
                                     <img
                                         src="/varunimage/contact-page-google-review.png"
                                         alt="Google reviews 5.0 – Ritz Media World"
+                                        title="Google reviews 5.0 – Ritz Media World"
                                         className="w-[250px] h-auto object-contain pointer-events-none"
                                     />
                                 </a>
@@ -120,11 +121,11 @@ function Section5() {
                                                                 ? "/varunimage/white-plus.png"
                                                                 : "/varunimage/black-plus-contact.png"
                                                         }
-                                                        alt=""
+                                                        alt="Plus sign"
+                                                        title="Plus sign"
                                                         width={20}
                                                         height={20}
                                                         className="h-[20px] w-[20px] max-h-[20px] max-w-[20px] object-contain"
-                                                        aria-hidden
                                                     />
                                                 </span>
                                             </>
