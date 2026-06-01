@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+   "build": "NODE_OPTIONS='--max-old-space-size=4096' next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap && next-sitemap --config next-sitemap.post.config.js && next-sitemap --config next-sitemap.page.config.js && next-sitemap --config next-sitemap.images.config.js"
+    "postbuild": "next-sitemap --config next-sitemap.routes.config.js && next-sitemap --config next-sitemap.post.config.js && next-sitemap --config next-sitemap.page.config.js && next-sitemap --config next-sitemap.images.config.js && node scripts/finalize-sitemaps.mjs && next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

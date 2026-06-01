@@ -1,3 +1,4 @@
+import ContactConsultationProvider from "@/components/contact.html2/ContactConsultationProvider";
 import Banner from "@/components/contact.html2/sections/Banner";
 import Section2 from "./sections/Section2";
 import Section3 from "./sections/Section3";
@@ -14,7 +15,7 @@ import Faq from "./sections/Faq";
 
 function Contact() {
     return (
-        <>
+        <ContactConsultationProvider>
        <main className="w-full overflow-x-hidden">
             <Banner></Banner>
             <Section2></Section2>
@@ -29,7 +30,7 @@ function Contact() {
             <Section9></Section9>
             <Section10></Section10>
         </main>
-        </>
+        </ContactConsultationProvider>
     );
 }
 

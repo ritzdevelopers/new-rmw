@@ -2,6 +2,8 @@
 
 import pageStyles from "./page.module.css";
 
+const GOOGLE_REVIEWS_URL = "https://share.google/ZGxv9MVrThm5TXQbc";
+
 const STATS = [
     {
         number: "350+",
@@ -76,13 +78,21 @@ function Section5() {
                             }
                         >
                             {item.isGoogle ? (
-                                <>
+                                <a
+                                    href={GOOGLE_REVIEWS_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="View Ritz Media World Google reviews"
+                                    aria-label="View Ritz Media World Google reviews (opens in new tab)"
+                                    className="inline-flex cursor-pointer transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C99237]"
+                                >
                                     <img
                                         src="/varunimage/contact-page-google-review.png"
-                                        alt="Google review"
-                                        className="w-[250px] h-auto object-contain"
+                                        alt="Google reviews 5.0 – Ritz Media World"
+                                        title="Google reviews 5.0 – Ritz Media World"
+                                        className="w-[250px] h-auto object-contain pointer-events-none"
                                     />
-                                </>
+                                </a>
                             ) : (
                                 <>
                                     <p
@@ -111,11 +121,11 @@ function Section5() {
                                                                 ? "/varunimage/white-plus.png"
                                                                 : "/varunimage/black-plus-contact.png"
                                                         }
-                                                        alt=""
+                                                        alt="Plus sign"
+                                                        title="Plus sign"
                                                         width={20}
                                                         height={20}
                                                         className="h-[20px] w-[20px] max-h-[20px] max-w-[20px] object-contain"
-                                                        aria-hidden
                                                     />
                                                 </span>
                                             </>

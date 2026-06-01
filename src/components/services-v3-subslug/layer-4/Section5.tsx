@@ -12,12 +12,18 @@ export default function Section5() {
         >
           {/* Left Side Container */}
           <div className="relative w-full sm:w-[194px] h-auto sm:h-[156px] border-b-[1px] sm:border-b-0   border-b-[#E6E3E3]  sm:border-r-[1px] border-r-[#D9D9D9] flex items-center justify-center sm:justify-start pb-2 sm:pb-0 px-4 sm:px-0">
-            <h2
-              className="font-[700] text-[18px] sm:text-[20px] lg:text-[24px]"
+            <Link
+              href="https://ritzmediaworld.com/clients"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="View our clients"
+              className="font-[700] text-[18px] sm:text-[20px] lg:text-[24px] text-[#111111] no-underline hover:text-[#C99237] transition-colors"
               style={{ fontFamily: "MontserratBold" }}
             >
-              Brands That Trust Us
-            </h2>
+              <h2 className="m-0 text-inherit text-[18px] sm:text-[20px] lg:text-[24px] font-[700]">
+                Brands That Trust Us
+              </h2>
+            </Link>
 
             <p className="absolute top-[50%] transform -translate-y-[50%] -right-3 hidden sm:block">
               <svg
@@ -96,10 +102,11 @@ export default function Section5() {
             {/* View More Container */}
             <div className="w-[100px] sm:w-[120px] lg:w-[146px] h-[56px] sm:h-[67px] lg:h-[81px] flex justify-center items-center flex-shrink-0">
               <Link
-                title="Show more"
-                href="https://ritzmediaworld.com/about.html"
+                title="Show more clients"
+                href="https://ritzmediaworld.com/clients"
                 target="_blank"
-                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] cursor-pointer"
+                rel="noopener noreferrer"
+                className="font-[600] text-[14px] sm:text-[15px] lg:text-[16px] cursor-pointer text-[#111111] no-underline hover:text-[#C99237] transition-colors"
               >
                 Show more
               </Link>

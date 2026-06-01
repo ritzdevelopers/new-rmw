@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, type ReactNode } from "react";
 
 interface RubyContextType {
     isRubyOpen: boolean;
@@ -24,4 +24,3 @@ const RubyProvider = ({ children }: RubyProviderProps) => {
 };
 
 export default RubyProvider;
-

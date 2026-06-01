@@ -1,7 +1,11 @@
 import Link from "next/link";
 import styles from "@/components/shared/container.module.css";
 
-export default function Section8() {
+type Section8Props = {
+  onScheduleClick?: () => void;
+};
+
+export default function Section8({ onScheduleClick }: Section8Props) {
   return (
     <section className="w-full bg-[#FFFFFF] flex justify-center pb-10 sm:pb-12 md:pb-14">
       <div className={`w-full max-w-[1300px] mx-auto text-center flex flex-col items-center ${styles.containerWidth}`}>
@@ -18,21 +22,40 @@ export default function Section8() {
           Let&apos;s discuss your next brand-elevating campaign
         </p>
 
-        <Link
-          title="Schedule Free Consultation"
-          href="https://ritzmediaworld.com/contact.html"
-          target="_blank"
-          className="mt-7 sm:mt-8 md:mt-10 inline-flex items-center gap-5 border-b border-black pb-2 text-black font-[600] text-[18px] sm:text-[20px] md:text-[26px] lg:text-[16px] leading-none"
-          style={{ fontFamily: "MontserratSemiBold" }}
-        >
-          <span>Schedule Free Consultation</span>
-          <img
+        {onScheduleClick ? (
+          <button
+            type="button"
+            title="Schedule Free Consultation"
+            onClick={onScheduleClick}
+            className="mt-7 sm:mt-8 md:mt-10 inline-flex items-center gap-5 border-b border-black pb-2 text-black font-[600] text-[18px] sm:text-[20px] md:text-[26px] lg:text-[16px] leading-none bg-transparent cursor-pointer"
+            style={{ fontFamily: "MontserratSemiBold" }}
+          >
+            <span>Schedule Free Consultation</span>
+            <img
               src="/home-v3/s3/rhgt.png"
               alt="Ritz Media World – schedule consultation"
               title="Ritz Media World"
               className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
             />
-        </Link>
+          </button>
+        ) : (
+          <Link
+            title="Schedule Free Consultation"
+            href="https://ritzmediaworld.com/contact.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 sm:mt-8 md:mt-10 inline-flex items-center gap-5 border-b border-black pb-2 text-black font-[600] text-[18px] sm:text-[20px] md:text-[26px] lg:text-[16px] leading-none"
+            style={{ fontFamily: "MontserratSemiBold" }}
+          >
+            <span>Schedule Free Consultation</span>
+            <img
+              src="/home-v3/s3/rhgt.png"
+              alt="Ritz Media World – schedule consultation"
+              title="Ritz Media World"
+              className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
+            />
+          </Link>
+        )}
       </div>
     </section>
   );

@@ -13,6 +13,11 @@ function ContactBtns() {
   }
   const { setIsRubyOpen } = context;
   const [isOpen, setIsOpen] = useState(false);
+  const lastScrollYRef = useRef(0);
+  const scrollCloseEnabledRef = useRef(false);
+
+  const FAN_AUTO_OPEN_DELAY_MS = 1000;
+  const SCROLL_CLOSE_GRACE_MS = 3500;
   const mainButtonRef = useRef<HTMLButtonElement>(null);
   const phoneButtonRef = useRef<HTMLButtonElement>(null);
   const whatsappButtonRef = useRef<HTMLButtonElement>(null);
@@ -23,6 +28,44 @@ function ContactBtns() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  // Auto fan-out contact buttons only (Ruby chat opens on chatbot click)
+  useEffect(() => {
+    const openTimer = window.setTimeout(() => {
+      setIsOpen(true);
+    }, FAN_AUTO_OPEN_DELAY_MS);
+
+    return () => window.clearTimeout(openTimer);
+  }, []);
+
+  // Collapse fan on scroll down; close Ruby too if it was open
+  useEffect(() => {
+    lastScrollYRef.current = window.scrollY;
+
+    const graceTimer = window.setTimeout(() => {
+      scrollCloseEnabledRef.current = true;
+    }, SCROLL_CLOSE_GRACE_MS);
+
+    const handleScroll = () => {
+      if (!scrollCloseEnabledRef.current) return;
+
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollYRef.current;
+
+      if (delta > 12 && currentY > 100) {
+        setIsOpen(false);
+        setIsRubyOpen(false);
+      }
+
+      lastScrollYRef.current = currentY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.clearTimeout(graceTimer);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [setIsRubyOpen]);
 
   useEffect(() => {
     if (!containerRef.current) return;

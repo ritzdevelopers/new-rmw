@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { BsArrowRight } from "react-icons/bs";
 
-function BrandImpactSection2() {
+function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolean }) {
     const [loader, setLoader] = useState<boolean>(true);
     const [phone, setPhone] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -265,7 +265,7 @@ function BrandImpactSection2() {
                             fontFamily: "MontserratBold",
                         }}
                     >
-                        Or Get a Free <span className="text-[#C99237]">Brand Audit</span>{" "}
+                        Get a Free <span className="text-[#C99237]">Brand Audit</span>{" "}
                     </h2>
 
                     <p
@@ -312,10 +312,8 @@ function BrandImpactSection2() {
                 </div>
             </div>
 
-            {/* Row 3  */}
-                 {/* Row 3  */}
-                     <div className={`w-full flex ${styles.containerWidth} justify-center items-center`}>
-                    {/* Center Align Container  */}
+            {!hideBottomCta && (
+                <div className={`w-full flex ${styles.containerWidth} justify-center items-center`}>
                     <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center bg-[#F5F5F5] min-h-[200px] sm:min-h-[240px] lg:min-h-[279px] w-full px-4 sm:px-6 lg:px-0 py-8 sm:py-10 lg:py-0">
                         <h2
                             className="font-[800] text-[19px] md:text-[28px] lg:text-[36px]"
@@ -331,7 +329,7 @@ function BrandImpactSection2() {
                                 fontFamily: "OpenSansRegular",
                             }}
                         >
-                            Let's discuss your next brand-elevating campaign
+                            Let&apos;s discuss your next brand-elevating campaign
                         </p>
                         <button
                             onClick={() =>
@@ -351,6 +349,7 @@ function BrandImpactSection2() {
                         </button>
                     </div>
                 </div>
+            )}
             {/* Modal */}
             {modal.open && (
                 <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm">
