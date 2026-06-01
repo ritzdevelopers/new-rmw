@@ -24,6 +24,10 @@ const EXCLUDED_PATHS = [
   "/blogs_old",
   "/about.html2",
   "/about.html3",
+  "/contact.html2",
+  "/contact.html2/*",
+  "/work.html2",
+  "/work.html2/*",
   "/blogTst",
   "/discussion-forum",
 ];
