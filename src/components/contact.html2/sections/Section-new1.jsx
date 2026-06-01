@@ -1,16 +1,41 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import pageStyles from "./page.module.css";
 
-const SERVICE_TAGS = [
-    "Digital Marketing",
-    "Creative Services",
-    "Print Advertising",
-    "Radio Advertising",
-    "Content Marketing",
-    "Web Development",
-    "Celebrity Endorsements",
-    "Influencer Marketing",
+const SERVICE_LINKS = [
+    {
+        label: "Digital Marketing",
+        href: "https://ritzmediaworld.com/services/digital-marketing",
+    },
+    {
+        label: "Creative Services",
+        href: "https://ritzmediaworld.com/services/creative-services",
+    },
+    {
+        label: "Print Advertising",
+        href: "https://ritzmediaworld.com/services/print-advertising",
+    },
+    {
+        label: "Radio Advertising",
+        href: "https://ritzmediaworld.com/services/radio-advertising",
+    },
+    {
+        label: "Content Marketing",
+        href: "https://ritzmediaworld.com/services/contents-marketing",
+    },
+    {
+        label: "Web Development",
+        href: "https://ritzmediaworld.com/services/web-designing-and-development",
+    },
+    {
+        label: "Celebrity Endorsements",
+        href: "https://ritzmediaworld.com/services/celebrity-endorsements",
+    },
+    {
+        label: "Influencer Marketing",
+        href: "https://ritzmediaworld.com/services/influencer-marketing-agency-in-india",
+    },
 ];
 
 const HASHTAG_BLOCKS = [
@@ -58,16 +83,23 @@ function SectionNew1() {
                         globally across India.
                     </p>
 
-                    <div className="mt-8 flex flex-wrap gap-3">
-                        {SERVICE_TAGS.map((label) => (
-                            <span
-                                key={label}
-                                className={`${pageStyles.fontMontserrat} inline-flex items-center rounded-full border border-[#C99237] bg-white px-3 py-2 text-xs font-semibold text-[#C99237]`}
-                            >
-                                {label}
-                            </span>
+                    <ul className="mt-8 flex flex-wrap gap-3 list-none p-0 m-0">
+                        {SERVICE_LINKS.map(({ label, href }) => (
+                            <li key={href}>
+                                <Link
+                                    href={href}
+                                    title={label}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`${pageStyles.fontMontserrat} inline-flex items-center rounded-full border border-[#C99237] bg-white px-3 py-2 text-xs font-semibold text-[#C99237] no-underline transition-colors hover:bg-[#C99237] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C99237]`}
+                                >
+                                    <h3 className="m-0 text-inherit text-xs font-semibold">
+                                        {label}
+                                    </h3>
+                                </Link>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 </div>
 
                 {/* Right — navy + image; group shifted 50px left, image stays flush to screen right */}
@@ -76,15 +108,15 @@ function SectionNew1() {
                     <div className="flex w-full shrink-0 flex-col justify-center gap-8 bg-[#060B4F] pl-6 py-10 sm:w-[500px] sm:gap-9 sm:pl-7 sm:py-12 lg:pl-8 lg:py-14">
                         {HASHTAG_BLOCKS.map(({ tag, text }) => (
                             <div key={tag}>
-                                <p
-                                    className={`${pageStyles.fontMontserrat} text-[20px] font-semibold leading-[50px] text-white`}
+                                <h4
+                                    className={`${pageStyles.fontMontserrat} text-[20px] font-semibold leading-[50px] text-white m-0`}
                                     style={{
                                         fontFamily: "Montserrat, sans-serif",
                                         fontWeight: 600,
                                     }}
                                 >
                                     {tag}
-                                </p>
+                                </h4>
                                 <p
                                     className={`${pageStyles.fontopensans} max-w-[300px] text-[14px] font-normal leading-6 text-white`}
                                     style={{

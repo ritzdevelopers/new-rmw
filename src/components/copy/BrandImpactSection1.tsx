@@ -320,7 +320,7 @@ function BrandImpactSection1() {
             </div>
 
             {/* Row 3  */}
-            <div className={`w-full pb-6 flex ${styles.containerWidth} justify-center items-center`}>
+            <div className={`w-full flex py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24 ${styles.containerWidth} justify-center items-center`}>
                 {/* Center Align Container  */}
                 <div className="flex flex-col gap-2 sm:gap-3 justify-center text-center items-center ">
                     <h2

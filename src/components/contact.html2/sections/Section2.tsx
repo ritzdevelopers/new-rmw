@@ -21,7 +21,7 @@ const SERVICE_OPTIONS = [
     "Print Advertising",
     "Radio Advertising",
     "Content Marketing",
-    "Web Designing & Development",
+    "Web Development",
     "Celebrity Endorsements",
     "Influencer Marketing",
 ];
@@ -29,26 +29,31 @@ const SERVICE_OPTIONS = [
 const SOCIAL_LINKS = [
     {
         src: "/varun.icon/facebook.svg",
-        href: "#",
+        href: "https://www.facebook.com/ritzmediaworld/",
         label: "Facebook",
         color: "#1877f2",
     },
-    { src: "/varun.icon/twitter.svg", href: "#", label: "X", color: "#000" },
+    {
+        src: "/varun.icon/twitter.svg",
+        href: "https://x.com/ritzmediaworld",
+        label: "X",
+        color: "#000",
+    },
     {
         src: "/varun.icon/instagram.svg",
-        href: "#",
+        href: "https://www.instagram.com/ritzmediaworld/",
         label: "Instagram",
         color: "#e4405f",
     },
     {
         src: "/varun.icon/linkedin.svg",
-        href: "#",
+        href: "https://www.linkedin.com/company/ritzmediaworld/",
         label: "LinkedIn",
         color: "#0a66c2",
     },
     {
         src: "/varun.icon/youtube.svg",
-        href: "#",
+        href: "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
         label: "YouTube",
         color: "#ff0000",
     },
@@ -178,11 +183,11 @@ function Section2() {
                             /> 
                         </div>
                         <div className="absolute right-[26px] bottom-[-56px] lg:bottom-[10px] xl:bottom-[-20px] w-[170px] h-[170px] sm:w-[42%] sm:min-w-[140px] sm:min-h-[140px] sm:aspect-square sm:h-auto bg-white rounded-full  flex flex-col items-center justify-center gap-3 p-4 border-[1px] border-[#0F1640]">
-                            <h3
+                            <p
                                 className={`font-semibold text-[18px] leading-[26px] text-center text-black m-0 ${pageStyles.fontMontserrat}`}
                             >
                                 Follow Us
-                            </h3>
+                            </p>
                             <div className="flex items-center justify-center gap-1 flex-wrap">
                                 {SOCIAL_LINKS.map(({ src, href, label }) => (
                                     <a

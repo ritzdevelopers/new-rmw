@@ -265,7 +265,7 @@ function NewBanner() {
                                 gatewayStarted={gatewayStarted}
                                 shouldAnimate={gatewayStarted && index === activeSlide}
                                 onAnimationComplete={() => undefined}
-                                isH1={index === activeSlide}
+                                isH1={false}
                             />
                         </div>
                     </SwiperSlide>

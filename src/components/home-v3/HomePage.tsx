@@ -12,6 +12,7 @@ import styles from "@/app/(rmw-v2)/page.module.css";
 // import PageAnimations from "./components/PageAnimations";
 import { fetchLatestBlogs } from "@/app/(rmw-v2)/lib/fetchData";
 import NewBanner from "@/components/home-v3/NewBanner";
+import HomeHeroIntro from "@/components/home-v3/HomeHeroIntro";
 import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
 import HomePageLinkTitles from "@/components/home-v3/HomePageLinkTitles";
 
@@ -30,6 +31,7 @@ async function HomePage() {
       {/* <NewYear></NewYear> */}
       {/* <S1></S1>  */}
       <NewBanner />
+      <HomeHeroIntro />
       <div>
         <S2></S2>
       </div>

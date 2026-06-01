@@ -6,7 +6,26 @@ import pageStyles from "./page.module.css";
 const ADDRESS_LINES = [
     "402 - 404, 4th Floor,",
     "Corporate Park, Tower A1,",
-    "Sector 142, Noida",
+    "Sector 142, Noida , 201305",
+];
+
+const PHONE_NUMBERS = [
+    {
+        display: "+91 9220516777",
+        href: "tel:+919220516777",
+        icon: "/contact/phone.svg",
+        iconAlt: "Call",
+        title: "Call Ritz Media World",
+        external: false,
+    },
+    {
+        display: "+91 7290002168",
+        href: "https://wa.me/917290002168",
+        icon: "/contact/whatsapp.png",
+        iconAlt: "WhatsApp",
+        title: "WhatsApp Ritz Media World",
+        external: true,
+    },
 ];
 
 function Section4() {
@@ -69,7 +88,7 @@ function Section4() {
                             </h2>
                               <div className="lg:w-[%] lg:flex-shrink-0 mt-3 xl:mt-9 lg:mt-[38px] md:mt-4">
                             <div className="flex w-full flex-col overflow-hidden border border-[#E5E5E5] sm:flex-row sm:flex-nowrap sm:items-stretch sm:border-0">
-                                <div className="relative w-full h-[391px] sm:w-[26%] sm:flex-shrink-0 md:h-full md:min-h-[220px] md:aspect-auto">
+                                <div className="relative w-full h-[391px] sm:w-[24%] sm:flex-shrink-0 md:h-full md:min-h-[220px] md:aspect-auto">
                                     <Image
                                         src="/varunimage/R.jpg"
                                         alt="Ritz team forming the letter R"
@@ -80,7 +99,7 @@ function Section4() {
                                 </div>
                                 <a
                                     href="mailto:info@ritzmediaworld.com"
-                                    className="flex min-h-[140px] w-full flex-col justify-center gap-1 bg-[#C99337] px-5 py-6 text-center sm:min-h-0 sm:w-[48%] sm:flex-shrink-0 sm:px-6 sm:text-left sm:py-5"
+                                    className="flex min-h-[140px] w-full flex-col justify-center gap-1 overflow-hidden bg-[#C99337] px-3 py-6 text-center sm:min-h-0 sm:w-[40%] sm:flex-shrink-0 sm:px-4 sm:text-left sm:py-5"
                                 >
                                     <p
                                         className={pageStyles.fontopensans}
@@ -95,7 +114,7 @@ function Section4() {
                                         Email Address
                                     </p>
                                     <p
-                                        className={`${pageStyles.fontMontserrat} break-all text-[15px] sm:text-[16px] md:text-[18px] lg:text-[16px] xl:text-[20px]`}
+                                        className={`${pageStyles.fontMontserrat} whitespace-nowrap text-[11px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[16px]`}
                                         style={{
                                             fontFamily:
                                                 "Montserrat, sans-serif",
@@ -107,7 +126,7 @@ function Section4() {
                                         info@ritzmediaworld.com
                                     </p>
                                 </a>
-                                <div className="flex min-h-[140px] w-full flex-col items-center justify-center gap-2 bg-[#FFF3E0] px-5 py-6 text-center sm:min-h-0 sm:w-[26%] sm:flex-shrink-0 sm:items-start sm:px-4 sm:py-5 sm:text-left lg:px-3 xl:px-5">
+                                <div className="flex min-h-[140px] w-full min-w-0 flex-col items-center justify-center gap-2 bg-[#FFF3E0] px-3 py-6 text-center sm:min-h-0 sm:w-[36%] sm:flex-shrink-0 sm:items-start sm:px-3 sm:py-5 sm:text-left lg:px-4 xl:px-5">
                                     <p
                                         className={`${pageStyles.fontopensans} text-[15px] sm:text-[16px]`}
                                         style={{
@@ -119,33 +138,46 @@ function Section4() {
                                     >
                                         Phone Number
                                     </p>
-                                    <div className="flex flex-col gap-1">
-                                        <a
-                                            href="tel:09220516777"
-                                            className={`${pageStyles.fontMontserrat} text-[16px] sm:text-[17px] xl:text-[18px]`}
-                                            style={{
-                                                fontFamily:
-                                                    "Montserrat, sans-serif",
-                                                fontWeight: 600,
-                                                lineHeight: "1.35",
-                                                color: "#000000",
-                                            }}
-                                        >
-                                            09220516777
-                                        </a>
-                                        <a
-                                            href="tel:07290002168"
-                                            className={`${pageStyles.fontMontserrat} text-[16px] sm:text-[17px] xl:text-[18px]`}
-                                            style={{
-                                                fontFamily:
-                                                    "Montserrat, sans-serif",
-                                                fontWeight: 600,
-                                                lineHeight: "1.35",
-                                                color: "#000000",
-                                            }}
-                                        >
-                                            07290002168
-                                        </a>
+                                    <div className="flex w-full flex-col items-center gap-1 sm:items-start">
+                                        {PHONE_NUMBERS.map(
+                                            ({
+                                                display,
+                                                href,
+                                                icon,
+                                                iconAlt,
+                                                title,
+                                                external,
+                                            }) => (
+                                                <a
+                                                    key={href}
+                                                    href={href}
+                                                    title={title}
+                                                    aria-label={title}
+                                                    {...(external
+                                                        ? {
+                                                              target: "_blank",
+                                                              rel: "noopener noreferrer",
+                                                          }
+                                                        : {})}
+                                                    className={`${pageStyles.fontMontserrat} inline-flex items-center gap-1.5 text-[14px] sm:text-[15px] lg:text-[16px] xl:text-[17px] leading-tight no-underline hover:underline whitespace-nowrap`}
+                                                    style={{
+                                                        fontFamily:
+                                                            "Montserrat, sans-serif",
+                                                        fontWeight: 600,
+                                                        color: "#000000",
+                                                    }}
+                                                >
+                                                    <img
+                                                        src={icon}
+                                                        alt={iconAlt}
+                                                        width={18}
+                                                        height={18}
+                                                        className="h-[16px] w-[16px] shrink-0 sm:h-[18px] sm:w-[18px]"
+                                                    />
+                                                    {display}
+                                                </a>
+                                            )
+                                        )}
                                     </div>
                                 </div>
                             </div>

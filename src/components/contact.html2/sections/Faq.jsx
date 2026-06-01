@@ -144,11 +144,11 @@ function Faq() {
                                         >
                                             {item.id}
                                         </span>
-                                        <span
-                                            className={`${pageStyles.fontMontserrat} flex-1 text-[16px] font-semibold leading-[1.32] sm:text-[17px] lg:text-[18px]`}
+                                        <h3
+                                            className={`${pageStyles.fontMontserrat} flex-1 text-[16px] font-semibold leading-[1.32] sm:text-[17px] lg:text-[18px] m-0`}
                                         >
                                             {item.question}
-                                        </span>
+                                        </h3>
                                     </button>
 
                                     <div
