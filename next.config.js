@@ -68,6 +68,8 @@ const nextConfig = {
     return [
       { source: "/blogs2", destination: "/blogs", permanent: true },
       { source: "/blog2", destination: "/blogs", permanent: true },
+      { source: "/all-ritz-blogs", destination: "/blogs", permanent: true },
+      { source: "/all-ritz-blogs/:path*", destination: "/blogs", permanent: true },
       { source: "/blogs/blogs/:page(\\d+)", destination: "/blogs", permanent: true },
       { source: "/blogs/:page(\\d+)", destination: "/blogs", permanent: true },
       // Slug without "." so /blogs/image.jpg stays on disk (nginx) or middleware
