@@ -10,7 +10,7 @@ const lastmod = new Date().toISOString();
 
 /** Drop legacy / internal routes from sitemap-0. */
 const SITEMAP_0_EXCLUDE_LOC =
-  /\/contact\.html2|\/work\.html2|\/all-ritz-blogs/;
+  /\/contact\.html2|\/work\.html2/;
 
 function stripExcludedUrlsFromSitemap0() {
   const filePath = path.join(publicDir, "sitemap-0.xml");
