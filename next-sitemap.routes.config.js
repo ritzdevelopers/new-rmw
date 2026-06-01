@@ -21,6 +21,7 @@ const EXCLUDED_PATHS = [
   "/404/*",
   "/slug_img",
   "/contactUs-page",
+  "/all-ritz-blogs",
   "/blogs_old",
   "/about.html2",
   "/about.html3",

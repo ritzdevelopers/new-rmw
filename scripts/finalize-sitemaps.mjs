@@ -8,8 +8,9 @@ const { siteUrl, SITEMAP_INDEX_FILES } = require("../next-sitemap.shared.js");
 const publicDir = path.join(process.cwd(), "public");
 const lastmod = new Date().toISOString();
 
-/** Drop legacy .html2 routes from sitemap-0 (canonical pages use .html). */
-const SITEMAP_0_EXCLUDE_LOC = /\/contact\.html2|\/work\.html2/;
+/** Drop legacy / internal routes from sitemap-0. */
+const SITEMAP_0_EXCLUDE_LOC =
+  /\/contact\.html2|\/work\.html2|\/all-ritz-blogs/;
 
 function stripExcludedUrlsFromSitemap0() {
   const filePath = path.join(publicDir, "sitemap-0.xml");
@@ -24,7 +25,7 @@ function stripExcludedUrlsFromSitemap0() {
   if (filtered !== xml) {
     fs.writeFileSync(filePath, filtered);
     console.log(
-      "[finalize-sitemaps] Removed contact.html2 and work.html2 from sitemap-0.xml"
+      "[finalize-sitemaps] Removed excluded legacy URLs from sitemap-0.xml"
     );
   }
 }
