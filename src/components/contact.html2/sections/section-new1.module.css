@@ -16,11 +16,26 @@
    font-style: normal;
    font-weight: 600;
    line-height: 46px;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: baseline;
+   column-gap: 0.35em;
+   row-gap: 0;
+   word-spacing: 0.05em;
 }
 
 .headingDesktop {
    width: 192px;
    min-height: 156px;
+}
+
+.headingPart {
+   display: inline;
+}
+
+.headingGoal {
+   display: block;
+   flex-basis: 100%;
 }
 
 .headingAccent {
@@ -101,6 +116,18 @@
 }
 
 @media (min-width: 1024px) {
+   .heading {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      column-gap: 0;
+   }
+
+   .headingPart,
+   .headingGoal {
+      display: block;
+      flex-basis: auto;
+   }
+
    .leftInner {
       align-items: flex-start;
       text-align: left;

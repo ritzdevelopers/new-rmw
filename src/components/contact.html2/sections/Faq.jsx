@@ -52,7 +52,7 @@ const FAQ_ITEMS = [
         id: "08",
         question: "Why should I contact Ritz Media World today?",
         answer:
-            "Because your competitors aren't waiting. The right digital marketing agency, strong SEO services, smart creative services, and a solid real estate lead generation strategy can put your brand miles ahead. Let's start today.",
+            "Your competitors aren't waiting, so why are you? We're Delhi NCR's digital marketing agency that turns scrollers into buyers. Strong SEO services, sharp creative services, and real estate lead generation that actually delivers. Let's start today.",
     },
 ];
 
@@ -87,7 +87,7 @@ function Faq() {
                         <h2
                             className={`${pageStyles.fontMontserrat} text-[30px] font-semibold leading-[1.05] tracking-[-0.01em] text-[#0E0E0E] text-center lg:text-left sm:text-[35px] md:text-[40px] xl:text-[45px] lg:text-[30px]`}
                         >
-                            Frequently asked questions
+                            Frequently Asked Questions
                         </h2>
 
                         <p

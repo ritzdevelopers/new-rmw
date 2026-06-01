@@ -67,22 +67,14 @@ function SectionNew1() {
                     <div
                         className={`${s1.leftInner} ${pageStyles.containerWidth} ${s1.leftCol}`}
                     >
-                        <h2 className={s1.heading}>
-                            <span className="lg:hidden">
-                                <span>Together</span>{" "}
-                                <span className={s1.headingAccent}>Toward</span>
-                                <br />
-                                <span>One Goal</span>
-                            </span>
+                        <h2 className={`${s1.heading} ${s1.headingDesktop}`}>
+                            <span className={s1.headingPart}>Together </span>
                             <span
-                                className={`hidden lg:block ${s1.headingDesktop}`}
+                                className={`${s1.headingPart} ${s1.headingAccent}`}
                             >
-                                <span>Together</span>
-                                <br />
-                                <span className={s1.headingAccent}>Toward</span>
-                                <br />
-                                <span>One Goal</span>
+                                Toward{" "}
                             </span>
+                            <span className={s1.headingGoal}>One Goal</span>
                         </h2>
 
                         <p className={s1.body}>
