@@ -6,6 +6,7 @@
 const STATIC_PAGE_PATHS = [
   "/",
   "/about.html",
+  "/all-ritz-blogs",
   "/blogs",
   "/career",
   "/contact.html",
