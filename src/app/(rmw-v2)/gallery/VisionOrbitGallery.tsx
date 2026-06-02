@@ -12,14 +12,11 @@ const CARD_ANGLE = 48;
 const CARD_SPACING_EXTRA = 56;
 const ALL_PHOTOS_ANIM_MS = 480;
 const DRAG_THRESHOLD = 0.22;
-const AUTO_ORBIT_SPEED = 0.0028;
-const ORBIT_FRICTION = 0.93;
-const MAX_ORBIT_VELOCITY = 0.085;
-const WHEEL_GAIN = 0.00022;
+const WHEEL_THRESHOLD = 70;
+const WHEEL_COOLDOWN_MS = 520;
 const BOOT_PRELOAD_RADIUS = 3;
 const MAX_BOOT_WAIT_MS = 900;
 const PRELOAD_CONCURRENCY = 4;
-const ORBIT_RENDER_EVERY_N_FRAMES = 2;
 const PARTICLE_COUNT = 10;
 
 function preloadOne(src: string): Promise<void> {
@@ -133,16 +130,12 @@ export default function VisionOrbitGallery() {
   const [isDragging, setIsDragging] = useState(false);
   const [gapPx, setGapPx] = useState(280);
   const [portalReady, setPortalReady] = useState(false);
-  const [orbitPhase, setOrbitPhase] = useState(0);
 
   const stageRef = useRef<HTMLDivElement>(null);
-  const rafFrameRef = useRef(0);
   const activeRef = useRef(0);
   const dragOffsetRef = useRef(0);
-  const orbitPhaseRef = useRef(0);
-  const velocityRef = useRef(0);
-  const animRef = useRef<number | null>(null);
-  const lastTsRef = useRef<number | null>(null);
+  const wheelAccumRef = useRef(0);
+  const wheelLockedRef = useRef(false);
   const movedRef = useRef(false);
   const particles = useMemo(
     () =>
@@ -159,9 +152,8 @@ export default function VisionOrbitGallery() {
 
   activeRef.current = activeIndex;
   dragOffsetRef.current = dragOffset;
-  orbitPhaseRef.current = orbitPhase;
 
-  const centerOffset = activeIndex + dragOffset + orbitPhase;
+  const centerOffset = activeIndex + dragOffset;
 
   useEffect(() => {
     setPortalReady(true);
@@ -287,13 +279,11 @@ export default function VisionOrbitGallery() {
           const total = activeRef.current + dragOffsetRef.current;
           const next = Math.round(total);
           const frac = total - next;
-          const inertia = -vx * dx * 0.22;
-          velocityRef.current = Math.max(
-            -MAX_ORBIT_VELOCITY,
-            Math.min(MAX_ORBIT_VELOCITY, velocityRef.current + inertia)
-          );
-          if (Math.abs(frac) > DRAG_THRESHOLD) {
-            snapTo(next + (frac > 0 ? 1 : -1));
+          const flickBoost =
+            Math.abs(vx) > 0.35 ? (vx * dx > 0 ? -1 : 1) * 0.15 : 0;
+          const adjustedFrac = frac + flickBoost;
+          if (Math.abs(adjustedFrac) > DRAG_THRESHOLD) {
+            snapTo(next + (adjustedFrac > 0 ? 1 : -1));
           } else {
             snapTo(next);
           }
@@ -312,59 +302,22 @@ export default function VisionOrbitGallery() {
     const onWheel = (e: WheelEvent) => {
       if (modalIndex !== null || allPhotosOpen || allPhotosClosing) return;
       e.preventDefault();
-      const delta = e.deltaY + e.deltaX * 0.65;
-      velocityRef.current = Math.max(
-        -MAX_ORBIT_VELOCITY,
-        Math.min(MAX_ORBIT_VELOCITY, velocityRef.current + delta * WHEEL_GAIN)
-      );
+      if (wheelLockedRef.current) return;
+
+      wheelAccumRef.current += e.deltaY + e.deltaX * 0.65;
+      if (Math.abs(wheelAccumRef.current) < WHEEL_THRESHOLD) return;
+
+      const dir = wheelAccumRef.current > 0 ? 1 : -1;
+      wheelAccumRef.current = 0;
+      wheelLockedRef.current = true;
+      go(dir);
+      window.setTimeout(() => {
+        wheelLockedRef.current = false;
+      }, WHEEL_COOLDOWN_MS);
     };
     stage.addEventListener("wheel", onWheel, { passive: false });
     return () => stage.removeEventListener("wheel", onWheel);
-  }, [modalIndex, allPhotosOpen, allPhotosClosing]);
-
-  useEffect(() => {
-    if (modalIndex !== null || allPhotosOpen || allPhotosClosing) {
-      if (animRef.current !== null) {
-        cancelAnimationFrame(animRef.current);
-        animRef.current = null;
-      }
-      lastTsRef.current = null;
-      return;
-    }
-    const animate = (ts: number) => {
-      const last = lastTsRef.current ?? ts;
-      const dt = Math.min(34, ts - last);
-      lastTsRef.current = ts;
-      const step = dt / 16.666;
-
-      velocityRef.current *= Math.pow(ORBIT_FRICTION, step);
-      orbitPhaseRef.current += AUTO_ORBIT_SPEED * step + velocityRef.current * step;
-
-      rafFrameRef.current += 1;
-      if (rafFrameRef.current % ORBIT_RENDER_EVERY_N_FRAMES === 0) {
-        setOrbitPhase(orbitPhaseRef.current);
-      }
-
-      const stage = stageRef.current;
-      if (stage) {
-        const wobble = Math.sin(ts * 0.00052) * 2.1 + Math.sin(ts * 0.00021) * 1.3;
-        const inertiaTilt = velocityRef.current * 150;
-        const blur = Math.min(14, Math.abs(velocityRef.current) * 210);
-        stage.style.setProperty("--camera-tilt", `${(wobble + inertiaTilt).toFixed(2)}deg`);
-        stage.style.setProperty("--motion-blur", `${blur.toFixed(2)}px`);
-      }
-
-      animRef.current = requestAnimationFrame(animate);
-    };
-    animRef.current = requestAnimationFrame(animate);
-    return () => {
-      if (animRef.current !== null) {
-        cancelAnimationFrame(animRef.current);
-        animRef.current = null;
-      }
-      lastTsRef.current = null;
-    };
-  }, [modalIndex, allPhotosOpen, allPhotosClosing]);
+  }, [modalIndex, allPhotosOpen, allPhotosClosing, go]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -575,7 +528,7 @@ export default function VisionOrbitGallery() {
               return (
                 <div
                   key={src}
-                  className={`carousel-3d-card ${style.className} ${isDragging ? "is-dragging" : ""}`}
+                  className={`carousel-3d-card ${style.className} ${isDragging ? "is-dragging" : "is-sliding"}`}
                   style={{
                     transform: style.transform,
                     opacity: style.opacity,

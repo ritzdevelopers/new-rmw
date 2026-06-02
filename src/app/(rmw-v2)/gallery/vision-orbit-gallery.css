@@ -219,7 +219,7 @@
   justify-content: center;
   width: 100%;
   min-height: min(58vh, 520px);
-  padding: 1.5rem 1rem 0;
+  padding: 1.5rem 1rem clamp(2.5rem, 6vh, 4rem);
 }
 
 .carousel-3d-inner {
@@ -253,8 +253,6 @@
 }
 
 .carousel-3d-stage {
-  --camera-tilt: 0deg;
-  --motion-blur: 0px;
   position: relative;
   flex: 1;
   width: 100%;
@@ -263,10 +261,8 @@
   height: min(58vh, 480px);
   margin: 0 auto;
   perspective: 1200px;
-  perspective-origin: 50% 50%;
-  transform: rotateX(var(--camera-tilt));
+  perspective-origin: 50% 42%;
   transform-style: preserve-3d;
-  transition: transform 0.18s linear;
 }
 
 .carousel-3d-stage::before {
@@ -322,9 +318,6 @@
   inset: 0;
   z-index: 1;
   transform-style: preserve-3d;
-  filter: blur(var(--motion-blur, 0px));
-  transition: filter 0.15s linear;
-  will-change: transform;
 }
 
 .carousel-3d-card {
@@ -338,12 +331,12 @@
   transform-style: preserve-3d;
   backface-visibility: hidden;
   contain: layout style paint;
-  transition:
-    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 0.35s ease;
 }
 
-.carousel-3d-card:not(.is-dragging) {
+.carousel-3d-card.is-sliding {
+  transition:
+    transform 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease;
   will-change: transform, opacity;
 }
 
@@ -383,6 +376,7 @@
     0 45px 80px rgba(0, 0, 0, 0.52),
     0 0 0 1px rgba(255, 255, 255, 0.13) inset,
     0 0 56px rgba(114, 174, 255, 0.35);
+  transition: box-shadow 0.58s cubic-bezier(0.22, 1, 0.36, 1), transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .carousel-3d-card-media {
@@ -456,7 +450,9 @@
 .carousel-3d-view-all-wrap {
   display: flex;
   justify-content: center;
-  padding: 1rem 1rem 2.5rem;
+  width: 100%;
+  margin-top: clamp(1.25rem, 3vh, 2rem);
+  padding: clamp(1.5rem, 4vh, 2.5rem) 1rem clamp(3rem, 7vh, 5rem);
 }
 
 .carousel-3d-view-all-btn {
@@ -789,7 +785,7 @@
 
   .carousel-3d-wrap {
     min-height: 48vh;
-    padding: 0.75rem 0.35rem 0;
+    padding: 0.75rem 0.35rem clamp(2rem, 5vh, 3rem);
   }
 
   .carousel-3d-heading-wrap {
@@ -817,7 +813,8 @@
   }
 
   .carousel-3d-view-all-wrap {
-    padding: 0.75rem 1rem 2rem;
+    margin-top: 1.5rem;
+    padding: 1.75rem 1rem 3.5rem;
   }
 
   .carousel-3d-view-all-btn {
