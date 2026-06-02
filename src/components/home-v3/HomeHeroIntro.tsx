@@ -11,8 +11,7 @@ function HomeHeroIntro() {
         id="home-hero-heading"
         className="font-[700] text-[22px] sm:text-[26px] md:text-[30px] lg:text-[26px] xl:text-[30px] text-[#0F1640] leading-tight text-center md:text-center"
       >
-        India&apos;s Best Real Estate Digital Marketing &amp; Lead Generation Agency | 17 Years of
-        Results
+        India&apos;s Best Real Estate Digital Marketing &amp; Lead Generation Agency
       </h1>
       <p className="mt-3 md:mt-4 mx-auto  font-[400] text-[11px] sm:text-[12px] md:text-[13px] lg:text-[24px] text-[#4A4A4A] leading-[1.55] text-center max-w-[950px]">
         Helping brands across industries generate quality leads, build digital presence, and achieve measurable growth with 17+ years of marketing expertise

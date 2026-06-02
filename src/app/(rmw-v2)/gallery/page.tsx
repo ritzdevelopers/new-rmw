@@ -1,12 +1,9 @@
-import DomeGallery from './DomeGallery';
+import VisionOrbitGallery from "./VisionOrbitGallery";
 
-
-function page() {
-    return (
-        <div style={{ width: '100%', height: '100vh', overflow: 'hidden' }}>
-            <DomeGallery />
-        </div>
-    )
+export default function GalleryPage() {
+  return (
+    <main className="w-full">
+      <VisionOrbitGallery />
+    </main>
+  );
 }
-
-export default page;
