@@ -16,22 +16,56 @@ const AUTO_ORBIT_SPEED = 0.0028;
 const ORBIT_FRICTION = 0.93;
 const MAX_ORBIT_VELOCITY = 0.085;
 const WHEEL_GAIN = 0.00022;
+const BOOT_PRELOAD_RADIUS = 3;
+const MAX_BOOT_WAIT_MS = 900;
+const PRELOAD_CONCURRENCY = 4;
+const ORBIT_RENDER_EVERY_N_FRAMES = 2;
+const PARTICLE_COUNT = 10;
 
-function preloadImages(sources: readonly string[]): Promise<void> {
-  if (sources.length === 0) return Promise.resolve();
+function preloadOne(src: string): Promise<void> {
   return new Promise((resolve) => {
-    let done = 0;
-    const tick = () => {
-      done += 1;
-      if (done >= sources.length) resolve();
-    };
-    sources.forEach((src) => {
-      const img = new window.Image();
-      img.onload = tick;
-      img.onerror = tick;
-      img.src = src;
-    });
+    const img = new window.Image();
+    img.onload = () => resolve();
+    img.onerror = () => resolve();
+    img.src = src;
   });
+}
+
+async function preloadImages(
+  sources: readonly string[],
+  concurrency = PRELOAD_CONCURRENCY
+): Promise<void> {
+  if (sources.length === 0) return;
+  const queue = [...sources];
+  const workers = Array.from(
+    { length: Math.min(concurrency, queue.length) },
+    async () => {
+      while (queue.length > 0) {
+        const src = queue.shift();
+        if (src) await preloadOne(src);
+      }
+    }
+  );
+  await Promise.all(workers);
+}
+
+function criticalSources(centerIndex: number, total: number): string[] {
+  const urls = new Set<string>();
+  for (let d = -BOOT_PRELOAD_RADIUS; d <= BOOT_PRELOAD_RADIUS; d++) {
+    const i = ((centerIndex + d) % total + total) % total;
+    urls.add(GALLERY_IMAGES[i]);
+  }
+  return [...urls];
+}
+
+async function preloadForBoot(): Promise<void> {
+  const critical = criticalSources(0, GALLERY_IMAGES.length);
+  await Promise.race([
+    preloadImages(critical, PRELOAD_CONCURRENCY),
+    new Promise<void>((resolve) => {
+      window.setTimeout(resolve, MAX_BOOT_WAIT_MS);
+    }),
+  ]);
 }
 
 function WindowsLoadingDots() {
@@ -100,10 +134,9 @@ export default function VisionOrbitGallery() {
   const [gapPx, setGapPx] = useState(280);
   const [portalReady, setPortalReady] = useState(false);
   const [orbitPhase, setOrbitPhase] = useState(0);
-  const [cameraTilt, setCameraTilt] = useState(0);
-  const [motionBlur, setMotionBlur] = useState(0);
 
   const stageRef = useRef<HTMLDivElement>(null);
+  const rafFrameRef = useRef(0);
   const activeRef = useRef(0);
   const dragOffsetRef = useRef(0);
   const orbitPhaseRef = useRef(0);
@@ -113,7 +146,7 @@ export default function VisionOrbitGallery() {
   const movedRef = useRef(false);
   const particles = useMemo(
     () =>
-      Array.from({ length: 22 }, (_, i) => ({
+      Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
@@ -136,13 +169,33 @@ export default function VisionOrbitGallery() {
 
   useEffect(() => {
     let cancelled = false;
-    preloadImages(GALLERY_IMAGES).then(() => {
+    preloadForBoot().then(() => {
       if (!cancelled) setIsLoading(false);
     });
     return () => {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (isLoading) return;
+    const critical = new Set(criticalSources(0, count));
+    const rest = GALLERY_IMAGES.filter((src) => !critical.has(src));
+    const run = () => {
+      void preloadImages(rest, 3);
+    };
+    if (typeof window.requestIdleCallback === "function") {
+      const idleId = window.requestIdleCallback(run, { timeout: 5000 });
+      return () => window.cancelIdleCallback(idleId);
+    }
+    const timeoutId = window.setTimeout(run, 400);
+    return () => window.clearTimeout(timeoutId);
+  }, [isLoading, count]);
+
+  useEffect(() => {
+    if (isLoading) return;
+    void preloadImages(criticalSources(activeIndex, count), 3);
+  }, [activeIndex, isLoading, count]);
 
   useEffect(() => {
     const el = stageRef.current;
@@ -286,12 +339,21 @@ export default function VisionOrbitGallery() {
 
       velocityRef.current *= Math.pow(ORBIT_FRICTION, step);
       orbitPhaseRef.current += AUTO_ORBIT_SPEED * step + velocityRef.current * step;
-      setOrbitPhase(orbitPhaseRef.current);
 
-      const wobble = Math.sin(ts * 0.00052) * 2.1 + Math.sin(ts * 0.00021) * 1.3;
-      const inertiaTilt = velocityRef.current * 150;
-      setCameraTilt(wobble + inertiaTilt);
-      setMotionBlur(Math.min(14, Math.abs(velocityRef.current) * 210));
+      rafFrameRef.current += 1;
+      if (rafFrameRef.current % ORBIT_RENDER_EVERY_N_FRAMES === 0) {
+        setOrbitPhase(orbitPhaseRef.current);
+      }
+
+      const stage = stageRef.current;
+      if (stage) {
+        const wobble = Math.sin(ts * 0.00052) * 2.1 + Math.sin(ts * 0.00021) * 1.3;
+        const inertiaTilt = velocityRef.current * 150;
+        const blur = Math.min(14, Math.abs(velocityRef.current) * 210);
+        stage.style.setProperty("--camera-tilt", `${(wobble + inertiaTilt).toFixed(2)}deg`);
+        stage.style.setProperty("--motion-blur", `${blur.toFixed(2)}px`);
+      }
+
       animRef.current = requestAnimationFrame(animate);
     };
     animRef.current = requestAnimationFrame(animate);
@@ -502,16 +564,7 @@ export default function VisionOrbitGallery() {
           <ChevronLeft className="h-5 w-5" strokeWidth={2} />
         </button>
 
-        <div
-          ref={stageRef}
-          className="carousel-3d-stage"
-          style={
-            {
-              ["--camera-tilt" as string]: `${cameraTilt.toFixed(2)}deg`,
-              ["--motion-blur" as string]: `${motionBlur.toFixed(2)}px`,
-            } as React.CSSProperties
-          }
-        >
+        <div ref={stageRef} className="carousel-3d-stage">
           <div className="carousel-3d-track">
             {visibleIndices.map((i) => {
               const src = GALLERY_IMAGES[i];
@@ -543,10 +596,12 @@ export default function VisionOrbitGallery() {
                         alt={imageLabel}
                         title={imageLabel}
                         fill
-                        sizes="(max-width: 640px) 85vw, 360px"
+                        sizes="(max-width: 640px) 72vw, 320px"
+                        quality={72}
                         className="carousel-3d-card-img"
                         draggable={false}
-                        priority={Math.abs(offset) < 1}
+                        priority={Math.abs(offset) < 0.6}
+                        loading={Math.abs(offset) < 1.2 ? "eager" : "lazy"}
                       />
                     </div>
                   </button>
