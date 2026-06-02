@@ -83,4 +83,9 @@ export const GALLERY_IMAGES = [
   '/gallery/photo_6186250402882325716_y.jpg',
   '/gallery/photo_6186250402882325717_y.jpg',
   '/gallery/photo_6186250402882325719_y.jpg',
+  '/gallery/photo_6120522001500805655_y.jpg',
+  '/gallery/photo_6120522001500805657_y.jpg',
+  '/gallery/photo_6120522001500805658_y.jpg',
+  '/gallery/photo_6120522001500805659_y.jpg',
+  '/gallery/photo_6120522001500805660_y.jpg',
 ] as const;
