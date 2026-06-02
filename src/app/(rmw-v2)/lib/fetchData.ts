@@ -19,6 +19,53 @@ export interface SITEBANNERSSTRUCTURE {
   banner_status: boolean;
 }
 
+/** Pinned home page blogs (13–15 Apr 2026) — do not auto-update with newer posts */
+const HOME_PAGE_BLOG_SLUGS = [
+  "why-every-brand-needs-a-digital-marketing-strategy",
+  "ai-tools-every-marketer-should-use-in-2026",
+  "real-estate-lead-generation-ideas-strategies",
+] as const;
+
+export async function fetchHomePageBlogs(): Promise<BLOGSSTRUCTURE[]> {
+  try {
+    await connectMongoDB();
+    const blogs = await RitzBlogModel.find({
+      blogStatus: true,
+      blogSlug: { $in: [...HOME_PAGE_BLOG_SLUGS] },
+    }).lean();
+
+    const bySlug = new Map(
+      blogs.map((blog: { blogSlug: string }) => [blog.blogSlug, blog]),
+    );
+
+    return HOME_PAGE_BLOG_SLUGS.flatMap((slug) => {
+      const blog = bySlug.get(slug) as
+        | {
+            blogTitle?: string;
+            blogBanner?: string;
+            blogSlug?: string;
+            createdAt?: Date;
+          }
+        | undefined;
+      if (!blog) return [];
+      return [
+        {
+          blogTitle: blog.blogTitle || "",
+          blogBanner: blog.blogBanner || "",
+          blogSlug: blog.blogSlug || "",
+          createdAt: blog.createdAt || new Date(),
+        },
+      ];
+    });
+  } catch (error) {
+    console.log(
+      "There are some errors in fetching the home page RMW blogs plz fix the bug first ",
+      error,
+    );
+    return [];
+  }
+}
+
 export async function fetchLatestBlogs(): Promise<BLOGSSTRUCTURE[]> {
   try {
     await connectMongoDB();
