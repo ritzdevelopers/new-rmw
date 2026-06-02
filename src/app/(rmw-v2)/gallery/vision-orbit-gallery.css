@@ -1,6 +1,8 @@
 .carousel-3d-root {
   --card-w: clamp(260px, 40vw, 360px);
   --card-h: clamp(220px, 38vw, 320px);
+  --camera-tilt: 0deg;
+  --motion-blur: 0px;
   position: relative;
   width: 100%;
   min-height: auto;
@@ -90,6 +92,79 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+
+.carousel-3d-heading-wrap {
+  width: min(100%, 1180px);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(1.1rem, 3.6vh, 2.1rem) 1rem clamp(0.95rem, 2.8vh, 1.6rem);
+}
+
+.carousel-3d-heading {
+  position: relative;
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 2.35rem);
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  font-weight: 800;
+  color: #fffdf7;
+  -webkit-text-stroke: 0.9px rgba(8, 10, 18, 0.55);
+  text-shadow:
+    0 1px 0 rgba(8, 10, 18, 0.35),
+    0 8px 22px rgba(0, 0, 0, 0.28),
+    0 0 16px rgba(255, 245, 206, 0.2);
+}
+
+.carousel-3d-heading::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background-image: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 34%,
+    rgba(255, 226, 163, 0.25) 43%,
+    rgba(255, 215, 120, 0.95) 50%,
+    rgba(255, 240, 191, 0.4) 57%,
+    rgba(255, 255, 255, 0) 66%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: carousel-3d-gold-sparkle 3.8s linear infinite;
+  pointer-events: none;
+}
+
+.carousel-3d-heading-golden {
+  display: inline-block;
+  color: #f4d27a;
+  background: linear-gradient(
+    105deg,
+    #fff2c0 0%,
+    #f4d27a 24%,
+    #e8b24f 48%,
+    #ffd986 70%,
+    #fff0be 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 0 8px rgba(255, 211, 122, 0.34),
+    0 0 18px rgba(232, 178, 79, 0.26);
+}
+
+@keyframes carousel-3d-gold-sparkle {
+  0% {
+    background-position: 150% 50%;
+  }
+  100% {
+    background-position: -120% 50%;
+  }
 }
 
 @keyframes carousel-3d-mesh-shift {
@@ -187,6 +262,9 @@
   margin: 0 auto;
   perspective: 1200px;
   perspective-origin: 50% 50%;
+  transform: rotateX(var(--camera-tilt));
+  transform-style: preserve-3d;
+  transition: transform 0.18s linear;
 }
 
 .carousel-3d-stage::before {
@@ -208,6 +286,23 @@
   animation: carousel-3d-spotlight 8s ease-in-out infinite;
 }
 
+.carousel-3d-stage::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: min(90%, 780px);
+  height: min(65%, 420px);
+  transform: translate(-50%, -50%) rotateX(75deg);
+  border-radius: 50%;
+  border: 1px solid rgba(162, 204, 255, 0.24);
+  box-shadow:
+    0 0 45px rgba(90, 144, 255, 0.16),
+    inset 0 0 30px rgba(255, 255, 255, 0.05);
+  opacity: 0.78;
+  pointer-events: none;
+}
+
 @keyframes carousel-3d-spotlight {
   0%,
   100% {
@@ -225,6 +320,8 @@
   inset: 0;
   z-index: 1;
   transform-style: preserve-3d;
+  filter: blur(var(--motion-blur));
+  transition: filter 0.15s linear;
 }
 
 .carousel-3d-card {
@@ -239,8 +336,8 @@
   backface-visibility: hidden;
   will-change: transform, opacity;
   transition:
-    transform 0.55s cubic-bezier(0.25, 0.8, 0.25, 1),
-    opacity 0.45s ease;
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.35s ease;
 }
 
 .carousel-3d-card.is-dragging {
@@ -257,21 +354,45 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  background: #1a1a1a;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.05)),
+    rgba(16, 20, 34, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(12px) saturate(1.3);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  box-shadow:
+    0 35px 60px rgba(0, 0, 0, 0.44),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 -32px 60px rgba(117, 181, 255, 0.12) inset;
   transform-style: preserve-3d;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .carousel-3d-card.is-center .carousel-3d-card-inner {
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+  transform: translateZ(24px) scale(1.02);
+  box-shadow:
+    0 45px 80px rgba(0, 0, 0, 0.52),
+    0 0 0 1px rgba(255, 255, 255, 0.13) inset,
+    0 0 56px rgba(114, 174, 255, 0.35);
 }
 
 .carousel-3d-card-media {
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.carousel-3d-card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(130deg, rgba(255, 255, 255, 0.36), rgba(255, 255, 255, 0) 38%),
+    linear-gradient(to top, rgba(0, 4, 15, 0.38), transparent 45%);
+  pointer-events: none;
+  mix-blend-mode: screen;
 }
 
 /* Cover card; bias crop toward upper center so faces stay in frame */
@@ -282,6 +403,47 @@
 
 .carousel-3d-grid-item .carousel-3d-card-img {
   object-position: center 30% !important;
+}
+
+.carousel-3d-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.carousel-3d-particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(179, 224, 255, 0.9);
+  box-shadow:
+    0 0 12px rgba(156, 205, 255, 0.7),
+    0 0 30px rgba(112, 170, 255, 0.48);
+  opacity: 0;
+  animation-name: carousel-3d-float-particle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes carousel-3d-float-particle {
+  0% {
+    transform: translate3d(0, 24px, 0) scale(0.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.82;
+  }
+  50% {
+    transform: translate3d(18px, -16px, 0) scale(1);
+    opacity: 0.95;
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate3d(-14px, -52px, 0) scale(0.65);
+    opacity: 0;
+  }
 }
 
 .carousel-3d-view-all-wrap {
@@ -621,6 +783,15 @@
   .carousel-3d-wrap {
     min-height: 48vh;
     padding: 0.75rem 0.35rem 0;
+  }
+
+  .carousel-3d-heading-wrap {
+    padding: 0.85rem 0.85rem 1rem;
+  }
+
+  .carousel-3d-heading {
+    letter-spacing: 0.01em;
+    -webkit-text-stroke: 0.75px rgba(8, 10, 18, 0.58);
   }
 
   .carousel-3d-inner {

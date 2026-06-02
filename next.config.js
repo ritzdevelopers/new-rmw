@@ -66,6 +66,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.ritzmediaworld.com" }],
+        destination: "https://ritzmediaworld.com/:path*",
+        permanent: true,
+      },
       { source: "/blogs2", destination: "/blogs", permanent: true },
       { source: "/blog2", destination: "/blogs", permanent: true },
       { source: "/all-ritz-blogs", destination: "/blogs", permanent: true },

@@ -11,7 +11,7 @@ import ClientWidgets from "./layout/ClientWidgets";
 export const metadata: Metadata = {
   metadataBase: new URL("https://ritzmediaworld.com"),
   alternates: {
-    canonical: "https://ritzmediaworld.com",
+    canonical: "./",
   },
   authors: [{ name: "Ritz Media World" }],
   publisher: "Ritz Media World",

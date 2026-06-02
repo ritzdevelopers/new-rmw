@@ -74,6 +74,9 @@ const websiteSearchJsonLd = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ritzmediaworld.com"),
+  alternates: {
+    canonical: "./",
+  },
   title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
   description: "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
   keywords: [

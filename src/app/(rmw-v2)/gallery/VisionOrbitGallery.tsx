@@ -12,6 +12,10 @@ const CARD_ANGLE = 48;
 const CARD_SPACING_EXTRA = 56;
 const ALL_PHOTOS_ANIM_MS = 480;
 const DRAG_THRESHOLD = 0.22;
+const AUTO_ORBIT_SPEED = 0.0028;
+const ORBIT_FRICTION = 0.93;
+const MAX_ORBIT_VELOCITY = 0.085;
+const WHEEL_GAIN = 0.00022;
 
 function preloadImages(sources: readonly string[]): Promise<void> {
   if (sources.length === 0) return Promise.resolve();
@@ -62,18 +66,26 @@ function shortestOffset(i: number, center: number, count: number) {
 function getCardStyle(offset: number, gapPx: number) {
   const abs = Math.abs(offset);
   const x = offset * gapPx;
+  const y = abs * abs * 12;
+  const z = abs < 0.45 ? 240 - abs * 260 : Math.max(-620, -abs * 190);
   const rotateY = offset * -CARD_ANGLE;
-  const scale = abs < 0.05 ? 1 : Math.max(0.82, 1 - abs * 0.09);
-  const opacity = abs > 2.6 ? 0 : Math.max(0.35, 1 - abs * 0.18);
-  const zIndex = Math.round(20 - abs * 4);
+  const rotateX = abs * 2.5;
+  const scale = abs < 0.08 ? 1.04 : Math.max(0.74, 1 - abs * 0.1);
+  const opacity = abs > 3.2 ? 0 : Math.max(0.3, 1 - abs * 0.16);
+  const zIndex = Math.round(42 - abs * 8 + (abs < 0.4 ? 14 : 0));
 
   return {
-    transform: `translateX(${x}px) rotateY(${rotateY}deg) scale(${scale})`,
+    transform: `translate3d(${x}px, ${y}px, ${z}px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(${scale})`,
     opacity,
     zIndex,
-    pointerEvents: (abs < 1.2 ? "auto" : "none") as React.CSSProperties["pointerEvents"],
-    className: abs < 0.55 ? "is-center" : "",
+    pointerEvents: (abs < 1.6 ? "auto" : "none") as React.CSSProperties["pointerEvents"],
+    className: abs < 0.38 ? "is-center" : "",
   };
+}
+
+function imageLabelFromPath(path: string) {
+  const name = path.split("/").pop()?.replace(/\.[^.]+$/, "") ?? "Gallery photo";
+  return name.replace(/[_-]+/g, " ").trim();
 }
 
 export default function VisionOrbitGallery() {
@@ -87,16 +99,36 @@ export default function VisionOrbitGallery() {
   const [isDragging, setIsDragging] = useState(false);
   const [gapPx, setGapPx] = useState(280);
   const [portalReady, setPortalReady] = useState(false);
+  const [orbitPhase, setOrbitPhase] = useState(0);
+  const [cameraTilt, setCameraTilt] = useState(0);
+  const [motionBlur, setMotionBlur] = useState(0);
 
   const stageRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef(0);
   const dragOffsetRef = useRef(0);
+  const orbitPhaseRef = useRef(0);
+  const velocityRef = useRef(0);
+  const animRef = useRef<number | null>(null);
+  const lastTsRef = useRef<number | null>(null);
   const movedRef = useRef(false);
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 22 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: 1 + Math.random() * 2.6,
+        delay: Math.random() * 10,
+        dur: 7 + Math.random() * 10,
+      })),
+    []
+  );
 
   activeRef.current = activeIndex;
   dragOffsetRef.current = dragOffset;
+  orbitPhaseRef.current = orbitPhase;
 
-  const centerOffset = activeIndex + dragOffset;
+  const centerOffset = activeIndex + dragOffset + orbitPhase;
 
   useEffect(() => {
     setPortalReady(true);
@@ -191,7 +223,7 @@ export default function VisionOrbitGallery() {
         setIsDragging(true);
         movedRef.current = false;
       },
-      onDrag: ({ movement: [mx], last }) => {
+      onDrag: ({ movement: [mx], velocity: [vx], direction: [dx], last }) => {
         const offset = -mx / gapPx;
         if (Math.abs(offset - dragOffsetRef.current) > 0.05) movedRef.current = true;
         dragOffsetRef.current = offset;
@@ -202,6 +234,11 @@ export default function VisionOrbitGallery() {
           const total = activeRef.current + dragOffsetRef.current;
           const next = Math.round(total);
           const frac = total - next;
+          const inertia = -vx * dx * 0.22;
+          velocityRef.current = Math.max(
+            -MAX_ORBIT_VELOCITY,
+            Math.min(MAX_ORBIT_VELOCITY, velocityRef.current + inertia)
+          );
           if (Math.abs(frac) > DRAG_THRESHOLD) {
             snapTo(next + (frac > 0 ? 1 : -1));
           } else {
@@ -215,6 +252,57 @@ export default function VisionOrbitGallery() {
     },
     { target: stageRef, eventOptions: { passive: true } }
   );
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const onWheel = (e: WheelEvent) => {
+      if (modalIndex !== null || allPhotosOpen || allPhotosClosing) return;
+      e.preventDefault();
+      const delta = e.deltaY + e.deltaX * 0.65;
+      velocityRef.current = Math.max(
+        -MAX_ORBIT_VELOCITY,
+        Math.min(MAX_ORBIT_VELOCITY, velocityRef.current + delta * WHEEL_GAIN)
+      );
+    };
+    stage.addEventListener("wheel", onWheel, { passive: false });
+    return () => stage.removeEventListener("wheel", onWheel);
+  }, [modalIndex, allPhotosOpen, allPhotosClosing]);
+
+  useEffect(() => {
+    if (modalIndex !== null || allPhotosOpen || allPhotosClosing) {
+      if (animRef.current !== null) {
+        cancelAnimationFrame(animRef.current);
+        animRef.current = null;
+      }
+      lastTsRef.current = null;
+      return;
+    }
+    const animate = (ts: number) => {
+      const last = lastTsRef.current ?? ts;
+      const dt = Math.min(34, ts - last);
+      lastTsRef.current = ts;
+      const step = dt / 16.666;
+
+      velocityRef.current *= Math.pow(ORBIT_FRICTION, step);
+      orbitPhaseRef.current += AUTO_ORBIT_SPEED * step + velocityRef.current * step;
+      setOrbitPhase(orbitPhaseRef.current);
+
+      const wobble = Math.sin(ts * 0.00052) * 2.1 + Math.sin(ts * 0.00021) * 1.3;
+      const inertiaTilt = velocityRef.current * 150;
+      setCameraTilt(wobble + inertiaTilt);
+      setMotionBlur(Math.min(14, Math.abs(velocityRef.current) * 210));
+      animRef.current = requestAnimationFrame(animate);
+    };
+    animRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animRef.current !== null) {
+        cancelAnimationFrame(animRef.current);
+        animRef.current = null;
+      }
+      lastTsRef.current = null;
+    };
+  }, [modalIndex, allPhotosOpen, allPhotosClosing]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -258,6 +346,7 @@ export default function VisionOrbitGallery() {
 
   const modalSrc =
     modalIndex !== null ? GALLERY_IMAGES[modalIndex] : null;
+  const modalLabel = modalSrc ? imageLabelFromPath(modalSrc) : "";
 
   const allPhotosMounted = allPhotosOpen || allPhotosClosing;
 
@@ -286,7 +375,9 @@ export default function VisionOrbitGallery() {
           </div>
           <div className="carousel-3d-all-modal-scroll">
             <div className="carousel-3d-grid">
-              {GALLERY_IMAGES.map((src, i) => (
+              {GALLERY_IMAGES.map((src, i) => {
+                const imageLabel = imageLabelFromPath(src);
+                return (
                 <button
                   key={src}
                   type="button"
@@ -296,14 +387,16 @@ export default function VisionOrbitGallery() {
                 >
                   <Image
                     src={src}
-                    alt=""
+                    alt={imageLabel}
+                    title={imageLabel}
                     fill
                     sizes="(max-width: 640px) 50vw, 280px"
                     className="carousel-3d-card-img"
                     loading="lazy"
                   />
                 </button>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -348,7 +441,7 @@ export default function VisionOrbitGallery() {
 
           <div className="carousel-3d-modal-image-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={modalSrc} alt="" />
+            <img src={modalSrc} alt={modalLabel} title={modalLabel} />
           </div>
 
           <button
@@ -370,10 +463,34 @@ export default function VisionOrbitGallery() {
         <div className="carousel-3d-bg-orb carousel-3d-bg-orb--1" />
         <div className="carousel-3d-bg-orb carousel-3d-bg-orb--2" />
         <div className="carousel-3d-bg-orb carousel-3d-bg-orb--3" />
+        <div className="carousel-3d-particles">
+          {particles.map((p) => (
+            <span
+              key={p.id}
+              className="carousel-3d-particle"
+              style={
+                {
+                  left: `${p.x}%`,
+                  top: `${p.y}%`,
+                  width: `${p.size}px`,
+                  height: `${p.size}px`,
+                  animationDuration: `${p.dur}s`,
+                  animationDelay: `${p.delay}s`,
+                } as React.CSSProperties
+              }
+            />
+          ))}
+        </div>
         <div className="carousel-3d-bg-vignette" />
       </div>
 
       <div className="carousel-3d-content">
+      <div className="carousel-3d-heading-wrap">
+        <h1 className="carousel-3d-heading">
+          Ritz Media World{" "}
+          <span className="carousel-3d-heading-golden">Memories Gallery ✨</span> - Reliving Our Best Moments
+        </h1>
+      </div>
       <div className="carousel-3d-wrap">
         <div className="carousel-3d-inner">
         <button
@@ -385,10 +502,20 @@ export default function VisionOrbitGallery() {
           <ChevronLeft className="h-5 w-5" strokeWidth={2} />
         </button>
 
-        <div ref={stageRef} className="carousel-3d-stage">
+        <div
+          ref={stageRef}
+          className="carousel-3d-stage"
+          style={
+            {
+              ["--camera-tilt" as string]: `${cameraTilt.toFixed(2)}deg`,
+              ["--motion-blur" as string]: `${motionBlur.toFixed(2)}px`,
+            } as React.CSSProperties
+          }
+        >
           <div className="carousel-3d-track">
             {visibleIndices.map((i) => {
               const src = GALLERY_IMAGES[i];
+              const imageLabel = imageLabelFromPath(src);
               const offset = shortestOffset(i, centerOffset, count);
               const style = getCardStyle(offset, gapPx);
 
@@ -413,7 +540,8 @@ export default function VisionOrbitGallery() {
                     <div className="carousel-3d-card-media">
                       <Image
                         src={src}
-                        alt=""
+                        alt={imageLabel}
+                        title={imageLabel}
                         fill
                         sizes="(max-width: 640px) 85vw, 360px"
                         className="carousel-3d-card-img"
