@@ -123,15 +123,3 @@ export const localBusinessJsonLd = {
     name: "India",
   },
 };
-
-export const websiteJsonLd = {
-  "@context": "https://schema.org/",
-  "@type": "WebSite",
-  name: "Ritz Media World",
-  url: "https://ritzmediaworld.com/",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://ritzmediaworld.com/services{search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
-};
