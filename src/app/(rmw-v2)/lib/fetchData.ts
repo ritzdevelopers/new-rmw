@@ -34,26 +34,23 @@ export async function fetchHomePageBlogs(): Promise<BLOGSSTRUCTURE[]> {
       blogSlug: { $in: [...HOME_PAGE_BLOG_SLUGS] },
     }).lean();
 
-    const bySlug = new Map(
-      blogs.map((blog: { blogSlug: string }) => [blog.blogSlug, blog]),
-    );
-
     return HOME_PAGE_BLOG_SLUGS.flatMap((slug) => {
-      const blog = bySlug.get(slug) as
-        | {
-            blogTitle?: string;
-            blogBanner?: string;
-            blogSlug?: string;
-            createdAt?: Date;
-          }
-        | undefined;
+      const blog = (blogs as Array<{ blogSlug?: string }>).find(
+        (b) => b.blogSlug === slug,
+      );
       if (!blog) return [];
+      const row = blog as {
+        blogTitle?: string;
+        blogBanner?: string;
+        blogSlug?: string;
+        createdAt?: Date;
+      };
       return [
         {
-          blogTitle: blog.blogTitle || "",
-          blogBanner: blog.blogBanner || "",
-          blogSlug: blog.blogSlug || "",
-          createdAt: blog.createdAt || new Date(),
+          blogTitle: row.blogTitle || "",
+          blogBanner: row.blogBanner || "",
+          blogSlug: row.blogSlug || "",
+          createdAt: row.createdAt || new Date(),
         },
       ];
     });
