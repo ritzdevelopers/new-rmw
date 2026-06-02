@@ -1,8 +1,6 @@
 import "./styles/tailwind.css";
 import "./styles/global.css";
 import { Metadata } from "next";
-import JsonLd from "@/components/JsonLd";
-import { websiteJsonLd } from "@/lib/structuredData";
 import NewNavbar from "./layout/NewNavbar";
 import NewFooter from "./layout/NewFooter";
 import RubyProvider from "@/ruby-context/ruby.context";
@@ -88,7 +86,6 @@ export const metadata: Metadata = {
 export default function NewRMWW({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <JsonLd data={websiteJsonLd} />
       {/* <Navbar></Navbar> */}
       <NewNavbar></NewNavbar>
       <RubyProvider>

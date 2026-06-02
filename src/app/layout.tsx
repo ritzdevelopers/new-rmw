@@ -1,6 +1,5 @@
 import "./styles/globals.css";
 import ClientProviders from "./ClientProviders";
-import WebsiteGateway from "@/components/gateway/WebsiteGateway";
 import JsonLd from "@/components/JsonLd";
 import {
   localBusinessJsonLd,
@@ -60,7 +59,7 @@ const advertisingAgencyJsonLd = {
   },
 };
 
-const websiteSearchJsonLd = {
+const websiteJsonLd = {
   "@context": "https://schema.org/",
   "@type": "WebSite",
   name: "Ritz Media World",
@@ -169,7 +168,7 @@ export default function RootLayout({children}: { children: React.ReactNode}) {
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSearchJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
       </head>
       <body suppressHydrationWarning>
