@@ -72,7 +72,7 @@ export const GALLERY_IMAGES = [
   '/gallery/IMG-20251211-WA0041.jpg',
   '/gallery/photo_2025-10-17_18-15-59.jpg',
   '/gallery/17e24618-1ebc-dd6c-1887-291bde275d77_1460_550.webp',
-  '/gallery/Digital marketing agency in noida.png',
+  // '/gallery/Digital marketing agency in noida.png',
   '/gallery/photo_2025-11-15_00-43-00.jpg',
   '/gallery/team 4.jpg',
   '/gallery/IMG-20251211-WA0088.jpg',
