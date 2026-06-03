@@ -13,5 +13,5 @@ export default async function RenderingServiceSlugPage({ params }: SlugPageProps
         notFound();
     }
 
-    return <Page />;
+    return <Page initialTabSlug={slug} />;
 }

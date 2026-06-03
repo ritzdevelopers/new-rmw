@@ -3,19 +3,25 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import "./3dservice.css";
 import React from "react";
 import {
     getRenderingServiceTabIndex,
     getRenderingServiceTabIndexFromPathname,
+    getRenderingServiceTabIndexFromSlug,
     getRenderingServiceTabSlug,
     isRenderingServiceDeepLink,
     renderingServiceHref,
+    resolveRenderingServiceTabIndex,
     RENDERING_SERVICES_SECTION_ID,
     scrollToRenderingServicesSection,
     type RenderingServiceTabSlug,
 } from "./service-tab-slugs";
+
+type Services3DProps = {
+    initialTabSlug?: RenderingServiceTabSlug;
+};
 
 function serviceImageSrc(filename: string): string {
     return `/services/3drendring/${encodeURIComponent(filename)}`;
@@ -130,18 +136,68 @@ function scrollTabIntoContainer(
     });
 }
 
-export default function Services3D() {
-    const router = useRouter();
+function focusActiveTabInStrip(
+    getRefs: () => { container: HTMLElement | null; tab: HTMLButtonElement | null },
+    smooth: boolean,
+    attempt = 0
+) {
+    const { container, tab } = getRefs();
+
+    if (tab && container) {
+        scrollTabIntoContainer(container, tab, smooth);
+        return;
+    }
+
+    if (attempt >= 12) return;
+
+    requestAnimationFrame(() => {
+        focusActiveTabInStrip(getRefs, smooth, attempt + 1);
+    });
+}
+
+function readActiveIndexFromLocation(initialTabSlug?: RenderingServiceTabSlug): number {
+    if (typeof window === "undefined") {
+        return initialTabSlug
+            ? (getRenderingServiceTabIndexFromSlug(initialTabSlug) ?? 0)
+            : 0;
+    }
+
+    return resolveRenderingServiceTabIndex(window.location.pathname, initialTabSlug);
+}
+
+function resolveActiveIndex(
+    pathname: string,
+    initialTabSlug?: RenderingServiceTabSlug
+): number {
+    const fromPath = getRenderingServiceTabIndexFromPathname(pathname);
+    if (fromPath !== null) return fromPath;
+
+    if (typeof window !== "undefined") {
+        const fromWindow = getRenderingServiceTabIndexFromPathname(window.location.pathname);
+        if (fromWindow !== null) return fromWindow;
+    }
+
+    if (initialTabSlug) {
+        const fromSlug = getRenderingServiceTabIndexFromSlug(initialTabSlug);
+        if (fromSlug !== null) return fromSlug;
+    }
+
+    return 0;
+}
+
+export default function Services3D({ initialTabSlug }: Services3DProps = {}) {
     const pathname = usePathname();
-    const [active, setActive] = useState(0);
-    const [sectionRevealed, setSectionRevealed] = useState(true);
+    const [active, setActive] = useState(() =>
+        resolveActiveIndex(
+            typeof window !== "undefined" ? window.location.pathname : pathname,
+            initialTabSlug
+        )
+    );
     const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
     const tabListRef = useRef<HTMLDivElement | null>(null);
     const sectionRef = useRef<HTMLElement | null>(null);
-    const isFirstTabScroll = useRef(true);
-    const deepLinkScrollPending = useRef(false);
+    const hasScrolledForSlugEntry = useRef(false);
     const deepLinkScrollTimer = useRef<number | null>(null);
-    const internalNavigation = useRef(false);
     const [canScrollTabsLeft, setCanScrollTabsLeft] = useState(false);
     const [canScrollTabsRight, setCanScrollTabsRight] = useState(false);
 
@@ -165,99 +221,107 @@ export default function Services3D() {
         });
     }, []);
 
+    const updateTabUrl = useCallback((slug: RenderingServiceTabSlug) => {
+        if (typeof window === "undefined") return;
+
+        const nextPath = renderingServiceHref(slug);
+        if (window.location.pathname !== nextPath) {
+            window.history.replaceState(null, "", nextPath);
+        }
+    }, []);
+
+    const showActiveTabInStrip = useCallback((index: number, smooth = true) => {
+        focusActiveTabInStrip(
+            () => ({
+                container: tabListRef.current,
+                tab: tabRefs.current[index] ?? null,
+            }),
+            smooth
+        );
+    }, []);
+
     const selectTab = useCallback((index: number, options?: { updateUrl?: boolean }) => {
         setActive(index);
+        showActiveTabInStrip(index);
 
         if (options?.updateUrl === false) return;
 
         const slug = getRenderingServiceTabSlug(index);
-        if (!slug) return;
+        if (slug) updateTabUrl(slug);
+    }, [showActiveTabInStrip, updateTabUrl]);
 
-        const nextPath = renderingServiceHref(slug);
-        if (pathname !== nextPath) {
-            internalNavigation.current = true;
-            router.replace(nextPath, { scroll: false });
-        }
-    }, [pathname, router]);
-
-    const runDeepLinkScroll = useCallback((index: number) => {
+    const scrollToServicesSection = useCallback((index: number) => {
         if (deepLinkScrollTimer.current !== null) {
             window.clearTimeout(deepLinkScrollTimer.current);
         }
 
         deepLinkScrollTimer.current = window.setTimeout(() => {
-            scrollTabIntoContainer(
-                tabListRef.current,
-                tabRefs.current[index] ?? null,
-                true
-            );
+            showActiveTabInStrip(index, true);
             scrollToRenderingServicesSection(sectionRef.current, "smooth");
-            setSectionRevealed(true);
             deepLinkScrollTimer.current = null;
-        }, 180);
-    }, []);
-
-    const applyPathToTab = useCallback(
-        (scrollToSection: boolean, options?: { hideBeforeScroll?: boolean }) => {
-            const index = getRenderingServiceTabIndexFromPathname(pathname);
-            if (index === null) return;
-
-            if (scrollToSection) {
-                deepLinkScrollPending.current = true;
-                if (options?.hideBeforeScroll) {
-                    setSectionRevealed(false);
-                }
-            }
-
-            selectTab(index, { updateUrl: false });
-        },
-        [pathname, selectTab]
-    );
+        }, 200);
+    }, [showActiveTabInStrip]);
 
     useLayoutEffect(() => {
-        if (typeof window === "undefined") return;
-
         const legacyHashIndex = getRenderingServiceTabIndex(window.location.hash);
         if (legacyHashIndex !== null) {
             const slug = getRenderingServiceTabSlug(legacyHashIndex);
             if (slug) {
-                router.replace(renderingServiceHref(slug));
-                return;
+                window.history.replaceState(null, "", renderingServiceHref(slug));
+                setActive(legacyHashIndex);
+                showActiveTabInStrip(legacyHashIndex, false);
             }
+            return;
         }
 
-        if (isRenderingServiceDeepLink(pathname)) {
-            if (internalNavigation.current) {
-                internalNavigation.current = false;
-                return;
-            }
+        const index = resolveActiveIndex(pathname, initialTabSlug);
+        const windowIndex =
+            typeof window !== "undefined"
+                ? getRenderingServiceTabIndexFromPathname(window.location.pathname)
+                : null;
+        const effectiveIndex = windowIndex ?? index;
 
-            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-            applyPathToTab(true, { hideBeforeScroll: true });
+        if (
+            isRenderingServiceDeepLink(pathname) ||
+            initialTabSlug ||
+            windowIndex !== null
+        ) {
+            setActive(effectiveIndex);
+            showActiveTabInStrip(effectiveIndex, false);
         }
-    }, [pathname, applyPathToTab, router]);
+    }, [pathname, initialTabSlug, showActiveTabInStrip]);
 
     useEffect(() => {
-        if (!deepLinkScrollPending.current) return;
+        if (hasScrolledForSlugEntry.current) return;
 
-        deepLinkScrollPending.current = false;
-        runDeepLinkScroll(active);
+        const index = resolveActiveIndex(pathname, initialTabSlug);
+        const hasSlug =
+            isRenderingServiceDeepLink(pathname) ||
+            initialTabSlug !== undefined ||
+            (typeof window !== "undefined" &&
+                isRenderingServiceDeepLink(window.location.pathname));
 
-        return () => {
-            if (deepLinkScrollTimer.current !== null) {
-                window.clearTimeout(deepLinkScrollTimer.current);
-                deepLinkScrollTimer.current = null;
-            }
-        };
-    }, [active, runDeepLinkScroll]);
+        if (hasSlug) {
+            hasScrolledForSlugEntry.current = true;
+            scrollToServicesSection(index);
+        }
+    }, [pathname, initialTabSlug, scrollToServicesSection]);
 
     useEffect(() => {
+        const onPopState = () => {
+            const index = readActiveIndexFromLocation(initialTabSlug);
+            setActive(index);
+            showActiveTabInStrip(index, false);
+        };
+
+        window.addEventListener("popstate", onPopState);
         return () => {
+            window.removeEventListener("popstate", onPopState);
             if (deepLinkScrollTimer.current !== null) {
                 window.clearTimeout(deepLinkScrollTimer.current);
             }
         };
-    }, []);
+    }, [initialTabSlug, showActiveTabInStrip]);
 
     const onKeyDown = useCallback(
         (e: KeyboardEvent<HTMLButtonElement>, index: number) => {
@@ -275,16 +339,8 @@ export default function Services3D() {
     );
 
     useEffect(() => {
-        if (isFirstTabScroll.current) {
-            isFirstTabScroll.current = false;
-            return;
-        }
-        scrollTabIntoContainer(
-            tabListRef.current,
-            tabRefs.current[active] ?? null,
-            true
-        );
-    }, [active]);
+        showActiveTabInStrip(active, false);
+    }, [active, showActiveTabInStrip]);
 
     useEffect(() => {
         const el = tabListRef.current;
@@ -311,9 +367,7 @@ export default function Services3D() {
         <section
             ref={sectionRef}
             id={RENDERING_SERVICES_SECTION_ID}
-            className={`scroll-mt-28 bg-white px-4 pb-[35px] sm:px-6 md:pb-[70px] ${
-                sectionRevealed ? "services-section-reveal" : "services-section-pending"
-            }`}
+            className="scroll-mt-28 bg-white px-4 pb-[35px] sm:px-6 md:pb-[70px]"
         >
             <div className="mx-auto w-full max-w-6xl xl:max-w-7xl">
                 <header className="mx-auto max-w-3xl text-center">

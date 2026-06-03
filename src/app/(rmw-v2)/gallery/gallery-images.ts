@@ -1,7 +1,7 @@
 /** Unique gallery assets under /public/gallery */
 export const GALLERY_IMAGES = [
   '/gallery/DSC01566.JPG',
-  '/gallery/photo_2025-11-28_21-59-05 (2).jpg',
+  // '/gallery/photo_2025-11-28_21-59-05 (2).jpg',
   '/gallery/Creative Team2.JPG',
   '/gallery/photo_2025-03-12_18-48-20.jpg',
   '/gallery/Ritz media world R.jpg',

@@ -15,8 +15,13 @@ import {
     SHOWCASE_IMAGES,
     SHOWCASE_INITIAL_VISIBLE,
 } from "./showcase-images";
+import type { RenderingServiceTabSlug } from "./service-tab-slugs";
 
-function Page() {
+type PageProps = {
+    initialTabSlug?: RenderingServiceTabSlug;
+};
+
+function Page({ initialTabSlug }: PageProps = {}) {
     const EXPLORE_ARROW_IMAGE =
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
     const [isMobile, setIsMobile] = useState(false);
@@ -336,7 +341,7 @@ function Page() {
                 )}
             </div>
 
-            <Services3D />
+            <Services3D initialTabSlug={initialTabSlug} />
             <Process3D />
             <Faq3D />
             <Textimonials />
