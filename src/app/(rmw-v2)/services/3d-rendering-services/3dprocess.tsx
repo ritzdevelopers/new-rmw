@@ -85,7 +85,8 @@ export default function Process3D() {
           >
             <img
               src="/services/3drendring/processicon/backgournd.png"
-              alt=""
+              alt="3D rendering process background"
+              title="3D rendering process background"
               className="h-[330px] w-full object-fill"
             />
             <span className="absolute -left-1 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rounded-full bg-white" />
