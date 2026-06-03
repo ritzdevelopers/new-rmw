@@ -130,7 +130,8 @@ function RichServicePanel({ item, onClose, videoRef, videoPlaying, playShowreel,
               >
                 <Image
                   src={type.icon}
-                  alt=""
+                  alt={`${type.label} – property type icon`}
+                  title={type.label}
                   width={48}
                   height={48}
                   className="h-10 w-10 sm:h-12 sm:w-12"
@@ -159,7 +160,8 @@ function RichServicePanel({ item, onClose, videoRef, videoPlaying, playShowreel,
             >
               <Image
                 src="/varun.icon/cross-content-marketing.svg"
-                alt=""
+                alt="Close service details"
+                title={`Close ${item.title}`}
                 width={28}
                 height={28}
                 className="h-6 w-6 sm:h-7 sm:w-7"
@@ -252,7 +254,8 @@ export default function Section4() {
                       {isOpen ? (
                         <Image
                           src="/varun.icon/cross-content-marketing.svg"
-                          alt=""
+                          alt="Collapse service section"
+                          title={`Close ${item.title}`}
                           width={28}
                           height={28}
                           className="h-6 w-6 sm:h-7 sm:w-7"
