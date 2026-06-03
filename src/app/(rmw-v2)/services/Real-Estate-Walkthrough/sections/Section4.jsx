@@ -1,12 +1,25 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
+import { createPortal } from "react-dom";
 import styles from "./page.module.css";
 import accordionStyles from "./Section4.module.css";
+import { ReelVideoPlayer } from "./ReelVideoPlayer";
+import { useVideoPosterFrame } from "./useVideoPosterFrame";
 
-const RMW_VIDEO_BLOB = "https://otherassets.blob.core.windows.net/rmw/";
+const RMW_VIDEO_BLOB =
+  "https://otherassets.blob.core.windows.net/rmw/";
+
 const blobVideo = (filename) => `${RMW_VIDEO_BLOB}${encodeURI(filename)}`;
+
+const EXPAND_MS = 1550;
 
 const PROPERTY_TYPES = [
   {
@@ -22,53 +35,78 @@ const SERVICES = [
   {
     id: "01",
     title: "3D Architectural Walkthrough Animation",
-    committed: true,
     description:
       "A fully animated cinematic video showing you around the development, from the outside of the building, through to the lobby and individual apartments, leisure facilities, grounds. The walkthrough animations are photoreal lit, natural camera movement with ambient sound for a full, emotional, walkthrough.",
-    video: blobVideo("Service reel revised.mp4"),
-    propertyTypes: PROPERTY_TYPES,
-  },
-  {
-    id: "02",
-    title: "360° Virtual Property Tour",
-    committed: true,
-    description:
-      "An interactive 360° virtual property tour lets buyers explore every room at their own pace — pan, zoom, and tap hotspots from any phone, tablet, or desktop. We deliver photorealistic panoramas stitched into a seamless, web-ready tour built for project websites, WhatsApp sharing, and high-intent listing pages.",
     video: blobVideo("Laadli GovindVan 4k Walkthrough (1) (1).mp4"),
     propertyTypes: PROPERTY_TYPES,
   },
   {
-    id: "03",
+    id: "02",
     title: "3D Aerial Flythrough Animation",
-    committed: false,
     description:
-      "Bird's-eye flythrough animations that reveal project scale, connectivity, and surroundings — ideal for master plans and township launches.",
+      "A fully animated cinematic video showing you around the development, from the outside of the building, through to the lobby and individual apartments, leisure facilities, grounds. The walkthrough animations are photoreal lit, natural camera movement with ambient sound for a full, emotional, walkthrough.",
+    video: blobVideo("Final Teaser (1).mp4"),
+    propertyTypes: PROPERTY_TYPES,
   },
   {
-    id: "04",
+    id: "03",
     title: "Interior Walkthrough Animation",
-    committed: false,
     description:
-      "Room-by-room interior tours with photoreal materials, lighting, and staging — helping buyers feel the space before the first site visit.",
-  },
-  {
-    id: "05",
-    title: "VR Walkthrough Experience",
-    committed: true,
-    description:
-      "Step inside your project before it is built with a fully immersive VR walkthrough experience. Compatible with VR headsets and mobile viewers, our scenes place buyers in the space with true scale, depth, and presence — perfect for launch events, experience centres, and high-involvement sales conversations.",
-    video: blobVideo("RMW STATE W 4K (1) (1) (1) (1).mp4"),
+      "A fully animated cinematic video showing you around the development, from the outside of the building, through to the lobby and individual apartments, leisure facilities, grounds. The walkthrough animations are photoreal lit, natural camera movement with ambient sound for a full, emotional, walkthrough.",
+    video: blobVideo("Service reel 10th Hor (1).mp4"),
     propertyTypes: PROPERTY_TYPES,
   },
 ];
 
-function PlayShowreelOverlay({ onPlay }) {
+function getExpandedRect() {
+  const padding = 32;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  let width = Math.min(vw - padding * 2, 1024);
+  let height = (width * 9) / 16;
+
+  if (height > vh - padding * 2) {
+    height = vh - padding * 2;
+    width = (height * 16) / 9;
+  }
+
+  return {
+    left: (vw - width) / 2,
+    top: (vh - height) / 2,
+    width,
+    height,
+  };
+}
+
+function CloseIcon() {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5"
+      aria-hidden
+    >
+      <path
+        d="M18 6L6 18M6 6L18 18"
+        stroke="black"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function PlayShowreelOverlay({ onOpen }) {
   return (
     <button
       type="button"
-      onClick={onPlay}
+      onClick={onOpen}
       className="absolute inset-0 z-10 flex cursor-pointer flex-col items-center justify-center gap-3 bg-black/20 transition-colors hover:bg-black/30"
-      aria-label="Play showreel"
+      aria-label="Play showreel in expanded view"
     >
       <span className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/90 sm:h-[72px] sm:w-[72px]">
         <svg
@@ -90,7 +128,150 @@ function PlayShowreelOverlay({ onPlay }) {
   );
 }
 
-function RichServicePanel({ item, onClose, videoRef, videoPlaying, playShowreel, setVideoPlaying }) {
+function ShowreelVideoModal({ item, originRect, onClosed }) {
+  const [expanded, setExpanded] = useState(false);
+  const [targetRect, setTargetRect] = useState(null);
+  const [mounted, setMounted] = useState(false);
+  const closeTimerRef = useRef(null);
+
+  const clearCloseTimer = () => {
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  useLayoutEffect(() => {
+    setTargetRect(getExpandedRect());
+    const frame = requestAnimationFrame(() => {
+      requestAnimationFrame(() => setExpanded(true));
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    const onResize = () => {
+      if (expanded) setTargetRect(getExpandedRect());
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [expanded]);
+
+  const beginClose = useCallback(() => {
+    clearCloseTimer();
+    setExpanded(false);
+    closeTimerRef.current = window.setTimeout(onClosed, EXPAND_MS);
+  }, [onClosed]);
+
+  const closeImmediately = useCallback(() => {
+    clearCloseTimer();
+    onClosed();
+  }, [onClosed]);
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") closeImmediately();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [closeImmediately]);
+
+  useEffect(() => () => clearCloseTimer(), []);
+
+  if (!mounted || !originRect) return null;
+
+  const current = expanded && targetRect ? targetRect : originRect;
+
+  return createPortal(
+    <>
+      <div
+        className={`${accordionStyles.videoModalBackdrop} ${
+          expanded
+            ? accordionStyles.videoModalBackdropVisible
+            : accordionStyles.videoModalBackdropHidden
+        }`}
+        aria-hidden
+        onClick={beginClose}
+      />
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={item.title}
+        className={`${accordionStyles.videoModalPlayer} ${
+          expanded ? accordionStyles.videoModalPlayerExpanded : ""
+        }`}
+        style={{
+          left: current.left,
+          top: current.top,
+          width: current.width,
+          height: current.height,
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {expanded ? (
+          <ReelVideoPlayer
+            key={item.video}
+            src={item.video}
+            previewSrc={item.previewSrc}
+            title={item.title}
+            objectFit="contain"
+            showControls
+            className="h-full w-full"
+          />
+        ) : (
+          <video
+            src={item.previewSrc || item.video}
+            title={item.title}
+            className="h-full w-full object-cover"
+            muted
+            playsInline
+            preload="auto"
+            tabIndex={-1}
+          />
+        )}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            closeImmediately();
+          }}
+          className={`${accordionStyles.videoModalClose} ${
+            expanded ? accordionStyles.videoModalCloseVisible : ""
+          }`}
+          aria-label="Close video"
+        >
+          <CloseIcon />
+        </button>
+      </div>
+    </>,
+    document.body
+  );
+}
+
+function RichServicePanel({ item, onClose, onOpenVideo }) {
+  const videoContainerRef = useRef(null);
+  const { videoRef: previewVideoRef, previewSrc } = useVideoPosterFrame(item.video);
+
+  const handleOpenVideo = () => {
+    const el = videoContainerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    onOpenVideo(
+      { ...item, previewSrc },
+      {
+        left: rect.left,
+        top: rect.top,
+        width: rect.width,
+        height: rect.height,
+      }
+    );
+  };
+
   return (
     <div className="pt-5 pb-8 sm:pt-6  md:pb-12 ">
       <div
@@ -172,21 +353,20 @@ function RichServicePanel({ item, onClose, videoRef, videoPlaying, playShowreel,
               />
             </button>
           </div>
-          <div className="relative w-full overflow-hidden bg-[#0a1128]">
+          <div
+            ref={videoContainerRef}
+            className="relative w-full overflow-hidden bg-[#0a1128]"
+          >
             <video
-              key={item.id}
-              ref={videoRef}
-              src={item.video}
+              ref={previewVideoRef}
+              src={previewSrc}
               className="block h-auto w-full object-cover"
               muted
               playsInline
-              preload="metadata"
-              onEnded={() => setVideoPlaying(false)}
-              onClick={() => {
-                if (!videoPlaying) playShowreel();
-              }}
+              preload="none"
+              tabIndex={-1}
             />
-            {!videoPlaying && <PlayShowreelOverlay onPlay={playShowreel} />}
+            <PlayShowreelOverlay onOpen={handleOpenVideo} />
           </div>
         </div>
       </div>
@@ -196,33 +376,28 @@ function RichServicePanel({ item, onClose, videoRef, videoPlaying, playShowreel,
 
 export default function Section4() {
   const [openId, setOpenId] = useState("01");
-  const [videoPlaying, setVideoPlaying] = useState(false);
-  const videoRef = useRef(null);
+  const [videoModal, setVideoModal] = useState(null);
 
-  useEffect(() => {
-    setVideoPlaying(false);
-    const video = videoRef.current;
-    if (!video) return;
-    video.pause();
-    video.currentTime = 0;
-    video.load();
-  }, [openId]);
+  const closeVideoModal = useCallback(() => {
+    setVideoModal(null);
+    document.body.style.overflow = "";
+  }, []);
+
+  const openVideoModal = useCallback((item, originRect) => {
+    setVideoModal({ item, originRect });
+    document.body.style.overflow = "hidden";
+  }, []);
 
   const toggleItem = (id) => {
     setOpenId((prev) => (prev === id ? null : id));
-    setVideoPlaying(false);
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
+    closeVideoModal();
   };
 
-  const playShowreel = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.play().catch(() => {});
-    setVideoPlaying(true);
-  };
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   return (
     <section
@@ -242,9 +417,7 @@ export default function Section4() {
         <div className="border-t border-[#222222]">
           {SERVICES.map((item) => {
             const isOpen = openId === item.id;
-            const hasRichContent = Boolean(
-              item.committed && item.video && item.propertyTypes
-            );
+            const hasRichContent = Boolean(item.video && item.propertyTypes);
 
             return (
               <div key={item.id} className="border-b border-[#22222]">
@@ -299,10 +472,7 @@ export default function Section4() {
                     <RichServicePanel
                       item={item}
                       onClose={() => toggleItem(item.id)}
-                      videoRef={videoRef}
-                      videoPlaying={videoPlaying}
-                      playShowreel={playShowreel}
-                      setVideoPlaying={setVideoPlaying}
+                      onOpenVideo={openVideoModal}
                     />
                   ) : (
                     isOpen &&
@@ -325,6 +495,14 @@ export default function Section4() {
           })}
         </div>
       </div>
+
+      {videoModal && (
+        <ShowreelVideoModal
+          item={videoModal.item}
+          originRect={videoModal.originRect}
+          onClosed={closeVideoModal}
+        />
+      )}
     </section>
   );
 }

@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
+import { ReelVideoPlayer } from "./ReelVideoPlayer";
+import { useVideoPosterFrame } from "./useVideoPosterFrame";
 
 const RMW_VIDEO_BLOB =
   "https://otherassets.blob.core.windows.net/rmw/";
@@ -9,7 +11,7 @@ const RMW_VIDEO_BLOB =
 const blobVideo = (filename) => `${RMW_VIDEO_BLOB}${encodeURI(filename)}`;
 
 const LANDSCAPE_VIDEOS = [
-  { id: "landscape-1", src: blobVideo("Final Teaser.mp4"), title: "Final Teaser" },
+  { id: "landscape-1", src: blobVideo("Final Teaser (1).mp4"), title: "Final Teaser" },
   {
     id: "landscape-2",
     src: blobVideo("Laadli GovindVan 4k Walkthrough (1) (1).mp4"),
@@ -17,12 +19,12 @@ const LANDSCAPE_VIDEOS = [
   },
   {
     id: "landscape-3",
-    src: blobVideo("RMW STATE W 4K (1) (1) (1) (1).mp4"),
+    src: blobVideo("RMW STATE W 4K (1) (1) (1) (1) (1).mp4"),
     title: "RMW State Walkthrough",
   },
   {
     id: "landscape-4",
-    src: blobVideo("Service Reel horizontal ver.mp4"),
+    src: blobVideo("Service reel 10th Hor (1).mp4"),
     title: "Service Reel Horizontal",
   },
   { id: "landscape-5", src: blobVideo("Service reel 3rd.mp4"), title: "Service Reel 3rd" },
@@ -36,7 +38,7 @@ const LANDSCAPE_VIDEOS = [
 const PORTRAIT_VIDEOS = [
   {
     id: "portrait-1",
-    src: blobVideo("Edelstein Abode Service Reel.mp4"),
+    src: blobVideo("Edelstein Abode Service Reel (1).mp4"),
     title: "Edelstein Abode Service Reel",
   },
   {
@@ -90,22 +92,45 @@ function CloseIcon() {
 }
 
 function VideoCard({ video, aspectClass, onOpen }) {
+  const { videoRef, previewSrc, poster, thumbFailed } = useVideoPosterFrame(
+    video.src,
+    video.poster
+  );
+
   return (
     <button
       type="button"
       className={`relative w-full cursor-pointer overflow-hidden bg-[#0a1128] text-left ${aspectClass}`}
-      onClick={() => onOpen(video)}
+      onClick={() => onOpen({ ...video, previewSrc })}
       aria-label={`Play ${video.title} in modal`}
     >
-      <video
-        src={video.src}
-        title={video.title}
-        className="pointer-events-none h-full w-full object-cover"
-        muted
-        playsInline
-        preload="metadata"
-        tabIndex={-1}
-      />
+      {poster ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={poster}
+          alt=""
+          className="pointer-events-none h-full w-full object-cover"
+        />
+      ) : (
+        <video
+          ref={videoRef}
+          src={previewSrc}
+          title={video.title}
+          className="pointer-events-none h-full w-full object-cover"
+          muted
+          playsInline
+          preload="none"
+          tabIndex={-1}
+        />
+      )}
+      {thumbFailed && !poster && (
+        <span
+          className="pointer-events-none absolute inset-0 flex items-center justify-center px-3 text-center text-[12px] font-medium text-white/70 sm:text-[13px]"
+          style={{ fontFamily: "MontserratMedium, Montserrat, sans-serif" }}
+        >
+          {video.title}
+        </span>
+      )}
       <span className="absolute inset-0 z-10 flex items-center justify-center bg-black/15 transition-colors hover:bg-black/25">
         <PlayIcon />
       </span>
@@ -114,14 +139,6 @@ function VideoCard({ video, aspectClass, onOpen }) {
 }
 
 function VideoModal({ video, isPortrait, onClose }) {
-  const modalVideoRef = useRef(null);
-
-  useEffect(() => {
-    const el = modalVideoRef.current;
-    if (!el) return;
-    el.play().catch(() => {});
-  }, [video?.src]);
-
   return (
     <div
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
@@ -143,24 +160,25 @@ function VideoModal({ video, isPortrait, onClose }) {
             isPortrait ? "aspect-[9/16]" : "aspect-video"
           }`}
         >
+          <ReelVideoPlayer
+            key={video.src}
+            src={video.src}
+            previewSrc={video.previewSrc}
+            title={video.title}
+            objectFit="contain"
+            className="h-full w-full"
+          />
           <button
             type="button"
-            onClick={onClose}
-            className="absolute right-3 top-3 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 transition-all hover:scale-110 hover:bg-white sm:right-4 sm:top-4 sm:h-12 sm:w-12"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className="absolute right-3 top-3 z-[100] flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white/90 transition-all hover:scale-110 hover:bg-white sm:right-4 sm:top-4 sm:h-12 sm:w-12"
             aria-label="Close video"
           >
             <CloseIcon />
           </button>
-          <video
-            ref={modalVideoRef}
-            key={video.src}
-            src={video.src}
-            title={video.title}
-            className="h-full w-full object-contain"
-            controls
-            autoPlay
-            playsInline
-          />
         </div>
 
         <p
