@@ -29,6 +29,23 @@ export function getRenderingServiceTabSlugFromPathname(pathname: string): Render
     return slug;
 }
 
+export function getRenderingServiceTabIndexFromSlug(slug: string): number | null {
+    if (!isRenderingServiceTabSlug(slug)) return null;
+    return RENDERING_SERVICE_TAB_SLUGS.indexOf(slug);
+}
+
+export function resolveRenderingServiceTabIndex(
+    pathname: string,
+    initialTabSlug?: RenderingServiceTabSlug
+): number {
+    if (initialTabSlug) {
+        const fromSlug = getRenderingServiceTabIndexFromSlug(initialTabSlug);
+        if (fromSlug !== null) return fromSlug;
+    }
+
+    return getRenderingServiceTabIndexFromPathname(pathname) ?? 0;
+}
+
 export function getRenderingServiceTabIndexFromPathname(pathname: string): number | null {
     const slug = getRenderingServiceTabSlugFromPathname(pathname);
     if (!slug) return null;
