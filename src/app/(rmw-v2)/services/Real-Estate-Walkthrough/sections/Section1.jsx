@@ -29,7 +29,8 @@ export default function Section1() {
         <div className="relative hidden h-[32px] w-[140px] md:block md:h-[37px] md:w-[170px]">
           <img
             src="/home-v3/service-imgs/s1/yellow-reactangle.png"
-            alt=""
+            alt="Ritz Media World – real estate walkthrough services badge"
+            title="Ritz Media World – real estate walkthrough services badge"
             className="h-full w-full object-contain"
           />
           <p

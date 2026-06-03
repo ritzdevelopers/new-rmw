@@ -1,10 +1,14 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "3D Rendering Services for Real Estate & Architecture | Ritz Media World",
+    metadataBase: new URL("https://ritzmediaworld.com"),
+    title: "3D Rendering Services for Real Estate & Architecture",
     description: "Professional 3D rendering services in India for architecture, interiors, products, and real estate. High-quality 3D exterior rendering services & CGI visuals.",
     authors: [{ name: "Ritz Media World" }],
     publisher: "Ritz Media World",
+    alternates: {
+        canonical: "https://ritzmediaworld.com/services/3d-rendering-services",
+    },
     keywords: [
         "3D rendering services", 
         "3D visualization services", 

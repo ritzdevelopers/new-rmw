@@ -1,9 +1,25 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import "./3dservice.css";
 import React from "react";
+import {
+    getRenderingServiceTabIndex,
+    getRenderingServiceTabIndexFromPathname,
+    getRenderingServiceTabSlug,
+    isRenderingServiceDeepLink,
+    renderingServiceHref,
+    RENDERING_SERVICES_SECTION_ID,
+    scrollToRenderingServicesSection,
+    type RenderingServiceTabSlug,
+} from "./service-tab-slugs";
+
+function serviceImageSrc(filename: string): string {
+    return `/services/3drendring/${encodeURIComponent(filename)}`;
+}
 
 const accent = "#C99237";
 
@@ -11,6 +27,7 @@ const accent = "#C99237";
 
 type ServiceTab = {
     num: string;
+    slug: RenderingServiceTabSlug;
     title: string;
     description: string;
     image: string;
@@ -21,10 +38,11 @@ type ServiceTab = {
 const services: ServiceTab[] = [
     {
         num: "01",
+        slug: "3d-exterior-rendering",
         title: "3D Exterior Rendering",
         description:
             "Get to experience the architecture, facade materials, landscaping, and site of the building through photo-realistic exterior renderings that provide unmatched clarity. The right option for pre-launch marketing, investor portfolio and collateral.",
-        image: "/services/3drendring/3d1.png",
+        image: serviceImageSrc("F8.png"),
         imageAlt: "Modern residential complex 3D exterior visualization",
         features: [
             { label: "Residential Apartments", icon: "/services/3drendring/processicon/service1/service1.png" },
@@ -35,10 +53,11 @@ const services: ServiceTab[] = [
     },
     {
         num: "02",
+        slug: "3d-interior-rendering",
         title: "3D Interior Rendering",
         description:
             "Real-to-life living & dining rooms, master bedrooms, kitchens and commercial spaces are vividly depicted through interiors that display proper lighting, texture of material, furniture and décor. A prime service for luxury and high-end residences.",
-        image: "/services/3drendring/3d2.png",
+        image: serviceImageSrc("interior.png"),
         imageAlt: "Luxury interior 3D visualization",
         features: [
             { label: "Living Dining Spaces", icon: "/services/3drendring/processicon/service2/service1.png" },
@@ -49,10 +68,11 @@ const services: ServiceTab[] = [
     },
     {
         num: "03",
+        slug: "aerial-township",
         title: "Aerial & Township",
         description:
             "3D Master plans and bird's-eye view renderings will effectively and realistically depict the overall planning, grandeur and scale of plots, mixed use development projects and entire townships. An excellent tool for the government submissions, investor pitch and RERA filing.",
-        image: "/services/3drendring/3d3.png",
+        image: serviceImageSrc("Site f2.jpeg"),
         imageAlt: "Aerial view of urban township development",
         features: [
             { label: "Master Plan Views", icon: "/services/3drendring/processicon/service3/service1.png" },
@@ -63,10 +83,11 @@ const services: ServiceTab[] = [
     },
     {
         num: "04",
+        slug: "3d-floor-plan-rendering",
         title: "3D Floor Plan Rendering",
         description:
             "The most simplified and easily understandable form of floor plan design is the 3D floor plan which helps avoid ambiguity on the site during a site visit by depicting the layout, furnishing and texture. Suitable for unit floor plans, 3D cut-away views, furnished layouts, and commercial space plans.",
-        image: "/services/3drendring/3d4.png",
+        image: serviceImageSrc("Floor-Plan-new.png"),
         imageAlt: "3D floor plan visualization",
         features: [
             { label: "Unit Floor Plans", icon: "/services/3drendring/processicon/service4/service1.png" },
@@ -77,10 +98,11 @@ const services: ServiceTab[] = [
     },
     {
         num: "05",
+        slug: "amenity-landscape-rendering",
         title: "Amenity & Landscape Rendering",
         description:
             "The best selling tool for any residential project, be it the exclusive renderings of club houses, swimming pools, manicured gardens, play zones, gyms and rooftops which are a major draw.",
-        image: "/services/3drendring/3d5.png",
+        image: serviceImageSrc("f3.jpeg"),
         imageAlt: "Amenity and landscape 3D rendering",
         features: [
             { label: "Clubhouse Renders", icon: "/services/3drendring/processicon/service5/service1.png" },
@@ -109,15 +131,132 @@ function scrollTabIntoContainer(
 }
 
 export default function Services3D() {
+    const router = useRouter();
+    const pathname = usePathname();
     const [active, setActive] = useState(0);
+    const [sectionRevealed, setSectionRevealed] = useState(true);
     const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
     const tabListRef = useRef<HTMLDivElement | null>(null);
+    const sectionRef = useRef<HTMLElement | null>(null);
     const isFirstTabScroll = useRef(true);
+    const deepLinkScrollPending = useRef(false);
+    const deepLinkScrollTimer = useRef<number | null>(null);
+    const internalNavigation = useRef(false);
+    const [canScrollTabsLeft, setCanScrollTabsLeft] = useState(false);
+    const [canScrollTabsRight, setCanScrollTabsRight] = useState(false);
 
     const current = services[active];
 
-    const selectTab = useCallback((index: number) => {
+    const updateTabScrollState = useCallback(() => {
+        const el = tabListRef.current;
+        if (!el) return;
+        const maxScroll = el.scrollWidth - el.clientWidth;
+        setCanScrollTabsLeft(el.scrollLeft > 4);
+        setCanScrollTabsRight(el.scrollLeft < maxScroll - 4);
+    }, []);
+
+    const scrollTabs = useCallback((direction: "left" | "right") => {
+        const el = tabListRef.current;
+        if (!el) return;
+        const step = Math.max(220, Math.round(el.clientWidth * 0.65));
+        el.scrollBy({
+            left: direction === "left" ? -step : step,
+            behavior: "smooth",
+        });
+    }, []);
+
+    const selectTab = useCallback((index: number, options?: { updateUrl?: boolean }) => {
         setActive(index);
+
+        if (options?.updateUrl === false) return;
+
+        const slug = getRenderingServiceTabSlug(index);
+        if (!slug) return;
+
+        const nextPath = renderingServiceHref(slug);
+        if (pathname !== nextPath) {
+            internalNavigation.current = true;
+            router.replace(nextPath, { scroll: false });
+        }
+    }, [pathname, router]);
+
+    const runDeepLinkScroll = useCallback((index: number) => {
+        if (deepLinkScrollTimer.current !== null) {
+            window.clearTimeout(deepLinkScrollTimer.current);
+        }
+
+        deepLinkScrollTimer.current = window.setTimeout(() => {
+            scrollTabIntoContainer(
+                tabListRef.current,
+                tabRefs.current[index] ?? null,
+                true
+            );
+            scrollToRenderingServicesSection(sectionRef.current, "smooth");
+            setSectionRevealed(true);
+            deepLinkScrollTimer.current = null;
+        }, 180);
+    }, []);
+
+    const applyPathToTab = useCallback(
+        (scrollToSection: boolean, options?: { hideBeforeScroll?: boolean }) => {
+            const index = getRenderingServiceTabIndexFromPathname(pathname);
+            if (index === null) return;
+
+            if (scrollToSection) {
+                deepLinkScrollPending.current = true;
+                if (options?.hideBeforeScroll) {
+                    setSectionRevealed(false);
+                }
+            }
+
+            selectTab(index, { updateUrl: false });
+        },
+        [pathname, selectTab]
+    );
+
+    useLayoutEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const legacyHashIndex = getRenderingServiceTabIndex(window.location.hash);
+        if (legacyHashIndex !== null) {
+            const slug = getRenderingServiceTabSlug(legacyHashIndex);
+            if (slug) {
+                router.replace(renderingServiceHref(slug));
+                return;
+            }
+        }
+
+        if (isRenderingServiceDeepLink(pathname)) {
+            if (internalNavigation.current) {
+                internalNavigation.current = false;
+                return;
+            }
+
+            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+            applyPathToTab(true, { hideBeforeScroll: true });
+        }
+    }, [pathname, applyPathToTab, router]);
+
+    useEffect(() => {
+        if (!deepLinkScrollPending.current) return;
+
+        deepLinkScrollPending.current = false;
+        runDeepLinkScroll(active);
+
+        return () => {
+            if (deepLinkScrollTimer.current !== null) {
+                window.clearTimeout(deepLinkScrollTimer.current);
+                deepLinkScrollTimer.current = null;
+            }
+        };
+    }, [active, runDeepLinkScroll]);
+
+    useEffect(() => {
+        return () => {
+            if (deepLinkScrollTimer.current !== null) {
+                window.clearTimeout(deepLinkScrollTimer.current);
+            }
+        };
     }, []);
 
     const onKeyDown = useCallback(
@@ -147,9 +286,35 @@ export default function Services3D() {
         );
     }, [active]);
 
+    useEffect(() => {
+        const el = tabListRef.current;
+        if (!el) return;
+
+        updateTabScrollState();
+
+        const onScroll = () => updateTabScrollState();
+        el.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+
+        const observer = new ResizeObserver(onScroll);
+        observer.observe(el);
+
+        return () => {
+            el.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+            observer.disconnect();
+        };
+    }, [updateTabScrollState]);
+
     return (
 
-        <section className="bg-white px-4 pb-[35px] sm:px-6 md:pb-[70px]">
+        <section
+            ref={sectionRef}
+            id={RENDERING_SERVICES_SECTION_ID}
+            className={`scroll-mt-28 bg-white px-4 pb-[35px] sm:px-6 md:pb-[70px] ${
+                sectionRevealed ? "services-section-reveal" : "services-section-pending"
+            }`}
+        >
             <div className="mx-auto w-full max-w-6xl xl:max-w-7xl">
                 <header className="mx-auto max-w-3xl text-center">
                     <p className="text-xs font-semibold uppercase tracking-[0.12em] sm:text-sm"
@@ -174,50 +339,71 @@ export default function Services3D() {
                 </header>
 
                 <div className="mt-5">
-                    <div className="-mx-4 sm:mx-0">
+                    <div className="-mx-4 flex items-stretch gap-1 px-4 sm:mx-0 sm:gap-2 sm:px-0">
+                        <button
+                            type="button"
+                            className="services-tab-nav-btn self-center"
+                            onClick={() => scrollTabs("left")}
+                            disabled={!canScrollTabsLeft}
+                            aria-label="Scroll service tabs left"
+                        >
+                            <ChevronLeft className="h-5 w-5" aria-hidden />
+                        </button>
                         <div
+                            ref={tabListRef}
                             role="tablist"
                             aria-label="3D rendering service types"
-                            className="services-tabs-scroll 
-                            flex w-full flex-nowrap  md:gap-[150px]  overflow-x-auto
-                             overflow-y-hidden border-b border-[#e5e5e5]
-                              [-ms-overflow-style:none] [scrollbar-width:none]
-                               [&::-webkit-scrollbar]:hidden"
+                            className="services-tabs-scroll flex min-w-0 flex-1 flex-nowrap gap-6 overflow-x-auto overflow-y-hidden border-b border-[#e5e5e5] sm:gap-10 md:gap-14 lg:gap-20 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                         >
                             {services.map((tab, i) => {
                                 const isActive = i === active;
                                 return (
-                                    <button
+                                    <div
                                         key={tab.title}
-                                        ref={(el) => {
-                                            tabRefs.current[i] = el;
-                                        }}
-                                        type="button"
-                                        role="tab"
-                                        aria-selected={isActive}
-                                        id={`service-tab-${i}`}
-                                        aria-controls={`service-panel-${i}`}
-                                        tabIndex={isActive ? 0 : -1}
-                                        onClick={() => selectTab(i)}
-                                        onKeyDown={(e) => onKeyDown(e, i)}
-                                        className={`relative min-w-[min(90vw,280px)]
-                                             shrink-0 cursor-pointer px-4 py-4 text-left 
-                                             transition-colors sm:min-w-[220px]
-                                             
-                                              sm:px-5 xl:min-w-max xl:px-6 xl:py-5 xl:text-center ${isActive ? "services-tab-active" : "hover:text-neutral-700"
-                                            }`}
+                                        className={`services-tab-item relative min-w-[min(78vw,260px)] shrink-0 sm:min-w-[200px] md:min-w-[240px] lg:min-w-[280px] xl:min-w-max ${isActive ? "services-tab-active" : ""}`}
                                     >
-                                        <span className="block text-xs text-left font-normal text-[#9ca3af] sm:text-sm">
+                                        <span
+                                            className="pointer-events-none block px-3 pt-4 text-left text-xs font-normal text-[#9ca3af] sm:px-4 sm:text-sm xl:px-6"
+                                            aria-hidden="true"
+                                        >
                                             {tab.num}
                                         </span>
-                                        <span className=" block whitespace-nowrap text-[15px]
-                                         font-bold font-weight-700 leading-snug text-[#111111] sm:text-base md:text-[32px] md:leading-[42px] lg:text-[32px] lg:leading-[42px] xl:text-[32px] xl:leading-[42px]">
+                                        <h3
+                                            id={`service-tab-heading-${i}`}
+                                            className="services-tab-title pointer-events-none m-0 whitespace-nowrap px-3 pb-4 text-[15px] font-bold leading-snug text-[#111111] sm:px-4 sm:text-base md:text-[28px] md:leading-[36px] lg:text-[32px] lg:leading-[42px] xl:px-6"
+                                        >
                                             {tab.title}
-                                        </span>
-                                    </button>
+                                        </h3>
+                                        <button
+                                            ref={(el) => {
+                                                tabRefs.current[i] = el;
+                                            }}
+                                            type="button"
+                                            role="tab"
+                                            aria-selected={isActive}
+                                            aria-labelledby={`service-tab-heading-${i}`}
+                                            id={`service-tab-${i}`}
+                                            aria-controls={`service-panel-${i}`}
+                                            tabIndex={isActive ? 0 : -1}
+                                            onClick={() => selectTab(i)}
+                                            onKeyDown={(e) => onKeyDown(e, i)}
+                                            className="services-tab-hit absolute inset-0 z-10 cursor-pointer border-0 bg-transparent p-0"
+                                        >
+                                            <span className="sr-only">{tab.title}</span>
+                                        </button>
+                                    </div>
                                 );
                             })}
                         </div>
+                        <button
+                            type="button"
+                            className="services-tab-nav-btn self-center"
+                            onClick={() => scrollTabs("right")}
+                            disabled={!canScrollTabsRight}
+                            aria-label="Scroll service tabs right"
+                        >
+                            <ChevronRight className="h-5 w-5" aria-hidden />
+                        </button>
                     </div>
                 </div>
 
@@ -225,7 +411,7 @@ export default function Services3D() {
                     key={active}
                     role="tabpanel"
                     id={`service-panel-${active}`}
-                    aria-labelledby={`service-tab-${active}`}
+                    aria-labelledby={`service-tab-heading-${active}`}
                     className="services-panel-enter mt-8 grid grid-cols-1 
                     gap-8 lg:mt-10 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-14"
                 >
@@ -233,8 +419,8 @@ export default function Services3D() {
                         <img
                             src={current.image}
                             alt={current.imageAlt}
+                            title={current.imageAlt}
                             className="h-auto min-h-[220px] w-full object-cover sm:min-h-[280px] md:min-h-[340px] lg:h-[407px] lg:min-h-0"
-                        // priority={active === 0}
                         />
                     </div>
 
@@ -249,7 +435,12 @@ export default function Services3D() {
                                     key={f.label}
                                     className="flex md:min-w-[4.5rem] min-w-[4.5rem] shrink-0 flex-col items-start text-left sm:min-w-[6.5rem]"
                                 >
-                                    <img src={f.icon} alt={f.label} className="w-10 h-10 object-contain" />
+                                    <img
+                                        src={f.icon}
+                                        alt={f.label}
+                                        title={f.label}
+                                        className="w-10 h-10 object-contain"
+                                    />
                                     <span
                                         className="mt-3 text-[10px] font-semibold uppercase leading-snug tracking-wide sm:text-[11px]"
                                         style={{ color: accent }}

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile } from "fs/promises";
 import path from "path";
 import { getDBPool } from "@/lib/db"; // Assuming you have a database connection setup
+import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
 
 
 // This is MySQL 
@@ -60,6 +61,8 @@ export async function POST(req: NextRequest) {
         description,
       ]
     );
+
+    revalidateBlogListingPages();
 
     return NextResponse.json(
       { message: "Blog added successfully!" },

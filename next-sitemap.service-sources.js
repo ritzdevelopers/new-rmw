@@ -70,6 +70,73 @@ async function fetchServiceSitemapEntries() {
   }
 }
 
+/**
+ * Third-level slugs wrongly exposed as /services/{slug} (not top-level services).
+ * Maps third_link -> "parent_link/third_link" for 301 redirects and sitemap cleanup.
+ */
+async function fetchServiceShortSlugRedirects() {
+  const host = process.env.DATABASE_HOST;
+  const user = process.env.DATABASE_USER;
+  const password = process.env.DATABASE_PASSWORD;
+  const database = process.env.DATABASE_NAME;
+  const port = Number(process.env.DATABASE_PORT || 3306);
+
+  if (!host || !user || !database) {
+    console.warn(
+      "[next-sitemap] Skipping service short-slug redirects (database env incomplete)."
+    );
+    return {};
+  }
+
+  let connection;
+  try {
+    connection = await mysql.createConnection({ host, user, password, database, port });
+
+    const [secondRows] = await connection.execute(
+      "SELECT link FROM services WHERE link IS NOT NULL AND TRIM(link) <> '' ORDER BY id ASC"
+    );
+
+    const [thirdRows] = await connection.execute(
+      `SELECT services.link AS second_link, service_second.link AS third_link
+       FROM service_second
+       INNER JOIN services ON service_second.service_id = services.id
+       WHERE services.link IS NOT NULL AND TRIM(services.link) <> ''
+         AND service_second.link IS NOT NULL AND TRIM(service_second.link) <> ''
+       ORDER BY services.id ASC, service_second.id ASC`
+    );
+
+    const topLevel = new Set();
+    for (const row of secondRows) {
+      const seg = safeSegment(row.link);
+      if (seg) topLevel.add(seg);
+    }
+
+    /** @type {Record<string, string>} */
+    const redirects = {};
+
+    for (const row of thirdRows) {
+      const parent = safeSegment(row.second_link);
+      const child = safeSegment(row.third_link);
+      if (!parent || !child || topLevel.has(child)) continue;
+      if (!redirects[child]) {
+        redirects[child] = `${parent}/${child}`;
+      }
+    }
+
+    console.log(
+      `[next-sitemap] Service short-slug redirects: ${Object.keys(redirects).length} orphan /services/{slug} paths`
+    );
+
+    return redirects;
+  } catch (error) {
+    console.error("[next-sitemap] Service short-slug redirect fetch failed", error);
+    return {};
+  } finally {
+    if (connection) await connection.end();
+  }
+}
+
 module.exports = {
   fetchServiceSitemapEntries,
+  fetchServiceShortSlugRedirects,
 };

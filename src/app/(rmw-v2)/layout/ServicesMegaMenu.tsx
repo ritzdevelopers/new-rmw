@@ -21,6 +21,18 @@ import {
 } from "./servicesMegaMenuData";
 
 const GOLD = "#C59D4F";
+
+function megaMenuLinkProps(href: string) {
+  if (
+    href.startsWith("/services/3d-rendering-services/") ||
+    href.includes("#")
+  ) {
+    return {};
+  }
+
+  return { target: "_blank" as const, rel: "noopener noreferrer" };
+}
+
 const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "creative-services": "/varun.icon/creative-service.svg",
   "print-advertising": "/varun.icon/print.svg",
@@ -30,7 +42,7 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "celebrity-endorsements": "/varun.icon/celebrity.svg",
   "influencer-marketing": "/varun.icon/influenecer.svg",
   // "real-estate-walkthrough": "/varun.icon/real.svg",
-  // "3d-rendering-services": "/varun.icon/rendering-service.svg",
+  "3d-rendering-services": "/varun.icon/rendering-service.svg",
   "digital-marketing": "/varun.icon/digital.svg",
 };
 
@@ -244,6 +256,10 @@ export function ServicesMegaMenuPanel({
   onNavigate,
 }: MegaMenuPanelProps) {
   const cat = SERVICES_MEGA_MENU_CATEGORIES[activeCategoryIndex];
+  const subServiceGridCols =
+    cat.id === "3d-rendering-services"
+      ? "sm:grid-cols-3"
+      : "sm:grid-cols-2";
   if (!cat) return null;
 
   return (
@@ -327,14 +343,15 @@ export function ServicesMegaMenuPanel({
 
           <div className="flex min-w-0 flex-col border-t border-[#D9D9D9] pt-5 lg:relative lg:z-0 lg:-ml-2 lg:h-full lg:min-h-0 lg:border-l lg:border-[#D9D9D9] lg:border-t-0 lg:pl-14 lg:pt-10">
             <div className="min-w-0 lg:flex-1 lg:min-h-0">
-              <div className="grid grid-cols-1 gap-x-0 gap-y-4 sm:grid-cols-2 sm:gap-y-5">
+              <div
+                className={`grid grid-cols-1 gap-x-0 gap-y-4 ${subServiceGridCols} sm:gap-y-5`}
+              >
                 {cat.services.map((svc) => (
                   <Link
                     key={svc.href + svc.title}
                     href={svc.href}
                     title={svc.title}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...megaMenuLinkProps(svc.href)}
                     onClick={onNavigate}
                     className="flex gap-5 rounded-lg transition-colors duration-200 hover:bg-neutral-50"
                   >
@@ -429,14 +446,19 @@ export function ServicesMegaMenuMobileAccordion({
                 >
                   View all {c.name}
                 </Link> */}
-                <div className="grid grid-cols-1 gap-2 xs:grid-cols-2">
+                <div
+                  className={`grid grid-cols-1 gap-2 ${
+                    c.id === "3d-rendering-services"
+                      ? "xs:grid-cols-3"
+                      : "xs:grid-cols-2"
+                  }`}
+                >
                   {c.services.map((svc) => (
                     <Link
                       key={svc.href + svc.title}
                       href={svc.href}
                       title={`View all ${c.name}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      {...megaMenuLinkProps(svc.href)}
                       onClick={onNavigate}
                       className="flex gap-2.5 rounded-lg border border-transparent bg-white p-2.5  transition-colors hover:border-[#C59D4F]/30"
                     >
