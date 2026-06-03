@@ -1,9 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 import accordionStyles from "./Section4.module.css";
+
+const RMW_VIDEO_BLOB = "https://otherassets.blob.core.windows.net/rmw/";
+const blobVideo = (filename) => `${RMW_VIDEO_BLOB}${encodeURI(filename)}`;
 
 const PROPERTY_TYPES = [
   {
@@ -19,42 +22,43 @@ const SERVICES = [
   {
     id: "01",
     title: "3D Architectural Walkthrough Animation",
+    committed: true,
     description:
       "A fully animated cinematic video showing you around the development, from the outside of the building, through to the lobby and individual apartments, leisure facilities, grounds. The walkthrough animations are photoreal lit, natural camera movement with ambient sound for a full, emotional, walkthrough.",
-    video: "/services/walkthrough/videos/RMW_PRESENT3.mp4",
+    video: blobVideo("Service reel revised.mp4"),
     propertyTypes: PROPERTY_TYPES,
   },
   {
     id: "02",
     title: "360° Virtual Property Tour",
+    committed: true,
     description:
-    "A fully animated cinematic video showing you around the development, from the outside of the building, through to the lobby and individual apartments, leisure facilities, grounds. The walkthrough animations are photoreal lit, natural camera movement with ambient sound for a full, emotional, walkthrough.",
-  video: "/services/walkthrough/videos/RMW_PRESENT3.mp4",
-  propertyTypes: PROPERTY_TYPES,
+      "An interactive 360° virtual property tour lets buyers explore every room at their own pace — pan, zoom, and tap hotspots from any phone, tablet, or desktop. We deliver photorealistic panoramas stitched into a seamless, web-ready tour built for project websites, WhatsApp sharing, and high-intent listing pages.",
+    video: blobVideo("Laadli GovindVan 4k Walkthrough (1) (1).mp4"),
+    propertyTypes: PROPERTY_TYPES,
   },
   {
     id: "03",
     title: "3D Aerial Flythrough Animation",
+    committed: false,
     description:
-    "A fully animated cinematic video showing you around the development, from the outside of the building, through to the lobby and individual apartments, leisure facilities, grounds. The walkthrough animations are photoreal lit, natural camera movement with ambient sound for a full, emotional, walkthrough.",
-  video: "/services/walkthrough/videos/RMW_PRESENT3.mp4",
-  propertyTypes: PROPERTY_TYPES,
+      "Bird's-eye flythrough animations that reveal project scale, connectivity, and surroundings — ideal for master plans and township launches.",
   },
   {
     id: "04",
     title: "Interior Walkthrough Animation",
+    committed: false,
     description:
-    "A fully animated cinematic video showing you around the development, from the outside of the building, through to the lobby and individual apartments, leisure facilities, grounds. The walkthrough animations are photoreal lit, natural camera movement with ambient sound for a full, emotional, walkthrough.",
-  video: "/services/walkthrough/videos/RMW_PRESENT3.mp4",
-  propertyTypes: PROPERTY_TYPES,
+      "Room-by-room interior tours with photoreal materials, lighting, and staging — helping buyers feel the space before the first site visit.",
   },
   {
     id: "05",
     title: "VR Walkthrough Experience",
+    committed: true,
     description:
-    "A fully animated cinematic video showing you around the development, from the outside of the building, through to the lobby and individual apartments, leisure facilities, grounds. The walkthrough animations are photoreal lit, natural camera movement with ambient sound for a full, emotional, walkthrough.",
-  video: "/services/walkthrough/videos/RMW_PRESENT3.mp4",
-  propertyTypes: PROPERTY_TYPES,
+      "Step inside your project before it is built with a fully immersive VR walkthrough experience. Compatible with VR headsets and mobile viewers, our scenes place buyers in the space with true scale, depth, and presence — perfect for launch events, experience centres, and high-involvement sales conversations.",
+    video: blobVideo("RMW STATE W 4K (1) (1) (1) (1).mp4"),
+    propertyTypes: PROPERTY_TYPES,
   },
 ];
 
@@ -170,6 +174,7 @@ function RichServicePanel({ item, onClose, videoRef, videoPlaying, playShowreel,
           </div>
           <div className="relative w-full overflow-hidden bg-[#0a1128]">
             <video
+              key={item.id}
               ref={videoRef}
               src={item.video}
               className="block h-auto w-full object-cover"
@@ -193,6 +198,15 @@ export default function Section4() {
   const [openId, setOpenId] = useState("01");
   const [videoPlaying, setVideoPlaying] = useState(false);
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    setVideoPlaying(false);
+    const video = videoRef.current;
+    if (!video) return;
+    video.pause();
+    video.currentTime = 0;
+    video.load();
+  }, [openId]);
 
   const toggleItem = (id) => {
     setOpenId((prev) => (prev === id ? null : id));
@@ -228,7 +242,9 @@ export default function Section4() {
         <div className="border-t border-[#222222]">
           {SERVICES.map((item) => {
             const isOpen = openId === item.id;
-            const hasRichContent = Boolean(item.video && item.propertyTypes);
+            const hasRichContent = Boolean(
+              item.committed && item.video && item.propertyTypes
+            );
 
             return (
               <div key={item.id} className="border-b border-[#22222]">
