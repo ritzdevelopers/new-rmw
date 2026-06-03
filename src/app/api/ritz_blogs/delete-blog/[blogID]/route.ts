@@ -4,6 +4,7 @@ import RitzBlogModel from "@/models/Blog.Schema";
 import jwt from "jsonwebtoken";
 import ManagementModel from "@/models/Management";
 import ManagementActivitiesModel from "@/models/ManagementActivities";
+import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
 
 export async function DELETE(
   request: NextRequest,
@@ -54,6 +55,8 @@ export async function DELETE(
     // Create A New Management Activity
     const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) deleted a blog: ${find_blog.blogTitle}`, activityTime: new Date() });
     await newManagementActivity.save();
+
+    revalidateBlogListingPages();
 
     return NextResponse.json(
       { message: "Blog deleted successfully", success: true },

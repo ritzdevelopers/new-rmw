@@ -7,6 +7,7 @@ import { generateSlug } from "../../add-new-blog/route";
 import jwt from "jsonwebtoken";
 import ManagementModel from "@/models/Management";
 import ManagementActivitiesModel from "@/models/ManagementActivities";
+import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
 
 interface BlogBodyItem {
     pageTitle: string;
@@ -147,6 +148,8 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
         // Create A New Management Activity
         const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) updated a blog: ${existingBlog.blogTitle}`, activityTime: new Date() });
         await newManagementActivity.save();
+
+        revalidateBlogListingPages();
 
         return NextResponse.json(
             { message: "Blog Updated Successfully", blog: updatedBlog },

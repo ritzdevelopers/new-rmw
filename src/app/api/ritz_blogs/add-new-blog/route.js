@@ -8,6 +8,7 @@ import RitzBlogModel from "@/models/Blog.Schema";
 import ManagementActivitiesModel from "@/models/ManagementActivities";
 import jwt from "jsonwebtoken";
 import ManagementModel from "@/models/Management";
+import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
 
 // export function generateSlug(name) {
 //   return name
@@ -120,6 +121,8 @@ export async function POST(request) {
     // Create A New Management Activity
     const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) added a new blog: ${blogTitle}`, activityTime: new Date() });
     await newManagementActivity.save();
+
+    revalidateBlogListingPages();
 
     return NextResponse.json(
       { message: "Blog Created", blog: newBlog },

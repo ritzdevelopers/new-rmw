@@ -88,4 +88,18 @@ export const GALLERY_IMAGES = [
   '/gallery/photo_6120522001500805658_y.jpg',
   '/gallery/photo_6120522001500805659_y.jpg',
   '/gallery/photo_6120522001500805660_y.jpg',
+  '/gallery/photo_6120522001500805693_y.jpg',
+  '/gallery/photo_6120522001500805694_y.jpg',
+  '/gallery/photo_6120522001500805695_y.jpg',
+  '/gallery/photo_6120522001500805696_y.jpg',
+  '/gallery/photo_6120522001500805697_y.jpg',
+  '/gallery/photo_6120522001500805698_y.jpg',
+  '/gallery/photo_6120522001500805701_y.jpg',
+  '/gallery/photo_6120522001500805702_y.jpg',
+  '/gallery/photo_6120522001500805703_y.jpg',
+
+  '/gallery/photo_6120522001500805705_y.jpg',
+  '/gallery/photo_6120522001500805706_y.jpg',
+ 
+
 ] as const;
