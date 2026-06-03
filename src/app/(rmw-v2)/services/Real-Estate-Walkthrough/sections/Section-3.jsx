@@ -12,7 +12,7 @@ const LANDSCAPE_VIDEOS = [
   { id: "landscape-1", src: blobVideo("Final Teaser.mp4"), title: "Final Teaser" },
   {
     id: "landscape-2",
-    src: blobVideo("Laadli GovindVan 4k Walkthrough (1).mp4"),
+    src: blobVideo("Laadli GovindVan 4k Walkthrough (1) (1).mp4"),
     title: "Laadli GovindVan 4K Walkthrough",
   },
   {
