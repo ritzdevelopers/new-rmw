@@ -20,7 +20,27 @@
 }
 
 .services-panel-enter {
-  animation: services-panel-fade 0.35s ease-out;
+  animation: services-panel-fade 0.45s ease-out;
+}
+
+.services-section-pending {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.services-section-reveal {
+  animation: services-section-reveal 0.55s ease-out forwards;
+}
+
+@keyframes services-section-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes services-panel-fade {

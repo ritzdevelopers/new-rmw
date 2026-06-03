@@ -21,6 +21,18 @@ import {
 } from "./servicesMegaMenuData";
 
 const GOLD = "#C59D4F";
+
+function megaMenuLinkProps(href: string) {
+  if (
+    href.startsWith("/services/3d-rendering-services/") ||
+    href.includes("#")
+  ) {
+    return {};
+  }
+
+  return { target: "_blank" as const, rel: "noopener noreferrer" };
+}
+
 const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "creative-services": "/varun.icon/creative-service.svg",
   "print-advertising": "/varun.icon/print.svg",
@@ -339,8 +351,7 @@ export function ServicesMegaMenuPanel({
                     key={svc.href + svc.title}
                     href={svc.href}
                     title={svc.title}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...megaMenuLinkProps(svc.href)}
                     onClick={onNavigate}
                     className="flex gap-5 rounded-lg transition-colors duration-200 hover:bg-neutral-50"
                   >
@@ -447,8 +458,7 @@ export function ServicesMegaMenuMobileAccordion({
                       key={svc.href + svc.title}
                       href={svc.href}
                       title={`View all ${c.name}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      {...megaMenuLinkProps(svc.href)}
                       onClick={onNavigate}
                       className="flex gap-2.5 rounded-lg border border-transparent bg-white p-2.5  transition-colors hover:border-[#C59D4F]/30"
                     >

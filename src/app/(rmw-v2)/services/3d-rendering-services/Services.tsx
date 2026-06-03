@@ -1,10 +1,21 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import "./3dservice.css";
 import React from "react";
+import {
+    getRenderingServiceTabIndex,
+    getRenderingServiceTabIndexFromPathname,
+    getRenderingServiceTabSlug,
+    isRenderingServiceDeepLink,
+    renderingServiceHref,
+    RENDERING_SERVICES_SECTION_ID,
+    scrollToRenderingServicesSection,
+    type RenderingServiceTabSlug,
+} from "./service-tab-slugs";
 
 function serviceImageSrc(filename: string): string {
     return `/services/3drendring/${encodeURIComponent(filename)}`;
@@ -16,6 +27,7 @@ const accent = "#C99237";
 
 type ServiceTab = {
     num: string;
+    slug: RenderingServiceTabSlug;
     title: string;
     description: string;
     image: string;
@@ -26,6 +38,7 @@ type ServiceTab = {
 const services: ServiceTab[] = [
     {
         num: "01",
+        slug: "3d-exterior-rendering",
         title: "3D Exterior Rendering",
         description:
             "Get to experience the architecture, facade materials, landscaping, and site of the building through photo-realistic exterior renderings that provide unmatched clarity. The right option for pre-launch marketing, investor portfolio and collateral.",
@@ -40,6 +53,7 @@ const services: ServiceTab[] = [
     },
     {
         num: "02",
+        slug: "3d-interior-rendering",
         title: "3D Interior Rendering",
         description:
             "Real-to-life living & dining rooms, master bedrooms, kitchens and commercial spaces are vividly depicted through interiors that display proper lighting, texture of material, furniture and décor. A prime service for luxury and high-end residences.",
@@ -54,6 +68,7 @@ const services: ServiceTab[] = [
     },
     {
         num: "03",
+        slug: "aerial-township",
         title: "Aerial & Township",
         description:
             "3D Master plans and bird's-eye view renderings will effectively and realistically depict the overall planning, grandeur and scale of plots, mixed use development projects and entire townships. An excellent tool for the government submissions, investor pitch and RERA filing.",
@@ -68,6 +83,7 @@ const services: ServiceTab[] = [
     },
     {
         num: "04",
+        slug: "3d-floor-plan-rendering",
         title: "3D Floor Plan Rendering",
         description:
             "The most simplified and easily understandable form of floor plan design is the 3D floor plan which helps avoid ambiguity on the site during a site visit by depicting the layout, furnishing and texture. Suitable for unit floor plans, 3D cut-away views, furnished layouts, and commercial space plans.",
@@ -82,6 +98,7 @@ const services: ServiceTab[] = [
     },
     {
         num: "05",
+        slug: "amenity-landscape-rendering",
         title: "Amenity & Landscape Rendering",
         description:
             "The best selling tool for any residential project, be it the exclusive renderings of club houses, swimming pools, manicured gardens, play zones, gyms and rooftops which are a major draw.",
@@ -114,10 +131,17 @@ function scrollTabIntoContainer(
 }
 
 export default function Services3D() {
+    const router = useRouter();
+    const pathname = usePathname();
     const [active, setActive] = useState(0);
+    const [sectionRevealed, setSectionRevealed] = useState(true);
     const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
     const tabListRef = useRef<HTMLDivElement | null>(null);
+    const sectionRef = useRef<HTMLElement | null>(null);
     const isFirstTabScroll = useRef(true);
+    const deepLinkScrollPending = useRef(false);
+    const deepLinkScrollTimer = useRef<number | null>(null);
+    const internalNavigation = useRef(false);
     const [canScrollTabsLeft, setCanScrollTabsLeft] = useState(false);
     const [canScrollTabsRight, setCanScrollTabsRight] = useState(false);
 
@@ -141,8 +165,98 @@ export default function Services3D() {
         });
     }, []);
 
-    const selectTab = useCallback((index: number) => {
+    const selectTab = useCallback((index: number, options?: { updateUrl?: boolean }) => {
         setActive(index);
+
+        if (options?.updateUrl === false) return;
+
+        const slug = getRenderingServiceTabSlug(index);
+        if (!slug) return;
+
+        const nextPath = renderingServiceHref(slug);
+        if (pathname !== nextPath) {
+            internalNavigation.current = true;
+            router.replace(nextPath, { scroll: false });
+        }
+    }, [pathname, router]);
+
+    const runDeepLinkScroll = useCallback((index: number) => {
+        if (deepLinkScrollTimer.current !== null) {
+            window.clearTimeout(deepLinkScrollTimer.current);
+        }
+
+        deepLinkScrollTimer.current = window.setTimeout(() => {
+            scrollTabIntoContainer(
+                tabListRef.current,
+                tabRefs.current[index] ?? null,
+                true
+            );
+            scrollToRenderingServicesSection(sectionRef.current, "smooth");
+            setSectionRevealed(true);
+            deepLinkScrollTimer.current = null;
+        }, 180);
+    }, []);
+
+    const applyPathToTab = useCallback(
+        (scrollToSection: boolean, options?: { hideBeforeScroll?: boolean }) => {
+            const index = getRenderingServiceTabIndexFromPathname(pathname);
+            if (index === null) return;
+
+            if (scrollToSection) {
+                deepLinkScrollPending.current = true;
+                if (options?.hideBeforeScroll) {
+                    setSectionRevealed(false);
+                }
+            }
+
+            selectTab(index, { updateUrl: false });
+        },
+        [pathname, selectTab]
+    );
+
+    useLayoutEffect(() => {
+        if (typeof window === "undefined") return;
+
+        const legacyHashIndex = getRenderingServiceTabIndex(window.location.hash);
+        if (legacyHashIndex !== null) {
+            const slug = getRenderingServiceTabSlug(legacyHashIndex);
+            if (slug) {
+                router.replace(renderingServiceHref(slug));
+                return;
+            }
+        }
+
+        if (isRenderingServiceDeepLink(pathname)) {
+            if (internalNavigation.current) {
+                internalNavigation.current = false;
+                return;
+            }
+
+            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+            applyPathToTab(true, { hideBeforeScroll: true });
+        }
+    }, [pathname, applyPathToTab, router]);
+
+    useEffect(() => {
+        if (!deepLinkScrollPending.current) return;
+
+        deepLinkScrollPending.current = false;
+        runDeepLinkScroll(active);
+
+        return () => {
+            if (deepLinkScrollTimer.current !== null) {
+                window.clearTimeout(deepLinkScrollTimer.current);
+                deepLinkScrollTimer.current = null;
+            }
+        };
+    }, [active, runDeepLinkScroll]);
+
+    useEffect(() => {
+        return () => {
+            if (deepLinkScrollTimer.current !== null) {
+                window.clearTimeout(deepLinkScrollTimer.current);
+            }
+        };
     }, []);
 
     const onKeyDown = useCallback(
@@ -194,7 +308,13 @@ export default function Services3D() {
 
     return (
 
-        <section className="bg-white px-4 pb-[35px] sm:px-6 md:pb-[70px]">
+        <section
+            ref={sectionRef}
+            id={RENDERING_SERVICES_SECTION_ID}
+            className={`scroll-mt-28 bg-white px-4 pb-[35px] sm:px-6 md:pb-[70px] ${
+                sectionRevealed ? "services-section-reveal" : "services-section-pending"
+            }`}
+        >
             <div className="mx-auto w-full max-w-6xl xl:max-w-7xl">
                 <header className="mx-auto max-w-3xl text-center">
                     <p className="text-xs font-semibold uppercase tracking-[0.12em] sm:text-sm"
@@ -291,7 +411,7 @@ export default function Services3D() {
                     key={active}
                     role="tabpanel"
                     id={`service-panel-${active}`}
-                    aria-labelledby={`service-tab-${active}`}
+                    aria-labelledby={`service-tab-heading-${active}`}
                     className="services-panel-enter mt-8 grid grid-cols-1 
                     gap-8 lg:mt-10 lg:grid-cols-2 lg:items-start lg:gap-10 xl:gap-14"
                 >
