@@ -97,7 +97,7 @@ export async function getAllSlugs(
   }
 
   if (type === "serviceSecond") {
-    query = "SELECT link FROM service_second";
+    query = "SELECT link FROM services";
     const [rows]: [ServiceRow[], FieldPacket[]] = await pool.query(query);
     return rows.map((row) => ({ slug: row.link }));
   }

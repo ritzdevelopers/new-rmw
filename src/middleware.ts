@@ -4,10 +4,19 @@ import {
   getLegacyBlogRedirectPath,
   isBlogImageFetchAccept,
 } from "@/lib/blogUrl";
+import { getServiceShortSlugRedirect } from "@/lib/serviceShortSlugRedirects";
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const url = req.nextUrl;
+
+  // Orphan third-level service slugs: /services/ad-placements → /services/print-advertising/ad-placements
+  const serviceRedirect = getServiceShortSlugRedirect(pathname);
+  if (serviceRedirect) {
+    const dest = new URL(serviceRedirect, url.origin);
+    dest.search = url.search;
+    return NextResponse.redirect(dest, 301);
+  }
 
   // Canonicalize /web-stories from www -> non-www
   if (pathname === "/web-stories" && url.hostname === "www.ritzmediaworld.com") {
@@ -101,5 +110,6 @@ export const config = {
     "/best-locations-for-outdoor-advertising-in-new-delhi-:path*",
 
     "/web-stories",
+    "/services/:slug",
   ],
 };
