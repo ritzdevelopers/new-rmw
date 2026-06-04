@@ -14,6 +14,18 @@ export type GalleryImage = {
 
 const GALLERY_TITLE_SUFFIX = " | Ritz Media World Memories Gallery";
 
+/** Document & SEO title for /gallery (used in layout metadata). */
+export const GALLERY_PAGE_TITLE =
+  "Ritz Media World Memories Gallery | Team Moments & Event Highlights";
+
+export const GALLERY_PAGE_DESCRIPTION =
+  "Browse the Ritz Media World Memories Gallery featuring team celebrations, office events, behind-the-scenes moments, achievements, and unforgettable experiences that reflect our culture and people-first approach.";
+
+export const GALLERY_PAGE_KEYWORDS =
+  "Ritz Media World memories, team gallery, office events photos, company culture images, RMW team moments, corporate celebrations, employee activities, behind the scenes Ritz Media World, event highlights gallery, Digital marketing agency, Creative agency, Social media marketing";
+
+export const GALLERY_CANONICAL_URL = "https://ritzmediaworld.com/gallery";
+
 export type GalleryImageInput = { src: string; label: string };
 
 function buildGalleryImages(
@@ -97,6 +109,7 @@ export const GALLERY_CTA = {
   bodyTrail:
     " to deliver impactful advertising and measurable results since 2008.",
   homeHref: "https://ritzmediaworld.com/",
+  homeTitle: "Ritz Media World - Home",
   buttonLabel: "Let's Build Your Next Winning Campaign",
   href: "/contact.html",
   linkTitle:

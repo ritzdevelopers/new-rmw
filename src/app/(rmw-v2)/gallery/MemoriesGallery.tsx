@@ -320,7 +320,11 @@ export default function MemoriesGallery() {
           </h2>
           <p className="mg-cta-text">
             {GALLERY_CTA.bodyLead}
-            <Link href={GALLERY_CTA.homeHref} className="mg-cta-brand-link">
+            <Link
+              href={GALLERY_CTA.homeHref}
+              className="mg-cta-brand-link"
+              title={GALLERY_CTA.homeTitle}
+            >
               <strong>{GALLERY_CTA.brandLabel}</strong>
             </Link>
             {GALLERY_CTA.bodyTrail}
