@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
-import { GALLERY_IMAGES } from "./gallery-images";
+import { GALLERY_IMAGE_SRCS as GALLERY_IMAGES } from "./gallery-images";
 
 const INITIAL_COUNT = 24;
 const LOAD_MORE_COUNT = 12;

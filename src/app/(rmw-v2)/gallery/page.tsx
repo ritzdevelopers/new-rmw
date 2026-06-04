@@ -1,9 +1,9 @@
-import VisionOrbitGallery from "./VisionOrbitGallery";
+import MemoriesGallery from "./MemoriesGallery";
 
 export default function GalleryPage() {
   return (
     <main className="w-full">
-      <VisionOrbitGallery />
+      <MemoriesGallery />
     </main>
   );
 }
