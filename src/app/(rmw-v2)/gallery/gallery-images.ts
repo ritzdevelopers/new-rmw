@@ -173,7 +173,8 @@ export const GALLERY_MARQUEE_ITEMS = [
 
 /** Team — group portraits, staff photos, people collaborating at work. */
 const GALLERY_TEAM_INPUTS: GalleryImageInput[] = [
-  { src: "/gallery/New Team Image (18-Nov-2025).jpg", label: "New Team Photo" },
+  { src: "/gallery/rmw_team.jpg", label: "RMW Team" },
+  { src: "/gallery/New Team Image (18-Nov-2025).jpg", label: "Team Photo" },
   { src: "/gallery/team.jpg", label: "New Team" },
   { src: "/gallery/team 4.jpg", label: "Team Four" },
   { src: "/gallery/RMW.jpg", label: "RMW Family" },
