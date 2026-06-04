@@ -726,9 +726,28 @@
   font-size: clamp(22px, 3.2vw, 30px);
   font-weight: 600;
   line-height: 1.35;
-  color: #ffffff;
+  color: #ffffff !important;
   letter-spacing: 0.01em;
   font-family: MontserratSemiBold, Montserrat, sans-serif;
+}
+
+.mg-cta-brand-link {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 146, 55, 0.55);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.mg-cta-brand-link:hover {
+  color: var(--mg-gold-light);
+  border-color: var(--mg-gold);
+}
+
+.mg-cta-brand-link strong {
+  font-weight: 700;
 }
 
 .mg-cta-text {

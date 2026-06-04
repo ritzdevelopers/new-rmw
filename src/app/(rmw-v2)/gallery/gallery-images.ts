@@ -32,13 +32,36 @@ function withCategory(
   return items.map((item) => ({ ...item, category }));
 }
 
+/** One row per image file — first category wins if a src was listed twice. */
+function mergeGalleryInputs(
+  groups: { category: GalleryCategory; items: GalleryImageInput[] }[]
+): GalleryImage[] {
+  const seen = new Set<string>();
+  const merged: GalleryImage[] = [];
+
+  for (const { category, items } of groups) {
+    for (const item of items) {
+      if (seen.has(item.src)) continue;
+      seen.add(item.src);
+      merged.push({
+        src: item.src,
+        category,
+        label: item.label,
+        title: `${item.label}${GALLERY_TITLE_SUFFIX}`,
+      });
+    }
+  }
+
+  return merged;
+}
+
 export const GALLERY_FILTER_OPTIONS: { id: "all" | GalleryCategory; label: string }[] =
   [
     { id: "all", label: "All" },
     { id: "team", label: "Team" },
     { id: "event", label: "Events" },
     { id: "awards", label: "Awards" },
-    { id: "creative", label: "Creative" },
+    { id: "creative", label: "R & R" },
     { id: "office", label: "Office" },
   ];
 
@@ -52,7 +75,7 @@ export const GALLERY_FEATURE_HEADINGS = [
 /** Categories shown in the feature-card modal (index matches GALLERY_FEATURE_STRIP). */
 export const GALLERY_FEATURE_MODAL_CATEGORIES: GalleryCategory[][] = [
   ["event", "team"],
-  ["office", "creative", "team"],
+  ["office", "team"],
   ["awards"],
 ];
 
@@ -68,8 +91,12 @@ export function getFeatureModalImages(featureIndex: number): GalleryImage[] {
 }
 
 export const GALLERY_CTA = {
-  heading: "Behind Every Award Is a Client Success Story.",
-  body: "Join hundreds of brands that have trusted Ritz Media World to deliver impactful advertising and measurable results since 2008.",
+  heading: "Behind Every Award, there are Client Success Stories.",
+  bodyLead: "Join hundreds of brands that have trusted ",
+  brandLabel: "Ritz Media World",
+  bodyTrail:
+    " to deliver impactful advertising and measurable results since 2008.",
+  homeHref: "https://ritzmediaworld.com/",
   buttonLabel: "Let's Build Your Next Winning Campaign",
   href: "/contact.html",
   linkTitle:
@@ -133,14 +160,12 @@ export const GALLERY_MARQUEE_ITEMS = [
 
 /** Team — group portraits, staff photos, people collaborating at work. */
 const GALLERY_TEAM_INPUTS: GalleryImageInput[] = [
-  { src: "/gallery/photo_6120522001500805655_y.jpg", label: "Team Moment" },
   { src: "/gallery/New Team Image (18-Nov-2025).jpg", label: "New Team Photo" },
   { src: "/gallery/team.jpg", label: "New Team" },
   { src: "/gallery/team 4.jpg", label: "Team Four" },
   { src: "/gallery/RMW.jpg", label: "RMW Family" },
   { src: "/gallery/Ritz media world R.jpg", label: "Team Formation" },
   { src: "/gallery/DSC03108.JPG", label: "The RMW Team" },
-  { src: "/gallery/DSC01566.JPG", label: "Team at Work" },
   { src: "/gallery/IMG-20251211-WA0020.jpg", label: "Team Smiles" },
   { src: "/gallery/IMG-20250930-WA0091.jpg", label: "September" },
   { src: "/gallery/IMG-20250930-WA0102.jpg", label: "Team Spirit" },
@@ -150,9 +175,15 @@ const GALLERY_TEAM_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/photo_2025-10-17_18-11-07.jpg", label: "Team Connect" },
   { src: "/gallery/photo_2025-10-17_18-11-11.jpg", label: "Team Huddle" },
   { src: "/gallery/photo_2025-11-11_10-40-36.jpg", label: "November" },
+  { src: "/gallery/Creative Team2.JPG", label: "Creative Team" },
+  { src: "/gallery/Creative team.JPG", label: "Creative Squad" },
+  { src: "/gallery/Creative team Editing.JPG", label: "Editing Suite" },
+  { src: "/gallery/Media 2.jpg", label: "Media Work" },
+  { src: "/gallery/17e24618-1ebc-dd6c-1887-291bde275d77_1460_550.webp", label: "Campaign Work" },
+  { src: "/gallery/photo_6186250402882325719_y.jpg", label: "Creative Crew" },
 ];
 
-/** Events — parties, festivals, outings, award ceremonies, Star of the Month. */
+/** Events — parties, festivals, outings, and award ceremonies. */
 const GALLERY_EVENT_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/photo_2025-03-12_18-48-20.jpg", label: "Holi Celebration" },
   { src: "/gallery/photo_2025-03-12_18-48-19.jpg", label: "March Event" },
@@ -160,10 +191,9 @@ const GALLERY_EVENT_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/photo_2025-10-17_18-11-15.jpg", label: "Festive Team Day" },
   { src: "/gallery/photo_2025-10-17_18-15-59.jpg", label: "Office Festivities" },
   { src: "/gallery/photo_2025-11-28_22-19-28.jpg", label: "Celebration Night" },
-  { src: "/gallery/Team party.jpg", label: "Team Party" },
   { src: "/gallery/Team 6.jpg", label: "Team Outing" },
   { src: "/gallery/IMG20250916125830.jpg", label: "Team Dinner" },
-  { src: "/gallery/WhatsApp Image 2025-12-11 at 13.21.14_8262e416.jpg", label: "Celebration" },
+  { src: "/gallery/WhatsApp Image 2025-12-11 at 13.21.14_8262e416.jpg", label: "December Celebration" },
   { src: "/gallery/WhatsApp Image 2025-12-11 at 13.17.51_db030edb.jpg", label: "Memories" },
   { src: "/gallery/WhatsApp Image 2025-12-11 at 13.18.12_625665af.jpg", label: "Festive Day" },
   { src: "/gallery/IMG-20251211-WA0034.jpg", label: "On Stage Award" },
@@ -174,7 +204,7 @@ const GALLERY_EVENT_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/IMG-20251211-WA0095.jpg", label: "Year End Bash" },
   { src: "/gallery/IMG-20251211-WA0016.jpg", label: "Party Mode" },
   { src: "/gallery/IMG-20251211-WA0052.jpg", label: "Fun Times" },
-  { src: "/gallery/IMG-20251211-WA0040.jpg", label: "Celebration" },
+  { src: "/gallery/IMG-20251211-WA0040.jpg", label: "Team Celebration" },
   { src: "/gallery/IMG-20251211-WA0045.jpg", label: "Together Again" },
   { src: "/gallery/IMG-20251211-WA0026.jpg", label: "December" },
   { src: "/gallery/IMG-20251211-WA0004.jpg", label: "Office Fest" },
@@ -188,22 +218,10 @@ const GALLERY_EVENT_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/photo_6186250402882325665_x.jpg", label: "ET Young Leaders" },
   { src: "/gallery/photo_6186250402882325716_y.jpg", label: "Birthday Cake" },
   { src: "/gallery/photo_6186250402882325717_y.jpg", label: "Birthday Celebration" },
-  { src: "/gallery/photo_6120522001500805693_y.jpg", label: "Star of the Month" },
-  { src: "/gallery/photo_6120522001500805694_y.jpg", label: "Star of the Month" },
-  { src: "/gallery/photo_6120522001500805695_y.jpg", label: "Star of the Month" },
-  { src: "/gallery/photo_6120522001500805696_y.jpg", label: "Star of the Month" },
-  { src: "/gallery/photo_6120522001500805697_y.jpg", label: "Star of the Month" },
-  { src: "/gallery/photo_6120522001500805698_y.jpg", label: "Star of the Month" },
-  { src: "/gallery/photo_6120522001500805701_y.jpg", label: "Star of the Month" },
-  { src: "/gallery/photo_6120522001500805702_y.jpg", label: "Star of the Month" },
-  { src: "/gallery/photo_6120522001500805703_y.jpg", label: "Star of the Month" },
-  { src: "/gallery/photo_6120522001500805705_y.jpg", label: "Star of the Month" },
-  { src: "/gallery/photo_6120522001500805706_y.jpg", label: "Star of the Month" },
 ];
 
 /** Awards — trophies, framed certificates, and industry recognition. */
 const GALLERY_AWARDS_INPUTS: GalleryImageInput[] = [
-  { src: "/gallery/Most Trusted Advertising Agency in NCR by The Economic Times.jpg", label: "Economic Times Award" },
   { src: "/gallery/Trusted Digital Advertising Agency in NCR-Awarded by The Economic Times.jpg", label: "ET Trusted Award" },
   { src: "/gallery/Special Achievement Award in Retail Category.jpg", label: "Retail Award" },
   { src: "/gallery/RMW 17 Years Complete.png", label: "17 Years Complete" },
@@ -224,51 +242,64 @@ const GALLERY_AWARDS_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/photo_2025-11-15_00-43-02.jpg", label: "My Property Fact Award" },
 ];
 
-/** Creative — design, editing, campaigns, and creative team at work. */
-const GALLERY_CREATIVE_INPUTS: GalleryImageInput[] = [
-  { src: "/gallery/Creative Team2.JPG", label: "Creative Team" },
-  { src: "/gallery/Creative team.JPG", label: "Creative Squad" },
-  { src: "/gallery/Creative team Editing.JPG", label: "Editing Suite" },
-  { src: "/gallery/Media 2.jpg", label: "Media Work" },
-  { src: "/gallery/17e24618-1ebc-dd6c-1887-291bde275d77_1460_550.webp", label: "Campaign Work" },
-  { src: "/gallery/photo_6186250402882325719_y.jpg", label: "Creative Crew" },
-];
+/** R & R — Rewards & Recognition (Star of the Month only). */
+const GALLERY_STAR_OF_MONTH_SRCS = [
+  "/gallery/photo_6120522001500805693_y.jpg",
+  "/gallery/photo_6120522001500805694_y.jpg",
+  "/gallery/photo_6120522001500805695_y.jpg",
+  "/gallery/photo_6120522001500805696_y.jpg",
+  "/gallery/photo_6120522001500805697_y.jpg",
+  "/gallery/photo_6120522001500805698_y.jpg",
+  "/gallery/photo_6120522001500805701_y.jpg",
+  "/gallery/photo_6120522001500805702_y.jpg",
+  "/gallery/photo_6120522001500805703_y.jpg",
+  "/gallery/photo_6120522001500805705_y.jpg",
+  "/gallery/photo_6120522001500805706_y.jpg",
+] as const;
+
+const GALLERY_CREATIVE_INPUTS: GalleryImageInput[] =
+  GALLERY_STAR_OF_MONTH_SRCS.map((src, index) => ({
+    src,
+    label:
+      index === 0
+        ? "Star of the Month"
+        : `Star of the Month — Recognition ${index + 1}`,
+  }));
 
 /** Office — workspaces, studios, and office interiors (no team events). */
 const GALLERY_OFFICE_INPUTS: GalleryImageInput[] = [
-  { src: "/gallery/RITz media world main.jpg", label: "Main Office" },
   { src: "/gallery/Ritz media world_.jpg", label: "The Space" },
-  { src: "/gallery/Ritz.JPG", label: "Ritz HQ" },
   { src: "/gallery/Ritz1.JPG", label: "Ritz Studio" },
   { src: "/gallery/Ritz Media World Digital Office.jpg", label: "Digital Office" },
   { src: "/gallery/DSC03053.JPG", label: "Studio Shot" },
-  { src: "/gallery/DSC03178.JPG", label: "Office Space" },
+  // { src: "/gallery/DSC03178.JPG", label: "Office Space" },
   { src: "/gallery/DSC00086.JPG", label: "The Office" },
-  { src: "/gallery/rmw2.jpg", label: "RMW Studio" },
-  { src: "/gallery/rmw3.jpg", label: "RMW Corner" },
   { src: "/gallery/photo_6120522001500805657_y.jpg", label: "Executive Suite" },
   { src: "/gallery/photo_6120522001500805658_y.jpg", label: "Conference Room" },
   { src: "/gallery/photo_6120522001500805659_y.jpg", label: "Open Workspace" },
   { src: "/gallery/photo_6120522001500805660_y.jpg", label: "Office Lounge" },
+  { src: "/gallery/photo_6127323211063037683_y.jpg", label: "Open Office Floor" },
+  { src: "/gallery/photo_6127323211063037684_y.jpg", label: "Creative Workspace" },
 ];
 
-const GALLERY_IMAGE_GROUPS = [
-  ...withCategory(GALLERY_TEAM_INPUTS, "team"),
-  ...withCategory(GALLERY_EVENT_INPUTS, "event"),
-  ...withCategory(GALLERY_AWARDS_INPUTS, "awards"),
-  ...withCategory(GALLERY_CREATIVE_INPUTS, "creative"),
-  ...withCategory(GALLERY_OFFICE_INPUTS, "office"),
-];
+const GALLERY_INPUT_GROUPS: { category: GalleryCategory; items: GalleryImageInput[] }[] =
+  [
+    { category: "team", items: GALLERY_TEAM_INPUTS },
+    { category: "event", items: GALLERY_EVENT_INPUTS },
+    { category: "awards", items: GALLERY_AWARDS_INPUTS },
+    { category: "creative", items: GALLERY_CREATIVE_INPUTS },
+    { category: "office", items: GALLERY_OFFICE_INPUTS },
+  ];
+
+export const GALLERY_IMAGES = mergeGalleryInputs(GALLERY_INPUT_GROUPS);
 
 export const GALLERY_IMAGES_BY_CATEGORY: Record<GalleryCategory, GalleryImage[]> = {
-  team: buildGalleryImages(withCategory(GALLERY_TEAM_INPUTS, "team")),
-  event: buildGalleryImages(withCategory(GALLERY_EVENT_INPUTS, "event")),
-  awards: buildGalleryImages(withCategory(GALLERY_AWARDS_INPUTS, "awards")),
-  creative: buildGalleryImages(withCategory(GALLERY_CREATIVE_INPUTS, "creative")),
-  office: buildGalleryImages(withCategory(GALLERY_OFFICE_INPUTS, "office")),
+  team: GALLERY_IMAGES.filter((img) => img.category === "team"),
+  event: GALLERY_IMAGES.filter((img) => img.category === "event"),
+  awards: GALLERY_IMAGES.filter((img) => img.category === "awards"),
+  creative: GALLERY_IMAGES.filter((img) => img.category === "creative"),
+  office: GALLERY_IMAGES.filter((img) => img.category === "office"),
 };
-
-export const GALLERY_IMAGES = buildGalleryImages(GALLERY_IMAGE_GROUPS);
 
 export const GALLERY_FILTER_HEADINGS: Record<
   "all" | GalleryCategory,
@@ -278,16 +309,24 @@ export const GALLERY_FILTER_HEADINGS: Record<
   team: { primary: "Team", accent: "Memories" },
   event: { primary: "Events", accent: "Memories" },
   awards: { primary: "Awards", accent: "Memories" },
-  creative: { primary: "Creative", accent: "Memories" },
+  creative: { primary: "R & R", accent: "Memories" },
   office: { primary: "Office", accent: "Memories" },
 };
 
 const FEATURE_STRIP_SRCS = new Set(GALLERY_FEATURE_STRIP.map((item) => item.src));
 
-/** Grid images only — excludes hero + feature strip so photos are not shown twice. */
-export const GALLERY_GRID_IMAGES = GALLERY_IMAGES.filter(
-  (img) => img.src !== GALLERY_HERO.src && !FEATURE_STRIP_SRCS.has(img.src)
-);
+/** Grid images only — excludes hero + feature strip; each file appears once. */
+export const GALLERY_GRID_IMAGES = (() => {
+  const seen = new Set<string>();
+  return GALLERY_IMAGES.filter((img) => {
+    if (img.src === GALLERY_HERO.src || FEATURE_STRIP_SRCS.has(img.src)) {
+      return false;
+    }
+    if (seen.has(img.src)) return false;
+    seen.add(img.src);
+    return true;
+  });
+})();
 
 export type GalleryFilterId = "all" | GalleryCategory;
 
@@ -307,5 +346,7 @@ export const GALLERY_GRID_COUNTS: Record<GalleryFilterId, number> = (() => {
   };
 })();
 
-/** Flat src list for legacy gallery components. */
-export const GALLERY_IMAGE_SRCS = GALLERY_IMAGES.map((img) => img.src);
+/** Flat src list for legacy gallery components (unique paths only). */
+export const GALLERY_IMAGE_SRCS = [
+  ...new Set(GALLERY_IMAGES.map((img) => img.src)),
+];

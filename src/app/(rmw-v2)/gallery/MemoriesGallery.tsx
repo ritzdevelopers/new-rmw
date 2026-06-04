@@ -315,10 +315,16 @@ export default function MemoriesGallery() {
       <section className="mg-cta" aria-labelledby="mg-cta-heading">
         <div className="mg-cta-inner">
           <div className="mg-cta-glow" aria-hidden />
-          <p id="mg-cta-heading" className="mg-cta-title">
+          <h2 id="mg-cta-heading" className="mg-cta-title">
             {GALLERY_CTA.heading}
+          </h2>
+          <p className="mg-cta-text">
+            {GALLERY_CTA.bodyLead}
+            <Link href={GALLERY_CTA.homeHref} className="mg-cta-brand-link">
+              <strong>{GALLERY_CTA.brandLabel}</strong>
+            </Link>
+            {GALLERY_CTA.bodyTrail}
           </p>
-          <p className="mg-cta-text">{GALLERY_CTA.body}</p>
           <Link
             href={GALLERY_CTA.href}
             className="mg-cta-btn"
