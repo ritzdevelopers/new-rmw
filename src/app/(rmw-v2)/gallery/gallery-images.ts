@@ -224,7 +224,7 @@ const GALLERY_EVENT_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/IMG-20251211-WA0004.jpg", label: "Office Fest" },
   { src: "/gallery/IMG-20251211-WA0018.jpg", label: "Holiday Cheer" },
   { src: "/gallery/IMG-20251211-WA0042.jpg", label: "Group Celebration" },
-  { src: "/gallery/IMG-20251211-WA0032.jpg", label: "Office Joy" },
+  // { src: "/gallery/IMG-20251211-WA0032.jpg", label: "Office Joy" },
   { src: "/gallery/IMG-20251211-WA0041.jpg", label: "Year-End Party" },
   { src: "/gallery/IMG-20251211-WA0088.jpg", label: "Festive Gathering" },
   { src: "/gallery/Best Real Estate Podcast_Beyond The Blueprints Team.jpeg", label: "Podcast Team" },
