@@ -327,7 +327,7 @@ export default function MemoriesGallery() {
             >
               <strong>{GALLERY_CTA.brandLabel}</strong>
             </Link>
-            {GALLERY_CTA.bodyTrail}
+            {GALLERY_CTA.bodyTrail}  
           </p>
           <Link
             href={GALLERY_CTA.href}
