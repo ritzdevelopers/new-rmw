@@ -9,7 +9,19 @@ export type GalleryImage = {
   src: string;
   category: GalleryCategory;
   label: string;
+  title: string;
 };
+
+const GALLERY_TITLE_SUFFIX = " | Ritz Media World Memories Gallery";
+
+function buildGalleryImages(
+  items: { src: string; category: GalleryCategory; label: string }[]
+): GalleryImage[] {
+  return items.map((item) => ({
+    ...item,
+    title: `${item.label}${GALLERY_TITLE_SUFFIX}`,
+  }));
+}
 
 export const GALLERY_FILTER_OPTIONS: { id: "all" | GalleryCategory; label: string }[] =
   [
@@ -21,7 +33,7 @@ export const GALLERY_FILTER_OPTIONS: { id: "all" | GalleryCategory; label: strin
     { id: "office", label: "Office" },
   ];
 
-export const GALLERY_FEATURE_STRIP: GalleryImage[] = [
+export const GALLERY_FEATURE_STRIP = buildGalleryImages([
   {
     src: "/gallery/Team party.jpg",
     category: "event",
@@ -37,9 +49,17 @@ export const GALLERY_FEATURE_STRIP: GalleryImage[] = [
     category: "awards",
     label: "Awards & Recognition",
   },
-];
+]);
 
-export const GALLERY_HERO_IMAGE = "/gallery/photo_6120522001500805655_y.jpg";
+export const GALLERY_HERO = buildGalleryImages([
+  {
+    src: "/gallery/photo_6120522001500805655_y.jpg",
+    category: "team",
+    label: "Team Moment",
+  },
+])[0];
+
+export const GALLERY_HERO_IMAGE = GALLERY_HERO.src;
 
 export const GALLERY_STATS = [
   { number: "12+", label: "Years of Excellence" },
@@ -60,7 +80,7 @@ export const GALLERY_MARQUEE_ITEMS = [
 ] as const;
 
 /** Primary gallery grid — categories from rmw-gallery.html, extended with local assets. */
-export const GALLERY_IMAGES: GalleryImage[] = [
+export const GALLERY_IMAGES = buildGalleryImages([
   { src: "/gallery/DSC01566.JPG", category: "office", label: "Office Vibes" },
   { src: "/gallery/Creative Team2.JPG", category: "creative", label: "Creative Team" },
   { src: "/gallery/photo_2025-03-12_18-48-20.jpg", category: "event", label: "Event Highlights" },
@@ -186,7 +206,7 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   { src: "/gallery/photo_6120522001500805703_y.jpg", category: "event", label: "Festive Frame" },
   { src: "/gallery/photo_6120522001500805705_y.jpg", category: "team", label: "People First" },
   { src: "/gallery/photo_6120522001500805706_y.jpg", category: "event", label: "Memories Made" },
-];
+]);
 
 /** Flat src list for legacy gallery components. */
 export const GALLERY_IMAGE_SRCS = GALLERY_IMAGES.map((img) => img.src);

@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   GALLERY_FEATURE_STRIP,
   GALLERY_FILTER_OPTIONS,
-  GALLERY_HERO_IMAGE,
+  GALLERY_HERO,
   GALLERY_IMAGES,
   GALLERY_MARQUEE_ITEMS,
   GALLERY_STATS,
@@ -89,8 +89,10 @@ export default function MemoriesGallery() {
       <section className="mg-hero">
         <div
           className="mg-hero-bg"
-          style={{ backgroundImage: `url('${GALLERY_HERO_IMAGE}')` }}
-          aria-hidden
+          style={{ backgroundImage: `url('${GALLERY_HERO.src}')` }}
+          role="img"
+          aria-label={GALLERY_HERO.label}
+          title={GALLERY_HERO.title}
         />
         <div className="mg-hero-vignette" aria-hidden />
         <div className="mg-hero-content">
@@ -146,6 +148,7 @@ export default function MemoriesGallery() {
               <Image
                 src={item.src}
                 alt={item.label}
+                title={item.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover"
@@ -260,6 +263,7 @@ export default function MemoriesGallery() {
             <img
               src={lightboxImages[lightboxIndex].src}
               alt={lightboxImages[lightboxIndex].label}
+              title={lightboxImages[lightboxIndex].title}
             />
           )}
         </div>
@@ -301,6 +305,7 @@ function GalleryGridItem({
       <img
         src={image.src}
         alt={image.label}
+        title={image.title}
         loading="lazy"
         onError={() => setHidden(true)}
       />
