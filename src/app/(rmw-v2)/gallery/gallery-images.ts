@@ -207,7 +207,7 @@ const GALLERY_EVENT_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/Team 6.jpg", label: "Team Outing" },
   { src: "/gallery/IMG20250916125830.jpg", label: "Team Dinner" },
   { src: "/gallery/WhatsApp Image 2025-12-11 at 13.21.14_8262e416.jpg", label: "December Celebration" },
-  { src: "/gallery/WhatsApp Image 2025-12-11 at 13.17.51_db030edb.jpg", label: "Memories" },
+  // { src: "/gallery/WhatsApp Image 2025-12-11 at 13.17.51_db030edb.jpg", label: "Memories" },
   { src: "/gallery/WhatsApp Image 2025-12-11 at 13.18.12_625665af.jpg", label: "Festive Day" },
   { src: "/gallery/IMG-20251211-WA0034.jpg", label: "On Stage Award" },
   { src: "/gallery/IMG-20251211-WA0043.jpg", label: "Panel Discussion" },
