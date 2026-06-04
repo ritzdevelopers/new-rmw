@@ -61,7 +61,7 @@ export const GALLERY_FILTER_OPTIONS: { id: "all" | GalleryCategory; label: strin
     { id: "team", label: "Team" },
     { id: "event", label: "Events" },
     { id: "awards", label: "Awards" },
-    { id: "creative", label: "R & R" },
+    { id: "creative", label: "RNR" },
     { id: "office", label: "Office" },
   ];
 
@@ -238,7 +238,7 @@ const GALLERY_AWARDS_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/photo_2025-11-28_22-22-29.jpg", label: "ET Young Leaders" },
   { src: "/gallery/photo_2025-11-28_21-59-05 (3).jpg", label: "ET Young Leaders Display" },
   { src: "/gallery/photo_2025-11-15_00-42-59.jpg", label: "BIG Business Awards" },
-  { src: "/gallery/photo_2025-11-15_00-43-00.jpg", label: "Awardee Moment" },
+  // { src: "/gallery/photo_2025-11-15_00-43-00.jpg", label: "Awardee Moment" },
   { src: "/gallery/photo_2025-11-15_00-43-02.jpg", label: "My Property Fact Award" },
 ];
 
@@ -309,7 +309,7 @@ export const GALLERY_FILTER_HEADINGS: Record<
   team: { primary: "Team", accent: "Memories" },
   event: { primary: "Events", accent: "Memories" },
   awards: { primary: "Awards", accent: "Memories" },
-  creative: { primary: "R & R", accent: "Memories" },
+  creative: { primary: "RNR", accent: "Memories" },
   office: { primary: "Office", accent: "Memories" },
 };
 
