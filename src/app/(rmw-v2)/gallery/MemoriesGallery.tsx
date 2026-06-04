@@ -1,6 +1,5 @@
 "use client";
 
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
@@ -14,19 +13,6 @@ import {
   type GalleryImage,
 } from "./gallery-images";
 import "./memories-gallery.css";
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-mg-serif",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-mg-sans",
-});
 
 type FilterId = "all" | GalleryCategory;
 
@@ -81,10 +67,12 @@ export default function MemoriesGallery() {
   const marqueeItems = [...GALLERY_MARQUEE_ITEMS, ...GALLERY_MARQUEE_ITEMS];
 
   return (
-    <div
-      className={`memories-gallery ${cormorant.variable} ${dmSans.variable}`}
-      style={{ fontFamily: "var(--font-mg-sans), sans-serif" }}
-    >
+    <div className="memories-gallery">
+      <div className="mg-page-bg" aria-hidden>
+        <div className="mg-page-bg-mesh" />
+        <div className="mg-page-bg-vignette" />
+      </div>
+
       {/* Hero */}
       <section className="mg-hero">
         <div
@@ -96,19 +84,11 @@ export default function MemoriesGallery() {
         />
         <div className="mg-hero-vignette" aria-hidden />
         <div className="mg-hero-content">
-          <p className="mg-hero-eyebrow">Memories Gallery</p>
-          <h1
-            className="mg-hero-title"
-            style={{ fontFamily: "var(--font-mg-serif), serif" }}
-          >
-            Where <em>Stories</em>
-            <br />
-            Come Alive
+          <h1 className="mg-hero-heading">
+            <span className="mg-hero-heading-white">Ritz Media World </span>
+            <span className="mg-hero-heading-golden">Memories Gallery ✨</span>
+            <span className="mg-hero-heading-white"> - Reliving Our Best Moments</span>
           </h1>
-          <p className="mg-hero-desc">
-            Team moments, milestones, celebrations, and the people behind the
-            work — a living archive of the Ritz Media World culture.
-          </p>
         </div>
         <div className="mg-hero-scroll" aria-hidden>
           <div className="mg-hero-scroll-line" />
@@ -122,7 +102,6 @@ export default function MemoriesGallery() {
           <div key={stat.label} className="mg-stat-item">
             <div
               className="mg-stat-number"
-              style={{ fontFamily: "var(--font-mg-serif), serif" }}
             >
               {stat.number}
             </div>
@@ -154,12 +133,7 @@ export default function MemoriesGallery() {
                 className="object-cover"
               />
               <div className="mg-feature-overlay">
-                <span
-                  className="mg-feature-label"
-                  style={{ fontFamily: "var(--font-mg-serif), serif" }}
-                >
-                  {item.label}
-                </span>
+                <span className="mg-feature-label">{item.label}</span>
               </div>
             </button>
           );
@@ -170,11 +144,7 @@ export default function MemoriesGallery() {
       <div className="mg-marquee-wrap" aria-hidden>
         <div className="mg-marquee-track">
           {marqueeItems.map((item, i) => (
-            <span
-              key={`${item}-${i}`}
-              className="mg-marquee-item"
-              style={{ fontFamily: "var(--font-mg-serif), serif" }}
-            >
+            <span key={`${item}-${i}`} className="mg-marquee-item">
               {item}
             </span>
           ))}
@@ -183,10 +153,7 @@ export default function MemoriesGallery() {
 
       {/* Filters */}
       <div className="mg-filter-bar">
-        <h2
-          className="mg-filter-title"
-          style={{ fontFamily: "var(--font-mg-serif), serif" }}
-        >
+        <h2 className="mg-filter-title">
           All <span>Memories</span>
         </h2>
         <div className="mg-filters" role="tablist" aria-label="Filter gallery">
