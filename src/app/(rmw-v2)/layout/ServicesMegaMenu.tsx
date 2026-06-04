@@ -439,12 +439,20 @@ export function ServicesMegaMenuMobileAccordion({
               >
                 {c.name}
               </Link>
-              <HiChevronRight
+              <button
+                type="button"
+                aria-expanded={open}
+                aria-label={open ? `Collapse ${c.name}` : `Expand ${c.name}`}
                 onClick={() => onToggleCategory(i)}
-                className={`h-5 w-5 shrink-0 transition-transform duration-200 ${
-                  open ? "rotate-90 text-[#C59D4F]" : "text-neutral-400"
-                }`}
-              />
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-[#C59D4F]"
+              >
+                <HiChevronRight
+                  className={`h-5 w-5 transition-transform duration-200 ${
+                    open ? "rotate-90 text-[#C59D4F]" : ""
+                  }`}
+                  aria-hidden
+                />
+              </button>
             </div>
             {open && (
               <div className="border-t border-neutral-100 bg-neutral-50/50 px-3 py-3 sm:px-4">
