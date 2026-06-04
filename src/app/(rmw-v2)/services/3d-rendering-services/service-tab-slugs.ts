@@ -68,8 +68,58 @@ export function isRenderingServiceDeepLink(pathname: string): boolean {
     return getRenderingServiceTabIndexFromPathname(pathname) !== null;
 }
 
+export const RENDERING_SERVICE_SCROLL_INTENT_KEY = "rmw:3d-rendering-scroll-intent";
+
+/** Set when a 3D sub-service is chosen from the site menu (survives route cache). */
+export function markRenderingServiceScrollIntent(slug: RenderingServiceTabSlug) {
+    if (typeof window === "undefined") return;
+    sessionStorage.setItem(
+        RENDERING_SERVICE_SCROLL_INTENT_KEY,
+        `${Date.now()}:${slug}`
+    );
+}
+
+export function markRenderingServiceScrollIntentFromHref(href: string) {
+    const slug = getRenderingServiceTabSlugFromPathname(href);
+    if (slug) markRenderingServiceScrollIntent(slug);
+}
+
+export function takeRenderingServiceScrollIntent(
+    slug: RenderingServiceTabSlug,
+    maxAgeMs = 20000
+): boolean {
+    if (typeof window === "undefined") return false;
+
+    const raw = sessionStorage.getItem(RENDERING_SERVICE_SCROLL_INTENT_KEY);
+    if (!raw) return false;
+
+    const [ts, storedSlug] = raw.split(":");
+    sessionStorage.removeItem(RENDERING_SERVICE_SCROLL_INTENT_KEY);
+
+    if (storedSlug !== slug) return false;
+
+    const age = Date.now() - Number(ts);
+    return Number.isFinite(age) && age >= 0 && age <= maxAgeMs;
+}
+
+export function peekRenderingServiceScrollIntent(
+    slug: RenderingServiceTabSlug,
+    maxAgeMs = 20000
+): boolean {
+    if (typeof window === "undefined") return false;
+
+    const raw = sessionStorage.getItem(RENDERING_SERVICE_SCROLL_INTENT_KEY);
+    if (!raw) return false;
+
+    const [ts, storedSlug] = raw.split(":");
+    if (storedSlug !== slug) return false;
+
+    const age = Date.now() - Number(ts);
+    return Number.isFinite(age) && age >= 0 && age <= maxAgeMs;
+}
+
 /** Fixed navbar clearance when scrolling to the services block. */
-export const RENDERING_SERVICES_SCROLL_OFFSET = 100;
+export const RENDERING_SERVICES_SCROLL_OFFSET = 120;
 
 export function scrollToRenderingServicesSection(
     sectionEl: HTMLElement | null,
@@ -77,13 +127,22 @@ export function scrollToRenderingServicesSection(
 ) {
     if (!sectionEl || typeof window === "undefined") return;
 
-    const top =
-        sectionEl.getBoundingClientRect().top +
-        window.scrollY -
-        RENDERING_SERVICES_SCROLL_OFFSET;
+    const scrollOnce = () => {
+        const top =
+            sectionEl.getBoundingClientRect().top +
+            window.scrollY -
+            RENDERING_SERVICES_SCROLL_OFFSET;
 
-    window.scrollTo({
-        top: Math.max(0, top),
-        behavior,
-    });
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior,
+        });
+    };
+
+    scrollOnce();
+    requestAnimationFrame(scrollOnce);
+    window.setTimeout(scrollOnce, 150);
+    window.setTimeout(scrollOnce, 400);
+    window.setTimeout(scrollOnce, 800);
+    window.setTimeout(scrollOnce, 1200);
 }

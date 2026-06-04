@@ -19,15 +19,24 @@ import {
   SERVICES_MEGA_MENU_CATEGORIES,
   SERVICES_MEGA_TAGLINE,
 } from "./servicesMegaMenuData";
+import { markRenderingServiceScrollIntentFromHref } from "../services/3d-rendering-services/service-tab-slugs";
 
 const GOLD = "#C59D4F";
+
+function megaMenuServiceClick(
+  href: string,
+  onNavigate?: () => void
+) {
+  markRenderingServiceScrollIntentFromHref(href);
+  onNavigate?.();
+}
 
 function megaMenuLinkProps(href: string) {
   if (
     href.startsWith("/services/3d-rendering-services/") ||
     href.includes("#")
   ) {
-    return {};
+    return { scroll: false as const };
   }
 
   return { target: "_blank" as const, rel: "noopener noreferrer" };
@@ -352,7 +361,7 @@ export function ServicesMegaMenuPanel({
                     href={svc.href}
                     title={svc.title}
                     {...megaMenuLinkProps(svc.href)}
-                    onClick={onNavigate}
+                    onClick={() => megaMenuServiceClick(svc.href, onNavigate)}
                     className="flex gap-5 rounded-lg transition-colors duration-200 hover:bg-neutral-50"
                   >
                     <ServiceThumb
@@ -459,7 +468,7 @@ export function ServicesMegaMenuMobileAccordion({
                       href={svc.href}
                       title={`View all ${c.name}`}
                       {...megaMenuLinkProps(svc.href)}
-                      onClick={onNavigate}
+                      onClick={() => megaMenuServiceClick(svc.href, onNavigate)}
                       className="flex gap-2.5 rounded-lg border border-transparent bg-white p-2.5  transition-colors hover:border-[#C59D4F]/30"
                     >
                       <ServiceThumb
