@@ -338,12 +338,47 @@ export const SERVICES_MEGA_MENU_CATEGORIES: MegaMenuCategory[] = [
       },
     ],
   },
-  // {
-  //   id: "3d-rendering-services",
-  //   name: "3D Rendering Services",
-  //   href: "/services/3d-rendering-services",
-  //   services: [ ... ],
-  // },
+  {
+    id: "3d-rendering-services",
+    name: "3D Rendering Services",
+    href: "/services/3d-rendering-services",
+    services: [
+      {
+        title: "3D Exterior Rendering",
+        description:
+          "Photorealistic building exteriors, landscaping, and surroundings.",
+        href: "/services/3d-rendering-services/3d-exterior-rendering",
+        image: "/services/3drendring/3d1.png",
+      },
+      {
+        title: "3D Interior Rendering",
+        description:
+          "Luxury interiors with lighting, materials, and furnished layouts.",
+        href: "/services/3d-rendering-services/3d-interior-rendering",
+        image: "/services/3drendring/interior.png",
+      },
+      {
+        title: "Aerial & Township",
+        description:
+          "Master plans and bird's-eye views for large-scale developments.",
+        href: "/services/3d-rendering-services/aerial-township",
+        image: "/services/3drendring/3d3.png",
+      },
+      {
+        title: "3D Floor Plan Rendering",
+        description: "Clear furnished layouts that simplify unit planning.",
+        href: "/services/3d-rendering-services/3d-floor-plan-rendering",
+        image: "/services/3drendring/3d4.png",
+      },
+      {
+        title: "Amenity & Landscape Rendering",
+        description:
+          "Clubhouses, pools, gardens, and lifestyle amenities visualized.",
+        href: "/services/3d-rendering-services/amenity-landscape-rendering",
+        image: "/services/3drendring/3d5.png",
+      },
+    ],
+  },
   // {
   //   id: "real-estate-walkthrough",
   //   name: "Real Estate Walkthrough",

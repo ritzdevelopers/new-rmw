@@ -11,11 +11,14 @@ import {
     getRenderingServiceTabIndexFromPathname,
     getRenderingServiceTabIndexFromSlug,
     getRenderingServiceTabSlug,
+    getRenderingServiceTabSlugFromPathname,
     isRenderingServiceDeepLink,
+    peekRenderingServiceScrollIntent,
     renderingServiceHref,
     resolveRenderingServiceTabIndex,
     RENDERING_SERVICES_SECTION_ID,
     scrollToRenderingServicesSection,
+    takeRenderingServiceScrollIntent,
     type RenderingServiceTabSlug,
 } from "./service-tab-slugs";
 
@@ -122,14 +125,24 @@ const services: ServiceTab[] = [
 
 function scrollTabIntoContainer(
     container: HTMLElement | null,
-    tab: HTMLButtonElement | null,
+    tabEl: HTMLElement | null,
     smooth: boolean
 ) {
-    if (!container || !tab) return;
-    const tabLeft = tab.offsetLeft;
-    const tabWidth = tab.offsetWidth;
-    const containerWidth = container.clientWidth;
-    const targetLeft = tabLeft - (containerWidth - tabWidth) / 2;
+    if (!container || !tabEl) return;
+
+    const tabItem =
+        tabEl.classList.contains("services-tab-item")
+            ? tabEl
+            : tabEl.closest<HTMLElement>(".services-tab-item");
+    if (!tabItem) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const tabRect = tabItem.getBoundingClientRect();
+    const targetLeft =
+        container.scrollLeft +
+        (tabRect.left - containerRect.left) -
+        (container.clientWidth - tabRect.width) / 2;
+
     container.scrollTo({
         left: Math.max(0, targetLeft),
         behavior: smooth ? "smooth" : "auto",
@@ -137,18 +150,18 @@ function scrollTabIntoContainer(
 }
 
 function focusActiveTabInStrip(
-    getRefs: () => { container: HTMLElement | null; tab: HTMLButtonElement | null },
+    getRefs: () => { container: HTMLElement | null; tabItem: HTMLElement | null },
     smooth: boolean,
     attempt = 0
 ) {
-    const { container, tab } = getRefs();
+    const { container, tabItem } = getRefs();
 
-    if (tab && container) {
-        scrollTabIntoContainer(container, tab, smooth);
+    if (tabItem && container) {
+        scrollTabIntoContainer(container, tabItem, smooth);
         return;
     }
 
-    if (attempt >= 12) return;
+    if (attempt >= 20) return;
 
     requestAnimationFrame(() => {
         focusActiveTabInStrip(getRefs, smooth, attempt + 1);
@@ -194,9 +207,9 @@ export default function Services3D({ initialTabSlug }: Services3DProps = {}) {
         )
     );
     const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+    const tabItemRefs = useRef<(HTMLDivElement | null)[]>([]);
     const tabListRef = useRef<HTMLDivElement | null>(null);
     const sectionRef = useRef<HTMLElement | null>(null);
-    const hasScrolledForSlugEntry = useRef(false);
     const deepLinkScrollTimer = useRef<number | null>(null);
     const [canScrollTabsLeft, setCanScrollTabsLeft] = useState(false);
     const [canScrollTabsRight, setCanScrollTabsRight] = useState(false);
@@ -234,7 +247,7 @@ export default function Services3D({ initialTabSlug }: Services3DProps = {}) {
         focusActiveTabInStrip(
             () => ({
                 container: tabListRef.current,
-                tab: tabRefs.current[index] ?? null,
+                tabItem: tabItemRefs.current[index] ?? null,
             }),
             smooth
         );
@@ -255,12 +268,28 @@ export default function Services3D({ initialTabSlug }: Services3DProps = {}) {
             window.clearTimeout(deepLinkScrollTimer.current);
         }
 
-        deepLinkScrollTimer.current = window.setTimeout(() => {
-            showActiveTabInStrip(index, true);
+        const runScroll = () => {
+            showActiveTabInStrip(index, false);
             scrollToRenderingServicesSection(sectionRef.current, "smooth");
-            deepLinkScrollTimer.current = null;
-        }, 200);
+            window.setTimeout(() => showActiveTabInStrip(index, false), 400);
+            window.setTimeout(() => showActiveTabInStrip(index, false), 900);
+        };
+
+        runScroll();
+        deepLinkScrollTimer.current = window.setTimeout(runScroll, 250);
     }, [showActiveTabInStrip]);
+
+    const applyDeepLinkTab = useCallback(
+        (index: number, shouldScroll: boolean) => {
+            setActive(index);
+            showActiveTabInStrip(index, false);
+
+            if (shouldScroll) {
+                scrollToServicesSection(index);
+            }
+        },
+        [scrollToServicesSection, showActiveTabInStrip]
+    );
 
     useLayoutEffect(() => {
         const legacyHashIndex = getRenderingServiceTabIndex(window.location.hash);
@@ -292,20 +321,39 @@ export default function Services3D({ initialTabSlug }: Services3DProps = {}) {
     }, [pathname, initialTabSlug, showActiveTabInStrip]);
 
     useEffect(() => {
-        if (hasScrolledForSlugEntry.current) return;
+        const slugFromPath =
+            getRenderingServiceTabSlugFromPathname(pathname) ??
+            (typeof window !== "undefined"
+                ? getRenderingServiceTabSlugFromPathname(window.location.pathname)
+                : null);
+        const slug = slugFromPath ?? initialTabSlug ?? null;
+
+        if (!slug) return;
 
         const index = resolveActiveIndex(pathname, initialTabSlug);
-        const hasSlug =
+        const fromMenu = takeRenderingServiceScrollIntent(slug);
+        const isDeepLink =
             isRenderingServiceDeepLink(pathname) ||
             initialTabSlug !== undefined ||
-            (typeof window !== "undefined" &&
-                isRenderingServiceDeepLink(window.location.pathname));
+            fromMenu;
 
-        if (hasSlug) {
-            hasScrolledForSlugEntry.current = true;
-            scrollToServicesSection(index);
+        if (isDeepLink) {
+            applyDeepLinkTab(index, true);
         }
-    }, [pathname, initialTabSlug, scrollToServicesSection]);
+    }, [pathname, initialTabSlug, applyDeepLinkTab]);
+
+    useEffect(() => {
+        const handlePageshow = () => {
+            const slug = getRenderingServiceTabSlugFromPathname(window.location.pathname);
+            if (!slug || !peekRenderingServiceScrollIntent(slug)) return;
+
+            const index = getRenderingServiceTabIndexFromSlug(slug) ?? 0;
+            applyDeepLinkTab(index, takeRenderingServiceScrollIntent(slug));
+        };
+
+        window.addEventListener("pageshow", handlePageshow);
+        return () => window.removeEventListener("pageshow", handlePageshow);
+    }, [applyDeepLinkTab]);
 
     useEffect(() => {
         const onPopState = () => {
@@ -414,6 +462,9 @@ export default function Services3D({ initialTabSlug }: Services3DProps = {}) {
                                 return (
                                     <div
                                         key={tab.title}
+                                        ref={(el) => {
+                                            tabItemRefs.current[i] = el;
+                                        }}
                                         className={`services-tab-item relative min-w-[min(78vw,260px)] shrink-0 sm:min-w-[200px] md:min-w-[240px] lg:min-w-[280px] xl:min-w-max ${isActive ? "services-tab-active" : ""}`}
                                     >
                                         <span

@@ -5,7 +5,7 @@ import { useGesture } from "@use-gesture/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { GALLERY_IMAGES } from "./gallery-images";
+import { GALLERY_IMAGE_SRCS as GALLERY_IMAGES } from "./gallery-images";
 import "./vision-orbit-gallery.css";
 
 const CARD_ANGLE = 48;

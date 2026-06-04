@@ -8,6 +8,7 @@ import Image from "next/image";
 import styles from "@/components/home-v3/services/page.module.css";
 import Textimonials from "@/components/influencer-marketing-agency-in-india/Section5";
 import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Process3D from "./3dprocess";
 import Services3D from "./Services";
 import Faq3D from "./faq";
@@ -22,6 +23,7 @@ type PageProps = {
 };
 
 function Page({ initialTabSlug }: PageProps = {}) {
+    const pathname = usePathname();
     const EXPLORE_ARROW_IMAGE =
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
     const [isMobile, setIsMobile] = useState(false);
@@ -341,7 +343,10 @@ function Page({ initialTabSlug }: PageProps = {}) {
                 )}
             </div>
 
-            <Services3D initialTabSlug={initialTabSlug} />
+            <Services3D
+                key={initialTabSlug ?? pathname}
+                initialTabSlug={initialTabSlug}
+            />
             <Process3D />
             <Faq3D />
             <Textimonials />
