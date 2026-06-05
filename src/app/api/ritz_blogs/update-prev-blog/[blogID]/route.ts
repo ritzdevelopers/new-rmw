@@ -3,7 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 import RitzBlogModel from "@/models/Blog.Schema";
 import fs from "fs";
 import path from "path";
-import { generateSlug } from "../../add-new-blog/route";
+import {
+  generateSlugFromTitle,
+  isValidSlugInput,
+  normalizeSlug,
+} from "@/lib/slugify";
 import jwt from "jsonwebtoken";
 import ManagementModel from "@/models/Management";
 import ManagementActivitiesModel from "@/models/ManagementActivities";
@@ -64,10 +68,33 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
         const formData = await req.formData();
         const blogId = params.blogID;
         const blogTitle = formData.get("blogTitle");
+        const blogSlugInput = formData.get("blogSlug");
         const metaKeywords = formData.get("metaKeywords");
         const blogBodyRaw = formData.get("blogBody");
         const blogCategoryId = formData.get("blogCategoryId") || formData.get("blogCategory"); // Support both for backward compatibility
         const mtDesc = formData.get("mtDesc");
+
+        const blogSlug = blogSlugInput
+            ? normalizeSlug(String(blogSlugInput))
+            : generateSlugFromTitle(String(blogTitle || ""));
+
+        if (!blogSlug || !isValidSlugInput(blogSlug)) {
+            return NextResponse.json(
+                { message: "A valid slug URL is required (letters, numbers, and hyphens only)" },
+                { status: 400 }
+            );
+        }
+
+        const slugConflict = await RitzBlogModel.findOne({
+            blogSlug,
+            _id: { $ne: blogId },
+        });
+        if (slugConflict) {
+            return NextResponse.json(
+                { message: "This slug URL is already in use. Please choose a different one." },
+                { status: 409 }
+            );
+        }
 
         let blogBannerPath = "";
         const innerImgMap: Record<string, string> = {};
@@ -131,7 +158,7 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             metaKeywords,
             blogCategoryId: blogCategoryId || undefined,
             blogStatus:true,
-            blogSlug: generateSlug(blogTitle),
+            blogSlug,
             mtDesc: mtDesc || undefined,
         };
 

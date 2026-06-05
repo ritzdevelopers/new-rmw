@@ -226,6 +226,19 @@
    font-weight: 500 !important;
 }
 
+.contentBody code h1,
+.contentBody code h2,
+.contentBody code h3,
+.contentBody code h4,
+.contentBody code h5,
+.contentBody code h6 {
+   font-size: inherit !important;
+   font-weight: inherit !important;
+   margin: 0 !important;
+   line-height: inherit !important;
+   display: inline;
+}
+
 .contentBody h4 {
    font-size: 24px !important;
    font-weight: 500 !important;

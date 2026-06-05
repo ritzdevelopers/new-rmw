@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import BlogInner from "@/components/blogs/inner/BlogInner";
 import { get_single_blog } from "@/app/api/get_all_blogs/[slug]/route";
 import { GET_ALL_BLOGS } from "@/app/api/get_all_blogs/route";
+import { toPlainObject } from "@/lib/toPlainObject";
 
 type BlogLayoutData = { blog: any; categoryName: string; all_categories: any; latest_3_blogs: any; related_blogs: any };
 
@@ -48,17 +49,17 @@ async function BlogPageContent({ slug }: { slug: string }) {
         : null;
     const { blog, categoryName, all_categories, latest_3_blogs, related_blogs } = data ?? { blog: null, categoryName: "", all_categories: null, latest_3_blogs: null, related_blogs: null };
     const all_blogs = await GET_ALL_BLOGS();
- 
+
     return (
         <BlogInner
             slug={slug}
             category={categoryName}
-            blog={blog}
+            blog={toPlainObject(blog)}
             categoryName={categoryName}
-            all_categories={all_categories}
-            latest_3_blogs={latest_3_blogs}
-            related_blogs={related_blogs}
-            all_blogs={all_blogs?.data ?? null}
+            all_categories={toPlainObject(all_categories)}
+            latest_3_blogs={toPlainObject(latest_3_blogs)}
+            related_blogs={toPlainObject(related_blogs)}
+            all_blogs={toPlainObject(all_blogs?.data ?? null)}
         />
     );
 }

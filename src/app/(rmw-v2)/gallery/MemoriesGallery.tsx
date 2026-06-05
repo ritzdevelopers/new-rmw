@@ -186,6 +186,7 @@ export default function MemoriesGallery() {
         </div>
       </section>
 
+      <div className="mg-light-section">
       {/* Stats */}
       <div className="mg-stats">
         {GALLERY_STATS.map((stat) => (
@@ -333,6 +334,8 @@ export default function MemoriesGallery() {
             href={GALLERY_CTA.href}
             className="mg-cta-btn"
             title={GALLERY_CTA.linkTitle}
+            target={GALLERY_CTA.target}
+            rel={GALLERY_CTA.rel}
           >
             {GALLERY_CTA.buttonLabel}
             <span className="mg-cta-btn-arrow" aria-hidden>
@@ -344,14 +347,8 @@ export default function MemoriesGallery() {
 
       {/* Divider */}
       <div className="mg-divider">
-        <div
-          className="mg-divider-line"
-          style={{
-            background: "linear-gradient(to left, rgba(201,146,55,0.25), transparent)",
-          }}
-        />
-        {/* <span className="mg-divider-text">End of Gallery</span>
-        <div className="mg-divider-line" /> */}
+        <div className="mg-divider-line" />
+      </div>
       </div>
 
       {portalReady &&

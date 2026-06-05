@@ -8,6 +8,7 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import RMWLoader from "@/components/rmw_loader/RMWLoader";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
+import { formatSlugInput, normalizeSlug } from "@/lib/slugify";
 
 interface BlogData {
   title: string;
@@ -147,6 +148,23 @@ function Page() {
           value={blog.title}
           onChange={(e) => setBlog({ ...blog, title: e.target.value })}
         />
+        {/* Slug URL */} <label>Slug URL</label>
+        <input
+          type="text"
+          value={blog.slug}
+          onChange={(e) =>
+            setBlog({ ...blog, slug: formatSlugInput(e.target.value) })
+          }
+          onBlur={() =>
+            setBlog((prev) =>
+              prev ? { ...prev, slug: normalizeSlug(prev.slug) } : prev
+            )
+          }
+          placeholder="e.g. my blog post"
+        />
+        <p className="text-xs text-[#666]">
+          Blog will open at /{normalizeSlug(blog.slug) || "your-slug-url"}
+        </p>
         {/* Meta Title */} <label>Meta Title</label>
         <input
           type="text"

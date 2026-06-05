@@ -6,6 +6,7 @@ import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import { RowDataPacket } from "mysql2";
 import mongoose, { Types } from "mongoose";
 import RitzCatsModel from "@/models/RitzCats.Schema";
+import { toPlainObject } from "@/lib/toPlainObject";
 
 type BlogWithCategoryId = { blogCategoryId?: string; category_id?: number };
 
@@ -47,11 +48,11 @@ export async function get_single_blog(slug: string) {
             const related_blogs = await GET_4_RELATED_BLOGS(getBlogCategoryId(blog.data));
 
             return [{
-                blog: blog.data,
+                blog: toPlainObject(blog.data),
                 categoryName: blog.categoryName,
-                all_categories: all_categories.data,
-                latest_3_blogs: latest_3_blogs.data,
-                related_blogs: related_blogs.data
+                all_categories: toPlainObject(all_categories.data),
+                latest_3_blogs: toPlainObject(latest_3_blogs.data),
+                related_blogs: toPlainObject(related_blogs.data),
             },
             { status: 200 }];
         }

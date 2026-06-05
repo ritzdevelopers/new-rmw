@@ -87,7 +87,7 @@ export const GALLERY_FEATURE_HEADINGS = [
 /** Categories shown in the feature-card modal (index matches GALLERY_FEATURE_STRIP). */
 export const GALLERY_FEATURE_MODAL_CATEGORIES: GalleryCategory[][] = [
   ["event", "team"],
-  ["office", "team"],
+  ["office"],
   ["awards"],
 ];
 
@@ -112,6 +112,8 @@ export const GALLERY_CTA = {
   homeTitle: "Ritz Media World - Home",
   buttonLabel: "Let's Build Your Next Winning Campaign",
   href: "/contact.html",
+  target: "_blank",
+  rel: "noopener noreferrer",
   linkTitle:
     "Contact Ritz Media World — Let's Build Your Next Winning Campaign",
 } as const;
@@ -249,7 +251,7 @@ const GALLERY_AWARDS_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/photo_2025-11-14_22-06-41.jpg", label: "Big Dream Makers Trophy" },
   { src: "/gallery/photo_2025-11-28_21-59-05.jpg", label: "ET Young Leaders Trophy" },
   { src: "/gallery/photo_2025-11-28_22-19-27.jpg", label: "ET Awards Ceremony" },
-  { src: "/gallery/photo_2025-11-28_22-22-29.jpg", label: "ET Young Leaders" },
+  // { src: "/gallery/photo_2025-11-28_22-22-29.jpg", label: "ET Young Leaders" },
   { src: "/gallery/photo_2025-11-28_21-59-05 (3).jpg", label: "ET Young Leaders Display" },
   { src: "/gallery/photo_2025-11-15_00-42-59.jpg", label: "BIG Business Awards" },
   // { src: "/gallery/photo_2025-11-15_00-43-00.jpg", label: "Awardee Moment" },
@@ -286,7 +288,7 @@ const GALLERY_OFFICE_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/Ritz1.JPG", label: "Ritz Studio" },
   { src: "/gallery/Ritz Media World Digital Office.jpg", label: "Digital Office" },
   { src: "/gallery/DSC03053.JPG", label: "Studio Shot" },
-  // { src: "/gallery/DSC03178.JPG", label: "Office Space" },
+  { src: "/gallery/DSC03178.JPG", label: "Office Space" },
   { src: "/gallery/DSC00086.JPG", label: "The Office" },
   { src: "/gallery/photo_6120522001500805657_y.jpg", label: "Executive Suite" },
   { src: "/gallery/photo_6120522001500805658_y.jpg", label: "Conference Room" },

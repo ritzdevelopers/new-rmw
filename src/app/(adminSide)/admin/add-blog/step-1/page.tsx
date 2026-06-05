@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useBlogContext } from "@/blogContext/BlogContext";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
+import { formatSlugInput, normalizeSlug } from "@/lib/slugify";
 
 const LOCAL_STORAGE_KEY = "add-blog-step-1";
 
@@ -24,6 +25,7 @@ const Page = () => {
   } = useBlogContext();
 
   const [localTitle, setLocalTitle] = useState<string>(blogTitle || "");
+  const [localSlug, setLocalSlug] = useState<string>("");
   const [localMeta, setLocalMeta] = useState<string>(metaKeywords || "");
   const [localBanner, setLocalBanner] = useState<string>(blogBanner || "");
   const [localCategory, setLocalCategory] = useState<string>("All Category");
@@ -34,6 +36,7 @@ const Page = () => {
     if (savedData) {
       const parsed = JSON.parse(savedData);
       setLocalTitle(parsed.blogTitle || "");
+      setLocalSlug(parsed.blogSlug || "");
       setLocalMeta(parsed.metaKeywords || "");
       setLocalBanner(parsed.blogBanner || "");
       setLocalCategory(parsed.blogCategory || "All Category");
@@ -61,6 +64,7 @@ const Page = () => {
   const saveDataToLocalStorage = () => {
     const data = {
       blogTitle: localTitle,
+      blogSlug: localSlug,
       metaKeywords: localMeta,
       blogBanner: localBanner,
       blogCategory: localCategory,
@@ -76,6 +80,7 @@ const Page = () => {
     if (path.includes("/admin/add-blog/step-2/page")) {
       if (
         !localTitle ||
+        !localSlug ||
         !localMeta ||
         !localBanner ||
         !localCategory ||
@@ -184,6 +189,23 @@ const Page = () => {
               placeholder="Enter blog title here..."
               className="w-full border rounded-md px-4 py-2"
             />
+          </div>
+
+          <div className="flex flex-col gap-2 p-4">
+            <label className="text-sm font-semibold text-[#444]">
+              Slug URL
+            </label>
+            <input
+              type="text"
+              value={localSlug}
+              onChange={(e) => setLocalSlug(formatSlugInput(e.target.value))}
+              onBlur={() => setLocalSlug(normalizeSlug(localSlug))}
+              placeholder="e.g. my blog post"
+              className="w-full border rounded-md px-4 py-2"
+            />
+            <p className="text-xs text-[#666]">
+              Blog will open at /{normalizeSlug(localSlug) || "your-slug-url"}
+            </p>
           </div>
 
           <div className="flex flex-col gap-2 p-4">
