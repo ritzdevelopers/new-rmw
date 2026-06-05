@@ -186,7 +186,6 @@ export default function MemoriesGallery() {
         </div>
       </section>
 
-      <div className="mg-light-section">
       {/* Stats */}
       <div className="mg-stats">
         {GALLERY_STATS.map((stat) => (
@@ -347,8 +346,12 @@ export default function MemoriesGallery() {
 
       {/* Divider */}
       <div className="mg-divider">
-        <div className="mg-divider-line" />
-      </div>
+        <div
+          className="mg-divider-line"
+          style={{
+            background: "linear-gradient(to left, rgba(201,146,55,0.25), transparent)",
+          }}
+        />
       </div>
 
       {portalReady &&
