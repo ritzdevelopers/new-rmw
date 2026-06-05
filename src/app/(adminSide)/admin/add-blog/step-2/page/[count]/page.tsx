@@ -129,6 +129,7 @@ const Page = () => {
       const savedData1 = localStorage.getItem("add-blog-step-1");
 
       let blogTitle = "";
+      let blogSlug = "";
       let blogBanner = null;
       let metaKeywords = "";
       let blogCategory = "All Category";
@@ -137,6 +138,7 @@ const Page = () => {
       if (savedData1) {
         const parsed = JSON.parse(savedData1);
         blogTitle = parsed.blogTitle || "";
+        blogSlug = parsed.blogSlug || "";
         metaKeywords = parsed.metaKeywords || "";
         blogCategory = parsed.blogCategory || "All Category";
         mtDesc = parsed.mtDesc;
@@ -170,6 +172,7 @@ const Page = () => {
 
       const formData = new FormData();
       formData.append("blogTitle", blogTitle);
+      formData.append("blogSlug", blogSlug);
       formData.append("metaKeywords", metaKeywords);
       formData.append("blogCategory", blogCategory);
       formData.append("mtDesc", mtDesc);

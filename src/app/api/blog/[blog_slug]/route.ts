@@ -6,6 +6,11 @@ import fs from "fs";
 import ManagementModel from "@/models/Management";
 import jwt from "jsonwebtoken";
 import ManagementActivitiesModel from "@/models/ManagementActivities";
+import {
+  generateSlugFromTitle,
+  isValidSlugInput,
+  normalizeSlug,
+} from "@/lib/slugify";
 
 function isNewBlogImageUpload(file: unknown): file is File {
   return (
@@ -135,11 +140,34 @@ export async function PATCH(
 
     const category_id = formData.get("category_id") as string;
     const title = formData.get("title") as string;
+    const slugInput = formData.get("slug") as string;
     const meta_title = formData.get("meta_title") as string;
     const meta_description = formData.get("meta_description") as string;
     const meta_keywords = formData.get("meta_keywords") as string;
     const description = formData.get("description") as string;
     const blogImageField = formData.get("blog_image");
+
+    const newSlug = slugInput
+      ? normalizeSlug(slugInput)
+      : generateSlugFromTitle(title);
+
+    if (!newSlug || !isValidSlugInput(newSlug)) {
+      return NextResponse.json(
+        { error: "A valid slug URL is required (letters, numbers, and hyphens only)" },
+        { status: 400 }
+      );
+    }
+
+    const [slugConflict] = await db.execute<RowDataPacket[]>(
+      "SELECT id FROM blogs WHERE slug = ? AND slug != ? LIMIT 1",
+      [newSlug, normalizedSlug]
+    );
+    if (slugConflict.length > 0) {
+      return NextResponse.json(
+        { error: "This slug URL is already in use. Please choose a different one." },
+        { status: 409 }
+      );
+    }
 
     let blogImagePath = existingImage;
 
@@ -153,13 +181,14 @@ export async function PATCH(
 
     await db.execute(
       `UPDATE blogs 
-       SET category_id = ?, title = ?,
+       SET category_id = ?, title = ?, slug = ?,
            meta_title = ?, meta_description = ?, meta_keywords = ?, 
            blog_image = ?, description = ? 
        WHERE slug = ?`,
       [
         category_id,
         title,
+        newSlug,
         meta_title,
         meta_description,
         meta_keywords,

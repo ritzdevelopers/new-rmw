@@ -9,7 +9,7 @@ export const organizationJsonLd = {
   logo: "https://ritzmediaworld.com/_next/image?url=%2Frmw-logo-sm-size.png&w=256&q=70",
   sameAs: [
     "https://www.facebook.com/ritzmediaworld/",
-    "https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld",
+    "https://x.com/ritzmediaworld",
     "https://www.instagram.com/ritzmediaworld/",
     "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
     "https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in",
@@ -24,7 +24,8 @@ const localBusinessSameAs = [
   "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
 ] as const;
 
-export const localBusinessJsonLd = {
+/** AdvertisingAgency JSON-LD — rendered site-wide from root layout. */
+export const advertisingAgencyJsonLd = {
   "@context": "https://schema.org",
   "@type": "AdvertisingAgency",
   "@id": "https://ritzmediaworld.com/#localbusiness",

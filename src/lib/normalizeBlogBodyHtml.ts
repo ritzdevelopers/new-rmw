@@ -145,6 +145,17 @@ function markdownLinksToAnchors(html: string): string {
     );
 }
 
+/** CMS sometimes wraps stats/text in h3 inside code — unwrap to plain text inside code. */
+function stripHeadingsInsideCode(html: string): string {
+    return html.replace(
+        /<code(\s[^>]*)?>([\s\S]*?)<\/code>/gi,
+        (_match, attrs: string = "", inner: string) => {
+            const cleaned = inner.replace(/<\/?h[1-6]\b[^>]*>/gi, "");
+            return `<code${attrs}>${cleaned}</code>`;
+        }
+    );
+}
+
 export function normalizeBlogBodyHtml(html: string): string {
     if (!html || typeof html !== "string") return "";
 
@@ -158,6 +169,7 @@ export function normalizeBlogBodyHtml(html: string): string {
     out = fixAnchorsWithUrlOnlyBody(out);
     out = strongOrBoldUrlsToAnchors(out);
     out = linkifyOutsideAnchors(out);
+    out = stripHeadingsInsideCode(out);
 
     return out;
 }

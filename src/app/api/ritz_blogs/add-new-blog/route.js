@@ -9,21 +9,14 @@ import ManagementActivitiesModel from "@/models/ManagementActivities";
 import jwt from "jsonwebtoken";
 import ManagementModel from "@/models/Management";
 import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
-
-// export function generateSlug(name) {
-//   return name
-//     .toLowerCase()
-//     .trim()
-//     .replace(/[^\w\s-]/g, "")
-//     .replace(/\s+/g, "-");
-// }
+import {
+  generateSlugFromTitle,
+  isValidSlugInput,
+  normalizeSlug,
+} from "@/lib/slugify";
 
 export function generateSlug(title) {
-  return title
-    .toLowerCase()            // convert to lowercase
-    .replace(/[^a-z0-9\s]/g, '') // remove special characters
-    .trim()                   // remove leading/trailing spaces
-    .replace(/\s+/g, '-');    // remove duplicate hyphens
+  return generateSlugFromTitle(title);
 }
 
 async function saveFileToUploads(file, filename) {
@@ -62,6 +55,7 @@ export async function POST(request) {
     }
     const formData = await request.formData();
     const blogTitle = formData.get("blogTitle");
+    const blogSlugInput = formData.get("blogSlug");
     const metaKeywords = formData.get("metaKeywords");
     const blogBodyRaw = formData.get("blogBody");
     const blogCategory = formData.get("blogCategory"); //mtDesc
@@ -71,7 +65,24 @@ export async function POST(request) {
 
     // Handle Category ID Blog Description & Blog Slug :
     let blogDescription;
-    const blogSlug = generateSlug(blogTitle);
+    const blogSlug = blogSlugInput
+      ? normalizeSlug(String(blogSlugInput))
+      : generateSlug(blogTitle);
+
+    if (!blogSlug || !isValidSlugInput(blogSlug)) {
+      return NextResponse.json(
+        { message: "A valid slug URL is required (letters, numbers, and hyphens only)" },
+        { status: 400 }
+      );
+    }
+
+    const existingSlug = await RitzBlogModel.findOne({ blogSlug });
+    if (existingSlug) {
+      return NextResponse.json(
+        { message: "This slug URL is already in use. Please choose a different one." },
+        { status: 409 }
+      );
+    }
     const fetchCat = await RitzCats.findOne({ categorySlug: blogCategory });
 
     if (!fetchCat) {
