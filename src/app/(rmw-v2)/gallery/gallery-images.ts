@@ -197,6 +197,7 @@ const GALLERY_TEAM_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/Media 2.jpg", label: "Media Work" },
   { src: "/gallery/17e24618-1ebc-dd6c-1887-291bde275d77_1460_550.webp", label: "Campaign Work" },
   { src: "/gallery/photo_6186250402882325719_y.jpg", label: "Creative Crew" },
+  { src: "/gallery/photo_6131826449913155860_y.jpg", label: "On Location Shoot" },
 ];
 
 /** Events — parties, festivals, outings, and award ceremonies. */
@@ -234,6 +235,8 @@ const GALLERY_EVENT_INPUTS: GalleryImageInput[] = [
   { src: "/gallery/photo_6186250402882325665_x.jpg", label: "ET Young Leaders" },
   { src: "/gallery/photo_6186250402882325716_y.jpg", label: "Birthday Cake" },
   { src: "/gallery/photo_6186250402882325717_y.jpg", label: "Birthday Celebration" },
+  { src: "/gallery/photo_6131826449913155861_y.jpg", label: "Big Dream Makers Awards" },
+  { src: "/gallery/photo_6131826449913155862_y.jpg", label: "Team Group Photo" },
 ];
 
 /** Awards — trophies, framed certificates, and industry recognition. */

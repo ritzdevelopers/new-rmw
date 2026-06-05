@@ -24,7 +24,8 @@ const localBusinessSameAs = [
   "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
 ] as const;
 
-export const localBusinessJsonLd = {
+/** AdvertisingAgency JSON-LD — rendered site-wide from root layout. */
+export const advertisingAgencyJsonLd = {
   "@context": "https://schema.org",
   "@type": "AdvertisingAgency",
   "@id": "https://ritzmediaworld.com/#localbusiness",
