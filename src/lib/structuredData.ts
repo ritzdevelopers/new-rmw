@@ -9,7 +9,7 @@ export const organizationJsonLd = {
   logo: "https://ritzmediaworld.com/_next/image?url=%2Frmw-logo-sm-size.png&w=256&q=70",
   sameAs: [
     "https://www.facebook.com/ritzmediaworld/",
-    "https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld",
+    "https://x.com/ritzmediaworld",
     "https://www.instagram.com/ritzmediaworld/",
     "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
     "https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in",
