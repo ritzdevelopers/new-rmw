@@ -4,6 +4,7 @@ import JsonLd from "@/components/JsonLd";
 import {
   advertisingAgencyJsonLd,
   organizationJsonLd,
+  SITE_CANONICAL_URL,
 } from "@/lib/structuredData";
 import type { Metadata } from "next";
 
@@ -11,7 +12,7 @@ const websiteJsonLd = {
   "@context": "https://schema.org/",
   "@type": "WebSite",
   name: "Ritz Media World",
-  url: "https://ritzmediaworld.com/",
+  url: SITE_CANONICAL_URL,
   potentialAction: {
     "@type": "SearchAction",
     target: "https://ritzmediaworld.com/services{search_term_string}",
@@ -20,10 +21,7 @@ const websiteJsonLd = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ritzmediaworld.com"),
-  alternates: {
-    canonical: "./",
-  },
+  metadataBase: new URL(SITE_CANONICAL_URL),
   title: "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
   description: "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
   keywords: [

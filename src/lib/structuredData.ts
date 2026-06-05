@@ -1,11 +1,14 @@
-const SITE_URL = "https://ritzmediaworld.com/";
+const SITE_URL = "https://ritzmediaworld.com";
+
+/** Homepage + default canonical (no trailing slash). */
+export const SITE_CANONICAL_URL = SITE_URL;
 
 /** Organization schema — matches site Organization JSON-LD script. */
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Ritz Media World",
-  url: "https://ritzmediaworld.com/",
+  url: SITE_URL,
   logo: "https://ritzmediaworld.com/_next/image?url=%2Frmw-logo-sm-size.png&w=256&q=70",
   sameAs: [
     "https://www.facebook.com/ritzmediaworld/",
@@ -31,8 +34,8 @@ export const advertisingAgencyJsonLd = {
   "@id": "https://ritzmediaworld.com/#localbusiness",
   name: "Ritz Media World",
   url: SITE_URL,
-  image: `${SITE_URL}rmw-logo-sm-size.png`,
-  logo: `${SITE_URL}rmw-logo-sm-size.png`,
+  image: `${SITE_URL}/rmw-logo-sm-size.png`,
+  logo: `${SITE_URL}/rmw-logo-sm-size.png`,
   description:
     "Ritz Media World is a full-service advertising and digital marketing agency in Noida offering branding, SEO, social media marketing, web development, influencer marketing, print advertising, and radio advertising services.",
   telephone: "+91-9220516777",
