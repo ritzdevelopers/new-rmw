@@ -5,12 +5,10 @@ import NewNavbar from "./layout/NewNavbar";
 import NewFooter from "./layout/NewFooter";
 import RubyProvider from "@/ruby-context/ruby.context";
 import ClientWidgets from "./layout/ClientWidgets";
+import { SITE_CANONICAL_URL } from "@/lib/structuredData";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ritzmediaworld.com"),
-  alternates: {
-    canonical: "./",
-  },
+  metadataBase: new URL(SITE_CANONICAL_URL),
   authors: [{ name: "Ritz Media World" }],
   publisher: "Ritz Media World",
   title:
