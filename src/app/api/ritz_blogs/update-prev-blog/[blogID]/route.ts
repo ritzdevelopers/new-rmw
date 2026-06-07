@@ -176,7 +176,7 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
         const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) updated a blog: ${existingBlog.blogTitle}`, activityTime: new Date() });
         await newManagementActivity.save();
 
-        revalidateBlogListingPages();
+        await revalidateBlogListingPages();
 
         return NextResponse.json(
             { message: "Blog Updated Successfully", blog: updatedBlog },

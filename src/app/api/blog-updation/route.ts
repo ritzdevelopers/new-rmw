@@ -30,7 +30,7 @@ export async function PATCH(req: NextResponse) {
         { status: 400 }
       );
     }
-    revalidateBlogListingPages();
+    await revalidateBlogListingPages();
 
     return NextResponse.json(
       { message: "Blog Status Updates", success: true },
