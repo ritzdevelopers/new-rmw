@@ -6,6 +6,7 @@ import fs from "fs";
 import ManagementModel from "@/models/Management";
 import jwt from "jsonwebtoken";
 import ManagementActivitiesModel from "@/models/ManagementActivities";
+import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
 import {
   generateSlugFromTitle,
   isValidSlugInput,
@@ -201,6 +202,8 @@ export async function PATCH(
     // Create A New Management Activity
     const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) updated a blog: ${blog_slug}`, activityTime: new Date() });
     await newManagementActivity.save();
+
+    await revalidateBlogListingPages();
 
     return NextResponse.json(
       { message: "Blog updated successfully!" },

@@ -56,7 +56,7 @@ export async function DELETE(
     const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) deleted a blog: ${find_blog.blogTitle}`, activityTime: new Date() });
     await newManagementActivity.save();
 
-    revalidateBlogListingPages();
+    await revalidateBlogListingPages();
 
     return NextResponse.json(
       { message: "Blog deleted successfully", success: true },

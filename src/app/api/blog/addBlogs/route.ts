@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
       ]
     );
 
-    revalidateBlogListingPages();
+    await revalidateBlogListingPages();
 
     return NextResponse.json(
       { message: "Blog added successfully!" },

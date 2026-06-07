@@ -133,7 +133,7 @@ export async function POST(request) {
     const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) added a new blog: ${blogTitle}`, activityTime: new Date() });
     await newManagementActivity.save();
 
-    revalidateBlogListingPages();
+    await revalidateBlogListingPages();
 
     return NextResponse.json(
       { message: "Blog Created", blog: newBlog },
