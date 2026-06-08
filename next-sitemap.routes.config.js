@@ -28,6 +28,7 @@ const EXCLUDED_PATHS = [
   "/contact.html2/*",
   "/work.html2",
   "/work.html2/*",
+  "/web-development2",
   "/blogTst",
 
 ];

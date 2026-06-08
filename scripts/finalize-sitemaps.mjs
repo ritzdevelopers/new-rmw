@@ -17,7 +17,7 @@ const lastmod = new Date().toISOString();
 
 /** Drop legacy / internal routes from sitemap-0. */
 const SITEMAP_0_EXCLUDE_LOC =
-  /\/contact\.html2|\/work\.html2/;
+  /\/contact\.html2|\/work\.html2|\/web-development2/;
 
 function stripOrphanServiceUrlsFromSitemap0(redirects) {
   const filePath = path.join(publicDir, "sitemap-0.xml");
