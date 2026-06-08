@@ -91,6 +91,11 @@ const nextConfig = {
       { source: "/contact.html2/:path*", destination: "/contact.html", permanent: true },
       { source: "/stories", destination: "/web-stories", permanent: true },
       { source: "/stories/:path*", destination: "/web-stories", permanent: true },
+      {
+        source: "/services/contents-marketing/content-marketing",
+        destination: "/services/contents-marketing/customized-content-strategy",
+        permanent: true,
+      },
     ];
   },
   // Legacy service redirects (uncomment to enable):

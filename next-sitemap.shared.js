@@ -19,9 +19,7 @@ const SITEMAP_INDEX_FILES = [
 ];
 
 /** Paths that must never appear in any sitemap file. */
-const EXCLUDED_SITEMAP_PATHS = new Set([
-  "/services/contents-marketing/content-marketing",
-]);
+const EXCLUDED_SITEMAP_PATHS = new Set([]);
 
 function isExcludedSitemapPath(path) {
   if (typeof path !== "string") return false;
