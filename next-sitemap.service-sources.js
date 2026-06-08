@@ -1,5 +1,5 @@
 const mysql = require("mysql2/promise");
-const { isExcludedSitemapPath } = require("./next-sitemap.shared");
+const { resolveServiceSitemapPath } = require("./next-sitemap.shared");
 
 /** DB slug → canonical public path when URL alias differs from service_second.link */
 const SERVICE_SHORT_SLUG_REDIRECT_OVERRIDES = {
@@ -58,7 +58,8 @@ async function fetchServiceSitemapEntries() {
       const s = safeSegment(row.second_link);
       const t = safeSegment(row.third_link);
       if (!s || !t) continue;
-      paths.set(`/services/${s}/${t}`, null);
+      const resolved = resolveServiceSitemapPath(`/services/${s}/${t}`);
+      if (resolved) paths.set(resolved, null);
     }
 
     const secondCount = secondRows.length;
@@ -67,9 +68,7 @@ async function fetchServiceSitemapEntries() {
       `[next-sitemap] Services: ${secondCount} second-level rows, ${thirdPairCount} third-level rows → ${paths.size} unique /services URLs`
     );
 
-    return Array.from(paths.entries())
-      .filter(([path]) => !isExcludedSitemapPath(path))
-      .map(([path, lastmod]) => ({ path, lastmod }));
+    return Array.from(paths.entries()).map(([path, lastmod]) => ({ path, lastmod }));
   } catch (error) {
     console.error("[next-sitemap] Service URL fetch failed", error);
     return [];

@@ -19,14 +19,37 @@ const SITEMAP_INDEX_FILES = [
 ];
 
 /** Paths that must never appear in any sitemap file. */
-const EXCLUDED_SITEMAP_PATHS = new Set([]);
+const EXCLUDED_SITEMAP_PATHS = new Set([
+  "/services/contents-marketing/content-marketing",
+]);
 
-function isExcludedSitemapPath(path) {
-  if (typeof path !== "string") return false;
+/** DB / legacy service path → canonical public URL in sitemaps. */
+const SERVICE_SITEMAP_PATH_ALIASES = {
+  "/services/contents-marketing/content-marketing":
+    "/services/contents-marketing/customized-content-strategy",
+};
+
+function normalizeSitemapPath(path) {
+  if (typeof path !== "string") return null;
   let normalized = path.trim();
   if (!normalized.startsWith("/")) normalized = `/${normalized}`;
   normalized = normalized.replace(/\/+$/, "") || "/";
-  return EXCLUDED_SITEMAP_PATHS.has(normalized);
+  return normalized;
+}
+
+function isExcludedSitemapPath(path) {
+  const normalized = normalizeSitemapPath(path);
+  return normalized ? EXCLUDED_SITEMAP_PATHS.has(normalized) : false;
+}
+
+function resolveServiceSitemapPath(path) {
+  const normalized = normalizeSitemapPath(path);
+  if (!normalized) return null;
+  if (SERVICE_SITEMAP_PATH_ALIASES[normalized]) {
+    return SERVICE_SITEMAP_PATH_ALIASES[normalized];
+  }
+  if (EXCLUDED_SITEMAP_PATHS.has(normalized)) return null;
+  return normalized;
 }
 
 /** Custom robots.txt policies (also used on production). */
@@ -44,6 +67,8 @@ module.exports = {
   SITEMAP_INDEX_FILES,
   ROBOTS_POLICIES,
   EXCLUDED_SITEMAP_PATHS,
+  SERVICE_SITEMAP_PATH_ALIASES,
   isExcludedSitemapPath,
+  resolveServiceSitemapPath,
   getSitemapBuildLastmod,
 };

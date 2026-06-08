@@ -1,9 +1,7 @@
 const {
   siteUrl,
-  STATIC_PAGE_SLUGS,
-  safeToPath,
-  pickBlogSlug,
-  fetchBlogRecords,
+  fetchAllPostSitemapRecords,
+  collectPostSitemapPaths,
 } = require("./next-sitemap.blog-sources");
 const { getSitemapBuildLastmod } = require("./next-sitemap.shared");
 
@@ -20,20 +18,8 @@ module.exports = {
 
   additionalPaths: async (config) => {
     const buildLastmod = getSitemapBuildLastmod();
-    const records = await fetchBlogRecords();
-    const uniquePaths = new Set();
-
-    for (const blog of records) {
-      const rawSlug = pickBlogSlug(blog);
-      const blogPath = safeToPath(rawSlug);
-
-      if (!blogPath) continue;
-
-      const normalized = blogPath.replace(/^\/+/, "");
-      if (STATIC_PAGE_SLUGS.has(normalized)) continue;
-
-      uniquePaths.add(blogPath);
-    }
+    const records = await fetchAllPostSitemapRecords();
+    const uniquePaths = collectPostSitemapPaths(records);
 
     const items = [];
 
@@ -49,7 +35,7 @@ module.exports = {
       });
     }
 
-    console.log(`[next-sitemap:post-sitemap] Blog URLs: ${items.length}`);
+    console.log(`[next-sitemap:post-sitemap] Post URLs (blogs + case studies): ${items.length}`);
     return items;
   },
 };
