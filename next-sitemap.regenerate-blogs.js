@@ -5,7 +5,7 @@ const {
   STATIC_PAGE_SLUGS,
   safeToPath,
   pickBlogSlug,
-  fetchBlogRecords,
+  fetchAllPostSitemapRecords,
 } = require("./next-sitemap.blog-sources");
 const { fetchImageSitemapEntries } = require("./next-sitemap.image-sources");
 const { SITEMAP_INDEX_FILES, getSitemapBuildLastmod } = require("./next-sitemap.shared");
@@ -205,7 +205,7 @@ async function regenerateBlogSitemaps() {
     }
 
     const previousBlogPaths = readBlogPathsFromPostSitemap();
-    const records = await fetchBlogRecords();
+    const records = await fetchAllPostSitemapRecords();
     const blogItems = buildBlogItems(records);
 
     if (blogItems.length === 0 && previousBlogPaths.size > 0) {
@@ -223,7 +223,7 @@ async function regenerateBlogSitemaps() {
     writeSitemapIndex();
 
     console.log(
-      `[regenerate-blog-sitemaps] Updated post-sitemap, sitemap-0, images-sitemap, and sitemap index (${blogItems.length} blogs)`
+      `[regenerate-blog-sitemaps] Updated post-sitemap, sitemap-0, images-sitemap, and sitemap index (${blogItems.length} posts)`
     );
 
     return { ok: true, blogCount: blogItems.length };

@@ -1,9 +1,7 @@
 const {
   siteUrl,
-  STATIC_PAGE_SLUGS,
-  safeToPath,
-  pickBlogSlug,
-  fetchBlogRecords,
+  fetchAllPostSitemapRecords,
+  collectPostSitemapPaths,
 } = require("./next-sitemap.blog-sources");
 const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
 const { fetchCategorySitemapEntries } = require("./next-sitemap.category-sources");
@@ -65,20 +63,12 @@ module.exports = {
       uniquePaths.set(path, true);
     }
 
-    const records = await fetchBlogRecords();
+    const records = await fetchAllPostSitemapRecords();
     let blogPathCount = 0;
 
-    for (const blog of records) {
-      const rawSlug = pickBlogSlug(blog);
-      const blogPath = safeToPath(rawSlug);
-
-      if (!blogPath) continue;
-
-      const normalized = blogPath.replace(/^\/+/, "");
-      if (STATIC_PAGE_SLUGS.has(normalized)) continue;
-
-      if (!uniquePaths.has(blogPath)) blogPathCount++;
-      uniquePaths.set(blogPath, true);
+    for (const postPath of collectPostSitemapPaths(records)) {
+      if (!uniquePaths.has(postPath)) blogPathCount++;
+      uniquePaths.set(postPath, true);
     }
 
     for (const { path: servicePath } of await fetchServiceSitemapEntries()) {
@@ -102,7 +92,7 @@ module.exports = {
     }
 
     console.log(
-      `[next-sitemap:sitemap-0] Categories + blogs (${blogPathCount}) + services → ${items.length} additional paths`
+      `[next-sitemap:sitemap-0] Categories + posts (${blogPathCount}) + services → ${items.length} additional paths`
     );
     return items;
   },

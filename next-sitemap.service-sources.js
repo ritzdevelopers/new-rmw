@@ -1,4 +1,10 @@
 const mysql = require("mysql2/promise");
+const { resolveServiceSitemapPath } = require("./next-sitemap.shared");
+
+/** DB slug → canonical public path when URL alias differs from service_second.link */
+const SERVICE_SHORT_SLUG_REDIRECT_OVERRIDES = {
+  "content-marketing": "contents-marketing/customized-content-strategy",
+};
 
 /**
  * Mirrors routing + DB shape used by app routes:
@@ -52,7 +58,8 @@ async function fetchServiceSitemapEntries() {
       const s = safeSegment(row.second_link);
       const t = safeSegment(row.third_link);
       if (!s || !t) continue;
-      paths.set(`/services/${s}/${t}`, null);
+      const resolved = resolveServiceSitemapPath(`/services/${s}/${t}`);
+      if (resolved) paths.set(resolved, null);
     }
 
     const secondCount = secondRows.length;
@@ -122,6 +129,8 @@ async function fetchServiceShortSlugRedirects() {
         redirects[child] = `${parent}/${child}`;
       }
     }
+
+    Object.assign(redirects, SERVICE_SHORT_SLUG_REDIRECT_OVERRIDES);
 
     console.log(
       `[next-sitemap] Service short-slug redirects: ${Object.keys(redirects).length} orphan /services/{slug} paths`

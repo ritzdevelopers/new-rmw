@@ -6,6 +6,7 @@ const require = createRequire(import.meta.url);
 const {
   siteUrl,
   SITEMAP_INDEX_FILES,
+  EXCLUDED_SITEMAP_PATHS,
   getSitemapBuildLastmod,
 } = require("../next-sitemap.shared.js");
 const {
@@ -22,6 +23,40 @@ const lastmod = getSitemapBuildLastmod();
 /** Drop legacy / internal routes from sitemap-0. */
 const SITEMAP_0_EXCLUDE_LOC =
   /\/contact\.html2|\/work\.html2|\/web-development2|\/stories<\/loc>|\/all-ritz-blogs<\/loc>/;
+
+const EXCLUDED_SITEMAP_LOC_PATTERNS = [...EXCLUDED_SITEMAP_PATHS].map(
+  (p) =>
+    new RegExp(
+      `<loc>${siteUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}${p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}</loc>`
+    )
+);
+
+function stripExcludedPathsFromSitemapFile(fileName) {
+  const filePath = path.join(publicDir, fileName);
+  if (!fs.existsSync(filePath)) return 0;
+
+  const xml = fs.readFileSync(filePath, "utf8");
+  const lines = xml.split("\n");
+  let removed = 0;
+
+  const filtered = lines.filter((line) => {
+    if (!line.includes("<loc>")) return true;
+    for (const pattern of EXCLUDED_SITEMAP_LOC_PATTERNS) {
+      if (pattern.test(line)) {
+        removed++;
+        return false;
+      }
+    }
+    return true;
+  });
+
+  const output = filtered.join("\n");
+  if (output !== xml) {
+    fs.writeFileSync(filePath, output);
+  }
+
+  return removed;
+}
 
 function stripOrphanServiceUrlsFromSitemap0(redirects) {
   const filePath = path.join(publicDir, "sitemap-0.xml");
@@ -82,6 +117,17 @@ async function run() {
   if (removed > 0) {
     console.log(
       `[finalize-sitemaps] Removed ${removed} orphan /services/{slug} URLs from sitemap-0.xml`
+    );
+  }
+
+  let excludedRemoved = 0;
+  for (const file of ["sitemap-0.xml", "page-sitemap.xml", "images-sitemap.xml"]) {
+    excludedRemoved += stripExcludedPathsFromSitemapFile(file);
+  }
+
+  if (excludedRemoved > 0) {
+    console.log(
+      `[finalize-sitemaps] Removed ${excludedRemoved} excluded URL(s) from sitemap files`
     );
   }
 

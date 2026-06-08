@@ -7,6 +7,7 @@ const {
   pickBlogSlug,
   pickBlogLastmod,
 } = require("./next-sitemap.blog-sources");
+const { resolveServiceSitemapPath } = require("./next-sitemap.shared");
 
 /**
  * MySQL card.blog_image vs Mongo card.blogBanner — same rules as
@@ -79,6 +80,9 @@ async function fetchImageSitemapEntries() {
   }
 
   function addImage(relPath, lastmod, imageAbsUrl, title) {
+    const resolvedPath = resolveServiceSitemapPath(relPath);
+    if (!resolvedPath) return;
+    relPath = resolvedPath;
     if (!imageAbsUrl) return;
     try {
       new URL(imageAbsUrl);
@@ -111,6 +115,23 @@ async function fetchImageSitemapEntries() {
       );
 
       for (const row of blogRows) {
+        const rel = safeToPath(row.slug);
+        if (!rel) continue;
+        const imgUrl = buildMysqlBlogImageAbs(row.blog_image);
+        const lastmod = pickBlogLastmod({
+          created_at: row.created_at,
+        });
+        addImage(rel, lastmod, imgUrl, row.title || undefined);
+      }
+
+      const [caseStudyRows] = await connection.execute(
+        `SELECT slug, blog_image, title, created_at
+         FROM blogs
+         WHERE category_id = 1
+           AND blog_image IS NOT NULL AND TRIM(blog_image) <> ''`
+      );
+
+      for (const row of caseStudyRows) {
         const rel = safeToPath(row.slug);
         if (!rel) continue;
         const imgUrl = buildMysqlBlogImageAbs(row.blog_image);
