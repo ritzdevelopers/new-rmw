@@ -21,7 +21,7 @@ const lastmod = getSitemapBuildLastmod();
 
 /** Drop legacy / internal routes from sitemap-0. */
 const SITEMAP_0_EXCLUDE_LOC =
-  /\/contact\.html2|\/work\.html2|\/web-development2/;
+  /\/contact\.html2|\/work\.html2|\/web-development2|\/stories<\/loc>/;
 
 function stripOrphanServiceUrlsFromSitemap0(redirects) {
   const filePath = path.join(publicDir, "sitemap-0.xml");
