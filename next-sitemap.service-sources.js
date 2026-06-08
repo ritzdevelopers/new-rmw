@@ -1,4 +1,5 @@
 const mysql = require("mysql2/promise");
+const { isExcludedSitemapPath } = require("./next-sitemap.shared");
 
 /**
  * Mirrors routing + DB shape used by app routes:
@@ -61,7 +62,9 @@ async function fetchServiceSitemapEntries() {
       `[next-sitemap] Services: ${secondCount} second-level rows, ${thirdPairCount} third-level rows → ${paths.size} unique /services URLs`
     );
 
-    return Array.from(paths.entries()).map(([path, lastmod]) => ({ path, lastmod }));
+    return Array.from(paths.entries())
+      .filter(([path]) => !isExcludedSitemapPath(path))
+      .map(([path, lastmod]) => ({ path, lastmod }));
   } catch (error) {
     console.error("[next-sitemap] Service URL fetch failed", error);
     return [];
