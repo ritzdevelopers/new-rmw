@@ -81,6 +81,12 @@ const nextConfig = {
       { source: "/blogs/:page(\\d+)", destination: "/blogs", permanent: true },
       // Slug without "." so /blogs/image.jpg stays on disk (nginx) or middleware
       { source: "/blogs/:slug([^./]+)", destination: "/:slug", permanent: true },
+      // Legacy WordPress blog URLs: /my-post.html -> /my-post (not about/contact/work)
+      {
+        source: "/:slug((?!about|contact|work)[^/]+)\\.html",
+        destination: "/:slug",
+        permanent: true,
+      },
       { source: "/contact.html2", destination: "/contact.html", permanent: true },
       { source: "/contact.html2/:path*", destination: "/contact.html", permanent: true },
     ];

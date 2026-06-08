@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import {
   getLegacyBlogRedirectPath,
+  getLegacyHtmlBlogRedirectPath,
   isBlogImageFetchAccept,
 } from "@/lib/blogUrl";
 import { getServiceShortSlugRedirect } from "@/lib/serviceShortSlugRedirects";
@@ -68,6 +69,14 @@ export function middleware(req: NextRequest) {
     );
   }
 
+  // Legacy blog URLs: /my-post.html -> /my-post (keep about.html, contact.html, work.html)
+  const legacyHtmlDest = getLegacyHtmlBlogRedirectPath(pathname);
+  if (legacyHtmlDest) {
+    const dest = new URL(legacyHtmlDest, url.origin);
+    dest.search = url.search;
+    return NextResponse.redirect(dest, 301);
+  }
+
   // Legacy blog URLs: /blogs/<slug> -> /<slug> (images under /blogs/ stay as-is)
   const legacyBlogDest = getLegacyBlogRedirectPath(pathname);
   if (legacyBlogDest) {
@@ -111,5 +120,6 @@ export const config = {
 
     "/web-stories",
     "/services/:slug",
+    "/:slug.html",
   ],
 };

@@ -1,5 +1,34 @@
 const DEFAULT_SITE_ORIGIN = "https://ritzmediaworld.com";
 
+/** App Router pages that intentionally use a .html URL (not legacy blog slugs). */
+export const LEGACY_STATIC_HTML_PAGES = new Set([
+  "about.html",
+  "contact.html",
+  "work.html",
+]);
+
+/** Strip a trailing .html from blog slug params (legacy WordPress-style URLs). */
+export function normalizeBlogSlug(slug: string): string {
+  const trimmed = slug.trim().replace(/^\/+|\/+$/g, "");
+  return trimmed.replace(/\.html$/i, "");
+}
+
+/**
+ * Redirect legacy blog URLs like /my-post.html → /my-post.
+ * Returns null for real static pages (about.html, contact.html, work.html).
+ */
+export function getLegacyHtmlBlogRedirectPath(pathname: string): string | null {
+  if (!pathname.endsWith(".html")) return null;
+
+  const segment = pathname.replace(/^\/+|\/+$/g, "");
+  if (!segment || segment.includes("/")) return null;
+  if (LEGACY_STATIC_HTML_PAGES.has(segment.toLowerCase())) return null;
+
+  const slug = normalizeBlogSlug(segment);
+  if (!slug || slug === segment) return null;
+  return `/${slug}`;
+}
+
 /** Resolve blog banner / blog_image stored path to a loadable image URL. */
 export function resolveBlogBannerUrl(
   banner: string | null | undefined
