@@ -1,5 +1,15 @@
 const { siteUrl } = require("./next-sitemap.blog-sources");
 
+/** One ISO timestamp per Node process — used as lastmod for all URLs in a sitemap run. */
+let sitemapBuildLastmod = null;
+
+function getSitemapBuildLastmod() {
+  if (!sitemapBuildLastmod) {
+    sitemapBuildLastmod = new Date().toISOString();
+  }
+  return sitemapBuildLastmod;
+}
+
 /** Sitemap index entries written after sub-sitemaps are generated. */
 const SITEMAP_INDEX_FILES = [
   "sitemap-0.xml",
@@ -22,4 +32,5 @@ module.exports = {
   siteUrl,
   SITEMAP_INDEX_FILES,
   ROBOTS_POLICIES,
+  getSitemapBuildLastmod,
 };

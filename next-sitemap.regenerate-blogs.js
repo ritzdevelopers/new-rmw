@@ -5,12 +5,10 @@ const {
   STATIC_PAGE_SLUGS,
   safeToPath,
   pickBlogSlug,
-  pickBlogLastmod,
-  toIsoOrNull,
   fetchBlogRecords,
 } = require("./next-sitemap.blog-sources");
 const { fetchImageSitemapEntries } = require("./next-sitemap.image-sources");
-const { SITEMAP_INDEX_FILES } = require("./next-sitemap.shared");
+const { SITEMAP_INDEX_FILES, getSitemapBuildLastmod } = require("./next-sitemap.shared");
 
 const publicDir = path.join(process.cwd(), "public");
 
@@ -41,7 +39,8 @@ function pathFromLoc(loc) {
 }
 
 function buildBlogItems(records) {
-  const uniquePaths = new Map();
+  const buildLastmod = getSitemapBuildLastmod();
+  const uniquePaths = new Set();
 
   for (const blog of records) {
     const rawSlug = pickBlogSlug(blog);
@@ -51,17 +50,16 @@ function buildBlogItems(records) {
     const normalized = blogPath.replace(/^\/+/, "");
     if (STATIC_PAGE_SLUGS.has(normalized)) continue;
 
-    uniquePaths.set(blogPath, pickBlogLastmod(blog));
+    uniquePaths.add(blogPath);
   }
 
-  const fallbackLastmod = new Date().toISOString();
   const items = [];
 
-  for (const [blogPath, lastmod] of uniquePaths.entries()) {
+  for (const blogPath of uniquePaths) {
     items.push({
       path: blogPath,
       loc: `${siteUrl}${blogPath}`,
-      lastmod: toIsoOrNull(lastmod) || fallbackLastmod,
+      lastmod: buildLastmod,
       changefreq: "weekly",
       priority: "0.8",
     });
@@ -148,8 +146,8 @@ function syncSitemap0(blogItems, previousBlogPaths) {
 }
 
 async function writeImagesSitemap() {
+  const buildLastmod = getSitemapBuildLastmod();
   const entries = await fetchImageSitemapEntries();
-  const fallbackLastmod = new Date().toISOString();
   const items = [];
 
   for (const entry of entries) {
@@ -169,7 +167,7 @@ async function writeImagesSitemap() {
 
     items.push({
       loc: `${siteUrl}${entry.path}`,
-      lastmod: toIsoOrNull(entry.lastmod) || fallbackLastmod,
+      lastmod: buildLastmod,
       changefreq: "weekly",
       priority: "0.6",
       images,
@@ -181,7 +179,7 @@ async function writeImagesSitemap() {
 }
 
 function writeSitemapIndex() {
-  const lastmod = new Date().toISOString();
+  const lastmod = getSitemapBuildLastmod();
   const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${SITEMAP_INDEX_FILES.map(
