@@ -31,6 +31,8 @@ const EXCLUDED_PATHS = [
   "/blogTst",
   "/stories",
   "/stories/*",
+  "/all-ritz-blogs",
+  "/all-ritz-blogs/*",
 
 ];
 
