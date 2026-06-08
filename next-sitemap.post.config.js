@@ -3,10 +3,9 @@ const {
   STATIC_PAGE_SLUGS,
   safeToPath,
   pickBlogSlug,
-  pickBlogLastmod,
-  toIsoOrNull,
   fetchBlogRecords,
 } = require("./next-sitemap.blog-sources");
+const { getSitemapBuildLastmod } = require("./next-sitemap.shared");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -20,8 +19,9 @@ module.exports = {
   transform: async () => null,
 
   additionalPaths: async (config) => {
+    const buildLastmod = getSitemapBuildLastmod();
     const records = await fetchBlogRecords();
-    const uniquePaths = new Map();
+    const uniquePaths = new Set();
 
     for (const blog of records) {
       const rawSlug = pickBlogSlug(blog);
@@ -32,19 +32,18 @@ module.exports = {
       const normalized = blogPath.replace(/^\/+/, "");
       if (STATIC_PAGE_SLUGS.has(normalized)) continue;
 
-      uniquePaths.set(blogPath, pickBlogLastmod(blog));
+      uniquePaths.add(blogPath);
     }
 
     const items = [];
-    const fallbackLastmod = new Date().toISOString();
 
-    for (const [path, lastmod] of uniquePaths.entries()) {
+    for (const path of uniquePaths) {
       const transformed = await config.transform(config, path);
 
       items.push({
         ...transformed,
         loc: `${siteUrl}${path}`,
-        lastmod: toIsoOrNull(lastmod) || fallbackLastmod,
+        lastmod: buildLastmod,
         changefreq: "weekly",
         priority: 0.8,
       });

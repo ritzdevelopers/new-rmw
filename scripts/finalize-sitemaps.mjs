@@ -3,7 +3,11 @@ import path from "path";
 import { createRequire } from "module";
 
 const require = createRequire(import.meta.url);
-const { siteUrl, SITEMAP_INDEX_FILES } = require("../next-sitemap.shared.js");
+const {
+  siteUrl,
+  SITEMAP_INDEX_FILES,
+  getSitemapBuildLastmod,
+} = require("../next-sitemap.shared.js");
 const {
   fetchServiceShortSlugRedirects,
 } = require("../next-sitemap.service-sources.js");
@@ -13,11 +17,11 @@ const redirectsPath = path.join(
   process.cwd(),
   "src/data/service-short-slug-redirects.json"
 );
-const lastmod = new Date().toISOString();
+const lastmod = getSitemapBuildLastmod();
 
 /** Drop legacy / internal routes from sitemap-0. */
 const SITEMAP_0_EXCLUDE_LOC =
-  /\/contact\.html2|\/work\.html2|\/web-development2/;
+  /\/contact\.html2|\/work\.html2|\/web-development2|\/stories<\/loc>|\/all-ritz-blogs<\/loc>/;
 
 function stripOrphanServiceUrlsFromSitemap0(redirects) {
   const filePath = path.join(publicDir, "sitemap-0.xml");

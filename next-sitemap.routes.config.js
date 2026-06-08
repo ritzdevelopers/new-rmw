@@ -3,12 +3,11 @@ const {
   STATIC_PAGE_SLUGS,
   safeToPath,
   pickBlogSlug,
-  pickBlogLastmod,
-  toIsoOrNull,
   fetchBlogRecords,
 } = require("./next-sitemap.blog-sources");
 const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
 const { fetchCategorySitemapEntries } = require("./next-sitemap.category-sources");
+const { getSitemapBuildLastmod } = require("./next-sitemap.shared");
 
 /** Paths that must never appear in sitemap-0.xml (admin, internal, legacy). */
 const EXCLUDED_PATHS = [
@@ -30,6 +29,10 @@ const EXCLUDED_PATHS = [
   "/work.html2/*",
   "/web-development2",
   "/blogTst",
+  "/stories",
+  "/stories/*",
+  "/all-ritz-blogs",
+  "/all-ritz-blogs/*",
 
 ];
 
@@ -49,16 +52,17 @@ module.exports = {
 
   transform: async (config, path) => ({
     loc: `${siteUrl}${path}`,
-    lastmod: new Date().toISOString(),
+    lastmod: getSitemapBuildLastmod(),
     changefreq: "weekly",
     priority: 0.7,
   }),
 
   additionalPaths: async (config) => {
+    const buildLastmod = getSitemapBuildLastmod();
     const uniquePaths = new Map();
 
     for (const path of await fetchCategorySitemapEntries()) {
-      uniquePaths.set(path, null);
+      uniquePaths.set(path, true);
     }
 
     const records = await fetchBlogRecords();
@@ -74,24 +78,24 @@ module.exports = {
       if (STATIC_PAGE_SLUGS.has(normalized)) continue;
 
       if (!uniquePaths.has(blogPath)) blogPathCount++;
-      uniquePaths.set(blogPath, pickBlogLastmod(blog));
+      uniquePaths.set(blogPath, true);
     }
 
-    for (const { path: servicePath, lastmod: serviceLastmod } of await fetchServiceSitemapEntries()) {
+    for (const { path: servicePath } of await fetchServiceSitemapEntries()) {
       if (!uniquePaths.has(servicePath)) {
-        uniquePaths.set(servicePath, serviceLastmod);
+        uniquePaths.set(servicePath, true);
       }
     }
 
     const items = [];
 
-    for (const [path, lastmod] of uniquePaths.entries()) {
+    for (const path of uniquePaths.keys()) {
       const transformed = await config.transform(config, path);
 
       items.push({
         ...transformed,
         loc: `${siteUrl}${path}`,
-        lastmod: toIsoOrNull(lastmod) || transformed.lastmod,
+        lastmod: buildLastmod,
         changefreq: "weekly",
         priority: path.startsWith("/category/") ? 0.7 : 0.8,
       });

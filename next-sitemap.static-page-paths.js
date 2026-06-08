@@ -20,7 +20,6 @@ const STATIC_PAGE_PATHS = [
   "/services/radio-advertising",
   "/services/print-advertising",
   "/services/creative-services",
-  "/stories",
   "/web-stories",
   "/work.html",
   "/discussion-forum",
