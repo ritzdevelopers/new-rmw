@@ -1,17 +1,28 @@
-import Blog from "@/components/blogs/Blog";
-import { GET_ALL_BLOGS } from "@/app/api/get_all_blogs/route";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
+import Banner from "@/components/blogs/sections/Banner";
+import BlogList from "@/components/blogs/sections/BlogList";
+import BlogListSkeleton from "@/components/blogs/sections/BlogListSkeleton";
+
+const BrandImpactSection1 = dynamic(
+    () => import("@/components/copy/BrandImpactSection1")
+);
 
 /** Refetch listing from Mongo/MySQL periodically (production was serving a stale build). */
 export const revalidate = 60;
 
-async function Page() {
-    const all_blogs = await GET_ALL_BLOGS();
+function Page() {
     return (
         <>
-            <Blog all_blogs={all_blogs?.data ?? []} />
+            <Banner />
+            <Suspense fallback={<BlogListSkeleton />}>
+                <BlogList />
+            </Suspense>
+            <div className="w-full pb-[35px] lg:pb-[70px]">
+                <BrandImpactSection1 />
+            </div>
         </>
-    )
+    );
 }
-
 
 export default Page;

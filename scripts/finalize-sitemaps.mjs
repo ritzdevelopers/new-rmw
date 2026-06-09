@@ -7,6 +7,7 @@ const {
   siteUrl,
   SITEMAP_INDEX_FILES,
   EXCLUDED_SITEMAP_PATHS,
+  EXCLUDED_SITEMAP_PREFIXES,
   getSitemapBuildLastmod,
 } = require("../next-sitemap.shared.js");
 const {
@@ -31,6 +32,13 @@ const EXCLUDED_SITEMAP_LOC_PATTERNS = [...EXCLUDED_SITEMAP_PATHS].map(
     )
 );
 
+const EXCLUDED_SITEMAP_PREFIX_LOC_PATTERNS = (EXCLUDED_SITEMAP_PREFIXES || []).map((prefix) => {
+  const escapedSite = siteUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const escapedPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  // Match <loc>{siteUrl}{prefix}</loc> or any child like <loc>{siteUrl}{prefix}/...</loc>
+  return new RegExp(`<loc>${escapedSite}${escapedPrefix}(?:/[^<]*)?</loc>`);
+});
+
 function stripExcludedPathsFromSitemapFile(fileName) {
   const filePath = path.join(publicDir, fileName);
   if (!fs.existsSync(filePath)) return 0;
@@ -42,6 +50,12 @@ function stripExcludedPathsFromSitemapFile(fileName) {
   const filtered = lines.filter((line) => {
     if (!line.includes("<loc>")) return true;
     for (const pattern of EXCLUDED_SITEMAP_LOC_PATTERNS) {
+      if (pattern.test(line)) {
+        removed++;
+        return false;
+      }
+    }
+    for (const pattern of EXCLUDED_SITEMAP_PREFIX_LOC_PATTERNS) {
       if (pattern.test(line)) {
         removed++;
         return false;

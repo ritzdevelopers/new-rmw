@@ -122,6 +122,7 @@ function SectionNew1() {
                             alt="Hand reaching toward a glowing digital sphere, Ritz Media World"
                             title="Hand reaching toward a glowing digital sphere, Ritz Media World"
                             fill
+                            loading="lazy"
                             className="object-cover object-center"
                             sizes="(max-width: 1023px) 100vw, 391px"
                         />

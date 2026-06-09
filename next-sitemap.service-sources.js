@@ -51,7 +51,8 @@ async function fetchServiceSitemapEntries() {
     for (const row of secondRows) {
       const seg = safeSegment(row.link);
       if (!seg) continue;
-      paths.set(`/services/${seg}`, null);
+      const resolved = resolveServiceSitemapPath(`/services/${seg}`);
+      if (resolved) paths.set(resolved, null);
     }
 
     for (const row of thirdRows) {

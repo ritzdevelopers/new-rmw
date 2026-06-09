@@ -73,6 +73,8 @@ const nextConfig = {
         destination: "https://ritzmediaworld.com/:path*",
         permanent: true,
       },
+      { source: "/discussion-forum", destination: "/contact.html", permanent: true },
+      { source: "/discussion-forum/:path*", destination: "/contact.html", permanent: true },
       { source: "/blogs2", destination: "/blogs", permanent: true },
       { source: "/blog2", destination: "/blogs", permanent: true },
       { source: "/all-ritz-blogs", destination: "/blogs", permanent: true },
