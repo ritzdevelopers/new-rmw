@@ -45,6 +45,7 @@ export default function Section1() {
                     />
                     <p
                         className={`absolute top-[50%] right-4 -translate-y-1/2 text-center text-[12px] font-[700] uppercase text-white sm:right-5 sm:text-[13px] md:right-7 md:text-left md:text-[14px] lg:right-10 lg:text-[16px] xl:right-10 ${styles.fontmontserrat}`}
+                        style={{ fontFamily: "MontserratBold" }}
                     >
                         About
                     </p>
@@ -52,11 +53,13 @@ export default function Section1() {
                 <div className="flex flex-col gap-2 pb-[176px] pl-0 md:pb-[15px] md:pl-9 lg:pb-0 lg:pl-10 xl:pl-12">
                     <h1
                         className={`mt-1 text-center text-[26px] font-[700] leading-[1.1] text-white sm:mt-2 sm:text-[36px] sm:leading-[1.15] md:mt-0 md:text-left md:text-[31px] md:leading-[1.2] lg:text-[55px] lg:leading-14 ${styles.fontmontserrat}`}
+                        style={{ fontFamily: "MontserratBold" }}
                     >
                         About Us
                     </h1>
                     <h2
                         className={`text-center text-[14px] font-[400] text-white sm:text-[16px] md:text-left lg:text-[19px] xl:text-[30px] ${styles.fontmontserrat}`}
+                        style={{ fontFamily: "MontserratMedium" }}
                     >
                         Driving Success with Every Brand{" "}
                         <br className="hidden md:block" />

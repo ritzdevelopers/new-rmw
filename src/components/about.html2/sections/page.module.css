@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 .clientSlider {
   animation: clientSlider 30s linear infinite;
   will-change: transform;
@@ -18,15 +20,15 @@
 }
 
 .fontmontserrat {
-  font-family: MontserratExtraBold, MontserratBold, MontserratSemiBold, MontserratMedium, MontserratRegular, sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .fontopensans {
-  font-family: OpenSansRegular, OpenSansSemiBold, OpenSansBold, sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .fontpoppins {
-  font-family: PoppinsRegular, PoppinsSemiBold, PoppinsBold, sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .containerWidth {
