@@ -16,6 +16,8 @@ export default function Section1() {
                 title={BANNER_ALT}
                 fill
                 priority
+                fetchPriority="high"
+                unoptimized
                 className="object-cover object-center md:hidden"
                 sizes="100vw"
             />
@@ -24,7 +26,9 @@ export default function Section1() {
                 alt={BANNER_ALT}
                 title={BANNER_ALT}
                 fill
-                priority
+                loading="eager"
+                fetchPriority="high"
+                unoptimized
                 className="hidden object-cover object-center md:block"
                 sizes="100vw"
             />
@@ -36,8 +40,8 @@ export default function Section1() {
                         alt="About section label – Ritz Media World"
                         title="About – Ritz Media World"
                         fill
+                        loading="lazy"
                         sizes="(min-width:1024px) 165px, (min-width:768px) 155px, (min-width:640px) 140px, 120px"
-                        priority
                     />
                     <p
                         className={`absolute top-[50%] right-4 -translate-y-1/2 text-center text-[12px] font-[700] uppercase text-white sm:right-5 sm:text-[13px] md:right-7 md:text-left md:text-[14px] lg:right-10 lg:text-[16px] xl:right-10 ${styles.fontmontserrat}`}
