@@ -1,7 +1,7 @@
 const { siteUrl } = require("./next-sitemap.blog-sources");
 const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
 const { getStaticPagePaths } = require("./next-sitemap.static-page-paths");
-const { getSitemapBuildLastmod } = require("./next-sitemap.shared");
+const { getSitemapBuildLastmod, isExcludedSitemapPath } = require("./next-sitemap.shared");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -21,11 +21,11 @@ module.exports = {
 
     const staticPaths = getStaticPagePaths();
     for (const path of staticPaths) {
-      uniquePaths.add(path);
+      if (!isExcludedSitemapPath(path)) uniquePaths.add(path);
     }
 
     for (const { path } of await fetchServiceSitemapEntries()) {
-      uniquePaths.add(path);
+      if (!isExcludedSitemapPath(path)) uniquePaths.add(path);
     }
 
     const items = [];

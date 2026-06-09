@@ -21,7 +21,21 @@ const SITEMAP_INDEX_FILES = [
 /** Paths that must never appear in any sitemap file. */
 const EXCLUDED_SITEMAP_PATHS = new Set([
   "/services/contents-marketing/content-marketing",
+  "/career2",
+  "/services/print-advertising2",
+  "/services/print-advertising2/a",
+  "/discussion-forum",
 ]);
+
+/**
+ * Path prefixes that must never appear in any sitemap file.
+ * Use for dynamic routes (e.g. /services/print-advertising2/[slug]).
+ */
+const EXCLUDED_SITEMAP_PREFIXES = [
+  "/career2",
+  "/services/print-advertising2",
+  "/discussion-forum",
+];
 
 /** DB / legacy service path → canonical public URL in sitemaps. */
 const SERVICE_SITEMAP_PATH_ALIASES = {
@@ -39,7 +53,12 @@ function normalizeSitemapPath(path) {
 
 function isExcludedSitemapPath(path) {
   const normalized = normalizeSitemapPath(path);
-  return normalized ? EXCLUDED_SITEMAP_PATHS.has(normalized) : false;
+  if (!normalized) return false;
+  if (EXCLUDED_SITEMAP_PATHS.has(normalized)) return true;
+  for (const prefix of EXCLUDED_SITEMAP_PREFIXES) {
+    if (normalized === prefix || normalized.startsWith(`${prefix}/`)) return true;
+  }
+  return false;
 }
 
 function resolveServiceSitemapPath(path) {
@@ -48,7 +67,7 @@ function resolveServiceSitemapPath(path) {
   if (SERVICE_SITEMAP_PATH_ALIASES[normalized]) {
     return SERVICE_SITEMAP_PATH_ALIASES[normalized];
   }
-  if (EXCLUDED_SITEMAP_PATHS.has(normalized)) return null;
+  if (isExcludedSitemapPath(normalized)) return null;
   return normalized;
 }
 
@@ -67,6 +86,7 @@ module.exports = {
   SITEMAP_INDEX_FILES,
   ROBOTS_POLICIES,
   EXCLUDED_SITEMAP_PATHS,
+  EXCLUDED_SITEMAP_PREFIXES,
   SERVICE_SITEMAP_PATH_ALIASES,
   isExcludedSitemapPath,
   resolveServiceSitemapPath,

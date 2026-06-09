@@ -22,7 +22,6 @@ const STATIC_PAGE_PATHS = [
   "/services/creative-services",
   "/web-stories",
   "/work.html",
-  "/discussion-forum",
 ];
 function normalizeStaticPath(p) {
   if (typeof p !== "string") return null;

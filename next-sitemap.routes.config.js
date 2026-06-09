@@ -5,7 +5,7 @@ const {
 } = require("./next-sitemap.blog-sources");
 const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
 const { fetchCategorySitemapEntries } = require("./next-sitemap.category-sources");
-const { getSitemapBuildLastmod } = require("./next-sitemap.shared");
+const { getSitemapBuildLastmod, isExcludedSitemapPath } = require("./next-sitemap.shared");
 
 /** Paths that must never appear in sitemap-0.xml (admin, internal, legacy). */
 const EXCLUDED_PATHS = [
@@ -31,8 +31,27 @@ const EXCLUDED_PATHS = [
   "/stories/*",
   "/all-ritz-blogs",
   "/all-ritz-blogs/*",
+  "/career2",
+  "/career2/*",
+  "/services/print-advertising2",
+  "/services/print-advertising2/*",
+  "/discussion-forum",
+  "/discussion-forum/*",
 
 ];
+
+function matchesExcludedPath(path) {
+  if (typeof path !== "string") return false;
+  for (const rule of EXCLUDED_PATHS) {
+    if (rule.endsWith("/*")) {
+      const prefix = rule.slice(0, -2);
+      if (path === prefix || path.startsWith(`${prefix}/`)) return true;
+    } else if (path === rule) {
+      return true;
+    }
+  }
+  return false;
+}
 
 /**
  * Generates sitemap-0.xml: Next.js build routes + blogs, services, and categories.
@@ -60,18 +79,26 @@ module.exports = {
     const uniquePaths = new Map();
 
     for (const path of await fetchCategorySitemapEntries()) {
-      uniquePaths.set(path, true);
+      if (!isExcludedSitemapPath(path) && !matchesExcludedPath(path)) uniquePaths.set(path, true);
     }
 
     const records = await fetchAllPostSitemapRecords();
     let blogPathCount = 0;
 
     for (const postPath of collectPostSitemapPaths(records)) {
+      if (isExcludedSitemapPath(postPath) || matchesExcludedPath(postPath)) continue;
       if (!uniquePaths.has(postPath)) blogPathCount++;
       uniquePaths.set(postPath, true);
     }
 
     for (const { path: servicePath } of await fetchServiceSitemapEntries()) {
+      if (
+        isExcludedSitemapPath(servicePath) ||
+        matchesExcludedPath(servicePath) ||
+        uniquePaths.has(servicePath)
+      ) {
+        continue;
+      }
       if (!uniquePaths.has(servicePath)) {
         uniquePaths.set(servicePath, true);
       }
