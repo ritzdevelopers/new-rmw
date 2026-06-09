@@ -94,6 +94,7 @@ function Section4() {
                                         alt="Ritz team forming the letter R"
                                         title="Ritz team forming the letter R"
                                         fill
+                                        loading="lazy"
                                         className="object-cover object-center"
                                         sizes="(max-width: 639px) 100vw, 22vw"
                                     />
@@ -194,10 +195,13 @@ function Section4() {
                                 <div
                                     className={`${pageStyles.section4BuildingImgWrap} ${pageStyles.section4BuildingImgWrapFull}`}
                                 >
-                                    <img
+                                    <Image
                                         src="/varunimage/contact-office-image.jpg"
                                         alt="Corporate Park Tower A1"
                                         title="Corporate Park Tower A1"
+                                        width={640}
+                                        height={360}
+                                        loading="lazy"
                                         className={`w-full md:h-[320px] h-[370px] lg:h-[338px] xl:h-[360px] ${pageStyles.section4BuildingImg} ${pageStyles.section4BuildingImgFull}`}
                                     />
                                 </div>
@@ -206,10 +210,13 @@ function Section4() {
                                     className={`relative flex flex-col gap-[0px] sm:w-[55%] md:w-full lg:w-[60%] ${pageStyles.section4AddressBlockFull} border border-[#E8E8E8] px-5 py-3 text-white sm:pl-8 sm:pr-6 sm:py-6`}
                                 >
                                     <div className="relative mx-auto mb-2 h-[180px] w-auto flex-shrink-0 md:mb-0 md:ml-auto md:mr-0 md:h-[130px] lg:h-[130px] xl:h-[180px]">
-                                        <img
+                                        <Image
                                             src="/varunimage/RMW-logo-contact.png"
                                             alt="Ritz Media World Logo"
                                             title="Ritz Media World Logo"
+                                            width={200}
+                                            height={180}
+                                            loading="lazy"
                                             className="h-full w-auto object-contain"
                                         />
                                     </div>

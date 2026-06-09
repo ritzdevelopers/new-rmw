@@ -60,7 +60,6 @@ function Section2() {
                                     alt="Office team at work"
                                     title="Office team at work"
                                     fill
-                                    unoptimized
                                     sizes="(max-width: 1023px) 100vw, 480px"
                                     className="object-cover rounded-full"
                                 />

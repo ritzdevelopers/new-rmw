@@ -11,7 +11,7 @@ export default function Section1() {
             aria-label={BANNER_ALT}
         >
             <Image
-                src="/new-about-imgs/s1/About-Us-page-mob.png"
+                src="/new-about-imgs/s1/About-Us-page-mob.webp"
                 alt={BANNER_ALT}
                 title={BANNER_ALT}
                 fill
@@ -20,7 +20,7 @@ export default function Section1() {
                 sizes="100vw"
             />
             <Image
-                src="/varunimage/About-Us-banner-new.png"
+                src="/varunimage/About-Us-banner-new.webp"
                 alt={BANNER_ALT}
                 title={BANNER_ALT}
                 fill

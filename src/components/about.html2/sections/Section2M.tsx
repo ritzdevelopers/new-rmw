@@ -28,12 +28,15 @@ function Section2M() {
                         We pride ourselves in going out of our way to understand the consumer mindset in every walk of life. This enables us to build
                         campaigns that don&apos;t just speak at them, but we build campaigns that speak to them.
                     </p>
-                    <div className={`h-auto w-full max-w-[564px] shrink-0 ${s2.teamWrap}`}>
-                        <img
+                    <div className={`relative h-auto w-full max-w-[564px] shrink-0 ${s2.teamWrap}`}>
+                        <Image
                             src="/new-about-imgs/s2/team.jpg"
                             alt="Ritz Media World creative team"
                             title="Ritz Media World team"
-                            className="h-auto w-full mt-1"
+                            width={1128}
+                            height={752}
+                            sizes="(max-width: 768px) 100vw, 564px"
+                            className="mt-1 h-auto w-full"
                         />
                     </div>
                 </div>

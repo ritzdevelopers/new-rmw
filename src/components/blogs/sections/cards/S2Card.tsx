@@ -118,16 +118,15 @@ function S2Card({ blog }: { blog: Blog }) {
                 <div onClick={() => window.open(`/${blog.slug}`, "_blank")} className="w-full cursor-pointer relative h-[220px] sm:h-[200px] lg:h-[250px] xl:h-[345px] overflow-hidden bg-[#E8EBFF]">
                     {imageSrc ? (
                     <Image
-                       src={imageSrc}
-                        quality={75}
-                        unoptimized
+                        src={imageSrc}
+                        quality={70}
                         title={blog.title}
-                        priority={false}
                         loading="lazy"
                         alt={blog.title}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 613px" />
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 613px"
+                    />
                     ) : null}
                 </div>
 
