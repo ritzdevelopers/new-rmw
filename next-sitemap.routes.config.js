@@ -37,6 +37,10 @@ const EXCLUDED_PATHS = [
   "/services/print-advertising2/*",
   "/discussion-forum",
   "/discussion-forum/*",
+  "/services/real-estate-walkthrough",
+  "/services/real-estate-walkthrough/*",
+  "/services/Real-Estate-Walkthrough",
+  "/services/Real-Estate-Walkthrough/*",
 
 ];
 
