@@ -1,8 +1,9 @@
 const { siteUrl, ROBOTS_POLICIES } = require("./next-sitemap.shared");
 
 /**
- * Robots.txt only — no URL sitemap (page/post/images configs handle those).
- * Run last in postbuild after finalize-sitemaps.mjs writes sitemap.xml.
+ * Legacy robots.txt config (next-sitemap requires .next/build-manifest).
+ * postbuild uses scripts/generate-robots.mjs instead — edit ROBOTS_POLICIES in next-sitemap.shared.js.
+ * Run manually only if needed: node scripts/generate-robots.mjs
  *
  * @type {import('next-sitemap').IConfig}
  */

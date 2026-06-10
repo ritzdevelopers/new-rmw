@@ -159,7 +159,7 @@ function NewNavbar() {
   }));
 
   const socialItems = [
-    { label: 'X (Twitter)', link: 'https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld' },
+    { label: 'X (Twitter)', link: 'https://x.com/ritzmediaworld' },
     { label: 'LinkedIn', link: 'https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in' },
     { label: 'Facebook', link: 'https://www.facebook.com/ritzmediaworld/' },
     { label: 'YouTube', link: 'https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia' },

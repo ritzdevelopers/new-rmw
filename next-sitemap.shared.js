@@ -25,6 +25,8 @@ const EXCLUDED_SITEMAP_PATHS = new Set([
   "/services/print-advertising2",
   "/services/print-advertising2/a",
   "/discussion-forum",
+  "/services/real-estate-walkthrough",
+  "/services/Real-Estate-Walkthrough",
 ]);
 
 /**
@@ -35,6 +37,8 @@ const EXCLUDED_SITEMAP_PREFIXES = [
   "/career2",
   "/services/print-advertising2",
   "/discussion-forum",
+  "/services/real-estate-walkthrough",
+  "/services/Real-Estate-Walkthrough",
 ];
 
 /** DB / legacy service path → canonical public URL in sitemaps. */
