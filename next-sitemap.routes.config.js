@@ -5,6 +5,7 @@ const {
 } = require("./next-sitemap.blog-sources");
 const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
 const { fetchCategorySitemapEntries } = require("./next-sitemap.category-sources");
+const { fetchTagSitemapEntries } = require("./next-sitemap.tag-sources");
 const { getSitemapBuildLastmod, isExcludedSitemapPath } = require("./next-sitemap.shared");
 
 /** Paths that must never appear in sitemap-0.xml (admin, internal, legacy). */
@@ -41,6 +42,8 @@ const EXCLUDED_PATHS = [
   "/services/real-estate-walkthrough/*",
   "/services/Real-Estate-Walkthrough",
   "/services/Real-Estate-Walkthrough/*",
+  "/tags2",
+  "/tags2/*",
 
 ];
 
@@ -86,6 +89,10 @@ module.exports = {
       if (!isExcludedSitemapPath(path) && !matchesExcludedPath(path)) uniquePaths.set(path, true);
     }
 
+    for (const path of await fetchTagSitemapEntries()) {
+      if (!isExcludedSitemapPath(path) && !matchesExcludedPath(path)) uniquePaths.set(path, true);
+    }
+
     const records = await fetchAllPostSitemapRecords();
     let blogPathCount = 0;
 
@@ -118,12 +125,13 @@ module.exports = {
         loc: `${siteUrl}${path}`,
         lastmod: buildLastmod,
         changefreq: "weekly",
-        priority: path.startsWith("/category/") ? 0.7 : 0.8,
+        priority:
+          path.startsWith("/category/") || path.startsWith("/tags/") ? 0.7 : 0.8,
       });
     }
 
     console.log(
-      `[next-sitemap:sitemap-0] Categories + posts (${blogPathCount}) + services → ${items.length} additional paths`
+      `[next-sitemap:sitemap-0] Categories + tags + posts (${blogPathCount}) + services → ${items.length} additional paths`
     );
     return items;
   },
