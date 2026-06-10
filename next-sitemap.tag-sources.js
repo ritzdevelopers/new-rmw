@@ -1,5 +1,4 @@
 const mysql = require("mysql2/promise");
-const mongoose = require("mongoose");
 
 /**
  * Mirrors /tags/[keyword] slug generation (Section2 blog tags):
@@ -20,107 +19,94 @@ function keywordToTagSlug(keyword) {
   return slug || null;
 }
 
-function collectTagSlugsFromMetaKeywords(raw) {
-  if (typeof raw !== "string" || !raw.trim()) return [];
-
-  const slugs = [];
-  for (const part of raw.split(",")) {
-    const slug = keywordToTagSlug(part);
-    if (slug) slugs.push(slug);
-  }
-  return slugs;
+/** Same normalization as find-blogs-using-key: LOWER(REPLACE(meta_keywords, ', ', ',')). */
+function normalizeMetaKeywordsField(metaKeywords) {
+  if (typeof metaKeywords !== "string") return "";
+  return metaKeywords.toLowerCase().replace(/, /g, ",");
 }
 
-async function fetchTagSlugsFromMySQL() {
+/** Mirrors MySQL FIND_IN_SET — list items are not trimmed. */
+function mysqlFindInSet(needle, normalizedField) {
+  if (!needle || !normalizedField) return false;
+  return normalizedField.split(",").some((item) => item === needle);
+}
+
+/** Reverse /tags/[slug] → keyword lookup used by find-blogs-using-key API. */
+function slugToLookupKeyword(slug) {
+  if (typeof slug !== "string") return null;
+  const keyword = decodeURIComponent(slug.replace(/-/g, " ").trim().toLowerCase());
+  return keyword || null;
+}
+
+/** True when at least one active blog matches the tag API query for this slug. */
+function slugHasActiveBlogs(slug, activeBlogRows) {
+  const lookupKeyword = slugToLookupKeyword(slug);
+  if (!lookupKeyword) return false;
+
+  return activeBlogRows.some((row) =>
+    mysqlFindInSet(lookupKeyword, normalizeMetaKeywordsField(row.meta_keywords))
+  );
+}
+
+async function fetchTagSitemapEntries() {
   const host = process.env.DATABASE_HOST;
   const user = process.env.DATABASE_USER;
   const password = process.env.DATABASE_PASSWORD;
   const database = process.env.DATABASE_NAME;
   const port = Number(process.env.DATABASE_PORT || 3306);
 
-  if (!host || !user || !database) return [];
+  if (!host || !user || !database) {
+    console.warn("[next-sitemap] Skipping tag URLs (database env incomplete).");
+    return [];
+  }
 
   let connection;
   try {
     connection = await mysql.createConnection({ host, user, password, database, port });
+
     const [rows] = await connection.execute(
       `SELECT meta_keywords
        FROM blogs
        WHERE meta_keywords IS NOT NULL
          AND TRIM(meta_keywords) <> ''
-         AND (status = 1 OR status = 'active')
-       ORDER BY id DESC`
+         AND status = 'active'`
     );
 
-    const slugs = new Set();
+    const candidateSlugs = new Set();
     for (const row of rows) {
-      for (const slug of collectTagSlugsFromMetaKeywords(row.meta_keywords)) {
-        slugs.add(slug);
+      const normalizedField = normalizeMetaKeywordsField(row.meta_keywords);
+      for (const rawToken of normalizedField.split(",")) {
+        const slug = keywordToTagSlug(rawToken);
+        if (slug) candidateSlugs.add(slug);
       }
     }
 
-    return [...slugs];
+    const paths = new Set();
+    for (const slug of candidateSlugs) {
+      if (slugHasActiveBlogs(slug, rows)) {
+        paths.add(`/tags/${slug}`);
+      }
+    }
+
+    const entries = [...paths].sort();
+    console.log(
+      `[next-sitemap] Tags: ${candidateSlugs.size} candidates → ${entries.length} /tags URLs with active blogs`
+    );
+
+    return entries;
   } catch (error) {
-    console.error("[next-sitemap] Tag URL MySQL fetch failed", error);
+    console.error("[next-sitemap] Tag URL fetch failed", error);
     return [];
   } finally {
     if (connection) await connection.end();
   }
 }
 
-async function fetchTagSlugsFromMongo() {
-  const mongoUrl = process.env.MONGO_URL;
-  if (!mongoUrl) return [];
-
-  let conn;
-  try {
-    conn = await mongoose.createConnection(mongoUrl).asPromise();
-    const docs = await conn
-      .collection("ritzblogmodels")
-      .find(
-        { blogStatus: true, metaKeywords: { $exists: true, $ne: "" } },
-        { projection: { metaKeywords: 1 } }
-      )
-      .toArray();
-
-    const slugs = new Set();
-    for (const doc of docs) {
-      for (const slug of collectTagSlugsFromMetaKeywords(doc.metaKeywords)) {
-        slugs.add(slug);
-      }
-    }
-
-    return [...slugs];
-  } catch (error) {
-    console.error("[next-sitemap] Tag URL Mongo fetch failed", error);
-    return [];
-  } finally {
-    if (conn) await conn.close();
-  }
-}
-
-/** @returns {string[]} deduplicated /tags/{slug} paths */
-async function fetchTagSitemapEntries() {
-  const [mysqlSlugs, mongoSlugs] = await Promise.all([
-    fetchTagSlugsFromMySQL(),
-    fetchTagSlugsFromMongo(),
-  ]);
-
-  const paths = new Set();
-  for (const slug of [...mysqlSlugs, ...mongoSlugs]) {
-    paths.add(`/tags/${slug}`);
-  }
-
-  const entries = [...paths].sort();
-  console.log(
-    `[next-sitemap] Tags: MySQL ${mysqlSlugs.length}, Mongo ${mongoSlugs.length} → ${entries.length} unique /tags URLs`
-  );
-
-  return entries;
-}
-
 module.exports = {
   keywordToTagSlug,
-  collectTagSlugsFromMetaKeywords,
+  normalizeMetaKeywordsField,
+  mysqlFindInSet,
+  slugToLookupKeyword,
+  slugHasActiveBlogs,
   fetchTagSitemapEntries,
 };
