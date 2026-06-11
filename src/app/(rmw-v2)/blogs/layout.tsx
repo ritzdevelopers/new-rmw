@@ -62,16 +62,17 @@ export default function Layout({ children }: { children: ReactNode }) {
             <link
                 rel="preload"
                 as="image"
-                href="/blogs2/s1-layer-mob.webp"
+                type="image/webp"
+                href={`${BLOG_INDEX_URL}/blogs2/s1-layer-mob.webp`}
                 media="(max-width: 767px)"
                 fetchPriority="high"
             />
             <link
                 rel="preload"
                 as="image"
-                href="/blogs2/s1-layer-desk.webp"
+                type="image/webp"
+                href={`${BLOG_INDEX_URL}/blogs2/s1-layer-desk.webp`}
                 media="(min-width: 768px)"
-                fetchPriority="high"
             />
             {children}
         </>

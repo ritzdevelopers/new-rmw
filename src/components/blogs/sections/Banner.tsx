@@ -1,31 +1,28 @@
-import Image from "next/image";
 import styles from "./page.module.css";
 
 const BANNER_ALT = "Ritz Media World – blogs banner";
+const MOB_BANNER = "/blogs2/s1-layer-mob.webp";
+const DESK_BANNER = "/blogs2/s1-layer-desk.webp";
 
 function Banner() {
     return (
         <section className="w-full min-h-[280px] sm:min-h-[320px] md:min-h-[360px] lg:min-h-[409px] relative bg-[#0F1640] flex justify-center items-end pb-6 sm:pb-8 px-4 sm:px-6">
             <div className="absolute left-0 bottom-0 w-full h-full z-0 flex items-end pointer-events-none">
-                <Image
-                    src="/blogs2/s1-layer-mob.webp"
-                    alt={BANNER_ALT}
-                    title="Ritz Media World"
-                    fill
-                    priority
-                    fetchPriority="high"
-                    sizes="100vw"
-                    className="object-cover object-bottom md:hidden"
-                />
-                <Image
-                    src="/blogs2/s1-layer-desk.webp"
-                    alt={BANNER_ALT}
-                    title="Ritz Media World"
-                    fill
-                    priority
-                    sizes="100vw"
-                    className="hidden object-cover object-bottom md:block"
-                />
+                <picture className="block h-full w-full">
+                    <source media="(max-width: 767px)" srcSet={MOB_BANNER} type="image/webp" />
+                    <source media="(min-width: 768px)" srcSet={DESK_BANNER} type="image/webp" />
+                    <img
+                        src={MOB_BANNER}
+                        alt={BANNER_ALT}
+                        title="Ritz Media World"
+                        width={828}
+                        height={183}
+                        fetchPriority="high"
+                        loading="eager"
+                        decoding="async"
+                        className="h-full w-full object-cover object-bottom"
+                    />
+                </picture>
             </div>
 
             <div className="w-full flex flex-col justify-center items-center text-center z-10 gap-3 sm:gap-4 max-w-[1280px]">
