@@ -10,7 +10,16 @@ import { AlertTriangle, Home, Monitor } from "lucide-react";
 import { useRouter } from "next/navigation";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
-import * as XLSX from "xlsx";
+import {
+  buildMongoCategoryLookup,
+  buildMysqlCategoryLookup,
+  exportBlogsToExcel,
+  mapMongoBlogToExportRow,
+  mapMysqlBlogToExportRow,
+  type ExportProgress,
+  type MongoBlogExportSource,
+  type MysqlBlogExportSource,
+} from "@/lib/exportBlogsExcel";
 
 function managementAuthHeaders(): Record<string, string> {
   if (typeof window === "undefined") return {};
@@ -439,13 +448,38 @@ export default function ManageBlogs() {
   }
 
   const [backupLoading, setBackupLoading] = useState(false);
+  const [backupProgress, setBackupProgress] = useState<ExportProgress>({
+    phase: "preparing",
+    current: 0,
+    total: 0,
+    percent: 0,
+    label: "Starting backup...",
+  });
 
   const rmwBackUpHandler = async () => {
     setBackupLoading(true);
+    setBackupProgress({
+      phase: "preparing",
+      current: 0,
+      total: 0,
+      percent: 2,
+      label: "Fetching blogs...",
+    });
     let mongoBlogs: MONGOEXCELBLOG[] | undefined;
     let sqlBlogs: MYSQLBLOGS[] | undefined;
 
     try {
+      const [mysqlCategoryNames, mongoCategoryNames] = await Promise.all([
+        buildMysqlCategoryLookup(),
+        buildMongoCategoryLookup(),
+      ]);
+
+      setBackupProgress((prev) => ({
+        ...prev,
+        percent: 8,
+        label: "Fetching MongoDB blogs...",
+      }));
+
       // Fetch All The MongoDb Blogs ::
       try {
         const { data } = await axios.get<{ allBlogs: MONGOEXCELBLOG[] }>(
@@ -469,6 +503,12 @@ export default function ManageBlogs() {
         setShowPopup(true);
       }
 
+      setBackupProgress((prev) => ({
+        ...prev,
+        percent: 15,
+        label: "Fetching MySQL blogs...",
+      }));
+
       // Fetch All The MySQL Blogs ::
       try {
         const { data } = await axios.get<MYSQLBLOGS[]>("/api/all_mysql_blogs");
@@ -490,12 +530,30 @@ export default function ManageBlogs() {
         setShowPopup(true);
       }
 
-      const blogsForDownload = [
-        ...(mongoBlogs || []),
-        ...(sqlBlogs || []),
+      setBackupProgress((prev) => ({
+        ...prev,
+        percent: 20,
+        label: "Preparing export rows...",
+      }));
+
+      const exportRows = [
+        ...(mongoBlogs || []).map((blog) =>
+          mapMongoBlogToExportRow(
+            blog as MongoBlogExportSource,
+            stripHTML,
+            mongoCategoryNames
+          )
+        ),
+        ...(sqlBlogs || []).map((blog) =>
+          mapMysqlBlogToExportRow(
+            blog as MysqlBlogExportSource,
+            stripHTML,
+            mysqlCategoryNames
+          )
+        ),
       ];
 
-      if (blogsForDownload.length === 0) {
+      if (exportRows.length === 0) {
         setPopupData({
           message: "No blogs found to backup.",
           status: 404,
@@ -505,63 +563,14 @@ export default function ManageBlogs() {
         return;
       }
 
-      // Convert All JSON Data Into Excel File And Download
-      const worksheet = XLSX.utils.json_to_sheet(blogsForDownload);
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "RMW_BLOGS_BACKUPSHEET");
-      const excelBuffer = XLSX.write(workbook, {
-        bookType: "xlsx",
-        type: "buffer",
+      const fileName = `rmw-blogs-backup-${new Date().toISOString().split("T")[0]}.xlsx`;
+      await exportBlogsToExcel(exportRows, fileName, setBackupProgress);
+
+      setPopupData({
+        message: `Backup completed. ${exportRows.length} blogs exported with images in Excel.`,
+        status: 200,
       });
-
-      // Blob create
-      const blob = new Blob([excelBuffer], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      });
-
-      // Temporary link create for download
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = `rmw-blogs-backup-${new Date().toISOString().split("T")[0]}.xlsx`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
-
-      // Download images zip
-      try {
-        const res = await axios.get<{ url: string; success: boolean; message?: string }>(
-          "/api/all_images_download"
-        );
-        if (res.data && res.data.success && res.data.url) {
-          // Trigger download of zip file
-          window.location.href = res.data.url;
-          setPopupData({
-            message: res.data.message || "Backup completed successfully! Excel file and images zip downloaded.",
-            status: 200,
-          });
-          setShowPopup(true);
-        } else {
-          setPopupData({
-            message: res.data?.message || "Excel file downloaded, but images zip generation failed.",
-            status: 500,
-          });
-          setShowPopup(true);
-        }
-      } catch (error) {
-        console.error("Errors in downloading images", error);
-        setPopupData({
-          message:
-            error instanceof Error && "message" in error
-              ? (error as { message: string }).message
-              : "Excel file downloaded, but failed to download images zip.",
-          status:
-            error instanceof Error && "status" in error
-              ? (error as { status?: number }).status ?? 500
-              : 500,
-        });
-        setShowPopup(true);
-      }
+      setShowPopup(true);
     } catch (error) {
       console.error("Error in backup process:", error);
       setPopupData({
@@ -577,6 +586,13 @@ export default function ManageBlogs() {
       setShowPopup(true);
     } finally {
       setBackupLoading(false);
+      setBackupProgress({
+        phase: "done",
+        current: 0,
+        total: 0,
+        percent: 0,
+        label: "",
+      });
     }
   };
   return (
@@ -634,31 +650,46 @@ export default function ManageBlogs() {
         <button
           onClick={rmwBackUpHandler}
           disabled={backupLoading}
-          className="px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer transition duration-200 flex items-center gap-2"
+          className="min-w-[220px] px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer transition duration-200 flex flex-col items-center gap-2"
         >
           {backupLoading ? (
             <>
-              <svg
-                className="animate-spin h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Creating Backup...
+              <div className="flex items-center gap-2">
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <span>
+                  Creating Backup... {backupProgress.percent}%
+                </span>
+              </div>
+              <div className="w-full h-1.5 rounded-full bg-white/30 overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-white transition-all duration-300"
+                  style={{ width: `${backupProgress.percent}%` }}
+                />
+              </div>
+              {backupProgress.label ? (
+                <span className="text-xs font-normal text-white/90 text-center leading-tight">
+                  {backupProgress.label}
+                </span>
+              ) : null}
             </>
           ) : (
             "Get Backup"
