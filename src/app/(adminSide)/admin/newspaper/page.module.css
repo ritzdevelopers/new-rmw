@@ -46,7 +46,7 @@
   color: #111827;
   margin: 0 0 1.5rem 0;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid #3b82f6;
+  border-bottom: 2px solid #c59d4f;
   display: inline-block;
 }
 
@@ -83,14 +83,14 @@
 }
 
 .submitButton {
-  background-color: #3b82f6;
+  background-color: #c59d4f;
   color: white;
 }
 
 .submitButton:hover:not(:disabled) {
-  background-color: #2563eb;
+  background-color: #9a7530;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(197, 157, 79, 0.4);
 }
 
 .submitButton:disabled {

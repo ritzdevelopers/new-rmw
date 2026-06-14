@@ -2,17 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-
-// usage example , middleLinks are optional
-{
-  /* <Breadcrumb
-  currentPage="settings"
-  middleLinks={[
-    { name: "Users", href: "/admin/users" },
-    { name: "John Doe", href: "/admin/users/123" },
-  ]}
-/>; */
-}
+import { ChevronRight, LayoutDashboard } from "lucide-react";
 
 interface BreadcrumbItem {
   name: string;
@@ -28,27 +18,50 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
   currentPage,
   middleLinks = [],
 }) => {
-  const breadcrumbs = [
-    { name: "Admin", href: "/admin" },
+  const crumbs = [
+    { name: "Admin", href: "/admin/dashboard" },
     ...middleLinks,
-    { name: formatName(currentPage), href: "" }, // current page has no link
+    { name: formatName(currentPage), href: "" },
   ];
 
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-gray-700">
-      <ol className="flex space-x-2">
-        {breadcrumbs.map((crumb, index) => (
-          <li key={index} className="flex items-center space-x-2">
-            {index > 0 && <span className="mx-2">/</span>}
-            {crumb.href && index !== breadcrumbs.length - 1 ? (
-              <Link href={crumb.href} title={crumb.name} className="text-blue-600 hover:underline">
-                {crumb.name}
-              </Link>
-            ) : (
-              <span>{crumb.name}</span>
-            )}
-          </li>
-        ))}
+    <nav aria-label="Breadcrumb">
+      <ol className="flex items-center flex-wrap gap-1">
+        {crumbs.map((crumb, index) => {
+          const isLast = index === crumbs.length - 1;
+          return (
+            <li key={index} className="flex items-center gap-1">
+              {index === 0 && (
+                <LayoutDashboard
+                  className="w-3 h-3 flex-shrink-0"
+                  style={{ color: "#94A3B8" }}
+                />
+              )}
+              {index > 0 && (
+                <ChevronRight
+                  className="w-3 h-3 flex-shrink-0"
+                  style={{ color: "#CBD5E1" }}
+                />
+              )}
+              {!isLast && crumb.href ? (
+                <Link
+                  href={crumb.href}
+                  className="text-xs font-medium transition-colors hover:text-[#C59D4F]"
+                  style={{ color: "#64748B" }}
+                >
+                  {crumb.name}
+                </Link>
+              ) : (
+                <span
+                  className="text-xs font-semibold"
+                  style={{ color: "#0B1623" }}
+                >
+                  {crumb.name}
+                </span>
+              )}
+            </li>
+          );
+        })}
       </ol>
     </nav>
   );
