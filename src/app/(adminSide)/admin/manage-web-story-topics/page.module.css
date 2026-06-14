@@ -9,7 +9,7 @@
   font-weight: 700;
   text-align: center;
   margin-bottom: 2rem;
-  color: #1a1a1a;
+  color: #0b1623;
 }
 
 .searchBar {
@@ -113,7 +113,7 @@
 }
 
 .actions button:hover {
-  color: #0070f3;
+  color: #c59d4f;
 }
 
 .pagination {
@@ -136,15 +136,15 @@
 }
 
 .pageBtn:hover {
-  background-color: #0070f3;
+  background-color: #c59d4f;
   color: white;
-  border-color: #0070f3;
+  border-color: #c59d4f;
 }
 
 .active {
-  background-color: #0070f3;
+  background-color: #c59d4f;
   color: white;
-  border-color: #0070f3;
+  border-color: #c59d4f;
 }
 
 /* Responsive */
@@ -170,7 +170,7 @@
   }
 }
 .createBtn {
-  background-color: #039016;
+  background-color: #c59d4f;
   color: white;
   font-weight: bold;
   padding: 10px 20px;
@@ -179,16 +179,16 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 10px rgba(3, 144, 22, 0.3);
+  box-shadow: 0 4px 10px rgba(197, 157, 79, 0.3);
   margin-bottom: 10px;
 }
 
 .createBtn:hover {
-  background-color: #027d13;
+  background-color: #9a7530;
   transform: scale(1.05);
 }
 
 .createBtn:active {
   transform: scale(0.97);
-  box-shadow: 0 2px 5px rgba(3, 144, 22, 0.3);
+  box-shadow: 0 2px 5px rgba(197, 157, 79, 0.3);
 }

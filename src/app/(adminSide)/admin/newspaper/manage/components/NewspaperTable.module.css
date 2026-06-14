@@ -96,8 +96,8 @@
 .badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background-color: #eff6ff;
-  color: #3b82f6;
+  background-color: #fbf7ee;
+  color: #c59d4f;
   border-radius: 12px;
   font-size: 12px;
   font-weight: 500;
@@ -172,12 +172,12 @@
 }
 
 .editBtn {
-  background-color: #eff6ff;
-  color: #3b82f6;
+  background-color: #fbf7ee;
+  color: #c59d4f;
 }
 
 .editBtn:hover {
-  background-color: #dbeafe;
+  background-color: #f3e9d2;
   transform: translateY(-2px);
 }
 

@@ -39,7 +39,7 @@
 }
 
 .popup.info {
-  border-left: 4px solid #3b82f6;
+  border-left: 4px solid #c59d4f;
 }
 
 .popupHeader {
@@ -71,7 +71,7 @@
 }
 
 .info .iconContainer {
-  background-color: #dbeafe;
+  background-color: #f3e9d2;
 }
 
 .icon {
@@ -92,7 +92,7 @@
 }
 
 .info .icon {
-  color: #3b82f6;
+  color: #c59d4f;
 }
 
 .closeButton {
@@ -145,7 +145,7 @@
 }
 
 .info .progressBar {
-  background-color: #3b82f6;
+  background-color: #c59d4f;
 }
 
 @keyframes shrink {

@@ -28,7 +28,7 @@
 
 .addButton {
   padding: 0.75rem 1.5rem;
-  background-color: #3b82f6;
+  background-color: #c59d4f;
   color: white;
   border-radius: 8px;
   text-decoration: none;
@@ -37,7 +37,7 @@
 }
 
 .addButton:hover {
-  background-color: #2563eb;
+  background-color: #9a7530;
   transform: translateY(-1px);
 }
 
@@ -120,8 +120,8 @@
 .badge {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background-color: #eff6ff;
-  color: #3b82f6;
+  background-color: #fbf7ee;
+  color: #c59d4f;
   border-radius: 12px;
   font-size: 12px;
   font-weight: 500;
@@ -146,11 +146,11 @@
 }
 
 .editBtn {
-  background-color: #eff6ff;
+  background-color: #fbf7ee;
 }
 
 .editBtn:hover {
-  background-color: #dbeafe;
+  background-color: #f3e9d2;
 }
 
 .delBtn {

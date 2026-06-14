@@ -162,7 +162,7 @@ export default function RegisterManagementPage() {
                 onChange={(e) =>
                   setForm((f) => ({ ...f, email: e.target.value }))
                 }
-                placeholder="you@company.com"
+                placeholder="Enter Your Email"
               />
             </div>
             <div className="space-y-2">
@@ -198,7 +198,7 @@ export default function RegisterManagementPage() {
                   onChange={(e) =>
                     setForm((f) => ({ ...f, password: e.target.value }))
                   }
-                  placeholder="••••••••"
+                  placeholder="Enter Your Password"
                 />
                 <Button
                   type="button"
@@ -236,7 +236,7 @@ export default function RegisterManagementPage() {
                       confirmPassword: e.target.value,
                     }))
                   }
-                  placeholder="••••••••"
+                  placeholder="Enter Your Password Again"
                 />
                 <Button
                   type="button"

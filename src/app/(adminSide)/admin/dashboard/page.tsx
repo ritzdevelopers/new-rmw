@@ -1,6 +1,5 @@
 "use client";
 
-import Breadcrumb from "@/components/ui/Breadcrumb";
 import { cn } from "@/lib/utils";
 import {
   readManagementSessionUser,
@@ -14,13 +13,10 @@ import {
   ArrowUpRight,
   BarChart3,
   Globe,
-  LayoutDashboard,
   MonitorSmartphone,
   RefreshCw,
   ShieldCheck,
-  Sparkles,
   TrendingUp,
-  UserCircle,
   Users,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -43,8 +39,11 @@ import {
   YAxis,
 } from "recharts";
 
+/* ------------------------------------------------------------------ */
+/* Helpers                                                             */
+/* ------------------------------------------------------------------ */
 function formatRole(role: string): string {
-  if (role === "super_admin") return "Super admin";
+  if (role === "super_admin") return "Super Admin";
   if (role === "editor") return "Editor";
   return role.replace(/_/g, " ");
 }
@@ -73,10 +72,9 @@ const RANGE_OPTIONS = [
   { value: "last90days", label: "90D" },
   { value: "last180days", label: "180D" },
   { value: "last365days", label: "365D" },
-  { value: "alltime", label: "All time" },
+  { value: "alltime", label: "All" },
 ] as const;
 
-/** Full labels for tooltips / summary */
 const RANGE_LABELS: Record<string, string> = {
   last7days: "Last 7 days",
   last30days: "Last 30 days",
@@ -89,26 +87,33 @@ const RANGE_LABELS: Record<string, string> = {
 
 const CHART_GOLD = "#c59d4f";
 const CHART_SLATE = "#394a59";
-const CHART_ACCENT = ["#c59d4f", "#394a59", "#5b7c6d", "#5c7a9e", "#a68962", "#7d6b58"];
+const CHART_ACCENT = [
+  "#c59d4f",
+  "#394a59",
+  "#5b7c6d",
+  "#5c7a9e",
+  "#a68962",
+  "#7d6b58",
+];
 
-const TOOLTIP_LIGHT = {
+const TOOLTIP_STYLE = {
   borderRadius: 12,
-  border: "1px solid rgba(15, 23, 42, 0.08)",
-  boxShadow: "0 25px 50px -12px rgba(15, 23, 42, 0.18)",
-  backgroundColor: "rgba(255,255,255,0.96)",
+  border: "1px solid rgba(15,23,42,0.08)",
+  boxShadow: "0 16px 40px rgba(15,23,42,0.12)",
+  backgroundColor: "rgba(255,255,255,0.97)",
   backdropFilter: "blur(8px)",
+  fontSize: 12,
 };
 
 const TOOLTIP_DARK = {
   borderRadius: 10,
   border: "1px solid rgba(255,255,255,0.08)",
-  backgroundColor: "rgba(9, 9, 11, 0.92)",
+  backgroundColor: "rgba(9,9,11,0.92)",
   boxShadow: "0 20px 40px rgba(0,0,0,0.35)",
   color: "#fafafa",
   fontSize: 12,
 };
 
-/** UTC calendar date — consistent on server and client for hydration. */
 function utcDayKey(iso: string | undefined): string {
   if (!iso) return "";
   try {
@@ -122,7 +127,9 @@ function utcDayKey(iso: string | undefined): string {
   }
 }
 
-function aggregateByDay(rows: TrafficRow[]): { date: string; label: string; visits: number }[] {
+function aggregateByDay(
+  rows: TrafficRow[]
+): { date: string; label: string; visits: number }[] {
   const map = new Map<string, number>();
   for (const r of rows) {
     const k = utcDayKey(r.createdAt);
@@ -133,7 +140,9 @@ function aggregateByDay(rows: TrafficRow[]): { date: string; label: string; visi
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([date, visits]) => ({
       date,
-      label: format(new Date(`${date}T12:00:00.000Z`), "MMM d", { locale: enUS }),
+      label: format(new Date(`${date}T12:00:00.000Z`), "MMM d", {
+        locale: enUS,
+      }),
       visits,
     }));
 }
@@ -159,7 +168,7 @@ function topByField(
     .slice(0, limit);
 }
 
-function truncateUrl(url: string, max = 42): string {
+function truncateUrl(url: string, max = 36): string {
   if (url.length <= max) return url;
   return url.slice(0, max - 1) + "…";
 }
@@ -167,9 +176,7 @@ function truncateUrl(url: string, max = 42): string {
 function uniqueSessions(rows: TrafficRow[]): number {
   const set = new Set<string>();
   for (const r of rows) {
-    if (r.sessionId && String(r.sessionId).trim()) {
-      set.add(r.sessionId);
-    }
+    if (r.sessionId && String(r.sessionId).trim()) set.add(r.sessionId);
   }
   return set.size;
 }
@@ -184,13 +191,13 @@ function initials(name: string): string {
 function MiniSparkline({ data }: { data: { v: number }[] }) {
   if (data.length < 2) return null;
   return (
-    <div className="mt-2 h-7 w-full opacity-90">
+    <div className="mt-3 h-8 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 2, right: 2, left: 2, bottom: 2 }}>
           <Line
             type="monotone"
             dataKey="v"
-            stroke="rgba(255,255,255,0.55)"
+            stroke="rgba(255,255,255,0.5)"
             strokeWidth={1.5}
             dot={false}
             activeDot={false}
@@ -201,43 +208,95 @@ function MiniSparkline({ data }: { data: { v: number }[] }) {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* Sub-components                                                       */
+/* ------------------------------------------------------------------ */
+function SectionCard({
+  title,
+  subtitle,
+  icon,
+  children,
+}: {
+  title: string;
+  subtitle?: string;
+  icon?: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      className="bg-white rounded-2xl overflow-hidden"
+      style={{
+        border: "1px solid rgba(0,0,0,0.06)",
+        boxShadow:
+          "0 2px 8px rgba(0,0,0,0.03), 0 8px 24px rgba(0,0,0,0.04)",
+      }}
+    >
+      <div
+        className="flex items-center gap-2 px-5 py-4"
+        style={{ borderBottom: "1px solid #F1F5F9" }}
+      >
+        {icon && (
+          <div
+            className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{ background: "rgba(197,157,79,0.1)" }}
+          >
+            <span style={{ color: "#C59D4F" }}>{icon}</span>
+          </div>
+        )}
+        <div className="min-w-0">
+          <h2
+            className="text-sm font-semibold leading-tight"
+            style={{ color: "#0B1623" }}
+          >
+            {title}
+          </h2>
+          {subtitle && (
+            <p className="text-[11px] mt-0.5" style={{ color: "#94A3B8" }}>
+              {subtitle}
+            </p>
+          )}
+        </div>
+      </div>
+      {children}
+    </div>
+  );
+}
+
 const LOCALE = "en-US" as const;
 
-const Page = () => {
-  /** Recharts ResponsiveContainer measures DOM; rendering only after mount avoids SSR/client mismatch (React #418). */
+/* ------------------------------------------------------------------ */
+/* Main dashboard component                                            */
+/* ------------------------------------------------------------------ */
+export default function DashboardPage() {
   const [chartsMounted, setChartsMounted] = useState(false);
-
-  const [visitorData, setVisitorData] = useState<{ visitors: number } | null>(null);
+  const [visitorData, setVisitorData] = useState<{ visitors: number } | null>(
+    null
+  );
   const [user, setUser] = useState<ManagementSessionUser | null>(null);
   const [range, setRange] =
     useState<(typeof RANGE_OPTIONS)[number]["value"]>("last30days");
   const [traffic, setTraffic] = useState<TrafficRow[] | null>(null);
-  const [trafficMeta, setTrafficMeta] = useState<{ count: number; range: string } | null>(
-    null
-  );
+  const [trafficMeta, setTrafficMeta] = useState<{
+    count: number;
+    range: string;
+  } | null>(null);
   const [loadingTraffic, setLoadingTraffic] = useState(true);
   const [trafficError, setTrafficError] = useState<string | null>(null);
   const [visitDataError, setVisitDataError] = useState(false);
 
   useEffect(() => {
     setUser(readManagementSessionUser());
-  }, []);
-
-  useEffect(() => {
     setChartsMounted(true);
   }, []);
 
   useEffect(() => {
-    const fetchVisitTotal = async () => {
-      try {
-        const res = await axios.get("/api/get-visit-data");
-        setVisitorData(res.data);
+    axios
+      .get("/api/get-visit-data")
+      .then((r) => {
+        setVisitorData(r.data);
         setVisitDataError(false);
-      } catch {
-        setVisitDataError(true);
-      }
-    };
-    fetchVisitTotal();
+      })
+      .catch(() => setVisitDataError(true));
   }, []);
 
   const fetchTraffic = useCallback(async () => {
@@ -286,7 +345,6 @@ const Page = () => {
     () => byDay.slice(-16).map((d) => ({ v: d.visits })),
     [byDay]
   );
-
   const topPages = useMemo(() => {
     const raw = topByField(traffic ?? [], "url", 8, "(no URL)");
     return raw.map((r) => ({
@@ -303,7 +361,6 @@ const Page = () => {
     () => topByField(traffic ?? [], "device", 6, "Unknown"),
     [traffic]
   );
-
   const uniqueSessionCount = useMemo(
     () => uniqueSessions(traffic ?? []),
     [traffic]
@@ -311,416 +368,632 @@ const Page = () => {
 
   const totalInRange = trafficMeta?.count ?? 0;
   const sessionRate =
-    totalInRange > 0 ? Math.round((uniqueSessionCount / totalInRange) * 100) : 0;
-
+    totalInRange > 0
+      ? Math.round((uniqueSessionCount / totalInRange) * 100)
+      : 0;
   const rangeFullLabel = RANGE_LABELS[range] ?? range;
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-[#f4f5f7] pb-10">
-      <div
-        className="pointer-events-none fixed inset-0 opacity-50"
-        style={{
-          backgroundImage: `radial-gradient(ellipse 80% 50% at 50% -20%, rgba(197, 157, 79, 0.08), transparent),
-            radial-gradient(ellipse 60% 40% at 100% 0%, rgba(57, 74, 89, 0.06), transparent)`,
-        }}
-      />
-
-      <div className="relative mx-auto max-w-6xl px-3 pt-4 sm:px-5 lg:px-6">
-        {/* Compact header */}
-        <header className="rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm sm:p-5">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:gap-6">
-            <div className="flex min-w-0 items-start gap-3">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-white shadow-sm">
-                <LayoutDashboard className="size-5" strokeWidth={1.5} />
-              </span>
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h1 className="text-lg font-semibold tracking-tight text-slate-900 sm:text-xl">
-                    Dashboard
-                  </h1>
-                  <span className="hidden items-center gap-1 rounded-md border border-[#c59d4f]/20 bg-[#c59d4f]/8 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#7a6235] sm:inline-flex">
-                    <Sparkles className="size-3" aria-hidden />
-                    Analytics
-                  </span>
-                </div>
-                <p className="mt-0.5 text-xs text-slate-500">
-                  Traffic and visitor metrics for the selected period.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end">
-              <div className="flex gap-0.5 overflow-x-auto rounded-lg border border-slate-200 bg-slate-50 p-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {RANGE_OPTIONS.map((o) => (
-                  <button
-                    key={o.value}
-                    type="button"
-                    title={RANGE_LABELS[o.value]}
-                    onClick={() => setRange(o.value)}
-                    className={cn(
-                      "shrink-0 rounded-md px-2.5 py-1.5 text-[11px] font-semibold transition-colors",
-                      range === o.value
-                        ? "bg-slate-900 text-white"
-                        : "text-slate-600 hover:bg-white hover:text-slate-900"
-                    )}
-                  >
-                    {o.label}
-                  </button>
-                ))}
-              </div>
-              <button
-                type="button"
-                onClick={() => fetchTraffic()}
-                disabled={loadingTraffic}
-                className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm hover:bg-slate-50 disabled:opacity-50"
+    <div className="max-w-6xl mx-auto space-y-6 pb-10">
+      {/* ── Welcome banner ─────────────────────────────────── */}
+      {user && (
+        <div
+          className="relative overflow-hidden rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+          style={{
+            background:
+              "linear-gradient(135deg, #0B1623 0%, #1A2E40 60%, #0F2237 100%)",
+          }}
+        >
+          {/* Background orb */}
+          <div
+            className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(197,157,79,0.12) 0%, transparent 70%)",
+              transform: "translate(30%, -30%)",
+            }}
+          />
+          <div className="relative z-10">
+            <p className="text-sm font-medium" style={{ color: "#C59D4F" }}>
+              Good {new Date().getHours() < 12 ? "morning" : new Date().getHours() < 18 ? "afternoon" : "evening"},
+            </p>
+            <h1
+              className="text-2xl font-bold text-white mt-0.5 tracking-tight"
+            >
+              {user.name}
+            </h1>
+            <div className="mt-3 flex items-center gap-2">
+              <div
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold"
+                style={{
+                  background: "rgba(197,157,79,0.15)",
+                  color: "#C59D4F",
+                  border: "1px solid rgba(197,157,79,0.2)",
+                }}
               >
-                <RefreshCw
-                  className={cn("size-3.5 text-slate-500", loadingTraffic && "animate-spin")}
-                  aria-hidden
-                />
-                Refresh
-              </button>
+                <ShieldCheck className="w-3 h-3" />
+                {formatRole(user.role)}
+              </div>
+              <span className="text-xs" style={{ color: "#4A6070" }}>
+                {user.email}
+              </span>
             </div>
           </div>
-        </header>
+          <div className="relative z-10 flex items-center gap-3">
+            {/* Range picker */}
+            <div
+              className="flex gap-0.5 rounded-xl p-1 overflow-x-auto"
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              {RANGE_OPTIONS.map((o) => (
+                <button
+                  key={o.value}
+                  onClick={() => setRange(o.value)}
+                  className={cn(
+                    "shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all duration-150",
+                    range === o.value
+                      ? "text-white"
+                      : "text-gray-500 hover:text-gray-300"
+                  )}
+                  style={
+                    range === o.value
+                      ? {
+                          background:
+                            "linear-gradient(135deg, #C59D4F, #9A7530)",
+                        }
+                      : {}
+                  }
+                  title={RANGE_LABELS[o.value]}
+                >
+                  {o.label}
+                </button>
+              ))}
+            </div>
+            {/* Refresh */}
+            <button
+              onClick={() => fetchTraffic()}
+              disabled={loadingTraffic}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-white transition-all disabled:opacity-50"
+              style={{
+                background: "rgba(255,255,255,0.08)",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
+            >
+              <RefreshCw
+                className={cn("w-3.5 h-3.5", loadingTraffic && "animate-spin")}
+              />
+              Refresh
+            </button>
+          </div>
+        </div>
+      )}
 
-        <div className="mt-4">
-          <Breadcrumb currentPage="Dashboard" />
+      {/* ── KPI cards ──────────────────────────────────────── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        {/* All-time visitors */}
+        <div
+          className="rounded-2xl p-5"
+          style={{
+            background: "#FFFFFF",
+            border: "1px solid rgba(0,0,0,0.06)",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.03), 0 8px 24px rgba(0,0,0,0.04)",
+          }}
+        >
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <p
+                className="text-[10px] font-bold uppercase tracking-widest"
+                style={{ color: "#94A3B8" }}
+              >
+                Site Visitors
+              </p>
+              <p
+                className="mt-2 text-3xl font-bold tabular-nums"
+                style={{ color: "#0B1623" }}
+              >
+                {visitDataError
+                  ? "—"
+                  : visitorData != null
+                  ? visitorData.visitors.toLocaleString(LOCALE)
+                  : "…"}
+              </p>
+              <p
+                className="mt-1.5 flex items-center gap-1.5 text-xs"
+                style={{ color: "#94A3B8" }}
+              >
+                <BarChart3 className="w-3 h-3" style={{ color: "#C59D4F" }} />
+                All time
+              </p>
+            </div>
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+              style={{ background: "rgba(197,157,79,0.08)" }}
+            >
+              <FaUsers className="w-5 h-5" style={{ color: "#C59D4F" }} />
+            </div>
+          </div>
         </div>
 
-        {/* KPI grid */}
-        <section className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          {/* User */}
-          <div className="flex flex-col justify-between rounded-lg border border-slate-200 bg-white p-3.5 shadow-sm">
-            <div className="flex items-start justify-between gap-2">
-              <div className="min-w-0">
-                <p className="text-[10px] font-medium uppercase tracking-wide text-slate-400">
-                  Signed in
-                </p>
-                {user ? (
-                  <>
-                    <p className="mt-1 truncate text-sm font-semibold text-slate-900">
-                      {user.name}
-                    </p>
-                    <p className="mt-0.5 line-clamp-1 text-xs text-slate-500">{user.email}</p>
-                    <span className="mt-2 inline-flex items-center gap-1 rounded border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[10px] font-semibold text-slate-600">
-                      <ShieldCheck className="size-3 text-[#394a59]" />
-                      {formatRole(user.role)}
-                    </span>
-                  </>
+        {/* Period views — dark card */}
+        <div
+          className="relative rounded-2xl p-5 overflow-hidden"
+          style={{
+            background:
+              "linear-gradient(135deg, #0B1623 0%, #1A2E40 100%)",
+            border: "1px solid rgba(255,255,255,0.05)",
+          }}
+        >
+          <div className="relative z-10 flex items-start justify-between gap-2">
+            <div className="min-w-0 flex-1">
+              <p
+                className="text-[10px] font-bold uppercase tracking-widest"
+                style={{ color: "#4A6070" }}
+              >
+                Views · Period
+              </p>
+              <p className="mt-2 text-3xl font-bold tabular-nums text-white">
+                {loadingTraffic ? (
+                  <span
+                    className="inline-block h-9 w-24 rounded-lg animate-pulse"
+                    style={{ background: "rgba(255,255,255,0.08)" }}
+                  />
                 ) : (
-                  <p className="mt-2 text-xs text-slate-500">Session unavailable. Re-authenticate.</p>
+                  totalInRange.toLocaleString(LOCALE)
                 )}
-              </div>
-              {user ? (
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-gradient-to-br from-[#c59d4f] to-[#a67c32] text-xs font-bold text-white">
-                  {initials(user.name)}
-                </div>
-              ) : (
-                <UserCircle className="size-9 shrink-0 text-slate-300" strokeWidth={1} />
+              </p>
+              <p
+                className="mt-1.5 flex items-center gap-1.5 text-xs"
+                style={{ color: "#4A6070" }}
+              >
+                <Activity className="w-3 h-3" style={{ color: "#C59D4F" }} />
+                <span className="truncate">{rangeFullLabel}</span>
+              </p>
+              {chartsMounted && !loadingTraffic && sparkSeries.length >= 2 && (
+                <MiniSparkline data={sparkSeries} />
               )}
             </div>
+            <TrendingUp
+              className="w-5 h-5 flex-shrink-0"
+              style={{ color: "#C59D4F" }}
+              strokeWidth={1.5}
+            />
           </div>
+        </div>
 
-          <div className="rounded-lg border border-slate-200 bg-white p-3.5 shadow-sm">
-            <div className="flex items-start justify-between gap-2">
-              <div className="min-w-0">
-                <p className="text-[10px] font-medium uppercase tracking-wide text-slate-400">
-                  Site visitors
-                </p>
-                <p className="mt-1 text-2xl font-semibold tabular-nums text-slate-900 sm:text-3xl">
-                  {visitDataError ? "—" : visitorData != null ? visitorData.visitors.toLocaleString(LOCALE) : "…"}
-                </p>
-                <p className="mt-1 flex items-center gap-1 text-[10px] text-slate-500">
-                  <BarChart3 className="size-3 text-[#c59d4f]" />
-                  All time
-                </p>
-              </div>
-              <FaUsers className="size-7 shrink-0 text-slate-200" />
-            </div>
-          </div>
-
-          <div className="relative overflow-hidden rounded-lg border border-slate-800 bg-gradient-to-br from-slate-800 to-slate-950 p-3.5 text-white shadow-sm">
-            <div className="relative flex items-start justify-between gap-2">
-              <div className="min-w-0">
-                <p className="text-[10px] font-medium uppercase tracking-wide text-slate-400">
-                  Views · period
-                </p>
-                <p className="mt-1 text-2xl font-semibold tabular-nums sm:text-3xl">
-                  {loadingTraffic ? (
-                    <span className="inline-block h-8 w-20 animate-pulse rounded bg-white/15" />
-                  ) : (
-                    totalInRange.toLocaleString(LOCALE)
-                  )}
-                </p>
-                <p className="mt-1 flex items-center gap-1 text-[10px] text-slate-400">
-                  <Activity className="size-3 text-[#c59d4f]" />
-                  <span className="truncate">{rangeFullLabel}</span>
-                </p>
-                {chartsMounted && !loadingTraffic && sparkSeries.length >= 2 && (
-                  <MiniSparkline data={sparkSeries} />
-                )}
-              </div>
-              <TrendingUp className="size-5 shrink-0 text-[#c59d4f]" strokeWidth={1.5} />
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-between rounded-lg border border-[#e8dcc4] bg-[#fefdfb] p-3.5 shadow-sm">
-            <p className="text-[10px] font-medium uppercase tracking-wide text-[#8a7a58]">
-              Unique sessions
+        {/* Unique sessions */}
+        <div
+          className="rounded-2xl p-5"
+          style={{
+            background: "#FFFFFF",
+            border: "1px solid rgba(197,157,79,0.15)",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.03), 0 8px 24px rgba(197,157,79,0.06)",
+          }}
+        >
+          <div className="flex flex-col h-full justify-between gap-2">
+            <p
+              className="text-[10px] font-bold uppercase tracking-widest"
+              style={{ color: "#94A3B8" }}
+            >
+              Unique Sessions
             </p>
-            <p className="mt-1 text-2xl font-semibold tabular-nums text-slate-900 sm:text-3xl">
+            <p
+              className="text-3xl font-bold tabular-nums"
+              style={{ color: "#0B1623" }}
+            >
               {loadingTraffic ? (
-                <span className="inline-block h-8 w-16 animate-pulse rounded bg-[#c59d4f]/15" />
+                <span
+                  className="inline-block h-9 w-20 rounded-lg animate-pulse"
+                  style={{ background: "rgba(197,157,79,0.1)" }}
+                />
               ) : (
                 uniqueSessionCount.toLocaleString(LOCALE)
               )}
             </p>
-            <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-              <span className="inline-flex items-center gap-0.5 rounded bg-[#c59d4f]/12 px-1.5 py-0.5 text-[10px] font-semibold text-[#7a6235]">
-                <Users className="size-2.5" />
+            <div className="flex items-center gap-2 flex-wrap">
+              <span
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-[10px] font-semibold"
+                style={{
+                  background: "rgba(197,157,79,0.1)",
+                  color: "#9A7530",
+                }}
+              >
+                <Users className="w-2.5 h-2.5" />
                 Sessions
               </span>
               {!loadingTraffic && totalInRange > 0 && (
-                <span className="text-[10px] text-slate-500">{sessionRate}% of hits</span>
+                <span className="text-[10px]" style={{ color: "#94A3B8" }}>
+                  {sessionRate}% of hits
+                </span>
               )}
-            </div>
-            <ArrowUpRight className="ml-auto mt-0.5 size-5 text-[#c59d4f]/70" strokeWidth={1.5} />
-          </div>
-        </section>
-
-        {trafficError && (
-          <div
-            className="mt-4 flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2.5 text-xs text-amber-950"
-            role="alert"
-          >
-            <span className="flex size-5 shrink-0 items-center justify-center rounded bg-amber-100 text-[10px] font-bold">
-              !
-            </span>
-            <p className="leading-snug">{trafficError}</p>
-          </div>
-        )}
-
-        {/* Primary chart */}
-        <section className="mt-5">
-          <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 px-3 py-2.5 sm:px-4">
-              <div>
-                <h2 className="text-sm font-semibold text-slate-900">Traffic over time</h2>
-                <p className="text-[11px] text-slate-500">Daily views · {rangeFullLabel}</p>
-              </div>
-              <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-slate-500">
-                Day
-              </span>
-            </div>
-            <div className="bg-slate-50/50 px-2 pb-3 pt-1 sm:px-3">
-              <div className="h-[220px] w-full min-w-0 sm:h-[240px]">
-                {!chartsMounted ? (
-                  <div
-                    className="h-full w-full rounded-lg border border-slate-100 bg-slate-50/90"
-                    aria-hidden
-                  />
-                ) : loadingTraffic ? (
-                  <div className="flex h-full flex-col items-center justify-center gap-2">
-                    <div className="h-7 w-7 animate-spin rounded-full border-2 border-[#c59d4f] border-t-transparent" />
-                    <p className="text-xs text-slate-500">Loading…</p>
-                  </div>
-                ) : byDay.length === 0 ? (
-                  <div className="flex h-full flex-col items-center justify-center gap-1 rounded-lg border border-dashed border-slate-200 bg-white px-4 text-center">
-                    <Globe className="size-7 text-slate-300" />
-                    <p className="text-xs font-medium text-slate-600">No data for this range.</p>
-                  </div>
-                ) : (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={byDay} margin={{ top: 6, right: 8, left: -8, bottom: 0 }}>
-                      <defs>
-                        <linearGradient id="fillVisitsExec" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor={CHART_GOLD} stopOpacity={0.45} />
-                          <stop offset="55%" stopColor={CHART_GOLD} stopOpacity={0.08} />
-                          <stop offset="100%" stopColor={CHART_GOLD} stopOpacity={0} />
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid strokeDasharray="4 8" stroke="#e2e8f0" vertical={false} />
-                      <XAxis
-                        dataKey="label"
-                        tick={{ fontSize: 11, fill: "#64748b", fontWeight: 500 }}
-                        tickLine={false}
-                        axisLine={{ stroke: "#e2e8f0" }}
-                        dy={8}
-                      />
-                      <YAxis
-                        tick={{ fontSize: 11, fill: "#64748b", fontWeight: 500 }}
-                        tickLine={false}
-                        axisLine={false}
-                        allowDecimals={false}
-                        width={44}
-                      />
-                      <Tooltip
-                        contentStyle={TOOLTIP_LIGHT}
-                        labelStyle={{ fontWeight: 600, color: "#0f172a", marginBottom: 4 }}
-                        labelFormatter={(label, payload) => {
-                          const row = payload?.[0]?.payload as { date?: string } | undefined;
-                          if (row?.date) {
-                            try {
-                              return format(
-                                new Date(`${row.date}T12:00:00.000Z`),
-                                "MMM d, yyyy",
-                                { locale: enUS }
-                              );
-                            } catch {
-                              return String(label ?? "");
-                            }
-                          }
-                          return String(label ?? "");
-                        }}
-                        formatter={(value: number | string) => [
-                          typeof value === "number" ? value.toLocaleString(LOCALE) : value,
-                          "Views",
-                        ]}
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="visits"
-                        name="Views"
-                        stroke={CHART_GOLD}
-                        strokeWidth={2}
-                        fill="url(#fillVisitsExec)"
-                        activeDot={{ r: 4, strokeWidth: 1.5, stroke: "#fff", fill: CHART_GOLD }}
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                )}
-              </div>
+              <ArrowUpRight
+                className="ml-auto w-5 h-5"
+                style={{ color: "rgba(197,157,79,0.4)" }}
+                strokeWidth={1.5}
+              />
             </div>
           </div>
-        </section>
+        </div>
 
-        {/* Secondary charts */}
-        <section className="mt-4 grid gap-3 lg:grid-cols-2">
-          <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-            <div className="border-b border-slate-100 px-3 py-2 sm:px-4">
-              <h2 className="text-sm font-semibold text-slate-900">Top pages</h2>
-              <p className="text-[11px] text-slate-500">Hover bar for full URL.</p>
-            </div>
-            <div className="h-[220px] px-2 pb-3 pt-1 sm:h-[240px] sm:px-3">
-              {!chartsMounted ? (
+        {/* User card */}
+        <div
+          className="rounded-2xl p-5"
+          style={{
+            background: "#FFFFFF",
+            border: "1px solid rgba(0,0,0,0.06)",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.03), 0 8px 24px rgba(0,0,0,0.04)",
+          }}
+        >
+          {user ? (
+            <div className="flex flex-col gap-2">
+              <p
+                className="text-[10px] font-bold uppercase tracking-widest"
+                style={{ color: "#94A3B8" }}
+              >
+                Signed In As
+              </p>
+              <div className="flex items-center gap-3 mt-1">
                 <div
-                  className="h-full w-full rounded-lg border border-slate-100 bg-slate-50/90"
-                  aria-hidden
-                />
-              ) : loadingTraffic ? (
-                <div className="flex h-full items-center justify-center text-xs text-slate-500">
-                  Loading…
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(197,157,79,0.2), rgba(197,157,79,0.4))",
+                    color: "#9A7530",
+                    border: "1.5px solid rgba(197,157,79,0.25)",
+                  }}
+                >
+                  {initials(user.name)}
                 </div>
-              ) : topPages.length === 0 ? (
-                <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-slate-200 text-xs text-slate-500">
-                  No data.
-                </div>
-              ) : (
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart
-                    layout="vertical"
-                    data={topPages}
-                    margin={{ left: 8, right: 16, top: 8, bottom: 8 }}
+                <div className="min-w-0">
+                  <p
+                    className="text-sm font-semibold truncate"
+                    style={{ color: "#0B1623" }}
                   >
-                    <CartesianGrid strokeDasharray="4 8" stroke="#f1f5f9" horizontal={false} />
-                    <XAxis type="number" tick={{ fontSize: 11, fill: "#64748b" }} allowDecimals={false} />
-                    <YAxis
-                      type="category"
-                      dataKey="name"
-                      width={124}
-                      tick={{ fontSize: 10, fill: "#475569" }}
-                    />
-                    <Tooltip
-                      contentStyle={TOOLTIP_LIGHT}
-                      formatter={(value: number) => [value.toLocaleString(LOCALE), "Views"]}
-                      labelFormatter={(_, payload) => {
-                        const row = payload?.[0]?.payload as
-                          | { full?: string; name?: string }
-                          | undefined;
-                        return row?.full ?? row?.name ?? "";
-                      }}
-                    />
-                    <Bar dataKey="count" radius={[0, 6, 6, 0]} barSize={14}>
-                      {topPages.map((_, i) => (
-                        <Cell
-                          key={`cell-${i}`}
-                          fill={i % 2 === 0 ? CHART_GOLD : CHART_SLATE}
-                        />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              )}
-            </div>
-          </div>
-
-          <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-            <div className="flex items-center gap-1.5 border-b border-slate-100 px-3 py-2 sm:px-4">
-              <Globe className="size-3.5 text-[#394a59]" />
-              <div>
-                <h2 className="text-sm font-semibold text-slate-900">By country</h2>
-                <p className="text-[11px] text-slate-500">Visit distribution</p>
+                    {user.name}
+                  </p>
+                  <p
+                    className="text-xs truncate"
+                    style={{ color: "#94A3B8" }}
+                  >
+                    {user.email}
+                  </p>
+                </div>
+              </div>
+              <div
+                className="mt-1 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-semibold w-fit"
+                style={{
+                  background: "rgba(197,157,79,0.08)",
+                  color: "#9A7530",
+                  border: "1px solid rgba(197,157,79,0.15)",
+                }}
+              >
+                <ShieldCheck className="w-3 h-3" />
+                {formatRole(user.role)}
               </div>
             </div>
-            <div className="h-[220px] px-2 pb-3 pt-1 sm:h-[240px] sm:px-3">
-              {!chartsMounted ? (
+          ) : (
+            <p className="text-sm" style={{ color: "#94A3B8" }}>
+              Session unavailable.
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* ── Error banner ───────────────────────────────────── */}
+      {trafficError && (
+        <div
+          className="flex items-start gap-3 px-4 py-3.5 rounded-xl text-sm"
+          style={{
+            background: "rgba(245,158,11,0.08)",
+            border: "1px solid rgba(245,158,11,0.2)",
+            color: "#92400E",
+          }}
+        >
+          <span
+            className="flex w-5 h-5 rounded-md items-center justify-center text-[10px] font-bold flex-shrink-0"
+            style={{ background: "rgba(245,158,11,0.15)" }}
+          >
+            !
+          </span>
+          {trafficError}
+        </div>
+      )}
+
+      {/* ── Traffic over time chart ─────────────────────────── */}
+      <SectionCard
+        title="Traffic over time"
+        subtitle={`Daily page views · ${rangeFullLabel}`}
+        icon={<BarChart3 className="w-3.5 h-3.5" />}
+      >
+        <div
+          className="px-5 pb-5 pt-2"
+          style={{ background: "rgba(248,250,252,0.5)" }}
+        >
+          <div className="h-[240px] w-full">
+            {!chartsMounted ? (
+              <div
+                className="h-full w-full rounded-xl animate-pulse"
+                style={{ background: "#F1F5F9" }}
+              />
+            ) : loadingTraffic ? (
+              <div className="flex h-full flex-col items-center justify-center gap-3">
                 <div
-                  className="h-full w-full rounded-lg border border-slate-100 bg-slate-50/90"
-                  aria-hidden
+                  className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+                  style={{ borderColor: "#C59D4F", borderTopColor: "transparent" }}
                 />
-              ) : loadingTraffic ? (
-                <div className="flex h-full items-center justify-center text-xs text-slate-500">
-                  Loading…
-                </div>
-              ) : topCountries.length === 0 ? (
-                <div className="flex h-full items-center justify-center rounded-lg border border-dashed border-slate-200 text-xs text-slate-500">
-                  No country data.
-                </div>
-              ) : (
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={topCountries} margin={{ top: 6, right: 6, left: 0, bottom: 2 }}>
-                    <CartesianGrid strokeDasharray="4 8" stroke="#f1f5f9" vertical={false} />
-                    <XAxis
-                      dataKey="name"
-                      tick={{ fontSize: 9, fill: "#64748b" }}
-                      interval={0}
-                      angle={-28}
-                      textAnchor="end"
-                      height={64}
-                    />
-                    <YAxis tick={{ fontSize: 10, fill: "#64748b" }} allowDecimals={false} width={32} />
-                    <Tooltip contentStyle={TOOLTIP_LIGHT} />
-                    <Bar
-                      dataKey="count"
-                      fill={CHART_SLATE}
-                      radius={[8, 8, 0, 0]}
-                      maxBarSize={48}
-                    />
-                  </BarChart>
-                </ResponsiveContainer>
-              )}
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-4 grid gap-3 lg:grid-cols-5">
-          <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm lg:col-span-3">
-            <div className="flex items-center gap-1.5 border-b border-slate-100 px-3 py-2 sm:px-4">
-              <MonitorSmartphone className="size-3.5 text-[#394a59]" />
-              <div>
-                <h2 className="text-sm font-semibold text-slate-900">Devices</h2>
-                <p className="text-[11px] text-slate-500">Share of visits</p>
+                <p className="text-xs" style={{ color: "#94A3B8" }}>
+                  Loading traffic data…
+                </p>
               </div>
-            </div>
-            <div className="h-[200px] px-2 pb-2 pt-1 sm:px-4">
+            ) : byDay.length === 0 ? (
+              <div className="flex h-full flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed"
+                style={{ borderColor: "#E2E8F0" }}>
+                <Globe className="w-8 h-8" style={{ color: "#CBD5E1" }} />
+                <p className="text-sm font-medium" style={{ color: "#64748B" }}>
+                  No data for this range.
+                </p>
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart
+                  data={byDay}
+                  margin={{ top: 8, right: 8, left: -8, bottom: 0 }}
+                >
+                  <defs>
+                    <linearGradient
+                      id="dashFillGold"
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
+                      <stop
+                        offset="0%"
+                        stopColor={CHART_GOLD}
+                        stopOpacity={0.35}
+                      />
+                      <stop
+                        offset="60%"
+                        stopColor={CHART_GOLD}
+                        stopOpacity={0.06}
+                      />
+                      <stop
+                        offset="100%"
+                        stopColor={CHART_GOLD}
+                        stopOpacity={0}
+                      />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid
+                    strokeDasharray="4 8"
+                    stroke="#E2E8F0"
+                    vertical={false}
+                  />
+                  <XAxis
+                    dataKey="label"
+                    tick={{ fontSize: 11, fill: "#94A3B8", fontWeight: 500 }}
+                    tickLine={false}
+                    axisLine={{ stroke: "#E2E8F0" }}
+                    dy={6}
+                  />
+                  <YAxis
+                    tick={{ fontSize: 11, fill: "#94A3B8", fontWeight: 500 }}
+                    tickLine={false}
+                    axisLine={false}
+                    allowDecimals={false}
+                    width={42}
+                  />
+                  <Tooltip
+                    contentStyle={TOOLTIP_STYLE}
+                    labelStyle={{
+                      fontWeight: 600,
+                      color: "#0F172A",
+                      marginBottom: 4,
+                    }}
+                    labelFormatter={(label, payload) => {
+                      const row = payload?.[0]?.payload as
+                        | { date?: string }
+                        | undefined;
+                      if (row?.date) {
+                        try {
+                          return format(
+                            new Date(`${row.date}T12:00:00.000Z`),
+                            "MMM d, yyyy",
+                            { locale: enUS }
+                          );
+                        } catch {
+                          return String(label ?? "");
+                        }
+                      }
+                      return String(label ?? "");
+                    }}
+                    formatter={(value: number | string) => [
+                      typeof value === "number"
+                        ? value.toLocaleString(LOCALE)
+                        : value,
+                      "Views",
+                    ]}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="visits"
+                    name="Views"
+                    stroke={CHART_GOLD}
+                    strokeWidth={2.5}
+                    fill="url(#dashFillGold)"
+                    activeDot={{
+                      r: 5,
+                      strokeWidth: 2,
+                      stroke: "#fff",
+                      fill: CHART_GOLD,
+                    }}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+        </div>
+      </SectionCard>
+
+      {/* ── Secondary charts row ────────────────────────────── */}
+      <div className="grid gap-4 lg:grid-cols-2">
+        {/* Top pages */}
+        <SectionCard
+          title="Top pages"
+          subtitle="By view count — hover for full URL"
+          icon={<BarChart3 className="w-3.5 h-3.5" />}
+        >
+          <div className="h-[240px] px-4 pb-5 pt-2">
+            {!chartsMounted ? (
+              <div
+                className="h-full rounded-xl animate-pulse"
+                style={{ background: "#F1F5F9" }}
+              />
+            ) : loadingTraffic ? (
+              <div className="flex h-full items-center justify-center text-xs" style={{ color: "#94A3B8" }}>
+                Loading…
+              </div>
+            ) : topPages.length === 0 ? (
+              <div className="flex h-full items-center justify-center rounded-xl border-2 border-dashed text-xs"
+                style={{ borderColor: "#E2E8F0", color: "#94A3B8" }}>
+                No data.
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  layout="vertical"
+                  data={topPages}
+                  margin={{ left: 4, right: 12, top: 6, bottom: 6 }}
+                >
+                  <CartesianGrid
+                    strokeDasharray="4 8"
+                    stroke="#F1F5F9"
+                    horizontal={false}
+                  />
+                  <XAxis
+                    type="number"
+                    tick={{ fontSize: 11, fill: "#94A3B8" }}
+                    allowDecimals={false}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    type="category"
+                    dataKey="name"
+                    width={120}
+                    tick={{ fontSize: 10, fill: "#64748B" }}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <Tooltip
+                    contentStyle={TOOLTIP_STYLE}
+                    formatter={(value: number) => [
+                      value.toLocaleString(LOCALE),
+                      "Views",
+                    ]}
+                    labelFormatter={(_, payload) => {
+                      const row = payload?.[0]?.payload as
+                        | { full?: string; name?: string }
+                        | undefined;
+                      return row?.full ?? row?.name ?? "";
+                    }}
+                  />
+                  <Bar dataKey="count" radius={[0, 8, 8, 0]} barSize={12}>
+                    {topPages.map((_, i) => (
+                      <Cell
+                        key={`cell-${i}`}
+                        fill={i % 2 === 0 ? CHART_GOLD : CHART_SLATE}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+        </SectionCard>
+
+        {/* By country */}
+        <SectionCard
+          title="By country"
+          subtitle="Visit distribution"
+          icon={<Globe className="w-3.5 h-3.5" />}
+        >
+          <div className="h-[240px] px-4 pb-5 pt-2">
+            {!chartsMounted ? (
+              <div
+                className="h-full rounded-xl animate-pulse"
+                style={{ background: "#F1F5F9" }}
+              />
+            ) : loadingTraffic ? (
+              <div className="flex h-full items-center justify-center text-xs" style={{ color: "#94A3B8" }}>
+                Loading…
+              </div>
+            ) : topCountries.length === 0 ? (
+              <div className="flex h-full items-center justify-center rounded-xl border-2 border-dashed text-xs"
+                style={{ borderColor: "#E2E8F0", color: "#94A3B8" }}>
+                No country data.
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  data={topCountries}
+                  margin={{ top: 6, right: 6, left: -4, bottom: 4 }}
+                >
+                  <CartesianGrid
+                    strokeDasharray="4 8"
+                    stroke="#F1F5F9"
+                    vertical={false}
+                  />
+                  <XAxis
+                    dataKey="name"
+                    tick={{ fontSize: 9, fill: "#94A3B8" }}
+                    interval={0}
+                    angle={-28}
+                    textAnchor="end"
+                    height={60}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    tick={{ fontSize: 10, fill: "#94A3B8" }}
+                    allowDecimals={false}
+                    width={30}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <Tooltip contentStyle={TOOLTIP_STYLE} />
+                  <Bar
+                    dataKey="count"
+                    fill={CHART_SLATE}
+                    radius={[8, 8, 0, 0]}
+                    maxBarSize={44}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            )}
+          </div>
+        </SectionCard>
+      </div>
+
+      {/* ── Devices + Scope row ─────────────────────────────── */}
+      <div className="grid gap-4 lg:grid-cols-5">
+        {/* Devices pie */}
+        <div className="lg:col-span-3">
+          <SectionCard
+            title="Devices"
+            subtitle="Share of visits by device type"
+            icon={<MonitorSmartphone className="w-3.5 h-3.5" />}
+          >
+            <div className="h-[210px] px-4 pb-4 pt-2">
               {!chartsMounted ? (
                 <div
-                  className="h-full w-full rounded-lg border border-slate-100 bg-slate-50/90"
-                  aria-hidden
+                  className="h-full rounded-xl animate-pulse"
+                  style={{ background: "#F1F5F9" }}
                 />
               ) : loadingTraffic || !deviceSplit.length ? (
-                <div className="flex h-full items-center justify-center text-xs text-slate-500">
+                <div className="flex h-full items-center justify-center text-xs" style={{ color: "#94A3B8" }}>
                   {loadingTraffic ? "Loading…" : "No device data."}
                 </div>
               ) : (
@@ -731,64 +1004,123 @@ const Page = () => {
                       dataKey="count"
                       nameKey="name"
                       cx="50%"
-                      cy="44%"
-                      innerRadius={48}
-                      outerRadius={78}
-                      paddingAngle={2}
-                      stroke="rgba(255,255,255,0.95)"
-                      strokeWidth={1.5}
+                      cy="42%"
+                      innerRadius={46}
+                      outerRadius={76}
+                      paddingAngle={3}
+                      stroke="rgba(255,255,255,0.9)"
+                      strokeWidth={2}
                       label={false}
                     >
                       {deviceSplit.map((_, i) => (
-                        <Cell key={`dev-${i}`} fill={CHART_ACCENT[i % CHART_ACCENT.length]} />
+                        <Cell
+                          key={`dev-${i}`}
+                          fill={CHART_ACCENT[i % CHART_ACCENT.length]}
+                        />
                       ))}
                     </Pie>
                     <Tooltip contentStyle={TOOLTIP_DARK} />
                     <Legend
                       verticalAlign="bottom"
-                      height={28}
+                      height={26}
                       wrapperStyle={{ fontSize: "11px" }}
                       formatter={(value) => (
-                        <span className="text-slate-600">{value}</span>
+                        <span style={{ color: "#64748B" }}>{value}</span>
                       )}
                     />
                   </PieChart>
                 </ResponsiveContainer>
               )}
             </div>
-          </div>
+          </SectionCard>
+        </div>
 
-          <div className="flex flex-col rounded-lg border border-slate-200 bg-slate-900 p-3.5 text-white lg:col-span-2">
-            <h2 className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
-              Scope
-            </h2>
-            <p className="mt-2 text-xs leading-relaxed text-slate-400">
-              Data is filtered server-side by your session and the selected range. Hits count
-              tracked page views; unique sessions use stored session IDs when present.
+        {/* Scope summary */}
+        <div
+          className="lg:col-span-2 rounded-2xl p-5 flex flex-col"
+          style={{
+            background:
+              "linear-gradient(145deg, #0B1623 0%, #1A2E40 100%)",
+            border: "1px solid rgba(255,255,255,0.05)",
+          }}
+        >
+          <p
+            className="text-[10px] font-bold uppercase tracking-widest"
+            style={{ color: "#334D63" }}
+          >
+            Scope
+          </p>
+          <p
+            className="mt-3 text-xs leading-relaxed"
+            style={{ color: "#4A6070" }}
+          >
+            Data filtered server-side by your session and the selected range.
+            Hits = tracked page views. Unique sessions use stored session IDs.
+          </p>
+          <dl
+            className="mt-4 space-y-3 pt-4"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+          >
+            <div className="flex justify-between gap-2">
+              <dt className="text-xs" style={{ color: "#4A6070" }}>
+                Range
+              </dt>
+              <dd
+                className="text-xs font-semibold text-white"
+              >
+                {rangeFullLabel}
+              </dd>
+            </div>
+            <div className="flex justify-between gap-2">
+              <dt className="text-xs" style={{ color: "#4A6070" }}>
+                Records
+              </dt>
+              <dd
+                className="text-xs font-semibold tabular-nums text-white"
+              >
+                {loadingTraffic ? "…" : totalInRange.toLocaleString(LOCALE)}
+              </dd>
+            </div>
+            <div className="flex justify-between gap-2">
+              <dt className="text-xs" style={{ color: "#4A6070" }}>
+                Sessions
+              </dt>
+              <dd
+                className="text-xs font-semibold tabular-nums text-white"
+              >
+                {loadingTraffic
+                  ? "…"
+                  : uniqueSessionCount.toLocaleString(LOCALE)}
+              </dd>
+            </div>
+          </dl>
+          <div
+            className="mt-auto pt-4 flex items-center gap-1.5"
+            style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
+          >
+            <div
+              className="w-5 h-5 rounded-md flex items-center justify-center"
+              style={{ background: "rgba(197,157,79,0.15)" }}
+            >
+              <ShieldCheck className="w-3 h-3" style={{ color: "#C59D4F" }} />
+            </div>
+            <p className="text-[10px]" style={{ color: "#334D63" }}>
+              Ritz Media World · Admin v2.0
             </p>
-            <dl className="mt-3 space-y-2 border-t border-white/10 pt-3 text-xs">
-              <div className="flex justify-between gap-2">
-                <dt className="text-slate-500">Range</dt>
-                <dd className="font-medium text-white">{rangeFullLabel}</dd>
-              </div>
-              <div className="flex justify-between gap-2">
-                <dt className="text-slate-500">Records</dt>
-                <dd className="tabular-nums font-medium text-white">
-                  {loadingTraffic ? "…" : totalInRange.toLocaleString(LOCALE)}
-                </dd>
-              </div>
-            </dl>
-            <p className="mt-auto pt-3 text-[10px] text-slate-600">Ritz Media World</p>
           </div>
-        </section>
-
-        <footer className="admin-footer mt-8 border-t border-slate-200 pt-6 text-center text-xs text-slate-500">
-          Designed and developed by{" "}
-          <strong className="font-medium text-slate-700">Ritz Media World</strong>
-        </footer>
+        </div>
       </div>
+
+      {/* Footer */}
+      <footer
+        className="text-center text-xs pt-6 border-t"
+        style={{ borderColor: "#E2E8F0", color: "#94A3B8" }}
+      >
+        Designed & developed by{" "}
+        <strong className="font-semibold" style={{ color: "#64748B" }}>
+          Ritz Media World
+        </strong>
+      </footer>
     </div>
   );
-};
-
-export default Page;
+}

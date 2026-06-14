@@ -330,3 +330,388 @@ body {
   font-size: 14px;
   padding: 20px 0;
 }
+
+/* =================================================================
+   ADMIN V2 — GLOBAL INNER PAGE OVERRIDES
+   Scoped under .admin-v2 (applied to <main> in layout-client.tsx)
+   ================================================================= */
+
+/* ---- Table overrides ---- */
+.admin-v2 table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13.5px;
+  overflow: hidden;
+}
+
+.admin-v2 table thead tr {
+  background: linear-gradient(135deg, #0b1623 0%, #1e2d3d 100%) !important;
+  color: #ffffff !important;
+}
+
+.admin-v2 table thead th {
+  padding: 14px 18px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #ffffff !important;
+  border: none !important;
+  white-space: nowrap;
+}
+
+.admin-v2 table thead th:first-child {
+  border-radius: 12px 0 0 0;
+}
+.admin-v2 table thead th:last-child {
+  border-radius: 0 12px 0 0;
+}
+
+.admin-v2 table tbody tr {
+  border-bottom: 1px solid #edf2f7;
+  transition: background 0.12s ease;
+}
+
+.admin-v2 table tbody tr:hover {
+  background: #f8fafc !important;
+}
+
+.admin-v2 table tbody td {
+  padding: 16px 18px !important;
+  color: #1f2937;
+  vertical-align: middle;
+  border-bottom: 1px solid #edf2f7 !important;
+  line-height: 1.45;
+}
+
+.admin-v2 table tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Blog listing tables need larger thumbnails and cleaner action controls. */
+.admin-v2 table td:first-child {
+  width: 145px;
+}
+
+.admin-v2 table td:first-child img {
+  width: 112px !important;
+  height: 70px !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+}
+
+.admin-v2 table td:nth-child(2) {
+  min-width: 280px;
+  max-width: 520px;
+  font-weight: 600;
+  color: #0b1623;
+}
+
+.admin-v2 table td:nth-child(3) {
+  width: 120px;
+  color: #475569;
+  font-size: 12px;
+}
+
+.admin-v2 table td:nth-child(4),
+.admin-v2 table td:nth-child(5) {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.admin-v2 .admin-blog-table-card {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.admin-v2 .admin-blog-table {
+  background: #ffffff;
+}
+
+.admin-v2 .admin-blog-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ---- Old "Manage Page" gray header bars ---- */
+/* Targets the .bg-[#9CA9B4] class used as section headers */
+.admin-v2 [class*="bg-\\[\\#9CA9B4\\]"],
+.admin-v2 .bg-\[\#9CA9B4\] {
+  background: linear-gradient(135deg, #0b1623, #1e2d3d) !important;
+  color: #ffffff !important;
+}
+
+/* ---- Old green accent buttons (ManageBlog style) ---- */
+.admin-v2 a[class*="bg-\\[\\#688A7E\\]"],
+.admin-v2 [class*="bg-\\[\\#688A7E\\]"] {
+  background: linear-gradient(135deg, #c59d4f, #9a7530) !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(197, 157, 79, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.admin-v2 [class*="hover\\:bg-\\[\\#365248\\]"]:hover,
+.admin-v2 [class*="hover\\:bg-\\[\\#436b5d\\]"]:hover {
+  background: linear-gradient(135deg, #9a7530, #7a5c20) !important;
+}
+
+/* ---- Old breadcrumb inside inner pages ---- */
+.admin-v2 .flex.flex-wrap.items-center.gap-2.bg-white.p-3.rounded-md.shadow-sm,
+.admin-v2 .flex.flex-wrap.items-center.gap-4.bg-white.p-3.rounded-md.shadow-sm {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 0 8px 0 !important;
+}
+
+/* ---- White card containers ---- */
+.admin-v2 .bg-white.rounded-md.shadow-md,
+.admin-v2 .bg-white.rounded-lg.shadow-md {
+  border-radius: 14px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ---- Form inputs and selects in inner pages ---- */
+.admin-v2 input[type="text"],
+.admin-v2 input[type="email"],
+.admin-v2 input[type="password"],
+.admin-v2 input[type="number"],
+.admin-v2 input[type="url"],
+.admin-v2 select,
+.admin-v2 textarea {
+  border-radius: 10px !important;
+  border-color: #e2e8f0 !important;
+  background: #f8fafc !important;
+  font-size: 14px !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.admin-v2 input:focus,
+.admin-v2 select:focus,
+.admin-v2 textarea:focus {
+  border-color: #c59d4f !important;
+  box-shadow: 0 0 0 3px rgba(197, 157, 79, 0.1) !important;
+  outline: none !important;
+}
+
+/* ---- Status badges ---- */
+.admin-v2 span.bg-green-500 {
+  background: #10b981 !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  padding: 3px 10px !important;
+}
+
+.admin-v2 span.bg-red-500 {
+  background: #ef4444 !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  padding: 3px 10px !important;
+}
+
+/* ---- Pagination buttons ---- */
+.admin-v2 button[class*="border-\\[\\#688A7E\\]"],
+.admin-v2 button[class*="border-\\[\\#365248\\]"] {
+  border-color: #c59d4f !important;
+  color: #9a7530 !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  transition: all 0.15s ease !important;
+}
+
+.admin-v2 button[class*="border-\\[\\#688A7E\\]"]:hover,
+.admin-v2 button[class*="border-\\[\\#365248\\]"]:hover {
+  background: #c59d4f !important;
+  color: #ffffff !important;
+}
+
+/* ---- Page main heading styles ---- */
+.admin-v2 .admin-page-heading {
+  color: #0b1623 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Respect explicit white text on dark backgrounds. */
+.admin-v2 .text-white,
+.admin-v2 .text-white * {
+  color: #ffffff !important;
+}
+
+/* ---- Icon action buttons in tables (view/edit/delete) ---- */
+.admin-v2 table td:last-child {
+  min-width: 100px;
+}
+
+.admin-v2 table td:last-child a,
+.admin-v2 table td:last-child button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 8px !important;
+  padding: 0 !important;
+  margin: 0 2px !important;
+  background: #f8fafc !important;
+  border: 1px solid #e5e7eb !important;
+  transition: all 0.15s ease !important;
+}
+
+.admin-v2 table td:last-child a:hover,
+.admin-v2 table td:last-child button:hover {
+  background: #ffffff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08) !important;
+}
+
+.admin-v2 table .text-blue-600 {
+  color: #3b82f6 !important;
+}
+.admin-v2 table .text-green-600 {
+  color: #10b981 !important;
+}
+.admin-v2 table .text-red-600 {
+  color: #ef4444 !important;
+}
+
+/* ---- Loading spinner override ---- */
+.admin-v2 .animate-spin {
+  color: #c59d4f;
+}
+
+/* ---- Delete/confirm modal improvements ---- */
+.admin-v2 .fixed.inset-0.flex.items-center.justify-center > div {
+  border-radius: 16px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 32px 80px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ---- Inner page top section (title + action button row) ---- */
+.admin-v2 > div:first-child > div:first-child,
+.admin-v2-page-top {
+  margin-bottom: 20px;
+}
+
+/* ---- Scrollbar for inner content ---- */
+.admin-v2 ::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.admin-v2 ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.admin-v2 ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 99px;
+}
+.admin-v2 ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =================================================================
+   ADMIN V2 — LEGACY TOKEN UPLIFT (applies to all internal pages)
+   These pages use hardcoded brand colors; remap them to the V2 system
+   ================================================================= */
+
+/* Old full-page gray wrappers -> transparent (main already provides bg+padding) */
+.admin-v2 .bg-\[\#EEEEEE\],
+.admin-v2 .bg-\[\#eeeeee\],
+.admin-v2 .bg-\[\#f0f2f5\],
+.admin-v2 .bg-\[\#F0F2F5\] {
+  background: transparent !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Legacy light uppercase page titles -> bold dark headings */
+.admin-v2 h1.text-\[\#ACACAC\],
+.admin-v2 .text-\[\#ACACAC\] {
+  color: #0b1623 !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  font-size: 1.25rem !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Legacy flex "table" header rows */
+.admin-v2 .bg-\[\#CCCCCC\],
+.admin-v2 .bg-\[\#cccccc\] {
+  background: linear-gradient(135deg, #0b1623, #1e2d3d) !important;
+  color: #ffffff !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.admin-v2 .bg-\[\#CCCCCC\] p,
+.admin-v2 .bg-\[\#cccccc\] p {
+  color: #ffffff !important;
+  letter-spacing: 0.06em;
+}
+
+/* Legacy body text / labels in green slate -> readable slate */
+.admin-v2 .text-\[\#688A7E\] {
+  color: #334155 !important;
+}
+
+.admin-v2 .text-\[\#365248\] {
+  color: #0b1623 !important;
+}
+
+.admin-v2 .text-\[\#717272\] {
+  color: #64748b !important;
+}
+
+.admin-v2 .text-\[\#2955B3\] {
+  color: #c59d4f !important;
+}
+
+.admin-v2 .text-\[\#838383\] {
+  color: #0b1623 !important;
+  font-weight: 600;
+}
+
+/* Legacy input/select borders */
+.admin-v2 .border-\[\#1a6249\],
+.admin-v2 .border-\[\#365248\] {
+  border-color: #e2e8f0 !important;
+  border-radius: 12px !important;
+  background: #f8fafc !important;
+}
+
+/* Pagination active state (legacy dark green) */
+.admin-v2 .bg-\[\#365248\] {
+  background: linear-gradient(135deg, #0b1623, #1e2d3d) !important;
+  color: #ffffff !important;
+  border-radius: 10px !important;
+}
+
+/* Legacy delete / red action links */
+.admin-v2 .text-red-600.hover\:underline:hover {
+  text-decoration: none !important;
+}
+
+/* Soften the legacy breadcrumb white card (already partially handled) */
+.admin-v2 .bg-white.p-3.rounded-md.shadow-sm {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 0 4px 0 !important;
+}
+
+/* Footer credit lines */
+.admin-v2 .admin-footer,
+.admin-v2 footer {
+  color: #94a3b8 !important;
+}

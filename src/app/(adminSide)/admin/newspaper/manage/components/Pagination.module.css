@@ -28,8 +28,8 @@
 .navButton:hover:not(:disabled),
 .pageButton:hover:not(:disabled) {
   background-color: #f9fafb;
-  border-color: #3b82f6;
-  color: #3b82f6;
+  border-color: #c59d4f;
+  color: #c59d4f;
 }
 
 .navButton:disabled {
@@ -42,14 +42,14 @@
 }
 
 .activePageButton {
-  background-color: #3b82f6;
+  background-color: #c59d4f;
   color: white;
-  border-color: #3b82f6;
+  border-color: #c59d4f;
 }
 
 .activePageButton:hover {
-  background-color: #2563eb;
-  border-color: #2563eb;
+  background-color: #9a7530;
+  border-color: #9a7530;
   color: white;
 }
 
