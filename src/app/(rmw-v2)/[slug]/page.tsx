@@ -10,10 +10,14 @@ type BlogLayoutData = { blog: any; categoryName: string; all_categories: any; la
 
 const SITE_ORIGIN = "https://ritzmediaworld.com";
 
+/** Blog slugs that must not emit a rel=canonical tag. */
+const SLUGS_WITHOUT_CANONICAL = new Set(["top-10-seo-service-companies-in-noida"]);
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug: rawSlug } = await params;
     const slug = normalizeBlogSlug(rawSlug);
     const canonicalUrl = `${SITE_ORIGIN}/${slug}`;
+    const omitCanonical = SLUGS_WITHOUT_CANONICAL.has(slug);
     const result = await get_single_blog(slug);
     const data: BlogLayoutData | null = Array.isArray(result) && (result[1] as { status?: number })?.status === 200
         ? (result[0] as BlogLayoutData)
@@ -28,9 +32,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         title,
         description: meta_description || undefined,
         keywords: keywords.length > 0 ? keywords : undefined,
-        alternates: {
-            canonical: canonicalUrl,
-        },
+        ...(!omitCanonical && {
+            alternates: {
+                canonical: canonicalUrl,
+            },
+        }),
         openGraph: {
             title,
             description: meta_description || undefined,
