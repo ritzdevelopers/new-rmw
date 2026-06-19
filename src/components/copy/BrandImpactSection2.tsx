@@ -262,7 +262,71 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                     </form>
                 </div>
 
-                {/* Center Container - Brand Audit */}
+                {/* Center Container - Noida Outlook Report */}
+                <div className="w-full min-h-0 lg:min-h-[526px] h-full border-1 border-[#D4D4D4] bg-white flex flex-col gap-3 sm:gap-4 px-4 lg:px-6 py-6 sm:py-7 lg:py-8 md:px-6">
+                    <div className="text-left flex flex-col gap-2">
+                        <p
+                            className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-[#C99237]"
+                            style={{
+                                fontFamily: "OpenSansSemiBold",
+                            }}
+                        >
+                            Market Report
+                        </p>
+                        <h2
+                            className="font-[700] text-[17px] sm:text-[18px] lg:text-[19px] xl:text-[22px] 2xl:text-[26px] leading-snug"
+                            style={{
+                                fontFamily: "MontserratBold",
+                            }}
+                        >
+                            A Ritz Media World{" "}
+                            <span className="text-[#C99237]">RMW Market Intelligence Report</span>{" "}
+                            | June 2026
+                        </h2>
+                    </div>
+
+                    <p
+                        className="font-[400] text-[13px] lg:text-[13px] xl:text-[16px] text-left"
+                        style={{
+                            fontFamily: "PoppinsRegular",
+                        }}
+                    >
+                        Download our latest outlook on Noida&apos;s real estate landscape, growth corridors, and brand opportunities.
+                    </p>
+
+                    <ul
+                        className="font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-left"
+                        style={{
+                            fontFamily: "PoppinsRegular",
+                        }}
+                    >
+                        <li>Noida market trends and demand insights</li>
+                        <li>Residential and commercial growth outlook</li>
+                        <li>Investment corridors and emerging hotspots</li>
+                        <li>RMW strategic recommendations for 2026</li>
+                    </ul>
+
+                    <div className="mt-4 lg:mt-auto flex flex-col gap-3">
+                        <button
+                            type="button"
+                            onClick={downloadNoidaOutlookReport}
+                            className={`${styles.freeDownloadButton} w-full h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold`}
+                        >
+                            <span className="text-white">Download Report</span>
+                            <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px]" />
+                        </button>
+                        <p
+                            className="font-[400] text-[13px] xl:text-[14px] text-[#6E6E6E] text-left"
+                            style={{
+                                fontFamily: "PoppinsRegular",
+                            }}
+                        >
+                            Free PDF download. No signup required.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Right Side Container  */}
                 <div className="relative w-full min-h-0 lg:min-h-[526px] h-full min-w-0 overflow-hidden border-1 border-[#D4D4D4] px-4 lg:px-6 py-6 sm:py-7 lg:py-8 flex flex-col md:px-6 pb-28 sm:pb-32 lg:pb-8">
                     <img
                         src="/home-v3/s8/s8img.png"
@@ -324,70 +388,6 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                                 className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px] shrink-0"
                             />
                         </Link>
-                    </div>
-                </div>
-
-                {/* Right Side Container - Market Report */}
-                <div className="w-full min-h-0 lg:min-h-[526px] h-full border-1 border-[#D4D4D4] bg-white flex flex-col gap-3 sm:gap-4 px-4 lg:px-6 py-6 sm:py-7 lg:py-8 md:px-6">
-                    <div className="text-left flex flex-col gap-2">
-                        <p
-                            className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-[#C99237]"
-                            style={{
-                                fontFamily: "OpenSansSemiBold",
-                            }}
-                        >
-                            Market Report
-                        </p>
-                        <h2
-                            className="font-[700] text-[17px] sm:text-[18px] lg:text-[19px] xl:text-[22px] 2xl:text-[26px] leading-snug"
-                            style={{
-                                fontFamily: "MontserratBold",
-                            }}
-                        >
-                            A Ritz Media World{" "}
-                            <span className="text-[#C99237]">RMW Market Intelligence Report</span>{" "}
-                            | June 2026
-                        </h2>
-                    </div>
-
-                    <p
-                        className="font-[400] text-[13px] lg:text-[13px] xl:text-[16px] text-left"
-                        style={{
-                            fontFamily: "PoppinsRegular",
-                        }}
-                    >
-                        Download our latest outlook on Noida&apos;s real estate landscape, growth corridors, and brand opportunities.
-                    </p>
-
-                    <ul
-                        className="font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-left"
-                        style={{
-                            fontFamily: "PoppinsRegular",
-                        }}
-                    >
-                        <li>Noida market trends and demand insights</li>
-                        <li>Residential and commercial growth outlook</li>
-                        <li>Investment corridors and emerging hotspots</li>
-                        <li>RMW strategic recommendations for 2026</li>
-                    </ul>
-
-                    <div className="mt-4 lg:mt-auto flex flex-col gap-3">
-                        <button
-                            type="button"
-                            onClick={downloadNoidaOutlookReport}
-                            className={`${styles.freeDownloadButton} w-full h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold`}
-                        >
-                            <span className="text-white">Download Report</span>
-                            <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px]" />
-                        </button>
-                        <p
-                            className="font-[400] text-[13px] xl:text-[14px] text-[#6E6E6E] text-left"
-                            style={{
-                                fontFamily: "PoppinsRegular",
-                            }}
-                        >
-                            Free PDF download. No signup required.
-                        </p>
                     </div>
                 </div>
             </div>
