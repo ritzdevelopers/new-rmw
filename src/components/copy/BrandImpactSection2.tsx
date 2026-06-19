@@ -5,6 +5,9 @@ import Link from "next/link";
 import styles from "./page.module.css";
 import { BsArrowRight } from "react-icons/bs";
 
+const NOIDA_OUTLOOK_REPORT_URL = "/uploads/Noida%20outlook%20RMW%20report%20.pdf";
+const NOIDA_OUTLOOK_REPORT_FILENAME = "Noida outlook RMW report.pdf";
+
 function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolean }) {
     const [loader, setLoader] = useState<boolean>(true);
     const [phone, setPhone] = useState("");
@@ -84,6 +87,15 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
         const link = document.createElement("a");
         link.href = "/Gold-in-the-Abyss.pptx";
         link.download = "Gold-in-the-Abyss.pptx";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    const downloadNoidaOutlookReport = () => {
+        const link = document.createElement("a");
+        link.href = NOIDA_OUTLOOK_REPORT_URL;
+        link.download = NOIDA_OUTLOOK_REPORT_FILENAME;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -172,10 +184,10 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
     return (
         <section className="w-full bg-white lg:pb-[70px] pb-[35px] flex flex-col gap-12">
             {/* Row 2  */}
-            <div className={`w-full flex ${styles.containerWidth} flex-col lg:flex-row justify-between gap-6`}>
+            <div className={`w-full grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch ${styles.containerWidth}`}>
                 {/* Left Side Container  */}
-                <div className="w-full xl:w-full lg:w-[50%] xl:flex-1 min-h-[500px] xl:h-[526px] bg-[#F7F7F7] flex flex-col justify-start gap-3 sm:gap-4 px-4 lg:px-8 py-6 sm:py-7 lg:py-8 md:px-6">
-                    <div className="text-left flex flex-col gap-2">
+                <div className="w-full min-h-0 lg:min-h-[526px] h-full bg-[#F7F7F7] flex flex-col gap-3 sm:gap-4 px-4 lg:px-6 py-6 sm:py-7 lg:py-8 md:px-6">
+                    <div className="text-left">
                         <p
                             className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-[#C99237]"
                             style={{
@@ -184,28 +196,23 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                         >
                             Free Resource
                         </p>
-                        
-
-                        <div>
-                         
-                            <h2
-                                className="font-[700] text-[21px]  lg:text-[22px] xl:text-[36px]"
-                                style={{
-                                    fontFamily: "MontserratBold",
-                                }}
-                            >
-                             Brand Impact Report 2026
-                            </h2>
-                        </div>
+                        <h2
+                            className="font-[700] text-[21px] lg:text-[22px] xl:text-[28px] 2xl:text-[36px]"
+                            style={{
+                                fontFamily: "MontserratBold",
+                            }}
+                        >
+                            Brand Impact Report 2026
+                        </h2>
                     </div>
 
                     <p
-                        className="font-[400] text-[13px]  lg:text-[13px] xl:text-[16px] text-left"
+                        className="font-[400] text-[13px] lg:text-[13px] xl:text-[16px] text-left"
                         style={{
                             fontFamily: "PoppinsRegular",
                         }}
                     >
-                        Get exclusive insights into real estate and lifestyle brand <br className="hidden lg:block" /> marketing trends, strategies, and ROI benchmarks for 2026.
+                        Get exclusive insights into real estate and lifestyle brand marketing trends, strategies, and ROI benchmarks for 2026.
                     </p>
 
                     <ul
@@ -220,30 +227,28 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                         <li>Case studies with measurable results</li>
                     </ul>
 
-                    <form onSubmit={handleDownload} className="flex flex-col gap-4">
-                        <div className="flex flex-col xl:flex-row justify-between gap-3 sm:gap-3 p-0 ">
-                            <div className="flex-1 relative">
-                                <input
-                                    type="tel"
-                                    value={phone}
-                                    onChange={handlePhoneChange}
-                                    onBlur={handlePhoneBlur}
-                                    placeholder="Enter your phone (e.g., +91 9220516777)"
-                                    required
-                                    className={`w-full xl:w-[355px] h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
-                                        ? "border-[#EF4444]"
-                                        : "border-[#DAD4D4]"
-                                        }`}
-                                />
-                            </div>
+                    <form onSubmit={handleDownload} className="mt-4 lg:mt-auto flex flex-col gap-3">
+                        <div className="flex flex-col gap-3">
+                            <input
+                                type="tel"
+                                value={phone}
+                                onChange={handlePhoneChange}
+                                onBlur={handlePhoneBlur}
+                                placeholder="Enter your phone (e.g., +91 9220516777)"
+                                required
+                                className={`w-full h-[48px] sm:h-[50px] border-1 rounded-[4px] bg-white px-4 placeholder:text-[#000000] placeholder:font-[400] placeholder:text-[13px] sm:placeholder:text-[14px] ${phoneError
+                                    ? "border-[#EF4444]"
+                                    : "border-[#DAD4D4]"
+                                    }`}
+                            />
 
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className={`${styles.freeDownloadButton} w-full xl:w-[209px] h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed`}
+                                className={`${styles.freeDownloadButton} w-full h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold disabled:opacity-50 disabled:cursor-not-allowed`}
                             >
-                                <p className="text-white">{isSubmitting ? "Submitting..." : "Free Download"}</p>
-                                <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px]" />
+                                <span className="text-white">{isSubmitting ? "Submitting..." : "Free Download"}</span>
+                                <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px] shrink-0" />
                             </button>
                         </div>
                         <p
@@ -257,57 +262,132 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                     </form>
                 </div>
 
-                {/* Right Side Container  */}
-                <div className="w-full lg:w-[50%] xl:w-[603px] lg:h-[526px] border-1 border-[#D4D4D4] lg:bg-[url('/home-v3/s8/s8img.png')] bg-cover bg-center px-6 sm:px-7 lg:px-8 py-6 sm:py-7 lg:py-8 flex flex-col gap-3 sm:gap-4 md:px-6">
-                    <h2
-                        className="font-[700] text-[24px] sm:text-[28px] lg:text-[22px] xl:text-[36px] text-left"
-                        style={{
-                            fontFamily: "MontserratBold",
-                        }}
-                    >
-                        Get a Free <span className="text-[#C99237]">Brand Audit</span>{" "}
-                    </h2>
+                {/* Center Container - Brand Audit */}
+                <div className="relative w-full min-h-0 lg:min-h-[526px] h-full min-w-0 overflow-hidden border-1 border-[#D4D4D4] px-4 lg:px-6 py-6 sm:py-7 lg:py-8 flex flex-col md:px-6 pb-28 sm:pb-32 lg:pb-8">
+                    <img
+                        src="/home-v3/s8/s8img.png"
+                        alt=""
+                        aria-hidden="true"
+                        className="pointer-events-none absolute bottom-0 right-0 w-[62%] max-w-[220px] sm:max-w-[260px] h-auto select-none lg:w-full lg:max-w-full"
+                    />
 
-                    <p
-                        className="font-[400] text-[14px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left"
-                        style={{
-                            fontFamily: "PoppinsRegular",
-                        }}
-                    >
-                        Let our experts analyze your current brand positioning and <br className="hidden lg:block" /> provide
-                        actionable recommendations.
-                    </p>
+                    <div className="relative z-10 flex min-h-0 flex-1 flex-col gap-3 sm:gap-4">
+                        <h2
+                            className="font-[700] text-[21px] sm:text-[24px] lg:text-[22px] xl:text-[28px] 2xl:text-[36px] text-left"
+                            style={{
+                                fontFamily: "MontserratBold",
+                            }}
+                        >
+                            Get a Free <span className="text-[#C99237]">Brand Audit</span>{" "}
+                        </h2>
 
-                    <ul
-                        className="list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left"
-                        style={{
-                            fontFamily: "PoppinsRegular",
-                        }}
-                    >
-                        <li>Comprehensive brand analysis</li>
-                        <li>Competitor positioning review</li>
-                        <li>Growth opportunity identification</li>
-                        <li>Customized strategy roadmap</li>
-                    </ul>
+                        <p
+                            className="max-w-full lg:max-w-[95%] font-[400] text-[14px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left"
+                            style={{
+                                fontFamily: "PoppinsRegular",
+                            }}
+                        >
+                            Let our experts analyze your current brand positioning and provide
+                            actionable recommendations.
+                        </p>
 
-                    <div className="flex border-b-1 border-b-black items-center justify-between cursor-pointer pb-2 w-full sm:w-[224px] lg:mt-5 text-left">
+                        <ul
+                            className="max-w-full lg:max-w-[72%] xl:max-w-[68%] list-disc pl-4 flex flex-col gap-2 sm:gap-3 font-[400] text-[13px] md:text-[15px] lg:text-[13px] xl:text-[16px] text-left"
+                            style={{
+                                fontFamily: "PoppinsRegular",
+                            }}
+                        >
+                            <li>Comprehensive brand analysis</li>
+                            <li>Competitor positioning review</li>
+                            <li>Growth opportunity identification</li>
+                            <li>Customized strategy roadmap</li>
+                        </ul>
+
                         <Link
                             title="Request A Free Audit"
                             href={"https://ritzmediaworld.com/contact.html"}
                             target="_blank"
-                            className="font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-black"
+                            className="mt-2 lg:mt-6 mb-0 lg:mb-6 inline-flex w-fit max-w-full items-center gap-3 border-b-1 border-b-black pb-2 text-left"
+                        >
+                            <span
+                                className="font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-black whitespace-nowrap"
+                                style={{
+                                    fontFamily: "MontserratSemiBold",
+                                }}
+                            >
+                                Request A Free Audit
+                            </span>
+                            <img
+                                src="/home-v3/s3/rhgt.png"
+                                alt="RMW"
+                                title="RMW"
+                                className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px] shrink-0"
+                            />
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Right Side Container - Market Report */}
+                <div className="w-full min-h-0 lg:min-h-[526px] h-full border-1 border-[#D4D4D4] bg-white flex flex-col gap-3 sm:gap-4 px-4 lg:px-6 py-6 sm:py-7 lg:py-8 md:px-6">
+                    <div className="text-left flex flex-col gap-2">
+                        <p
+                            className="uppercase font-[600] text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] text-[#C99237]"
                             style={{
-                                fontFamily: "MontserratSemiBold",
+                                fontFamily: "OpenSansSemiBold",
                             }}
                         >
-                            Request A Free Audit
-                        </Link>
-                        <img
-                            src="/home-v3/s3/rhgt.png"
-                            alt="RMW"
-                            title="RMW"
-                            className="w-[24px] h-[24px] sm:w-[25px] sm:h-[25px] lg:w-[27px] lg:h-[27px]"
-                        />
+                            Market Report
+                        </p>
+                        <h2
+                            className="font-[700] text-[17px] sm:text-[18px] lg:text-[19px] xl:text-[22px] 2xl:text-[26px] leading-snug"
+                            style={{
+                                fontFamily: "MontserratBold",
+                            }}
+                        >
+                            A Ritz Media World{" "}
+                            <span className="text-[#C99237]">RMW Market Intelligence Report</span>{" "}
+                            | June 2026
+                        </h2>
+                    </div>
+
+                    <p
+                        className="font-[400] text-[13px] lg:text-[13px] xl:text-[16px] text-left"
+                        style={{
+                            fontFamily: "PoppinsRegular",
+                        }}
+                    >
+                        Download our latest outlook on Noida&apos;s real estate landscape, growth corridors, and brand opportunities.
+                    </p>
+
+                    <ul
+                        className="font-[400] text-[13px] md:text-[14px] lg:text-[13px] xl:text-[16px] list-disc pl-4 flex flex-col gap-2 sm:gap-3 text-left"
+                        style={{
+                            fontFamily: "PoppinsRegular",
+                        }}
+                    >
+                        <li>Noida market trends and demand insights</li>
+                        <li>Residential and commercial growth outlook</li>
+                        <li>Investment corridors and emerging hotspots</li>
+                        <li>RMW strategic recommendations for 2026</li>
+                    </ul>
+
+                    <div className="mt-4 lg:mt-auto flex flex-col gap-3">
+                        <button
+                            type="button"
+                            onClick={downloadNoidaOutlookReport}
+                            className={`${styles.freeDownloadButton} w-full h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold`}
+                        >
+                            <span className="text-white">Download Report</span>
+                            <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px]" />
+                        </button>
+                        <p
+                            className="font-[400] text-[13px] xl:text-[14px] text-[#6E6E6E] text-left"
+                            style={{
+                                fontFamily: "PoppinsRegular",
+                            }}
+                        >
+                            Free PDF download. No signup required.
+                        </p>
                     </div>
                 </div>
             </div>
