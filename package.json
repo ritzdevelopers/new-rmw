@@ -7,7 +7,7 @@
     "build": "NODE_OPTIONS='--max-old-space-size=4096' next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap --config next-sitemap.routes.config.js && next-sitemap --config next-sitemap.post.config.js && next-sitemap --config next-sitemap.page.config.js && next-sitemap --config next-sitemap.images.config.js && node scripts/finalize-sitemaps.mjs"
+    "postbuild": "next-sitemap --config next-sitemap.routes.config.js && next-sitemap --config next-sitemap.post.config.js && next-sitemap --config next-sitemap.page.config.js && next-sitemap --config next-sitemap.images.config.js && node scripts/finalize-sitemaps.mjs && node scripts/build-sitemap-0-base.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
