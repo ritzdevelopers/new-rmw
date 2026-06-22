@@ -50,7 +50,7 @@ async function fetchMongoBlogRecords(): Promise<PostRecord[]> {
     .lean()
     .exec();
 
-  return Array.isArray(docs) ? docs : [];
+  return Array.isArray(docs) ? (docs as PostRecord[]) : [];
 }
 
 async function fetchMySQLBlogRecords(
