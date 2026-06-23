@@ -715,3 +715,28 @@ body {
 .admin-v2 footer {
   color: #94a3b8 !important;
 }
+
+/* Jodit editor — sticky formatting toolbar while composing blogs */
+.admin-v2 .editor-container {
+  position: relative;
+  z-index: 1;
+}
+
+.admin-v2 .editor-container .jodit-container {
+  overflow: visible !important;
+}
+
+.admin-v2 .editor-container .jodit-toolbar__box {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-v2 .editor-container .jodit-container.jodit_sticky-on .jodit-toolbar__box {
+  top: var(--jodit-toolbar-offset, 72px) !important;
+  z-index: 45 !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.admin-v2 .editor-container .jodit-workplace {
+  min-height: 320px;
+}
