@@ -1,8 +1,20 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import HomePage from "@/components/home-v3/HomePage";
 import LoadingLinesAndDots from "@/components/ui/LoadingLinesAndDots";
 
 const HOME_CANONICAL_URL = "https://ritzmediaworld.com/";
+const HOME_PAGE_TITLE = "Ritz Media World: Creative + Strategy + Media Agency";
+
+export const metadata: Metadata = {
+  title: HOME_PAGE_TITLE,
+  openGraph: {
+    title: HOME_PAGE_TITLE,
+  },
+  twitter: {
+    title: HOME_PAGE_TITLE,
+  },
+};
 
 export const revalidate = 300;
 export const dynamic = "force-static";
