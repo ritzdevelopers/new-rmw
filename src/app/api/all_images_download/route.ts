@@ -13,6 +13,11 @@ interface BlogImageRow extends RowDataPacket {
   title: string;
 }
 
+type ImageEntry = {
+  imagePath: string;
+  title: string;
+};
+
 export async function GET() {
   try {
     await connectMongoDB();
@@ -44,7 +49,16 @@ export async function GET() {
       );
     }
 
-    const allImages = [...mongoImages, ...sqlImagesArray];
+    const allImages: ImageEntry[] = [
+      ...mongoImages.map((image) => ({
+        imagePath: image.blogBanner,
+        title: image.blogTitle,
+      })),
+      ...sqlImagesArray.map((image) => ({
+        imagePath: image.blog_image,
+        title: image.title,
+      })),
+    ];
 
     const zipFileName = "all_images.zip";
     const zipPath = path.join(process.cwd(), "public", zipFileName);
@@ -55,7 +69,7 @@ export async function GET() {
 
     for (const image of allImages) {
       try {
-        let imageUrl = image.blogBanner || image.blog_image;
+        let imageUrl = image.imagePath;
         if (!imageUrl) {
           continue;
         }
@@ -80,8 +94,8 @@ export async function GET() {
         try {
           new URL(imageUrl); 
         } catch (urlError) {
-          console.error(`Invalid URL constructed for blog: ${image.blogTitle || image.title}`, {
-            originalUrl: image.blogBanner || image.blog_image,
+          console.error(`Invalid URL constructed for blog: ${image.title}`, {
+            originalUrl: image.imagePath,
             constructedUrl: imageUrl,
           });
           continue; 
@@ -92,7 +106,7 @@ export async function GET() {
         });
         const nodeBuffer = Buffer.from(response.data, "binary");
 
-        const blogTitle = image.blogTitle || image.title || "image";
+        const blogTitle = image.title || "image";
         const sanitizedTitle = blogTitle
           .replace(/[<>:"/\\|?*]/g, "_")
           .trim()
@@ -103,7 +117,7 @@ export async function GET() {
 
         archive.append(nodeBuffer, { name: imageName });
       } catch (error) {
-        console.error(`Error downloading image for blog: ${image.blogTitle || image.title}`, error);
+        console.error(`Error downloading image for blog: ${image.title}`, error);
         continue;
       }
     }
