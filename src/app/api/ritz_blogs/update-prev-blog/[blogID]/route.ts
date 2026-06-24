@@ -14,11 +14,9 @@ import ManagementActivitiesModel from "@/models/ManagementActivities";
 import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
 
 interface BlogBodyItem {
-    pageTitle: string;
-    pageDesc: string;
-    innerImg: string;
-    metaTitle?: string;
-    metaDescription?: string;
+    metaTitle: string;
+    metaDescription: string;
+    innerImg?: string;
 }
 
 async function saveFileToUploads(file: File, filename: string): Promise<string> {
@@ -107,7 +105,13 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             return NextResponse.json({ message: "Blog not found" }, { status: 404 });
         }
 
-        const existingBlogBody: BlogBodyItem[] = existingBlog.blogBody || [];
+        const existingBlogBody: BlogBodyItem[] = (existingBlog.blogBody || []).map(
+            (item) => ({
+                metaTitle: item.metaTitle || "",
+                metaDescription: item.metaDescription || "",
+                innerImg: item.innerImg || "",
+            })
+        );
         const prevBannerPath: string = existingBlog.blogBanner;
 
         // Upload new files (if any) and mark old ones for deletion

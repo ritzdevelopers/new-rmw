@@ -279,6 +279,7 @@ async function GET_4_RELATED_BLOGS(category_id: string) {
         const [rows] = await getDBPool().query<RowDataPacket[]>("SELECT * FROM blogs WHERE category_id = ? AND status = 1 ORDER BY created_at DESC LIMIT 4", [category_id]);
         related_blogs = rows;
         if ((!related_blogs || related_blogs.length === 0) && mongoose.Types.ObjectId.isValid(category_id)) {
+            const publicFilter = getPublicBlogFilter();
 
             related_blogs = await RitzBlogModel.find({ blogCategoryId: new mongoose.Types.ObjectId(category_id), ...publicFilter }, {
                 blogTitle: 1,
