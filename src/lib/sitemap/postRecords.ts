@@ -2,6 +2,7 @@ import { getDBPool } from "@/lib/db";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import { STATIC_PAGE_SLUGS } from "@/lib/sitemap/constants";
 import RitzBlogModel from "@/models/Blog.Schema";
+import { getPublicBlogFilter } from "@/lib/blogPublish";
 
 type PostRecord = {
   slug?: string;
@@ -44,7 +45,7 @@ export function collectPostSitemapPaths(records: PostRecord[]): string[] {
 async function fetchMongoBlogRecords(): Promise<PostRecord[]> {
   await connectMongoDB();
   const docs = await RitzBlogModel.find(
-    { blogStatus: true },
+    getPublicBlogFilter(),
     { blogSlug: 1, createdAt: 1, updatedAt: 1 }
   )
     .lean()

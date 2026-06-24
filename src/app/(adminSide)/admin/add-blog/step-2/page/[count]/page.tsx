@@ -1,21 +1,37 @@
 "use client";
 
-import { Home, ImagePlus, Monitor } from "lucide-react";
-import Link from "next/link";
+import { ImagePlus, Plus, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useBlogContext } from "@/blogContext/BlogContext";
 import { useParams, useRouter } from "next/navigation";
 import Editor from "@/components/Editor/Editor";
 import axios from "axios";
-import { X } from "lucide-react"; // lucide-react icon
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
 import RMWLoader from "@/components/rmw_loader/RMWLoader";
+import {
+  ADD_BLOG_STEP1_KEY,
+  ADD_BLOG_STEP2_PREFIX,
+  clearAddBlogDraft,
+} from "@/lib/addBlogDraft";
+import PublishOptionsPanel from "@/components/addBlog/PublishOptionsPanel";
+import {
+  BlogField,
+  BlogWizardShell,
+  blogInputClass,
+  blogPrimaryBtnClass,
+  blogSecondaryBtnClass,
+} from "@/components/addBlog/BlogWizardShell";
+import {
+  getPublishSuccessMessage,
+  type PublishMode,
+} from "@/lib/blogPublish";
+
 const Page = () => {
   const router = useRouter();
   const params = useParams();
   const count = parseInt(params.count as string, 10) || 1;
 
-  const LOCAL_STORAGE_KEY = `add-blog-step-2-page-${count}`;
+  const LOCAL_STORAGE_KEY = `${ADD_BLOG_STEP2_PREFIX}${count}`;
 
   const {
     setMetaTitle,
@@ -32,6 +48,9 @@ const Page = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState({ message: "", status: 0 });
   const [rmwLoader, setRMWLoader] = useState(false);
+  const [publishMode, setPublishMode] = useState<PublishMode>("published");
+  const [scheduledAt, setScheduledAt] = useState("");
+  const [formError, setFormError] = useState("");
   // const [blogBody, setBlogBody] = useState<any[]>([]);
 
   useEffect(() => {
@@ -68,10 +87,9 @@ const Page = () => {
   };
 
   const handleNext = () => {
-    if (!localTitle || !localMeta) {
-      alert(
-        "Sorry we can't open new page because your all input fields are blank."
-      );
+    setFormError("");
+    if (!localTitle.trim() || !localMeta.trim()) {
+      setFormError("Add a page title and content before adding another page.");
       return;
     }
     saveDataToLocalStorage();
@@ -125,8 +143,20 @@ const Page = () => {
 
   const handleUploadBlog = async () => {
     saveDataToLocalStorage();
+    setFormError("");
+
+    if (publishMode === "scheduled" && !scheduledAt) {
+      setFormError("Please choose a schedule date and time.");
+      return;
+    }
+
+    if (publishMode === "published" && (!localTitle.trim() || !localMeta.trim())) {
+      setFormError("Add a page title and content before publishing.");
+      return;
+    }
+
     try {
-      const savedData1 = localStorage.getItem("add-blog-step-1");
+      const savedData1 = localStorage.getItem(ADD_BLOG_STEP1_KEY);
 
       let blogTitle = "";
       let blogSlug = "";
@@ -152,7 +182,7 @@ const Page = () => {
       const imageFiles = [];
 
       for (let i = 1; i <= count; i++) {
-        const step2Data = localStorage.getItem(`add-blog-step-2-page-${i}`);
+        const step2Data = localStorage.getItem(`${ADD_BLOG_STEP2_PREFIX}${i}`);
         if (step2Data) {
           const parsed = JSON.parse(step2Data);
 
@@ -177,6 +207,10 @@ const Page = () => {
       formData.append("blogCategory", blogCategory);
       formData.append("mtDesc", mtDesc);
       formData.append("blogBody", JSON.stringify(combinedBlogBody));
+      formData.append("publishStatus", publishMode);
+      if (publishMode === "scheduled" && scheduledAt) {
+        formData.append("scheduledAt", new Date(scheduledAt).toISOString());
+      }
 
       if (blogBanner instanceof File) {
         formData.append("blogBanner", blogBanner);
@@ -202,26 +236,31 @@ const Page = () => {
         }
       );
       if (status === 201) {
-        localStorage.removeItem("add-blog-step-1");
-        for (let i = 1; i <= count; i++) {
-          localStorage.removeItem(`add-blog-step-2-page-${i}`);
-        }
-        alert("Blog Has Been Posted Successfully.");
-        router.push("/admin/add-blog");
+        clearAddBlogDraft();
+        alert(getPublishSuccessMessage(publishMode, scheduledAt));
+        router.push(
+          publishMode === "scheduled"
+            ? "/admin/manage-blogs?status=scheduled"
+            : publishMode === "draft"
+              ? "/admin/manage-blogs?status=draft"
+              : "/admin/manage-blogs"
+        );
+        return;
       }
       setPopupData({ message: data.message, status });
       setShowPopup(true);
       setRMWLoader(false);
-      // console.log("Uploaded Blog:", blogRes.data);
     } catch (error) {
       setRMWLoader(false);
-      if (typeof error === "object" && error !== null && "message" in error) {
+      if (axios.isAxiosError(error)) {
+        setPopupData({
+          message: error.response?.data?.message || error.message,
+          status: error.response?.status || 500,
+        });
+      } else if (typeof error === "object" && error !== null && "message" in error) {
         setPopupData({
           message: (error as { message: string }).message,
-          status:
-            error instanceof Error && "status" in error
-              ? (error as { status?: number }).status ?? 500
-              : 500,
+          status: 500,
         });
       } else {
         setPopupData({ message: "An unknown error occurred.", status: 500 });
@@ -352,8 +391,15 @@ const Page = () => {
     }
   };
 
+  const submitLabel =
+    publishMode === "draft"
+      ? "Save draft"
+      : publishMode === "scheduled"
+        ? "Schedule blog"
+        : "Publish now";
+
   return (
-    <div className="bg-[#EEEEEE] min-h-screen p-4 md:p-8 flex flex-col gap-6 sm:gap-8 md:gap-12">
+    <>
       {showPopup && (
         <RMWPopup
           message={popupData.message}
@@ -361,26 +407,141 @@ const Page = () => {
           onClose={() => setShowPopup(false)}
         />
       )}
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <h1 className="text-[#ACACAC] text-2xl sm:text-3xl md:text-4xl font-light uppercase flex items-center gap-2">
-          <Monitor className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-          Add Blog
-        </h1>
-      </div>
 
-      <div className="flex items-center gap-2 sm:gap-4 flex-wrap bg-white p-3 rounded-md shadow-sm text-sm">
-        <Link href="/" title="Home" target="_blank" className="text-[#2955B3] flex items-center gap-2">
-          <Home className="w-4 h-4" /> Home
-        </Link>
-        <span className="text-[#ACACAC] font-bold">/</span>
-        <span className="text-[#838383] flex items-center gap-2">
-          <Monitor className="w-4 h-4" /> Add Blog
-        </span>
-        <span className="text-[#ACACAC] font-bold">/</span>
-        <span className="text-[#838383]">Step 2</span>
-        <span className="text-[#ACACAC] font-bold">/</span>
-        <span className="text-[#838383]">Page {pageNum}</span>
-      </div>
+      <BlogWizardShell
+        currentStep={3}
+        title="Write your blog content"
+        subtitle="Add page sections with rich text. Use multiple pages for long-form posts."
+        breadcrumbExtra={`Content · Page ${pageNum}`}
+        footer={
+          <div className="space-y-5">
+            <PublishOptionsPanel
+              mode={publishMode}
+              scheduledAt={scheduledAt}
+              onModeChange={setPublishMode}
+              onScheduledAtChange={setScheduledAt}
+              disabled={rmwLoader}
+            />
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4">
+              <div className="flex flex-wrap gap-3">
+                <button type="button" onClick={handlePrev} className={blogSecondaryBtnClass}>
+                  Back
+                </button>
+                <button type="button" onClick={handleNext} className={blogSecondaryBtnClass}>
+                  <Plus className="h-4 w-4" />
+                  Add page
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={handleUploadBlog}
+                disabled={rmwLoader}
+                className={blogPrimaryBtnClass}
+              >
+                {rmwLoader ? <RMWLoader /> : submitLabel}
+              </button>
+            </div>
+          </div>
+        }
+      >
+        {formError && (
+          <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {formError}
+          </div>
+        )}
+
+        <div className="mb-6 flex flex-wrap gap-2">
+          {Array.from({ length: count }, (_, index) => {
+            const pageNumber = index + 1;
+            const isActive = pageNumber === count;
+            return (
+              <button
+                key={pageNumber}
+                type="button"
+                onClick={() => {
+                  saveDataToLocalStorage();
+                  router.push(`/admin/add-blog/step-2/page/${pageNumber}`);
+                }}
+                className={`rounded-full px-4 py-2 text-xs font-semibold transition ${
+                  isActive
+                    ? "bg-[#2955B3] text-white"
+                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
+              >
+                Page {pageNumber}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-[300px,1fr]">
+          <div className="space-y-3">
+            <BlogField label="Section image" hint="Optional image for this page section.">
+              <div className="relative overflow-hidden rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50">
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="absolute inset-0 z-20 cursor-pointer opacity-0"
+                  onChange={handleImageChange}
+                />
+                {localBanner && localBanner.trim() ? (
+                  <img
+                    src={localBanner}
+                    alt="Section visual"
+                    className="h-56 w-full object-cover"
+                  />
+                ) : (
+                  <div className="flex h-56 flex-col items-center justify-center gap-2 px-4 text-center">
+                    <ImagePlus className="h-8 w-8 text-[#2955B3]" />
+                    <p className="text-sm font-medium text-slate-600">Upload section image</p>
+                  </div>
+                )}
+              </div>
+            </BlogField>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={imgUploaderModal}
+                className="rounded-xl bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-700"
+              >
+                Create image URL
+              </button>
+              <button
+                type="button"
+                onClick={removeInnImg}
+                className="rounded-xl bg-red-50 px-4 py-2 text-xs font-semibold text-red-600 hover:bg-red-100"
+              >
+                Remove image
+              </button>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <BlogField label="Page title" required hint="Heading shown for this content section.">
+              <input
+                type="text"
+                value={localTitle}
+                onChange={(e) => {
+                  setLocalTitle(e.target.value);
+                  setMetaTitle(e.target.value);
+                }}
+                placeholder="Enter section title..."
+                className={blogInputClass}
+              />
+            </BlogField>
+
+            <BlogField label="Page content" required hint="Write the main body using the rich text editor.">
+              <Editor
+                value={localMeta}
+                onChange={(val: string) => {
+                  setLocalMeta(val);
+                  setMetaDescription(val);
+                }}
+              />
+            </BlogField>
+          </div>
+        </div>
+      </BlogWizardShell>
 
       {uploadImgModal && (
         <div className="fixed inset-0 z-[900] flex items-center justify-center">
@@ -584,128 +745,7 @@ const Page = () => {
         </div>
       )}
 
-      <div className="bg-white p-5 rounded-md shadow-md flex flex-col lg:flex-row gap-6">
-        <div
-          style={{ padding: localBanner ? "20px" : "0px" }}
-          className="flex-1 flex flex-col justify-center items-center gap-4 border rounded-md border-[#797979a5] relative overflow-hidden w-full max-w-md max-h-72 transition-all duration-300 bg-white shadow-sm"
-        >
-          <input
-            type="file"
-            accept="image/*"
-            className="absolute top-0 left-0 h-full w-full opacity-0 z-20 cursor-pointer"
-            onChange={handleImageChange}
-          />
-
-          {localBanner ? (
-            <img
-              src={localBanner}
-              alt="Selected Banner"
-              className="w-full h-52 object-cover rounded-md border"
-            />
-          ) : (
-            <div className="p-4">
-              <label className="text-sm font-semibold text-[#444]">
-                Upload Inner Image:
-              </label>
-
-              <div className="w-40 h-40 flex items-center justify-center border border-dashed border-[#aaa] rounded-md bg-[#f9f9f9] relative z-10 hover:bg-[#f1f1f1] transition">
-                <ImagePlus className="w-10 h-10 text-[#666]" />
-              </div>
-            </div>
-          )}
-
-          <button
-            onClick={imgUploaderModal}
-            className="px-6 py-2 bg-green-700 text-white font-bold cursor-pointer hover:bg-green-800 z-50"
-          >
-            Create Image URL
-          </button>
-        </div>
-
-        <div className="flex-1 flex flex-col gap-4">
-          <div>
-            <label className="text-sm font-semibold text-[#444]">
-              Page Title
-            </label>
-
-            <input
-              type="text"
-              value={localTitle}
-              onChange={(e) => {
-                setLocalTitle(e.target.value);
-                setMetaTitle(e.target.value);
-              }}
-              placeholder="Enter blog meta title here..."
-              className="w-full border rounded px-4 py-2"
-            />
-          </div>
-
-          <div>
-            <label className="text-sm font-semibold text-[#444]">
-              Page Description
-            </label>
-
-            <Editor
-              value={localMeta}
-              onChange={(val: string) => {
-                setLocalMeta(val);
-                setMetaDescription(val);
-              }}
-            />
-          </div>
-          <div className="mt-10">
-            <button
-              onClick={removeInnImg}
-              className="px-6 py-2 bg-red-500 text-white font-bold hover:bg-red-600"
-            >
-              Remove Image
-            </button>
-          </div>
-          {/* <div>
-            <label className="text-sm font-semibold text-[#444]">
-              Blog Category
-            </label>
-
-            <input
-              type="text"
-              value={localCategory}
-              onChange={(e) => setLocalCategory(e.target.value)}
-              placeholder="Blog Category (e.g. Case Study)"
-              className="w-full border rounded px-4 py-2"
-            />
-          </div> */}
-        </div>
-      </div>
-
-      <div className="flex flex-wrap justify-between items-center w-full gap-4">
-        <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
-          <button
-            onClick={handlePrev}
-            className="bg-gray-300 cursor-pointer hover:bg-gray-400 text-black px-5 py-2 rounded-md"
-          >
-            Back to Prev
-          </button>
-
-          <button
-            onClick={handleNext}
-            className="bg-[#2955B3] cursor-pointer hover:bg-[#1e3f8a] text-white font-semibold px-5 py-2 rounded-md"
-          >
-            Add More
-          </button>
-        </div>
-
-        <button
-          onClick={handleUploadBlog}
-          className="bg-green-700 cursor-pointer hover:bg-green-800 text-white px-5 py-2 rounded-md"
-        >
-          {rmwLoader ? <RMWLoader /> : "Submit"}
-        </button>
-      </div>
-
-      <footer className="admin-footer text-center text-sm text-[#666] pt-10">
-        Designed and Developed by <strong>Ritz Media World</strong>
-      </footer>
-    </div>
+    </>
   );
 };
 

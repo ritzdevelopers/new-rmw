@@ -38,10 +38,6 @@ const nextConfig = {
       skipDefaultConversion: true,
     },
   },
-  // Note: optimizeCss requires 'critters' package
-  // experimental: {
-  //   optimizeCss: true,
-  // },
   // Headers for better caching and security
   async headers() {
     return [

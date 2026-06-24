@@ -1,6 +1,7 @@
 import { getDBPool } from "@/lib/db";
 import redisClient from "@/lib/redis_server";
 import RitzBlogModel from "@/models/Blog.Schema";
+import { getPublicBlogFilter } from "@/lib/blogPublish";
 import { NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import { RowDataPacket } from "mysql2";
@@ -236,7 +237,8 @@ export async function get_latest_3_blogs() {
                 data: JSON.parse(cached_latest_3_blogs)
             }
         }
-        const latest_3_blogs = await RitzBlogModel.find({ blogStatus: true }, {
+        const publicFilter = getPublicBlogFilter();
+        const latest_3_blogs = await RitzBlogModel.find(publicFilter, {
             blogTitle: 1,
             blogBanner: 1,
             blogSlug: 1,
@@ -278,7 +280,7 @@ async function GET_4_RELATED_BLOGS(category_id: string) {
         related_blogs = rows;
         if ((!related_blogs || related_blogs.length === 0) && mongoose.Types.ObjectId.isValid(category_id)) {
 
-            related_blogs = await RitzBlogModel.find({ blogCategoryId: new mongoose.Types.ObjectId(category_id), blogStatus: true }, {
+            related_blogs = await RitzBlogModel.find({ blogCategoryId: new mongoose.Types.ObjectId(category_id), ...publicFilter }, {
                 blogTitle: 1,
                 blogBanner: 1,
                 blogSlug: 1,

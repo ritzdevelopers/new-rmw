@@ -15,8 +15,13 @@ import {
   Plus,
   Search,
 } from "lucide-react";
+import {
+  formatScheduledAt,
+  isBlogPubliclyVisible,
+  resolveAdminPublishLabel,
+} from "@/lib/blogPublish";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
 import {
@@ -45,6 +50,8 @@ interface Blog {
   createdAt: string | Date;
   blogStatus: boolean;
   blogSlug: string;
+  publishStatus?: string;
+  scheduledAt?: string | Date;
 }
 
 interface SQLBLOGS {
@@ -60,7 +67,36 @@ interface MERGEDBLOGS {
   createdAT: string;
   blogID: string;
   blogStatus: string;
+  publishLabel: "draft" | "scheduled" | "published" | "inactive";
+  scheduledAtLabel?: string;
+  canViewPublic: boolean;
   mongoID?: string;
+}
+
+type StatusFilter = "all" | "draft" | "scheduled" | "published" | "inactive";
+
+function isMongoBlog(blg: Blog | SQLBLOGS): blg is Blog {
+  return "blogTitle" in blg && "blogSlug" in blg;
+}
+
+function countByLabel(blogs: MERGEDBLOGS[], label: StatusFilter) {
+  if (label === "all") return blogs.length;
+  return blogs.filter((blog) => blog.publishLabel === label).length;
+}
+
+function publishBadgeStyle(label: MERGEDBLOGS["publishLabel"]) {
+  switch (label) {
+    case "draft":
+      return { background: "rgba(100,116,139,0.12)", color: "#475569" };
+    case "scheduled":
+      return { background: "rgba(245,158,11,0.12)", color: "#D97706" };
+    case "published":
+      return { background: "rgba(16,185,129,0.12)", color: "#059669" };
+    case "inactive":
+      return { background: "rgba(239,68,68,0.12)", color: "#DC2626" };
+    default:
+      return { background: "rgba(100,116,139,0.12)", color: "#475569" };
+  }
 }
 
 interface MONGOEXCELBLOG {
@@ -105,17 +141,25 @@ export default function ManageBlogs() {
   const [llength, setLastLength] = useState<number>(0);
   // const [sqlBlogs, setSQLBlogs] = useState<SQLBLOGS[]>([]);
   const [mergedBlogs, setMergedBlogs] = useState<MERGEDBLOGS[]>([]);
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const [searchedBl, setSearchedB] = useState("");
   // const [isMongo, setIsMongo] =
   const blogsPerPage = 15;
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState({ message: "", status: 0 });
   // const [blogForSearch, setBlogForSearch] = useState<MERGEDBLOGS[]>([]);
 
   function mergedALLBLOGS(blog: (Blog | SQLBLOGS)[]): MERGEDBLOGS[] {
     return blog.map((blg) => {
-      if ("_id" in blg) {
-        const mongoBLG = blg as Blog;
+      if (isMongoBlog(blg)) {
+        const mongoBLG = blg;
+        const publishLabel = resolveAdminPublishLabel({
+          publishStatus: mongoBLG.publishStatus,
+          scheduledAt: mongoBLG.scheduledAt,
+          blogStatus: mongoBLG.blogStatus,
+        });
         return {
           title: mongoBLG.blogTitle,
           blogIMG: mongoBLG.blogBanner,
@@ -126,10 +170,18 @@ export default function ManageBlogs() {
           }),
           blogID: mongoBLG.blogSlug,
           blogStatus: mongoBLG.blogStatus === true ? "active" : "inactive",
+          publishLabel,
+          scheduledAtLabel:
+            publishLabel === "scheduled" && mongoBLG.scheduledAt
+              ? formatScheduledAt(mongoBLG.scheduledAt)
+              : undefined,
+          canViewPublic: isBlogPubliclyVisible(mongoBLG),
           mongoID: mongoBLG._id,
         };
       } else {
         const sqlBlog = blg as SQLBLOGS;
+        const publishLabel =
+          sqlBlog.status === "active" ? "published" : "inactive";
         return {
           title: sqlBlog.title,
           blogIMG: sqlBlog.blog_image,
@@ -140,6 +192,8 @@ export default function ManageBlogs() {
           }),
           blogID: sqlBlog.slug,
           blogStatus: sqlBlog.status,
+          publishLabel,
+          canViewPublic: sqlBlog.status === "active",
         };
       }
     });
@@ -153,66 +207,91 @@ export default function ManageBlogs() {
 
   const [lftBtn, setLftBtn] = useState(0);
   const [rightBtn, setRightBtn] = useState(9);
+
+  const getFilteredBlogs = () => {
+    let list = mergedBlogs;
+    if (statusFilter !== "all") {
+      list = list.filter((blog) => blog.publishLabel === statusFilter);
+    }
+    if (searchedBl.trim()) {
+      list = list.filter((blog) =>
+        blog.title.toLowerCase().includes(searchedBl.toLowerCase())
+      );
+    }
+    return list;
+  };
+
   // Fetch blogs whenever filters or page changes
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      setLoading(true);
-      try {
-        // const params = new URLSearchParams();
-        // params.append("page", currentPage.toString());
-        // params.append("limit", blogsPerPage.toString());
+  const loadBlogs = async (showSuccessPopup = false) => {
+    setLoading(true);
+    try {
+      const { data, status } = await axios.get(`/api/ritz_blogs/get-all-blogs`, {
+        headers: managementAuthHeaders(),
+        params: { _: Date.now() },
+      });
+      const res2 = await axios.get("/api/all_blogs", {
+        params: { _: Date.now() },
+      });
 
-        // if (searchQuery.trim() !== "") {
-        //   params.append("search", searchQuery.trim());
-        // }
-        // if (selectedCategory !== "All") {
-        //   params.append("category", selectedCategory);
-        // }
+      let combined: MERGEDBLOGS[] = [];
 
-        const { data, status } = await axios.get(
-          `/api/ritz_blogs/get-all-blogs`
-        );
-        const res2 = await axios.get("/api/all_blogs");
+      if (data?.allBlogs) {
+        combined = [...combined, ...mergedALLBLOGS(data.allBlogs)];
+        setTotalBlogs(data.allBlogs.length);
+      }
 
-        let combined: MERGEDBLOGS[] = [];
+      if (res2?.data) {
+        combined = [...combined, ...mergedALLBLOGS(res2.data)];
+      }
 
-        if (data?.allBlogs) {
-          combined = [...combined, ...mergedALLBLOGS(data.allBlogs)];
-          setTotalBlogs(data.allBlogs.length); // Set actual count
-        }
+      setMergedBlogs(combined);
+      setLastLength(combined.length);
 
-        if (res2?.data) {
-          combined = [...combined, ...mergedALLBLOGS(res2.data)];
-        }
-
-        setMergedBlogs(combined);
-        setLastLength(combined.length);
-
-        if (!data.allBlogs || data.allBlogs.length === 0) {
-          router.push("/not-found");
-          return;
-        }
+      if (showSuccessPopup && data?.message) {
         setPopupData({ message: data.message, status });
         setShowPopup(true);
-      } catch (error) {
-        if (typeof error === "object" && error !== null && "message" in error) {
-          setPopupData({
-            message: (error as { message: string }).message,
-            status:
-              error instanceof Error && "status" in error
-                ? (error as { status?: number }).status ?? 500
-                : 500,
-          });
-        } else {
-          setPopupData({ message: "An unknown error occurred.", status: 500 });
-        }
-        setShowPopup(true);
-      } finally {
-        setLoading(false);
       }
-    };
+    } catch (error) {
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchBlogs();
+  useEffect(() => {
+    const tab = searchParams.get("status");
+    if (
+      tab === "draft" ||
+      tab === "scheduled" ||
+      tab === "published" ||
+      tab === "inactive" ||
+      tab === "all"
+    ) {
+      setStatusFilter(tab);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    loadBlogs(true);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      loadBlogs(false);
+    }, 30_000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleDelete = async () => {
@@ -314,100 +393,69 @@ export default function ManageBlogs() {
 
   // Pagination Is Starting From Here
   const [page, setPage] = useState<MERGEDBLOGS[]>([]);
-
-  useEffect(() => {
-    if (mergedBlogs.length > 0) {
-      setPage(mergedBlogs);
-    }
-  }, [mergedBlogs]);
-
-  const pagination = (s: number, e: number) => {
-    if (s < mergedBlogs.length) {
-      if (mergedBlogs.length < 9) {
-        setPage(mergedBlogs.slice(s, mergedBlogs.length - 1));
-        return;
-      }
-      setPage(mergedBlogs.slice(s, e));
-    }
-  };
   const [ttPage, setTTPage] = useState(0);
-  // const [btnArr, setBtnArr] = useState<number[]>([]);
 
-  const [activePage, setActivePage] = useState(0);
-
-  useEffect(() => {
-    pagination(lftBtn, rightBtn);
-    setTTPage(mergedBlogs.length / 8 + 1);
-  }, [lftBtn, rightBtn, mergedBlogs]);
+  const [activePage, setActivePage] = useState(1);
 
   useEffect(() => {
     setActivePage(1);
-  }, []);
+    setLftBtn(0);
+  }, [statusFilter, searchedBl]);
+
+  useEffect(() => {
+    const filtered = getFilteredBlogs();
+    let start = lftBtn;
+    if (start >= filtered.length) {
+      start = 0;
+      if (lftBtn !== 0) {
+        setLftBtn(0);
+      }
+    }
+    setPage(filtered.slice(start, Math.min(start + 9, filtered.length)));
+    setLastLength(filtered.length);
+    setTTPage(Math.max(1, Math.ceil(filtered.length / 9)));
+  }, [mergedBlogs, statusFilter, searchedBl, lftBtn]);
 
   const leftPage = () => {
+    const filteredLength = getFilteredBlogs().length;
     let newLeft = lftBtn - 9;
     if (newLeft < 0) newLeft = 0;
 
-    let newRight;
-    if (mergedBlogs.length < 10) {
-      newRight = mergedBlogs.length;
-    } else {
-      newRight = newLeft + 9;
-    }
+    let newRight = Math.min(newLeft + 9, filteredLength);
     setActivePage((prev) => (prev > 1 ? prev - 1 : prev));
     setLftBtn(newLeft);
     setRightBtn(newRight);
-    pagination(newLeft, newRight);
   };
 
   const rightPage = () => {
+    const filteredLength = getFilteredBlogs().length;
     let newLeft = lftBtn + 9;
-    let newRight = newLeft + 9;
-    if (newRight > mergedBlogs.length) {
-      newRight = mergedBlogs.length;
-      newLeft = newRight - (newRight % 9);
-    }
-    setActivePage((prev) => (prev < Math.ceil(llength / 9) ? prev + 1 : prev));
+    if (newLeft >= filteredLength) return;
 
+    let newRight = Math.min(newLeft + 9, filteredLength);
+    setActivePage((prev) => (prev < Math.ceil(filteredLength / 9) ? prev + 1 : prev));
     setLftBtn(newLeft);
     setRightBtn(newRight);
-    pagination(newLeft, newRight);
   };
 
   const directPageNavigation = (e: HTMLElement) => {
+    const filteredLength = getFilteredBlogs().length;
     const pageNum = Number(e.innerText);
     setActivePage(pageNum);
-    let newRight = 9 * pageNum;
-
-    let newLeft = newRight - 9;
-    if (newRight > mergedBlogs.length) {
-      newRight = mergedBlogs.length;
-      newLeft = newRight - (newRight % 9);
+    let newLeft = (pageNum - 1) * 9;
+    let newRight = Math.min(newLeft + 9, filteredLength);
+    if (newLeft >= filteredLength) {
+      newLeft = 0;
+      newRight = Math.min(9, filteredLength);
     }
 
     setLftBtn(newLeft);
     setRightBtn(newRight);
-    pagination(newLeft, newRight);
   };
-  const [searchedBl, setSearchedB] = useState("");
-  const getDataWithSearch = () => {
-    const filtered = mergedBlogs.filter((data) =>
-      data.title.toLowerCase().includes(searchedBl.toLowerCase())
-    );
-    setPage(filtered);
-  };
-
-  useEffect(() => {
-    if (searchedBl) {
-      getDataWithSearch();
-    } else {
-      setPage(mergedBlogs.slice(0, 9));
-    }
-  }, [searchedBl]);
 
   const getEntriesManually = (e: number) => {
     const val = Number(e);
-    setPage(mergedBlogs.slice(0, val));
+    setPage(getFilteredBlogs().slice(0, val));
   };
 
   const handleActiveBtnToggle = async (
@@ -682,8 +730,8 @@ export default function ManageBlogs() {
             </h1>
             <p className="text-sm mt-0.5" style={{ color: "#64748B" }}>
               {mergedBlogs.length > 0
-                ? `${mergedBlogs.length} blog${mergedBlogs.length > 1 ? "s" : ""} published`
-                : "All published blog posts"}
+                ? `${mergedBlogs.length} total · ${mergedBlogs.filter((b) => b.publishLabel === "draft").length} drafts · ${mergedBlogs.filter((b) => b.publishLabel === "scheduled").length} scheduled`
+                : "All blog posts"}
             </p>
           </div>
         </div>
@@ -749,13 +797,14 @@ export default function ManageBlogs() {
 
       {/* Toolbar card */}
       <div
-        className="rounded-2xl p-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+        className="rounded-2xl p-4 flex flex-col gap-4"
         style={{
           background: "#ffffff",
           border: "1px solid rgba(0,0,0,0.06)",
           boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
         }}
       >
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium" style={{ color: "#64748B" }}>
             Show
@@ -807,6 +856,41 @@ export default function ManageBlogs() {
             <Plus className="w-4 h-4" />
             <span className="hidden sm:inline">Add Blog</span>
           </Link>
+        </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          {(["all", "published", "scheduled", "draft", "inactive"] as StatusFilter[]).map(
+            (filter) => (
+              <button
+                key={filter}
+                type="button"
+                onClick={() => setStatusFilter(filter)}
+                className="rounded-full px-3 py-1.5 text-xs font-semibold capitalize transition"
+                style={
+                  statusFilter === filter
+                    ? {
+                        background: "linear-gradient(135deg, #0B1623, #1E2D3D)",
+                        color: "#ffffff",
+                      }
+                    : {
+                        background: "#F8FAFC",
+                        color: "#64748B",
+                        border: "1px solid #E2E8F0",
+                      }
+                }
+              >
+                {filter} ({countByLabel(mergedBlogs, filter)})
+              </button>
+            )
+          )}
+          <button
+            type="button"
+            onClick={() => loadBlogs(false)}
+            className="rounded-full px-3 py-1.5 text-xs font-semibold text-[#2955B3] border border-[#2955B3]/20 bg-blue-50 hover:bg-blue-100 transition"
+          >
+            Refresh
+          </button>
         </div>
       </div>
 
@@ -866,54 +950,70 @@ export default function ManageBlogs() {
                         />
                       </td>
                       <td>{blog.title}</td>
-                      <td>{blog.createdAT}</td>
                       <td>
-                        <button
-                          onClick={() =>
-                            blog.blogIMG.includes("/images")
-                              ? handleActiveBtnToggle(
-                                blog.blogStatus,
-                                "mongo",
-                                blog.mongoID ? blog.mongoID : blog.blogID
-                              )
-                              : handleActiveBtnToggle(
-                                blog.blogStatus,
-                                "mysql",
-                                blog.blogID
-                              )
-                          }
-                          className="inline-flex items-center gap-1.5 cursor-pointer rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide transition-all"
-                          style={
-                            blog.blogStatus === "active"
-                              ? {
-                                  background: "rgba(16,185,129,0.12)",
-                                  color: "#059669",
-                                }
-                              : {
-                                  background: "rgba(239,68,68,0.12)",
-                                  color: "#DC2626",
-                                }
-                          }
-                        >
+                        <div>{blog.createdAT}</div>
+                        {blog.scheduledAtLabel && (
+                          <div className="text-xs text-amber-600">
+                            Scheduled: {blog.scheduledAtLabel}
+                          </div>
+                        )}
+                      </td>
+                      <td>
+                        <div className="flex flex-col gap-2">
                           <span
-                            className="w-1.5 h-1.5 rounded-full"
-                            style={{
-                              background:
-                                blog.blogStatus === "active"
-                                  ? "#10B981"
-                                  : "#EF4444",
-                            }}
-                          />
-                          {blog.blogStatus}
-                        </button>
+                            className="inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide"
+                            style={publishBadgeStyle(blog.publishLabel)}
+                          >
+                            {blog.publishLabel}
+                          </span>
+                          <button
+                            onClick={() =>
+                              blog.blogIMG.includes("/images")
+                                ? handleActiveBtnToggle(
+                                    blog.blogStatus,
+                                    "mongo",
+                                    blog.mongoID ? blog.mongoID : blog.blogID
+                                  )
+                                : handleActiveBtnToggle(
+                                    blog.blogStatus,
+                                    "mysql",
+                                    blog.blogID
+                                  )
+                            }
+                            className="inline-flex w-fit items-center gap-1.5 cursor-pointer rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide transition-all"
+                            style={
+                              blog.blogStatus === "active"
+                                ? {
+                                    background: "rgba(16,185,129,0.12)",
+                                    color: "#059669",
+                                  }
+                                : {
+                                    background: "rgba(239,68,68,0.12)",
+                                    color: "#DC2626",
+                                  }
+                            }
+                          >
+                            {blog.blogStatus}
+                          </button>
+                        </div>
                       </td>
                       <td>
                         <div className="admin-blog-actions">
-                          <Link href={`/${blog.blogID}`} title="View Blog">
-                            <button className="text-blue-600 cursor-pointer">
+                          {blog.canViewPublic ? (
+                            <Link href={`/${blog.blogID}`} title="View Blog">
+                              <button className="text-blue-600 cursor-pointer">
+                                <FaEye />
+                              </button>
+                            </Link>
+                          ) : (
+                            <button
+                              className="text-slate-300 cursor-not-allowed"
+                              title="Not publicly visible yet"
+                              disabled
+                            >
                               <FaEye />
                             </button>
-                          </Link>
+                          )}
                           <Link
                             title="Edit Blog"
                             href={
@@ -942,7 +1042,15 @@ export default function ManageBlogs() {
               <div className="flex flex-col items-center justify-center gap-2 py-16">
                 <FileText className="w-8 h-8" style={{ color: "#CBD5E1" }} />
                 <p className="text-sm font-medium" style={{ color: "#64748B" }}>
-                  No blogs found.
+                  {statusFilter === "scheduled"
+                    ? "No scheduled blogs yet."
+                    : statusFilter === "draft"
+                      ? "No draft blogs yet."
+                      : statusFilter === "published"
+                        ? "No published blogs found."
+                        : statusFilter === "inactive"
+                          ? "No inactive blogs found."
+                          : "No blogs found."}
                 </p>
               </div>
             )}

@@ -2,26 +2,31 @@ import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import RitzBlogModel from "@/models/Blog.Schema";
 import { NextResponse } from "next/server";
 
+const ADMIN_FIELDS =
+  "blogTitle blogBanner blogSlug blogStatus publishStatus scheduledAt publishedAt createdAt updatedAt";
+
 export async function GET() {
   try {
     await connectMongoDB({});
 
-    const allBlogs = await RitzBlogModel.find().sort({ createdAt: -1 });
-    if (allBlogs.length < 1) {
-      return NextResponse.json(
-        { message: "There are no blogs" },
-        { status: 200 }
-      );
-    }
+    const allBlogs = await RitzBlogModel.find()
+      .select(ADMIN_FIELDS)
+      .sort({ createdAt: -1 })
+      .lean();
+
     return NextResponse.json(
-      { allBlogs, message: "All blogs fetched successfully!" },
-      { 
+      {
+        allBlogs,
+        message:
+          allBlogs.length > 0
+            ? "All blogs fetched successfully!"
+            : "There are no blogs",
+      },
+      {
         status: 200,
         headers: {
-          'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=1200',
-          'CDN-Cache-Control': 'public, s-maxage=600',
-          'Vercel-CDN-Cache-Control': 'public, s-maxage=600'
-        }
+          "Cache-Control": "no-store, no-cache, must-revalidate",
+        },
       }
     );
   } catch (error) {
