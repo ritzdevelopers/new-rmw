@@ -1,6 +1,7 @@
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import { getDBPool } from "@/lib/db";
 import RitzBlogModel from "@/models/Blog.Schema";
+import { getPublicBlogFilter } from "@/lib/blogPublish";
 
 export interface BLOGSSTRUCTURE {
   blogTitle: string;
@@ -30,7 +31,7 @@ export async function fetchHomePageBlogs(): Promise<BLOGSSTRUCTURE[]> {
   try {
     await connectMongoDB();
     const blogs = await RitzBlogModel.find({
-      blogStatus: true,
+      ...getPublicBlogFilter(),
       blogSlug: { $in: [...HOME_PAGE_BLOG_SLUGS] },
     }).lean();
 
@@ -67,7 +68,7 @@ export async function fetchLatestBlogs(): Promise<BLOGSSTRUCTURE[]> {
   try {
     await connectMongoDB();
     // Latest 3 Blogs
-    const latestBlogs = await RitzBlogModel.find({blogStatus: true})
+    const latestBlogs = await RitzBlogModel.find(getPublicBlogFilter())
       .sort({ createdAt: -1 })
       .limit(3)
       .lean();
