@@ -243,7 +243,6 @@ const Page = () => {
             <BlogField
               label="Meta description"
               required
-              hint={`${localMtDsc.length}/160 characters recommended`}
             >
               <textarea
                 value={localMtDsc}
@@ -252,7 +251,6 @@ const Page = () => {
                   setMtDesc(e.target.value);
                 }}
                 rows={3}
-                maxLength={160}
                 placeholder="Short summary shown in Google search results..."
                 className={blogInputClass}
               />
