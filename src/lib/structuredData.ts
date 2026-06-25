@@ -3,6 +3,17 @@ const SITE_URL = "https://ritzmediaworld.com";
 /** Homepage + default canonical (no trailing slash). */
 export const SITE_CANONICAL_URL = SITE_URL;
 
+/** Social share image — live site RMW logo used in navbar / favicon. */
+export const OG_IMAGE_PATH = "/rmw-logo-sm-size.png";
+export const OG_IMAGE_URL = `${SITE_URL}${OG_IMAGE_PATH}`;
+
+export const OG_IMAGE_METADATA = {
+  url: OG_IMAGE_PATH,
+  width: 95,
+  height: 120,
+  alt: "Ritz Media World - Top Advertising Agency in Delhi NCR",
+} as const;
+
 /** Organization schema — matches site Organization JSON-LD script. */
 export const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -34,7 +45,7 @@ export const advertisingAgencyJsonLd = {
   "@id": "https://ritzmediaworld.com/#localbusiness",
   name: "Ritz Media World",
   url: SITE_URL,
-  image: `${SITE_URL}/rmw-logo-sm-size.png`,
+  image: OG_IMAGE_URL,
   logo: `${SITE_URL}/rmw-logo-sm-size.png`,
   description:
     "Ritz Media World is a full-service advertising and digital marketing agency in Noida offering branding, SEO, social media marketing, web development, influencer marketing, print advertising, and radio advertising services.",
