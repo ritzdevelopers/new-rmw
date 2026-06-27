@@ -14,7 +14,7 @@ function HomeHeroIntro() {
         India&apos;s Best Real Estate Digital Marketing &amp; Lead Generation Agency
       </h1>
       <p className="mt-3 md:mt-4 mx-auto  font-[400] text-[11px] sm:text-[12px] md:text-[13px] lg:text-[24px] text-[#4A4A4A] leading-[1.55] text-center max-w-[950px]">
-        Helping brands across industries generate quality leads, build digital presence, and achieve measurable growth with 17+ years of marketing expertise
+        As a Leading Advertising &amp; Digital Marketing Agency in Noida, Ritz Media World Helps Brands Grow with 17+ Years of Proven Expertise
       </p>
     </section>
   );

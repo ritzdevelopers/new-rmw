@@ -182,6 +182,28 @@
    font-family: PoppinsRegular, PoppinsSemiBold, PoppinsBold, sans-serif;
 }
 
+.blogSidebarContactBtn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 46px;
+   border: none;
+   border-radius: 5px;
+   background-color: #C99237;
+   color: #ffffff !important;
+   font-family: OpenSansBold, OpenSansSemiBold, sans-serif;
+   font-weight: 700;
+   font-size: 14px;
+   cursor: pointer;
+   transition: background-color 0.2s ease;
+}
+
+.blogSidebarContactBtn:hover {
+   background-color: #B8822F;
+   color: #ffffff !important;
+}
+
 /* Rich HTML body — mirrors src/app/[slug]/page.module.css (.contentBody + .tableWrapper) for DetailPage parity */
 
 .contentBody strong {

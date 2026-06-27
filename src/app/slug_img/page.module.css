@@ -209,6 +209,28 @@
   font-size: 1rem;
 }
 
+.contactUsBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 46px;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  background-color: #C99237;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.contactUsBtn:hover {
+  background-color: #B8822F;
+  color: #ffffff !important;
+}
+
 .searchResults,
 .relatedBlogs {
   display: flex;
