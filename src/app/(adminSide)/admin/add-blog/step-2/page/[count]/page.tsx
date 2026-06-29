@@ -164,6 +164,7 @@ const Page = () => {
       let metaKeywords = "";
       let blogCategory = "All Category";
       let mtDesc = "";
+      let blogAuthor = "";
       setRMWLoader(true);
       if (savedData1) {
         const parsed = JSON.parse(savedData1);
@@ -172,6 +173,7 @@ const Page = () => {
         metaKeywords = parsed.metaKeywords || "";
         blogCategory = parsed.blogCategory || "All Category";
         mtDesc = parsed.mtDesc;
+        blogAuthor = parsed.blogAuthor || "";
 
         if (parsed.blogBanner?.startsWith("data:image")) {
           blogBanner = dataURLtoFile(parsed.blogBanner, "cover.jpg");
@@ -206,6 +208,7 @@ const Page = () => {
       formData.append("metaKeywords", metaKeywords);
       formData.append("blogCategory", blogCategory);
       formData.append("mtDesc", mtDesc);
+      formData.append("blogAuthor", blogAuthor);
       formData.append("blogBody", JSON.stringify(combinedBlogBody));
       formData.append("publishStatus", publishMode);
       if (publishMode === "scheduled" && scheduledAt) {

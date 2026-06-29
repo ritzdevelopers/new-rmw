@@ -8,6 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
 import { formatSlugInput, normalizeSlug } from "@/lib/slugify";
+import { BLOG_AUTHORS, DEFAULT_BLOG_AUTHOR } from "@/lib/blogAuthors";
 
 const Page = () => {
   const params = useParams();
@@ -28,7 +29,8 @@ const Page = () => {
     createdAt: string;
     blogCategoryId: string;
     metaKeywords: string;
-    mtDesc: string;                         
+    mtDesc: string;
+    blogAuthor?: string;
   }
 
   const {
@@ -49,6 +51,7 @@ const Page = () => {
   const [localCategory, setLocalCategory] = useState<string>("none-selected"); // Category ID - Load from localStorage or fetch from backend
   const [localCategoryName, setLocalCategoryName] = useState<string>(""); // Category Name for display
   const [localMtDesc, setLocalMtDesc] = useState(mtDesc || "");
+  const [localAuthor, setLocalAuthor] = useState<string>(DEFAULT_BLOG_AUTHOR);
   const apiCategoryRef = useRef<string>("none-selected"); // Store category ID from latest API call
   
   // Sync localMtDesc with mtDesc from context if localMtDesc is empty
@@ -97,6 +100,7 @@ const Page = () => {
       const mtDescValue = parsed.mtDesc || mtDesc || "";
       setLocalMtDesc(mtDescValue);
       setMtDesc(mtDescValue);
+      setLocalAuthor(parsed.blogAuthor || DEFAULT_BLOG_AUTHOR);
     }
     
     // Always fetch from API to get latest category (will be used if localStorage doesn't have valid category)
@@ -135,6 +139,7 @@ const Page = () => {
       const mtDescValue = blog.mtDesc || mtDesc || "";
       setLocalMtDesc(mtDescValue);
       setMtDesc(mtDescValue);
+      setLocalAuthor(blog.blogAuthor || DEFAULT_BLOG_AUTHOR);
 
       // Find category name from fetched categories
       let categoryName = "";
@@ -155,6 +160,7 @@ const Page = () => {
           blogBanner: blog.blogBanner,
           blogCategoryId: blog.blogCategoryId,
           mtDesc: blog.mtDesc || mtDesc || "",
+          blogAuthor: blog.blogAuthor || DEFAULT_BLOG_AUTHOR,
         })
       );
     } catch (error) {
@@ -174,6 +180,7 @@ const Page = () => {
       blogCategoryId: localCategory,
       blogCategoryName: localCategoryName,
       mtDesc: localMtDesc,
+      blogAuthor: localAuthor,
     };
     localStorage.setItem(LOCAL_KEY, JSON.stringify(data));
   };
@@ -182,7 +189,7 @@ const Page = () => {
 
   const handleNavigation = (path: string) => {
     if (path.includes(`/admin/update/step-2/page/${blogID}/${count}`)) {
-      if (!localTitle || !localSlug || !localMeta || !localBanner || !localCategory || !localMtDesc) {
+      if (!localTitle || !localSlug || !localMeta || !localBanner || !localCategory || !localMtDesc || !localAuthor) {
         alert("Please fill in all fields before proceeding to the next step.");
         return;
       }
@@ -419,6 +426,23 @@ const Page = () => {
                 <p>Categories are loading...</p>
               )}
              
+            </select>
+          </div>
+
+          <div className="flex flex-col gap-2 p-4">
+            <label className="text-sm font-semibold text-[#444]">
+              Author
+            </label>
+            <select
+              value={localAuthor}
+              onChange={(e) => setLocalAuthor(e.target.value)}
+              className="w-full border rounded-md px-4 py-2"
+            >
+              {BLOG_AUTHORS.map((name) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
             </select>
           </div>
         </div>

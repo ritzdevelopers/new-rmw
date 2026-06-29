@@ -63,6 +63,10 @@ const BlogSchema = new Schema(
     mtDesc: {
       type: String,
     },
+    blogAuthor: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,

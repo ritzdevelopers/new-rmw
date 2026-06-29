@@ -179,6 +179,9 @@ const Page = () => {
       if (step1Data.mtDesc) {
         formData.append("mtDesc", step1Data.mtDesc);
       }
+      if (step1Data.blogAuthor) {
+        formData.append("blogAuthor", step1Data.blogAuthor);
+      }
 
       if (step1Data.blogBanner?.startsWith("data:image/")) {
         const bannerFile = base64ToFile(step1Data.blogBanner, "blogBanner.png");

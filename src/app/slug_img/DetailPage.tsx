@@ -74,6 +74,7 @@ export interface Blog {
   blogBody?: BlogBodyPage[]; // updated to an array
   createdAt?: string;
   blogStatus?: string;
+  blogAuthor?: string;
 }
 
 // Service interface
@@ -503,6 +504,11 @@ const DetailPage: React.FC<DetailPageProps> = ({ ssrHeading }) => {
                       : cats.find((id) => id.id === singleBlog.category_id)
                         ?.name || "Unknown Category"}
                   </span>
+                  {isMongo && singleBlog.blogAuthor ? (
+                    <span className={styles.category}>
+                      By {singleBlog.blogAuthor}
+                    </span>
+                  ) : null}
                 </div>
                 <Share2
                   className={styles.shareIcon}
