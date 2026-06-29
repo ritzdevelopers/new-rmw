@@ -1,18 +1,58 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Download } from "lucide-react";
+import { Download, X } from "lucide-react";
 import Link from "next/link";
 import styles from "./page.module.css";
 import { BsArrowRight } from "react-icons/bs";
 
-const NOIDA_OUTLOOK_REPORT_URL = "/uploads/Noida%20outlook%20RMW%20report%20.pdf";
-const NOIDA_OUTLOOK_REPORT_FILENAME = "Noida outlook RMW report.pdf";
+type MarketReport = {
+    id: string;
+    label: string;
+    subtitle: string;
+    filePath: string;
+    downloadName: string;
+};
+
+const MARKET_REPORTS: MarketReport[] = [
+    {
+        id: "noida",
+        label: "Noida Market Intelligence Report",
+        subtitle: "June 2026 outlook",
+        filePath: "/uploads/Noida outlook RMW report .pdf",
+        downloadName: "RMW Noida Market Intelligence Report.pdf",
+    },
+    {
+        id: "ghaziabad",
+        label: "Ghaziabad Market Intelligence Report",
+        subtitle: "Regional growth & investment corridors",
+        filePath: "/RMW Ghaziabad Report copy (1).pdf",
+        downloadName: "RMW Ghaziabad Market Intelligence Report.pdf",
+    },
+    {
+        id: "gurgaon",
+        label: "Gurgaon Market Intelligence Report",
+        subtitle: "Residential & commercial market insights",
+        filePath: "/RMW Gurgaon Report copy.pdf",
+        downloadName: "RMW Gurgaon Market Intelligence Report.pdf",
+    },
+];
+
+function downloadFile(filePath: string, downloadName: string) {
+    const link = document.createElement("a");
+    link.href = encodeURI(filePath);
+    link.download = downloadName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 
 function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolean }) {
     const [loader, setLoader] = useState<boolean>(true);
     const [phone, setPhone] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [phoneError, setPhoneError] = useState("");
+    const [reportModalOpen, setReportModalOpen] = useState(false);
+    const [selectedReportId, setSelectedReportId] = useState(MARKET_REPORTS[0].id);
 
     const [modal, setModal] = useState<{
         open: boolean;
@@ -92,14 +132,28 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
         document.body.removeChild(link);
     };
 
-    const downloadNoidaOutlookReport = () => {
-        const link = document.createElement("a");
-        link.href = NOIDA_OUTLOOK_REPORT_URL;
-        link.download = NOIDA_OUTLOOK_REPORT_FILENAME;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+    const openReportModal = () => {
+        setSelectedReportId(MARKET_REPORTS[0].id);
+        setReportModalOpen(true);
     };
+
+    const closeReportModal = () => setReportModalOpen(false);
+
+    const handleReportDownload = () => {
+        const report = MARKET_REPORTS.find((r) => r.id === selectedReportId);
+        if (!report) return;
+        downloadFile(report.filePath, report.downloadName);
+        setReportModalOpen(false);
+    };
+
+    useEffect(() => {
+        if (!reportModalOpen) return;
+        const prev = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = prev;
+        };
+    }, [reportModalOpen]);
 
     const handleDownload = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -291,7 +345,7 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                             fontFamily: "PoppinsRegular",
                         }}
                     >
-                        Download our latest outlook on Noida&apos;s real estate landscape, growth corridors, and brand opportunities.
+                        Download our latest real estate market intelligence report covering market trends, growth corridors, investment opportunities, pricing insights, and strategic recommendations.
                     </p>
 
                     <ul
@@ -300,7 +354,7 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                             fontFamily: "PoppinsRegular",
                         }}
                     >
-                        <li>Noida market trends and demand insights</li>
+                        <li>Market trends and demand insights</li>
                         <li>Residential and commercial growth outlook</li>
                         <li>Investment corridors and emerging hotspots</li>
                         <li>RMW strategic recommendations for 2026</li>
@@ -309,7 +363,7 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                     <div className="mt-4 lg:mt-auto flex flex-col gap-3">
                         <button
                             type="button"
-                            onClick={downloadNoidaOutlookReport}
+                            onClick={openReportModal}
                             className={`${styles.freeDownloadButton} w-full h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold`}
                         >
                             <span className="text-white">Download Report</span>
@@ -430,7 +484,112 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                     </div>
                 </div>
             )}
-            {/* Modal */}
+            {/* Market report picker modal */}
+            {reportModalOpen && (
+                <div
+                    className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="market-report-modal-title"
+                    onClick={closeReportModal}
+                >
+                    <div
+                        className="w-full max-w-[440px] overflow-hidden rounded-2xl bg-white shadow-2xl"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="flex items-start justify-between gap-3 border-b border-[#E8E8E8] bg-[#FAFAF8] px-5 py-4 sm:px-6">
+                            <div>
+                                <p className="text-[11px] font-semibold uppercase tracking-wide text-[#C99237]">
+                                    Market Report
+                                </p>
+                                <h3
+                                    id="market-report-modal-title"
+                                    className="mt-1 text-[17px] font-bold leading-snug text-[#1B1B1B] sm:text-[18px]"
+                                    style={{ fontFamily: "MontserratBold" }}
+                                >
+                                    Choose a report to download
+                                </h3>
+                                <p
+                                    className="mt-1 text-[13px] text-[#6E6E6E]"
+                                    style={{ fontFamily: "PoppinsRegular" }}
+                                >
+                                    Select one of our RMW market intelligence reports.
+                                </p>
+                            </div>
+                            <button
+                                type="button"
+                                onClick={closeReportModal}
+                                className="rounded-lg p-1.5 text-[#6E6E6E] transition-colors hover:bg-[#EFEFEF] hover:text-[#1B1B1B]"
+                                aria-label="Close"
+                            >
+                                <X className="h-5 w-5" />
+                            </button>
+                        </div>
+
+                        <div className="space-y-2 px-5 py-4 sm:px-6">
+                            {MARKET_REPORTS.map((report) => {
+                                const selected = selectedReportId === report.id;
+                                return (
+                                    <label
+                                        key={report.id}
+                                        className={`${styles.reportRadioOption} ${
+                                            selected ? styles.reportRadioOptionSelected : ""
+                                        }`}
+                                    >
+                                        <input
+                                            type="radio"
+                                            name="market-report"
+                                            value={report.id}
+                                            checked={selected}
+                                            onChange={() => setSelectedReportId(report.id)}
+                                            className={styles.reportRadioInput}
+                                        />
+                                        <span
+                                            className={`${styles.reportRadioMark} ${
+                                                selected ? styles.reportRadioMarkSelected : ""
+                                            }`}
+                                            aria-hidden
+                                        />
+                                        <span className="min-w-0 flex-1">
+                                            <span
+                                                className="block text-[14px] font-semibold text-[#1B1B1B]"
+                                                style={{ fontFamily: "MontserratSemiBold" }}
+                                            >
+                                                {report.label}
+                                            </span>
+                                            <span
+                                                className="mt-0.5 block text-[12px] text-[#6E6E6E]"
+                                                style={{ fontFamily: "PoppinsRegular" }}
+                                            >
+                                                {report.subtitle}
+                                            </span>
+                                        </span>
+                                    </label>
+                                );
+                            })}
+                        </div>
+
+                        <div className="flex flex-col-reverse gap-2 border-t border-[#E8E8E8] px-5 py-4 sm:flex-row sm:justify-end sm:px-6">
+                            <button
+                                type="button"
+                                onClick={closeReportModal}
+                                className="h-11 rounded-lg border border-[#D4D4D4] px-4 text-[14px] font-semibold text-[#444] transition-colors hover:bg-[#F5F5F5]"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="button"
+                                onClick={handleReportDownload}
+                                className="flex h-11 items-center justify-center gap-2 rounded-lg bg-[#C99237] px-5 text-[14px] font-bold text-white transition-colors hover:bg-[#B8822F]"
+                            >
+                                Download PDF
+                                <Download className="h-4 w-4" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/* Phone / form feedback modal */}
             {modal.open && (
                 <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50 backdrop-blur-sm">
                     <div className="bg-white rounded-[16px] shadow-2xl max-w-[400px] w-[90%] mx-4 overflow-hidden">
