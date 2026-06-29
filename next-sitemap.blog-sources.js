@@ -204,6 +204,7 @@ async function fetchCaseStudyRecords() {
 
 /** Deduped root paths for blogs + work.html case studies. */
 function collectPostSitemapPaths(records) {
+  const { isExcludedSitemapPath } = require("./next-sitemap.shared");
   const uniquePaths = new Set();
 
   for (const record of records) {
@@ -213,6 +214,7 @@ function collectPostSitemapPaths(records) {
 
     const normalized = postPath.replace(/^\/+/, "");
     if (STATIC_PAGE_SLUGS.has(normalized)) continue;
+    if (isExcludedSitemapPath(postPath)) continue;
 
     uniquePaths.add(postPath);
   }

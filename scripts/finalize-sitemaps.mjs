@@ -135,7 +135,12 @@ async function run() {
   }
 
   let excludedRemoved = 0;
-  for (const file of ["sitemap-0.xml", "page-sitemap.xml", "images-sitemap.xml"]) {
+  for (const file of [
+    "sitemap-0.xml",
+    "page-sitemap.xml",
+    "post-sitemap.xml",
+    "images-sitemap.xml",
+  ]) {
     excludedRemoved += stripExcludedPathsFromSitemapFile(file);
   }
 

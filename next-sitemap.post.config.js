@@ -3,7 +3,7 @@ const {
   fetchAllPostSitemapRecords,
   collectPostSitemapPaths,
 } = require("./next-sitemap.blog-sources");
-const { getSitemapBuildLastmod } = require("./next-sitemap.shared");
+const { getSitemapBuildLastmod, isExcludedSitemapPath } = require("./next-sitemap.shared");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -24,6 +24,7 @@ module.exports = {
     const items = [];
 
     for (const path of uniquePaths) {
+      if (isExcludedSitemapPath(path)) continue;
       const transformed = await config.transform(config, path);
 
       items.push({
