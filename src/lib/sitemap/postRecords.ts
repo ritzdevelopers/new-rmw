@@ -1,6 +1,6 @@
 import { getDBPool } from "@/lib/db";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
-import { STATIC_PAGE_SLUGS } from "@/lib/sitemap/constants";
+import { STATIC_PAGE_SLUGS, EXCLUDED_SITEMAP_PATHS } from "@/lib/sitemap/constants";
 import RitzBlogModel from "@/models/Blog.Schema";
 import { getPublicBlogFilter } from "@/lib/blogPublish";
 
@@ -35,6 +35,7 @@ export function collectPostSitemapPaths(records: PostRecord[]): string[] {
 
     const normalized = postPath.replace(/^\/+/, "");
     if (STATIC_PAGE_SLUGS.has(normalized)) continue;
+    if (EXCLUDED_SITEMAP_PATHS.has(postPath)) continue;
 
     uniquePaths.add(postPath);
   }

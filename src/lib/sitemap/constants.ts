@@ -9,6 +9,18 @@ export const STATIC_PAGE_SLUGS = new Set([
   "category2",
 ]);
 
+/** Blog/page paths that must not appear in sitemaps (keep in sync with next-sitemap.shared.js). */
+export const EXCLUDED_SITEMAP_PATHS = new Set([
+  "/services/contents-marketing/content-marketing",
+  "/best-content-marketing-agency-delhi-ncr",
+  "/career2",
+  "/services/print-advertising2",
+  "/services/print-advertising2/a",
+  "/discussion-forum",
+  "/services/real-estate-walkthrough",
+  "/services/Real-Estate-Walkthrough",
+]);
+
 export const SITEMAP_XML_HEADERS = {
   "Content-Type": "application/xml; charset=utf-8",
   "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",

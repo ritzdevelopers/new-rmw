@@ -21,6 +21,7 @@ const SITEMAP_INDEX_FILES = [
 /** Paths that must never appear in any sitemap file. */
 const EXCLUDED_SITEMAP_PATHS = new Set([
   "/services/contents-marketing/content-marketing",
+  "/best-content-marketing-agency-delhi-ncr",
   "/career2",
   "/services/print-advertising2",
   "/services/print-advertising2/a",

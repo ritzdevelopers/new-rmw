@@ -8,7 +8,7 @@ const {
   fetchAllPostSitemapRecords,
 } = require("./next-sitemap.blog-sources");
 const { fetchImageSitemapEntries } = require("./next-sitemap.image-sources");
-const { SITEMAP_INDEX_FILES, getSitemapBuildLastmod } = require("./next-sitemap.shared");
+const { SITEMAP_INDEX_FILES, getSitemapBuildLastmod, isExcludedSitemapPath } = require("./next-sitemap.shared");
 
 const publicDir = path.join(process.cwd(), "public");
 
@@ -49,6 +49,7 @@ function buildBlogItems(records) {
 
     const normalized = blogPath.replace(/^\/+/, "");
     if (STATIC_PAGE_SLUGS.has(normalized)) continue;
+    if (isExcludedSitemapPath(blogPath)) continue;
 
     uniquePaths.add(blogPath);
   }
