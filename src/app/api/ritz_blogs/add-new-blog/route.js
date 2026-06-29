@@ -13,6 +13,7 @@ import {
   isValidSlugInput,
   normalizeSlug,
 } from "@/lib/slugify";
+import { BLOG_AUTHORS, isBlogAuthor } from "@/lib/blogAuthors";
 
 export function generateSlug(title) {
   return generateSlugFromTitle(title);
@@ -70,11 +71,19 @@ export async function POST(request) {
     const blogBodyRaw = formData.get("blogBody");
     const blogCategory = formData.get("blogCategory");
     const mtDesc = formData.get("mtDesc");
+    const blogAuthorRaw = String(formData.get("blogAuthor") || "").trim();
     const publishStatus = String(formData.get("publishStatus") || "published");
     const scheduledAtRaw = formData.get("scheduledAt");
 
     if (!blogTitle) {
       return NextResponse.json({ message: "Blog title is required" }, { status: 400 });
+    }
+
+    if (!blogAuthorRaw || !isBlogAuthor(blogAuthorRaw)) {
+      return NextResponse.json(
+        { message: `Please select a valid author (${BLOG_AUTHORS.join(", ")})` },
+        { status: 400 }
+      );
     }
 
     if (!["draft", "scheduled", "published"].includes(publishStatus)) {
@@ -231,6 +240,7 @@ export async function POST(request) {
       blogSlug,
       blogDescription,
       mtDesc,
+      blogAuthor: blogAuthorRaw,
     });
 
     const activityLabel =

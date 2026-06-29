@@ -12,6 +12,7 @@ import jwt from "jsonwebtoken";
 import ManagementModel from "@/models/Management";
 import ManagementActivitiesModel from "@/models/ManagementActivities";
 import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
+import { isBlogAuthor } from "@/lib/blogAuthors";
 
 interface BlogBodyItem {
     metaTitle: string;
@@ -71,6 +72,14 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
         const blogBodyRaw = formData.get("blogBody");
         const blogCategoryId = formData.get("blogCategoryId") || formData.get("blogCategory"); // Support both for backward compatibility
         const mtDesc = formData.get("mtDesc");
+        const blogAuthorRaw = String(formData.get("blogAuthor") || "").trim();
+
+        if (blogAuthorRaw && !isBlogAuthor(blogAuthorRaw)) {
+            return NextResponse.json(
+                { message: "Please select a valid author from the list." },
+                { status: 400 }
+            );
+        }
 
         const blogSlug = blogSlugInput
             ? normalizeSlug(String(blogSlugInput))
@@ -156,6 +165,7 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             blogBanner?: string;
             blogSlug?:string;
             mtDesc?: FormDataEntryValue | null;
+            blogAuthor?: string;
         }> = {
             blogTitle,
             blogBody: updatedBlogBody,
@@ -165,6 +175,10 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             blogSlug,
             mtDesc: mtDesc || undefined,
         };
+
+        if (blogAuthorRaw) {
+            updateData.blogAuthor = blogAuthorRaw;
+        }
 
         if (blogBannerPath) {
             updateData.blogBanner = blogBannerPath;

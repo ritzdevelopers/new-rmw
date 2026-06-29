@@ -14,6 +14,7 @@ import {
   blogPrimaryBtnClass,
   blogSecondaryBtnClass,
 } from "@/components/addBlog/BlogWizardShell";
+import { BLOG_AUTHORS, DEFAULT_BLOG_AUTHOR } from "@/lib/blogAuthors";
 
 const LOCAL_STORAGE_KEY = ADD_BLOG_STEP1_KEY;
 
@@ -45,6 +46,7 @@ const Page = () => {
   const [localMeta, setLocalMeta] = useState<string>(metaKeywords || "");
   const [localBanner, setLocalBanner] = useState<string>(blogBanner || "");
   const [localCategory, setLocalCategory] = useState<string>("none-selected");
+  const [localAuthor, setLocalAuthor] = useState<string>(DEFAULT_BLOG_AUTHOR);
   const [localMtDsc, setLocalMtDesc] = useState(mtDesc || "");
   const [ritzCategories, setRitzCategory] = useState<Category[]>([]);
   const [error, setError] = useState<string>("");
@@ -58,6 +60,7 @@ const Page = () => {
       setLocalMeta(parsed.metaKeywords || "");
       setLocalBanner(parsed.blogBanner || "");
       setLocalCategory(parsed.blogCategory || "none-selected");
+      setLocalAuthor(parsed.blogAuthor || DEFAULT_BLOG_AUTHOR);
       setBlogTitle(parsed.blogTitle || "");
       setMetaTitle(parsed.metaKeywords || "");
       setBlogBanner(parsed.blogBanner || "");
@@ -100,6 +103,7 @@ const Page = () => {
         metaKeywords: localMeta,
         blogBanner: localBanner,
         blogCategory: localCategory,
+        blogAuthor: localAuthor,
         mtDesc: localMtDsc,
       })
     );
@@ -129,6 +133,10 @@ const Page = () => {
     }
     if (!localCategory || localCategory === "none-selected") {
       setError("Please select a category.");
+      return;
+    }
+    if (!localAuthor) {
+      setError("Please select an author.");
       return;
     }
 
@@ -280,6 +288,20 @@ const Page = () => {
               {ritzCategories.map((category) => (
                 <option key={category._id} value={category.categorySlug}>
                   {category.categoryName}
+                </option>
+              ))}
+            </select>
+          </BlogField>
+
+          <BlogField label="Author" required hint="Who wrote this blog post?">
+            <select
+              value={localAuthor}
+              onChange={(e) => setLocalAuthor(e.target.value)}
+              className={blogInputClass}
+            >
+              {BLOG_AUTHORS.map((name) => (
+                <option key={name} value={name}>
+                  {name}
                 </option>
               ))}
             </select>
