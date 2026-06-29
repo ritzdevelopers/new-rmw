@@ -16,24 +16,24 @@ type MarketReport = {
 const MARKET_REPORTS: MarketReport[] = [
     {
         id: "noida",
-        label: "Noida Market Intelligence Report",
+        label: "Noida Market Intelligence Reports",
         subtitle: "June 2026 outlook",
         filePath: "/uploads/Noida outlook RMW report .pdf",
-        downloadName: "RMW Noida Market Intelligence Report.pdf",
+        downloadName: "RMW Noida Market Intelligence Reports.pdf",
     },
     {
         id: "ghaziabad",
-        label: "Ghaziabad Market Intelligence Report",
+        label: "Ghaziabad Market Intelligence Reports",
         subtitle: "Regional growth & investment corridors",
         filePath: "/RMW Ghaziabad Report copy (1).pdf",
-        downloadName: "RMW Ghaziabad Market Intelligence Report.pdf",
+        downloadName: "RMW Ghaziabad Market Intelligence Reports.pdf",
     },
     {
         id: "gurgaon",
-        label: "Gurgaon Market Intelligence Report",
+        label: "Gurgaon Market Intelligence Reports",
         subtitle: "Residential & commercial market insights",
         filePath: "/RMW Gurgaon Report copy.pdf",
-        downloadName: "RMW Gurgaon Market Intelligence Report.pdf",
+        downloadName: "RMW Gurgaon Market Intelligence Reports.pdf",
     },
 ];
 
@@ -177,8 +177,8 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                 name: "Home Page Visitor",
                 email: "homepage@ritzmediaworld.com",
                 phone: phone.trim(),
-                message: "Enquiry from Home Page - 2026 Brand Impact Report Download Request",
-                category: "Brand Impact Report Download",
+                message: "Enquiry from Home Page - 2026 Brand Impact Reports Download Request",
+                category: "Brand Impact Reports Download",
             };
 
             const response = await fetch("/api/system-settings/contact-enquiry", {
@@ -256,7 +256,7 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                                 fontFamily: "MontserratBold",
                             }}
                         >
-                            Brand Impact Report 2026
+                            Brand Impact Reports 2026
                         </h2>
                     </div>
 
@@ -316,7 +316,7 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                     </form>
                 </div>
 
-                {/* Center Container - Noida Outlook Report */}
+                {/* Center Container - Noida Outlook Reports */}
                 <div className="w-full min-h-0 lg:min-h-[526px] h-full border-1 border-[#D4D4D4] bg-white flex flex-col gap-3 sm:gap-4 px-4 lg:px-6 py-6 sm:py-7 lg:py-8 md:px-6">
                     <div className="text-left flex flex-col gap-2">
                         <p
@@ -325,7 +325,7 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                                 fontFamily: "OpenSansSemiBold",
                             }}
                         >
-                            Market Report
+                            Market Reports
                         </p>
                         <h2
                             className="font-[700] text-[17px] sm:text-[18px] lg:text-[19px] xl:text-[22px] 2xl:text-[26px] leading-snug"
@@ -334,7 +334,7 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                             }}
                         >
                             A Ritz Media World{" "}
-                            <span className="text-[#C99237]">RMW Market Intelligence Report</span>{" "}
+                            <span className="text-[#C99237]">RMW Market Intelligence Reports</span>{" "}
                             | June 2026
                         </h2>
                     </div>
@@ -345,7 +345,7 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                             fontFamily: "PoppinsRegular",
                         }}
                     >
-                        Download our latest real estate market intelligence report covering market trends, growth corridors, investment opportunities, pricing insights, and strategic recommendations.
+                        Download our latest real estate market intelligence reports covering market trends, growth corridors, investment opportunities, pricing insights, and strategic recommendations.
                     </p>
 
                     <ul
@@ -366,7 +366,7 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                             onClick={openReportModal}
                             className={`${styles.freeDownloadButton} w-full h-[48px] sm:h-[50px] bg-[#C99237] cursor-pointer text-white font-[700] text-[14px] sm:text-[14.5px] lg:text-[15px] flex justify-center items-center gap-2 rounded-[5px] hover:bg-[#B8822F] transition-colors s1-btn-gold`}
                         >
-                            <span className="text-white">Download Report</span>
+                            <span className="text-white">Download Reports</span>
                             <Download className="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px]" />
                         </button>
                         <p
@@ -484,7 +484,7 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                     </div>
                 </div>
             )}
-            {/* Market report picker modal */}
+            {/* Market reports picker modal */}
             {reportModalOpen && (
                 <div
                     className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm"
@@ -500,14 +500,14 @@ function BrandImpactSection2({ hideBottomCta = false }: { hideBottomCta?: boolea
                         <div className="flex items-start justify-between gap-3 border-b border-[#E8E8E8] bg-[#FAFAF8] px-5 py-4 sm:px-6">
                             <div>
                                 <p className="text-[11px] font-semibold uppercase tracking-wide text-[#C99237]">
-                                    Market Report
+                                    Market Reports
                                 </p>
                                 <h3
                                     id="market-report-modal-title"
                                     className="mt-1 text-[17px] font-bold leading-snug text-[#1B1B1B] sm:text-[18px]"
                                     style={{ fontFamily: "MontserratBold" }}
                                 >
-                                    Choose a report to download
+                                    Choose reports to download
                                 </h3>
                                 <p
                                     className="mt-1 text-[13px] text-[#6E6E6E]"
