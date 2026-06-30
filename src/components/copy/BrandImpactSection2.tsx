@@ -35,6 +35,13 @@ const MARKET_REPORTS: MarketReport[] = [
         filePath: "/RMW Gurgaon Report copy.pdf",
         downloadName: "RMW Gurgaon Market Intelligence Reports.pdf",
     },
+    {
+        id: "outer-ring-rd",
+        label: "Outer Ring Road Market Intelligence Reports",
+        subtitle: "Connectivity corridors & growth outlook",
+        filePath: "/RMW Outer Ring Rd Report copy.pdf",
+        downloadName: "RMW Outer Ring Rd Market Intelligence Reports.pdf",
+    },
 ];
 
 function downloadFile(filePath: string, downloadName: string) {
