@@ -23,11 +23,16 @@ export async function GET(req: NextRequest) {
         if (!actor || !actor.isActive) {
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
-        // Team list: omit all super_admins and the requesting user (not editable via this list)
-        const management = await ManagementModel.find({
-            _id: { $ne: decoded.id },
-            role: { $ne: "super_admin" },
-        })
+        // Super admins see everyone (so they can change passwords / manage other super admins).
+        // Editors only see non–super-admin accounts, excluding themselves.
+        const filter =
+            decoded.role === "super_admin"
+                ? {}
+                : {
+                      _id: { $ne: decoded.id },
+                      role: { $ne: "super_admin" },
+                  };
+        const management = await ManagementModel.find(filter)
             .select("-password")
             .sort({ createdAt: -1 });
 
