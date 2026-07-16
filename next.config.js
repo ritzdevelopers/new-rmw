@@ -79,6 +79,11 @@ const nextConfig = {
       { source: "/blogs/:page(\\d+)", destination: "/blogs", permanent: true },
       // Slug without "." so /blogs/image.jpg stays on disk (nginx) or middleware
       { source: "/blogs/:slug([^./]+)", destination: "/:slug", permanent: true },
+      {
+        source: "/seo-vs-paid-ads%3A-which-strategy-works-best-in-2025",
+        destination: "/seo-vs-paid-ads-which-strategy-works-best-in-2025",
+        permanent: true,
+      },
       // Legacy WordPress blog URLs: /my-post.html -> /my-post (not about/contact/work)
       {
         source: "/:slug((?!about|contact|work)[^/]+)\\.html",
