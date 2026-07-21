@@ -96,7 +96,8 @@ function OurProcess() {
       <div className={styles.bgWrap} aria-hidden>
         <Image
           src="/services/walkthrough/our-process-bg.jpg"
-          alt=""
+          alt="Background illustration for real estate walkthrough creation process"
+          title="How we create your walkthrough – Ritz Media World"
           fill
           priority={false}
           className={styles.bgImage}

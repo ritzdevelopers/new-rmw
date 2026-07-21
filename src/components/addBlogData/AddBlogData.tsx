@@ -18,11 +18,13 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FiXCircle } from "react-icons/fi";
 import Editor from "@/components/Editor/Editor";
+import { formatSlugInput, normalizeSlug } from "@/lib/slugify";
 
 const AddBlogData = () => {
   const [formData, setFormData] = useState({
     category_id: "",
     title: "",
+    slug: "",
     meta_title: "",
     meta_description: "",
     meta_keywords: "",
@@ -55,18 +57,11 @@ const AddBlogData = () => {
   ) => {
     const { name, value } = e.target;
 
-    // Validate Blog URL to allow only letters, numbers, hyphens, and underscores
-    if (name === "blog_url") {
-      const regex = /^[a-zA-Z0-9-_]*$/;
-      if (!regex.test(value)) {
-        toast.error(
-          "Blog URL can only contain letters, numbers, hyphens, and underscores!"
-        );
-        return; // Stop updating state if invalid input is entered
-      }
+    if (name === "slug") {
+      setFormData((prev) => ({ ...prev, slug: formatSlugInput(value) }));
+      return;
     }
 
-    // Update the state for all inputs
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -132,6 +127,7 @@ const AddBlogData = () => {
       setFormData({
         category_id: "",
         title: "",
+        slug: "",
         meta_title: "",
         meta_description: "",
         meta_keywords: "",
@@ -194,6 +190,20 @@ const AddBlogData = () => {
 
         <Label>Blog Title</Label>
         <Input name="title" value={formData.title} onChange={handleChange} />
+
+        <Label>Slug URL</Label>
+        <Input
+          name="slug"
+          value={formData.slug}
+          onChange={handleChange}
+          onBlur={() =>
+            setFormData((prev) => ({ ...prev, slug: normalizeSlug(prev.slug) }))
+          }
+          placeholder="e.g. my blog post"
+        />
+        <p className="text-xs text-muted-foreground">
+          Blog will open at /{normalizeSlug(formData.slug) || "your-slug-url"}
+        </p>
 
         <Label>Meta Title</Label>
         <Input

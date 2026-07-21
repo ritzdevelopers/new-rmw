@@ -337,7 +337,7 @@ const router = useRouter();
               <FaArrowRightLong className="w-5 h-5 sm:w-6 sm:h-6 text-[#ffffff]" />
             </div>
             <h2 className="font-[600] text-[28px] sm:text-[32px] md:text-[34px] lg:text-[36px] leading-[1.2] text-white">
-              Or Get a Free <span className="text-[#F3830E]">Brand Audit</span>
+              Get a Free <span className="text-[#F3830E]">Brand Audit</span>
             </h2>
             <p className="font-[400] text-[14px] sm:text-[15px] md:text-[16px] leading-[1.6] text-[#D1D5DC]">
               Let our experts analyze your current brand positioning and provide

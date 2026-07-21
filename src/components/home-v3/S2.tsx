@@ -168,14 +168,9 @@ function S2() {
             <p className="font-[400] text-[14px] sm:text-[15px] lg:text-[16px] text-center lg:text-left" style={{
               fontFamily: 'OpenSansRegular',
             }}>
-              We create   <b style={{
-                fontFamily: 'OpenSansBold',
-              }}>campaigns</b>  that look great and work even better, with consistency you can rely on. <br />
-              <b className="text-[#C99237]" style={{
-                fontFamily: 'OpenSansBold',
-              }}>Ritz Media World</b> , your <b className="text-[#C99237]" style={{
-                fontFamily: 'OpenSansBold',
-              }}>advertising partner in Noida.</b>
+              We create campaigns that look great and work even better, delivering consistent results you can trust. At{" "}
+              <b className="text-[#C99237]" style={{ fontFamily: "OpenSansBold" }}>Ritz Media World</b>, we combine creativity with strategy to earn our reputation as the best{" "}
+              <b className="text-[#C99237]" style={{ fontFamily: "OpenSansBold" }}>advertising agency</b> for brands looking to grow. Your trusted advertising partner in Noida, we&apos;re here to make every campaign count.
 
             </p>
             <button onClick={() => window.open("https://ritzmediaworld.com/services", "_blank")} className="w-full sm:w-[200px] lg:w-[219px] h-[48px] sm:h-[50px] lg:h-[54px] border-[1px] border-[#C99237] rounded-[5px] font-[600] text-[14px] sm:text-[14.5px] lg:text-[15px] s1-btn-transparent cursor-pointer  self-center lg:self-start">

@@ -1,8 +1,9 @@
 import { getDBPool } from "@/lib/db";
 import RitzBlogModel from "@/models/Blog.Schema";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
 
-export async function PATCH(req: NextResponse) {
+export async function PATCH(req: NextRequest) {
   try {
     const { blStatus, dbSt, blID } = await req.json();
     if (!blID || !dbSt) {
@@ -29,6 +30,8 @@ export async function PATCH(req: NextResponse) {
         { status: 400 }
       );
     }
+    await revalidateBlogListingPages();
+
     return NextResponse.json(
       { message: "Blog Status Updates", success: true },
       { status: 200 }

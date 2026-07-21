@@ -30,8 +30,8 @@
 
 .searchInput:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #c59d4f;
+  box-shadow: 0 0 0 3px rgba(197, 157, 79, 0.1);
 }
 
 .searchIcon {
@@ -60,8 +60,8 @@
 
 .sortSelect:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #c59d4f;
+  box-shadow: 0 0 0 3px rgba(197, 157, 79, 0.1);
 }
 
 .filterButton {
@@ -80,18 +80,18 @@
 }
 
 .filterButton:hover {
-  border-color: #3b82f6;
-  color: #3b82f6;
+  border-color: #c59d4f;
+  color: #c59d4f;
 }
 
 .filterButtonActive {
-  border-color: #3b82f6;
-  background-color: #eff6ff;
-  color: #3b82f6;
+  border-color: #c59d4f;
+  background-color: #fbf7ee;
+  color: #c59d4f;
 }
 
 .filterBadge {
-  background-color: #3b82f6;
+  background-color: #c59d4f;
   color: white;
   border-radius: 50%;
   width: 20px;
@@ -138,8 +138,8 @@
 
 .filterInput:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #c59d4f;
+  box-shadow: 0 0 0 3px rgba(197, 157, 79, 0.1);
 }
 
 .filterActions {
@@ -170,14 +170,14 @@
 }
 
 .applyBtn {
-  background-color: #3b82f6;
+  background-color: #c59d4f;
   color: white;
 }
 
 .applyBtn:hover {
-  background-color: #2563eb;
+  background-color: #9a7530;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(197, 157, 79, 0.4);
 }
 
 @media (max-width: 768px) {

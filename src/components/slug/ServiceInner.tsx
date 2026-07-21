@@ -9,10 +9,14 @@ import Section8 from "./sections/Section8";
 import { getServiceThirdData } from "@/lib/getServiceThirdLayerData";
 import BrandImpactSection1 from "../copy/BrandImpactSection1";
 import WhiteLayer from "../home-v3/services/WhiteLayer";
-async function ServiceInner({slug}: {slug: string}) {
-
-
-    const res = await getServiceThirdData(slug as string);
+async function ServiceInner({
+    slug,
+    parentServiceLink,
+}: {
+    slug: string;
+    parentServiceLink?: string;
+}) {
+    const res = await getServiceThirdData(slug, parentServiceLink);
 
     return (
         <>

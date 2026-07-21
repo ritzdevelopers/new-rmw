@@ -1,12 +1,11 @@
-import Section8 from "@/components/services-v3-subslug/layer-4/Section8";
-
-
+import BrandImpactSection2 from "@/components/copy/BrandImpactSection2";
 
 function Section9() {
     return (
-        <>
-        <Section8/>
-        </>
-    )
+        <div className="pt-[35px] md:pt-[70px]">
+            <BrandImpactSection2 hideBottomCta />
+        </div>
+    );
 }
-    export default Section9;
+
+export default Section9;

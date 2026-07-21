@@ -1,905 +1,502 @@
 "use client";
-import { useState } from "react";
-import { usePathname } from "next/navigation"; // Import usePathname
+
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import {
-  Home,
-  FileText,
-  ChevronDown,
-  Menu,
-  User,
-  Users,
-  Monitor,
-  House,
-  MonitorCog,
-  ChartNoAxesCombined,
-  Newspaper,
+  LayoutDashboard,
+  BarChart3,
   MessageCircle,
+  FileText,
+  BookOpen,
+  Newspaper,
+  Monitor,
+  Home,
+  Settings,
+  Users,
+  UserPlus,
+  ChevronRight,
 } from "lucide-react";
 import { cn } from "../../lib/utils";
-// import axios from "axios";
-import Link from "next/link";
 import LogoutButton from "../logout/Logout";
-// import Image from "next/image";
+import {
+  readManagementSessionUser,
+  type ManagementSessionUser,
+} from "@/lib/managementSession";
 import "./Sidenav.css";
-import { useRouter } from "next/navigation";
-// type ProfileType = {
-//   email: string;
-//   name: string;
-//   createdAt: string;
-//   profileImage: string;
-// };
-type sidebarProps = {
+
+type SidebarProps = {
   expanded: boolean;
   setExpanded: (value: boolean) => void;
 };
-const Sidebar = ({ expanded, setExpanded }: sidebarProps) => {
-  const pathname = usePathname(); // Get current URL path
-  // const [profile, setProfile] = useState<ProfileType | null>(null);
-  // const [loading, setLoading] = useState(true);
-  const [blogOpen, setBlogOpen] = useState(false);
-  const [webpagesLinks, setWebPagesLink] = useState(false);
-  const [homePagesLinks, setHomePagesLinks] = useState(false);
-  const [systemSettings, setSystemSettings] = useState(false);
-  const [newspaperOpen, setNewspaperOpen] = useState(false);
-  const [chatsOpen, setChatsOpen] = useState(false);
 
-  const [dbActive, setDBActive] = useState(false);
-  const [blogActive, setBlogActive] = useState(false);
-  const [webPageActive, setWebPageActive] = useState(false);
-  const [homePageActive, setHomePageActive] = useState(false);
-  const [systemPageActive, setSystemPageActive] = useState(false);
-  const [createUserPageActive, setCreateUserPageActive] = useState(false);
-  const [webStoriesOpen, setWebStoriesOpen] = useState(false);
-  const [webStoriesActive, setWebStoriesActive] = useState(false);
-  const [analyticsActive, setAnalyticsIsActive] = useState(false);
-  const [newspaperActive, setNewspaperActive] = useState(false);
-  const [chatsActive, setChatsActive] = useState(false);
+type NavChild = {
+  label: string;
+  href: string;
+};
 
-  const [subMenuActive, setActiveSubMenu] = useState("");
-  function handleActiveTabBG(e: React.MouseEvent<HTMLElement, MouseEvent>) {
-    const span = e.currentTarget.querySelector("span");
-    const blogText = span?.innerText || "No span found";
+type NavItem = {
+  label: string;
+  href?: string;
+  icon: React.ElementType;
+  children?: NavChild[];
+  group: string;
+};
 
-    if (blogText === "Create user") {
-      setAnalyticsIsActive(false);
-      setWebStoriesActive(false);
-      setBlogActive(false);
-      setDBActive(false);
-      setWebPageActive(false);
-      setHomePageActive(false);
-      setSystemPageActive(false);
-      setActiveSubMenu("");
-      setCreateUserPageActive(true);
-      setChatsActive(false);
-      setNewspaperActive(false);
-    } else if (blogText === "System Settings") {
-      setAnalyticsIsActive(false);
-      setWebStoriesActive(false);
-      setBlogActive(false);
-      setDBActive(false);
-      setWebPageActive(false);
-      setHomePageActive(false);
-      setSystemPageActive(true);
-      setActiveSubMenu("");
-      setCreateUserPageActive(false);
-      setChatsActive(false);
-      setNewspaperActive(false);
-    } else if (blogText === "Home") {
-      setAnalyticsIsActive(false);
-      setWebStoriesActive(false);
-      setBlogActive(false);
-      setDBActive(false);
-      setWebPageActive(false);
-      setHomePageActive(true);
-      setSystemPageActive(false);
-      setActiveSubMenu("");
-      setCreateUserPageActive(false);
-      setChatsActive(false);
-      setNewspaperActive(false);
-    } else if (blogText === "Web Pages") {
-      setAnalyticsIsActive(false);
-      setWebStoriesActive(false);
-      setBlogActive(false);
-      setDBActive(false);
-      setWebPageActive(true);
-      setHomePageActive(false);
-      setSystemPageActive(false);
-      setActiveSubMenu("");
-      setCreateUserPageActive(false);
-      setChatsActive(false);
-      setNewspaperActive(false);
-    } else if (blogText === "Blog") {
-      setAnalyticsIsActive(false);
-      setWebStoriesActive(false);
-      setBlogActive(true);
-      setDBActive(false);
-      setWebPageActive(false);
-      setHomePageActive(false);
-      setSystemPageActive(false);
-      setActiveSubMenu("");
-      setCreateUserPageActive(false);
-      setChatsActive(false);
-      setNewspaperActive(false);
-    } else if (blogText === "Dashboard") {
-      setAnalyticsIsActive(false);
-      setWebStoriesActive(false);
-      setBlogActive(false);
-      setDBActive(true);
-      setWebPageActive(false);
-      setHomePageActive(false);
-      setSystemPageActive(false);
-      setActiveSubMenu("");
-      setCreateUserPageActive(false);
-      setChatsActive(false);
-      setNewspaperActive(false);
-    } else if (blogText === "Web Stories") {
-      setAnalyticsIsActive(false);
-      setBlogActive(false);
-      setDBActive(false);
-      setWebPageActive(false);
-      setHomePageActive(false);
-      setSystemPageActive(false);
-      setActiveSubMenu("");
-      setCreateUserPageActive(false);
-      setWebStoriesActive(true);
-      setChatsActive(false);
-      setNewspaperActive(false);
-    } else if (blogText === "Analytics") {
-      setBlogActive(false);
-      setDBActive(false);
-      setWebPageActive(false);
-      setHomePageActive(false);
-      setSystemPageActive(false);
-      setActiveSubMenu("");
-      setCreateUserPageActive(false);
-      setWebStoriesActive(false);
-      setAnalyticsIsActive(true);
-      setChatsActive(false);
-      setNewspaperActive(false);
-    } else if (blogText === "Chats") {
-      setBlogActive(false);
-      setDBActive(false);
-      setWebPageActive(false);
-      setHomePageActive(false);
-      setSystemPageActive(false);
-      setActiveSubMenu("");
-      setCreateUserPageActive(false);
-      setWebStoriesActive(false);
-      setAnalyticsIsActive(false);
-      setChatsActive(true);
-      setNewspaperActive(false);
-    } else if (blogText === "Newspaper") {
-      setBlogActive(false);
-      setDBActive(false);
-      setWebPageActive(false);
-      setHomePageActive(false);
-      setSystemPageActive(false);
-      setActiveSubMenu("");
-      setCreateUserPageActive(false);
-      setWebStoriesActive(false);
-      setAnalyticsIsActive(false);
-      setChatsActive(false);
-      setNewspaperActive(true);
-    }
-  }
+const NAV_ITEMS: NavItem[] = [
+  {
+    label: "Dashboard",
+    href: "/admin/dashboard",
+    icon: LayoutDashboard,
+    group: "main",
+  },
+  {
+    label: "Analytics",
+    href: "/admin/analytics",
+    icon: BarChart3,
+    group: "main",
+  },
+  {
+    label: "Chats",
+    icon: MessageCircle,
+    group: "main",
+    children: [
+      { label: "Overview", href: "/admin/chats/overview" },
+      { label: "History", href: "/admin/chats/history" },
+      { label: "Export", href: "/admin/chats/export" },
+    ],
+  },
+  {
+    label: "Blog",
+    icon: FileText,
+    group: "content",
+    children: [
+      { label: "Add Blog", href: "/admin/add-blog" },
+      { label: "Manage Blogs", href: "/admin/manage-blogs" },
+    ],
+  },
+  {
+    label: "Web Stories",
+    icon: BookOpen,
+    group: "content",
+    children: [
+      { label: "Add Topics", href: "/admin/add-web-story-topics" },
+      { label: "Manage Topics", href: "/admin/manage-web-story-topics" },
+      { label: "Add Story", href: "/admin/add-web-story" },
+      { label: "Manage Stories", href: "/admin/manage-web-stories" },
+    ],
+  },
+  {
+    label: "Newspaper",
+    icon: Newspaper,
+    group: "content",
+    children: [
+      { label: "Manage", href: "/admin/newspaper/manage" },
+      { label: "Add Newspaper", href: "/admin/newspaper" },
+      { label: "Manage Ads", href: "/admin/newspaper/ads/manage" },
+    ],
+  },
+  {
+    label: "Web Pages",
+    icon: Monitor,
+    group: "website",
+    children: [
+      { label: "Page Cards", href: "/admin/content" },
+      { label: "Categories", href: "/admin/menu_category" },
+    ],
+  },
+  {
+    label: "Home",
+    icon: Home,
+    group: "website",
+    children: [
+      { label: "Services", href: "/admin/manage-services/service-third" },
+    ],
+  },
+  {
+    label: "System Settings",
+    icon: Settings,
+    group: "system",
+    children: [
+      { label: "Contact Enquiry", href: "/admin/enquiry" },
+      { label: "Enquiries", href: "/admin/enquiry/enquiries" },
+      { label: "Manage Career", href: "/admin/enquiry/career" },
+    ],
+  },
+  {
+    label: "Management",
+    href: "/admin/management",
+    icon: Users,
+    group: "system",
+  },
+  {
+    label: "Create User",
+    href: "/admin/register",
+    icon: UserPlus,
+    group: "system",
+  },
+];
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/api/profile")
-  //     .then((response) => setProfile(response.data))
-  //     .catch((error) => console.error("Error fetching profile data", error));
-  //   // .finally(() => setLoading(false));
-  // }, []);
+const GROUP_LABELS: Record<string, string> = {
+  main: "Overview",
+  content: "Content",
+  website: "Website",
+  system: "Administration",
+};
 
-  const router = useRouter();
+const GROUPS = ["main", "content", "website", "system"];
 
-  const handleClick = () => {
-    router.push(`/admin/dashboard?isExtended=${expanded}`);
+export default function Sidebar({ expanded, setExpanded }: SidebarProps) {
+  const pathname = usePathname();
+  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
+  const [user, setUser] = useState<ManagementSessionUser | null>(null);
+
+  useEffect(() => {
+    setUser(readManagementSessionUser());
+  }, []);
+
+  // Auto-open submenu when current route is a child
+  useEffect(() => {
+    const autoOpen: Record<string, boolean> = {};
+    NAV_ITEMS.forEach((item) => {
+      if (item.children) {
+        const childActive = item.children.some((child) =>
+          pathname.startsWith(child.href)
+        );
+        if (childActive) autoOpen[item.label] = true;
+      }
+    });
+    setOpenMenus((prev) => ({ ...prev, ...autoOpen }));
+  }, [pathname]);
+
+  const toggleMenu = (label: string) => {
+    if (!expanded) return;
+    setOpenMenus((prev) => ({ ...prev, [label]: !prev[label] }));
   };
 
+  const isRouteActive = (href: string) =>
+    pathname === href || pathname.startsWith(href + "/");
+
   return (
-    <div className="flex">
-      {/* Sidebar Toggle Button */}
-      <div className="border-b cursor-pointer w-full border[#5D6871]">
+    <div
+      className={cn(
+        "fixed top-0 left-0 h-screen flex flex-col transition-all duration-300 z-40",
+        expanded ? "w-64" : "w-16"
+      )}
+      style={{
+        background: "#0B1623",
+        borderRight: "1px solid rgba(255,255,255,0.05)",
+      }}
+    >
+      {/* Logo / Brand */}
+      <div
+        className="flex items-center gap-3 px-4 h-16 flex-shrink-0"
+        style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
+      >
         <button
           onClick={() => setExpanded(!expanded)}
-          className="fixed top-1.5 pl-3 cursor-pointer dark:bg-gray-800  z-50"
+          className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all overflow-hidden"
+          title="Toggle sidebar"
+          // style={{
+          //   background: "rgba(197,157,79,0.12)",
+          //   boxShadow: "0 4px 14px rgba(197,157,79,0.22)",
+          //   border: "1px solid rgba(197,157,79,0.25)",
+          // }}
         >
-          <Menu className="w-6 h-6 cursor-pointer text-white dark:text-white" />
+          <Image
+            src="/favicon.ico"
+            alt="RMW logo"
+            width={28}
+            height={28}
+            className="object-contain"
+            priority
+          />
         </button>
+        {expanded && (
+          <div className="flex-1 min-w-0 overflow-hidden">
+            <p
+              className="text-white font-bold text-sm tracking-wide leading-none"
+              style={{ whiteSpace: "nowrap" }}
+            >
+              RMW Admin
+            </p>
+            <p
+              className="text-xs font-medium mt-0.5"
+              style={{ color: "#C59D4F", whiteSpace: "nowrap" }}
+            >
+              Management v2.0
+            </p>
+          </div>
+        )}
       </div>
 
-      {/* Sidebar */}
-      <div
-        className={cn(
-          "h-screen text-white shadow-lg pt-10 flex flex-col fixed  top-0 left-0 transition-all duration-300 bg-[#394A59]",
-          expanded ? "w-56" : "w-16"
-        )}
-      >
-        {/* Profile card */}
-        {/* <div className="flex items-center relative top-6 gap-3 p-3 hover:bg-gray-300 dark:hover:bg-gray-700 cursor-pointer transition rounded-md">
-          {loading ? (
-            <p>...</p>
-          ) : (
-            <Image
-              src={profile?.profileImage || "/profile-images/img-2.webp"}
-              alt="Profile"
-              width={50}
-              height={50}
-              className="rounded-full"
-            />
-          )}
-          {expanded && (
-            <div className="flex flex-col">
-              <span>{profile?.name}</span>
-              <span>{profile?.email}</span>
-            </div>
-          )}
-        </div> */}
-
-        {/* Menu Items */}
-        <nav className="flex flex-col mt-4 overflow-y-auto hide-scrollbar">
-          <Link title="Dashboard" onClick={handleClick} href="/admin/dashboard">
+      {/* User profile */}
+      {expanded && user && (
+        <div
+          className="mx-3 mt-4 p-3 rounded-xl flex-shrink-0"
+          style={{
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
+          <div className="flex items-center gap-3">
             <div
-              onClick={(e) => handleActiveTabBG(e)}
+              className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
               style={{
-                ...(!expanded
-                  ? { borderWidth: "none" }
-                  : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-                ...(dbActive && { backgroundColor: "#2E3B46" }),
+                background:
+                  "linear-gradient(135deg, rgba(197,157,79,0.2), rgba(197,157,79,0.4))",
+                color: "#C59D4F",
+                border: "1.5px solid rgba(197,157,79,0.3)",
               }}
-              className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition"
             >
-              <Home className="w-5 h-5" />
-              {expanded && <span>Dashboard</span>}
+              {user.name?.charAt(0)?.toUpperCase() ?? "A"}
             </div>
-          </Link>
-
-          <Link title="Analytics" onClick={handleClick} href="/admin/analytics">
-            <div
-              onClick={(e) => handleActiveTabBG(e)}
-              style={{
-                ...(!expanded
-                  ? { borderWidth: "none" }
-                  : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-                ...(analyticsActive && { backgroundColor: "#2E3B46" }),
-              }}
-              className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition"
-            >
-              <ChartNoAxesCombined  className="w-5 h-5" />
-              {expanded && <span>Analytics</span>}
+            <div className="min-w-0 flex-1">
+              <p
+                className="text-sm font-semibold leading-tight truncate text-white"
+              >
+                {user.name}
+              </p>
+              <p className="text-xs leading-tight mt-0.5" style={{ color: "#C59D4F" }}>
+                {user.role === "super_admin" ? "Super Admin" : "Editor"}
+              </p>
             </div>
-          </Link>
-
-          {/* Chats with submenu */}
-          <div
-            style={{
-              ...(!expanded
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...(chatsActive && { backgroundColor: "#2E3B46" }),
-            }}
-            onClick={(e) => {
-              setChatsOpen(!chatsOpen);
-              handleActiveTabBG(e);
-            }}
-            className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] cursor-pointer transition justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <MessageCircle className="w-5 h-5" />
-              {expanded && <span>Chats</span>}
-            </div>
-            {expanded && (
-              <ChevronDown
-                className={cn(
-                  "w-4 h-4 transition",
-                  chatsOpen ? "rotate-180" : ""
-                )}
-              />
-            )}
           </div>
-
-          {expanded && chatsOpen && (
-            <div className="space-y-2">
-              <Link title="Chats Overview" href="/admin/chats/overview">
-                <div
-                  onClick={() => setActiveSubMenu("Chats Overview")}
-                  style={{
-                    ...(!chatsOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Chats Overview" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Overview
-                </div>
-              </Link>
-              <Link title="Chats History" href="/admin/chats/history">
-                <div
-                  onClick={() => setActiveSubMenu("Chats History")}
-                  style={{
-                    ...(!chatsOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Chats History" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  History
-                </div>
-              </Link>
-              <Link title="Chats Export" href="/admin/chats/export">
-                <div
-                  onClick={() => setActiveSubMenu("Chats Export")}
-                  style={{
-                    ...(!chatsOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Chats Export" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Export
-                </div>
-              </Link>
-            </div>
-          )}
-
-          {/* Blog with submenu */}
-          <div
-            style={{
-              ...(!expanded
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...(blogActive && { backgroundColor: "#2E3B46" }),
-            }}
-            onClick={(e) => {
-              setBlogOpen(!blogOpen);
-              handleActiveTabBG(e);
-            }}
-            className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] cursor-pointer transition justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <FileText className="w-5 h-5" />
-              {expanded && <span>Blog</span>}
-            </div>
-            {expanded && (
-              <ChevronDown
-                className={cn(
-                  "w-4 h-4 transition",
-                  blogOpen ? "rotate-180" : ""
-                )}
-              />
-            )}
-          </div>
-
-          {/* Blog Submenu */}
-          {expanded && blogOpen && (
-            <div className="space-y-2">
-              <Link title="Add Blog" href="/admin/add-blog">
-                <div
-                  onClick={() => setActiveSubMenu("Add Blog")}
-                  style={{
-                    ...(!blogOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Add Blog" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer text-sm  pl-8 text-gray-200"
-                >
-                  Add Blog
-                </div>
-              </Link>
-              <Link title="Manage Blogs" href="/admin/manage-blogs">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Blogs")}
-                  style={{
-                    ...(!blogOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Blogs" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Blogs
-                </div>
-              </Link>
-            </div>
-          )}
-
-          {/* Web Stories Section  */}
-          <div
-            style={{
-              ...(!expanded
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...(webStoriesActive && { backgroundColor: "#2E3B46" }),
-            }}
-            onClick={(e) => {
-              setWebStoriesOpen((open) => !open);
-              handleActiveTabBG(e);
-            }}
-            className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] cursor-pointer transition justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <FileText className="w-5 h-5" />
-              {expanded && <span>Web Stories</span>}
-            </div>
-            {expanded && (
-              <ChevronDown
-                className={cn(
-                  "w-4 h-4 transition",
-                  webStoriesOpen ? "rotate-180" : ""
-                )}
-              />
-            )}
-          </div>
-
-          {/* Web Stories submenu */}
-          {expanded && webStoriesOpen && (
-            <div className="space-y-2">
-              <Link title="Add Web Story Topics" href="/admin/add-web-story-topics">
-                <div
-                  onClick={() => setActiveSubMenu("Add Web Story Topics")}
-                  style={{
-                    ...(!webStoriesOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Add Web Story Topics" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Add Web Story Topics
-                </div>
-              </Link>
-              <Link title="Manage Web Story Topics" href="/admin/manage-web-story-topics">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Web Story Topics")}
-                  style={{
-                    ...(!webStoriesOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Web Story Topics" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Web Story Topics
-                </div>
-              </Link>
-              <Link title="Add Web Story" href="/admin/add-web-story">
-                <div
-                  onClick={() => setActiveSubMenu("Add Web Story")}
-                  style={{
-                    ...(!webStoriesOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Add Web Story" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Add Web Story
-                </div>
-              </Link>
-              <Link title="Manage Web Stories" href="/admin/manage-web-stories">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Web Story")}
-                  style={{
-                    ...(!webStoriesOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Web Story" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Web Story
-                </div>
-              </Link>
-            </div>
-          )}
-
-          {/* Newspaper Section */}
-          <div
-            style={{
-              ...(!expanded
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...(newspaperActive && { backgroundColor: "#2E3B46" }),
-            }}
-            onClick={(e) => {
-              setNewspaperOpen(!newspaperOpen);
-              handleActiveTabBG(e);
-            }}
-            className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <Newspaper className="w-5 h-5" />
-              {expanded && <span>Newspaper</span>}
-            </div>
-            {expanded && (
-              <ChevronDown
-                className={cn(
-                  "w-4 h-4 transition",
-                  newspaperOpen ? "rotate-180" : ""
-                )}
-              />
-            )}
-          </div>
-
-          {/* Newspaper Submenu */}
-          {expanded && newspaperOpen && (
-            <div className="space-y-2">
-              <Link title="Manage Newspapers" href="/admin/newspaper/manage">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Newspapers")}
-                  style={{
-                    ...(!newspaperOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Newspapers" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer text-sm"
-                >
-                  Manage Newspapers
-                </div>
-              </Link>
-              <Link title="Add Newspaper" href="/admin/newspaper">
-                <div
-                  onClick={() => setActiveSubMenu("Add Newspaper")}
-                  style={{
-                    ...(!newspaperOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Add Newspaper" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer text-sm"
-                >
-                  Add Newspaper
-                </div>
-              </Link>
-              <Link title="Manage Ads" href="/admin/newspaper/ads/manage">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Ads")}
-                  style={{
-                    ...(!newspaperOpen
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Ads" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer text-sm"
-                >
-                  Manage Ads
-                </div>
-              </Link>
-            </div>
-          )}
-
-          {/* Websites Pages Links */}
-          <div
-            style={{
-              ...(!expanded
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...(webPageActive && { backgroundColor: "#2E3B46" }),
-            }}
-            onClick={(e) => {
-              setWebPagesLink(!webpagesLinks);
-              handleActiveTabBG(e);
-            }}
-            className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <Monitor className="w-5 h-5" />
-              {expanded && <span>Web Pages</span>}
-            </div>
-            {expanded && (
-              <ChevronDown
-                className={cn(
-                  "w-4 h-4 transition",
-                  webpagesLinks ? "rotate-180" : ""
-                )}
-              />
-            )}
-          </div>
-
-          {/* Website Pages Submenu */}
-
-          {expanded && webpagesLinks && (
-            <div className=" space-y-2">
-              <Link title="Manage Pages Cards" href="/admin/content">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Page")}
-                  style={{
-                    ...(!webpagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Page" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Pages Cards
-                </div>
-              </Link>
-
-              <Link title="Manage Category" href="/admin/menu_category">
-                <div
-                  onClick={() => setActiveSubMenu("Manage  Category")}
-                  style={{
-                    ...(!webpagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Category" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Category
-                </div>
-              </Link>
-            </div>
-          )}
-
-          {/* From Here New Home Pages Links Section Has Started */}
-          <div
-            style={{
-              ...(!expanded
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...(homePageActive && { backgroundColor: "#2E3B46" }),
-            }}
-            onClick={(e) => {
-              setHomePagesLinks(!homePagesLinks);
-              handleActiveTabBG(e);
-            }}
-            className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <House className="w-5 h-5" />
-              {expanded && <span>Home</span>}
-            </div>
-            {expanded && (
-              <ChevronDown
-                className={cn(
-                  "w-4 h-4 transition",
-                  homePagesLinks ? "rotate-180" : ""
-                )}
-              />
-            )}
-          </div>
-
-          {/* Home Pages Sub-Menu */}
-
-          {expanded && homePagesLinks && (
-            <div className=" space-y-2">
-              <Link title="Service Third" href="/admin/manage-services/service-third">
-                <div
-                  onClick={() => setActiveSubMenu("Service Third")}
-                  style={{
-                    ...(!homePagesLinks
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Service Third" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Service Third
-                </div>
-              </Link>
-            </div>
-          )}
-
-          {/* From Here System Settings Links Section Has Started */}
-          <div
-            style={{
-              ...(!expanded
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...(systemPageActive && { backgroundColor: "#2E3B46" }),
-            }}
-            onClick={(e) => {
-              setSystemSettings(!systemSettings);
-              handleActiveTabBG(e);
-            }}
-            className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <MonitorCog className="w-5 h-5" />
-              {expanded && <span>System Settings</span>}
-            </div>
-            {expanded && (
-              <ChevronDown
-                className={cn(
-                  "w-4 h-4 transition",
-                  systemSettings ? "rotate-180" : ""
-                )}
-              />
-            )}
-          </div>
-
-          {/* System Settings Sub-Menu */}
-
-          {expanded && systemSettings && (
-            <div className=" space-y-2">
-              <Link title="Contact Enquiry" href="/admin/enquiry">
-                <div
-                  onClick={() => setActiveSubMenu("Contact Enquiry")}
-                  style={{
-                    ...(!systemSettings
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Contact Enquiry" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Contact Enquiry
-                </div>
-              </Link>
-              <Link title="Enquiries" href="/admin/enquiry/enquiries">
-                <div
-                  onClick={() => setActiveSubMenu("Enquiries")}
-                  style={{
-                    ...(!systemSettings
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Enquiries" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Enquiries
-                </div>
-              </Link>
-
-              <Link title="Manage Career" href="/admin/enquiry/career">
-                <div
-                  onClick={() => setActiveSubMenu("Manage Career")}
-                  style={{
-                    ...(!systemSettings
-                      ? { borderWidth: "none" }
-                      : {
-                          borderBottomWidth: "1px",
-                          borderBlockColor: "#EEEEEE",
-                        }),
-                    ...(subMenuActive === "Manage Career" && {
-                      backgroundColor: "#2E3B46",
-                    }),
-                  }}
-                  className="p-2 pl-8 text-sm text-gray-200  hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer"
-                >
-                  Manage Career
-                </div>
-              </Link>
-            </div>
-          )}
-
-          <Link
-            title="Management"
-            style={{
-              ...(!expanded
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...(pathname.startsWith("/admin/management") && {
-                backgroundColor: "#2E3B46",
-              }),
-            }}
-            href="/admin/management"
-          >
-            <div className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition">
-              <Users className="w-5 h-5" />
-              {expanded && <span>Management</span>}
-            </div>
-          </Link>
-
-          <Link
-            title="Create user"
-            style={{
-              ...(!expanded
-                ? { borderWidth: "none" }
-                : { borderBottomWidth: "1px", borderBlockColor: "#EEEEEE" }),
-              ...(createUserPageActive && { backgroundColor: "#2E3B46" }),
-            }}
-            href="/admin/register"
-          >
-            <div
-              onClick={(e) => handleActiveTabBG(e)}
-              className="flex items-center gap-3 p-3 hover:bg-[#2E3B46] dark:hover:bg-gray-700 cursor-pointer transition"
-            >
-              <User className="w-5 h-5" />
-              {expanded && <span>Create user</span>}
-            </div>
-          </Link>
-        </nav>
-
-        {/* Logout */}
-        <div className="mt-auto p-3">
-          <LogoutButton />
         </div>
+      )}
+
+      {/* Collapsed avatar */}
+      {!expanded && user && (
+        <div className="flex justify-center mt-4 flex-shrink-0">
+          <div
+            className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
+            title={user.name}
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(197,157,79,0.2), rgba(197,157,79,0.4))",
+              color: "#C59D4F",
+              border: "1.5px solid rgba(197,157,79,0.3)",
+            }}
+          >
+            {user.name?.charAt(0)?.toUpperCase() ?? "A"}
+          </div>
+        </div>
+      )}
+
+      {/* Navigation */}
+      <nav className="flex-1 overflow-y-auto hide-scrollbar py-4 px-2 space-y-1">
+        {GROUPS.map((group) => {
+          const items = NAV_ITEMS.filter((item) => item.group === group);
+          if (items.length === 0) return null;
+
+          return (
+            <div key={group} className={group !== "main" ? "pt-2" : ""}>
+              {/* Group label */}
+              {expanded && (
+                <p
+                  className="px-3 pb-1 text-[10px] font-bold uppercase tracking-[0.12em]"
+                  style={{ color: "#334D63" }}
+                >
+                  {GROUP_LABELS[group]}
+                </p>
+              )}
+              {!expanded && group !== "main" && (
+                <div
+                  className="mx-auto mb-2 h-px"
+                  style={{
+                    background: "rgba(255,255,255,0.05)",
+                    width: "32px",
+                  }}
+                />
+              )}
+
+              {items.map((item) => {
+                const Icon = item.icon;
+                const hasChildren = !!item.children;
+                const isOpen = openMenus[item.label];
+                const parentActive = hasChildren
+                  ? item.children!.some((c) => isRouteActive(c.href))
+                  : item.href
+                  ? isRouteActive(item.href)
+                  : false;
+
+                return (
+                  <div key={item.label}>
+                    {/* Parent item */}
+                    {hasChildren ? (
+                      <button
+                        onClick={() => toggleMenu(item.label)}
+                        title={!expanded ? item.label : undefined}
+                        className={cn(
+                          "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl mb-0.5 transition-all duration-150 group text-left",
+                          parentActive ? "text-white" : "text-gray-500"
+                        )}
+                        style={
+                          parentActive
+                            ? {
+                                background: "rgba(197,157,79,0.12)",
+                              }
+                            : {}
+                        }
+                        onMouseEnter={(e) => {
+                          if (!parentActive)
+                            (e.currentTarget as HTMLElement).style.background =
+                              "rgba(255,255,255,0.04)";
+                          (e.currentTarget as HTMLElement).style.color =
+                            "#CBD5E1";
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!parentActive)
+                            (e.currentTarget as HTMLElement).style.background =
+                              "transparent";
+                          (e.currentTarget as HTMLElement).style.color =
+                            parentActive ? "white" : "#6B7280";
+                        }}
+                      >
+                        <Icon
+                          className="w-[18px] h-[18px] flex-shrink-0 transition-colors"
+                          style={{ color: parentActive ? "#C59D4F" : undefined }}
+                        />
+                        {expanded && (
+                          <>
+                            <span className="flex-1 text-sm font-medium text-left">
+                              {item.label}
+                            </span>
+                            <ChevronRight
+                              className={cn(
+                                "w-3.5 h-3.5 transition-transform duration-200 flex-shrink-0",
+                                isOpen ? "rotate-90" : ""
+                              )}
+                              style={{ color: "#334D63" }}
+                            />
+                          </>
+                        )}
+                      </button>
+                    ) : (
+                      <Link href={item.href!}>
+                        <div
+                          title={!expanded ? item.label : undefined}
+                          className={cn(
+                            "flex items-center gap-3 px-3 py-2.5 rounded-xl mb-0.5 transition-all duration-150 cursor-pointer group",
+                            parentActive ? "text-white" : "text-gray-500"
+                          )}
+                          style={
+                            parentActive
+                              ? { background: "rgba(197,157,79,0.12)" }
+                              : {}
+                          }
+                          onMouseEnter={(e) => {
+                            if (!parentActive)
+                              (e.currentTarget as HTMLElement).style.background =
+                                "rgba(255,255,255,0.04)";
+                            (e.currentTarget as HTMLElement).style.color =
+                              "#CBD5E1";
+                          }}
+                          onMouseLeave={(e) => {
+                            if (!parentActive)
+                              (e.currentTarget as HTMLElement).style.background =
+                                "transparent";
+                            (e.currentTarget as HTMLElement).style.color =
+                              parentActive ? "white" : "#6B7280";
+                          }}
+                        >
+                          <Icon
+                            className="w-[18px] h-[18px] flex-shrink-0 transition-colors"
+                            style={{
+                              color: parentActive ? "#C59D4F" : undefined,
+                            }}
+                          />
+                          {expanded && (
+                            <span className="flex-1 text-sm font-medium">
+                              {item.label}
+                            </span>
+                          )}
+                          {expanded && parentActive && (
+                            <div
+                              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                              style={{ background: "#C59D4F" }}
+                            />
+                          )}
+                        </div>
+                      </Link>
+                    )}
+
+                    {/* Submenu */}
+                    {hasChildren && expanded && isOpen && (
+                      <div
+                        className="ml-4 pl-3 mb-1"
+                        style={{
+                          borderLeft: "1px solid rgba(255,255,255,0.06)",
+                        }}
+                      >
+                        {item.children!.map((child) => {
+                          const childActive = isRouteActive(child.href);
+                          return (
+                            <Link key={child.href} href={child.href}>
+                              <div
+                                className={cn(
+                                  "flex items-center gap-2 px-3 py-2 rounded-lg mb-0.5 transition-all duration-150 cursor-pointer text-sm"
+                                )}
+                                style={
+                                  childActive
+                                    ? {
+                                        color: "#C59D4F",
+                                        background: "rgba(197,157,79,0.08)",
+                                        fontWeight: 500,
+                                      }
+                                    : { color: "#4A6070" }
+                                }
+                                onMouseEnter={(e) => {
+                                  if (!childActive) {
+                                    (
+                                      e.currentTarget as HTMLElement
+                                    ).style.background =
+                                      "rgba(255,255,255,0.04)";
+                                    (
+                                      e.currentTarget as HTMLElement
+                                    ).style.color = "#CBD5E1";
+                                  }
+                                }}
+                                onMouseLeave={(e) => {
+                                  if (!childActive) {
+                                    (
+                                      e.currentTarget as HTMLElement
+                                    ).style.background = "transparent";
+                                    (
+                                      e.currentTarget as HTMLElement
+                                    ).style.color = "#4A6070";
+                                  }
+                                }}
+                              >
+                                {childActive && (
+                                  <div
+                                    className="w-1 h-1 rounded-full flex-shrink-0"
+                                    style={{ background: "#C59D4F" }}
+                                  />
+                                )}
+                                {child.label}
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </nav>
+
+      {/* Logout */}
+      <div
+        className="p-3 flex-shrink-0"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      >
+        <LogoutButton expanded={expanded} />
       </div>
     </div>
   );
-};
-
-export default Sidebar;
+}

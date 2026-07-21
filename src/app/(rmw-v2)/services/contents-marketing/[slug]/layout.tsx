@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { fetchMeta } from "@/lib/fetch_meta";
+import { resolveServiceSecondSlug } from "@/lib/serviceSlugAliases";
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -25,7 +26,8 @@ function getCanonicalUrl(link: string | undefined, fallbackPath: string) {
 
 export async function generateMetadata({ params }: LayoutProps): Promise<Metadata> {
     const { slug } = await params;
-    const serviceData = await fetchMeta(slug, "contents-marketing");
+    const resolvedSlug = resolveServiceSecondSlug("contents-marketing", slug);
+    const serviceData = await fetchMeta(resolvedSlug, "contents-marketing");
     console.log("serviceData", serviceData);
     if (!serviceData) {
         console.log(`Service data not found for slug: ${slug}`);

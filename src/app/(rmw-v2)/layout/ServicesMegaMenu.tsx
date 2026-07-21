@@ -19,8 +19,29 @@ import {
   SERVICES_MEGA_MENU_CATEGORIES,
   SERVICES_MEGA_TAGLINE,
 } from "./servicesMegaMenuData";
+import { markRenderingServiceScrollIntentFromHref } from "../services/3d-rendering-services/service-tab-slugs";
 
 const GOLD = "#C59D4F";
+
+function megaMenuServiceClick(
+  href: string,
+  onNavigate?: () => void
+) {
+  markRenderingServiceScrollIntentFromHref(href);
+  onNavigate?.();
+}
+
+function megaMenuLinkProps(href: string) {
+  if (
+    href.startsWith("/services/3d-rendering-services/") ||
+    href.includes("#")
+  ) {
+    return { scroll: false as const };
+  }
+
+  return { target: "_blank" as const, rel: "noopener noreferrer" };
+}
+
 const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "creative-services": "/varun.icon/creative-service.svg",
   "print-advertising": "/varun.icon/print.svg",
@@ -30,7 +51,7 @@ const CATEGORY_IMAGE_MAP: Record<string, string> = {
   "celebrity-endorsements": "/varun.icon/celebrity.svg",
   "influencer-marketing": "/varun.icon/influenecer.svg",
   // "real-estate-walkthrough": "/varun.icon/real.svg",
-  // "3d-rendering-services": "/varun.icon/rendering-service.svg",
+  "3d-rendering-services": "/varun.icon/rendering-service.svg",
   "digital-marketing": "/varun.icon/digital.svg",
 };
 
@@ -244,6 +265,10 @@ export function ServicesMegaMenuPanel({
   onNavigate,
 }: MegaMenuPanelProps) {
   const cat = SERVICES_MEGA_MENU_CATEGORIES[activeCategoryIndex];
+  const subServiceGridCols =
+    cat.id === "3d-rendering-services"
+      ? "sm:grid-cols-3"
+      : "sm:grid-cols-2";
   if (!cat) return null;
 
   return (
@@ -327,15 +352,16 @@ export function ServicesMegaMenuPanel({
 
           <div className="flex min-w-0 flex-col border-t border-[#D9D9D9] pt-5 lg:relative lg:z-0 lg:-ml-2 lg:h-full lg:min-h-0 lg:border-l lg:border-[#D9D9D9] lg:border-t-0 lg:pl-14 lg:pt-10">
             <div className="min-w-0 lg:flex-1 lg:min-h-0">
-              <div className="grid grid-cols-1 gap-x-0 gap-y-4 sm:grid-cols-2 sm:gap-y-5">
+              <div
+                className={`grid grid-cols-1 gap-x-0 gap-y-4 ${subServiceGridCols} sm:gap-y-5`}
+              >
                 {cat.services.map((svc) => (
                   <Link
                     key={svc.href + svc.title}
                     href={svc.href}
                     title={svc.title}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={onNavigate}
+                    {...megaMenuLinkProps(svc.href)}
+                    onClick={() => megaMenuServiceClick(svc.href, onNavigate)}
                     className="flex gap-5 rounded-lg transition-colors duration-200 hover:bg-neutral-50"
                   >
                     <ServiceThumb
@@ -413,12 +439,20 @@ export function ServicesMegaMenuMobileAccordion({
               >
                 {c.name}
               </Link>
-              <HiChevronRight
+              <button
+                type="button"
+                aria-expanded={open}
+                aria-label={open ? `Collapse ${c.name}` : `Expand ${c.name}`}
                 onClick={() => onToggleCategory(i)}
-                className={`h-5 w-5 shrink-0 transition-transform duration-200 ${
-                  open ? "rotate-90 text-[#C59D4F]" : "text-neutral-400"
-                }`}
-              />
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-[#C59D4F]"
+              >
+                <HiChevronRight
+                  className={`h-5 w-5 transition-transform duration-200 ${
+                    open ? "rotate-90 text-[#C59D4F]" : ""
+                  }`}
+                  aria-hidden
+                />
+              </button>
             </div>
             {open && (
               <div className="border-t border-neutral-100 bg-neutral-50/50 px-3 py-3 sm:px-4">
@@ -429,15 +463,20 @@ export function ServicesMegaMenuMobileAccordion({
                 >
                   View all {c.name}
                 </Link> */}
-                <div className="grid grid-cols-1 gap-2 xs:grid-cols-2">
+                <div
+                  className={`grid grid-cols-1 gap-2 ${
+                    c.id === "3d-rendering-services"
+                      ? "xs:grid-cols-3"
+                      : "xs:grid-cols-2"
+                  }`}
+                >
                   {c.services.map((svc) => (
                     <Link
                       key={svc.href + svc.title}
                       href={svc.href}
                       title={`View all ${c.name}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={onNavigate}
+                      {...megaMenuLinkProps(svc.href)}
+                      onClick={() => megaMenuServiceClick(svc.href, onNavigate)}
                       className="flex gap-2.5 rounded-lg border border-transparent bg-white p-2.5  transition-colors hover:border-[#C59D4F]/30"
                     >
                       <ServiceThumb

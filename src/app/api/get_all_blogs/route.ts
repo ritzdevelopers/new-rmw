@@ -2,6 +2,7 @@ import { getDBPool } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import RitzBlogModel from "@/models/Blog.Schema";
+import { getPublicBlogFilter } from "@/lib/blogPublish";
 import mongoose from "mongoose";
 import RitzCats from "@/models/RitzCats.Schema";
 
@@ -11,7 +12,8 @@ export async function GET(req: NextRequest) {
         await connectMongoDB();
         const page = Number(req.nextUrl.searchParams.get("page")) || 1;
         const limit = 10;
-        const mongoTotal = await RitzBlogModel.countDocuments({ blogStatus: true });
+        const publicFilter = getPublicBlogFilter();
+        const mongoTotal = await RitzBlogModel.countDocuments(publicFilter);
         const skip = (page - 1) * limit;
         let blogs: any[] = [];
         if (skip >= mongoTotal) {
@@ -20,7 +22,7 @@ export async function GET(req: NextRequest) {
             const [mysqlBlogs] = await getDBPool().query("SELECT blog_image, title, slug, meta_description, meta_keywords, description, created_at FROM blogs WHERE category_id != 1 ORDER BY id DESC, created_at DESC LIMIT ? OFFSET ?", [limit, mysqlOffset]);
             blogs = Array.isArray(mysqlBlogs) ? mysqlBlogs : [];
         } else {
-            blogs = await RitzBlogModel.find({ blogStatus: true }, {
+            blogs = await RitzBlogModel.find(publicFilter, {
                 blogTitle: 1,
                 blogBanner: 1,
                 blogDescription: 1,
@@ -42,7 +44,7 @@ export async function GET(req: NextRequest) {
 export async function GET_ALL_BLOGS() {
     try {
         await connectMongoDB();
-        const mongo_blogs = await RitzBlogModel.find({ blogStatus: true }, {
+        const mongo_blogs = await RitzBlogModel.find(getPublicBlogFilter(), {
             blogTitle: 1,
             blogBanner: 1,
             blogSlug: 1,

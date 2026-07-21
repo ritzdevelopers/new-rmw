@@ -171,12 +171,16 @@ const Page = () => {
       const formData = new FormData();
       formData.append("blogId", blogID);
       formData.append("blogTitle", step1Data.blogTitle);
+      formData.append("blogSlug", step1Data.blogSlug || "");
       formData.append("metaKeywords", step1Data.metaKeywords);
       formData.append("blogCategoryId", step1Data.blogCategoryId || step1Data.blogCategory || "");
       formData.append("blogStatus", step1Data.blogStatus || true);
       formData.append("blogBody", JSON.stringify(finalBody));
       if (step1Data.mtDesc) {
         formData.append("mtDesc", step1Data.mtDesc);
+      }
+      if (step1Data.blogAuthor) {
+        formData.append("blogAuthor", step1Data.blogAuthor);
       }
 
       if (step1Data.blogBanner?.startsWith("data:image/")) {

@@ -1,11 +1,13 @@
 import { getDBPool } from "@/lib/db";
 import redisClient from "@/lib/redis_server";
 import RitzBlogModel from "@/models/Blog.Schema";
+import { getPublicBlogFilter } from "@/lib/blogPublish";
 import { NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import { RowDataPacket } from "mysql2";
 import mongoose, { Types } from "mongoose";
 import RitzCatsModel from "@/models/RitzCats.Schema";
+import { toPlainObject } from "@/lib/toPlainObject";
 
 type BlogWithCategoryId = { blogCategoryId?: string; category_id?: number };
 
@@ -47,11 +49,11 @@ export async function get_single_blog(slug: string) {
             const related_blogs = await GET_4_RELATED_BLOGS(getBlogCategoryId(blog.data));
 
             return [{
-                blog: blog.data,
+                blog: toPlainObject(blog.data),
                 categoryName: blog.categoryName,
-                all_categories: all_categories.data,
-                latest_3_blogs: latest_3_blogs.data,
-                related_blogs: related_blogs.data
+                all_categories: toPlainObject(all_categories.data),
+                latest_3_blogs: toPlainObject(latest_3_blogs.data),
+                related_blogs: toPlainObject(related_blogs.data),
             },
             { status: 200 }];
         }
@@ -235,7 +237,8 @@ export async function get_latest_3_blogs() {
                 data: JSON.parse(cached_latest_3_blogs)
             }
         }
-        const latest_3_blogs = await RitzBlogModel.find({ blogStatus: true }, {
+        const publicFilter = getPublicBlogFilter();
+        const latest_3_blogs = await RitzBlogModel.find(publicFilter, {
             blogTitle: 1,
             blogBanner: 1,
             blogSlug: 1,
@@ -276,8 +279,9 @@ async function GET_4_RELATED_BLOGS(category_id: string) {
         const [rows] = await getDBPool().query<RowDataPacket[]>("SELECT * FROM blogs WHERE category_id = ? AND status = 1 ORDER BY created_at DESC LIMIT 4", [category_id]);
         related_blogs = rows;
         if ((!related_blogs || related_blogs.length === 0) && mongoose.Types.ObjectId.isValid(category_id)) {
+            const publicFilter = getPublicBlogFilter();
 
-            related_blogs = await RitzBlogModel.find({ blogCategoryId: new mongoose.Types.ObjectId(category_id), blogStatus: true }, {
+            related_blogs = await RitzBlogModel.find({ blogCategoryId: new mongoose.Types.ObjectId(category_id), ...publicFilter }, {
                 blogTitle: 1,
                 blogBanner: 1,
                 blogSlug: 1,

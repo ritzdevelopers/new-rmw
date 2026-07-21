@@ -1,16 +1,34 @@
 "use client";
 
-import { Home, ImagePlus, Monitor } from "lucide-react";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { ImagePlus, Sparkles } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useBlogContext } from "@/blogContext/BlogContext";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
+import { formatSlugInput, generateSlugFromTitle, normalizeSlug } from "@/lib/slugify";
+import { ADD_BLOG_STEP1_KEY } from "@/lib/addBlogDraft";
+import {
+  BlogField,
+  BlogWizardShell,
+  blogInputClass,
+  blogPrimaryBtnClass,
+  blogSecondaryBtnClass,
+} from "@/components/addBlog/BlogWizardShell";
+import { BLOG_AUTHORS, DEFAULT_BLOG_AUTHOR } from "@/lib/blogAuthors";
 
-const LOCAL_STORAGE_KEY = "add-blog-step-1";
+const LOCAL_STORAGE_KEY = ADD_BLOG_STEP1_KEY;
+
+interface Category {
+  _id: string;
+  categoryName: string;
+  categorySlug: string;
+}
 
 const Page = () => {
   const router = useRouter();
+  const params = useParams();
+  const count = parseInt(params.count as string, 10) || 0;
+  const slugEditedManually = useRef(false);
 
   const {
     setBlogTitle,
@@ -24,247 +42,273 @@ const Page = () => {
   } = useBlogContext();
 
   const [localTitle, setLocalTitle] = useState<string>(blogTitle || "");
+  const [localSlug, setLocalSlug] = useState<string>("");
   const [localMeta, setLocalMeta] = useState<string>(metaKeywords || "");
   const [localBanner, setLocalBanner] = useState<string>(blogBanner || "");
-  const [localCategory, setLocalCategory] = useState<string>("All Category");
+  const [localCategory, setLocalCategory] = useState<string>("none-selected");
+  const [localAuthor, setLocalAuthor] = useState<string>(DEFAULT_BLOG_AUTHOR);
   const [localMtDsc, setLocalMtDesc] = useState(mtDesc || "");
+  const [ritzCategories, setRitzCategory] = useState<Category[]>([]);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (savedData) {
       const parsed = JSON.parse(savedData);
       setLocalTitle(parsed.blogTitle || "");
+      setLocalSlug(parsed.blogSlug || "");
       setLocalMeta(parsed.metaKeywords || "");
       setLocalBanner(parsed.blogBanner || "");
-      setLocalCategory(parsed.blogCategory || "All Category");
+      setLocalCategory(parsed.blogCategory || "none-selected");
+      setLocalAuthor(parsed.blogAuthor || DEFAULT_BLOG_AUTHOR);
       setBlogTitle(parsed.blogTitle || "");
       setMetaTitle(parsed.metaKeywords || "");
       setBlogBanner(parsed.blogBanner || "");
       setMtDesc(parsed.mtDesc || "");
       setLocalMtDesc(parsed.mtDesc || "");
+      if (parsed.blogSlug) slugEditedManually.current = true;
     }
+  }, []);
+
+  useEffect(() => {
+    const fetchAllCategories = async () => {
+      try {
+        const { data } = await axios.get(`/api/ritzCats/getAllCats`);
+        setRitzCategory(data.allCategories);
+      } catch {
+        setError("Could not load categories. Please refresh the page.");
+      }
+    };
+    fetchAllCategories();
   }, []);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        setLocalBanner(base64String);
-        setBlogBanner(base64String);
-      };
-      reader.readAsDataURL(file);
-    }
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      setLocalBanner(base64String);
+      setBlogBanner(base64String);
+    };
+    reader.readAsDataURL(file);
   };
 
   const saveDataToLocalStorage = () => {
-    const data = {
-      blogTitle: localTitle,
-      metaKeywords: localMeta,
-      blogBanner: localBanner,
-      blogCategory: localCategory,
-      mtDesc: localMtDsc,
-    };
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+    localStorage.setItem(
+      LOCAL_STORAGE_KEY,
+      JSON.stringify({
+        blogTitle: localTitle,
+        blogSlug: localSlug,
+        metaKeywords: localMeta,
+        blogBanner: localBanner,
+        blogCategory: localCategory,
+        blogAuthor: localAuthor,
+        mtDesc: localMtDsc,
+      })
+    );
   };
 
-  const params = useParams();
-  const count = parseInt(params.count as string, 10) || 0;
-
-  const handleNavigation = (path: string) => {
-    if (path.includes("/admin/add-blog/step-2/page")) {
-      if (
-        !localTitle ||
-        !localMeta ||
-        !localBanner ||
-        !localCategory ||
-        !localMtDsc
-      ) {
-        alert(
-          "Sorry we can't open new page because your all input fields are blank."
-        );
-        return;
-      }
-      saveDataToLocalStorage();
-      router.push(`/admin/add-blog/step-2/page/${count + 1}`);
-    } else {
-      router.push(path);
+  const handleContinue = () => {
+    setError("");
+    if (!localTitle.trim()) {
+      setError("Please enter a blog title.");
+      return;
     }
-  };
-  interface Category {
-    _id: string;
-    categoryName: string;
-    categorySlug: string;
-    categoryMetaTitle: string;
-    categoryMetaDescription: string;
-    categoryMetaKeywords: string;
-    createdAt: string;
-    updatedAt: string;
-  }
-  const [ritzCategories, setRitzCategory] = useState<Category[]>([]);
-  const fetchAllCategories = async () => {
-    try {
-      const { data } = await axios.get(`/api/ritzCats/getAllCats`);
-      setRitzCategory(data.allCategories);
-    } catch (error) {
-      console.log(error);
-      alert("Internal Server Error In Fetching All Categories!");
+    if (!localSlug.trim()) {
+      setError("Please enter a URL slug.");
+      return;
     }
-  };
+    if (!localMtDsc.trim()) {
+      setError("Please add a meta description for SEO.");
+      return;
+    }
+    if (!localMeta.trim()) {
+      setError("Please add meta keywords.");
+      return;
+    }
+    if (!localBanner) {
+      setError("Please upload a cover image.");
+      return;
+    }
+    if (!localCategory || localCategory === "none-selected") {
+      setError("Please select a category.");
+      return;
+    }
+    if (!localAuthor) {
+      setError("Please select an author.");
+      return;
+    }
 
-  useEffect(() => {
-    fetchAllCategories();
-  }, []);
+    saveDataToLocalStorage();
+    router.push(`/admin/add-blog/step-2/page/${count + 1}`);
+  };
 
   return (
-    <div className="bg-[#EEEEEE] flex flex-col gap-6 sm:gap-8 md:gap-12 p-4 md:p-8 min-h-screen">
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <h1 className="text-[#ACACAC] flex items-center gap-2 text-2xl sm:text-3xl md:text-4xl font-light uppercase">
-          <Monitor className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" /> Add Blog
-        </h1>
-      </div>
-      <div className="flex flex-wrap items-center gap-2 sm:gap-4 bg-white p-3 rounded-md shadow-sm text-sm">
-        <Link href="/" title="Home" target="_blank" className="text-[#2955B3] flex items-center gap-2">
-          <Home className="w-4 h-4" /> Home
-        </Link>
-        <span className="text-[#ACACAC] font-bold">/</span>
-        <span className="text-[#838383] flex items-center gap-2">
-          <Monitor className="w-4 h-4" /> Add Blog
-        </span>
-        <span className="text-[#ACACAC] font-bold">/</span>
-        <span className="text-[#838383] flex items-center gap-2">
-          Step 1
-        </span>{" "}
-      </div>
-      <div className="addBloContainer bg-white p-5 rounded-md shadow-md flex flex-col lg:flex-row gap-6">
-        <div
-          style={{ padding: localBanner ? "20px" : "0px" }}
-          className="flex-1 flex flex-col justify-center items-center gap-4 border rounded-md border-[#797979a5] relative overflow-hidden w-full max-w-md transition-all duration-300 bg-white shadow-sm"
-        >
-          <input
-            type="file"
-            className="absolute left-0 top-0 h-full w-full cursor-pointer opacity-0 z-20"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+    <BlogWizardShell
+      currentStep={1}
+      title="Blog details"
+      subtitle="Set up the basics — title, SEO settings, category, and a strong cover image."
+      breadcrumbExtra="Step 1"
+      footer={
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <button
+            type="button"
+            onClick={() => router.push("/admin/add-blog")}
+            className={blogSecondaryBtnClass}
+          >
+            Back
+          </button>
+          <button type="button" onClick={handleContinue} className={blogPrimaryBtnClass}>
+            Continue to content
+          </button>
+        </div>
+      }
+    >
+      {error && (
+        <div className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
 
-          {localBanner ? (
-            <img
-              src={localBanner}
-              alt="Selected Banner"
-              className="w-full h-52 object-cover rounded-md border"
+      <div className="grid gap-8 lg:grid-cols-[320px,1fr]">
+        <div className="space-y-3">
+          <p className="text-sm font-semibold text-slate-700">Cover image</p>
+          <div className="relative overflow-hidden rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50">
+            <input
+              type="file"
+              className="absolute inset-0 z-20 cursor-pointer opacity-0"
+              accept="image/*"
+              onChange={handleImageChange}
             />
-          ) : (
-            <div className="p-4">
-              <label className="text-sm font-semibold text-[#444]">
-                Upload Blog Banner:
-              </label>
-
-              <div className="w-40 h-40 flex items-center justify-center border border-dashed border-[#aaa] rounded-md bg-[#f9f9f9] relative z-10 hover:bg-[#f1f1f1] transition">
-                <ImagePlus className="w-10 h-10 text-[#666]" />
+            {localBanner ? (
+              <img
+                src={localBanner}
+                alt="Selected cover"
+                className="h-64 w-full object-cover"
+              />
+            ) : (
+              <div className="flex h-64 flex-col items-center justify-center gap-3 px-6 text-center">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-sm">
+                  <ImagePlus className="h-7 w-7 text-[#2955B3]" />
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-700">Upload cover image</p>
+                  <p className="mt-1 text-xs text-slate-400">
+                    JPG, PNG or WebP. This appears on the blog listing.
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
-        <div className="flex-1 flex flex-col gap-4">
-          <div className="flex flex-col gap-2 p-4">
-            <label className="text-sm font-semibold text-[#444]">
-              Blog Title
-            </label>
+        <div className="space-y-6">
+          <div className="rounded-2xl bg-blue-50/70 p-4 text-sm text-slate-600">
+            <div className="mb-1 flex items-center gap-2 font-semibold text-[#2955B3]">
+              <Sparkles className="h-4 w-4" />
+              Quick tip
+            </div>
+            The title auto-generates your URL slug. You can still edit the slug manually.
+          </div>
 
+          <BlogField label="Blog title" required hint="Use a clear, descriptive headline.">
             <input
               type="text"
               value={localTitle}
               onChange={(e) => {
-                setLocalTitle(e.target.value);
-                setBlogTitle(e.target.value);
+                const nextTitle = e.target.value;
+                setLocalTitle(nextTitle);
+                setBlogTitle(nextTitle);
+                if (!slugEditedManually.current) {
+                  setLocalSlug(generateSlugFromTitle(nextTitle));
+                }
               }}
-              placeholder="Enter blog title here..."
-              className="w-full border rounded-md px-4 py-2"
+              placeholder="e.g. How to generate real estate leads in 2026"
+              className={blogInputClass}
             />
-          </div>
+          </BlogField>
 
-          <div className="flex flex-col gap-2 p-4">
-            <label className="text-sm font-semibold text-[#444]">
-              Meta Description
-            </label>
-
+          <BlogField
+            label="URL slug"
+            required
+            hint={`Live URL: /${normalizeSlug(localSlug) || "your-slug-here"}`}
+          >
             <input
               type="text"
-              value={localMtDsc}
+              value={localSlug}
               onChange={(e) => {
-                setLocalMtDesc(e.target.value);
-                setMtDesc(e.target.value);
+                slugEditedManually.current = true;
+                setLocalSlug(formatSlugInput(e.target.value));
               }}
-              placeholder="Enter meta keywords..."
-              className="w-full border rounded-md px-4 py-2"
+              onBlur={() => setLocalSlug(normalizeSlug(localSlug))}
+              placeholder="how-to-generate-real-estate-leads"
+              className={blogInputClass}
             />
+          </BlogField>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            <BlogField
+              label="Meta description"
+              required
+            >
+              <textarea
+                value={localMtDsc}
+                onChange={(e) => {
+                  setLocalMtDesc(e.target.value);
+                  setMtDesc(e.target.value);
+                }}
+                rows={3}
+                placeholder="Short summary shown in Google search results..."
+                className={blogInputClass}
+              />
+            </BlogField>
+
+            <BlogField label="Meta keywords" required hint="Separate keywords with commas.">
+              <input
+                type="text"
+                value={localMeta}
+                onChange={(e) => {
+                  setLocalMeta(e.target.value);
+                  setMetaTitle(e.target.value);
+                }}
+                placeholder="real estate, lead generation, marketing"
+                className={blogInputClass}
+              />
+            </BlogField>
           </div>
 
-          <div className="flex flex-col gap-2 p-4">
-            <label className="text-sm font-semibold text-[#444]">
-              Meta Keywords
-            </label>
-
-            <input
-              type="text"
-              value={localMeta}
-              onChange={(e) => {
-                setLocalMeta(e.target.value);
-                setMetaTitle(e.target.value);
-              }}
-              placeholder="Enter meta keywords..."
-              className="w-full border rounded-md px-4 py-2"
-            />
-          </div>
-
-          <div className="flex flex-col gap-2 p-4">
-            <label className="text-sm font-semibold text-[#444]">
-              Blog Category
-            </label>
-
+          <BlogField label="Category" required>
             <select
               value={localCategory}
               onChange={(e) => setLocalCategory(e.target.value)}
-              className="w-full border rounded-md px-4 py-2"
+              className={blogInputClass}
             >
-              <option value="none-selected">Select Category</option>
-              {ritzCategories.length > 0 ? (
-                ritzCategories.map((data, idx) => {
-                  return (
-                    <option key={idx} value={data.categorySlug}>
-                      {data.categoryName}
-                    </option>
-                  );
-                })
-              ) : (
-                <p>Categories are loading...</p>
-              )}
+              <option value="none-selected">Select a category</option>
+              {ritzCategories.map((category) => (
+                <option key={category._id} value={category.categorySlug}>
+                  {category.categoryName}
+                </option>
+              ))}
             </select>
-          </div>
+          </BlogField>
+
+          <BlogField label="Author" required hint="Who wrote this blog post?">
+            <select
+              value={localAuthor}
+              onChange={(e) => setLocalAuthor(e.target.value)}
+              className={blogInputClass}
+            >
+              {BLOG_AUTHORS.map((name) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          </BlogField>
         </div>
       </div>
-      <div className="flex justify-between items-center w-full flex-wrap gap-4">
-        <button
-          onClick={() => handleNavigation("/admin/add-blog")}
-          className="bg-[#d1d5db] hover:bg-[#cbd5e1] cursor-pointer text-black px-5 py-2 rounded-md"
-        >
-          Back to Main
-        </button>
-
-        <button
-          onClick={() => handleNavigation("/admin/add-blog/step-2/page")}
-          className="bg-[#2955B3] hover:bg-[#1e3f8a] cursor-pointer text-white px-5 py-2 rounded-md"
-        >
-          Continue to Step 2
-        </button>
-      </div>
-      <footer className="admin-footer text-center text-sm text-[#666] pt-10">
-        Designed and Developed by <strong>Ritz Media World</strong>
-      </footer>{" "}
-    </div>
+    </BlogWizardShell>
   );
 };
 

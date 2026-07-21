@@ -2,12 +2,22 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import {
   getLegacyBlogRedirectPath,
+  getLegacyHtmlBlogRedirectPath,
   isBlogImageFetchAccept,
 } from "@/lib/blogUrl";
+import { getServiceShortSlugRedirect } from "@/lib/serviceShortSlugRedirects";
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const url = req.nextUrl;
+
+  // Orphan third-level service slugs: /services/ad-placements → /services/print-advertising/ad-placements
+  const serviceRedirect = getServiceShortSlugRedirect(pathname);
+  if (serviceRedirect) {
+    const dest = new URL(serviceRedirect, url.origin);
+    dest.search = url.search;
+    return NextResponse.redirect(dest, 301);
+  }
 
   // Canonicalize /web-stories from www -> non-www
   if (pathname === "/web-stories" && url.hostname === "www.ritzmediaworld.com") {
@@ -59,6 +69,14 @@ export function middleware(req: NextRequest) {
     );
   }
 
+  // Legacy blog URLs: /my-post.html -> /my-post (keep about.html, contact.html, work.html)
+  const legacyHtmlDest = getLegacyHtmlBlogRedirectPath(pathname);
+  if (legacyHtmlDest) {
+    const dest = new URL(legacyHtmlDest, url.origin);
+    dest.search = url.search;
+    return NextResponse.redirect(dest, 301);
+  }
+
   // Legacy blog URLs: /blogs/<slug> -> /<slug> (images under /blogs/ stay as-is)
   const legacyBlogDest = getLegacyBlogRedirectPath(pathname);
   if (legacyBlogDest) {
@@ -101,5 +119,7 @@ export const config = {
     "/best-locations-for-outdoor-advertising-in-new-delhi-:path*",
 
     "/web-stories",
+    "/services/:slug",
+    "/:slug.html",
   ],
 };

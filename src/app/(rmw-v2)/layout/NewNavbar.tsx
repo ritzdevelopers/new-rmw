@@ -141,16 +141,25 @@ function NewNavbar() {
     };
   }, [isHovered]);
 
-  const menuItems = [
-    { label: 'Blogs', ariaLabel: 'View our services', link: 'https://ritzmediaworld.com/blogs' },
+  const secondaryNavItems = [
+    { label: "Blogs", title: "Blogs", link: "https://ritzmediaworld.com/blogs" },
+    { label: "Career", title: "Career", link: "https://ritzmediaworld.com/career" },
+    { label: "Gallery", title: "Gallery", link: "https://ritzmediaworld.com/gallery" },
+    {
+      label: "Web Stories",
+      title: "Web Stories",
+      link: "https://ritzmediaworld.com/web-stories",
+    },
+  ] as const;
 
-    { label: 'Career', ariaLabel: 'Learn about our company', link: 'https://ritzmediaworld.com/career' },
-    { label: 'Gallery', ariaLabel: 'Visit our gallery', link: 'https://ritzmediaworld.com/gallery' },
-    { label: 'Web Stories', ariaLabel: 'Visit our web stories', link: 'https://ritzmediaworld.com/web-stories' }
-  ];
+  const menuItems = secondaryNavItems.map((item) => ({
+    label: item.label,
+    ariaLabel: `Visit our ${item.label.toLowerCase()}`,
+    link: item.link,
+  }));
 
   const socialItems = [
-    { label: 'X (Twitter)', link: 'https://x.com/i/flow/login?redirect_after_login=%2Fritzmediaworld' },
+    { label: 'X (Twitter)', link: 'https://x.com/ritzmediaworld' },
     { label: 'LinkedIn', link: 'https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in' },
     { label: 'Facebook', link: 'https://www.facebook.com/ritzmediaworld/' },
     { label: 'YouTube', link: 'https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia' },
@@ -162,9 +171,7 @@ function NewNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
-  const mobileServicesRef = useRef<HTMLDivElement>(null);
   const mobileMenuTimelineRef = useRef<{ kill: () => void } | null>(null);
-  const mobileServicesTimelineRef = useRef<{ kill: () => void } | null>(null);
   const closeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const [isConsultModalOpen, setIsConsultModalOpen] = useState(false);
@@ -213,25 +220,27 @@ function NewNavbar() {
         const menuItems = mobileMenuRef.current.querySelectorAll('.mobile-menu-item');
         const tl = gsap.timeline();
 
-        const el = mobileMenuRef.current;
-        el.style.height = 'auto';
-        gsap.set(el, { height: 0, opacity: 0 });
-        gsap.set(menuItems, { opacity: 0, y: -20 });
+        gsap.set(mobileMenuRef.current, { opacity: 0, y: -12 });
+        gsap.set(menuItems, { opacity: 0, y: -16 });
 
         tl.to(mobileMenuRef.current, {
-          height: '90vh',
-          opacity: 1,
-          duration: 0.4,
-          ease: "power3.out"
-        });
-
-        tl.to(menuItems, {
           opacity: 1,
           y: 0,
-          duration: 0.3,
-          stagger: 0.08,
-          ease: "power2.out"
-        }, "-=0.2");
+          duration: 0.35,
+          ease: "power3.out",
+        });
+
+        tl.to(
+          menuItems,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.28,
+            stagger: 0.06,
+            ease: "power2.out",
+          },
+          "-=0.18",
+        );
 
         mobileMenuTimelineRef.current = tl;
       } else {
@@ -251,17 +260,21 @@ function NewNavbar() {
             ease: "power2.in"
           });
 
-          tl.to(mobileMenuRef.current, {
-            height: 0,
-            opacity: 0,
-            duration: 0.3,
-            ease: "power3.in",
-            onComplete: () => {
-              if (mobileMenuRef.current && !isMobileMenuOpen) {
-                mobileMenuRef.current.classList.add('hidden');
-              }
-            }
-          }, "-=0.1");
+          tl.to(
+            mobileMenuRef.current,
+            {
+              opacity: 0,
+              y: -12,
+              duration: 0.28,
+              ease: "power3.in",
+              onComplete: () => {
+                if (mobileMenuRef.current && !isMobileMenuOpen) {
+                  mobileMenuRef.current.classList.add("hidden");
+                }
+              },
+            },
+            "-=0.1",
+          );
 
           mobileMenuTimelineRef.current = tl;
         }
@@ -277,62 +290,6 @@ function NewNavbar() {
       }
     };
   }, [isMobileMenuOpen, isMobileServicesOpen]);
-
-  // GSAP Animation for mobile services dropdown
-  useEffect(() => {
-    if (!mobileServicesRef.current) return;
-    let isActive = true;
-
-    const runAnimation = async () => {
-      const gsap = await loadGsap();
-      if (!isActive || !mobileServicesRef.current) return;
-
-      if (isMobileServicesOpen) {
-        if (mobileServicesTimelineRef.current) {
-          mobileServicesTimelineRef.current.kill();
-        }
-        mobileServicesRef.current?.classList.remove('hidden');
-        const el = mobileServicesRef.current;
-        el.style.height = 'auto';
-        const height = el.scrollHeight;
-        gsap.set(el, { height: 0, opacity: 0 });
-
-        const tl = gsap.timeline();
-        tl.to(mobileServicesRef.current, {
-          height: height,
-          opacity: 1,
-          duration: 0.5,
-          ease: "power3.out"
-        });
-        mobileServicesTimelineRef.current = tl;
-      } else if (!isMobileServicesOpen && mobileServicesRef.current) {
-        if (mobileServicesTimelineRef.current) {
-          const tl = gsap.timeline();
-          tl.to(mobileServicesRef.current, {
-            height: 0,
-            opacity: 0,
-            duration: 0.3,
-            ease: "power3.in",
-            onComplete: () => {
-              if (mobileServicesRef.current && !isMobileServicesOpen) {
-                mobileServicesRef.current.classList.add('hidden');
-              }
-            }
-          });
-          mobileServicesTimelineRef.current = tl;
-        }
-      }
-    };
-
-    runAnimation();
-
-    return () => {
-      isActive = false;
-      if (mobileServicesTimelineRef.current) {
-        mobileServicesTimelineRef.current.kill();
-      }
-    };
-  }, [isMobileServicesOpen]);
 
   // Handle body scroll lock on mobile
   useEffect(() => {
@@ -499,6 +456,30 @@ function NewNavbar() {
     }
   };
 
+  const homepageLogoLink = (
+    <a
+      href="/"
+      title="Ritz Media World homepage"
+      aria-label="Ritz Media World homepage"
+      className="inline-flex shrink-0"
+    >
+      <Image
+        src="/rmw-logo-sm-size.png"
+        alt="Ritz Media World logo"
+        title="Ritz Media World logo"
+        width={220}
+        height={80}
+        quality={70}
+        priority
+        className={`w-auto object-contain transition-all duration-300 ease-in-out hover:scale-105 ${
+          isScrolled
+            ? "h-[36px] sm:h-[40px] lg:h-[48px]"
+            : "h-[52px] sm:h-[56px] lg:h-[80px]"
+        }`}
+      />
+    </a>
+  );
+
   return (
     <>
       {/* Desktop Navbar - Only visible on lg and above */}
@@ -507,21 +488,8 @@ function NewNavbar() {
           }`}
       >
         {/* Centered Align Div  */}
-        <div className="w-[92%]  flex justify-between items-center">
-          {/* Left Side Container  */}
-          <div>
-            <Link href="/" title="Home">
-              <Image
-                src="/rmw-logo-sm-size.png"
-                alt="Ritz Media World"
-                title="Ritz Media World"
-                width={220}
-                height={80}
-                quality={70}
-                className={`cursor-pointer w-auto object-contain transition-all duration-300 ease-in-out ${isScrolled ? "h-[48px]" : "h-[80px]"}`}
-              />
-            </Link>
-          </div>
+        <div className="w-[92%] flex justify-between items-center">
+          <div>{homepageLogoLink}</div>
           {/* Right Side Container  */}
           <div
             className={`flex justify-end items-center gap-4 transition-colors duration-300 ${isScrolled ? "text-black" : "text-white"
@@ -748,20 +716,7 @@ function NewNavbar() {
           }`}
       >
         <div className="w-[90%] max-w-[1200px] flex justify-between items-center">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/" title="Home">
-              <Image
-                src="/rmw-logo-sm-size.png"
-                alt="Ritz Media World"
-                title="Ritz Media World"
-                width={170}
-                height={56}
-                quality={70}
-                className={`w-auto object-contain transition-all duration-300 hover:scale-105 ${isScrolled ? "h-[36px] sm:h-[40px]" : "h-[52px] sm:h-[56px]"}`}
-              />
-            </Link>
-          </div>
+          <div className="flex items-center">{homepageLogoLink}</div>
 
           {/* Menu Toggle Button */}
           <button
@@ -787,7 +742,7 @@ function NewNavbar() {
         {/* Mobile Menu Dropdown */}
         <div
           ref={mobileMenuRef}
-          className={`absolute top-full left-0 right-0 bg-white/98 backdrop-blur-xl shadow-2xl shadow-black/10 overflow-hidden min-h-[calc(100vh-64px)] overflow-y-auto border-t border-gray-100 ${!isMobileMenuOpen && !isMenuClosing ? 'hidden' : 'flex flex-col'}`}
+          className={`absolute top-full left-0 right-0 bg-white/98 backdrop-blur-xl shadow-2xl shadow-black/10 max-h-[calc(100dvh-64px)] overflow-y-auto overscroll-contain border-t border-gray-100 ${!isMobileMenuOpen && !isMenuClosing ? "hidden" : "flex flex-col"}`}
           style={{ zIndex: 50 }}
         >
           <div className="w-[95%] max-w-[1200px] mx-auto py-6 sm:py-8 space-y-2">
@@ -838,8 +793,7 @@ function NewNavbar() {
               </div>
 
               <div
-                ref={mobileServicesRef}
-                className={`overflow-hidden mt-3 overflow-y-auto ${isMobileServicesOpen ? "block" : "hidden"}`}
+                className={`mt-3 max-h-[min(52dvh,440px)] overflow-y-auto overscroll-contain ${isMobileServicesOpen ? "block" : "hidden"}`}
               >
                 <div className="px-1 pb-4 sm:px-2">
                   <ServicesMegaMenuMobileAccordion
@@ -861,18 +815,21 @@ function NewNavbar() {
 
             {/* Other Menu Items */}
             <div className="space-y-1 pt-2">
-              <Link
-                href="https://ritzmediaworld.com/blogs"
-                target="_blank"
-                title="Blogs"
-                className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <span className="relative">
-                  Blogs
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full"></span>
-                </span>
-              </Link>
+              {secondaryNavItems.map((item) => (
+                <Link
+                  key={item.link}
+                  href={item.link}
+                  target="_blank"
+                  title={item.title}
+                  className="mobile-menu-item block font-[700] text-[17px] sm:text-[18px] py-4 px-5 rounded-xl transition-all duration-300 text-gray-900 hover:bg-gradient-to-r hover:from-gray-50 hover:to-gray-100/50 active:bg-gray-100 group relative"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span className="relative">
+                    {item.label}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C99237] transition-all duration-300 group-hover:w-full" />
+                  </span>
+                </Link>
+              ))}
 
               <Link
                 href="https://ritzmediaworld.com/work.html"

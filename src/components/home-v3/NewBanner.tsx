@@ -11,6 +11,7 @@ import styles from "./NewBanner.module.css";
 
 type BannerSlideConfig = {
     desktop: string;
+    tablet: string;
     mobile: string;
     textColor: string;
     highlightColor: string;
@@ -20,32 +21,36 @@ type BannerSlideConfig = {
 
 const bannerSlides = [
     {
-        desktop: "/4th_floor_rmw/home/banner/bn1.jpg",
-        mobile: "/4th_floor_rmw/home/banner/mobile-bn1.jpg",
+        desktop: "/4th_floor_rmw/home/banner/rmw(new)/NEWbanner-01.jpg",
+        tablet: "/4th_floor_rmw/home/banner/rmw(new)/tablet-1.png",
+        mobile: "/4th_floor_rmw/home/banner/rmw(new)/NEWbanner-05 (1).jpg",
         textColor: "text-[#0A3B3B]",
         highlightColor: "text-white",
         domainColor: "text-white",
         subHeadingColor: "text-white",
     },
     {
-        desktop: "/4th_floor_rmw/home/banner/bn2.jpg",
-        mobile: "/4th_floor_rmw/home/banner/mobile-bn2.jpg",
+        desktop: "/4th_floor_rmw/home/banner/rmw(new)/NEWbanner-02.jpg",
+        tablet: "/4th_floor_rmw/home/banner/rmw(new)/tablet-2.png",
+        mobile: "/4th_floor_rmw/home/banner/rmw(new)/NEWbanner-06 (1).jpg",
         textColor: "text-white",
         highlightColor: "text-[#C99237]",
         domainColor: "text-[#C99237]",
         subHeadingColor: "text-white",
     },
     {
-        desktop: "/4th_floor_rmw/home/banner/bn3.jpg",
-        mobile: "/4th_floor_rmw/home/banner/mobile-bn3.jpg",
+        desktop: "/4th_floor_rmw/home/banner/rmw(new)/NEWbanner-03.jpg",
+        tablet: "/4th_floor_rmw/home/banner/rmw(new)/tablet-3.png",
+        mobile: "/4th_floor_rmw/home/banner/rmw(new)/NEWbanner-07 (1).jpg",
         textColor: "text-white",
         highlightColor: "text-[#0F173E]",
         domainColor: "text-[#0F173E]",
         subHeadingColor: "text-white",
     },
     {
-        desktop: "/4th_floor_rmw/home/banner/bn5.jpg",
-        mobile: "/4th_floor_rmw/home/banner/mobile-bn5.jpg",
+        desktop: "/4th_floor_rmw/home/banner/rmw(new)/NEWbanner-04.jpg",
+        tablet: "/4th_floor_rmw/home/banner/rmw(new)/tablet-4.png",
+        mobile: "/4th_floor_rmw/home/banner/rmw(new)/NEWbanner-08 (1).jpg",
         textColor: "text-white",
         highlightColor: "text-[#C99237]",
         domainColor: "text-[#C99237]",
@@ -234,38 +239,41 @@ function NewBanner() {
             >
                 {bannerSlides.map((slide, index) => (
                     <SwiperSlide key={index}>
-                        <div className="relative w-full aspect-[3/4] md:aspect-[1920/760]">
+                        {/* Aspect ratios match source assets: desktop 1024×384, tablet 1000×510, mobile 1000×1510 */}
+                        <div className="relative w-full aspect-[1000/1510] md:aspect-[1000/510] lg:aspect-[1024/384]">
                             <Image
                                 src={slide.desktop}
                                 alt="Ritz Media World banner"
                                 title="Ritz Media World banner"
                                 fill
+                                unoptimized
                                 priority={index === 0}
                                 loading={index === 0 ? "eager" : "lazy"}
                                 fetchPriority={index === 0 ? "high" : "auto"}
-                                quality={index === 0 ? 72 : 65}
-                                sizes="(min-width: 768px) 100vw, 0px"
-                                className="hidden md:block object-cover"
+                                sizes="(min-width: 1024px) 100vw, 0px"
+                                className="hidden lg:block object-cover object-center"
+                            />
+                            <Image
+                                src={slide.tablet}
+                                alt="Ritz Media World banner"
+                                title="Ritz Media World banner"
+                                fill
+                                unoptimized
+                                loading={index === 0 ? "eager" : "lazy"}
+                                fetchPriority="auto"
+                                sizes="(min-width: 768px) and (max-width: 1023px) 100vw, 0px"
+                                className="hidden md:block lg:hidden object-cover object-center"
                             />
                             <Image
                                 src={slide.mobile}
                                 alt="Ritz Media World banner"
                                 title="Ritz Media World banner"
                                 fill
+                                unoptimized
                                 loading={index === 0 ? "eager" : "lazy"}
                                 fetchPriority="auto"
-                                quality={60}
                                 sizes="(max-width: 767px) 100vw, 0px"
-                                className="block md:hidden object-cover"
-                            />
-
-                            <AnimatedBannerText
-                                key={`${index}-${playToken}`}
-                                slide={slide}
-                                gatewayStarted={gatewayStarted}
-                                shouldAnimate={gatewayStarted && index === activeSlide}
-                                onAnimationComplete={() => undefined}
-                                isH1={index === activeSlide}
+                                className="block md:hidden object-cover object-center"
                             />
                         </div>
                     </SwiperSlide>

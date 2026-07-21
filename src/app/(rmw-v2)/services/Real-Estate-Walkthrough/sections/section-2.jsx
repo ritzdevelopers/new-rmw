@@ -80,7 +80,8 @@ export default function Section2() {
           >
             <Image
               src={EXPLORE_ARROW_IMAGE}
-              alt=""
+              alt="Contact Ritz Media World – arrow icon"
+              title="Let's Talk Today"
               width={22}
               height={20}
             />

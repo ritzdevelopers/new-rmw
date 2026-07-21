@@ -1,5 +1,6 @@
-const { siteUrl, toIsoOrNull } = require("./next-sitemap.blog-sources");
+const { siteUrl } = require("./next-sitemap.blog-sources");
 const { fetchImageSitemapEntries } = require("./next-sitemap.image-sources");
+const { getSitemapBuildLastmod } = require("./next-sitemap.shared");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -12,9 +13,9 @@ module.exports = {
   transform: async () => null,
 
   additionalPaths: async (config) => {
+    const buildLastmod = getSitemapBuildLastmod();
     const entries = await fetchImageSitemapEntries();
     const items = [];
-    const fallbackLastmod = new Date().toISOString();
 
     for (const entry of entries) {
       if (!entry.images?.length) continue;
@@ -36,7 +37,7 @@ module.exports = {
       items.push({
         ...transformed,
         loc: `${siteUrl}${entry.path}`,
-        lastmod: toIsoOrNull(entry.lastmod) || fallbackLastmod,
+        lastmod: buildLastmod,
         changefreq: "weekly",
         priority: 0.6,
         images: imageObjects,

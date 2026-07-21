@@ -2,6 +2,7 @@ const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  trailingSlash: false,
   images: {
     unoptimized: false,
     remotePatterns: [
@@ -37,10 +38,6 @@ const nextConfig = {
       skipDefaultConversion: true,
     },
   },
-  // Note: optimizeCss requires 'critters' package
-  // experimental: {
-  //   optimizeCss: true,
-  // },
   // Headers for better caching and security
   async headers() {
     return [
@@ -66,12 +63,42 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.ritzmediaworld.com" }],
+        destination: "https://ritzmediaworld.com/:path*",
+        permanent: true,
+      },
+      { source: "/discussion-forum", destination: "/contact.html", permanent: true },
+      { source: "/discussion-forum/:path*", destination: "/contact.html", permanent: true },
       { source: "/blogs2", destination: "/blogs", permanent: true },
       { source: "/blog2", destination: "/blogs", permanent: true },
+      { source: "/all-ritz-blogs", destination: "/blogs", permanent: true },
+      { source: "/all-ritz-blogs/:path*", destination: "/blogs", permanent: true },
       { source: "/blogs/blogs/:page(\\d+)", destination: "/blogs", permanent: true },
       { source: "/blogs/:page(\\d+)", destination: "/blogs", permanent: true },
       // Slug without "." so /blogs/image.jpg stays on disk (nginx) or middleware
       { source: "/blogs/:slug([^./]+)", destination: "/:slug", permanent: true },
+      {
+        source: "/seo-vs-paid-ads%3A-which-strategy-works-best-in-2025",
+        destination: "/seo-vs-paid-ads-which-strategy-works-best-in-2025",
+        permanent: true,
+      },
+      // Legacy WordPress blog URLs: /my-post.html -> /my-post (not about/contact/work)
+      {
+        source: "/:slug((?!about|contact|work)[^/]+)\\.html",
+        destination: "/:slug",
+        permanent: true,
+      },
+      { source: "/contact.html2", destination: "/contact.html", permanent: true },
+      { source: "/contact.html2/:path*", destination: "/contact.html", permanent: true },
+      { source: "/stories", destination: "/web-stories", permanent: true },
+      { source: "/stories/:path*", destination: "/web-stories", permanent: true },
+      {
+        source: "/services/contents-marketing/content-marketing",
+        destination: "/services/contents-marketing/customized-content-strategy",
+        permanent: true,
+      },
     ];
   },
   // Legacy service redirects (uncomment to enable):

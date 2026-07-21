@@ -132,6 +132,104 @@ async function fetchBlogRecords() {
   return merged;
 }
 
+/** work.html case-study cards — same source as /api/case_studies (category_id = 1). */
+async function fetchCaseStudyRecordsFromApi() {
+  const endpoint =
+    process.env.SITEMAP_CASE_STUDIES_API_URL || `${siteUrl}/api/case_studies`;
+
+  try {
+    console.log(`[next-sitemap] Fetching case studies from: ${endpoint}`);
+    const response = await fetch(endpoint, {
+      method: "GET",
+      headers: { Accept: "application/json" },
+      cache: "no-store",
+    });
+
+    if (!response.ok) return [];
+
+    const records = await response.json();
+    return Array.isArray(records) ? records : [];
+  } catch (error) {
+    console.error("[next-sitemap] Case studies API fetch failed", error);
+    return [];
+  }
+}
+
+async function fetchCaseStudyRecordsFromMySQL() {
+  const host = process.env.DATABASE_HOST;
+  const user = process.env.DATABASE_USER;
+  const password = process.env.DATABASE_PASSWORD;
+  const database = process.env.DATABASE_NAME;
+  const port = Number(process.env.DATABASE_PORT || 3306);
+
+  if (!host || !user || !database) return [];
+
+  let connection;
+  try {
+    connection = await mysql.createConnection({ host, user, password, database, port });
+    const [rows] = await connection.execute(
+      "SELECT slug, created_at FROM blogs WHERE category_id = 1 ORDER BY id DESC"
+    );
+    return Array.isArray(rows) ? rows : [];
+  } catch (error) {
+    console.error("[next-sitemap] Case studies MySQL failed", error);
+    return [];
+  } finally {
+    if (connection) await connection.end();
+  }
+}
+
+async function fetchCaseStudyRecords() {
+  const apiRecords = await fetchCaseStudyRecordsFromApi();
+  const mysqlRecords = await fetchCaseStudyRecordsFromMySQL();
+
+  const bySlug = new Map();
+  for (const record of [...apiRecords, ...mysqlRecords]) {
+    const slug = pickBlogSlug(record);
+    if (slug) bySlug.set(slug, record);
+  }
+
+  const merged = [...bySlug.values()];
+
+  if (merged.length === 0) {
+    console.warn("[next-sitemap] No case study records found from API/MySQL.");
+  } else {
+    console.log(
+      `[next-sitemap] Case studies -> API: ${apiRecords.length}, MySQL: ${mysqlRecords.length}, Merged: ${merged.length}`
+    );
+  }
+
+  return merged;
+}
+
+/** Deduped root paths for blogs + work.html case studies. */
+function collectPostSitemapPaths(records) {
+  const { isExcludedSitemapPath } = require("./next-sitemap.shared");
+  const uniquePaths = new Set();
+
+  for (const record of records) {
+    const rawSlug = pickBlogSlug(record);
+    const postPath = safeToPath(rawSlug);
+    if (!postPath) continue;
+
+    const normalized = postPath.replace(/^\/+/, "");
+    if (STATIC_PAGE_SLUGS.has(normalized)) continue;
+    if (isExcludedSitemapPath(postPath)) continue;
+
+    uniquePaths.add(postPath);
+  }
+
+  return uniquePaths;
+}
+
+async function fetchAllPostSitemapRecords() {
+  const [blogs, caseStudies] = await Promise.all([
+    fetchBlogRecords(),
+    fetchCaseStudyRecords(),
+  ]);
+  return [...blogs, ...caseStudies];
+}
+
 module.exports = {
   siteUrl,
   STATIC_PAGE_SLUGS,
@@ -140,4 +238,7 @@ module.exports = {
   pickBlogLastmod,
   toIsoOrNull,
   fetchBlogRecords,
+  fetchCaseStudyRecords,
+  fetchAllPostSitemapRecords,
+  collectPostSitemapPaths,
 };

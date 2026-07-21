@@ -1,79 +1,52 @@
+const SITE_URL = "https://ritzmediaworld.com";
+
+/** Homepage + default canonical (no trailing slash). */
+export const SITE_CANONICAL_URL = SITE_URL;
+
+/** Social share image — live site RMW logo used in navbar / favicon. */
+export const OG_IMAGE_PATH = "/rmw-logo-sm-size.png";
+export const OG_IMAGE_URL = `${SITE_URL}${OG_IMAGE_PATH}`;
+
+export const OG_IMAGE_METADATA = {
+  url: OG_IMAGE_PATH,
+  width: 95,
+  height: 120,
+  alt: "Ritz Media World - Top Advertising Agency in Delhi NCR",
+} as const;
+
+/** Organization schema — matches site Organization JSON-LD script. */
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Ritz Media World",
-  url: "https://ritzmediaworld.com/",
-  logo: "https://ritzmediaworld.com/assets/images/logo.png",
-  image: "https://ritzmediaworld.com/assets/images/logo.png",
-  description:
-    "Ritz Media World is a full-service advertising and digital marketing agency based in Noida, India, offering digital marketing, branding, web development, influencer marketing, radio advertising, print advertising, and creative services.",
-  foundingDate: "2008",
-  founders: [
-    { "@type": "Person", name: "Ritesh Malik" },
-    { "@type": "Person", name: "Satvinder Kaur" },
-  ],
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "402-404, 4th Floor, Corporate Park, Tower A1, Sector 142",
-    addressLocality: "Noida",
-    addressRegion: "Uttar Pradesh",
-    postalCode: "201305",
-    addressCountry: "IN",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+91-9220516777",
-    contactType: "customer service",
-    areaServed: "IN",
-    availableLanguage: ["English", "Hindi"],
-  },
+  url: SITE_URL,
+  logo: "https://ritzmediaworld.com/_next/image?url=%2Frmw-logo-sm-size.png&w=256&q=70",
   sameAs: [
-    "https://www.linkedin.com/company/ritzmediaworld",
-    "https://www.instagram.com/ritzmediaworld.rmw/",
-    "https://www.facebook.com/ritzmediaworld.rmw",
-    "https://twitter.com/ritzmediaworld",
+    "https://www.facebook.com/ritzmediaworld/",
+    "https://x.com/ritzmediaworld",
+    "https://www.instagram.com/ritzmediaworld/",
     "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
-  ],
-  email: "info@ritzmediaworld.com",
-  telephone: "+91-9220516777",
-  keywords: [
-    "Advertising Agency",
-    "Digital Marketing Agency",
-    "SEO Services",
-    "Branding",
-    "Web Development",
-    "Influencer Marketing",
-    "Creative Agency",
-    "Radio Advertising",
-    "Print Advertising",
-  ],
-  areaServed: {
-    "@type": "Country",
-    name: "India",
-  },
-  serviceType: [
-    "Digital Marketing",
-    "SEO",
-    "PPC Advertising",
-    "Social Media Marketing",
-    "Web Development",
-    "Branding",
-    "Content Marketing",
-    "Influencer Marketing",
-    "Creative Services",
-    "Radio Advertising",
-    "Print Advertising",
+    "https://www.linkedin.com/company/ritzmediaworld/?originalSubdomain=in",
   ],
 };
 
-export const localBusinessJsonLd = {
+const localBusinessSameAs = [
+  "https://www.facebook.com/ritzmediaworld.rmw",
+  "https://www.instagram.com/ritzmediaworld.rmw/",
+  "https://www.linkedin.com/company/ritzmediaworld",
+  "https://twitter.com/ritzmediaworld",
+  "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
+] as const;
+
+/** AdvertisingAgency JSON-LD — rendered site-wide from root layout. */
+export const advertisingAgencyJsonLd = {
   "@context": "https://schema.org",
   "@type": "AdvertisingAgency",
   "@id": "https://ritzmediaworld.com/#localbusiness",
   name: "Ritz Media World",
-  url: "https://ritzmediaworld.com/",
-  image: "https://ritzmediaworld.com/assets/images/logo.png",
-  logo: "https://ritzmediaworld.com/assets/images/logo.png",
+  url: SITE_URL,
+  image: OG_IMAGE_URL,
+  logo: `${SITE_URL}/rmw-logo-sm-size.png`,
   description:
     "Ritz Media World is a full-service advertising and digital marketing agency in Noida offering branding, SEO, social media marketing, web development, influencer marketing, print advertising, and radio advertising services.",
   telephone: "+91-9220516777",
@@ -102,17 +75,11 @@ export const localBusinessJsonLd = {
         "Thursday",
         "Friday",
       ],
-      opens: "9:30",
+      opens: "09:30",
       closes: "18:30",
     },
   ],
-  sameAs: [
-    "https://www.facebook.com/ritzmediaworld.rmw",
-    "https://www.instagram.com/ritzmediaworld.rmw/",
-    "https://www.linkedin.com/company/ritzmediaworld",
-    "https://twitter.com/ritzmediaworld",
-    "https://www.youtube.com/c/RitzMediaWorldCreativeThinksMedia",
-  ],
+  sameAs: [...localBusinessSameAs],
   areaServed: {
     "@type": "Country",
     name: "India",
@@ -121,17 +88,5 @@ export const localBusinessJsonLd = {
   serviceArea: {
     "@type": "Place",
     name: "India",
-  },
-};
-
-export const websiteJsonLd = {
-  "@context": "https://schema.org/",
-  "@type": "WebSite",
-  name: "Ritz Media World",
-  url: "https://ritzmediaworld.com/",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://ritzmediaworld.com/services{search_term_string}",
-    "query-input": "required name=search_term_string",
   },
 };

@@ -11,17 +11,17 @@ const BlogSchema = new Schema(
     },
     blogBanner: {
       type: String,
-      required: true,
+      default: "",
     },
     blogBody: [
       {
         metaTitle: {
           type: String,
-          required: true,
+          default: "",
         },
         metaDescription: {
           type: String,
-          required: true,
+          default: "",
         },
         innerImg: {
           type: String,
@@ -40,7 +40,17 @@ const BlogSchema = new Schema(
       type: Boolean,
       default: true,
     },
-    // It will be generate from backend api :
+    publishStatus: {
+      type: String,
+      enum: ["draft", "scheduled", "published"],
+      default: "published",
+    },
+    scheduledAt: {
+      type: Date,
+    },
+    publishedAt: {
+      type: Date,
+    },
     blogSlug: {
       type: String,
       required: true,
@@ -48,10 +58,14 @@ const BlogSchema = new Schema(
     },
     blogDescription: {
       type: String,
-      required: true,
+      default: "",
     },
     mtDesc: {
       type: String,
+    },
+    blogAuthor: {
+      type: String,
+      default: "",
     },
   },
   {
@@ -59,7 +73,10 @@ const BlogSchema = new Schema(
   }
 );
 
-const RitzBlogModel =
-  models.RitzBlogModel || model("RitzBlogModel", BlogSchema);
+if (models.RitzBlogModel) {
+  delete models.RitzBlogModel;
+}
+
+const RitzBlogModel = model("RitzBlogModel", BlogSchema);
 
 export default RitzBlogModel;

@@ -6,11 +6,34 @@ import { FaEdit, FaTrash, FaEye } from "react-icons/fa";
 import Link from "next/link";
 import "react-toastify/dist/ReactToastify.css";
 import { motion, AnimatePresence } from "framer-motion";
-import { AlertTriangle, Home, Monitor } from "lucide-react";
-import { useRouter } from "next/navigation";
+import {
+  AlertTriangle,
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  FileText,
+  Plus,
+  Search,
+} from "lucide-react";
+import {
+  formatScheduledAt,
+  isBlogPubliclyVisible,
+  resolveAdminPublishLabel,
+} from "@/lib/blogPublish";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+import { useRouter, useSearchParams } from "next/navigation";
 import RMWPopup from "@/components/rmw_popup/RMWPopup";
 
-import * as XLSX from "xlsx";
+import {
+  buildMongoCategoryLookup,
+  buildMysqlCategoryLookup,
+  exportBlogsToExcel,
+  mapMongoBlogToExportRow,
+  mapMysqlBlogToExportRow,
+  type ExportProgress,
+  type MongoBlogExportSource,
+  type MysqlBlogExportSource,
+} from "@/lib/exportBlogsExcel";
 
 function managementAuthHeaders(): Record<string, string> {
   if (typeof window === "undefined") return {};
@@ -27,6 +50,8 @@ interface Blog {
   createdAt: string | Date;
   blogStatus: boolean;
   blogSlug: string;
+  publishStatus?: string;
+  scheduledAt?: string | Date;
 }
 
 interface SQLBLOGS {
@@ -42,7 +67,36 @@ interface MERGEDBLOGS {
   createdAT: string;
   blogID: string;
   blogStatus: string;
+  publishLabel: "draft" | "scheduled" | "published" | "inactive";
+  scheduledAtLabel?: string;
+  canViewPublic: boolean;
   mongoID?: string;
+}
+
+type StatusFilter = "all" | "draft" | "scheduled" | "published" | "inactive";
+
+function isMongoBlog(blg: Blog | SQLBLOGS): blg is Blog {
+  return "blogTitle" in blg && "blogSlug" in blg;
+}
+
+function countByLabel(blogs: MERGEDBLOGS[], label: StatusFilter) {
+  if (label === "all") return blogs.length;
+  return blogs.filter((blog) => blog.publishLabel === label).length;
+}
+
+function publishBadgeStyle(label: MERGEDBLOGS["publishLabel"]) {
+  switch (label) {
+    case "draft":
+      return { background: "rgba(100,116,139,0.12)", color: "#475569" };
+    case "scheduled":
+      return { background: "rgba(245,158,11,0.12)", color: "#D97706" };
+    case "published":
+      return { background: "rgba(16,185,129,0.12)", color: "#059669" };
+    case "inactive":
+      return { background: "rgba(239,68,68,0.12)", color: "#DC2626" };
+    default:
+      return { background: "rgba(100,116,139,0.12)", color: "#475569" };
+  }
 }
 
 interface MONGOEXCELBLOG {
@@ -87,17 +141,25 @@ export default function ManageBlogs() {
   const [llength, setLastLength] = useState<number>(0);
   // const [sqlBlogs, setSQLBlogs] = useState<SQLBLOGS[]>([]);
   const [mergedBlogs, setMergedBlogs] = useState<MERGEDBLOGS[]>([]);
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
+  const [searchedBl, setSearchedB] = useState("");
   // const [isMongo, setIsMongo] =
   const blogsPerPage = 15;
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState({ message: "", status: 0 });
   // const [blogForSearch, setBlogForSearch] = useState<MERGEDBLOGS[]>([]);
 
   function mergedALLBLOGS(blog: (Blog | SQLBLOGS)[]): MERGEDBLOGS[] {
     return blog.map((blg) => {
-      if ("_id" in blg) {
-        const mongoBLG = blg as Blog;
+      if (isMongoBlog(blg)) {
+        const mongoBLG = blg;
+        const publishLabel = resolveAdminPublishLabel({
+          publishStatus: mongoBLG.publishStatus,
+          scheduledAt: mongoBLG.scheduledAt,
+          blogStatus: mongoBLG.blogStatus,
+        });
         return {
           title: mongoBLG.blogTitle,
           blogIMG: mongoBLG.blogBanner,
@@ -108,10 +170,18 @@ export default function ManageBlogs() {
           }),
           blogID: mongoBLG.blogSlug,
           blogStatus: mongoBLG.blogStatus === true ? "active" : "inactive",
+          publishLabel,
+          scheduledAtLabel:
+            publishLabel === "scheduled" && mongoBLG.scheduledAt
+              ? formatScheduledAt(mongoBLG.scheduledAt)
+              : undefined,
+          canViewPublic: isBlogPubliclyVisible(mongoBLG),
           mongoID: mongoBLG._id,
         };
       } else {
         const sqlBlog = blg as SQLBLOGS;
+        const publishLabel =
+          sqlBlog.status === "active" ? "published" : "inactive";
         return {
           title: sqlBlog.title,
           blogIMG: sqlBlog.blog_image,
@@ -122,6 +192,8 @@ export default function ManageBlogs() {
           }),
           blogID: sqlBlog.slug,
           blogStatus: sqlBlog.status,
+          publishLabel,
+          canViewPublic: sqlBlog.status === "active",
         };
       }
     });
@@ -135,66 +207,91 @@ export default function ManageBlogs() {
 
   const [lftBtn, setLftBtn] = useState(0);
   const [rightBtn, setRightBtn] = useState(9);
+
+  const getFilteredBlogs = () => {
+    let list = mergedBlogs;
+    if (statusFilter !== "all") {
+      list = list.filter((blog) => blog.publishLabel === statusFilter);
+    }
+    if (searchedBl.trim()) {
+      list = list.filter((blog) =>
+        blog.title.toLowerCase().includes(searchedBl.toLowerCase())
+      );
+    }
+    return list;
+  };
+
   // Fetch blogs whenever filters or page changes
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      setLoading(true);
-      try {
-        // const params = new URLSearchParams();
-        // params.append("page", currentPage.toString());
-        // params.append("limit", blogsPerPage.toString());
+  const loadBlogs = async (showSuccessPopup = false) => {
+    setLoading(true);
+    try {
+      const { data, status } = await axios.get(`/api/ritz_blogs/get-all-blogs`, {
+        headers: managementAuthHeaders(),
+        params: { _: Date.now() },
+      });
+      const res2 = await axios.get("/api/all_blogs", {
+        params: { _: Date.now() },
+      });
 
-        // if (searchQuery.trim() !== "") {
-        //   params.append("search", searchQuery.trim());
-        // }
-        // if (selectedCategory !== "All") {
-        //   params.append("category", selectedCategory);
-        // }
+      let combined: MERGEDBLOGS[] = [];
 
-        const { data, status } = await axios.get(
-          `/api/ritz_blogs/get-all-blogs`
-        );
-        const res2 = await axios.get("/api/all_blogs");
+      if (data?.allBlogs) {
+        combined = [...combined, ...mergedALLBLOGS(data.allBlogs)];
+        setTotalBlogs(data.allBlogs.length);
+      }
 
-        let combined: MERGEDBLOGS[] = [];
+      if (res2?.data) {
+        combined = [...combined, ...mergedALLBLOGS(res2.data)];
+      }
 
-        if (data?.allBlogs) {
-          combined = [...combined, ...mergedALLBLOGS(data.allBlogs)];
-          setTotalBlogs(data.allBlogs.length); // Set actual count
-        }
+      setMergedBlogs(combined);
+      setLastLength(combined.length);
 
-        if (res2?.data) {
-          combined = [...combined, ...mergedALLBLOGS(res2.data)];
-        }
-
-        setMergedBlogs((prev) => [...prev, ...combined]);
-        setLastLength((prev) => prev + combined.length);
-
-        if (!data.allBlogs || data.allBlogs.length === 0) {
-          router.push("/not-found");
-          return;
-        }
+      if (showSuccessPopup && data?.message) {
         setPopupData({ message: data.message, status });
         setShowPopup(true);
-      } catch (error) {
-        if (typeof error === "object" && error !== null && "message" in error) {
-          setPopupData({
-            message: (error as { message: string }).message,
-            status:
-              error instanceof Error && "status" in error
-                ? (error as { status?: number }).status ?? 500
-                : 500,
-          });
-        } else {
-          setPopupData({ message: "An unknown error occurred.", status: 500 });
-        }
-        setShowPopup(true);
-      } finally {
-        setLoading(false);
       }
-    };
+    } catch (error) {
+      if (typeof error === "object" && error !== null && "message" in error) {
+        setPopupData({
+          message: (error as { message: string }).message,
+          status:
+            error instanceof Error && "status" in error
+              ? (error as { status?: number }).status ?? 500
+              : 500,
+        });
+      } else {
+        setPopupData({ message: "An unknown error occurred.", status: 500 });
+      }
+      setShowPopup(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchBlogs();
+  useEffect(() => {
+    const tab = searchParams.get("status");
+    if (
+      tab === "draft" ||
+      tab === "scheduled" ||
+      tab === "published" ||
+      tab === "inactive" ||
+      tab === "all"
+    ) {
+      setStatusFilter(tab);
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    loadBlogs(true);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      loadBlogs(false);
+    }, 30_000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleDelete = async () => {
@@ -296,100 +393,69 @@ export default function ManageBlogs() {
 
   // Pagination Is Starting From Here
   const [page, setPage] = useState<MERGEDBLOGS[]>([]);
-
-  useEffect(() => {
-    if (mergedBlogs.length > 0) {
-      setPage(mergedBlogs);
-    }
-  }, [mergedBlogs]);
-
-  const pagination = (s: number, e: number) => {
-    if (s < mergedBlogs.length) {
-      if (mergedBlogs.length < 9) {
-        setPage(mergedBlogs.slice(s, mergedBlogs.length - 1));
-        return;
-      }
-      setPage(mergedBlogs.slice(s, e));
-    }
-  };
   const [ttPage, setTTPage] = useState(0);
-  // const [btnArr, setBtnArr] = useState<number[]>([]);
 
-  const [activePage, setActivePage] = useState(0);
-
-  useEffect(() => {
-    pagination(lftBtn, rightBtn);
-    setTTPage(mergedBlogs.length / 8 + 1);
-  }, [lftBtn, rightBtn, mergedBlogs]);
+  const [activePage, setActivePage] = useState(1);
 
   useEffect(() => {
     setActivePage(1);
-  }, []);
+    setLftBtn(0);
+  }, [statusFilter, searchedBl]);
+
+  useEffect(() => {
+    const filtered = getFilteredBlogs();
+    let start = lftBtn;
+    if (start >= filtered.length) {
+      start = 0;
+      if (lftBtn !== 0) {
+        setLftBtn(0);
+      }
+    }
+    setPage(filtered.slice(start, Math.min(start + 9, filtered.length)));
+    setLastLength(filtered.length);
+    setTTPage(Math.max(1, Math.ceil(filtered.length / 9)));
+  }, [mergedBlogs, statusFilter, searchedBl, lftBtn]);
 
   const leftPage = () => {
+    const filteredLength = getFilteredBlogs().length;
     let newLeft = lftBtn - 9;
     if (newLeft < 0) newLeft = 0;
 
-    let newRight;
-    if (mergedBlogs.length < 10) {
-      newRight = mergedBlogs.length;
-    } else {
-      newRight = newLeft + 9;
-    }
+    let newRight = Math.min(newLeft + 9, filteredLength);
     setActivePage((prev) => (prev > 1 ? prev - 1 : prev));
     setLftBtn(newLeft);
     setRightBtn(newRight);
-    pagination(newLeft, newRight);
   };
 
   const rightPage = () => {
+    const filteredLength = getFilteredBlogs().length;
     let newLeft = lftBtn + 9;
-    let newRight = newLeft + 9;
-    if (newRight > mergedBlogs.length) {
-      newRight = mergedBlogs.length;
-      newLeft = newRight - (newRight % 9);
-    }
-    setActivePage((prev) => (prev < Math.ceil(llength / 9) ? prev + 1 : prev));
+    if (newLeft >= filteredLength) return;
 
+    let newRight = Math.min(newLeft + 9, filteredLength);
+    setActivePage((prev) => (prev < Math.ceil(filteredLength / 9) ? prev + 1 : prev));
     setLftBtn(newLeft);
     setRightBtn(newRight);
-    pagination(newLeft, newRight);
   };
 
   const directPageNavigation = (e: HTMLElement) => {
+    const filteredLength = getFilteredBlogs().length;
     const pageNum = Number(e.innerText);
     setActivePage(pageNum);
-    let newRight = 9 * pageNum;
-
-    let newLeft = newRight - 9;
-    if (newRight > mergedBlogs.length) {
-      newRight = mergedBlogs.length;
-      newLeft = newRight - (newRight % 9);
+    let newLeft = (pageNum - 1) * 9;
+    let newRight = Math.min(newLeft + 9, filteredLength);
+    if (newLeft >= filteredLength) {
+      newLeft = 0;
+      newRight = Math.min(9, filteredLength);
     }
 
     setLftBtn(newLeft);
     setRightBtn(newRight);
-    pagination(newLeft, newRight);
   };
-  const [searchedBl, setSearchedB] = useState("");
-  const getDataWithSearch = () => {
-    const filtered = mergedBlogs.filter((data) =>
-      data.title.toLowerCase().includes(searchedBl.toLowerCase())
-    );
-    setPage(filtered);
-  };
-
-  useEffect(() => {
-    if (searchedBl) {
-      getDataWithSearch();
-    } else {
-      setPage(mergedBlogs.slice(0, 9));
-    }
-  }, [searchedBl]);
 
   const getEntriesManually = (e: number) => {
     const val = Number(e);
-    setPage(mergedBlogs.slice(0, val));
+    setPage(getFilteredBlogs().slice(0, val));
   };
 
   const handleActiveBtnToggle = async (
@@ -439,13 +505,38 @@ export default function ManageBlogs() {
   }
 
   const [backupLoading, setBackupLoading] = useState(false);
+  const [backupProgress, setBackupProgress] = useState<ExportProgress>({
+    phase: "preparing",
+    current: 0,
+    total: 0,
+    percent: 0,
+    label: "Starting backup...",
+  });
 
   const rmwBackUpHandler = async () => {
     setBackupLoading(true);
+    setBackupProgress({
+      phase: "preparing",
+      current: 0,
+      total: 0,
+      percent: 2,
+      label: "Fetching blogs...",
+    });
     let mongoBlogs: MONGOEXCELBLOG[] | undefined;
     let sqlBlogs: MYSQLBLOGS[] | undefined;
 
     try {
+      const [mysqlCategoryNames, mongoCategoryNames] = await Promise.all([
+        buildMysqlCategoryLookup(),
+        buildMongoCategoryLookup(),
+      ]);
+
+      setBackupProgress((prev) => ({
+        ...prev,
+        percent: 8,
+        label: "Fetching MongoDB blogs...",
+      }));
+
       // Fetch All The MongoDb Blogs ::
       try {
         const { data } = await axios.get<{ allBlogs: MONGOEXCELBLOG[] }>(
@@ -469,6 +560,12 @@ export default function ManageBlogs() {
         setShowPopup(true);
       }
 
+      setBackupProgress((prev) => ({
+        ...prev,
+        percent: 15,
+        label: "Fetching MySQL blogs...",
+      }));
+
       // Fetch All The MySQL Blogs ::
       try {
         const { data } = await axios.get<MYSQLBLOGS[]>("/api/all_mysql_blogs");
@@ -490,12 +587,30 @@ export default function ManageBlogs() {
         setShowPopup(true);
       }
 
-      const blogsForDownload = [
-        ...(mongoBlogs || []),
-        ...(sqlBlogs || []),
+      setBackupProgress((prev) => ({
+        ...prev,
+        percent: 20,
+        label: "Preparing export rows...",
+      }));
+
+      const exportRows = [
+        ...(mongoBlogs || []).map((blog) =>
+          mapMongoBlogToExportRow(
+            blog as MongoBlogExportSource,
+            stripHTML,
+            mongoCategoryNames
+          )
+        ),
+        ...(sqlBlogs || []).map((blog) =>
+          mapMysqlBlogToExportRow(
+            blog as MysqlBlogExportSource,
+            stripHTML,
+            mysqlCategoryNames
+          )
+        ),
       ];
 
-      if (blogsForDownload.length === 0) {
+      if (exportRows.length === 0) {
         setPopupData({
           message: "No blogs found to backup.",
           status: 404,
@@ -505,63 +620,14 @@ export default function ManageBlogs() {
         return;
       }
 
-      // Convert All JSON Data Into Excel File And Download
-      const worksheet = XLSX.utils.json_to_sheet(blogsForDownload);
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "RMW_BLOGS_BACKUPSHEET");
-      const excelBuffer = XLSX.write(workbook, {
-        bookType: "xlsx",
-        type: "buffer",
+      const fileName = `rmw-blogs-backup-${new Date().toISOString().split("T")[0]}.xlsx`;
+      await exportBlogsToExcel(exportRows, fileName, setBackupProgress);
+
+      setPopupData({
+        message: `Backup completed. ${exportRows.length} blogs exported with images in Excel.`,
+        status: 200,
       });
-
-      // Blob create
-      const blob = new Blob([excelBuffer], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      });
-
-      // Temporary link create for download
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = `rmw-blogs-backup-${new Date().toISOString().split("T")[0]}.xlsx`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(link.href);
-
-      // Download images zip
-      try {
-        const res = await axios.get<{ url: string; success: boolean; message?: string }>(
-          "/api/all_images_download"
-        );
-        if (res.data && res.data.success && res.data.url) {
-          // Trigger download of zip file
-          window.location.href = res.data.url;
-          setPopupData({
-            message: res.data.message || "Backup completed successfully! Excel file and images zip downloaded.",
-            status: 200,
-          });
-          setShowPopup(true);
-        } else {
-          setPopupData({
-            message: res.data?.message || "Excel file downloaded, but images zip generation failed.",
-            status: 500,
-          });
-          setShowPopup(true);
-        }
-      } catch (error) {
-        console.error("Errors in downloading images", error);
-        setPopupData({
-          message:
-            error instanceof Error && "message" in error
-              ? (error as { message: string }).message
-              : "Excel file downloaded, but failed to download images zip.",
-          status:
-            error instanceof Error && "status" in error
-              ? (error as { status?: number }).status ?? 500
-              : 500,
-        });
-        setShowPopup(true);
-      }
+      setShowPopup(true);
     } catch (error) {
       console.error("Error in backup process:", error);
       setPopupData({
@@ -577,10 +643,17 @@ export default function ManageBlogs() {
       setShowPopup(true);
     } finally {
       setBackupLoading(false);
+      setBackupProgress({
+        phase: "done",
+        current: 0,
+        total: 0,
+        percent: 0,
+        label: "",
+      });
     }
   };
   return (
-    <div className="bg-[#EEEEEE] flex flex-col gap-6 sm:gap-8 md:gap-12 p-4 md:p-8 min-h-screen">
+    <div className="flex flex-col gap-5 min-h-screen">
       {showPopup && (
         <RMWPopup
           message={popupData.message}
@@ -589,182 +662,281 @@ export default function ManageBlogs() {
         />
       )}
       {deleteConfirmModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white dark:bg-[#1e1e1e] rounded-xl p-6 w-full max-w-md shadow-lg text-center relative">
-            {/* Icon */}
-            <div className="flex justify-center mb-4">
-              <AlertTriangle className="text-red-600 w-12 h-12" />
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+          style={{ background: "rgba(11,22,35,0.6)", backdropFilter: "blur(6px)" }}
+          onClick={(e) => {
+            if (e.currentTarget === e.target) setDeleteConfirmModal(false);
+          }}
+        >
+          <div
+            className="relative w-full max-w-[400px] rounded-2xl p-6 text-center"
+            style={{
+              background: "#ffffff",
+              border: "1px solid rgba(0,0,0,0.06)",
+              boxShadow: "0 24px 80px rgba(11,22,35,0.24)",
+            }}
+          >
+            <div
+              className="mx-auto mb-4 w-14 h-14 rounded-2xl flex items-center justify-center"
+              style={{ background: "rgba(239,68,68,0.1)" }}
+            >
+              <AlertTriangle className="w-7 h-7" style={{ color: "#EF4444" }} />
             </div>
-
-            {/* Text */}
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
-              Are you sure?
+            <h2 className="text-lg font-bold" style={{ color: "#0B1623" }}>
+              Delete this blog?
             </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-              This action cannot be undone. The data will be permanently
-              deleted.
+            <p className="text-sm mt-2" style={{ color: "#64748B" }}>
+              This action cannot be undone. The blog will be permanently removed.
             </p>
-
-            {/* Buttons */}
-            <div className="flex justify-center gap-4 mt-6">
+            <div className="flex gap-3 mt-6">
               <button
-                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-black rounded-md transition"
+                className="flex-1 h-10 rounded-xl text-sm font-semibold transition-all"
+                style={{ background: "#F3F4F6", color: "#374151" }}
                 onClick={() => setDeleteConfirmModal(false)}
               >
                 Cancel
               </button>
               <button
-                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition"
-                // onClick={deleteData}
+                className="flex-1 h-10 rounded-xl text-sm font-semibold text-white transition-all"
+                style={{
+                  background: "linear-gradient(135deg, #EF4444, #DC2626)",
+                  boxShadow: "0 4px 12px rgba(239,68,68,0.3)",
+                }}
                 onClick={deleteBlogNow}
               >
-                Delete
+                Yes, delete
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Title Section */}
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <h1 className="text-[#ACACAC] flex items-center gap-2 text-2xl sm:text-3xl md:text-4xl font-light uppercase">
-          <Monitor className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
-          Manage Blogs
-        </h1>
+      {/* Page header */}
+      <div className="flex items-start justify-between flex-wrap gap-4">
+        <div className="flex items-center gap-3">
+          <div
+            className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{
+              background: "linear-gradient(135deg, #0B1623, #1E2D3D)",
+              boxShadow: "0 6px 18px rgba(11,22,35,0.18)",
+            }}
+          >
+            <FileText className="w-5 h-5" style={{ color: "#C59D4F" }} />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold" style={{ color: "#0B1623" }}>
+              Manage Blogs
+            </h1>
+            <p className="text-sm mt-0.5" style={{ color: "#64748B" }}>
+              {mergedBlogs.length > 0
+                ? `${mergedBlogs.length} total · ${mergedBlogs.filter((b) => b.publishLabel === "draft").length} drafts · ${mergedBlogs.filter((b) => b.publishLabel === "scheduled").length} scheduled`
+                : "All blog posts"}
+            </p>
+          </div>
+        </div>
         <button
           onClick={rmwBackUpHandler}
           disabled={backupLoading}
-          className="px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer transition duration-200 flex items-center gap-2"
+          className="min-w-[200px] px-5 py-2.5 rounded-xl font-semibold text-white disabled:cursor-not-allowed cursor-pointer transition-all duration-200 flex flex-col items-center gap-2"
+          style={{
+            background: backupLoading
+              ? "#94A3B8"
+              : "linear-gradient(135deg, #0B1623, #1E2D3D)",
+            boxShadow: backupLoading ? "none" : "0 6px 18px rgba(11,22,35,0.18)",
+          }}
         >
           {backupLoading ? (
             <>
-              <svg
-                className="animate-spin h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Creating Backup...
+              <div className="flex items-center gap-2 text-sm">
+                <svg
+                  className="animate-spin h-4 w-4 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                <span>Creating Backup... {backupProgress.percent}%</span>
+              </div>
+              <div className="w-full h-1.5 rounded-full bg-white/30 overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-white transition-all duration-300"
+                  style={{ width: `${backupProgress.percent}%` }}
+                />
+              </div>
+              {backupProgress.label ? (
+                <span className="text-xs font-normal text-white/90 text-center leading-tight">
+                  {backupProgress.label}
+                </span>
+              ) : null}
             </>
           ) : (
-            "Get Backup"
+            <span className="flex items-center gap-2">
+              <Download className="w-4 h-4" />
+              Get Backup
+            </span>
           )}
         </button>
       </div>
 
       {/* Breadcrumb */}
-      <div className="flex flex-wrap items-center gap-2 sm:gap-4 bg-white p-3 rounded-md shadow-sm">
-        <h1 className="text-[#2955B3] flex items-center gap-2">
-          <Home className="w-4 h-4" />
-          Home
-        </h1>
-        <span className="text-[#ACACAC] font-bold">/</span>
-        <h1 className="text-[#838383] flex items-center gap-2">
-          <Monitor className="w-4 h-4" />
-          Manage Blogs
-        </h1>
-      </div>
+      <Breadcrumb currentPage="Manage Blogs" middleLinks={[]} />
 
-      {/* Main Section */}
-      <div className="bg-white rounded-lg shadow-md overflow-x-auto">
-        {/* Header */}
-        <div className="bg-[#9CA9B4] p-4">
-          <p className="text-white font-medium text-base sm:text-lg">
-            Manage Page
-          </p>
+      {/* Toolbar card */}
+      <div
+        className="rounded-2xl p-4 flex flex-col gap-4"
+        style={{
+          background: "#ffffff",
+          border: "1px solid rgba(0,0,0,0.06)",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+        }}
+      >
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-medium" style={{ color: "#64748B" }}>
+            Show
+          </span>
+          <select
+            onChange={(E) => getEntriesManually(Number(E.target.value))}
+            className="rounded-xl px-3 py-2 text-sm font-medium cursor-pointer"
+            style={{
+              border: "1px solid #E2E8F0",
+              background: "#F8FAFC",
+              color: "#0B1623",
+            }}
+          >
+            <option value="10">10 entries</option>
+            <option value="25">25 entries</option>
+            <option value="50">50 entries</option>
+            <option value="100">100 entries</option>
+            {mergedBlogs.length > 0 && (
+              <option value={mergedBlogs && Math.ceil(mergedBlogs.length / 2)}>
+                {mergedBlogs && Math.ceil(mergedBlogs.length / 2)} entries
+              </option>
+            )}
+          </select>
         </div>
 
-        {/* Sorting Section */}
-        <div className="flex flex-col gap-6 p-4">
-          <div className="flex justify-end">
-            <Link
-              title="Add New Blog"
-              href={"/admin/add-blog"}
-              className="px-6 py-2 rounded-md font-semibold text-white bg-[#688A7E] hover:bg-[#365248] cursor-pointer transition duration-200"
-            >
-              Add New Blog
-            </Link>
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div
+            className="flex items-center gap-2 rounded-xl px-3 py-2 flex-1 sm:w-72"
+            style={{ border: "1px solid #E2E8F0", background: "#F8FAFC" }}
+          >
+            <Search className="w-4 h-4 flex-shrink-0" style={{ color: "#94A3B8" }} />
+            <input
+              type="text"
+              placeholder="Search blogs by title..."
+              onChange={(e) => setSearchedB(e.target.value)}
+              className="bg-transparent outline-none text-sm w-full"
+              style={{ color: "#0B1623" }}
+            />
           </div>
+          <Link
+            title="Add New Blog"
+            href={"/admin/add-blog"}
+            className="px-4 py-2 rounded-xl font-semibold text-white cursor-pointer transition-all duration-200 flex items-center gap-2 whitespace-nowrap"
+            style={{
+              background: "linear-gradient(135deg, #C59D4F, #9A7530)",
+              boxShadow: "0 4px 12px rgba(197,157,79,0.25)",
+            }}
+          >
+            <Plus className="w-4 h-4" />
+            <span className="hidden sm:inline">Add Blog</span>
+          </Link>
+        </div>
+        </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 flex-wrap">
-            {/* Show Entries */}
-            <div className="flex items-center gap-2">
-              <p className="font-semibold text-[#688A7E] whitespace-nowrap">
-                Show Entries
-              </p>
-              <select
-                onChange={(E) => getEntriesManually(Number(E.target.value))}
-                className="border border-[#365248] rounded-md px-3 py-1.5 text-[#365248] outline-none cursor-pointer"
+        <div className="flex flex-wrap items-center gap-2">
+          {(["all", "published", "scheduled", "draft", "inactive"] as StatusFilter[]).map(
+            (filter) => (
+              <button
+                key={filter}
+                type="button"
+                onClick={() => setStatusFilter(filter)}
+                className="rounded-full px-3 py-1.5 text-xs font-semibold capitalize transition"
+                style={
+                  statusFilter === filter
+                    ? {
+                        background: "linear-gradient(135deg, #0B1623, #1E2D3D)",
+                        color: "#ffffff",
+                      }
+                    : {
+                        background: "#F8FAFC",
+                        color: "#64748B",
+                        border: "1px solid #E2E8F0",
+                      }
+                }
               >
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                {mergedBlogs.length > 0 && (
-                  <option
-                    value={mergedBlogs && Math.ceil(mergedBlogs.length / 2)}
-                  >
-                    {mergedBlogs && Math.ceil(mergedBlogs.length / 2)}
-                  </option>
-                )}
-              </select>
-            </div>
-
-            {/* Search */}
-            <div className="flex items-center gap-2 border border-[#1a6249] rounded-md px-3 py-2 w-full md:w-auto">
-              <p className="text-[#717272] font-medium whitespace-nowrap">
-                Search Now
-              </p>
-              <input
-                type="text"
-                placeholder="Search here..."
-                // onChange={(e) => getDataWithSearch(e)}
-                onChange={(e) => setSearchedB(e.target.value)}
-                className="bg-transparent outline-none placeholder:text-[#365248] text-[#365248] w-full"
-              />
-            </div>
-          </div>
+                {filter} ({countByLabel(mergedBlogs, filter)})
+              </button>
+            )
+          )}
+          <button
+            type="button"
+            onClick={() => loadBlogs(false)}
+            className="rounded-full px-3 py-1.5 text-xs font-semibold text-[#2955B3] border border-[#2955B3]/20 bg-blue-50 hover:bg-blue-100 transition"
+          >
+            Refresh
+          </button>
         </div>
       </div>
 
       {/* Blogs Table */}
       {loading ? (
-        <p className="text-center mt-6">Loading blogs...</p>
+        <div
+          className="rounded-2xl flex flex-col items-center justify-center gap-3 py-20"
+          style={{
+            background: "#ffffff",
+            border: "1px solid rgba(0,0,0,0.06)",
+          }}
+        >
+          <div
+            className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+            style={{ borderColor: "#C59D4F", borderTopColor: "transparent" }}
+          />
+          <p className="text-sm" style={{ color: "#94A3B8" }}>
+            Loading blogs…
+          </p>
+        </div>
       ) : (
-        <div className="mt-4 bg-white p-4 rounded-md shadow-md">
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{
+            background: "#ffffff",
+            border: "1px solid rgba(0,0,0,0.06)",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.03), 0 8px 24px rgba(0,0,0,0.04)",
+          }}
+        >
           {/* Desktop View */}
-          <div className="hidden md:block">
-            <table className="w-full border-collapse">
+          <div className="hidden md:block overflow-x-auto">
+            <table className="w-full admin-blog-table">
               <thead>
-                <tr className="bg-[#9CA9B4] text-white">
-                  <th className="p-2">Image</th>
-                  <th className="p-2">blogTitle</th>
-                  {/* <th className="p-2">Blog URL</th> */}
-                  {/* <th className="p-2">Category</th> */}
-                  <th className="p-2">Add Date</th>
-                  <th className="p-2">Status</th>
-                  <th className="p-2">Action</th>
+                <tr>
+                  <th>Image</th>
+                  <th>Blog Title</th>
+                  <th>Added</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {page.length > 0 &&
                   page.map((blog) => (
-                    <tr key={blog.blogID} className="border-b">
-                      <td className="p-2">
+                    <tr key={blog.blogID}>
+                      <td>
                         <Image
                           src={`${blog.blogIMG.includes("/images")
                             ? `${process.env.NEXT_PUBLIC_SERVER_IMG_PATH
@@ -777,119 +949,180 @@ export default function ManageBlogs() {
                           className="rounded-md"
                         />
                       </td>
-                      <td className="p-2">{blog.title}</td>
-                      {/* <td className="p-2 text-sm">{`/ritz_blogs/get-single-blog/${blog._id}`}</td> */}
-                      {/* <td className="p-2">{blog.categoryName}</td> */}
-                      <td className="p-2">{blog.createdAT}</td>
-                      <td className="p-2">
-                        <span
-                          onClick={() =>
-                            blog.blogIMG.includes("/images")
-                              ? handleActiveBtnToggle(
-                                blog.blogStatus,
-                                "mongo",
-                                blog.mongoID ? blog.mongoID : blog.blogID
-                              )
-                              : handleActiveBtnToggle(
-                                blog.blogStatus,
-                                "mysql",
-                                blog.blogID
-                              )
-                          }
-                          className={`px-2 py-1 cursor-pointer rounded-md text-white ${blog.blogStatus === "active"
-                            ? "bg-green-500"
-                            : "bg-red-500"
-                            }`}
-                        >
-                          {blog.blogStatus}
-                        </span>
+                      <td>{blog.title}</td>
+                      <td>
+                        <div>{blog.createdAT}</div>
+                        {blog.scheduledAtLabel && (
+                          <div className="text-xs text-amber-600">
+                            Scheduled: {blog.scheduledAtLabel}
+                          </div>
+                        )}
                       </td>
                       <td>
-                        <Link href={`/${blog.blogID}`} title="View Blog">
-                          <button className="text-blue-600 hover:text-blue-800 pl-1 cursor-pointer">
-                            <FaEye />
+                        <div className="flex flex-col gap-2">
+                          <span
+                            className="inline-flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide"
+                            style={publishBadgeStyle(blog.publishLabel)}
+                          >
+                            {blog.publishLabel}
+                          </span>
+                          <button
+                            onClick={() =>
+                              blog.blogIMG.includes("/images")
+                                ? handleActiveBtnToggle(
+                                    blog.blogStatus,
+                                    "mongo",
+                                    blog.mongoID ? blog.mongoID : blog.blogID
+                                  )
+                                : handleActiveBtnToggle(
+                                    blog.blogStatus,
+                                    "mysql",
+                                    blog.blogID
+                                  )
+                            }
+                            className="inline-flex w-fit items-center gap-1.5 cursor-pointer rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide transition-all"
+                            style={
+                              blog.blogStatus === "active"
+                                ? {
+                                    background: "rgba(16,185,129,0.12)",
+                                    color: "#059669",
+                                  }
+                                : {
+                                    background: "rgba(239,68,68,0.12)",
+                                    color: "#DC2626",
+                                  }
+                            }
+                          >
+                            {blog.blogStatus}
                           </button>
-                        </Link>
-                        <Link
-                          title="Edit Blog"
-                          href={
-                            blog.mongoID
-                              ? `/admin/update/step-1/${blog.mongoID}`
-                              : `/admin/update/sqlB/${blog.blogID}`
-                          }
-                        >
-                          <button className="text-green-600 hover:text-green-800 pl-1 cursor-pointer">
-                            <FaEdit />
+                        </div>
+                      </td>
+                      <td>
+                        <div className="admin-blog-actions">
+                          {blog.canViewPublic ? (
+                            <Link href={`/${blog.blogID}`} title="View Blog">
+                              <button className="text-blue-600 cursor-pointer">
+                                <FaEye />
+                              </button>
+                            </Link>
+                          ) : (
+                            <button
+                              className="text-slate-300 cursor-not-allowed"
+                              title="Not publicly visible yet"
+                              disabled
+                            >
+                              <FaEye />
+                            </button>
+                          )}
+                          <Link
+                            title="Edit Blog"
+                            href={
+                              blog.mongoID
+                                ? `/admin/update/step-1/${blog.mongoID}`
+                                : `/admin/update/sqlB/${blog.blogID}`
+                            }
+                          >
+                            <button className="text-green-600 cursor-pointer">
+                              <FaEdit />
+                            </button>
+                          </Link>
+                          <button
+                            className="text-red-600 cursor-pointer"
+                            onClick={() => handleDataDeleteModal(blog.blogID)}
+                          >
+                            <FaTrash />
                           </button>
-                        </Link>
-                        <button
-                          className="text-red-600 hover:text-red-800 pl-1 cursor-pointer"
-                          onClick={() => handleDataDeleteModal(blog.blogID)}
-                        >
-                          <FaTrash />
-                        </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
               </tbody>
             </table>
+            {page.length === 0 && (
+              <div className="flex flex-col items-center justify-center gap-2 py-16">
+                <FileText className="w-8 h-8" style={{ color: "#CBD5E1" }} />
+                <p className="text-sm font-medium" style={{ color: "#64748B" }}>
+                  {statusFilter === "scheduled"
+                    ? "No scheduled blogs yet."
+                    : statusFilter === "draft"
+                      ? "No draft blogs yet."
+                      : statusFilter === "published"
+                        ? "No published blogs found."
+                        : statusFilter === "inactive"
+                          ? "No inactive blogs found."
+                          : "No blogs found."}
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Mobile View */}
-          <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="md:hidden grid grid-cols-1 sm:grid-cols-2 gap-4 p-4">
             {page.map((blog) => (
               <div
                 key={blog.blogID}
-                className="bg-gray-100 p-4 rounded-md shadow-md"
+                className="rounded-xl overflow-hidden"
+                style={{
+                  background: "#ffffff",
+                  border: "1px solid #E5E7EB",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+                }}
               >
                 <Image
                   src={`/blogs/${blog.blogIMG}`}
                   alt={blog.title}
-                  width={300}
+                  width={400}
                   height={200}
-                  className="rounded-md w-full"
+                  className="w-full h-36 object-cover"
                 />
-                <h3 className="text-lg font-semibold mt-2">{blog.title}</h3>
-                <p className="text-sm text-gray-600">{blog.blogID}</p>
-                {/* <p className="text-sm text-gray-600">
-                  Category: {blog.categoryName}
-                </p> */}
-                <p className="text-sm text-gray-600">{blog.createdAT}</p>
-                <div className="flex justify-between items-center mt-2">
-                  <span
-                    className={`px-2 py-1 rounded-md text-white ${blog.blogStatus === "active"
-                      ? "bg-green-500"
-                      : "bg-red-500"
-                      }`}
+                <div className="p-3">
+                  <h3
+                    className="text-sm font-semibold line-clamp-2"
+                    style={{ color: "#0B1623" }}
                   >
-                    {blog.blogStatus}
-                  </span>
-                  <div className="flex gap-2">
-                    <Link href={`/${blog.blogID}`} title="View Blog">
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <FaEye size={18} />
-                      </button>
-                    </Link>
-                    <Link
-                      title="Edit Blog"
-                      href={
-                        blog.mongoID
-                          ? `/admin/update/step-1/${blog.mongoID}`
-                          : `/admin/update/sqlB/${blog.blogID}`
+                    {blog.title}
+                  </h3>
+                  <p className="text-xs mt-1" style={{ color: "#94A3B8" }}>
+                    {blog.createdAT}
+                  </p>
+                  <div className="flex justify-between items-center mt-3">
+                    <span
+                      className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide"
+                      style={
+                        blog.blogStatus === "active"
+                          ? { background: "rgba(16,185,129,0.12)", color: "#059669" }
+                          : { background: "rgba(239,68,68,0.12)", color: "#DC2626" }
                       }
                     >
-                      <button className="text-green-600 hover:text-green-800">
-                        <FaEdit size={18} />
+                      {blog.blogStatus}
+                    </span>
+                    <div className="flex gap-2">
+                      <Link href={`/${blog.blogID}`} title="View Blog">
+                        <button className="text-blue-600">
+                          <FaEye size={16} />
+                        </button>
+                      </Link>
+                      <Link
+                        title="Edit Blog"
+                        href={
+                          blog.mongoID
+                            ? `/admin/update/step-1/${blog.mongoID}`
+                            : `/admin/update/sqlB/${blog.blogID}`
+                        }
+                      >
+                        <button className="text-green-600">
+                          <FaEdit size={16} />
+                        </button>
+                      </Link>
+                      <button
+                        className="text-red-600"
+                        onClick={() =>
+                          handleDataDeleteModal(blog.mongoID || blog.blogID)
+                        }
+                      >
+                        <FaTrash size={16} />
                       </button>
-                    </Link>
-                    <button
-                      className="text-red-600 hover:text-red-800"
-                      onClick={() =>
-                        handleDataDeleteModal(blog.mongoID || blog.blogID)
-                      }
-                    >
-                      <FaTrash size={18} />
-                    </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -897,136 +1130,102 @@ export default function ManageBlogs() {
           </div>
 
           {/* Pagination */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-4 py-4 border-t">
-            <p className="text-sm opacity-0 text-gray-600">
-              Showing 41 to 50 of 52 entries
+          <div
+            className="flex flex-col md:flex-row justify-between items-center gap-3 px-5 py-4"
+            style={{ borderTop: "1px solid #F1F5F9" }}
+          >
+            <p className="text-xs" style={{ color: "#94A3B8" }}>
+              Page {activePage}
             </p>
-            <div className="flex items-center gap-2 flex-wrap">
+            <div className="flex items-center gap-2">
               <button
                 onClick={leftPage}
-                className="px-5 py-2 border rounded-md border-[#688A7E] text-[#688A7E] font-semibold hover:bg-[#436b5d] hover:text-white transition"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
+                style={{
+                  border: "1px solid #E2E8F0",
+                  color: "#475569",
+                  background: "#ffffff",
+                }}
               >
+                <ChevronLeft className="w-4 h-4" />
                 Previous
               </button>
 
-              <div className="flex flex-wrap gap-1">
-                {/* First 4-5 buttons */}
-                {Array.from({ length: Math.min(ttPage, 1) }, (_, i) => (
-                  <p
-                    key={i}
-                    onClick={(e) => {
-                      const trg = e.target as HTMLElement;
-                      directPageNavigation(trg);
-                    }}
-                    className="px-3 py-1.5 border border-[#688A7E] text-black rounded-md cursor-pointer hover:bg-[#688A7E] hover:text-white transition"
-                    style={{ backgroundColor: "black", color: "white" }}
-                  >
-                    {activePage}
-                  </p>
-                ))}
-
-                {/* ... dots if needed
-                {llength > 7 && <span className="px-2">...</span>}
-
-                {/* Last 2 buttons */}
-                {/* {llength / 9 > 7 && (
-                  <p
-                    key="last-page"
-                    onClick={(e) => {
-                      const trg = e.target as HTMLElement;
-                      directPageNavigation(trg);
-                    }}
-                    className="px-3 py-1.5 border border-[#688A7E] text-black rounded-md cursor-pointer hover:bg-[#688A7E] hover:text-white transition"
-                    style={
-                      activePage === Math.ceil(llength / 9)
-                        ? { backgroundColor: "black", color: "white" }
-                        : {}
-                    }
-                  >
-                    {Math.ceil(llength / 9)}
-                  </p>
-                )} */}
-              </div>
+              <span
+                className="px-3.5 py-2 rounded-xl text-sm font-bold text-white"
+                style={{ background: "linear-gradient(135deg, #0B1623, #1E2D3D)" }}
+              >
+                {activePage}
+              </span>
 
               <button
                 onClick={rightPage}
-                className="px-5 py-2 border rounded-md border-[#688A7E] text-[#688A7E] font-semibold hover:bg-[#436b5d] hover:text-white transition"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all"
+                style={{
+                  border: "1px solid #E2E8F0",
+                  color: "#475569",
+                  background: "#ffffff",
+                }}
               >
                 Next
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
-
-          {/* Pagination */}
-          {/* {totalPages > 1 && (
-            <div className="flex justify-center mt-6 gap-2 flex-wrap">
-              <button
-                disabled={currentPage === 1}
-                onClick={() => setCurrentPage((prev) => prev - 1)}
-                className="px-4 py-2 bg-black text-white rounded disabled:opacity-50"
-              >
-                Previous
-              </button>
-
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (pageNum) => (
-                  <button
-                    key={pageNum}
-                    onClick={() => setCurrentPage(pageNum)}
-                    className={`px-4 py-2 rounded ${
-                      currentPage === pageNum
-                        ? "bg-blue-600 text-white"
-                        : "bg-gray-200 text-black hover:bg-gray-300"
-                    }`}
-                  >
-                    {pageNum}
-                  </button>
-                )
-              )}
-
-              <button
-                disabled={currentPage === totalPages}
-                onClick={() => setCurrentPage((prev) => prev + 1)}
-                className="px-4 py-2 bg-black text-white rounded disabled:opacity-50"
-              >
-                Next
-              </button>
-            </div>
-          )} */}
         </div>
       )}
 
       <AnimatePresence>
         {deleteBlog && (
           <motion.div
-            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50"
+            className="fixed inset-0 flex items-center justify-center z-[200] p-4"
+            style={{ background: "rgba(11,22,35,0.6)", backdropFilter: "blur(6px)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-white p-6 rounded-md shadow-md"
-              initial={{ y: -50, opacity: 0 }}
+              className="w-full max-w-[400px] rounded-2xl p-6 text-center"
+              style={{
+                background: "#ffffff",
+                border: "1px solid rgba(0,0,0,0.06)",
+                boxShadow: "0 24px 80px rgba(11,22,35,0.24)",
+              }}
+              initial={{ y: -30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -50, opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              exit={{ y: -30, opacity: 0 }}
+              transition={{ duration: 0.25 }}
             >
-              <p>
+              <div
+                className="mx-auto mb-4 w-14 h-14 rounded-2xl flex items-center justify-center"
+                style={{ background: "rgba(239,68,68,0.1)" }}
+              >
+                <AlertTriangle className="w-7 h-7" style={{ color: "#EF4444" }} />
+              </div>
+              <h2 className="text-lg font-bold" style={{ color: "#0B1623" }}>
+                Delete this blog?
+              </h2>
+              <p className="text-sm mt-2" style={{ color: "#64748B" }}>
                 Are you sure you want to delete &quot;{deleteBlog.blogTitle}
-                &quot;?
+                &quot;? This cannot be undone.
               </p>
-              <div className="flex justify-end gap-2 mt-4">
+              <div className="flex gap-3 mt-6">
                 <button
-                  className="bg-gray-500 text-white px-4 py-2 rounded"
+                  className="flex-1 h-10 rounded-xl text-sm font-semibold transition-all"
+                  style={{ background: "#F3F4F6", color: "#374151" }}
                   onClick={() => setDeleteBlog(null)}
                 >
                   Cancel
                 </button>
                 <button
-                  className="bg-red-600 text-white px-4 py-2 rounded"
+                  className="flex-1 h-10 rounded-xl text-sm font-semibold text-white transition-all"
+                  style={{
+                    background: "linear-gradient(135deg, #EF4444, #DC2626)",
+                    boxShadow: "0 4px 12px rgba(239,68,68,0.3)",
+                  }}
                   onClick={handleDelete}
                 >
-                  Yes, Delete
+                  Yes, delete
                 </button>
               </div>
             </motion.div>

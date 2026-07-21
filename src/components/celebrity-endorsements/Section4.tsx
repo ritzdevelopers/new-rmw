@@ -3,9 +3,8 @@ import styles from "./page.module.css";
 
 import ClientTestimonials from "@/components/influencer-marketing-agency-in-india/Section5";
 import BrandImpactSection1 from "../copy/BrandImpactSection1";
-import ServicesV3SubslugLayer4Section5 from "@/components/services-v3-subslug/layer-4/Section5";
-import Link from "next/link";
-import Clients from "../influencer-marketing-agency-in-india/Clients"; 
+import Clients from "../influencer-marketing-agency-in-india/Clients";
+import AchievementAwards from "@/components/home-v3/S7"; 
 
 
 const cards = [
@@ -49,9 +48,7 @@ export default function Section4() {
           className="text-center text-black font-[700] leading-[30px] text-[24px] sm:text-[44px] md:text-[28px] lg:text-[36px] md:leading-[48px]"
           style={{ fontFamily: "MontserratBold" }}
         >
-          Why Celebrity
-          <br />
-          Endorsement Matter
+          <span className="block">Why Celebrity Endorsement Matter</span>
         </h2>
 
         <div className="mt-5 md:mt-10 lg:mt-10 xl:mt-20">
@@ -73,7 +70,7 @@ export default function Section4() {
                     <img
                       src={card.icon}
                       alt={`${card.h3} – Ritz Media World`}
-                      title="Ritz Media World"
+                      title={`${card.h3} – Ritz Media World`}
                       className="w-[30px] h-auto object-contain"
                     />
                   </div>
@@ -91,9 +88,9 @@ export default function Section4() {
                     >
                       {card.h3 === "Generate Engagement & Influence" ? (
                         <>
-                          Generate Engagement
-                          <br />
-                          & Influence
+                          Generate Engagement &amp;
+                 
+                          Influence
                         </>
                       ) : (
                         card.h3
@@ -130,7 +127,8 @@ export default function Section4() {
   <div className="hidden xl:block relative w-full h-[278px]">
     <Image
       src="/varunimage/celebrity-bg.jpg"
-      alt="Decorative wave"
+      alt="Celebrity endorsement benefits section wave background – Ritz Media World"
+      title="Celebrity endorsement benefits section wave background – Ritz Media World"
       fill
       className="object-cover"
       sizes="100vw"
@@ -141,7 +139,8 @@ export default function Section4() {
   <div className="hidden lg:block xl:hidden lg:m-[80px]">
     <Image
       src="/varunimage/celebrity-bg.jpg"
-      alt="Decorative wave"
+      alt="Celebrity endorsement benefits section wave background – Ritz Media World"
+      title="Celebrity endorsement benefits section wave background – Ritz Media World"
       width={900}
       height={278}
       className="mx-auto w-[900px] h-auto object-contain"
@@ -160,20 +159,9 @@ export default function Section4() {
         <ClientTestimonials />
       </div>
 
-      <section className="w-full bg-[#0F1640] py-7 sm:py-8 md:py-10 flex justify-center px-4 sm:px-6 lg:px-0">
-       
-<Link href="/contact.html" target="_blank" title="Ready to Leverage Star Power into Real Business Results?">
-  <div className={`w-full mx-auto flex items-center justify-center text-center ${styles.containerWidth} cursor-pointer`}>
-    <p
-      className="text-white font-[600] text-[18px] sm:text-[26px] md:text-[20px] lg:text-[28px] leading-tight"
-      style={{ fontFamily: "MontserratSemiBold" }}
-    >
-      Ready to Leverage Star Power into Real Business Results?
-    </p>
-  </div>
-</Link>
-      </section>
-      <div className="pt-[35px] lg:pt-[70px]">       
+      <AchievementAwards />
+
+      <div className="pt-[35px] lg:pt-[70px]">
         <BrandImpactSection1 />
       </div>
     </section>

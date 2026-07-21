@@ -1,12 +1,9 @@
-import DomeGallery from './DomeGallery';
+import MemoriesGallery from "./MemoriesGallery";
 
-
-function page() {
-    return (
-        <div style={{ width: '100%', height: '100vh', overflow: 'hidden' }}>
-            <DomeGallery />
-        </div>
-    )
+export default function GalleryPage() {
+  return (
+    <main className="w-full bg-[#06070d]">
+      <MemoriesGallery />
+    </main>
+  );
 }
-
-export default page;

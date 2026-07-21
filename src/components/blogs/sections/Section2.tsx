@@ -44,10 +44,16 @@ function getVisiblePages(current: number, total: number): (number | "ellipsis")[
     return pages;
 }
 
-function Section2({ all_blogs }: { all_blogs: any[] }) {
+function Section2({
+    all_blogs,
+    initialPage = 1,
+}: {
+    all_blogs: any[];
+    initialPage?: number;
+}) {
     const sectionRef = useRef<HTMLElement>(null);
     const [searchValue, setSearchValue] = useState<string>("");
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(initialPage);
 
     const sortedBlogs = useMemo(
         () => sortBlogsByDateDesc(normalizeMongoMsqlBlogs(all_blogs ?? [])),

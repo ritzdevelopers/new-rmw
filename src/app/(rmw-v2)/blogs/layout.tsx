@@ -57,5 +57,24 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: ReactNode }) {
-    return <>{children}</>;
+    return (
+        <>
+            <link
+                rel="preload"
+                as="image"
+                type="image/webp"
+                href={`${BLOG_INDEX_URL}/blogs2/s1-layer-mob.webp`}
+                media="(max-width: 767px)"
+                fetchPriority="high"
+            />
+            <link
+                rel="preload"
+                as="image"
+                type="image/webp"
+                href={`${BLOG_INDEX_URL}/blogs2/s1-layer-desk.webp`}
+                media="(min-width: 768px)"
+            />
+            {children}
+        </>
+    );
 }

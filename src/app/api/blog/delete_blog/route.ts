@@ -33,6 +33,7 @@ import { RowDataPacket } from "mysql2";
 import ManagementModel from "@/models/Management";
 import jwt from "jsonwebtoken";
 import ManagementActivitiesModel from "@/models/ManagementActivities";
+import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
 
 type Blog = {
   id: string;
@@ -84,6 +85,8 @@ export async function DELETE(req: Request) {
     // Create A New Management Activity
     const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) deleted a blog: ${blog_slug}`, activityTime: new Date() });
     await newManagementActivity.save();
+
+    await revalidateBlogListingPages();
 
     return NextResponse.json({ message: "Blog deleted successfully" }, { status: 200 });
   } catch (error) {

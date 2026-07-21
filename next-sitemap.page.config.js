@@ -1,6 +1,7 @@
-const { siteUrl, toIsoOrNull } = require("./next-sitemap.blog-sources");
+const { siteUrl } = require("./next-sitemap.blog-sources");
 const { fetchServiceSitemapEntries } = require("./next-sitemap.service-sources");
 const { getStaticPagePaths } = require("./next-sitemap.static-page-paths");
+const { getSitemapBuildLastmod, isExcludedSitemapPath } = require("./next-sitemap.shared");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
@@ -14,35 +15,28 @@ module.exports = {
   transform: async () => null,
 
   additionalPaths: async (config) => {
-    /** @type {Map<string, string|null>} */
-    const uniquePaths = new Map();
+    const buildLastmod = getSitemapBuildLastmod();
+    /** @type {Set<string>} */
+    const uniquePaths = new Set();
 
     const staticPaths = getStaticPagePaths();
     for (const path of staticPaths) {
-      uniquePaths.set(path, null);
+      if (!isExcludedSitemapPath(path)) uniquePaths.add(path);
     }
 
-    for (const { path, lastmod } of await fetchServiceSitemapEntries()) {
-      if (!uniquePaths.has(path)) {
-        uniquePaths.set(path, lastmod);
-      } else if (lastmod) {
-        const prev = uniquePaths.get(path);
-        if (!prev || new Date(lastmod) > new Date(prev)) {
-          uniquePaths.set(path, lastmod);
-        }
-      }
+    for (const { path } of await fetchServiceSitemapEntries()) {
+      if (!isExcludedSitemapPath(path)) uniquePaths.add(path);
     }
 
     const items = [];
-    const fallbackLastmod = new Date().toISOString();
 
-    for (const [path, lastmod] of uniquePaths.entries()) {
+    for (const path of uniquePaths) {
       const transformed = await config.transform(config, path);
 
       items.push({
         ...transformed,
         loc: `${siteUrl}${path}`,
-        lastmod: toIsoOrNull(lastmod) || fallbackLastmod,
+        lastmod: buildLastmod,
         changefreq: "weekly",
         priority: 0.8,
       });

@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:wght@100;200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
-
 .containerWidth {
    padding-left: 20px !important;
    padding-right: 20px !important;
@@ -175,14 +172,36 @@
 
 .fontmontserrat,
 .fontMontserrat {
-   font-family: 'Montserrat', sans-serif;
+   font-family: MontserratExtraBold, MontserratBold, MontserratSemiBold, MontserratMedium, MontserratRegular, sans-serif;
 }
 
 .fontopensans {
-   font-family: 'Open Sans', sans-serif;
+   font-family: OpenSansRegular, OpenSansSemiBold, OpenSansBold, sans-serif;
 }
 .fontpoppins {
-   font-family: 'Poppins', sans-serif;
+   font-family: PoppinsRegular, PoppinsSemiBold, PoppinsBold, sans-serif;
+}
+
+.blogSidebarContactBtn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 46px;
+   border: none;
+   border-radius: 5px;
+   background-color: #C99237;
+   color: #ffffff !important;
+   font-family: OpenSansBold, OpenSansSemiBold, sans-serif;
+   font-weight: 700;
+   font-size: 14px;
+   cursor: pointer;
+   transition: background-color 0.2s ease;
+}
+
+.blogSidebarContactBtn:hover {
+   background-color: #B8822F;
+   color: #ffffff !important;
 }
 
 /* Rich HTML body — mirrors src/app/[slug]/page.module.css (.contentBody + .tableWrapper) for DetailPage parity */
@@ -224,6 +243,19 @@
 .contentBody h3 {
    font-size: 28px !important;
    font-weight: 500 !important;
+}
+
+.contentBody code h1,
+.contentBody code h2,
+.contentBody code h3,
+.contentBody code h4,
+.contentBody code h5,
+.contentBody code h6 {
+   font-size: inherit !important;
+   font-weight: inherit !important;
+   margin: 0 !important;
+   line-height: inherit !important;
+   display: inline;
 }
 
 .contentBody h4 {

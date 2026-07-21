@@ -1,18 +1,14 @@
 import "./styles/tailwind.css";
 import "./styles/global.css";
 import { Metadata } from "next";
-import JsonLd from "@/components/JsonLd";
-import { websiteJsonLd } from "@/lib/structuredData";
 import NewNavbar from "./layout/NewNavbar";
 import NewFooter from "./layout/NewFooter";
 import RubyProvider from "@/ruby-context/ruby.context";
 import ClientWidgets from "./layout/ClientWidgets";
+import { OG_IMAGE_METADATA, SITE_CANONICAL_URL } from "@/lib/structuredData";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ritzmediaworld.com"),
-  alternates: {
-    canonical: "https://ritzmediaworld.com",
-  },
+  metadataBase: new URL(SITE_CANONICAL_URL),
   authors: [{ name: "Ritz Media World" }],
   publisher: "Ritz Media World",
   title:
@@ -64,14 +60,7 @@ export const metadata: Metadata = {
       "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
     description:
       "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
-    images: [
-      {
-        url: "https://ritzmediaworld.com/rmw-logo-sm-size.png",
-        width: 1200,
-        height: 630,
-        alt: "Ritz Media World - Top Advertising Agency in Delhi NCR",
-      },
-    ],
+    images: [OG_IMAGE_METADATA],
   },
   twitter: {
     card: "summary_large_image",
@@ -79,7 +68,7 @@ export const metadata: Metadata = {
       "Top Advertising Agency in Delhi NCR, Digital Marketing Noida | Ritz Media World",
     description:
       "Top advertising agency in Delhi NCR. Ritz media world offer SEO, radio, creative print ads services in Greater Noida. Most trusted digital marketing company.",
-    images: ["https://ritzmediaworld.com/rmw-logo-sm-size.png"],
+    images: [OG_IMAGE_METADATA.url],
     creator: "@ritzmediaworld",
     site: "@ritzmediaworld",
   },
@@ -88,7 +77,6 @@ export const metadata: Metadata = {
 export default function NewRMWW({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <JsonLd data={websiteJsonLd} />
       {/* <Navbar></Navbar> */}
       <NewNavbar></NewNavbar>
       <RubyProvider>

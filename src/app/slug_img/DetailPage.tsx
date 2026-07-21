@@ -10,6 +10,7 @@ import "../styles/animation-css.css";
 // import Head from "next/head";
 
 import { useParams, usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import styles from "./page.module.css";
@@ -73,6 +74,7 @@ export interface Blog {
   blogBody?: BlogBodyPage[]; // updated to an array
   createdAt?: string;
   blogStatus?: string;
+  blogAuthor?: string;
 }
 
 // Service interface
@@ -502,6 +504,11 @@ const DetailPage: React.FC<DetailPageProps> = ({ ssrHeading }) => {
                       : cats.find((id) => id.id === singleBlog.category_id)
                         ?.name || "Unknown Category"}
                   </span>
+                  {isMongo && singleBlog.blogAuthor ? (
+                    <span className={styles.category}>
+                      By {singleBlog.blogAuthor}
+                    </span>
+                  ) : null}
                 </div>
                 <Share2
                   className={styles.shareIcon}
@@ -723,6 +730,16 @@ const DetailPage: React.FC<DetailPageProps> = ({ ssrHeading }) => {
                 placeholder="Search blogs..."
               />
             </div>
+
+            <Link
+              href="/contact.html"
+              title="Contact Us"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.contactUsBtn}
+            >
+              Contact Us
+            </Link>
 
             {/* Search Results */}
             {searchB && (

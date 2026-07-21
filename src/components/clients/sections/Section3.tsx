@@ -27,18 +27,19 @@ function Section3({ logos }: Section3Props) {
     }
 
     return (
-        <section className="w-full py-[40px] xl:py-[70px] flex flex-col gap-4 justify-center items-center">
+        <section className="flex w-full flex-col items-center justify-center bg-white pb-10 pt-0 sm:pb-12 xl:pb-[70px]">
             <div className={`w-full ${styles.containerWidth}`}>
-                <div className="grid w-full grid-cols-3 md:grid-cols-4 border-t border-l border-[#D8D8D8]">
+                <div className={styles.clientsLogoGrid}>
                     {visibleLogos.map((imgSrc, idx) => (
                         <div
-                            key={imgSrc}
-                            className="h-[120px] flex items-center justify-center border-b border-r border-[#D8D8D8]"
+                            key={`${imgSrc}-${idx}`}
+                            className={styles.clientsLogoCell}
                         >
                             <img
                                 src={imgSrc}
-                                alt={`Client ${idx + 1}`}
-                                className="max-h-[72px] w-auto object-contain"
+                                alt={`Client logo ${idx + 1}`}
+                                className={styles.clientsLogoImg}
+                                loading="lazy"
                             />
                         </div>
                     ))}
@@ -46,14 +47,16 @@ function Section3({ logos }: Section3Props) {
             </div>
 
             {hasMore && (
-                <div className="w-full flex justify-center items-center">
+                <div className="mt-8 flex w-full items-center justify-center xl:mt-10">
                     <button
                         type="button"
                         onClick={handleLoadMore}
-                        className="bg-[#0F1640] rounded-[700] font-[500] w-[179px] h-[50px] flex justify-center items-center gap-2"
+                        className="flex h-[50px] w-[179px] cursor-pointer items-center justify-center gap-2 rounded-[700px] bg-[#0F1640] font-[500]"
                     >
-                        <p className="font-[400] text-[16px] cursor-pointer text-white">Load More</p>
-                        <ChevronDown className="w-5 h-5 text-white" />
+                        <span className="font-[400] text-[16px] text-white">
+                            Load More
+                        </span>
+                        <ChevronDown className="h-5 w-5 text-white" />
                     </button>
                 </div>
             )}

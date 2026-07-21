@@ -235,7 +235,7 @@ export default function ServiceThirdPage() {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-violet-100 p-4 md:p-8">
+    <section className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-[#f3e9d2] p-4 md:p-8">
       {showPopup && (
         <RMWPopup
           message={popupData.message}
@@ -248,7 +248,7 @@ export default function ServiceThirdPage() {
         <div className="mb-6 rounded-2xl border border-white/80 bg-white/85 p-5 shadow-lg backdrop-blur md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div>
-              <p className="mb-2 inline-flex rounded-full bg-violet-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-violet-700">
+              <p className="mb-2 inline-flex rounded-full bg-[#f3e9d2] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#9a7530]">
                 Manage Services / Service Third
               </p>
               <h1 className="text-2xl font-bold text-slate-900 md:text-3xl">
@@ -267,7 +267,7 @@ export default function ServiceThirdPage() {
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   placeholder="Search by title, description, id…"
-                  className="w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none ring-violet-500 transition placeholder:text-slate-400 focus:border-violet-300 focus:ring-2"
+                  className="w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none ring-[#c59d4f] transition placeholder:text-slate-400 focus:border-[#c59d4f] focus:ring-2"
                   aria-label="Search service third"
                 />
               </div>
@@ -341,7 +341,7 @@ export default function ServiceThirdPage() {
 
                   <button
                     onClick={() => openEditModal(card)}
-                    className="mt-4 inline-flex cursor-pointer items-center gap-2 rounded-md bg-violet-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-violet-700"
+                    className="mt-4 inline-flex cursor-pointer items-center gap-2 rounded-md bg-[#c59d4f] px-3 py-2 text-sm font-medium text-white transition hover:bg-[#9a7530]"
                     type="button"
                   >
                     <Pencil className="h-4 w-4" />
@@ -360,10 +360,10 @@ export default function ServiceThirdPage() {
                       Math.min(c + PAGE_SIZE, cards.length)
                     )
                   }
-                  className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-6 py-2.5 text-sm font-semibold text-violet-800 shadow-sm transition hover:bg-violet-100 hover:shadow-md"
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#e6cf9f] bg-[#f3e9d2] px-6 py-2.5 text-sm font-semibold text-[#9a7530] shadow-sm transition hover:bg-[#ecd9b3] hover:shadow-md"
                 >
                   Load more
-                  <span className="text-xs font-normal text-violet-600">
+                  <span className="text-xs font-normal text-[#9a7530]">
                     (+{Math.min(PAGE_SIZE, cards.length - visibleCount)})
                   </span>
                 </button>
@@ -420,7 +420,7 @@ export default function ServiceThirdPage() {
 
                 <p className="mt-2 text-xs text-slate-500">
                   Dummy preview link:{" "}
-                  <span className="break-all font-mono text-[11px] text-indigo-600">
+                  <span className="break-all font-mono text-[11px] text-[#9a7530]">
                     {previewUrl || "Select an image to generate local preview link"}
                   </span>
                 </p>
@@ -438,7 +438,7 @@ export default function ServiceThirdPage() {
                       prev ? { ...prev, title: e.target.value } : prev
                     )
                   }
-                  className="mb-4 w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 outline-none ring-indigo-500 transition focus:ring-2"
+                  className="mb-4 w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 outline-none ring-[#c59d4f] transition focus:ring-2"
                   placeholder="Enter title"
                 />
 
@@ -453,7 +453,7 @@ export default function ServiceThirdPage() {
                     )
                   }
                   rows={8}
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 outline-none ring-indigo-500 transition focus:ring-2"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-sm text-slate-900 outline-none ring-[#c59d4f] transition focus:ring-2"
                   placeholder="Enter description"
                 />
               </div>
@@ -473,7 +473,7 @@ export default function ServiceThirdPage() {
                 onClick={updateServiceThird}
                 type="button"
                 disabled={isUpdating}
-                className="inline-flex min-w-[120px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-emerald-400"
+                className="inline-flex min-w-[120px] cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#c59d4f] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#9a7530] disabled:cursor-not-allowed disabled:bg-[#e0c48f]"
               >
                 {isUpdating ? <RMWLoader /> : <Save className="h-4 w-4" />}
                 {isUpdating ? "Updating..." : "Update"}

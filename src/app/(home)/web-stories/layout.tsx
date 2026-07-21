@@ -1,5 +1,6 @@
 import { Providers } from "@/app/provider/Provider";
 import type { Metadata } from "next";
+import { OG_IMAGE_METADATA } from "@/lib/structuredData";
 
 export const metadata: Metadata = {
   title: "Web Stories & Visual Campaigns | Ritz Media World Delhi NCR",
@@ -19,12 +20,7 @@ export const metadata: Metadata = {
     siteName: "Ritz Media World",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "https://ritzmediaworld.com/rmw-logo-sm-size.png",
-        alt: "Ritz Media World Web Stories",
-      },
-    ],
+    images: [OG_IMAGE_METADATA],
   },
   twitter: {
     card: "summary_large_image",
@@ -32,12 +28,7 @@ export const metadata: Metadata = {
     title: "Web Stories & Visual Campaigns | Ritz Media World Delhi NCR",
     description:
       "Discover engaging web stories, visual content, and interactive narratives from Ritz Media World.",
-    images: [
-      {
-        url: "https://ritzmediaworld.com/rmw-logo-sm-size.png",
-        alt: "Ritz Media World Web Stories",
-      },
-    ],
+    images: [OG_IMAGE_METADATA.url],
   },
   robots: {
     index: true,

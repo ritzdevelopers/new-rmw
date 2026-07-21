@@ -18,6 +18,7 @@ import {
 import { Label } from "../../../../../components/ui/label";
 import Editor from "../../../../../components/Editor/Editor";
 import { FiXCircle } from "react-icons/fi";
+import { formatSlugInput, normalizeSlug } from "@/lib/slugify";
 
 const UpdateBlog = () => {
   const router = useRouter();
@@ -26,6 +27,7 @@ const UpdateBlog = () => {
   const [formData, setFormData] = useState({
     category_id: "",
     title: "",
+    slug: "",
 
     meta_title: "",
     meta_description: "",
@@ -71,6 +73,7 @@ const UpdateBlog = () => {
         setFormData({
           category_id: data.blog.category_id?.toString() || "",
           title: data.blog.title || "",
+          slug: data.blog.slug || "",
           meta_title: data.blog.meta_title || "",
           meta_description: data.blog.meta_description || "",
           meta_keywords: data.blog.meta_keywords || "",
@@ -103,7 +106,12 @@ const UpdateBlog = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === "slug") {
+      setFormData({ ...formData, slug: formatSlugInput(value) });
+      return;
+    }
+    setFormData({ ...formData, [name]: value });
   };
 
   // Handle select change
@@ -211,6 +219,21 @@ const UpdateBlog = () => {
         onChange={handleChange}
         disabled={loading}
       />
+
+      <Label>Slug URL</Label>
+      <Input
+        name="slug"
+        value={formData.slug}
+        onChange={handleChange}
+        onBlur={() =>
+          setFormData((prev) => ({ ...prev, slug: normalizeSlug(prev.slug) }))
+        }
+        disabled={loading}
+        placeholder="e.g. my blog post"
+      />
+      <p className="text-xs text-muted-foreground">
+        Blog will open at /{normalizeSlug(formData.slug) || "your-slug-url"}
+      </p>
 
       <Label>Meta Title</Label>
       <Input

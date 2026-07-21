@@ -1,6 +1,5 @@
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import { NextResponse } from "next/server";
-// import RitzBlogModel from "@/models/Blog.Schema";
 import fs from "fs";
 import path from "path";
 import RitzCats from "@/models/RitzCats.Schema";
@@ -8,21 +7,16 @@ import RitzBlogModel from "@/models/Blog.Schema";
 import ManagementActivitiesModel from "@/models/ManagementActivities";
 import jwt from "jsonwebtoken";
 import ManagementModel from "@/models/Management";
-
-// export function generateSlug(name) {
-//   return name
-//     .toLowerCase()
-//     .trim()
-//     .replace(/[^\w\s-]/g, "")
-//     .replace(/\s+/g, "-");
-// }
+import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
+import {
+  generateSlugFromTitle,
+  isValidSlugInput,
+  normalizeSlug,
+} from "@/lib/slugify";
+import { BLOG_AUTHORS, isBlogAuthor } from "@/lib/blogAuthors";
 
 export function generateSlug(title) {
-  return title
-    .toLowerCase()            // convert to lowercase
-    .replace(/[^a-z0-9\s]/g, '') // remove special characters
-    .trim()                   // remove leading/trailing spaces
-    .replace(/\s+/g, '-');    // remove duplicate hyphens
+  return generateSlugFromTitle(title);
 }
 
 async function saveFileToUploads(file, filename) {
@@ -39,12 +33,22 @@ async function saveFileToUploads(file, filename) {
   return `/images/${filename}`;
 }
 
+async function resolveUniqueSlug(baseSlug, publishStatus) {
+  let blogSlug = baseSlug;
+  let existingSlug = await RitzBlogModel.findOne({ blogSlug });
+
+  if (existingSlug && publishStatus === "draft") {
+    blogSlug = `${baseSlug}-draft-${Date.now()}`;
+    existingSlug = await RitzBlogModel.findOne({ blogSlug });
+  }
+
+  return { blogSlug, existingSlug };
+}
+
 export async function POST(request) {
   try {
     await connectMongoDB();
-    // Only super_admin and editor Can Add A New Blog 
     const token = request.headers.get("Authorization")?.split(" ")[1];
-    console.log("Token:", request.headers);
     if (!token) {
       return NextResponse.json({ message: "Token is required" }, { status: 400 });
     }
@@ -59,31 +63,101 @@ export async function POST(request) {
     if (!actor || !actor.isActive) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
+
     const formData = await request.formData();
-    const blogTitle = formData.get("blogTitle");
+    const blogTitle = String(formData.get("blogTitle") || "").trim();
+    const blogSlugInput = formData.get("blogSlug");
     const metaKeywords = formData.get("metaKeywords");
     const blogBodyRaw = formData.get("blogBody");
-    const blogCategory = formData.get("blogCategory"); //mtDesc
+    const blogCategory = formData.get("blogCategory");
     const mtDesc = formData.get("mtDesc");
-    let blogBannerPath = "";
-    const innerImgMap = {};
+    const blogAuthorRaw = String(formData.get("blogAuthor") || "").trim();
+    const publishStatus = String(formData.get("publishStatus") || "published");
+    const scheduledAtRaw = formData.get("scheduledAt");
 
-    // Handle Category ID Blog Description & Blog Slug :
-    let blogDescription;
-    const blogSlug = generateSlug(blogTitle);
-    const fetchCat = await RitzCats.findOne({ categorySlug: blogCategory });
+    if (!blogTitle) {
+      return NextResponse.json({ message: "Blog title is required" }, { status: 400 });
+    }
 
-    if (!fetchCat) {
-      console.log("CAt Not Found");
+    if (!blogAuthorRaw || !isBlogAuthor(blogAuthorRaw)) {
       return NextResponse.json(
-        { message: "Category not found" },
-        {
-          status: 404,
-        }
+        { message: `Please select a valid author (${BLOG_AUTHORS.join(", ")})` },
+        { status: 400 }
       );
     }
 
-    const categoryId = fetchCat._id;
+    if (!["draft", "scheduled", "published"].includes(publishStatus)) {
+      return NextResponse.json({ message: "Invalid publish status" }, { status: 400 });
+    }
+
+    let scheduledAt = null;
+    if (publishStatus === "scheduled") {
+      if (!scheduledAtRaw) {
+        return NextResponse.json(
+          { message: "Schedule date and time are required" },
+          { status: 400 }
+        );
+      }
+      scheduledAt = new Date(String(scheduledAtRaw));
+      if (Number.isNaN(scheduledAt.getTime()) || scheduledAt <= new Date()) {
+        return NextResponse.json(
+          { message: "Scheduled time must be in the future" },
+          { status: 400 }
+        );
+      }
+    }
+
+    const baseSlug = blogSlugInput
+      ? normalizeSlug(String(blogSlugInput))
+      : generateSlug(blogTitle);
+
+    if (!baseSlug || !isValidSlugInput(baseSlug)) {
+      return NextResponse.json(
+        {
+          message:
+            "A valid slug URL is required (letters, numbers, and hyphens only)",
+        },
+        { status: 400 }
+      );
+    }
+
+    const { blogSlug, existingSlug } = await resolveUniqueSlug(
+      baseSlug,
+      publishStatus
+    );
+
+    if (existingSlug) {
+      return NextResponse.json(
+        {
+          message: "This slug URL is already in use. Please choose a different one.",
+        },
+        { status: 409 }
+      );
+    }
+
+    let fetchCat = blogCategory
+      ? await RitzCats.findOne({ categorySlug: blogCategory })
+      : null;
+
+    if (!fetchCat && publishStatus === "draft") {
+      fetchCat = await RitzCats.findOne().sort({ createdAt: 1 });
+    }
+
+    if (!fetchCat) {
+      return NextResponse.json({ message: "Category not found" }, { status: 404 });
+    }
+
+    if (publishStatus === "published") {
+      if (!blogCategory || blogCategory === "none-selected") {
+        return NextResponse.json({ message: "Please select a category" }, { status: 400 });
+      }
+      if (!mtDesc) {
+        return NextResponse.json({ message: "Meta description is required" }, { status: 400 });
+      }
+    }
+
+    let blogBannerPath = "";
+    const innerImgMap = {};
 
     for (const [key, value] of formData.entries()) {
       if (value instanceof File) {
@@ -98,38 +172,133 @@ export async function POST(request) {
         }
       }
     }
-    const blogBodyParsed = JSON.parse(blogBodyRaw || "[]");
+
+    if (publishStatus === "published" && !blogBannerPath) {
+      return NextResponse.json(
+        { message: "Cover image is required to publish" },
+        { status: 400 }
+      );
+    }
+
+    let blogBodyParsed = [];
+    try {
+      blogBodyParsed = JSON.parse(blogBodyRaw || "[]");
+    } catch {
+      blogBodyParsed = [];
+    }
+
+    if (!Array.isArray(blogBodyParsed) || blogBodyParsed.length === 0) {
+      blogBodyParsed = [
+        {
+          metaTitle: blogTitle,
+          metaDescription: "",
+        },
+      ];
+    }
+
     const blogBody = blogBodyParsed.map((item, index) => ({
-      ...item,
+      metaTitle: item.metaTitle || blogTitle,
+      metaDescription: item.metaDescription || "",
       innerImg: innerImgMap[index] || "",
     }));
 
-    blogDescription = blogBody[0].metaDescription;
+    if (publishStatus === "published") {
+      const hasContent = blogBody.some(
+        (item) => String(item.metaDescription || "").trim().length > 0
+      );
+      if (!hasContent) {
+        return NextResponse.json(
+          { message: "Add page content before publishing" },
+          { status: 400 }
+        );
+      }
+    }
+
+    const blogDescription =
+      blogBody.find((item) => String(item.metaDescription || "").trim())?.metaDescription ||
+      blogBody[0]?.metaDescription ||
+      "";
+
+    const isLive = publishStatus === "published";
+    const publishedAt =
+      publishStatus === "published"
+        ? new Date()
+        : publishStatus === "scheduled"
+          ? null
+          : null;
 
     const newBlog = await RitzBlogModel.create({
       blogTitle,
       blogBanner: blogBannerPath,
       blogBody,
       metaKeywords,
-      blogCategoryId: categoryId,
-      blogStatus: true,
+      blogCategoryId: fetchCat._id,
+      blogStatus: isLive,
+      publishStatus,
+      scheduledAt: publishStatus === "scheduled" ? scheduledAt : undefined,
+      publishedAt,
       blogSlug,
       blogDescription,
       mtDesc,
+      blogAuthor: blogAuthorRaw,
     });
-    // Create A New Management Activity
-    const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) added a new blog: ${blogTitle}`, activityTime: new Date() });
+
+    const activityLabel =
+      publishStatus === "draft"
+        ? "saved a draft blog"
+        : publishStatus === "scheduled"
+          ? "scheduled a blog"
+          : "added a new blog";
+
+    const newManagementActivity = new ManagementActivitiesModel({
+      managementId: actor._id,
+      activity: `User ${actor.name} (${actor.email}) ${activityLabel}: ${blogTitle}`,
+      activityTime: new Date(),
+    });
     await newManagementActivity.save();
 
+    if (publishStatus === "scheduled") {
+      const { ensureScheduledBlogScheduler } = await import(
+        "@/lib/scheduledBlogScheduler"
+      );
+      ensureScheduledBlogScheduler();
+    }
+
+    if (isLive) {
+      await revalidateBlogListingPages();
+    }
+
     return NextResponse.json(
-      { message: "Blog Created", blog: newBlog },
+      {
+        message:
+          publishStatus === "draft"
+            ? "Draft saved successfully"
+            : publishStatus === "scheduled"
+              ? "Blog scheduled successfully. It will publish automatically at the chosen time."
+              : "Blog published successfully",
+        blog: newBlog,
+        scheduledAt:
+          publishStatus === "scheduled" && scheduledAt
+            ? scheduledAt.toISOString()
+            : undefined,
+      },
       { status: 201 }
     );
   } catch (error) {
-    // console.log("Error uploading blog:", error);
+    if (error?.code === 11000) {
+      const field = Object.keys(error.keyPattern || {})[0] || "field";
+      const friendlyField = field === "blogTitle" ? "title" : field === "blogSlug" ? "URL slug" : field;
+      return NextResponse.json(
+        {
+          message: `A blog with this ${friendlyField} already exists. Please use a different ${friendlyField} or edit the existing blog.`,
+        },
+        { status: 409 }
+      );
+    }
+
     return NextResponse.json(
       { message: "Internal Server Error", error: error.message },
       { status: 500 }
-    ); 
+    );
   }
 }

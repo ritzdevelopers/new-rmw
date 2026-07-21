@@ -3,17 +3,21 @@ import { NextRequest, NextResponse } from "next/server";
 import RitzBlogModel from "@/models/Blog.Schema";
 import fs from "fs";
 import path from "path";
-import { generateSlug } from "../../add-new-blog/route";
+import {
+  generateSlugFromTitle,
+  isValidSlugInput,
+  normalizeSlug,
+} from "@/lib/slugify";
 import jwt from "jsonwebtoken";
 import ManagementModel from "@/models/Management";
 import ManagementActivitiesModel from "@/models/ManagementActivities";
+import { revalidateBlogListingPages } from "@/lib/revalidateBlogs";
+import { isBlogAuthor } from "@/lib/blogAuthors";
 
 interface BlogBodyItem {
-    pageTitle: string;
-    pageDesc: string;
-    innerImg: string;
-    metaTitle?: string;
-    metaDescription?: string;
+    metaTitle: string;
+    metaDescription: string;
+    innerImg?: string;
 }
 
 async function saveFileToUploads(file: File, filename: string): Promise<string> {
@@ -63,10 +67,41 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
         const formData = await req.formData();
         const blogId = params.blogID;
         const blogTitle = formData.get("blogTitle");
+        const blogSlugInput = formData.get("blogSlug");
         const metaKeywords = formData.get("metaKeywords");
         const blogBodyRaw = formData.get("blogBody");
         const blogCategoryId = formData.get("blogCategoryId") || formData.get("blogCategory"); // Support both for backward compatibility
         const mtDesc = formData.get("mtDesc");
+        const blogAuthorRaw = String(formData.get("blogAuthor") || "").trim();
+
+        if (blogAuthorRaw && !isBlogAuthor(blogAuthorRaw)) {
+            return NextResponse.json(
+                { message: "Please select a valid author from the list." },
+                { status: 400 }
+            );
+        }
+
+        const blogSlug = blogSlugInput
+            ? normalizeSlug(String(blogSlugInput))
+            : generateSlugFromTitle(String(blogTitle || ""));
+
+        if (!blogSlug || !isValidSlugInput(blogSlug)) {
+            return NextResponse.json(
+                { message: "A valid slug URL is required (letters, numbers, and hyphens only)" },
+                { status: 400 }
+            );
+        }
+
+        const slugConflict = await RitzBlogModel.findOne({
+            blogSlug,
+            _id: { $ne: blogId },
+        });
+        if (slugConflict) {
+            return NextResponse.json(
+                { message: "This slug URL is already in use. Please choose a different one." },
+                { status: 409 }
+            );
+        }
 
         let blogBannerPath = "";
         const innerImgMap: Record<string, string> = {};
@@ -79,7 +114,13 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             return NextResponse.json({ message: "Blog not found" }, { status: 404 });
         }
 
-        const existingBlogBody: BlogBodyItem[] = existingBlog.blogBody || [];
+        const existingBlogBody: BlogBodyItem[] = (existingBlog.blogBody || []).map(
+            (item) => ({
+                metaTitle: item.metaTitle || "",
+                metaDescription: item.metaDescription || "",
+                innerImg: item.innerImg || "",
+            })
+        );
         const prevBannerPath: string = existingBlog.blogBanner;
 
         // Upload new files (if any) and mark old ones for deletion
@@ -124,15 +165,20 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             blogBanner?: string;
             blogSlug?:string;
             mtDesc?: FormDataEntryValue | null;
+            blogAuthor?: string;
         }> = {
             blogTitle,
             blogBody: updatedBlogBody,
             metaKeywords,
             blogCategoryId: blogCategoryId || undefined,
             blogStatus:true,
-            blogSlug: generateSlug(blogTitle),
+            blogSlug,
             mtDesc: mtDesc || undefined,
         };
+
+        if (blogAuthorRaw) {
+            updateData.blogAuthor = blogAuthorRaw;
+        }
 
         if (blogBannerPath) {
             updateData.blogBanner = blogBannerPath;
@@ -147,6 +193,8 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
         // Create A New Management Activity
         const newManagementActivity = new ManagementActivitiesModel({ managementId: actor._id, activity: `User ${actor.name} (${actor.email}) updated a blog: ${existingBlog.blogTitle}`, activityTime: new Date() });
         await newManagementActivity.save();
+
+        await revalidateBlogListingPages();
 
         return NextResponse.json(
             { message: "Blog Updated Successfully", blog: updatedBlog },

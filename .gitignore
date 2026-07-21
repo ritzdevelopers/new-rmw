@@ -41,5 +41,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-public/sitemap-0.xml
+# Generated at build time (postbuild) — do not commit; server regenerates on each deploy
 public/sitemap.xml
+public/sitemap-0.xml
+public/page-sitemap.xml
+public/post-sitemap.xml
+public/images-sitemap.xml
+data/sitemap-0-base.xml

@@ -3,14 +3,21 @@ import type { Metadata } from "next";
 import BlogInner from "@/components/blogs/inner/BlogInner";
 import { get_single_blog } from "@/app/api/get_all_blogs/[slug]/route";
 import { GET_ALL_BLOGS } from "@/app/api/get_all_blogs/route";
+import { normalizeBlogSlug } from "@/lib/blogUrl";
+import { toPlainObject } from "@/lib/toPlainObject";
 
 type BlogLayoutData = { blog: any; categoryName: string; all_categories: any; latest_3_blogs: any; related_blogs: any };
 
 const SITE_ORIGIN = "https://ritzmediaworld.com";
 
+/** Blog slugs that must not emit a rel=canonical tag. */
+const SLUGS_WITHOUT_CANONICAL = new Set(["top-10-seo-service-companies-in-noida"]);
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-    const { slug } = await params;
+    const { slug: rawSlug } = await params;
+    const slug = normalizeBlogSlug(rawSlug);
     const canonicalUrl = `${SITE_ORIGIN}/${slug}`;
+    const omitCanonical = SLUGS_WITHOUT_CANONICAL.has(slug);
     const result = await get_single_blog(slug);
     const data: BlogLayoutData | null = Array.isArray(result) && (result[1] as { status?: number })?.status === 200
         ? (result[0] as BlogLayoutData)
@@ -25,9 +32,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         title,
         description: meta_description || undefined,
         keywords: keywords.length > 0 ? keywords : undefined,
-        alternates: {
-            canonical: canonicalUrl,
-        },
+        ...(!omitCanonical && {
+            alternates: {
+                canonical: canonicalUrl,
+            },
+        }),
         openGraph: {
             title,
             description: meta_description || undefined,
@@ -48,22 +57,22 @@ async function BlogPageContent({ slug }: { slug: string }) {
         : null;
     const { blog, categoryName, all_categories, latest_3_blogs, related_blogs } = data ?? { blog: null, categoryName: "", all_categories: null, latest_3_blogs: null, related_blogs: null };
     const all_blogs = await GET_ALL_BLOGS();
- 
+
     return (
         <BlogInner
             slug={slug}
             category={categoryName}
-            blog={blog}
+            blog={toPlainObject(blog)}
             categoryName={categoryName}
-            all_categories={all_categories}
-            latest_3_blogs={latest_3_blogs}
-            related_blogs={related_blogs}
-            all_blogs={all_blogs?.data ?? null}
+            all_categories={toPlainObject(all_categories)}
+            latest_3_blogs={toPlainObject(latest_3_blogs)}
+            related_blogs={toPlainObject(related_blogs)}
+            all_blogs={toPlainObject(all_blogs?.data ?? null)}
         />
     );
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
-    return <BlogPageContent slug={slug} />;
+    const { slug: rawSlug } = await params;
+    return <BlogPageContent slug={normalizeBlogSlug(rawSlug)} />;
 }

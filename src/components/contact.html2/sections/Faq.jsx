@@ -8,51 +8,51 @@ const NAVY_ACTIVE = "#1E255E";
 const FAQ_ITEMS = [
     {
         id: "01",
-        question: "Is Ritz Media World a real estate digital marketing agency in India?",
+        question: "How can I expect the response after submitting the form?",
         answer:
-            "Yes Ritz Media World is a real estate digital marketing agency in India.",
+            "We get back to you within 2–4 business hours. For urgent campaign or marketing queries, we prioritize faster replies, because as a digital marketing agency, we know your time is valuable.",
     },
     {
         id: "02",
         question: "Does Ritz Media World offer creative services in Delhi NCR?",
         answer:
-            "Yes we offer creative services in Delhi Noida and Delhi NCR.",
+            "Yes! We're a 360 degree digital marketing agency offering creative services, SEO services, social media management, paid ads, website design, and real estate lead generation, all across Delhi NCR.",
     },
     {
         id: "03",
-        question: "Is Ritz Media World a full service marketing agency?",
+        question: "How soon can digital marketing start showing results?",
         answer:
-            "Yes we offer SEO, Social Media Marketing, Branding, PPC, Web Designing, Newspaper Ad & FM radio Ad Services.",
+            "Paid ads can deliver results within days. SEO services take 3–6 months but build lasting growth. We recommend combining both for short-term wins and long-term authority.",
     },
     {
         id: "04",
-        question: " Does Ritz Media World provide social media marketing services?",
+        question: "Can you help generate real estate leads?",
         answer:
-            "Yes we offer social media marketing, Meta Ads, Instagram marketing, and content creation services.",
+            "Absolutely. As a specialized real estate lead generation agency, we run targeted Meta and Google Ad campaigns, build high-converting landing pages, and deliver genuine buyer and investor enquiries, not just clicks.",
     },
     {
         id: "05",
-        question: " Is Ritz Media World a creative agency in Noida?",
+        question: "Can I discuss my project before making a commitment?",
         answer:
-            "Yes Ritz Media World is a creative agency in Noida and offers branding and advertising services.",
+            "Of course! We offer a free consultation, no pressure, no commitment. Just an honest conversation about your goals and how our digital marketing and creative services can help you get there.",
     },
     {
         id: "06",
-        question: " Does Ritz Media World offer newspaper and radio advertising?",
+        question: "How do I get started with Ritz Media World?",
         answer:
-            "Yes we offer newspaper advertising, print media advertising and FM Radio advertising services",
+            "Simple, fill out the inquiry form, call, or email us. We'll schedule a quick discovery call and build a customized plan covering SEO services, paid ads, creative services, or whatever your brand needs.",
     },
     {
         id: "07",
-        question: " Does Ritz Media World provide SEO and PPC services?",
+        question: "Can you manage both organic and paid marketing?",
         answer:
-            "Yes we offer SEO, Google Ads, PPC, performance marketing services.",
+            "Yes! We combine SEO services and organic strategies with paid advertising to deliver both immediate visibility and long-term growth, all managed by one dedicated digital marketing agency team.",
     },
     {
         id: "08",
-        question: "Why choose Ritz Media World?",
+        question: "Why should I contact Ritz Media World today?",
         answer:
-            "We combine creative branding, digital marketing and performance strategies and help brands grow at a faster rate.",
+            "Your competitors aren't waiting, so why are you? We're Delhi NCR's digital marketing agency that turns scrollers into buyers. Strong SEO services, sharp creative services, and real estate lead generation that actually delivers. Let's start today.",
     },
 ];
 
@@ -87,7 +87,7 @@ function Faq() {
                         <h2
                             className={`${pageStyles.fontMontserrat} text-[30px] font-semibold leading-[1.05] tracking-[-0.01em] text-[#0E0E0E] text-center lg:text-left sm:text-[35px] md:text-[40px] xl:text-[45px] lg:text-[30px]`}
                         >
-                            Frequently asked questions
+                            Frequently Asked Questions
                         </h2>
 
                         <p
@@ -144,11 +144,11 @@ function Faq() {
                                         >
                                             {item.id}
                                         </span>
-                                        <span
-                                            className={`${pageStyles.fontMontserrat} flex-1 text-[16px] font-semibold leading-[1.32] sm:text-[17px] lg:text-[18px]`}
+                                        <h3
+                                            className={`${pageStyles.fontMontserrat} flex-1 text-[16px] font-semibold leading-[1.32] sm:text-[17px] lg:text-[18px] m-0`}
                                         >
                                             {item.question}
-                                        </span>
+                                        </h3>
                                     </button>
 
                                     <div

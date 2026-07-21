@@ -1,5 +1,5 @@
 import { MergedBlogs2 } from "@/allPages/blogPage/Articles";
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useCallback } from "react";
 
 interface BlogContextType {
   blogTitle: string;
@@ -16,6 +16,7 @@ interface BlogContextType {
   setMetaDescription: (val: string) => void;
   setMetaKeywords: (val: string) => void;
   setMtDesc: (val: string) => void;
+  resetBlogForm: () => void;
   blogs: MergedBlogs2[];
   setBlogs: React.Dispatch<React.SetStateAction<MergedBlogs2[]>>;
   liveUsers: number;
@@ -36,6 +37,17 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
   const [mtDesc, setMtDesc] = useState("");
   const [blogs, setBlogs] = useState<MergedBlogs2[]>([]);
   const [liveUsers, setLiveUsers] = useState(0);
+
+  const resetBlogForm = useCallback(() => {
+    setBlogTitle("");
+    setBlogBanner("");
+    setMetaTitle("");
+    setMetaDescription("");
+    setInnerImg("");
+    setMetaKeywords("");
+    setMtDesc("");
+  }, []);
+
   return (
     <BlogContext.Provider
       value={{
@@ -53,6 +65,7 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
         setMetaDescription,
         setMetaKeywords,
         setMtDesc,
+        resetBlogForm,
         blogs,
         setBlogs,
         liveUsers,

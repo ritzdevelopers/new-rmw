@@ -8,11 +8,22 @@ import Image from "next/image";
 import styles from "@/components/home-v3/services/page.module.css";
 import Textimonials from "@/components/influencer-marketing-agency-in-india/Section5";
 import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Process3D from "./3dprocess";
 import Services3D from "./Services";
 import Faq3D from "./faq";
+import {
+    SHOWCASE_IMAGES,
+    SHOWCASE_INITIAL_VISIBLE,
+} from "./showcase-images";
+import type { RenderingServiceTabSlug } from "./service-tab-slugs";
 
-function Page() {
+type PageProps = {
+    initialTabSlug?: RenderingServiceTabSlug;
+};
+
+function Page({ initialTabSlug }: PageProps = {}) {
+    const pathname = usePathname();
     const EXPLORE_ARROW_IMAGE =
         "/service-v3/celebrity-endorsements/s3/group-105398-1.svg";
     const [isMobile, setIsMobile] = useState(false);
@@ -27,20 +38,15 @@ function Page() {
 
         return () => window.removeEventListener("resize", checkScreen);
     }, []);
-    const images = [
-        { id: 1, image: "/services/3drendring/3d1.png" },
-        { id: 2, image: "/services/3drendring/3d2.png" },
-        { id: 3, image: "/services/3drendring/3d3.png" },
-        { id: 4, image: "/services/3drendring/3d4.png" },
-        { id: 5, image: "/services/3drendring/3d5.png" },
-        { id: 6, image: "/services/3drendring/3d6.png" },
-        { id: 7, image: "/services/3drendring/3d7.png" },
-        { id: 8, image: "/services/3drendring/3d8.png" },
-        { id: 9, image: "/services/3drendring/3d9.png" },
-        { id: 10, image: "/services/3drendring/3d10.png" },
-        { id: 11, image: "/services/3drendring/3d11.png" },
-        { id: 12, image: "/services/3drendring/3d12.png" },
-    ];
+    const images = SHOWCASE_IMAGES;
+    const [showAllShowcase, setShowAllShowcase] = useState(false);
+    const visibleCount = showAllShowcase ? images.length : SHOWCASE_INITIAL_VISIBLE;
+    const visibleImages = images.slice(0, visibleCount);
+    const primaryGrid = visibleImages.slice(0, 8);
+    const secondaryGrid = visibleImages.slice(8, 11);
+    const extraGrid = visibleImages.slice(11);
+    const hasMoreShowcase = images.length > SHOWCASE_INITIAL_VISIBLE;
+
     const [viewerOpen, setViewerOpen] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -74,7 +80,8 @@ function Page() {
                     <div className="relative hidden h-[32px] w-[140px] md:block md:h-[37px] md:w-[170px]">
                         <img
                             src="/home-v3/service-imgs/s1/yellow-reactangle.png"
-                            alt=""
+                            alt="Ritz Media World – 3D rendering services badge"
+                            title="Ritz Media World – 3D rendering services badge"
                             className="h-full w-full object-contain"
                         />
                         <p
@@ -93,16 +100,16 @@ function Page() {
 
                     </h1>
 
-                    <p className=" text-[14px] font-normal leading-[1.5] text-white sm:text-[16px] md:text-[13px] lg:text-[15px] lg:leading-[1.45] xl:whitespace-nowrap xl:px-14 lg:px-13 md:px-12 xl:text-[22px]"
+                    <h2 className=" text-[14px] font-normal leading-[1.5] text-white sm:text-[16px] md:text-[13px] lg:text-[15px] lg:leading-[1.45] xl:whitespace-nowrap xl:px-14 lg:px-13 md:px-12 xl:text-[22px]"
                         style={{ fontFamily: "MontserratMedium, Montserrat, sans-serif" }}>
                         Experience photo-realistic 3D exterior renderings that bring <br/> your building designs to life.
-                    </p>
+                    </h2>
                 </div>
             </section>
 
             <section className="flex w-full justify-center bg-white px-4 py-[35px] sm:px-6 md:py-[70px]">
                 <div className="mx-auto flex w-full  flex-col items-center text-center">
-                    <h2
+                    <p
                         className="text-[18px] leading-[25px] text-[#000000] sm:text-[28px] sm:leading-[40px] lg:text-[30px] md:leading-[42px] md:text-[25px]"
                         style={{
                             fontFamily: "MontserratRegular, Montserrat, sans-serif",
@@ -111,7 +118,7 @@ function Page() {
                         }}
                     >
                         See It Before It Exists. Sell It Before It’s Built.
-                    </h2>
+                    </p>
 
                     <p
                         className=" mt-2 lg:mt-4 xl:mt-6 text-[14px] leading-[26px] text-[#000000] sm:mt-7 sm:text-[16px] sm:leading-[28px] md:mt-4 max-w-[1050px]"
@@ -121,7 +128,14 @@ function Page() {
                             letterSpacing: 0,
                         }}
                     >
-                        All innovations start as an idea- but they sell when viewed. At Ritz Media World, the vision is crystal clear; to produce imagery which enhances value and influence choice. Our 3D architecture rendering and real estate visualization approach goes above and beyond – seamlessly merging together photorealistic 3D renders, walkthroughs and interior and exterior design visuals, coupled with high-quality CGI, to produce visuals that inspire decision-making and deliver tangible results.
+                        All innovations start as an idea- but they sell when viewed. At{" "}
+                        <a href="https://ritzmediaworld.com" target="_blank" rel="noopener noreferrer" title="Ritz Media World" className="font-semibold text-[#C99237] hover:underline">
+                            Ritz Media World
+                        </a>
+                        , the vision is crystal clear; to produce imagery which enhances value and influence choice. Our{" "}
+                        <b>3D architecture rendering</b> and <b>real estate visualization</b> approach goes above and beyond – seamlessly merging together{" "}
+                        <b>photorealistic 3D renders</b>, <b>walkthroughs</b> and <b>interior and exterior design visuals</b>, coupled with high-quality{" "}
+                        <b>CGI</b>, to produce visuals that inspire <b>decision-making</b> and deliver <b>tangible results</b>.
                     </p>
 
                     <p
@@ -132,19 +146,40 @@ function Page() {
                             letterSpacing: 0,
                         }}
                     >
-                        At Ritz Media World, technology and architecture collide. The outcome is far beyond an image; instead, these high-impact visuals have been developed to improve presentation, attract attention and ensure conversions quicker.
-
+                        At{" "}
+                        <a
+                            href="https://ritzmediaworld.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Ritz Media World"
+                            className="font-semibold text-[#C99237] hover:underline"
+                        >
+                            Ritz Media World
+                        </a>
+                        , <b>technology and architecture</b> collide. The outcome is far beyond an image; instead, these{" "}
+                        <b>high-impact visuals</b> have been developed to improve <b>presentation</b>, <b>attract attention</b> and ensure{" "}
+                        <b>conversions</b> quicker.
                     </p>
 
                     <p
-                        className="mt-6 lg:mt-4 xl:mt-6 max-w-[850px] text-[14px] leading-[26px] text-[#000000]  sm:text-[16px] sm:leading-[28px] md:mt-5"
+                        className="mt-6 lg:mt-4 xl:mt-6 max-w-[850px] text-[16px] leading-[28px] text-[#000000] sm:text-[18px] sm:leading-[30px] md:mt-5 md:text-[20px] md:leading-[32px]"
                         style={{
                             fontFamily: "OpenSansSemiBold, Open Sans, sans-serif",
                             fontWeight: 600,
                             letterSpacing: 0,
                         }}
                     >
-                        Experience cutting-edge 3D + AI walkthroughs at 5X speed and 5X lower cost, now available at Ritz Media World - bringing your projects to life faster and more affordably than ever.
+                        Experience cutting-edge 3D + AI walkthroughs at 5X speed and 5X lower cost, now available at{" "}
+                        <a
+                            href="https://ritzmediaworld.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Ritz Media World"
+                            className="font-semibold text-[#C99237] hover:underline"
+                        >
+                            Ritz Media World
+                        </a>{" "}
+                        - bringing your projects to life faster and more affordably than ever.
                     </p>
 
                     <div className="md:mt-4  mt-4 lg:mt-6 xl:mt-8 flex items-center justify-center gap-4 sm:mt-10">
@@ -165,8 +200,10 @@ function Page() {
                             aria-label="Let's Talk Today"
                             className="flex h-10 w-10 items-center justify-center rounded-full bg-[#C99237] transition-colors hover:bg-[#0F1640] sm:h-11 sm:w-11"
                         >
-                            <Image src={EXPLORE_ARROW_IMAGE}
-                                alt=""
+                            <Image
+                                src={EXPLORE_ARROW_IMAGE}
+                                alt="Contact Ritz Media World – arrow icon"
+                                title="Let's Talk Today"
                                 width={22}
                                 height={20}
                             />
@@ -189,43 +226,79 @@ function Page() {
                             3D Rendering Showcase
                         </h2>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
-                            {images.slice(0, 8).map((item, index) => {
-                                return (
-                                    <button
-                                        key={item.id}
-                                        type="button"
-                                        onClick={() => openViewer(index)}
-                                        className="group cursor-pointer overflow-hidden rounded-sm border-0 bg-transparent p-0 text-left"
-                                        aria-label={`View 3D render ${index + 1}`}
-                                    >
-                                        <img
-                                            src={item.image}
-                                            alt={`3D rendering showcase ${index + 1}`}
-                                            className=" w-full object-cover transition duration-500 group-hover:scale-105 "
-                                        />
-                                    </button>
-                                );
-                            })}
+                            {primaryGrid.map((item, index) => (
+                                <button
+                                    key={item.id}
+                                    type="button"
+                                    onClick={() => openViewer(index)}
+                                    className="group cursor-pointer overflow-hidden rounded-sm border-0 bg-transparent p-0 text-left"
+                                    aria-label={`View 3D render ${index + 1}`}
+                                >
+                                    <img
+                                        src={item.image}
+                                        alt={item.alt}
+                                        title={item.title}
+                                        className="w-full object-cover transition duration-500 group-hover:scale-105"
+                                    />
+                                </button>
+                            ))}
                         </div>
-                        <div className="mt-4 grid grid-cols-1 gap-4 sm:mt-5 sm:grid-cols-3 sm:gap-5">
-                            {images.slice(9, 12).map((item, index) => {
-                                return (
+                        {secondaryGrid.length > 0 && (
+                            <div className="mt-4 grid grid-cols-1 gap-4 sm:mt-5 sm:grid-cols-3 sm:gap-5">
+                                {secondaryGrid.map((item, index) => (
                                     <button
                                         key={item.id}
                                         type="button"
-                                        onClick={() => openViewer(index + 9)}
+                                        onClick={() => openViewer(index + 8)}
                                         className="group cursor-pointer overflow-hidden rounded-sm border-0 bg-transparent p-0 text-left"
-                                        aria-label={`View 3D render ${index + 10}`}
+                                        aria-label={`View 3D render ${index + 9}`}
                                     >
                                         <img
                                             src={item.image}
-                                            alt={`3D rendering showcase ${index + 10}`}
+                                            alt={item.alt}
+                                            title={item.title}
                                             className="w-full object-cover transition duration-500 group-hover:scale-105"
                                         />
                                     </button>
-                                );
-                            })}
-                        </div>
+                                ))}
+                            </div>
+                        )}
+                        {extraGrid.length > 0 && (
+                            <div className="mt-4 grid grid-cols-1 gap-4 sm:mt-5 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+                                {extraGrid.map((item, index) => (
+                                    <button
+                                        key={item.id}
+                                        type="button"
+                                        onClick={() => openViewer(index + 11)}
+                                        className="group cursor-pointer overflow-hidden rounded-sm border-0 bg-transparent p-0 text-left"
+                                        aria-label={`View 3D render ${index + 12}`}
+                                    >
+                                        <img
+                                            src={item.image}
+                                            alt={item.alt}
+                                            title={item.title}
+                                            className="w-full object-cover transition duration-500 group-hover:scale-105"
+                                        />
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                        {hasMoreShowcase && !showAllShowcase && (
+                            <div className="mt-8 flex justify-center sm:mt-10">
+                                <button
+                                    type="button"
+                                    onClick={() => setShowAllShowcase(true)}
+                                    className="group relative h-[50px] w-[141px] overflow-hidden rounded-[8px] border border-[#C99237] bg-[#C99237] text-[15px] font-bold text-white transition-colors"
+                                    style={{ fontFamily: "Montserrat, sans-serif" }}
+                                    aria-label="View more 3D rendering showcase images"
+                                >
+                                    <span className="absolute inset-0 translate-x-[-100%] bg-white transition-transform duration-500 ease-in-out group-hover:translate-x-0" />
+                                    <span className="relative z-10 transition-colors duration-500 group-hover:text-[#C99237]">
+                                        View More
+                                    </span>
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </section>
 
@@ -254,7 +327,8 @@ function Page() {
                         </button>
                         <img
                             src={images[currentIndex].image}
-                            alt={`3D rendering showcase ${currentIndex + 1}`}
+                            alt={images[currentIndex].alt}
+                            title={images[currentIndex].title}
                             className="max-h-[80vh] max-w-full object-contain sm:max-h-[85vh] sm:max-w-[90%]"
                         />
                         <button
@@ -269,7 +343,10 @@ function Page() {
                 )}
             </div>
 
-            <Services3D />
+            <Services3D
+                key={initialTabSlug ?? pathname}
+                initialTabSlug={initialTabSlug}
+            />
             <Process3D />
             <Faq3D />
             <Textimonials />

@@ -19,6 +19,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import {
   Table,
@@ -28,9 +38,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Loader2, Trash2 } from "lucide-react";
+import { Eye, EyeOff, KeyRound, Loader2, Trash2 } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+
+function validateManagementPassword(password: string): string | null {
+  const missing: string[] = [];
+  if (password.length < 8) missing.push("at least 8 characters");
+  if (!/[A-Z]/.test(password)) missing.push("an uppercase letter");
+  if (!/[a-z]/.test(password)) missing.push("a lowercase letter");
+  if (!/[0-9]/.test(password)) missing.push("a number");
+  if (!/[^A-Za-z0-9]/.test(password)) missing.push("a special character");
+  if (missing.length === 0) return null;
+  return `Password must include ${missing.join(", ")}.`;
+}
 
 type MeUser = {
   id: string;
@@ -83,6 +104,22 @@ export default function ManagementPage() {
   const [rowBusy, setRowBusy] = useState<Record<string, boolean>>({});
   const [deleteTarget, setDeleteTarget] = useState<ManagementRow | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [passwordTarget, setPasswordTarget] = useState<ManagementRow | null>(
+    null
+  );
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [changingPassword, setChangingPassword] = useState(false);
+
+  const resetPasswordDialog = () => {
+    setPasswordTarget(null);
+    setNewPassword("");
+    setConfirmPassword("");
+    setShowNewPassword(false);
+    setShowConfirmPassword(false);
+  };
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -202,6 +239,60 @@ export default function ManagementPage() {
     }
   };
 
+  const confirmChangePassword = async () => {
+    if (!passwordTarget) return;
+    const policyError = validateManagementPassword(newPassword);
+    if (policyError) {
+      toast.error(policyError);
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      toast.error("Passwords do not match.");
+      return;
+    }
+    const id = rowId(passwordTarget);
+    setChangingPassword(true);
+    try {
+      const res = await fetch("/api/management/change-password", {
+        method: "PATCH",
+        headers: authHeaders(),
+        body: JSON.stringify({ userId: id, password: newPassword }),
+      });
+      const j = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        toast.error(
+          typeof j.message === "string" ? j.message : "Password update failed"
+        );
+        return;
+      }
+      toast.success("Password updated");
+      resetPasswordDialog();
+      if (me?.role === "super_admin") {
+        const actRes = await fetch("/api/management/activities", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("rm_token")}`,
+          },
+        });
+        if (actRes.ok) {
+          const actJson = (await actRes.json()) as {
+            activities?: ActivityRow[];
+          };
+          setActivities(
+            Array.isArray(actJson.activities)
+              ? actJson.activities.map((a) => ({
+                  ...a,
+                  _id: String(a._id),
+                  managementId: String(a.managementId),
+                }))
+              : []
+          );
+        }
+      }
+    } finally {
+      setChangingPassword(false);
+    }
+  };
+
   const confirmDelete = async () => {
     if (!deleteTarget) return;
     const id = rowId(deleteTarget);
@@ -273,7 +364,7 @@ export default function ManagementPage() {
         </h1>
         <p className="text-sm text-muted-foreground">
           {isSuperAdmin
-            ? "Manage team accounts, status, and review the full activity log."
+            ? "Manage team accounts, passwords, status, and review the full activity log."
             : "Update active status or remove non–super-admin accounts."}
         </p>
       </header>
@@ -300,7 +391,7 @@ export default function ManagementPage() {
           <CardTitle className="text-lg">Team</CardTitle>
           <CardDescription>
             {isSuperAdmin
-              ? "All management users. Toggle active status or delete accounts."
+              ? "All management users. Change passwords, toggle status, or delete accounts."
               : "Editors can change editors and other roles except super admins."}
           </CardDescription>
         </CardHeader>
@@ -312,7 +403,7 @@ export default function ManagementPage() {
                 <TableHead>Email</TableHead>
                 <TableHead>Role</TableHead>
                 <TableHead className="w-[100px]">Active</TableHead>
-                <TableHead className="w-[80px] text-right">Actions</TableHead>
+                <TableHead className="w-[120px] text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -353,17 +444,31 @@ export default function ManagementPage() {
                         />
                       </TableCell>
                       <TableCell className="text-right">
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="icon"
-                          className="text-destructive hover:text-destructive"
-                          disabled={deleteDisabled}
-                          onClick={() => setDeleteTarget(row)}
-                          aria-label={`Delete ${row.name}`}
-                        >
-                          <Trash2 className="size-4" />
-                        </Button>
+                        <div className="inline-flex items-center justify-end gap-1">
+                          {isSuperAdmin ? (
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="icon"
+                              disabled={rowBusy[id]}
+                              onClick={() => setPasswordTarget(row)}
+                              aria-label={`Change password for ${row.name}`}
+                            >
+                              <KeyRound className="size-4" />
+                            </Button>
+                          ) : null}
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon"
+                            className="text-destructive hover:text-destructive"
+                            disabled={deleteDisabled}
+                            onClick={() => setDeleteTarget(row)}
+                            aria-label={`Delete ${row.name}`}
+                          >
+                            <Trash2 className="size-4" />
+                          </Button>
+                        </div>
                       </TableCell>
                     </TableRow>
                   );
@@ -416,6 +521,102 @@ export default function ManagementPage() {
           </CardContent>
         </Card>
       ) : null}
+
+      <Dialog
+        open={!!passwordTarget}
+        onOpenChange={(open) => !open && resetPasswordDialog()}
+      >
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Change password</DialogTitle>
+            <DialogDescription>
+              Set a new password for{" "}
+              <strong>{passwordTarget?.name}</strong> ({passwordTarget?.email}).
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-1">
+            <div className="space-y-2">
+              <Label htmlFor="mgmt-new-password">New password</Label>
+              <div className="relative">
+                <Input
+                  id="mgmt-new-password"
+                  type={showNewPassword ? "text" : "password"}
+                  autoComplete="new-password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  disabled={changingPassword}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-1 top-1/2 size-8 -translate-y-1/2"
+                  onClick={() => setShowNewPassword((v) => !v)}
+                  aria-label={
+                    showNewPassword ? "Hide password" : "Show password"
+                  }
+                >
+                  {showNewPassword ? (
+                    <EyeOff className="size-4" />
+                  ) : (
+                    <Eye className="size-4" />
+                  )}
+                </Button>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="mgmt-confirm-password">Confirm password</Label>
+              <div className="relative">
+                <Input
+                  id="mgmt-confirm-password"
+                  type={showConfirmPassword ? "text" : "password"}
+                  autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  disabled={changingPassword}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-1 top-1/2 size-8 -translate-y-1/2"
+                  onClick={() => setShowConfirmPassword((v) => !v)}
+                  aria-label={
+                    showConfirmPassword ? "Hide password" : "Show password"
+                  }
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff className="size-4" />
+                  ) : (
+                    <Eye className="size-4" />
+                  )}
+                </Button>
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Must be at least 8 characters and include uppercase, lowercase, a
+              number, and a special character.
+            </p>
+          </div>
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              disabled={changingPassword}
+              onClick={resetPasswordDialog}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              disabled={changingPassword || !newPassword || !confirmPassword}
+              onClick={() => void confirmChangePassword()}
+            >
+              {changingPassword ? "Updating…" : "Update password"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <AlertDialog
         open={!!deleteTarget}

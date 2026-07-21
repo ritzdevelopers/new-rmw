@@ -22,8 +22,19 @@ function S4() {
       img: "/new-theme/home/digital-advertising.jpg",
       category: "Digital Advertising",
       title: "Digital Advertising",
-      description:
-        "Our digital marketing strategies help brands scale visibility while maintaining lead quality. By combining performance media, analytics, and audience intelligence, we deliver sustainable growth across platforms.",
+      description: (
+        <>
+          Recognized as the best{" "}
+          <b style={{ fontFamily: "OpenSansBold" }}>
+            digital marketing and advertising agency
+          </b>
+          , we deliver performance-driven digital advertising strategies that help businesses increase brand visibility, attract qualified leads, and achieve measurable growth. As a trusted{" "}
+          <b style={{ fontFamily: "OpenSansBold" }}>
+            advertising agency
+          </b>
+          , our experts combine data-driven insights, precision audience targeting, paid media, and advanced analytics to create high-impact campaigns across Google, Meta, LinkedIn, YouTube, and other leading digital platforms, ensuring every marketing investment delivers maximum ROI.
+        </>
+      ),
       stats: [
         { value: "320%", label: "Increase in campaign reach" },
         { value: "78%", label: "Improvement in lead quality" },

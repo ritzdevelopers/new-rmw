@@ -273,6 +273,14 @@ function Section2({ slug, category, blog, all_categories, related_blogs, all_blo
                             }
                         </div>
 
+                        <button
+                            type="button"
+                            onClick={() => window.open("/contact.html", "_blank", "noopener,noreferrer")}
+                            className={`${styles.blogSidebarContactBtn} w-full`}
+                        >
+                            Contact Us
+                        </button>
+
                         {/* Row 2 */}
                         <div className="w-full rounded-[8px] xl:rounded-[10px] relative border border-[#E3E0E0] pt-0">
                             {/* Abs Div  */}

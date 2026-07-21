@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import RitzBlogModel from "@/models/Blog.Schema";
+import { getPublicBlogFilter, isBlogPubliclyVisible } from "@/lib/blogPublish";
 import RitzCats from "@/models/RitzCats.Schema";
 
 // GET single blog by ID | Slug
@@ -43,16 +44,26 @@ export async function GET(
         { status: 404 }
       );
     }
+
+    if (!isBlogPubliclyVisible(blog)) {
+      return NextResponse.json(
+        { message: "Blog not found", success: false },
+        { status: 404 }
+      );
+    }
+
+    const publicFilter = getPublicBlogFilter();
     const blogCat = await RitzCats.findById(blog.blogCategoryId);
     // console.log('====================================');
     // console.log('these are blog cats related ', blogCat);
     // console.log('====================================');
 
     const catRelatedBlogs = await RitzBlogModel.find({
+      ...publicFilter,
       blogCategoryId: blogCat,
     }).sort({ createdAt: -1 })
       .limit(4);
-    const recentBlogs = await RitzBlogModel.find({blogStatus:true}).sort({ createdAt: -1 }).limit(4);
+    const recentBlogs = await RitzBlogModel.find(publicFilter).sort({ createdAt: -1 }).limit(4);
     const categoryN = blogCat?.categoryName;
 
     return NextResponse.json(

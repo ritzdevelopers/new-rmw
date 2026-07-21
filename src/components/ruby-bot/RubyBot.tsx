@@ -58,7 +58,7 @@ function RubyBot() {
             setUniqueId(saved_id);
         }
     }, []);
-    console.log(uniqueId);
+
     const [enquiryForm, setEnquiryForm] = useState({
         name: '',
         phone: '',
@@ -113,7 +113,8 @@ function RubyBot() {
     const silenceTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const [isListening, setIsListening] = useState(false);
     const [isSpeechSupported, setIsSpeechSupported] = useState(true);
-
+    const [isPanelMounted, setIsPanelMounted] = useState(false);
+    const [isPanelActive, setIsPanelActive] = useState(false);
     const clearSilenceTimer = () => {
         if (silenceTimeoutRef.current) {
             clearTimeout(silenceTimeoutRef.current);
@@ -136,6 +137,20 @@ function RubyBot() {
             stopSpeechRecognition();
         }, 5000);
     };
+
+    // Smooth open / close panel animation (delay active state so CSS transition runs)
+    useEffect(() => {
+        if (isRubyOpen) {
+            setIsPanelMounted(true);
+            setIsPanelActive(false);
+            const openTimer = window.setTimeout(() => setIsPanelActive(true), 80);
+            return () => window.clearTimeout(openTimer);
+        }
+
+        setIsPanelActive(false);
+        const closeTimer = window.setTimeout(() => setIsPanelMounted(false), 450);
+        return () => window.clearTimeout(closeTimer);
+    }, [isRubyOpen]);
 
     // Initialize audio on mount
     useEffect(() => {
@@ -495,10 +510,27 @@ function RubyBot() {
         setEnquiryPhoneCountry(DEFAULT_CONTACT_COUNTRY);
     };
 
+    if (!isPanelMounted) {
+        return null;
+    }
+
     return (
-        isRubyOpen && (
-            <div className="fixed inset-0 sm:inset-auto sm:bottom-4 sm:right-4 md:right-16 z-50 flex items-end sm:items-start justify-center sm:justify-end p-0 sm:p-4">
-                <div className="w-full h-full sm:w-[400px] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] sm:rounded-xl bg-white shadow-2xl flex flex-col sm:max-w-[calc(100vw-2rem)] relative">
+        <div
+            className={`fixed inset-0 sm:inset-auto sm:bottom-4 sm:right-4 md:right-16 z-50 flex items-end sm:items-start justify-center sm:justify-end p-0 sm:p-4 transition-opacity duration-500 ease-out ${
+                isPanelActive
+                    ? "opacity-100 pointer-events-auto"
+                    : "opacity-0 pointer-events-none"
+            }`}
+            aria-hidden={!isPanelActive}
+        >
+            <div
+                className={`w-full h-full sm:w-[400px] sm:h-[600px] sm:max-h-[calc(100vh-8rem)] sm:rounded-xl bg-white shadow-2xl flex flex-col sm:max-w-[calc(100vw-2rem)] relative will-change-transform transition-[transform,opacity] duration-700 ease-out ${
+                    isPanelActive
+                        ? "translate-y-0 scale-100 opacity-100"
+                        : "translate-y-10 scale-90 opacity-0 sm:translate-y-8"
+                }`}
+                style={{ transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)" }}
+            >
                     {/* Header */}
                     <div className="bg-[#bc8429] px-3 sm:px-4 py-2.5 sm:py-3 sm:rounded-t-xl flex items-center justify-between flex-shrink-0">
                         <div className="flex items-center gap-2 sm:gap-3">
@@ -781,8 +813,7 @@ function RubyBot() {
                         </div>
                     </div>
                 </div>
-            </div>
-        )
+        </div>
     );
 }
 
