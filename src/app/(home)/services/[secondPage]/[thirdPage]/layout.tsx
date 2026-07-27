@@ -40,8 +40,16 @@ export async function generateMetadata({
 import { getAllSlugs } from "@/lib/meta"; // <-- Add missing import
 
 export async function generateStaticParams() {
-  const slugs = await getAllSlugs("serviceThird");
-  return slugs as { secondPage: string; thirdPage: string }[];
+  try {
+    const slugs = await getAllSlugs("serviceThird");
+    return slugs as { secondPage: string; thirdPage: string }[];
+  } catch (error) {
+    console.warn(
+      "[services/[secondPage]/[thirdPage]] generateStaticParams fallback to []:",
+      error
+    );
+    return [];
+  }
 }
 export const dynamic = "force-dynamic";
 

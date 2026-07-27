@@ -77,43 +77,49 @@ export async function getMetaOrThrow(
   return data;
 }
 
-// ✅ Get all slugs/links based on type for static generation
+// ✅ Get all slugs/links based on type for static generation.
+// Returns [] when DB is unreachable so `next build` is not blocked.
 export async function getAllSlugs(
   type: "blog" | "category" | "serviceSecond" | "serviceThird"
 ): Promise<SlugType[]> {
-  const pool = await getDBPool();
-  let query = "";
+  try {
+    const pool = await getDBPool();
+    let query = "";
 
-  if (type === "blog") {
-    query = "SELECT slug FROM blogs";
-    const [rows]: [BlogRow[], FieldPacket[]] = await pool.query(query);
-    return rows.map((row) => ({ slug: row.slug }));
+    if (type === "blog") {
+      query = "SELECT slug FROM blogs";
+      const [rows]: [BlogRow[], FieldPacket[]] = await pool.query(query);
+      return rows.map((row) => ({ slug: row.slug }));
+    }
+
+    if (type === "category") {
+      query = "SELECT link FROM categories";
+      const [rows]: [CategoryRow[], FieldPacket[]] = await pool.query(query);
+      return rows.map((row) => ({ slug: row.link }));
+    }
+
+    if (type === "serviceSecond") {
+      query = "SELECT link FROM services";
+      const [rows]: [ServiceRow[], FieldPacket[]] = await pool.query(query);
+      return rows.map((row) => ({ slug: row.link }));
+    }
+
+    if (type === "serviceThird") {
+      query = `
+        SELECT service_second.link AS thirdPage, services.link AS secondPage
+        FROM service_second
+        JOIN services ON service_second.service_id = services.id
+      `;
+      const [rows]: [ServiceThirdRow[], FieldPacket[]] = await pool.query(query);
+      return rows.map((row) => ({
+        secondPage: row.secondPage,
+        thirdPage: row.thirdPage,
+      }));
+    }
+
+    return [];
+  } catch (error) {
+    console.warn(`[getAllSlugs] Falling back to [] for "${type}":`, error);
+    return [];
   }
-
-  if (type === "category") {
-    query = "SELECT link FROM categories";
-    const [rows]: [CategoryRow[], FieldPacket[]] = await pool.query(query);
-    return rows.map((row) => ({ slug: row.link }));
-  }
-
-  if (type === "serviceSecond") {
-    query = "SELECT link FROM services";
-    const [rows]: [ServiceRow[], FieldPacket[]] = await pool.query(query);
-    return rows.map((row) => ({ slug: row.link }));
-  }
-
-  if (type === "serviceThird") {
-    query = `
-      SELECT service_second.link AS thirdPage, services.link AS secondPage
-      FROM service_second
-      JOIN services ON service_second.service_id = services.id
-    `;
-    const [rows]: [ServiceThirdRow[], FieldPacket[]] = await pool.query(query);
-    return rows.map((row) => ({
-      secondPage: row.secondPage,
-      thirdPage: row.thirdPage,
-    }));
-  }
-
-  return [];
 }

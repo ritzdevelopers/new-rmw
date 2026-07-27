@@ -22,8 +22,13 @@ export async function generateMetadata({ params }: { params: { categorypage: str
 }
 
 export async function generateStaticParams() {
-  const slugs = (await getAllSlugs('category')) as { slug: string }[]
-  return slugs.map(({ slug }) => ({ categorypage: slug }))
+  try {
+    const slugs = (await getAllSlugs('category')) as { slug: string }[]
+    return slugs.map(({ slug }) => ({ categorypage: slug }))
+  } catch (error) {
+    console.warn('[category/[categorypage]] generateStaticParams fallback to []:', error)
+    return []
+  }
 }
 
 export default async function Layout({
