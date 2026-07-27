@@ -1,5 +1,20 @@
 import { getDBPool } from "@/lib/db";
+import { connectMongoDB } from "@/lib/mongo/dbConntect";
+import EnquiryTrackerModel from "@/models/EnquiryTracker";
+import { getEnquiryIpInfo } from "@/utils/enquiryIpInfo";
+import { validateEnquiryMessage } from "@/utils/enquiryValidation";
 import { NextRequest, NextResponse } from "next/server";
+
+function getClientIp(req: NextRequest): string {
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) {
+    const first = forwarded.split(",")[0]?.trim();
+    if (first) return first;
+  }
+  const realIp = req.headers.get("x-real-ip");
+  if (realIp) return realIp.trim();
+  return "unknown";
+}
 
 // GET /api/enquiries
 export async function GET() {
@@ -14,35 +29,6 @@ export async function GET() {
     return new NextResponse("Failed to fetch enquiries", { status: 500 });
   }
 }
-
-// POST /api/enquiries
-// export async function POST(request: Request) {
-//   try {
-//     const db = getDBPool();
-//     const body = await request.json();
-//     const { etype, name, email, mobile, message } = body;
-
-//     if (!etype || !name || !email || !message) {
-//       return new NextResponse("Missing required fields", { status: 400 });
-//     }
-
-//     const query = `
-//       INSERT INTO enquiries (etype, name, email, mobile, message)
-//       VALUES (?, ?, ?, ?, ?)
-//     `;
-//     const values = [etype, name, email, mobile || "", message];
-
-//     await db.query(query, values);
-
-//     return NextResponse.json(
-//       { message: "Enquiry submitted successfully" },
-//       { status: 201 }
-//     );
-//   } catch (error) {
-//     console.error("POST Enquiry Error:", error);
-//     return NextResponse.json({ message: "Enquiry fail" }, { status: 500 });
-//   }
-// }
 
 // Utility: convert FormData to plain object
 const formDataToObject = (formData: FormData) => {
@@ -101,6 +87,30 @@ function formatTelegramEnquiry(
   return lines.join("\n");
 }
 
+async function saveEnquiryTracker(input: {
+  name: string;
+  email: string;
+  message: string;
+  etype: string;
+  mobile: string | null;
+  clientIp: string;
+}) {
+  try {
+    const ipInfo = await getEnquiryIpInfo(input.clientIp);
+    await connectMongoDB();
+    await EnquiryTrackerModel.create({
+      name: input.name,
+      email: input.email,
+      message: input.message,
+      etype: input.etype,
+      mobile: input.mobile,
+      ...ipInfo,
+    });
+  } catch (trackerError) {
+    console.error("EnquiryTracker save failed:", trackerError);
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const db = getDBPool();
@@ -127,11 +137,30 @@ export async function POST(request: NextRequest) {
     const message = data.message || null;
     const category = data.category || null;
     const resume = data.resumePath || null;
+    const clientIp = getClientIp(request);
 
     // Validate required fields
     if (!etype || !name || !email || !message) {
       return NextResponse.json(
         { success: false, error: "Missing required fields." },
+        { status: 400 }
+      );
+    }
+
+    // Always track IP / geo metadata, even for rejected enquiries
+    await saveEnquiryTracker({
+      name,
+      email,
+      message,
+      etype,
+      mobile,
+      clientIp,
+    });
+
+    const validation = validateEnquiryMessage(message, { name, email });
+    if (!validation.ok) {
+      return NextResponse.json(
+        { success: false, error: validation.error },
         { status: 400 }
       );
     }
@@ -155,8 +184,8 @@ export async function POST(request: NextRequest) {
           body: JSON.stringify({ chat_id: telegramChatId, text }),
         }
       );
-      const data = await response.json();
-      if (!data.ok) console.error("Telegram send failed:", data);
+      const telegramData = await response.json();
+      if (!telegramData.ok) console.error("Telegram send failed:", telegramData);
     }
 
     return NextResponse.json({

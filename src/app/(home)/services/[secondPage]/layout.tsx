@@ -25,8 +25,16 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const slugs = (await getAllSlugs("serviceSecond")) as { slug: string }[];
-  return slugs.map(({ slug }) => ({ secondPage: slug }));
+  try {
+    const slugs = (await getAllSlugs("serviceSecond")) as { slug: string }[];
+    return slugs.map(({ slug }) => ({ secondPage: slug }));
+  } catch (error) {
+    console.warn(
+      "[services/[secondPage]] generateStaticParams fallback to []:",
+      error
+    );
+    return [];
+  }
 }
 
 export default async function Layout({

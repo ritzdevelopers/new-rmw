@@ -121,6 +121,7 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "Contact Enquiry", href: "/admin/enquiry" },
       { label: "Enquiries", href: "/admin/enquiry/enquiries" },
+      { label: "Enquiry Tracker", href: "/admin/enquiry/tracker" },
       { label: "Manage Career", href: "/admin/enquiry/career" },
     ],
   },

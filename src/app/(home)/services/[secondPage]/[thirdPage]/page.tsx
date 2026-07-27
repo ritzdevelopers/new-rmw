@@ -21,12 +21,6 @@ const Page = async ({
   params: Promise<{ secondPage: string; thirdPage: string }>;
 }) => {
   const { secondPage, thirdPage } = await params;
-  const pool = await getDBPool();
-
-  const [services] = await pool.query<RowDataPacket[]>(
-    "SELECT id FROM services WHERE link = ? LIMIT 1",
-    [secondPage]
-  );
 
   let initialData = {
     s3heading1: null as string | null,
@@ -34,33 +28,47 @@ const Page = async ({
     cards: [] as InitialCard[],
   };
 
-  if (services.length > 0) {
-    const serviceId = services[0].id;
-    const [serviceSeconds] = await pool.query<RowDataPacket[]>(
-      `SELECT id, s3heading1, s3endtag
-       FROM service_second
-       WHERE link = ? AND service_id = ?
-       LIMIT 1`,
-      [thirdPage, serviceId]
+  try {
+    const pool = await getDBPool();
+
+    const [services] = await pool.query<RowDataPacket[]>(
+      "SELECT id FROM services WHERE link = ? LIMIT 1",
+      [secondPage]
     );
 
-    if (serviceSeconds.length > 0) {
-      const serviceSecond = serviceSeconds[0];
-      const [cards] = await pool.query<ThirdCardRow[]>(
-        "SELECT id, title, description, image_url FROM service_third WHERE service2_id = ?",
-        [serviceSecond.id]
+    if (services.length > 0) {
+      const serviceId = services[0].id;
+      const [serviceSeconds] = await pool.query<RowDataPacket[]>(
+        `SELECT id, s3heading1, s3endtag
+         FROM service_second
+         WHERE link = ? AND service_id = ?
+         LIMIT 1`,
+        [thirdPage, serviceId]
       );
 
-      initialData = {
-        s3heading1: serviceSecond.s3heading1 ?? null,
-        s3endtag: serviceSecond.s3endtag ?? null,
-        cards: cards.map((item) => ({
-          title: item.title,
-          description: item.description,
-          image_url: item.image_url ?? undefined,
-        })),
-      };
+      if (serviceSeconds.length > 0) {
+        const serviceSecond = serviceSeconds[0];
+        const [cards] = await pool.query<ThirdCardRow[]>(
+          "SELECT id, title, description, image_url FROM service_third WHERE service2_id = ?",
+          [serviceSecond.id]
+        );
+
+        initialData = {
+          s3heading1: serviceSecond.s3heading1 ?? null,
+          s3endtag: serviceSecond.s3endtag ?? null,
+          cards: cards.map((item) => ({
+            title: item.title,
+            description: item.description,
+            image_url: item.image_url ?? undefined,
+          })),
+        };
+      }
     }
+  } catch (error) {
+    console.warn(
+      `[services/${secondPage}/${thirdPage}] DB unavailable, using empty fallback:`,
+      error
+    );
   }
 
   return (
