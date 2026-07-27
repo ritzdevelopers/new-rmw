@@ -113,7 +113,7 @@ const Articles: React.FC = memo(() => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        // ✅ Check cache first
+        // Check cache first
         const cached = sessionStorage.getItem("all-blogs");
         if (cached) {
           setBlogs(JSON.parse(cached));
