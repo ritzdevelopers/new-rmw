@@ -2,7 +2,10 @@ import { getDBPool } from "@/lib/db";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import EnquiryTrackerModel from "@/models/EnquiryTracker";
 import { getEnquiryIpInfo } from "@/utils/enquiryIpInfo";
-import { validateEnquiryMessage } from "@/utils/enquiryValidation";
+import {
+  isVulgarEnquiry,
+  validateEnquiryMessage,
+} from "@/utils/enquiryValidation";
 import { NextRequest, NextResponse } from "next/server";
 
 function getClientIp(req: NextRequest): string {
@@ -147,17 +150,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Always track IP / geo metadata, even for rejected enquiries
-    await saveEnquiryTracker({
-      name,
-      email,
-      message,
-      etype,
-      mobile,
-      clientIp,
-    });
-
-    const validation = validateEnquiryMessage(message, { name, email });
+    const validation = validateEnquiryMessage(message);
     if (!validation.ok) {
       return NextResponse.json(
         { success: false, error: validation.error },
@@ -165,7 +158,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Insert into `enquiries` table
+    // Save + notify for all enquiries (vulgar or genuine)
     await db.query(
       `INSERT INTO enquiries (etype, name, email, mobile, message, category, resume)
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
@@ -186,6 +179,18 @@ export async function POST(request: NextRequest) {
       );
       const telegramData = await response.json();
       if (!telegramData.ok) console.error("Telegram send failed:", telegramData);
+    }
+
+    // Enquiry tracker: vulgar only (still return success to the client)
+    if (isVulgarEnquiry(message, { name, email })) {
+      await saveEnquiryTracker({
+        name,
+        email,
+        message,
+        etype,
+        mobile,
+        clientIp,
+      });
     }
 
     return NextResponse.json({

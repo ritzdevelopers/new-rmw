@@ -68,13 +68,29 @@ function isAllowedValue(
   return allowed.some((option) => option.toLowerCase() === normalized);
 }
 
-/**
- * Validates structured contact enquiry message content.
- * Expects Reason / How-heard labels when present, and blocks vulgar free text.
- */
-export function validateEnquiryMessage(
+/** Returns true when name/email/message (or structured fields) contain vulgar language. */
+export function isVulgarEnquiry(
   message: string,
   extras?: { name?: string | null; email?: string | null }
+): boolean {
+  const trimmed = (message || "").trim();
+  const reason = extractLabeledValue(trimmed, "Reason for Inquiry");
+  const howHeard = extractLabeledValue(trimmed, "How did you hear about us");
+  const body = extractBodyMessage(trimmed);
+
+  return containsVulgarLanguage(
+    trimmed,
+    body,
+    reason,
+    howHeard,
+    extras?.name,
+    extras?.email
+  );
+}
+
+/** Validates structured contact enquiry fields (reason / how-heard when present). */
+export function validateEnquiryMessage(
+  message: string
 ): EnquiryValidationResult {
   const trimmed = (message || "").trim();
   if (!trimmed) {
@@ -114,22 +130,6 @@ export function validateEnquiryMessage(
     if (!body) {
       return { ok: false, error: "Message body is required." };
     }
-  }
-
-  if (
-    containsVulgarLanguage(
-      trimmed,
-      body,
-      reason,
-      howHeard,
-      extras?.name,
-      extras?.email
-    )
-  ) {
-    return {
-      ok: false,
-      error: "Enquiry rejected due to inappropriate or vulgar content.",
-    };
   }
 
   return { ok: true };
