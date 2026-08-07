@@ -120,9 +120,9 @@ const NAV_ITEMS: NavItem[] = [
     group: "system",
     children: [
       { label: "Contact Enquiry", href: "/admin/enquiry" },
-      { label: "Enquiries", href: "/admin/enquiry/enquiries" },
+      { label: "Career Enquiry", href: "/admin/enquiry/career" },
+      { label: "All Enquiries", href: "/admin/enquiry/enquiries" },
       { label: "Enquiry Tracker", href: "/admin/enquiry/tracker" },
-      { label: "Manage Career", href: "/admin/enquiry/career" },
     ],
   },
   {
