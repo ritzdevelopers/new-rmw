@@ -1,13 +1,69 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Table from "@/components/ui/AdminTable";
 import Breadcrumb from "@/components/ui/Breadcrumb";
-import { format } from "date-fns";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  endOfDay,
+  endOfMonth,
+  format,
+  isWithinInterval,
+  startOfDay,
+  startOfMonth,
+  subDays,
+  subMonths,
+} from "date-fns";
 import { saveAs } from "file-saver";
 import * as XLSX from "xlsx";
-import { FaFileAlt } from "react-icons/fa";
-import { Download, Trash2, Mail, Phone, User, MessageSquare, Calendar, Briefcase, FileText, Eye, X } from "lucide-react";
+import { toast } from "sonner";
+import {
+  Briefcase,
+  Calendar,
+  ChevronDown,
+  Download,
+  Eye,
+  FileText,
+  Mail,
+  Phone,
+  RefreshCw,
+  Search,
+  Trash2,
+  User,
+  X,
+} from "lucide-react";
 
 interface ContactEnquiry {
   id: string;
@@ -19,491 +75,883 @@ interface ContactEnquiry {
   mobile?: string;
   etype: string;
   send_date: string;
-  date?: string; // formatted
 }
 
-// Helper function to properly encode file paths with spaces and special characters
+type DatePreset =
+  | "all"
+  | "today"
+  | "last7"
+  | "last30"
+  | "thisMonth"
+  | "lastMonth"
+  | "custom";
+
+const DATE_PRESET_LABELS: Record<DatePreset, string> = {
+  all: "All",
+  today: "Today",
+  last7: "Last 7 Days",
+  last30: "Last 30 Days",
+  thisMonth: "This Month",
+  lastMonth: "Last Month",
+  custom: "Custom Range",
+};
+
 const encodeFilePath = (filePath: string): string => {
   if (!filePath) return filePath;
-  // Split the path and encode each segment separately to preserve path separators
-  const parts = filePath.split('/');
-  return parts.map(part => encodeURIComponent(part)).join('/');
+  const parts = filePath.split("/");
+  return parts.map((part) => encodeURIComponent(part)).join("/");
 };
+
+function getResumeFilename(resume: string): string {
+  if (!resume) return "";
+  const cleaned = resume.split("?")[0] || resume;
+  const parts = cleaned.split("/").filter(Boolean);
+  const name = parts[parts.length - 1] || "";
+  try {
+    return decodeURIComponent(name);
+  } catch {
+    return name;
+  }
+}
+
+function getDateRange(
+  preset: DatePreset,
+  customFrom: string,
+  customTo: string
+): { start: Date; end: Date } | null {
+  const now = new Date();
+
+  switch (preset) {
+    case "all":
+      return null;
+    case "today":
+      return { start: startOfDay(now), end: endOfDay(now) };
+    case "last7":
+      return { start: startOfDay(subDays(now, 6)), end: endOfDay(now) };
+    case "last30":
+      return { start: startOfDay(subDays(now, 29)), end: endOfDay(now) };
+    case "thisMonth":
+      return { start: startOfMonth(now), end: endOfDay(now) };
+    case "lastMonth": {
+      const prev = subMonths(now, 1);
+      return { start: startOfMonth(prev), end: endOfMonth(prev) };
+    }
+    case "custom": {
+      if (!customFrom || !customTo) return null;
+      return {
+        start: startOfDay(new Date(customFrom)),
+        end: endOfDay(new Date(customTo)),
+      };
+    }
+    default:
+      return null;
+  }
+}
+
+function filterByDateRange(
+  items: ContactEnquiry[],
+  range: { start: Date; end: Date } | null
+): ContactEnquiry[] {
+  if (!range) return items;
+  return items.filter((item) => {
+    const date = new Date(item.send_date);
+    if (Number.isNaN(date.getTime())) return false;
+    return isWithinInterval(date, range);
+  });
+}
+
+function truncateMessage(message: string, max = 72): string {
+  const cleaned = (message || "").replace(/\s+/g, " ").trim();
+  if (!cleaned) return "—";
+  if (cleaned.length <= max) return cleaned;
+  return `${cleaned.slice(0, max)}…`;
+}
+
+function exportApplications(items: ContactEnquiry[], filename: string) {
+  if (items.length === 0) {
+    toast.error("No applications found for the selected period.");
+    return;
+  }
+
+  const exportData = items.map((item) => ({
+    Name: item.name || "",
+    Email: item.email || "",
+    Mobile: item.mobile || "",
+    Category: item.category || "",
+    Message: item.message || "",
+    Resume: item.resume || "",
+    "Enquiry Type": item.etype || "",
+    "Submitted Date": item.send_date
+      ? format(new Date(item.send_date), "dd MMM yyyy, HH:mm")
+      : "",
+  }));
+
+  const worksheet = XLSX.utils.json_to_sheet(exportData);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "CareerEnquiries");
+  const excelBuffer = XLSX.write(workbook, {
+    bookType: "xlsx",
+    type: "array",
+  });
+  const blob = new Blob([excelBuffer], {
+    type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  });
+  saveAs(blob, filename);
+  toast.success(
+    `Exported ${items.length} application${items.length === 1 ? "" : "s"}.`
+  );
+}
 
 const Page = () => {
   const [enquiries, setEnquiries] = useState<ContactEnquiry[]>([]);
-  const [viewDetailsModal, setViewDetailsModal] = useState(false);
-  const [selectedEnquiry, setSelectedEnquiry] = useState<ContactEnquiry | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [datePreset, setDatePreset] = useState<DatePreset>("all");
+  const [customFrom, setCustomFrom] = useState("");
+  const [customTo, setCustomTo] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const [selected, setSelected] = useState<ContactEnquiry | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<ContactEnquiry | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [exportOpen, setExportOpen] = useState(false);
+  const [exportCustomOpen, setExportCustomOpen] = useState(false);
+  const [exportFrom, setExportFrom] = useState("");
+  const [exportTo, setExportTo] = useState("");
 
-  useEffect(() => {
-    const fetchEnquiries = async () => {
-      try {
-        const res = await axios.get("/api/system-settings/contact-enquiry");
-
-        // Cast the data to ContactEnquiry[]
-        const data = res.data as ContactEnquiry[];
-
-        const filtered = data.filter((entry) => entry.etype === "career");
-
-        const formatted = filtered.map((entry) => ({
-          ...entry,
-          date: format(new Date(entry.send_date), "dd MM, yyyy"),
-        }));
-
-        setEnquiries(formatted);
-      } catch (err) {
-        console.error("Error fetching contact enquiries:", err);
-      }
-    };
-
-    fetchEnquiries();
+  const fetchEnquiries = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await axios.get("/api/system-settings/contact-enquiry");
+      const data = res.data as ContactEnquiry[];
+      setEnquiries(data.filter((entry) => entry.etype === "career"));
+    } catch (err) {
+      console.error("Error fetching career enquiries:", err);
+      setError("Unable to load career applications.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  const handleDelete = async (id: string) => {
+  useEffect(() => {
+    void fetchEnquiries();
+  }, [fetchEnquiries]);
+
+  const categoryOptions = useMemo(() => {
+    const set = new Set<string>();
+    for (const item of enquiries) {
+      const cat = (item.category || "").trim();
+      if (cat) set.add(cat);
+    }
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, [enquiries]);
+
+  const dateRange = useMemo(
+    () => getDateRange(datePreset, customFrom, customTo),
+    [datePreset, customFrom, customTo]
+  );
+
+  const filteredEnquiries = useMemo(() => {
+    let items = filterByDateRange(enquiries, dateRange);
+
+    if (categoryFilter !== "all") {
+      items = items.filter(
+        (item) => (item.category || "").trim() === categoryFilter
+      );
+    }
+
+    const q = searchQuery.trim().toLowerCase();
+    if (q) {
+      items = items.filter((item) =>
+        [item.name, item.email, item.mobile, item.category, item.message].some(
+          (field) =>
+            String(field ?? "")
+              .toLowerCase()
+              .includes(q)
+        )
+      );
+    }
+
+    return items;
+  }, [enquiries, dateRange, categoryFilter, searchQuery]);
+
+  const hasActiveFilters =
+    searchQuery.trim().length > 0 ||
+    datePreset !== "all" ||
+    categoryFilter !== "all";
+
+  const stats = useMemo(() => {
+    const now = new Date();
+    return {
+      total: enquiries.length,
+      withResume: enquiries.filter((e) => e.resume).length,
+      withEmail: enquiries.filter((e) => e.email).length,
+      thisMonth: enquiries.filter((e) => {
+        const d = new Date(e.send_date);
+        return (
+          d.getMonth() === now.getMonth() &&
+          d.getFullYear() === now.getFullYear()
+        );
+      }).length,
+    };
+  }, [enquiries]);
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setDatePreset("all");
+    setCustomFrom("");
+    setCustomTo("");
+    setCategoryFilter("all");
+  };
+
+  const handleDelete = async () => {
+    if (!deleteTarget) return;
+    setDeleting(true);
     try {
       const res = await axios.delete(
-        `/api/system-settings/contact-enquiry/${id}`
+        `/api/system-settings/contact-enquiry/${deleteTarget.id}`
       );
       if (res.status === 200) {
-        setEnquiries((prev) => prev.filter((e) => e.id !== id));
+        setEnquiries((prev) => prev.filter((e) => e.id !== deleteTarget.id));
+        if (selected?.id === deleteTarget.id) setSelected(null);
+        toast.success("Application deleted successfully.");
       } else {
-        console.error("Failed to delete enquiry", res);
+        toast.error("Failed to delete application.");
       }
     } catch (err) {
-      console.error("Error deleting enquiry:", err);
+      console.error("Error deleting career enquiry:", err);
+      toast.error("Failed to delete application.");
+    } finally {
+      setDeleting(false);
+      setDeleteTarget(null);
     }
   };
 
-  const exportToExcel = () => {
-    const exportData = enquiries.map(({ ...rest }) => rest); // Rename `id` to `_id` to avoid ESLint warning
+  const handleExportPreset = (preset: DatePreset) => {
+    if (preset === "custom") {
+      setExportCustomOpen(true);
+      return;
+    }
+    const range = getDateRange(preset, "", "");
+    exportApplications(
+      filterByDateRange(enquiries, range),
+      `CareerEnquiries-${preset}.xlsx`
+    );
+  };
 
-    const worksheet = XLSX.utils.json_to_sheet(exportData);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "ContactEnquiries");
-
-    const excelBuffer = XLSX.write(workbook, {
-      bookType: "xlsx",
-      type: "array",
-    });
-
-    const data = new Blob([excelBuffer], {
-      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    });
-    saveAs(data, "ContactEnquiries.xlsx");
+  const handleExportCustom = () => {
+    if (!exportFrom || !exportTo) {
+      toast.error("Please select both From and To dates.");
+      return;
+    }
+    const range = getDateRange("custom", exportFrom, exportTo);
+    exportApplications(
+      filterByDateRange(enquiries, range),
+      "CareerEnquiries-custom.xlsx"
+    );
+    setExportCustomOpen(false);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-3 sm:p-4 md:p-6 lg:p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200/50 p-5 sm:p-6 md:p-8 mb-6 transition-all duration-300 hover:shadow-xl">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
-            <div className="space-y-1">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-md">
-                  <Briefcase className="text-white" size={24} />
-                </div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent">
-                  Career Enquiry
+    <div className="min-h-screen bg-[#f7f8fa] p-4 sm:p-6 lg:p-8">
+      <div className="mx-auto max-w-7xl space-y-5">
+        {/* Header */}
+        <div className="rounded-lg border border-gray-200 bg-white px-5 py-5 shadow-sm sm:px-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <div className="flex items-center gap-2.5">
+                <Briefcase className="size-5 text-gray-500" />
+                <h1 className="text-xl font-semibold tracking-tight text-gray-900 sm:text-2xl">
+                  Career Enquiries
                 </h1>
               </div>
-              <p className="text-sm sm:text-base text-gray-600 ml-14 sm:ml-0">
-                Manage and view all career application submissions
+              <p className="mt-1 text-sm text-gray-500">
+                Manage and review career applications submitted through your
+                website.
               </p>
+              <div className="mt-3">
+                <Breadcrumb currentPage="Career-Enquiry" />
+              </div>
             </div>
-            <div className="flex items-center gap-3">
-              <button
-                onClick={exportToExcel}
-                className="group flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white rounded-xl hover:from-blue-700 hover:via-blue-800 hover:to-indigo-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 font-semibold text-sm sm:text-base active:scale-95"
+            <div className="flex flex-wrap items-center gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => void fetchEnquiries()}
+                disabled={loading}
+                aria-label="Refresh applications"
               >
-                <Download size={18} className="group-hover:animate-bounce" />
-                <span className="hidden sm:inline">Export to Excel</span>
-                <span className="sm:hidden">Export</span>
-              </button>
-            </div>
-          </div>
-          <div className="mt-5 sm:mt-6">
-            <Breadcrumb currentPage="Contact-Enquiry" />
-          </div>
-        </div>
+                <RefreshCw
+                  className={`size-4 ${loading ? "animate-spin" : ""}`}
+                />
+                Refresh
+              </Button>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-6 md:mb-8">
-          <div className="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-md border border-gray-200/50 p-5 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-blue-300/50">
-            <div className="flex items-center justify-between">
-              <div className="space-y-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wide">Total Applications</p>
-                <p className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">{enquiries.length}</p>
-              </div>
-              <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-3.5 sm:p-4 rounded-xl shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <Briefcase className="text-blue-600" size={26} />
-              </div>
-            </div>
-          </div>
-          <div className="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-md border border-gray-200/50 p-5 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-green-300/50">
-            <div className="flex items-center justify-between">
-              <div className="space-y-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wide">With Resume</p>
-                <p className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-green-600 to-emerald-700 bg-clip-text text-transparent">
-                  {enquiries.filter((e) => e.resume).length}
-                </p>
-              </div>
-              <div className="bg-gradient-to-br from-green-100 to-emerald-200 p-3.5 sm:p-4 rounded-xl shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <FileText className="text-green-600" size={26} />
-              </div>
-            </div>
-          </div>
-          <div className="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-md border border-gray-200/50 p-5 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-purple-300/50">
-            <div className="flex items-center justify-between">
-              <div className="space-y-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wide">With Email</p>
-                <p className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-purple-600 to-pink-700 bg-clip-text text-transparent">
-                  {enquiries.filter((e) => e.email).length}
-                </p>
-              </div>
-              <div className="bg-gradient-to-br from-purple-100 to-pink-200 p-3.5 sm:p-4 rounded-xl shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <Mail className="text-purple-600" size={26} />
-              </div>
-            </div>
-          </div>
-          <div className="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-md border border-gray-200/50 p-5 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-orange-300/50">
-            <div className="flex items-center justify-between">
-              <div className="space-y-1">
-                <p className="text-xs sm:text-sm font-medium text-gray-500 uppercase tracking-wide">This Month</p>
-                <p className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-orange-600 to-amber-700 bg-clip-text text-transparent">
-                  {enquiries.filter((e) => {
-                    const enquiryDate = new Date(e.send_date);
-                    const now = new Date();
-                    return (
-                      enquiryDate.getMonth() === now.getMonth() &&
-                      enquiryDate.getFullYear() === now.getFullYear()
-                    );
-                  }).length}
-                </p>
-              </div>
-              <div className="bg-gradient-to-br from-orange-100 to-amber-200 p-3.5 sm:p-4 rounded-xl shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <Calendar className="text-orange-600" size={26} />
-              </div>
+              <DropdownMenu open={exportOpen} onOpenChange={setExportOpen}>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    type="button"
+                    size="sm"
+                    aria-label="Export applications"
+                  >
+                    <Download className="size-4" />
+                    Export
+                    <ChevronDown className="size-3.5 opacity-70" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={() => handleExportPreset("all")}>
+                    Export All
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => handleExportPreset("today")}>
+                    Today
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleExportPreset("last7")}>
+                    Last 7 Days
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => handleExportPreset("last30")}
+                  >
+                    Last 30 Days
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => handleExportPreset("thisMonth")}
+                  >
+                    This Month
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => handleExportPreset("lastMonth")}
+                  >
+                    Last Month
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => handleExportPreset("custom")}
+                  >
+                    Custom Range
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>
 
-        {/* Table Section */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200/50 transition-all duration-300 hover:shadow-xl">
-          <Table
-            columns={[
-              { 
-                key: "name",  
-                label: "Name",
-                render: (row) => (
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 bg-blue-50 rounded-lg">
-                      <User size={16} className="text-blue-600 flex-shrink-0" />
-                    </div>
-                    <span className="font-semibold text-gray-900 truncate">{row.name}</span>
-                  </div>
-                )
-              },
-              { 
-                key: "email", 
-                label: "Email",
-                render: (row) => (
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="p-1.5 bg-green-50 rounded-lg">
-                      <Mail size={16} className="text-green-600 flex-shrink-0" />
-                    </div>
-                    <a 
-                      href={`mailto:${row.email}`} 
-                      className="text-blue-600 hover:text-blue-800 hover:underline truncate font-medium transition-colors duration-200"
-                    >
-                      {row.email}
-                    </a>
-                  </div>
-                )
-              },
-              { 
-                key: "category", 
-                label: "Category",
-                render: (row) => (
-                  <span className="px-3 sm:px-4 py-1.5 inline-flex items-center text-xs sm:text-sm font-bold rounded-full bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border border-purple-200 shadow-sm whitespace-nowrap">
-                    {row.category || row.etype || "General"}
-                  </span>
-                )
-              },
-              {
-                key: "resume",
-                label: "Resume",
-                render: (row) =>
-                  row.resume ? (
-                    <a
-                      href={encodeFilePath(row.resume)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Open Resume"
-                      className="group flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 hover:from-blue-100 hover:to-indigo-100 rounded-lg transition-all duration-200 font-medium text-sm border border-blue-200 hover:border-blue-300 hover:shadow-md"
-                    >
-                      <FileText size={16} className="flex-shrink-0 group-hover:scale-110 transition-transform" />
-                      <span className="hidden sm:inline">View Resume</span>
-                      <span className="sm:hidden">View</span>
-                    </a>
+        {/* Stats */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              label: "Total Applications",
+              value: stats.total,
+              icon: Briefcase,
+            },
+            { label: "With Resume", value: stats.withResume, icon: FileText },
+            { label: "With Email", value: stats.withEmail, icon: Mail },
+            { label: "This Month", value: stats.thisMonth, icon: Calendar },
+          ].map(({ label, value, icon: Icon }) => (
+            <div
+              key={label}
+              className="rounded-lg border border-gray-200 bg-white px-4 py-3.5 shadow-sm"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs font-medium text-gray-500">{label}</p>
+                  {loading ? (
+                    <Skeleton className="mt-2 h-7 w-12" />
                   ) : (
-                    <span className="text-gray-400 text-sm font-medium">—</span>
-                  ),
-              },
-              { 
-                key: "mobile", 
-                label: "Mobile",
-                render: (row) => (
-                  row.mobile ? (
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-1.5 bg-purple-50 rounded-lg">
-                        <Phone size={16} className="text-purple-600 flex-shrink-0" />
-                      </div>
-                      <a 
-                        href={`tel:${row.mobile}`} 
-                        className="text-blue-600 hover:text-blue-800 hover:underline font-medium transition-colors duration-200"
-                      >
-                        {row.mobile}
-                      </a>
-                    </div>
-                  ) : (
-                    <span className="text-gray-400 font-medium">-</span>
+                    <p className="mt-1 text-xl font-semibold text-gray-900">
+                      {value}
+                    </p>
+                  )}
+                </div>
+                <div className="rounded-md bg-gray-50 p-2 text-gray-500">
+                  <Icon className="size-4" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Filters */}
+        <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-end">
+            <div className="relative flex-1">
+              <label className="mb-1.5 block text-xs font-medium text-gray-500">
+                Search
+              </label>
+              <Search className="pointer-events-none absolute bottom-2.5 left-3 size-4 text-gray-400" />
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search name, email, mobile, category, message…"
+                className="pl-9"
+                aria-label="Search applications"
+              />
+            </div>
+
+            <div className="w-full lg:w-44">
+              <label className="mb-1.5 block text-xs font-medium text-gray-500">
+                Date
+              </label>
+              <select
+                value={datePreset}
+                onChange={(e) => setDatePreset(e.target.value as DatePreset)}
+                className="border-input h-9 w-full rounded-md border bg-transparent px-3 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]"
+                aria-label="Filter by date"
+              >
+                {(Object.keys(DATE_PRESET_LABELS) as DatePreset[]).map(
+                  (key) => (
+                    <option key={key} value={key}>
+                      {DATE_PRESET_LABELS[key]}
+                    </option>
                   )
-                )
-              },
-              { 
-                key: "message", 
-                label: "Message",
-                render: (row) => (
-                  <div className="flex items-start gap-2.5 max-w-xs">
-                    <div className="p-1.5 bg-amber-50 rounded-lg mt-0.5">
-                      <MessageSquare size={16} className="text-amber-600 flex-shrink-0" />
-                    </div>
-                    <p className="text-gray-700 line-clamp-2 text-sm font-medium">{row.message || "—"}</p>
-                  </div>
-                )
-              },
-              { 
-                key: "date", 
-                label: "Date",
-                render: (row) => (
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 bg-indigo-50 rounded-lg">
-                      <Calendar size={16} className="text-indigo-600 flex-shrink-0" />
-                    </div>
-                    <span className="text-gray-700 whitespace-nowrap font-medium">{row.date}</span>
-                  </div>
-                )
-              },
-            ]}
-            data={enquiries}
-            searchableFields={["name", "email", "category", "message"]}
-            actionButtons={(row) => (
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => {
-                    setSelectedEnquiry(row);
-                    setViewDetailsModal(true);
-                  }}
-                  className="group flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 hover:from-blue-100 hover:to-indigo-100 rounded-lg transition-all duration-200 font-semibold text-sm border border-blue-200 hover:border-blue-300 hover:shadow-md active:scale-95"
-                  title="View Details"
+                )}
+              </select>
+            </div>
+
+            {datePreset === "custom" && (
+              <>
+                <div className="w-full lg:w-40">
+                  <label className="mb-1.5 block text-xs font-medium text-gray-500">
+                    From
+                  </label>
+                  <Input
+                    type="date"
+                    value={customFrom}
+                    onChange={(e) => setCustomFrom(e.target.value)}
+                    aria-label="Custom from date"
+                  />
+                </div>
+                <div className="w-full lg:w-40">
+                  <label className="mb-1.5 block text-xs font-medium text-gray-500">
+                    To
+                  </label>
+                  <Input
+                    type="date"
+                    value={customTo}
+                    onChange={(e) => setCustomTo(e.target.value)}
+                    aria-label="Custom to date"
+                  />
+                </div>
+              </>
+            )}
+
+            {categoryOptions.length > 0 && (
+              <div className="w-full lg:w-48">
+                <label className="mb-1.5 block text-xs font-medium text-gray-500">
+                  Category
+                </label>
+                <select
+                  value={categoryFilter}
+                  onChange={(e) => setCategoryFilter(e.target.value)}
+                  className="border-input h-9 w-full rounded-md border bg-transparent px-3 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]"
+                  aria-label="Filter by category"
                 >
-                  <Eye size={16} className="group-hover:scale-110 transition-transform" />
-                  <span className="hidden sm:inline">View</span>
-                </button>
-                <button
-                  onClick={() => handleDelete(row.id)}
-                  className="group flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-red-50 to-pink-50 text-red-700 hover:from-red-100 hover:to-pink-100 rounded-lg transition-all duration-200 font-semibold text-sm border border-red-200 hover:border-red-300 hover:shadow-md active:scale-95"
-                  title="Delete"
-                >
-                  <Trash2 size={16} className="group-hover:scale-110 transition-transform" />
-                  <span className="hidden sm:inline">Delete</span>
-                </button>
+                  <option value="all">All Categories</option>
+                  {categoryOptions.map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
               </div>
             )}
-            emptyMessage="No career enquiries found."
-          />
+
+            {hasActiveFilters && (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="h-9"
+                onClick={clearFilters}
+              >
+                <X className="size-4" />
+                Clear Filters
+              </Button>
+            )}
+          </div>
+          {!loading && !error && (
+            <p className="mt-3 text-xs text-gray-500">
+              Showing {filteredEnquiries.length} of {enquiries.length}{" "}
+              applications
+            </p>
+          )}
         </div>
 
-        {/* Footer */}
-        <footer className="mt-8 md:mt-10 text-center text-gray-500 text-sm sm:text-base py-6">
-          Designed and Developed by <strong className="text-gray-700 font-semibold">Ritz Media World</strong>
+        {/* Table */}
+        <div className="overflow-hidden rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-5">
+          {loading ? (
+            <div className="space-y-3">
+              <Skeleton className="h-10 w-full" />
+              <Skeleton className="h-12 w-full" />
+              <Skeleton className="h-12 w-full" />
+              <Skeleton className="h-12 w-full" />
+              <Skeleton className="h-12 w-full" />
+            </div>
+          ) : error ? (
+            <div className="flex flex-col items-center justify-center gap-3 py-16 text-center">
+              <p className="text-sm text-gray-600">{error}</p>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={() => void fetchEnquiries()}
+              >
+                <RefreshCw className="size-4" />
+                Retry
+              </Button>
+            </div>
+          ) : enquiries.length === 0 ? (
+            <div className="py-16 text-center">
+              <p className="text-sm font-medium text-gray-800">
+                No career applications yet
+              </p>
+              <p className="mt-1 text-sm text-gray-500">
+                Career applications submitted through the website will appear
+                here.
+              </p>
+            </div>
+          ) : filteredEnquiries.length === 0 ? (
+            <div className="flex flex-col items-center justify-center gap-3 py-16 text-center">
+              <p className="text-sm text-gray-500">
+                No applications match your filters.
+              </p>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={clearFilters}
+              >
+                <X className="size-4" />
+                Clear Filters
+              </Button>
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <Table
+                columns={[
+                  {
+                    key: "name",
+                    label: "Name",
+                    render: (row) => (
+                      <div className="flex items-center gap-2">
+                        <User className="size-4 shrink-0 text-gray-400" />
+                        <span className="truncate font-medium text-gray-900">
+                          {row.name}
+                        </span>
+                      </div>
+                    ),
+                  },
+                  {
+                    key: "email",
+                    label: "Email",
+                    render: (row) => (
+                      <a
+                        href={`mailto:${row.email}`}
+                        className="truncate text-sm text-blue-600 hover:underline"
+                      >
+                        {row.email}
+                      </a>
+                    ),
+                  },
+                  {
+                    key: "category",
+                    label: "Category",
+                    render: (row) => (
+                      <span className="inline-flex items-center rounded-md border border-gray-200 bg-gray-50 px-2 py-0.5 text-xs font-medium text-gray-700">
+                        {row.category || "—"}
+                      </span>
+                    ),
+                  },
+                  {
+                    key: "resume",
+                    label: "Resume",
+                    render: (row) =>
+                      row.resume ? (
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <a
+                              href={encodeFilePath(row.resume)}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-md border border-gray-200 px-2 py-1 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-50"
+                              aria-label={`View resume for ${row.name}`}
+                            >
+                              <FileText className="size-3.5" />
+                              <span className="hidden sm:inline">View</span>
+                            </a>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            {getResumeFilename(row.resume) || "View Resume"}
+                          </TooltipContent>
+                        </Tooltip>
+                      ) : (
+                        <span className="text-xs text-gray-400">—</span>
+                      ),
+                  },
+                  {
+                    key: "mobile",
+                    label: "Mobile",
+                    render: (row) =>
+                      row.mobile ? (
+                        <a
+                          href={`tel:${row.mobile}`}
+                          className="text-sm text-blue-600 hover:underline"
+                        >
+                          {row.mobile}
+                        </a>
+                      ) : (
+                        <span className="text-gray-400">—</span>
+                      ),
+                  },
+                  {
+                    key: "message",
+                    label: "Message",
+                    render: (row) => (
+                      <p className="max-w-[200px] truncate text-sm text-gray-600">
+                        {truncateMessage(row.message)}
+                      </p>
+                    ),
+                  },
+                  {
+                    key: "send_date",
+                    label: "Date",
+                    render: (row) => (
+                      <span className="whitespace-nowrap text-sm text-gray-600">
+                        {format(new Date(row.send_date), "dd MMM, yyyy")}
+                      </span>
+                    ),
+                  },
+                ]}
+                data={filteredEnquiries}
+                actionButtons={(row) => (
+                  <div className="flex items-center gap-1">
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          type="button"
+                          onClick={() => setSelected(row)}
+                          className="rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-800"
+                          aria-label={`View application from ${row.name}`}
+                        >
+                          <Eye className="size-4" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>View</TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          type="button"
+                          onClick={() => setDeleteTarget(row)}
+                          className="rounded-md p-2 text-red-500 transition-colors hover:bg-red-50 hover:text-red-700"
+                          aria-label={`Delete application from ${row.name}`}
+                        >
+                          <Trash2 className="size-4" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>Delete</TooltipContent>
+                    </Tooltip>
+                  </div>
+                )}
+                emptyMessage="No career applications found."
+              />
+            </div>
+          )}
+        </div>
+
+        <footer className="py-2 text-center text-sm text-gray-500">
+          Designed and Developed by{" "}
+          <strong className="font-medium text-gray-800">
+            Ritz Media World
+          </strong>
         </footer>
       </div>
 
-      {/* View Details Modal */}
-      {viewDetailsModal && selectedEnquiry && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md p-3 sm:p-4 overflow-y-auto animate-in fade-in duration-300">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[95vh] sm:max-h-[90vh] my-auto overflow-hidden border border-gray-200/50 relative mx-2 sm:mx-0 animate-in zoom-in-95 duration-300">
-            {/* Modal Header */}
-            <div className="bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 p-5 sm:p-6 md:p-7 flex justify-between items-center sticky top-0 z-10 shadow-lg">
-              <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-                <div className="p-2 sm:p-2.5 bg-white/20 backdrop-blur-sm rounded-xl flex-shrink-0 shadow-lg">
-                  <Eye className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
-                </div>
-                <h2 className="text-lg sm:text-xl md:text-2xl font-extrabold text-white truncate">
-                  Career Application Details
-                </h2>
-              </div>
-              <button
-                onClick={() => {
-                  setViewDetailsModal(false);
-                  setSelectedEnquiry(null);
-                }}
-                className="p-2 sm:p-2.5 hover:bg-white/20 rounded-xl transition-all duration-200 text-white flex-shrink-0 hover:scale-110 active:scale-95"
-                aria-label="Close modal"
-              >
-                <X size={22} className="sm:w-6 sm:h-6" />
-              </button>
-            </div>
+      {/* View modal */}
+      <Dialog
+        open={!!selected}
+        onOpenChange={(open) => {
+          if (!open) setSelected(null);
+        }}
+      >
+        <DialogContent className="max-h-[85vh] overflow-y-auto sm:max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Application Details</DialogTitle>
+            <DialogDescription>
+              Full details for the selected career application.
+            </DialogDescription>
+          </DialogHeader>
+          {selected && (
+            <div className="space-y-6 text-sm">
+              <section className="space-y-3">
+                <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  Applicant
+                </h3>
+                <DetailRow label="Name" value={selected.name} />
+                <DetailRow label="Email" value={selected.email} />
+                <DetailRow label="Mobile" value={selected.mobile || "—"} />
+              </section>
 
-            {/* Modal Body */}
-            <div className="p-5 sm:p-6 md:p-8 overflow-y-auto max-h-[calc(95vh-140px)] sm:max-h-[calc(90vh-160px)]">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5 sm:mb-6">
-                {/* Name */}
-                <div className="group bg-gradient-to-br from-blue-50 via-blue-100 to-indigo-50 rounded-2xl p-4 sm:p-5 border border-blue-200/50 shadow-md hover:shadow-lg transition-all duration-300 min-w-0 hover:scale-[1.02]">
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="p-2 bg-blue-200 rounded-xl">
-                      <User className="w-5 h-5 sm:w-6 sm:h-6 text-blue-700 flex-shrink-0" />
-                    </div>
-                    <span className="text-xs font-bold text-blue-700 uppercase tracking-wider">
-                      Name
-                    </span>
-                  </div>
-                  <p className="text-base sm:text-lg md:text-xl font-extrabold text-gray-900 break-words">
-                    {selectedEnquiry.name}
-                  </p>
-                </div>
-
-                {/* Email */}
-                <div className="group bg-gradient-to-br from-green-50 via-emerald-100 to-teal-50 rounded-2xl p-4 sm:p-5 border border-green-200/50 shadow-md hover:shadow-lg transition-all duration-300 min-w-0 hover:scale-[1.02]">
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="p-2 bg-green-200 rounded-xl">
-                      <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-green-700 flex-shrink-0" />
-                    </div>
-                    <span className="text-xs font-bold text-green-700 uppercase tracking-wider">
-                      Email
-                    </span>
-                  </div>
-                  <a 
-                    href={`mailto:${selectedEnquiry.email}`}
-                    className="text-base sm:text-lg md:text-xl font-extrabold text-gray-900 break-all hover:text-blue-600 hover:underline block transition-colors duration-200"
-                  >
-                    {selectedEnquiry.email}
-                  </a>
-                </div>
-
-                {/* Phone */}
-                <div className="group bg-gradient-to-br from-purple-50 via-pink-100 to-rose-50 rounded-2xl p-4 sm:p-5 border border-purple-200/50 shadow-md hover:shadow-lg transition-all duration-300 min-w-0 hover:scale-[1.02]">
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="p-2 bg-purple-200 rounded-xl">
-                      <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-purple-700 flex-shrink-0" />
-                    </div>
-                    <span className="text-xs font-bold text-purple-700 uppercase tracking-wider">
-                      Phone
-                    </span>
-                  </div>
-                  {selectedEnquiry.mobile ? (
-                    <a 
-                      href={`tel:${selectedEnquiry.mobile}`}
-                      className="text-base sm:text-lg md:text-xl font-extrabold text-gray-900 hover:text-blue-600 hover:underline break-all block transition-colors duration-200"
-                    >
-                      {selectedEnquiry.mobile}
-                    </a>
-                  ) : (
-                    <p className="text-base sm:text-lg md:text-xl font-extrabold text-gray-500">N/A</p>
+              <section className="space-y-3">
+                <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  Application
+                </h3>
+                <DetailRow
+                  label="Category"
+                  value={selected.category || "—"}
+                />
+                <DetailRow
+                  label="Application Date"
+                  value={format(
+                    new Date(selected.send_date),
+                    "dd MMM yyyy, HH:mm"
                   )}
-                </div>
+                />
+              </section>
 
-                {/* Category */}
-                <div className="group bg-gradient-to-br from-orange-50 via-amber-100 to-yellow-50 rounded-2xl p-4 sm:p-5 border border-orange-200/50 shadow-md hover:shadow-lg transition-all duration-300 min-w-0 hover:scale-[1.02]">
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="p-2 bg-orange-200 rounded-xl">
-                      <Briefcase className="w-5 h-5 sm:w-6 sm:h-6 text-orange-700 flex-shrink-0" />
+              <section className="space-y-3">
+                <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  Resume
+                </h3>
+                {selected.resume ? (
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between rounded-md border border-gray-200 bg-gray-50 p-3">
+                    <div className="flex min-w-0 items-center gap-2 text-gray-700">
+                      <FileText className="size-4 shrink-0" />
+                      <span className="truncate">
+                        {getResumeFilename(selected.resume) || "Resume file"}
+                      </span>
                     </div>
-                    <span className="text-xs font-bold text-orange-700 uppercase tracking-wider">
-                      Category
-                    </span>
+                    <Button asChild size="sm" variant="outline">
+                      <a
+                        href={encodeFilePath(selected.resume)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FileText className="size-4" />
+                        View Resume
+                      </a>
+                    </Button>
                   </div>
-                  <span className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold bg-gradient-to-r from-orange-200 to-amber-200 text-orange-800 border border-orange-300 break-words shadow-sm">
-                    {selectedEnquiry.category || selectedEnquiry.etype || "General"}
-                  </span>
-                </div>
-              </div>
+                ) : (
+                  <p className="text-gray-500">No resume attached</p>
+                )}
+              </section>
 
-              {/* Date */}
-              <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-2xl p-4 sm:p-5 mb-5 sm:mb-6 border border-indigo-200/50 shadow-md hover:shadow-lg transition-all duration-300">
-                <div className="flex items-center gap-2.5 mb-3">
-                  <div className="p-2 bg-indigo-200 rounded-xl">
-                    <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-700 flex-shrink-0" />
-                  </div>
-                  <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider">
-                    Application Date
-                  </span>
+              <section>
+                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  Message
+                </h3>
+                <div className="whitespace-pre-wrap break-words rounded-md border border-gray-200 bg-gray-50 p-3 text-gray-800">
+                  {selected.message || "—"}
                 </div>
-                <p className="text-base sm:text-lg md:text-xl font-extrabold text-gray-900 break-words">
-                  {selectedEnquiry.date}
-                </p>
-              </div>
-
-              {/* Resume */}
-              {selectedEnquiry.resume && (
-                <div className="bg-gradient-to-br from-teal-50 via-cyan-100 to-blue-50 rounded-2xl p-4 sm:p-5 mb-5 sm:mb-6 border border-teal-200/50 shadow-md hover:shadow-lg transition-all duration-300">
-                  <div className="flex items-center gap-2.5 mb-4">
-                    <div className="p-2 bg-teal-200 rounded-xl">
-                      <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-teal-700 flex-shrink-0" />
-                    </div>
-                    <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
-                      Resume
-                    </span>
-                  </div>
-                  <a
-                    href={encodeFilePath(selectedEnquiry.resume)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 text-white rounded-xl hover:from-teal-700 hover:via-cyan-700 hover:to-blue-700 transition-all duration-300 font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:scale-95"
-                  >
-                    <FileText size={18} className="sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
-                    View Resume
-                  </a>
-                </div>
-              )}
-
-              {/* Message */}
-              <div className="bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 rounded-2xl p-5 sm:p-6 border border-gray-300/50 shadow-md">
-                <div className="flex items-center gap-2.5 mb-4">
-                  <div className="p-2 bg-gray-200 rounded-xl">
-                    <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700 flex-shrink-0" />
-                  </div>
-                  <span className="text-xs font-bold text-gray-700 uppercase tracking-wider">
-                    Message
-                  </span>
-                </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-5 border border-gray-200/50 shadow-sm">
-                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed whitespace-pre-wrap break-words overflow-wrap-anywhere">
-                    {selectedEnquiry.message || "No message provided."}
-                  </p>
-                </div>
-              </div>
+              </section>
             </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
-            {/* Modal Footer */}
-            <div className="bg-gradient-to-r from-gray-50 via-blue-50 to-indigo-50 p-5 sm:p-6 flex justify-end gap-3 border-t border-gray-200/50">
-              <button
-                onClick={() => {
-                  setViewDetailsModal(false);
-                  setSelectedEnquiry(null);
-                }}
-                className="px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95 shadow-lg text-sm sm:text-base"
-              >
-                Close
-              </button>
+      {/* Delete confirm */}
+      <AlertDialog
+        open={!!deleteTarget}
+        onOpenChange={(open) => {
+          if (!open && !deleting) setDeleteTarget(null);
+        }}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete this application?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to permanently delete this career
+              application
+              {deleteTarget?.name ? (
+                <>
+                  {" "}
+                  from <strong>{deleteTarget.name}</strong>
+                </>
+              ) : null}
+              ? This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={deleting}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={(e) => {
+                e.preventDefault();
+                void handleDelete();
+              }}
+              disabled={deleting}
+              className="bg-red-600 hover:bg-red-700"
+            >
+              {deleting ? "Deleting…" : "Delete"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Export custom range */}
+      <Dialog open={exportCustomOpen} onOpenChange={setExportCustomOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Export Custom Range</DialogTitle>
+            <DialogDescription>
+              Choose a date range. The To date includes the full day until
+              23:59:59.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div>
+              <label className="mb-1.5 block text-xs font-medium text-gray-500">
+                From Date
+              </label>
+              <Input
+                type="date"
+                value={exportFrom}
+                onChange={(e) => setExportFrom(e.target.value)}
+                aria-label="Export from date"
+              />
+            </div>
+            <div>
+              <label className="mb-1.5 block text-xs font-medium text-gray-500">
+                To Date
+              </label>
+              <Input
+                type="date"
+                value={exportTo}
+                onChange={(e) => setExportTo(e.target.value)}
+                aria-label="Export to date"
+              />
             </div>
           </div>
-        </div>
-      )}
+          <div className="flex justify-end gap-2 pt-2">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => setExportCustomOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button type="button" size="sm" onClick={handleExportCustom}>
+              <Download className="size-4" />
+              Export Excel
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
+
+function DetailRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="mb-1 text-xs font-medium text-gray-500">{label}</p>
+      <p className="break-words text-gray-900">{value}</p>
+    </div>
+  );
+}
 
 export default Page;
