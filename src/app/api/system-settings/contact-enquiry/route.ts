@@ -2,19 +2,13 @@ import { getDBPool } from "@/lib/db";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import EnquiryTrackerModel from "@/models/EnquiryTracker";
 import { getEnquiryIpInfo } from "@/utils/enquiryIpInfo";
+import {
+  checkAndIncrementEnquiryIpLimit,
+  enquiryIpLimitExceededResponse,
+  getClientIp,
+} from "@/utils/enquiryIpRateLimit";
 import { validateEnquiryMessage } from "@/utils/enquiryValidation";
 import { NextRequest, NextResponse } from "next/server";
-
-function getClientIp(req: NextRequest): string {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) {
-    const first = forwarded.split(",")[0]?.trim();
-    if (first) return first;
-  }
-  const realIp = req.headers.get("x-real-ip");
-  if (realIp) return realIp.trim();
-  return "unknown";
-}
 
 // GET /api/enquiries
 export async function GET() {
@@ -153,6 +147,11 @@ export async function POST(request: NextRequest) {
         { success: false, error: validation.error },
         { status: 400 }
       );
+    }
+
+    const rateLimit = await checkAndIncrementEnquiryIpLimit(clientIp);
+    if (!rateLimit.allowed) {
+      return enquiryIpLimitExceededResponse(rateLimit.error);
     }
 
     // Save + notify for all enquiries (vulgar or genuine)
