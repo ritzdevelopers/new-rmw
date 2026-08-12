@@ -4,6 +4,11 @@ import { useState } from "react";
 import { clearManagementSessionUser } from "@/lib/managementSession";
 import { AlertTriangle, LogOut, X } from "lucide-react";
 import { cn } from "../../lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface LogoutButtonProps {
   expanded?: boolean;
@@ -20,130 +25,103 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({ expanded = false }) => {
     window.location.assign("/admin/dashboard");
   };
 
+  const trigger = (
+    <button
+      type="button"
+      onClick={() => setShowModal(true)}
+      disabled={loading}
+      aria-label="Logout"
+      className={cn(
+        "group flex w-full items-center rounded-lg px-2.5 py-2.5 text-slate-400 transition-colors duration-150",
+        "hover:bg-red-500/10 hover:text-red-400",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400/40",
+        "disabled:opacity-60",
+        expanded ? "justify-start gap-3" : "justify-center"
+      )}
+    >
+      <LogOut className="size-[18px] flex-shrink-0" />
+      {expanded && (
+        <span className="text-[13px] font-medium">
+          {loading ? "Logging out…" : "Logout"}
+        </span>
+      )}
+    </button>
+  );
+
   return (
     <>
-      {/* Trigger button */}
-      <button
-        onClick={() => setShowModal(true)}
-        disabled={loading}
-        title={!expanded ? "Logout" : undefined}
-        className={cn(
-          "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-150",
-          expanded ? "justify-start" : "justify-center"
-        )}
-        style={{ background: "rgba(239,68,68,0.08)", color: "#F87171" }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.background =
-            "rgba(239,68,68,0.16)";
-          (e.currentTarget as HTMLElement).style.color = "#EF4444";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.background =
-            "rgba(239,68,68,0.08)";
-          (e.currentTarget as HTMLElement).style.color = "#F87171";
-        }}
-      >
-        <LogOut className="w-[18px] h-[18px] flex-shrink-0" />
-        {expanded && (
-          <span className="text-sm font-medium">
-            {loading ? "Logging out…" : "Logout"}
-          </span>
-        )}
-      </button>
+      {!expanded ? (
+        <Tooltip delayDuration={80}>
+          <TooltipTrigger asChild>{trigger}</TooltipTrigger>
+          <TooltipContent
+            side="right"
+            sideOffset={10}
+            className="z-[80] border border-white/10 bg-[#111827] px-2.5 py-1.5 text-xs text-slate-100 shadow-lg"
+          >
+            Logout
+          </TooltipContent>
+        </Tooltip>
+      ) : (
+        trigger
+      )}
 
-      {/* Confirmation modal — rendered outside sidebar via portal-like approach */}
       {showModal && (
         <div
-          className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-          style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)" }}
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/55 p-4 backdrop-blur-[6px]"
           onClick={(e) => {
             if (e.target === e.currentTarget) setShowModal(false);
           }}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="logout-dialog-title"
         >
-          <div
-            className="relative w-full max-w-[380px] rounded-2xl p-6"
-            style={{
-              background: "#FFFFFF",
-              boxShadow:
-                "0 8px 32px rgba(0,0,0,0.12), 0 32px 80px rgba(0,0,0,0.12)",
-              border: "1px solid rgba(0,0,0,0.06)",
-            }}
-          >
-            {/* Close */}
+          <div className="relative w-full max-w-[380px] rounded-2xl border border-black/5 bg-white p-6 shadow-2xl">
             <button
+              type="button"
               onClick={() => setShowModal(false)}
-              className="absolute top-4 right-4 w-7 h-7 rounded-full flex items-center justify-center transition-colors"
-              style={{ color: "#9CA3AF" }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLElement).style.background = "#F3F4F6")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLElement).style.background =
-                  "transparent")
-              }
+              className="absolute top-4 right-4 flex size-7 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+              aria-label="Close"
             >
-              <X className="w-4 h-4" />
+              <X className="size-4" />
             </button>
 
-            {/* Icon + title */}
-            <div className="flex items-start gap-4 mb-5">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: "rgba(239,68,68,0.08)" }}
-              >
-                <AlertTriangle
-                  className="w-6 h-6"
-                  style={{ color: "#EF4444" }}
-                />
+            <div className="mb-5 flex items-start gap-4">
+              <div className="flex size-12 flex-shrink-0 items-center justify-center rounded-xl bg-red-500/10">
+                <AlertTriangle className="size-6 text-red-500" />
               </div>
               <div className="pt-0.5">
                 <h3
-                  className="font-bold text-lg leading-tight"
-                  style={{ color: "#0B1623" }}
+                  id="logout-dialog-title"
+                  className="text-lg font-bold leading-tight text-[#0B1623]"
                 >
                   Sign out?
                 </h3>
-                <p className="text-sm mt-1" style={{ color: "#64748B" }}>
+                <p className="mt-1 text-sm text-slate-500">
                   You&apos;ll need to sign in again to access the admin panel.
                 </p>
               </div>
             </div>
 
-            {/* Divider */}
-            <div
-              className="h-px mb-5"
-              style={{ background: "#F3F4F6" }}
-            />
+            <div className="mb-5 h-px bg-gray-100" />
 
-            {/* Message */}
-            <p className="text-sm leading-relaxed mb-6" style={{ color: "#475569" }}>
-              Your current session will be terminated and you will be redirected to the login screen.
+            <p className="mb-6 text-sm leading-relaxed text-slate-600">
+              Your current session will be terminated and you will be redirected
+              to the login screen.
             </p>
 
-            {/* Actions */}
             <div className="flex gap-3">
               <button
+                type="button"
                 onClick={() => setShowModal(false)}
-                className="flex-1 h-10 rounded-xl text-sm font-semibold transition-all duration-150"
-                style={{ background: "#F3F4F6", color: "#374151" }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLElement).style.background = "#E5E7EB")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLElement).style.background = "#F3F4F6")
-                }
+                className="h-10 flex-1 rounded-xl bg-gray-100 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-200"
               >
                 Cancel
               </button>
               <button
+                type="button"
                 onClick={handleLogout}
                 disabled={loading}
-                className="flex-1 h-10 rounded-xl text-sm font-semibold text-white transition-all duration-150 disabled:opacity-60"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #EF4444 0%, #DC2626 100%)",
-                  boxShadow: "0 4px 12px rgba(239,68,68,0.3)",
-                }}
+                className="h-10 flex-1 rounded-xl bg-gradient-to-br from-red-500 to-red-600 text-sm font-semibold text-white shadow-md shadow-red-500/25 transition-opacity disabled:opacity-60"
               >
                 {loading ? "Signing out…" : "Yes, sign out"}
               </button>

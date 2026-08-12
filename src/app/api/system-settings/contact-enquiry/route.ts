@@ -3,21 +3,12 @@ import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import EnquiryTrackerModel from "@/models/EnquiryTracker";
 import { getEnquiryIpInfo } from "@/utils/enquiryIpInfo";
 import {
-  isVulgarEnquiry,
-  validateEnquiryMessage,
-} from "@/utils/enquiryValidation";
+  checkAndIncrementEnquiryIpLimit,
+  enquiryIpLimitExceededResponse,
+  getClientIp,
+} from "@/utils/enquiryIpRateLimit";
+import { validateEnquiryMessage } from "@/utils/enquiryValidation";
 import { NextRequest, NextResponse } from "next/server";
-
-function getClientIp(req: NextRequest): string {
-  const forwarded = req.headers.get("x-forwarded-for");
-  if (forwarded) {
-    const first = forwarded.split(",")[0]?.trim();
-    if (first) return first;
-  }
-  const realIp = req.headers.get("x-real-ip");
-  if (realIp) return realIp.trim();
-  return "unknown";
-}
 
 // GET /api/enquiries
 export async function GET() {
@@ -158,6 +149,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const rateLimit = await checkAndIncrementEnquiryIpLimit(clientIp);
+    if (!rateLimit.allowed) {
+      return enquiryIpLimitExceededResponse(rateLimit.error);
+    }
+
     // Save + notify for all enquiries (vulgar or genuine)
     await db.query(
       `INSERT INTO enquiries (etype, name, email, mobile, message, category, resume)
@@ -181,17 +177,15 @@ export async function POST(request: NextRequest) {
       if (!telegramData.ok) console.error("Telegram send failed:", telegramData);
     }
 
-    // Enquiry tracker: vulgar only (still return success to the client)
-    if (isVulgarEnquiry(message, { name, email })) {
-      await saveEnquiryTracker({
-        name,
-        email,
-        message,
-        etype,
-        mobile,
-        clientIp,
-      });
-    }
+    // Track every enquiry (vulgar or genuine)
+    await saveEnquiryTracker({
+      name,
+      email,
+      message,
+      etype,
+      mobile,
+      clientIp,
+    });
 
     return NextResponse.json({
       success: true,
