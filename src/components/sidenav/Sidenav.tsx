@@ -17,6 +17,8 @@ import {
   Users,
   UserPlus,
   ChevronRight,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 import { cn } from "../../lib/utils";
 import LogoutButton from "../logout/Logout";
@@ -24,6 +26,11 @@ import {
   readManagementSessionUser,
   type ManagementSessionUser,
 } from "@/lib/managementSession";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import "./Sidenav.css";
 
 type SidebarProps = {
@@ -148,6 +155,36 @@ const GROUP_LABELS: Record<string, string> = {
 
 const GROUPS = ["main", "content", "website", "system"];
 
+function roleLabel(role?: string) {
+  if (role === "super_admin") return "Super Admin";
+  if (role === "editor") return "Editor";
+  return role || "User";
+}
+
+function NavTooltip({
+  label,
+  enabled,
+  children,
+}: {
+  label: string;
+  enabled: boolean;
+  children: React.ReactNode;
+}) {
+  if (!enabled) return <>{children}</>;
+  return (
+    <Tooltip delayDuration={80}>
+      <TooltipTrigger asChild>{children}</TooltipTrigger>
+      <TooltipContent
+        side="right"
+        sideOffset={10}
+        className="z-[80] border border-white/10 bg-[#111827] px-2.5 py-1.5 text-xs text-slate-100 shadow-lg"
+      >
+        {label}
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
 export default function Sidebar({ expanded, setExpanded }: SidebarProps) {
   const pathname = usePathname();
   const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
@@ -157,13 +194,12 @@ export default function Sidebar({ expanded, setExpanded }: SidebarProps) {
     setUser(readManagementSessionUser());
   }, []);
 
-  // Auto-open submenu when current route is a child
   useEffect(() => {
     const autoOpen: Record<string, boolean> = {};
     NAV_ITEMS.forEach((item) => {
       if (item.children) {
         const childActive = item.children.some((child) =>
-          pathname.startsWith(child.href)
+          pathname === child.href || pathname.startsWith(child.href + "/")
         );
         if (childActive) autoOpen[item.label] = true;
       }
@@ -172,7 +208,11 @@ export default function Sidebar({ expanded, setExpanded }: SidebarProps) {
   }, [pathname]);
 
   const toggleMenu = (label: string) => {
-    if (!expanded) return;
+    if (!expanded) {
+      setExpanded(true);
+      setOpenMenus((prev) => ({ ...prev, [label]: true }));
+      return;
+    }
     setOpenMenus((prev) => ({ ...prev, [label]: !prev[label] }));
   };
 
@@ -180,307 +220,317 @@ export default function Sidebar({ expanded, setExpanded }: SidebarProps) {
     pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <div
+    <aside
       className={cn(
-        "fixed top-0 left-0 h-screen flex flex-col transition-all duration-300 z-40",
+        "fixed top-0 left-0 z-40 flex h-screen flex-col transition-[width] duration-300 ease-out",
         expanded ? "w-64" : "w-16"
       )}
       style={{
-        background: "#0B1623",
-        borderRight: "1px solid rgba(255,255,255,0.05)",
+        background:
+          "linear-gradient(180deg, #0B1220 0%, #0F172A 55%, #111827 100%)",
+        borderRight: "1px solid rgba(148,163,184,0.08)",
       }}
+      aria-label="Admin navigation"
     >
-      {/* Logo / Brand */}
+      {/* Brand header */}
       <div
-        className="flex items-center gap-3 px-4 h-16 flex-shrink-0"
-        style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
+        className={cn(
+          "flex h-16 flex-shrink-0 items-center border-b border-white/[0.06]",
+          expanded ? "justify-between gap-2 px-3" : "justify-center px-2"
+        )}
       >
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all overflow-hidden"
-          title="Toggle sidebar"
-          // style={{
-          //   background: "rgba(197,157,79,0.12)",
-          //   boxShadow: "0 4px 14px rgba(197,157,79,0.22)",
-          //   border: "1px solid rgba(197,157,79,0.25)",
-          // }}
+        <div
+          className={cn(
+            "flex min-w-0 items-center",
+            expanded ? "gap-2.5" : "justify-center"
+          )}
         >
-          <Image
-            src="/favicon.ico"
-            alt="RMW logo"
-            width={28}
-            height={28}
-            className="object-contain"
-            priority
-          />
-        </button>
-        {expanded && (
-          <div className="flex-1 min-w-0 overflow-hidden">
-            <p
-              className="text-white font-bold text-sm tracking-wide leading-none"
-              style={{ whiteSpace: "nowrap" }}
-            >
-              RMW Admin
-            </p>
-            <p
-              className="text-xs font-medium mt-0.5"
-              style={{ color: "#C59D4F", whiteSpace: "nowrap" }}
-            >
-              Management v2.0
-            </p>
+          <div
+            className="flex size-9 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl"
+            style={{
+              background: "rgba(197,157,79,0.12)",
+              border: "1px solid rgba(197,157,79,0.22)",
+            }}
+          >
+            <Image
+              src="/favicon.ico"
+              alt="RMW logo"
+              width={22}
+              height={22}
+              className="object-contain"
+              priority
+            />
           </div>
+          {expanded && (
+            <div className="min-w-0 overflow-hidden">
+              <p className="truncate text-[13px] font-semibold tracking-wide text-white">
+                RMW Admin
+              </p>
+              <p className="truncate text-[11px] font-medium text-[#C59D4F]/90">
+                Management v2.0
+              </p>
+            </div>
+          )}
+        </div>
+
+        {expanded && (
+          <button
+            type="button"
+            onClick={() => setExpanded(false)}
+            className="inline-flex size-8 flex-shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors duration-150 hover:bg-white/[0.06] hover:text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C59D4F]/40"
+            aria-label="Collapse sidebar"
+            title="Collapse sidebar"
+          >
+            <PanelLeftClose className="size-4 transition-transform duration-200" />
+          </button>
         )}
       </div>
 
-      {/* User profile */}
-      {expanded && user && (
-        <div
-          className="mx-3 mt-4 p-3 rounded-xl flex-shrink-0"
-          style={{
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.06)",
-          }}
-        >
-          <div className="flex items-center gap-3">
-            <div
-              className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(197,157,79,0.2), rgba(197,157,79,0.4))",
-                color: "#C59D4F",
-                border: "1.5px solid rgba(197,157,79,0.3)",
-              }}
+      {!expanded && (
+        <div className="flex justify-center py-2">
+          <NavTooltip label="Expand sidebar" enabled>
+            <button
+              type="button"
+              onClick={() => setExpanded(true)}
+              className="inline-flex size-8 items-center justify-center rounded-lg text-slate-400 transition-colors duration-150 hover:bg-white/[0.06] hover:text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C59D4F]/40"
+              aria-label="Expand sidebar"
             >
-              {user.name?.charAt(0)?.toUpperCase() ?? "A"}
-            </div>
-            <div className="min-w-0 flex-1">
-              <p
-                className="text-sm font-semibold leading-tight truncate text-white"
-              >
-                {user.name}
-              </p>
-              <p className="text-xs leading-tight mt-0.5" style={{ color: "#C59D4F" }}>
-                {user.role === "super_admin" ? "Super Admin" : "Editor"}
-              </p>
-            </div>
-          </div>
+              <PanelLeftOpen className="size-4" />
+            </button>
+          </NavTooltip>
         </div>
       )}
 
-      {/* Collapsed avatar */}
-      {!expanded && user && (
-        <div className="flex justify-center mt-4 flex-shrink-0">
-          <div
-            className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
-            title={user.name}
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(197,157,79,0.2), rgba(197,157,79,0.4))",
-              color: "#C59D4F",
-              border: "1.5px solid rgba(197,157,79,0.3)",
-            }}
-          >
-            {user.name?.charAt(0)?.toUpperCase() ?? "A"}
-          </div>
+      {/* User profile */}
+      {user && (
+        <div className={cn("flex-shrink-0", expanded ? "px-3 pt-3" : "px-2 pt-2")}>
+          {expanded ? (
+            <div className="flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.03] px-2.5 py-2.5">
+              <div className="relative flex-shrink-0">
+                <div
+                  className="flex size-9 items-center justify-center rounded-full text-sm font-semibold"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(197,157,79,0.18), rgba(197,157,79,0.38))",
+                    color: "#C59D4F",
+                    border: "1px solid rgba(197,157,79,0.28)",
+                  }}
+                >
+                  {user.name?.charAt(0)?.toUpperCase() ?? "A"}
+                </div>
+                <span
+                  className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-[#0F172A] bg-emerald-400"
+                  aria-hidden
+                />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[13px] font-medium text-white">
+                  {user.name}
+                </p>
+                <span className="mt-0.5 inline-flex rounded-md bg-[#C59D4F]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#C59D4F]">
+                  {roleLabel(user.role)}
+                </span>
+              </div>
+            </div>
+          ) : (
+            <NavTooltip
+              label={`${user.name} · ${roleLabel(user.role)}`}
+              enabled
+            >
+              <div className="mx-auto flex justify-center">
+                <div className="relative">
+                  <div
+                    className="flex size-8 items-center justify-center rounded-full text-xs font-semibold"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(197,157,79,0.18), rgba(197,157,79,0.38))",
+                      color: "#C59D4F",
+                      border: "1px solid rgba(197,157,79,0.28)",
+                    }}
+                  >
+                    {user.name?.charAt(0)?.toUpperCase() ?? "A"}
+                  </div>
+                  <span
+                    className="absolute -bottom-0.5 -right-0.5 size-2 rounded-full border-2 border-[#0F172A] bg-emerald-400"
+                    aria-hidden
+                  />
+                </div>
+              </div>
+            </NavTooltip>
+          )}
         </div>
       )}
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto hide-scrollbar py-4 px-2 space-y-1">
+      <nav
+        className={cn(
+          "sidenav-scroll flex-1 space-y-1 overflow-y-auto py-3",
+          expanded ? "px-2" : "px-1.5"
+        )}
+      >
         {GROUPS.map((group) => {
           const items = NAV_ITEMS.filter((item) => item.group === group);
           if (items.length === 0) return null;
 
           return (
-            <div key={group} className={group !== "main" ? "pt-2" : ""}>
-              {/* Group label */}
-              {expanded && (
-                <p
-                  className="px-3 pb-1 text-[10px] font-bold uppercase tracking-[0.12em]"
-                  style={{ color: "#334D63" }}
-                >
+            <div key={group} className={group !== "main" ? "pt-3" : ""}>
+              {expanded ? (
+                <p className="mb-1.5 px-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
                   {GROUP_LABELS[group]}
                 </p>
-              )}
-              {!expanded && group !== "main" && (
-                <div
-                  className="mx-auto mb-2 h-px"
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    width: "32px",
-                  }}
-                />
+              ) : (
+                group !== "main" && (
+                  <div className="mx-auto mb-2 h-px w-7 bg-white/[0.06]" />
+                )
               )}
 
               {items.map((item) => {
                 const Icon = item.icon;
                 const hasChildren = !!item.children;
-                const isOpen = openMenus[item.label];
+                const isOpen = !!openMenus[item.label];
                 const parentActive = hasChildren
                   ? item.children!.some((c) => isRouteActive(c.href))
                   : item.href
-                  ? isRouteActive(item.href)
-                  : false;
+                    ? isRouteActive(item.href)
+                    : false;
+
+                const itemBase = cn(
+                  "group relative mb-0.5 flex w-full items-center rounded-lg text-left transition-colors duration-150",
+                  expanded ? "gap-3 px-2.5 py-2" : "justify-center px-0 py-2.5",
+                  parentActive
+                    ? "bg-[#C59D4F]/12 text-white"
+                    : "text-slate-400 hover:bg-white/[0.04] hover:text-slate-200"
+                );
 
                 return (
                   <div key={item.label}>
-                    {/* Parent item */}
                     {hasChildren ? (
-                      <button
-                        onClick={() => toggleMenu(item.label)}
-                        title={!expanded ? item.label : undefined}
-                        className={cn(
-                          "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl mb-0.5 transition-all duration-150 group text-left",
-                          parentActive ? "text-white" : "text-gray-500"
-                        )}
-                        style={
-                          parentActive
-                            ? {
-                                background: "rgba(197,157,79,0.12)",
-                              }
-                            : {}
-                        }
-                        onMouseEnter={(e) => {
-                          if (!parentActive)
-                            (e.currentTarget as HTMLElement).style.background =
-                              "rgba(255,255,255,0.04)";
-                          (e.currentTarget as HTMLElement).style.color =
-                            "#CBD5E1";
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!parentActive)
-                            (e.currentTarget as HTMLElement).style.background =
-                              "transparent";
-                          (e.currentTarget as HTMLElement).style.color =
-                            parentActive ? "white" : "#6B7280";
-                        }}
-                      >
-                        <Icon
-                          className="w-[18px] h-[18px] flex-shrink-0 transition-colors"
-                          style={{ color: parentActive ? "#C59D4F" : undefined }}
-                        />
-                        {expanded && (
-                          <>
-                            <span className="flex-1 text-sm font-medium text-left">
-                              {item.label}
-                            </span>
-                            <ChevronRight
-                              className={cn(
-                                "w-3.5 h-3.5 transition-transform duration-200 flex-shrink-0",
-                                isOpen ? "rotate-90" : ""
-                              )}
-                              style={{ color: "#334D63" }}
-                            />
-                          </>
-                        )}
-                      </button>
-                    ) : (
-                      <Link href={item.href!}>
-                        <div
-                          title={!expanded ? item.label : undefined}
-                          className={cn(
-                            "flex items-center gap-3 px-3 py-2.5 rounded-xl mb-0.5 transition-all duration-150 cursor-pointer group",
-                            parentActive ? "text-white" : "text-gray-500"
-                          )}
-                          style={
-                            parentActive
-                              ? { background: "rgba(197,157,79,0.12)" }
-                              : {}
-                          }
-                          onMouseEnter={(e) => {
-                            if (!parentActive)
-                              (e.currentTarget as HTMLElement).style.background =
-                                "rgba(255,255,255,0.04)";
-                            (e.currentTarget as HTMLElement).style.color =
-                              "#CBD5E1";
-                          }}
-                          onMouseLeave={(e) => {
-                            if (!parentActive)
-                              (e.currentTarget as HTMLElement).style.background =
-                                "transparent";
-                            (e.currentTarget as HTMLElement).style.color =
-                              parentActive ? "white" : "#6B7280";
-                          }}
+                      <NavTooltip label={item.label} enabled={!expanded}>
+                        <button
+                          type="button"
+                          onClick={() => toggleMenu(item.label)}
+                          className={itemBase}
+                          aria-expanded={expanded ? isOpen : undefined}
+                          aria-label={item.label}
                         >
+                          {parentActive && (
+                            <span
+                              className="absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-[#C59D4F]"
+                              aria-hidden
+                            />
+                          )}
                           <Icon
-                            className="w-[18px] h-[18px] flex-shrink-0 transition-colors"
-                            style={{
-                              color: parentActive ? "#C59D4F" : undefined,
-                            }}
+                            className={cn(
+                              "size-[18px] flex-shrink-0 transition-colors duration-150",
+                              parentActive
+                                ? "text-[#C59D4F]"
+                                : "text-slate-500 group-hover:text-slate-300"
+                            )}
                           />
                           {expanded && (
-                            <span className="flex-1 text-sm font-medium">
-                              {item.label}
-                            </span>
+                            <>
+                              <span
+                                className={cn(
+                                  "flex-1 truncate text-[13px]",
+                                  parentActive
+                                    ? "font-medium text-white"
+                                    : "font-medium"
+                                )}
+                              >
+                                {item.label}
+                              </span>
+                              <ChevronRight
+                                className={cn(
+                                  "size-3.5 flex-shrink-0 text-slate-500 transition-transform duration-200",
+                                  isOpen && "rotate-90"
+                                )}
+                              />
+                            </>
                           )}
-                          {expanded && parentActive && (
-                            <div
-                              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                              style={{ background: "#C59D4F" }}
+                        </button>
+                      </NavTooltip>
+                    ) : (
+                      <NavTooltip label={item.label} enabled={!expanded}>
+                        <Link
+                          href={item.href!}
+                          className={itemBase}
+                          aria-current={parentActive ? "page" : undefined}
+                          aria-label={item.label}
+                        >
+                          {parentActive && (
+                            <span
+                              className="absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-[#C59D4F]"
+                              aria-hidden
                             />
                           )}
-                        </div>
-                      </Link>
+                          <Icon
+                            className={cn(
+                              "size-[18px] flex-shrink-0 transition-colors duration-150",
+                              parentActive
+                                ? "text-[#C59D4F]"
+                                : "text-slate-500 group-hover:text-slate-300"
+                            )}
+                          />
+                          {expanded && (
+                            <>
+                              <span
+                                className={cn(
+                                  "flex-1 truncate text-[13px]",
+                                  parentActive
+                                    ? "font-medium text-white"
+                                    : "font-medium"
+                                )}
+                              >
+                                {item.label}
+                              </span>
+                              {parentActive && (
+                                <span
+                                  className="size-1.5 flex-shrink-0 rounded-full bg-[#C59D4F]"
+                                  aria-hidden
+                                />
+                              )}
+                            </>
+                          )}
+                        </Link>
+                      </NavTooltip>
                     )}
 
                     {/* Submenu */}
-                    {hasChildren && expanded && isOpen && (
+                    {hasChildren && expanded && (
                       <div
-                        className="ml-4 pl-3 mb-1"
-                        style={{
-                          borderLeft: "1px solid rgba(255,255,255,0.06)",
-                        }}
+                        className="sidenav-submenu"
+                        data-open={isOpen ? "true" : "false"}
                       >
-                        {item.children!.map((child) => {
-                          const childActive = isRouteActive(child.href);
-                          return (
-                            <Link key={child.href} href={child.href}>
-                              <div
-                                className={cn(
-                                  "flex items-center gap-2 px-3 py-2 rounded-lg mb-0.5 transition-all duration-150 cursor-pointer text-sm"
-                                )}
-                                style={
-                                  childActive
-                                    ? {
-                                        color: "#C59D4F",
-                                        background: "rgba(197,157,79,0.08)",
-                                        fontWeight: 500,
-                                      }
-                                    : { color: "#4A6070" }
-                                }
-                                onMouseEnter={(e) => {
-                                  if (!childActive) {
-                                    (
-                                      e.currentTarget as HTMLElement
-                                    ).style.background =
-                                      "rgba(255,255,255,0.04)";
-                                    (
-                                      e.currentTarget as HTMLElement
-                                    ).style.color = "#CBD5E1";
+                        <div className="sidenav-submenu-inner">
+                          <div className="mb-1 ml-4 space-y-0.5 border-l border-white/[0.06] pl-3">
+                            {item.children!.map((child) => {
+                              const childActive = isRouteActive(child.href);
+                              return (
+                                <Link
+                                  key={child.href}
+                                  href={child.href}
+                                  aria-current={
+                                    childActive ? "page" : undefined
                                   }
-                                }}
-                                onMouseLeave={(e) => {
-                                  if (!childActive) {
-                                    (
-                                      e.currentTarget as HTMLElement
-                                    ).style.background = "transparent";
-                                    (
-                                      e.currentTarget as HTMLElement
-                                    ).style.color = "#4A6070";
-                                  }
-                                }}
-                              >
-                                {childActive && (
-                                  <div
-                                    className="w-1 h-1 rounded-full flex-shrink-0"
-                                    style={{ background: "#C59D4F" }}
-                                  />
-                                )}
-                                {child.label}
-                              </div>
-                            </Link>
-                          );
-                        })}
+                                  className={cn(
+                                    "relative flex items-center gap-2 rounded-md px-2.5 py-1.5 text-[12.5px] transition-colors duration-150",
+                                    childActive
+                                      ? "bg-[#C59D4F]/10 font-medium text-[#C59D4F]"
+                                      : "text-slate-500 hover:bg-white/[0.04] hover:text-slate-200"
+                                  )}
+                                >
+                                  {childActive && (
+                                    <span
+                                      className="size-1 flex-shrink-0 rounded-full bg-[#C59D4F]"
+                                      aria-hidden
+                                    />
+                                  )}
+                                  <span className="truncate">{child.label}</span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -491,13 +541,10 @@ export default function Sidebar({ expanded, setExpanded }: SidebarProps) {
         })}
       </nav>
 
-      {/* Logout */}
-      <div
-        className="p-3 flex-shrink-0"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
-      >
+      {/* Footer / Logout */}
+      <div className="flex-shrink-0 border-t border-white/[0.06] p-2.5">
         <LogoutButton expanded={expanded} />
       </div>
-    </div>
+    </aside>
   );
 }

@@ -2,10 +2,7 @@ import { getDBPool } from "@/lib/db";
 import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import EnquiryTrackerModel from "@/models/EnquiryTracker";
 import { getEnquiryIpInfo } from "@/utils/enquiryIpInfo";
-import {
-  isVulgarEnquiry,
-  validateEnquiryMessage,
-} from "@/utils/enquiryValidation";
+import { validateEnquiryMessage } from "@/utils/enquiryValidation";
 import { NextRequest, NextResponse } from "next/server";
 
 function getClientIp(req: NextRequest): string {
@@ -181,17 +178,15 @@ export async function POST(request: NextRequest) {
       if (!telegramData.ok) console.error("Telegram send failed:", telegramData);
     }
 
-    // Enquiry tracker: vulgar only (still return success to the client)
-    if (isVulgarEnquiry(message, { name, email })) {
-      await saveEnquiryTracker({
-        name,
-        email,
-        message,
-        etype,
-        mobile,
-        clientIp,
-      });
-    }
+    // Track every enquiry (vulgar or genuine)
+    await saveEnquiryTracker({
+      name,
+      email,
+      message,
+      etype,
+      mobile,
+      clientIp,
+    });
 
     return NextResponse.json({
       success: true,
