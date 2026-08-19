@@ -2,7 +2,7 @@ import { connectMongoDB } from "@/lib/mongo/dbConntect";
 import IpRateLimiting from "@/models/IpRateLimiting";
 import { NextRequest, NextResponse } from "next/server";
 
-export const ENQUIRY_DAILY_IP_LIMIT = 4;
+export const ENQUIRY_DAILY_IP_LIMIT = 40;
 
 export const ENQUIRY_IP_LIMIT_MESSAGE =
   "Daily limit reached. You can submit up to 4 enquiries per IP address per day. Please try again tomorrow.";
