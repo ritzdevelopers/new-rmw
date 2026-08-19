@@ -43,7 +43,13 @@ const VULGAR_PATTERNS: RegExp[] = [
 
 function extractLabeledValue(message: string, label: string): string | null {
   const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const regex = new RegExp(`${escaped}\\s*:\\s*(.+)`, "i");
+  // Capture only the value on the same line as the label.
+  // This avoids accidentally grabbing following fields when the payload
+  // contains newlines (or escaped newline tokens like "\\n").
+  const regex = new RegExp(
+    `${escaped}\\s*:\\s*([^\\r\\n]+?)(?:\\r?\\n|\\\\[nr]|$)`,
+    "i",
+  );
   const match = message.match(regex);
   return match?.[1]?.trim() || null;
 }
@@ -64,8 +70,21 @@ function isAllowedValue(
   value: string,
   allowed: readonly string[]
 ): boolean {
-  const normalized = value.trim().toLowerCase();
-  return allowed.some((option) => option.toLowerCase() === normalized);
+  // Normalize:
+  // - trim
+  // - collapse repeated whitespace
+  // - handle literal "\n" / "\r" sequences (seen in some payloads)
+  // - case-insensitive
+  const normalize = (s: string) =>
+    s
+      .replace(/\\[nr]/g, " ")
+      .replace(/\u00A0/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+
+  const normalized = normalize(value);
+  return allowed.some((option) => normalize(option) === normalized);
 }
 
 /** Returns true when name/email/message (or structured fields) contain vulgar language. */
