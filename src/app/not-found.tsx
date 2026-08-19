@@ -17,7 +17,7 @@ export default function NotFound() {
         <div className="flex justify-center">
           <div className="w-full max-w-4xl text-center">
             {/* 404 Background Section */}
-            <div 
+            <div
               className="h-[400px] bg-center bg-no-repeat bg-contain -mb-[50px]"
               style={{
                 backgroundImage: 'url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif)'
