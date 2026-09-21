@@ -56,19 +56,28 @@ export default function BlogStepProgress({ currentStep }: BlogStepProgressProps)
 }
 
 interface BlogWizardShellProps {
-  currentStep: 1 | 2 | 3;
+  currentStep?: 1 | 2 | 3;
   title: string;
   subtitle?: string;
   breadcrumbExtra?: string;
+  /** Defaults to "Add Blog" — use for alternate workflows like Google Docs import */
+  breadcrumbLabel?: string;
+  /** Defaults to "Blog Studio" */
+  badgeLabel?: string;
+  /** Hide the 3-step progress bar (e.g. single-page import form) */
+  hideSteps?: boolean;
   children: React.ReactNode;
   footer?: React.ReactNode;
 }
 
 export function BlogWizardShell({
-  currentStep,
+  currentStep = 1,
   title,
   subtitle,
   breadcrumbExtra,
+  breadcrumbLabel = "Add Blog",
+  badgeLabel = "Blog Studio",
+  hideSteps = false,
   children,
   footer,
 }: BlogWizardShellProps) {
@@ -79,7 +88,7 @@ export function BlogWizardShell({
           <div>
             <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-[#2955B3] shadow-sm">
               <PenLine className="h-3.5 w-3.5" />
-              Blog Studio
+              {badgeLabel}
             </div>
             <h1 className="text-2xl font-bold text-[#0B1623] sm:text-3xl">{title}</h1>
             {subtitle && <p className="mt-1 max-w-2xl text-sm text-slate-500">{subtitle}</p>}
@@ -101,7 +110,7 @@ export function BlogWizardShell({
           <span className="text-slate-300">/</span>
           <span className="inline-flex items-center gap-1.5 text-slate-500">
             <Monitor className="h-4 w-4" />
-            Add Blog
+            {breadcrumbLabel}
           </span>
           {breadcrumbExtra && (
             <>
@@ -111,7 +120,7 @@ export function BlogWizardShell({
           )}
         </div>
 
-        <BlogStepProgress currentStep={currentStep} />
+        {!hideSteps && <BlogStepProgress currentStep={currentStep} />}
 
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6 md:p-8">
           {children}
