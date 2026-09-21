@@ -20,6 +20,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/admin/chats/history": "Chats — History",
   "/admin/chats/export": "Chats — Export",
   "/admin/add-blog": "Blog — Add New",
+  "/admin/upload-new-blog": "Blog — Import from Docs",
   "/admin/manage-blogs": "Blog — Manage",
   "/admin/add-web-story-topics": "Web Stories — Add Topics",
   "/admin/manage-web-story-topics": "Web Stories — Manage Topics",

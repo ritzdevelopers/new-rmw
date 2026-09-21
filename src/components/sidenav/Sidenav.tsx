@@ -80,6 +80,7 @@ const NAV_ITEMS: NavItem[] = [
     group: "content",
     children: [
       { label: "Add Blog", href: "/admin/add-blog" },
+      { label: "Import from Docs", href: "/admin/upload-new-blog" },
       { label: "Manage Blogs", href: "/admin/manage-blogs" },
     ],
   },
