@@ -67,6 +67,7 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
         const formData = await req.formData();
         const blogId = params.blogID;
         const blogTitle = formData.get("blogTitle");
+        const blogMetaTitle = formData.get("blogMetaTitle");
         const blogSlugInput = formData.get("blogSlug");
         const metaKeywords = formData.get("metaKeywords");
         const blogBodyRaw = formData.get("blogBody");
@@ -155,6 +156,18 @@ export async function PUT(req: NextRequest, { params }: { params: { blogID: stri
             ...item,
             innerImg: innerImgMap[index] || item.innerImg || "",
         }));
+
+        if (typeof blogMetaTitle === "string") {
+            if (updatedBlogBody.length === 0) {
+                updatedBlogBody.push({
+                    metaTitle: blogMetaTitle,
+                    metaDescription: "",
+                    innerImg: "",
+                });
+            } else {
+                updatedBlogBody[0].metaTitle = blogMetaTitle;
+            }
+        }
 
         const updateData: Partial<{
             blogTitle: string | FormDataEntryValue | null;

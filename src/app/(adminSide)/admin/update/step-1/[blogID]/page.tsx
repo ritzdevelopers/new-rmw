@@ -45,6 +45,7 @@ const Page = () => {
   } = useBlogContext();
 
   const [localTitle, setLocalTitle] = useState<string>(blogTitle || "");
+  const [localBlogMetaTitle, setLocalBlogMetaTitle] = useState<string>("");
   const [localSlug, setLocalSlug] = useState<string>("");
   const [localMeta, setLocalMeta] = useState<string>(metaKeywords || "");
   const [localBanner, setLocalBanner] = useState<string>(blogBanner || "");
@@ -80,6 +81,7 @@ const Page = () => {
     if (savedData) {
       const parsed = JSON.parse(savedData);
       setLocalTitle(parsed.blogTitle || "");
+      setLocalBlogMetaTitle(parsed.blogMetaTitle || "");
       setLocalSlug(parsed.blogSlug || "");
       setLocalMeta(parsed.metaKeywords || "");
       setLocalBanner(parsed.blogBanner || "");
@@ -117,6 +119,7 @@ const Page = () => {
       console.log("This is blog ", blog);
       console.log("====================================");
       setLocalTitle(blog.blogTitle || "");
+      setLocalBlogMetaTitle(blog.blogBody?.[0]?.metaTitle || "");
       setLocalSlug(blog.blogSlug || "");
       setLocalMeta(blog.metaKeywords || "");
       setLocalBanner(blog.blogBanner || "");
@@ -155,6 +158,7 @@ const Page = () => {
         LOCAL_KEY,
         JSON.stringify({
           blogTitle: blog.blogTitle,
+          blogMetaTitle: blog.blogBody?.[0]?.metaTitle || "",
           blogSlug: blog.blogSlug,
           metaKeywords: blog.metaKeywords,
           blogBanner: blog.blogBanner,
@@ -174,6 +178,7 @@ const Page = () => {
     // alert("This function hit!");
     const data = {
       blogTitle: localTitle,
+      blogMetaTitle: localBlogMetaTitle,
       blogSlug: localSlug,
       metaKeywords: localMeta,
       blogBanner: localBanner,
@@ -331,6 +336,19 @@ const Page = () => {
                 setBlogTitle(e.target.value);
               }}
               placeholder="Enter blog title here..."
+              className="w-full border rounded-md px-4 py-2"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2 p-4">
+            <label className="text-sm font-semibold text-[#444]">
+              Blog Meta Title
+            </label>
+            <input
+              type="text"
+              value={localBlogMetaTitle}
+              onChange={(e) => setLocalBlogMetaTitle(e.target.value)}
+              placeholder="Enter blog meta title..."
               className="w-full border rounded-md px-4 py-2"
             />
           </div>
