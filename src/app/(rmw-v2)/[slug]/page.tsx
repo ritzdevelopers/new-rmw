@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         ? (result[0] as BlogLayoutData)
         : null;
     const blog = data?.blog;
-    const title = blog?.title ?? blog?.blogTitle ?? "Blog";
+    const title = blog?.metaTitle ?? blog?.blogBody[0]?.metaTitle ?? "Blog";
     const meta_description = blog?.meta_description ?? blog?.mtDesc ?? "";
     const meta_keywords = blog?.meta_keywords ?? blog?.metaKeywords ?? "";
     const keywords = (typeof meta_keywords === "string" ? meta_keywords.split(",").map((k: string) => k.trim()).filter(Boolean) : []) as string[];
